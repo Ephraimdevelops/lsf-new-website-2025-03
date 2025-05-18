@@ -23,9 +23,9 @@ const programsData = {
     color: 'bg-secondary-green',
     objectives: [
       'Combat gender-based violence and discrimination',
-      'Support women's rights organizations',
-      'Promote women's land and property rights',
-      'Enhance women's political participation',
+      "Support women's rights organizations",
+      "Promote women's land and property rights",
+      "Enhance women's political participation",
       'Address harmful traditional practices'
     ]
   },
