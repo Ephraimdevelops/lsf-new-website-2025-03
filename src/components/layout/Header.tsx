@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +17,12 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location.pathname]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -88,7 +95,7 @@ const Header = () => {
                 <button 
                   onClick={() => toggleDropdown(item.id)}
                   className={`px-3 py-2 rounded-md text-neutral-dark hover:text-primary flex items-center ${
-                    activeDropdown === item.id ? 'text-primary' : ''
+                    activeDropdown === item.id || location.pathname.startsWith(item.link) ? 'text-primary' : ''
                   } font-calibri`}
                 >
                   {item.label}
@@ -97,19 +104,23 @@ const Header = () => {
               ) : (
                 <Link 
                   to={item.link} 
-                  className="px-3 py-2 rounded-md text-neutral-dark hover:text-primary font-calibri"
+                  className={`px-3 py-2 rounded-md font-calibri ${
+                    location.pathname === item.link ? 'text-primary font-bold' : 'text-neutral-dark hover:text-primary'
+                  }`}
                 >
                   {item.label}
                 </Link>
               )}
               
               {item.submenu && (
-                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
+                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   {item.submenu.map((subitem) => (
                     <Link
                       key={subitem.label}
                       to={subitem.link}
-                      className="block px-4 py-2 text-sm text-neutral-dark hover:bg-primary hover:text-white font-calibri"
+                      className={`block px-4 py-2 text-sm font-calibri ${
+                        location.pathname === subitem.link ? 'bg-primary text-white' : 'text-neutral-dark hover:bg-primary hover:text-white'
+                      }`}
                     >
                       {subitem.label}
                     </Link>
@@ -157,8 +168,9 @@ const Header = () => {
                         <Link
                           key={subitem.label}
                           to={subitem.link}
-                          className="block py-2 text-sm hover:text-primary font-calibri"
-                          onClick={() => setIsMenuOpen(false)}
+                          className={`block py-2 text-sm font-calibri ${
+                            location.pathname === subitem.link ? 'text-primary font-bold' : 'hover:text-primary'
+                          }`}
                         >
                           {subitem.label}
                         </Link>
@@ -169,8 +181,9 @@ const Header = () => {
               ) : (
                 <Link 
                   to={item.link} 
-                  className="block py-2 hover:text-primary font-calibri"
-                  onClick={() => setIsMenuOpen(false)}
+                  className={`block py-2 font-calibri ${
+                    location.pathname === item.link ? 'text-primary font-bold' : 'hover:text-primary'
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -180,7 +193,6 @@ const Header = () => {
           <Link 
             to="/donate" 
             className="block w-full text-center mt-4 bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
-            onClick={() => setIsMenuOpen(false)}
           >
             Donate
           </Link>
