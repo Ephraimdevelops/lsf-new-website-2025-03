@@ -1,6 +1,6 @@
 
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 
 // This would typically come from an API
