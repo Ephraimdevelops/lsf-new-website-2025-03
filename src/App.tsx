@@ -17,6 +17,10 @@ import Partners from "./pages/Partners";
 import Resources from "./pages/Resources";
 import Programs from "./pages/Programs";
 import Donate from "./pages/Donate";
+import WhatWeDo from "./pages/WhatWeDo";
+import Heroes from "./pages/Heroes";
+import Opportunities from "./pages/Opportunities";
+import Whistleblower from "./pages/Whistleblower";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +43,10 @@ const App = () => (
           <Route path="/programs/:programId" element={<ProgramDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
+          <Route path="/what-we-do" element={<WhatWeDo />} />
+          <Route path="/heroes" element={<Heroes />} />
+          <Route path="/opportunities" element={<Opportunities />} />
+          <Route path="/whistleblower" element={<Whistleblower />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

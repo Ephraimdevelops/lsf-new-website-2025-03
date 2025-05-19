@@ -40,6 +40,7 @@ const Header = () => {
       submenu: [
         { label: 'Our Story', link: '/about' },
         { label: 'Vision & Mission', link: '/about#mission' },
+        { label: 'What We Do', link: '/what-we-do' },
         { label: 'Team', link: '/team' },
         { label: 'Partners', link: '/partners' },
       ]
@@ -49,6 +50,7 @@ const Header = () => {
       label: 'Programs', 
       link: '/programs',
       submenu: [
+        { label: 'Overview', link: '/programs' },
         { label: 'Legal Empowerment', link: '/programs/legal-empowerment' },
         { label: 'Gender Justice', link: '/programs/gender-justice' },
         { label: 'Climate Justice', link: '/programs/climate-justice' },
@@ -62,10 +64,21 @@ const Header = () => {
       submenu: [
         { label: 'Publications', link: '/publications' },
         { label: 'Research', link: '/resources/research' },
-        { label: 'Success Stories', link: '/resources/success-stories' },
+        { label: 'Our Heroes', link: '/heroes' },
+        { label: 'Whistleblower', link: '/whistleblower' },
       ]
     },
     { label: 'News', link: '/news' },
+    { 
+      id: 'opportunities', 
+      label: 'Opportunities', 
+      link: '/opportunities',
+      submenu: [
+        { label: 'Job Openings', link: '/opportunities' },
+        { label: 'Grants', link: '/opportunities' },
+        { label: 'Tenders', link: '/opportunities' },
+      ]
+    },
     { label: 'Contact', link: '/contact' },
   ];
 
