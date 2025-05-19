@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { ArrowRight, Scale, Users, BookOpen, MapPin, FileText } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface FocusAreaProps {
   icon: React.ReactNode;
