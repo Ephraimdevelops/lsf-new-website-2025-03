@@ -53,7 +53,7 @@ const Header = () => {
       label: 'Resources', 
       link: '/resources',
       submenu: [
-        { label: 'Publications', link: '/resources/publications' },
+        { label: 'Publications', link: '/publications' },
         { label: 'Research', link: '/resources/research' },
         { label: 'Success Stories', link: '/resources/success-stories' },
       ]
@@ -73,7 +73,7 @@ const Header = () => {
         <Link to="/" className="flex items-center">
           <div className="w-40">
             <img 
-              src="/lovable-uploads/697177d1-fcb8-4356-b773-aca9e11107aa.png" 
+              src={isScrolled ? "/lovable-uploads/02e8bc92-1854-4945-9da0-b4293427f46d.png" : "/lovable-uploads/140e859b-26c6-4b1b-a99e-a8efaf084eb8.png"} 
               alt="LSF Logo" 
               className="h-12 w-auto"
             />
@@ -89,7 +89,7 @@ const Header = () => {
                   onClick={() => toggleDropdown(item.id)}
                   className={`px-3 py-2 rounded-md text-neutral-dark hover:text-primary flex items-center ${
                     activeDropdown === item.id ? 'text-primary' : ''
-                  }`}
+                  } font-calibri`}
                 >
                   {item.label}
                   <ChevronDown size={16} className="ml-1" />
@@ -97,7 +97,7 @@ const Header = () => {
               ) : (
                 <Link 
                   to={item.link} 
-                  className="px-3 py-2 rounded-md text-neutral-dark hover:text-primary"
+                  className="px-3 py-2 rounded-md text-neutral-dark hover:text-primary font-calibri"
                 >
                   {item.label}
                 </Link>
@@ -109,7 +109,7 @@ const Header = () => {
                     <Link
                       key={subitem.label}
                       to={subitem.link}
-                      className="block px-4 py-2 text-sm text-neutral-dark hover:bg-primary hover:text-white"
+                      className="block px-4 py-2 text-sm text-neutral-dark hover:bg-primary hover:text-white font-calibri"
                     >
                       {subitem.label}
                     </Link>
@@ -120,7 +120,7 @@ const Header = () => {
           ))}
           <Link 
             to="/donate" 
-            className="ml-2 bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300"
+            className="ml-2 bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
           >
             Donate
           </Link>
@@ -145,7 +145,7 @@ const Header = () => {
                 <div>
                   <button 
                     onClick={() => toggleDropdown(item.id)}
-                    className="w-full text-left py-2 flex justify-between items-center"
+                    className="w-full text-left py-2 flex justify-between items-center font-calibri"
                   >
                     <span>{item.label}</span>
                     <ChevronDown size={16} className={`transition-transform ${activeDropdown === item.id ? 'transform rotate-180' : ''}`} />
@@ -157,7 +157,7 @@ const Header = () => {
                         <Link
                           key={subitem.label}
                           to={subitem.link}
-                          className="block py-2 text-sm hover:text-primary"
+                          className="block py-2 text-sm hover:text-primary font-calibri"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {subitem.label}
@@ -169,7 +169,7 @@ const Header = () => {
               ) : (
                 <Link 
                   to={item.link} 
-                  className="block py-2 hover:text-primary"
+                  className="block py-2 hover:text-primary font-calibri"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
@@ -179,7 +179,7 @@ const Header = () => {
           ))}
           <Link 
             to="/donate" 
-            className="block w-full text-center mt-4 bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300"
+            className="block w-full text-center mt-4 bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
             onClick={() => setIsMenuOpen(false)}
           >
             Donate
