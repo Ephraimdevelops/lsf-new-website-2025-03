@@ -1,3 +1,4 @@
+
 import Layout from '../components/layout/Layout';
 import Hero from '../components/home/Hero';
 import ImpactStats from '../components/home/ImpactStats';
@@ -6,6 +7,9 @@ import About from '../components/home/About';
 import Contact from '../components/home/Contact';
 import FeaturedNewsCarousel from '../components/home/FeaturedNewsCarousel';
 import Publications from '../components/home/Publications';
+import FocusAreas from '../components/home/FocusAreas';
+import NewsTicker from '../components/home/NewsTicker';
+import LegalAidFinder from '../components/home/LegalAidFinder';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -14,10 +18,10 @@ const Index = () => {
   return (
     <Layout>
       <Hero />
-      <FeaturedNewsCarousel />
+      <NewsTicker />
       <ImpactStats />
       
-      {/* Featured Programs Section */}
+      {/* Focus Areas Section */}
       <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
@@ -36,7 +40,7 @@ const Index = () => {
               </Link>
             </div>
           </div>
-          <Programs />
+          <FocusAreas />
         </div>
       </section>
       
@@ -110,6 +114,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Legal Aid Finder Section */}
+      <LegalAidFinder />
       
       <About />
       <Contact />

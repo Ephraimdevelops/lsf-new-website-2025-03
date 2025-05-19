@@ -33,11 +33,15 @@ const PublicationCard = ({ title, type, date, link, downloadUrl, coverImage, isN
           src={coverImage} 
           alt={title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = "https://images.unsplash.com/photo-1553830591-d8632a99e6ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
           <div className="flex space-x-2">
             <a 
-              href={downloadUrl} 
+              href={downloadUrl || "#"} 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-primary text-white px-3 py-1 rounded-md text-sm flex items-center font-calibri"
@@ -80,8 +84,8 @@ const Publications = () => {
       type: "Report",
       date: "March 2023",
       link: "/publications/annual-report-2023",
-      downloadUrl: "#",
-      coverImage: "https://images.unsplash.com/photo-1544115559-6731bccacc70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      downloadUrl: "/publications/annual-report-2023.pdf",
+      coverImage: "https://images.unsplash.com/photo-1544115559-6731bccacc70?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       isNew: true
     },
     {
@@ -89,8 +93,8 @@ const Publications = () => {
       type: "Research",
       date: "January 2023",
       link: "/publications/womens-land-rights",
-      downloadUrl: "#",
-      coverImage: "https://images.unsplash.com/photo-1574195133452-f0830139812e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      downloadUrl: "/publications/womens-land-rights.pdf",
+      coverImage: "https://images.unsplash.com/photo-1574195133452-f0830139812e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       isNew: false
     },
     {
@@ -98,8 +102,8 @@ const Publications = () => {
       type: "Guide",
       date: "November 2022",
       link: "/publications/digital-legal-services",
-      downloadUrl: "#",
-      coverImage: "https://images.unsplash.com/photo-1583345237708-61a5c607c276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      downloadUrl: "/publications/digital-legal-services.pdf",
+      coverImage: "https://images.unsplash.com/photo-1583345237708-61a5c607c276?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       isNew: false
     },
     {
@@ -107,8 +111,8 @@ const Publications = () => {
       type: "Brief",
       date: "October 2022",
       link: "/publications/policy-brief-climate-justice",
-      downloadUrl: "#",
-      coverImage: "https://images.unsplash.com/photo-1627163439134-7a8c47e08208?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      downloadUrl: "/publications/policy-brief-climate-justice.pdf",
+      coverImage: "https://images.unsplash.com/photo-1627163439134-7a8c47e08208?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       isNew: false
     },
     {
@@ -116,8 +120,8 @@ const Publications = () => {
       type: "Manual",
       date: "August 2022",
       link: "/publications/legal-aid-handbook",
-      downloadUrl: "#",
-      coverImage: "https://images.unsplash.com/photo-1559134935-d80da671a6e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      downloadUrl: "/publications/legal-aid-handbook.pdf",
+      coverImage: "https://images.unsplash.com/photo-1559134935-d80da671a6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
       isNew: false
     }
   ];
@@ -146,8 +150,8 @@ const Publications = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute -left-12 top-1/3" />
-        <CarouselNext className="absolute -right-12 top-1/3" />
+        <CarouselPrevious className="hidden md:flex absolute -left-12 top-1/3" />
+        <CarouselNext className="hidden md:flex absolute -right-12 top-1/3" />
       </Carousel>
     </div>
   );
