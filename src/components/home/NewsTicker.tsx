@@ -9,7 +9,7 @@ interface NewsItem {
 
 const news: NewsItem[] = [
   { id: 'legal-empowerment-initiatives', title: 'LSF launches new paralegal training program in Dodoma region' },
-  { id: 'gender-justice-workshop', title: 'Women's rights workshop reaches 500 participants across Tanzania' },
+  { id: 'gender-justice-workshop', title: "Women's rights workshop reaches 500 participants across Tanzania" },
   { id: 'climate-justice-advocacy', title: 'New policy brief on climate justice and land rights released' },
   { id: 'digital-legal-aid', title: 'Mobile legal aid clinics reach remote communities in Mwanza' },
   { id: 'government-partnership', title: 'LSF signs MOU with Ministry of Justice to strengthen legal empowerment' }
