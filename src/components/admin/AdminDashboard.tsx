@@ -2,12 +2,13 @@
 import { useState } from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { User, LayoutDashboard, Settings, Users, FileText, X, Menu } from 'lucide-react';
+import { User, LayoutDashboard, Settings, Users, FileText, X, Menu, BarChart } from 'lucide-react';
 import AdminNews from './AdminNews';
 import AdminPublications from './AdminPublications';
 import AdminPrograms from './AdminPrograms';
 import AdminSettings from './AdminSettings';
 import AdminHome from './AdminHome';
+import AdminAnalytics from './AdminAnalytics';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -45,6 +46,12 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
               </Link>
             </li>
             <li>
+              <Link to="/admin/analytics" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+                <BarChart size={18} className="mr-2" />
+                {sidebarOpen && <span>Analytics</span>}
+              </Link>
+            </li>
+            <li>
               <Link to="/admin/news" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
                 <FileText size={18} className="mr-2" />
                 {sidebarOpen && <span>News Management</span>}
@@ -79,6 +86,11 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
           <div className="flex items-center justify-between p-4">
             <h1 className="text-xl font-bold font-panton">Dashboard</h1>
             <div className="flex items-center space-x-4">
+              <div className="text-sm text-gray-600 font-calibri hidden md:block">
+                Last login: {localStorage.getItem('admin-last-login') 
+                  ? new Date(localStorage.getItem('admin-last-login') || '').toLocaleString() 
+                  : 'Unknown'}
+              </div>
               <Button 
                 variant="outline" 
                 size="sm" 
@@ -96,6 +108,7 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         <main className="flex-1 overflow-y-auto p-6">
           <Routes>
             <Route path="/" element={<AdminHome />} />
+            <Route path="/analytics" element={<AdminAnalytics />} />
             <Route path="/news" element={<AdminNews />} />
             <Route path="/publications" element={<AdminPublications />} />
             <Route path="/programs" element={<AdminPrograms />} />
