@@ -37,18 +37,18 @@ const AdminSettings = () => {
     
     if (name.includes('.')) {
       const [parent, child] = name.split('.');
-      setSettings({
-        ...settings,
+      setSettings(prevSettings => ({
+        ...prevSettings,
         [parent]: {
-          ...settings[parent as keyof typeof settings],
+          ...(prevSettings[parent as keyof typeof prevSettings] as Record<string, string>),
           [child]: value
         }
-      });
+      }));
     } else {
-      setSettings({
-        ...settings,
+      setSettings(prevSettings => ({
+        ...prevSettings,
         [name]: value
-      });
+      }));
     }
   };
 
