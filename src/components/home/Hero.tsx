@@ -43,13 +43,22 @@ const blogPosts: BlogPost[] = [
   }
 ];
 
-// Regions for the paralegal finder
-const regions = ["All Regions", "Dar es Salaam", "Mwanza", "Arusha", "Dodoma", "Tanga", "Morogoro"];
+// Regions for the paralegal finder with corresponding hotline numbers
+const regions = [
+  { name: "All Regions", phone: "+255 800 110 303" },
+  { name: "Dar es Salaam", phone: "+255 800 110 304" },
+  { name: "Mwanza", phone: "+255 800 110 305" },
+  { name: "Arusha", phone: "+255 800 110 306" },
+  { name: "Dodoma", phone: "+255 800 110 307" },
+  { name: "Tanga", phone: "+255 800 110 308" },
+  { name: "Morogoro", phone: "+255 800 110 309" }
+];
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState<string>("All Regions");
+  const [hotlineNumber, setHotlineNumber] = useState(regions[0].phone);
 
   const nextSlide = () => {
     if (!isAnimating) {
@@ -74,6 +83,14 @@ const Hero = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Update hotline number when region changes
+  useEffect(() => {
+    const region = regions.find(r => r.name === selectedRegion);
+    if (region) {
+      setHotlineNumber(region.phone);
+    }
+  }, [selectedRegion]);
 
   return (
     <section className="relative pattern-bg text-white min-h-[90vh] flex items-center overflow-hidden">
@@ -140,7 +157,7 @@ const Hero = () => {
             ))}
           </div>
           
-          {/* Paralegal finder - Moved from LegalAidFinder component */}
+          {/* Paralegal finder widget */}
           <div className="md:col-span-5">
             <div className="bg-white/95 p-6 rounded-lg shadow-lg">
               <h3 className="text-primary text-2xl font-bold mb-3 font-panton">Need Legal Aid?</h3>
@@ -159,8 +176,8 @@ const Hero = () => {
                   </SelectTrigger>
                   <SelectContent>
                     {regions.map((region) => (
-                      <SelectItem key={region} value={region}>
-                        {region}
+                      <SelectItem key={region.name} value={region.name}>
+                        {region.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -171,26 +188,28 @@ const Hero = () => {
                 <MapPin className="h-10 w-10 text-primary flex-shrink-0" />
                 <div>
                   <p className="font-medium text-neutral-dark font-calibri">Need immediate assistance?</p>
-                  <a href="tel:+255800110303" className="text-2xl font-bold text-primary font-panton">
-                    +255 800 110 303
+                  <a href={`tel:${hotlineNumber.replace(/\s/g, '')}`} className="text-2xl font-bold text-primary font-panton">
+                    {hotlineNumber}
                   </a>
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-3">
                 <a 
-                  href="tel:+255800110303" 
+                  href={`tel:${hotlineNumber.replace(/\s/g, '')}`}
                   className="bg-primary text-white hover:bg-primary-dark px-4 py-3 rounded text-center font-bold transition-colors flex items-center justify-center gap-2 font-calibri"
                 >
                   <Phone className="h-4 w-4" />
                   Call Now
                 </a>
-                <Link 
-                  to="/legal-help" 
+                <a 
+                  href="https://play.google.com/store/apps/details?id=com.hakiyangu.app" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-4 py-3 rounded text-center font-bold transition-colors font-calibri"
                 >
-                  Find Paralegal
-                </Link>
+                  Download Haki Yangu
+                </a>
               </div>
             </div>
           </div>

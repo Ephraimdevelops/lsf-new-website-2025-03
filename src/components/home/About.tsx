@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 const About = () => {
   return (
-    <section className="py-20 md:py-28 bg-neutral-50">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-neutral-50 to-white">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -27,26 +27,12 @@ const About = () => {
           <div className="relative">
             <div className="relative z-10">
               <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
                 alt="Tanzanian paralegals in a community meeting" 
                 className="rounded-lg shadow-lg w-full h-full object-cover"
               />
             </div>
             <div className="absolute inset-0 bg-secondary-teal rounded-lg transform translate-x-4 translate-y-4 -z-0 opacity-50"></div>
-            
-            {/* Call to action card */}
-            <div className="absolute -bottom-10 -left-10 bg-primary p-6 rounded-lg shadow-lg max-w-xs text-white z-20">
-              <h3 className="text-xl font-panton mb-2">Need Legal Aid?</h3>
-              <p className="font-calibri mb-4">CALL A PARALEGAL</p>
-              <div className="flex flex-col gap-2">
-                <a href="tel:+255800110303" className="bg-white text-primary hover:bg-white/90 px-4 py-2 rounded text-center font-bold transition-colors font-calibri">
-                  Call Now
-                </a>
-                <a href="#haki-yangu" className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-4 py-2 rounded text-center font-bold transition-colors font-calibri">
-                  Download Haki Yangu
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>

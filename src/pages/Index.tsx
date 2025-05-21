@@ -29,27 +29,31 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Section 1: Hero with News Ticker and Paralegal Finder (integrated in Hero) */}
+      {/* Section 1: Hero with Paralegal Finder integrated */}
       <Hero />
+      
+      {/* Section 2: News Ticker - provides latest updates */}
       <NewsTicker />
       
-      {/* Section 2: Our Impact & Strategic Focus Areas */}
+      {/* Section 3: Our Impact - shows the organization's reach */}
       <ImpactStats />
+      
+      {/* Section 4: Strategic Focus Areas */}
       <FocusAreas />
       
-      {/* Section 3: What We Do - Redesigned */}
+      {/* Section 5: What We Do - services overview */}
       <WhatWeDo />
       
-      {/* Section 4: Publications - Redesigned */}
-      <Publications />
-      
-      {/* Section 5: Testimonials / Success Stories - Enhanced */}
-      <SuccessStories />
-
-      {/* Section 6: About Us - New paralegal image */}
+      {/* Section 6: Who We Are */}
       <About />
       
-      {/* Section 7: Haki Yangu Highlight */}
+      {/* Section 7: Testimonials / Success Stories */}
+      <SuccessStories />
+      
+      {/* Section 8: Publications */}
+      <Publications />
+      
+      {/* Section 9: Haki Yangu App Highlight */}
       <HakiYanguHighlight />
       
       {/* Contact section at bottom */}

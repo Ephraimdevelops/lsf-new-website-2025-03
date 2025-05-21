@@ -1,225 +1,145 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, FileText, Download } from 'lucide-react';
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious
-} from '@/components/ui/carousel';
-import { Button } from '@/components/ui/button';
-import { publicationService } from '@/services/api';
 
-interface PublicationCardProps {
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ChevronLeft, ChevronRight, BookOpen, Download } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+interface Publication {
+  id: string;
   title: string;
   type: string;
   date: string;
-  link: string;
+  image: string;
   downloadUrl: string;
-  coverImage: string;
-  isNew?: boolean;
 }
 
-const PublicationCard = ({ title, type, date, link, downloadUrl, coverImage, isNew = false }: PublicationCardProps) => {
-  // Track downloads
-  const handleDownload = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    try {
-      // Extract the ID from the URL or link
-      const id = parseInt(link.split('/').pop() || '0');
-      if (id > 0) {
-        await publicationService.recordDownload(id);
-      }
-    } catch (error) {
-      console.error("Failed to record download:", error);
-    }
-  };
-
-  return (
-    <div className="group h-full flex flex-col">
-      <div className="relative mb-4 overflow-hidden rounded-lg shadow-md aspect-[3/4] transform transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-xl">
-        {isNew && (
-          <div className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full z-10">
-            NEW
-          </div>
-        )}
-        <img 
-          src={coverImage} 
-          alt={title}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = "https://images.unsplash.com/photo-1553830591-d8632a99e6ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
-          <div className="flex gap-3">
-            <a 
-              href={downloadUrl || "#"} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-primary text-white px-4 py-2 rounded-md text-sm flex items-center font-calibri"
-              onClick={handleDownload}
-            >
-              <Download className="h-4 w-4 mr-2" />
-              Download
-            </a>
-            <Link 
-              to={link}
-              className="bg-white text-primary px-4 py-2 rounded-md text-sm flex items-center font-calibri"
-            >
-              Details
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="flex-1 flex flex-col">
-        <div className="mb-2">
-          <span className="text-sm text-neutral-gray font-calibri">{type} • {date}</span>
-        </div>
-        <h3 className="text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors font-panton">
-          {title}
-        </h3>
-        <Link 
-          to={link}
-          className="inline-flex items-center text-primary text-sm font-medium mt-auto group-hover:underline font-calibri"
-        >
-          Read publication
-          <ArrowRight className="ml-1 h-3 w-3" />
-        </Link>
-      </div>
-    </div>
-  );
-};
+const publications: Publication[] = [
+  {
+    id: '1',
+    title: 'Annual Report 2022: Impact and Growth',
+    type: 'Report',
+    date: 'December 2022',
+    image: 'https://images.unsplash.com/photo-1603796846097-bee99e4a601f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+    downloadUrl: '#'
+  },
+  {
+    id: '2',
+    title: 'Women\'s Land Rights in Tanzania: Research Findings',
+    type: 'Research',
+    date: 'October 2022',
+    image: 'https://images.unsplash.com/photo-1563906267088-b029e7101114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+    downloadUrl: '#'
+  },
+  {
+    id: '3',
+    title: 'Legal Aid Provider Technical Manual',
+    type: 'Guide',
+    date: 'August 2022',
+    image: 'https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+    downloadUrl: '#'
+  },
+  {
+    id: '4',
+    title: 'Digital Justice: Technology and Legal Aid',
+    type: 'White Paper',
+    date: 'June 2022',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+    downloadUrl: '#'
+  }
+];
 
 const Publications = () => {
-  const [publications, setPublications] = useState([
-    {
-      title: "Annual Report 2024: 26,000+ Disputes Resolved Through Legal Aid",
-      type: "Report",
-      date: "April 2024",
-      link: "/publications/annual-report-2024",
-      downloadUrl: "/publications/annual-report-2024.pdf",
-      coverImage: "https://images.unsplash.com/photo-1544115559-6731bccacc70?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      isNew: true
-    },
-    {
-      title: "Women's Land Rights in Tanzania: Climate Justice Perspective",
-      type: "Research",
-      date: "March 2024",
-      link: "/publications/womens-land-rights-climate",
-      downloadUrl: "/publications/womens-land-rights-climate.pdf",
-      coverImage: "https://images.unsplash.com/photo-1574195133452-f0830139812e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      isNew: true
-    },
-    {
-      title: "Digital Legal Services: Haki Yangu App Impact Study",
-      type: "Research",
-      date: "February 2024",
-      link: "/publications/digital-legal-services-impact",
-      downloadUrl: "/publications/digital-legal-services-impact.pdf",
-      coverImage: "https://images.unsplash.com/photo-1583345237708-61a5c607c276?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      isNew: true
-    },
-    {
-      title: "Policy Brief: Climate Justice and Legal Empowerment",
-      type: "Brief",
-      date: "January 2024",
-      link: "/publications/policy-brief-climate-justice",
-      downloadUrl: "/publications/policy-brief-climate-justice.pdf",
-      coverImage: "https://images.unsplash.com/photo-1627163439134-7a8c47e08208?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      isNew: false
-    },
-    {
-      title: "Legal Aid Handbook for Community Paralegals (Updated)",
-      type: "Manual",
-      date: "December 2023",
-      link: "/publications/legal-aid-handbook",
-      downloadUrl: "/publications/legal-aid-handbook.pdf",
-      coverImage: "https://images.unsplash.com/photo-1559134935-d80da671a6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      isNew: false
-    },
-    {
-      title: "Impact of Digital Transformation on Legal Services in Rural Tanzania",
-      type: "Study",
-      date: "November 2023",
-      link: "/publications/digital-transformation-impact",
-      downloadUrl: "/publications/digital-transformation-impact.pdf",
-      coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      isNew: false
-    }
-  ]);
+  const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = 3;
 
-  // Attempt to fetch real publications from API if available
-  useEffect(() => {
-    const fetchPublications = async () => {
-      try {
-        const response = await publicationService.getRecentPublications(6);
-        if (response && response.length > 0) {
-          // Map API data to our format if API returns data
-          // This is just placeholder code since we don't know the actual API response structure
-          // setPublications(response);
-        }
-      } catch (error) {
-        console.error("Failed to fetch publications:", error);
-        // Keep using static data if API fails
-      }
-    };
-    
-    fetchPublications();
-  }, []);
+  const nextSlide = () => {
+    setStartIndex((prevIndex) => 
+      (prevIndex + 1) % Math.max(1, publications.length - visibleCount + 1)
+    );
+  };
+
+  const prevSlide = () => {
+    setStartIndex((prevIndex) => 
+      prevIndex === 0 
+        ? Math.max(0, publications.length - visibleCount) 
+        : prevIndex - 1
+    );
+  };
+
+  const visiblePublications = publications.slice(startIndex, startIndex + visibleCount);
 
   return (
-    <section className="py-16 bg-[url('/lovable-uploads/f1407f2d-51ff-4898-b7a5-9ede5d13e081.png')] bg-opacity-5 bg-contain bg-no-repeat bg-center">
+    <section className="py-20 bg-gradient-to-b from-white to-neutral-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1 bg-primary/10 text-primary font-medium rounded-full mb-4 font-calibri">Knowledge Hub</span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Explore Our Resources</h2>
-          <p className="text-neutral-gray max-w-2xl mx-auto font-calibri text-lg">
-            Browse publications that inform policy, empower communities, and advance access to justice.
-          </p>
-        </div>
-        
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-white shadow-md rounded-full p-1">
-            <button className="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium">All</button>
-            <button className="px-4 py-2 rounded-full text-neutral-dark text-sm font-medium">Reports</button>
-            <button className="px-4 py-2 rounded-full text-neutral-dark text-sm font-medium">Research</button>
-            <button className="px-4 py-2 rounded-full text-neutral-dark text-sm font-medium">Resources</button>
+        <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-12">
+          <div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-3 font-panton">Latest Publications</h2>
+            <p className="text-neutral-gray font-calibri max-w-xl">
+              Explore our research, reports, and resources designed to enhance legal aid and access to justice in Tanzania
+            </p>
+          </div>
+          
+          <div className="flex space-x-3 mt-4 md:mt-0">
+            <button 
+              onClick={prevSlide}
+              className="p-2 bg-neutral-light hover:bg-neutral-100 rounded-full transition-colors"
+              aria-label="Show previous publications"
+              disabled={startIndex === 0}
+            >
+              <ChevronLeft className="h-6 w-6 text-primary" />
+            </button>
+            <button 
+              onClick={nextSlide}
+              className="p-2 bg-neutral-light hover:bg-neutral-100 rounded-full transition-colors"
+              aria-label="Show more publications"
+              disabled={startIndex >= publications.length - visibleCount}
+            >
+              <ChevronRight className="h-6 w-6 text-primary" />
+            </button>
           </div>
         </div>
         
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-4">
-              {publications.map((pub, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                  <PublicationCard
-                    title={pub.title}
-                    type={pub.type}
-                    date={pub.date}
-                    link={pub.link}
-                    downloadUrl={pub.downloadUrl}
-                    coverImage={pub.coverImage}
-                    isNew={pub.isNew}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute -left-12 top-1/3 hidden md:flex" />
-            <CarouselNext className="absolute -right-12 top-1/3 hidden md:flex" />
-          </Carousel>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+          {visiblePublications.map((publication) => (
+            <div key={publication.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={publication.image} 
+                  alt={publication.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <span className="absolute top-4 left-4 bg-primary text-white text-xs py-1 px-3 rounded-full font-calibri">
+                  {publication.type}
+                </span>
+              </div>
+              <div className="p-6">
+                <span className="text-neutral-gray text-sm mb-2 block font-calibri">{publication.date}</span>
+                <h3 className="text-xl font-bold mb-4 line-clamp-2 font-panton">{publication.title}</h3>
+                <div className="flex justify-between items-center">
+                  <Link 
+                    to={`/publications/${publication.id}`}
+                    className="text-primary font-medium flex items-center hover:underline font-calibri"
+                  >
+                    <BookOpen className="h-4 w-4 mr-1" />
+                    Read more
+                  </Link>
+                  <a 
+                    href={publication.downloadUrl} 
+                    className="text-secondary-teal font-medium flex items-center hover:underline font-calibri"
+                    download
+                  >
+                    <Download className="h-4 w-4 mr-1" />
+                    Download
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        
-        <div className="text-center mt-10">
+
+        <div className="mt-12 text-center">
           <Link to="/publications">
-            <Button variant="outline" size="lg" className="font-calibri">
+            <Button className="bg-primary hover:bg-primary-dark text-white font-calibri">
               View All Publications
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
