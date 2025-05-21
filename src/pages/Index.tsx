@@ -13,8 +13,23 @@ import LegalAidFinder from '../components/home/LegalAidFinder';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { analyticsService } from '@/services/api';
 
 const Index = () => {
+  // Track homepage visits
+  useEffect(() => {
+    const trackPageView = async () => {
+      try {
+        await analyticsService.recordPageView('/');
+      } catch (error) {
+        console.error("Failed to record page view:", error);
+      }
+    };
+    
+    trackPageView();
+  }, []);
+
   return (
     <Layout>
       <Hero />
@@ -118,33 +133,36 @@ const Index = () => {
       {/* Legal Aid Finder Section */}
       <LegalAidFinder />
       
+      {/* Featured News */}
+      <FeaturedNewsCarousel />
+      
       <About />
       <Contact />
     </Layout>
   );
 };
 
-// Sample heroes data
+// Updated heroes data based on real impact stories
 const heroes = [
   {
-    name: "Grace Mwakipesile",
+    name: "Mariam Kombo",
     location: "Dodoma, Tanzania",
-    program: "Legal Empowerment",
-    quote: "When I was wrongfully evicted from my land, the community paralegal trained by LSF helped me reclaim my property.",
+    program: "Gender Justice",
+    quote: "After facing eviction from my family land, LSF's paralegal helped me secure my property rights and restore my livelihood.",
     image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    name: "Mwanza Women's Collective",
+    name: "Mwanza Youth Legal Club",
     location: "Mwanza, Tanzania",
-    program: "Gender Justice",
-    quote: "The legal empowerment program has transformed how our community addresses gender-based violence.",
+    program: "Youth Empowerment",
+    quote: "Our school legal club has taught over 200 students about their rights and how to access justice when needed.",
     image: "https://images.unsplash.com/photo-1532635241-17e820acc59f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    name: "Samuel Kioko",
+    name: "Joseph Masanja",
     location: "Arusha, Tanzania",
     program: "Digital Transformation",
-    quote: "The mobile legal aid clinic reached our remote village and provided crucial services we needed.",
+    quote: "Through the Haki Yangu app, I was able to connect with a paralegal who helped my community resolve a critical water rights dispute.",
     image: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   }
 ];

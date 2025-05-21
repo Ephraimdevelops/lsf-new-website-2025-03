@@ -13,23 +13,23 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
-    id: 'legal-empowerment-initiatives',
-    title: 'Legal Empowerment Initiatives Making Impact in Rural Tanzania',
-    excerpt: 'Our recent programs have reached over 200 villages, providing critical legal aid and education to marginalized communities.',
+    id: 'legal-empowerment',
+    title: 'Empowering Justice. Transforming Communities.',
+    excerpt: 'Our network of 183+ paralegal organizations has helped over 26,000 Tanzanians resolve legal disputes in 2024 alone.',
     category: 'Legal Empowerment',
-    image: 'https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
   },
   {
-    id: 'gender-justice-workshop',
-    title: 'Gender Justice Workshop Series Empowers Women Across Tanzania',
-    excerpt: 'Our workshops have trained over 500 women on legal rights and economic empowerment strategies.',
-    category: 'Gender Justice',
+    id: 'digital-transformation',
+    title: 'Digital Justice Tools Reaching Rural Communities',
+    excerpt: 'Our Haki Yangu App has connected over 5,000 users with legal resources and paralegal support across Tanzania.',
+    category: 'Digital Transformation',
     image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
   },
   {
-    id: 'climate-justice-advocacy',
-    title: 'Climate Justice Advocacy Leads to Policy Changes',
-    excerpt: 'Our advocacy work has resulted in new local policies protecting vulnerable communities from climate-related displacement.',
+    id: 'climate-justice',
+    title: 'Climate Justice: Securing Environmental Rights',
+    excerpt: 'Our new initiative empowers communities to address climate-related legal challenges and protect environmental rights.',
     category: 'Climate Justice',
     image: 'https://images.unsplash.com/photo-1593697821252-0c9137d9fc45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
   }
@@ -107,13 +107,21 @@ const Hero = () => {
               <p className="text-xl md:text-2xl mb-8 text-white/90 font-calibri">
                 {post.excerpt}
               </p>
-              <Link 
-                to={`/news/${post.id}`}
-                className="bg-white text-primary hover:bg-opacity-90 px-8 py-3 rounded-md font-bold transition duration-300 inline-flex items-center font-calibri"
-              >
-                Read Full Story
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              <div className="flex flex-wrap gap-4">
+                <Link 
+                  to={`/news/${post.id}`}
+                  className="bg-white text-primary hover:bg-opacity-90 px-6 py-3 rounded-md font-bold transition duration-300 inline-flex items-center font-calibri"
+                >
+                  Read Full Story
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+                <Link 
+                  to="/what-we-do"
+                  className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-6 py-3 rounded-md font-bold transition duration-300 inline-flex items-center font-calibri"
+                >
+                  Our Programs
+                </Link>
+              </div>
             </div>
           ))}
         </div>
