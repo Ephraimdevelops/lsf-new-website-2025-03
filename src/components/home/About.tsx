@@ -27,9 +27,9 @@ const About = () => {
           <div className="relative">
             <div className="relative z-10">
               <img 
-                src="/lovable-uploads/e8daf61f-bec3-4182-b37c-69a73a839f6b.png" 
-                alt="LSF Mission" 
-                className="rounded-lg shadow-lg"
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                alt="Tanzanian paralegals in a community meeting" 
+                className="rounded-lg shadow-lg w-full h-full object-cover"
               />
             </div>
             <div className="absolute inset-0 bg-secondary-teal rounded-lg transform translate-x-4 translate-y-4 -z-0 opacity-50"></div>

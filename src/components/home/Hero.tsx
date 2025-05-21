@@ -1,7 +1,15 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface BlogPost {
   id: string;
@@ -35,9 +43,13 @@ const blogPosts: BlogPost[] = [
   }
 ];
 
+// Regions for the paralegal finder
+const regions = ["All Regions", "Dar es Salaam", "Mwanza", "Arusha", "Dodoma", "Tanga", "Morogoro"];
+
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState<string>("All Regions");
 
   const nextSlide = () => {
     if (!isAnimating) {
@@ -89,41 +101,99 @@ const Hero = () => {
           />
         </div>
         
-        <div className="max-w-3xl animate-fade-in">
-          {blogPosts.map((post, index) => (
-            <div 
-              key={post.id}
-              className={`transition-all duration-500 ${
-                currentSlide === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 absolute'
-              }`}
-              style={{ display: currentSlide === index ? 'block' : 'none' }}
-            >
-              <span className="inline-block bg-secondary-orange text-white text-sm font-medium px-3 py-1 rounded-full mb-4 font-calibri">
-                {post.category}
-              </span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-panton font-bold mb-6 leading-tight">
-                {post.title}
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white/90 font-calibri max-w-2xl">
-                {post.excerpt}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link 
-                  to="/legal-help"
-                  className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-calibri"
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* Hero content */}
+          <div className="md:col-span-7 animate-fade-in">
+            {blogPosts.map((post, index) => (
+              <div 
+                key={post.id}
+                className={`transition-all duration-500 ${
+                  currentSlide === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 absolute'
+                }`}
+                style={{ display: currentSlide === index ? 'block' : 'none' }}
+              >
+                <span className="inline-block bg-secondary-orange text-white text-sm font-medium px-3 py-1 rounded-full mb-4 font-calibri">
+                  {post.category}
+                </span>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-panton font-bold mb-6 leading-tight">
+                  {post.title}
+                </h1>
+                <p className="text-xl md:text-2xl mb-8 text-white/90 font-calibri max-w-2xl">
+                  {post.excerpt}
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link 
+                    to="/legal-help"
+                    className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-calibri"
+                  >
+                    Get Legal Help
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                  <Link 
+                    to="/what-we-do"
+                    className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-calibri"
+                  >
+                    Our Programs
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Paralegal finder - Moved from LegalAidFinder component */}
+          <div className="md:col-span-5">
+            <div className="bg-white/95 p-6 rounded-lg shadow-lg">
+              <h3 className="text-primary text-2xl font-bold mb-3 font-panton">Need Legal Aid?</h3>
+              <p className="text-neutral-dark mb-6 font-calibri">Find a paralegal near you or use our toll-free hotline</p>
+              
+              <div className="mb-4">
+                <label htmlFor="region-select" className="block text-sm font-medium mb-2 text-neutral-dark font-calibri">
+                  Select a Region
+                </label>
+                <Select
+                  value={selectedRegion}
+                  onValueChange={(value) => setSelectedRegion(value)}
                 >
-                  Get Legal Help
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Link 
-                  to="/what-we-do"
-                  className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-calibri"
+                  <SelectTrigger className="w-full bg-white">
+                    <SelectValue placeholder="Select a region" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {regions.map((region) => (
+                      <SelectItem key={region} value={region}>
+                        {region}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="flex items-center gap-3 mb-6 p-4 bg-primary/10 rounded-md">
+                <MapPin className="h-10 w-10 text-primary flex-shrink-0" />
+                <div>
+                  <p className="font-medium text-neutral-dark font-calibri">Need immediate assistance?</p>
+                  <a href="tel:+255800110303" className="text-2xl font-bold text-primary font-panton">
+                    +255 800 110 303
+                  </a>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-3">
+                <a 
+                  href="tel:+255800110303" 
+                  className="bg-primary text-white hover:bg-primary-dark px-4 py-3 rounded text-center font-bold transition-colors flex items-center justify-center gap-2 font-calibri"
                 >
-                  Our Programs
+                  <Phone className="h-4 w-4" />
+                  Call Now
+                </a>
+                <Link 
+                  to="/legal-help" 
+                  className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-4 py-3 rounded text-center font-bold transition-colors font-calibri"
+                >
+                  Find Paralegal
                 </Link>
               </div>
             </div>
-          ))}
+          </div>
         </div>
         
         {/* Slider navigation */}

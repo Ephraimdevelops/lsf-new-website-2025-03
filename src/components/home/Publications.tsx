@@ -37,7 +37,7 @@ const PublicationCard = ({ title, type, date, link, downloadUrl, coverImage, isN
 
   return (
     <div className="group h-full flex flex-col">
-      <div className="relative mb-4 overflow-hidden rounded-lg shadow-md bg-white aspect-[3/4]">
+      <div className="relative mb-4 overflow-hidden rounded-lg shadow-md aspect-[3/4] transform transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-xl">
         {isNew && (
           <div className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full z-10">
             NEW
@@ -46,14 +46,14 @@ const PublicationCard = ({ title, type, date, link, downloadUrl, coverImage, isN
         <img 
           src={coverImage} 
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.src = "https://images.unsplash.com/photo-1553830591-d8632a99e6ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
-          <div className="flex space-x-3">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
+          <div className="flex gap-3">
             <a 
               href={downloadUrl || "#"} 
               target="_blank" 
@@ -68,12 +68,12 @@ const PublicationCard = ({ title, type, date, link, downloadUrl, coverImage, isN
               to={link}
               className="bg-white text-primary px-4 py-2 rounded-md text-sm flex items-center font-calibri"
             >
-              View Details
+              Details
             </Link>
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex-1 flex flex-col">
         <div className="mb-2">
           <span className="text-sm text-neutral-gray font-calibri">{type} • {date}</span>
         </div>
@@ -82,7 +82,7 @@ const PublicationCard = ({ title, type, date, link, downloadUrl, coverImage, isN
         </h3>
         <Link 
           to={link}
-          className="inline-flex items-center text-primary text-sm font-medium group-hover:underline font-calibri"
+          className="inline-flex items-center text-primary text-sm font-medium mt-auto group-hover:underline font-calibri"
         >
           Read publication
           <ArrowRight className="ml-1 h-3 w-3" />
@@ -170,17 +170,18 @@ const Publications = () => {
   }, []);
 
   return (
-    <section className="py-16 bg-neutral-50">
+    <section className="py-16 bg-[url('/lovable-uploads/f1407f2d-51ff-4898-b7a5-9ede5d13e081.png')] bg-opacity-5 bg-contain bg-no-repeat bg-center">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Explore Our Knowledge Hub</h2>
+          <span className="inline-block px-4 py-1 bg-primary/10 text-primary font-medium rounded-full mb-4 font-calibri">Knowledge Hub</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Explore Our Resources</h2>
           <p className="text-neutral-gray max-w-2xl mx-auto font-calibri text-lg">
             Browse publications that inform policy, empower communities, and advance access to justice.
           </p>
         </div>
         
         <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-neutral-100 rounded-full p-1">
+          <div className="inline-flex bg-white shadow-md rounded-full p-1">
             <button className="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium">All</button>
             <button className="px-4 py-2 rounded-full text-neutral-dark text-sm font-medium">Reports</button>
             <button className="px-4 py-2 rounded-full text-neutral-dark text-sm font-medium">Research</button>

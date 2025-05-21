@@ -11,6 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 
 interface SuccessStoryCardProps {
+  id: string;
   name: string;
   location: string;
   story: string;
@@ -18,31 +19,31 @@ interface SuccessStoryCardProps {
   image: string;
 }
 
-const SuccessStoryCard = ({ name, location, story, impact, image }: SuccessStoryCardProps) => {
+const SuccessStoryCard = ({ id, name, location, story, impact, image }: SuccessStoryCardProps) => {
   return (
-    <div className="group cursor-pointer h-full flex flex-col">
-      <div className="relative mb-4 overflow-hidden rounded-lg shadow-sm aspect-[4/3]">
+    <div className="group h-full flex flex-col">
+      <div className="relative mb-4 overflow-hidden rounded-lg shadow-md aspect-[4/3] transform transition-all duration-300 group-hover:scale-[1.02]">
         <img 
           src={image} 
           alt={name}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.src = "https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
           }}
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent pt-8 pb-4 px-4">
-          <h3 className="text-white text-lg font-bold font-panton">{name}</h3>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-4">
+          <h3 className="text-white text-xl font-bold font-panton">{name}</h3>
           <p className="text-white/80 text-sm font-calibri">{location}</p>
         </div>
       </div>
-      <div>
+      <div className="flex-1 flex flex-col">
         <p className="text-neutral-gray font-calibri mb-3 line-clamp-3">{story}</p>
-        <div className="bg-primary/10 p-3 rounded-md mb-3">
+        <div className="bg-primary/10 p-3 rounded-md mb-3 mt-auto">
           <p className="text-sm text-primary font-bold font-calibri">Impact: {impact}</p>
         </div>
         <Link 
-          to="/heroes"
+          to={`/heroes/${id}`}
           className="inline-flex items-center text-primary text-sm font-medium hover:underline font-calibri"
         >
           Read full story
@@ -56,6 +57,7 @@ const SuccessStoryCard = ({ name, location, story, impact, image }: SuccessStory
 const SuccessStories = () => {
   const stories = [
     {
+      id: "maria-joseph",
       name: "Maria Joseph",
       location: "Morogoro Region",
       story: "After being denied her inheritance rights following her husband's death, Maria sought help from our paralegals. Through legal education and representation, she was able to secure her rightful property.",
@@ -63,6 +65,7 @@ const SuccessStories = () => {
       image: "https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
+      id: "emmanuel-baraka",
       name: "Emmanuel Baraka",
       location: "Mwanza Region",
       story: "Emmanuel's community faced environmental damage from a nearby factory. With our support, they pursued legal action that resulted in proper environmental safeguards being implemented.",
@@ -70,6 +73,7 @@ const SuccessStories = () => {
       image: "https://images.unsplash.com/photo-1531123414780-f74242c2b052?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
+      id: "fatima-hassan",
       name: "Fatima Hassan",
       location: "Zanzibar",
       story: "As a single mother, Fatima struggled to obtain child support. Our paralegals helped her navigate the legal system and successfully negotiate a fair support arrangement.",
@@ -77,6 +81,7 @@ const SuccessStories = () => {
       image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
+      id: "john-mkwawa",
       name: "John Mkwawa",
       location: "Dodoma Region",
       story: "John's village had a long-standing land dispute with a neighboring community. Through mediation and legal support, both communities reached a sustainable agreement.",
@@ -89,6 +94,7 @@ const SuccessStories = () => {
     <section className="py-16 bg-neutral-50">
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
+          <span className="inline-block px-4 py-1 bg-secondary-teal/10 text-secondary-teal font-medium rounded-full mb-4 font-calibri">Stories of Impact</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-3 font-panton">Success Stories</h2>
           <p className="text-neutral-gray max-w-2xl mx-auto font-calibri">
             Real people whose lives have been changed through access to justice.
@@ -106,6 +112,7 @@ const SuccessStories = () => {
             {stories.map((story, index) => (
               <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
                 <SuccessStoryCard
+                  id={story.id}
                   name={story.name}
                   location={story.location}
                   story={story.story}

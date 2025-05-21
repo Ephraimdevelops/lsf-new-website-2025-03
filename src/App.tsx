@@ -20,6 +20,7 @@ import Programs from "./pages/Programs";
 import Donate from "./pages/Donate";
 import WhatWeDo from "./pages/WhatWeDo";
 import Heroes from "./pages/Heroes";
+import HeroDetail from "./pages/HeroDetail";
 import Opportunities from "./pages/Opportunities";
 import Whistleblower from "./pages/Whistleblower";
 import Admin from "./pages/Admin";
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/donate" element={<Donate />} />
           <Route path="/what-we-do" element={<WhatWeDo />} />
           <Route path="/heroes" element={<Heroes />} />
+          <Route path="/heroes/:heroId" element={<HeroDetail />} />
           <Route path="/opportunities" element={<Opportunities />} />
           <Route path="/whistleblower" element={<Whistleblower />} />
           <Route path="/legal-help" element={<LegalHelp />} />

@@ -8,7 +8,6 @@ import SuccessStories from '../components/home/SuccessStories';
 import About from '../components/home/About';
 import Contact from '../components/home/Contact';
 import NewsTicker from '../components/home/NewsTicker';
-import LegalAidFinder from '../components/home/LegalAidFinder';
 import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import WhatWeDo from '../components/home/WhatWeDo';
 import { useEffect } from 'react';
@@ -30,7 +29,7 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Section 1: Hero with News Ticker */}
+      {/* Section 1: Hero with News Ticker and Paralegal Finder (integrated in Hero) */}
       <Hero />
       <NewsTicker />
       
@@ -38,23 +37,20 @@ const Index = () => {
       <ImpactStats />
       <FocusAreas />
       
-      {/* Section 3: What We Do */}
+      {/* Section 3: What We Do - Redesigned */}
       <WhatWeDo />
       
-      {/* Section 4: Publications */}
+      {/* Section 4: Publications - Redesigned */}
       <Publications />
       
-      {/* Section 5: Testimonials / Our Heroes */}
+      {/* Section 5: Testimonials / Success Stories - Enhanced */}
       <SuccessStories />
 
-      {/* Section 6: About Us */}
+      {/* Section 6: About Us - New paralegal image */}
       <About />
       
       {/* Section 7: Haki Yangu Highlight */}
       <HakiYanguHighlight />
-      
-      {/* Section 8: Get Legal Help */}
-      <LegalAidFinder />
       
       {/* Contact section at bottom */}
       <Contact />

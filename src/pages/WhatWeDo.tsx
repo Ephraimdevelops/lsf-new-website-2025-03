@@ -14,6 +14,7 @@ const WhatWeDo = () => {
         <div className="pattern-bg text-white py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">
+              <span className="inline-block px-4 py-1 bg-white/20 text-white font-medium rounded-full mb-4 font-calibri">Our Services</span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6 font-panton">Our Approach</h1>
               <p className="text-xl md:text-2xl mb-6 text-white/90 font-calibri">
                 We empower communities through legal support, advocacy, and capacity building to promote justice and equality for all.
@@ -121,6 +122,7 @@ const WhatWeDo = () => {
         <div className="bg-white py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
+              <span className="inline-block px-4 py-1 bg-primary/10 text-primary font-medium rounded-full mb-4 font-calibri">Our Focus</span>
               <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Our Programs</h2>
               <p className="max-w-2xl mx-auto text-neutral-gray font-calibri text-lg">
                 We work across key focus areas to promote access to justice and empower communities.
@@ -155,9 +157,9 @@ const WhatWeDo = () => {
             </div>
             
             <div className="mt-14 text-center">
-              <Link to="/what-we-do">
+              <Link to="/programs">
                 <Button className="bg-primary hover:bg-primary-dark text-white font-calibri text-lg px-8 py-6 h-auto">
-                  Learn About Our Approach
+                  Learn About Our Programs
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
@@ -165,19 +167,21 @@ const WhatWeDo = () => {
           </div>
         </div>
         
-        {/* Services Section */}
-        <div className="py-16 md:py-24 bg-neutral-50">
+        {/* Services Section - Redesigned */}
+        <div className="py-16 md:py-24 bg-neutral-50 bg-[url('/lovable-uploads/697177d1-fcb8-4356-b773-aca9e11107aa.png')] bg-opacity-5 bg-contain bg-no-repeat bg-right-bottom">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
+              <span className="inline-block px-4 py-1 bg-secondary-teal/10 text-secondary-teal font-medium rounded-full mb-4 font-calibri">Our Services</span>
               <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">What We Do</h2>
               <p className="max-w-2xl mx-auto text-neutral-gray font-calibri text-lg">
                 Our comprehensive approach to promoting access to justice focuses on these key service areas
               </p>
+              <div className="w-24 h-1 bg-secondary-teal mx-auto mt-4"></div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
               {services.map((service, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-l-4 border-primary">
                   <div className="text-primary mb-4">
                     {service.icon}
                   </div>
