@@ -69,12 +69,14 @@ const Publications = () => {
   const visiblePublications = publications.slice(startIndex, startIndex + visibleCount);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-neutral-50">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-pattern-circles bg-opacity-5 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/80"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-3 font-panton">Latest Publications</h2>
-            <p className="text-neutral-gray font-calibri max-w-xl">
+            <h2 className="mb-3">Latest Publications</h2>
+            <p className="text-neutral-gray max-w-xl">
               Explore our research, reports, and resources designed to enhance legal aid and access to justice in Tanzania
             </p>
           </div>
@@ -82,7 +84,7 @@ const Publications = () => {
           <div className="flex space-x-3 mt-4 md:mt-0">
             <button 
               onClick={prevSlide}
-              className="p-2 bg-neutral-light hover:bg-neutral-100 rounded-full transition-colors"
+              className="p-2 bg-white hover:bg-neutral-50 rounded-full transition-colors shadow-md"
               aria-label="Show previous publications"
               disabled={startIndex === 0}
             >
@@ -90,7 +92,7 @@ const Publications = () => {
             </button>
             <button 
               onClick={nextSlide}
-              className="p-2 bg-neutral-light hover:bg-neutral-100 rounded-full transition-colors"
+              className="p-2 bg-white hover:bg-neutral-50 rounded-full transition-colors shadow-md"
               aria-label="Show more publications"
               disabled={startIndex >= publications.length - visibleCount}
             >
@@ -101,31 +103,35 @@ const Publications = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
           {visiblePublications.map((publication) => (
-            <div key={publication.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+            <div key={publication.id} className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 group">
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={publication.image} 
                   alt={publication.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <span className="absolute top-4 left-4 bg-primary text-white text-xs py-1 px-3 rounded-full font-calibri">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-70"></div>
+                <span className="absolute top-4 left-4 bg-primary text-white text-xs py-1 px-3 rounded-full">
                   {publication.type}
                 </span>
+                <div className="absolute bottom-0 left-0 w-full p-4">
+                  <h3 className="text-xl font-bold text-white line-clamp-1">{publication.title}</h3>
+                </div>
               </div>
               <div className="p-6">
-                <span className="text-neutral-gray text-sm mb-2 block font-calibri">{publication.date}</span>
-                <h3 className="text-xl font-bold mb-4 line-clamp-2 font-panton">{publication.title}</h3>
-                <div className="flex justify-between items-center">
+                <span className="text-neutral-gray text-sm mb-4 block">{publication.date}</span>
+                
+                <div className="flex justify-between items-center mt-4">
                   <Link 
                     to={`/publications/${publication.id}`}
-                    className="text-primary font-medium flex items-center hover:underline font-calibri"
+                    className="text-primary font-medium flex items-center hover:underline"
                   >
                     <BookOpen className="h-4 w-4 mr-1" />
                     Read more
                   </Link>
                   <a 
                     href={publication.downloadUrl} 
-                    className="text-secondary-teal font-medium flex items-center hover:underline font-calibri"
+                    className="text-secondary-teal font-medium flex items-center hover:underline"
                     download
                   >
                     <Download className="h-4 w-4 mr-1" />
@@ -139,7 +145,7 @@ const Publications = () => {
 
         <div className="mt-12 text-center">
           <Link to="/publications">
-            <Button className="bg-primary hover:bg-primary-dark text-white font-calibri">
+            <Button className="bg-primary hover:bg-primary-dark text-white font-sans text-lg px-8 py-6 h-auto">
               View All Publications
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

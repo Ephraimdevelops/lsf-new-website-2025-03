@@ -29,7 +29,7 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Section 1: Hero with Paralegal Finder integrated */}
+      {/* Section 1: Hero with integrated Paralegal Finder */}
       <Hero />
       
       {/* Section 2: News Ticker - provides latest updates */}
@@ -44,10 +44,10 @@ const Index = () => {
       {/* Section 5: What We Do - services overview */}
       <WhatWeDo />
       
-      {/* Section 6: Who We Are */}
+      {/* Section 6: Who We Are / About */}
       <About />
       
-      {/* Section 7: Testimonials / Success Stories */}
+      {/* Section 7: Success Stories */}
       <SuccessStories />
       
       {/* Section 8: Publications */}

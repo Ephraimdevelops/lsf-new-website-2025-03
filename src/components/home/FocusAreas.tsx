@@ -21,16 +21,16 @@ const FocusAreaCard = ({ icon, title, description, link, color, bgColor }: Focus
       <div className={`p-4 rounded-full inline-flex mb-5 ${color} w-16 h-16 items-center justify-center`}>
         {icon}
       </div>
-      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors font-panton">
+      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
         {title}
       </h3>
-      <p className="text-neutral-dark mb-6 font-calibri">
+      <p className="text-neutral-dark mb-6">
         {description}
       </p>
       <div className="mt-auto">
-        <span className="inline-flex items-center text-primary font-medium group-hover:underline font-calibri">
+        <span className="inline-flex items-center text-primary font-medium group-hover:underline">
           Learn more
-          <ArrowRight className="ml-1 h-4 w-4" />
+          <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </span>
       </div>
     </Link>
@@ -68,8 +68,8 @@ const FocusAreas = () => {
       title: "Institutional Sustainability",
       description: "Institutional development and sustainability of LSF and the legal aid sector across Tanzania.",
       link: "/programs/digital-transformation",
-      color: "bg-secondary-green",
-      bgColor: "bg-secondary-green/5"
+      color: "bg-secondary-yellow",
+      bgColor: "bg-secondary-yellow/5"
     }
   ];
 
@@ -77,8 +77,8 @@ const FocusAreas = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">We Focus On Delivering In 4 Key Areas</h2>
-          <p className="text-neutral-dark max-w-2xl mx-auto font-calibri text-lg mb-12">
+          <h2 className="mb-4">We Focus On Delivering In 4 Key Areas</h2>
+          <p className="text-neutral-dark max-w-2xl mx-auto text-lg mb-12">
             Our strategic approach focuses on these primary areas to ensure comprehensive access to justice
           </p>
         </div>
@@ -99,7 +99,7 @@ const FocusAreas = () => {
         
         <div className="mt-14 text-center">
           <Link to="/what-we-do">
-            <Button className="bg-primary hover:bg-primary-dark text-white font-calibri text-lg px-8 py-6 h-auto">
+            <Button className="bg-primary hover:bg-primary-dark text-white text-lg px-8 py-6 h-auto">
               Learn About Our Approach
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

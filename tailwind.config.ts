@@ -32,9 +32,10 @@ export default {
 					foreground: '#FFFFFF'
 				},
 				secondary: {
-					teal: '#598980',
+					teal: '#59B5B0',
 					green: '#6F8600',
 					orange: '#F46F00',
+					yellow: '#FFBE06',
 					foreground: '#FFFFFF'
 				},
 				neutral: {
@@ -98,9 +99,14 @@ export default {
 				'slide-in': 'slide-in 0.5s ease-out forwards',
 			},
 			fontFamily: {
-				'panton': ['Panton Narrow', 'sans-serif'],
-				'calibri': ['Calibri', 'sans-serif'],
+				'sans': ['"Noto Sans"', 'sans-serif'],
+				'serif': ['"Noto Serif"', 'serif'],
+				'serif-condensed': ['"Noto Serif Condensed"', '"Noto Serif"', 'serif'],
 			},
+			backgroundImage: {
+				'pattern-circles': "url('/lovable-uploads/03e3e41e-930e-409b-9697-0530773cca4c.png')",
+				'pattern-waves': "url('/lovable-uploads/7718b32e-3138-4e78-a7a1-4d63935a2951.png')",
+			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

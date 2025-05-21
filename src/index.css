@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;900&family=Noto+Serif:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -77,51 +79,69 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-panton font-bold;
+  h1 {
+    @apply font-sans text-5xl md:text-6xl font-black leading-tight text-primary;
   }
 
-  p, span, a, li, div {
-    @apply font-calibri;
+  h2 {
+    @apply font-sans text-3xl md:text-5xl font-bold text-primary;
+  }
+  
+  h3, h4, h5, h6 {
+    @apply font-sans font-bold text-neutral-dark;
+  }
+
+  p, span, div {
+    @apply font-serif text-lg;
+  }
+  
+  a {
+    @apply font-sans;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-dark transition duration-300;
+    @apply bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-dark transition duration-300 font-sans;
   }
   
   .btn-secondary {
-    @apply bg-secondary-teal text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition duration-300;
+    @apply bg-secondary-teal text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition duration-300 font-sans;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:text-white transition duration-300;
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:text-white transition duration-300 font-sans;
   }
   
   .pattern-bg {
     background-color: #931E5C;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,50 C65,35 85,35 85,50 C85,65 65,65 50,50 C35,35 15,35 15,50 C15,65 35,65 50,50 Z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
-    background-size: 60px 60px;
+    background-image: url("/lovable-uploads/03e3e41e-930e-409b-9697-0530773cca4c.png");
+    background-size: 600px 600px;
+    background-blend-mode: overlay;
+    background-position: center;
+  }
+  
+  .pattern-waves-bg {
+    background-color: #931E5C;
+    background-image: url("/lovable-uploads/7718b32e-3138-4e78-a7a1-4d63935a2951.png");
+    background-size: 500px 500px;
+    background-blend-mode: overlay;
+    background-position: center;
   }
   
   .section-padding {
     @apply py-16 md:py-20 px-4 md:px-8 lg:px-16;
   }
-}
-
-@font-face {
-  font-family: 'Panton Narrow';
-  src: url('/fonts/PantonNarrow.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Panton Narrow';
-  src: url('/fonts/PantonNarrow-Bold.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
+  
+  .heading-large {
+    @apply font-serif-condensed text-4xl md:text-5xl lg:text-[55px] font-light leading-tight;
+  }
+  
+  .heading-emphasis {
+    @apply font-sans text-3xl md:text-5xl font-black;
+  }
+  
+  .text-content {
+    @apply font-serif text-lg leading-7;
+  }
 }

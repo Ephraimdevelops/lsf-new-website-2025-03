@@ -81,13 +81,13 @@ const SuccessStories = () => {
   return (
     <section className="py-20 bg-white relative overflow-hidden">
       {/* Background pattern element */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-neutral-50 -skew-x-12 transform origin-top-right z-0"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-pattern-circles bg-opacity-5 z-0"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-3 font-panton">Success Stories</h2>
-            <p className="text-neutral-gray font-calibri max-w-2xl">
+            <h2 className="mb-3">Success Stories</h2>
+            <p className="text-neutral-gray max-w-2xl">
               Real people, real impact — see how legal empowerment is transforming lives across Tanzania
             </p>
           </div>
@@ -95,14 +95,14 @@ const SuccessStories = () => {
           <div className="flex space-x-3 mt-4 lg:mt-0">
             <button 
               onClick={handlePrev}
-              className="p-2 bg-neutral-light hover:bg-neutral-100 rounded-full transition-colors"
+              className="p-2 bg-white hover:bg-neutral-50 rounded-full transition-colors shadow-md"
               aria-label="Previous story"
             >
               <ChevronLeft className="h-6 w-6 text-primary" />
             </button>
             <button 
               onClick={handleNext}
-              className="p-2 bg-neutral-light hover:bg-neutral-100 rounded-full transition-colors"
+              className="p-2 bg-white hover:bg-neutral-50 rounded-full transition-colors shadow-md"
               aria-label="Next story"
             >
               <ChevronRight className="h-6 w-6 text-primary" />
@@ -112,62 +112,64 @@ const SuccessStories = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleStories.map((story, index) => (
-            <div 
+            <Link 
               key={`${story.id}-${index}`}
-              className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 ${
-                animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-              }`}
-              style={{ 
-                transitionDelay: `${index * 100}ms`,
-                animationDelay: `${index * 100}ms`
-              }}
+              to={`/heroes/${story.id}`}
+              className="group"
             >
-              <div className="relative h-64">
-                <img 
-                  src={story.image} 
-                  alt={story.name} 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full font-calibri">
-                    {story.category}
-                  </span>
-                </div>
-              </div>
-              
-              <div className="p-6">
-                <div className="flex items-start mb-4">
-                  <Quote className="h-8 w-8 text-primary/20 mr-2 flex-shrink-0" />
-                  <p className="text-neutral-dark italic font-calibri">"{story.quote}"</p>
-                </div>
-                
-                <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <h3 className="font-bold text-lg font-panton">{story.name}</h3>
-                    <div className="flex items-center text-neutral-gray text-sm mt-1 font-calibri">
+              <div 
+                className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl ${
+                  animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+                } hover:-translate-y-2`}
+                style={{ 
+                  transitionDelay: `${index * 100}ms`,
+                  animationDelay: `${index * 100}ms`
+                }}
+              >
+                <div className="relative h-64">
+                  <img 
+                    src={story.image} 
+                    alt={story.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-90"></div>
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
+                      {story.category}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-0 left-0 w-full p-4">
+                    <h3 className="font-bold text-xl text-white">{story.name}</h3>
+                    <div className="flex items-center text-white/80 text-sm mt-1">
                       <MapPin className="h-4 w-4 mr-1" />
                       {story.location}
                     </div>
                   </div>
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-start mb-4">
+                    <Quote className="h-8 w-8 text-primary/20 mr-2 flex-shrink-0" />
+                    <p className="text-neutral-dark italic">"{story.quote}"</p>
+                  </div>
                   
-                  <Link 
-                    to={`/heroes/${story.id}`}
-                    className="text-primary font-medium hover:underline flex items-center font-calibri"
-                  >
-                    Full Story
-                    <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
+                  <div className="mt-6 flex justify-end">
+                    <span className="text-primary font-medium group-hover:underline flex items-center">
+                      Read Full Story
+                      <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         
         <div className="mt-12 text-center">
           <Link to="/heroes">
-            <Button className="bg-primary hover:bg-primary-dark text-white font-calibri">
+            <Button className="bg-primary hover:bg-primary-dark text-white font-sans text-lg px-8 py-6 h-auto">
               View All Success Stories
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
         </div>

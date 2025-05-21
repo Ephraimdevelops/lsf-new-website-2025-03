@@ -12,14 +12,14 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon, title, description, color, link }: ServiceCardProps) => {
   return (
-    <Link to={link} className="block">
+    <Link to={link} className="block group">
       <div className={`p-6 rounded-lg transition-all duration-300 hover:shadow-xl h-full ${color} group hover:translate-y-[-5px]`}>
         <div className="text-white group-hover:scale-110 transition-transform duration-300 mb-4">
           {icon}
         </div>
-        <h3 className="text-xl font-bold mb-3 font-panton text-white">{title}</h3>
-        <p className="text-white/90 mb-4 font-calibri">{description}</p>
-        <div className="inline-flex items-center text-white font-medium hover:underline font-calibri">
+        <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
+        <p className="text-white/90 mb-4">{description}</p>
+        <div className="inline-flex items-center text-white font-medium hover:underline">
           Learn more
           <ArrowRight className="ml-1 h-4 w-4" />
         </div>
@@ -68,14 +68,14 @@ const WhatWeDo = () => {
   ];
   
   return (
-    <section className="py-16 md:py-24 bg-neutral-light">
+    <section className="py-16 md:py-24 pattern-waves-bg text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">What We Do</h2>
-          <p className="max-w-2xl mx-auto text-neutral-gray font-calibri text-lg mb-8">
+          <h2 className="text-white mb-4">What We Do</h2>
+          <p className="max-w-2xl mx-auto text-white/90 text-lg mb-8">
             Our comprehensive approach to promoting access to justice focuses on these key service areas
           </p>
-          <div className="w-24 h-1 bg-secondary-teal mx-auto"></div>
+          <div className="w-24 h-1 bg-white mx-auto"></div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
@@ -92,7 +92,7 @@ const WhatWeDo = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <Link to="/what-we-do" className="inline-flex items-center bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-md font-bold transition duration-300 text-lg font-calibri">
+          <Link to="/what-we-do" className="inline-flex items-center bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-md font-bold transition duration-300 text-lg">
             Explore All Our Services
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>

@@ -9,11 +9,11 @@ interface StatProps {
 
 const StatCard = ({ value, label, description }: StatProps) => {
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md text-center transition-transform hover:translate-y-[-5px] duration-300">
-      <div className="text-4xl md:text-5xl font-bold text-primary mb-3 font-panton">{value}</div>
-      <div className="text-lg font-semibold mb-2 font-panton">{label}</div>
+    <div className="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:translate-y-[-5px] duration-300 group">
+      <div className="text-4xl md:text-5xl font-black text-primary mb-3">{value}</div>
+      <div className="text-lg font-semibold mb-2">{label}</div>
       {description && (
-        <p className="text-neutral-dark text-sm font-calibri">{description}</p>
+        <p className="text-neutral-dark text-sm">{description}</p>
       )}
     </div>
   );
@@ -21,11 +21,11 @@ const StatCard = ({ value, label, description }: StatProps) => {
 
 const ImpactStats = () => {
   return (
-    <section className="py-20 md:py-24 pattern-bg">
+    <section className="pattern-bg py-20 md:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton text-white">Our Impact</h2>
-          <p className="max-w-3xl mx-auto text-white/90 text-lg font-calibri">
+          <h2 className="text-white mb-4">Our Impact</h2>
+          <p className="max-w-3xl mx-auto text-white/90 text-lg">
             We strive to increase justice for all, particularly for women
           </p>
         </div>

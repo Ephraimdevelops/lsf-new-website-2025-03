@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Phone, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -94,7 +94,7 @@ const Hero = () => {
 
   return (
     <section className="relative pattern-bg text-white min-h-[90vh] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
       
       {/* Slider background */}
       <div className="absolute inset-0 w-full h-full">
@@ -118,9 +118,9 @@ const Hero = () => {
           />
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Hero content */}
-          <div className="md:col-span-7 animate-fade-in">
+          <div className="lg:col-span-7 animate-fade-in">
             {blogPosts.map((post, index) => (
               <div 
                 key={post.id}
@@ -129,26 +129,26 @@ const Hero = () => {
                 }`}
                 style={{ display: currentSlide === index ? 'block' : 'none' }}
               >
-                <span className="inline-block bg-secondary-orange text-white text-sm font-medium px-3 py-1 rounded-full mb-4 font-calibri">
+                <span className="inline-block bg-secondary-orange text-white text-sm font-medium px-3 py-1 rounded-full mb-4">
                   {post.category}
                 </span>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-panton font-bold mb-6 leading-tight">
+                <h1 className="text-white mb-6 leading-[1.2]">
                   {post.title}
                 </h1>
-                <p className="text-xl md:text-2xl mb-8 text-white/90 font-calibri max-w-2xl">
+                <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-2xl">
                   {post.excerpt}
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link 
                     to="/legal-help"
-                    className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-calibri"
+                    className="bg-secondary-teal text-white hover:bg-opacity-90 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-sans"
                   >
                     Get Legal Help
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                   <Link 
                     to="/what-we-do"
-                    className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-calibri"
+                    className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-sans"
                   >
                     Our Programs
                   </Link>
@@ -158,13 +158,13 @@ const Hero = () => {
           </div>
           
           {/* Paralegal finder widget */}
-          <div className="md:col-span-5">
+          <div className="lg:col-span-5">
             <div className="bg-white/95 p-6 rounded-lg shadow-lg">
-              <h3 className="text-primary text-2xl font-bold mb-3 font-panton">Need Legal Aid?</h3>
-              <p className="text-neutral-dark mb-6 font-calibri">Find a paralegal near you or use our toll-free hotline</p>
+              <h3 className="text-primary text-2xl font-bold mb-3 font-sans">Need Legal Aid?</h3>
+              <p className="text-neutral-dark mb-6">Find a paralegal near you or use our toll-free hotline</p>
               
               <div className="mb-4">
-                <label htmlFor="region-select" className="block text-sm font-medium mb-2 text-neutral-dark font-calibri">
+                <label htmlFor="region-select" className="block text-sm font-medium mb-2 text-neutral-dark">
                   Select a Region
                 </label>
                 <Select
@@ -187,8 +187,8 @@ const Hero = () => {
               <div className="flex items-center gap-3 mb-6 p-4 bg-primary/10 rounded-md">
                 <MapPin className="h-10 w-10 text-primary flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-neutral-dark font-calibri">Need immediate assistance?</p>
-                  <a href={`tel:${hotlineNumber.replace(/\s/g, '')}`} className="text-2xl font-bold text-primary font-panton">
+                  <p className="font-medium text-neutral-dark">Need immediate assistance?</p>
+                  <a href={`tel:${hotlineNumber.replace(/\s/g, '')}`} className="text-2xl font-bold text-primary font-sans">
                     {hotlineNumber}
                   </a>
                 </div>
@@ -197,7 +197,7 @@ const Hero = () => {
               <div className="grid grid-cols-2 gap-3">
                 <a 
                   href={`tel:${hotlineNumber.replace(/\s/g, '')}`}
-                  className="bg-primary text-white hover:bg-primary-dark px-4 py-3 rounded text-center font-bold transition-colors flex items-center justify-center gap-2 font-calibri"
+                  className="bg-primary text-white hover:bg-primary-dark px-4 py-3 rounded text-center font-bold transition-colors flex items-center justify-center gap-2 font-sans"
                 >
                   <Phone className="h-4 w-4" />
                   Call Now
@@ -206,9 +206,10 @@ const Hero = () => {
                   href="https://play.google.com/store/apps/details?id=com.hakiyangu.app" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-4 py-3 rounded text-center font-bold transition-colors font-calibri"
+                  className="bg-secondary-teal text-white hover:bg-opacity-90 px-4 py-3 rounded text-center font-bold transition-colors font-sans flex items-center justify-center gap-2"
                 >
-                  Download Haki Yangu
+                  <Download className="h-4 w-4" />
+                  Haki Yangu App
                 </a>
               </div>
             </div>
