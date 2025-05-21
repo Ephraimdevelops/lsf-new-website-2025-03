@@ -64,7 +64,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative bg-primary pattern-bg text-white min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative pattern-bg text-white min-h-[90vh] flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
       
       {/* Slider background */}

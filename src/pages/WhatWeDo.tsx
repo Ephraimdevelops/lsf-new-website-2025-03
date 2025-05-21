@@ -2,15 +2,16 @@
 import Layout from '../components/layout/Layout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Scale, Users, BookOpen, LayoutGrid, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const WhatWeDo = () => {
   return (
     <Layout>
-      <div className="pt-20 bg-neutral-light">
+      <div className="pt-20 bg-neutral-50">
         {/* Hero section */}
-        <div className="bg-primary pattern-bg text-white py-16 md:py-24">
+        <div className="pattern-bg text-white py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 font-panton">Our Approach</h1>
@@ -69,7 +70,7 @@ const WhatWeDo = () => {
                       </p>
                       <ul className="list-disc pl-5 space-y-2 mb-6 font-calibri">
                         <li>Legal literacy and awareness campaigns</li>
-                        <li>Support for strategic litigation on key rights issues</li>
+                        <li>Strategic litigation support on key rights issues</li>
                         <li>Policy advocacy for legal reform</li>
                         <li>Strengthening justice institutions to protect rights</li>
                       </ul>
@@ -120,8 +121,8 @@ const WhatWeDo = () => {
         <div className="bg-white py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 font-panton">Our Programs</h2>
-              <p className="max-w-2xl mx-auto text-neutral-gray font-calibri">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Our Programs</h2>
+              <p className="max-w-2xl mx-auto text-neutral-gray font-calibri text-lg">
                 We work across key focus areas to promote access to justice and empower communities.
               </p>
             </div>
@@ -136,11 +137,13 @@ const WhatWeDo = () => {
                   <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full">
                     <div className={`h-2 ${program.color}`}></div>
                     <div className="p-6 flex flex-col h-[calc(100%-0.5rem)]">
-                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full mb-4 ${program.color} bg-opacity-10`}>
+                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 ${program.bgColor}`}>
                         {program.icon}
                       </div>
-                      <h3 className="text-xl font-bold mb-3 font-panton">{program.title}</h3>
-                      <p className="text-neutral-gray mb-4 flex-grow font-calibri">{program.description}</p>
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors font-panton">
+                        {program.title}
+                      </h3>
+                      <p className="text-neutral-dark mb-4 flex-grow font-calibri">{program.description}</p>
                       <div className="inline-flex items-center text-primary font-medium group-hover:underline font-calibri">
                         Learn more
                         <ArrowRight className="ml-1 w-5 h-5" />
@@ -148,6 +151,46 @@ const WhatWeDo = () => {
                     </div>
                   </div>
                 </Link>
+              ))}
+            </div>
+            
+            <div className="mt-14 text-center">
+              <Link to="/what-we-do">
+                <Button className="bg-primary hover:bg-primary-dark text-white font-calibri text-lg px-8 py-6 h-auto">
+                  Learn About Our Approach
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+        
+        {/* Services Section */}
+        <div className="py-16 md:py-24 bg-neutral-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">What We Do</h2>
+              <p className="max-w-2xl mx-auto text-neutral-gray font-calibri text-lg">
+                Our comprehensive approach to promoting access to justice focuses on these key service areas
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                  <div className="text-primary mb-4">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 font-panton">{service.title}</h3>
+                  <p className="text-neutral-gray mb-4 font-calibri">{service.description}</p>
+                  <Link 
+                    to={`/what-we-do#${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="inline-flex items-center text-primary font-medium hover:underline font-calibri"
+                  >
+                    Learn more
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -161,32 +204,65 @@ const WhatWeDo = () => {
 const programs = [
   {
     id: "legal-empowerment",
-    title: "Legal Empowerment",
-    description: "Building knowledge and capacity of communities to understand and use the law to seek justice.",
-    icon: <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" /></svg>,
+    title: "Accessible Legal Update",
+    description: "Increasing accessibility of quality legal aid services to the marginalized communities in particular women.",
+    icon: <Scale size={30} className="text-white" />,
     color: "bg-primary",
+    bgColor: "bg-primary/5"
   },
   {
     id: "gender-justice",
-    title: "Gender Justice",
-    description: "Promoting women's rights and gender equality through targeted legal and social interventions.",
-    icon: <svg className="w-6 h-6 text-secondary-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>,
-    color: "bg-secondary-green",
+    title: "Empowered Communities",
+    description: "Promoting legally empowered communities, in particular women, through legal awareness and education.",
+    icon: <Users size={30} className="text-white" />,
+    color: "bg-secondary-teal",
+    bgColor: "bg-secondary-teal/5"
   },
   {
     id: "climate-justice",
-    title: "Climate Justice",
-    description: "Supporting communities affected by climate change and promoting environmental rights.",
-    icon: <svg className="w-6 h-6 text-secondary-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>,
-    color: "bg-secondary-teal",
+    title: "Conducive Environment",
+    description: "Enhancing a conducive environment for sustainable access to justice and advocating for justice reform.",
+    icon: <LayoutGrid size={30} className="text-white" />,
+    color: "bg-secondary-orange",
+    bgColor: "bg-secondary-orange/5"
   },
   {
     id: "digital-transformation",
-    title: "Digital Transformation",
-    description: "Leveraging technology to improve access to justice and legal information.",
-    icon: <svg className="w-6 h-6 text-secondary-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>,
-    color: "bg-secondary-orange",
+    title: "Institutional Sustainability",
+    description: "Institutional development and sustainability of LSF and the legal aid sector across Tanzania.",
+    icon: <BookOpen size={30} className="text-white" />,
+    color: "bg-secondary-green",
+    bgColor: "bg-secondary-green/5"
+  }
+];
+
+// Services data
+const services = [
+  {
+    icon: <Scale className="h-10 w-10" />,
+    title: "Grant Making",
+    description: "Result-oriented grants aim to facilitate legal empowerment with increased protection of women's rights to land, property, safety and security."
   },
+  {
+    icon: <Users className="h-10 w-10" />,
+    title: "Capacity Building",
+    description: "The LSF supports legal aid providers to build and develop capacities both institutionally and technically, enhancing their ability to deliver services."
+  },
+  {
+    icon: <BookOpen className="h-10 w-10" />,
+    title: "Partnerships & Networking",
+    description: "LSF works closely with key stakeholders in the country and across the region, including government, developing partners, private sector, and Civil Society."
+  },
+  {
+    icon: <LayoutGrid className="h-10 w-10" />,
+    title: "Learning and Research",
+    description: "Learning is promoted by rigorously establishing what works and what does not work. We pilot different approaches and systematically monitor our partners."
+  },
+  {
+    icon: <Lightbulb className="h-10 w-10" />,
+    title: "Policy and Advocacy",
+    description: "We engage extensively in policy and advocacy efforts, spanning from grassroots initiatives to the national stage, ensuring that voices of the marginalized are heard."
+  }
 ];
 
 export default WhatWeDo;
