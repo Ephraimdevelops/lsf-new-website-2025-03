@@ -5,19 +5,19 @@ import { Button } from '@/components/ui/button';
 
 const HakiYanguHighlight = () => {
   return (
-    <section className="py-16 bg-primary-light">
+    <section className="py-20 bg-primary-light">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-2 rounded-full mb-4 font-calibri">
               Digital Transformation
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-panton">
-              Haki Yangu: Justice at Your Fingertips
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 font-panton">
+              Access Justice Anytime with Haki Yangu
             </h2>
             <p className="text-lg mb-6 text-neutral-gray font-calibri">
-              Our innovative digital platform connects Tanzanians with legal resources and support, 
-              making justice accessible to everyone regardless of location or economic status.
+              Our mobile app connects users with paralegals, legal tips, and digital legal support. 
+              Making justice accessible to everyone regardless of location or economic status.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -58,13 +58,13 @@ const HakiYanguHighlight = () => {
               </div>
             </div>
             
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="font-calibri">
-                Try Haki Yangu
+            <div className="flex flex-wrap gap-6">
+              <Button size="lg" className="font-calibri px-8 py-6 h-auto text-lg">
+                Explore Haki Yangu
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Link to="/digital-transformation">
-                <Button variant="outline" size="lg" className="font-calibri">
+                <Button variant="outline" size="lg" className="font-calibri px-8 py-6 h-auto text-lg">
                   Learn More
                 </Button>
               </Link>
@@ -72,7 +72,7 @@ const HakiYanguHighlight = () => {
           </div>
           
           <div className="relative">
-            <div className="bg-white p-4 rounded-xl shadow-lg">
+            <div className="bg-white p-6 rounded-xl shadow-lg">
               <img 
                 src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Haki Yangu App" 
@@ -80,9 +80,9 @@ const HakiYanguHighlight = () => {
               />
             </div>
             
-            <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-md max-w-xs">
+            <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-lg shadow-md max-w-xs">
               <div className="flex items-center mb-2">
-                <div className="h-2 w-2 bg-green-500 rounded-full mr-2"></div>
+                <div className="h-3 w-3 bg-green-500 rounded-full mr-2"></div>
                 <span className="text-sm font-medium text-green-600 font-calibri">Online Now</span>
               </div>
               <p className="text-neutral-gray text-sm font-calibri">
@@ -90,7 +90,7 @@ const HakiYanguHighlight = () => {
               </p>
             </div>
             
-            <div className="absolute -top-6 -right-6 bg-white p-4 rounded-lg shadow-md max-w-xs">
+            <div className="absolute -top-6 -right-6 bg-white p-5 rounded-lg shadow-md max-w-xs">
               <div className="flex items-center mb-2">
                 <span className="text-sm font-medium text-primary font-calibri">Impact</span>
               </div>

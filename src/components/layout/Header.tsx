@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -211,13 +210,13 @@ const Header = () => {
           ))}
           <Link 
             to="/legal-help" 
-            className="block w-full text-center mt-4 bg-secondary-teal text-white hover:bg-secondary-teal/90 px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
+            className="block w-full text-center mt-4 bg-secondary-teal text-white hover:bg-secondary-teal/90 px-5 py-3 rounded-md transition-colors duration-300 font-calibri"
           >
             Get Legal Help
           </Link>
           <Link 
             to="/donate" 
-            className="block w-full text-center mt-4 bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
+            className="block w-full text-center mt-4 bg-primary text-white hover:bg-primary-dark px-5 py-3 rounded-md transition-colors duration-300 font-calibri"
           >
             Donate
           </Link>

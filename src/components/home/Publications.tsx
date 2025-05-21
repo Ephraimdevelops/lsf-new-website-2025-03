@@ -37,7 +37,7 @@ const PublicationCard = ({ title, type, date, link, downloadUrl, coverImage, isN
 
   return (
     <div className="group h-full flex flex-col">
-      <div className="relative mb-4 overflow-hidden rounded-lg shadow-sm bg-white aspect-[3/4]">
+      <div className="relative mb-4 overflow-hidden rounded-lg shadow-md bg-white aspect-[3/4]">
         {isNew && (
           <div className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full z-10">
             NEW
@@ -52,32 +52,32 @@ const PublicationCard = ({ title, type, date, link, downloadUrl, coverImage, isN
             target.src = "https://images.unsplash.com/photo-1553830591-d8632a99e6ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
-          <div className="flex space-x-2">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6">
+          <div className="flex space-x-3">
             <a 
               href={downloadUrl || "#"} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-primary text-white px-3 py-1 rounded-md text-sm flex items-center font-calibri"
+              className="bg-primary text-white px-4 py-2 rounded-md text-sm flex items-center font-calibri"
               onClick={handleDownload}
             >
-              <Download className="h-3 w-3 mr-1" />
+              <Download className="h-4 w-4 mr-2" />
               Download
             </a>
             <Link 
               to={link}
-              className="bg-white text-primary px-3 py-1 rounded-md text-sm flex items-center font-calibri"
+              className="bg-white text-primary px-4 py-2 rounded-md text-sm flex items-center font-calibri"
             >
-              View
+              View Details
             </Link>
           </div>
         </div>
       </div>
       <div>
-        <div className="mb-1">
-          <span className="text-xs text-neutral-gray font-calibri">{type} • {date}</span>
+        <div className="mb-2">
+          <span className="text-sm text-neutral-gray font-calibri">{type} • {date}</span>
         </div>
-        <h3 className="text-base font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors font-panton">
+        <h3 className="text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors font-panton">
           {title}
         </h3>
         <Link 
@@ -170,33 +170,62 @@ const Publications = () => {
   }, []);
 
   return (
-    <div className="relative">
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-4">
-          {publications.map((pub, index) => (
-            <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-              <PublicationCard
-                title={pub.title}
-                type={pub.type}
-                date={pub.date}
-                link={pub.link}
-                downloadUrl={pub.downloadUrl}
-                coverImage={pub.coverImage}
-                isNew={pub.isNew}
-              />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="hidden md:flex absolute -left-12 top-1/3" />
-        <CarouselNext className="hidden md:flex absolute -right-12 top-1/3" />
-      </Carousel>
-    </div>
+    <section className="py-16 bg-neutral-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Explore Our Knowledge Hub</h2>
+          <p className="text-neutral-gray max-w-2xl mx-auto font-calibri text-lg">
+            Browse publications that inform policy, empower communities, and advance access to justice.
+          </p>
+        </div>
+        
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex bg-neutral-100 rounded-full p-1">
+            <button className="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium">All</button>
+            <button className="px-4 py-2 rounded-full text-neutral-dark text-sm font-medium">Reports</button>
+            <button className="px-4 py-2 rounded-full text-neutral-dark text-sm font-medium">Research</button>
+            <button className="px-4 py-2 rounded-full text-neutral-dark text-sm font-medium">Resources</button>
+          </div>
+        </div>
+        
+        <div className="relative">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {publications.map((pub, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                  <PublicationCard
+                    title={pub.title}
+                    type={pub.type}
+                    date={pub.date}
+                    link={pub.link}
+                    downloadUrl={pub.downloadUrl}
+                    coverImage={pub.coverImage}
+                    isNew={pub.isNew}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute -left-12 top-1/3 hidden md:flex" />
+            <CarouselNext className="absolute -right-12 top-1/3 hidden md:flex" />
+          </Carousel>
+        </div>
+        
+        <div className="text-center mt-10">
+          <Link to="/publications">
+            <Button variant="outline" size="lg" className="font-calibri">
+              View All Publications
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 };
 

@@ -14,8 +14,8 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: 'legal-empowerment',
-    title: 'Empowering Justice. Transforming Communities.',
-    excerpt: 'Our network of 183+ paralegal organizations has helped over 26,000 Tanzanians resolve legal disputes in 2024 alone.',
+    title: 'Justice Is a Right, Not a Privilege.',
+    excerpt: 'Empowering communities—especially women and marginalized groups—with legal education, aid, and advocacy across Tanzania.',
     category: 'Legal Empowerment',
     image: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
   },
@@ -64,7 +64,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative bg-primary pattern-bg text-white min-h-[85vh] flex items-center overflow-hidden">
+    <section className="relative bg-primary pattern-bg text-white min-h-[90vh] flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
       
       {/* Slider background */}
@@ -81,7 +81,7 @@ const Hero = () => {
       </div>
       
       <div className="container mx-auto px-4 py-16 relative z-20">
-        <div className="mb-8">
+        <div className="mb-12">
           <img 
             src="/lovable-uploads/140e859b-26c6-4b1b-a99e-a8efaf084eb8.png"
             alt="LSF Logo" 
@@ -101,23 +101,23 @@ const Hero = () => {
               <span className="inline-block bg-secondary-orange text-white text-sm font-medium px-3 py-1 rounded-full mb-4 font-calibri">
                 {post.category}
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-panton font-bold mb-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-panton font-bold mb-6 leading-tight">
                 {post.title}
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white/90 font-calibri">
+              <p className="text-xl md:text-2xl mb-8 text-white/90 font-calibri max-w-2xl">
                 {post.excerpt}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link 
-                  to={`/news/${post.id}`}
-                  className="bg-white text-primary hover:bg-opacity-90 px-6 py-3 rounded-md font-bold transition duration-300 inline-flex items-center font-calibri"
+                  to="/legal-help"
+                  className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-calibri"
                 >
-                  Read Full Story
+                  Get Legal Help
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
                 <Link 
                   to="/what-we-do"
-                  className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-6 py-3 rounded-md font-bold transition duration-300 inline-flex items-center font-calibri"
+                  className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-md font-bold transition duration-300 inline-flex items-center text-lg font-calibri"
                 >
                   Our Programs
                 </Link>
