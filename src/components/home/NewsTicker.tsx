@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { newsService } from '@/services/api';
-import { useState as useHookState } from '@hookform/resolvers/zod';
 import { NewsPost } from '@/services/api/types';
 
 interface NewsItem {
