@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, Scale, Users, BookOpen, MapPin } from 'lucide-react';
+import { ArrowRight, Scale, Users, BookOpen, LayoutGrid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface FocusAreaProps {
@@ -41,32 +41,32 @@ const FocusAreas = () => {
   const areas = [
     {
       icon: <Scale size={30} className="text-white" />,
-      title: "Legal Empowerment",
-      description: "Promoting rights awareness and supporting communities through free legal assistance by trained paralegals.",
+      title: "Accessible Legal Update",
+      description: "Increasing accessibility of quality legal aid services to the marginalized communities in particular women.",
       link: "/programs/legal-empowerment",
       color: "bg-primary",
       bgColor: "bg-primary/5"
     },
     {
       icon: <Users size={30} className="text-white" />,
-      title: "Gender Justice",
-      description: "Combatting GBV, FGM, and harmful practices while supporting women to access justice and secure their legal rights.",
+      title: "Empowered Communities",
+      description: "Promoting legally empowered communities, in particular women, through legal awareness and education.",
       link: "/programs/gender-justice",
       color: "bg-secondary-teal",
       bgColor: "bg-secondary-teal/5"
     },
     {
-      icon: <MapPin size={30} className="text-white" />,
-      title: "Climate Justice",
-      description: "Advancing access to justice in environmental disputes and supporting communities affected by climate change.",
+      icon: <LayoutGrid size={30} className="text-white" />,
+      title: "Conducive Environment",
+      description: "Enhancing a conducive environment for sustainable access to justice and advocating for justice reform.",
       link: "/programs/climate-justice",
       color: "bg-secondary-orange",
       bgColor: "bg-secondary-orange/5"
     },
     {
       icon: <BookOpen size={30} className="text-white" />,
-      title: "Digital Transformation",
-      description: "Expanding reach through Haki Yangu and legal tech solutions to make justice accessible to all Tanzanians.",
+      title: "Institutional Sustainability",
+      description: "Institutional development and sustainability of LSF and the legal aid sector across Tanzania.",
       link: "/programs/digital-transformation",
       color: "bg-secondary-green",
       bgColor: "bg-secondary-green/5"
@@ -77,9 +77,9 @@ const FocusAreas = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Our Strategic Focus Areas</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">We Focus On Delivering In 4 Key Areas</h2>
           <p className="text-neutral-dark max-w-2xl mx-auto font-calibri text-lg mb-12">
-            Explore our key program areas where we're making a difference across Tanzania.
+            Our strategic approach focuses on these primary areas to ensure comprehensive access to justice
           </p>
         </div>
         

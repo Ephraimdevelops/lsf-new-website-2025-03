@@ -10,6 +10,7 @@ import Contact from '../components/home/Contact';
 import NewsTicker from '../components/home/NewsTicker';
 import LegalAidFinder from '../components/home/LegalAidFinder';
 import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
+import WhatWeDo from '../components/home/WhatWeDo';
 import { useEffect } from 'react';
 import { analyticsService } from '@/services/api';
 
@@ -37,19 +38,22 @@ const Index = () => {
       <ImpactStats />
       <FocusAreas />
       
-      {/* Section 3: Publications */}
+      {/* Section 3: What We Do */}
+      <WhatWeDo />
+      
+      {/* Section 4: Publications */}
       <Publications />
       
-      {/* Section 4: Testimonials / Our Heroes */}
+      {/* Section 5: Testimonials / Our Heroes */}
       <SuccessStories />
 
-      {/* Section 5: About Us */}
+      {/* Section 6: About Us */}
       <About />
       
-      {/* Section 6: Haki Yangu Highlight */}
+      {/* Section 7: Haki Yangu Highlight */}
       <HakiYanguHighlight />
       
-      {/* Section 7: Get Legal Help */}
+      {/* Section 8: Get Legal Help */}
       <LegalAidFinder />
       
       {/* Contact section at bottom */}
