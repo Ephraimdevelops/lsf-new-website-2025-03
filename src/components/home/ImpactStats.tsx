@@ -9,9 +9,9 @@ const StatCard = ({ value, label, description }: StatProps) => {
   return (
     <div className="bg-white p-8 rounded-lg shadow-md text-center transition-transform hover:translate-y-[-5px] duration-300">
       <div className="text-4xl md:text-5xl font-bold text-primary mb-3">{value}</div>
-      <div className="text-lg font-semibold mb-2">{label}</div>
+      <div className="text-lg font-semibold mb-2 font-panton">{label}</div>
       {description && (
-        <p className="text-neutral-gray text-sm">{description}</p>
+        <p className="text-neutral-dark text-sm font-calibri">{description}</p>
       )}
     </div>
   );
@@ -23,7 +23,7 @@ const ImpactStats = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Our Impact</h2>
-          <p className="max-w-2xl mx-auto text-neutral-gray text-lg">
+          <p className="max-w-2xl mx-auto text-neutral-dark text-lg font-calibri">
             For over a decade, we've been making a significant impact in promoting justice across Tanzania.
           </p>
         </div>

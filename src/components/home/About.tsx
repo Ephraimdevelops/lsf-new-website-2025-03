@@ -21,7 +21,7 @@ const About = () => {
             </p>
             <Link 
               to="/about" 
-              className="inline-flex items-center bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-md font-bold transition duration-300 text-lg"
+              className="inline-flex items-center bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-md font-bold transition duration-300 text-lg font-calibri"
             >
               More About LSF
               <ArrowRight className="ml-2 h-5 w-5" />

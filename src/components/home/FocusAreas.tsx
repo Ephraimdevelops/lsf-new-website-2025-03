@@ -24,7 +24,7 @@ const FocusAreaCard = ({ icon, title, description, link, color, bgColor }: Focus
       <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors font-panton">
         {title}
       </h3>
-      <p className="text-neutral-gray mb-6 font-calibri">
+      <p className="text-neutral-dark mb-6 font-calibri">
         {description}
       </p>
       <div className="mt-auto">
@@ -78,7 +78,7 @@ const FocusAreas = () => {
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 font-panton">Our Strategic Focus Areas</h2>
-          <p className="text-neutral-gray max-w-2xl mx-auto font-calibri text-lg mb-12">
+          <p className="text-neutral-dark max-w-2xl mx-auto font-calibri text-lg mb-12">
             Explore our key program areas where we're making a difference across Tanzania.
           </p>
         </div>
@@ -99,7 +99,7 @@ const FocusAreas = () => {
         
         <div className="mt-14 text-center">
           <Link to="/what-we-do">
-            <Button className="font-calibri text-lg px-8 py-6 h-auto">
+            <Button className="bg-primary hover:bg-primary-dark text-white font-calibri text-lg px-8 py-6 h-auto">
               Learn About Our Approach
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
