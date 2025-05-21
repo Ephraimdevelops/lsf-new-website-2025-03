@@ -143,8 +143,14 @@ const Header = () => {
             </div>
           ))}
           <Link 
+            to="/legal-help" 
+            className="bg-secondary-teal text-white hover:bg-secondary-teal/90 px-5 py-2 rounded-md transition-colors duration-300 font-calibri mr-2"
+          >
+            Get Legal Help
+          </Link>
+          <Link 
             to="/donate" 
-            className="ml-2 bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
+            className="bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
           >
             Donate
           </Link>
@@ -203,6 +209,12 @@ const Header = () => {
               )}
             </div>
           ))}
+          <Link 
+            to="/legal-help" 
+            className="block w-full text-center mt-4 bg-secondary-teal text-white hover:bg-secondary-teal/90 px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
+          >
+            Get Legal Help
+          </Link>
           <Link 
             to="/donate" 
             className="block w-full text-center mt-4 bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300 font-calibri"

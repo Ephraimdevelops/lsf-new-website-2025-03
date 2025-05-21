@@ -2,14 +2,15 @@
 import Layout from '../components/layout/Layout';
 import Hero from '../components/home/Hero';
 import ImpactStats from '../components/home/ImpactStats';
-import Programs from '../components/home/Programs';
+import FocusAreas from '../components/home/FocusAreas';
+import Publications from '../components/home/Publications';
+import SuccessStories from '../components/home/SuccessStories';
 import About from '../components/home/About';
 import Contact from '../components/home/Contact';
 import FeaturedNewsCarousel from '../components/home/FeaturedNewsCarousel';
-import Publications from '../components/home/Publications';
-import FocusAreas from '../components/home/FocusAreas';
 import NewsTicker from '../components/home/NewsTicker';
 import LegalAidFinder from '../components/home/LegalAidFinder';
+import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -32,11 +33,12 @@ const Index = () => {
 
   return (
     <Layout>
+      {/* Section 1: Hero with News Ticker */}
       <Hero />
       <NewsTicker />
-      <ImpactStats />
       
-      {/* Focus Areas Section */}
+      {/* Section 2: Our Impact & Strategic Focus Areas */}
+      <ImpactStats />
       <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
@@ -59,7 +61,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Publications Section */}
+      {/* Section 3: Publications */}
       <section className="bg-neutral-light py-16">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
@@ -82,7 +84,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Heroes Section */}
+      {/* Section 4: Testimonials / Our Heroes */}
       <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
@@ -129,14 +131,20 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Section 5: About Us */}
+      <About />
       
-      {/* Legal Aid Finder Section */}
+      {/* Section 6: Haki Yangu Highlight */}
+      <HakiYanguHighlight />
+      
+      {/* Section 7: Get Legal Help */}
       <LegalAidFinder />
       
-      {/* Featured News */}
+      {/* Additional: Featured News (Optional if needed elsewhere) */}
       <FeaturedNewsCarousel />
       
-      <About />
+      {/* Contact section at bottom */}
       <Contact />
     </Layout>
   );
