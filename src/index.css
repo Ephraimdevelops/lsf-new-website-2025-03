@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;900&family=Noto+Serif:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Calibri:wght@400;700&display=swap');
+@font-face {
+  font-family: 'Panton Narrow';
+  src: url('/fonts/PantonNarrow.woff2') format('woff2'),
+       url('/fonts/PantonNarrow-Bold.woff2') format('woff2');
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham.woff2') format('woff2'),
+       url('/fonts/Gotham-Bold.woff2') format('woff2');
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Calibri';
+  src: local('Calibri'), local('Calibri-Regular');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  --primary: 332 67% 35%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Calibri', Arial, sans-serif !important;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Gotham', Arial, sans-serif !important;
+}
+
+h1, .heading-large {
+  font-family: 'Gotham', Arial, sans-serif !important;
+  font-size: 3.5rem !important;
+  line-height: 1.1 !important;
+  font-weight: 900 !important;
+}
+
+h2, .heading-emphasis {
+  font-family: 'Gotham', Arial, sans-serif !important;
+  font-size: 2.25rem !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+}
+
+h3, h4, h5, h6 {
+  font-family: 'Gotham', Arial, sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+}
+
+p, span, div, li, a, input, textarea, button {
+  font-family: 'Calibri', Arial, sans-serif !important;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-dark transition duration-300 font-sans;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-teal text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition duration-300 font-sans;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:text-white transition duration-300 font-sans;
+  }
+  
+  .pattern-bg {
+    background-color: #931E5C;
+    background-image: url("/lovable-uploads/backgound lsf colours.png");
+    background-size: 600px 600px;
+    background-blend-mode: overlay;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("/lovable-uploads/backgound lsf colours.png");
+  }
+  
+  .pattern-waves-bg {
+    background-color: #931E5C;
+    background-image: url("/lovable-uploads/backgound lsf colours.png");
+    background-size: 500px 500px;
+    background-blend-mode: overlay;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("/lovable-uploads/backgound lsf colours.png");
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-20 px-4 md:px-8 lg:px-16;
+  }
+  
+  .heading-large {
+    @apply font-serif-condensed text-4xl md:text-5xl lg:text-[55px] font-light leading-tight;
+  }
+  
+  .heading-emphasis {
+    @apply font-sans text-3xl md:text-5xl font-black;
+  }
+  
+  .text-content {
+    @apply font-serif text-lg leading-7;
+  }
+}
