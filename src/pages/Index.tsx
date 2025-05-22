@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import Hero from '../components/home/Hero';
 import ImpactStats from '../components/home/ImpactStats';
@@ -7,6 +6,7 @@ import Publications from '../components/home/Publications';
 import SuccessStories from '../components/home/SuccessStories';
 import About from '../components/home/About';
 import Contact from '../components/home/Contact';
+import NewsTicker from '../components/home/NewsTicker';
 import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import WhatWeDo from '../components/home/WhatWeDo';
 import { useEffect } from 'react';
@@ -30,6 +30,9 @@ const Index = () => {
     <Layout>
       {/* Section 1: Hero with integrated Paralegal Finder */}
       <Hero />
+      
+      {/* Section 2: News Ticker - provides latest updates */}
+      <NewsTicker />
       
       {/* Section 3: Our Impact - shows the organization's reach */}
       <ImpactStats />

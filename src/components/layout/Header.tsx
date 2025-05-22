@@ -63,8 +63,11 @@ const Header = () => {
       submenu: [
         { label: 'Publications', link: '/publications' },
         { label: 'Research', link: '/resources/research' },
+        { label: 'Our Heroes', link: '/heroes' },
+        { label: 'Whistleblower', link: '/whistleblower' },
       ]
     },
+    { label: 'News', link: '/news' },
     { 
       id: 'opportunities', 
       label: 'Opportunities', 
@@ -75,9 +78,6 @@ const Header = () => {
         { label: 'Tenders', link: '/opportunities' },
       ]
     },
-    { label: 'Our Heroes', link: '/heroes' },
-    { label: 'News', link: '/news' },
-    { label: 'Whistleblower', link: '/whistleblower' },
     { label: 'Contact', link: '/contact' },
   ];
 
@@ -147,7 +147,12 @@ const Header = () => {
           >
             Get Legal Help
           </Link>
-        
+          <Link 
+            to="/donate" 
+            className="bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors duration-300 font-calibri"
+          >
+            Donate
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}

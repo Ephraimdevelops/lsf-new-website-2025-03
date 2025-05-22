@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
@@ -16,7 +15,7 @@ const About = () => {
               We are the leading non-profit organization promoting access to justice for all.
             </p>
             <p className="text-lg mb-8 text-neutral-dark">
-              LSF is a non-profit organization that strives to increase access to justice for all, in particular for women through a legal empowerment approach. Established in 2011, we work with over 180 community-based legal aid providers across all 184 districts of Tanzania.
+              Legal Services Facility (LSF) is a non-profit organization that strives to increase access to justice for all, in particular for women through a legal empowerment approach. Established in 2011, we work with over 180 community-based legal aid providers across all 184 districts of Tanzania.
             </p>
             <Link 
               to="/about" 
