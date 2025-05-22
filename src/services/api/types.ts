@@ -1,117 +1,87 @@
 
-// Common types used across API services
+// Common interfaces for API responses
 
-// Pagination response type
+// Pagination interface
 export interface PaginatedResponse<T> {
   data: T[];
   meta: {
+    total: number;
+    per_page: number;
     current_page: number;
     last_page: number;
-    per_page: number;
-    total: number;
-  };
-  links?: {
-    first: string;
-    last: string;
-    prev: string | null;
-    next: string | null;
+    from: number;
+    to: number;
   };
 }
 
-// News/Blog post types
-export interface NewsPost {
-  id: number;
+// News interfaces
+export interface NewsItem {
+  id: string;
   title: string;
-  slug: string;
-  content: string;
   excerpt: string;
-  featured_image: string;
-  category_id: number;
-  category?: Category;
-  author?: string;
-  published_at: string;
-  created_at: string;
-  updated_at: string;
-  views_count?: number;
-}
-
-// Publication types
-export interface Publication {
-  id: number;
-  title: string;
-  description: string;
-  file_url: string;
-  thumbnail_url: string;
-  category: string;
-  type: string;
-  date: string;
-  downloads_count?: number;
-  created_at: string;
-  updated_at: string;
-}
-
-// Program types
-export interface Program {
-  id: number;
-  title: string;
-  slug: string;
-  description: string;
   content: string;
-  image_url: string;
+  date: string;
+  image: string;
   category: string;
-  created_at: string;
-  updated_at: string;
+  author: string;
+  tags: string[];
 }
 
-// Category types
-export interface Category {
-  id: number;
-  name: string;
-  slug: string;
-  description?: string;
-  created_at: string;
-  updated_at: string;
-}
-
-// Analytics data types
-export interface AnalyticsData {
-  visitors_count: number;
-  page_views: number;
-  downloads_count: number;
-  popular_pages: Array<{name: string, views: number}>;
-  traffic_sources: Array<{source: string, count: number}>;
-  visitor_trends: Array<{date: string, count: number}>;
-}
-
-// Opportunity types
-export interface Opportunity {
-  id: number;
+export interface NewsListItem {
+  id: string;
   title: string;
-  type: 'job' | 'tender' | 'grant';
+  excerpt: string;
+  date: string;
+  image: string;
+  category: string;
+}
+
+// Publication interfaces
+export interface Publication {
+  id: string;
+  title: string;
+  excerpt: string;
+  content?: string;
+  date: string;
+  cover: string;
+  fileUrl: string;
+  fileSize: string;
+  type: string;
+  author?: string;
+  tags?: string[];
+}
+
+// Program interfaces
+export interface Program {
+  id: string;
+  title: string;
+  description: string;
+  content?: string;
+  image: string;
+  color: string;
+  objectives: string[];
+  highlights?: {
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+}
+
+// Opportunity interfaces
+export interface Opportunity {
+  id: string;
+  title: string;
+  type: 'job' | 'tender' | 'grant' | 'other';
   description: string;
   deadline: string;
-  is_open: boolean;
-  application_url?: string;
-  location?: string;
-  created_at: string;
-  updated_at: string;
+  location: string;
+  status: 'open' | 'closed';
+  fileUrl?: string;
 }
 
-// Settings type
-export interface Settings {
-  site_name: string;
-  contact_email: string;
-  contact_phone: string;
-  address: string;
-  social_media: {
-    facebook?: string;
-    twitter?: string;
-    instagram?: string;
-    linkedin?: string;
-  };
-  seo?: {
-    meta_title?: string;
-    meta_description?: string;
-    meta_keywords?: string;
-  };
+// Analytics event interface
+export interface AnalyticsEvent {
+  event_name: string;
+  properties?: Record<string, any>;
+  timestamp?: number;
 }

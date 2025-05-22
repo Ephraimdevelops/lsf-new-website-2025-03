@@ -1,45 +1,79 @@
 
 import apiClient from './client';
-import { NewsPost, PaginatedResponse } from './types';
+import { NewsItem, NewsListItem, PaginatedResponse } from './types';
 
-export const newsService = {
-  // Get paginated news posts
-  getNewsPosts: async (page = 1, perPage = 10) => {
-    const response = await apiClient.get<PaginatedResponse<NewsPost>>('/news', {
-      params: { page, per_page: perPage }
-    });
-    return response.data;
+const newsService = {
+  // Get a paginated list of news items
+  getAllNews: async (page = 1, limit = 10, category?: string): Promise<PaginatedResponse<NewsListItem>> => {
+    const params = { 
+      page, 
+      limit,
+      ...(category && { category })
+    };
+    
+    try {
+      return await apiClient.get('/news', { params });
+    } catch (error) {
+      console.error('Error fetching news:', error);
+      throw error;
+    }
   },
   
-  // Get a single news post by slug
-  getNewsPostBySlug: async (slug: string) => {
-    const response = await apiClient.get<NewsPost>(`/news/${slug}`);
-    return response.data;
+  // Get featured news for homepage
+  getFeaturedNews: async (limit = 4): Promise<NewsListItem[]> => {
+    try {
+      return await apiClient.get('/news/featured', { params: { limit } });
+    } catch (error) {
+      console.error('Error fetching featured news:', error);
+      throw error;
+    }
   },
   
-  // Get featured news posts
-  getFeaturedNews: async (limit = 3) => {
-    const response = await apiClient.get<NewsPost[]>('/news/featured', {
-      params: { limit }
-    });
-    return response.data;
+  // Get a single news item by id
+  getNewsById: async (id: string): Promise<NewsItem> => {
+    try {
+      return await apiClient.get(`/news/${id}`);
+    } catch (error) {
+      console.error(`Error fetching news with id ${id}:`, error);
+      throw error;
+    }
   },
   
-  // Create a new news post (admin)
-  createNewsPost: async (postData: Omit<NewsPost, 'id' | 'created_at' | 'updated_at'>) => {
-    const response = await apiClient.post<NewsPost>('/news', postData);
-    return response.data;
+  // Search for news
+  searchNews: async (query: string, page = 1, limit = 10): Promise<PaginatedResponse<NewsListItem>> => {
+    try {
+      return await apiClient.get('/news/search', { 
+        params: { query, page, limit } 
+      });
+    } catch (error) {
+      console.error('Error searching news:', error);
+      throw error;
+    }
   },
   
-  // Update an existing news post (admin)
-  updateNewsPost: async (id: number, postData: Partial<NewsPost>) => {
-    const response = await apiClient.put<NewsPost>(`/news/${id}`, postData);
-    return response.data;
+  // Get news by category
+  getNewsByCategory: async (category: string, page = 1, limit = 10): Promise<PaginatedResponse<NewsListItem>> => {
+    try {
+      return await apiClient.get('/news/category/:category', { 
+        params: { category, page, limit } 
+      });
+    } catch (error) {
+      console.error(`Error fetching news for category ${category}:`, error);
+      throw error;
+    }
   },
   
-  // Delete a news post (admin)
-  deleteNewsPost: async (id: number) => {
-    const response = await apiClient.delete(`/news/${id}`);
-    return response.data;
+  // Get related news for a specific news item
+  getRelatedNews: async (id: string, limit = 3): Promise<NewsListItem[]> => {
+    try {
+      return await apiClient.get(`/news/${id}/related`, { 
+        params: { limit } 
+      });
+    } catch (error) {
+      console.error(`Error fetching related news for id ${id}:`, error);
+      throw error;
+    }
   }
 };
+
+export default newsService;

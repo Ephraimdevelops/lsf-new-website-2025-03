@@ -1,78 +1,75 @@
 
-import { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
-import AdminLogin from '@/components/admin/AdminLogin';
-import AdminDashboard from '@/components/admin/AdminDashboard';
-
-// Admin credentials - in a real app, these would be stored securely on a backend
-const ADMIN_CREDENTIALS = {
-  username: 'admin',
-  password: 'password'
-};
+import { useState } from 'react';
+import Layout from '../components/layout/Layout';
+import AdminLogin from '../components/admin/AdminLogin';
+import AdminDashboard from '../components/admin/AdminDashboard';
+import { useToast } from '@/hooks/use-toast';
 
 const Admin = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    // Check if token exists in localStorage
-    !!localStorage.getItem('admin-token')
-  );
-  const [loginAttempts, setLoginAttempts] = useState(0);
-  const [isLoginLocked, setIsLoginLocked] = useState(false);
-
-  // Check if login is locked
-  useEffect(() => {
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const savedAuth = localStorage.getItem('admin-auth');
+    return savedAuth === 'true';
+  });
+  
+  const [loginLocked, setLoginLocked] = useState(() => {
     const lockUntil = localStorage.getItem('admin-login-locked-until');
-    if (lockUntil && parseInt(lockUntil) > Date.now()) {
-      setIsLoginLocked(true);
-      
-      // Set timer to unlock
-      const unlockTimer = setTimeout(() => {
-        setIsLoginLocked(false);
+    if (lockUntil) {
+      const lockUntilTime = parseInt(lockUntil);
+      if (lockUntilTime > Date.now()) {
+        return true;
+      } else {
         localStorage.removeItem('admin-login-locked-until');
-        setLoginAttempts(0);
-      }, parseInt(lockUntil) - Date.now());
-      
-      return () => clearTimeout(unlockTimer);
+        return false;
+      }
     }
-  }, []);
-
-  const handleLogin = (username: string, password: string) => {
-    // Check if login is locked
-    if (isLoginLocked) return false;
-    
-    // Validate credentials
-    if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-      localStorage.setItem('admin-token', `demo-token-${Date.now()}`);
-      localStorage.setItem('admin-last-login', new Date().toISOString());
-      setIsAuthenticated(true);
-      setLoginAttempts(0);
-      return true;
-    }
-    
-    // Track failed login attempts
-    const newAttempts = loginAttempts + 1;
-    setLoginAttempts(newAttempts);
-    
-    // Lock login after 5 failed attempts
-    if (newAttempts >= 5) {
-      const lockUntil = Date.now() + 15 * 60 * 1000; // 15 minutes
-      localStorage.setItem('admin-login-locked-until', lockUntil.toString());
-      setIsLoginLocked(true);
-    }
-    
     return false;
+  });
+  
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const { toast } = useToast();
+  
+  const handleLogin = (username: string, password: string) => {
+    // In a real app, this would validate against a backend API
+    // For demo purposes, we're using hardcoded credentials
+    if (username === 'admin' && password === 'lsfadmin2024') {
+      localStorage.setItem('admin-auth', 'true');
+      localStorage.setItem('admin-last-login', Date.now().toString());
+      setIsLoggedIn(true);
+      setFailedAttempts(0);
+      return true;
+    } else {
+      const newFailedAttempts = failedAttempts + 1;
+      setFailedAttempts(newFailedAttempts);
+      
+      // Lock login after 5 failed attempts
+      if (newFailedAttempts >= 5) {
+        const lockUntil = Date.now() + 15 * 60 * 1000; // 15 minutes
+        localStorage.setItem('admin-login-locked-until', lockUntil.toString());
+        setLoginLocked(true);
+        toast({
+          title: "Login Locked",
+          description: "Too many failed attempts. Try again in 15 minutes.",
+          variant: "destructive",
+        });
+      }
+      return false;
+    }
   };
-
+  
   const handleLogout = () => {
-    localStorage.removeItem('admin-token');
-    setIsAuthenticated(false);
+    localStorage.removeItem('admin-auth');
+    setIsLoggedIn(false);
+    toast({
+      title: "Logged Out",
+      description: "You have been successfully logged out.",
+    });
   };
-
-  // Redirect non-admin users
-  if (!isAuthenticated) {
-    return <AdminLogin onLogin={handleLogin} isLocked={isLoginLocked} />;
-  }
-
-  return <AdminDashboard onLogout={handleLogout} />;
+  
+  return isLoggedIn ? (
+    <AdminDashboard onLogout={handleLogout} />
+  ) : (
+    <AdminLogin onLogin={handleLogin} isLocked={loginLocked} />
+  );
 };
 
 export default Admin;

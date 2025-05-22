@@ -2,74 +2,79 @@
 import apiClient from './client';
 import { Publication, PaginatedResponse } from './types';
 
-export const publicationService = {
-  // Get paginated publications
-  getPublications: async (page = 1, perPage = 10, category?: string, type?: string) => {
-    const response = await apiClient.get<PaginatedResponse<Publication>>('/publications', {
-      params: { page, per_page: perPage, category, type }
-    });
-    return response.data;
+const publicationService = {
+  // Get a paginated list of publications
+  getAllPublications: async (page = 1, limit = 10, type?: string, year?: string): Promise<PaginatedResponse<Publication>> => {
+    const params = { 
+      page, 
+      limit,
+      ...(type && { type }),
+      ...(year && { year })
+    };
+    
+    try {
+      return await apiClient.get('/publications', { params });
+    } catch (error) {
+      console.error('Error fetching publications:', error);
+      throw error;
+    }
   },
   
   // Get a single publication by id
-  getPublicationById: async (id: number) => {
-    const response = await apiClient.get<Publication>(`/publications/${id}`);
-    return response.data;
+  getPublicationById: async (id: string): Promise<Publication> => {
+    try {
+      return await apiClient.get(`/publications/${id}`);
+    } catch (error) {
+      console.error(`Error fetching publication with id ${id}:`, error);
+      throw error;
+    }
   },
   
-  // Get recent publications
-  getRecentPublications: async (limit = 3) => {
-    const response = await apiClient.get<Publication[]>('/publications/recent', {
-      params: { limit }
-    });
-    return response.data;
+  // Search for publications
+  searchPublications: async (query: string, page = 1, limit = 10): Promise<PaginatedResponse<Publication>> => {
+    try {
+      return await apiClient.get('/publications/search', { 
+        params: { query, page, limit } 
+      });
+    } catch (error) {
+      console.error('Error searching publications:', error);
+      throw error;
+    }
   },
   
-  // Create a new publication (admin)
-  createPublication: async (publicationData: Omit<Publication, 'id' | 'created_at' | 'updated_at' | 'downloads_count'>) => {
-    const formData = new FormData();
-    
-    // Append all data to FormData to handle file uploads
-    Object.entries(publicationData).forEach(([key, value]) => {
-      formData.append(key, value as string);
-    });
-    
-    const response = await apiClient.post<Publication>('/publications', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    return response.data;
+  // Get publications by type (report, research, guide, etc.)
+  getPublicationsByType: async (type: string, page = 1, limit = 10): Promise<PaginatedResponse<Publication>> => {
+    try {
+      return await apiClient.get(`/publications/type/${type}`, { 
+        params: { page, limit } 
+      });
+    } catch (error) {
+      console.error(`Error fetching publications for type ${type}:`, error);
+      throw error;
+    }
   },
   
-  // Update an existing publication (admin)
-  updatePublication: async (id: number, publicationData: Partial<Publication>) => {
-    const formData = new FormData();
-    
-    // Append all data to FormData to handle file uploads
-    Object.entries(publicationData).forEach(([key, value]) => {
-      if (value !== undefined) {
-        formData.append(key, value as string);
-      }
-    });
-    
-    const response = await apiClient.post<Publication>(`/publications/${id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    return response.data;
+  // Get publications by year
+  getPublicationsByYear: async (year: string, page = 1, limit = 10): Promise<PaginatedResponse<Publication>> => {
+    try {
+      return await apiClient.get(`/publications/year/${year}`, { 
+        params: { page, limit } 
+      });
+    } catch (error) {
+      console.error(`Error fetching publications for year ${year}:`, error);
+      throw error;
+    }
   },
   
-  // Delete a publication (admin)
-  deletePublication: async (id: number) => {
-    const response = await apiClient.delete(`/publications/${id}`);
-    return response.data;
-  },
-  
-  // Record a download (for analytics)
-  recordDownload: async (id: number) => {
-    const response = await apiClient.post(`/publications/${id}/download`);
-    return response.data;
+  // Track publication download
+  trackDownload: async (publicationId: string): Promise<void> => {
+    try {
+      await apiClient.post(`/publications/${publicationId}/track-download`);
+    } catch (error) {
+      console.error(`Error tracking download for publication ${publicationId}:`, error);
+      // Don't throw here - we don't want to block the download if tracking fails
+    }
   }
 };
+
+export default publicationService;

@@ -1,23 +1,22 @@
 
 import axios from 'axios';
 
-// Create a base API client with default configuration
+// Create axios instance with the base URL from environment variables
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
   },
 });
 
-// Request interceptor - can be used to add auth tokens
+// Add request interceptor for authentication or other headers
 apiClient.interceptors.request.use(
   (config) => {
-    // You can add auth token here if needed
-    const token = localStorage.getItem('admin-token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+    // Add authorization token or other headers if needed
+    // const token = localStorage.getItem('token');
+    // if (token) {
+    //   config.headers.Authorization = `Bearer ${token}`;
+    // }
     return config;
   },
   (error) => {
@@ -25,17 +24,34 @@ apiClient.interceptors.request.use(
   }
 );
 
-// Response interceptor - handle common errors
+// Add response interceptor for error handling
 apiClient.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
-    // Handle common errors like 401 (unauthorized)
-    if (error.response && error.response.status === 401) {
-      // Handle unauthorized access (e.g., redirect to login)
-      localStorage.removeItem('admin-token');
-      // You might want to redirect to login page here
+    // Handle errors (logging, retry logic, or redirection)
+    console.error('API Error:', error);
+    
+    // If you want to handle specific HTTP status codes
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          // Handle unauthorized (e.g., redirect to login)
+          break;
+        case 403:
+          // Handle forbidden
+          break;
+        case 404:
+          // Handle not found
+          break;
+        case 500:
+          // Handle server error
+          break;
+        default:
+          // Handle other errors
+          break;
+      }
     }
     
     return Promise.reject(error);

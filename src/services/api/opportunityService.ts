@@ -2,44 +2,45 @@
 import apiClient from './client';
 import { Opportunity, PaginatedResponse } from './types';
 
-export const opportunityService = {
-  // Get paginated opportunities
-  getOpportunities: async (page = 1, perPage = 10, type?: string) => {
-    const response = await apiClient.get<PaginatedResponse<Opportunity>>('/opportunities', {
-      params: { page, per_page: perPage, type }
-    });
-    return response.data;
+const opportunityService = {
+  // Get a paginated list of opportunities
+  getAllOpportunities: async (page = 1, limit = 10, type?: string, status = 'open'): Promise<PaginatedResponse<Opportunity>> => {
+    const params = { 
+      page, 
+      limit,
+      status,
+      ...(type && { type })
+    };
+    
+    try {
+      return await apiClient.get('/opportunities', { params });
+    } catch (error) {
+      console.error('Error fetching opportunities:', error);
+      throw error;
+    }
   },
   
   // Get a single opportunity by id
-  getOpportunityById: async (id: number) => {
-    const response = await apiClient.get<Opportunity>(`/opportunities/${id}`);
-    return response.data;
+  getOpportunityById: async (id: string): Promise<Opportunity> => {
+    try {
+      return await apiClient.get(`/opportunities/${id}`);
+    } catch (error) {
+      console.error(`Error fetching opportunity with id ${id}:`, error);
+      throw error;
+    }
   },
   
-  // Get open opportunities
-  getOpenOpportunities: async (limit = 5) => {
-    const response = await apiClient.get<Opportunity[]>('/opportunities/open', {
-      params: { limit }
-    });
-    return response.data;
-  },
-  
-  // Create a new opportunity (admin)
-  createOpportunity: async (opportunityData: Omit<Opportunity, 'id' | 'created_at' | 'updated_at'>) => {
-    const response = await apiClient.post<Opportunity>('/opportunities', opportunityData);
-    return response.data;
-  },
-  
-  // Update an existing opportunity (admin)
-  updateOpportunity: async (id: number, opportunityData: Partial<Opportunity>) => {
-    const response = await apiClient.put<Opportunity>(`/opportunities/${id}`, opportunityData);
-    return response.data;
-  },
-  
-  // Delete an opportunity (admin)
-  deleteOpportunity: async (id: number) => {
-    const response = await apiClient.delete(`/opportunities/${id}`);
-    return response.data;
+  // Get opportunities by type (job, tender, grant, etc.)
+  getOpportunitiesByType: async (type: string, page = 1, limit = 10): Promise<PaginatedResponse<Opportunity>> => {
+    try {
+      return await apiClient.get(`/opportunities/type/${type}`, { 
+        params: { page, limit } 
+      });
+    } catch (error) {
+      console.error(`Error fetching opportunities for type ${type}:`, error);
+      throw error;
+    }
   }
 };
+
+export default opportunityService;
