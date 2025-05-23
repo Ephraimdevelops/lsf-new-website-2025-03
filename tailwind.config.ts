@@ -99,8 +99,7 @@ export default {
 				'slide-in': 'slide-in 0.5s ease-out forwards',
 			},
 			fontFamily: {
-				'sans': ['"Calibri"', 'Arial', 'sans-serif'],
-				'heading': ['"Merriweather Sans"', 'Arial', 'sans-serif'],
+				'sans': ['"Noto Sans"', 'sans-serif'],
 				'serif': ['"Noto Serif"', 'serif'],
 				'serif-condensed': ['"Noto Serif Condensed"', '"Noto Serif"', 'serif'],
 			},
