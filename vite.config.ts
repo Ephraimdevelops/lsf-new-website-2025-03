@@ -21,14 +21,20 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Simplify build configuration to avoid optional dependency issues
+    // Disable native module dependency usage
+    target: 'esnext',
     rollupOptions: {
-      // Reduce reliance on optional native dependencies
-      treeshake: {
-        moduleSideEffects: false,
-      }
+      // Avoid platform-specific dependencies
+      output: {
+        manualChunks: undefined,
+      },
+      // Disable most optimizations to avoid platform-specific issues
+      treeshake: 'recommended',
     },
-    // Ensure sourcemaps are not generated to simplify build
     sourcemap: false,
+    // Ensure compatibility with most environments
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    }
   }
 }));
