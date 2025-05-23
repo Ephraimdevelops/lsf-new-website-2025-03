@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => ({
     }
   },
   optimizeDeps: {
-    exclude: ['@rollup/rollup-linux-x64-gnu']
+    include: ['react', 'react-dom', '@tanstack/react-query', '@radix-ui/react-tooltip']
   },
   define: {
     global: 'globalThis',
