@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -19,4 +20,15 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Simplify build configuration to avoid optional dependency issues
+    rollupOptions: {
+      // Reduce reliance on optional native dependencies
+      treeshake: {
+        moduleSideEffects: false,
+      }
+    },
+    // Ensure sourcemaps are not generated to simplify build
+    sourcemap: false,
+  }
 }));

@@ -7,7 +7,8 @@ import Layout from '../components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { programService, analyticsService } from '@/services/api';
+import { programService } from '@/services/api';
+import { analyticsService } from '@/services/api';
 
 const Programs = () => {
   // Track page view
