@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import NewsTicker from '../home/NewsTicker';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,171 +70,164 @@ const Header = () => {
   };
 
   return (
-    <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
-      }`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
-              <img 
-                src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
-                alt="LSF Logo" 
-                className="h-12 w-auto"
-              />
-              <div className="font-bold text-xl text-primary font-panton">LSF</div>
-            </Link>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
+    }`}>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
+            <img 
+              src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
+              alt="LSF Logo" 
+              className="h-12 w-auto"
+            />
+            <div className="font-bold text-xl text-primary font-panton">LSF</div>
+          </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            {navigationItems.map((item) => (
+              <div key={item.name} className="relative group">
+                {item.dropdown ? (
+                  <button
+                    className="flex items-center px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
+                    onClick={() => handleDropdownToggle(item.name)}
+                  >
+                    {item.name}
+                    <ChevronDown 
+                      size={16} 
+                      className={`ml-1 transition-transform ${
+                        activeDropdown === item.name ? 'rotate-180' : ''
+                      }`} 
+                    />
+                  </button>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="block px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                )}
+                
+                {/* Dropdown Menu */}
+                {item.dropdown && (
+                  <div className={`absolute left-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-200 ${
+                    activeDropdown === item.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                  }`}>
+                    <div className="py-2">
+                      {item.dropdown.map((dropdownItem) => (
+                        <Link
+                          key={dropdownItem.name}
+                          to={dropdownItem.href}
+                          className="block px-4 py-2 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri"
+                          onClick={() => setActiveDropdown(null)}
+                        >
+                          {dropdownItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          {/* CTA Buttons */}
+          <div className="hidden lg:flex items-center space-x-3">
+            <Link to="/legal-help">
+              <Button variant="outline" size="sm" className="font-calibri">
+                Get Legal Help
+              </Button>
+            </Link>
+            <Link to="/donate">
+              <Button size="sm" className="font-calibri">
+                Donate
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-white border-t border-gray-200">
+          <div className="container mx-auto px-4 py-4">
+            <nav className="space-y-2">
               {navigationItems.map((item) => (
-                <div key={item.name} className="relative group">
+                <div key={item.name}>
                   {item.dropdown ? (
-                    <button
-                      className="flex items-center px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
-                      onClick={() => handleDropdownToggle(item.name)}
-                    >
-                      {item.name}
-                      <ChevronDown 
-                        size={16} 
-                        className={`ml-1 transition-transform ${
-                          activeDropdown === item.name ? 'rotate-180' : ''
-                        }`} 
-                      />
-                    </button>
+                    <>
+                      <button
+                        className="flex items-center justify-between w-full px-3 py-2 text-left text-neutral-dark hover:text-primary font-calibri font-medium"
+                        onClick={() => handleDropdownToggle(item.name)}
+                      >
+                        {item.name}
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform ${
+                            activeDropdown === item.name ? 'rotate-180' : ''
+                          }`} 
+                        />
+                      </button>
+                      {activeDropdown === item.name && (
+                        <div className="pl-4 space-y-1">
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.href}
+                              className="block px-3 py-2 text-sm text-neutral-gray hover:text-primary font-calibri"
+                              onClick={() => {
+                                setIsMenuOpen(false);
+                                setActiveDropdown(null);
+                              }}
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <Link
                       to={item.href}
-                      className="block px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
+                      className="block px-3 py-2 text-neutral-dark hover:text-primary font-calibri font-medium"
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}
                     </Link>
                   )}
-                  
-                  {/* Dropdown Menu */}
-                  {item.dropdown && (
-                    <div className={`absolute left-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-200 ${
-                      activeDropdown === item.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                    }`}>
-                      <div className="py-2">
-                        {item.dropdown.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.name}
-                            to={dropdownItem.href}
-                            className="block px-4 py-2 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri"
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            {dropdownItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               ))}
+              
+              {/* Mobile CTA Buttons */}
+              <div className="pt-4 space-y-2">
+                <Link to="/legal-help" className="block">
+                  <Button variant="outline" className="w-full font-calibri">
+                    Get Legal Help
+                  </Button>
+                </Link>
+                <Link to="/donate" className="block">
+                  <Button className="w-full font-calibri">
+                    Donate
+                  </Button>
+                </Link>
+              </div>
             </nav>
-
-            {/* CTA Buttons */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <Link to="/legal-help">
-                <Button variant="outline" size="sm" className="font-calibri">
-                  Get Legal Help
-                </Button>
-              </Link>
-              <Link to="/donate">
-                <Button size="sm" className="font-calibri">
-                  Donate
-                </Button>
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-200">
-            <div className="container mx-auto px-4 py-4">
-              <nav className="space-y-2">
-                {navigationItems.map((item) => (
-                  <div key={item.name}>
-                    {item.dropdown ? (
-                      <>
-                        <button
-                          className="flex items-center justify-between w-full px-3 py-2 text-left text-neutral-dark hover:text-primary font-calibri font-medium"
-                          onClick={() => handleDropdownToggle(item.name)}
-                        >
-                          {item.name}
-                          <ChevronDown 
-                            size={16} 
-                            className={`transition-transform ${
-                              activeDropdown === item.name ? 'rotate-180' : ''
-                            }`} 
-                          />
-                        </button>
-                        {activeDropdown === item.name && (
-                          <div className="pl-4 space-y-1">
-                            {item.dropdown.map((dropdownItem) => (
-                              <Link
-                                key={dropdownItem.name}
-                                to={dropdownItem.href}
-                                className="block px-3 py-2 text-sm text-neutral-gray hover:text-primary font-calibri"
-                                onClick={() => {
-                                  setIsMenuOpen(false);
-                                  setActiveDropdown(null);
-                                }}
-                              >
-                                {dropdownItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <Link
-                        to={item.href}
-                        className="block px-3 py-2 text-neutral-dark hover:text-primary font-calibri font-medium"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-                
-                {/* Mobile CTA Buttons */}
-                <div className="pt-4 space-y-2">
-                  <Link to="/legal-help" className="block">
-                    <Button variant="outline" className="w-full font-calibri">
-                      Get Legal Help
-                    </Button>
-                  </Link>
-                  <Link to="/donate" className="block">
-                    <Button className="w-full font-calibri">
-                      Donate
-                    </Button>
-                  </Link>
-                </div>
-              </nav>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* News Ticker */}
-      <div className="pt-20">
-        <NewsTicker />
-      </div>
-    </>
+      )}
+    </header>
   );
 };
 

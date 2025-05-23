@@ -9,12 +9,10 @@ import Publications from '../components/home/Publications';
 import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import ImpactStats from '../components/home/ImpactStats';
 import Contact from '../components/home/Contact';
-import NewsTicker from '../components/home/NewsTicker';
 
 const Index = () => {
   return (
     <Layout>
-      <NewsTicker />
       <Hero />
       <FocusAreas />
       <About />
