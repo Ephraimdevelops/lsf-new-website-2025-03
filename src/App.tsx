@@ -25,6 +25,7 @@ import Opportunities from "./pages/Opportunities";
 import Whistleblower from "./pages/Whistleblower";
 import Admin from "./pages/Admin";
 import LegalHelp from "./pages/LegalHelp";
+import Projects from "./pages/Projects";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/programs/:programId" element={<ProgramDetail />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/what-we-do" element={<WhatWeDo />} />
