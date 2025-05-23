@@ -1,8 +1,18 @@
 
-export * from './newsService';
-export * from './publicationService';
-export * from './programService';
-export * from './opportunityService';
-export * from './analyticsService';
+import newsService from './newsService';
+import publicationService from './publicationService';
+import programService from './programService';
+import opportunityService from './opportunityService';
+import analyticsService from './analyticsService';
+
 export * from './types';
 export { default as apiClient } from './client';
+
+// Export all services
+export { 
+  newsService,
+  publicationService,
+  programService,
+  opportunityService,
+  analyticsService
+};

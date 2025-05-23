@@ -1,87 +1,69 @@
-
-// Common interfaces for API responses
-
-// Pagination interface
-export interface PaginatedResponse<T> {
-  data: T[];
-  meta: {
-    total: number;
-    per_page: number;
-    current_page: number;
-    last_page: number;
-    from: number;
-    to: number;
-  };
-}
-
-// News interfaces
-export interface NewsItem {
+export interface News {
   id: string;
   title: string;
-  excerpt: string;
   content: string;
-  date: string;
-  image: string;
-  category: string;
-  author: string;
-  tags: string[];
-}
-
-export interface NewsListItem {
-  id: string;
-  title: string;
   excerpt: string;
   date: string;
   image: string;
   category: string;
+  slug: string;
 }
 
-// Publication interfaces
 export interface Publication {
   id: string;
   title: string;
-  excerpt: string;
-  content?: string;
+  description: string;
   date: string;
-  cover: string;
-  fileUrl: string;
-  fileSize: string;
-  type: string;
-  author?: string;
-  tags?: string[];
+  image: string;
+  file: string;
 }
 
-// Program interfaces
 export interface Program {
   id: string;
   title: string;
   description: string;
-  content?: string;
   image: string;
-  color: string;
-  objectives: string[];
-  highlights?: {
-    title: string;
-    description: string;
-    icon: string;
-  }[];
+  startDate: string;
+  endDate: string;
 }
 
-// Opportunity interfaces
 export interface Opportunity {
   id: string;
   title: string;
-  type: 'job' | 'tender' | 'grant' | 'other';
   description: string;
-  deadline: string;
-  location: string;
-  status: 'open' | 'closed';
-  fileUrl?: string;
+  type: string;
+  status?: string;
+  is_open: boolean;
+  deadline?: string;
+  organization?: string;
+  location?: string;
+  created_at: string;
+  application_url?: string;
 }
 
-// Analytics event interface
 export interface AnalyticsEvent {
   event_name: string;
-  properties?: Record<string, any>;
-  timestamp?: number;
+  properties: Record<string, any>;
+  timestamp: number;
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  meta: {
+    total: number;
+    page: number;
+    limit: number;
+  };
+}
+
+// Add NewsPost type if it's missing
+export interface NewsPost {
+  id: number | string;
+  title: string;
+  slug?: string;
+  content?: string;
+  excerpt?: string;
+  date?: string;
+  image?: string;
+  category?: string;
 }
