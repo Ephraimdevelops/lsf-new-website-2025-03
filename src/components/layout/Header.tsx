@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Search, ArrowRight, Users, Scale, BookOpen, Heart } from 'lucide-react';
@@ -178,16 +177,12 @@ const Header = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo Section */}
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/4d88ac6f-dc44-4191-ad46-f5da6daeb331.png" 
+                src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
                 alt="LSF Logo"
-                className="h-14 w-auto"
+                className="h-16 w-auto"
               />
-              <div className="hidden md:block">
-                <h1 className="text-xl font-bold text-primary">Legal Services Facility</h1>
-                <p className="text-xs text-neutral-gray uppercase tracking-wide">Access to Justice for All</p>
-              </div>
             </Link>
           </div>
           
@@ -223,48 +218,48 @@ const Header = () => {
                     </button>
                     
                     {/* Enhanced Wider Dropdown Menu */}
-                    <div className="absolute left-0 mt-1 w-[800px] rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-20">
-                      <div className="p-8">
-                        <div className="flex gap-8">
+                    <div className="absolute left-0 mt-1 w-[900px] rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-20">
+                      <div className="p-10">
+                        <div className="flex gap-10">
                           {/* Featured Section */}
                           <div className="w-1/3">
-                            <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-lg p-6 h-full">
-                              <div className="mb-4">
+                            <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-lg p-8 h-full">
+                              <div className="mb-6">
                                 <img 
                                   src={item.featured?.image} 
                                   alt={item.featured?.title}
-                                  className="w-full h-32 object-cover rounded-md mb-4"
+                                  className="w-full h-40 object-cover rounded-md mb-6"
                                 />
                               </div>
-                              <h3 className="font-bold text-primary mb-3 text-lg">{item.featured?.title}</h3>
-                              <p className="text-gray-600 mb-4 leading-relaxed">{item.featured?.description}</p>
+                              <h3 className="font-bold text-primary mb-4 text-xl">{item.featured?.title}</h3>
+                              <p className="text-gray-600 mb-6 leading-relaxed text-base">{item.featured?.description}</p>
                               <Link 
                                 to={item.featured?.href || ''}
-                                className="inline-flex items-center font-medium text-primary hover:text-primary/80"
+                                className="inline-flex items-center font-medium text-primary hover:text-primary/80 text-base"
                               >
-                                Learn more <ArrowRight size={16} className="ml-2" />
+                                Learn more <ArrowRight size={18} className="ml-2" />
                               </Link>
                             </div>
                           </div>
                           
                           {/* Navigation Sections */}
-                          <div className="flex-1 grid grid-cols-2 gap-8">
+                          <div className="flex-1 grid grid-cols-2 gap-10">
                             {item.sections?.map((section, index) => (
                               <div key={index}>
-                                <h4 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide border-b border-gray-200 pb-2">
+                                <h4 className="font-semibold text-gray-900 mb-6 text-base uppercase tracking-wide border-b border-gray-200 pb-3">
                                   {section.title}
                                 </h4>
-                                <ul className="space-y-3">
+                                <ul className="space-y-4">
                                   {section.links.map((link) => (
                                     <li key={link.name}>
                                       <Link
                                         to={link.href}
-                                        className="block p-3 rounded-md hover:bg-gray-50 transition-colors group"
+                                        className="block p-4 rounded-md hover:bg-gray-50 transition-colors group"
                                       >
-                                        <div className="font-medium text-gray-900 group-hover:text-primary transition-colors mb-1">
+                                        <div className="font-medium text-gray-900 group-hover:text-primary transition-colors mb-2 text-base">
                                           {link.name}
                                         </div>
-                                        <div className="text-sm text-gray-500">
+                                        <div className="text-sm text-gray-500 leading-relaxed">
                                           {link.description}
                                         </div>
                                       </Link>
