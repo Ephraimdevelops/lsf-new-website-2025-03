@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, ArrowRight, Heart } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Instagram, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
@@ -8,7 +8,9 @@ const Footer = () => {
     <footer className="bg-gradient-to-br from-neutral-dark to-primary/20 text-white relative overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-3">
-        <div className="h-full w-full bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        <div className="h-full w-full" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
       </div>
 
       {/* Main Footer Content */}
@@ -32,7 +34,7 @@ const Footer = () => {
             {/* Compact Social Media */}
             <div className="mb-6">
               <h5 className="text-sm font-semibold mb-3 text-secondary-teal">Follow Us</h5>
-              <div className="flex space-x-3">
+              <div className="flex space-x-2">
                 <a href="https://facebook.com/lsf" className="p-2 rounded-full bg-white/10 hover:bg-[#1877F2] transition-all duration-300 group">
                   <Facebook size={16} className="group-hover:scale-110 transition-transform" />
                 </a>
@@ -78,26 +80,22 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-6 text-secondary-teal">Organization</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-white/80 hover:text-white transition-colors flex items-center group text-sm">
-                  <ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/about" className="text-white/80 hover:text-white transition-colors text-sm">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/team" className="text-white/80 hover:text-white transition-colors flex items-center group text-sm">
-                  <ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/team" className="text-white/80 hover:text-white transition-colors text-sm">
                   Our Team
                 </Link>
               </li>
               <li>
-                <Link to="/partners" className="text-white/80 hover:text-white transition-colors flex items-center group text-sm">
-                  <ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/partners" className="text-white/80 hover:text-white transition-colors text-sm">
                   Our Partners
                 </Link>
               </li>
               <li>
-                <Link to="/opportunities" className="text-white/80 hover:text-white transition-colors flex items-center group text-sm">
-                  <ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/opportunities" className="text-white/80 hover:text-white transition-colors text-sm">
                   Careers
                 </Link>
               </li>
@@ -109,26 +107,22 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-6 text-secondary-teal">Our Work</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/programs" className="text-white/80 hover:text-white transition-colors flex items-center group text-sm">
-                  <ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/programs" className="text-white/80 hover:text-white transition-colors text-sm">
                   Programs
                 </Link>
               </li>
               <li>
-                <Link to="/what-we-do" className="text-white/80 hover:text-white transition-colors flex items-center group text-sm">
-                  <ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/what-we-do" className="text-white/80 hover:text-white transition-colors text-sm">
                   What We Do
                 </Link>
               </li>
               <li>
-                <Link to="/legal-help" className="text-white/80 hover:text-white transition-colors flex items-center group text-sm">
-                  <ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/legal-help" className="text-white/80 hover:text-white transition-colors text-sm">
                   Get Legal Help
                 </Link>
               </li>
               <li>
-                <Link to="/heroes" className="text-white/80 hover:text-white transition-colors flex items-center group text-sm">
-                  <ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link to="/heroes" className="text-white/80 hover:text-white transition-colors text-sm">
                   Success Stories
                 </Link>
               </li>
@@ -191,7 +185,9 @@ const Footer = () => {
             </div>
             <div className="flex items-center text-white/60">
               <span>Made with</span>
-              <Heart size={14} className="mx-1 text-red-400" />
+              <svg className="mx-1 w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+              </svg>
               <span>for justice in Tanzania</span>
             </div>
           </div>
