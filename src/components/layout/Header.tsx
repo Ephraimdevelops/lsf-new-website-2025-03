@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Search, ArrowRight, Users, Scale, BookOpen, Heart } from 'lucide-react';
@@ -83,9 +84,9 @@ const navigationItems = [
         title: 'Core Programs',
         links: [
           { name: 'All Programs', href: '/programs', description: 'Complete program overview' },
+          { name: 'Projects', href: '/projects', description: 'Our current and past projects' },
           { name: 'Legal Aid Services', href: '/programs/legal-aid', description: 'Direct legal assistance' },
           { name: 'Paralegal Training', href: '/programs/training', description: 'Building local capacity' },
-          { name: 'Community Education', href: '/programs/education', description: 'Legal literacy programs' },
         ]
       },
       {
@@ -221,49 +222,49 @@ const Header = () => {
                       <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
                     </button>
                     
-                    {/* Enhanced Dropdown Menu */}
-                    <div className="absolute left-0 mt-1 w-[600px] rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-20">
-                      <div className="p-6">
-                        <div className="flex gap-6">
+                    {/* Enhanced Wider Dropdown Menu */}
+                    <div className="absolute left-0 mt-1 w-[800px] rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-20">
+                      <div className="p-8">
+                        <div className="flex gap-8">
                           {/* Featured Section */}
                           <div className="w-1/3">
-                            <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-lg p-4 h-full">
-                              <div className="mb-3">
+                            <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-lg p-6 h-full">
+                              <div className="mb-4">
                                 <img 
                                   src={item.featured?.image} 
                                   alt={item.featured?.title}
-                                  className="w-full h-24 object-cover rounded-md mb-3"
+                                  className="w-full h-32 object-cover rounded-md mb-4"
                                 />
                               </div>
-                              <h3 className="font-bold text-primary mb-2">{item.featured?.title}</h3>
-                              <p className="text-sm text-gray-600 mb-3">{item.featured?.description}</p>
+                              <h3 className="font-bold text-primary mb-3 text-lg">{item.featured?.title}</h3>
+                              <p className="text-gray-600 mb-4 leading-relaxed">{item.featured?.description}</p>
                               <Link 
                                 to={item.featured?.href || ''}
-                                className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80"
+                                className="inline-flex items-center font-medium text-primary hover:text-primary/80"
                               >
-                                Learn more <ArrowRight size={14} className="ml-1" />
+                                Learn more <ArrowRight size={16} className="ml-2" />
                               </Link>
                             </div>
                           </div>
                           
                           {/* Navigation Sections */}
-                          <div className="flex-1 grid grid-cols-2 gap-6">
+                          <div className="flex-1 grid grid-cols-2 gap-8">
                             {item.sections?.map((section, index) => (
                               <div key={index}>
-                                <h4 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">
+                                <h4 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide border-b border-gray-200 pb-2">
                                   {section.title}
                                 </h4>
-                                <ul className="space-y-2">
+                                <ul className="space-y-3">
                                   {section.links.map((link) => (
                                     <li key={link.name}>
                                       <Link
                                         to={link.href}
-                                        className="block p-2 rounded-md hover:bg-gray-50 transition-colors group"
+                                        className="block p-3 rounded-md hover:bg-gray-50 transition-colors group"
                                       >
-                                        <div className="font-medium text-gray-900 group-hover:text-primary transition-colors">
+                                        <div className="font-medium text-gray-900 group-hover:text-primary transition-colors mb-1">
                                           {link.name}
                                         </div>
-                                        <div className="text-xs text-gray-500 mt-1">
+                                        <div className="text-sm text-gray-500">
                                           {link.description}
                                         </div>
                                       </Link>

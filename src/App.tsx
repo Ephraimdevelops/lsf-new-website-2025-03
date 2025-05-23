@@ -17,6 +17,7 @@ import Team from "./pages/Team";
 import Partners from "./pages/Partners";
 import Resources from "./pages/Resources";
 import Programs from "./pages/Programs";
+import Projects from "./pages/Projects";
 import Donate from "./pages/Donate";
 import WhatWeDo from "./pages/WhatWeDo";
 import Heroes from "./pages/Heroes";
@@ -25,7 +26,6 @@ import Opportunities from "./pages/Opportunities";
 import Whistleblower from "./pages/Whistleblower";
 import Admin from "./pages/Admin";
 import LegalHelp from "./pages/LegalHelp";
-import Projects from "./pages/Projects";
 
 const queryClient = new QueryClient();
 
