@@ -21,18 +21,21 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Disable native module dependency usage
+    // Disable native module dependency usage to avoid platform-specific issues
     target: 'esnext',
     rollupOptions: {
-      // Avoid platform-specific dependencies
+      // Explicitly disable native addons
+      context: 'globalThis',
       output: {
+        // Avoid generating platform-specific code
         manualChunks: undefined,
       },
-      // Disable most optimizations to avoid platform-specific issues
+      // Use safe treeshaking settings
       treeshake: 'recommended',
     },
+    // Disable sourcemaps to reduce build complexity
     sourcemap: false,
-    // Ensure compatibility with most environments
+    // Additional compatibility settings
     commonjsOptions: {
       transformMixedEsModules: true,
     }
