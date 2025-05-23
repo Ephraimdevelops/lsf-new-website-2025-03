@@ -1,199 +1,347 @@
 
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { 
+  CalendarRange, MapPin, Target, Users, FileText, Download,
+  Check, Building, Globe, ArrowLeft, ExternalLink
+} from 'lucide-react';
 import Layout from '../components/layout/Layout';
-
-const programsData = {
-  'legal-empowerment': {
-    title: 'Legal Empowerment',
-    description: `Our Legal Empowerment program focuses on enhancing access to justice through community-based legal aid providers and paralegals. We work to build capacity among local organizations and individuals to provide quality legal services to marginalized communities.`,
-    image: 'https://images.unsplash.com/photo-1589391886645-d51941baf7fb',
-    color: 'bg-primary',
-    objectives: [
-      'Strengthen the capacity of legal aid providers',
-      'Expand paralegal services in underserved areas',
-      'Promote legal awareness and education',
-      'Support strategic litigation for systemic change',
-      'Advocate for legal reforms that enhance access to justice'
-    ]
-  },
-  'gender-justice': {
-    title: 'Gender Justice',
-    description: `Our Gender Justice program is dedicated to advancing women's rights and addressing gender-based violence and discrimination. We support initiatives that promote gender equality and empower women to claim their rights.`,
-    image: 'https://images.unsplash.com/photo-1573497019949-b08c40365c71',
-    color: 'bg-secondary-green',
-    objectives: [
-      'Combat gender-based violence and discrimination',
-      "Support women's rights organizations",
-      "Promote women's land and property rights",
-      "Enhance women's political participation",
-      'Address harmful traditional practices'
-    ]
-  },
-  'climate-justice': {
-    title: 'Climate Justice',
-    description: `Our Climate Justice program supports communities affected by climate change and promotes environmental rights. We work to ensure that vulnerable communities have the legal tools to protect their resources and livelihoods in the face of environmental challenges.`,
-    image: 'https://images.unsplash.com/photo-1470058869958-2a77ade41c02',
-    color: 'bg-secondary-teal',
-    objectives: [
-      'Support communities affected by climate change',
-      'Promote environmental rights awareness',
-      'Strengthen legal frameworks for environmental protection',
-      'Advocate for equitable climate policies',
-      'Build community resilience against climate impacts'
-    ]
-  },
-  'digital-transformation': {
-    title: 'Digital Transformation',
-    description: `Our Digital Transformation program leverages technology to improve access to justice and legal information. We develop digital tools and platforms that make legal services more accessible, especially to rural and marginalized communities.`,
-    image: 'https://images.unsplash.com/photo-1496096265110-f83ad7f96608',
-    color: 'bg-secondary-orange',
-    objectives: [
-      'Develop digital tools for legal aid services',
-      'Enhance remote access to legal information',
-      'Train community paralegals in using digital tools',
-      'Create online platforms for legal education',
-      'Build data systems for monitoring access to justice'
-    ]
-  }
-};
+import { Button } from '../components/ui/button';
+import { Card, CardContent } from '../components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { programService } from '../services/api';
+import { Program } from '../services/api/types';
 
 const ProgramDetail = () => {
   const { programId } = useParams<{ programId: string }>();
   
-  const program = programId ? programsData[programId as keyof typeof programsData] : undefined;
-  
-  if (!program) {
+  const { data: program, isLoading, error } = useQuery({
+    queryKey: ['program', programId],
+    queryFn: () => programId ? programService.getProgramById(programId) : null,
+    enabled: !!programId,
+  });
+
+  if (isLoading) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">Program Not Found</h1>
-            <p className="text-gray-600 mb-8">We couldn't find the program you're looking for.</p>
+        <div className="container mx-auto py-16 px-4">
+          <div className="flex items-center justify-center min-h-[50vh]">
+            <div className="animate-pulse text-primary">Loading project details...</div>
           </div>
         </div>
       </Layout>
     );
   }
-  
+
+  if (error || !program) {
+    return (
+      <Layout>
+        <div className="container mx-auto py-16 px-4">
+          <div className="flex items-center justify-center min-h-[50vh]">
+            <div className="text-red-500">Error loading project details. Please try again later.</div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section className={`${program.color} py-20 md:py-28`}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{program.title}</h1>
-            <p className="text-xl opacity-90">{program.description.substring(0, 120)}...</p>
+      <div className="relative h-[40vh] md:h-[50vh] bg-neutral-dark">
+        {program.image && (
+          <img 
+            src={program.image} 
+            alt={program.title} 
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="container mx-auto h-full flex flex-col justify-end pb-8 px-4 relative z-10">
+          <div className="max-w-4xl">
+            <Link to="/programs" className="inline-flex items-center text-white hover:text-secondary-teal mb-4">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Projects
+            </Link>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">{program.title}</h1>
+            
+            <div className="flex flex-wrap items-center gap-4 mt-4">
+              {(program.startDate || program.endDate) && (
+                <div className="flex items-center text-white/90">
+                  <CalendarRange size={16} className="mr-1" />
+                  <span>
+                    {program.startDate && new Date(program.startDate).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      year: 'numeric' 
+                    })}
+                    {program.startDate && program.endDate && " – "}
+                    {program.endDate && new Date(program.endDate).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      year: 'numeric' 
+                    })}
+                  </span>
+                </div>
+              )}
+              
+              {program.location && program.location.length > 0 && (
+                <div className="flex items-center text-white/90">
+                  <MapPin size={16} className="mr-1" />
+                  <span>{program.location.join(', ')}</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </section>
-      
-      {/* Main Content */}
-      <section className="py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Content Column */}
-            <div className="lg:col-span-2 space-y-8">
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">About the Program</h2>
-                <p className="text-neutral-gray mb-4">{program.description}</p>
-                <p className="text-neutral-gray">
-                  Through strategic partnerships with local organizations, government agencies, and international stakeholders, 
-                  we implement initiatives that address the root causes of injustice and provide sustainable solutions to 
-                  challenges faced by marginalized communities.
-                </p>
+      </div>
+
+      {/* Content Section */}
+      <div className="container mx-auto py-12 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="md:col-span-2">
+            {/* Project Summary */}
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold text-primary mb-4">Project Summary</h2>
+              <div className="prose max-w-none">
+                <p className="text-lg">{program.description}</p>
               </div>
-              
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">Key Objectives</h2>
-                <ul className="space-y-3">
-                  {program.objectives.map((objective, index) => (
-                    <li key={index} className="flex items-start">
-                      <svg className={`flex-shrink-0 h-6 w-6 mr-2 text-${program.color.replace('bg-', '')}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span>{objective}</span>
-                    </li>
+            </section>
+
+            {/* Objectives */}
+            {program.objectives && program.objectives.length > 0 && (
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold text-primary mb-4">Objectives</h2>
+                <div className="bg-neutral-light rounded-lg p-6">
+                  <ul className="space-y-3">
+                    {program.objectives.map((objective, index) => (
+                      <li key={index} className="flex items-start">
+                        <Target className="h-5 w-5 mr-2 text-primary flex-shrink-0 mt-0.5" />
+                        <span>{objective}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )}
+
+            {/* Implementation Approach */}
+            {program.approach && (
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold text-primary mb-4">Implementation Approach</h2>
+                <div className="prose max-w-none">
+                  <p>{program.approach}</p>
+                </div>
+              </section>
+            )}
+
+            {/* Key Results & Impact */}
+            {program.results && program.results.length > 0 && (
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold text-primary mb-4">Key Results & Impact</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {program.results.map((result, index) => (
+                    <Card key={index} className="border-l-4 border-l-secondary-teal">
+                      <CardContent className="p-4">
+                        <div className="flex items-start">
+                          <Check className="h-5 w-5 mr-2 text-secondary-teal flex-shrink-0 mt-1" />
+                          <div>
+                            <p className="font-bold text-xl text-secondary-teal">{result.value}</p>
+                            <p className="text-sm text-neutral-dark">{result.title}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">Our Approach</h2>
-                <p className="text-neutral-gray mb-4">
-                  We take a community-centered approach to all our programs, ensuring that the people we serve 
-                  are involved in designing and implementing solutions. Our work is guided by principles of:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                  <div className="bg-neutral-light p-4 rounded-lg">
-                    <h3 className="font-bold mb-2">Participation</h3>
-                    <p className="text-sm text-neutral-gray">Involving communities in decision-making processes</p>
-                  </div>
-                  <div className="bg-neutral-light p-4 rounded-lg">
-                    <h3 className="font-bold mb-2">Sustainability</h3>
-                    <p className="text-sm text-neutral-gray">Creating long-term solutions that can be maintained locally</p>
-                  </div>
-                  <div className="bg-neutral-light p-4 rounded-lg">
-                    <h3 className="font-bold mb-2">Innovation</h3>
-                    <p className="text-sm text-neutral-gray">Testing new approaches to access to justice challenges</p>
-                  </div>
-                  <div className="bg-neutral-light p-4 rounded-lg">
-                    <h3 className="font-bold mb-2">Learning</h3>
-                    <p className="text-sm text-neutral-gray">Continuous monitoring and adaptation of our approaches</p>
+                </div>
+              </section>
+            )}
+
+            {/* Best Practices & Learnings */}
+            {program.bestPractices && program.bestPractices.length > 0 && (
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold text-primary mb-4">Best Practices & Learnings</h2>
+                <div className="bg-neutral-light rounded-lg p-6">
+                  <ul className="space-y-3">
+                    {program.bestPractices.map((practice, index) => (
+                      <li key={index} className="flex items-start">
+                        <div className="h-5 w-5 rounded-full bg-secondary-orange text-white flex items-center justify-center mr-3 flex-shrink-0 mt-0.5">{index + 1}</div>
+                        <span>{practice}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )}
+
+            {/* Geographic Coverage */}
+            {program.geographicCoverage && program.geographicCoverage.length > 0 && (
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold text-primary mb-4">Geographic Coverage</h2>
+                <div className="bg-white border rounded-lg p-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                    {program.geographicCoverage.map((location, index) => (
+                      <div key={index} className="flex items-center">
+                        <Globe className="h-4 w-4 mr-2 text-secondary-teal" />
+                        <span>{location}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            {/* Sidebar */}
-            <div className="space-y-8">
-              <div>
-                <img 
-                  src={program.image} 
-                  alt={program.title} 
-                  className="w-full h-auto rounded-lg shadow-md"
-                />
-              </div>
-              
-              <div className="bg-neutral-light p-6 rounded-lg">
-                <h3 className="font-bold text-xl mb-4">Get Involved</h3>
-                <p className="text-neutral-gray mb-4">
-                  Interested in supporting our {program.title} program? There are several ways you can contribute:
-                </p>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-start">
-                    <svg className="flex-shrink-0 h-5 w-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Volunteer your expertise</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="flex-shrink-0 h-5 w-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Donate to support our work</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="flex-shrink-0 h-5 w-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Partner with us</span>
-                  </li>
-                </ul>
-                <a href="/contact" className="btn-primary w-full block text-center">Contact Us</a>
-              </div>
-              
-              <div className="bg-primary p-6 rounded-lg text-white">
-                <h3 className="font-bold text-xl mb-4">Success Story</h3>
-                <p className="italic mb-4">
-                  "LSF's program helped our community understand our legal rights and access essential services. 
-                  Now we have the tools to advocate for ourselves and create positive change."
-                </p>
-                <p className="font-bold">- Maria J., Community Member</p>
-              </div>
-            </div>
+              </section>
+            )}
+
+            {/* Resources/Downloads */}
+            {program.resources && program.resources.length > 0 && (
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold text-primary mb-4">Downloads & Resources</h2>
+                <div className="grid grid-cols-1 gap-3">
+                  {program.resources.map((resource, index) => (
+                    <a 
+                      key={index}
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center p-4 border rounded-lg hover:bg-neutral-light transition-colors"
+                    >
+                      <FileText className="h-6 w-6 mr-3 text-primary" />
+                      <div className="flex-grow">
+                        <p className="font-medium">{resource.title}</p>
+                        <p className="text-sm text-neutral-gray">{resource.type}</p>
+                      </div>
+                      <Download className="h-5 w-5 text-neutral-gray" />
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Gallery - if available */}
+            {program.gallery && program.gallery.length > 0 && (
+              <section className="mb-12">
+                <h2 className="text-2xl font-bold text-primary mb-4">Photo Gallery</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {program.gallery.map((image, index) => (
+                    <div key={index} className="aspect-square overflow-hidden rounded-lg">
+                      <img 
+                        src={image} 
+                        alt={`${program.title} gallery image ${index + 1}`}
+                        className="w-full h-full object-cover transition-transform hover:scale-105 duration-300" 
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <div className="md:col-span-1">
+            {/* Beneficiaries */}
+            {program.beneficiaries && (
+              <Card className="mb-6">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-primary mb-4 flex items-center">
+                    <Users className="h-5 w-5 mr-2" />
+                    Beneficiaries
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    {program.beneficiaries.total && (
+                      <div>
+                        <p className="text-3xl font-bold text-secondary-teal">{program.beneficiaries.total.toLocaleString()}</p>
+                        <p className="text-sm text-neutral-gray">Total people reached</p>
+                      </div>
+                    )}
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      {program.beneficiaries.women && (
+                        <div>
+                          <p className="text-xl font-bold text-primary">{program.beneficiaries.women.toLocaleString()}</p>
+                          <p className="text-xs text-neutral-gray">Women</p>
+                        </div>
+                      )}
+                      
+                      {program.beneficiaries.children && (
+                        <div>
+                          <p className="text-xl font-bold text-primary">{program.beneficiaries.children.toLocaleString()}</p>
+                          <p className="text-xs text-neutral-gray">Children</p>
+                        </div>
+                      )}
+                      
+                      {program.beneficiaries.disputes && (
+                        <div className="col-span-2 pt-2 border-t">
+                          <p className="text-xl font-bold text-primary">{program.beneficiaries.disputes.toLocaleString()}</p>
+                          <p className="text-xs text-neutral-gray">Disputes handled</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Donors & Partners */}
+            {(program.donors?.length > 0 || program.partners?.length > 0) && (
+              <Card className="mb-6">
+                <CardContent className="p-6">
+                  <Tabs defaultValue="donors">
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value="donors">Donors</TabsTrigger>
+                      <TabsTrigger value="partners">Partners</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="donors" className="mt-4">
+                      {program.donors && program.donors.length > 0 ? (
+                        <div className="space-y-3">
+                          {program.donors.map((donor, index) => (
+                            <div key={index} className="flex items-center">
+                              <Building className="h-4 w-4 mr-2 text-primary" />
+                              <span>{donor}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-neutral-gray">No donors listed for this project.</p>
+                      )}
+                    </TabsContent>
+                    <TabsContent value="partners" className="mt-4">
+                      {program.partners && program.partners.length > 0 ? (
+                        <div className="space-y-3">
+                          {program.partners.map((partner, index) => (
+                            <div key={index} className="flex items-center">
+                              <Building className="h-4 w-4 mr-2 text-primary" />
+                              <span>{partner}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-neutral-gray">No partners listed for this project.</p>
+                      )}
+                    </TabsContent>
+                  </Tabs>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Contact CTA */}
+            <Card className="bg-primary text-white">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold mb-3">Interested in this Project?</h3>
+                <p className="mb-4">Want to collaborate or learn more about this project?</p>
+                <Link to="/contact">
+                  <Button 
+                    variant="outline" 
+                    className="w-full bg-transparent text-white border-white hover:bg-white hover:text-primary"
+                  >
+                    Contact Us
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
           </div>
         </div>
-      </section>
+      </div>
     </Layout>
   );
 };

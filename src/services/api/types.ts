@@ -1,3 +1,4 @@
+
 export interface News {
   id: string;
   title: string;
@@ -25,6 +26,29 @@ export interface Program {
   image: string;
   startDate: string;
   endDate: string;
+  location?: string[];
+  objectives?: string[];
+  approach?: string;
+  beneficiaries?: {
+    total?: number;
+    women?: number;
+    children?: number;
+    disputes?: number;
+  };
+  geographicCoverage?: string[];
+  results?: {
+    title: string;
+    value: string;
+  }[];
+  donors?: string[];
+  partners?: string[];
+  bestPractices?: string[];
+  resources?: {
+    title: string;
+    url: string;
+    type: string;
+  }[];
+  gallery?: string[];
 }
 
 export interface Opportunity {
