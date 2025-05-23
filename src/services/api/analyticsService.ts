@@ -1,4 +1,11 @@
 
+// Extend the Window interface to include gtag
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 // Simple analytics service that works without backend
 const analyticsService = {
   trackPageView: (path: string, title: string) => {

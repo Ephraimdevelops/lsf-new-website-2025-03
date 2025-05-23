@@ -2,10 +2,11 @@
 import { useState } from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { User, LayoutDashboard, Settings, Users, FileText, X, Menu, BarChart } from 'lucide-react';
+import { User, LayoutDashboard, Settings, Users, FileText, X, Menu, BarChart, Briefcase } from 'lucide-react';
 import AdminNews from './AdminNews';
 import AdminPublications from './AdminPublications';
 import AdminPrograms from './AdminPrograms';
+import AdminOpportunities from './AdminOpportunities';
 import AdminSettings from './AdminSettings';
 import AdminHome from './AdminHome';
 import AdminAnalytics from './AdminAnalytics';
@@ -52,6 +53,18 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
               </Link>
             </li>
             <li>
+              <Link to="/admin/programs" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+                <Users size={18} className="mr-2" />
+                {sidebarOpen && <span>Programs</span>}
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin/opportunities" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+                <Briefcase size={18} className="mr-2" />
+                {sidebarOpen && <span>Opportunities</span>}
+              </Link>
+            </li>
+            <li>
               <Link to="/admin/news" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
                 <FileText size={18} className="mr-2" />
                 {sidebarOpen && <span>News Management</span>}
@@ -61,12 +74,6 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
               <Link to="/admin/publications" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
                 <FileText size={18} className="mr-2" />
                 {sidebarOpen && <span>Publications</span>}
-              </Link>
-            </li>
-            <li>
-              <Link to="/admin/programs" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
-                <Users size={18} className="mr-2" />
-                {sidebarOpen && <span>Programs</span>}
               </Link>
             </li>
             <li>
@@ -109,9 +116,10 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
           <Routes>
             <Route path="/" element={<AdminHome />} />
             <Route path="/analytics" element={<AdminAnalytics />} />
+            <Route path="/programs" element={<AdminPrograms />} />
+            <Route path="/opportunities" element={<AdminOpportunities />} />
             <Route path="/news" element={<AdminNews />} />
             <Route path="/publications" element={<AdminPublications />} />
-            <Route path="/programs" element={<AdminPrograms />} />
             <Route path="/settings" element={<AdminSettings />} />
           </Routes>
         </main>
