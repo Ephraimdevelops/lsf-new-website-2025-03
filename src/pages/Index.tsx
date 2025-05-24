@@ -13,14 +13,16 @@ import Contact from '../components/home/Contact';
 const Index = () => {
   return (
     <Layout>
-      <Hero />
-      <FocusAreas />
-      <About />
-      <ImpactStats />
-      <FeaturedNewsCarousel />
-      <Publications />
-      <HakiYanguHighlight />
-      <Contact />
+      <div className="pt-20">
+        <Hero />
+        <FocusAreas />
+        <About />
+        <ImpactStats />
+        <FeaturedNewsCarousel />
+        <Publications />
+        <HakiYanguHighlight />
+        <Contact />
+      </div>
     </Layout>
   );
 };

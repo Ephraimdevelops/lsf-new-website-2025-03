@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: 'esnext',
     rollupOptions: {
-      external: [],
+      external: ['@rollup/rollup-linux-x64-gnu'],
       output: {
         manualChunks: undefined,
       },
