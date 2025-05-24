@@ -2,15 +2,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +40,7 @@ const Header = () => {
       ]
     },
     { 
-      name: 'What We Do', 
+      name: 'Our work', 
       href: '/what-we-do',
       dropdown: [
         { name: 'Overview', href: '/what-we-do' },
@@ -51,7 +49,7 @@ const Header = () => {
       ]
     },
     { 
-      name: 'Resources', 
+      name: 'Ideas', 
       href: '/resources',
       dropdown: [
         { name: 'All Resources', href: '/resources' },
@@ -86,48 +84,48 @@ const Header = () => {
             />
           </Link>
 
-          {/* Desktop Navigation with slick dropdowns */}
-          <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList>
-              {navigationItems.map((item) => (
-                <NavigationMenuItem key={item.name}>
-                  {item.dropdown ? (
-                    <>
-                      <NavigationMenuTrigger className="text-neutral-dark hover:text-primary font-calibri font-medium">
-                        {item.name}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <div className="grid w-48 p-2 bg-white">
-                          {item.dropdown.map((dropdownItem) => (
-                            <NavigationMenuLink key={dropdownItem.name} asChild>
-                              <Link
-                                to={dropdownItem.href}
-                                className="block px-4 py-3 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri rounded-md"
-                              >
-                                {dropdownItem.name}
-                              </Link>
-                            </NavigationMenuLink>
-                          ))}
-                        </div>
-                      </NavigationMenuContent>
-                    </>
-                  ) : (
-                    <NavigationMenuLink asChild>
-                      <Link
-                        to={item.href}
-                        className="px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
-                      >
-                        {item.name}
-                      </Link>
-                    </NavigationMenuLink>
-                  )}
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+          {/* Desktop Navigation with Gates Foundation style dropdowns */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            {navigationItems.map((item) => (
+              <div key={item.name} className="relative">
+                {item.dropdown ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className="flex items-center space-x-1 text-neutral-dark hover:text-primary font-calibri font-medium transition-colors py-2">
+                        <span>{item.name}</span>
+                        <ChevronDown className="h-4 w-4" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-56 bg-white border shadow-lg">
+                      {item.dropdown.map((dropdownItem) => (
+                        <DropdownMenuItem key={dropdownItem.name} asChild>
+                          <Link
+                            to={dropdownItem.href}
+                            className="block px-4 py-3 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri"
+                          >
+                            {dropdownItem.name}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="text-neutral-dark hover:text-primary transition-colors font-calibri font-medium py-2"
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </nav>
 
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-3">
+          {/* Search and CTA Buttons */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <button className="text-neutral-dark hover:text-primary transition-colors">
+              <span className="font-calibri">Search</span>
+            </button>
             <Link to="/legal-help">
               <Button variant="outline" size="sm" className="font-calibri">
                 Get Legal Help

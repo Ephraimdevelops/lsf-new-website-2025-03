@@ -75,9 +75,9 @@ const categories = ['All', 'International Organizations', 'Foundations', 'Profes
 const Partners = () => {
   return (
     <Layout>
-      {/* Hero Section */}
+      {/* Hero Section with new design */}
       <HeroSection
-        icon={<Users className="h-8 w-8" />}
+        icon={<Users className="h-10 w-10" />}
         badge="Partnerships"
         title="Our Partners"
         description="Together with our partners, we're building a more just and equitable Tanzania where everyone has access to legal protection and empowerment."
