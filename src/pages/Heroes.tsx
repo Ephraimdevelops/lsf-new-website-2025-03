@@ -1,217 +1,254 @@
 
 import Layout from '../components/layout/Layout';
-import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
+import HeroSection from '../components/shared/HeroSection';
+import { Users, ArrowRight, Quote, MapPin, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from '@/components/ui/carousel';
+
+interface Story {
+  id: string;
+  name: string;
+  location: string;
+  image: string;
+  quote: string;
+  category: string;
+  brief: string;
+  date: string;
+}
+
+const featuredStories: Story[] = [
+  {
+    id: "mariam-hassan",
+    name: "Mariam Hassan",
+    location: "Dar es Salaam",
+    image: "https://images.unsplash.com/photo-1539701938214-0d9d0e8ab606?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    quote: "With LSF's paralegal support, I reclaimed my family land that was illegally taken after my husband passed away.",
+    category: "Land Rights",
+    brief: "After Mariam's husband died, her in-laws attempted to evict her from her home. With support from a local paralegal trained by LSF, she was able to assert her legal rights and maintain ownership of her family's property.",
+    date: "March 2024"
+  },
+  {
+    id: "joseph-mkwawa",
+    name: "Joseph Mkwawa",
+    location: "Mbeya",
+    image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    quote: "The mobile legal clinic in our village helped me understand my rights as a small business owner and resolve a longstanding dispute.",
+    category: "Business Rights",
+    brief: "Joseph's small carpentry workshop was threatened when a local official demanded illegal payments. With guidance from an LSF-supported legal aid provider, Joseph learned about business regulations and successfully challenged the corrupt demands.",
+    date: "February 2024"
+  },
+  {
+    id: "neema-urio",
+    name: "Neema Urio",
+    location: "Arusha",
+    image: "https://images.unsplash.com/photo-1531123414780-f74242c2b052?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    quote: "After attending legal education sessions, I now lead a women's group that advocates for our community's rights and supports other women.",
+    category: "Women's Empowerment",
+    brief: "Inspired by LSF's legal empowerment workshops, Neema formed a women's advocacy group in her community. The group provides peer support and connects women with paralegals when they face legal challenges.",
+    date: "January 2024"
+  }
+];
+
+const allStories: Story[] = [
+  ...featuredStories,
+  {
+    id: "emmanuel-masaki",
+    name: "Emmanuel Masaki",
+    location: "Dodoma",
+    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    quote: "The Haki Yangu app helped me find a paralegal who resolved my employment dispute without having to travel to the city.",
+    category: "Labor Rights",
+    brief: "When Emmanuel was unfairly dismissed without severance pay, he used the Haki Yangu app to connect with a paralegal who mediated the dispute, resulting in fair compensation from his former employer.",
+    date: "December 2023"
+  },
+  {
+    id: "grace-mwenda",
+    name: "Grace Mwenda",
+    location: "Mwanza",
+    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    quote: "Legal education helped me understand my inheritance rights and secure my children's future.",
+    category: "Legal Empowerment",
+    brief: "Grace was able to claim her rightful inheritance after her husband's death, ensuring her children could continue their education.",
+    date: "November 2023"
+  },
+  {
+    id: "daniel-kibwana",
+    name: "Daniel Kibwana",
+    location: "Kigoma",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    quote: "Community mediation helped resolve our village's water rights dispute peacefully.",
+    category: "Community Resolution",
+    brief: "A long-standing water access dispute between two villages was resolved through community mediation facilitated by LSF-trained paralegals.",
+    date: "October 2023"
+  }
+];
 
 const Heroes = () => {
+  const [activeTab, setActiveTab] = useState('featured');
+
   return (
     <Layout>
-      <div className="pt-20 bg-neutral-light">
-        {/* Hero section */}
-        <div className="bg-primary pattern-bg text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 font-panton">Our Heroes</h1>
-              <p className="text-xl md:text-2xl mb-6 text-white/90 font-calibri">
-                Meet the people whose lives have been transformed through our programs and who continue to inspire our work.
-              </p>
-            </div>
+      <HeroSection
+        icon={<Users className="h-12 w-12" />}
+        badge="Success Stories"
+        title="Our Heroes"
+        description="Meet the inspiring individuals whose lives have been transformed through our legal empowerment programs"
+      />
+      
+      {/* Featured Stories Carousel */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 font-panton">Featured Stories</h2>
+            <p className="text-xl text-neutral-gray font-calibri max-w-2xl mx-auto">
+              Discover how legal empowerment is changing lives across Tanzania
+            </p>
           </div>
-        </div>
-        
-        {/* Testimonial Tabs */}
-        <div className="container mx-auto px-4 py-12">
-          <Tabs defaultValue="communities" className="w-full">
-            <TabsList className="grid grid-cols-3 mb-8">
-              <TabsTrigger value="communities" className="font-calibri">Communities</TabsTrigger>
-              <TabsTrigger value="individuals" className="font-calibri">Individuals</TabsTrigger>
-              <TabsTrigger value="partners" className="font-calibri">Partners</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="communities" className="space-y-8">
-              {communityTestimonials.map((testimonial, index) => (
-                <Card key={index} className="overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="md:flex">
-                      <div className="md:w-2/5">
+          
+          <Carousel className="w-full max-w-5xl mx-auto">
+            <CarouselContent>
+              {featuredStories.map((story) => (
+                <CarouselItem key={story.id}>
+                  <Link to={`/heroes/${story.id}`} className="block group">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
+                      <div className="h-80 lg:h-96 overflow-hidden">
                         <img 
-                          src={testimonial.image} 
-                          alt={testimonial.community} 
-                          className="w-full h-64 md:h-full object-cover"
+                          src={story.image} 
+                          alt={story.name} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                       </div>
-                      <div className="p-6 md:w-3/5">
-                        <Badge className="mb-2 bg-primary">{testimonial.program}</Badge>
-                        <h3 className="text-2xl font-bold mb-2 font-panton">{testimonial.community}</h3>
-                        <p className="text-neutral-gray mb-4 font-calibri">
-                          <em>"{testimonial.quote}"</em>
-                        </p>
-                        <p className="text-neutral-dark font-calibri">{testimonial.impact}</p>
-                        <div className="mt-4 font-calibri">
-                          <span className="text-sm text-neutral-gray">— {testimonial.representative}, {testimonial.location}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-            
-            <TabsContent value="individuals" className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                {individualTestimonials.map((testimonial, index) => (
-                  <Card key={index} className="overflow-hidden">
-                    <CardContent className="p-0">
-                      <div className="flex flex-col h-full">
-                        <div className="h-64 overflow-hidden">
-                          <img 
-                            src={testimonial.image} 
-                            alt={testimonial.name} 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="p-6 flex-grow">
-                          <Badge className="mb-2 bg-secondary-green">{testimonial.program}</Badge>
-                          <h3 className="text-xl font-bold mb-2 font-panton">{testimonial.name}</h3>
-                          <p className="text-neutral-gray mb-4 font-calibri">
-                            <em>"{testimonial.quote}"</em>
-                          </p>
-                          <div className="mt-4 font-calibri">
-                            <span className="text-sm text-neutral-gray">— {testimonial.location}</span>
+                      <div className="p-8 lg:p-12 flex flex-col justify-center">
+                        <div className="mb-4">
+                          <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full font-calibri">
+                            {story.category}
+                          </span>
+                          <div className="flex items-center mt-2 text-neutral-gray text-sm">
+                            <Calendar className="h-4 w-4 mr-2" />
+                            {story.date}
                           </div>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="partners" className="space-y-8">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {partnerTestimonials.map((testimonial, index) => (
-                  <Card key={index}>
-                    <CardContent className="p-6">
-                      <div className="mb-4">
-                        <img 
-                          src={testimonial.logo} 
-                          alt={testimonial.organization} 
-                          className="h-16 object-contain"
-                        />
-                      </div>
-                      <p className="text-neutral-gray mb-4 font-calibri">
-                        <em>"{testimonial.quote}"</em>
-                      </p>
-                      <div className="flex items-center">
-                        <div className="mr-4">
-                          <img 
-                            src={testimonial.representative.image} 
-                            alt={testimonial.representative.name} 
-                            className="w-12 h-12 rounded-full object-cover"
-                          />
+                        <h3 className="text-3xl font-bold mb-4 font-panton text-neutral-dark">
+                          {story.name}
+                        </h3>
+                        <div className="flex items-center mb-4 text-neutral-gray">
+                          <MapPin className="h-4 w-4 mr-2" />
+                          <span className="font-calibri">{story.location}</span>
                         </div>
-                        <div>
-                          <h4 className="font-bold font-panton">{testimonial.representative.name}</h4>
-                          <p className="text-sm text-neutral-gray font-calibri">{testimonial.representative.title}, {testimonial.organization}</p>
+                        <div className="flex items-start mb-6">
+                          <Quote className="h-6 w-6 text-primary/30 mr-3 flex-shrink-0 mt-1" />
+                          <p className="text-lg italic text-neutral-dark font-calibri leading-relaxed">
+                            "{story.quote}"
+                          </p>
                         </div>
+                        <span className="inline-flex items-center text-primary font-medium font-calibri group-hover:underline">
+                          Read Full Story
+                          <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                        </span>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+                    </div>
+                  </Link>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-4 top-1/2" />
+            <CarouselNext className="absolute right-4 top-1/2" />
+          </Carousel>
         </div>
-      </div>
+      </section>
+
+      {/* All Stories Grid */}
+      <section className="py-20 bg-neutral-light">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 font-panton">All Success Stories</h2>
+            <p className="text-xl text-neutral-gray font-calibri">
+              Every story represents a life transformed through access to justice
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allStories.map((story) => (
+              <Link 
+                key={story.id}
+                to={`/heroes/${story.id}`}
+                className="group"
+              >
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                  <div className="relative h-64">
+                    <img 
+                      src={story.image} 
+                      alt={story.name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
+                        {story.category}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full p-4">
+                      <h3 className="font-bold text-xl text-white font-panton">{story.name}</h3>
+                      <div className="flex items-center text-white/80 text-sm mt-1">
+                        <MapPin className="h-4 w-4 mr-1" />
+                        {story.location}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="flex items-start mb-4">
+                      <Quote className="h-6 w-6 text-primary/20 mr-2 flex-shrink-0 mt-1" />
+                      <p className="text-neutral-dark italic font-calibri">"{story.quote}"</p>
+                    </div>
+                    
+                    <div className="mt-6 flex justify-end">
+                      <span className="text-primary font-medium group-hover:underline flex items-center font-calibri">
+                        Read Full Story
+                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-20 bg-primary text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6 font-panton">Be Part of the Change</h2>
+          <p className="text-xl mb-8 font-calibri max-w-2xl mx-auto">
+            Every story you've read started with someone taking the first step. 
+            If you need legal help, we're here for you.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/legal-help">
+              <Button className="bg-white text-primary hover:bg-neutral-light font-calibri text-lg px-8 py-6 h-auto">
+                Get Legal Help
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/donate">
+              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-calibri text-lg px-8 py-6 h-auto">
+                Support Our Work
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };
-
-// Sample data - in a real app, this would come from an API
-const communityTestimonials = [
-  {
-    community: "Mwanza Women's Collective",
-    representative: "Maria Sanga",
-    location: "Mwanza, Tanzania",
-    program: "Gender Justice",
-    quote: "The legal empowerment program has transformed how our community addresses gender-based violence. We now have the knowledge and tools to support survivors and hold perpetrators accountable.",
-    impact: "Since partnering with LSF, reported cases of domestic violence have decreased by 30%, and more women are participating in local governance structures.",
-    image: "https://images.unsplash.com/photo-1532635241-17e820acc59f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    community: "Coastal Environmental Conservation Group",
-    representative: "James Mbwana",
-    location: "Dar es Salaam, Tanzania",
-    program: "Climate Justice",
-    quote: "With LSF's support, our community successfully challenged illegal logging operations that were destroying our forests and threatening our livelihoods.",
-    impact: "We've established community-managed conservation areas covering over 5,000 hectares and developed sustainable income-generating activities for local families.",
-    image: "https://images.unsplash.com/photo-1469125155630-7ed37e065743?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-  }
-];
-
-const individualTestimonials = [
-  {
-    name: "Grace Mwakipesile",
-    location: "Dodoma, Tanzania",
-    program: "Legal Empowerment",
-    quote: "When I was wrongfully evicted from my land, I thought there was nothing I could do. The community paralegal trained by LSF helped me understand my rights and guided me through the process of reclaiming my property.",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    name: "Samuel Kioko",
-    location: "Arusha, Tanzania",
-    program: "Digital Transformation",
-    quote: "The mobile legal aid clinic reached our remote village and provided crucial services. I was able to obtain legal advice through their digital platform that would have otherwise required traveling hundreds of kilometers.",
-    image: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    name: "Fatima Hussein",
-    location: "Tabora, Tanzania",
-    program: "Gender Justice",
-    quote: "After attending the women's rights workshop, I understood that I had a right to inherit family property. The legal support from LSF helped me secure my inheritance and provide for my children.",
-    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    name: "Joseph Mwandila",
-    location: "Kigoma, Tanzania",
-    program: "Climate Justice",
-    quote: "When pollution from a nearby factory contaminated our water source, we didn't know how to respond. The environmental rights training gave us the tools to document the issue and advocate for remediation.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-  }
-];
-
-const partnerTestimonials = [
-  {
-    organization: "Ministry of Justice",
-    logo: "https://images.unsplash.com/photo-1569937756447-1d44f657dc69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    quote: "LSF has been an invaluable partner in extending legal services to underserved communities. Their innovative approaches have complemented government efforts to expand access to justice.",
-    representative: {
-      name: "Hon. Mary Mulongo",
-      title: "Director of Legal Aid",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  {
-    organization: "Community Legal Empowerment Network",
-    logo: "https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    quote: "Our collaboration with LSF has exponentially increased our reach and impact. Together, we've trained over 500 community paralegals who are now serving their communities.",
-    representative: {
-      name: "Daniel Masawe",
-      title: "Executive Director",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-    }
-  },
-  {
-    organization: "Women's Rights Association",
-    logo: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    quote: "LSF's gender justice program has been transformative for women in rural communities, providing them with the knowledge and support to assert their rights.",
-    representative: {
-      name: "Sarah Kimaro",
-      title: "Program Manager",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-    }
-  }
-];
 
 export default Heroes;

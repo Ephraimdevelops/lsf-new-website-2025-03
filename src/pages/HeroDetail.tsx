@@ -1,10 +1,9 @@
 
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Share2, Calendar, MapPin } from 'lucide-react';
+import { ArrowLeft, Share2, Calendar, MapPin, Heart } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { Button } from '@/components/ui/button';
 
-// Define the story data structure
 interface StoryData {
   id: string;
   name: string;
@@ -16,22 +15,23 @@ interface StoryData {
   impact: string;
   image: string;
   quote: string;
+  category: string;
   relatedImages?: string[];
 }
 
-// Sample success stories data
 const successStories: StoryData[] = [
   {
-    id: "maria-joseph",
-    name: "Maria Joseph",
-    location: "Morogoro Region",
-    date: "June 2023",
-    summary: "After being denied her inheritance rights following her husband's death, Maria sought help from our paralegals. Through legal education and representation, she was able to secure her rightful property.",
-    challenge: "When Maria Joseph's husband passed away, her in-laws claimed all the family property, including land that she had farmed for decades. As a widow without formal education, Maria didn't know her legal rights and faced potential destitution along with her three children.",
-    solution: "LSF paralegals provided immediate support by educating Maria about her inheritance rights under both statutory and customary law. They arranged community mediation with village elders and Maria's in-laws. When mediation wasn't fully successful, they connected Maria with pro bono legal services to formalize her land ownership through the courts.",
-    impact: "Maria successfully secured her rightful property, including five acres of farmland and the family home. She now leads a community women's group that educates other women about property and inheritance rights. Her increased income from the farm has enabled her to send all three children to school, with her eldest daughter now attending university.",
-    image: "https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    quote: "I thought all was lost when my husband died and his family wanted me to leave. The paralegals showed me that the law protects women like me. Now I help other widows know their rights too.",
+    id: "mariam-hassan",
+    name: "Mariam Hassan",
+    location: "Dar es Salaam",
+    date: "March 2024",
+    category: "Land Rights",
+    summary: "After being denied her inheritance rights following her husband's death, Mariam sought help from our paralegals. Through legal education and representation, she was able to secure her rightful property.",
+    challenge: "When Mariam Hassan's husband passed away, her in-laws claimed all the family property, including land that she had farmed for decades. As a widow without formal education, Mariam didn't know her legal rights and faced potential destitution along with her three children.",
+    solution: "LSF paralegals provided immediate support by educating Mariam about her inheritance rights under both statutory and customary law. They arranged community mediation with village elders and Mariam's in-laws. When mediation wasn't fully successful, they connected Mariam with pro bono legal services to formalize her land ownership through the courts.",
+    impact: "Mariam successfully secured her rightful property, including five acres of farmland and the family home. She now leads a community women's group that educates other women about property and inheritance rights. Her increased income from the farm has enabled her to send all three children to school, with her eldest daughter now attending university.",
+    image: "https://images.unsplash.com/photo-1539701938214-0d9d0e8ab606?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    quote: "With LSF's paralegal support, I reclaimed my family land that was illegally taken after my husband passed away. Now I help other women know their rights too.",
     relatedImages: [
       "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1507836772445-e2081c138613?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
@@ -78,10 +78,8 @@ const successStories: StoryData[] = [
 const HeroDetail = () => {
   const { heroId } = useParams<{ heroId: string }>();
   
-  // Find the story that matches the heroId parameter
   const story = successStories.find(s => s.id === heroId);
   
-  // If no story found, show a message
   if (!story) {
     return (
       <Layout>
@@ -102,22 +100,27 @@ const HeroDetail = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <div className="relative h-[60vh] bg-cover bg-center" style={{ backgroundImage: `url(${story.image})` }}>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 flex flex-col justify-end p-8">
-          <div className="container mx-auto px-4">
-            <Link to="/heroes" className="inline-flex items-center text-white bg-white/20 px-4 py-2 rounded-full mb-6 hover:bg-white/30 transition-colors">
+      <div className="relative h-[70vh] bg-cover bg-center" style={{ backgroundImage: `url(${story.image})` }}>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 flex flex-col justify-end">
+          <div className="container mx-auto px-4 pb-12">
+            <Link to="/heroes" className="inline-flex items-center text-white bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 hover:bg-white/30 transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to All Stories
             </Link>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 font-panton">{story.name}'s Story</h1>
-            <div className="flex flex-wrap gap-4 items-center text-white/90 mb-6">
-              <div className="flex items-center">
-                <MapPin className="h-5 w-5 mr-2 text-secondary-orange" />
-                <span className="font-calibri">{story.location}</span>
-              </div>
-              <div className="flex items-center">
-                <Calendar className="h-5 w-5 mr-2 text-secondary-orange" />
-                <span className="font-calibri">{story.date}</span>
+            <div className="max-w-4xl">
+              <span className="inline-block bg-primary text-white text-sm font-medium px-4 py-2 rounded-full mb-4">
+                {story.category}
+              </span>
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-panton">{story.name}</h1>
+              <div className="flex flex-wrap gap-6 items-center text-white/90 mb-6">
+                <div className="flex items-center">
+                  <MapPin className="h-5 w-5 mr-2 text-secondary-orange" />
+                  <span className="font-calibri text-lg">{story.location}</span>
+                </div>
+                <div className="flex items-center">
+                  <Calendar className="h-5 w-5 mr-2 text-secondary-orange" />
+                  <span className="font-calibri text-lg">{story.date}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -125,98 +128,114 @@ const HeroDetail = () => {
       </div>
       
       {/* Content Section */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4 font-panton">Summary</h2>
-            <p className="text-lg text-neutral-dark font-calibri">{story.summary}</p>
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-6 font-panton">Summary</h2>
+            <p className="text-xl text-neutral-dark font-calibri leading-relaxed">{story.summary}</p>
           </div>
           
           {/* Quote */}
-          <div className="bg-primary/5 border-l-4 border-primary p-6 my-8 rounded-r-md">
-            <blockquote className="text-xl italic font-calibri text-neutral-dark">
+          <div className="bg-gradient-to-r from-primary/5 to-secondary-teal/5 border-l-4 border-primary p-8 my-12 rounded-r-xl">
+            <blockquote className="text-2xl italic font-calibri text-neutral-dark leading-relaxed">
               "{story.quote}"
-              <footer className="mt-2 font-bold">— {story.name}</footer>
+              <footer className="mt-4 font-bold text-primary">— {story.name}</footer>
             </blockquote>
           </div>
           
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4 font-panton">The Challenge</h2>
-            <p className="text-lg text-neutral-dark font-calibri">{story.challenge}</p>
-          </div>
-          
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4 font-panton">Our Solution</h2>
-            <p className="text-lg text-neutral-dark font-calibri">{story.solution}</p>
+          <div className="grid md:grid-cols-2 gap-12 mb-12">
+            <div>
+              <h2 className="text-3xl font-bold mb-6 font-panton">The Challenge</h2>
+              <p className="text-lg text-neutral-dark font-calibri leading-relaxed">{story.challenge}</p>
+            </div>
+            
+            <div>
+              <h2 className="text-3xl font-bold mb-6 font-panton">Our Solution</h2>
+              <p className="text-lg text-neutral-dark font-calibri leading-relaxed">{story.solution}</p>
+            </div>
           </div>
           
           {/* Additional Images */}
           {story.relatedImages && story.relatedImages.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
               {story.relatedImages.map((img, index) => (
-                <div key={index} className="aspect-video rounded-md overflow-hidden">
+                <div key={index} className="aspect-video rounded-xl overflow-hidden shadow-lg">
                   <img 
                     src={img} 
                     alt={`${story.name}'s story - image ${index+1}`} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               ))}
             </div>
           )}
           
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4 font-panton">Impact</h2>
-            <p className="text-lg text-neutral-dark font-calibri">{story.impact}</p>
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-6 font-panton">Impact & Legacy</h2>
+            <p className="text-lg text-neutral-dark font-calibri leading-relaxed">{story.impact}</p>
           </div>
           
-          {/* Social Share */}
-          <div className="flex justify-between items-center border-t border-b border-gray-200 py-6 my-8">
+          {/* Social Share & CTA */}
+          <div className="flex flex-col md:flex-row justify-between items-center bg-neutral-light rounded-xl p-8 my-12">
             <div>
-              <h3 className="font-bold mb-2 font-panton">Share this story</h3>
+              <h3 className="font-bold mb-4 font-panton text-xl">Share this inspiring story</h3>
               <div className="flex gap-3">
-                <button className="bg-blue-600 text-white p-2 rounded-full">
+                <button className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors">
                   <Share2 className="h-5 w-5" />
                 </button>
-                <button className="bg-green-600 text-white p-2 rounded-full">
+                <button className="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition-colors">
                   <Share2 className="h-5 w-5" />
                 </button>
-                <button className="bg-sky-500 text-white p-2 rounded-full">
+                <button className="bg-sky-500 text-white p-3 rounded-full hover:bg-sky-600 transition-colors">
                   <Share2 className="h-5 w-5" />
                 </button>
               </div>
             </div>
-            <Link to="/legal-help">
-              <Button className="font-calibri">
-                Get Legal Help
-                <ArrowLeft className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+            <div className="mt-6 md:mt-0">
+              <Link to="/legal-help">
+                <Button className="font-calibri text-lg px-8 py-6 h-auto">
+                  <Heart className="mr-2 h-5 w-5" />
+                  Get Legal Help
+                </Button>
+              </Link>
+            </div>
           </div>
           
           {/* More Stories */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6 text-center font-panton">More Success Stories</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-16">
+            <h2 className="text-3xl font-bold mb-8 text-center font-panton">More Inspiring Stories</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {successStories
                 .filter(s => s.id !== heroId)
                 .slice(0, 3)
                 .map(s => (
                   <Link key={s.id} to={`/heroes/${s.id}`} className="group">
-                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-3">
+                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-lg">
                       <img 
                         src={s.image} 
                         alt={s.name} 
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h3 className="text-white font-bold font-panton">{s.name}</h3>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent group-hover:from-black/80 transition-all duration-300"></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <span className="inline-block bg-primary text-white text-xs px-2 py-1 rounded-full mb-2">
+                          {s.category}
+                        </span>
+                        <h3 className="text-white font-bold text-lg font-panton">{s.name}</h3>
                         <p className="text-white/80 text-sm font-calibri">{s.location}</p>
                       </div>
                     </div>
                   </Link>
                 ))}
+            </div>
+            
+            <div className="text-center mt-8">
+              <Link to="/heroes">
+                <Button variant="outline" className="font-calibri text-lg px-8 py-6 h-auto">
+                  View All Success Stories
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </div>
           
