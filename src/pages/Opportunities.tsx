@@ -1,173 +1,218 @@
 
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import Layout from '../components/layout/Layout';
-import { Button } from '../components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader } from '../components/ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '../components/ui/pagination';
-import { opportunityService } from '../services/api';
+import { Button } from '@/components/ui/button';
+import { MapPin, Clock, Users, Briefcase, GraduationCap, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+interface Opportunity {
+  id: string;
+  title: string;
+  type: string;
+  location: string;
+  duration: string;
+  description: string;
+  requirements: string[];
+  category: string;
+  deadline: string;
+}
+
+const opportunities: Opportunity[] = [
+  {
+    id: '1',
+    title: 'Community Paralegal Coordinator',
+    type: 'Full-time',
+    location: 'Dar es Salaam',
+    duration: '2 years',
+    description: 'Lead and coordinate our community paralegal program across multiple districts, providing training and support to grassroots legal aid providers.',
+    requirements: ['Law degree or equivalent', '3+ years experience in legal aid', 'Swahili and English fluency', 'Strong community engagement skills'],
+    category: 'Employment',
+    deadline: '2024-07-15'
+  },
+  {
+    id: '2',
+    title: 'Legal Research Intern',
+    type: 'Internship',
+    location: 'Remote/Hybrid',
+    duration: '6 months',
+    description: 'Support our policy research initiatives by conducting legal research, analyzing legislation, and contributing to publications on access to justice.',
+    requirements: ['Law student (final year) or recent graduate', 'Research and writing skills', 'Interest in human rights law', 'Computer literacy'],
+    category: 'Internship',
+    deadline: '2024-06-30'
+  },
+  {
+    id: '3',
+    title: 'Volunteer Legal Clinic Assistant',
+    type: 'Volunteer',
+    location: 'Multiple locations',
+    duration: 'Flexible',
+    description: 'Assist in our mobile legal clinics, helping community members access legal information and connect with appropriate legal services.',
+    requirements: ['Interest in community service', 'Basic legal knowledge preferred', 'Weekend availability', 'Transportation'],
+    category: 'Volunteer',
+    deadline: 'Ongoing'
+  },
+  {
+    id: '4',
+    title: 'Digital Innovation Fellow',
+    type: 'Fellowship',
+    location: 'Dar es Salaam',
+    duration: '1 year',
+    description: 'Develop and implement digital solutions to improve access to legal services, including mobile apps and online platforms.',
+    requirements: ['Computer science or related field', 'Mobile app development experience', 'Understanding of legal tech', 'Innovation mindset'],
+    category: 'Fellowship',
+    deadline: '2024-08-01'
+  }
+];
+
+const categories = ['All', 'Employment', 'Internship', 'Volunteer', 'Fellowship'];
 
 const Opportunities = () => {
-  const [activeType, setActiveType] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 6;
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['opportunities', activeType, currentPage, pageSize],
-    queryFn: () => opportunityService.getAllOpportunities(currentPage, pageSize, activeType || undefined)
-  });
-
-  const opportunities = data?.data || [];
-  const totalPages = data?.meta ? Math.ceil(data.meta.total / pageSize) : 0;
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleTypeChange = (type: string) => {
-    setActiveType(type === 'all' ? null : type);
-    setCurrentPage(1);
-  };
-
   return (
     <Layout>
-      <div className="bg-neutral-light py-20 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">Opportunities</h1>
-          <p className="text-center text-lg mb-12 max-w-3xl mx-auto">
-            Browse current job opportunities, tenders, grants, and other openings at Legal Services Facility.
-          </p>
-          
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <Tabs defaultValue="all" className="mb-8" onValueChange={handleTypeChange}>
-              <TabsList className="grid grid-cols-4 mb-6">
-                <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="job">Jobs</TabsTrigger>
-                <TabsTrigger value="tender">Tenders</TabsTrigger>
-                <TabsTrigger value="grant">Grants</TabsTrigger>
-              </TabsList>
-              
-              <div className="mb-6 flex justify-between items-center">
-                <h2 className="text-2xl font-semibold">
-                  {activeType ? `${activeType.charAt(0).toUpperCase() + activeType.slice(1)} Opportunities` : 'All Opportunities'}
-                </h2>
-                <Select>
-                  <SelectTrigger className="w-[140px]">
-                    <SelectValue placeholder="Sort by" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="newest">Newest</SelectItem>
-                    <SelectItem value="deadline">Deadline</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              {isLoading ? (
-                <div className="flex justify-center py-12">
-                  <div className="animate-pulse text-primary">Loading opportunities...</div>
-                </div>
-              ) : error ? (
-                <div className="text-center py-12 text-red-500">
-                  Error loading opportunities. Please try again later.
-                </div>
-              ) : opportunities.length === 0 ? (
-                <div className="text-center py-12">
-                  <p className="text-lg mb-4">No opportunities found.</p>
-                  <p className="text-neutral-gray">Please check back later for new opportunities.</p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 gap-6">
-                  {opportunities.map((opportunity) => (
-                    <Card key={opportunity.id} className="overflow-hidden">
-                      <CardHeader className="pb-2">
-                        <div className="flex justify-between items-start">
-                          <h3 className="text-xl font-bold">{opportunity.title}</h3>
-                          <span className={`px-2 py-1 rounded-full text-xs ${
-                            opportunity.is_open ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                          }`}>
-                            {opportunity.is_open ? 'Open' : 'Closed'}
-                          </span>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="pb-4">
-                        <div className="flex flex-wrap gap-4 text-sm mb-4">
-                          {opportunity.type && (
-                            <div className="flex items-center">
-                              <span className="font-medium mr-1">Type:</span>
-                              <span>{opportunity.type}</span>
-                            </div>
-                          )}
-                          {opportunity.location && (
-                            <div className="flex items-center">
-                              <span className="font-medium mr-1">Location:</span>
-                              <span>{opportunity.location}</span>
-                            </div>
-                          )}
-                          {opportunity.deadline && (
-                            <div className="flex items-center">
-                              <span className="font-medium mr-1">Deadline:</span>
-                              <span>{new Date(opportunity.deadline).toLocaleDateString()}</span>
-                            </div>
-                          )}
-                        </div>
-                        
-                        <p className="text-sm text-neutral-gray line-clamp-3">{opportunity.description}</p>
-                      </CardContent>
-                      <CardFooter className="flex justify-end bg-neutral-light bg-opacity-50 pt-4">
-                        {opportunity.application_url && (
-                          <Button 
-                            variant="default" 
-                            disabled={!opportunity.is_open} 
-                            onClick={() => window.open(opportunity.application_url, '_blank')}
-                          >
-                            Apply Now
-                          </Button>
-                        )}
-                      </CardFooter>
-                    </Card>
-                  ))}
-                </div>
-              )}
-              
-              {totalPages > 1 && (
-                <div className="mt-8">
-                  <Pagination>
-                    <PaginationContent>
-                      <PaginationItem>
-                        <PaginationPrevious 
-                          onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-                          className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
-                        />
-                      </PaginationItem>
-                      
-                      {[...Array(totalPages)].map((_, i) => (
-                        <PaginationItem key={i}>
-                          <PaginationLink 
-                            isActive={currentPage === i + 1} 
-                            onClick={() => handlePageChange(i + 1)}
-                          >
-                            {i + 1}
-                          </PaginationLink>
-                        </PaginationItem>
-                      ))}
-                      
-                      <PaginationItem>
-                        <PaginationNext 
-                          onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-                          className={currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}
-                        />
-                      </PaginationItem>
-                    </PaginationContent>
-                  </Pagination>
-                </div>
-              )}
-            </Tabs>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-primary via-primary-dark to-secondary-teal py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <div className="inline-flex items-center space-x-3 mb-6">
+              <Briefcase className="h-8 w-8 text-secondary-orange" />
+              <span className="text-secondary-orange font-semibold text-sm uppercase tracking-wide">Join Our Mission</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Career Opportunities</h1>
+            <p className="text-xl opacity-90 max-w-3xl mx-auto">
+              Be part of a team that's transforming access to justice across Tanzania. Discover meaningful career opportunities that make a real difference.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Opportunities Grid */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            {opportunities.map((opportunity) => (
+              <div key={opportunity.id} className="group">
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group-hover:border-primary/20 h-full">
+                  {/* Header */}
+                  <div className="p-6 border-b border-gray-100">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                        opportunity.category === 'Employment' ? 'bg-primary/10 text-primary' :
+                        opportunity.category === 'Internship' ? 'bg-secondary-teal/10 text-secondary-teal' :
+                        opportunity.category === 'Volunteer' ? 'bg-secondary-orange/10 text-secondary-orange' :
+                        'bg-neutral-dark/10 text-neutral-dark'
+                      }`}>
+                        {opportunity.category}
+                      </span>
+                      <span className="text-sm text-neutral-gray">
+                        Deadline: {new Date(opportunity.deadline).toLocaleDateString()}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold mb-2 text-neutral-dark group-hover:text-primary transition-colors duration-300">
+                      {opportunity.title}
+                    </h3>
+                    
+                    <div className="flex flex-wrap gap-4 text-sm text-neutral-gray">
+                      <div className="flex items-center">
+                        <MapPin size={14} className="mr-1" />
+                        {opportunity.location}
+                      </div>
+                      <div className="flex items-center">
+                        <Clock size={14} className="mr-1" />
+                        {opportunity.duration}
+                      </div>
+                      <div className="flex items-center">
+                        <Briefcase size={14} className="mr-1" />
+                        {opportunity.type}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <p className="text-neutral-gray mb-4 leading-relaxed">
+                      {opportunity.description}
+                    </p>
+                    
+                    <h4 className="font-semibold text-neutral-dark mb-2">Key Requirements:</h4>
+                    <ul className="text-sm text-neutral-gray space-y-1 mb-6">
+                      {opportunity.requirements.map((req, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          {req}
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <Button className="w-full bg-primary hover:bg-primary-dark">
+                      Apply Now
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Why Join Us */}
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 md:p-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">Why Join LSF?</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Meaningful Impact</h3>
+                <p className="text-neutral-gray">
+                  Work directly with communities to create lasting change and advance access to justice across Tanzania.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-secondary-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <GraduationCap className="h-8 w-8 text-secondary-teal" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Professional Growth</h3>
+                <p className="text-neutral-gray">
+                  Develop your skills through training programs, mentorship, and exposure to diverse legal challenges.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-secondary-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-secondary-orange" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Collaborative Team</h3>
+                <p className="text-neutral-gray">
+                  Join a diverse, passionate team committed to justice, equality, and community empowerment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-br from-primary to-secondary-teal">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-2xl mx-auto text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Make a Difference?</h2>
+            <p className="text-xl opacity-90 mb-8">
+              Don't see the right opportunity? We're always interested in hearing from passionate individuals.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                Send Us Your CV
+              </Button>
+              <Link to="/contact">
+                <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90">
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };
