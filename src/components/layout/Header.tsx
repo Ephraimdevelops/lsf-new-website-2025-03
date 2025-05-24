@@ -2,11 +2,18 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
@@ -22,7 +29,6 @@ const Header = () => {
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
-    setActiveDropdown(null);
   }, [location]);
 
   const navigationItems = [
@@ -65,17 +71,13 @@ const Header = () => {
     { name: 'Contact', href: '/contact' }
   ];
 
-  const handleDropdownToggle = (itemName: string) => {
-    setActiveDropdown(activeDropdown === itemName ? null : itemName);
-  };
-
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo only */}
           <Link to="/" className="flex items-center flex-shrink-0">
             <img 
               src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
@@ -84,58 +86,45 @@ const Header = () => {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navigationItems.map((item) => (
-              <div key={item.name} className="relative group">
-                {item.dropdown ? (
-                  <div>
-                    <button
-                      className="flex items-center px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
-                      onMouseEnter={() => setActiveDropdown(item.name)}
-                      onClick={() => handleDropdownToggle(item.name)}
-                    >
-                      {item.name}
-                      <ChevronDown 
-                        size={16} 
-                        className={`ml-1 transition-transform ${
-                          activeDropdown === item.name ? 'rotate-180' : ''
-                        }`} 
-                      />
-                    </button>
-                    
-                    {/* Dropdown Menu */}
-                    <div 
-                      className={`absolute left-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-200 ${
-                        activeDropdown === item.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                      }`}
-                      onMouseLeave={() => setActiveDropdown(null)}
-                    >
-                      <div className="py-2">
-                        {item.dropdown.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.name}
-                            to={dropdownItem.href}
-                            className="block px-4 py-2 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri"
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            {dropdownItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    to={item.href}
-                    className="block px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
-                  >
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
-          </nav>
+          {/* Desktop Navigation with slick dropdowns */}
+          <NavigationMenu className="hidden lg:flex">
+            <NavigationMenuList>
+              {navigationItems.map((item) => (
+                <NavigationMenuItem key={item.name}>
+                  {item.dropdown ? (
+                    <>
+                      <NavigationMenuTrigger className="text-neutral-dark hover:text-primary font-calibri font-medium">
+                        {item.name}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <div className="grid w-48 p-2 bg-white">
+                          {item.dropdown.map((dropdownItem) => (
+                            <NavigationMenuLink key={dropdownItem.name} asChild>
+                              <Link
+                                to={dropdownItem.href}
+                                className="block px-4 py-3 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri rounded-md"
+                              >
+                                {dropdownItem.name}
+                              </Link>
+                            </NavigationMenuLink>
+                          ))}
+                        </div>
+                      </NavigationMenuContent>
+                    </>
+                  ) : (
+                    <NavigationMenuLink asChild>
+                      <Link
+                        to={item.href}
+                        className="px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
+                      >
+                        {item.name}
+                      </Link>
+                    </NavigationMenuLink>
+                  )}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
@@ -170,37 +159,23 @@ const Header = () => {
               {navigationItems.map((item) => (
                 <div key={item.name}>
                   {item.dropdown ? (
-                    <>
-                      <button
-                        className="flex items-center justify-between w-full px-3 py-2 text-left text-neutral-dark hover:text-primary font-calibri font-medium"
-                        onClick={() => handleDropdownToggle(item.name)}
-                      >
+                    <div className="space-y-1">
+                      <div className="font-medium text-neutral-dark px-3 py-2 font-calibri">
                         {item.name}
-                        <ChevronDown 
-                          size={16} 
-                          className={`transition-transform ${
-                            activeDropdown === item.name ? 'rotate-180' : ''
-                          }`} 
-                        />
-                      </button>
-                      {activeDropdown === item.name && (
-                        <div className="pl-4 space-y-1">
-                          {item.dropdown.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.name}
-                              to={dropdownItem.href}
-                              className="block px-3 py-2 text-sm text-neutral-gray hover:text-primary font-calibri"
-                              onClick={() => {
-                                setIsMenuOpen(false);
-                                setActiveDropdown(null);
-                              }}
-                            >
-                              {dropdownItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </>
+                      </div>
+                      <div className="pl-4 space-y-1">
+                        {item.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.name}
+                            to={dropdownItem.href}
+                            className="block px-3 py-2 text-sm text-neutral-gray hover:text-primary font-calibri"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {dropdownItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   ) : (
                     <Link
                       to={item.href}
