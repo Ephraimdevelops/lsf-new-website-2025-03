@@ -76,13 +76,12 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
+          <Link to="/" className="flex items-center flex-shrink-0">
             <img 
               src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
               alt="LSF Logo" 
               className="h-12 w-auto"
             />
-            <div className="font-bold text-xl text-primary font-panton">LSF</div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -90,18 +89,42 @@ const Header = () => {
             {navigationItems.map((item) => (
               <div key={item.name} className="relative group">
                 {item.dropdown ? (
-                  <button
-                    className="flex items-center px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
-                    onClick={() => handleDropdownToggle(item.name)}
-                  >
-                    {item.name}
-                    <ChevronDown 
-                      size={16} 
-                      className={`ml-1 transition-transform ${
-                        activeDropdown === item.name ? 'rotate-180' : ''
-                      }`} 
-                    />
-                  </button>
+                  <div>
+                    <button
+                      className="flex items-center px-4 py-2 text-neutral-dark hover:text-primary transition-colors font-calibri font-medium"
+                      onMouseEnter={() => setActiveDropdown(item.name)}
+                      onClick={() => handleDropdownToggle(item.name)}
+                    >
+                      {item.name}
+                      <ChevronDown 
+                        size={16} 
+                        className={`ml-1 transition-transform ${
+                          activeDropdown === item.name ? 'rotate-180' : ''
+                        }`} 
+                      />
+                    </button>
+                    
+                    {/* Dropdown Menu */}
+                    <div 
+                      className={`absolute left-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-200 ${
+                        activeDropdown === item.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                      }`}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      <div className="py-2">
+                        {item.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.name}
+                            to={dropdownItem.href}
+                            className="block px-4 py-2 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            {dropdownItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 ) : (
                   <Link
                     to={item.href}
@@ -109,26 +132,6 @@ const Header = () => {
                   >
                     {item.name}
                   </Link>
-                )}
-                
-                {/* Dropdown Menu */}
-                {item.dropdown && (
-                  <div className={`absolute left-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-200 ${
-                    activeDropdown === item.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                  }`}>
-                    <div className="py-2">
-                      {item.dropdown.map((dropdownItem) => (
-                        <Link
-                          key={dropdownItem.name}
-                          to={dropdownItem.href}
-                          className="block px-4 py-2 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri"
-                          onClick={() => setActiveDropdown(null)}
-                        >
-                          {dropdownItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
                 )}
               </div>
             ))}

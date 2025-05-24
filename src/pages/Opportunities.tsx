@@ -1,5 +1,5 @@
-
 import Layout from '../components/layout/Layout';
+import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
 import { MapPin, Clock, Users, Briefcase, GraduationCap, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -69,21 +69,12 @@ const Opportunities = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary via-primary-dark to-secondary-teal py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <div className="inline-flex items-center space-x-3 mb-6">
-              <Briefcase className="h-8 w-8 text-secondary-orange" />
-              <span className="text-secondary-orange font-semibold text-sm uppercase tracking-wide">Join Our Mission</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Career Opportunities</h1>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Be part of a team that's transforming access to justice across Tanzania. Discover meaningful career opportunities that make a real difference.
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        icon={<Briefcase className="h-8 w-8" />}
+        badge="Join Our Mission"
+        title="Career Opportunities"
+        description="Be part of a team that's transforming access to justice across Tanzania. Discover meaningful career opportunities that make a real difference."
+      />
 
       {/* Opportunities Grid */}
       <section className="py-20 bg-white">

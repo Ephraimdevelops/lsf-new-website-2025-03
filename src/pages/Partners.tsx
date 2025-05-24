@@ -1,5 +1,5 @@
-
 import Layout from '../components/layout/Layout';
+import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Heart, Users, Globe } from 'lucide-react';
 
@@ -76,21 +76,12 @@ const Partners = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary via-primary-dark to-secondary-teal py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <div className="inline-flex items-center space-x-3 mb-6">
-              <Users className="h-8 w-8 text-secondary-orange" />
-              <span className="text-secondary-orange font-semibold text-sm uppercase tracking-wide">Partnerships</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Partners</h1>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Together with our partners, we're building a more just and equitable Tanzania where everyone has access to legal protection and empowerment.
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        icon={<Users className="h-8 w-8" />}
+        badge="Partnerships"
+        title="Our Partners"
+        description="Together with our partners, we're building a more just and equitable Tanzania where everyone has access to legal protection and empowerment."
+      />
 
       {/* Partners Grid */}
       <section className="py-20 bg-white">
