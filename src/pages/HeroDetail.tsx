@@ -1,6 +1,6 @@
 
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Share2, Calendar, MapPin, Heart } from 'lucide-react';
+import { ArrowLeft, Share2, Calendar, MapPin, Heart, ArrowRight } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { Button } from '@/components/ui/button';
 
@@ -42,6 +42,7 @@ const successStories: StoryData[] = [
     name: "Emmanuel Baraka",
     location: "Mwanza Region",
     date: "April 2023",
+    category: "Environmental Rights",
     summary: "Emmanuel's community faced environmental damage from a nearby factory. With our support, they pursued legal action that resulted in proper environmental safeguards being implemented.",
     challenge: "A manufacturing facility on the outskirts of Emmanuel's village began releasing untreated waste into the river that served as the primary water source for six villages. Community members were experiencing health issues, and fish—an important food source—were dying. Local authorities were initially unresponsive to complaints.",
     solution: "LSF-supported paralegals helped Emmanuel and other community leaders to document the pollution's effects and understand relevant environmental regulations. They organized community environmental monitoring committees and engaged with local media. The paralegals facilitated meetings with district environmental officers and factory management, pressing for compliance with environmental laws.",
@@ -54,6 +55,7 @@ const successStories: StoryData[] = [
     name: "Fatima Hassan",
     location: "Zanzibar",
     date: "September 2023",
+    category: "Family Rights",
     summary: "As a single mother, Fatima struggled to obtain child support. Our paralegals helped her navigate the legal system and successfully negotiate a fair support arrangement.",
     challenge: "After Fatima's husband abandoned the family, she was left to raise three young children alone with no financial support. Working as a part-time domestic helper, she couldn't afford school fees or adequate healthcare for her children. She didn't know how to claim child support or navigate the legal system.",
     solution: "LSF paralegals provided Fatima with information about her children's rights to support. They helped her gather necessary documentation and initially attempted mediation with her estranged husband's family. When mediation proved insufficient, they connected her with a legal aid attorney who helped file a formal child support case and represent her in court proceedings.",
@@ -66,6 +68,7 @@ const successStories: StoryData[] = [
     name: "John Mkwawa",
     location: "Dodoma Region",
     date: "December 2022",
+    category: "Land Rights",
     summary: "John's village had a long-standing land dispute with a neighboring community. Through mediation and legal support, both communities reached a sustainable agreement.",
     challenge: "A decades-old boundary dispute between two villages had recently escalated into violence when one community began clearing land for new farming. The unclear demarcation of village lands, dating back to colonial times, was causing increasing tension and threatening the livelihoods of hundreds of families in both communities.",
     solution: "LSF paralegals facilitated a series of dialogue sessions between village elders from both communities. They brought in land experts to conduct proper surveys and researched historical records. Working with local government authorities, they helped establish a joint committee with representatives from both villages to develop a fair resolution based on both customary uses and formal land laws.",
