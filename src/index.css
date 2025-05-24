@@ -12,6 +12,7 @@
   font-weight: 400 900;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Gotham';
   src: url('/fonts/Gotham.woff2') format('woff2'),
@@ -19,6 +20,7 @@
   font-weight: 400 900;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Calibri';
   src: local('Calibri'), local('Calibri-Regular');
@@ -28,16 +30,16 @@
 
 :root {
   --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --foreground: 0 0% 9%;
 
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card-foreground: 0 0% 9%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --popover-foreground: 0 0% 9%;
 
   --primary: 332 67% 35%;
-  --primary-foreground: 210 40% 98%;
+  --primary-foreground: 0 0% 100%;
 
   --secondary: 210 40% 96.1%;
   --secondary-foreground: 222.2 47.4% 11.2%;
@@ -61,118 +63,198 @@
 .dark {
   --background: 222.2 84% 4.9%;
   --foreground: 210 40% 98%;
-
   --card: 222.2 84% 4.9%;
   --card-foreground: 210 40% 98%;
-
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
-
   --primary: 210 40% 98%;
   --primary-foreground: 222.2 47.4% 11.2%;
-
   --secondary: 217.2 32.6% 17.5%;
   --secondary-foreground: 210 40% 98%;
-
   --muted: 217.2 32.6% 17.5%;
   --muted-foreground: 215 20.2% 65.1%;
-
   --accent: 217.2 32.6% 17.5%;
   --accent-foreground: 210 40% 98%;
-
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
-
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 212.7 26.8% 83.9%;
 }
 
 * {
-  border-color: var(--border);
+  border-color: hsl(var(--border));
 }
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: 'Calibri', Arial, sans-serif !important;
+  font-family: 'Calibri', 'system-ui', 'sans-serif';
   font-feature-settings: "rlig" 1, "calt" 1;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Merriweather Sans', Arial, sans-serif !important;
+/* Typography Hierarchy */
+.font-display {
+  font-family: 'Panton Narrow', 'system-ui', 'sans-serif';
 }
 
-h1, .heading-large {
-  font-family: 'Merriweather Sans', Arial, sans-serif !important;
-  font-size: 3.5rem !important;
-  line-height: 1.1 !important;
-  font-weight: 800 !important;
+.font-heading {
+  font-family: 'Merriweather Sans', 'system-ui', 'sans-serif';
 }
 
-h2, .heading-emphasis {
-  font-family: 'Merriweather Sans', Arial, sans-serif !important;
-  font-size: 2.25rem !important;
-  line-height: 1.15 !important;
-  font-weight: 700 !important;
+.font-sans {
+  font-family: 'Calibri', 'system-ui', 'sans-serif';
 }
 
-h3, h4, h5, h6 {
-  font-family: 'Merriweather Sans', Arial, sans-serif !important;
-  font-size: 1.5rem !important;
-  font-weight: 600 !important;
+/* Enhanced Focus States for Accessibility */
+*:focus-visible {
+  @apply ring-2 ring-primary-500 ring-offset-2 outline-none;
 }
 
-p, span, div, li, a, input, textarea, button {
-  font-family: 'Calibri', Arial, sans-serif !important;
+/* Smooth Animations */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 @layer components {
+  /* Enhanced Button Variants */
   .btn-primary {
-    @apply bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-dark transition duration-300 font-sans;
+    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }
   
   .btn-secondary {
-    @apply bg-secondary-teal text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition duration-300 font-sans;
+    @apply bg-secondary-teal hover:bg-secondary-teal/90 active:bg-secondary-teal/80 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:text-white transition duration-300 font-sans;
+    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white active:bg-primary-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply text-primary-500 hover:bg-primary-50 active:bg-primary-100 px-6 py-3 rounded-xl font-semibold transition-all duration-300;
   }
   
+  /* Enhanced Card Variants */
+  .card-elevated {
+    @apply bg-white shadow-lg hover:shadow-xl border border-neutral-100 rounded-2xl transition-all duration-300;
+  }
+
+  .card-interactive {
+    @apply bg-white shadow-lg hover:shadow-2xl hover:-translate-y-1 border border-neutral-100 rounded-2xl transition-all duration-300 cursor-pointer;
+  }
+  
+  /* Pattern Backgrounds with Overlay */
   .pattern-bg {
-    background-color: #931E5C;
+    background: linear-gradient(135deg, #931E5C 0%, #7A184C 50%, #6B1542 100%);
+    position: relative;
+  }
+
+  .pattern-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background-image: url("/lovable-uploads/backgound lsf colours.png");
-    background-size: 600px 600px;
-    background-blend-mode: overlay;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100%;
+    opacity: 0.1;
+    mix-blend-mode: overlay;
   }
   
-  .pattern-waves-bg {
-    background-color: #931E5C;
-    background-image: url("/lovable-uploads/backgound lsf colours.png");
-    background-size: 500px 500px;
-    background-blend-mode: overlay;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
+  /* Grid System */
+  .grid-container {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  .grid-container-4 {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
   }
   
+  /* Spacing Utilities */
   .section-padding {
-    @apply py-16 md:py-20 px-4 md:px-8 lg:px-16;
+    @apply py-16 md:py-20 lg:py-28;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
   }
   
-  .heading-large {
-    @apply font-serif-condensed text-4xl md:text-5xl lg:text-[55px] font-light leading-tight;
+  /* Enhanced Typography */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-teal bg-clip-text text-transparent;
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Image Optimization */
+  .image-optimized {
+    @apply object-cover w-full h-full;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Accessibility Enhancements */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-2;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  /* Loading States */
+  .skeleton {
+    @apply animate-pulse bg-neutral-200 rounded;
+  }
+
+  /* Border Utilities */
+  .border-gradient {
+    @apply border-2;
+    border-image: linear-gradient(135deg, #931E5C, #59B5B0) 1;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .text-neutral-600 {
+    @apply text-neutral-800;
   }
   
-  .heading-emphasis {
-    @apply font-sans text-3xl md:text-5xl font-black;
+  .text-neutral-500 {
+    @apply text-neutral-700;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
   }
   
-  .text-content {
-    @apply font-serif text-lg leading-7;
+  * {
+    color: black !important;
+    background: white !important;
   }
 }
