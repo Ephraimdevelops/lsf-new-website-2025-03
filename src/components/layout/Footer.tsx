@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, ArrowRight, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, ArrowRight, ExternalLink, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
