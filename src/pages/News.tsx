@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
@@ -55,14 +54,15 @@ const News = () => {
   
   return (
     <Layout>
-      {/* Hero Section */}
+      {/* Hero Section with Primary Color Overlay */}
       <section 
         className="relative h-96 bg-cover bg-center"
         style={{ 
           backgroundImage: "url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60"></div>
+        <div className="absolute inset-0" style={{ backgroundColor: '#931e5c', opacity: 0.85 }}></div>
+        <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative h-full flex items-center">
           <Container>
             <div className="text-white">

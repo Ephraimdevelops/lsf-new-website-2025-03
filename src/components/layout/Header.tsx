@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, Search, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, ArrowRight } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -94,17 +94,20 @@ const Header = () => {
                         <ChevronDown className="h-4 w-4" />
                       </button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-56 bg-white border shadow-lg rounded-none">
-                      {item.dropdown.map((dropdownItem) => (
-                        <DropdownMenuItem key={dropdownItem.name} asChild>
-                          <Link
-                            to={dropdownItem.href}
-                            className="block px-4 py-3 text-sm text-neutral-900 hover:text-primary hover:bg-gray-50 transition-colors"
-                          >
-                            {dropdownItem.name}
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
+                    <DropdownMenuContent align="start" className="w-screen max-w-screen-xl bg-white border shadow-lg rounded-none z-50">
+                      <div className="grid grid-cols-4 gap-6 p-8">
+                        {item.dropdown.map((dropdownItem) => (
+                          <DropdownMenuItem key={dropdownItem.name} asChild>
+                            <Link
+                              to={dropdownItem.href}
+                              className="block px-4 py-6 text-base text-neutral-900 hover:text-primary hover:bg-gray-50 transition-colors rounded-lg"
+                            >
+                              <div className="font-semibold mb-2">{dropdownItem.name}</div>
+                              <div className="text-sm text-gray-600">Learn more about {dropdownItem.name.toLowerCase()}</div>
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </div>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : (
@@ -123,9 +126,6 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <button className="text-neutral-900 hover:text-primary transition-colors p-2">
               <Search className="h-5 w-5" />
-            </button>
-            <button className="text-neutral-900 hover:text-primary transition-colors p-2">
-              <Globe className="h-5 w-5" />
             </button>
             <Link to="/donate">
               <Button className="bg-secondary-teal hover:bg-secondary-teal/90 text-white font-medium px-6 py-2 rounded-none text-sm tracking-wide uppercase">
