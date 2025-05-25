@@ -1,8 +1,8 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { Download, CalendarIcon, Search, Filter, FileText, ChevronDown } from 'lucide-react';
+import HeroSection from '../components/shared/HeroSection';
+import { Download, CalendarIcon, Search, Filter, FileText, ChevronDown, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -181,17 +181,14 @@ const Publications = () => {
   
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-secondary-teal py-20 md:py-28">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Publications</h1>
-            <p className="text-xl opacity-90">
-              Access our research, reports, policy briefs, and tools to enhance your understanding of legal empowerment
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section with Background */}
+      <HeroSection
+        icon={<BookOpen className="h-8 w-8" />}
+        badge="Knowledge Base"
+        title="Publications"
+        description="Access our research, reports, policy briefs, and tools to enhance your understanding of legal empowerment"
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
       
       {/* Filters Section */}
       <section className="py-8 bg-gray-50 border-b border-gray-200">

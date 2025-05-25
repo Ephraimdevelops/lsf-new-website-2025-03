@@ -1,24 +1,101 @@
 
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { ArrowRight, Award, Users, Globe, Landmark, ArrowDownRight } from 'lucide-react';
+import HeroSection from '../components/shared/HeroSection';
+import { ArrowRight, Award, Users, Globe, Landmark, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import InteractiveTimeline from '../components/about/InteractiveTimeline';
 import AnimatedStats from '../components/about/AnimatedStats';
 import TestimonialCarousel from '../components/about/TestimonialCarousel';
 
+interface BoardMember {
+  id: string;
+  name: string;
+  position: string;
+  bio: string;
+  image: string;
+}
+
+const boardMembers: BoardMember[] = [
+  {
+    id: '1',
+    name: 'Hon. Justice Mary Kimani',
+    position: 'Board Chairperson',
+    bio: 'Former High Court Judge with 25 years of experience in the judiciary and a strong advocate for access to justice.',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    id: '2',
+    name: 'Prof. David Mwalimu',
+    position: 'Vice Chairperson',
+    bio: 'Law Professor at University of Dar es Salaam, specializing in human rights law and legal empowerment.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    id: '3',
+    name: 'Ms. Sarah Ndugu',
+    position: 'Secretary',
+    bio: 'Civil society leader with extensive experience in community development and women\'s rights advocacy.',
+    image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+  },
+  {
+    id: '4',
+    name: 'Mr. James Mwenda',
+    position: 'Treasurer',
+    bio: 'Financial expert with 20 years in development finance and organizational management.',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+  }
+];
+
 const About = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-primary py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-secondary-teal opacity-90"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">About LSF</h1>
-            <p className="text-xl opacity-90">
-              Learn about our mission to increase access to justice for all, in particular for women, through a legal empowerment approach across Tanzania
+      {/* Hero Section with Background */}
+      <HeroSection
+        icon={<Info className="h-8 w-8" />}
+        badge="Who We Are"
+        title="About LSF"
+        description="Learn about our mission to increase access to justice for all, in particular for women, through a legal empowerment approach across Tanzania"
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
+
+      {/* Board Members Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-2 rounded-full mb-4">
+              Leadership
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Board of Directors
+            </h2>
+            <p className="text-lg text-neutral-dark">
+              Our board provides strategic oversight and governance, ensuring LSF remains accountable to our mission and stakeholders.
             </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {boardMembers.map((member) => (
+              <div key={member.id} className="group">
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group-hover:border-primary/20">
+                  {/* Image */}
+                  <div className="relative h-64 overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 text-neutral-dark">{member.name}</h3>
+                    <p className="text-primary font-semibold mb-3">{member.position}</p>
+                    <p className="text-neutral-gray text-sm leading-relaxed">{member.bio}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

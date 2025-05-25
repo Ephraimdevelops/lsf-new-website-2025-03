@@ -1,3 +1,4 @@
+
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
@@ -68,12 +69,13 @@ const categories = ['All', 'Employment', 'Internship', 'Volunteer', 'Fellowship'
 const Opportunities = () => {
   return (
     <Layout>
-      {/* Hero Section */}
+      {/* Hero Section with Background */}
       <HeroSection
         icon={<Briefcase className="h-8 w-8" />}
         badge="Join Our Mission"
         title="Career Opportunities"
         description="Be part of a team that's transforming access to justice across Tanzania. Discover meaningful career opportunities that make a real difference."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
       {/* Opportunities Grid */}

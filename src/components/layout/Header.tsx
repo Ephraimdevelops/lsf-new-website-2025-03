@@ -218,7 +218,7 @@ const Header = () => {
                       <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
                     </button>
                     
-                    {/* Full Width Dropdown Menu - Like Gates Foundation */}
+                    {/* Full Width Dropdown Menu */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-screen max-w-7xl rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
                       <div className="p-8">
                         <div className="grid grid-cols-12 gap-8">

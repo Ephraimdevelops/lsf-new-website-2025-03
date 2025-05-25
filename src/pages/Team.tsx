@@ -1,7 +1,8 @@
 
 import Layout from '../components/layout/Layout';
+import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
-import { Linkedin, Mail, Twitter } from 'lucide-react';
+import { Linkedin, Mail, Twitter, Users } from 'lucide-react';
 
 interface TeamMember {
   id: string;
@@ -56,18 +57,14 @@ const teamMembers: TeamMember[] = [
 const Team = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary via-primary-dark to-secondary-teal py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Team</h1>
-            <p className="text-xl opacity-90">
-              Meet the dedicated professionals working to advance access to justice across Tanzania
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section with Background */}
+      <HeroSection
+        icon={<Users className="h-8 w-8" />}
+        badge="Meet Our Team"
+        title="Our Team"
+        description="Meet the dedicated professionals working to advance access to justice across Tanzania"
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
 
       {/* Team Grid */}
       <section className="py-20 bg-white">
