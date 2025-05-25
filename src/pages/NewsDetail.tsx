@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { ArrowLeft, Calendar, Share2, MessageSquare, Bookmark, Facebook, Twitter, Linkedin, Mail } from 'lucide-react';
+import HeroSection from '../components/shared/HeroSection';
+import { ArrowLeft, Calendar, Share2, MessageSquare, Bookmark, Facebook, Twitter, Linkedin, Mail, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { newsService } from '@/services/api';
 import NotFound from './NotFound';
@@ -196,10 +197,19 @@ const NewsDetail = () => {
   
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-white py-8">
+      {/* Hero Section with Background */}
+      <HeroSection
+        icon={<Newspaper className="h-8 w-8" />}
+        badge="News Article"
+        title={newsItem.title}
+        description={newsItem.excerpt}
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
+
+      {/* Article Content */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <Link to="/news" className="inline-flex items-center text-primary hover:underline mb-4">
+          <Link to="/news" className="inline-flex items-center text-primary hover:underline mb-8">
             <ArrowLeft size={16} className="mr-1" />
             Back to News
           </Link>

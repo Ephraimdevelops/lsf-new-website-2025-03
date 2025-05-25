@@ -1,7 +1,7 @@
-
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Share2, Calendar, MapPin, Heart, ArrowRight } from 'lucide-react';
 import Layout from '../components/layout/Layout';
+import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
 
 interface StoryData {
@@ -86,9 +86,14 @@ const HeroDetail = () => {
   if (!story) {
     return (
       <Layout>
+        <HeroSection
+          icon={<Heart className="h-8 w-8" />}
+          badge="Error"
+          title="Story Not Found"
+          description="We couldn't find the success story you're looking for."
+          backgroundImage="/lovable-uploads/background with mother umage .png"
+        />
         <div className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-2xl font-bold mb-4 font-panton">Story Not Found</h1>
-          <p className="mb-6 font-calibri">We couldn't find the success story you're looking for.</p>
           <Link to="/heroes">
             <Button>
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -102,37 +107,23 @@ const HeroDetail = () => {
   
   return (
     <Layout>
-      {/* Hero Section */}
-      <div className="relative h-[70vh] bg-cover bg-center" style={{ backgroundImage: `url(${story.image})` }}>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 flex flex-col justify-end">
-          <div className="container mx-auto px-4 pb-12">
-            <Link to="/heroes" className="inline-flex items-center text-white bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 hover:bg-white/30 transition-colors">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to All Stories
-            </Link>
-            <div className="max-w-4xl">
-              <span className="inline-block bg-primary text-white text-sm font-medium px-4 py-2 rounded-full mb-4">
-                {story.category}
-              </span>
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-panton">{story.name}</h1>
-              <div className="flex flex-wrap gap-6 items-center text-white/90 mb-6">
-                <div className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-2 text-secondary-orange" />
-                  <span className="font-calibri text-lg">{story.location}</span>
-                </div>
-                <div className="flex items-center">
-                  <Calendar className="h-5 w-5 mr-2 text-secondary-orange" />
-                  <span className="font-calibri text-lg">{story.date}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Hero Section with Background */}
+      <HeroSection
+        icon={<Heart className="h-8 w-8" />}
+        badge={story.category}
+        title={story.name}
+        description={story.summary}
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
       
       {/* Content Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
+          <Link to="/heroes" className="inline-flex items-center text-primary hover:underline mb-8">
+            <ArrowLeft size={16} className="mr-1" />
+            Back to All Stories
+          </Link>
+          
           <div className="mb-12">
             <h2 className="text-3xl font-bold mb-6 font-panton">Summary</h2>
             <p className="text-xl text-neutral-dark font-calibri leading-relaxed">{story.summary}</p>

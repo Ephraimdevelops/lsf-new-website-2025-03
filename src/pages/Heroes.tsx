@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout';
-import { Users, ArrowRight, Quote, MapPin, Calendar } from 'lucide-react';
+import HeroSection from '../components/shared/HeroSection';
+import { Users, ArrowRight, Quote, MapPin, Calendar, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -89,25 +90,14 @@ const Heroes = () => {
 
   return (
     <Layout>
-      {/* Hero Section with Primary Color Overlay */}
-      <section 
-        className="relative h-96 bg-cover bg-center"
-        style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
-        }}
-      >
-        <div className="absolute inset-0" style={{ backgroundColor: '#931e5c', opacity: 0.85 }}></div>
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative h-full flex items-center">
-          <Container>
-            <div className="text-white">
-              <div className="bg-white text-black px-4 py-2 inline-block mb-4 font-bold text-lg tracking-wider">
-                SUCCESS STORIES
-              </div>
-            </div>
-          </Container>
-        </div>
-      </section>
+      {/* Hero Section with Background */}
+      <HeroSection
+        icon={<Heart className="h-8 w-8" />}
+        badge="Impact Stories"
+        title="Success Stories"
+        description="Discover how access to justice transforms lives across Tanzania. Every story represents hope, resilience, and positive change."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
 
       {/* Media Centre Banner */}
       <section className="bg-neutral-50 py-12 border-t border-b border-gray-200">

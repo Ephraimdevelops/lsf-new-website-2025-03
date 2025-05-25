@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { ArrowRight, Search, Filter } from 'lucide-react';
+import HeroSection from '../components/shared/HeroSection';
+import { ArrowRight, Search, Filter, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -54,25 +55,14 @@ const News = () => {
   
   return (
     <Layout>
-      {/* Hero Section with Primary Color Overlay */}
-      <section 
-        className="relative h-96 bg-cover bg-center"
-        style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
-        }}
-      >
-        <div className="absolute inset-0" style={{ backgroundColor: '#931e5c', opacity: 0.85 }}></div>
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative h-full flex items-center">
-          <Container>
-            <div className="text-white">
-              <div className="bg-white text-black px-4 py-2 inline-block mb-4 font-bold text-lg tracking-wider">
-                NEWS
-              </div>
-            </div>
-          </Container>
-        </div>
-      </section>
+      {/* Hero Section with Background */}
+      <HeroSection
+        icon={<Newspaper className="h-8 w-8" />}
+        badge="Stay Informed"
+        title="News & Updates"
+        description="Stay up to date with our latest news, announcements, and developments in advancing access to justice across Tanzania"
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
 
       {/* Media Centre Banner */}
       <section className="bg-neutral-50 py-12 border-t border-b border-gray-200">
