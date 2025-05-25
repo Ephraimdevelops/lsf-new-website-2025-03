@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, Globe } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,23 +24,22 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
 
   const navigationItems = [
     { 
-      name: 'About', 
-      href: '/about',
+      name: 'JOIN US', 
+      href: '/opportunities',
       dropdown: [
-        { name: 'About Us', href: '/about' },
-        { name: 'Our Team', href: '/team' },
-        { name: 'Partners', href: '/partners' }
+        { name: 'Opportunities', href: '/opportunities' },
+        { name: 'Volunteer', href: '/volunteer' },
+        { name: 'Careers', href: '/careers' }
       ]
     },
     { 
-      name: 'Our work', 
+      name: 'WHAT WE DO', 
       href: '/what-we-do',
       dropdown: [
         { name: 'Overview', href: '/what-we-do' },
@@ -49,33 +48,32 @@ const Header = () => {
       ]
     },
     { 
-      name: 'Ideas', 
-      href: '/resources',
+      name: 'WHO WE ARE', 
+      href: '/about',
       dropdown: [
-        { name: 'All Resources', href: '/resources' },
-        { name: 'Publications', href: '/publications' },
-        { name: 'News', href: '/news' }
+        { name: 'About Us', href: '/about' },
+        { name: 'Our Team', href: '/team' },
+        { name: 'Partners', href: '/partners' }
       ]
     },
     { 
-      name: 'Get Involved', 
-      href: '/opportunities',
+      name: 'LATEST', 
+      href: '/news',
       dropdown: [
-        { name: 'Opportunities', href: '/opportunities' },
-        { name: 'Donate', href: '/donate' },
-        { name: 'Heroes', href: '/heroes' }
+        { name: 'News', href: '/news' },
+        { name: 'Publications', href: '/publications' },
+        { name: 'Resources', href: '/resources' }
       ]
-    },
-    { name: 'Contact', href: '/contact' }
+    }
   ];
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
+      isScrolled ? 'bg-white shadow-sm' : 'bg-white'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo only */}
+          {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
             <img 
               src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
@@ -84,24 +82,24 @@ const Header = () => {
             />
           </Link>
 
-          {/* Desktop Navigation with Gates Foundation style dropdowns */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigationItems.map((item) => (
               <div key={item.name} className="relative">
                 {item.dropdown ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <button className="flex items-center space-x-1 text-neutral-dark hover:text-primary font-calibri font-medium transition-colors py-2">
+                      <button className="flex items-center space-x-1 text-neutral-900 hover:text-primary font-medium transition-colors py-2 text-sm tracking-wide uppercase">
                         <span>{item.name}</span>
                         <ChevronDown className="h-4 w-4" />
                       </button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-56 bg-white border shadow-lg">
+                    <DropdownMenuContent align="start" className="w-56 bg-white border shadow-lg rounded-none">
                       {item.dropdown.map((dropdownItem) => (
                         <DropdownMenuItem key={dropdownItem.name} asChild>
                           <Link
                             to={dropdownItem.href}
-                            className="block px-4 py-3 text-sm text-neutral-dark hover:text-primary hover:bg-gray-50 transition-colors font-calibri"
+                            className="block px-4 py-3 text-sm text-neutral-900 hover:text-primary hover:bg-gray-50 transition-colors"
                           >
                             {dropdownItem.name}
                           </Link>
@@ -112,7 +110,7 @@ const Header = () => {
                 ) : (
                   <Link
                     to={item.href}
-                    className="text-neutral-dark hover:text-primary transition-colors font-calibri font-medium py-2"
+                    className="text-neutral-900 hover:text-primary transition-colors font-medium py-2 text-sm tracking-wide uppercase"
                   >
                     {item.name}
                   </Link>
@@ -121,19 +119,17 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Search and CTA Buttons */}
+          {/* Right Side Actions */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button className="text-neutral-dark hover:text-primary transition-colors">
-              <span className="font-calibri">Search</span>
+            <button className="text-neutral-900 hover:text-primary transition-colors p-2">
+              <Search className="h-5 w-5" />
             </button>
-            <Link to="/legal-help">
-              <Button variant="outline" size="sm" className="font-calibri">
-                Get Legal Help
-              </Button>
-            </Link>
+            <button className="text-neutral-900 hover:text-primary transition-colors p-2">
+              <Globe className="h-5 w-5" />
+            </button>
             <Link to="/donate">
-              <Button size="sm" className="font-calibri">
-                Donate
+              <Button className="bg-secondary-teal hover:bg-secondary-teal/90 text-white font-medium px-6 py-2 rounded-none text-sm tracking-wide uppercase">
+                ♥ DONATE
               </Button>
             </Link>
           </div>
@@ -158,7 +154,7 @@ const Header = () => {
                 <div key={item.name}>
                   {item.dropdown ? (
                     <div className="space-y-1">
-                      <div className="font-medium text-neutral-dark px-3 py-2 font-calibri">
+                      <div className="font-medium text-neutral-900 px-3 py-2 text-sm tracking-wide uppercase">
                         {item.name}
                       </div>
                       <div className="pl-4 space-y-1">
@@ -166,7 +162,7 @@ const Header = () => {
                           <Link
                             key={dropdownItem.name}
                             to={dropdownItem.href}
-                            className="block px-3 py-2 text-sm text-neutral-gray hover:text-primary font-calibri"
+                            className="block px-3 py-2 text-sm text-neutral-700 hover:text-primary"
                             onClick={() => setIsMenuOpen(false)}
                           >
                             {dropdownItem.name}
@@ -177,7 +173,7 @@ const Header = () => {
                   ) : (
                     <Link
                       to={item.href}
-                      className="block px-3 py-2 text-neutral-dark hover:text-primary font-calibri font-medium"
+                      className="block px-3 py-2 text-neutral-900 hover:text-primary font-medium text-sm tracking-wide uppercase"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}
@@ -186,16 +182,10 @@ const Header = () => {
                 </div>
               ))}
               
-              {/* Mobile CTA Buttons */}
               <div className="pt-4 space-y-2">
-                <Link to="/legal-help" className="block">
-                  <Button variant="outline" className="w-full font-calibri">
-                    Get Legal Help
-                  </Button>
-                </Link>
                 <Link to="/donate" className="block">
-                  <Button className="w-full font-calibri">
-                    Donate
+                  <Button className="w-full bg-secondary-teal hover:bg-secondary-teal/90 text-white font-medium rounded-none text-sm tracking-wide uppercase">
+                    ♥ DONATE
                   </Button>
                 </Link>
               </div>

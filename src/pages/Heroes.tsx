@@ -1,17 +1,11 @@
 
 import Layout from '../components/layout/Layout';
-import HeroSection from '../components/shared/HeroSection';
 import { Users, ArrowRight, Quote, MapPin, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
-} from '@/components/ui/carousel';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
 
 interface Story {
   id: string;
@@ -92,160 +86,222 @@ const allStories: Story[] = [
 ];
 
 const Heroes = () => {
-  const [activeTab, setActiveTab] = useState('featured');
+  const [currentFeatured, setCurrentFeatured] = useState(0);
 
   return (
     <Layout>
-      <HeroSection
-        icon={<Users className="h-12 w-12" />}
-        badge="Success Stories"
-        title="Our Heroes"
-        description="Meet the inspiring individuals whose lives have been transformed through our legal empowerment programs"
-      />
+      {/* Hero Section */}
+      <section 
+        className="relative h-96 bg-cover bg-center"
+        style={{ 
+          backgroundImage: "url('https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60"></div>
+        <div className="relative h-full flex items-center">
+          <Container>
+            <div className="text-white">
+              <div className="bg-white text-black px-4 py-2 inline-block mb-4 font-bold text-lg tracking-wider">
+                SUCCESS STORIES
+              </div>
+            </div>
+          </Container>
+        </div>
+      </section>
+
+      {/* Media Centre Banner */}
+      <section className="bg-neutral-50 py-12 border-t border-b border-gray-200">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+            <Typography variant="body" className="text-neutral-900 font-medium mb-4 md:mb-0">
+              EVERY STORY REPRESENTS A LIFE TRANSFORMED THROUGH ACCESS TO JUSTICE.
+            </Typography>
+            <Link to="/legal-help">
+              <Button 
+                variant="outline" 
+                className="border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-wide font-medium rounded-none"
+              >
+                GET LEGAL HELP
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </Container>
+      </section>
       
-      {/* Featured Stories Carousel */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 font-panton">Featured Stories</h2>
-            <p className="text-xl text-neutral-gray font-calibri max-w-2xl mx-auto">
-              Discover how legal empowerment is changing lives across Tanzania
-            </p>
+      {/* Featured Story */}
+      <section className="py-16 bg-white">
+        <Container>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <div className="w-12 h-1 bg-primary mb-4"></div>
+              <Typography variant="h1" className="text-4xl font-bold text-neutral-900 uppercase tracking-wide">
+                FEATURED STORY
+              </Typography>
+            </div>
           </div>
           
-          <Carousel className="w-full max-w-5xl mx-auto">
-            <CarouselContent>
-              {featuredStories.map((story) => (
-                <CarouselItem key={story.id}>
-                  <Link to={`/heroes/${story.id}`} className="block group">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
-                      <div className="h-80 lg:h-96 overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div className="lg:col-span-1">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src={featuredStories[currentFeatured].image} 
+                  alt={featuredStories[currentFeatured].name} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            
+            <div className="lg:col-span-2 space-y-6">
+              <div className="flex items-center space-x-4 text-sm">
+                <span className="text-gray-500">{featuredStories[currentFeatured].date}</span>
+                <span className="bg-primary text-white px-2 py-1 text-xs font-medium uppercase tracking-wide">
+                  {featuredStories[currentFeatured].category}
+                </span>
+              </div>
+              
+              <Typography 
+                variant="h2" 
+                className="text-3xl lg:text-4xl font-bold text-neutral-900 leading-tight uppercase"
+              >
+                {featuredStories[currentFeatured].name}
+              </Typography>
+              
+              <div className="flex items-center text-neutral-600">
+                <MapPin className="h-4 w-4 mr-2" />
+                <span>{featuredStories[currentFeatured].location}</span>
+              </div>
+              
+              <blockquote className="border-l-4 border-primary pl-6">
+                <Typography variant="body" className="text-lg italic text-neutral-800 leading-relaxed">
+                  "{featuredStories[currentFeatured].quote}"
+                </Typography>
+              </blockquote>
+              
+              <Typography variant="body" className="text-neutral-700 leading-relaxed">
+                {featuredStories[currentFeatured].brief}
+              </Typography>
+              
+              <Link to={`/heroes/${featuredStories[currentFeatured].id}`}>
+                <Button 
+                  variant="outline" 
+                  className="border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-wide font-medium rounded-none"
+                >
+                  READ FULL STORY
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* All Stories */}
+      <section className="py-16 bg-neutral-50">
+        <Container>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <div className="w-12 h-1 bg-primary mb-4"></div>
+              <Typography variant="h2" className="text-3xl font-bold text-neutral-900 uppercase tracking-wide">
+                ALL SUCCESS STORIES
+              </Typography>
+            </div>
+          </div>
+          
+          <div className="space-y-8">
+            {allStories.map((story, index) => (
+              <article key={story.id} className="group">
+                <Link to={`/heroes/${story.id}`} className="block">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-white p-6 hover:shadow-lg transition-shadow">
+                    <div className="lg:col-span-1">
+                      <div className="aspect-[4/3] overflow-hidden">
                         <img 
                           src={story.image} 
                           alt={story.name} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
-                      <div className="p-8 lg:p-12 flex flex-col justify-center">
-                        <div className="mb-4">
-                          <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full font-calibri">
-                            {story.category}
-                          </span>
-                          <div className="flex items-center mt-2 text-neutral-gray text-sm">
-                            <Calendar className="h-4 w-4 mr-2" />
-                            {story.date}
-                          </div>
-                        </div>
-                        <h3 className="text-3xl font-bold mb-4 font-panton text-neutral-dark">
-                          {story.name}
-                        </h3>
-                        <div className="flex items-center mb-4 text-neutral-gray">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span className="font-calibri">{story.location}</span>
-                        </div>
-                        <div className="flex items-start mb-6">
-                          <Quote className="h-6 w-6 text-primary/30 mr-3 flex-shrink-0 mt-1" />
-                          <p className="text-lg italic text-neutral-dark font-calibri leading-relaxed">
-                            "{story.quote}"
-                          </p>
-                        </div>
-                        <span className="inline-flex items-center text-primary font-medium font-calibri group-hover:underline">
-                          Read Full Story
-                          <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-4 top-1/2" />
-            <CarouselNext className="absolute right-4 top-1/2" />
-          </Carousel>
-        </div>
-      </section>
-
-      {/* All Stories Grid */}
-      <section className="py-20 bg-neutral-light">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 font-panton">All Success Stories</h2>
-            <p className="text-xl text-neutral-gray font-calibri">
-              Every story represents a life transformed through access to justice
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allStories.map((story) => (
-              <Link 
-                key={story.id}
-                to={`/heroes/${story.id}`}
-                className="group"
-              >
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                  <div className="relative h-64">
-                    <img 
-                      src={story.image} 
-                      alt={story.name} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
-                        {story.category}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-0 left-0 w-full p-4">
-                      <h3 className="font-bold text-xl text-white font-panton">{story.name}</h3>
-                      <div className="flex items-center text-white/80 text-sm mt-1">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        {story.location}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="flex items-start mb-4">
-                      <Quote className="h-6 w-6 text-primary/20 mr-2 flex-shrink-0 mt-1" />
-                      <p className="text-neutral-dark italic font-calibri">"{story.quote}"</p>
                     </div>
                     
-                    <div className="mt-6 flex justify-end">
-                      <span className="text-primary font-medium group-hover:underline flex items-center font-calibri">
-                        Read Full Story
-                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </span>
+                    <div className="lg:col-span-2 space-y-4">
+                      <div className="flex items-center space-x-4 text-sm">
+                        <span className="text-gray-500">{story.date}</span>
+                        <span className="bg-primary text-white px-2 py-1 text-xs font-medium uppercase tracking-wide">
+                          {story.category}
+                        </span>
+                      </div>
+                      
+                      <Typography 
+                        variant="h3" 
+                        className="text-2xl font-bold text-neutral-900 group-hover:text-primary transition-colors leading-tight uppercase"
+                      >
+                        {story.name}
+                      </Typography>
+                      
+                      <div className="flex items-center text-neutral-600">
+                        <MapPin className="h-4 w-4 mr-2" />
+                        <span>{story.location}</span>
+                      </div>
+                      
+                      <blockquote className="flex items-start">
+                        <Quote className="h-5 w-5 text-primary/30 mr-2 flex-shrink-0 mt-1" />
+                        <Typography variant="body" className="italic text-neutral-700">
+                          "{story.quote}"
+                        </Typography>
+                      </blockquote>
+                      
+                      <div className="flex items-center text-primary font-medium uppercase tracking-wide text-sm group-hover:underline">
+                        READ FULL STORY
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </article>
             ))}
           </div>
-        </div>
+          
+          {/* Load More Button */}
+          <div className="text-center mt-12">
+            <Button 
+              variant="outline" 
+              className="border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-wide font-medium rounded-none px-8 py-3"
+            >
+              LOAD MORE
+            </Button>
+          </div>
+        </Container>
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6 font-panton">Be Part of the Change</h2>
-          <p className="text-xl mb-8 font-calibri max-w-2xl mx-auto">
-            Every story you've read started with someone taking the first step. 
-            If you need legal help, we're here for you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/legal-help">
-              <Button className="bg-white text-primary hover:bg-neutral-light font-calibri text-lg px-8 py-6 h-auto">
-                Get Legal Help
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link to="/donate">
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-calibri text-lg px-8 py-6 h-auto">
-                Support Our Work
-              </Button>
-            </Link>
+      <section className="py-16 bg-primary text-white">
+        <Container>
+          <div className="text-center">
+            <Typography variant="h2" className="text-3xl font-bold mb-6 uppercase tracking-wide">
+              BE PART OF THE CHANGE
+            </Typography>
+            <Typography variant="body" className="text-xl mb-8 max-w-2xl mx-auto">
+              Every story you've read started with someone taking the first step. 
+              If you need legal help, we're here for you.
+            </Typography>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/legal-help">
+                <Button className="bg-white text-primary hover:bg-neutral-100 font-medium px-8 py-3 rounded-none uppercase tracking-wide">
+                  GET LEGAL HELP
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/donate">
+                <Button 
+                  variant="outline" 
+                  className="border-white text-white hover:bg-white hover:text-primary font-medium px-8 py-3 rounded-none uppercase tracking-wide"
+                >
+                  SUPPORT OUR WORK
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
+        </Container>
       </section>
     </Layout>
   );
