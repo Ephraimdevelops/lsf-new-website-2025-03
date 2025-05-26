@@ -1,73 +1,90 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, FileText, Download, ExternalLink, TrendingUp } from 'lucide-react';
+import { ArrowRight, Calendar, FileText, Download, TrendingUp, Users, Award, Newspaper } from 'lucide-react';
 import { dataService } from '@/services/dataService';
+import Typography from '@/components/shared/Typography';
 
 const CompactNewsUpdates = () => {
-  const featuredNews = dataService.getNews(2, true);
-  const featuredPublications = dataService.getPublications(2, true);
+  const featuredNews = dataService.getNews(3, true);
+  const featuredPublications = dataService.getPublications(3, true);
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 lg:py-16 bg-white">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-[45px] font-black leading-[47.7px] text-[#231f20] mb-4" style={{ fontFamily: 'Avenir, sans-serif' }}>
-            Latest News & Impact Stories
-          </h2>
-          <p className="text-[20px] font-light leading-[35px] text-black max-w-4xl mx-auto" style={{ fontFamily: 'akzidenz-grotesk, Arial, Helvetica, sans-serif' }}>
-            Stay informed about our ongoing efforts to transform lives and strengthen access to justice across Tanzania
-          </p>
+        <div className="text-center mb-12">
+          <Typography variant="overline" className="text-primary mb-4">
+            Stay Informed
+          </Typography>
+          <Typography variant="display" className="text-neutral-dark mb-6">
+            Latest News & Research
+          </Typography>
+          <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+            Discover our impact stories and evidence-based research driving policy change across Tanzania
+          </Typography>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* News Section */}
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Featured News */}
+          <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-neutral-dark">Breaking News</h3>
+              <div className="flex items-center gap-3">
+                <div className="bg-primary/10 p-2 rounded-lg">
+                  <Newspaper className="h-5 w-5 text-primary" />
+                </div>
+                <Typography variant="h2" className="text-neutral-dark">Latest News</Typography>
+              </div>
               <Link 
                 to="/news" 
-                className="text-primary font-semibold hover:text-primary-dark transition-colors text-sm flex items-center"
+                className="inline-flex items-center text-primary hover:text-primary-dark transition-colors"
               >
-                View All <ArrowRight className="ml-1 h-4 w-4" />
+                <Typography variant="bodySmall" className="text-primary font-medium">View All</Typography>
+                <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-6">
               {featuredNews.map((news, index) => (
                 <Link 
                   key={news.id} 
                   to={`/news/${news.id}`}
                   className="group block"
                 >
-                  <article className="flex gap-4 p-4 bg-white border border-gray-100 rounded-lg hover:shadow-md transition-all duration-300 hover:border-primary/20">
-                    <div className="w-24 h-24 flex-shrink-0 overflow-hidden rounded-lg">
-                      <img 
-                        src={news.image} 
-                        alt={news.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-secondary-orange text-white text-xs px-2 py-1 rounded font-bold">
-                          {news.category}
-                        </span>
-                        <div className="flex items-center text-xs text-gray-500">
-                          <Calendar size={10} className="mr-1" />
-                          {new Date(news.date).toLocaleDateString('en-US', { 
-                            month: 'short', 
-                            day: 'numeric' 
-                          })}
+                  <article className="bg-white border border-gray-100 rounded-xl p-6 hover:border-primary/20 hover:shadow-lg transition-all duration-300">
+                    <div className="flex gap-6">
+                      <div className="w-24 h-24 lg:w-32 lg:h-32 flex-shrink-0 overflow-hidden rounded-lg">
+                        <img 
+                          src={news.image}
+                          alt={news.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full">
+                            {news.category}
+                          </span>
+                          <div className="flex items-center text-xs text-neutral-gray">
+                            <Calendar size={12} className="mr-1" />
+                            {new Date(news.date).toLocaleDateString('en-US', { 
+                              month: 'short', 
+                              day: 'numeric',
+                              year: 'numeric'
+                            })}
+                          </div>
+                        </div>
+                        <Typography variant="h3" className="text-neutral-dark group-hover:text-primary transition-colors mb-3 line-clamp-2">
+                          {news.title}
+                        </Typography>
+                        <Typography variant="bodySmall" className="text-neutral-gray line-clamp-2 mb-4">
+                          {news.excerpt}
+                        </Typography>
+                        <div className="flex items-center text-primary">
+                          <Typography variant="bodySmall" className="text-primary font-medium">Read More</Typography>
+                          <ArrowRight className="ml-1 h-3 w-3" />
                         </div>
                       </div>
-                      <h4 className="font-bold text-sm text-neutral-dark line-clamp-2 group-hover:text-primary transition-colors mb-2">
-                        {news.title}
-                      </h4>
-                      <p className="text-xs text-neutral-gray line-clamp-2 leading-relaxed">
-                        {news.excerpt}
-                      </p>
                     </div>
                   </article>
                 </Link>
@@ -75,15 +92,21 @@ const CompactNewsUpdates = () => {
             </div>
           </div>
 
-          {/* Publications Section */}
-          <div>
+          {/* Publications Sidebar */}
+          <div className="lg:col-span-1">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-neutral-dark">Latest Publications</h3>
+              <div className="flex items-center gap-3">
+                <div className="bg-secondary-teal/10 p-2 rounded-lg">
+                  <FileText className="h-5 w-5 text-secondary-teal" />
+                </div>
+                <Typography variant="h3" className="text-neutral-dark">Research</Typography>
+              </div>
               <Link 
                 to="/publications" 
-                className="text-secondary-teal font-semibold hover:text-secondary-teal/80 transition-colors text-sm flex items-center"
+                className="inline-flex items-center text-secondary-teal hover:text-secondary-teal/80 transition-colors"
               >
-                View All <ArrowRight className="ml-1 h-4 w-4" />
+                <Typography variant="small" className="text-secondary-teal font-medium">View All</Typography>
+                <ArrowRight className="ml-1 h-3 w-3" />
               </Link>
             </div>
             
@@ -93,78 +116,73 @@ const CompactNewsUpdates = () => {
                   key={publication.id} 
                   className="group"
                 >
-                  <article className="flex gap-4 p-4 bg-white border border-gray-100 rounded-lg hover:shadow-md transition-all duration-300 hover:border-secondary-teal/20">
-                    <div className="w-24 h-24 flex-shrink-0 overflow-hidden rounded-lg">
-                      <img 
-                        src={publication.image} 
-                        alt={publication.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
+                  <article className="bg-gray-50 border border-gray-100 rounded-xl p-4 hover:border-secondary-teal/20 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="bg-secondary-teal/10 text-secondary-teal text-xs font-bold px-2 py-1 rounded flex items-center">
+                        <FileText size={10} className="mr-1" />
+                        {publication.type.toUpperCase()}
+                      </span>
+                      <div className="flex items-center text-xs text-neutral-gray">
+                        <Calendar size={10} className="mr-1" />
+                        {new Date(publication.date).getFullYear()}
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-secondary-teal text-white text-xs px-2 py-1 rounded font-bold flex items-center">
-                          <FileText size={10} className="mr-1" />
-                          {publication.type.toUpperCase()}
-                        </span>
-                        <div className="flex items-center text-xs text-gray-500">
-                          <Calendar size={10} className="mr-1" />
-                          {new Date(publication.date).toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'short'
-                          })}
-                        </div>
-                      </div>
-                      <h4 className="font-bold text-sm text-neutral-dark line-clamp-2 group-hover:text-secondary-teal transition-colors mb-2">
-                        {publication.title}
-                      </h4>
-                      <p className="text-xs text-neutral-gray line-clamp-2 leading-relaxed mb-2">
-                        {publication.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <Link 
-                          to={`/publications/${publication.id}`}
-                          className="text-xs text-secondary-teal font-semibold hover:text-secondary-teal/80 transition-colors flex items-center"
+                    <Typography variant="h4" className="text-neutral-dark group-hover:text-secondary-teal transition-colors mb-2 line-clamp-2">
+                      {publication.title}
+                    </Typography>
+                    <Typography variant="small" className="text-neutral-gray line-clamp-3 mb-3">
+                      {publication.excerpt}
+                    </Typography>
+                    <div className="flex items-center justify-between">
+                      <Link 
+                        to={`/publications/${publication.id}`}
+                        className="inline-flex items-center text-secondary-teal hover:text-secondary-teal/80 transition-colors"
+                      >
+                        <Typography variant="small" className="text-secondary-teal font-medium">Read More</Typography>
+                        <ArrowRight className="ml-1 h-2 w-2" />
+                      </Link>
+                      {publication.downloadUrl && (
+                        <a 
+                          href={publication.downloadUrl}
+                          className="text-xs bg-secondary-teal/10 text-secondary-teal px-2 py-1 rounded flex items-center hover:bg-secondary-teal hover:text-white transition-all"
+                          download
                         >
-                          Read More <ArrowRight className="ml-1 h-3 w-3" />
-                        </Link>
-                        {publication.downloadUrl && (
-                          <a 
-                            href={publication.downloadUrl}
-                            className="text-xs bg-secondary-teal/10 text-secondary-teal px-2 py-1 rounded flex items-center hover:bg-secondary-teal hover:text-white transition-all"
-                            download
-                          >
-                            <Download size={10} className="mr-1" />
-                            PDF
-                          </a>
-                        )}
-                      </div>
+                          <Download size={10} className="mr-1" />
+                          PDF
+                        </a>
+                      )}
                     </div>
                   </article>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
 
-        {/* Bottom Stats */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-2xl font-black text-primary mb-1">15K+</div>
-              <div className="text-sm text-gray-600">Stories Published</div>
-            </div>
-            <div>
-              <div className="text-2xl font-black text-secondary-teal mb-1">50+</div>
-              <div className="text-sm text-gray-600">Research Reports</div>
-            </div>
-            <div>
-              <div className="text-2xl font-black text-secondary-orange mb-1">100K+</div>
-              <div className="text-sm text-gray-600">Monthly Readers</div>
-            </div>
-            <div>
-              <div className="text-2xl font-black text-secondary-green mb-1">25+</div>
-              <div className="text-sm text-gray-600">Awards Won</div>
+            {/* Impact Stats */}
+            <div className="mt-8 bg-white border border-gray-200 rounded-xl p-6">
+              <Typography variant="h4" className="text-neutral-dark mb-4 text-center">Impact by Numbers</Typography>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="h-4 w-4 text-primary" />
+                    <Typography variant="bodySmall" className="text-neutral-gray">Policy Changes</Typography>
+                  </div>
+                  <Typography variant="h4" className="text-primary">15+</Typography>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Users className="h-4 w-4 text-secondary-teal" />
+                    <Typography variant="bodySmall" className="text-neutral-gray">Lives Impacted</Typography>
+                  </div>
+                  <Typography variant="h4" className="text-secondary-teal">426K+</Typography>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Award className="h-4 w-4 text-secondary-orange" />
+                    <Typography variant="bodySmall" className="text-neutral-gray">Recognition</Typography>
+                  </div>
+                  <Typography variant="h4" className="text-secondary-orange">25+</Typography>
+                </div>
+              </div>
             </div>
           </div>
         </div>
