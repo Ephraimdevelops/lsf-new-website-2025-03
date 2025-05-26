@@ -1,30 +1,45 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, Scale, Users, Lightbulb, BookOpen, LayoutGrid, DollarSign } from 'lucide-react';
+import { ArrowRight, DollarSign, Users, LayoutGrid, BookOpen, Lightbulb } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
+import Section from '@/components/shared/Section';
+import Container from '@/components/shared/Container';
+import Card from '@/components/shared/Card';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  color: string;
   link: string;
 }
 
-const ServiceCard = ({ icon, title, description, color, link }: ServiceCardProps) => {
+const ServiceCard = ({ icon, title, description, link }: ServiceCardProps) => {
   return (
-    <Link to={link} className="block group">
-      <div className={`p-6 rounded-xl transition-all duration-300 hover:shadow-xl h-full ${color} group hover:translate-y-[-2px]`}>
-        <div className="text-white group-hover:scale-110 transition-transform duration-300 mb-4">
-          {icon}
+    <Link to={link} className="block group h-full">
+      <Card variant="elevated" hover={true} className="h-full group-hover:shadow-xl transition-all duration-300">
+        <div className="flex flex-col h-full">
+          <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+            <div className="text-primary group-hover:text-white transition-colors duration-300">
+              {icon}
+            </div>
+          </div>
+          
+          <Typography variant="h4" className="mb-3 group-hover:text-primary transition-colors duration-300">
+            {title}
+          </Typography>
+          
+          <Typography variant="bodySmall" className="text-neutral-gray mb-4 flex-grow leading-relaxed">
+            {description}
+          </Typography>
+          
+          <div className="mt-auto">
+            <span className="inline-flex items-center text-primary font-medium text-sm group-hover:underline">
+              Learn more
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </div>
         </div>
-        <Typography variant="h4" className="text-white mb-3">{title}</Typography>
-        <Typography variant="bodySmall" className="text-white/90 mb-4">{description}</Typography>
-        <div className="inline-flex items-center text-white font-medium hover:underline text-sm">
-          Learn more
-          <ArrowRight className="ml-1 h-4 w-4" />
-        </div>
-      </div>
+      </Card>
     </Link>
   );
 };
@@ -32,82 +47,81 @@ const ServiceCard = ({ icon, title, description, color, link }: ServiceCardProps
 const WhatWeDo = () => {
   const services = [
     {
-      icon: <DollarSign className="h-8 w-8" />,
+      icon: <DollarSign className="h-6 w-6" />,
       title: "Grant Making",
       description: "Results-driven grants to strengthen legal empowerment — especially around land rights, property ownership, safety, and justice for women and girls.",
-      color: "bg-primary",
       link: "/what-we-do#grant-making"
     },
     {
-      icon: <Users className="h-8 w-8" />,
+      icon: <Users className="h-6 w-6" />,
       title: "Capacity Building",
       description: "LSF strengthens both institutional and technical capacity among legal aid providers, paralegals, and community-based organizations.",
-      color: "bg-secondary-teal",
       link: "/what-we-do#capacity-building"
     },
     {
-      icon: <LayoutGrid className="h-8 w-8" />,
+      icon: <LayoutGrid className="h-6 w-6" />,
       title: "Partnerships & Networking",
       description: "We collaborate with a broad ecosystem of stakeholders including government institutions, civil society, development partners, and private actors.",
-      color: "bg-secondary-orange",
       link: "/what-we-do#partnerships-networking"
     },
     {
-      icon: <BookOpen className="h-8 w-8" />,
+      icon: <BookOpen className="h-6 w-6" />,
       title: "Learning and Research",
       description: "Through continuous learning, piloting new models, and data-driven monitoring, we identify what works and improve what doesn't.",
-      color: "bg-secondary-green",
       link: "/what-we-do#learning-research"
     },
     {
-      icon: <Lightbulb className="h-8 w-8" />,
+      icon: <Lightbulb className="h-6 w-6" />,
       title: "Policy and Advocacy",
       description: "Our advocacy spans grassroots to national levels — shaping inclusive laws, policies, and systems that ensure justice is a reality for all.",
-      color: "bg-primary",
       link: "/what-we-do#policy-advocacy"
     }
   ];
   
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-primary via-primary-dark to-primary text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
-        }} />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-10">
-          <Typography variant="display" className="text-white mb-4">
+    <Section variant="default" padding="xl">
+      <Container size="xl">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center space-x-3 mb-6">
+            <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-teal rounded-full"></div>
+            <Typography variant="overline" className="text-primary-500">
+              Our Services
+            </Typography>
+            <div className="w-12 h-1 bg-gradient-to-r from-secondary-teal to-primary-500 rounded-full"></div>
+          </div>
+          
+          <Typography variant="h2" className="mb-4 bg-gradient-to-r from-primary-500 to-secondary-teal bg-clip-text text-transparent">
             What We Do
           </Typography>
-          <Typography variant="body" className="text-white/90 max-w-4xl mx-auto">
+          
+          <Typography variant="body" className="max-w-3xl mx-auto text-neutral-gray">
             Our comprehensive approach to promoting access to justice focuses on these key service areas
           </Typography>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <ServiceCard 
               key={index}
               icon={service.icon}
               title={service.title}
               description={service.description}
-              color={service.color}
               link={service.link}
             />
           ))}
         </div>
         
-        <div className="mt-12 text-center">
-          <Link to="/what-we-do" className="inline-flex items-center bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-lg font-bold transition duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        <div className="text-center mt-12">
+          <Link 
+            to="/what-we-do" 
+            className="inline-flex items-center bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
             Explore All Our Services
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

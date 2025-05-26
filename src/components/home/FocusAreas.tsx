@@ -1,56 +1,41 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, Scale, Users, BookOpen, LayoutGrid } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Container from '@/components/shared/Container';
-import Section from '@/components/shared/Section';
-import Card from '@/components/shared/Card';
+import { ArrowRight, Scale, Users, BookOpen, LayoutGrid, Smartphone, Leaf } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
-import IconWrapper from '@/components/shared/IconWrapper';
+import Section from '@/components/shared/Section';
+import Container from '@/components/shared/Container';
+import Card from '@/components/shared/Card';
 
 interface FocusAreaProps {
   icon: React.ReactNode;
   title: string;
   description: string;
   link: string;
-  color: 'primary' | 'secondary' | 'neutral' | 'white';
 }
 
-const FocusAreaCard = ({ icon, title, description, link, color }: FocusAreaProps) => {
+const FocusAreaCard = ({ icon, title, description, link }: FocusAreaProps) => {
   return (
     <Link to={link} className="block group h-full">
-      <Card 
-        variant="elevated" 
-        hover={true}
-        className="h-full group-hover:shadow-2xl group-hover:bg-gradient-to-br group-hover:from-primary/90 group-hover:to-primary group-hover:text-white transition-all duration-500"
-      >
+      <Card variant="elevated" hover={true} className="h-full group-hover:shadow-xl transition-all duration-300">
         <div className="flex flex-col h-full">
-          <IconWrapper 
-            size="lg" 
-            variant={color}
-            className="mb-6 group-hover:scale-110 group-hover:bg-white group-hover:text-primary transition-all duration-300"
-          >
-            {icon}
-          </IconWrapper>
+          <div className="w-12 h-12 bg-secondary-teal/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-secondary-teal group-hover:scale-110 transition-all duration-300">
+            <div className="text-secondary-teal group-hover:text-white transition-colors duration-300">
+              {icon}
+            </div>
+          </div>
           
-          <Typography 
-            variant="h4" 
-            className="mb-4 group-hover:text-white transition-colors duration-300"
-          >
+          <Typography variant="h4" className="mb-3 group-hover:text-secondary-teal transition-colors duration-300">
             {title}
           </Typography>
           
-          <Typography 
-            variant="body" 
-            className="mb-6 flex-grow group-hover:text-white/90 transition-colors duration-300"
-          >
+          <Typography variant="bodySmall" className="text-neutral-gray mb-4 flex-grow leading-relaxed">
             {description}
           </Typography>
           
           <div className="mt-auto">
-            <span className="inline-flex items-center text-primary-500 font-medium group-hover:text-white group-hover:underline transition-colors duration-300">
+            <span className="inline-flex items-center text-secondary-teal font-medium text-sm group-hover:underline">
               Learn more
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
           </div>
         </div>
@@ -62,80 +47,65 @@ const FocusAreaCard = ({ icon, title, description, link, color }: FocusAreaProps
 const FocusAreas = () => {
   const areas = [
     {
-      icon: <Scale size={30} className="text-white" />,
+      icon: <Scale className="h-6 w-6" />,
       title: "Accessible Legal Update",
       description: "Increasing accessibility of quality legal aid services to the marginalized communities in particular women.",
-      link: "/programs/legal-empowerment",
-      color: "primary" as const
+      link: "/programs/legal-empowerment"
     },
     {
-      icon: <Users size={30} className="text-white" />,
+      icon: <Users className="h-6 w-6" />,
       title: "Empowered Communities",
       description: "Promoting legally empowered communities, in particular women, through legal awareness and education.",
-      link: "/programs/gender-justice",
-      color: "secondary" as const
+      link: "/programs/gender-justice"
     },
     {
-      icon: <LayoutGrid size={30} className="text-white" />,
+      icon: <LayoutGrid className="h-6 w-6" />,
       title: "Conducive Environment",
       description: "Enhancing a conducive environment for sustainable access to justice and advocating for justice reform.",
-      link: "/programs/climate-justice",
-      color: "secondary" as const
+      link: "/programs/justice-reform"
     },
     {
-      icon: <BookOpen size={30} className="text-white" />,
+      icon: <BookOpen className="h-6 w-6" />,
       title: "Institutional Sustainability",
       description: "Institutional development and sustainability of LSF and the legal aid sector across Tanzania.",
-      link: "/programs/digital-transformation",
-      color: "neutral" as const
+      link: "/programs/institutional-development"
+    },
+    {
+      icon: <Smartphone className="h-6 w-6" />,
+      title: "Digital Transformation",
+      description: "LSF is embracing innovation to modernize operations and expand its reach. Efforts include the digitalization of legal aid service delivery, case tracking, training, and data systems.",
+      link: "/programs/digital-transformation"
+    },
+    {
+      icon: <Leaf className="h-6 w-6" />,
+      title: "Climate Justice",
+      description: "Recognizing that climate change disproportionately affects women and marginalized communities, LSF is integrating climate justice into its programming.",
+      link: "/programs/climate-justice"
     }
   ];
 
   return (
-    <Section variant="secondary" padding="xl" className="relative overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-30">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-40 h-40 bg-secondary-teal/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-1/4 w-36 h-36 bg-secondary-orange/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-28 h-28 bg-secondary-yellow/10 rounded-full blur-3xl"></div>
-      </div>
-      
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="grid grid-cols-12 gap-4 h-full">
-          {Array.from({ length: 144 }).map((_, i) => (
-            <div key={i} className="bg-neutral-400 rounded-full w-1 h-1"></div>
-          ))}
-        </div>
-      </div>
-      
-      <Container size="xl" className="relative z-10">
-        <div className="mb-16 text-center">
+    <Section variant="secondary" padding="xl">
+      <Container size="xl">
+        <div className="text-center mb-12">
           <div className="flex items-center justify-center space-x-3 mb-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-teal rounded-full"></div>
-            <Typography variant="overline" className="text-primary-500">
-              Our Focus
+            <div className="w-12 h-1 bg-gradient-to-r from-secondary-teal to-secondary-orange rounded-full"></div>
+            <Typography variant="overline" className="text-secondary-teal">
+              Strategic Focus
             </Typography>
-            <div className="w-12 h-1 bg-gradient-to-r from-secondary-teal to-primary-500 rounded-full"></div>
+            <div className="w-12 h-1 bg-gradient-to-r from-secondary-orange to-secondary-teal rounded-full"></div>
           </div>
           
-          <Typography 
-            variant="h1" 
-            className="mb-6 bg-gradient-to-r from-primary-500 via-secondary-teal to-primary-500 bg-clip-text text-transparent"
-          >
-            We Focus On Delivering In 4 Key Areas
+          <Typography variant="h2" className="mb-4 bg-gradient-to-r from-secondary-teal to-secondary-orange bg-clip-text text-transparent">
+            We Focus On Delivering In 6 Key Areas
           </Typography>
           
-          <Typography 
-            variant="body" 
-            className="max-w-3xl mx-auto mb-12"
-          >
+          <Typography variant="body" className="max-w-3xl mx-auto text-neutral-gray">
             Our strategic approach focuses on these primary areas to ensure comprehensive access to justice throughout Tanzania
           </Typography>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {areas.map((area, index) => (
             <FocusAreaCard
               key={index}
@@ -143,20 +113,18 @@ const FocusAreas = () => {
               title={area.title}
               description={area.description}
               link={area.link}
-              color={area.color}
             />
           ))}
         </div>
         
-        <div className="text-center">
-          <Card variant="elevated" padding="lg" className="bg-white/80 backdrop-blur-sm border-neutral-100 inline-block">
-            <Link to="/what-we-do">
-              <Button className="bg-gradient-to-r from-primary-500 to-secondary-teal hover:from-primary-600 hover:to-secondary-teal/80 text-white text-lg px-10 py-6 h-auto rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                Learn About Our Approach
-                <ArrowRight className="ml-3 h-5 w-5" />
-              </Button>
-            </Link>
-          </Card>
+        <div className="text-center mt-12">
+          <Link 
+            to="/programs" 
+            className="inline-flex items-center bg-gradient-to-r from-secondary-teal to-secondary-orange hover:from-secondary-teal/90 hover:to-secondary-orange/90 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
+            Learn About Our Approach
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
         </div>
       </Container>
     </Section>
