@@ -4,7 +4,6 @@ import { ArrowRight, Scale, Users, BookOpen, LayoutGrid, Smartphone, Leaf } from
 import Typography from '@/components/shared/Typography';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
-import Card from '@/components/shared/Card';
 
 interface FocusAreaProps {
   icon: React.ReactNode;
@@ -15,31 +14,31 @@ interface FocusAreaProps {
 
 const FocusAreaCard = ({ icon, title, description, link }: FocusAreaProps) => {
   return (
-    <Link to={link} className="block group h-full">
-      <Card variant="elevated" hover={true} className="h-full group-hover:shadow-xl transition-all duration-300">
-        <div className="flex flex-col h-full">
-          <div className="w-12 h-12 bg-secondary-teal/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-secondary-teal group-hover:scale-110 transition-all duration-300">
+    <Link to={link} className="block group">
+      <div className="bg-white rounded-lg p-6 hover:shadow-md transition-all duration-300 border border-gray-100 h-full">
+        <div className="flex items-start space-x-4">
+          <div className="w-12 h-12 bg-secondary-teal/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-secondary-teal group-hover:scale-105 transition-all duration-300">
             <div className="text-secondary-teal group-hover:text-white transition-colors duration-300">
               {icon}
             </div>
           </div>
           
-          <Typography variant="h4" className="mb-3 group-hover:text-secondary-teal transition-colors duration-300">
-            {title}
-          </Typography>
-          
-          <Typography variant="bodySmall" className="text-neutral-gray mb-4 flex-grow leading-relaxed">
-            {description}
-          </Typography>
-          
-          <div className="mt-auto">
+          <div className="flex-1">
+            <Typography variant="h4" className="mb-2 group-hover:text-secondary-teal transition-colors duration-300">
+              {title}
+            </Typography>
+            
+            <Typography variant="bodySmall" className="text-neutral-gray mb-3 leading-relaxed">
+              {description}
+            </Typography>
+            
             <span className="inline-flex items-center text-secondary-teal font-medium text-sm group-hover:underline">
               Learn more
               <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
           </div>
         </div>
-      </Card>
+      </div>
     </Link>
   );
 };
@@ -85,27 +84,27 @@ const FocusAreas = () => {
   ];
 
   return (
-    <Section variant="secondary" padding="xl">
+    <Section variant="secondary" padding="lg">
       <Container size="xl">
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center space-x-3 mb-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-secondary-teal to-secondary-orange rounded-full"></div>
-            <Typography variant="overline" className="text-secondary-teal">
-              Strategic Focus
-            </Typography>
-            <div className="w-12 h-1 bg-gradient-to-r from-secondary-orange to-secondary-teal rounded-full"></div>
-          </div>
-          
-          <Typography variant="h2" className="mb-4 bg-gradient-to-r from-secondary-teal to-secondary-orange bg-clip-text text-transparent">
-            We Focus On Delivering In 6 Key Areas
+        <div className="mb-12">
+          <Typography variant="h2" className="mb-4 text-neutral-dark">
+            Our story
           </Typography>
           
-          <Typography variant="body" className="max-w-3xl mx-auto text-neutral-gray">
-            Our strategic approach focuses on these primary areas to ensure comprehensive access to justice throughout Tanzania
+          <Typography variant="body" className="max-w-2xl text-neutral-gray mb-6">
+            For over 25 years, the Legal Services Facility has been committed to tackling the greatest inequities in access to justice across Tanzania.
           </Typography>
+          
+          <Link 
+            to="/programs" 
+            className="inline-flex items-center text-secondary-teal font-medium hover:underline"
+          >
+            Explore our story
+            <ArrowRight className="ml-1 h-4 w-4" />
+          </Link>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {areas.map((area, index) => (
             <FocusAreaCard
               key={index}
@@ -115,16 +114,6 @@ const FocusAreas = () => {
               link={area.link}
             />
           ))}
-        </div>
-        
-        <div className="text-center mt-12">
-          <Link 
-            to="/programs" 
-            className="inline-flex items-center bg-gradient-to-r from-secondary-teal to-secondary-orange hover:from-secondary-teal/90 hover:to-secondary-orange/90 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            Learn About Our Approach
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
         </div>
       </Container>
     </Section>
