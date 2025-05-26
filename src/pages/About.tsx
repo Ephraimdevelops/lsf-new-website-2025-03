@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import InteractiveTimeline from '../components/about/InteractiveTimeline';
 import AnimatedStats from '../components/about/AnimatedStats';
 import TestimonialCarousel from '../components/about/TestimonialCarousel';
+import ImpactHighlight from '../components/home/ImpactHighlight';
 
 interface BoardMember {
   id: string;
@@ -59,6 +60,9 @@ const About = () => {
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
+       {/* Interactive Timeline */}
+      <InteractiveTimeline />
+
       {/* Board Members Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -99,6 +103,7 @@ const About = () => {
           </div>
         </div>
       </section>
+       <ImpactHighlight />
 
       {/* Animated Stats Section */}
       <AnimatedStats />
@@ -125,9 +130,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* Interactive Timeline */}
-      <InteractiveTimeline />
 
       {/* Testimonial Carousel */}
       <TestimonialCarousel />
