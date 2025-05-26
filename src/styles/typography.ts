@@ -45,6 +45,11 @@ export const typography = {
       lineHeight: '24px',
       fontWeight: 400, // normal
     },
+    overline: {
+      fontSize: '14px',
+      lineHeight: '18px',
+      fontWeight: 700, // bold
+    },
     caption: {
       fontSize: '14px',
       lineHeight: '18px',
@@ -66,6 +71,7 @@ export const typography = {
     h4: 'text-[20px] font-semibold leading-[24px]',
     body: 'text-[20px] font-light leading-[35px]',
     bodySmall: 'text-[16px] font-normal leading-[24px]',
+    overline: 'text-[14px] font-bold leading-[18px] uppercase tracking-wider',
     caption: 'text-[14px] font-normal leading-[18px]',
     small: 'text-[12px] font-normal leading-[16px]',
   },

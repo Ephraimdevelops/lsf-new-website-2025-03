@@ -31,6 +31,10 @@ const Typography = ({
       case 'body':
       case 'bodySmall':
         return 'font-body'; // akzidenz-grotesk
+      case 'overline':
+      case 'caption':
+      case 'small':
+        return 'font-body'; // akzidenz-grotesk
       default:
         return 'font-sans'; // Calibri
     }
@@ -44,17 +48,21 @@ const Typography = ({
     h4: 'h4',
     body: 'p',
     bodySmall: 'p',
+    overline: 'span',
     caption: 'span',
     small: 'span'
   };
 
-  const Component = as || defaultElements[variant];
+  const elementType = as || defaultElements[variant];
   const fontFamily = getFontFamily(variant);
 
+  // Create the element using React.createElement to avoid the undefined component issue
+  const Element = elementType as keyof JSX.IntrinsicElements;
+
   return (
-    <Component className={cn(baseClasses, fontFamily, className)}>
+    <Element className={cn(baseClasses, fontFamily, className)}>
       {children}
-    </Component>
+    </Element>
   );
 };
 
