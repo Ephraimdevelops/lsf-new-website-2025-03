@@ -10,7 +10,7 @@ interface ContainerProps {
 
 const Container = ({ 
   children, 
-  size = 'lg',
+  size = 'xl',
   className = '' 
 }: ContainerProps) => {
   const sizeClasses = {

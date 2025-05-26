@@ -1,6 +1,8 @@
 
 import { CheckCircle } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
+import Section from '@/components/shared/Section';
+import Container from '@/components/shared/Container';
 
 interface StatProps {
   value: string;
@@ -10,11 +12,11 @@ interface StatProps {
 
 const StatCard = ({ value, label, description }: StatProps) => {
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg text-center transition-transform hover:translate-y-[-5px] duration-300 group">
-      <div className="text-4xl md:text-5xl font-black text-primary mb-3">{value}</div>
-      <div className="text-lg font-semibold mb-2">{label}</div>
+    <div className="bg-white p-6 rounded-xl shadow-lg text-center transition-transform hover:translate-y-[-5px] duration-300 group border border-gray-100">
+      <Typography variant="display" className="text-primary mb-2 text-3xl md:text-4xl">{value}</Typography>
+      <Typography variant="h4" className="mb-2 text-neutral-dark">{label}</Typography>
       {description && (
-        <p className="text-neutral-dark text-sm">{description}</p>
+        <Typography variant="bodySmall" className="text-neutral-gray">{description}</Typography>
       )}
     </div>
   );
@@ -22,18 +24,18 @@ const StatCard = ({ value, label, description }: StatProps) => {
 
 const ImpactStats = () => {
   return (
-    <section className="pattern-bg py-20 md:py-24">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <Typography variant="display" className="text-white mb-4">
+    <Section variant="gradient" padding="lg">
+      <Container size="xl">
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <Typography variant="h2" className="text-white mb-4">
             Our Impact
           </Typography>
-          <p className="max-w-3xl mx-auto text-white/90 text-lg">
+          <Typography variant="body" className="text-white/90">
             We strive to increase justice for all, particularly for women
-          </p>
+          </Typography>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard 
             value="$47M+" 
             label="Disbursed as Grants" 
@@ -55,8 +57,8 @@ const ImpactStats = () => {
             description="People reached through awareness programs"
           />
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

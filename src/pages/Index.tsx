@@ -3,7 +3,6 @@ import Layout from '../components/layout/Layout';
 import Hero from '../components/home/Hero';
 import ImpactStats from '../components/home/ImpactStats';
 import About from '../components/home/About';
-import FocusAreas from '../components/home/FocusAreas';
 import KeyPrinciples from '../components/home/KeyPrinciples';
 import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import Contact from '../components/home/Contact';
@@ -21,7 +20,6 @@ const Index = () => {
         <ImpactStats />
         <About />
         <WhatWeDo />
-        <FocusAreas />
         <Partners />
         <Projects />
         <HakiYanguHighlight />
