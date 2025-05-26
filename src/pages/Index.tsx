@@ -11,7 +11,6 @@ import ImpactStats from '../components/home/ImpactStats';
 import Contact from '../components/home/Contact';
 import CompactNewsUpdates from '../components/home/CompactNewsUpdates';
 import KeyPrinciples from '../components/home/KeyPrinciples';
-import ImpactHighlight from '../components/home/ImpactHighlight';
 
 const Index = () => {
   return (
@@ -22,7 +21,6 @@ const Index = () => {
         <About />
         <FocusAreas />
         <ImpactStats />
-        <ImpactHighlight />
         <KeyPrinciples />
         <HakiYanguHighlight />
         <Contact />
