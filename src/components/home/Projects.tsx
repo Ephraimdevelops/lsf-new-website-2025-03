@@ -148,39 +148,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Run for Binti Highlight */}
-        <div className="bg-gradient-to-r from-secondary-orange to-secondary-yellow p-6 rounded-xl text-white">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            <div>
-              <h3 className="text-2xl font-bold mb-3">Run for Binti Marathon</h3>
-              <p className="text-white/90 mb-4">
-                Annual advocacy campaign promoting menstrual health, reproductive rights, and girl's education across Mtwara region.
-              </p>
-              <div className="grid grid-cols-3 gap-4 mb-4">
-                <div className="text-center">
-                  <div className="text-xl font-bold">800+</div>
-                  <div className="text-xs text-white/80">Participants</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold">12</div>
-                  <div className="text-xs text-white/80">Modern Latrines</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold">200+</div>
-                  <div className="text-xs text-white/80">Girls Supported</div>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <img 
-                src="/lovable-uploads/e1ab15b7-1be8-4b43-a3c3-0e4c6b7a0c02.png"
-                alt="Run for Binti"
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-
         {/* CTA */}
         <div className="text-center mt-8">
           <Link 

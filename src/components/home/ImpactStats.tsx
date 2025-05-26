@@ -1,5 +1,6 @@
 
 import { CheckCircle } from 'lucide-react';
+import Typography from '@/components/shared/Typography';
 
 interface StatProps {
   value: string;
@@ -24,7 +25,9 @@ const ImpactStats = () => {
     <section className="pattern-bg py-20 md:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-white mb-4">Our Impact</h2>
+          <Typography variant="display" className="text-white mb-4">
+            Our Impact
+          </Typography>
           <p className="max-w-3xl mx-auto text-white/90 text-lg">
             We strive to increase justice for all, particularly for women
           </p>

@@ -156,34 +156,6 @@ const CompactNewsUpdates = () => {
                 </div>
               ))}
             </div>
-
-            {/* Impact Stats */}
-            <div className="mt-8 bg-white border border-gray-200 rounded-xl p-6">
-              <Typography variant="h4" className="text-neutral-dark mb-4 text-center">Impact by Numbers</Typography>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-primary" />
-                    <Typography variant="bodySmall" className="text-neutral-gray">Policy Changes</Typography>
-                  </div>
-                  <Typography variant="h4" className="text-primary">15+</Typography>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-secondary-teal" />
-                    <Typography variant="bodySmall" className="text-neutral-gray">Lives Impacted</Typography>
-                  </div>
-                  <Typography variant="h4" className="text-secondary-teal">426K+</Typography>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Award className="h-4 w-4 text-secondary-orange" />
-                    <Typography variant="bodySmall" className="text-neutral-gray">Recognition</Typography>
-                  </div>
-                  <Typography variant="h4" className="text-secondary-orange">25+</Typography>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

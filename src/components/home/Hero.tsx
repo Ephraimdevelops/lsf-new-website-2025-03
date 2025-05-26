@@ -57,12 +57,12 @@ const heroSlides: HeroSlide[] = [
 
 // Regions for the paralegal finder with corresponding hotline numbers
 const regions = [
-  { name: "All Regions", phone: "+255 800 110 303" },
-  { name: "Dar es Salaam", phone: "+255 800 110 304" },
-  { name: "Mwanza", phone: "+255 800 110 305" },
-  { name: "Arusha", phone: "+255 800 110 306" },
-  { name: "Dodoma", phone: "+255 800 110 307" },
-  { name: "Tanga", phone: "+255 800 110 308" },
+  { name: "All Regions", phone: "+255 870 119 363" },
+  { name: "Dar es Salaam", phone: "+255 717 111 764" },
+  { name: "Mwanza", phone: "+255 769 517 305" },
+  { name: "Arusha", phone: "+255 629 296 306" },
+  { name: "Dodoma", phone: "+255 754 110 307" },
+  { name: "Tanga", phone: "+255 711 032 998" },
   { name: "Morogoro", phone: "+255 800 110 309" }
 ];
 
@@ -123,11 +123,6 @@ const Hero = () => {
           {/* Hero content - More compact */}
           <div className="lg:col-span-7">
             <div className="mb-6">
-              <img 
-                src="/lovable-uploads/140e859b-26c6-4b1b-a99e-a8efaf084eb8.png"
-                alt="LSF Logo" 
-                className="h-16 w-auto"
-              />
             </div>
             
             <div className="transition-all duration-500">
@@ -135,10 +130,7 @@ const Hero = () => {
                 <span className="inline-block bg-secondary-orange text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
                   {currentSlideData.category}
                 </span>
-                <div className="flex items-center text-secondary-orange font-bold text-2xl">
-                  <span className="mr-2">{currentSlideData.stat}</span>
-                  <span className="text-sm text-white/80 font-normal">{currentSlideData.statLabel}</span>
-                </div>
+               
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
@@ -179,8 +171,8 @@ const Hero = () => {
                   <Scale className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-primary text-xl font-bold">Emergency Legal Aid</h3>
-                  <p className="text-neutral-600 text-sm">Available 24/7 across Tanzania</p>
+                  <h3 className="text-primary text-xl font-bold">Get Free Legal Aid</h3>
+                  <p className="text-neutral-600 text-sm">Available across Tanzania</p>
                 </div>
               </div>
               
@@ -230,7 +222,7 @@ const Hero = () => {
                   className="bg-secondary-teal text-white hover:bg-opacity-90 px-4 py-3 rounded-lg text-center font-bold transition-colors flex items-center justify-center gap-2 text-sm"
                 >
                   <Download className="h-4 w-4" />
-                  Get App
+                  Download HakiYangu App
                 </a>
               </div>
               

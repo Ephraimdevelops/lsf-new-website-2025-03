@@ -11,12 +11,12 @@ const About = () => {
   return (
     <Section variant="secondary" padding="xl">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Content Column */}
           <div className="space-y-8">
             {/* Section Header */}
             <div className="space-y-4">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
                 <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-teal rounded-full"></div>
                 <Typography variant="overline" className="text-primary-500">
                   About LSF
@@ -32,29 +32,8 @@ const About = () => {
             <div className="space-y-6">
               <Typography variant="body" className="text-xl">
                 We are the leading non-profit organization promoting access to justice for all through innovative legal empowerment approaches.
+                LSF is a non-profit organization that strives to increase access to justice for all, in particular for women through a legal empowerment approach. Established in 2011, we work with over 180 community-based legal aid providers across all 184 districts of Tanzania.
               </Typography>
-              
-              <Card variant="elevated" padding="lg" className="border-l-4 border-primary-500">
-                <Typography variant="body">
-                  Legal Services Facility (LSF) is a non-profit organization that strives to increase access to justice for all, in particular for women through a legal empowerment approach. Established in 2011, we work with over 180 community-based legal aid providers across all 184 districts of Tanzania.
-                </Typography>
-              </Card>
-              
-              {/* Stats Grid */}
-              <div className="grid grid-cols-3 gap-6 py-8">
-                <div className="text-center space-y-2">
-                  <Typography variant="h3" className="text-primary-500">2011</Typography>
-                  <Typography variant="caption">Established</Typography>
-                </div>
-                <div className="text-center space-y-2">
-                  <Typography variant="h3" className="text-secondary-teal">184</Typography>
-                  <Typography variant="caption">Districts</Typography>
-                </div>
-                <div className="text-center space-y-2">
-                  <Typography variant="h3" className="text-secondary-orange">180+</Typography>
-                  <Typography variant="caption">Partners</Typography>
-                </div>
-              </div>
             </div>
             
             {/* CTA Button */}

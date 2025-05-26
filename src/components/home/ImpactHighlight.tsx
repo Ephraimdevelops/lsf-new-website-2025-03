@@ -18,7 +18,7 @@ const ImpactHighlight = () => {
           <div>
             <div className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
               <TrendingUp className="h-4 w-4 mr-2" />
-              <span className="text-sm font-semibold">Our Impact in Numbers</span>
+              <span className="text-m font-semibold">Our Impact in Numbers</span>
             </div>
             
             <h2 className="text-[45px] font-black leading-[47.7px] mb-6" style={{ fontFamily: 'Avenir, sans-serif' }}>
