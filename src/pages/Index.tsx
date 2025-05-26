@@ -9,7 +9,6 @@ import Publications from '../components/home/Publications';
 import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import ImpactStats from '../components/home/ImpactStats';
 import Contact from '../components/home/Contact';
-import NewsTicker from '../components/home/NewsTicker';
 import CompactNewsUpdates from '../components/home/CompactNewsUpdates';
 import KeyPrinciples from '../components/home/KeyPrinciples';
 import ImpactHighlight from '../components/home/ImpactHighlight';
@@ -19,13 +18,12 @@ const Index = () => {
     <Layout>
       <div className="min-h-screen">
         <Hero />
-        <NewsTicker />
-        <ImpactHighlight />
-        <FocusAreas />
-        <KeyPrinciples />
         <CompactNewsUpdates />
         <About />
+        <FocusAreas />
         <ImpactStats />
+        <ImpactHighlight />
+        <KeyPrinciples />
         <HakiYanguHighlight />
         <Contact />
       </div>
