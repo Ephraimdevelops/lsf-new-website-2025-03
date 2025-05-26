@@ -2,15 +2,17 @@
 import { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import Hero from '../components/home/Hero';
-import FocusAreas from '../components/home/FocusAreas';
-import About from '../components/home/About';
-import NewsSection from '../components/home/NewsSection';
-import Publications from '../components/home/Publications';
-import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import ImpactStats from '../components/home/ImpactStats';
-import Contact from '../components/home/Contact';
-import CompactNewsUpdates from '../components/home/CompactNewsUpdates';
+import About from '../components/home/About';
+import FocusAreas from '../components/home/FocusAreas';
 import KeyPrinciples from '../components/home/KeyPrinciples';
+import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
+import Contact from '../components/home/Contact';
+import WhatWeDo from '../components/home/WhatWeDo';
+import ImpactHighlight from '../components/home/ImpactHighlight';
+import NewsAndPublications from '../components/home/NewsAndPublications';
+import Projects from '../components/home/Projects';
+import Partners from '../components/home/Partners';
 
 const Index = () => {
   return (
@@ -18,11 +20,15 @@ const Index = () => {
       <div className="min-h-screen">
         <Hero />
         <ImpactStats />
-        <CompactNewsUpdates />
+        <NewsAndPublications />
         <About />
+        <WhatWeDo />
         <FocusAreas />
         <KeyPrinciples />
+        <Projects />
+        <ImpactHighlight />
         <HakiYanguHighlight />
+        <Partners />
         <Contact />
       </div>
     </Layout>
