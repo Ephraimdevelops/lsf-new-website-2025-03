@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, FileText, Download, TrendingUp, Users, Award } from 'lucide-react';
 import { dataService } from '@/services/dataService';
+import Typography from '@/components/shared/Typography';
 
 const NewsAndPublications = () => {
   const featuredNews = dataService.getNews(2, true);
@@ -13,19 +14,19 @@ const NewsAndPublications = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-[45px] font-black leading-[47.7px] text-[#231f20] mb-4" style={{ fontFamily: 'Avenir, sans-serif' }}>
+          <Typography variant="display" className="text-[#231f20] mb-4">
             Latest News & Research
-          </h2>
-          <p className="text-[20px] font-light leading-[35px] text-black max-w-4xl mx-auto" style={{ fontFamily: 'akzidenz-grotesk, Arial, Helvetica, sans-serif' }}>
+          </Typography>
+          <Typography variant="body" className="text-black max-w-4xl mx-auto">
             Stay informed about our ongoing efforts to transform lives and the evidence-based research driving policy change across Tanzania
-          </p>
+          </Typography>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* News Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-neutral-dark">Breaking News</h3>
+              <Typography variant="h3" className="text-neutral-dark">Breaking News</Typography>
               <Link 
                 to="/news" 
                 className="text-primary font-semibold hover:text-primary-dark transition-colors text-sm flex items-center"
@@ -63,12 +64,12 @@ const NewsAndPublications = () => {
                           })}
                         </div>
                       </div>
-                      <h4 className="font-bold text-lg text-neutral-dark line-clamp-2 group-hover:text-primary transition-colors mb-3">
+                      <Typography variant="h4" className="text-neutral-dark line-clamp-2 group-hover:text-primary transition-colors mb-3">
                         {news.title}
-                      </h4>
-                      <p className="text-sm text-neutral-gray line-clamp-2 leading-relaxed mb-3">
+                      </Typography>
+                      <Typography variant="bodySmall" className="text-neutral-gray line-clamp-2 mb-3">
                         {news.excerpt}
-                      </p>
+                      </Typography>
                       <div className="flex items-center text-primary font-semibold text-sm">
                         Read More <ArrowRight className="ml-1 h-3 w-3" />
                       </div>
@@ -82,7 +83,7 @@ const NewsAndPublications = () => {
           {/* Publications Section */}
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-neutral-dark">Research</h3>
+              <Typography variant="h3" className="text-neutral-dark">Research</Typography>
               <Link 
                 to="/publications" 
                 className="text-secondary-teal font-semibold hover:text-secondary-teal/80 transition-colors text-sm flex items-center"
@@ -111,12 +112,12 @@ const NewsAndPublications = () => {
                         })}
                       </div>
                     </div>
-                    <h4 className="font-bold text-lg text-neutral-dark line-clamp-2 group-hover:text-secondary-teal transition-colors mb-3">
+                    <Typography variant="h4" className="text-neutral-dark line-clamp-2 group-hover:text-secondary-teal transition-colors mb-3">
                       {publication.title}
-                    </h4>
-                    <p className="text-sm text-neutral-gray line-clamp-3 leading-relaxed mb-4">
+                    </Typography>
+                    <Typography variant="bodySmall" className="text-neutral-gray line-clamp-3 mb-4">
                       {publication.excerpt}
-                    </p>
+                    </Typography>
                     <div className="flex items-center justify-between">
                       <Link 
                         to={`/publications/${publication.id}`}
@@ -144,13 +145,13 @@ const NewsAndPublications = () => {
             <div className="mt-6 grid grid-cols-1 gap-4">
               <div className="bg-white p-4 rounded-lg border border-gray-200 text-center">
                 <TrendingUp className="h-6 w-6 text-secondary-teal mx-auto mb-2" />
-                <div className="text-xl font-bold text-secondary-teal mb-1">15+</div>
-                <div className="text-xs text-gray-600">Policy Changes Influenced</div>
+                <Typography variant="h4" className="text-secondary-teal mb-1">15+</Typography>
+                <Typography variant="small" className="text-gray-600">Policy Changes Influenced</Typography>
               </div>
               <div className="bg-white p-4 rounded-lg border border-gray-200 text-center">
                 <Users className="h-6 w-6 text-primary mx-auto mb-2" />
-                <div className="text-xl font-bold text-primary mb-1">50K+</div>
-                <div className="text-xs text-gray-600">Research Participants</div>
+                <Typography variant="h4" className="text-primary mb-1">50K+</Typography>
+                <Typography variant="small" className="text-gray-600">Research Participants</Typography>
               </div>
             </div>
           </div>

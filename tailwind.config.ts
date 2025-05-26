@@ -85,9 +85,10 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'sans': ['Calibri', 'system-ui', 'sans-serif'],
+				'display': ['Avenir', 'system-ui', 'sans-serif'],
 				'heading': ['Merriweather Sans', 'system-ui', 'sans-serif'],
-				'display': ['Panton Narrow', 'system-ui', 'sans-serif'],
+				'body': ['akzidenz-grotesk', 'Arial', 'Helvetica', 'sans-serif'],
+				'sans': ['Calibri', 'system-ui', 'sans-serif'],
 				'serif': ['"Noto Serif"', 'serif'],
 				'serif-condensed': ['"Noto Serif Condensed"', '"Noto Serif"', 'serif'],
 			},

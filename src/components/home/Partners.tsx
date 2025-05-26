@@ -1,5 +1,6 @@
 
 import { ExternalLink, Heart, Globe, Users, Award } from 'lucide-react';
+import Typography from '@/components/shared/Typography';
 
 const Partners = () => {
   const partners = [
@@ -34,12 +35,12 @@ const Partners = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-[45px] font-black leading-[47.7px] text-[#231f20] mb-4" style={{ fontFamily: 'Avenir, sans-serif' }}>
+          <Typography variant="display" className="text-[#231f20] mb-4">
             Our Strategic Partners
-          </h2>
-          <p className="text-[20px] font-light leading-[35px] text-black max-w-3xl mx-auto" style={{ fontFamily: 'akzidenz-grotesk, Arial, Helvetica, sans-serif' }}>
+          </Typography>
+          <Typography variant="body" className="text-black max-w-3xl mx-auto">
             Working together with international development partners to amplify our impact and reach more communities across Tanzania
-          </p>
+          </Typography>
         </div>
 
         {/* Partners Grid */}
@@ -57,17 +58,17 @@ const Partners = () => {
                 />
               </div>
               
-              <h3 className="font-bold text-lg text-neutral-dark mb-2 group-hover:text-primary transition-colors">
+              <Typography variant="h4" className="text-neutral-dark mb-2 group-hover:text-primary transition-colors">
                 {partner.name}
-              </h3>
+              </Typography>
               
               <span className="inline-block bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full mb-3">
                 {partner.partnership}
               </span>
               
-              <p className="text-neutral-gray text-sm leading-relaxed">
+              <Typography variant="bodySmall" className="text-neutral-gray">
                 {partner.description}
-              </p>
+              </Typography>
             </div>
           ))}
         </div>
@@ -77,32 +78,32 @@ const Partners = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
             <div className="group">
               <Heart className="h-8 w-8 text-primary mx-auto mb-3 group-hover:scale-110 transition-transform" />
-              <div className="text-2xl font-bold text-primary mb-1">$47M+</div>
-              <div className="text-sm text-gray-600">Total Grants Disbursed</div>
+              <Typography variant="h3" className="text-primary mb-1">$47M+</Typography>
+              <Typography variant="bodySmall" className="text-gray-600">Total Grants Disbursed</Typography>
             </div>
             <div className="group">
               <Globe className="h-8 w-8 text-secondary-teal mx-auto mb-3 group-hover:scale-110 transition-transform" />
-              <div className="text-2xl font-bold text-secondary-teal mb-1">184</div>
-              <div className="text-sm text-gray-600">Districts Covered</div>
+              <Typography variant="h3" className="text-secondary-teal mb-1">184</Typography>
+              <Typography variant="bodySmall" className="text-gray-600">Districts Covered</Typography>
             </div>
             <div className="group">
               <Users className="h-8 w-8 text-secondary-orange mx-auto mb-3 group-hover:scale-110 transition-transform" />
-              <div className="text-2xl font-bold text-secondary-orange mb-1">426K+</div>
-              <div className="text-sm text-gray-600">Lives Transformed</div>
+              <Typography variant="h3" className="text-secondary-orange mb-1">426K+</Typography>
+              <Typography variant="bodySmall" className="text-gray-600">Lives Transformed</Typography>
             </div>
             <div className="group">
               <Award className="h-8 w-8 text-secondary-yellow mx-auto mb-3 group-hover:scale-110 transition-transform" />
-              <div className="text-2xl font-bold text-secondary-yellow mb-1">105K+</div>
-              <div className="text-sm text-gray-600">Groups Supported</div>
+              <Typography variant="h3" className="text-secondary-yellow mb-1">105K+</Typography>
+              <Typography variant="bodySmall" className="text-gray-600">Groups Supported</Typography>
             </div>
           </div>
         </div>
 
         {/* Partnership CTA */}
         <div className="text-center mt-8">
-          <p className="text-neutral-gray mb-6">
+          <Typography variant="bodySmall" className="text-neutral-gray mb-6">
             Interested in partnering with us to expand access to justice across Tanzania?
-          </p>
+          </Typography>
           <a 
             href="/partners"
             className="inline-flex items-center bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"

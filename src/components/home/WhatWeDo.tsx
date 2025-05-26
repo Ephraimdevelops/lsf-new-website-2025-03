@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { ArrowRight, Scale, Users, Lightbulb, BookOpen, LayoutGrid, DollarSign } from 'lucide-react';
+import Typography from '@/components/shared/Typography';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -17,8 +18,8 @@ const ServiceCard = ({ icon, title, description, color, link }: ServiceCardProps
         <div className="text-white group-hover:scale-110 transition-transform duration-300 mb-4">
           {icon}
         </div>
-        <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
-        <p className="text-white/90 mb-4 text-sm leading-relaxed">{description}</p>
+        <Typography variant="h4" className="text-white mb-3">{title}</Typography>
+        <Typography variant="bodySmall" className="text-white/90 mb-4">{description}</Typography>
         <div className="inline-flex items-center text-white font-medium hover:underline text-sm">
           Learn more
           <ArrowRight className="ml-1 h-4 w-4" />
@@ -78,12 +79,12 @@ const WhatWeDo = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10">
-          <h2 className="text-[45px] font-black leading-[47.7px] text-white mb-4" style={{ fontFamily: 'Avenir, sans-serif' }}>
+          <Typography variant="display" className="text-white mb-4">
             What We Do
-          </h2>
-          <p className="text-[20px] font-light leading-[35px] text-white/90 max-w-4xl mx-auto" style={{ fontFamily: 'akzidenz-grotesk, Arial, Helvetica, sans-serif' }}>
+          </Typography>
+          <Typography variant="body" className="text-white/90 max-w-4xl mx-auto">
             Our comprehensive approach to promoting access to justice focuses on these key service areas
-          </p>
+          </Typography>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">

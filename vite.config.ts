@@ -24,8 +24,13 @@ export default defineConfig(({ mode }) => ({
     force: true
   },
   build: {
+    commonjsOptions: {
+      ignoreTryCatch: false
+    },
     rollupOptions: {
-      external: ['@rollup/rollup-linux-x64-gnu'],
+      external: (id) => {
+        return id.includes('@rollup/rollup-linux-x64-gnu');
+      },
       output: {
         manualChunks: undefined
       }
