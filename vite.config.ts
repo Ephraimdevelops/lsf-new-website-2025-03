@@ -20,11 +20,18 @@ export default defineConfig(({ mode }) => ({
     },
   },
   optimizeDeps: {
-    exclude: ['@rollup/rollup-linux-x64-gnu']
+    exclude: ['@rollup/rollup-linux-x64-gnu'],
+    force: true
   },
   build: {
     rollupOptions: {
-      external: ['@rollup/rollup-linux-x64-gnu']
+      external: ['@rollup/rollup-linux-x64-gnu'],
+      output: {
+        manualChunks: undefined
+      }
     }
+  },
+  define: {
+    global: 'globalThis',
   }
 }));
