@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Typography from '../components/shared/Typography';
@@ -37,8 +36,10 @@ const CapacityBuilding = () => {
   return (
     <Layout>
       <HeroSection
+        icon={<Users className="h-8 w-8" />}
+        badge="What We Do"
         title="Capacity Building"
-        subtitle="LSF strengthens both institutional and technical capacity among legal aid providers, paralegals, and community-based organizations."
+        description="LSF strengthens both institutional and technical capacity among legal aid providers, paralegals, and community-based organizations."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 

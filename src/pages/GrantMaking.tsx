@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Typography from '../components/shared/Typography';
@@ -36,8 +35,10 @@ const GrantMaking = () => {
   return (
     <Layout>
       <HeroSection
+        icon={<DollarSign className="h-8 w-8" />}
+        badge="What We Do"
         title="Grant Making"
-        subtitle="Results-driven grants to strengthen legal empowerment — especially around land rights, property ownership, safety, and justice for women and girls."
+        description="Results-driven grants to strengthen legal empowerment — especially around land rights, property ownership, safety, and justice for women and girls."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 

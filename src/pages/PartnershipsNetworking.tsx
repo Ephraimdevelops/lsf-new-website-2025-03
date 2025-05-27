@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Typography from '@/components/shared/Typography';
@@ -37,8 +36,10 @@ const PartnershipsNetworking = () => {
   return (
     <Layout>
       <HeroSection
+        icon={<Handshake className="h-8 w-8" />}
+        badge="What We Do"
         title="Partnerships & Networking"
-        subtitle="We collaborate with a broad ecosystem of stakeholders including government institutions, civil society, development partners, and private actors."
+        description="We collaborate with a broad ecosystem of stakeholders including government institutions, civil society, development partners, and private actors."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 

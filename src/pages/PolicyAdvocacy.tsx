@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Typography from '@/components/shared/Typography';
@@ -37,8 +36,10 @@ const PolicyAdvocacy = () => {
   return (
     <Layout>
       <HeroSection
+        icon={<Scale className="h-8 w-8" />}
+        badge="What We Do"
         title="Policy and Advocacy"
-        subtitle="Our advocacy spans grassroots to national levels — shaping inclusive laws, policies, and systems that ensure justice is a reality for all."
+        description="Our advocacy spans grassroots to national levels — shaping inclusive laws, policies, and systems that ensure justice is a reality for all."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 

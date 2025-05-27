@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Typography from '@/components/shared/Typography';
@@ -37,8 +36,10 @@ const LearningResearch = () => {
   return (
     <Layout>
       <HeroSection
+        icon={<BookOpen className="h-8 w-8" />}
+        badge="What We Do"
         title="Learning and Research"
-        subtitle="Through continuous learning, piloting new models, and data-driven monitoring, we identify what works and improve what doesn't."
+        description="Through continuous learning, piloting new models, and data-driven monitoring, we identify what works and improve what doesn't."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
