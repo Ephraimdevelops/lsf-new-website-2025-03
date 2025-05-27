@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 interface SuccessStory {
   id: string;
@@ -78,33 +80,38 @@ const SuccessStories = () => {
   ];
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* Background pattern element */}
-      <div className="absolute top-0 left-0 w-full h-full bg-pattern-bg bg-opacity-2 z-0"></div>
+    <section className="py-20 bg-gradient-to-b from-white to-neutral-50 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary rounded-full"></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary-teal rounded-full"></div>
+      </div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-12">
-          <div>
-            <h2 className="mb-3">Success Stories</h2>
-            <p className="text-neutral-gray max-w-2xl">
-              Real people, real impact — see how legal empowerment is transforming lives across Tanzania
+          <div className="max-w-2xl">
+            <div className="w-12 h-1 bg-primary mb-4"></div>
+            <h2 className="text-4xl font-bold text-neutral-900 mb-4 uppercase tracking-wide">Success Stories</h2>
+            <p className="text-neutral-gray text-lg leading-relaxed">
+              Real people, real impact — see how legal empowerment is transforming lives across Tanzania. 
+              Every story represents hope, resilience, and the power of justice.
             </p>
           </div>
           
-          <div className="flex space-x-3 mt-4 lg:mt-0">
+          <div className="flex space-x-3 mt-6 lg:mt-0">
             <button 
               onClick={handlePrev}
-              className="p-2 bg-white hover:bg-neutral-50 rounded-full transition-colors shadow-md"
+              className="p-3 bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-lg border border-gray-200"
               aria-label="Previous story"
             >
-              <ChevronLeft className="h-6 w-6 text-primary" />
+              <ChevronLeft className="h-6 w-6" />
             </button>
             <button 
               onClick={handleNext}
-              className="p-2 bg-white hover:bg-neutral-50 rounded-full transition-colors shadow-md"
+              className="p-3 bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-lg border border-gray-200"
               aria-label="Next story"
             >
-              <ChevronRight className="h-6 w-6 text-primary" />
+              <ChevronRight className="h-6 w-6" />
             </button>
           </div>
         </div>
@@ -116,59 +123,76 @@ const SuccessStories = () => {
               to={`/heroes/${story.id}`}
               className="group"
             >
-              <div 
-                className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl ${
+              <Card 
+                className={`overflow-hidden transition-all duration-500 hover:shadow-2xl ${
                   animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-                } hover:-translate-y-2`}
+                } hover:-translate-y-3`}
                 style={{ 
                   transitionDelay: `${index * 100}ms`,
                   animationDelay: `${index * 100}ms`
                 }}
               >
-                <div className="relative h-64">
+                <div className="relative h-64 overflow-hidden">
                   <img 
                     src={story.image} 
                     alt={story.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-90"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   <div className="absolute top-4 left-4">
-                    <span className="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
+                    <span className="bg-primary text-white text-xs font-medium px-3 py-2 rounded-full uppercase tracking-wide">
                       {story.category}
                     </span>
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full p-4">
-                    <h3 className="font-bold text-xl text-white">{story.name}</h3>
-                    <div className="flex items-center text-white/80 text-sm mt-1">
+                  <div className="absolute bottom-0 left-0 w-full p-6">
+                    <h3 className="font-bold text-xl text-white mb-1">{story.name}</h3>
+                    <div className="flex items-center text-white/80 text-sm">
                       <MapPin className="h-4 w-4 mr-1" />
                       {story.location}
                     </div>
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <div className="flex items-start mb-4">
-                    <Quote className="h-8 w-8 text-primary/20 mr-2 flex-shrink-0" />
-                    <p className="text-neutral-dark italic">"{story.quote}"</p>
-                  </div>
+                <div className="p-6 bg-white">
+                  <blockquote className="flex items-start mb-6">
+                    <Quote className="h-8 w-8 text-primary/20 mr-3 flex-shrink-0 mt-1" />
+                    <p className="text-neutral-dark italic leading-relaxed">"{story.quote}"</p>
+                  </blockquote>
                   
-                  <div className="mt-6 flex justify-end">
-                    <span className="text-primary font-medium group-hover:underline flex items-center">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6">{story.brief}</p>
+                  
+                  <div className="flex justify-between items-center">
+                    <span className="text-primary font-medium group-hover:underline flex items-center uppercase tracking-wide text-sm">
                       Read Full Story
-                      <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
+                    <Heart className="h-5 w-5 text-gray-300 group-hover:text-red-400 transition-colors" />
                   </div>
                 </div>
-              </div>
+              </Card>
             </Link>
+          ))}
+        </div>
+        
+        {/* Story indicators */}
+        <div className="flex justify-center mt-8 space-x-2">
+          {successStories.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === activeIndex ? 'bg-primary scale-125' : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to story ${index + 1}`}
+            />
           ))}
         </div>
         
         <div className="mt-12 text-center">
           <Link to="/heroes">
-            <Button className="bg-primary hover:bg-primary-dark text-white font-sans text-lg px-8 py-6 h-auto">
+            <Button className="bg-primary hover:bg-primary-600 text-white font-medium text-lg px-8 py-4 h-auto rounded-none uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-300">
               View All Success Stories
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-3 h-5 w-5" />
             </Button>
           </Link>
         </div>

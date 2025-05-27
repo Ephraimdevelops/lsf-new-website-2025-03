@@ -1,11 +1,13 @@
+
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
-import { Users, ArrowRight, Quote, MapPin, Calendar, Heart } from 'lucide-react';
+import { Users, ArrowRight, Quote, MapPin, Calendar, Heart, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
+import { Card } from '@/components/ui/card';
 
 interface Story {
   id: string;
@@ -85,8 +87,23 @@ const allStories: Story[] = [
   }
 ];
 
+const storyCategories = [
+  { name: "All Stories", value: "all" },
+  { name: "Land Rights", value: "Land Rights" },
+  { name: "Women's Empowerment", value: "Women's Empowerment" },
+  { name: "Business Rights", value: "Business Rights" },
+  { name: "Labor Rights", value: "Labor Rights" },
+  { name: "Legal Empowerment", value: "Legal Empowerment" },
+  { name: "Community Resolution", value: "Community Resolution" }
+];
+
 const Heroes = () => {
   const [currentFeatured, setCurrentFeatured] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  const filteredStories = selectedCategory === "all" 
+    ? allStories 
+    : allStories.filter(story => story.category === selectedCategory);
 
   return (
     <Layout>
@@ -99,8 +116,39 @@ const Heroes = () => {
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
+      {/* Category Navigation */}
+      <section className="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <Container>
+          <div className="py-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Filter className="h-5 w-5 text-primary" />
+              <Typography variant="h4" className="text-lg font-semibold text-neutral-900">
+                Filter by Category
+              </Typography>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {storyCategories.map((category) => (
+                <Button
+                  key={category.value}
+                  variant={selectedCategory === category.value ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category.value)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                    selectedCategory === category.value
+                      ? "bg-primary text-white hover:bg-primary-600"
+                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  {category.name}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Media Centre Banner */}
-      <section className="bg-neutral-50 py-12 border-t border-b border-gray-200">
+      <section className="bg-neutral-50 py-12 border-b border-gray-200">
         <Container>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <Typography variant="body" className="text-neutral-900 font-medium mb-4 md:mb-0">
@@ -131,135 +179,141 @@ const Heroes = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            <div className="lg:col-span-1">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img 
-                  src={featuredStories[currentFeatured].image} 
-                  alt={featuredStories[currentFeatured].name} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            
-            <div className="lg:col-span-2 space-y-6">
-              <div className="flex items-center space-x-4 text-sm">
-                <span className="text-gray-500">{featuredStories[currentFeatured].date}</span>
-                <span className="bg-primary text-white px-2 py-1 text-xs font-medium uppercase tracking-wide">
-                  {featuredStories[currentFeatured].category}
-                </span>
+          <Card className="overflow-hidden shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="lg:col-span-1">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img 
+                    src={featuredStories[currentFeatured].image} 
+                    alt={featuredStories[currentFeatured].name} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
               </div>
               
-              <Typography 
-                variant="h2" 
-                className="text-3xl lg:text-4xl font-bold text-neutral-900 leading-tight uppercase"
-              >
-                {featuredStories[currentFeatured].name}
-              </Typography>
-              
-              <div className="flex items-center text-neutral-600">
-                <MapPin className="h-4 w-4 mr-2" />
-                <span>{featuredStories[currentFeatured].location}</span>
-              </div>
-              
-              <blockquote className="border-l-4 border-primary pl-6">
-                <Typography variant="body" className="text-lg italic text-neutral-800 leading-relaxed">
-                  "{featuredStories[currentFeatured].quote}"
-                </Typography>
-              </blockquote>
-              
-              <Typography variant="body" className="text-neutral-700 leading-relaxed">
-                {featuredStories[currentFeatured].brief}
-              </Typography>
-              
-              <Link to={`/heroes/${featuredStories[currentFeatured].id}`}>
-                <Button 
-                  variant="outline" 
-                  className="border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-wide font-medium rounded-none"
+              <div className="lg:col-span-2 p-8 space-y-6">
+                <div className="flex items-center space-x-4 text-sm">
+                  <span className="text-gray-500">{featuredStories[currentFeatured].date}</span>
+                  <span className="bg-primary text-white px-3 py-1 text-xs font-medium uppercase tracking-wide rounded-full">
+                    {featuredStories[currentFeatured].category}
+                  </span>
+                </div>
+                
+                <Typography 
+                  variant="h2" 
+                  className="text-3xl lg:text-4xl font-bold text-neutral-900 leading-tight uppercase"
                 >
-                  READ FULL STORY
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                  {featuredStories[currentFeatured].name}
+                </Typography>
+                
+                <div className="flex items-center text-neutral-600">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  <span>{featuredStories[currentFeatured].location}</span>
+                </div>
+                
+                <blockquote className="border-l-4 border-primary pl-6 bg-gray-50 py-4 rounded-r-lg">
+                  <Typography variant="body" className="text-lg italic text-neutral-800 leading-relaxed">
+                    "{featuredStories[currentFeatured].quote}"
+                  </Typography>
+                </blockquote>
+                
+                <Typography variant="body" className="text-neutral-700 leading-relaxed">
+                  {featuredStories[currentFeatured].brief}
+                </Typography>
+                
+                <Link to={`/heroes/${featuredStories[currentFeatured].id}`}>
+                  <Button 
+                    className="bg-primary hover:bg-primary-600 text-white uppercase tracking-wide font-medium rounded-none"
+                  >
+                    READ FULL STORY
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
             </div>
-          </div>
+          </Card>
         </Container>
       </section>
 
-      {/* All Stories */}
+      {/* All Stories Grid */}
       <section className="py-16 bg-neutral-50">
         <Container>
           <div className="flex items-center justify-between mb-8">
             <div>
               <div className="w-12 h-1 bg-primary mb-4"></div>
               <Typography variant="h2" className="text-3xl font-bold text-neutral-900 uppercase tracking-wide">
-                ALL SUCCESS STORIES
+                {selectedCategory === "all" ? "ALL SUCCESS STORIES" : `${selectedCategory.toUpperCase()} STORIES`}
+              </Typography>
+              <Typography variant="body" className="text-gray-600 mt-2">
+                Showing {filteredStories.length} {filteredStories.length === 1 ? 'story' : 'stories'}
               </Typography>
             </div>
           </div>
           
-          <div className="space-y-8">
-            {allStories.map((story, index) => (
-              <article key={story.id} className="group">
-                <Link to={`/heroes/${story.id}`} className="block">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-white p-6 hover:shadow-lg transition-shadow">
-                    <div className="lg:col-span-1">
-                      <div className="aspect-[4/3] overflow-hidden">
-                        <img 
-                          src={story.image} 
-                          alt={story.name} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredStories.map((story, index) => (
+              <Link key={story.id} to={`/heroes/${story.id}`} className="group">
+                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <img 
+                      src={story.image} 
+                      alt={story.name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-90"></div>
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-primary text-white px-3 py-1 text-xs font-medium uppercase tracking-wide rounded-full">
+                        {story.category}
+                      </span>
                     </div>
-                    
-                    <div className="lg:col-span-2 space-y-4">
-                      <div className="flex items-center space-x-4 text-sm">
-                        <span className="text-gray-500">{story.date}</span>
-                        <span className="bg-primary text-white px-2 py-1 text-xs font-medium uppercase tracking-wide">
-                          {story.category}
-                        </span>
-                      </div>
-                      
-                      <Typography 
-                        variant="h3" 
-                        className="text-2xl font-bold text-neutral-900 group-hover:text-primary transition-colors leading-tight uppercase"
-                      >
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <Typography variant="h3" className="text-white font-bold text-xl mb-1">
                         {story.name}
                       </Typography>
-                      
-                      <div className="flex items-center text-neutral-600">
-                        <MapPin className="h-4 w-4 mr-2" />
-                        <span>{story.location}</span>
-                      </div>
-                      
-                      <blockquote className="flex items-start">
-                        <Quote className="h-5 w-5 text-primary/30 mr-2 flex-shrink-0 mt-1" />
-                        <Typography variant="body" className="italic text-neutral-700">
-                          "{story.quote}"
-                        </Typography>
-                      </blockquote>
-                      
-                      <div className="flex items-center text-primary font-medium uppercase tracking-wide text-sm group-hover:underline">
-                        READ FULL STORY
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      <div className="flex items-center text-white/80 text-sm">
+                        <MapPin className="h-4 w-4 mr-1" />
+                        {story.location}
                       </div>
                     </div>
                   </div>
-                </Link>
-              </article>
+                  
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Calendar className="h-4 w-4 mr-2" />
+                      {story.date}
+                    </div>
+                    
+                    <blockquote className="flex items-start">
+                      <Quote className="h-5 w-5 text-primary/30 mr-2 flex-shrink-0 mt-1" />
+                      <Typography variant="body" className="italic text-neutral-700 text-sm leading-relaxed">
+                        "{story.quote}"
+                      </Typography>
+                    </blockquote>
+                    
+                    <div className="flex items-center text-primary font-medium uppercase tracking-wide text-sm group-hover:underline pt-2">
+                      READ FULL STORY
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </Card>
+              </Link>
             ))}
           </div>
           
-          {/* Load More Button */}
-          <div className="text-center mt-12">
-            <Button 
-              variant="outline" 
-              className="border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-wide font-medium rounded-none px-8 py-3"
-            >
-              LOAD MORE
-            </Button>
-          </div>
+          {filteredStories.length === 0 && (
+            <div className="text-center py-12">
+              <Typography variant="h3" className="text-gray-500 mb-4">
+                No stories found in this category
+              </Typography>
+              <Button 
+                onClick={() => setSelectedCategory("all")}
+                variant="outline"
+                className="border-primary text-primary hover:bg-primary hover:text-white"
+              >
+                View All Stories
+              </Button>
+            </div>
+          )}
         </Container>
       </section>
 
