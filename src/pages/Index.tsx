@@ -8,7 +8,6 @@ import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import Contact from '../components/home/Contact';
 import WhatWeDo from '../components/home/WhatWeDo';
 import CompactNewsUpdates from '../components/home/CompactNewsUpdates';
-import Projects from '../components/home/Projects';
 import Partners from '../components/home/Partners';
 
 const Index = () => {
@@ -21,7 +20,6 @@ const Index = () => {
         <About />
         <WhatWeDo />
         <Partners />
-        <Projects />
         <HakiYanguHighlight />
         <Contact />
       </div>
