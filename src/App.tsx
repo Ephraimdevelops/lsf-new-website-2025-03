@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -28,6 +27,11 @@ import Opportunities from "./pages/Opportunities";
 import Whistleblower from "./pages/Whistleblower";
 import Admin from "./pages/Admin";
 import LegalHelp from "./pages/LegalHelp";
+import GrantMaking from "./pages/GrantMaking";
+import CapacityBuilding from "./pages/CapacityBuilding";
+import PartnershipsNetworking from "./pages/PartnershipsNetworking";
+import LearningResearch from "./pages/LearningResearch";
+import PolicyAdvocacy from "./pages/PolicyAdvocacy";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,6 +67,11 @@ const App = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/donate" element={<Donate />} />
               <Route path="/what-we-do" element={<WhatWeDo />} />
+              <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
+              <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
+              <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
+              <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
+              <Route path="/what-we-do/policy-advocacy" element={<PolicyAdvocacy />} />
               <Route path="/heroes" element={<Heroes />} />
               <Route path="/heroes/:heroId" element={<HeroDetail />} />
               <Route path="/opportunities" element={<Opportunities />} />

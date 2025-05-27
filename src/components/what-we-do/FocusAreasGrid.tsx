@@ -11,35 +11,35 @@ const FocusAreasGrid = () => {
       icon: <DollarSign className="h-6 w-6" />,
       title: 'Grant Making',
       description: 'Results-driven grants to strengthen legal empowerment — especially around land rights, property ownership, safety, and justice for women and girls.',
-      link: '/what-we-do#grant-making',
+      link: '/what-we-do/grant-making',
       color: 'primary'
     },
     {
       icon: <Users className="h-6 w-6" />,
       title: 'Capacity Building',
       description: 'LSF strengthens both institutional and technical capacity among legal aid providers, paralegals, and community-based organizations.',
-      link: '/what-we-do#capacity-building',
+      link: '/what-we-do/capacity-building',
       color: 'secondary-teal'
     },
     {
       icon: <LayoutGrid className="h-6 w-6" />,
       title: 'Partnerships & Networking',
       description: 'We collaborate with a broad ecosystem of stakeholders including government institutions, civil society, development partners, and private actors.',
-      link: '/what-we-do#partnerships-networking',
+      link: '/what-we-do/partnerships-networking',
       color: 'primary'
     },
     {
       icon: <BookOpen className="h-6 w-6" />,
       title: 'Learning and Research',
       description: 'Through continuous learning, piloting new models, and data-driven monitoring, we identify what works and improve what doesn\'t.',
-      link: '/what-we-do#learning-research',
+      link: '/what-we-do/learning-research',
       color: 'secondary-teal'
     },
     {
       icon: <Lightbulb className="h-6 w-6" />,
       title: 'Policy and Advocacy',
       description: 'Our advocacy spans grassroots to national levels — shaping inclusive laws, policies, and systems that ensure justice is a reality for all.',
-      link: '/what-we-do#policy-advocacy',
+      link: '/what-we-do/policy-advocacy',
       color: 'primary'
     },
     {
