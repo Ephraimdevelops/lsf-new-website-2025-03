@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -144,6 +143,20 @@ export default {
 					'0%, 100%': { boxShadow: '0 0 5px rgba(147, 30, 92, 0.5)' },
 					'50%': { boxShadow: '0 0 20px rgba(147, 30, 92, 0.8)' },
 				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'bounce-slow': {
+					'0%, 100%': { 
+						transform: 'translateY(-25%)',
+						animationTimingFunction: 'cubic-bezier(0.8,0,1,1)'
+					},
+					'50%': { 
+						transform: 'none',
+						animationTimingFunction: 'cubic-bezier(0,0,0.2,1)'
+					},
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -153,6 +166,8 @@ export default {
 				'slide-in': 'slide-in 0.5s ease-out forwards',
 				'scale-in': 'scale-in 0.3s ease-out forwards',
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'bounce-slow': 'bounce-slow 3s ease-in-out infinite',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
