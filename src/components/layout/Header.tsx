@@ -1,9 +1,9 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Search, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import SearchDialog from '@/components/shared/SearchDialog';
 
 // Enhanced navigation structure with detailed dropdowns
 const navigationItems = [
@@ -280,12 +280,7 @@ const Header = () => {
             
             {/* Action buttons */}
             <div className="flex items-center ml-6 space-x-3 border-l border-gray-200 pl-6">
-              <button 
-                className="p-2 rounded-full text-gray-600 hover:bg-gray-100 transition-colors"
-                aria-label="Search"
-              >
-                <Search size={20} />
-              </button>
+              <SearchDialog />
               <Link to="/legal-help">
                 <Button variant="outline" size="sm" className="font-medium">
                   Get Legal Help
@@ -386,6 +381,9 @@ const Header = () => {
               
               {/* Mobile action buttons */}
               <div className="pt-4 pb-2 flex flex-col space-y-2">
+                <div className="mb-2">
+                  <SearchDialog />
+                </div>
                 <Link to="/legal-help" className="w-full">
                   <Button variant="outline" className="w-full justify-center">
                     Get Legal Help
