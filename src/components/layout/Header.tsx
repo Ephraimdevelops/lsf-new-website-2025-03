@@ -9,7 +9,38 @@ import SearchDialog from '@/components/shared/SearchDialog';
 // Enhanced navigation structure focused on LSF's legal aid and justice work
 const navigationItems = [
   { 
-    name: 'About LSF', 
+    name: 'Impact', 
+    href: '/impact',
+    description: 'Our measurable difference in communities across Tanzania',
+    featured: {
+      title: 'Transforming Lives Through Justice',
+      description: 'See how our work creates lasting change in Tanzanian communities',
+      href: '/impact',
+      image: '/lovable-uploads/background with mother umage .png'
+    },
+    sections: [
+      {
+        title: 'Our Results',
+        links: [
+          { name: 'Impact Stories', href: '/heroes', description: 'Real stories of justice transformation' },
+          { name: 'Annual Impact Report', href: '/publications', description: 'Comprehensive yearly achievements' },
+          { name: 'Statistics & Data', href: '/impact#statistics', description: 'Quantified impact across Tanzania' },
+          { name: 'Community Outcomes', href: '/impact#outcomes', description: 'Long-term community changes' },
+        ]
+      },
+      {
+        title: 'Measurement & Learning',
+        links: [
+          { name: 'Research & Evaluation', href: '/what-we-do/learning-research', description: 'Evidence-based approach' },
+          { name: 'Best Practices', href: '/resources#guides', description: 'Proven methodologies' },
+          { name: 'Innovation Lab', href: '/projects', description: 'Experimental justice solutions' },
+          { name: 'Knowledge Sharing', href: '/resources', description: 'Learning from our work' },
+        ]
+      }
+    ]
+  },
+  { 
+    name: 'About LSF (Who We Are)', 
     href: '/about',
     description: 'Our mission, vision, and commitment to justice',
     featured: {
@@ -40,37 +71,6 @@ const navigationItems = [
     ]
   },
   { 
-    name: 'Legal Services', 
-    href: '/programs',
-    description: 'Free legal aid and empowerment programs',
-    featured: {
-      title: 'Get Legal Help',
-      description: 'Accessible justice for all Tanzanians',
-      href: '/legal-help',
-      image: '/lovable-uploads/background with mother umage .png'
-    },
-    sections: [
-      {
-        title: 'Access Legal Aid',
-        links: [
-          { name: 'Get Legal Help', href: '/legal-help', description: 'Free legal assistance and support' },
-          { name: 'All Legal Programs', href: '/programs', description: 'Comprehensive service overview' },
-          { name: 'Find a Paralegal', href: '/programs#find-paralegal', description: 'Community-based legal support' },
-          { name: 'Legal Rights Education', href: '/programs#legal-education', description: 'Know your rights workshops' },
-        ]
-      },
-      {
-        title: 'Specialized Services',
-        links: [
-          { name: 'Women\'s Legal Clinic', href: '/programs#womens-clinic', description: 'Gender-focused legal support' },
-          { name: 'Land Rights Protection', href: '/programs#land-rights', description: 'Property and inheritance law' },
-          { name: 'Family Law Support', href: '/programs#family-law', description: 'Marriage, divorce, and custody' },
-          { name: 'Criminal Justice Aid', href: '/programs#criminal-justice', description: 'Defense and victim support' },
-        ]
-      }
-    ]
-  },
-  { 
     name: 'Our Work', 
     href: '/what-we-do',
     description: 'How we strengthen access to justice across Tanzania',
@@ -91,12 +91,12 @@ const navigationItems = [
         ]
       },
       {
-        title: 'Innovation & Research',
+        title: 'Programs & Services',
         links: [
-          { name: 'Research & Learning', href: '/what-we-do/learning-research', description: 'Evidence-based solutions' },
+          { name: 'Legal Aid Programs', href: '/programs', description: 'Direct legal assistance services' },
           { name: 'Partnerships & Networks', href: '/what-we-do/partnerships-networking', description: 'Collaborative ecosystem building' },
-          { name: 'Success Stories', href: '/heroes', description: 'Real impact, real lives changed' },
           { name: 'Current Projects', href: '/projects', description: 'Active initiatives and outcomes' },
+          { name: 'Innovation & Research', href: '/what-we-do/learning-research', description: 'Evidence-based solutions' },
         ]
       }
     ]
@@ -118,16 +118,47 @@ const navigationItems = [
           { name: 'Latest News', href: '/news', description: 'Updates on justice and legal aid' },
           { name: 'Research Publications', href: '/publications', description: 'Reports and policy analysis' },
           { name: 'Legal Resource Library', href: '/resources', description: 'Guides and educational materials' },
-          { name: 'Success Stories', href: '/heroes', description: 'Justice transformation stories' },
+          { name: 'Policy Briefs', href: '/resources#policy', description: 'Advocacy and reform documents' },
         ]
       },
       {
         title: 'For Legal Professionals',
         links: [
           { name: 'Training Materials', href: '/resources#training', description: 'Capacity building resources' },
-          { name: 'Policy Briefs', href: '/resources#policy', description: 'Advocacy and reform documents' },
           { name: 'Best Practice Guides', href: '/resources#guides', description: 'Practical legal aid information' },
           { name: 'Research Database', href: '/resources#research', description: 'Academic and field studies' },
+          { name: 'Tools & Templates', href: '/resources#tools', description: 'Practical legal resources' },
+        ]
+      }
+    ]
+  },
+  { 
+    name: 'Success Stories', 
+    href: '/heroes',
+    description: 'Real stories of justice transformation in Tanzanian communities',
+    featured: {
+      title: 'Heroes of Justice',
+      description: 'Inspiring stories of lives transformed through legal empowerment',
+      href: '/heroes',
+      image: '/lovable-uploads/background with mother umage .png'
+    },
+    sections: [
+      {
+        title: 'Transformation Stories',
+        links: [
+          { name: 'All Success Stories', href: '/heroes', description: 'Complete collection of impact stories' },
+          { name: 'Women\'s Rights Victories', href: '/heroes#womens-rights', description: 'Gender justice achievements' },
+          { name: 'Land Rights Protection', href: '/heroes#land-rights', description: 'Property and inheritance victories' },
+          { name: 'Community Justice Wins', href: '/heroes#community-justice', description: 'Local dispute resolutions' },
+        ]
+      },
+      {
+        title: 'Impact Areas',
+        links: [
+          { name: 'Legal Aid Success', href: '/heroes#legal-aid', description: 'Direct assistance outcomes' },
+          { name: 'Policy Change Stories', href: '/heroes#policy-change', description: 'Systemic transformation wins' },
+          { name: 'Capacity Building Results', href: '/heroes#capacity-building', description: 'Empowerment success stories' },
+          { name: 'Partnership Achievements', href: '/heroes#partnerships', description: 'Collaborative impact stories' },
         ]
       }
     ]
@@ -261,12 +292,12 @@ const Header = () => {
             <div className="flex items-center ml-6 space-x-3 border-l border-gray-200 pl-6">
               <SearchDialog />
               <Link to="/legal-help">
-                <Button variant="outline" size="sm" className="font-medium">
+                <Button size="sm" className="font-medium bg-primary hover:bg-primary/90">
                   Get Legal Help
                 </Button>
               </Link>
               <Link to="/donate">
-                <Button size="sm" className="font-medium bg-secondary-orange hover:bg-secondary-orange/90">
+                <Button variant="outline" size="sm" className="font-medium">
                   Support Justice
                 </Button>
               </Link>
@@ -350,12 +381,12 @@ const Header = () => {
                   <SearchDialog />
                 </div>
                 <Link to="/legal-help" className="w-full">
-                  <Button variant="outline" className="w-full justify-center">
+                  <Button className="w-full justify-center bg-primary hover:bg-primary/90">
                     Get Legal Help
                   </Button>
                 </Link>
                 <Link to="/donate" className="w-full">
-                  <Button className="w-full justify-center bg-secondary-orange hover:bg-secondary-orange/90">
+                  <Button variant="outline" className="w-full justify-center">
                     Support Justice
                   </Button>
                 </Link>
