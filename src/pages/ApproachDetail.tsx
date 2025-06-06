@@ -2,7 +2,7 @@
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
-import { ArrowLeft, DollarSign, Wrench, Megaphone, BookOpen, Users, Target, CheckCircle } from 'lucide-react';
+import { ArrowLeft, DollarSign, Wrench, Megaphone, BookOpen, Users, Target, CheckCircle, Sparkles, TrendingUp, Award, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface Approach {
@@ -303,11 +303,17 @@ const ApproachDetail = () => {
   if (!approach) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Approach Not Found</h1>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+          <div className="text-center bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-gray-200/50">
+            <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Target className="h-10 w-10 text-primary" />
+            </div>
+            <h1 className="text-3xl font-bold mb-4 text-neutral-dark">Approach Not Found</h1>
+            <p className="text-neutral-gray mb-8">The approach you're looking for doesn't exist.</p>
             <Link to="/">
-              <Button>Back to Home</Button>
+              <Button className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                Back to Home
+              </Button>
             </Link>
           </div>
         </div>
@@ -317,7 +323,7 @@ const ApproachDetail = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
+      {/* Enhanced Hero Section */}
       <HeroSection
         icon={approach.icon}
         badge="Our Approach"
@@ -326,114 +332,200 @@ const ApproachDetail = () => {
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      {/* Main Content */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            {/* Back Button */}
-            <Link to="/" className="inline-flex items-center text-primary hover:underline mb-8">
-              <ArrowLeft className="h-4 w-4 mr-2" />
+      {/* Main Content with Enhanced Design */}
+      <section className="relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-0 w-96 h-96 bg-gradient-to-tl from-secondary-teal/5 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-tr from-secondary-orange/5 to-transparent rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 py-20 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            {/* Enhanced Back Button */}
+            <Link to="/" className="inline-flex items-center bg-white/70 backdrop-blur-sm text-primary hover:bg-white/90 hover:text-primary/80 px-6 py-3 rounded-xl font-semibold shadow-lg border border-gray-200/50 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 mb-12">
+              <ArrowLeft className="h-5 w-5 mr-2" />
               Back to Home
             </Link>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              {/* Main Content */}
-              <div className="lg:col-span-2 space-y-12">
-                {/* Key Features */}
-                <div>
-                  <h2 className="text-3xl font-bold mb-6 text-neutral-dark flex items-center">
-                    <Target className="h-8 w-8 text-primary mr-3" />
-                    Key Features
-                  </h2>
-                  <div className="space-y-4">
+              {/* Enhanced Main Content */}
+              <div className="lg:col-span-2 space-y-16">
+                {/* Key Features with Enhanced Design */}
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
+                  <div className="flex items-center mb-8">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mr-6">
+                      <Target className="h-8 w-8 text-primary" />
+                    </div>
+                    <div>
+                      <h2 className="text-3xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-primary bg-clip-text text-transparent">
+                        Key Features
+                      </h2>
+                      <div className="w-16 h-1 bg-gradient-to-r from-primary to-secondary-teal rounded-full mt-2"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid gap-6">
                     {approach.keyFeatures.map((feature, index) => (
-                      <div key={index} className="flex items-start">
-                        <CheckCircle className="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                        <p className="text-neutral-gray text-lg">{feature}</p>
+                      <div key={index} className="group flex items-start p-4 rounded-2xl hover:bg-gradient-to-r hover:from-primary/5 hover:to-secondary-teal/5 transition-all duration-300">
+                        <div className="w-10 h-10 bg-gradient-to-br from-secondary-teal/20 to-secondary-teal/30 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                          <CheckCircle className="h-5 w-5 text-secondary-teal" />
+                        </div>
+                        <p className="text-neutral-gray text-lg leading-relaxed">{feature}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Current Projects */}
-                <div>
-                  <h2 className="text-3xl font-bold mb-6 text-neutral-dark">Current Projects</h2>
-                  <div className="space-y-6">
+                {/* Current Projects with Enhanced Cards */}
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
+                  <div className="flex items-center mb-8">
+                    <div className="w-16 h-16 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-2xl flex items-center justify-center mr-6">
+                      <Zap className="h-8 w-8 text-secondary-teal" />
+                    </div>
+                    <div>
+                      <h2 className="text-3xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-secondary-teal bg-clip-text text-transparent">
+                        Current Projects
+                      </h2>
+                      <div className="w-16 h-1 bg-gradient-to-r from-secondary-teal to-secondary-orange rounded-full mt-2"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid gap-6">
                     {approach.currentProjects.map((project, index) => (
-                      <div key={index} className="bg-gray-50 p-6 rounded-xl">
-                        <div className="flex items-start justify-between mb-3">
-                          <h3 className="text-xl font-semibold text-neutral-dark">{project.title}</h3>
-                          <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                            project.status === 'Active' ? 'bg-green-100 text-green-800' :
-                            project.status === 'Ongoing' ? 'bg-blue-100 text-blue-800' :
-                            project.status === 'Expanding' ? 'bg-purple-100 text-purple-800' :
-                            'bg-yellow-100 text-yellow-800'
+                      <div key={index} className="group bg-gradient-to-r from-gray-50/50 to-white/50 hover:from-primary/5 hover:to-secondary-teal/5 p-6 rounded-2xl border border-gray-200/50 hover:border-secondary-teal/30 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-1">
+                        <div className="flex items-start justify-between mb-4">
+                          <h3 className="text-xl font-semibold text-neutral-dark group-hover:text-secondary-teal transition-colors duration-300">{project.title}</h3>
+                          <span className={`px-4 py-2 rounded-full text-sm font-bold shadow-md ${
+                            project.status === 'Active' ? 'bg-gradient-to-r from-green-100 to-green-200 text-green-800' :
+                            project.status === 'Ongoing' ? 'bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800' :
+                            project.status === 'Expanding' ? 'bg-gradient-to-r from-purple-100 to-purple-200 text-purple-800' :
+                            'bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800'
                           }`}>
+                            <Sparkles className="h-3 w-3 inline mr-1" />
                             {project.status}
                           </span>
                         </div>
-                        <p className="text-neutral-gray">{project.description}</p>
+                        <p className="text-neutral-gray leading-relaxed">{project.description}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Methodology */}
-                <div>
-                  <h2 className="text-3xl font-bold mb-6 text-neutral-dark">Methodology</h2>
-                  <div className="space-y-4">
+                {/* Methodology with Enhanced Design */}
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
+                  <div className="flex items-center mb-8">
+                    <div className="w-16 h-16 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-2xl flex items-center justify-center mr-6">
+                      <Target className="h-8 w-8 text-secondary-orange" />
+                    </div>
+                    <div>
+                      <h2 className="text-3xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-secondary-orange bg-clip-text text-transparent">
+                        Methodology
+                      </h2>
+                      <div className="w-16 h-1 bg-gradient-to-r from-secondary-orange to-primary rounded-full mt-2"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid gap-6">
                     {approach.methodology.map((method, index) => (
-                      <div key={index} className="flex items-start">
-                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                          <span className="text-primary font-semibold text-sm">{index + 1}</span>
+                      <div key={index} className="group flex items-start p-4 rounded-2xl hover:bg-gradient-to-r hover:from-secondary-orange/5 hover:to-primary/5 transition-all duration-300">
+                        <div className="w-12 h-12 bg-gradient-to-br from-secondary-orange/20 to-secondary-orange/30 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                          <span className="text-secondary-orange font-bold text-lg">{index + 1}</span>
                         </div>
-                        <p className="text-neutral-gray text-lg">{method}</p>
+                        <p className="text-neutral-gray text-lg leading-relaxed pt-2">{method}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Achievements */}
-                <div>
-                  <h2 className="text-3xl font-bold mb-6 text-neutral-dark">Key Achievements</h2>
-                  <div className="space-y-4">
+                {/* Achievements with Enhanced Design */}
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
+                  <div className="flex items-center mb-8">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mr-6">
+                      <Award className="h-8 w-8 text-primary" />
+                    </div>
+                    <div>
+                      <h2 className="text-3xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-primary bg-clip-text text-transparent">
+                        Key Achievements
+                      </h2>
+                      <div className="w-16 h-1 bg-gradient-to-r from-primary to-secondary-teal rounded-full mt-2"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid gap-6">
                     {approach.achievements.map((achievement, index) => (
-                      <div key={index} className="flex items-start">
-                        <div className="w-2 h-2 bg-secondary-teal rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                        <p className="text-neutral-gray text-lg">{achievement}</p>
+                      <div key={index} className="group flex items-start p-4 rounded-2xl hover:bg-gradient-to-r hover:from-primary/5 hover:to-secondary-teal/5 transition-all duration-300">
+                        <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary-teal rounded-full mt-3 mr-6 flex-shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
+                        <p className="text-neutral-gray text-lg leading-relaxed">{achievement}</p>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Sidebar */}
+              {/* Enhanced Sidebar */}
               <div className="lg:col-span-1">
                 <div className="sticky top-8 space-y-8">
-                  {/* Impact Metrics */}
-                  <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                    <h3 className="text-xl font-bold mb-6 text-neutral-dark">Impact Metrics</h3>
-                    <div className="space-y-4">
+                  {/* Impact Metrics with Enhanced Design */}
+                  <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200/50">
+                    <div className="flex items-center mb-8">
+                      <div className="w-12 h-12 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-xl flex items-center justify-center mr-4">
+                        <TrendingUp className="h-6 w-6 text-secondary-teal" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-secondary-teal bg-clip-text text-transparent">
+                        Impact Metrics
+                      </h3>
+                    </div>
+                    
+                    <div className="grid gap-6">
                       {approach.impact.map((metric, index) => (
-                        <div key={index} className="text-center p-4 bg-gradient-to-r from-primary/5 to-secondary-teal/5 rounded-lg">
-                          <div className="text-2xl font-bold text-primary mb-1">{metric.value}</div>
-                          <div className="text-sm text-neutral-gray">{metric.metric}</div>
+                        <div key={index} className="group text-center p-6 bg-gradient-to-br from-primary/5 via-secondary-teal/5 to-secondary-orange/5 hover:from-primary/10 hover:via-secondary-teal/10 hover:to-secondary-orange/10 rounded-2xl border border-gray-200/50 hover:border-secondary-teal/30 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-1">
+                          <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                            {metric.value}
+                          </div>
+                          <div className="text-sm text-neutral-gray font-semibold">{metric.metric}</div>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Future Goals */}
-                  <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                    <h3 className="text-xl font-bold mb-4 text-neutral-dark">Future Goals</h3>
-                    <div className="space-y-3">
+                  {/* Future Goals with Enhanced Design */}
+                  <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200/50">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-xl flex items-center justify-center mr-4">
+                        <Target className="h-6 w-6 text-secondary-orange" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-secondary-orange bg-clip-text text-transparent">
+                        Future Goals
+                      </h3>
+                    </div>
+                    
+                    <div className="space-y-4">
                       {approach.futureGoals.map((goal, index) => (
-                        <div key={index} className="flex items-start">
-                          <div className="w-1.5 h-1.5 bg-secondary-orange rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                          <p className="text-sm text-neutral-gray">{goal}</p>
+                        <div key={index} className="group flex items-start p-3 rounded-xl hover:bg-gradient-to-r hover:from-secondary-orange/5 hover:to-primary/5 transition-all duration-300">
+                          <div className="w-2 h-2 bg-gradient-to-r from-secondary-orange to-primary rounded-full mt-2.5 mr-4 flex-shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
+                          <p className="text-sm text-neutral-gray leading-relaxed">{goal}</p>
                         </div>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Call to Action */}
+                  <div className="bg-gradient-to-br from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200/50 text-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                      <Users className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-neutral-dark mb-4">Get Involved</h3>
+                    <p className="text-sm text-neutral-gray mb-6 leading-relaxed">
+                      Join us in advancing this approach and creating lasting impact in Tanzania's justice landscape.
+                    </p>
+                    <Link to="/contact">
+                      <Button className="w-full bg-gradient-to-r from-primary to-secondary-teal hover:from-primary/90 hover:to-secondary-teal/90 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        Contact Us
+                        <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
