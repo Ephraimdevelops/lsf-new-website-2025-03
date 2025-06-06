@@ -25,7 +25,6 @@ const Index = () => {
         <Partners />
         <KeyPrinciples />
         <HakiYanguHighlight />
-        <Contact />
       </div>
     </Layout>
   );
