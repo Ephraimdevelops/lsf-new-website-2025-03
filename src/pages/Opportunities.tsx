@@ -129,17 +129,29 @@ const Opportunities = () => {
                     
                     <h4 className="font-semibold text-neutral-dark mb-2">Key Requirements:</h4>
                     <ul className="text-sm text-neutral-gray space-y-1 mb-6">
-                      {opportunity.requirements.map((req, index) => (
+                      {opportunity.requirements.slice(0, 3).map((req, index) => (
                         <li key={index} className="flex items-start">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
                           {req}
                         </li>
                       ))}
+                      {opportunity.requirements.length > 3 && (
+                        <li className="text-primary text-sm">
+                          +{opportunity.requirements.length - 3} more requirements
+                        </li>
+                      )}
                     </ul>
                     
-                    <Button className="w-full bg-primary hover:bg-primary-dark">
-                      Apply Now
-                    </Button>
+                    <div className="flex gap-2">
+                      <Link to={`/opportunities/${opportunity.id}`} className="flex-1">
+                        <Button className="w-full bg-primary hover:bg-primary-dark">
+                          View Details
+                        </Button>
+                      </Link>
+                      <Button variant="outline" className="px-4">
+                        Apply Now
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>

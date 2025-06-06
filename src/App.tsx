@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -24,6 +25,8 @@ import WhatWeDo from "./pages/WhatWeDo";
 import Heroes from "./pages/Heroes";
 import HeroDetail from "./pages/HeroDetail";
 import Opportunities from "./pages/Opportunities";
+import OpportunityDetail from "./pages/OpportunityDetail";
+import Impact from "./pages/Impact";
 import Whistleblower from "./pages/Whistleblower";
 import Admin from "./pages/Admin";
 import LegalHelp from "./pages/LegalHelp";
@@ -75,6 +78,8 @@ const App = () => {
               <Route path="/heroes" element={<Heroes />} />
               <Route path="/heroes/:heroId" element={<HeroDetail />} />
               <Route path="/opportunities" element={<Opportunities />} />
+              <Route path="/opportunities/:opportunityId" element={<OpportunityDetail />} />
+              <Route path="/impact" element={<Impact />} />
               <Route path="/whistleblower" element={<Whistleblower />} />
               <Route path="/legal-help" element={<LegalHelp />} />
               <Route path="/admin/*" element={<Admin />} />

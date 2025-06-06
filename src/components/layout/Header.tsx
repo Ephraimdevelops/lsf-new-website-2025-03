@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
@@ -6,8 +5,39 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 
-// Enhanced navigation structure with detailed dropdowns
+// Enhanced navigation structure with reordered items and updated dropdowns
 const navigationItems = [
+  { 
+    name: 'About', 
+    href: '/about',
+    description: 'Our mission and commitment to justice',
+    featured: {
+      title: 'Our Story',
+      description: 'Empowering communities through legal aid since 2011',
+      href: '/about',
+      image: '/lovable-uploads/background with mother umage .png'
+    },
+    sections: [
+      {
+        title: 'Who We Are',
+        links: [
+          { name: 'Who We Are', href: '/about', description: 'Mission, vision, and history' },
+          { name: 'Our Team', href: '/team', description: 'Leadership and staff' },
+          { name: 'Partners', href: '/partners', description: 'Collaborating organizations' },
+          { name: 'Contact Us', href: '/contact', description: 'Get in touch' },
+        ]
+      },
+      {
+        title: 'Engagement',
+        links: [
+          { name: 'Opportunities', href: '/opportunities', description: 'Career and volunteer options' },
+          { name: 'Board & Leadership', href: '/team#leadership', description: 'Governance structure' },
+          { name: 'Annual Reports', href: '/publications', description: 'Transparency reports' },
+          { name: 'Contact', href: '/contact', description: 'Connect with us' },
+        ]
+      }
+    ]
+  },
   { 
     name: 'Our Work', 
     href: '/what-we-do',
@@ -20,7 +50,7 @@ const navigationItems = [
     },
     sections: [
       {
-        title: 'Strategic Approaches',
+        title: 'Approaches',
         links: [
           { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Funding for justice organizations' },
           { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening legal aid providers' },
@@ -29,12 +59,12 @@ const navigationItems = [
         ]
       },
       {
-        title: 'Our Impact',
+        title: 'Focus',
         links: [
           { name: 'What We Do', href: '/what-we-do', description: 'Our comprehensive approach' },
           { name: 'Programs', href: '/programs', description: 'Active program portfolio' },
+          { name: 'Projects', href: '/projects', description: 'Current initiatives' },
           { name: 'Success Stories', href: '/heroes', description: 'Real impact stories' },
-          { name: 'Annual Reports', href: '/publications', description: 'Transparency and results' },
         ]
       }
     ]
@@ -66,37 +96,6 @@ const navigationItems = [
           { name: 'Publications', href: '/publications', description: 'Reports and findings' },
           { name: 'Policy Impact', href: '/what-we-do/policy-advocacy', description: 'Systemic change results' },
           { name: 'Community Outcomes', href: '/heroes', description: 'Real-world impact' },
-        ]
-      }
-    ]
-  },
-  { 
-    name: 'About', 
-    href: '/about',
-    description: 'Our mission and commitment to justice',
-    featured: {
-      title: 'Our Story',
-      description: 'Empowering communities through legal aid since 2011',
-      href: '/about',
-      image: '/lovable-uploads/background with mother umage .png'
-    },
-    sections: [
-      {
-        title: 'Who We Are',
-        links: [
-          { name: 'Who We Are', href: '/about', description: 'Mission, vision, and history' },
-          { name: 'Our Team', href: '/team', description: 'Leadership and staff' },
-          { name: 'Partners', href: '/partners', description: 'Collaborating organizations' },
-          { name: 'Contact Us', href: '/contact', description: 'Get in touch' },
-        ]
-      },
-      {
-        title: 'Engagement',
-        links: [
-          { name: 'Opportunities', href: '/opportunities', description: 'Career and volunteer options' },
-          { name: 'Board & Leadership', href: '/team#leadership', description: 'Governance structure' },
-          { name: 'Annual Reports', href: '/publications', description: 'Transparency reports' },
-          { name: 'Contact', href: '/contact', description: 'Connect with us' },
         ]
       }
     ]
