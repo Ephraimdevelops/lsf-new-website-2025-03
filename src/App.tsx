@@ -16,6 +16,8 @@ import PublicationDetail from "./pages/PublicationDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Team from "./pages/Team";
+import TeamDetail from "./pages/TeamDetail";
+import BoardDetail from "./pages/BoardDetail";
 import Partners from "./pages/Partners";
 import Resources from "./pages/Resources";
 import Programs from "./pages/Programs";
@@ -35,6 +37,8 @@ import CapacityBuilding from "./pages/CapacityBuilding";
 import PartnershipsNetworking from "./pages/PartnershipsNetworking";
 import LearningResearch from "./pages/LearningResearch";
 import PolicyAdvocacy from "./pages/PolicyAdvocacy";
+import FocusAreaDetail from "./pages/FocusAreaDetail";
+import ApproachDetail from "./pages/ApproachDetail";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -58,6 +62,8 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/team" element={<Team />} />
+              <Route path="/team/:teamId" element={<TeamDetail />} />
+              <Route path="/board/:boardId" element={<BoardDetail />} />
               <Route path="/partners" element={<Partners />} />
               <Route path="/news" element={<News />} />
               <Route path="/news/:newsId" element={<NewsDetail />} />
@@ -75,6 +81,8 @@ const App = () => {
               <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
               <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
               <Route path="/what-we-do/policy-advocacy" element={<PolicyAdvocacy />} />
+              <Route path="/focus-areas/:focusAreaId" element={<FocusAreaDetail />} />
+              <Route path="/approach/:approachId" element={<ApproachDetail />} />
               <Route path="/heroes" element={<Heroes />} />
               <Route path="/heroes/:heroId" element={<HeroDetail />} />
               <Route path="/opportunities" element={<Opportunities />} />
