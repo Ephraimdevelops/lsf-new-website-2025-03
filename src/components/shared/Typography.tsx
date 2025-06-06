@@ -18,11 +18,10 @@ const Typography = ({
 }: TypographyProps) => {
   const baseClasses = typography.classes[variant];
   
-  // Font family mapping based on variant
+  // Updated font family mapping for Merriweather Sans (headings) and Calibri (descriptions)
   const getFontFamily = (variant: TypographyVariant): string => {
     switch (variant) {
       case 'display':
-        return 'font-display'; // Avenir
       case 'h1':
       case 'h2':
       case 'h3':
@@ -30,11 +29,10 @@ const Typography = ({
         return 'font-heading'; // Merriweather Sans
       case 'body':
       case 'bodySmall':
-        return 'font-body'; // akzidenz-grotesk
       case 'overline':
       case 'caption':
       case 'small':
-        return 'font-body'; // akzidenz-grotesk
+        return 'font-sans'; // Calibri
       default:
         return 'font-sans'; // Calibri
     }
@@ -56,7 +54,6 @@ const Typography = ({
   const elementType = as || defaultElements[variant];
   const fontFamily = getFontFamily(variant);
 
-  // Create the element using React.createElement to avoid the undefined component issue
   const Element = elementType as keyof JSX.IntrinsicElements;
 
   return (

@@ -1,10 +1,10 @@
 
 export const typography = {
-  // Font families
+  // Font families - Updated for Merriweather Sans and Calibri
   fonts: {
-    display: ['Avenir', 'system-ui', 'sans-serif'],
     heading: ['Merriweather Sans', 'system-ui', 'sans-serif'],
-    body: ['akzidenz-grotesk', 'Arial', 'Helvetica', 'sans-serif'],
+    body: ['Calibri', 'system-ui', 'sans-serif'],
+    display: ['Merriweather Sans', 'system-ui', 'sans-serif'],
     sans: ['Calibri', 'system-ui', 'sans-serif'],
   },
 
@@ -38,7 +38,7 @@ export const typography = {
     body: {
       fontSize: '20px',
       lineHeight: '35px',
-      fontWeight: 300, // light
+      fontWeight: 400, // normal
     },
     bodySmall: {
       fontSize: '16px',
@@ -69,7 +69,7 @@ export const typography = {
     h2: 'text-[32px] font-bold leading-[36px]',
     h3: 'text-[24px] font-semibold leading-[28px]',
     h4: 'text-[20px] font-semibold leading-[24px]',
-    body: 'text-[20px] font-light leading-[35px]',
+    body: 'text-[20px] font-normal leading-[35px]',
     bodySmall: 'text-[16px] font-normal leading-[24px]',
     overline: 'text-[14px] font-bold leading-[18px] uppercase tracking-wider',
     caption: 'text-[14px] font-normal leading-[18px]',

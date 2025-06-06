@@ -3,23 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700;800&family=Calibri:wght@400;700&display=swap');
-
-@font-face {
-  font-family: 'Panton Narrow';
-  src: url('/fonts/PantonNarrow.woff2') format('woff2'),
-       url('/fonts/PantonNarrow-Bold.woff2') format('woff2');
-  font-weight: 400 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham.woff2') format('woff2'),
-       url('/fonts/Gotham-Bold.woff2') format('woff2');
-  font-weight: 400 900;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @font-face {
   font-family: 'Calibri';
@@ -97,10 +81,6 @@ body {
 }
 
 /* Typography Hierarchy */
-.font-display {
-  font-family: 'Panton Narrow', 'system-ui', 'sans-serif';
-}
-
 .font-heading {
   font-family: 'Merriweather Sans', 'system-ui', 'sans-serif';
 }
@@ -124,19 +104,19 @@ body {
 @layer components {
   /* Enhanced Button Variants */
   .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 font-heading;
   }
   
   .btn-secondary {
-    @apply bg-secondary-teal hover:bg-secondary-teal/90 active:bg-secondary-teal/80 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+    @apply bg-secondary-teal hover:bg-secondary-teal/90 active:bg-secondary-teal/80 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 font-heading;
   }
 
   .btn-outline {
-    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white active:bg-primary-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white active:bg-primary-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-heading;
   }
 
   .btn-ghost {
-    @apply text-primary-500 hover:bg-primary-50 active:bg-primary-100 px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    @apply text-primary-500 hover:bg-primary-50 active:bg-primary-100 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-heading;
   }
   
   /* Enhanced Card Variants */
