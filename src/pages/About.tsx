@@ -63,6 +63,11 @@ const About = () => {
  
        {/* Interactive Timeline */}
       <InteractiveTimeline />
+            {/* Animated Stats Section */}
+      <AnimatedStats />
+
+      {/* Testimonial Carousel */}
+      <TestimonialCarousel />
      {/* Vision & Mission Section - Enhanced */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
@@ -169,11 +174,7 @@ const About = () => {
 
        <ImpactHighlight />
 
-      {/* Animated Stats Section */}
-      <AnimatedStats />
 
-      {/* Testimonial Carousel */}
-      <TestimonialCarousel />
 
       {/* Core Values Section - Enhanced */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
