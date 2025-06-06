@@ -6,21 +6,32 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 
-// Simplified navigation structure - single column, essential links only
+// Optimized navigation structure - focused on essential, clear navigation paths
 const navigationItems = [
+  { 
+    name: 'Our Work', 
+    href: '/what-we-do',
+    description: 'How we strengthen access to justice',
+    links: [
+      { name: 'Grant Making', href: '/what-we-do/grant-making' },
+      { name: 'Capacity Building', href: '/what-we-do/capacity-building' },
+      { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy' },
+      { name: 'Learning & Research', href: '/what-we-do/learning-research' },
+    ]
+  },
   { 
     name: 'Impact', 
     href: '/impact',
     description: 'Our measurable difference in communities',
     links: [
-      { name: 'Impact Stories', href: '/heroes' },
+      { name: 'Success Stories', href: '/heroes' },
       { name: 'Annual Reports', href: '/publications' },
       { name: 'Statistics & Data', href: '/impact#statistics' },
-      { name: 'Research & Evaluation', href: '/what-we-do/learning-research' },
+      { name: 'Programs', href: '/programs' },
     ]
   },
   { 
-    name: 'About LSF', 
+    name: 'About', 
     href: '/about',
     description: 'Our mission and commitment to justice',
     links: [
@@ -31,36 +42,14 @@ const navigationItems = [
     ]
   },
   { 
-    name: 'Our Work', 
-    href: '/what-we-do',
-    description: 'How we strengthen access to justice',
-    links: [
-      { name: 'Grant Making', href: '/what-we-do/grant-making' },
-      { name: 'Capacity Building', href: '/what-we-do/capacity-building' },
-      { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy' },
-      { name: 'Programs', href: '/programs' },
-    ]
-  },
-  { 
     name: 'Resources', 
     href: '/resources',
-    description: 'Legal resources and research',
+    description: 'News, publications and legal resources',
     links: [
       { name: 'Latest News', href: '/news' },
       { name: 'Publications', href: '/publications' },
       { name: 'Legal Resources', href: '/resources' },
-      { name: 'Training Materials', href: '/resources#training' },
-    ]
-  },
-  { 
-    name: 'Success Stories', 
-    href: '/heroes',
-    description: 'Real stories of justice transformation',
-    links: [
-      { name: 'All Stories', href: '/heroes' },
-      { name: 'Women\'s Rights', href: '/heroes#womens-rights' },
-      { name: 'Land Rights', href: '/heroes#land-rights' },
-      { name: 'Community Justice', href: '/heroes#community-justice' },
+      { name: 'Opportunities', href: '/opportunities' },
     ]
   },
 ];
@@ -130,7 +119,7 @@ const Header = () => {
                   <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
                 </button>
                 
-                {/* Simplified Single Column Dropdown */}
+                {/* Single Column Dropdown */}
                 <div className="absolute left-0 mt-1 w-80 rounded-xl shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
                   <div className="p-6">
                     <div className="mb-4">
