@@ -1,355 +1,162 @@
 
-import { useState } from 'react';
-import { Search, Filter, FileText, Download, Book } from 'lucide-react';
 import Layout from '../components/layout/Layout';
+import HeroSection from '../components/shared/HeroSection';
+import CategoryCard from '../components/shared/CategoryCard';
+import { Button } from '@/components/ui/button';
+import { FileText, Search, Download, Book, Users, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-interface ResourceProps {
-  title: string;
-  description: string;
-  type: string;
-  category: string;
-  date: string;
-  downloadUrl: string;
-  thumbnailUrl: string;
-}
-
-const ResourceCard = ({ title, description, type, category, date, downloadUrl, thumbnailUrl }: ResourceProps) => {
-  return (
-    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg flex flex-col h-full">
-      <div className="relative h-48 overflow-hidden border-b">
-        <img 
-          src={thumbnailUrl} 
-          alt={title} 
-          className="w-full h-full object-cover"
-        />
-        <span className="absolute top-3 left-3 bg-primary text-white text-xs font-bold uppercase py-1 px-2 rounded">
-          {category}
-        </span>
-        <span className="absolute top-3 right-3 bg-white text-neutral-dark text-xs font-bold uppercase py-1 px-2 rounded shadow">
-          {type}
-        </span>
-      </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <p className="text-sm text-neutral-gray mb-2">{date}</p>
-        <h3 className="text-xl font-bold mb-3">{title}</h3>
-        <p className="text-neutral-gray mb-4 flex-grow">{description}</p>
-        <a 
-          href={downloadUrl}
-          className="inline-flex items-center text-primary font-medium hover:underline mt-auto"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Download
-          <Download className="ml-1 h-4 w-4" />
-        </a>
-      </div>
-    </div>
-  );
-};
-
 const Resources = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-  const [activeType, setActiveType] = useState<string>('All');
-  
-  const categories = ['All', 'Climate Justice', 'Digital Transformation', 'Gender Justice', 'Legal Empowerment'];
-  const types = ['All', 'Report', 'Research', 'Policy Brief', 'Guide', 'Case Study', 'Toolkit'];
-
-  // Resources data
-  const resourcesData: ResourceProps[] = [
+  const resourceCategories = [
     {
-      title: "Access to Justice in Tanzania: Annual Report 2023",
-      description: "This comprehensive report provides an overview of the state of access to justice in Tanzania, highlighting key challenges, achievements, and recommendations for future interventions.",
-      type: "Report",
-      category: "Legal Empowerment",
-      date: "March 2023",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      title: "Legal Empowerment",
+      description: "Reports, guides, and tools on legal aid, paralegals, and access to justice",
+      imageUrl: "https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      resourceCount: 15,
+      linkTo: "/resources/legal-empowerment"
     },
     {
-      title: "Gender-Based Violence and Access to Justice: A Study of Rural Communities",
-      description: "This research examines the prevalence of gender-based violence in rural Tanzania and assesses the effectiveness of legal aid services in addressing these issues.",
-      type: "Research",
-      category: "Gender Justice",
-      date: "November 2022",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1573497019949-b08c40365c71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      title: "Gender Justice",
+      description: "Resources on women's rights, gender-based violence, and gender equality",
+      imageUrl: "https://images.unsplash.com/photo-1573497019949-b08c40365c71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      resourceCount: 8,
+      linkTo: "/resources/gender-justice"
     },
     {
-      title: "Climate Change and Land Rights: Legal Implications for Coastal Communities",
-      description: "This policy brief analyzes how climate change is affecting land rights in coastal communities and proposes legal solutions to address emerging challenges.",
-      type: "Policy Brief",
-      category: "Climate Justice",
-      date: "September 2022",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      title: "Climate Justice",
+      description: "Publications on environmental rights, climate adaptation, and resilience",
+      imageUrl: "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      resourceCount: 6,
+      linkTo: "/resources/climate-justice"
     },
     {
-      title: "Digital Tools for Legal Aid Providers: A Handbook",
-      description: "This practical handbook guides legal aid providers on how to effectively use digital tools to enhance their services and reach more clients, especially in remote areas.",
-      type: "Guide",
-      category: "Digital Transformation",
-      date: "July 2022",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      title: "Digital Transformation",
+      description: "Resources on technology for legal services and digital justice solutions",
+      imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      resourceCount: 4,
+      linkTo: "/resources/digital-transformation"
     },
     {
-      title: "The Impact of Paralegal Programs in Tanzania: 10 Years of LSF Support",
-      description: "This evaluation report assesses the impact of LSF's support to paralegal programs across Tanzania over the past decade and identifies lessons learned for future programming.",
-      type: "Report",
-      category: "Legal Empowerment",
-      date: "May 2022",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      title: "Publications",
+      description: "Academic papers, research studies, and comprehensive reports",
+      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      resourceCount: 12,
+      linkTo: "/publications"
     },
     {
-      title: "Customary Law and Women's Rights to Land: Reconciling Traditional Practices with Constitutional Guarantees",
-      description: "This study examines the tensions between customary law and constitutional provisions regarding women's rights to land and proposes approaches for reconciliation.",
-      type: "Research",
-      category: "Gender Justice",
-      date: "February 2022",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "A Guide to Climate Justice Advocacy in Tanzania",
-      description: "This toolkit provides practical guidance for advocates working on climate justice issues in Tanzania, with a focus on legal strategies and community mobilization.",
-      type: "Toolkit",
-      category: "Climate Justice",
-      date: "October 2021",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Digital Transformation in Legal Aid: Case Studies from Tanzania",
-      description: "This publication presents case studies of successful digital transformation initiatives in legal aid provision across Tanzania.",
-      type: "Case Study",
-      category: "Digital Transformation",
-      date: "August 2021",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1496307653780-42ee777d4833?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Legal Aid Baseline Survey Report",
-      description: "This report presents findings from a comprehensive baseline survey of legal aid services in Tanzania, identifying gaps and opportunities for intervention.",
-      type: "Report",
-      category: "Legal Empowerment",
-      date: "June 2021",
-      downloadUrl: "#",
-      thumbnailUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      title: "Policy Briefs",
+      description: "Concise policy recommendations and analysis documents",
+      imageUrl: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      resourceCount: 9,
+      linkTo: "/resources/policy-briefs"
     }
   ];
-  
-  // Filter resources based on search and filters
-  const filteredResources = resourcesData.filter(resource => {
-    const matchesSearch = resource.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         resource.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === 'All' || resource.category === activeCategory;
-    const matchesType = activeType === 'All' || resource.type === activeType;
-    
-    return matchesSearch && matchesCategory && matchesType;
-  });
 
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-primary pattern-bg text-white py-16 md:py-24">
+      <HeroSection
+        icon={<FileText className="h-8 w-8" />}
+        badge="Knowledge Hub"
+        title="Resources & Publications"
+        description="Access our comprehensive collection of research, reports, guides, and tools designed to advance legal empowerment and access to justice across Tanzania."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
+
+      {/* Search Section */}
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Resources</h1>
-            <p className="text-xl opacity-90">
-              Access our research findings, policy briefs, reports, and educational resources on legal empowerment, gender justice, climate justice, and digital transformation.
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Find What You Need</h2>
+            <p className="text-neutral-gray mb-8">
+              Search through our extensive library of resources or browse by category
             </p>
+            <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+              <div className="relative flex-grow">
+                <input
+                  type="text"
+                  placeholder="Search resources, publications, reports..."
+                  className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              </div>
+              <Button size="lg" className="px-8">
+                Search
+              </Button>
+            </div>
           </div>
         </div>
       </section>
-      
-      {/* Resources Categories */}
-      <section className="py-16">
+
+      {/* Categories Grid */}
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Browse Resources by Category</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <Link to="/resources?category=legal-empowerment" className="group">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-100 h-full">
-                <div className="h-40 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                    alt="Legal Empowerment Resources" 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold mb-2">Legal Empowerment</h3>
-                  <p className="text-neutral-gray mb-4">Reports, guides, and tools on legal aid, paralegals, and access to justice</p>
-                  <div className="flex items-center justify-center">
-                    <FileText className="h-5 w-5 text-primary mr-2" />
-                    <span className="text-sm font-medium">{resourcesData.filter(r => r.category === 'Legal Empowerment').length} resources</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            
-            <Link to="/resources?category=gender-justice" className="group">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-100 h-full">
-                <div className="h-40 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1573497019949-b08c40365c71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                    alt="Gender Justice Resources" 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold mb-2">Gender Justice</h3>
-                  <p className="text-neutral-gray mb-4">Resources on women's rights, gender-based violence, and gender equality</p>
-                  <div className="flex items-center justify-center">
-                    <FileText className="h-5 w-5 text-primary mr-2" />
-                    <span className="text-sm font-medium">{resourcesData.filter(r => r.category === 'Gender Justice').length} resources</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            
-            <Link to="/resources?category=climate-justice" className="group">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-100 h-full">
-                <div className="h-40 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1470058869958-2a77ade41c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                    alt="Climate Justice Resources" 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold mb-2">Climate Justice</h3>
-                  <p className="text-neutral-gray mb-4">Publications on environmental rights, climate adaptation, and resilience</p>
-                  <div className="flex items-center justify-center">
-                    <FileText className="h-5 w-5 text-primary mr-2" />
-                    <span className="text-sm font-medium">{resourcesData.filter(r => r.category === 'Climate Justice').length} resources</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            
-            <Link to="/resources?category=digital-transformation" className="group">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-100 h-full">
-                <div className="h-40 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                    alt="Digital Transformation Resources" 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold mb-2">Digital Transformation</h3>
-                  <p className="text-neutral-gray mb-4">Resources on technology for legal services and digital justice solutions</p>
-                  <div className="flex items-center justify-center">
-                    <FileText className="h-5 w-5 text-primary mr-2" />
-                    <span className="text-sm font-medium">{resourcesData.filter(r => r.category === 'Digital Transformation').length} resources</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
+          <div className="text-center mb-16">
+            <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-2 rounded-full mb-4">
+              Browse by Category
+            </span>
+            <h2 className="text-4xl font-bold mb-6">Resource Categories</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary-teal mx-auto rounded-full mb-6"></div>
+            <p className="text-lg text-neutral-gray max-w-3xl mx-auto">
+              Explore our organized collection of resources across different focus areas and document types
+            </p>
           </div>
           
-          {/* Search and Filter */}
-          <div className="bg-white p-6 rounded-lg shadow-md mb-12">
-            <div className="mb-6">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search resources..."
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Filter by Category:</label>
-                <div className="flex flex-wrap gap-2">
-                  {categories.map(category => (
-                    <button
-                      key={category}
-                      className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                        activeCategory === category 
-                          ? 'bg-primary text-white' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                      onClick={() => setActiveCategory(category)}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-2">Filter by Type:</label>
-                <div className="flex flex-wrap gap-2">
-                  {types.map(type => (
-                    <button
-                      key={type}
-                      className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                        activeType === type 
-                          ? 'bg-primary text-white' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                      onClick={() => setActiveType(type)}
-                    >
-                      {type}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Resources Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredResources.map((resource, index) => (
-              <ResourceCard
+            {resourceCategories.map((category, index) => (
+              <CategoryCard
                 key={index}
-                title={resource.title}
-                description={resource.description}
-                type={resource.type}
-                category={resource.category}
-                date={resource.date}
-                downloadUrl={resource.downloadUrl}
-                thumbnailUrl={resource.thumbnailUrl}
+                title={category.title}
+                description={category.description}
+                imageUrl={category.imageUrl}
+                resourceCount={category.resourceCount}
+                linkTo={category.linkTo}
               />
             ))}
           </div>
-          
-          {filteredResources.length === 0 && (
-            <div className="text-center py-12">
-              <FileText className="mx-auto h-16 w-16 text-gray-300" />
-              <h3 className="mt-4 text-xl font-bold">No resources found</h3>
-              <p className="mt-2 text-neutral-gray">Try adjusting your search or filters</p>
+        </div>
+      </section>
+
+      {/* Impact Stats */}
+      <section className="py-16 bg-gradient-to-br from-primary to-secondary-teal">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-white text-center">
+            <div>
+              <Users className="h-12 w-12 mx-auto mb-4 opacity-90" />
+              <div className="text-4xl font-bold mb-2">50,000+</div>
+              <div className="text-lg opacity-90">Research Participants</div>
             </div>
-          )}
-          
-          {/* Publications and Research Section */}
-          <div className="mt-16 pt-16 border-t border-gray-200">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Publications & Research</h2>
-              <p className="text-neutral-gray max-w-2xl mx-auto">
-                Explore our in-depth publications, research papers, and academic collaborations.
-              </p>
+            <div>
+              <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-90" />
+              <div className="text-4xl font-bold mb-2">15+</div>
+              <div className="text-lg opacity-90">Policy Changes Influenced</div>
             </div>
-            
-            <div className="flex justify-center">
-              <Link 
-                to="/publications" 
-                className="bg-primary text-white hover:bg-primary/90 px-8 py-3 rounded-md font-bold transition-colors duration-300 inline-flex items-center"
-              >
-                View Publications Library
-                <Book className="ml-2 h-5 w-5" />
-              </Link>
+            <div>
+              <Download className="h-12 w-12 mx-auto mb-4 opacity-90" />
+              <div className="text-4xl font-bold mb-2">100K+</div>
+              <div className="text-lg opacity-90">Downloads This Year</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Access */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-8">Quick Access</h2>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link to="/publications">
+              <Button size="lg" className="px-8 py-4">
+                <Book className="mr-2 h-5 w-5" />
+                View All Publications
+              </Button>
+            </Link>
+            <Link to="/resources/latest">
+              <Button size="lg" variant="outline" className="px-8 py-4">
+                <FileText className="mr-2 h-5 w-5" />
+                Latest Resources
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

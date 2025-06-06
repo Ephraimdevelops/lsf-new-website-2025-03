@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, Download, Calendar, Users, TrendingUp } from 'lucide-react';
 import { dataService } from '@/services/dataService';
+import ResourceCard from '../shared/ResourceCard';
 
 const Publications = () => {
   const featuredPublications = dataService.getPublications(3, true);
@@ -32,77 +33,24 @@ const Publications = () => {
           </Link>
         </div>
         
-        {/* Publications Grid - More compact */}
+        {/* Publications Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {featuredPublications.map((publication, index) => (
-            <div 
-              key={publication.id} 
-              className="group transform hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group-hover:border-secondary-teal/20 h-full">
-                {/* Image Section */}
-                <div className="relative h-40 overflow-hidden">
-                  <img 
-                    src={publication.image} 
-                    alt={publication.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  
-                  {/* Publication Type Badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-white/90 text-secondary-teal">
-                      <FileText size={10} className="mr-1" />
-                      {publication.type.replace('-', ' ').toUpperCase()}
-                    </span>
-                  </div>
-                  
-                  {/* Date */}
-                  <div className="absolute bottom-3 left-3 text-white">
-                    <div className="flex items-center text-xs">
-                      <Calendar size={12} className="mr-1" />
-                      {new Date(publication.date).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'short'
-                      })}
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Content Section */}
-                <div className="p-5">
-                  <h3 className="text-lg font-bold mb-2 text-neutral-dark line-clamp-2 group-hover:text-secondary-teal transition-colors duration-300">
-                    {publication.title}
-                  </h3>
-                  
-                  <p className="text-neutral-gray mb-4 line-clamp-2 text-sm leading-relaxed">
-                    {publication.excerpt}
-                  </p>
-                  
-                  {/* Action Buttons */}
-                  <div className="flex items-center justify-between">
-                    <Link 
-                      to={`/publications/${publication.id}`}
-                      className="inline-flex items-center text-secondary-teal font-semibold text-sm hover:text-secondary-teal/80 transition-colors group/link"
-                    >
-                      Read More
-                      <ArrowRight className="ml-1 h-3 w-3 group-hover/link:translate-x-1 transition-transform" />
-                    </Link>
-                    
-                    {publication.downloadUrl && (
-                      <a 
-                        href={publication.downloadUrl}
-                        className="inline-flex items-center px-3 py-1 rounded text-xs bg-secondary-teal/10 text-secondary-teal hover:bg-secondary-teal hover:text-white transition-all duration-300"
-                        download
-                      >
-                        <Download size={12} className="mr-1" />
-                        PDF
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
+          {featuredPublications.map((publication) => (
+            <ResourceCard
+              key={publication.id}
+              id={publication.id}
+              title={publication.title}
+              description={publication.excerpt}
+              type={publication.type.replace('-', ' ')}
+              category="Publication"
+              date={new Date(publication.date).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short'
+              })}
+              downloadUrl={publication.downloadUrl}
+              thumbnailUrl={publication.image}
+              linkTo={`/publications/${publication.id}`}
+            />
           ))}
         </div>
         
