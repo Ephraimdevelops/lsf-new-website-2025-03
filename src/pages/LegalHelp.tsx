@@ -136,84 +136,7 @@ const LegalHelp = () => {
           </div>
         </div>
       </section>
-      
-      {/* Key Services Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">How We Can Help You</h2>
-            <p className="text-lg text-neutral-dark">
-              Our network of trained paralegals and legal aid organizations provides various services to help you resolve your legal issues
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
-              <div className="bg-secondary-teal/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Legal Information</h3>
-              <p className="text-neutral-dark">
-                Get accurate information about your legal rights and procedures in clear, simple language
-              </p>
-            </div>
-            
-            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
-              <div className="bg-primary/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Legal Advice</h3>
-              <p className="text-neutral-dark">
-                Receive guidance from trained paralegals on how to address your specific legal situation
-              </p>
-            </div>
-            
-            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
-              <div className="bg-secondary-orange/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Document Assistance</h3>
-              <p className="text-neutral-dark">
-                Get help preparing legal documents, forms, and applications for various procedures
-              </p>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8">
-            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
-              <div className="bg-secondary-green/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Community Mediation</h3>
-              <p className="text-neutral-dark">
-                Resolve disputes through facilitated discussions led by community paralegals without going to court
-              </p>
-            </div>
-            
-            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
-              <div className="bg-secondary-yellow/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Legal Referrals</h3>
-              <p className="text-neutral-dark">
-                Get connected with specialized legal services, lawyers, or organizations for complex cases
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Find a Paralegal Section */}
+        {/* Find a Paralegal Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto mb-12">
@@ -311,6 +234,84 @@ const LegalHelp = () => {
           </div>
         </div>
       </section>
+      
+      {/* Key Services Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">How We Can Help You</h2>
+            <p className="text-lg text-neutral-dark">
+              Our network of trained paralegals and legal aid organizations provides various services to help you resolve your legal issues
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
+              <div className="bg-secondary-teal/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-2">Legal Information</h3>
+              <p className="text-neutral-dark">
+                Get accurate information about your legal rights and procedures in clear, simple language
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
+              <div className="bg-primary/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-2">Legal Advice</h3>
+              <p className="text-neutral-dark">
+                Receive guidance from trained paralegals on how to address your specific legal situation
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
+              <div className="bg-secondary-orange/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-2">Document Assistance</h3>
+              <p className="text-neutral-dark">
+                Get help preparing legal documents, forms, and applications for various procedures
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8">
+            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
+              <div className="bg-secondary-green/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-2">Community Mediation</h3>
+              <p className="text-neutral-dark">
+                Resolve disputes through facilitated discussions led by community paralegals without going to court
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition-shadow">
+              <div className="bg-secondary-yellow/10 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-2">Legal Referrals</h3>
+              <p className="text-neutral-dark">
+                Get connected with specialized legal services, lawyers, or organizations for complex cases
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    
       
       {/* Common Legal Issues Section */}
       <section className="py-16 bg-white">
