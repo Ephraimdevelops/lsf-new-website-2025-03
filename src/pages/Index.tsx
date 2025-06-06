@@ -10,6 +10,7 @@ import HakiYanguHighlight from '../components/home/HakiYanguHighlight';
 import Contact from '../components/home/Contact';
 import CompactNewsUpdates from '../components/home/CompactNewsUpdates';
 import Partners from '../components/home/Partners';
+import Publications from '../components/home/Publications';
 
 const Index = () => {
   return (
@@ -21,7 +22,9 @@ const Index = () => {
         <About />
         <FocusAreas />
         <WhatWeDo />
+        <Publications />
         <Partners />
+        <KeyPrinciples />
         <HakiYanguHighlight />
         <Contact />
       </div>
