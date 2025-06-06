@@ -22,7 +22,6 @@ const Index = () => {
         <About />
         <FocusAreas />
         <WhatWeDo />
-        <Publications />
         <Partners />
         <KeyPrinciples />
         <HakiYanguHighlight />
