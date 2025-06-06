@@ -60,7 +60,10 @@ const About = () => {
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      {/* Vision & Mission Section - Enhanced */}
+ 
+       {/* Interactive Timeline */}
+      <InteractiveTimeline />
+     {/* Vision & Mission Section - Enhanced */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -108,9 +111,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-       {/* Interactive Timeline */}
-      <InteractiveTimeline />
 
       {/* Board Members Section - Enhanced */}
       <section className="py-20 bg-white">
