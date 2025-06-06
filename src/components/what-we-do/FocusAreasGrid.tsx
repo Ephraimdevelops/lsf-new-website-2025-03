@@ -1,83 +1,48 @@
+
 import { Link } from 'react-router-dom';
-import { DollarSign, Users, LayoutGrid, BookOpen, Lightbulb, Scale, Smartphone, Leaf, ArrowRight, Target } from 'lucide-react';
+import { Scale, Users, LayoutGrid, Building, Target, ArrowRight } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
 import { Button } from '@/components/ui/button';
 
 const FocusAreasGrid = () => {
-  const focusAreas = [
+  const strategicAreas = [
     {
-      icon: <DollarSign className="h-6 w-6" />,
-      title: 'Grant Making',
-      description: 'Results-driven grants to strengthen legal empowerment — especially around land rights, property ownership, safety, and justice for women and girls.',
-      link: '/what-we-do/grant-making',
+      icon: <Scale className="h-6 w-6" />,
+      title: 'Increasing Accessibility to Quality Legal Aid Services',
+      description: 'Prioritizing the provision of accessible, affordable, and quality legal aid services to marginalized populations, with a strong emphasis on women and girls.',
+      link: '/programs/legal-empowerment',
       color: 'primary',
-      image: '/lovable-uploads/697177d1-fcb8-4356-b773-aca9e11107aa.png',
-      stats: '$2.5M+ distributed'
+      image: '/lovable-uploads/f1407f2d-51ff-4898-b7a5-9ede5d13e081.png',
+      stats: '15,000+ assisted annually'
     },
     {
       icon: <Users className="h-6 w-6" />,
-      title: 'Capacity Building',
-      description: 'LSF strengthens both institutional and technical capacity among legal aid providers, paralegals, and community-based organizations.',
-      link: '/what-we-do/capacity-building',
+      title: 'Promoting Legally Empowered Communities',
+      description: 'Advancing community legal empowerment—particularly for women, girls, and other marginalized groups—through legal education, awareness, and the strengthening of paralegal networks.',
+      link: '/programs/community-empowerment',
       color: 'secondary-teal',
       image: '/lovable-uploads/e8daf61f-bec3-4182-b37c-69a73a839f6b.png',
-      stats: '500+ trained professionals'
+      stats: '500+ paralegals trained'
     },
     {
       icon: <LayoutGrid className="h-6 w-6" />,
-      title: 'Partnerships & Networking',
-      description: 'We collaborate with a broad ecosystem of stakeholders including government institutions, civil society, development partners, and private actors.',
-      link: '/what-we-do/partnerships-networking',
-      color: 'primary',
-      image: '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png',
-      stats: '150+ active partnerships'
-    },
-    {
-      icon: <BookOpen className="h-6 w-6" />,
-      title: 'Learning and Research',
-      description: 'Through continuous learning, piloting new models, and data-driven monitoring, we identify what works and improve what doesn\'t.',
-      link: '/what-we-do/learning-research',
-      color: 'secondary-teal',
-      image: '/lovable-uploads/140e859b-26c6-4b1b-a99e-a8efaf084eb8.png',
-      stats: '25+ research studies'
-    },
-    {
-      icon: <Lightbulb className="h-6 w-6" />,
-      title: 'Policy and Advocacy',
-      description: 'Our advocacy spans grassroots to national levels — shaping inclusive laws, policies, and systems that ensure justice is a reality for all.',
+      title: 'Enhancing a Conducive Environment for Sustainable Access to Justice',
+      description: 'Supporting policy reform, legal frameworks, and advocacy initiatives that create enabling conditions for inclusive, sustainable, and equitable access to justice.',
       link: '/what-we-do/policy-advocacy',
       color: 'primary',
       image: '/lovable-uploads/03e3e41e-930e-409b-9697-0530773cca4c.png',
       stats: '15+ policy reforms'
     },
     {
-      icon: <Scale className="h-6 w-6" />,
-      title: 'Accessible Legal Services',
-      description: 'Increasing accessibility of quality legal aid services to marginalized communities, particularly women.',
-      link: '/programs/legal-empowerment',
+      icon: <Building className="h-6 w-6" />,
+      title: 'Institutional Development and Sustainability',
+      description: 'Strengthening the organizational capacity, financial sustainability, and operational effectiveness of LSF and the broader legal aid sector to ensure long-term impact and resilience.',
+      link: '/programs/institutional-development',
       color: 'secondary-teal',
-      image: '/lovable-uploads/f1407f2d-51ff-4898-b7a5-9ede5d13e081.png',
-      stats: '15,000+ assisted annually'
-    },
-    {
-      icon: <Smartphone className="h-6 w-6" />,
-      title: 'Digital Transformation',
-      description: 'LSF is embracing innovation to modernize operations and expand its reach through digitalization of legal aid service delivery.',
-      link: '/programs/digital-transformation',
-      color: 'primary',
-      image: '/lovable-uploads/7718b32e-3138-4e78-a7a1-4d63935a2951.png',
-      stats: '10+ digital platforms'
-    },
-    {
-      icon: <Leaf className="h-6 w-6" />,
-      title: 'Climate Justice',
-      description: 'Recognizing that climate change disproportionately affects women and marginalized communities, LSF is integrating climate justice into its programming.',
-      link: '/programs/climate-justice',
-      color: 'secondary-teal',
-      image: '/lovable-uploads/2fad14c5-c506-4c5b-8fd7-3e97e956e966.png',
-      stats: '5+ climate initiatives'
+      image: '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png',
+      stats: '200+ partners strengthened'
     }
   ];
 
@@ -92,17 +57,17 @@ const FocusAreasGrid = () => {
             </span>
           </div>
           <Typography variant="h2" className="mb-6 text-neutral-dark max-w-4xl mx-auto">
-            Eight Key Areas Driving Justice Forward
+            Four Strategic Focus Areas Driving Justice Forward
           </Typography>
           <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-lg">
-            We work across eight strategic areas to ensure justice is accessible to all Tanzanians, 
-            particularly women and marginalized communities. Each focus area represents years of expertise 
+            Our work is guided by four strategic focus areas that ensure justice is accessible to all Tanzanians, 
+            particularly women and marginalized communities. Each area represents our commitment to systemic change 
             and measurable impact.
           </Typography>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {focusAreas.map((area, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {strategicAreas.map((area, index) => (
             <Link key={index} to={area.link} className="group block">
               <div className="bg-white rounded-2xl hover:shadow-2xl transition-all duration-500 border border-gray-100 group-hover:border-primary/20 h-full overflow-hidden group-hover:-translate-y-2">
                 {/* Image Header */}
@@ -131,7 +96,7 @@ const FocusAreasGrid = () => {
                 
                 {/* Content */}
                 <div className="p-6">
-                  <Typography variant="h4" className="mb-3 group-hover:text-primary transition-colors duration-300">
+                  <Typography variant="h4" className="mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
                     {area.title}
                   </Typography>
                   
