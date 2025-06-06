@@ -6,14 +6,14 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 
-// Enhanced navigation structure with better naming and organization
+// Enhanced navigation structure focused on LSF's legal aid and justice work
 const navigationItems = [
   { 
-    name: 'Who We Are', 
+    name: 'About LSF', 
     href: '/about',
-    description: 'Our mission, vision, team, and impact story',
+    description: 'Our mission, vision, and commitment to justice',
     featured: {
-      title: 'About LSF',
+      title: 'Who We Are',
       description: 'Empowering communities through legal aid since 2011',
       href: '/about',
       image: '/lovable-uploads/background with mother umage .png'
@@ -22,50 +22,19 @@ const navigationItems = [
       {
         title: 'Our Organization',
         links: [
-          { name: 'About LSF', href: '/about', description: 'Mission, vision, and history' },
-          { name: 'Leadership Team', href: '/team', description: 'Meet our executive team' },
-          { name: 'Strategic Partners', href: '/partners', description: 'Our collaborating organizations' },
-          { name: 'Annual Reports', href: '/publications', description: 'Transparency and accountability' },
+          { name: 'Mission & Vision', href: '/about', description: 'Our commitment to justice for all' },
+          { name: 'Leadership Team', href: '/team', description: 'Experienced legal professionals' },
+          { name: 'Strategic Partners', href: '/partners', description: 'Collaborative network for justice' },
+          { name: 'Annual Reports', href: '/publications', description: 'Transparency and impact measurement' },
         ]
       },
       {
-        title: 'Join Our Mission',
+        title: 'Get Involved',
         links: [
-          { name: 'Career Opportunities', href: '/opportunities', description: 'Work with us for justice' },
-          { name: 'Volunteer Programs', href: '/opportunities#volunteer', description: 'Get involved in our work' },
-          { name: 'Support Our Work', href: '/donate', description: 'Make a lasting impact' },
-          { name: 'Contact Us', href: '/contact', description: 'Get in touch with our team' },
-        ]
-      }
-    ]
-  },
-  { 
-    name: 'Our Impact', 
-    href: '/what-we-do',
-    description: 'How we create lasting change across Tanzania',
-    featured: {
-      title: 'Strategic Approach',
-      description: 'Eight focus areas driving justice forward',
-      href: '/what-we-do',
-      image: '/lovable-uploads/background with mother umage .png'
-    },
-    sections: [
-      {
-        title: 'Focus Areas',
-        links: [
-          { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Results-driven funding for justice' },
-          { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening legal aid providers' },
-          { name: 'Partnerships & Networks', href: '/what-we-do/partnerships-networking', description: 'Collaborative ecosystem building' },
-          { name: 'Research & Learning', href: '/what-we-do/learning-research', description: 'Evidence-based solutions' },
-        ]
-      },
-      {
-        title: 'Our Approach',
-        links: [
-          { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy', description: 'Shaping inclusive laws and systems' },
-          { name: 'Strategic Overview', href: '/what-we-do', description: 'Our comprehensive methodology' },
-          { name: 'Success Stories', href: '/heroes', description: 'Real impact, real lives' },
-          { name: 'Project Portfolio', href: '/projects', description: 'Current initiatives and outcomes' },
+          { name: 'Career Opportunities', href: '/opportunities', description: 'Join our mission for justice' },
+          { name: 'Volunteer with Us', href: '/opportunities#volunteer', description: 'Contribute to legal empowerment' },
+          { name: 'Support Our Work', href: '/donate', description: 'Fund access to justice initiatives' },
+          { name: 'Contact Us', href: '/contact', description: 'Connect with our team' },
         ]
       }
     ]
@@ -73,60 +42,91 @@ const navigationItems = [
   { 
     name: 'Legal Services', 
     href: '/programs',
-    description: 'Comprehensive legal aid and empowerment programs',
+    description: 'Free legal aid and empowerment programs',
     featured: {
-      title: 'Legal Empowerment',
+      title: 'Get Legal Help',
       description: 'Accessible justice for all Tanzanians',
-      href: '/programs',
+      href: '/legal-help',
       image: '/lovable-uploads/background with mother umage .png'
     },
     sections: [
       {
-        title: 'Get Legal Help',
+        title: 'Access Legal Aid',
         links: [
-          { name: 'Legal Aid Services', href: '/legal-help', description: 'Free legal assistance and support' },
-          { name: 'All Programs', href: '/programs', description: 'Complete service overview' },
-          { name: 'Community Outreach', href: '/programs#community', description: 'Grassroots legal education' },
-          { name: 'Digital Legal Aid', href: '/programs#digital', description: 'Technology-enabled services' },
+          { name: 'Get Legal Help', href: '/legal-help', description: 'Free legal assistance and support' },
+          { name: 'All Legal Programs', href: '/programs', description: 'Comprehensive service overview' },
+          { name: 'Find a Paralegal', href: '/programs#find-paralegal', description: 'Community-based legal support' },
+          { name: 'Legal Rights Education', href: '/programs#legal-education', description: 'Know your rights workshops' },
         ]
       },
       {
-        title: 'Specialized Support',
+        title: 'Specialized Services',
         links: [
           { name: 'Women\'s Legal Clinic', href: '/programs#womens-clinic', description: 'Gender-focused legal support' },
           { name: 'Land Rights Protection', href: '/programs#land-rights', description: 'Property and inheritance law' },
-          { name: 'Child Protection', href: '/programs#child-protection', description: 'Safeguarding children\'s rights' },
-          { name: 'Climate Justice', href: '/programs#climate-justice', description: 'Environmental law advocacy' },
+          { name: 'Family Law Support', href: '/programs#family-law', description: 'Marriage, divorce, and custody' },
+          { name: 'Criminal Justice Aid', href: '/programs#criminal-justice', description: 'Defense and victim support' },
         ]
       }
     ]
   },
   { 
-    name: 'Knowledge Hub', 
-    href: '/resources',
-    description: 'Research, publications, and legal resources',
+    name: 'Our Work', 
+    href: '/what-we-do',
+    description: 'How we strengthen access to justice across Tanzania',
     featured: {
-      title: 'Latest Research',
-      description: 'Evidence-based insights and publications',
-      href: '/publications',
+      title: 'Strategic Focus Areas',
+      description: 'Four pillars driving justice forward',
+      href: '/what-we-do',
+      image: '/lovable-uploads/background with mother umage .png'
+    },
+    sections: [
+      {
+        title: 'Our Approach',
+        links: [
+          { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Results-driven funding for justice' },
+          { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening legal aid providers' },
+          { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy', description: 'Shaping inclusive laws and systems' },
+          { name: 'Strategic Overview', href: '/what-we-do', description: 'Our comprehensive methodology' },
+        ]
+      },
+      {
+        title: 'Innovation & Research',
+        links: [
+          { name: 'Research & Learning', href: '/what-we-do/learning-research', description: 'Evidence-based solutions' },
+          { name: 'Partnerships & Networks', href: '/what-we-do/partnerships-networking', description: 'Collaborative ecosystem building' },
+          { name: 'Success Stories', href: '/heroes', description: 'Real impact, real lives changed' },
+          { name: 'Current Projects', href: '/projects', description: 'Active initiatives and outcomes' },
+        ]
+      }
+    ]
+  },
+  { 
+    name: 'Resources', 
+    href: '/resources',
+    description: 'Legal resources, research, and educational materials',
+    featured: {
+      title: 'Knowledge Hub',
+      description: 'Evidence-based insights and legal resources',
+      href: '/resources',
       image: '/lovable-uploads/background with mother umage .png'
     },
     sections: [
       {
         title: 'Stay Informed',
         links: [
-          { name: 'News & Updates', href: '/news', description: 'Latest developments and stories' },
-          { name: 'Research Publications', href: '/publications', description: 'Reports and policy briefs' },
-          { name: 'Legal Resources', href: '/resources', description: 'Guides and educational materials' },
-          { name: 'Success Stories', href: '/heroes', description: 'Impact testimonials' },
+          { name: 'Latest News', href: '/news', description: 'Updates on justice and legal aid' },
+          { name: 'Research Publications', href: '/publications', description: 'Reports and policy analysis' },
+          { name: 'Legal Resource Library', href: '/resources', description: 'Guides and educational materials' },
+          { name: 'Success Stories', href: '/heroes', description: 'Justice transformation stories' },
         ]
       },
       {
-        title: 'For Professionals',
+        title: 'For Legal Professionals',
         links: [
           { name: 'Training Materials', href: '/resources#training', description: 'Capacity building resources' },
-          { name: 'Policy Briefs', href: '/resources#policy', description: 'Advocacy documents' },
-          { name: 'Legal Guides', href: '/resources#guides', description: 'Practical legal information' },
+          { name: 'Policy Briefs', href: '/resources#policy', description: 'Advocacy and reform documents' },
+          { name: 'Best Practice Guides', href: '/resources#guides', description: 'Practical legal aid information' },
           { name: 'Research Database', href: '/resources#research', description: 'Academic and field studies' },
         ]
       }
@@ -267,7 +267,7 @@ const Header = () => {
               </Link>
               <Link to="/donate">
                 <Button size="sm" className="font-medium bg-secondary-orange hover:bg-secondary-orange/90">
-                  Support Us
+                  Support Justice
                 </Button>
               </Link>
             </div>
@@ -356,7 +356,7 @@ const Header = () => {
                 </Link>
                 <Link to="/donate" className="w-full">
                   <Button className="w-full justify-center bg-secondary-orange hover:bg-secondary-orange/90">
-                    Support Us
+                    Support Justice
                   </Button>
                 </Link>
               </div>
