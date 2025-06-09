@@ -2,6 +2,7 @@
 import Layout from '../components/layout/Layout';
 import Hero from '../components/home/Hero';
 import ImpactStats from '../components/home/ImpactStats';
+import ImpactInfographic from '../components/home/ImpactInfographic';
 import About from '../components/home/About';
 import FocusAreas from '../components/home/FocusAreas';
 import WhatWeDo from '../components/home/WhatWeDo';
@@ -19,9 +20,11 @@ const Index = () => {
         <Hero />
         <CompactNewsUpdates />
         <ImpactStats />
+        <ImpactInfographic />
         <About />
         <FocusAreas />
         <WhatWeDo />
+        <Publications />
         <Partners />
         <KeyPrinciples />
         <HakiYanguHighlight />
