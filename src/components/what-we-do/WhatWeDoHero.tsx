@@ -1,114 +1,89 @@
 
-import Typography from '@/components/shared/Typography';
-import Section from '@/components/shared/Section';
+import { useState, useEffect } from 'react';
+import { Briefcase, ArrowRight, PlayCircle } from 'lucide-react';
 import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { ArrowDown, Users, Globe, Target } from 'lucide-react';
 
 const WhatWeDoHero = () => {
   return (
-    <section className="relative py-32 md:py-40 overflow-hidden">
-      {/* Background Image */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ 
           backgroundImage: `url('/lovable-uploads/background with mother umage .png')`
         }}
       ></div>
       
-      {/* Primary Color Overlay */}
-      <div 
-        className="absolute inset-0"
-        style={{ backgroundColor: '#931e5c', opacity: 0.85 }}
-      ></div>
+      {/* Gradient Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-black opacity-90"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
       
-      {/* Pattern Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary-teal/20"></div>
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-secondary-teal/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-yellow/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      </div>
       
       <Container size="xl" className="relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-white">
-              <div className="inline-flex items-center space-x-3 mb-8 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-                <Target className="h-5 w-5 text-secondary-orange" />
-                <span className="text-secondary-orange font-semibold text-sm uppercase tracking-wide">
-                  Our Strategic Approach
-                </span>
-              </div>
-              
-              <Typography variant="display" className="text-white mb-6 leading-tight">
-                Advancing Access to Justice
-              </Typography>
-              
-              <Typography variant="body" className="text-white/90 text-xl max-w-2xl mb-8 leading-relaxed">
-                We transform lives across Tanzania through comprehensive legal aid, community empowerment, 
-                policy advocacy, and innovative digital solutions that ensure justice reaches everyone.
-              </Typography>
-              
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Link to="/programs">
-                  <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-semibold px-8 py-4">
-                    Explore Our Programs
-                  </Button>
-                </Link>
-                <Link to="/legal-help">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4">
-                    Get Legal Help
-                  </Button>
-                </Link>
-              </div>
-              
-              {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
-                <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">150+</div>
-                  <div className="text-white/80 text-sm">Active Partnerships</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">500+</div>
-                  <div className="text-white/80 text-sm">Trained Paralegals</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">15K+</div>
-                  <div className="text-white/80 text-sm">Lives Impacted</div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Right Visual */}
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-white/20 rounded-xl p-6 text-center">
-                    <Users className="h-8 w-8 text-secondary-orange mx-auto mb-3" />
-                    <h3 className="text-white font-semibold mb-2">Community Focused</h3>
-                    <p className="text-white/80 text-sm">Grassroots legal empowerment</p>
-                  </div>
-                  <div className="bg-white/20 rounded-xl p-6 text-center">
-                    <Globe className="h-8 w-8 text-secondary-orange mx-auto mb-3" />
-                    <h3 className="text-white font-semibold mb-2">Nationwide Reach</h3>
-                    <p className="text-white/80 text-sm">Justice across Tanzania</p>
-                  </div>
-                  <div className="bg-white/20 rounded-xl p-6 text-center col-span-2">
-                    <Target className="h-8 w-8 text-secondary-orange mx-auto mb-3" />
-                    <h3 className="text-white font-semibold mb-2">Measurable Impact</h3>
-                    <p className="text-white/80 text-sm">Evidence-based solutions for lasting change</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="text-center text-white max-w-5xl mx-auto">
+          <div className="inline-flex items-center space-x-3 mb-8 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
+            <Briefcase className="h-6 w-6 text-secondary-orange" />
+            <span className="text-secondary-orange font-bold text-lg uppercase tracking-wider">
+              Our Work
+            </span>
           </div>
           
-          {/* Scroll Indicator */}
-          <div className="flex justify-center mt-16">
-            <div className="animate-bounce">
-              <ArrowDown className="h-6 w-6 text-white/80" />
+          <Typography variant="display" className="text-white mb-8 leading-none text-6xl md:text-8xl font-bold">
+            Justice for All.
+            <span className="block text-secondary-orange">Empowerment for Each.</span>
+          </Typography>
+          
+          <Typography variant="body" className="text-white/90 mb-12 text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
+            At the Legal Services Facility (LSF), our mission is clear: to ensure every Tanzanian—especially women, girls, and marginalized groups—can understand, access, and benefit from justice.
+          </Typography>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-10 py-5 text-lg rounded-full">
+              Explore Our Projects
+              <ArrowRight className="ml-3 h-6 w-6" />
+            </Button>
+            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-10 py-5 text-lg rounded-full">
+              <PlayCircle className="mr-3 h-6 w-6" />
+              Watch Our Impact
+            </Button>
+          </div>
+          
+          {/* Impact Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-secondary-orange">2.8M+</div>
+              <div className="text-white/80 text-sm uppercase tracking-wide">Tanzanians Reached</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-secondary-teal">4,000+</div>
+              <div className="text-white/80 text-sm uppercase tracking-wide">Trained Paralegals</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-secondary-yellow">31</div>
+              <div className="text-white/80 text-sm uppercase tracking-wide">Regions Covered</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-white">78%</div>
+              <div className="text-white/80 text-sm uppercase tracking-wide">Cases Resolved</div>
             </div>
           </div>
         </div>
       </Container>
+      
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white/70 rounded-full mt-2"></div>
+        </div>
+      </div>
     </section>
   );
 };
