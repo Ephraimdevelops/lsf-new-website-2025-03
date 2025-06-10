@@ -9,6 +9,8 @@ import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import Hero from '@/components/home/Hero';
+import CompactNewsUpdates from '@/components/home/CompactNewsUpdates';
 
 const Index = () => {
   const impactStats = [
@@ -89,79 +91,8 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ 
-            backgroundImage: `url('/lovable-uploads/background with mother umage .png')`
-          }}
-        ></div>
-        
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-black opacity-90"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-        
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-48 h-48 bg-secondary-teal/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-yellow/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        </div>
-        
-        <Container size="xl" className="relative z-10">
-          <div className="text-center text-white max-w-6xl mx-auto">
-            <div className="inline-flex items-center space-x-3 mb-8 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
-              <Heart className="h-6 w-6 text-secondary-orange" />
-              <span className="text-secondary-orange font-bold text-lg uppercase tracking-wider">
-                Legal Services Facility
-              </span>
-            </div>
-            
-            <Typography variant="display" className="text-white mb-8 leading-none text-6xl md:text-8xl font-bold">
-              Transforming Access to
-              <span className="block text-secondary-orange">Justice in Tanzania.</span>
-            </Typography>
-            
-            <Typography variant="body" className="text-white/90 mb-12 text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-              For over two decades, we've empowered communities across Tanzania through legal education, advocacy, and innovative solutions that bring justice closer to those who need it most.
-            </Typography>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Link to="/what-we-do">
-                <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-10 py-5 text-lg rounded-full">
-                  Discover Our Work
-                  <ArrowRight className="ml-3 h-6 w-6" />
-                </Button>
-              </Link>
-              <Link to="/impact">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-10 py-5 text-lg rounded-full">
-                  <PlayCircle className="mr-3 h-6 w-6" />
-                  See Our Impact
-                </Button>
-              </Link>
-            </div>
-            
-            {/* Impact Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {impactStats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className={`text-4xl md:text-5xl font-bold mb-2 text-${stat.color}`}>{stat.number}</div>
-                  <div className="text-white/80 text-sm uppercase tracking-wide">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/70 rounded-full mt-2"></div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section with Legal Aid Tool */}
+      <Hero />
 
       {/* Our Focus Areas Section */}
       <section className="py-24 bg-white relative overflow-hidden">
@@ -280,6 +211,9 @@ const Index = () => {
           </div>
         </Container>
       </section>
+
+      {/* Compact News and Updates Section */}
+      <CompactNewsUpdates />
 
       {/* Impact Metrics Section */}
       <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
