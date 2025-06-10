@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import { 
   Heart, Target, Users, Scale, ArrowRight, PlayCircle, 
@@ -11,6 +10,8 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import Hero from '@/components/home/Hero';
 import CompactNewsUpdates from '@/components/home/CompactNewsUpdates';
+import PartnersCarousel from '@/components/home/PartnersCarousel';
+import FocusAreas from '@/components/home/FocusAreas';
 
 const Index = () => {
   const impactStats = [
@@ -93,8 +94,12 @@ const Index = () => {
     <Layout>
       {/* Hero Section with Legal Aid Tool */}
       <Hero />
-{/* Compact News and Updates Section */}
+
+      {/* Compact News and Updates Section */}
       <CompactNewsUpdates />
+
+      {/* Partners and Donors Carousel */}
+      <PartnersCarousel />
       
       {/* Impact Metrics Section */}
       <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
@@ -142,7 +147,11 @@ const Index = () => {
           </div>
         </Container>
       </section>
+
       {/* Our Focus Areas Section */}
+      <FocusAreas />
+
+      {/* Our Focus Areas Section (Legacy - keeping for backward compatibility) */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
         <Container size="xl" className="relative z-10">
@@ -259,9 +268,6 @@ const Index = () => {
           </div>
         </Container>
       </section>
-
-      
-
 
       {/* Call to Action Section */}
       <section className="py-24 bg-white relative overflow-hidden">

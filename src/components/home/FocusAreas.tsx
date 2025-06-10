@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, Scale, Users, Landmark, Building, Target, Gavel } from 'lucide-react';
+import { ArrowRight, Scale, Users, Landmark, Building, Target, Gavel, Cloud, Smartphone } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
@@ -78,6 +78,20 @@ const FocusAreas = () => {
       description: "Strengthening the organizational capacity, financial sustainability, and operational effectiveness of LSF and the broader legal aid sector to ensure long-term impact and resilience.",
       link: "/focus-areas/institutional-development",
       gradient: "bg-gradient-to-br from-secondary-yellow to-secondary-yellow-dark"
+    },
+    {
+      icon: <Cloud className="h-8 w-8" />,
+      title: "Climate Justice",
+      description: "Recognizing that climate change disproportionately affects women and marginalized communities, LSF integrates climate justice into programming, including legal empowerment on land rights, environmental governance, and climate-related disputes.",
+      link: "/focus-areas/climate-justice",
+      gradient: "bg-gradient-to-br from-green-500 to-green-700"
+    },
+    {
+      icon: <Smartphone className="h-8 w-8" />,
+      title: "Digital Transformation",
+      description: "LSF embraces innovation to modernize operations and expand reach through digitalization of legal aid service delivery, case tracking, training, and data systems to enhance accessibility and transparency.",
+      link: "/focus-areas/digital-transformation",
+      gradient: "bg-gradient-to-br from-blue-500 to-blue-700"
     }
   ];
 
@@ -94,7 +108,7 @@ const FocusAreas = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary-teal mx-auto rounded-full mb-6"></div>
           
           <Typography variant="body" className="max-w-3xl mx-auto text-neutral-gray mb-8">
-            LSF operates across four strategic focus areas that guide our comprehensive approach to increasing access to justice and legal empowerment across Tanzania.
+            LSF operates across six strategic focus areas that guide our comprehensive approach to increasing access to justice and legal empowerment across Tanzania.
           </Typography>
           
           <Link 
@@ -106,7 +120,7 @@ const FocusAreas = () => {
           </Link>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {areas.map((area, index) => (
             <FocusAreaCard
               key={index}
