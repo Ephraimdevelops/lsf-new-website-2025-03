@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import { CheckCircle, Heart, Users, Shield, ArrowRight, DollarSign } from 'lucide-react';
@@ -354,7 +355,6 @@ const Donate = () => {
                         <option value="Uganda">Uganda</option>
                         <option value="USA">United States</option>
                         <option value="UK">United Kingdom</option>
-                        {/* Add more countries as needed */}
                       </select>
                     </div>
                     
@@ -616,5 +616,3 @@ const Donate = () => {
 };
 
 export default Donate;
-
-</edits_to_apply>
