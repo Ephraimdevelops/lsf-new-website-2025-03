@@ -93,7 +93,8 @@ const Index = () => {
     <Layout>
       {/* Hero Section with Legal Aid Tool */}
       <Hero />
-
+{/* Compact News and Updates Section */}
+      <CompactNewsUpdates />
       {/* Our Focus Areas Section */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
@@ -212,8 +213,7 @@ const Index = () => {
         </Container>
       </section>
 
-      {/* Compact News and Updates Section */}
-      <CompactNewsUpdates />
+      
 
       {/* Impact Metrics Section */}
       <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
