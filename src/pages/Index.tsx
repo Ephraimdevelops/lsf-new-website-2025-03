@@ -12,6 +12,7 @@ import Contact from '../components/home/Contact';
 import CompactNewsUpdates from '../components/home/CompactNewsUpdates';
 import Partners from '../components/home/Partners';
 import Publications from '../components/home/Publications';
+import SuccessStories from '../components/home/SuccessStories';
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
         <ImpactStats />
         <ImpactInfographic />
         <About />
+        <SuccessStories />
         <FocusAreas />
         <WhatWeDo />
         <Publications />

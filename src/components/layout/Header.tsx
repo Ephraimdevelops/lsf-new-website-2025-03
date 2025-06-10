@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Search, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
@@ -170,14 +171,18 @@ const Header = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
-          {/* Logo Section */}
+          {/* Enhanced Logo Section */}
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center space-x-3 group">
               <img 
                 src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
                 alt="LSF Logo"
-                className="h-12 w-auto"
+                className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
               />
+              <div className="hidden md:block">
+                <div className="text-sm font-bold text-primary">Legal Services Facility</div>
+                <div className="text-xs text-neutral-gray">Empowering Justice Since 2011</div>
+              </div>
             </Link>
           </div>
           
@@ -198,13 +203,13 @@ const Header = () => {
                   <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
                 </button>
                 
-                {/* Full Width Dropdown Menu */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-screen max-w-7xl rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
+                {/* Enhanced Dropdown Menu */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-screen max-w-7xl rounded-xl shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
                   <div className="p-8">
                     <div className="grid grid-cols-12 gap-8">
-                      {/* Featured Section - Takes up 4 columns */}
+                      {/* Enhanced Featured Section */}
                       <div className="col-span-4">
-                        <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-xl p-6 h-full">
+                        <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-xl p-6 h-full border border-primary/10">
                           <div className="mb-4">
                             <img 
                               src={item.featured?.image} 
@@ -216,14 +221,15 @@ const Header = () => {
                           <p className="text-gray-600 mb-4 leading-relaxed font-sans">{item.featured?.description}</p>
                           <Link 
                             to={item.featured?.href || ''}
-                            className="inline-flex items-center text-primary hover:text-primary/80 font-medium font-heading"
+                            className="inline-flex items-center text-primary hover:text-primary/80 font-medium font-heading group/link"
                           >
-                            Learn more <ArrowRight size={16} className="ml-2" />
+                            Learn more 
+                            <ArrowRight size={16} className="ml-2 transition-transform group-hover/link:translate-x-1" />
                           </Link>
                         </div>
                       </div>
                       
-                      {/* Navigation Sections - Takes up 8 columns */}
+                      {/* Navigation Sections */}
                       <div className="col-span-8 grid grid-cols-2 gap-8">
                         {item.sections?.map((section, index) => (
                           <div key={index}>
@@ -256,24 +262,30 @@ const Header = () => {
               </div>
             ))}
             
-            {/* Action buttons */}
+            {/* Enhanced Action buttons */}
             <div className="flex items-center ml-6 space-x-3 border-l border-gray-200 pl-6">
               <SearchDialog />
               <Link to="/legal-help">
-                <Button size="sm" className="font-medium bg-primary hover:bg-primary/90 font-heading">
-                  Get Legal Help
+                <Button size="sm" className="font-medium bg-primary hover:bg-primary/90 font-heading flex items-center space-x-2">
+                  <Phone className="h-4 w-4" />
+                  <span>Get Legal Help</span>
                 </Button>
               </Link>
               <Link to="/donate">
-                <Button variant="outline" size="sm" className="font-medium font-heading">
+                <Button variant="outline" size="sm" className="font-medium font-heading border-2 hover:bg-primary hover:text-white transition-all duration-300">
                   Support Justice
                 </Button>
               </Link>
             </div>
           </nav>
           
-          {/* Mobile menu button */}
-          <div className="flex items-center lg:hidden">
+          {/* Enhanced Mobile menu button */}
+          <div className="flex items-center lg:hidden space-x-3">
+            <Link to="/donate" className="lg:hidden">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white px-4 py-2">
+                Donate
+              </Button>
+            </Link>
             <button 
               className="p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -285,24 +297,44 @@ const Header = () => {
         </div>
       </div>
       
-      {/* Mobile Navigation */}
+      {/* Enhanced Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg max-h-[80vh] overflow-y-auto">
           <div className="container mx-auto px-4 py-4">
+            {/* Quick Actions */}
+            <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-secondary-teal/5 rounded-xl">
+              <div className="grid grid-cols-2 gap-3">
+                <Link to="/legal-help" className="w-full">
+                  <Button className="w-full justify-center bg-primary hover:bg-primary/90 font-heading text-sm">
+                    <Phone className="h-4 w-4 mr-2" />
+                    Get Help
+                  </Button>
+                </Link>
+                <Link to="/donate" className="w-full">
+                  <Button variant="outline" className="w-full justify-center font-heading text-sm border-primary text-primary hover:bg-primary hover:text-white">
+                    Donate Now
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
             <nav className="space-y-1">
               {navigationItems.map((item) => (
                 <div key={item.name} className="py-1">
                   <div>
                     <button
                       className={cn(
-                        "flex items-center justify-between w-full px-3 py-2 text-base font-medium rounded-md font-heading",
+                        "flex items-center justify-between w-full px-4 py-3 text-base font-medium rounded-lg font-heading transition-all duration-200",
                         location.pathname === item.href || location.pathname.startsWith(`${item.href}/`)
                           ? "text-primary bg-primary/5"
                           : "text-gray-700 hover:bg-gray-50"
                       )}
                       onClick={() => toggleDropdown(item.name)}
                     >
-                      {item.name}
+                      <div className="flex items-center">
+                        <span>{item.name}</span>
+                        <span className="ml-2 text-xs text-gray-500">{item.description}</span>
+                      </div>
                       <ChevronDown 
                         size={16} 
                         className={cn(
@@ -311,11 +343,24 @@ const Header = () => {
                         )}
                       />
                     </button>
+                    
                     {activeDropdown === item.name && (
-                      <div className="mt-1 pl-4 border-l-2 border-gray-100">
+                      <div className="mt-2 pl-4 border-l-2 border-primary/20 bg-gray-50/50 rounded-r-lg">
+                        {/* Featured item for mobile */}
+                        <div className="p-4 mb-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                          <h4 className="font-bold text-primary mb-2 font-heading">{item.featured?.title}</h4>
+                          <p className="text-sm text-gray-600 mb-3">{item.featured?.description}</p>
+                          <Link 
+                            to={item.featured?.href || ''}
+                            className="text-sm text-primary font-medium flex items-center"
+                          >
+                            Learn more <ArrowRight size={14} className="ml-1" />
+                          </Link>
+                        </div>
+                        
                         {item.sections?.map((section) => (
                           <div key={section.title} className="mb-4">
-                            <h4 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide font-heading">
+                            <h4 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide font-heading border-b border-gray-200 pb-1">
                               {section.title}
                             </h4>
                             <ul className="space-y-2">
@@ -324,13 +369,14 @@ const Header = () => {
                                   <Link
                                     to={link.href}
                                     className={cn(
-                                      "block px-3 py-2 text-sm rounded-md font-heading",
+                                      "block px-3 py-2 text-sm rounded-md font-heading transition-colors",
                                       location.pathname === link.href
                                         ? "text-primary bg-primary/5"
                                         : "text-gray-600 hover:bg-gray-50"
                                     )}
                                   >
-                                    {link.name}
+                                    <div className="font-medium">{link.name}</div>
+                                    <div className="text-xs text-gray-500 mt-1">{link.description}</div>
                                   </Link>
                                 </li>
                               ))}
@@ -342,24 +388,12 @@ const Header = () => {
                   </div>
                 </div>
               ))}
-              
-              {/* Mobile action buttons */}
-              <div className="pt-4 pb-2 flex flex-col space-y-2">
-                <div className="mb-2">
-                  <SearchDialog />
-                </div>
-                <Link to="/legal-help" className="w-full">
-                  <Button className="w-full justify-center bg-primary hover:bg-primary/90 font-heading">
-                    Get Legal Help
-                  </Button>
-                </Link>
-                <Link to="/donate" className="w-full">
-                  <Button variant="outline" className="w-full justify-center font-heading">
-                    Support Justice
-                  </Button>
-                </Link>
-              </div>
             </nav>
+            
+            {/* Mobile Search */}
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <SearchDialog />
+            </div>
           </div>
         </div>
       )}
