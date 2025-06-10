@@ -1,251 +1,299 @@
 
 import Layout from '../components/layout/Layout';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import HeroSection from '../components/shared/HeroSection';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Globe, Users } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { useState } from 'react';
-import { toast } from 'sonner';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: '',
+    message: ''
   });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast.success("Thank you! Your message has been sent successfully.");
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
-      setIsSubmitting(false);
-    }, 1500);
+    // Handle form submission
+    console.log('Form submitted:', formData);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-primary pattern-bg text-white py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-            <p className="text-xl opacity-90">
-              Have a question, comment, or want to collaborate? Get in touch with our team.
-            </p>
+      <HeroSection
+        icon={<MessageCircle className="h-8 w-8" />}
+        badge="Contact Us"
+        title="Get in Touch"
+        description="We're here to help. Reach out to us for inquiries, support, or to learn more about our work transforming access to justice across Tanzania."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
+
+      {/* Contact Methods Section */}
+      <section className="py-20 bg-white">
+        <Container size="xl">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-primary/10 rounded-full px-6 py-3 mb-8">
+              <Phone className="h-5 w-5 mr-3 text-primary" />
+              <Typography variant="overline" className="text-primary font-bold">
+                REACH OUT
+              </Typography>
+            </div>
+            
+            <Typography variant="h2" className="mb-6">
+              Multiple Ways to Connect
+            </Typography>
+            
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Choose the most convenient way to reach us. We're committed to responding promptly to all inquiries.
+            </Typography>
           </div>
-        </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {[
+              {
+                icon: Phone,
+                title: "Phone",
+                primary: "+255 22 277 3342",
+                secondary: "+255 784 123 456",
+                color: "primary",
+                action: "Call Us"
+              },
+              {
+                icon: Mail,
+                title: "Email",
+                primary: "info@lsf.or.tz",
+                secondary: "programs@lsf.or.tz",
+                color: "secondary-teal",
+                action: "Send Email"
+              },
+              {
+                icon: MapPin,
+                title: "Visit Us",
+                primary: "Mikocheni Light Industrial Area",
+                secondary: "Dar es Salaam, Tanzania",
+                color: "secondary-orange",
+                action: "Get Directions"
+              },
+              {
+                icon: Clock,
+                title: "Office Hours",
+                primary: "Monday - Friday",
+                secondary: "8:00 AM - 5:00 PM",
+                color: "secondary-yellow",
+                action: "Plan Visit"
+              }
+            ].map((contact, index) => (
+              <div key={index} className="group">
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 border border-gray-100 hover:border-secondary-teal/30 transform hover:-translate-y-2 h-full text-center">
+                  <div className={`w-16 h-16 bg-gradient-to-br from-${contact.color}/10 to-${contact.color}/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <contact.icon className={`h-8 w-8 text-${contact.color}`} />
+                  </div>
+                  
+                  <Typography variant="h4" className="mb-4">
+                    {contact.title}
+                  </Typography>
+                  
+                  <Typography variant="bodySmall" className="text-neutral-dark font-medium mb-1">
+                    {contact.primary}
+                  </Typography>
+                  
+                  <Typography variant="bodySmall" className="text-neutral-gray mb-6">
+                    {contact.secondary}
+                  </Typography>
+                  
+                  <Button variant="outline" size="sm" className="border-2 hover:bg-secondary-teal hover:text-white hover:border-secondary-teal">
+                    {contact.action}
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
       </section>
-      
-      {/* Contact Information */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
-                <MapPin className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Visit Us</h3>
-              <p className="text-neutral-gray">
-                Plot No. 1, Jillian Plaza<br />
-                Mbezi Beach, Dar es Salaam<br />
-                Tanzania
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
-                <Mail className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Email Us</h3>
-              <p className="text-neutral-gray mb-2">
-                General Inquiries:<br />
-                <a href="mailto:info@lsftz.org" className="text-primary">info@lsftz.org</a>
-              </p>
-              <p className="text-neutral-gray">
-                Media Relations:<br />
-                <a href="mailto:media@lsftz.org" className="text-primary">media@lsftz.org</a>
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
-                <Phone className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Call Us</h3>
-              <p className="text-neutral-gray mb-2">
-                Main Office:<br />
-                <a href="tel:+255800110303" className="text-primary">+255 800 110 303</a>
-              </p>
-              <p className="text-neutral-gray">
-                Hotline:<br />
-                <a href="tel:+255800110000" className="text-primary">+255 800 110 000</a>
-              </p>
-            </div>
-          </div>
-          
-          {/* Contact Form */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+      {/* Contact Form Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <Container size="xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            {/* Form */}
             <div>
-              <h2 className="text-3xl font-bold mb-6">Send Us a Message</h2>
-              <p className="text-neutral-gray mb-6">
-                Fill out the form below and our team will get back to you as soon as possible.
-                We appreciate your interest in Legal Services Facility and look forward to hearing from you.
-              </p>
+              <div className="inline-flex items-center bg-secondary-teal/10 rounded-full px-6 py-3 mb-8">
+                <Send className="h-5 w-5 mr-3 text-secondary-teal" />
+                <Typography variant="overline" className="text-secondary-teal font-bold">
+                  SEND MESSAGE
+                </Typography>
+              </div>
               
+              <Typography variant="h2" className="mb-6">
+                Send Us a Message
+              </Typography>
+              
+              <Typography variant="body" className="text-neutral-gray mb-8">
+                Have a question or want to learn more about our work? Fill out the form below and we'll get back to you as soon as possible.
+              </Typography>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block mb-2 font-medium">Your Name *</label>
-                    <input
-                      type="text"
+                    <label htmlFor="name" className="block text-sm font-semibold text-neutral-dark mb-2">
+                      Full Name *
+                    </label>
+                    <Input
                       id="name"
                       name="name"
-                      value={formData.name}
-                      onChange={handleChange}
+                      type="text"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="rounded-xl border-2 focus:border-secondary-teal"
+                      placeholder="Your full name"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block mb-2 font-medium">Your Email *</label>
-                    <input
-                      type="email"
+                    <label htmlFor="email" className="block text-sm font-semibold text-neutral-dark mb-2">
+                      Email Address *
+                    </label>
+                    <Input
                       id="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleChange}
+                      type="email"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="rounded-xl border-2 focus:border-secondary-teal"
+                      placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block mb-2 font-medium">Subject *</label>
-                  <select
+                  <label htmlFor="subject" className="block text-sm font-semibold text-neutral-dark mb-2">
+                    Subject *
+                  </label>
+                  <Input
                     id="subject"
                     name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
+                    type="text"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                  >
-                    <option value="">Select a subject</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Legal Aid Support">Legal Aid Support</option>
-                    <option value="Partnership Opportunity">Partnership Opportunity</option>
-                    <option value="Volunteer Interest">Volunteer Interest</option>
-                    <option value="Media Inquiry">Media Inquiry</option>
-                    <option value="Other">Other</option>
-                  </select>
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="rounded-xl border-2 focus:border-secondary-teal"
+                    placeholder="What is this about?"
+                  />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block mb-2 font-medium">Your Message *</label>
-                  <textarea
+                  <label htmlFor="message" className="block text-sm font-semibold text-neutral-dark mb-2">
+                    Message *
+                  </label>
+                  <Textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                  ></textarea>
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="rounded-xl border-2 focus:border-secondary-teal resize-none"
+                    placeholder="Tell us more about your inquiry..."
+                  />
                 </div>
                 
-                <div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`bg-primary text-white py-3 px-6 rounded-md font-bold hover:bg-primary/90 transition-colors duration-300 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </div>
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full bg-secondary-teal hover:bg-secondary-teal/90 font-bold py-4 rounded-xl"
+                >
+                  <Send className="mr-2 h-5 w-5" />
+                  Send Message
+                </Button>
               </form>
             </div>
-            
-            <div className="order-first lg:order-last">
-              <div className="rounded-lg overflow-hidden h-full min-h-[300px] shadow-lg">
-                <iframe
-                  title="LSF Office Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.9689930330353!2d39.2990775!3d-6.7729466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4c2bfc2e8ce7%3A0xdb557217e053c0ee!2sMbezi%20Beach%2C%20Dar%20es%20Salaam%2C%20Tanzania!5e0!3m2!1sen!2sus!4v1652971927296!5m2!1sen!2sus"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, minHeight: 400 }}
-                  allowFullScreen={false}
-                  loading="lazy"
-                ></iframe>
+
+            {/* Additional Info */}
+            <div className="space-y-8">
+              {/* Office Location */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                  <MapPin className="h-8 w-8 text-primary" />
+                </div>
+                
+                <Typography variant="h3" className="mb-4">
+                  Our Office
+                </Typography>
+                
+                <Typography variant="bodySmall" className="text-neutral-gray mb-6 leading-relaxed">
+                  Visit us at our headquarters in Dar es Salaam. We welcome visitors by appointment and are always happy to meet with partners, beneficiaries, and supporters.
+                </Typography>
+                
+                <div className="space-y-3">
+                  <div className="flex items-start">
+                    <MapPin className="h-5 w-5 text-primary mt-0.5 mr-3" />
+                    <div>
+                      <Typography variant="bodySmall" className="text-neutral-dark font-medium">
+                        Legal and Human Rights Centre
+                      </Typography>
+                      <Typography variant="bodySmall" className="text-neutral-gray">
+                        Mikocheni Light Industrial Area<br />
+                        Plot No. 35, Dar es Salaam, Tanzania
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="bg-gradient-to-br from-secondary-teal to-secondary-teal/90 rounded-2xl shadow-lg p-8 text-white">
+                <Typography variant="h3" className="text-white mb-6">
+                  Get Involved
+                </Typography>
+                
+                <div className="space-y-6">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4">
+                      <Users className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <Typography variant="bodySmall" className="text-white font-medium">
+                        Join Our Team
+                      </Typography>
+                      <Typography variant="bodySmall" className="text-white/80">
+                        Explore career opportunities
+                      </Typography>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4">
+                      <Globe className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <Typography variant="bodySmall" className="text-white font-medium">
+                        Partner With Us
+                      </Typography>
+                      <Typography variant="bodySmall" className="text-white/80">
+                        Collaborate for greater impact
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {/* FAQ Section */}
-      <section className="py-16 bg-neutral-light">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-neutral-gray max-w-2xl mx-auto">
-              Find answers to common questions about our organization and services.
-            </p>
-          </div>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-bold text-lg mb-2">How can I access legal aid services?</h3>
-              <p className="text-neutral-gray">
-                Legal aid services can be accessed through our network of paralegals and legal aid providers across Tanzania. 
-                Contact our office or visit our Resources page to find the nearest legal aid provider in your area.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-bold text-lg mb-2">How can organizations partner with LSF?</h3>
-              <p className="text-neutral-gray">
-                We welcome partnerships with organizations that share our mission of promoting access to justice. 
-                Please fill out the contact form above and select "Partnership Opportunity" as the subject, 
-                or email us directly at partnerships@lsftz.org.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-bold text-lg mb-2">Does LSF provide funding to legal aid organizations?</h3>
-              <p className="text-neutral-gray">
-                Yes, as a basket fund, LSF provides grants to qualified legal aid organizations in Tanzania. 
-                Grant opportunities are announced on our website and through our newsletter. 
-                Visit our Resources page for more information on funding criteria and application processes.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="font-bold text-lg mb-2">How can I volunteer or work with LSF?</h3>
-              <p className="text-neutral-gray">
-                We occasionally have volunteer opportunities and job openings. Check our News section for current 
-                positions or fill out the contact form with "Volunteer Interest" as the subject to express your interest.
-              </p>
-            </div>
-          </div>
-        </div>
+        </Container>
       </section>
     </Layout>
   );
