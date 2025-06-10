@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart, Star, Users, TrendingUp } from 'lucide-react';
@@ -97,8 +96,8 @@ const SuccessStories = () => {
         <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary-teal rounded-full blur-xl"></div>
       </div>
       
-      <Container size="xxl">
-        {/* Featured Stories Section */}
+      <Container size="xl">
+        {/* Featured Stories Section */
 
         {/* All Stories Section */}
         <div className="border-t border-gray-200 pt-20">
