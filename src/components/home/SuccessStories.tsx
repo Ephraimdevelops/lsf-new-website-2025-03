@@ -1,9 +1,11 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart, Star, Users, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
 
 interface SuccessStory {
   id: string;
@@ -13,6 +15,7 @@ interface SuccessStory {
   quote: string;
   category: string;
   brief: string;
+  featured?: boolean;
 }
 
 // Real success stories with LSF images
@@ -24,7 +27,8 @@ const successStories: SuccessStory[] = [
     image: "/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png",
     quote: "Through LSF's paralegal support, I successfully reclaimed my family land that was illegally taken after my husband's death. Now I can provide for my children with dignity.",
     category: "Land Rights",
-    brief: "After Mariam's husband passed away, her in-laws attempted to evict her from her ancestral home, claiming traditional rights. With guidance from an LSF-trained paralegal who understood both formal law and customary practices, Mariam learned about women's inheritance rights under Tanzanian law. The paralegal helped her navigate the local court system, gather proper documentation, and mediate with family members. Today, Mariam not only retained her home but also serves as a community advocate, helping other widows understand their legal rights."
+    brief: "After Mariam's husband passed away, her in-laws attempted to evict her from her ancestral home. With guidance from an LSF-trained paralegal, Mariam learned about women's inheritance rights and successfully retained her home.",
+    featured: true
   },
   {
     id: "joseph-mkwawa",
@@ -33,7 +37,8 @@ const successStories: SuccessStory[] = [
     image: "/lovable-uploads/cbf914e5-d076-4c31-9e29-dacc8069c97a.png",
     quote: "The LSF mobile legal clinic in our village helped me understand my rights as a small business owner and resolve a longstanding dispute that was threatening my family's livelihood.",
     category: "Business Rights",
-    brief: "Joseph's small carpentry workshop was his family's primary income source, but a local official demanded illegal payments and threatened to shut him down. When the LSF mobile clinic visited his remote village, Joseph learned about business registration requirements, tax obligations, and his rights under Tanzanian business law. The paralegal helped him properly register his business and provided documentation showing the official's demands were illegal. Joseph now operates legally, employs three apprentices, and has expanded his workshop to serve neighboring villages."
+    brief: "Joseph's small carpentry workshop was threatened by illegal demands from local officials. The LSF mobile clinic helped him properly register his business and provided documentation showing the demands were illegal.",
+    featured: true
   },
   {
     id: "neema-urio",
@@ -42,7 +47,8 @@ const successStories: SuccessStory[] = [
     image: "/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png",
     quote: "After attending LSF's legal empowerment workshops, I now lead a women's group that advocates for our community's rights and provides peer support to women facing legal challenges.",
     category: "Women's Empowerment",
-    brief: "Inspired by LSF's comprehensive legal literacy program, Neema transformed from a quiet community member into a powerful advocate for women's rights. She established the 'Tunaweza' (We Can) women's group, which now includes over 50 members across three villages. The group provides peer support for women facing domestic violence, inheritance disputes, and business challenges. Neema has become a certified paralegal herself and regularly conducts community education sessions on family law, land rights, and economic empowerment. Her group has successfully mediated over 30 disputes and helped establish a community legal clinic."
+    brief: "Inspired by LSF's legal literacy program, Neema established the 'Tunaweza' women's group, which now includes over 50 members across three villages and has successfully mediated over 30 disputes.",
+    featured: false
   },
   {
     id: "emmanuel-masaki",
@@ -51,7 +57,8 @@ const successStories: SuccessStory[] = [
     image: "/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png",
     quote: "The Haki Yangu app connected me with a paralegal who resolved my employment dispute without expensive travel to the city. Technology truly brought justice to my doorstep.",
     category: "Digital Justice",
-    brief: "When Emmanuel was unfairly dismissed from his job at a local mining company without proper notice or severance pay, he felt powerless to challenge his former employer. Living in a remote area hours from the nearest town, accessing legal help seemed impossible. Through the Haki Yangu app, Emmanuel connected with a paralegal who guided him through labor law requirements and helped him file a proper complaint. The paralegal facilitated mediation sessions via phone and WhatsApp, ultimately securing Emmanuel three months' salary and proper dismissal procedures. This case became a model for how digital platforms can bridge the justice gap in rural Tanzania."
+    brief: "When Emmanuel was unfairly dismissed from his job, the Haki Yangu app connected him with a paralegal who guided him through labor law requirements and secured him three months' salary.",
+    featured: false
   }
 ];
 
@@ -59,144 +66,304 @@ const SuccessStories = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   
+  const featuredStories = successStories.filter(story => story.featured);
+  const allStories = successStories;
+  
   const handleNext = () => {
     if (animating) return;
     setAnimating(true);
-    setActiveIndex((current) => (current + 1) % successStories.length);
+    setActiveIndex((current) => (current + 1) % allStories.length);
     setTimeout(() => setAnimating(false), 500);
   };
   
   const handlePrev = () => {
     if (animating) return;
     setAnimating(true);
-    setActiveIndex((current) => current === 0 ? successStories.length - 1 : current - 1);
+    setActiveIndex((current) => current === 0 ? allStories.length - 1 : current - 1);
     setTimeout(() => setAnimating(false), 500);
   };
 
   const visibleStories = [
-    successStories[activeIndex],
-    successStories[(activeIndex + 1) % successStories.length],
-    successStories[(activeIndex + 2) % successStories.length]
+    allStories[activeIndex],
+    allStories[(activeIndex + 1) % allStories.length],
+    allStories[(activeIndex + 2) % allStories.length]
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-neutral-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-primary rounded-full"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary-teal rounded-full"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary rounded-full blur-xl"></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary-teal rounded-full blur-xl"></div>
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-12">
-          <div className="max-w-2xl">
-            <div className="w-12 h-1 bg-primary mb-4"></div>
-            <h2 className="text-4xl font-bold text-neutral-900 mb-4 uppercase tracking-wide">Stories of Justice</h2>
-            <p className="text-neutral-gray text-lg leading-relaxed">
-              Real people, real change — witness how legal empowerment is transforming communities across Tanzania. 
-              Every story represents hope, resilience, and the transformative power of accessible justice.
-            </p>
+      <Container size="xl">
+        {/* Featured Stories Section */}
+        <div className="mb-20">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-primary/10 text-primary rounded-full px-6 py-3 mb-6">
+              <Star className="h-5 w-5 mr-2" />
+              <Typography variant="overline" className="font-bold">
+                FEATURED STORIES
+              </Typography>
+            </div>
+            <Typography variant="h2" className="mb-6">
+              Transforming Lives Through Justice
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Real people, real change — witness how legal empowerment is transforming communities across Tanzania.
+            </Typography>
           </div>
           
-          <div className="flex space-x-3 mt-6 lg:mt-0">
-            <button 
-              onClick={handlePrev}
-              className="p-3 bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-lg border border-gray-200"
-              aria-label="Previous story"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <button 
-              onClick={handleNext}
-              className="p-3 bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-lg border border-gray-200"
-              aria-label="Next story"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visibleStories.map((story, index) => (
-            <Link 
-              key={`${story.id}-${index}`}
-              to={`/heroes/${story.id}`}
-              className="group"
-            >
-              <Card 
-                className={`overflow-hidden transition-all duration-500 hover:shadow-2xl ${
-                  animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-                } hover:-translate-y-3`}
-                style={{ 
-                  transitionDelay: `${index * 100}ms`,
-                  animationDelay: `${index * 100}ms`
-                }}
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={story.image} 
-                    alt={story.name} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-primary text-white text-xs font-medium px-3 py-2 rounded-full uppercase tracking-wide">
-                      {story.category}
-                    </span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {featuredStories.map((story, index) => (
+              <div key={story.id} className="group relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary-teal rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
+                  {/* Featured Badge */}
+                  <div className="absolute top-6 right-6 z-10">
+                    <div className="bg-secondary-orange text-white px-3 py-2 rounded-full text-xs font-bold flex items-center shadow-lg">
+                      <Star className="h-3 w-3 mr-1" />
+                      FEATURED
+                    </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full p-6">
-                    <h3 className="font-bold text-xl text-white mb-1">{story.name}</h3>
-                    <div className="flex items-center text-white/80 text-sm">
-                      <MapPin className="h-4 w-4 mr-1" />
-                      {story.location}
+                  
+                  <div className="relative h-80 overflow-hidden">
+                    <img 
+                      src={story.image} 
+                      alt={story.name} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    
+                    <div className="absolute top-6 left-6">
+                      <span className="bg-primary text-white text-xs font-bold px-3 py-2 rounded-full uppercase tracking-wide shadow-lg">
+                        {story.category}
+                      </span>
+                    </div>
+                    
+                    <div className="absolute bottom-0 left-0 w-full p-8">
+                      <Typography variant="h3" className="text-white mb-2">
+                        {story.name}
+                      </Typography>
+                      <div className="flex items-center text-white/80">
+                        <MapPin className="h-4 w-4 mr-2" />
+                        <Typography variant="bodySmall" className="text-white/80">
+                          {story.location}
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-8">
+                    <blockquote className="mb-6">
+                      <Quote className="h-8 w-8 text-primary/20 mb-4" />
+                      <Typography variant="bodySmall" className="text-neutral-dark italic leading-relaxed mb-4">
+                        "{story.quote}"
+                      </Typography>
+                    </blockquote>
+                    
+                    <Typography variant="bodySmall" className="text-neutral-gray leading-relaxed mb-8">
+                      {story.brief}
+                    </Typography>
+                    
+                    <div className="flex justify-between items-center">
+                      <Link 
+                        to={`/heroes/${story.id}`}
+                        className="inline-flex items-center text-primary font-bold hover:text-primary/80 transition-colors group"
+                      >
+                        <Typography variant="overline" className="text-primary">
+                          READ FULL STORY
+                        </Typography>
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                      <Heart className="h-6 w-6 text-gray-300 group-hover:text-red-400 transition-colors" />
                     </div>
                   </div>
                 </div>
-                
-                <div className="p-6 bg-white">
-                  <blockquote className="flex items-start mb-6">
-                    <Quote className="h-8 w-8 text-primary/20 mr-3 flex-shrink-0 mt-1" />
-                    <p className="text-neutral-dark italic leading-relaxed">"{story.quote}"</p>
-                  </blockquote>
-                  
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6">{story.brief}</p>
-                  
-                  <div className="flex justify-between items-center">
-                    <span className="text-primary font-medium group-hover:underline flex items-center uppercase tracking-wide text-sm">
-                      Read Full Story
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>
-                    <Heart className="h-5 w-5 text-gray-300 group-hover:text-red-400 transition-colors" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* All Stories Section */}
+        <div className="border-t border-gray-200 pt-20">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-16">
+            <div className="max-w-2xl">
+              <Typography variant="overline" className="text-primary mb-4 block">
+                ALL STORIES OF JUSTICE
+              </Typography>
+              <Typography variant="h2" className="mb-6">
+                Every Story Matters
+              </Typography>
+              <Typography variant="body" className="text-neutral-gray">
+                Each story represents hope, resilience, and the transformative power of accessible justice.
+              </Typography>
+            </div>
+            
+            <div className="flex space-x-3 mt-6 lg:mt-0">
+              <button 
+                onClick={handlePrev}
+                className="p-4 bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-lg border border-gray-200 group"
+                aria-label="Previous story"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button 
+                onClick={handleNext}
+                className="p-4 bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-lg border border-gray-200 group"
+                aria-label="Next story"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {visibleStories.map((story, index) => (
+              <Link 
+                key={`${story.id}-${index}`}
+                to={`/heroes/${story.id}`}
+                className="group"
+              >
+                <Card 
+                  className={`overflow-hidden transition-all duration-500 hover:shadow-2xl bg-white rounded-2xl border border-gray-100 ${
+                    animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+                  } hover:-translate-y-3 group-hover:border-primary/20`}
+                  style={{ 
+                    transitionDelay: `${index * 100}ms`,
+                    animationDelay: `${index * 100}ms`
+                  }}
+                >
+                  <div className="relative h-56 overflow-hidden">
+                    <img 
+                      src={story.image} 
+                      alt={story.name} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-primary text-white text-xs font-bold px-3 py-2 rounded-full uppercase tracking-wide shadow-lg">
+                        {story.category}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full p-6">
+                      <Typography variant="h4" className="text-white mb-1">
+                        {story.name}
+                      </Typography>
+                      <div className="flex items-center text-white/80 text-sm">
+                        <MapPin className="h-3 w-3 mr-1" />
+                        {story.location}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            </Link>
-          ))}
+                  
+                  <div className="p-6">
+                    <blockquote className="mb-4">
+                      <Quote className="h-6 w-6 text-primary/20 mb-3" />
+                      <Typography variant="bodySmall" className="text-neutral-dark italic leading-relaxed">
+                        "{story.quote}"
+                      </Typography>
+                    </blockquote>
+                    
+                    <div className="flex justify-between items-center mt-6">
+                      <span className="text-primary font-bold group-hover:underline flex items-center text-sm tracking-wide">
+                        READ STORY
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                      <Heart className="h-5 w-5 text-gray-300 group-hover:text-red-400 transition-colors" />
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+          
+          {/* Story indicators */}
+          <div className="flex justify-center mb-12 space-x-2">
+            {allStories.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === activeIndex ? 'bg-primary scale-125' : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to story ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Impact Stats */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-200/50 p-12 mb-12">
+          <div className="text-center mb-12">
+            <Typography variant="h3" className="mb-4">
+              Stories That Transform Communities
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray">
+              The ripple effect of justice reaches far beyond individual cases
+            </Typography>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Users className="h-10 w-10 text-primary" />
+              </div>
+              <Typography variant="h2" className="text-primary mb-2">
+                426K+
+              </Typography>
+              <Typography variant="h4" className="mb-2">
+                Lives Transformed
+              </Typography>
+              <Typography variant="bodySmall" className="text-neutral-gray">
+                Direct beneficiaries of our legal empowerment programs
+              </Typography>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="h-10 w-10 text-secondary-teal" />
+              </div>
+              <Typography variant="h2" className="text-secondary-teal mb-2">
+                96%
+              </Typography>
+              <Typography variant="h4" className="mb-2">
+                Success Rate
+              </Typography>
+              <Typography variant="bodySmall" className="text-neutral-gray">
+                Cases resolved through our paralegal network
+              </Typography>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Heart className="h-10 w-10 text-secondary-orange" />
+              </div>
+              <Typography variant="h2" className="text-secondary-orange mb-2">
+                184
+              </Typography>
+              <Typography variant="h4" className="mb-2">
+                Districts Reached
+              </Typography>
+              <Typography variant="bodySmall" className="text-neutral-gray">
+                Communities across Tanzania accessing justice
+              </Typography>
+            </div>
+          </div>
         </div>
         
-        {/* Story indicators */}
-        <div className="flex justify-center mt-8 space-x-2">
-          {successStories.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === activeIndex ? 'bg-primary scale-125' : 'bg-gray-300 hover:bg-gray-400'
-              }`}
-              aria-label={`Go to story ${index + 1}`}
-            />
-          ))}
-        </div>
-        
-        <div className="mt-12 text-center">
+        <div className="text-center">
           <Link to="/heroes">
-            <Button className="bg-primary hover:bg-primary-600 text-white font-medium text-lg px-8 py-4 h-auto rounded-none uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-300">
-              View All Success Stories
-              <ArrowRight className="ml-3 h-5 w-5" />
+            <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-12 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <Typography variant="overline" className="text-white mr-3">
+                VIEW ALL SUCCESS STORIES
+              </Typography>
+              <ArrowRight className="h-5 w-5" />
             </Button>
           </Link>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
