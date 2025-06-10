@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart, Star, Users, TrendingUp } from 'lucide-react';
@@ -97,8 +98,6 @@ const SuccessStories = () => {
       </div>
       
       <Container size="xl">
-        {/* Featured Stories Section */
-
         {/* All Stories Section */}
         <div className="border-t border-gray-200 pt-20">
           <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-16">
