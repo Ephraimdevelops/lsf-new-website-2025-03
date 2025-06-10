@@ -95,6 +95,53 @@ const Index = () => {
       <Hero />
 {/* Compact News and Updates Section */}
       <CompactNewsUpdates />
+      
+      {/* Impact Metrics Section */}
+      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-20 w-40 h-40 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-60 h-60 bg-secondary-teal/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <Container size="xl" className="relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-white/20">
+              <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
+              <Typography variant="overline" className="text-secondary-orange font-bold text-lg">
+                MEASURABLE IMPACT
+              </Typography>
+            </div>
+            
+            <Typography variant="h1" className="mb-8 text-5xl md:text-6xl font-bold text-white">
+              Real Results.
+              <span className="block text-secondary-orange">Lasting Change.</span>
+            </Typography>
+            
+            <Typography variant="body" className="text-white/90 max-w-4xl mx-auto text-xl leading-relaxed">
+              Our commitment to transparency and accountability drives us to measure and share the concrete impact of our work across Tanzania.
+            </Typography>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {successMetrics.map((metric, index) => (
+              <div key={index} className="group">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-secondary-orange/50 transition-all duration-300 text-center group-hover:-translate-y-2">
+                  <div className="text-4xl md:text-5xl font-bold mb-3 text-secondary-orange">
+                    {metric.value}
+                  </div>
+                  <div className="text-white font-semibold text-lg mb-2">
+                    {metric.label}
+                  </div>
+                  <div className="text-white/70 text-sm leading-relaxed">
+                    {metric.description}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
       {/* Our Focus Areas Section */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
@@ -215,52 +262,6 @@ const Index = () => {
 
       
 
-      {/* Impact Metrics Section */}
-      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 right-20 w-40 h-40 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-60 h-60 bg-secondary-teal/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-        
-        <Container size="xl" className="relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-white/20">
-              <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
-              <Typography variant="overline" className="text-secondary-orange font-bold text-lg">
-                MEASURABLE IMPACT
-              </Typography>
-            </div>
-            
-            <Typography variant="h1" className="mb-8 text-5xl md:text-6xl font-bold text-white">
-              Real Results.
-              <span className="block text-secondary-orange">Lasting Change.</span>
-            </Typography>
-            
-            <Typography variant="body" className="text-white/90 max-w-4xl mx-auto text-xl leading-relaxed">
-              Our commitment to transparency and accountability drives us to measure and share the concrete impact of our work across Tanzania.
-            </Typography>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {successMetrics.map((metric, index) => (
-              <div key={index} className="group">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-secondary-orange/50 transition-all duration-300 text-center group-hover:-translate-y-2">
-                  <div className="text-4xl md:text-5xl font-bold mb-3 text-secondary-orange">
-                    {metric.value}
-                  </div>
-                  <div className="text-white font-semibold text-lg mb-2">
-                    {metric.label}
-                  </div>
-                  <div className="text-white/70 text-sm leading-relaxed">
-                    {metric.description}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
 
       {/* Call to Action Section */}
       <section className="py-24 bg-white relative overflow-hidden">
