@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { ArrowRight, Search, Filter, Newspaper, Calendar, Users, Globe, Target } from 'lucide-react';
+import { ArrowRight, Search, Filter, Newspaper, Calendar, Users, Globe, Target, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -22,14 +22,110 @@ const News = () => {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
   const [filteredItems, setFilteredItems] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // Featured posts for the carousel
+  const featuredPosts = [
+    {
+      id: 'featured-1',
+      title: 'Digital Legal Aid Revolution: Reaching 50,000+ Citizens Across Tanzania',
+      excerpt: 'Our comprehensive digital transformation has successfully connected over 50,000 Tanzanians with essential legal services through innovative technology platforms.',
+      date: 'November 15, 2024',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      category: 'Digital Transformation'
+    },
+    {
+      id: 'featured-2',
+      title: 'Climate Justice Initiative Addresses Environmental Challenges',
+      excerpt: 'LSF launches groundbreaking climate justice program to tackle environmental legal issues affecting vulnerable communities nationwide.',
+      date: 'November 8, 2024',
+      image: 'https://images.unsplash.com/photo-1519452575417-564c1401ecc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      category: 'Climate Justice'
+    },
+    {
+      id: 'featured-3',
+      title: 'Paralegal Network Expansion: Now Covering All 184 Districts',
+      excerpt: 'LSF completes nationwide expansion with trained paralegals now operating in every district across Tanzania, ensuring universal access to legal aid.',
+      date: 'October 28, 2024',
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      category: 'Legal Empowerment'
+    }
+  ];
+
+  // Extended news items
+  const extendedNewsItems: NewsItem[] = [
+    {
+      id: 'news-1',
+      title: 'Women\'s Rights Legal Clinic Opens in Dodoma',
+      excerpt: 'New specialized legal clinic provides comprehensive support for women facing gender-based violence and discrimination.',
+      date: 'November 12, 2024',
+      image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      category: 'Gender Justice'
+    },
+    {
+      id: 'news-2',
+      title: 'Legal Aid Mobile App Surpasses 75,000 Downloads',
+      excerpt: 'Haki Yangu mobile application reaches new milestone, providing instant legal guidance to citizens across Tanzania.',
+      date: 'November 5, 2024',
+      image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      category: 'Digital Innovation'
+    },
+    {
+      id: 'news-3',
+      title: 'Rural Communities Gain Access to Land Rights Legal Support',
+      excerpt: 'New outreach program helps rural farmers secure land titles and resolve property disputes through community-based legal aid.',
+      date: 'October 29, 2024',
+      image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      category: 'Land Rights'
+    },
+    {
+      id: 'news-4',
+      title: 'Youth Legal Empowerment Program Trains 500+ Young Advocates',
+      excerpt: 'Comprehensive training program equips young Tanzanians with legal knowledge to advocate for their communities.',
+      date: 'October 22, 2024',
+      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      category: 'Youth Empowerment'
+    },
+    {
+      id: 'news-5',
+      title: 'Policy Reform Success: New Legal Aid Framework Adopted',
+      excerpt: 'Government adopts LSF-proposed framework for improving access to justice and legal aid services nationwide.',
+      date: 'October 15, 2024',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      category: 'Policy Advocacy'
+    },
+    {
+      id: 'news-6',
+      title: 'Community Legal Education Reaches 25,000 Citizens',
+      excerpt: 'Nationwide community education initiative successfully educates thousands on their legal rights and available remedies.',
+      date: 'October 8, 2024',
+      image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      category: 'Legal Education'
+    },
+    {
+      id: 'news-7',
+      title: 'Partnership with Universities Enhances Legal Research',
+      excerpt: 'Strategic partnerships with leading universities strengthen evidence-based research for policy advocacy and legal reform.',
+      date: 'September 30, 2024',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      category: 'Research'
+    },
+    {
+      id: 'news-8',
+      title: 'Access to Justice Survey Reveals Key Insights',
+      excerpt: 'Comprehensive national survey provides crucial data on barriers to justice and effectiveness of legal aid services.',
+      date: 'September 23, 2024',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      category: 'Research'
+    }
+  ];
   
   useEffect(() => {
     const fetchNews = async () => {
       setIsLoading(true);
       try {
-        const data = dataService.getNews();
-        setNewsItems(data);
-        setFilteredItems(data);
+        setNewsItems(extendedNewsItems);
+        setFilteredItems(extendedNewsItems);
       } catch (error) {
         console.error("Error fetching news:", error);
       } finally {
@@ -52,6 +148,19 @@ const News = () => {
   }, [searchTerm, category, newsItems]);
   
   const categories = ['all', ...Array.from(new Set(newsItems.map(item => item.category.toLowerCase())))];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % featuredPosts.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + featuredPosts.length) % featuredPosts.length);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, []);
   
   return (
     <Layout>
@@ -73,7 +182,7 @@ const News = () => {
               </Typography>
               
               <Typography variant="body" className="text-neutral-gray mb-8 leading-relaxed max-w-lg">
-                Stay up to date with our latest news, announcements, and developments in advancing access to justice across Tanzania. Discover our impact stories and legislative achievements.
+                Stay up to date with our latest news, announcements, and developments in advancing access to justice across Tanzania.
               </Typography>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -137,52 +246,87 @@ const News = () => {
         </Container>
       </section>
 
-      {/* Card-Based Category Navigation */}
-      <section className="py-12 bg-neutral-light">
+      {/* Featured Posts Carousel */}
+      <section className="py-16 bg-neutral-50">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 group cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <span className="text-primary font-bold text-xl font-heading">01</span>
-                </div>
-                <Users className="h-6 w-6 text-primary" />
+          <div className="mb-8">
+            <Typography variant="h1" className="text-3xl font-bold text-neutral-dark mb-4 font-heading">
+              Featured Stories
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray">
+              Discover our most impactful stories and latest developments
+            </Typography>
+          </div>
+          
+          <div className="relative">
+            <div className="overflow-hidden rounded-2xl">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {featuredPosts.map((post, index) => (
+                  <div key={post.id} className="w-full flex-shrink-0">
+                    <Link to={`/news/${post.id}`} className="block group">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white shadow-lg overflow-hidden">
+                        <div className="lg:order-2">
+                          <div className="h-64 lg:h-96 overflow-hidden">
+                            <img 
+                              src={post.image} 
+                              alt={post.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                        </div>
+                        <div className="lg:order-1 p-8 lg:p-12 flex flex-col justify-center">
+                          <div className="mb-4">
+                            <span className="bg-primary text-white px-3 py-1 text-sm font-medium uppercase tracking-wide">
+                              {post.category}
+                            </span>
+                            <span className="ml-4 text-neutral-gray text-sm">{post.date}</span>
+                          </div>
+                          <Typography variant="h1" className="text-3xl lg:text-4xl font-bold text-neutral-dark mb-4 group-hover:text-primary transition-colors font-heading">
+                            {post.title}
+                          </Typography>
+                          <Typography variant="body" className="text-neutral-gray mb-6 leading-relaxed">
+                            {post.excerpt}
+                          </Typography>
+                          <div className="flex items-center text-primary font-medium uppercase tracking-wide text-sm group-hover:underline font-heading">
+                            Read Full Story
+                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
               </div>
-              <h3 className="text-lg font-bold text-neutral-dark mb-2 font-heading">Legal Empowerment</h3>
-              <p className="text-neutral-gray text-sm">Community-based legal aid and empowerment initiatives</p>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 group cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-secondary-teal/10 rounded-xl flex items-center justify-center group-hover:bg-secondary-teal/20 transition-colors">
-                  <span className="text-secondary-teal font-bold text-xl font-heading">02</span>
-                </div>
-                <Globe className="h-6 w-6 text-secondary-teal" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-dark mb-2 font-heading">Policy Advocacy</h3>
-              <p className="text-neutral-gray text-sm">Driving systemic change through policy reform</p>
-            </div>
+            {/* Carousel Controls */}
+            <button 
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all"
+            >
+              <ChevronLeft className="h-6 w-6 text-neutral-dark" />
+            </button>
+            <button 
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all"
+            >
+              <ChevronRight className="h-6 w-6 text-neutral-dark" />
+            </button>
             
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 group cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-secondary-orange/10 rounded-xl flex items-center justify-center group-hover:bg-secondary-orange/20 transition-colors">
-                  <span className="text-secondary-orange font-bold text-xl font-heading">03</span>
-                </div>
-                <Target className="h-6 w-6 text-secondary-orange" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-dark mb-2 font-heading">Impact Stories</h3>
-              <p className="text-neutral-gray text-sm">Real-world outcomes and success stories</p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 group cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-secondary-yellow/10 rounded-xl flex items-center justify-center group-hover:bg-secondary-yellow/20 transition-colors">
-                  <span className="text-secondary-yellow font-bold text-xl font-heading">04</span>
-                </div>
-                <Calendar className="h-6 w-6 text-secondary-yellow" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-dark mb-2 font-heading">Announcements</h3>
-              <p className="text-neutral-gray text-sm">Latest updates and organizational news</p>
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {featuredPosts.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    currentSlide === index ? 'bg-primary scale-125' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </Container>
