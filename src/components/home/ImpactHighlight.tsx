@@ -57,27 +57,27 @@ const ImpactHighlight = () => {
             </Link>
           </div>
 
-          {/* Visual */}
+          {/* Visual with Real LSF Images */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4">
               <img 
-                src="https://images.unsplash.com/photo-1559027062-4eccf6997ff5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Legal aid training session"
+                src="/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png"
+                alt="LSF legal aid consultation session"
                 className="rounded-lg shadow-lg aspect-square object-cover"
               />
               <img 
-                src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Community meeting"
+                src="/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png"
+                alt="Community legal awareness gathering"
                 className="rounded-lg shadow-lg aspect-square object-cover mt-8"
               />
               <img 
-                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Paralegal consultation"
+                src="/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png"
+                alt="LSF community workshop on legal rights"
                 className="rounded-lg shadow-lg aspect-square object-cover -mt-8"
               />
               <img 
-                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Justice advocacy"
+                src="/lovable-uploads/cbf914e5-d076-4c31-9e29-dacc8069c97a.png"
+                alt="LSF staff and community members"
                 className="rounded-lg shadow-lg aspect-square object-cover"
               />
             </div>

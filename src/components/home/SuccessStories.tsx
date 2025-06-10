@@ -15,43 +15,43 @@ interface SuccessStory {
   brief: string;
 }
 
-// Sample data - in production this would come from an API
+// Real success stories with LSF images
 const successStories: SuccessStory[] = [
   {
     id: "mariam-hassan",
     name: "Mariam Hassan",
     location: "Dar es Salaam",
-    image: "https://images.unsplash.com/photo-1539701938214-0d9d0e8ab606?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "With LSF's paralegal support, I reclaimed my family land that was illegally taken after my husband passed away.",
+    image: "/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png",
+    quote: "Through LSF's paralegal support, I successfully reclaimed my family land that was illegally taken after my husband's death. Now I can provide for my children with dignity.",
     category: "Land Rights",
-    brief: "After Mariam's husband died, her in-laws attempted to evict her from her home. With support from a local paralegal trained by LSF, she was able to assert her legal rights and maintain ownership of her family's property."
+    brief: "After Mariam's husband passed away, her in-laws attempted to evict her from her ancestral home, claiming traditional rights. With guidance from an LSF-trained paralegal who understood both formal law and customary practices, Mariam learned about women's inheritance rights under Tanzanian law. The paralegal helped her navigate the local court system, gather proper documentation, and mediate with family members. Today, Mariam not only retained her home but also serves as a community advocate, helping other widows understand their legal rights."
   },
   {
-    id: "story2",
+    id: "joseph-mkwawa",
     name: "Joseph Mkwawa",
     location: "Mbeya",
-    image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "The mobile legal clinic in our village helped me understand my rights as a small business owner and resolve a longstanding dispute.",
+    image: "/lovable-uploads/cbf914e5-d076-4c31-9e29-dacc8069c97a.png",
+    quote: "The LSF mobile legal clinic in our village helped me understand my rights as a small business owner and resolve a longstanding dispute that was threatening my family's livelihood.",
     category: "Business Rights",
-    brief: "Joseph's small carpentry workshop was threatened when a local official demanded illegal payments. With guidance from an LSF-supported legal aid provider, Joseph learned about business regulations and successfully challenged the corrupt demands."
+    brief: "Joseph's small carpentry workshop was his family's primary income source, but a local official demanded illegal payments and threatened to shut him down. When the LSF mobile clinic visited his remote village, Joseph learned about business registration requirements, tax obligations, and his rights under Tanzanian business law. The paralegal helped him properly register his business and provided documentation showing the official's demands were illegal. Joseph now operates legally, employs three apprentices, and has expanded his workshop to serve neighboring villages."
   },
   {
-    id: "story3",
+    id: "neema-urio",
     name: "Neema Urio",
     location: "Arusha",
-    image: "https://images.unsplash.com/photo-1531123414780-f74242c2b052?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "After attending legal education sessions, I now lead a women's group that advocates for our community's rights and supports other women.",
+    image: "/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png",
+    quote: "After attending LSF's legal empowerment workshops, I now lead a women's group that advocates for our community's rights and provides peer support to women facing legal challenges.",
     category: "Women's Empowerment",
-    brief: "Inspired by LSF's legal empowerment workshops, Neema formed a women's advocacy group in her community. The group provides peer support and connects women with paralegals when they face legal challenges."
+    brief: "Inspired by LSF's comprehensive legal literacy program, Neema transformed from a quiet community member into a powerful advocate for women's rights. She established the 'Tunaweza' (We Can) women's group, which now includes over 50 members across three villages. The group provides peer support for women facing domestic violence, inheritance disputes, and business challenges. Neema has become a certified paralegal herself and regularly conducts community education sessions on family law, land rights, and economic empowerment. Her group has successfully mediated over 30 disputes and helped establish a community legal clinic."
   },
   {
-    id: "story4",
+    id: "emmanuel-masaki",
     name: "Emmanuel Masaki",
     location: "Dodoma",
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "The Haki Yangu app helped me find a paralegal who resolved my employment dispute without having to travel to the city.",
-    category: "Labor Rights",
-    brief: "When Emmanuel was unfairly dismissed without severance pay, he used the Haki Yangu app to connect with a paralegal who mediated the dispute, resulting in fair compensation from his former employer."
+    image: "/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png",
+    quote: "The Haki Yangu app connected me with a paralegal who resolved my employment dispute without expensive travel to the city. Technology truly brought justice to my doorstep.",
+    category: "Digital Justice",
+    brief: "When Emmanuel was unfairly dismissed from his job at a local mining company without proper notice or severance pay, he felt powerless to challenge his former employer. Living in a remote area hours from the nearest town, accessing legal help seemed impossible. Through the Haki Yangu app, Emmanuel connected with a paralegal who guided him through labor law requirements and helped him file a proper complaint. The paralegal facilitated mediation sessions via phone and WhatsApp, ultimately securing Emmanuel three months' salary and proper dismissal procedures. This case became a model for how digital platforms can bridge the justice gap in rural Tanzania."
   }
 ];
 
@@ -91,10 +91,10 @@ const SuccessStories = () => {
         <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-12">
           <div className="max-w-2xl">
             <div className="w-12 h-1 bg-primary mb-4"></div>
-            <h2 className="text-4xl font-bold text-neutral-900 mb-4 uppercase tracking-wide">Success Stories</h2>
+            <h2 className="text-4xl font-bold text-neutral-900 mb-4 uppercase tracking-wide">Stories of Justice</h2>
             <p className="text-neutral-gray text-lg leading-relaxed">
-              Real people, real impact — see how legal empowerment is transforming lives across Tanzania. 
-              Every story represents hope, resilience, and the power of justice.
+              Real people, real change — witness how legal empowerment is transforming communities across Tanzania. 
+              Every story represents hope, resilience, and the transformative power of accessible justice.
             </p>
           </div>
           

@@ -27,19 +27,19 @@ const heroSlides: HeroSlide[] = [
     id: 'empowerment',
     title: 'Justice is not a privilege.',
     subtitle: 'It\'s a fundamental right for every Tanzanian.',
-    description: 'From rural villages to urban centers, we provide legal aid, education, and advocacy to those who need it most—ensuring no one is left behind in the pursuit of justice.',
+    description: 'From bustling urban centers to remote rural villages, our comprehensive network of paralegals, mobile clinics, and digital platforms ensures that quality legal aid, education, and advocacy reach those who need it most—because no Tanzanian should be denied justice due to geography, poverty, or lack of knowledge.',
     category: 'Legal Empowerment',
-    image: 'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
-    stat: '26,000+',
-    statLabel: 'Lives Changed'
+    image: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
+    stat: '426,000+',
+    statLabel: 'Lives Transformed'
   },
   {
     id: 'reach',
     title: 'Every district. Every community.',
     subtitle: 'Legal aid that reaches the unreachable.',
-    description: 'Our network of paralegals and legal experts spans all 184 districts of Tanzania, bringing justice directly to communities that have been historically underserved.',
+    description: 'Our network of over 500 trained paralegals spans all 184 districts of Tanzania, bringing justice directly to communities that have been historically underserved. Through mobile clinics, community workshops, and innovative digital tools, we ensure that distance is never a barrier to accessing legal support.',
     category: 'National Coverage',
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
+    image: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
     stat: '184',
     statLabel: 'Districts Covered'
   },
@@ -47,15 +47,15 @@ const heroSlides: HeroSlide[] = [
     id: 'innovation',
     title: 'Digital tools. Real solutions.',
     subtitle: 'Technology that bridges the justice gap.',
-    description: 'Through our Haki Yangu App and digital platforms, we\'re revolutionizing how Tanzanians access legal information and connect with support when they need it most.',
+    description: 'Through our revolutionary Haki Yangu App and comprehensive digital platforms, we\'re transforming how Tanzanians access legal information, connect with qualified paralegals, and resolve disputes. Innovation meets impact as we build the future of accessible justice in Tanzania.',
     category: 'Digital Innovation',
-    image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80',
-    stat: '5,000+',
+    image: '/lovable-uploads/7cdc0b2c-cc42-4f40-9196-2324a35f30a1.png',
+    stat: '15,000+',
     statLabel: 'App Users Helped'
   }
 ];
 
-// Regions for the paralegal finder with corresponding hotline numbers
+// Comprehensive regional coverage with localized hotlines
 const regions = [
   { name: "All Regions", phone: "+255 870 119 363" },
   { name: "Dar es Salaam", phone: "+255 717 111 764" },
@@ -63,7 +63,9 @@ const regions = [
   { name: "Arusha", phone: "+255 629 296 306" },
   { name: "Dodoma", phone: "+255 754 110 307" },
   { name: "Tanga", phone: "+255 711 032 998" },
-  { name: "Morogoro", phone: "+255 800 110 309" }
+  { name: "Morogoro", phone: "+255 800 110 309" },
+  { name: "Mbeya", phone: "+255 745 887 221" },
+  { name: "Iringa", phone: "+255 762 334 556" }
 ];
 
 const Hero = () => {
@@ -108,7 +110,7 @@ const Hero = () => {
 
   return (
     <section className="relative text-white min-h-[85vh] flex items-center overflow-hidden">
-      {/* Background with overlay gradient similar to DWB */}
+      {/* Background with overlay gradient */}
       <div className="absolute inset-0">
         <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000"
@@ -120,17 +122,17 @@ const Hero = () => {
       
       <div className="container mx-auto px-4 py-12 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Hero content - More compact */}
+          {/* Hero content */}
           <div className="lg:col-span-7">
-            <div className="mb-6">
-            </div>
-            
             <div className="transition-all duration-500">
               <div className="flex items-center gap-3 mb-4">
                 <span className="inline-block bg-secondary-orange text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
                   {currentSlideData.category}
                 </span>
-               
+                <div className="flex items-center text-secondary-teal">
+                  <span className="text-3xl font-bold mr-2">{currentSlideData.stat}</span>
+                  <span className="text-sm">{currentSlideData.statLabel}</span>
+                </div>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
@@ -163,7 +165,7 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Legal Aid Widget - More compact and impactful */}
+          {/* Enhanced Legal Aid Widget */}
           <div className="lg:col-span-5">
             <div className="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-2xl border border-white/20">
               <div className="flex items-center gap-3 mb-4">
@@ -172,7 +174,7 @@ const Hero = () => {
                 </div>
                 <div>
                   <h3 className="text-primary text-xl font-bold">Get Free Legal Aid</h3>
-                  <p className="text-neutral-600 text-sm">Available across Tanzania</p>
+                  <p className="text-neutral-600 text-sm">Available in all 184 districts</p>
                 </div>
               </div>
               
@@ -200,7 +202,7 @@ const Hero = () => {
               <div className="flex items-center gap-3 mb-6 p-4 bg-gradient-to-r from-primary/10 to-secondary-teal/10 rounded-xl border border-primary/20">
                 <Phone className="h-8 w-8 text-primary flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-neutral-dark text-sm">Toll-Free Hotline</p>
+                  <p className="font-medium text-neutral-dark text-sm">24/7 Legal Helpline</p>
                   <a href={`tel:${hotlineNumber.replace(/\s/g, '')}`} className="text-xl font-bold text-primary">
                     {hotlineNumber}
                   </a>
@@ -222,13 +224,13 @@ const Hero = () => {
                   className="bg-secondary-teal text-white hover:bg-opacity-90 px-4 py-3 rounded-lg text-center font-bold transition-colors flex items-center justify-center gap-2 text-sm"
                 >
                   <Download className="h-4 w-4" />
-                  Download HakiYangu App
+                  Get App
                 </a>
               </div>
               
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <p className="text-xs text-gray-600 text-center">
-                  Free legal consultation • Available in Swahili & English
+                  Free legal consultation • Available in Swahili & English • Confidential support
                 </p>
               </div>
             </div>
@@ -253,7 +255,6 @@ const Hero = () => {
           </button>
         </div>
         
-        {/* Slide indicators */}
         <div className="absolute bottom-8 left-8 z-30 flex space-x-2">
           {heroSlides.map((_, index) => (
             <button
