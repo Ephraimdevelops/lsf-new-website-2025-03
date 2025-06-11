@@ -5,6 +5,7 @@ import { ArrowLeft, Scale, Users, Gavel, Building, Target, CheckCircle, Sparkles
 import { Button } from '@/components/ui/button';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
+import Breadcrumb from '../components/shared/Breadcrumb';
 
 interface FocusArea {
   id: string;
@@ -215,7 +216,7 @@ const FocusAreaDetail = () => {
     return (
       <Layout>
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-primary-dark to-black">
-          <div className="text-center text-white">
+          <div className="text-center text-white px-4">
             <h1 className="text-4xl font-bold mb-8">Focus Area Not Found</h1>
             <Link to="/">
               <Button className="bg-secondary-orange hover:bg-secondary-orange/90 text-white">
@@ -228,8 +229,20 @@ const FocusAreaDetail = () => {
     );
   }
 
+  const breadcrumbItems = [
+    { label: "Focus Areas", href: "/" },
+    { label: focusArea.title }
+  ];
+
   return (
     <Layout>
+      {/* Breadcrumb Navigation */}
+      <div className="bg-neutral-light py-4">
+        <Container size="xl">
+          <Breadcrumb items={breadcrumbItems} />
+        </Container>
+      </div>
+
       {/* Enhanced Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
@@ -252,25 +265,25 @@ const FocusAreaDetail = () => {
         </div>
         
         <Container size="xl" className="relative z-10">
-          <div className="text-center text-white max-w-6xl mx-auto">
-            <div className="inline-flex items-center space-x-3 mb-8 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
+          <div className="text-center text-white max-w-6xl mx-auto px-4">
+            <div className="inline-flex items-center space-x-3 mb-6 md:mb-8 bg-white/10 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 border border-white/20">
               <div className="text-secondary-orange">
                 {focusArea.icon}
               </div>
-              <span className="text-secondary-orange font-bold text-lg uppercase tracking-wider">
+              <span className="text-secondary-orange font-bold text-sm md:text-lg uppercase tracking-wider">
                 Strategic Focus Area
               </span>
             </div>
             
-            <Typography variant="display" className="text-white mb-8 leading-none text-4xl md:text-6xl font-bold">
+            <Typography variant="display" className="text-white mb-6 md:mb-8 leading-none text-2xl md:text-4xl lg:text-6xl font-bold">
               {focusArea.title}
             </Typography>
             
-            <Typography variant="body" className="text-white/90 mb-12 text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
+            <Typography variant="body" className="text-white/90 mb-8 md:mb-12 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed">
               {focusArea.description}
             </Typography>
             
-            <Link to="/" className="inline-flex items-center text-white/80 hover:text-white mb-16 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
+            <Link to="/" className="inline-flex items-center text-white/80 hover:text-white mb-12 md:mb-16 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
               <ArrowLeft className="h-5 w-5 mr-2" />
               Back to Focus Areas
             </Link>
@@ -285,8 +298,8 @@ const FocusAreaDetail = () => {
         </div>
       </section>
 
-      {/* Main Content Section - Enhanced */}
-      <section className="py-24 bg-gradient-to-br from-gray-900 via-black to-primary-dark text-white relative overflow-hidden">
+      {/* Main Content Section - Enhanced with responsive design */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-gray-900 via-black to-primary-dark text-white relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-10 right-10 w-60 h-60 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse"></div>
@@ -294,34 +307,34 @@ const FocusAreaDetail = () => {
         </div>
 
         <Container size="xl" className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-16">
+            <div className="lg:col-span-2 space-y-12 md:space-y-16">
               {/* Objectives */}
               <div>
-                <div className="inline-flex items-center bg-secondary-teal/20 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-secondary-teal/30">
-                  <Target className="h-6 w-6 mr-4 text-secondary-teal" />
-                  <Typography variant="overline" className="text-secondary-teal font-bold text-lg">
+                <div className="inline-flex items-center bg-secondary-teal/20 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 mb-6 md:mb-8 border border-secondary-teal/30">
+                  <Target className="h-5 w-5 md:h-6 md:w-6 mr-3 md:mr-4 text-secondary-teal" />
+                  <Typography variant="overline" className="text-secondary-teal font-bold text-sm md:text-lg">
                     KEY OBJECTIVES
                   </Typography>
                 </div>
                 
-                <Typography variant="h1" className="mb-8 text-4xl md:text-5xl font-bold text-white">
+                <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                   Our Strategic Goals
                 </Typography>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6">
                   {focusArea.objectives.map((objective, index) => (
                     <div key={index} className="group">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20 p-8 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2 h-full relative overflow-hidden">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-white/20 p-6 md:p-8 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2 h-full relative overflow-hidden">
                         {/* Background Gradient */}
                         <div className="absolute inset-0 bg-gradient-to-br from-secondary-teal/20 to-secondary-orange/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         
                         <div className="relative z-10">
-                          <div className="w-12 h-12 bg-secondary-teal/30 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <CheckCircle className="h-6 w-6 text-secondary-teal" />
+                          <div className="w-10 h-10 md:w-12 md:h-12 bg-secondary-teal/30 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-secondary-teal" />
                           </div>
-                          <Typography variant="body" className="text-white/90 leading-relaxed">
+                          <Typography variant="body" className="text-white/90 leading-relaxed text-base md:text-lg">
                             {objective}
                           </Typography>
                         </div>
@@ -333,24 +346,24 @@ const FocusAreaDetail = () => {
 
               {/* Key Activities */}
               <div>
-                <div className="inline-flex items-center bg-secondary-orange/20 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-secondary-orange/30">
-                  <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
-                  <Typography variant="overline" className="text-secondary-orange font-bold text-lg">
+                <div className="inline-flex items-center bg-secondary-orange/20 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 mb-6 md:mb-8 border border-secondary-orange/30">
+                  <TrendingUp className="h-5 w-5 md:h-6 md:w-6 mr-3 md:mr-4 text-secondary-orange" />
+                  <Typography variant="overline" className="text-secondary-orange font-bold text-sm md:text-lg">
                     KEY ACTIVITIES
                   </Typography>
                 </div>
                 
-                <Typography variant="h1" className="mb-8 text-4xl md:text-5xl font-bold text-white">
+                <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                   How We Execute
                 </Typography>
                 
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                   {focusArea.keyActivities.map((activity, index) => (
-                    <div key={index} className="group flex items-start bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
-                      <div className="w-8 h-8 bg-gradient-to-br from-secondary-orange to-secondary-teal rounded-full flex items-center justify-center mt-1 mr-6 group-hover:scale-110 transition-transform duration-300">
-                        <div className="w-3 h-3 bg-white rounded-full"></div>
+                    <div key={index} className="group flex items-start bg-white/5 backdrop-blur-sm rounded-xl md:rounded-2xl border border-white/10 p-4 md:p-6 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1">
+                      <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-br from-secondary-orange to-secondary-teal rounded-full flex items-center justify-center mt-1 mr-4 md:mr-6 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full"></div>
                       </div>
-                      <Typography variant="body" className="text-white/90 text-lg leading-relaxed">
+                      <Typography variant="body" className="text-white/90 text-base md:text-lg leading-relaxed">
                         {activity}
                       </Typography>
                     </div>
@@ -360,14 +373,14 @@ const FocusAreaDetail = () => {
 
               {/* Expected Outcomes */}
               <div>
-                <div className="inline-flex items-center bg-secondary-yellow/20 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-secondary-yellow/30">
-                  <Award className="h-6 w-6 mr-4 text-secondary-yellow" />
-                  <Typography variant="overline" className="text-secondary-yellow font-bold text-lg">
+                <div className="inline-flex items-center bg-secondary-yellow/20 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 mb-6 md:mb-8 border border-secondary-yellow/30">
+                  <Award className="h-5 w-5 md:h-6 md:w-6 mr-3 md:mr-4 text-secondary-yellow" />
+                  <Typography variant="overline" className="text-secondary-yellow font-bold text-sm md:text-lg">
                     EXPECTED OUTCOMES
                   </Typography>
                 </div>
                 
-                <Typography variant="h1" className="mb-8 text-4xl md:text-5xl font-bold text-white">
+                <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                   Measuring Success
                 </Typography>
                 
@@ -387,14 +400,14 @@ const FocusAreaDetail = () => {
 
               {/* Success Stories */}
               <div>
-                <div className="inline-flex items-center bg-primary/30 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/40">
-                  <Sparkles className="h-6 w-6 mr-4 text-white" />
-                  <Typography variant="overline" className="text-white font-bold text-lg">
+                <div className="inline-flex items-center bg-primary/30 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 mb-6 md:mb-8 border border-primary/40">
+                  <Sparkles className="h-5 w-5 md:h-6 md:w-6 mr-3 md:mr-4 text-white" />
+                  <Typography variant="overline" className="text-white font-bold text-sm md:text-lg">
                     SUCCESS STORIES
                   </Typography>
                 </div>
                 
-                <Typography variant="h1" className="mb-8 text-4xl md:text-5xl font-bold text-white">
+                <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                   Real Impact Stories
                 </Typography>
                 
@@ -422,21 +435,21 @@ const FocusAreaDetail = () => {
 
             {/* Enhanced Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-8 space-y-8">
+              <div className="sticky top-8 space-y-6 md:space-y-8">
                 {/* Target Beneficiaries */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20 p-8 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
-                  <div className="inline-flex items-center bg-secondary-teal/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-secondary-teal/30">
-                    <Users className="h-5 w-5 mr-3 text-secondary-teal" />
-                    <Typography variant="overline" className="text-secondary-teal font-bold">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-white/20 p-6 md:p-8 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
+                  <div className="inline-flex items-center bg-secondary-teal/20 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6 border border-secondary-teal/30">
+                    <Users className="h-4 w-4 md:h-5 md:w-5 mr-2 md:mr-3 text-secondary-teal" />
+                    <Typography variant="overline" className="text-secondary-teal font-bold text-xs md:text-sm">
                       TARGET BENEFICIARIES
                     </Typography>
                   </div>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-3 md:space-y-4">
                     {focusArea.targetBeneficiaries.map((beneficiary, index) => (
                       <div key={index} className="flex items-start group">
-                        <div className="w-2 h-2 bg-secondary-teal rounded-full mt-3 mr-4 group-hover:scale-150 transition-transform duration-300"></div>
-                        <Typography variant="bodySmall" className="text-white/90 leading-relaxed">
+                        <div className="w-2 h-2 bg-secondary-teal rounded-full mt-2 md:mt-3 mr-3 md:mr-4 group-hover:scale-150 transition-transform duration-300"></div>
+                        <Typography variant="bodySmall" className="text-white/90 leading-relaxed text-sm md:text-base">
                           {beneficiary}
                         </Typography>
                       </div>
@@ -445,19 +458,19 @@ const FocusAreaDetail = () => {
                 </div>
 
                 {/* Challenges */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20 p-8 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
-                  <div className="inline-flex items-center bg-secondary-orange/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-secondary-orange/30">
-                    <Globe className="h-5 w-5 mr-3 text-secondary-orange" />
-                    <Typography variant="overline" className="text-secondary-orange font-bold">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-white/20 p-6 md:p-8 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
+                  <div className="inline-flex items-center bg-secondary-orange/20 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6 border border-secondary-orange/30">
+                    <Globe className="h-4 w-4 md:h-5 md:w-5 mr-2 md:mr-3 text-secondary-orange" />
+                    <Typography variant="overline" className="text-secondary-orange font-bold text-xs md:text-sm">
                       KEY CHALLENGES
                     </Typography>
                   </div>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-3 md:space-y-4">
                     {focusArea.challenges.map((challenge, index) => (
                       <div key={index} className="flex items-start group">
-                        <div className="w-2 h-2 bg-secondary-orange rounded-full mt-3 mr-4 group-hover:scale-150 transition-transform duration-300"></div>
-                        <Typography variant="bodySmall" className="text-white/90 leading-relaxed">
+                        <div className="w-2 h-2 bg-secondary-orange rounded-full mt-2 md:mt-3 mr-3 md:mr-4 group-hover:scale-150 transition-transform duration-300"></div>
+                        <Typography variant="bodySmall" className="text-white/90 leading-relaxed text-sm md:text-base">
                           {challenge}
                         </Typography>
                       </div>
@@ -466,15 +479,15 @@ const FocusAreaDetail = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div className="bg-gradient-to-br from-secondary-teal/20 to-secondary-orange/20 backdrop-blur-sm rounded-3xl border border-white/20 p-8 text-center hover:-translate-y-2 transition-all duration-300">
-                  <Heart className="h-16 w-16 text-secondary-orange mx-auto mb-6" />
-                  <Typography variant="h3" className="text-white mb-4">
+                <div className="bg-gradient-to-br from-secondary-teal/20 to-secondary-orange/20 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-white/20 p-6 md:p-8 text-center hover:-translate-y-2 transition-all duration-300">
+                  <Heart className="h-12 w-12 md:h-16 md:w-16 text-secondary-orange mx-auto mb-4 md:mb-6" />
+                  <Typography variant="h3" className="text-white mb-3 md:mb-4 text-lg md:text-xl">
                     Join This Mission
                   </Typography>
-                  <Typography variant="body" className="text-white/90 mb-6">
+                  <Typography variant="body" className="text-white/90 mb-4 md:mb-6 text-sm md:text-base">
                     Be part of the change in this focus area
                   </Typography>
-                  <Button className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-8 py-3 rounded-full">
+                  <Button className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-6 md:px-8 py-2 md:py-3 rounded-full text-sm md:text-base">
                     Get Involved
                   </Button>
                 </div>

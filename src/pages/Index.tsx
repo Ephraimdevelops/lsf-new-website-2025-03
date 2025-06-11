@@ -15,75 +15,6 @@ import PartnersCarousel from '@/components/home/PartnersCarousel';
 import FocusAreas from '@/components/home/FocusAreas';
 
 const Index = () => {
-  const impactStats = [
-    { number: "2.8M+", label: "Tanzanians Reached", color: "secondary-orange" },
-    { number: "4,000+", label: "Trained Paralegals", color: "secondary-teal" },
-    { number: "31", label: "Regions Covered", color: "secondary-yellow" },
-    { number: "78%", label: "Cases Resolved", color: "white" }
-  ];
-
-  const features = [
-    {
-      icon: Scale,
-      title: "Legal Empowerment",
-      description: "Providing accessible legal aid and education to marginalized communities across Tanzania.",
-      color: "primary",
-      gradient: "from-primary to-primary-dark",
-      stats: "2.8M+ Reached"
-    },
-    {
-      icon: Users,
-      title: "Community Building",
-      description: "Training paralegals and building legal networks in 184 communities nationwide.",
-      color: "secondary-teal",
-      gradient: "from-secondary-teal to-secondary-teal/80",
-      stats: "184 Communities"
-    },
-    {
-      icon: Heart,
-      title: "Justice for All",
-      description: "Advocating for policy reforms and systemic changes that protect vulnerable populations.",
-      color: "secondary-orange",
-      gradient: "from-secondary-orange to-secondary-orange/80",
-      stats: "15+ Reforms"
-    }
-  ];
-
-  const principles = [
-    {
-      icon: Lightbulb,
-      number: "01",
-      title: "Innovation in Legal Access",
-      description: "We pioneer new approaches to make legal services accessible to every Tanzanian, especially those in remote areas.",
-      color: "secondary-yellow",
-      gradient: "from-secondary-yellow to-secondary-yellow/80"
-    },
-    {
-      icon: Shield,
-      number: "02", 
-      title: "Protection of Rights",
-      description: "Our work focuses on safeguarding fundamental human rights and ensuring justice for vulnerable populations.",
-      color: "primary",
-      gradient: "from-primary to-primary-dark"
-    },
-    {
-      icon: BookOpen,
-      number: "03",
-      title: "Legal Education & Awareness",
-      description: "We believe knowledge is power. Our education programs empower communities to understand and exercise their rights.",
-      color: "secondary-teal",
-      gradient: "from-secondary-teal to-secondary-teal/80"
-    },
-    {
-      icon: Globe,
-      number: "04",
-      title: "Sustainable Impact",
-      description: "We build lasting systems and partnerships that create enduring change across Tanzania's justice landscape.",
-      color: "secondary-orange",
-      gradient: "from-secondary-orange to-secondary-orange/80"
-    }
-  ];
-
   const successMetrics = [
     { value: "$47M+", label: "Disbursed as Grants", description: "Financial support to legal aid organizations" },
     { value: "105,562+", label: "Supported Groups", description: "Community organizations receiving assistance" },
@@ -100,7 +31,7 @@ const Index = () => {
       <CompactNewsUpdates />
 
       {/* Impact Metrics Section */}
-      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 right-20 w-40 h-40 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse"></div>
@@ -108,32 +39,32 @@ const Index = () => {
         </div>
         
         <Container size="xl" className="relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-white/20">
-              <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
-              <Typography variant="overline" className="text-secondary-orange font-bold text-lg">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 mb-6 md:mb-8 border border-white/20">
+              <TrendingUp className="h-5 w-5 md:h-6 md:w-6 mr-3 md:mr-4 text-secondary-orange" />
+              <Typography variant="overline" className="text-secondary-orange font-bold text-sm md:text-lg">
                 MEASURABLE IMPACT
               </Typography>
             </div>
             
-            <Typography variant="h1" className="mb-8 text-5xl md:text-6xl font-bold text-white">
+            <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-5xl lg:text-6xl font-bold text-white">
               Real Results.
               <span className="block text-secondary-orange">Lasting Change.</span>
             </Typography>
             
-            <Typography variant="body" className="text-white/90 max-w-4xl mx-auto text-xl leading-relaxed">
+            <Typography variant="body" className="text-white/90 max-w-4xl mx-auto text-lg md:text-xl leading-relaxed px-4">
               Our commitment to transparency and accountability drives us to measure and share the concrete impact of our work across Tanzania.
             </Typography>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {successMetrics.map((metric, index) => (
               <div key={index} className="group">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-secondary-orange/50 transition-all duration-300 text-center group-hover:-translate-y-2">
-                  <div className="text-4xl md:text-5xl font-bold mb-3 text-secondary-orange">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 hover:border-secondary-orange/50 transition-all duration-300 text-center group-hover:-translate-y-2">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-secondary-orange">
                     {metric.value}
                   </div>
-                  <div className="text-white font-semibold text-lg mb-2">
+                  <div className="text-white font-semibold text-base md:text-lg mb-2">
                     {metric.label}
                   </div>
                   <div className="text-white/70 text-sm leading-relaxed">
@@ -149,82 +80,41 @@ const Index = () => {
       {/* Our Focus Areas Section */}
       <FocusAreas />
 
-      {/* Features Section */}
-      <section className="py-24 bg-neutral-light">
-        <Container size="xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full group-hover:-translate-y-4">
-                  <div className={`bg-gradient-to-br ${feature.gradient} p-8 relative`}>
-                    <div className="absolute top-4 right-4 text-6xl font-black text-white/20">
-                      0{index + 1}
-                    </div>
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-                        <feature.icon className="h-8 w-8 text-white" />
-                      </div>
-                      <Typography variant="h3" className="text-white mb-4 leading-tight">
-                        {feature.title}
-                      </Typography>
-                      <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 inline-block">
-                        <span className="text-white font-bold text-sm">{feature.stats}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-8">
-                    <Typography variant="body" className="text-neutral-gray leading-relaxed mb-6 text-lg">
-                      {feature.description}
-                    </Typography>
-                    
-                    <div className="flex items-center text-primary font-semibold group-hover:text-secondary-teal transition-colors">
-                      Learn More
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
       {/* Partners and Donors Carousel */}
       <PartnersCarousel />
 
       {/* Call to Action Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
         <Container size="xl" className="relative z-10">
-          <div className="text-center max-w-5xl mx-auto">
-            <div className="inline-flex items-center bg-primary/10 rounded-full px-8 py-4 mb-8">
-              <CheckCircle className="h-6 w-6 mr-4 text-primary" />
-              <Typography variant="overline" className="text-primary font-bold text-lg">
+          <div className="text-center max-w-5xl mx-auto px-4">
+            <div className="inline-flex items-center bg-primary/10 rounded-full px-6 md:px-8 py-3 md:py-4 mb-6 md:mb-8">
+              <CheckCircle className="h-5 w-5 md:h-6 md:w-6 mr-3 md:mr-4 text-primary" />
+              <Typography variant="overline" className="text-primary font-bold text-sm md:text-lg">
                 GET INVOLVED
               </Typography>
             </div>
             
-            <Typography variant="h1" className="mb-8 text-5xl md:text-6xl font-bold">
+            <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-5xl lg:text-6xl font-bold">
               Join the Movement for
               <span className="block text-primary">Justice in Tanzania</span>
             </Typography>
             
-            <Typography variant="body" className="text-neutral-gray mb-12 text-xl leading-relaxed max-w-4xl mx-auto">
+            <Typography variant="body" className="text-neutral-gray mb-8 md:mb-12 text-lg md:text-xl leading-relaxed max-w-4xl mx-auto">
               Be part of creating lasting change across Tanzania. Whether you need legal assistance, want to support our mission, or partner with us, there's a place for you in our community.
             </Typography>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
               <Link to="/contact">
                 <div className="group">
-                  <div className="bg-gradient-to-br from-secondary-orange to-secondary-orange/80 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                      <Scale className="h-6 w-6 text-white" />
+                  <div className="bg-gradient-to-br from-secondary-orange to-secondary-orange/80 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                      <Scale className="h-5 w-5 md:h-6 md:w-6 text-white" />
                     </div>
-                    <Typography variant="h4" className="text-white mb-3 font-bold">
+                    <Typography variant="h4" className="text-white mb-3 font-bold text-lg md:text-xl">
                       Get Legal Help
                     </Typography>
-                    <Typography variant="bodySmall" className="text-white/90">
+                    <Typography variant="bodySmall" className="text-white/90 text-sm md:text-base">
                       Access free legal assistance and guidance
                     </Typography>
                   </div>
@@ -233,14 +123,14 @@ const Index = () => {
               
               <Link to="/about">
                 <div className="group">
-                  <div className="bg-gradient-to-br from-secondary-teal to-secondary-teal/80 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                      <Users className="h-6 w-6 text-white" />
+                  <div className="bg-gradient-to-br from-secondary-teal to-secondary-teal/80 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                      <Users className="h-5 w-5 md:h-6 md:w-6 text-white" />
                     </div>
-                    <Typography variant="h4" className="text-white mb-3 font-bold">
+                    <Typography variant="h4" className="text-white mb-3 font-bold text-lg md:text-xl">
                       Learn About Us
                     </Typography>
-                    <Typography variant="bodySmall" className="text-white/90">
+                    <Typography variant="bodySmall" className="text-white/90 text-sm md:text-base">
                       Discover our story and mission
                     </Typography>
                   </div>
@@ -249,14 +139,14 @@ const Index = () => {
               
               <Link to="/contact">
                 <div className="group">
-                  <div className="bg-gradient-to-br from-primary to-primary-dark p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                      <Heart className="h-6 w-6 text-white" />
+                  <div className="bg-gradient-to-br from-primary to-primary-dark p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                      <Heart className="h-5 w-5 md:h-6 md:w-6 text-white" />
                     </div>
-                    <Typography variant="h4" className="text-white mb-3 font-bold">
+                    <Typography variant="h4" className="text-white mb-3 font-bold text-lg md:text-xl">
                       Partner With Us
                     </Typography>
-                    <Typography variant="bodySmall" className="text-white/90">
+                    <Typography variant="bodySmall" className="text-white/90 text-sm md:text-base">
                       Join our network of change-makers
                     </Typography>
                   </div>
