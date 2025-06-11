@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, Scale, Users, Gavel, Building, Cloud, Smartphone } from 'lucide-react';
+import { ArrowRight, Scale, Users, Gavel, Building, Cloud, Smartphone, Target } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
