@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, Scale, Users, Landmark, Building, Target, Gavel, Cloud, Smartphone } from 'lucide-react';
+import { ArrowRight, Scale, Users, Gavel, Building, Cloud, Smartphone } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
@@ -10,88 +10,96 @@ interface FocusAreaProps {
   title: string;
   description: string;
   link: string;
-  gradient: string;
+  stats: string;
+  color: string;
 }
 
-const FocusAreaCard = ({ icon, title, description, link, gradient }: FocusAreaProps) => {
+const FocusAreaCard = ({ icon, title, description, link, stats, color }: FocusAreaProps) => {
   return (
     <Link to={link} className="block group">
-      <div className="bg-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 border border-gray-100 h-full relative overflow-hidden group-hover:-translate-y-2">
-        {/* Background Gradient */}
-        <div className={`absolute inset-0 ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-        
-        {/* Content */}
-        <div className="relative z-10">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-secondary-teal/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-            <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-              {icon}
-            </div>
+      <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full group-hover:-translate-y-4">
+        {/* Header */}
+        <div className={`bg-gradient-to-br from-${color} to-${color}/80 p-8 relative overflow-hidden`}>
+          <div className="absolute top-4 right-4 text-6xl font-black text-white/20">
+            0{stats}
           </div>
-          
-          <Typography variant="h4" className="mb-4 group-hover:text-primary transition-colors duration-300">
-            {title}
-          </Typography>
-          
-          <Typography variant="bodySmall" className="text-neutral-gray mb-6 leading-relaxed">
+          <div className="relative z-10">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+              <div className="text-white">
+                {icon}
+              </div>
+            </div>
+            <Typography variant="h3" className="text-white mb-4 leading-tight">
+              {title}
+            </Typography>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-8">
+          <Typography variant="body" className="text-neutral-gray leading-relaxed mb-6 text-lg">
             {description}
           </Typography>
           
-          <span className="inline-flex items-center text-primary font-semibold text-sm group-hover:underline">
-            Learn more
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </span>
+          <div className="flex items-center text-primary font-semibold group-hover:text-secondary-teal transition-colors">
+            Learn More
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
+          </div>
         </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
     </Link>
   );
 };
 
 const FocusAreas = () => {
-  const areas = [
+  const strategicFocusAreas = [
     {
       icon: <Scale className="h-8 w-8" />,
       title: "Increasing Accessibility to Quality Legal Aid Services",
-      description: "Prioritizing the provision of accessible, affordable, and quality legal aid services to marginalized populations, with a strong emphasis on women and girls.",
+      description: "We prioritize the provision of accessible, affordable, and quality legal aid services to marginalized populations, with a strong emphasis on women and girls. Our approach focuses on community-based solutions and trained paralegals.",
       link: "/focus-areas/accessible-legal-aid",
-      gradient: "bg-gradient-to-br from-primary to-primary-dark"
+      stats: "1",
+      color: "primary"
     },
     {
       icon: <Users className="h-8 w-8" />,
       title: "Promoting Legally Empowered Communities",
-      description: "Advancing community legal empowerment—particularly for women, girls, and other marginalized groups—through legal education, awareness, and strengthening paralegal networks.",
+      description: "We advance community legal empowerment—particularly for women, girls, and other marginalized groups—through comprehensive legal education, awareness programs, and strengthening paralegal networks across Tanzania.",
       link: "/focus-areas/empowered-communities",
-      gradient: "bg-gradient-to-br from-secondary-teal to-secondary-teal-dark"
+      stats: "2",
+      color: "secondary-teal"
     },
     {
       icon: <Gavel className="h-8 w-8" />,
       title: "Enhancing a Conducive Environment for Sustainable Access to Justice",
-      description: "Supporting policy reform, legal frameworks, and advocacy initiatives that create enabling conditions for inclusive, sustainable, and equitable access to justice.",
+      description: "We support policy reform, legal frameworks, and advocacy initiatives that create enabling conditions for inclusive, sustainable, and equitable access to justice for all Tanzanians.",
       link: "/focus-areas/conducive-environment",
-      gradient: "bg-gradient-to-br from-secondary-orange to-secondary-orange-dark"
+      stats: "3",
+      color: "secondary-orange"
     },
     {
       icon: <Building className="h-8 w-8" />,
       title: "Institutional Development and Sustainability",
-      description: "Strengthening the organizational capacity, financial sustainability, and operational effectiveness of LSF and the broader legal aid sector to ensure long-term impact and resilience.",
+      description: "We strengthen the organizational capacity, financial sustainability, and operational effectiveness of LSF and the broader legal aid sector to ensure long-term impact and resilience.",
       link: "/focus-areas/institutional-development",
-      gradient: "bg-gradient-to-br from-secondary-yellow to-secondary-yellow-dark"
+      stats: "4",
+      color: "secondary-yellow"
     },
     {
       icon: <Cloud className="h-8 w-8" />,
       title: "Climate Justice",
       description: "Recognizing that climate change disproportionately affects women and marginalized communities, LSF integrates climate justice into programming, including legal empowerment on land rights, environmental governance, and climate-related disputes.",
       link: "/focus-areas/climate-justice",
-      gradient: "bg-gradient-to-br from-green-500 to-green-700"
+      stats: "5",
+      color: "green-500"
     },
     {
       icon: <Smartphone className="h-8 w-8" />,
       title: "Digital Transformation",
       description: "LSF embraces innovation to modernize operations and expand reach through digitalization of legal aid service delivery, case tracking, training, and data systems to enhance accessibility and transparency.",
       link: "/focus-areas/digital-transformation",
-      gradient: "bg-gradient-to-br from-blue-500 to-blue-700"
+      stats: "6",
+      color: "blue-500"
     }
   ];
 
@@ -103,32 +111,33 @@ const FocusAreas = () => {
             Strategic Focus
           </span>
           <Typography variant="h2" className="mb-6 bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
-            Our Strategic Focus Areas
+            Our Six Strategic Focus Areas
           </Typography>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary-teal mx-auto rounded-full mb-6"></div>
           
           <Typography variant="body" className="max-w-3xl mx-auto text-neutral-gray mb-8">
-            LSF operates across six strategic focus areas that guide our comprehensive approach to increasing access to justice and legal empowerment across Tanzania.
+            LSF operates across six strategic focus areas that guide our comprehensive approach to increasing access to justice and legal empowerment across Tanzania. Each area represents a critical pillar of our mission to create lasting systemic change.
           </Typography>
           
           <Link 
-            to="/focus-areas" 
+            to="/what-we-do" 
             className="inline-flex items-center text-primary font-medium hover:underline"
           >
-            Explore all focus areas
+            Explore our comprehensive approach
             <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {areas.map((area, index) => (
+          {strategicFocusAreas.map((area, index) => (
             <FocusAreaCard
               key={index}
               icon={area.icon}
               title={area.title}
               description={area.description}
               link={area.link}
-              gradient={area.gradient}
+              stats={area.stats}
+              color={area.color}
             />
           ))}
         </div>

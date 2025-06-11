@@ -6,12 +6,12 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 
-// Enhanced navigation structure with reordered items and updated dropdowns
+// Comprehensive navigation structure with all pages organized logically
 const navigationItems = [
   { 
     name: 'About', 
     href: '/about',
-    description: 'Our mission and commitment to justice',
+    description: 'Learn about our mission and organization',
     featured: {
       title: 'Our Story',
       description: 'Empowering communities through legal aid since 2011',
@@ -20,21 +20,21 @@ const navigationItems = [
     },
     sections: [
       {
-        title: 'Who We Are',
+        title: 'Organization',
         links: [
-          { name: 'Who We Are', href: '/about', description: 'Mission, vision, and history' },
-          { name: 'Our Team', href: '/team', description: 'Leadership and staff' },
-          { name: 'Partners', href: '/partners', description: 'Collaborating organizations' },
-          { name: 'Contact Us', href: '/contact', description: 'Get in touch' },
+          { name: 'About Us', href: '/about', description: 'Mission, vision, and history' },
+          { name: 'Our Team', href: '/team', description: 'Leadership and staff members' },
+          { name: 'Board Leadership', href: '/team#leadership', description: 'Governance structure' },
+          { name: 'Partners', href: '/partners', description: 'Strategic partnerships' },
         ]
       },
       {
         title: 'Engagement',
         links: [
+          { name: 'Contact Us', href: '/contact', description: 'Get in touch with us' },
           { name: 'Opportunities', href: '/opportunities', description: 'Career and volunteer options' },
-          { name: 'Board & Leadership', href: '/team#leadership', description: 'Governance structure' },
-          { name: 'Annual Reports', href: '/publications', description: 'Transparency reports' },
-          { name: 'Contact', href: '/contact', description: 'Connect with us' },
+          { name: 'Whistleblower', href: '/whistleblower', description: 'Report concerns safely' },
+          { name: 'Donate', href: '/donate', description: 'Support our mission' },
         ]
       }
     ]
@@ -44,90 +44,94 @@ const navigationItems = [
     href: '/what-we-do',
     description: 'How we strengthen access to justice',
     featured: {
-      title: 'Grant Making',
-      description: 'Results-driven funding for justice organizations',
-      href: '/what-we-do/grant-making',
+      title: 'Strategic Focus Areas',
+      description: 'Six key areas driving systemic change',
+      href: '/what-we-do',
       image: '/lovable-uploads/background with mother umage .png'
     },
     sections: [
       {
-        title: 'Approaches',
-        links: [
-          { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Funding for justice organizations' },
-          { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening legal aid providers' },
-          { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy', description: 'Systemic change initiatives' },
-          { name: 'Learning & Research', href: '/what-we-do/learning-research', description: 'Evidence-based approaches' },
-        ]
-      },
-      {
-        title: 'Focus',
+        title: 'Strategic Approaches',
         links: [
           { name: 'What We Do', href: '/what-we-do', description: 'Our comprehensive approach' },
-          { name: 'Programs', href: '/programs', description: 'Active program portfolio' },
-          { name: 'Projects', href: '/projects', description: 'Current initiatives' },
-          { name: 'Success Stories', href: '/heroes', description: 'Real impact stories' },
+          { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Funding justice organizations' },
+          { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening providers' },
+          { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy', description: 'Systemic change initiatives' },
+          { name: 'Learning & Research', href: '/what-we-do/learning-research', description: 'Evidence-based approaches' },
+          { name: 'Partnerships & Networking', href: '/what-we-do/partnerships-networking', description: 'Collaborative networks' },
+        ]
+      },
+      {
+        title: 'Focus Areas',
+        links: [
+          { name: 'Accessible Legal Aid', href: '/focus-areas/accessible-legal-aid', description: 'Quality legal services' },
+          { name: 'Empowered Communities', href: '/focus-areas/empowered-communities', description: 'Legal empowerment' },
+          { name: 'Conducive Environment', href: '/focus-areas/conducive-environment', description: 'Policy and systems' },
+          { name: 'Institutional Development', href: '/focus-areas/institutional-development', description: 'Sustainability' },
+          { name: 'Climate Justice', href: '/focus-areas/climate-justice', description: 'Environmental rights' },
+          { name: 'Digital Transformation', href: '/focus-areas/digital-transformation', description: 'Innovation' },
         ]
       }
     ]
   },
   { 
-    name: 'Impact', 
-    href: '/impact',
-    description: 'Our measurable difference in communities',
+    name: 'Programs & Projects', 
+    href: '/programs',
+    description: 'Our active initiatives and projects',
     featured: {
-      title: 'Success Stories',
-      description: 'Real stories of justice transformation',
-      href: '/heroes',
+      title: 'Active Programs',
+      description: 'Current initiatives creating change',
+      href: '/programs',
       image: '/lovable-uploads/background with mother umage .png'
     },
     sections: [
       {
-        title: 'Measuring Change',
+        title: 'Current Work',
         links: [
-          { name: 'Success Stories', href: '/heroes', description: 'Impact and testimonials' },
-          { name: 'Annual Reports', href: '/publications', description: 'Comprehensive impact data' },
-          { name: 'Statistics & Data', href: '/impact#statistics', description: 'Key performance metrics' },
-          { name: 'Programs', href: '/programs', description: 'Active initiatives' },
+          { name: 'Programs', href: '/programs', description: 'Active program portfolio' },
+          { name: 'Projects', href: '/projects', description: 'Current initiatives' },
+          { name: 'Impact Stories', href: '/heroes', description: 'Success stories' },
+          { name: 'Impact Dashboard', href: '/impact', description: 'Measurable outcomes' },
         ]
       },
       {
-        title: 'Evidence Base',
+        title: 'Get Involved',
         links: [
-          { name: 'Research', href: '/what-we-do/learning-research', description: 'Learning and evaluation' },
-          { name: 'Publications', href: '/publications', description: 'Reports and findings' },
-          { name: 'Policy Impact', href: '/what-we-do/policy-advocacy', description: 'Systemic change results' },
-          { name: 'Community Outcomes', href: '/heroes', description: 'Real-world impact' },
+          { name: 'Legal Help', href: '/legal-help', description: 'Access legal assistance' },
+          { name: 'Opportunities', href: '/opportunities', description: 'Join our team' },
+          { name: 'Partner With Us', href: '/contact', description: 'Strategic partnerships' },
+          { name: 'Support Us', href: '/donate', description: 'Financial support' },
         ]
       }
     ]
   },
   { 
-    name: 'Resources', 
+    name: 'Resources & Knowledge', 
     href: '/resources',
-    description: 'News, publications and legal resources',
+    description: 'Publications, news, and legal resources',
     featured: {
-      title: 'Latest Publications',
+      title: 'Knowledge Hub',
       description: 'Research, reports, and legal guides',
       href: '/publications',
       image: '/lovable-uploads/background with mother umage .png'
     },
     sections: [
       {
-        title: 'Stay Informed',
+        title: 'Information',
         links: [
           { name: 'Latest News', href: '/news', description: 'Current developments' },
           { name: 'Publications', href: '/publications', description: 'Reports and research' },
           { name: 'Legal Resources', href: '/resources', description: 'Practical legal information' },
-          { name: 'Opportunities', href: '/opportunities', description: 'Career and partnerships' },
+          { name: 'Resource Categories', href: '/resources', description: 'Organized by topic' },
         ]
       },
       {
-        title: 'Knowledge Hub',
+        title: 'Specialized Resources',
         links: [
-          { name: 'Research Reports', href: '/publications#research', description: 'Evidence and analysis' },
-          { name: 'Policy Briefs', href: '/resources#policy', description: 'Advocacy documents' },
+          { name: 'Gender Justice', href: '/resources/gender-justice', description: 'Women\'s rights resources' },
+          { name: 'Legal Empowerment', href: '/resources/legal-empowerment', description: 'Community empowerment' },
+          { name: 'Climate Justice', href: '/resources/climate-justice', description: 'Environmental law' },
           { name: 'Training Materials', href: '/resources#training', description: 'Capacity building tools' },
-          { name: 'Legal Guides', href: '/resources#guides', description: 'Practical guidance' },
         ]
       }
     ]
@@ -171,7 +175,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
-          {/* Enhanced Logo Section */}
+          {/* Logo Section */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-3 group">
               <img 
@@ -203,50 +207,50 @@ const Header = () => {
                   <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
                 </button>
                 
-                {/* Enhanced Dropdown Menu */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-screen max-w-7xl rounded-xl shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
-                  <div className="p-8">
-                    <div className="grid grid-cols-12 gap-8">
-                      {/* Enhanced Featured Section */}
+                {/* Dropdown Menu */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-screen max-w-6xl rounded-xl shadow-2xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50">
+                  <div className="p-6">
+                    <div className="grid grid-cols-12 gap-6">
+                      {/* Featured Section */}
                       <div className="col-span-4">
                         <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-xl p-6 h-full border border-primary/10">
                           <div className="mb-4">
                             <img 
                               src={item.featured?.image} 
                               alt={item.featured?.title}
-                              className="w-full h-32 object-cover rounded-lg mb-4"
+                              className="w-full h-24 object-cover rounded-lg mb-4"
                             />
                           </div>
-                          <h3 className="text-xl font-bold text-primary mb-3 font-heading">{item.featured?.title}</h3>
-                          <p className="text-gray-600 mb-4 leading-relaxed font-sans">{item.featured?.description}</p>
+                          <h3 className="text-lg font-bold text-primary mb-3 font-heading">{item.featured?.title}</h3>
+                          <p className="text-gray-600 mb-4 leading-relaxed font-sans text-sm">{item.featured?.description}</p>
                           <Link 
                             to={item.featured?.href || ''}
-                            className="inline-flex items-center text-primary hover:text-primary/80 font-medium font-heading group/link"
+                            className="inline-flex items-center text-primary hover:text-primary/80 font-medium font-heading group/link text-sm"
                           >
                             Learn more 
-                            <ArrowRight size={16} className="ml-2 transition-transform group-hover/link:translate-x-1" />
+                            <ArrowRight size={14} className="ml-1 transition-transform group-hover/link:translate-x-1" />
                           </Link>
                         </div>
                       </div>
                       
                       {/* Navigation Sections */}
-                      <div className="col-span-8 grid grid-cols-2 gap-8">
+                      <div className="col-span-8 grid grid-cols-2 gap-6">
                         {item.sections?.map((section, index) => (
                           <div key={index}>
-                            <h4 className="font-bold text-gray-900 mb-4 text-base uppercase tracking-wide border-b border-gray-200 pb-2 font-heading">
+                            <h4 className="font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide border-b border-gray-200 pb-2 font-heading">
                               {section.title}
                             </h4>
-                            <ul className="space-y-3">
+                            <ul className="space-y-2">
                               {section.links.map((link) => (
                                 <li key={link.name}>
                                   <Link
                                     to={link.href}
-                                    className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group/link"
+                                    className="block p-2 rounded-lg hover:bg-gray-50 transition-colors group/link"
                                   >
-                                    <div className="font-semibold text-gray-900 group-hover/link:text-primary transition-colors mb-1 font-heading">
+                                    <div className="font-semibold text-gray-900 group-hover/link:text-primary transition-colors mb-1 font-heading text-sm">
                                       {link.name}
                                     </div>
-                                    <div className="text-sm text-gray-500 font-sans">
+                                    <div className="text-xs text-gray-500 font-sans">
                                       {link.description}
                                     </div>
                                   </Link>
@@ -262,7 +266,7 @@ const Header = () => {
               </div>
             ))}
             
-            {/* Enhanced Action buttons */}
+            {/* Action buttons */}
             <div className="flex items-center ml-6 space-x-3 border-l border-gray-200 pl-6">
               <SearchDialog />
               <Link to="/legal-help">
@@ -279,7 +283,7 @@ const Header = () => {
             </div>
           </nav>
           
-          {/* Enhanced Mobile menu button */}
+          {/* Mobile menu button */}
           <div className="flex items-center lg:hidden space-x-3">
             <Link to="/donate" className="lg:hidden">
               <Button size="sm" className="bg-primary hover:bg-primary/90 text-white px-4 py-2">
@@ -297,7 +301,7 @@ const Header = () => {
         </div>
       </div>
       
-      {/* Enhanced Mobile Navigation */}
+      {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg max-h-[80vh] overflow-y-auto">
           <div className="container mx-auto px-4 py-4">
