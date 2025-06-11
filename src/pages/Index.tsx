@@ -147,9 +147,6 @@ const Index = () => {
         </Container>
       </section>
 
-      {/* Our Focus Areas Section */}
-      <FocusAreas />
-
       {/* Our Focus Areas Section (Legacy - keeping for backward compatibility) */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>

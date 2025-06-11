@@ -106,27 +106,23 @@ const FocusAreas = () => {
   return (
     <Section variant="secondary" padding="xl">
       <Container size="xl">
-        <div className="text-center mb-16">
-          <span className="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-2 rounded-full mb-4">
-            Strategic Focus
-          </span>
-          <Typography variant="h2" className="mb-6 bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
-            Our Six Strategic Focus Areas
-          </Typography>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary-teal mx-auto rounded-full mb-6"></div>
-          
-          <Typography variant="body" className="max-w-3xl mx-auto text-neutral-gray mb-8">
-            LSF operates across six strategic focus areas that guide our comprehensive approach to increasing access to justice and legal empowerment across Tanzania. Each area represents a critical pillar of our mission to create lasting systemic change.
-          </Typography>
-          
-          <Link 
-            to="/what-we-do" 
-            className="inline-flex items-center text-primary font-medium hover:underline"
-          >
-            Explore our comprehensive approach
-            <ArrowRight className="ml-1 h-4 w-4" />
-          </Link>
-        </div>
+         <div className="text-center mb-20">
+            <div className="inline-flex items-center bg-primary/10 rounded-full px-8 py-4 mb-8">
+              <Target className="h-6 w-6 mr-4 text-primary" />
+              <Typography variant="overline" className="text-primary font-bold text-lg">
+                OUR FOCUS
+              </Typography>
+            </div>
+            
+            <Typography variant="h1" className="mb-8 text-5xl md:text-6xl font-bold">
+              Empowering Communities
+              <span className="block text-primary">Through Legal Access</span>
+            </Typography>
+            
+            <Typography variant="body" className="text-neutral-gray max-w-4xl mx-auto text-xl leading-relaxed">
+              We work tirelessly to ensure every Tanzanian has access to justice, legal education, and the support they need to live with dignity and security.
+            </Typography>
+          </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {strategicFocusAreas.map((area, index) => (
