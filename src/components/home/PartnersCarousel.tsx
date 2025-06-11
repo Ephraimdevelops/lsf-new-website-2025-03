@@ -182,7 +182,6 @@ const PartnersCarousel = () => {
             />
           ))}
         </div>
-        </div>
       </Container>
     </section>
   );
