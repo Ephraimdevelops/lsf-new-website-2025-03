@@ -1,5 +1,5 @@
 
-import { ReactNode } from 'react';
+import { ReactNode, CSSProperties } from 'react';
 import { cn } from '@/lib/utils';
 import { typography, TypographyVariant } from '@/styles/typography';
 
@@ -8,13 +8,15 @@ interface TypographyProps {
   variant?: TypographyVariant;
   className?: string;
   as?: keyof JSX.IntrinsicElements;
+  style?: CSSProperties;
 }
 
 const Typography = ({ 
   children, 
   variant = 'body', 
   className = '',
-  as 
+  as,
+  style 
 }: TypographyProps) => {
   const baseClasses = typography.classes[variant];
   
@@ -57,7 +59,7 @@ const Typography = ({
   const Element = elementType as keyof JSX.IntrinsicElements;
 
   return (
-    <Element className={cn(baseClasses, fontFamily, className)}>
+    <Element className={cn(baseClasses, fontFamily, className)} style={style}>
       {children}
     </Element>
   );

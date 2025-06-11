@@ -95,32 +95,32 @@ const GrantMaking = () => {
 
   const outcomes = [
     { 
-      metric: "15,000+", 
-      label: "Individuals received direct legal assistance", 
       icon: <Users className="h-5 w-5" />,
+      title: "Individuals received direct legal assistance",
+      value: "15,000+", 
       percentage: 75,
-      color: 'primary'
+      color: 'primary' as const
     },
     { 
-      metric: "200+", 
-      label: "Paralegals trained and certified", 
       icon: <Award className="h-5 w-5" />,
+      title: "Paralegals trained and certified",
+      value: "200+", 
       percentage: 92,
-      color: 'secondary-orange'
+      color: 'secondary-orange' as const
     },
     { 
-      metric: "85%", 
-      label: "Success rate in land dispute resolutions", 
       icon: <TrendingUp className="h-5 w-5" />,
+      title: "Success rate in land dispute resolutions",
+      value: "85%", 
       percentage: 85,
-      color: 'secondary-teal'
+      color: 'secondary-teal' as const
     },
     { 
-      metric: "50+", 
-      label: "Community-based organizations strengthened", 
       icon: <Building className="h-5 w-5" />,
+      title: "Community-based organizations strengthened",
+      value: "50+", 
       percentage: 68,
-      color: 'secondary-yellow'
+      color: 'secondary-yellow' as const
     }
   ];
 
@@ -158,14 +158,18 @@ const GrantMaking = () => {
               </Typography>
             </div>
             
-            <Typography variant="display" className="text-white mb-6 text-4xl md:text-6xl font-bold animate-fade-in" style={{ animationDelay: "150ms" }}>
-              Grant Making
-            </Typography>
+            <div className="animate-fade-in" style={{ animationDelay: "150ms" }}>
+              <Typography variant="display" className="text-white mb-6 text-4xl md:text-6xl font-bold">
+                Grant Making
+              </Typography>
+            </div>
             
-            <Typography variant="body" className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: "300ms" }}>
-              Results-driven grants to strengthen legal empowerment — especially around land rights, 
-              property ownership, safety, and justice for women and girls.
-            </Typography>
+            <div className="animate-fade-in" style={{ animationDelay: "300ms" }}>
+              <Typography variant="body" className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                Results-driven grants to strengthen legal empowerment — especially around land rights, 
+                property ownership, safety, and justice for women and girls.
+              </Typography>
+            </div>
           </div>
         </Container>
       </section>
