@@ -146,28 +146,6 @@ const Index = () => {
           </div>
         </Container>
       </section>
-
-      {/* Our Focus Areas Section (Legacy - keeping for backward compatibility) */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
-        <Container size="xl" className="relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center bg-primary/10 rounded-full px-8 py-4 mb-8">
-              <Target className="h-6 w-6 mr-4 text-primary" />
-              <Typography variant="overline" className="text-primary font-bold text-lg">
-                OUR FOCUS
-              </Typography>
-            </div>
-            
-            <Typography variant="h1" className="mb-8 text-5xl md:text-6xl font-bold">
-              Empowering Communities
-              <span className="block text-primary">Through Legal Access</span>
-            </Typography>
-            
-            <Typography variant="body" className="text-neutral-gray max-w-4xl mx-auto text-xl leading-relaxed">
-              We work tirelessly to ensure every Tanzanian has access to justice, legal education, and the support they need to live with dignity and security.
-            </Typography>
-          </div>
  {/* Our Focus Areas Section */}
       <FocusAreas />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -206,65 +184,6 @@ const Index = () => {
             ))}
           </div>
         </Container>
-      </section>
-
-      {/* Key Principles Section */}
-      <section className="py-24 bg-gradient-to-br from-neutral-50 via-white to-neutral-50 relative overflow-hidden">
-        <Container size="xl" className="relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center bg-secondary-teal/10 rounded-full px-8 py-4 mb-8">
-              <Briefcase className="h-6 w-6 mr-4 text-secondary-teal" />
-              <Typography variant="overline" className="text-secondary-teal font-bold text-lg">
-                GUIDING PRINCIPLES
-              </Typography>
-            </div>
-            
-            <Typography variant="h1" className="mb-8 text-5xl md:text-6xl font-bold">
-              Four Pillars of
-              <span className="block text-secondary-teal">Our Mission</span>
-            </Typography>
-            
-            <Typography variant="body" className="text-neutral-gray max-w-4xl mx-auto text-xl leading-relaxed">
-              Our work is built on these fundamental principles that guide every initiative and drive meaningful change across Tanzania.
-            </Typography>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {principles.map((principle, index) => (
-              <div key={index} className="group relative">
-                <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full group-hover:-translate-y-4">
-                  {/* Header with Number */}
-                  <div className={`bg-gradient-to-br ${principle.gradient} p-8 relative`}>
-                    <div className="absolute top-4 right-4 text-8xl font-black text-white/20">
-                      {principle.number}
-                    </div>
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-                        <principle.icon className="h-8 w-8 text-white" />
-                      </div>
-                      <Typography variant="h3" className="text-white mb-4 leading-tight">
-                        {principle.title}
-                      </Typography>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-8">
-                    <Typography variant="body" className="text-neutral-gray leading-relaxed mb-6 text-lg">
-                      {principle.description}
-                    </Typography>
-                    
-                    <div className="flex items-center text-primary font-semibold group-hover:text-secondary-orange transition-colors">
-                      Explore More
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
  {/* Partners and Donors Carousel */}
       <PartnersCarousel />
       {/* Call to Action Section */}
