@@ -1,3 +1,4 @@
+
 import Layout from '../components/layout/Layout';
 import { 
   Heart, Target, Users, Scale, ArrowRight, PlayCircle, 
@@ -98,8 +99,6 @@ const Index = () => {
       {/* Compact News and Updates Section */}
       <CompactNewsUpdates />
 
-     
-      
       {/* Impact Metrics Section */}
       <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
         {/* Animated Background Elements */}
@@ -146,8 +145,13 @@ const Index = () => {
           </div>
         </Container>
       </section>
- {/* Our Focus Areas Section */}
+
+      {/* Our Focus Areas Section */}
       <FocusAreas />
+
+      {/* Features Section */}
+      <section className="py-24 bg-neutral-light">
+        <Container size="xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="group">
@@ -184,8 +188,11 @@ const Index = () => {
             ))}
           </div>
         </Container>
- {/* Partners and Donors Carousel */}
+      </section>
+
+      {/* Partners and Donors Carousel */}
       <PartnersCarousel />
+
       {/* Call to Action Section */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
