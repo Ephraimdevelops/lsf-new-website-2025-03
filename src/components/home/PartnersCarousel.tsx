@@ -182,37 +182,6 @@ const PartnersCarousel = () => {
             />
           ))}
         </div>
-
-        {/* Partnership Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="group text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-secondary-orange/50 transition-all duration-300 group-hover:-translate-y-2">
-              <Heart className="h-12 w-12 text-secondary-orange mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <div className="text-4xl font-bold text-secondary-orange mb-2">$47M+</div>
-              <div className="text-white/90">Total Investment</div>
-            </div>
-          </div>
-          <div className="group text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-secondary-teal/50 transition-all duration-300 group-hover:-translate-y-2">
-              <Globe className="h-12 w-12 text-secondary-teal mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <div className="text-4xl font-bold text-secondary-teal mb-2">15+</div>
-              <div className="text-white/90">Partner Countries</div>
-            </div>
-          </div>
-          <div className="group text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-secondary-yellow/50 transition-all duration-300 group-hover:-translate-y-2">
-              <Users className="h-12 w-12 text-secondary-yellow mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <div className="text-4xl font-bold text-secondary-yellow mb-2">25+</div>
-              <div className="text-white/90">Active Partners</div>
-            </div>
-          </div>
-          <div className="group text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-primary/50 transition-all duration-300 group-hover:-translate-y-2">
-              <Award className="h-12 w-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <div className="text-4xl font-bold text-primary mb-2">8</div>
-              <div className="text-white/90">Years Partnership</div>
-            </div>
-          </div>
         </div>
       </Container>
     </section>
