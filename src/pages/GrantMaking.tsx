@@ -18,9 +18,14 @@ import {
   Calendar,
   ArrowRight,
   Building,
-  Scale
+  Scale,
+  FileText,
+  BarChart3
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { EnhancedTabs, EnhancedTabsList, EnhancedTabsTrigger, EnhancedTabsContent } from '../components/ui/enhanced-tabs';
+import AnimatedGrantStats from '../components/what-we-do/AnimatedGrantStats';
+import ProgressIndicator from '../components/shared/ProgressIndicator';
 
 const GrantMaking = () => {
   const [activeGrantArea, setActiveGrantArea] = useState('land-rights');
@@ -31,7 +36,7 @@ const GrantMaking = () => {
       title: "Land Rights & Property",
       description: "Supporting communities in securing land tenure and property ownership rights through legal education and dispute resolution.",
       icon: <Building className="h-6 w-6" />,
-      stats: { amount: "$850K", beneficiaries: "12,000+", projects: "45" },
+      stats: { amount: "$850K", beneficiaries: "12,000+", projects: "45", completion: 72 },
       highlights: [
         "Land tenure security programs",
         "Property documentation assistance",
@@ -44,7 +49,7 @@ const GrantMaking = () => {
       title: "Women & Girls Justice",
       description: "Advancing safety, legal protection, and empowerment for women and girls through targeted interventions.",
       icon: <Users className="h-6 w-6" />,
-      stats: { amount: "$1.2M", beneficiaries: "25,000+", projects: "68" },
+      stats: { amount: "$1.2M", beneficiaries: "25,000+", projects: "68", completion: 85 },
       highlights: [
         "Gender-based violence prevention",
         "Women's legal rights education",
@@ -57,7 +62,7 @@ const GrantMaking = () => {
       title: "Community Legal Empowerment",
       description: "Strengthening community-based legal aid and paralegal services to increase access to justice.",
       icon: <Scale className="h-6 w-6" />,
-      stats: { amount: "$650K", beneficiaries: "18,000+", projects: "35" },
+      stats: { amount: "$650K", beneficiaries: "18,000+", projects: "35", completion: 60 },
       highlights: [
         "Paralegal training programs",
         "Community legal education",
@@ -89,11 +94,39 @@ const GrantMaking = () => {
   ];
 
   const outcomes = [
-    { metric: "15,000+", label: "Individuals received direct legal assistance", icon: <Users className="h-5 w-5" /> },
-    { metric: "200+", label: "Paralegals trained and certified", icon: <Award className="h-5 w-5" /> },
-    { metric: "85%", label: "Success rate in land dispute resolutions", icon: <TrendingUp className="h-5 w-5" /> },
-    { metric: "50+", label: "Community-based organizations strengthened", icon: <Building className="h-5 w-5" /> }
+    { 
+      metric: "15,000+", 
+      label: "Individuals received direct legal assistance", 
+      icon: <Users className="h-5 w-5" />,
+      percentage: 75,
+      color: 'primary'
+    },
+    { 
+      metric: "200+", 
+      label: "Paralegals trained and certified", 
+      icon: <Award className="h-5 w-5" />,
+      percentage: 92,
+      color: 'secondary-orange'
+    },
+    { 
+      metric: "85%", 
+      label: "Success rate in land dispute resolutions", 
+      icon: <TrendingUp className="h-5 w-5" />,
+      percentage: 85,
+      color: 'secondary-teal'
+    },
+    { 
+      metric: "50+", 
+      label: "Community-based organizations strengthened", 
+      icon: <Building className="h-5 w-5" />,
+      percentage: 68,
+      color: 'secondary-yellow'
+    }
   ];
+
+  const handleTabChange = (value: string) => {
+    setActiveGrantArea(value);
+  };
 
   const activeArea = grantAreas.find(area => area.id === activeGrantArea) || grantAreas[0];
 
@@ -118,18 +151,18 @@ const GrantMaking = () => {
         
         <Container size="xl" className="relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-white/20">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-white/20 animate-fade-in">
               <DollarSign className="h-5 w-5 mr-3 text-secondary-orange" />
               <Typography variant="overline" className="text-secondary-orange font-bold">
                 WHAT WE DO
               </Typography>
             </div>
             
-            <Typography variant="display" className="text-white mb-6 text-4xl md:text-6xl font-bold">
+            <Typography variant="display" className="text-white mb-6 text-4xl md:text-6xl font-bold animate-fade-in" style={{ animationDelay: "150ms" }}>
               Grant Making
             </Typography>
             
-            <Typography variant="body" className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            <Typography variant="body" className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: "300ms" }}>
               Results-driven grants to strengthen legal empowerment — especially around land rights, 
               property ownership, safety, and justice for women and girls.
             </Typography>
@@ -140,7 +173,7 @@ const GrantMaking = () => {
       {/* Interactive Grant Areas Section */}
       <Section variant="default" padding="xl">
         <Container size="xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-fade-in">
             <Typography variant="h2" className="mb-6">
               Key Grant Areas
             </Typography>
@@ -150,87 +183,111 @@ const GrantMaking = () => {
             </Typography>
           </div>
 
-          {/* Grant Area Tabs */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {grantAreas.map((area) => (
-              <Button
-                key={area.id}
-                variant={activeGrantArea === area.id ? "default" : "outline"}
-                onClick={() => setActiveGrantArea(area.id)}
-                className="flex items-center space-x-2"
-              >
-                {area.icon}
-                <span>{area.title}</span>
-              </Button>
-            ))}
-          </div>
-
-          {/* Active Grant Area Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
-                  <div className="text-primary">
-                    {activeArea.icon}
-                  </div>
-                </div>
-                <Typography variant="h3">
-                  {activeArea.title}
-                </Typography>
-              </div>
-              
-              <Typography variant="body" className="text-neutral-gray mb-6 leading-relaxed">
-                {activeArea.description}
-              </Typography>
-
-              <div className="space-y-3">
-                {activeArea.highlights.map((highlight, index) => (
-                  <div key={index} className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-secondary-teal mr-3 mt-0.5 flex-shrink-0" />
-                    <Typography variant="body" className="text-neutral-gray">
-                      {highlight}
-                    </Typography>
-                  </div>
+          {/* Grant Area Tabs - Enhanced Version */}
+          <div className="flex flex-col items-center mb-12 animate-fade-in" style={{ animationDelay: "150ms" }}>
+            <EnhancedTabs defaultValue={activeGrantArea} onValueChange={handleTabChange}>
+              <EnhancedTabsList className="mb-8">
+                {grantAreas.map((area) => (
+                  <EnhancedTabsTrigger key={area.id} value={area.id} className="flex items-center space-x-2">
+                    {area.icon}
+                    <span>{area.title}</span>
+                  </EnhancedTabsTrigger>
                 ))}
-              </div>
-            </div>
+              </EnhancedTabsList>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <Card variant="elevated" className="text-center p-6">
-                <div className="text-2xl font-bold text-primary mb-2">
-                  {activeArea.stats.amount}
-                </div>
-                <div className="text-neutral-gray text-sm">
-                  Total Funding
-                </div>
-              </Card>
-              <Card variant="elevated" className="text-center p-6">
-                <div className="text-2xl font-bold text-secondary-teal mb-2">
-                  {activeArea.stats.beneficiaries}
-                </div>
-                <div className="text-neutral-gray text-sm">
-                  Beneficiaries
-                </div>
-              </Card>
-              <Card variant="elevated" className="text-center p-6">
-                <div className="text-2xl font-bold text-secondary-orange mb-2">
-                  {activeArea.stats.projects}
-                </div>
-                <div className="text-neutral-gray text-sm">
-                  Active Projects
-                </div>
-              </Card>
-            </div>
+              {grantAreas.map((area) => (
+                <EnhancedTabsContent key={area.id} value={area.id} className="w-full">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-8">
+                    <div>
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
+                          <div className="text-primary">
+                            {area.icon}
+                          </div>
+                        </div>
+                        <Typography variant="h3">
+                          {area.title}
+                        </Typography>
+                      </div>
+                      
+                      <Typography variant="body" className="text-neutral-gray mb-6 leading-relaxed">
+                        {area.description}
+                      </Typography>
+
+                      <div className="space-y-3">
+                        {area.highlights.map((highlight, index) => (
+                          <div key={index} className="flex items-start">
+                            <CheckCircle className="h-5 w-5 text-secondary-teal mr-3 mt-0.5 flex-shrink-0" />
+                            <Typography variant="body" className="text-neutral-gray">
+                              {highlight}
+                            </Typography>
+                          </div>
+                        ))}
+                      </div>
+
+                      <ProgressIndicator 
+                        value={area.stats.completion} 
+                        max={100} 
+                        color="primary"
+                        label="Program Completion" 
+                        className="mt-8"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                      <Card variant="elevated" className="text-center p-6 transform transition-all hover:scale-105">
+                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                          <DollarSign className="h-6 w-6 text-primary" />
+                        </div>
+                        <div className="text-2xl font-bold text-primary mb-2">
+                          {area.stats.amount}
+                        </div>
+                        <div className="text-neutral-gray text-sm">
+                          Total Funding
+                        </div>
+                      </Card>
+                      <Card variant="elevated" className="text-center p-6 transform transition-all hover:scale-105">
+                        <div className="w-12 h-12 bg-secondary-teal/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                          <Users className="h-6 w-6 text-secondary-teal" />
+                        </div>
+                        <div className="text-2xl font-bold text-secondary-teal mb-2">
+                          {area.stats.beneficiaries}
+                        </div>
+                        <div className="text-neutral-gray text-sm">
+                          Beneficiaries
+                        </div>
+                      </Card>
+                      <Card variant="elevated" className="text-center p-6 transform transition-all hover:scale-105">
+                        <div className="w-12 h-12 bg-secondary-orange/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                          <FileText className="h-6 w-6 text-secondary-orange" />
+                        </div>
+                        <div className="text-2xl font-bold text-secondary-orange mb-2">
+                          {area.stats.projects}
+                        </div>
+                        <div className="text-neutral-gray text-sm">
+                          Active Projects
+                        </div>
+                      </Card>
+                    </div>
+                  </div>
+                </EnhancedTabsContent>
+              ))}
+            </EnhancedTabs>
           </div>
 
           {/* Funding Process */}
-          <div className="mb-16">
+          <div className="mb-16 animate-fade-in" style={{ animationDelay: "300ms" }}>
             <Typography variant="h2" className="text-center mb-12">
               Our Funding Process
             </Typography>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {fundingProcess.map((step, index) => (
-                <Card key={index} variant="elevated" className="text-center p-8 relative">
+                <Card 
+                  key={index} 
+                  variant="elevated" 
+                  className="text-center p-8 relative hover-scale"
+                  hover
+                >
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {step.step}
                   </div>
@@ -249,28 +306,12 @@ const GrantMaking = () => {
             </div>
           </div>
 
-          {/* Outcomes Section */}
-          <div className="bg-gradient-to-br from-secondary-teal/5 to-primary/5 rounded-2xl p-8 md:p-12">
+          {/* Outcomes Section with Enhanced Stats */}
+          <div className="bg-gradient-to-br from-secondary-teal/5 to-primary/5 rounded-2xl p-8 md:p-12 animate-fade-in" style={{ animationDelay: "450ms" }}>
             <Typography variant="h2" className="text-center mb-8">
               Measurable Outcomes
             </Typography>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {outcomes.map((outcome, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <div className="text-primary">
-                      {outcome.icon}
-                    </div>
-                  </div>
-                  <div className="text-3xl font-bold text-primary mb-2">
-                    {outcome.metric}
-                  </div>
-                  <div className="text-neutral-gray text-sm">
-                    {outcome.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <AnimatedGrantStats stats={outcomes} />
           </div>
         </Container>
       </Section>
@@ -278,7 +319,7 @@ const GrantMaking = () => {
       {/* Call to Action */}
       <section className="py-16 bg-gradient-to-br from-primary to-primary-dark text-white">
         <Container size="xl">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto animate-fade-in">
             <Typography variant="h2" className="text-white mb-6">
               Ready to Apply for Funding?
             </Typography>

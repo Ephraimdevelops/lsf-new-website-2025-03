@@ -2,6 +2,15 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 import Typography from './Typography';
+import { cn } from '@/lib/utils';
+import { 
+  Breadcrumb as ShadcnBreadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage
+} from "@/components/ui/breadcrumb";
 
 interface BreadcrumbItem {
   label: string;
@@ -46,38 +55,51 @@ const Breadcrumb = ({ items, className = "" }: BreadcrumbProps) => {
   if (breadcrumbItems.length === 0) return null;
 
   return (
-    <nav className={`flex items-center space-x-2 text-sm ${className}`} aria-label="Breadcrumb">
-      <Link 
-        to="/" 
-        className="flex items-center text-neutral-gray hover:text-primary transition-colors duration-200"
-        aria-label="Home"
-      >
-        <Home className="h-4 w-4" />
-      </Link>
-      
-      {breadcrumbItems.map((item, index) => (
-        <div key={index} className="flex items-center space-x-2">
-          <ChevronRight className="h-4 w-4 text-neutral-gray/60" />
-          {item.href && index < breadcrumbItems.length - 1 ? (
+    <ShadcnBreadcrumb className={cn('py-2', className)}>
+      <BreadcrumbList className="animate-fade-in">
+        <BreadcrumbItem>
+          <BreadcrumbLink asChild>
             <Link 
-              to={item.href} 
-              className="text-neutral-gray hover:text-primary transition-colors duration-200"
+              to="/" 
+              className="flex items-center text-neutral-gray hover:text-primary transition-colors duration-200"
+              aria-label="Home"
             >
-              <Typography variant="bodySmall" className="truncate max-w-[200px] hover:text-primary transition-colors">
-                {item.label}
-              </Typography>
+              <Home className="h-4 w-4" />
             </Link>
-          ) : (
-            <Typography 
-              variant="bodySmall" 
-              className="text-primary font-medium truncate max-w-[200px]"
-            >
-              {item.label}
-            </Typography>
-          )}
-        </div>
-      ))}
-    </nav>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        
+        {breadcrumbItems.map((item, index) => (
+          <BreadcrumbItem key={index} className="animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
+            <BreadcrumbSeparator>
+              <ChevronRight className="h-3.5 w-3.5 text-neutral-gray/60" />
+            </BreadcrumbSeparator>
+            
+            {item.href && index < breadcrumbItems.length - 1 ? (
+              <BreadcrumbLink asChild>
+                <Link 
+                  to={item.href} 
+                  className="text-neutral-gray hover:text-primary transition-colors duration-200"
+                >
+                  <Typography variant="bodySmall" className="truncate max-w-[200px] hover:text-primary transition-colors">
+                    {item.label}
+                  </Typography>
+                </Link>
+              </BreadcrumbLink>
+            ) : (
+              <BreadcrumbPage>
+                <Typography 
+                  variant="bodySmall" 
+                  className="text-primary font-medium truncate max-w-[200px]"
+                >
+                  {item.label}
+                </Typography>
+              </BreadcrumbPage>
+            )}
+          </BreadcrumbItem>
+        ))}
+      </BreadcrumbList>
+    </ShadcnBreadcrumb>
   );
 };
 
