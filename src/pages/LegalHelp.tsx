@@ -5,7 +5,7 @@ import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MapPin, Clock, Users, Scale, Heart, ArrowRight, CheckCircle, AlertCircle, FileText, Gavel } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Users, Scale, Heart, ArrowRight, CheckCircle, AlertCircle, FileText, Gavel, Shield, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const legalServices = [
@@ -67,6 +67,33 @@ const contactMethods = [
     details: "Local Support Network",
     description: "Find a paralegal in your area",
     availability: "Across all 184 districts"
+  }
+];
+
+const networkStats = [
+  {
+    icon: <Users className="h-8 w-8" />,
+    number: "2,847",
+    label: "Community Paralegals",
+    description: "Trained legal aid providers across Tanzania"
+  },
+  {
+    icon: <MapPin className="h-8 w-8" />,
+    number: "184",
+    label: "Districts Covered",
+    description: "Complete national coverage"
+  },
+  {
+    icon: <Shield className="h-8 w-8" />,
+    number: "156",
+    label: "Legal Aid Centers",
+    description: "Physical locations for legal support"
+  },
+  {
+    icon: <BookOpen className="h-8 w-8" />,
+    number: "96%",
+    label: "Success Rate",
+    description: "Cases resolved successfully"
   }
 ];
 
@@ -141,6 +168,39 @@ const LegalHelp = () => {
                 If you're in immediate danger or need urgent legal help, call our 24/7 hotline: +255 123 456 789
               </Typography>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Network Statistics */}
+      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
+        <Container>
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-6">Our Legal Aid Network</Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+              A comprehensive network of trained professionals ready to assist you across Tanzania.
+            </Typography>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {networkStats.map((stat, index) => (
+              <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+                <CardContent className="pt-8 pb-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-primary">
+                    {stat.icon}
+                  </div>
+                  <Typography variant="h1" className="text-primary font-black mb-2">
+                    {stat.number}
+                  </Typography>
+                  <Typography variant="h4" className="font-semibold mb-2">
+                    {stat.label}
+                  </Typography>
+                  <Typography variant="bodySmall" className="text-neutral-gray">
+                    {stat.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </Container>
       </section>

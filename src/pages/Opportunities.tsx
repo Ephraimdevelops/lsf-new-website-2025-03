@@ -2,7 +2,7 @@
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Users, Briefcase, GraduationCap, Heart, ArrowRight, Calendar, Star, Globe } from 'lucide-react';
+import { MapPin, Clock, Users, Briefcase, GraduationCap, Heart, ArrowRight, Calendar, Star, Globe, Award, Target, Lightbulb } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
@@ -72,6 +72,51 @@ const opportunities: Opportunity[] = [
   }
 ];
 
+const whyJoinReasons = [
+  {
+    icon: <Heart className="h-8 w-8" />,
+    title: "Meaningful Impact",
+    description: "Work directly with communities to create lasting change and advance access to justice across Tanzania.",
+    gradient: "from-primary/10 to-primary/20",
+    iconColor: "text-primary"
+  },
+  {
+    icon: <GraduationCap className="h-8 w-8" />,
+    title: "Professional Growth",
+    description: "Develop your skills through training programs, mentorship, and exposure to diverse legal challenges.",
+    gradient: "from-secondary-teal/10 to-secondary-teal/20",
+    iconColor: "text-secondary-teal"
+  },
+  {
+    icon: <Users className="h-8 w-8" />,
+    title: "Collaborative Team",
+    description: "Join a diverse, passionate team committed to justice, equality, and community empowerment.",
+    gradient: "from-secondary-orange/10 to-secondary-orange/20",
+    iconColor: "text-secondary-orange"
+  },
+  {
+    icon: <Award className="h-8 w-8" />,
+    title: "Career Development",
+    description: "Access continuous learning opportunities and career advancement in the legal aid sector.",
+    gradient: "from-secondary-green/10 to-secondary-green/20",
+    iconColor: "text-secondary-green"
+  },
+  {
+    icon: <Target className="h-8 w-8" />,
+    title: "Purpose-Driven Work",
+    description: "Every day contributes to building a more just and equitable society for all Tanzanians.",
+    gradient: "from-secondary-yellow/10 to-secondary-yellow/20",
+    iconColor: "text-secondary-yellow"
+  },
+  {
+    icon: <Lightbulb className="h-8 w-8" />,
+    title: "Innovation Focus",
+    description: "Be part of cutting-edge approaches to legal aid delivery and justice innovation.",
+    gradient: "from-primary/10 to-secondary-teal/20",
+    iconColor: "text-primary"
+  }
+];
+
 const Opportunities = () => {
   const featuredOpportunities = opportunities.filter(opp => opp.featured);
   const regularOpportunities = opportunities.filter(opp => !opp.featured);
@@ -79,39 +124,29 @@ const Opportunities = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary-dark to-secondary-teal text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{ 
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
-          }} />
-        </div>
-        
-        <Container size="xl">
-          <div className="relative z-10 max-w-4xl">
-            <div className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Briefcase className="h-5 w-5 mr-3" />
-              <Typography variant="overline" className="text-white font-bold">
-                JOIN OUR MISSION
+      <HeroSection
+        icon={<Briefcase className="h-8 w-8" />}
+        badge="JOIN OUR MISSION"
+        title="We need you..."
+        description="Be part of a team that's transforming access to justice across Tanzania. Discover meaningful opportunities that create lasting impact in communities nationwide."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
+
+      {/* Quick Actions */}
+      <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary-teal/5">
+        <Container>
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-4">
+              View Open Positions
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-4">
+              Submit Your CV
+            </Button>
+            <div className="text-center">
+              <Typography variant="bodySmall" className="text-neutral-gray">
+                Have questions? <Link to="/contact" className="text-primary hover:underline font-semibold">Contact us</Link>
               </Typography>
-            </div>
-            
-            <Typography variant="display" className="text-white mb-6 leading-tight">
-              We need you...
-            </Typography>
-            
-            <Typography variant="body" className="text-white/90 mb-8 max-w-3xl">
-              Be part of a team that's transforming access to justice across Tanzania. 
-              Discover meaningful opportunities that create lasting impact in communities nationwide.
-            </Typography>
-            
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-8 py-4">
-                View Open Positions
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-bold px-8 py-4">
-                Submit Your CV
-              </Button>
             </div>
           </div>
         </Container>
@@ -120,7 +155,7 @@ const Opportunities = () => {
       {/* Featured Opportunities */}
       {featuredOpportunities.length > 0 && (
         <section className="py-20 bg-white">
-          <Container size="xl">
+          <Container>
             <div className="text-center mb-16">
               <Typography variant="overline" className="text-primary mb-4 block">
                 FEATURED OPPORTUNITIES
@@ -232,13 +267,16 @@ const Opportunities = () => {
 
       {/* All Opportunities */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <Container size="xl">
+        <Container>
           <div className="text-center mb-16">
             <Typography variant="overline" className="text-primary mb-4 block">
               ALL OPPORTUNITIES
             </Typography>
             <Typography variant="h2" className="mb-6">
               Find Your Role
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+              Explore all available positions and find the perfect opportunity to contribute to justice in Tanzania.
             </Typography>
           </div>
           
@@ -311,7 +349,7 @@ const Opportunities = () => {
                           View Details
                         </Button>
                       </Link>
-                      <Button variant="outline" className="px-6 font-bold">
+                      <Button variant="outline" className="px-6 font-bold border-primary text-primary hover:bg-primary hover:text-white">
                         Apply Now
                       </Button>
                     </div>
@@ -325,65 +363,47 @@ const Opportunities = () => {
 
       {/* Why Join LSF */}
       <section className="py-20 bg-white">
-        <Container size="xl">
+        <Container>
           <div className="text-center mb-16">
             <Typography variant="h2" className="mb-6">
               Why Join LSF?
             </Typography>
             <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
-              Join a team committed to justice, equality, and community empowerment
+              Join a team committed to justice, equality, and community empowerment. Discover what makes working with us unique.
             </Typography>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Heart className="h-10 w-10 text-primary" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyJoinReasons.map((reason, index) => (
+              <div key={index} className="group">
+                <div className="text-center h-full">
+                  <div className={`w-20 h-20 bg-gradient-to-br ${reason.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={reason.iconColor}>
+                      {reason.icon}
+                    </div>
+                  </div>
+                  <Typography variant="h3" className="mb-4">
+                    {reason.title}
+                  </Typography>
+                  <Typography variant="bodySmall" className="text-neutral-gray leading-relaxed">
+                    {reason.description}
+                  </Typography>
+                </div>
               </div>
-              <Typography variant="h3" className="mb-4">
-                Meaningful Impact
-              </Typography>
-              <Typography variant="bodySmall" className="text-neutral-gray leading-relaxed">
-                Work directly with communities to create lasting change and advance access to justice across Tanzania.
-              </Typography>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <GraduationCap className="h-10 w-10 text-secondary-teal" />
-              </div>
-              <Typography variant="h3" className="mb-4">
-                Professional Growth
-              </Typography>
-              <Typography variant="bodySmall" className="text-neutral-gray leading-relaxed">
-                Develop your skills through training programs, mentorship, and exposure to diverse legal challenges.
-              </Typography>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Users className="h-10 w-10 text-secondary-orange" />
-              </div>
-              <Typography variant="h3" className="mb-4">
-                Collaborative Team
-              </Typography>
-              <Typography variant="bodySmall" className="text-neutral-gray leading-relaxed">
-                Join a diverse, passionate team committed to justice, equality, and community empowerment.
-              </Typography>
-            </div>
+            ))}
           </div>
         </Container>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-secondary-teal">
-        <Container size="xl">
+        <Container>
           <div className="text-center text-white">
             <Typography variant="h2" className="text-white mb-6">
               Ready to Make a Difference?
             </Typography>
             <Typography variant="body" className="text-white/90 mb-12 max-w-2xl mx-auto">
-              Don't see the right opportunity? We're always interested in hearing from passionate individuals.
+              Don't see the right opportunity? We're always interested in hearing from passionate individuals who want to contribute to justice in Tanzania.
             </Typography>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-bold px-8 py-4">
