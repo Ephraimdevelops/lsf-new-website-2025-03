@@ -171,7 +171,8 @@ const Index = () => {
               We work tirelessly to ensure every Tanzanian has access to justice, legal education, and the support they need to live with dignity and security.
             </Typography>
           </div>
-
+ {/* Our Focus Areas Section */}
+      <FocusAreas />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="group">
