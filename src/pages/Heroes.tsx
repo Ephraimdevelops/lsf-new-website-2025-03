@@ -1,348 +1,314 @@
 
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
-import { Users, ArrowRight, Quote, MapPin, Calendar, Heart, Filter } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import Container from '../components/shared/Container';
+import Typography from '../components/shared/Typography';
 import { Button } from '@/components/ui/button';
-import Container from '@/components/shared/Container';
-import Typography from '@/components/shared/Typography';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Heart, Users, Scale, ArrowRight, Quote, MapPin, Calendar, Award, CheckCircle, Star, Briefcase, GraduationCap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-interface Story {
-  id: string;
-  name: string;
-  location: string;
-  image: string;
-  quote: string;
-  category: string;
-  brief: string;
-  date: string;
-}
-
-const featuredStories: Story[] = [
+const impactStats = [
   {
-    id: "mariam-hassan",
-    name: "Mariam Hassan",
-    location: "Dar es Salaam",
-    image: "https://images.unsplash.com/photo-1539701938214-0d9d0e8ab606?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "With LSF's paralegal support, I reclaimed my family land that was illegally taken after my husband passed away.",
-    category: "Land Rights",
-    brief: "After Mariam's husband died, her in-laws attempted to evict her from her home. With support from a local paralegal trained by LSF, she was able to assert her legal rights and maintain ownership of her family's property.",
-    date: "March 2024"
+    icon: <Users className="h-8 w-8" />,
+    number: "75,000+",
+    label: "Lives Transformed",
+    description: "Individuals who received life-changing legal assistance"
   },
   {
-    id: "joseph-mkwawa",
-    name: "Joseph Mkwawa",
-    location: "Mbeya",
-    image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "The mobile legal clinic in our village helped me understand my rights as a small business owner and resolve a longstanding dispute.",
-    category: "Business Rights",
-    brief: "Joseph's small carpentry workshop was threatened when a local official demanded illegal payments. With guidance from an LSF-supported legal aid provider, Joseph learned about business regulations and successfully challenged the corrupt demands.",
-    date: "February 2024"
+    icon: <Scale className="h-8 w-8" />,
+    number: "89%",
+    label: "Success Rate",
+    description: "Cases resolved successfully in favor of our clients"
   },
   {
-    id: "neema-urio",
-    name: "Neema Urio",
-    location: "Arusha",
-    image: "https://images.unsplash.com/photo-1531123414780-f74242c2b052?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "After attending legal education sessions, I now lead a women's group that advocates for our community's rights and supports other women.",
-    category: "Women's Empowerment",
-    brief: "Inspired by LSF's legal empowerment workshops, Neema formed a women's advocacy group in her community. The group provides peer support and connects women with paralegals when they face legal challenges.",
-    date: "January 2024"
+    icon: <Heart className="h-8 w-8" />,
+    number: "2,500+",
+    label: "Families Reunited",
+    description: "Families brought together through our legal interventions"
+  },
+  {
+    icon: <Award className="h-8 w-8" />,
+    number: "156",
+    label: "Awards & Recognition",
+    description: "Recognition for outstanding legal advocacy work"
   }
 ];
 
-const allStories: Story[] = [
-  ...featuredStories,
+const successStories = [
   {
-    id: "emmanuel-masaki",
-    name: "Emmanuel Masaki",
-    location: "Dodoma",
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "The Haki Yangu app helped me find a paralegal who resolved my employment dispute without having to travel to the city.",
-    category: "Labor Rights",
-    brief: "When Emmanuel was unfairly dismissed without severance pay, he used the Haki Yangu app to connect with a paralegal who mediated the dispute, resulting in fair compensation from his former employer.",
-    date: "December 2023"
+    id: 'story-1',
+    name: 'Amina Hassan',
+    location: 'Dar es Salaam',
+    category: 'Land Rights',
+    title: 'Securing Her Family\'s Future',
+    story: 'After her husband\'s death, Amina faced eviction from her family home. With LSF\'s help, she successfully defended her inheritance rights and secured land titles for her three children.',
+    outcome: 'Family home secured, children\'s education funded through property rights',
+    image: 'https://images.unsplash.com/photo-1494790108755-2616c82ca017?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    year: '2024',
+    impact: 'High',
+    tags: ['Women\'s Rights', 'Property Law', 'Family Protection']
   },
   {
-    id: "grace-mwenda",
-    name: "Grace Mwenda",
-    location: "Mwanza",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "Legal education helped me understand my inheritance rights and secure my children's future.",
-    category: "Legal Empowerment",
-    brief: "Grace was able to claim her rightful inheritance after her husband's death, ensuring her children could continue their education.",
-    date: "November 2023"
+    id: 'story-2',
+    name: 'Joseph Mwalimu',
+    location: 'Mwanza',
+    category: 'Employment Rights',
+    title: 'Fighting Workplace Discrimination',
+    story: 'Joseph was unfairly dismissed from his teaching position due to his disability. LSF represented him in court, resulting in reinstatement and compensation for lost wages.',
+    outcome: 'Reinstated to position, received 18 months back pay, policy changes implemented',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    year: '2024',
+    impact: 'High',
+    tags: ['Disability Rights', 'Employment Law', 'Anti-Discrimination']
   },
   {
-    id: "daniel-kibwana",
-    name: "Daniel Kibwana",
-    location: "Kigoma",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    quote: "Community mediation helped resolve our village's water rights dispute peacefully.",
-    category: "Community Resolution",
-    brief: "A long-standing water access dispute between two villages was resolved through community mediation facilitated by LSF-trained paralegals.",
-    date: "October 2023"
+    id: 'story-3',
+    name: 'Grace Kimani',
+    location: 'Arusha',
+    category: 'Gender-Based Violence',
+    title: 'Breaking the Cycle of Violence',
+    story: 'Grace escaped an abusive marriage with LSF\'s assistance. We helped her obtain a restraining order, secure custody of her children, and access counseling services.',
+    outcome: 'Safety secured, full custody granted, launched successful small business',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    year: '2023',
+    impact: 'Life-Saving',
+    tags: ['GBV Protection', 'Family Law', 'Economic Empowerment']
+  },
+  {
+    id: 'story-4',
+    name: 'David Msigwa',
+    location: 'Dodoma',
+    category: 'Criminal Defense',
+    title: 'Proven Innocent After 3 Years',
+    story: 'Wrongfully accused of theft, David spent three years in prison before LSF took his case. New evidence and legal advocacy led to his complete exoneration.',
+    outcome: 'Charges dropped, compensation awarded, criminal justice reform advocacy',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    year: '2023',
+    impact: 'Life-Changing',
+    tags: ['Criminal Justice', 'Wrongful Conviction', 'Legal Reform']
+  },
+  {
+    id: 'story-5',
+    name: 'Fatuma Ali',
+    location: 'Mbeya',
+    category: 'Child Rights',
+    title: 'Education Rights for Every Child',
+    story: 'When Fatuma\'s daughter was denied school admission due to lack of birth certificate, LSF helped secure legal documentation and fought for her right to education.',
+    outcome: 'Birth certificate obtained, school admission secured, scholarship awarded',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    year: '2024',
+    impact: 'Educational',
+    tags: ['Child Rights', 'Education Access', 'Documentation']
+  },
+  {
+    id: 'story-6',
+    name: 'Emmanuel Ndege',
+    location: 'Kilimanjaro',
+    category: 'Environmental Justice',
+    title: 'Protecting Community Resources',
+    story: 'Emmanuel led his community in fighting illegal mining that threatened their water supply. LSF provided legal representation that resulted in mine closure and environmental restoration.',
+    outcome: 'Mining operations stopped, water supply restored, community compensation',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    year: '2023',
+    impact: 'Environmental',
+    tags: ['Environmental Law', 'Community Rights', 'Natural Resources']
   }
 ];
 
-const storyCategories = [
-  { name: "All Stories", value: "all" },
-  { name: "Land Rights", value: "Land Rights" },
-  { name: "Women's Empowerment", value: "Women's Empowerment" },
-  { name: "Business Rights", value: "Business Rights" },
-  { name: "Labor Rights", value: "Labor Rights" },
-  { name: "Legal Empowerment", value: "Legal Empowerment" },
-  { name: "Community Resolution", value: "Community Resolution" }
-];
+const getImpactColor = (impact: string) => {
+  switch (impact) {
+    case 'Life-Saving': return 'bg-red-100 text-red-800 border-red-200';
+    case 'Life-Changing': return 'bg-purple-100 text-purple-800 border-purple-200';
+    case 'High': return 'bg-green-100 text-green-800 border-green-200';
+    case 'Educational': return 'bg-blue-100 text-blue-800 border-blue-200';
+    case 'Environmental': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+    default: return 'bg-gray-100 text-gray-800 border-gray-200';
+  }
+};
 
 const Heroes = () => {
-  const [currentFeatured, setCurrentFeatured] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-
-  const filteredStories = selectedCategory === "all" 
-    ? allStories 
-    : allStories.filter(story => story.category === selectedCategory);
-
   return (
     <Layout>
-      {/* Hero Section with Background */}
+      {/* Hero Section */}
       <HeroSection
         icon={<Heart className="h-8 w-8" />}
-        badge="Impact Stories"
-        title="Success Stories"
-        description="Discover how access to justice transforms lives across Tanzania. Every story represents hope, resilience, and positive change."
+        badge="Success Stories"
+        title="Heroes of Justice"
+        description="Meet the brave individuals whose lives have been transformed through access to justice. These are stories of courage, resilience, and the power of legal empowerment to change lives."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      {/* Category Navigation */}
-      <section className="bg-white border-b border-gray-200 sticky top-0 z-40">
+      {/* Impact Statistics */}
+      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
         <Container>
-          <div className="py-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Filter className="h-5 w-5 text-primary" />
-              <Typography variant="h4" className="text-lg font-semibold text-neutral-900">
-                Filter by Category
-              </Typography>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {storyCategories.map((category) => (
-                <Button
-                  key={category.value}
-                  variant={selectedCategory === category.value ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category.value)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                    selectedCategory === category.value
-                      ? "bg-primary text-white hover:bg-primary-600"
-                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  {category.name}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Media Centre Banner */}
-      <section className="bg-neutral-50 py-12 border-b border-gray-200">
-        <Container>
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <Typography variant="body" className="text-neutral-900 font-medium mb-4 md:mb-0">
-              EVERY STORY REPRESENTS A LIFE TRANSFORMED THROUGH ACCESS TO JUSTICE.
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-6">Real Impact, Real Lives</Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+              Every number represents a life changed, a family protected, and a community strengthened through access to justice.
             </Typography>
-            <Link to="/legal-help">
-              <Button 
-                variant="outline" 
-                className="border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-wide font-medium rounded-none"
-              >
-                GET LEGAL HELP
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-        </Container>
-      </section>
-      
-      {/* Featured Story */}
-      <section className="py-16 bg-white">
-        <Container>
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <div className="w-12 h-1 bg-primary mb-4"></div>
-              <Typography variant="h1" className="text-4xl font-bold text-neutral-900 uppercase tracking-wide">
-                FEATURED STORY
-              </Typography>
-            </div>
           </div>
           
-          <Card className="overflow-hidden shadow-xl">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
-              <div className="lg:col-span-1">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img 
-                    src={featuredStories[currentFeatured].image} 
-                    alt={featuredStories[currentFeatured].name} 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-              </div>
-              
-              <div className="lg:col-span-2 p-8 space-y-6">
-                <div className="flex items-center space-x-4 text-sm">
-                  <span className="text-gray-500">{featuredStories[currentFeatured].date}</span>
-                  <span className="bg-primary text-white px-3 py-1 text-xs font-medium uppercase tracking-wide rounded-full">
-                    {featuredStories[currentFeatured].category}
-                  </span>
-                </div>
-                
-                <Typography 
-                  variant="h2" 
-                  className="text-3xl lg:text-4xl font-bold text-neutral-900 leading-tight uppercase"
-                >
-                  {featuredStories[currentFeatured].name}
-                </Typography>
-                
-                <div className="flex items-center text-neutral-600">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  <span>{featuredStories[currentFeatured].location}</span>
-                </div>
-                
-                <blockquote className="border-l-4 border-primary pl-6 bg-gray-50 py-4 rounded-r-lg">
-                  <Typography variant="body" className="text-lg italic text-neutral-800 leading-relaxed">
-                    "{featuredStories[currentFeatured].quote}"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {impactStats.map((stat, index) => (
+              <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+                <CardContent className="pt-8 pb-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-primary">
+                    {stat.icon}
+                  </div>
+                  <Typography variant="h1" className="text-primary font-black mb-2">
+                    {stat.number}
                   </Typography>
-                </blockquote>
-                
-                <Typography variant="body" className="text-neutral-700 leading-relaxed">
-                  {featuredStories[currentFeatured].brief}
-                </Typography>
-                
-                <Link to={`/heroes/${featuredStories[currentFeatured].id}`}>
-                  <Button 
-                    className="bg-primary hover:bg-primary-600 text-white uppercase tracking-wide font-medium rounded-none"
-                  >
-                    READ FULL STORY
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </Card>
+                  <Typography variant="h4" className="font-semibold mb-2">
+                    {stat.label}
+                  </Typography>
+                  <Typography variant="bodySmall" className="text-neutral-gray">
+                    {stat.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </Container>
       </section>
 
-      {/* All Stories Grid */}
-      <section className="py-16 bg-neutral-50">
+      {/* Success Stories Grid */}
+      <section className="py-16 bg-white">
         <Container>
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <div className="w-12 h-1 bg-primary mb-4"></div>
-              <Typography variant="h2" className="text-3xl font-bold text-neutral-900 uppercase tracking-wide">
-                {selectedCategory === "all" ? "ALL SUCCESS STORIES" : `${selectedCategory.toUpperCase()} STORIES`}
-              </Typography>
-              <Typography variant="body" className="text-gray-600 mt-2">
-                Showing {filteredStories.length} {filteredStories.length === 1 ? 'story' : 'stories'}
-              </Typography>
-            </div>
+          <div className="text-center mb-12">
+            <div className="w-12 h-1 bg-primary mb-4 mx-auto"></div>
+            <Typography variant="h2" className="mb-6">Stories of Transformation</Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+              Behind every legal victory is a human story of courage, determination, and hope. These are the heroes who refused to give up on justice.
+            </Typography>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredStories.map((story, index) => (
-              <Link key={story.id} to={`/heroes/${story.id}`} className="group">
-                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <div className="aspect-[4/3] overflow-hidden relative">
+            {successStories.map((story, index) => (
+              <Card key={story.id} className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white overflow-hidden">
+                <div className="relative overflow-hidden">
+                  <div className="aspect-[4/3] overflow-hidden">
                     <img 
                       src={story.image} 
-                      alt={story.name} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      alt={story.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-90"></div>
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-primary text-white px-3 py-1 text-xs font-medium uppercase tracking-wide rounded-full">
-                        {story.category}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <Typography variant="h3" className="text-white font-bold text-xl mb-1">
-                        {story.name}
-                      </Typography>
-                      <div className="flex items-center text-white/80 text-sm">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        {story.location}
-                      </div>
-                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  
+                  {/* Impact Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${getImpactColor(story.impact)}`}>
+                      <Star className="h-3 w-3 mr-1" />
+                      {story.impact} Impact
+                    </span>
                   </div>
                   
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      {story.date}
+                  {/* Location & Year */}
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="flex items-center text-sm mb-1">
+                      <MapPin size={14} className="mr-1" />
+                      {story.location}
                     </div>
-                    
-                    <blockquote className="flex items-start">
-                      <Quote className="h-5 w-5 text-primary/30 mr-2 flex-shrink-0 mt-1" />
-                      <Typography variant="body" className="italic text-neutral-700 text-sm leading-relaxed">
-                        "{story.quote}"
-                      </Typography>
-                    </blockquote>
-                    
-                    <div className="flex items-center text-primary font-medium uppercase tracking-wide text-sm group-hover:underline pt-2">
-                      READ FULL STORY
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <div className="flex items-center text-xs opacity-90">
+                      <Calendar size={12} className="mr-1" />
+                      {story.year}
                     </div>
                   </div>
-                </Card>
-              </Link>
+                </div>
+
+                <CardContent className="p-6">
+                  <div className="mb-4">
+                    <span className="bg-primary/10 text-primary px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wider">
+                      {story.category}
+                    </span>
+                  </div>
+                  
+                  <Typography variant="h3" className="font-bold mb-2 group-hover:text-primary transition-colors">
+                    {story.name}
+                  </Typography>
+                  
+                  <Typography variant="h4" className="text-lg font-semibold mb-3 text-neutral-dark">
+                    {story.title}
+                  </Typography>
+                  
+                  <Typography variant="body" className="text-neutral-gray text-sm line-clamp-3 mb-4 leading-relaxed">
+                    {story.story}
+                  </Typography>
+                  
+                  <div className="mb-4">
+                    <Typography variant="bodySmall" className="font-semibold text-green-700 mb-1">
+                      Outcome:
+                    </Typography>
+                    <Typography variant="bodySmall" className="text-neutral-gray">
+                      {story.outcome}
+                    </Typography>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {story.tags.slice(0, 2).map((tag, tagIndex) => (
+                      <span key={tagIndex} className="bg-gray-100 text-gray-700 px-2 py-1 text-xs rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <Link 
+                    to={`/heroes/${story.id}`}
+                    className="inline-flex items-center text-primary font-semibold text-sm hover:underline group-hover:translate-x-1 transition-all"
+                  >
+                    Read Full Story
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
             ))}
           </div>
-          
-          {filteredStories.length === 0 && (
-            <div className="text-center py-12">
-              <Typography variant="h3" className="text-gray-500 mb-4">
-                No stories found in this category
-              </Typography>
-              <Button 
-                onClick={() => setSelectedCategory("all")}
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-white"
-              >
-                View All Stories
-              </Button>
-            </div>
-          )}
         </Container>
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-primary text-white">
+      <section className="py-16 bg-primary/5">
         <Container>
           <div className="text-center">
-            <Typography variant="h2" className="text-3xl font-bold mb-6 uppercase tracking-wide">
-              BE PART OF THE CHANGE
-            </Typography>
-            <Typography variant="body" className="text-xl mb-8 max-w-2xl mx-auto">
-              Every story you've read started with someone taking the first step. 
-              If you need legal help, we're here for you.
+            <Typography variant="h2" className="mb-6">Your Story Could Be Next</Typography>
+            <Typography variant="body" className="text-neutral-gray mb-8 max-w-2xl mx-auto">
+              Don't let legal challenges hold you back. Join thousands of Tanzanians who have found justice and transformed their lives with our help.
             </Typography>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/legal-help">
-                <Button className="bg-white text-primary hover:bg-neutral-100 font-medium px-8 py-3 rounded-none uppercase tracking-wide">
-                  GET LEGAL HELP
+                <Button size="lg" className="bg-primary hover:bg-primary/90">
+                  Get Legal Help Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link to="/donate">
-                <Button 
-                  variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-primary font-medium px-8 py-3 rounded-none uppercase tracking-wide"
-                >
-                  SUPPORT OUR WORK
+              <Link to="/news">
+                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                  Read More Stories
                 </Button>
               </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="py-16 bg-white">
+        <Container>
+          <div className="max-w-2xl mx-auto text-center">
+            <Typography variant="h2" className="mb-6">Stay Inspired</Typography>
+            <Typography variant="body" className="text-neutral-gray mb-8">
+              Subscribe to receive regular updates about our impact and new success stories from across Tanzania.
+            </Typography>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input 
+                type="email" 
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              />
+              <Button className="bg-primary hover:bg-primary/90 px-8">
+                Subscribe
+              </Button>
             </div>
           </div>
         </Container>
