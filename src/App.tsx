@@ -39,6 +39,10 @@ import LearningResearch from "./pages/LearningResearch";
 import PolicyAdvocacy from "./pages/PolicyAdvocacy";
 import FocusAreaDetail from "./pages/FocusAreaDetail";
 import ApproachDetail from "./pages/ApproachDetail";
+import AccessibleLegalAid from "./pages/AccessibleLegalAid";
+import EmpoweredCommunities from "./pages/EmpoweredCommunities";
+import ConduciveEnvironment from "./pages/ConduciveEnvironment";
+import InstitutionalDevelopment from "./pages/InstitutionalDevelopment";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -82,6 +86,10 @@ const App = () => {
               <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
               <Route path="/what-we-do/policy-advocacy" element={<PolicyAdvocacy />} />
               <Route path="/focus-areas/:focusAreaId" element={<FocusAreaDetail />} />
+              <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
+              <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
+              <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
+              <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
               <Route path="/approach/:approachId" element={<ApproachDetail />} />
               <Route path="/heroes" element={<Heroes />} />
               <Route path="/heroes/:heroId" element={<HeroDetail />} />
