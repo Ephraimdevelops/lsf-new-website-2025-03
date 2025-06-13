@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import { 
   Heart, Target, Users, Scale, ArrowRight, PlayCircle, 
@@ -13,6 +12,7 @@ import HighlightsSection from '@/components/home/HighlightsSection';
 import CompactNewsUpdates from '@/components/home/CompactNewsUpdates';
 import PartnersCarousel from '@/components/home/PartnersCarousel';
 import FocusAreas from '@/components/home/FocusAreas';
+import Hero from '@/components/home/Hero';
 
 const Index = () => {
   const successMetrics = [
@@ -24,13 +24,16 @@ const Index = () => {
 
   return (
     <Layout>
+      {/* Updated Hero Section */}
+      <Hero />
+
       {/* New Highlights Section */}
       <HighlightsSection />
 
-      {/* Compact News and Updates Section */}
+      {/* Updated News and Documents Section */}
       <CompactNewsUpdates />
 
-      {/* Impact Metrics Section - Consistent spacing and typography */}
+      {/* Impact Metrics Section - Enhanced heading sizes */}
       <section className="py-20 md:py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
@@ -47,12 +50,12 @@ const Index = () => {
               </Typography>
             </div>
             
-            <Typography variant="h1" className="text-white font-heading">
+            <Typography variant="display" className="text-white font-heading text-5xl md:text-6xl lg:text-7xl">
               Real Results.
               <span className="block text-secondary-orange">Lasting Change.</span>
             </Typography>
             
-            <Typography variant="body" className="text-white/90 max-w-3xl mx-auto">
+            <Typography variant="body" className="text-white/90 max-w-3xl mx-auto text-xl">
               Our commitment to transparency and accountability drives us to measure and share the concrete impact of our work across Tanzania.
             </Typography>
           </div>
@@ -83,7 +86,7 @@ const Index = () => {
       {/* Partners and Donors Carousel */}
       <PartnersCarousel />
 
-      {/* Call to Action Section - Consistent spacing and typography */}
+      {/* Call to Action Section - Enhanced heading sizes */}
       <section className="py-20 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
@@ -99,12 +102,12 @@ const Index = () => {
               </Typography>
             </div>
             
-            <Typography variant="h1" className="font-heading">
+            <Typography variant="display" className="font-heading text-4xl md:text-5xl lg:text-6xl">
               Join the Movement for
               <span className="block text-primary">Justice in Tanzania</span>
             </Typography>
             
-            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-xl">
               Be part of creating lasting change across Tanzania. Whether you need legal assistance, want to support our mission, or partner with us, there's a place for you in our community.
             </Typography>
             
