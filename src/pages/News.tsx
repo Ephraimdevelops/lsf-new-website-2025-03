@@ -34,9 +34,11 @@ const News = () => {
     const fetchNews = async () => {
       setIsLoading(true);
       try {
-        const news = await newsService.getAllNews();
-        setNewsItems(news);
-        setFilteredNews(news);
+        const response = await newsService.getAllNews();
+        // Extract the data array from the paginated response
+        const newsData = response.data || [];
+        setNewsItems(newsData);
+        setFilteredNews(newsData);
       } catch (error) {
         console.error("Error fetching news:", error);
       } finally {
