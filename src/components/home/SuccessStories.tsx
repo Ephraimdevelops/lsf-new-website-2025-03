@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart, Star, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart, Star, Users, TrendingUp, Award, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Container from '@/components/shared/Container';
@@ -90,48 +90,69 @@ const SuccessStories = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-primary rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary-teal rounded-full blur-xl"></div>
+    <section className="relative py-24 overflow-hidden">
+      {/* Enhanced Maroon Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/90"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-secondary-teal/10 via-transparent to-secondary-orange/10"></div>
+      
+      {/* Floating decorative elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-20 left-10 w-40 h-40 bg-white rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary-teal rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-secondary-orange rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
       
-      <Container size="xl">
+      <Container size="xl" className="relative z-10">
+        {/* Enhanced Header Section */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 border border-white/30 mb-8">
+            <Sparkles className="h-5 w-5 mr-3 text-secondary-orange" />
+            <Typography variant="overline" className="text-secondary-orange font-bold">
+              HEROES OF JUSTICE
+            </Typography>
+          </div>
+          
+          <Typography variant="display" className="text-white mb-8 font-heading max-w-4xl mx-auto">
+            Stories That Transform Lives
+          </Typography>
+          
+          <Typography variant="body" className="text-white/90 text-xl max-w-3xl mx-auto leading-relaxed">
+            Meet the brave individuals whose lives have been transformed through access to justice. 
+            These are stories of courage, resilience, and the power of legal empowerment.
+          </Typography>
+        </div>
+
         {/* All Stories Section */}
-        <div className="border-t border-gray-200 pt-20">
+        <div className="mb-20">
           <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-16">
             <div className="max-w-2xl">
-              <Typography variant="overline" className="text-primary mb-4 block">
-                ALL STORIES OF JUSTICE
-              </Typography>
-              <Typography variant="h2" className="mb-6">
+              <Typography variant="h2" className="text-white mb-6 font-heading">
                 Every Story Matters
               </Typography>
-              <Typography variant="body" className="text-neutral-gray">
+              <Typography variant="body" className="text-white/80 text-lg">
                 Each story represents hope, resilience, and the transformative power of accessible justice.
               </Typography>
             </div>
             
-            <div className="flex space-x-3 mt-6 lg:mt-0">
+            <div className="flex space-x-4 mt-8 lg:mt-0">
               <button 
                 onClick={handlePrev}
-                className="p-4 bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-lg border border-gray-200 group"
+                className="p-4 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full transition-all duration-300 shadow-xl border border-white/30 group"
                 aria-label="Previous story"
               >
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeft className="h-6 w-6 text-white" />
               </button>
               <button 
                 onClick={handleNext}
-                className="p-4 bg-white hover:bg-primary hover:text-white rounded-full transition-all duration-300 shadow-lg border border-gray-200 group"
+                className="p-4 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full transition-all duration-300 shadow-xl border border-white/30 group"
                 aria-label="Next story"
               >
-                <ChevronRight className="h-6 w-6" />
+                <ChevronRight className="h-6 w-6 text-white" />
               </button>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
             {visibleStories.map((story, index) => (
               <Link 
                 key={`${story.id}-${index}`}
@@ -139,51 +160,51 @@ const SuccessStories = () => {
                 className="group"
               >
                 <Card 
-                  className={`overflow-hidden transition-all duration-500 hover:shadow-2xl bg-white rounded-2xl border border-gray-100 ${
-                    animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-                  } hover:-translate-y-3 group-hover:border-primary/20`}
+                  className={`overflow-hidden transition-all duration-700 hover:shadow-2xl bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-white/50 ${
+                    animating ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
+                  } hover:-translate-y-4 group-hover:border-white hover:bg-white group-hover:shadow-white/20`}
                   style={{ 
-                    transitionDelay: `${index * 100}ms`,
-                    animationDelay: `${index * 100}ms`
+                    transitionDelay: `${index * 150}ms`,
+                    animationDelay: `${index * 150}ms`
                   }}
                 >
-                  <div className="relative h-56 overflow-hidden">
+                  <div className="relative h-64 overflow-hidden">
                     <img 
                       src={story.image} 
                       alt={story.name} 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-primary text-white text-xs font-bold px-3 py-2 rounded-full uppercase tracking-wide shadow-lg">
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
+                    <div className="absolute top-6 left-6">
+                      <span className="bg-secondary-orange text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide shadow-lg border border-white/20">
                         {story.category}
                       </span>
                     </div>
                     <div className="absolute bottom-0 left-0 w-full p-6">
-                      <Typography variant="h4" className="text-white mb-1">
+                      <Typography variant="h4" className="text-white mb-2 font-heading">
                         {story.name}
                       </Typography>
-                      <div className="flex items-center text-white/80 text-sm">
-                        <MapPin className="h-3 w-3 mr-1" />
+                      <div className="flex items-center text-white/90 text-sm">
+                        <MapPin className="h-4 w-4 mr-2" />
                         {story.location}
                       </div>
                     </div>
                   </div>
                   
-                  <div className="p-6">
-                    <blockquote className="mb-4">
-                      <Quote className="h-6 w-6 text-primary/20 mb-3" />
-                      <Typography variant="bodySmall" className="text-neutral-dark italic leading-relaxed">
+                  <div className="p-8">
+                    <blockquote className="mb-6">
+                      <Quote className="h-8 w-8 text-primary/30 mb-4" />
+                      <Typography variant="body" className="text-neutral-dark italic leading-relaxed text-lg">
                         "{story.quote}"
                       </Typography>
                     </blockquote>
                     
-                    <div className="flex justify-between items-center mt-6">
-                      <span className="text-primary font-bold group-hover:underline flex items-center text-sm tracking-wide">
+                    <div className="flex justify-between items-center mt-8">
+                      <span className="text-primary font-bold group-hover:underline flex items-center text-sm tracking-wide uppercase">
                         READ STORY
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-2" />
                       </span>
-                      <Heart className="h-5 w-5 text-gray-300 group-hover:text-red-400 transition-colors" />
+                      <Heart className="h-6 w-6 text-gray-300 group-hover:text-red-400 transition-colors" />
                     </div>
                   </div>
                 </Card>
@@ -192,13 +213,13 @@ const SuccessStories = () => {
           </div>
           
           {/* Story indicators */}
-          <div className="flex justify-center mb-12 space-x-2">
+          <div className="flex justify-center mb-16 space-x-3">
             {allStories.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === activeIndex ? 'bg-primary scale-125' : 'bg-gray-300 hover:bg-gray-400'
+                className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                  index === activeIndex ? 'bg-secondary-orange scale-125 shadow-lg' : 'bg-white/40 hover:bg-white/60'
                 }`}
                 aria-label={`Go to story ${index + 1}`}
               />
@@ -206,59 +227,59 @@ const SuccessStories = () => {
           </div>
         </div>
 
-        {/* Impact Stats */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-200/50 p-12 mb-12">
-          <div className="text-center mb-12">
-            <Typography variant="h3" className="mb-4">
+        {/* Enhanced Impact Stats */}
+        <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 p-12 mb-16">
+          <div className="text-center mb-16">
+            <Typography variant="h2" className="text-white mb-6 font-heading">
               Stories That Transform Communities
             </Typography>
-            <Typography variant="body" className="text-neutral-gray">
+            <Typography variant="body" className="text-white/80 text-lg max-w-2xl mx-auto">
               The ripple effect of justice reaches far beyond individual cases
             </Typography>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Users className="h-10 w-10 text-primary" />
+              <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-all duration-300 border border-white/30">
+                <Users className="h-12 w-12 text-white" />
               </div>
-              <Typography variant="h2" className="text-primary mb-2">
+              <Typography variant="display" className="text-white mb-4 font-black">
                 426K+
               </Typography>
-              <Typography variant="h4" className="mb-2">
+              <Typography variant="h3" className="text-white/90 mb-3">
                 Lives Transformed
               </Typography>
-              <Typography variant="bodySmall" className="text-neutral-gray">
+              <Typography variant="body" className="text-white/70">
                 Direct beneficiaries of our legal empowerment programs
               </Typography>
             </div>
             
             <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="h-10 w-10 text-secondary-teal" />
+              <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-all duration-300 border border-white/30">
+                <TrendingUp className="h-12 w-12 text-white" />
               </div>
-              <Typography variant="h2" className="text-secondary-teal mb-2">
+              <Typography variant="display" className="text-white mb-4 font-black">
                 96%
               </Typography>
-              <Typography variant="h4" className="mb-2">
+              <Typography variant="h3" className="text-white/90 mb-3">
                 Success Rate
               </Typography>
-              <Typography variant="bodySmall" className="text-neutral-gray">
+              <Typography variant="body" className="text-white/70">
                 Cases resolved through our paralegal network
               </Typography>
             </div>
             
             <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Heart className="h-10 w-10 text-secondary-orange" />
+              <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-all duration-300 border border-white/30">
+                <Award className="h-12 w-12 text-white" />
               </div>
-              <Typography variant="h2" className="text-secondary-orange mb-2">
+              <Typography variant="display" className="text-white mb-4 font-black">
                 184
               </Typography>
-              <Typography variant="h4" className="mb-2">
+              <Typography variant="h3" className="text-white/90 mb-3">
                 Districts Reached
               </Typography>
-              <Typography variant="bodySmall" className="text-neutral-gray">
+              <Typography variant="body" className="text-white/70">
                 Communities across Tanzania accessing justice
               </Typography>
             </div>
@@ -267,11 +288,11 @@ const SuccessStories = () => {
         
         <div className="text-center">
           <Link to="/heroes">
-            <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-12 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <Typography variant="overline" className="text-white mr-3">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 hover:text-primary font-bold px-16 py-6 rounded-2xl shadow-2xl hover:shadow-white/20 transition-all duration-300 transform hover:-translate-y-2 text-lg">
+              <Typography variant="overline" className="mr-4 text-lg">
                 VIEW ALL SUCCESS STORIES
               </Typography>
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-6 w-6" />
             </Button>
           </Link>
         </div>
