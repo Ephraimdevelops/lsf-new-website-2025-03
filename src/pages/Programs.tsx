@@ -1,54 +1,9 @@
 
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
-import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
-import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
-import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
 import { Briefcase, Users, Target, Award } from 'lucide-react';
 
 const Programs = () => {
-  const highlights = [
-    {
-      title: "Legal Aid Services",
-      description: "Direct legal representation and advice for individuals who cannot afford private legal services, ensuring justice is accessible to all.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Get Legal Help"
-    },
-    {
-      title: "Community Paralegal Program",
-      description: "Training community members to provide first-line legal support and guidance in their neighborhoods, creating local justice champions.",
-      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
-      buttonText: "Join Training"
-    },
-    {
-      title: "Women's Rights Initiative",
-      description: "Specialized programs addressing gender-based violence, property rights, and women's empowerment through legal education and advocacy.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Learn More"
-    }
-  ];
-
-  const programLeaders = [
-    {
-      name: "Advocate Sarah Mwamba",
-      role: "Legal Aid Director",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "Our legal aid program has helped over 10,000 clients access justice, with a 90% success rate in resolving their cases."
-    },
-    {
-      name: "Grace Mbwana",
-      role: "Paralegal Training Coordinator",
-      image: "/lovable-uploads/backgound lsf colours.png",
-      quote: "We've trained 4,000+ paralegals who now serve as the first line of justice support in their communities across Tanzania."
-    },
-    {
-      name: "Dr. Amina Hassan",
-      role: "Women's Rights Program Lead",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "Our women's empowerment programs have reached 50,000+ women, helping them understand and claim their legal rights."
-    }
-  ];
-
   return (
     <Layout>
       <HeroSection
@@ -57,20 +12,6 @@ const Programs = () => {
         title="Innovative Programs for Justice"
         description="Discover our comprehensive range of programs designed to increase access to justice, empower communities, and create lasting change across Tanzania."
         backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
-
-      <ImpactStorySection
-        title="Programs that Transform Communities"
-        subtitle="Our Approach"
-        description="Each program we run is designed with one goal: to put the power of law into the hands of those who need it most. From direct legal aid to community training programs, we're building a Tanzania where everyone can access justice."
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-        ctaText="Explore All Programs"
-        stats={[
-          { value: "20+", label: "Active Programs" },
-          { value: "10,000+", label: "Direct Beneficiaries" },
-          { value: "100K+", label: "People Reached" },
-          { value: "184", label: "Communities Served" }
-        ]}
       />
 
       {/* Programs Grid */}
@@ -107,20 +48,6 @@ const Programs = () => {
           </div>
         </div>
       </section>
-
-      <VisualHighlightSection
-        title="Programs in Action"
-        subtitle="Making a Difference"
-        highlights={highlights}
-      />
-
-      <PartnersShowcaseSection
-        title="Program Leaders Making Impact"
-        subtitle="Our Team"
-        description="Meet the dedicated program leaders who design and implement innovative solutions that bring justice closer to the communities that need it most."
-        partners={programLeaders}
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
 
       {/* Program Success Metrics */}
       <section className="py-20 bg-white">

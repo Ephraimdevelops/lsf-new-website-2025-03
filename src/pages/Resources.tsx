@@ -2,9 +2,6 @@
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import CategoryCard from '../components/shared/CategoryCard';
-import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
-import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
-import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
 import { Button } from '@/components/ui/button';
 import { FileText, Search, Download, Book, Users, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -55,48 +52,6 @@ const Resources = () => {
     }
   ];
 
-  const highlights = [
-    {
-      title: "Research Publications",
-      description: "Comprehensive studies and reports that provide deep insights into legal empowerment challenges and solutions in Tanzania.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Browse Research"
-    },
-    {
-      title: "Training Materials",
-      description: "Practical guides, toolkits, and manuals designed to build capacity and knowledge among legal aid providers and communities.",
-      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
-      buttonText: "Access Materials"
-    },
-    {
-      title: "Policy Briefs",
-      description: "Concise, evidence-based recommendations for policymakers on key justice and legal empowerment issues.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Read Briefs"
-    }
-  ];
-
-  const partners = [
-    {
-      name: "Dr. Fatuma Chande",
-      role: "Research Director",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "Our comprehensive research library serves as a foundation for evidence-based policy and practice across Tanzania."
-    },
-    {
-      name: "Prof. John Makwetta",
-      role: "Academic Partner",
-      image: "/lovable-uploads/backgound lsf colours.png",
-      quote: "These resources have become essential reading for students and practitioners working in legal empowerment."
-    },
-    {
-      name: "Maria Santos",
-      role: "Knowledge Management Lead",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "We've made complex legal concepts accessible to communities through our innovative resource development approach."
-    }
-  ];
-
   return (
     <Layout>
       {/* Hero Section */}
@@ -106,20 +61,6 @@ const Resources = () => {
         title="Resources & Publications"
         description="Access our comprehensive collection of research, reports, guides, and tools designed to advance legal empowerment and access to justice across Tanzania."
         backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
-
-      <ImpactStorySection
-        title="Knowledge that Transforms Communities"
-        subtitle="Research Impact"
-        description="Every resource we create is designed with one goal: to put the power of legal knowledge into the hands of those who need it most. From comprehensive research reports to practical community guides, our knowledge products are changing how Tanzania approaches justice."
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-        ctaText="Explore Our Library"
-        stats={[
-          { value: "100K+", label: "Downloads" },
-          { value: "50+", label: "Publications" },
-          { value: "15+", label: "Languages" },
-          { value: "500+", label: "Citations" }
-        ]}
       />
 
       {/* Search Section */}
@@ -175,20 +116,6 @@ const Resources = () => {
           </div>
         </div>
       </section>
-
-      <VisualHighlightSection
-        title="Explore Our Knowledge Collection"
-        subtitle="Resource Types"
-        highlights={highlights}
-      />
-
-      <PartnersShowcaseSection
-        title="Knowledge Creators"
-        subtitle="Our Research Team"
-        description="Meet the dedicated researchers, writers, and knowledge management experts who create the resources that power legal empowerment across Tanzania."
-        partners={partners}
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
 
       {/* Impact Stats */}
       <section className="py-16 bg-gradient-to-br from-primary to-secondary-teal">
