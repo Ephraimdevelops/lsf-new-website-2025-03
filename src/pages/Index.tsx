@@ -25,7 +25,6 @@ const Index = () => {
 
   return (
     <Layout>
-      <Hero />
 
       {/* New Highlights Section */}
       <HighlightsSection />
