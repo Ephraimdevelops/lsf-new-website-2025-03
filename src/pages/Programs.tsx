@@ -1,214 +1,155 @@
 
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { MapPin, CalendarRange, ArrowRight, Target, PlayCircle, ExternalLink } from 'lucide-react';
-import { useQuery } from '@tanstack/react-query';
 import Layout from '../components/layout/Layout';
-import Container from '@/components/shared/Container';
-import Typography from '@/components/shared/Typography';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { programService } from '@/services/api';
-import { analyticsService } from '@/services/api';
+import HeroSection from '../components/shared/HeroSection';
+import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
+import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
+import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
+import { Briefcase, Users, Target, Award } from 'lucide-react';
 
 const Programs = () => {
-  // Track page view
-  useEffect(() => {
-    analyticsService.trackPageView('/programs', 'Our Projects');
-  }, []);
+  const highlights = [
+    {
+      title: "Legal Aid Services",
+      description: "Direct legal representation and advice for individuals who cannot afford private legal services, ensuring justice is accessible to all.",
+      backgroundImage: "/lovable-uploads/background with mother umage .png",
+      buttonText: "Get Legal Help"
+    },
+    {
+      title: "Community Paralegal Program",
+      description: "Training community members to provide first-line legal support and guidance in their neighborhoods, creating local justice champions.",
+      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
+      buttonText: "Join Training"
+    },
+    {
+      title: "Women's Rights Initiative",
+      description: "Specialized programs addressing gender-based violence, property rights, and women's empowerment through legal education and advocacy.",
+      backgroundImage: "/lovable-uploads/background with mother umage .png",
+      buttonText: "Learn More"
+    }
+  ];
 
-  const { data: programs, isLoading, error } = useQuery({
-    queryKey: ['programs'],
-    queryFn: programService.getAllPrograms,
-  });
+  const programLeaders = [
+    {
+      name: "Advocate Sarah Mwamba",
+      role: "Legal Aid Director",
+      image: "/lovable-uploads/background with mother umage .png",
+      quote: "Our legal aid program has helped over 10,000 clients access justice, with a 90% success rate in resolving their cases."
+    },
+    {
+      name: "Grace Mbwana",
+      role: "Paralegal Training Coordinator",
+      image: "/lovable-uploads/backgound lsf colours.png",
+      quote: "We've trained 4,000+ paralegals who now serve as the first line of justice support in their communities across Tanzania."
+    },
+    {
+      name: "Dr. Amina Hassan",
+      role: "Women's Rights Program Lead",
+      image: "/lovable-uploads/background with mother umage .png",
+      quote: "Our women's empowerment programs have reached 50,000+ women, helping them understand and claim their legal rights."
+    }
+  ];
 
   return (
     <Layout>
-      {/* Hero section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
-          }}
-        ></div>
-        
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-black opacity-95"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-        
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-48 h-48 bg-secondary-teal/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <HeroSection
+        icon={<Briefcase className="h-8 w-8" />}
+        badge="Our Programs"
+        title="Innovative Programs for Justice"
+        description="Discover our comprehensive range of programs designed to increase access to justice, empower communities, and create lasting change across Tanzania."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
+
+      <ImpactStorySection
+        title="Programs that Transform Communities"
+        subtitle="Our Approach"
+        description="Each program we run is designed with one goal: to put the power of law into the hands of those who need it most. From direct legal aid to community training programs, we're building a Tanzania where everyone can access justice."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+        ctaText="Explore All Programs"
+        stats={[
+          { value: "20+", label: "Active Programs" },
+          { value: "10,000+", label: "Direct Beneficiaries" },
+          { value: "100K+", label: "People Reached" },
+          { value: "184", label: "Communities Served" }
+        ]}
+      />
+
+      {/* Programs Grid */}
+      <section className="py-20 bg-neutral-light">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6">Our Core Programs</h2>
+            <p className="text-lg text-neutral-gray max-w-3xl mx-auto">
+              Comprehensive programs addressing different aspects of legal empowerment and access to justice
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-lg transition-shadow">
+              <Users className="h-12 w-12 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-3">Legal Aid</h3>
+              <p className="text-neutral-gray text-sm">Direct legal representation and advice</p>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-lg transition-shadow">
+              <Target className="h-12 w-12 text-secondary-teal mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-3">Paralegal Training</h3>
+              <p className="text-neutral-gray text-sm">Community-based legal support training</p>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-lg transition-shadow">
+              <Award className="h-12 w-12 text-secondary-orange mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-3">Women's Rights</h3>
+              <p className="text-neutral-gray text-sm">Gender-focused legal empowerment</p>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-lg transition-shadow">
+              <Briefcase className="h-12 w-12 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-3">Youth Programs</h3>
+              <p className="text-neutral-gray text-sm">Legal education for young people</p>
+            </div>
+          </div>
         </div>
-        
-        <Container size="xl" className="relative z-10">
-          <div className="text-center text-white max-w-5xl mx-auto">
-            <div className="inline-flex items-center space-x-3 mb-8 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
-              <Target className="h-6 w-6 text-secondary-orange" />
-              <span className="text-secondary-orange font-bold text-lg uppercase tracking-wider">
-                Programs & Initiatives
-              </span>
-            </div>
-            
-            <Typography variant="display" className="text-white mb-8 leading-none text-6xl md:text-8xl font-bold">
-              Transforming Lives
-              <span className="block text-secondary-orange">Through Justice</span>
-            </Typography>
-            
-            <Typography variant="body" className="text-white/90 mb-12 text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-              At Legal Services Facility (LSF), we implement strategic legal empowerment and access to justice programs across Tanzania. Each project is designed to uplift communities—especially women, children, and marginalized groups—through accessible legal aid, education, and advocacy.
-            </Typography>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-10 py-5 text-lg rounded-full">
-                Explore All Programs
-                <ArrowRight className="ml-3 h-6 w-6" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-10 py-5 text-lg rounded-full">
-                <PlayCircle className="mr-3 h-6 w-6" />
-                Watch Impact Stories
-              </Button>
-            </div>
-          </div>
-        </Container>
       </section>
 
-      {/* Programs list */}
-      <section className="py-24 bg-white">
-        <Container size="xl">
-          {isLoading ? (
-            <div className="flex justify-center items-center h-64">
-              <div className="animate-pulse flex flex-col items-center">
-                <div className="w-16 h-16 rounded-full bg-primary/20"></div>
-                <p className="mt-4 text-neutral-gray">Loading programs...</p>
-              </div>
-            </div>
-          ) : error ? (
-            <div className="text-center p-8 bg-red-50 rounded-lg">
-              <p className="text-red-500">Error loading programs. Please try again later.</p>
-              <Button 
-                onClick={() => window.location.reload()} 
-                variant="outline" 
-                className="mt-4"
-              >
-                Retry
-              </Button>
-            </div>
-          ) : (
-            <>
-              <div className="text-center mb-16">
-                <Typography variant="h2" className="mb-6 text-4xl md:text-5xl font-bold">
-                  All Our Programs
-                </Typography>
-                <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-xl">
-                  Comprehensive overview of our ongoing and completed initiatives bridging the justice gap across all 184 districts of Tanzania.
-                </Typography>
-              </div>
+      <VisualHighlightSection
+        title="Programs in Action"
+        subtitle="Making a Difference"
+        highlights={highlights}
+      />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {programs?.map((program) => (
-                  <Card key={program.id} className="overflow-hidden flex flex-col h-full hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 border border-gray-100">
-                    <div className="h-48 overflow-hidden relative">
-                      {program.image ? (
-                        <img 
-                          src={program.image} 
-                          alt={program.title} 
-                          className="w-full h-full object-cover transition-transform hover:scale-110 duration-500"
-                        />
-                      ) : (
-                        <div 
-                          className="w-full h-full bg-gradient-to-br from-primary to-secondary-teal flex items-center justify-center"
-                        >
-                          <Target className="h-16 w-16 text-white/60" />
-                        </div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                      <div className="absolute bottom-4 left-4">
-                        <Badge className="bg-primary text-white">
-                          Active Program
-                        </Badge>
-                      </div>
-                    </div>
-                    <CardContent className="p-6 flex-grow flex flex-col">
-                      <h2 className="text-xl font-bold mb-2 text-primary group-hover:text-secondary-teal transition-colors">
-                        {program.title}
-                      </h2>
-                      <p className="text-neutral-gray mb-4 line-clamp-3 leading-relaxed">
-                        {program.description}
-                      </p>
-                      <div className="mt-auto space-y-3">
-                        {program.location && program.location.length > 0 && (
-                          <div className="flex items-center text-sm text-neutral-gray">
-                            <MapPin size={16} className="mr-2 flex-shrink-0 text-secondary-teal" />
-                            <span>{program.location.join(', ')}</span>
-                          </div>
-                        )}
-                        
-                        {(program.startDate || program.endDate) && (
-                          <div className="flex items-center text-sm text-neutral-gray">
-                            <CalendarRange size={16} className="mr-2 flex-shrink-0 text-secondary-teal" />
-                            <span>
-                              {program.startDate && new Date(program.startDate).toLocaleDateString('en-US', { 
-                                month: 'short', 
-                                year: 'numeric' 
-                              })}
-                              {program.startDate && program.endDate && " – "}
-                              {program.endDate && new Date(program.endDate).toLocaleDateString('en-US', { 
-                                month: 'short', 
-                                year: 'numeric' 
-                              })}
-                            </span>
-                          </div>
-                        )}
-                        
-                        <div className="pt-4">
-                          <Link to={`/programs/${program.id}`}>
-                            <Button variant="default" className="w-full group-hover:bg-primary-dark transition-colors">
-                              View Details
-                              <ArrowRight size={16} className="ml-2" />
-                            </Button>
-                          </Link>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </>
-          )}
-        </Container>
-      </section>
+      <PartnersShowcaseSection
+        title="Program Leaders Making Impact"
+        subtitle="Our Team"
+        description="Meet the dedicated program leaders who design and implement innovative solutions that bring justice closer to the communities that need it most."
+        partners={programLeaders}
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white">
-        <Container size="xl">
-          <div className="text-center max-w-4xl mx-auto">
-            <Typography variant="h2" className="text-white mb-8 text-4xl md:text-5xl font-bold">
-              Join Our Mission for Justice
-            </Typography>
-            
-            <Typography variant="body" className="text-white/90 mb-12 text-xl leading-relaxed">
-              Be part of the movement that's transforming Tanzania's justice landscape. Whether you're a partner, donor, or advocate for change.
-            </Typography>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 font-bold py-4">
-                Partner With Us
-                <ExternalLink className="ml-2 h-5 w-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-bold py-4">
-                Support Our Work
-              </Button>
-              <Button size="lg" className="bg-secondary-teal hover:bg-secondary-teal/90 font-bold py-4">
-                Contact Our Team
-              </Button>
+      {/* Program Success Metrics */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6">Program Success Metrics</h2>
+            <p className="text-lg text-neutral-gray max-w-3xl mx-auto">
+              We measure success not just in numbers, but in the real transformation of lives and communities
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-5xl font-bold text-primary mb-4">90%</div>
+              <h3 className="text-xl font-semibold mb-2">Success Rate</h3>
+              <p className="text-neutral-gray">Cases resolved successfully through our programs</p>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold text-secondary-teal mb-4">85%</div>
+              <h3 className="text-xl font-semibold mb-2">Client Satisfaction</h3>
+              <p className="text-neutral-gray">Clients who rate our services as excellent</p>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl font-bold text-secondary-orange mb-4">95%</div>
+              <h3 className="text-xl font-semibold mb-2">Program Completion</h3>
+              <p className="text-neutral-gray">Participants who complete our training programs</p>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
     </Layout>
   );

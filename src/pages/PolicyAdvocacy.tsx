@@ -1,118 +1,128 @@
+
 import Layout from '../components/layout/Layout';
-import HeroSection from '../components/shared/HeroSection';
-import Typography from '@/components/shared/Typography';
-import Section from '@/components/shared/Section';
-import Container from '@/components/shared/Container';
-import Card from '@/components/shared/Card';
-import { Lightbulb, Scale, Users, FileText } from 'lucide-react';
+import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
+import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
+import ResourcesSection from '../components/focus-areas/ResourcesSection';
+import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
+import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
+import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
+import { Scale } from 'lucide-react';
 
 const PolicyAdvocacy = () => {
-  const advocacyLevels = [
+  const focusArea = {
+    id: 'policy-advocacy',
+    title: 'Policy and Advocacy',
+    description: 'Our advocacy spans grassroots to national levels — shaping inclusive laws, policies, and systems that ensure justice is a reality for all.',
+    fullDescription: 'Our advocacy approach operates at multiple levels, from grassroots community mobilization to national policy dialogue. We believe that sustainable change requires both bottom-up pressure and top-down reform, creating a comprehensive approach to justice system transformation.',
+    icon: <Scale className="h-8 w-8" />,
+    keyActivities: [
+      'Grassroots Advocacy: Empowering communities to advocate for their rights and influence local policies',
+      'National Policy: Engaging with national institutions to shape laws and policies',
+      'Legal Reform: Advocating for comprehensive reforms in the justice system',
+      'Evidence-Based Research: Conducting research to inform policy recommendations'
+    ],
+    impactStats: [
+      { value: '12+', label: 'Policy Reforms Influenced' },
+      { value: '50+', label: 'Government Officials Engaged' },
+      { value: '25+', label: 'Civil Society Partners' }
+    ],
+    resources: [
+      { title: 'Policy Impact Report 2024', type: 'PDF', link: '#' },
+      { title: 'Advocacy Strategy Guide', type: 'PDF', link: '#' },
+      { title: 'Legal Reform Toolkit', type: 'Resource Kit', link: '#' }
+    ],
+    testimonial: {
+      quote: "Through evidence-based advocacy, we've successfully influenced 12 major policy reforms that benefit vulnerable populations across Tanzania.",
+      author: "Dr. Amina Rashid",
+      role: "Policy Research Director"
+    }
+  };
+
+  const breadcrumbItems = [
+    { label: "What We Do", href: "/what-we-do" },
+    { label: focusArea.title }
+  ];
+
+  const highlights = [
     {
-      title: "Grassroots Advocacy",
-      description: "Empowering communities to advocate for their rights and influence local policies.",
-      icon: <Users className="h-6 w-6" />
+      title: "Legislative Advocacy",
+      description: "Working directly with parliamentarians and government officials to draft and pass progressive legislation that protects citizens' rights.",
+      backgroundImage: "/lovable-uploads/background with mother umage .png",
+      buttonText: "View Our Wins"
     },
     {
-      title: "National Policy",
-      description: "Engaging with national institutions to shape laws and policies.",
-      icon: <Scale className="h-6 w-6" />
+      title: "Community Mobilization",
+      description: "Training communities to effectively advocate for their rights and engage with local government on policy issues that affect them.",
+      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
+      buttonText: "Join the Movement"
     },
     {
-      title: "Legal Reform",
-      description: "Advocating for comprehensive reforms in the justice system.",
-      icon: <FileText className="h-6 w-6" />
+      title: "Research & Analysis",
+      description: "Conducting comprehensive research to provide evidence-based policy recommendations and track implementation progress.",
+      backgroundImage: "/lovable-uploads/background with mother umage .png",
+      buttonText: "Read Our Research"
     }
   ];
 
-  const achievements = [
-    "Contributed to the Legal Aid Act amendments",
-    "Advocated for improved land tenure laws",
-    "Supported women's property rights legislation",
-    "Influenced paralegal certification standards",
-    "Promoted alternative dispute resolution mechanisms"
+  const partners = [
+    {
+      name: "Hon. Dr. Mary Nagu",
+      role: "Former Cabinet Minister",
+      image: "/lovable-uploads/background with mother umage .png",
+      quote: "LSF's research and advocacy have been instrumental in shaping policies that truly serve the people of Tanzania."
+    },
+    {
+      name: "Dr. James Kimonyo",
+      role: "Parliamentary Research Director",
+      image: "/lovable-uploads/backgound lsf colours.png",
+      quote: "Their evidence-based approach to policy advocacy has transformed how we approach legal reform in Tanzania."
+    },
+    {
+      name: "Advocate Sarah Mwamba",
+      role: "Civil Society Coalition Leader",
+      image: "/lovable-uploads/background with mother umage .png",
+      quote: "Through coordinated advocacy efforts, we've achieved policy changes that seemed impossible just a few years ago."
+    }
   ];
 
   return (
     <Layout>
-      <HeroSection
-        icon={<Scale className="h-8 w-8" />}
-        badge="What We Do"
-        title="Policy and Advocacy"
-        description="Our advocacy spans grassroots to national levels — shaping inclusive laws, policies, and systems that ensure justice is a reality for all."
+      <FocusAreaHero focusArea={focusArea} breadcrumbItems={breadcrumbItems} />
+      
+      <ImpactStorySection
+        title="Transforming Laws, Transforming Lives"
+        subtitle="Policy Impact"
+        description="Every law we help shape, every policy we influence, creates ripple effects that touch thousands of lives. From improving access to justice to protecting vulnerable communities, our advocacy work creates lasting systemic change."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+        ctaText="See Our Policy Wins"
+        stats={[
+          { value: "12+", label: "Laws Influenced" },
+          { value: "50+", label: "Officials Engaged" },
+          { value: "25+", label: "Partner Organizations" },
+          { value: "1M+", label: "Lives Impacted" }
+        ]}
+      />
+
+      <KeyActivitiesSection 
+        keyActivities={focusArea.keyActivities} 
+        testimonial={focusArea.testimonial}
+      />
+
+      <VisualHighlightSection
+        title="Our Multi-Level Advocacy Approach"
+        subtitle="Strategy in Action"
+        highlights={highlights}
+      />
+
+      <PartnersShowcaseSection
+        title="Voices of Change"
+        subtitle="Policy Champions"
+        description="Working alongside government leaders, researchers, and civil society advocates to create policies that truly serve the people of Tanzania."
+        partners={partners}
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      <Section variant="default" padding="lg">
-        <Container size="xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <Typography variant="h2" className="mb-6">
-                Multi-Level Advocacy Strategy
-              </Typography>
-              <Typography variant="body" className="mb-6 text-neutral-gray">
-                Our advocacy approach operates at multiple levels, from grassroots community mobilization 
-                to national policy dialogue. We believe that sustainable change requires both bottom-up 
-                pressure and top-down reform, creating a comprehensive approach to justice system transformation.
-              </Typography>
-              <Typography variant="body" className="text-neutral-gray">
-                Through evidence-based advocacy, strategic partnerships, and community engagement, we work 
-                to create laws and policies that protect the rights of all Tanzanians, particularly the most vulnerable.
-              </Typography>
-            </div>
-            <div className="bg-primary/5 rounded-lg p-8">
-              <div className="flex items-center mb-4">
-                <Lightbulb className="h-8 w-8 text-primary mr-3" />
-                <Typography variant="h3" className="text-primary">
-                  12+
-                </Typography>
-              </div>
-              <Typography variant="body" className="text-neutral-gray">
-                Major policy reforms influenced through our advocacy efforts over the past five years
-              </Typography>
-            </div>
-          </div>
-
-          <div className="mb-16">
-            <Typography variant="h2" className="text-center mb-12">
-              Advocacy Levels
-            </Typography>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {advocacyLevels.map((level, index) => (
-                <Card key={index} variant="elevated" hover className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <div className="text-primary">
-                      {level.icon}
-                    </div>
-                  </div>
-                  <Typography variant="h4" className="mb-3">
-                    {level.title}
-                  </Typography>
-                  <Typography variant="body" className="text-neutral-gray">
-                    {level.description}
-                  </Typography>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-secondary-teal/5 rounded-xl p-8">
-            <Typography variant="h2" className="text-center mb-8">
-              Key Achievements
-            </Typography>
-            <div className="space-y-4">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="flex items-start">
-                  <Scale className="h-5 w-5 text-secondary-teal mr-3 mt-1 flex-shrink-0" />
-                  <Typography variant="body" className="text-neutral-gray">
-                    {achievement}
-                  </Typography>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <ResourcesSection resources={focusArea.resources} />
     </Layout>
   );
 };
