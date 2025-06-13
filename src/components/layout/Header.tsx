@@ -251,7 +251,7 @@ const Header = () => {
                   className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="hidden md:block">
-                  <div className="text-sm font-bold text-primary">Legal Services Facility</div>
+                
                   <div className="text-xs text-neutral-gray">Empowering Justice Since 2011</div>
                 </div>
               </Link>
