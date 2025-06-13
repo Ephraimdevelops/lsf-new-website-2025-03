@@ -113,7 +113,7 @@ const HighlightsSection = () => {
                 </div>
 
                 {/* Main Heading - Increased size */}
-                <Typography variant="h1" className="text-white font-heading max-w-4xl">
+                <Typography variant="display" className="text-white font-heading max-w-4xl">
                   {currentContent.mainHeading}
                 </Typography>
 
