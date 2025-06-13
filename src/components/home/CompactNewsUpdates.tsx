@@ -107,8 +107,8 @@ const CompactNewsUpdates = () => {
           </div>
           
           <Typography variant="h1" className="mb-6 text-4xl md:text-5xl lg:text-6xl font-bold">
-            News &
-            <span className="block text-primary">Research</span>
+            News &<span className="block text-primary">Research</span>
+            
           </Typography>
           
           <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-lg leading-relaxed">
