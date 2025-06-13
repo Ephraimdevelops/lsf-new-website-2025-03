@@ -51,7 +51,7 @@ const Index = () => {
               </Typography>
             </div>
             
-            <Typography variant="display" className="text-white font-heading text-6xl md:text-7xl lg:text-8xl">
+            <Typography variant="h1" className="text-white font-heading text-6xl md:text-7xl lg:text-8xl">
               Real Results.
               <span className="block text-secondary-orange">Lasting Change.</span>
             </Typography>
