@@ -55,10 +55,6 @@ const PartnersCarousel = () => {
             </Typography>
           </div>
           
-          <Typography variant="h1" className="mb-6 text-4xl md:text-5xl font-bold text-neutral-dark">
-            Our Partners &
-            <span className="block text-primary">Donors</span>
-          </Typography>
           <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-5xl lg:text-6xl font-bold">
             Our Partners &
             <span className="block text-primary">Donors</span>
