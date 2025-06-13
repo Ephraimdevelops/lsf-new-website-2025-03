@@ -25,6 +25,8 @@ const Index = () => {
 
   return (
     <Layout>
+      {/* Hero Section */}
+      <Hero />
 
       {/* New Highlights Section */}
       <HighlightsSection />

@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 import LegalAidDialog from '@/components/shared/LegalAidDialog';
 
-// Comprehensive navigation structure with all pages organized logically
+// Updated navigation structure with new "Our Impact" section and renamed items
 const navigationItems = [
   { 
     name: 'About', 
@@ -76,7 +76,7 @@ const navigationItems = [
     ]
   },
   { 
-    name: 'Programs & Projects', 
+    name: 'Programs', 
     href: '/programs',
     description: 'Our active initiatives and projects',
     featured: {
@@ -91,23 +91,54 @@ const navigationItems = [
         links: [
           { name: 'Programs', href: '/programs', description: 'Active program portfolio' },
           { name: 'Projects', href: '/projects', description: 'Current initiatives' },
-          { name: 'Impact Stories', href: '/heroes', description: 'Success stories' },
-          { name: 'Impact Dashboard', href: '/impact', description: 'Measurable outcomes' },
+          { name: 'Legal Help', href: '/legal-help', description: 'Access legal assistance' },
+          { name: 'Opportunities', href: '/opportunities', description: 'Join our team' },
         ]
       },
       {
         title: 'Get Involved',
         links: [
-          { name: 'Legal Help', href: '/legal-help', description: 'Access legal assistance' },
-          { name: 'Opportunities', href: '/opportunities', description: 'Join our team' },
           { name: 'Partner With Us', href: '/contact', description: 'Strategic partnerships' },
           { name: 'Support Us', href: '/donate', description: 'Financial support' },
+          { name: 'Volunteer', href: '/opportunities', description: 'Volunteer opportunities' },
+          { name: 'Careers', href: '/opportunities', description: 'Join our team' },
         ]
       }
     ]
   },
   { 
-    name: 'Resources & Knowledge', 
+    name: 'Our Impact', 
+    href: '/impact',
+    description: 'Stories of change and measurable results',
+    featured: {
+      title: 'Real Impact Stories',
+      description: 'Lives transformed through justice',
+      href: '/heroes',
+      image: '/lovable-uploads/background with mother umage .png'
+    },
+    sections: [
+      {
+        title: 'Success Stories',
+        links: [
+          { name: 'Heroes of Justice', href: '/heroes', description: 'Inspiring success stories' },
+          { name: 'Impact Dashboard', href: '/impact', description: 'Measurable outcomes' },
+          { name: 'Case Studies', href: '/heroes', description: 'Detailed impact stories' },
+          { name: 'Community Voices', href: '/heroes', description: 'Testimonials and experiences' },
+        ]
+      },
+      {
+        title: 'Metrics & Data',
+        links: [
+          { name: 'Annual Reports', href: '/publications', description: 'Comprehensive impact reports' },
+          { name: 'Impact Metrics', href: '/impact', description: 'Key performance indicators' },
+          { name: 'Research Findings', href: '/publications', description: 'Evidence and insights' },
+          { name: 'Data Transparency', href: '/impact', description: 'Open data initiatives' },
+        ]
+      }
+    ]
+  },
+  { 
+    name: 'Resources', 
     href: '/resources',
     description: 'Publications, news, and legal resources',
     featured: {
@@ -146,7 +177,7 @@ const Header = () => {
   const [legalAidDialogOpen, setLegalAidDialogOpen] = useState(false);
   const location = useLocation();
   
-  // Handle scroll effect
+  // Handle scroll effect - only change header background, no spacing changes
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -168,44 +199,47 @@ const Header = () => {
   
   return (
     <>
-      {/* Contact Information Strip */}
-      <div className="bg-primary text-white py-2 border-b border-primary-dark">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center text-sm space-y-1 sm:space-y-0">
-            <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-6">
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>24/7 Legal Helpline: +255 870 119 363</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span>info@legalservicesfacility.org</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
-                <span>Dar es Salaam, Tanzania</span>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link to="/contact" className="hover:text-secondary-orange transition-colors">
-                Contact Us
-              </Link>
-              <Link to="/opportunities" className="hover:text-secondary-orange transition-colors">
-                Careers
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <header
         className={cn(
-          "fixed top-10 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled || mobileMenuOpen
             ? "bg-white shadow-lg border-b border-gray-100"
             : "bg-white/95 backdrop-blur-sm"
         )}
       >
+        {/* Simplified Contact Strip - Only show when not scrolled */}
+        <div className={cn(
+          "bg-primary text-white py-2 border-b border-primary-dark transition-all duration-300",
+          isScrolled ? "h-0 overflow-hidden opacity-0" : "h-auto opacity-100"
+        )}>
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col sm:flex-row justify-between items-center text-sm space-y-1 sm:space-y-0">
+              <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-6">
+                <div className="flex items-center space-x-2">
+                  <Phone className="h-4 w-4" />
+                  <span>24/7 Legal Helpline: +255 870 119 363</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Mail className="h-4 w-4" />
+                  <span>info@legalservicesfacility.org</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <MapPin className="h-4 w-4" />
+                  <span>Dar es Salaam, Tanzania</span>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Link to="/contact" className="hover:text-secondary-orange transition-colors">
+                  Contact Us
+                </Link>
+                <Link to="/opportunities" className="hover:text-secondary-orange transition-colors">
+                  Careers
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             {/* Logo Section */}
