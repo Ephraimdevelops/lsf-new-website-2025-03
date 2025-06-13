@@ -117,29 +117,6 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Impact Stats */}
-      <section className="py-16 bg-gradient-to-br from-primary to-secondary-teal">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-white text-center">
-            <div>
-              <Users className="h-12 w-12 mx-auto mb-4 opacity-90" />
-              <div className="text-4xl font-bold mb-2">50,000+</div>
-              <div className="text-lg opacity-90">Research Participants</div>
-            </div>
-            <div>
-              <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-90" />
-              <div className="text-4xl font-bold mb-2">15+</div>
-              <div className="text-lg opacity-90">Policy Changes Influenced</div>
-            </div>
-            <div>
-              <Download className="h-12 w-12 mx-auto mb-4 opacity-90" />
-              <div className="text-4xl font-bold mb-2">100K+</div>
-              <div className="text-lg opacity-90">Downloads This Year</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Quick Access */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 text-center">

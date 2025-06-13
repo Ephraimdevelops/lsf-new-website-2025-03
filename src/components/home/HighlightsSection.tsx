@@ -91,7 +91,7 @@ const HighlightsSection = () => {
               className="w-full h-full object-cover"
             />
             {/* Updated to use maroon gradient instead of black */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-primary/40"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/100 via-primary/60 to-primary/40"></div>
           </div>
         ))}
 
