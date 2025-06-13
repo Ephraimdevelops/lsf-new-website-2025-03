@@ -19,21 +19,6 @@ const PartnersCarousel = () => {
       partnership: 'Development Partner'
     },
     {
-      name: 'Ford Foundation',
-      logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      partnership: 'Strategic Partner'
-    },
-    {
-      name: 'UNDP Tanzania',
-      logo: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      partnership: 'Implementation Partner'
-    },
-    {
-      name: 'Open Society Foundations',
-      logo: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      partnership: 'Funding Partner'
-    },
-    {
       name: 'Ministry of Justice',
       logo: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
       partnership: 'Policy Partner'
@@ -71,6 +56,10 @@ const PartnersCarousel = () => {
           </div>
           
           <Typography variant="h1" className="mb-6 text-4xl md:text-5xl font-bold text-neutral-dark">
+            Our Partners &
+            <span className="block text-primary">Donors</span>
+          </Typography>
+          <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-5xl lg:text-6xl font-bold">
             Our Partners &
             <span className="block text-primary">Donors</span>
           </Typography>
