@@ -1,11 +1,14 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import NewsCard from '../components/shared/NewsCard';
-import { Search, Filter, Calendar, TrendingUp, Eye, Users, Star, ChevronDown, Newspaper, ArrowRight } from 'lucide-react';
+import EnhancedSearch from '../components/shared/EnhancedSearch';
+import LoadingSpinner from '../components/shared/LoadingSpinner';
+import AnimatedCounter from '../components/shared/AnimatedCounter';
+import { Filter, Calendar, TrendingUp, Eye, Users, Star, ChevronDown, Newspaper, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -78,7 +81,7 @@ const News = () => {
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      {/* Enhanced Stats Section with Gradient Background */}
+      {/* Enhanced Stats Section with Animated Counters */}
       <section className="relative py-20 overflow-hidden">
         {/* Maroon Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80"></div>
@@ -106,7 +109,9 @@ const News = () => {
               <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 border border-white/30">
                 <Newspaper className="h-10 w-10 text-white" />
               </div>
-              <div className="text-4xl font-black text-white mb-2">150+</div>
+              <div className="text-4xl font-black text-white mb-2">
+                <AnimatedCounter end={150} suffix="+" />
+              </div>
               <div className="text-lg font-semibold text-white/90 mb-2">News Stories</div>
               <div className="text-sm text-white/70">Published this year</div>
             </div>
@@ -115,7 +120,9 @@ const News = () => {
               <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 border border-white/30">
                 <Eye className="h-10 w-10 text-white" />
               </div>
-              <div className="text-4xl font-black text-white mb-2">2.5M+</div>
+              <div className="text-4xl font-black text-white mb-2">
+                <AnimatedCounter end={2500000} suffix="+" />
+              </div>
               <div className="text-lg font-semibold text-white/90 mb-2">Page Views</div>
               <div className="text-sm text-white/70">Monthly readership</div>
             </div>
@@ -124,7 +131,9 @@ const News = () => {
               <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 border border-white/30">
                 <Users className="h-10 w-10 text-white" />
               </div>
-              <div className="text-4xl font-black text-white mb-2">45K+</div>
+              <div className="text-4xl font-black text-white mb-2">
+                <AnimatedCounter end={45000} suffix="+" />
+              </div>
               <div className="text-lg font-semibold text-white/90 mb-2">Active Readers</div>
               <div className="text-sm text-white/70">Engaged community</div>
             </div>
@@ -133,7 +142,9 @@ const News = () => {
               <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 border border-white/30">
                 <TrendingUp className="h-10 w-10 text-white" />
               </div>
-              <div className="text-4xl font-black text-white mb-2">300%</div>
+              <div className="text-4xl font-black text-white mb-2">
+                <AnimatedCounter end={300} suffix="%" />
+              </div>
               <div className="text-lg font-semibold text-white/90 mb-2">Growth Rate</div>
               <div className="text-sm text-white/70">Year over year</div>
             </div>
@@ -141,18 +152,16 @@ const News = () => {
         </div>
       </section>
 
-      {/* Enhanced Filters Section */}
+      {/* Enhanced Filters Section with New Search */}
       <section className="py-12 bg-gradient-to-r from-gray-50 via-white to-gray-50 border-b border-gray-200/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-            <div className="relative flex-grow lg:max-w-lg">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-              <Input
-                type="search"
+            <div className="flex-grow lg:max-w-lg">
+              <EnhancedSearch
                 placeholder="Search news stories, topics, or keywords..."
-                className="pl-14 pr-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-primary transition-all duration-300 shadow-lg bg-white text-lg"
+                onSearch={setSearchTerm}
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={setSearchTerm}
               />
             </div>
             
@@ -258,13 +267,13 @@ const News = () => {
         <div className="container mx-auto px-4">
           {isLoading ? (
             <div className="flex items-center justify-center h-96">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary"></div>
+              <LoadingSpinner size="xl" message="Loading latest news stories..." />
             </div>
           ) : filteredNews.length > 0 ? (
             <>
               <div className="text-center mb-16">
                 <h2 className="text-4xl font-bold text-neutral-dark mb-6 font-heading">
-                  {filteredNews.length} {filteredNews.length === 1 ? 'Story' : 'Stories'} Found
+                  <AnimatedCounter end={filteredNews.length} /> {filteredNews.length === 1 ? 'Story' : 'Stories'} Found
                 </h2>
                 <p className="text-xl text-neutral-gray max-w-2xl mx-auto">Discover the latest developments in justice and legal empowerment</p>
               </div>
