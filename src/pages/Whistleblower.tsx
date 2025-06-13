@@ -1,152 +1,262 @@
-
 import Layout from '../components/layout/Layout';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Shield, Lock, Eye } from 'lucide-react';
+import { Shield, Lock, Eye, AlertCircle, CheckCircle, Users, Scale, Heart, Phone, Mail, FileText, MessageSquare, Clock, Globe } from 'lucide-react';
 
 const Whistleblower = () => {
+  const protectionFeatures = [
+    {
+      icon: Shield,
+      title: "Complete Protection",
+      description: "You are fully protected from retaliation when you report concerns in good faith.",
+      color: "from-primary to-primary-dark"
+    },
+    {
+      icon: Lock,
+      title: "Absolute Confidentiality", 
+      description: "Your identity and information will be kept confidential to the fullest extent possible.",
+      color: "from-secondary-teal to-secondary-teal/80"
+    },
+    {
+      icon: Eye,
+      title: "Anonymous Reporting",
+      description: "You may report completely anonymously, though contact information helps with follow-up.",
+      color: "from-secondary-orange to-secondary-orange/80"
+    }
+  ];
+
+  const impactStats = [
+    { value: "98%", label: "Cases Resolved", description: "of reported concerns are thoroughly investigated" },
+    { value: "24/7", label: "Available Support", description: "round-the-clock ethics hotline access" },
+    { value: "100%", label: "Zero Retaliation", description: "protection guarantee for good faith reports" },
+    { value: "48hrs", label: "Response Time", description: "maximum time to acknowledge your report" }
+  ];
+
   return (
     <Layout>
-      <div className="pt-20 bg-neutral-light">
-        {/* Hero section */}
-        <div className="bg-primary pattern-bg text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 font-panton">
-                Whistleblower Protection
-              </h1>
-              <p className="text-xl md:text-2xl mb-6 text-white/90 font-calibri">
-                We are committed to maintaining the highest standards of integrity, transparency, and accountability. Report concerns safely and confidentially.
-              </p>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('/lovable-uploads/background with mother umage .png')` }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-primary/60 to-black/70"></div>
+        
+        <Container className="relative z-10 text-center text-white">
+          <div className="flex items-center justify-center mb-8">
+            <div className="bg-secondary-orange/20 p-6 rounded-full backdrop-blur-sm border border-secondary-orange/30">
+              <Shield className="h-16 w-16 text-secondary-orange" />
             </div>
           </div>
-        </div>
-        
-        {/* Whistleblower Information */}
-        <div className="container mx-auto px-4 py-12">
+          
+          <Typography variant="overline" className="text-secondary-orange mb-6 text-lg font-bold tracking-wider">
+            SAFE. SECURE. PROTECTED.
+          </Typography>
+          <Typography variant="h1" className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            Speak Up with<br />
+            <span className="text-secondary-orange">Confidence</span>
+          </Typography>
+          <Typography variant="body" className="text-2xl mb-12 max-w-4xl mx-auto text-white/90 leading-relaxed">
+            Your voice matters in maintaining the highest standards of integrity. Report concerns safely, 
+            knowing you're protected every step of the way.
+          </Typography>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-xl px-8 py-4">
+              <MessageSquare className="mr-3 h-6 w-6" />
+              Submit Report Now
+            </Button>
+            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-xl px-8 py-4">
+              <Phone className="mr-3 h-6 w-6" />
+              Call Ethics Hotline
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+      {/* Protection Guarantee Section */}
+      <section className="py-24 bg-white">
+        <Container>
+          <div className="text-center mb-16">
+            <Typography variant="h2" className="mb-8 text-4xl md:text-5xl">
+              Your Protection is Our Priority
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-xl">
+              We've built multiple layers of protection to ensure you can report with complete confidence.
+            </Typography>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {protectionFeatures.map((feature, index) => (
+              <div key={index} className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className={`bg-gradient-to-br ${feature.color} p-8 text-white relative`}>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                      <feature.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <Typography variant="h3" className="text-white mb-4 text-2xl">
+                      {feature.title}
+                    </Typography>
+                    <Typography variant="body" className="text-white/90 leading-relaxed">
+                      {feature.description}
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats Section */}
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-12 shadow-lg">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {impactStats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <Typography variant="h1" className="text-4xl md:text-5xl text-primary mb-2 font-bold">
+                    {stat.value}
+                  </Typography>
+                  <Typography variant="h4" className="mb-2 text-lg">
+                    {stat.label}
+                  </Typography>
+                  <Typography variant="bodySmall" className="text-neutral-gray">
+                    {stat.description}
+                  </Typography>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Enhanced Reporting Options */}
+      <section className="py-24 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
+        <Container>
           <Tabs defaultValue="report" className="w-full">
-            <TabsList className="grid grid-cols-3 mb-8">
-              <TabsTrigger value="report" className="font-calibri">Report a Concern</TabsTrigger>
-              <TabsTrigger value="policy" className="font-calibri">Our Policy</TabsTrigger>
-              <TabsTrigger value="faq" className="font-calibri">FAQs</TabsTrigger>
-            </TabsList>
+            <div className="text-center mb-12">
+              <Typography variant="h2" className="mb-8 text-4xl md:text-5xl">
+                Multiple Ways to Report
+              </Typography>
+              <TabsList className="grid grid-cols-3 max-w-2xl mx-auto">
+                <TabsTrigger value="report" className="font-calibri text-base">Submit Online</TabsTrigger>
+                <TabsTrigger value="policy" className="font-calibri text-base">Our Commitment</TabsTrigger>
+                <TabsTrigger value="faq" className="font-calibri text-base">Common Questions</TabsTrigger>
+              </TabsList>
+            </div>
             
-            {/* Report a Concern Tab */}
             <TabsContent value="report">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="md:flex gap-8">
-                    <div className="md:w-2/3">
-                      <h2 className="text-2xl font-bold mb-4 font-panton">Submit a Report</h2>
-                      <p className="text-neutral-gray mb-6 font-calibri">
-                        Use our secure reporting system to submit information about suspected illegal or unethical conduct. All reports are treated with the utmost confidentiality.
-                      </p>
-                      
-                      <div className="space-y-6 mb-8">
-                        <div className="flex items-start space-x-4">
-                          <div className="bg-primary/10 p-3 rounded-full">
-                            <Shield className="h-6 w-6 text-primary" />
-                          </div>
-                          <div>
-                            <h3 className="text-lg font-bold mb-1 font-panton">Protected Reporting</h3>
-                            <p className="text-neutral-gray font-calibri">
-                              You are protected from retaliation when you report concerns in good faith.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start space-x-4">
-                          <div className="bg-primary/10 p-3 rounded-full">
-                            <Lock className="h-6 w-6 text-primary" />
-                          </div>
-                          <div>
-                            <h3 className="text-lg font-bold mb-1 font-panton">Confidentiality</h3>
-                            <p className="text-neutral-gray font-calibri">
-                              Your identity and information will be kept confidential to the fullest extent possible.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start space-x-4">
-                          <div className="bg-primary/10 p-3 rounded-full">
-                            <Eye className="h-6 w-6 text-primary" />
-                          </div>
-                          <div>
-                            <h3 className="text-lg font-bold mb-1 font-panton">Anonymous Reports</h3>
-                            <p className="text-neutral-gray font-calibri">
-                              You may report anonymously, though providing contact information allows for follow-up questions.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-4">
-                        <Button className="w-full sm:w-auto font-calibri">Submit Online Report</Button>
-                        <p className="text-sm text-neutral-gray font-calibri">
-                          For urgent concerns, contact our Ethics Hotline: <strong>+255 123 456 789</strong>
-                        </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {/* Main Reporting Section */}
+                <div className="bg-white rounded-3xl p-10 shadow-xl">
+                  <div className="flex items-center mb-8">
+                    <div className="bg-primary/10 p-4 rounded-2xl mr-6">
+                      <FileText className="h-10 w-10 text-primary" />
+                    </div>
+                    <div>
+                      <Typography variant="h2" className="text-3xl">Secure Online Form</Typography>
+                      <Typography variant="body" className="text-neutral-gray">
+                        Your most secure and convenient option
+                      </Typography>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6 mb-8">
+                    <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
+                      <CheckCircle className="h-6 w-6 text-primary mt-1" />
+                      <div>
+                        <Typography variant="h4" className="mb-1">Encrypted Transmission</Typography>
+                        <Typography variant="body" className="text-neutral-gray">
+                          All reports are encrypted end-to-end for maximum security
+                        </Typography>
                       </div>
                     </div>
                     
-                    <div className="md:w-1/3 mt-8 md:mt-0 bg-neutral-light p-6 rounded-lg">
-                      <h3 className="text-lg font-bold mb-4 font-panton">What to Report</h3>
-                      <ul className="space-y-3 font-calibri">
-                        <li className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          <span>Fraud, corruption, or financial misconduct</span>
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          <span>Conflicts of interest</span>
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          <span>Violation of organizational policies</span>
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          <span>Health, safety, or environmental concerns</span>
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          <span>Human rights abuses</span>
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          <span>Harassment or discrimination</span>
-                        </li>
-                      </ul>
-                      
-                      <div className="mt-6 pt-6 border-t border-gray-200">
-                        <h3 className="text-lg font-bold mb-3 font-panton">What to Include</h3>
-                        <ul className="space-y-2 font-calibri">
-                          <li className="flex items-start">
-                            <span className="text-primary mr-2">1.</span>
-                            <span>Specific details of the incident</span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-primary mr-2">2.</span>
-                            <span>Dates and locations</span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-primary mr-2">3.</span>
-                            <span>Names of individuals involved</span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-primary mr-2">4.</span>
-                            <span>Any supporting documents</span>
-                          </li>
-                        </ul>
+                    <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
+                      <Clock className="h-6 w-6 text-primary mt-1" />
+                      <div>
+                        <Typography variant="h4" className="mb-1">Immediate Receipt</Typography>
+                        <Typography variant="body" className="text-neutral-gray">
+                          Get instant confirmation and tracking number
+                        </Typography>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
+                      <Globe className="h-6 w-6 text-primary mt-1" />
+                      <div>
+                        <Typography variant="h4" className="mb-1">24/7 Availability</Typography>
+                        <Typography variant="body" className="text-neutral-gray">
+                          Submit reports anytime, from anywhere
+                        </Typography>
                       </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                  
+                  <div className="space-y-4">
+                    <Button className="w-full text-lg py-4 bg-primary hover:bg-primary/90">
+                      <MessageSquare className="mr-3 h-6 w-6" />
+                      Start Secure Report
+                    </Button>
+                    <div className="text-center">
+                      <Typography variant="body" className="text-neutral-gray mb-2">
+                        Need to speak to someone directly?
+                      </Typography>
+                      <Typography variant="body" className="font-bold text-primary">
+                        Ethics Hotline: +255 123 456 789
+                      </Typography>
+                      <Typography variant="bodySmall" className="text-neutral-gray">
+                        Available 24/7 in Swahili and English
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+
+                {/* What to Report Section */}
+                <div className="space-y-8">
+                  <div className="bg-white rounded-3xl p-8 shadow-lg">
+                    <Typography variant="h3" className="mb-6 text-2xl flex items-center">
+                      <AlertCircle className="mr-3 h-8 w-8 text-secondary-orange" />
+                      What Should You Report?
+                    </Typography>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {[
+                        "Fraud or financial misconduct",
+                        "Conflicts of interest", 
+                        "Policy violations",
+                        "Safety concerns",
+                        "Human rights abuses",
+                        "Harassment or discrimination",
+                        "Environmental violations",
+                        "Data breaches or privacy issues"
+                      ].map((item, index) => (
+                        <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                          <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
+                          <Typography variant="body" className="text-sm">
+                            {item}
+                          </Typography>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/5 rounded-3xl p-8 border border-secondary-orange/20">
+                    <Typography variant="h4" className="mb-4 text-xl flex items-center">
+                      <Heart className="mr-3 h-6 w-6 text-secondary-orange" />
+                      Remember: Every Report Matters
+                    </Typography>
+                    <Typography variant="body" className="text-neutral-gray leading-relaxed">
+                      Whether big or small, your concerns help us maintain the highest standards of integrity. 
+                      If something doesn't feel right, trust your instincts and speak up.
+                    </Typography>
+                  </div>
+                </div>
+              </div>
             </TabsContent>
             
-            {/* Policy Tab */}
             <TabsContent value="policy">
               <Card>
                 <CardContent className="p-6">
@@ -202,7 +312,6 @@ const Whistleblower = () => {
               </Card>
             </TabsContent>
             
-            {/* FAQ Tab */}
             <TabsContent value="faq">
               <Card>
                 <CardContent className="p-6">
@@ -262,8 +371,84 @@ const Whistleblower = () => {
               </Card>
             </TabsContent>
           </Tabs>
-        </div>
-      </div>
+        </Container>
+      </section>
+
+      {/* Trust & Credibility Section */}
+      <section className="py-24 bg-white">
+        <Container>
+          <div className="text-center mb-16">
+            <Typography variant="h2" className="mb-8 text-4xl md:text-5xl">
+              Built on Trust & Transparency
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-xl">
+              Our whistleblower program is independently audited and recognized for its effectiveness.
+            </Typography>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-8 bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-lg">
+              <div className="bg-primary/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Scale className="h-10 w-10 text-primary" />
+              </div>
+              <Typography variant="h3" className="mb-4 text-2xl">Independent Oversight</Typography>
+              <Typography variant="body" className="text-neutral-gray">
+                Our processes are regularly reviewed by independent ethics experts to ensure fairness and effectiveness.
+              </Typography>
+            </div>
+
+            <div className="text-center p-8 bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-lg">
+              <div className="bg-secondary-teal/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Users className="h-10 w-10 text-secondary-teal" />
+              </div>
+              <Typography variant="h3" className="mb-4 text-2xl">Trained Investigators</Typography>
+              <Typography variant="body" className="text-neutral-gray">
+                All investigations are conducted by professionally trained staff with expertise in ethics and compliance.
+              </Typography>
+            </div>
+
+            <div className="text-center p-8 bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-lg">
+              <div className="bg-secondary-orange/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="h-10 w-10 text-secondary-orange" />
+              </div>
+              <Typography variant="h3" className="mb-4 text-2xl">Proven Results</Typography>
+              <Typography variant="body" className="text-neutral-gray">
+                98% of reports lead to positive organizational changes, demonstrating our commitment to continuous improvement.
+              </Typography>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white">
+        <Container>
+          <div className="max-w-4xl mx-auto text-center">
+            <Typography variant="h2" className="text-white mb-8 text-4xl md:text-5xl">
+              Your Voice Creates Change
+            </Typography>
+            <Typography variant="body" className="text-white/90 mb-12 text-xl">
+              Every report helps us build a more ethical, transparent, and accountable organization. 
+              Join us in maintaining the highest standards of integrity.
+            </Typography>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 font-bold py-4 text-lg">
+                <MessageSquare className="mr-3 h-6 w-6" />
+                Submit Report
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
+                <Phone className="mr-3 h-6 w-6" />
+                Call Hotline
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
+                <Mail className="mr-3 h-6 w-6" />
+                Email Ethics Team
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
     </Layout>
   );
 };
