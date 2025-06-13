@@ -76,7 +76,7 @@ const HighlightsSection = () => {
 
   return (
     <>
-      <section className="relative h-screen min-h-[600px] overflow-hidden">
+      <section className="relative h-screen min-h-[500px] overflow-hidden">
         {/* Background Images with Transition */}
         {slideContents.map((slide, index) => (
           <div
@@ -97,43 +97,43 @@ const HighlightsSection = () => {
         {/* Content Overlay */}
         <div className="relative z-10 h-full flex items-center">
           <Container size="xl">
-            <div className="max-w-4xl">
+            <div className="max-w-3xl">
               {/* Animated Content */}
               <div
                 key={currentSlide}
                 className="animate-fade-in"
               >
                 {/* Highlight Small Heading */}
-                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 mb-6 md:mb-8 border border-white/20">
-                  <TrendingUp className="h-5 w-5 md:h-6 md:w-6 mr-3 md:mr-4 text-secondary-orange" />
-                  <Typography variant="overline" className="text-secondary-orange font-bold text-sm md:text-lg">
+                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6 border border-white/20">
+                  <TrendingUp className="h-4 w-4 md:h-5 md:w-5 mr-2 md:mr-3 text-secondary-orange" />
+                  <Typography variant="small" className="text-secondary-orange font-bold text-xs md:text-sm">
                     {currentContent.highlightHeading}
                   </Typography>
                 </div>
 
                 {/* Main Heading */}
-                <Typography variant="h1" className="mb-6 md:mb-8 text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                <Typography variant="h1" className="mb-4 md:mb-6 text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                   {currentContent.mainHeading}
                 </Typography>
 
                 {/* Description */}
-                <Typography variant="body" className="text-white/90 mb-8 md:mb-12 text-lg md:text-xl leading-relaxed max-w-3xl">
+                <Typography variant="bodySmall" className="text-white/90 mb-6 md:mb-8 text-base md:text-lg leading-relaxed max-w-2xl">
                   {currentContent.description}
                 </Typography>
 
                 {/* Action Buttons */}
-                <div className="flex flex-wrap gap-4 md:gap-6">
+                <div className="flex flex-wrap gap-3 md:gap-4">
                   <Link to={currentContent.link}>
-                    <Button size="lg" className="bg-primary hover:bg-primary-dark text-white px-8 py-4 text-lg">
+                    <Button size="default" className="bg-primary hover:bg-primary-dark text-white px-6 py-3 text-sm md:text-base">
                       Learn More
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                   <Button 
-                    size="lg"
+                    size="default"
                     variant="outline" 
                     onClick={() => setLegalAidDialogOpen(true)}
-                    className="border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg backdrop-blur-sm"
+                    className="border-white text-white hover:bg-white hover:text-primary px-6 py-3 text-sm md:text-base backdrop-blur-sm"
                   >
                     Get Legal Help
                   </Button>
@@ -144,14 +144,14 @@ const HighlightsSection = () => {
         </div>
 
         {/* Navigation Controls */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-          <div className="flex items-center gap-4">
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+          <div className="flex items-center gap-3">
             {/* Previous Button */}
             <button
               onClick={prevSlide}
-              className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+              className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
             >
-              <ChevronLeft className="h-6 w-6" />
+              <ChevronLeft className="h-5 w-5" />
             </button>
 
             {/* Slide Indicators */}
@@ -160,7 +160,7 @@ const HighlightsSection = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === currentSlide 
                       ? 'bg-secondary-orange scale-125' 
                       : 'bg-white/40 hover:bg-white/60'
@@ -172,9 +172,9 @@ const HighlightsSection = () => {
             {/* Next Button */}
             <button
               onClick={nextSlide}
-              className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+              className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
             >
-              <ChevronRight className="h-6 w-6" />
+              <ChevronRight className="h-5 w-5" />
             </button>
           </div>
         </div>
