@@ -9,7 +9,7 @@ import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import Hero from '@/components/home/Hero';
+import HighlightsSection from '@/components/home/HighlightsSection';
 import CompactNewsUpdates from '@/components/home/CompactNewsUpdates';
 import PartnersCarousel from '@/components/home/PartnersCarousel';
 import FocusAreas from '@/components/home/FocusAreas';
@@ -24,8 +24,8 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero Section with Legal Aid Tool */}
-      <Hero />
+      {/* New Highlights Section */}
+      <HighlightsSection />
 
       {/* Compact News and Updates Section */}
       <CompactNewsUpdates />
