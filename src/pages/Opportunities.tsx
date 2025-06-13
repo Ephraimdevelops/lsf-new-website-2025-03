@@ -2,7 +2,7 @@
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Users, Briefcase, GraduationCap, Heart, ArrowRight, Calendar, Star, Globe, Award, Target, Lightbulb } from 'lucide-react';
+import { MapPin, Clock, Users, Briefcase, GraduationCap, Heart, ArrowRight, Calendar, Star, Globe, Award, Target, Lightbulb, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
@@ -19,6 +19,7 @@ interface Opportunity {
   deadline: string;
   featured?: boolean;
   impact?: string;
+  status: 'new' | 'close-soon' | 'open' | 'expired';
 }
 
 const opportunities: Opportunity[] = [
@@ -33,7 +34,8 @@ const opportunities: Opportunity[] = [
     category: 'Employment',
     deadline: '2024-07-15',
     featured: true,
-    impact: 'Directly impact 50,000+ community members'
+    impact: 'Directly impact 50,000+ community members',
+    status: 'close-soon'
   },
   {
     id: '2',
@@ -46,7 +48,8 @@ const opportunities: Opportunity[] = [
     category: 'Fellowship',
     deadline: '2024-08-01',
     featured: true,
-    impact: 'Reach 100,000+ users through digital platforms'
+    impact: 'Reach 100,000+ users through digital platforms',
+    status: 'new'
   },
   {
     id: '3',
@@ -57,7 +60,8 @@ const opportunities: Opportunity[] = [
     description: 'Support our policy research initiatives by conducting legal research, analyzing legislation, and contributing to publications on access to justice.',
     requirements: ['Law student (final year) or recent graduate', 'Research and writing skills', 'Interest in human rights law', 'Computer literacy'],
     category: 'Internship',
-    deadline: '2024-06-30'
+    deadline: '2024-06-30',
+    status: 'open'
   },
   {
     id: '4',
@@ -68,7 +72,34 @@ const opportunities: Opportunity[] = [
     description: 'Assist in our mobile legal clinics, helping community members access legal information and connect with appropriate legal services.',
     requirements: ['Interest in community service', 'Basic legal knowledge preferred', 'Weekend availability', 'Transportation'],
     category: 'Volunteer',
-    deadline: 'Ongoing'
+    deadline: 'Ongoing',
+    status: 'open'
+  },
+  {
+    id: '5',
+    title: 'Policy Advocacy Officer',
+    type: 'Full-time',
+    location: 'Dodoma',
+    duration: '3 years',
+    description: 'Drive policy reform initiatives by engaging with government stakeholders, conducting policy analysis, and advocating for legislative changes that improve access to justice.',
+    requirements: ['Masters in Law or Public Policy', '5+ years advocacy experience', 'Government relations experience', 'Excellent communication skills'],
+    category: 'Employment',
+    deadline: '2024-08-15',
+    impact: 'Influence national policy reforms',
+    status: 'new'
+  },
+  {
+    id: '6',
+    title: 'Climate Justice Specialist',
+    type: 'Contract',
+    location: 'Arusha',
+    duration: '18 months',
+    description: 'Lead our climate justice initiatives by providing legal support to communities affected by environmental issues and advocating for stronger environmental protection laws.',
+    requirements: ['Environmental law background', 'Community mobilization skills', 'Climate change expertise', 'Field work experience'],
+    category: 'Contract',
+    deadline: '2024-07-30',
+    impact: 'Support 50+ climate-affected communities',
+    status: 'close-soon'
   }
 ];
 
@@ -118,8 +149,53 @@ const whyJoinReasons = [
 ];
 
 const Opportunities = () => {
-  const featuredOpportunities = opportunities.filter(opp => opp.featured);
-  const regularOpportunities = opportunities.filter(opp => !opp.featured);
+  const getStatusBadge = (status: string, deadline: string) => {
+    const isDeadlinePassed = new Date(deadline) < new Date() && deadline !== 'Ongoing';
+    
+    if (isDeadlinePassed) {
+      return {
+        text: 'Expired',
+        className: 'bg-red-500 text-white',
+        icon: <AlertTriangle className="h-3 w-3" />
+      };
+    }
+    
+    switch (status) {
+      case 'new':
+        return {
+          text: 'New',
+          className: 'bg-green-500 text-white',
+          icon: <Star className="h-3 w-3" />
+        };
+      case 'close-soon':
+        return {
+          text: 'Closing Soon',
+          className: 'bg-orange-500 text-white',
+          icon: <Clock className="h-3 w-3" />
+        };
+      case 'open':
+        return {
+          text: 'Open',
+          className: 'bg-blue-500 text-white',
+          icon: <CheckCircle className="h-3 w-3" />
+        };
+      default:
+        return {
+          text: 'Open',
+          className: 'bg-blue-500 text-white',
+          icon: <CheckCircle className="h-3 w-3" />
+        };
+    }
+  };
+
+  const getDaysUntilDeadline = (deadline: string) => {
+    if (deadline === 'Ongoing') return null;
+    const deadlineDate = new Date(deadline);
+    const today = new Date();
+    const diffTime = deadlineDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  };
 
   return (
     <Layout>
@@ -152,58 +228,57 @@ const Opportunities = () => {
         </Container>
       </section>
 
-      {/* Featured Opportunities */}
-      {featuredOpportunities.length > 0 && (
-        <section className="py-20 bg-white">
-          <Container>
-            <div className="text-center mb-16">
-              <Typography variant="overline" className="text-primary mb-4 block">
-                FEATURED OPPORTUNITIES
-              </Typography>
-              <Typography variant="h2" className="mb-6">
-                High-Impact Positions
-              </Typography>
-              <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
-                These roles offer exceptional opportunities to drive meaningful change 
-                and advance justice across Tanzania's communities.
-              </Typography>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {featuredOpportunities.map((opportunity) => (
-                <div key={opportunity.id} className="group relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary-teal rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                  <div className="relative bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden h-full">
-                    {/* Featured Badge */}
-                    <div className="absolute top-6 right-6 z-10">
-                      <div className="bg-secondary-orange text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                        <Star className="h-3 w-3 mr-1" />
-                        FEATURED
-                      </div>
-                    </div>
-                    
-                    {/* Header */}
-                    <div className="bg-gradient-to-br from-gray-50 to-white p-8 border-b border-gray-100">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                          opportunity.category === 'Employment' ? 'bg-primary/10 text-primary' :
-                          opportunity.category === 'Fellowship' ? 'bg-secondary-teal/10 text-secondary-teal' :
-                          'bg-secondary-orange/10 text-secondary-orange'
-                        }`}>
-                          <Briefcase className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
+      {/* All Opportunities with Uniform Cards */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="text-center mb-16">
+            <Typography variant="overline" className="text-primary mb-4 block">
+              CURRENT OPPORTUNITIES
+            </Typography>
+            <Typography variant="h2" className="mb-6">
+              Join Our Team
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+              Explore all available positions and find the perfect opportunity to contribute to justice in Tanzania.
+            </Typography>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            {opportunities.map((opportunity) => {
+              const statusBadge = getStatusBadge(opportunity.status, opportunity.deadline);
+              const daysUntilDeadline = getDaysUntilDeadline(opportunity.deadline);
+              const isExpired = opportunity.deadline !== 'Ongoing' && new Date(opportunity.deadline) < new Date();
+              
+              return (
+                <div key={opportunity.id} className="group">
+                  <div className={`bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full transform hover:-translate-y-2 ${isExpired ? 'opacity-75' : ''}`}>
+                    {/* Header with Status */}
+                    <div className="p-6 border-b border-gray-100">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
                             opportunity.category === 'Employment' ? 'bg-primary/10 text-primary' :
                             opportunity.category === 'Fellowship' ? 'bg-secondary-teal/10 text-secondary-teal' :
+                            opportunity.category === 'Internship' ? 'bg-secondary-green/10 text-secondary-green' :
+                            opportunity.category === 'Contract' ? 'bg-secondary-yellow/10 text-secondary-yellow' :
                             'bg-secondary-orange/10 text-secondary-orange'
                           }`}>
                             {opportunity.category}
                           </span>
+                          {opportunity.featured && (
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-gold text-white">
+                              <Star className="h-3 w-3 mr-1" />
+                              Featured
+                            </span>
+                          )}
                         </div>
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-bold ${statusBadge.className} gap-1`}>
+                          {statusBadge.icon}
+                          {statusBadge.text}
+                        </span>
                       </div>
                       
-                      <Typography variant="h3" className="mb-3 group-hover:text-primary transition-colors">
+                      <Typography variant="h3" className={`mb-3 group-hover:text-primary transition-colors ${isExpired ? 'text-gray-500' : ''}`}>
                         {opportunity.title}
                       </Typography>
                       
@@ -217,13 +292,34 @@ const Opportunities = () => {
                           {opportunity.duration}
                         </div>
                         <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          Deadline: {new Date(opportunity.deadline).toLocaleDateString()}
+                          <Briefcase className="h-4 w-4 mr-1" />
+                          {opportunity.type}
                         </div>
+                      </div>
+
+                      {/* Deadline Info */}
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center text-neutral-gray">
+                          <Calendar className="h-4 w-4 mr-1" />
+                          Deadline: {opportunity.deadline === 'Ongoing' ? 'Ongoing' : new Date(opportunity.deadline).toLocaleDateString()}
+                        </div>
+                        {daysUntilDeadline !== null && (
+                          <span className={`text-xs font-medium ${
+                            daysUntilDeadline < 0 ? 'text-red-600' :
+                            daysUntilDeadline <= 7 ? 'text-orange-600' :
+                            daysUntilDeadline <= 14 ? 'text-yellow-600' :
+                            'text-green-600'
+                          }`}>
+                            {daysUntilDeadline < 0 ? 'Expired' :
+                             daysUntilDeadline === 0 ? 'Due today' :
+                             daysUntilDeadline === 1 ? '1 day left' :
+                             `${daysUntilDeadline} days left`}
+                          </span>
+                        )}
                       </div>
                       
                       {opportunity.impact && (
-                        <div className="bg-secondary-orange/10 text-secondary-orange px-4 py-2 rounded-lg text-sm font-medium">
+                        <div className="bg-secondary-orange/10 text-secondary-orange px-4 py-2 rounded-lg text-sm font-medium mt-4">
                           <Globe className="h-4 w-4 inline mr-2" />
                           {opportunity.impact}
                         </div>
@@ -231,7 +327,7 @@ const Opportunities = () => {
                     </div>
 
                     {/* Content */}
-                    <div className="p-8">
+                    <div className="p-6">
                       <Typography variant="bodySmall" className="text-neutral-gray mb-6 leading-relaxed">
                         {opportunity.description}
                       </Typography>
@@ -246,123 +342,44 @@ const Opportunities = () => {
                             {req}
                           </li>
                         ))}
+                        {opportunity.requirements.length > 3 && (
+                          <li className="text-primary text-sm font-medium">
+                            +{opportunity.requirements.length - 3} more requirements
+                          </li>
+                        )}
                       </ul>
                       
                       <div className="flex gap-3">
                         <Link to={`/opportunities/${opportunity.id}`} className="flex-1">
-                          <Button className="w-full bg-primary hover:bg-primary-dark font-bold">
-                            View Details & Apply
-                            <ArrowRight className="ml-2 h-4 w-4" />
+                          <Button 
+                            className={`w-full font-bold ${
+                              isExpired 
+                                ? 'bg-gray-400 hover:bg-gray-400 cursor-not-allowed' 
+                                : 'bg-primary hover:bg-primary-dark'
+                            }`}
+                            disabled={isExpired}
+                          >
+                            {isExpired ? 'Position Expired' : 'View Details'}
+                            {!isExpired && <ArrowRight className="ml-2 h-4 w-4" />}
                           </Button>
                         </Link>
+                        {!isExpired && (
+                          <Button variant="outline" className="px-6 font-bold border-primary text-primary hover:bg-primary hover:text-white">
+                            Apply Now
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
-
-      {/* All Opportunities */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <Container>
-          <div className="text-center mb-16">
-            <Typography variant="overline" className="text-primary mb-4 block">
-              ALL OPPORTUNITIES
-            </Typography>
-            <Typography variant="h2" className="mb-6">
-              Find Your Role
-            </Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              Explore all available positions and find the perfect opportunity to contribute to justice in Tanzania.
-            </Typography>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {regularOpportunities.map((opportunity) => (
-              <div key={opportunity.id} className="group">
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 group-hover:border-primary/20 h-full transform hover:-translate-y-2">
-                  {/* Header */}
-                  <div className="p-6 border-b border-gray-100">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                        opportunity.category === 'Employment' ? 'bg-primary/10 text-primary' :
-                        opportunity.category === 'Internship' ? 'bg-secondary-teal/10 text-secondary-teal' :
-                        opportunity.category === 'Volunteer' ? 'bg-secondary-orange/10 text-secondary-orange' :
-                        'bg-neutral-dark/10 text-neutral-dark'
-                      }`}>
-                        {opportunity.category}
-                      </span>
-                      <span className="text-sm text-neutral-gray">
-                        Deadline: {new Date(opportunity.deadline).toLocaleDateString()}
-                      </span>
-                    </div>
-                    
-                    <Typography variant="h3" className="mb-3 group-hover:text-primary transition-colors">
-                      {opportunity.title}
-                    </Typography>
-                    
-                    <div className="flex flex-wrap gap-4 text-sm text-neutral-gray">
-                      <div className="flex items-center">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        {opportunity.location}
-                      </div>
-                      <div className="flex items-center">
-                        <Clock className="h-4 w-4 mr-1" />
-                        {opportunity.duration}
-                      </div>
-                      <div className="flex items-center">
-                        <Briefcase className="h-4 w-4 mr-1" />
-                        {opportunity.type}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <Typography variant="bodySmall" className="text-neutral-gray mb-4 leading-relaxed">
-                      {opportunity.description}
-                    </Typography>
-                    
-                    <Typography variant="h4" className="mb-3">
-                      Key Requirements:
-                    </Typography>
-                    <ul className="text-sm text-neutral-gray space-y-1 mb-6">
-                      {opportunity.requirements.slice(0, 3).map((req, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                          {req}
-                        </li>
-                      ))}
-                      {opportunity.requirements.length > 3 && (
-                        <li className="text-primary text-sm font-medium">
-                          +{opportunity.requirements.length - 3} more requirements
-                        </li>
-                      )}
-                    </ul>
-                    
-                    <div className="flex gap-2">
-                      <Link to={`/opportunities/${opportunity.id}`} className="flex-1">
-                        <Button className="w-full bg-primary hover:bg-primary-dark font-bold">
-                          View Details
-                        </Button>
-                      </Link>
-                      <Button variant="outline" className="px-6 font-bold border-primary text-primary hover:bg-primary hover:text-white">
-                        Apply Now
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </Container>
       </section>
 
       {/* Why Join LSF */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <Container>
           <div className="text-center mb-16">
             <Typography variant="h2" className="mb-6">
