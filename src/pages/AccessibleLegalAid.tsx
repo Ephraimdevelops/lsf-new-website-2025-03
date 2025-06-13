@@ -3,6 +3,9 @@ import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
 import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
 import ResourcesSection from '../components/focus-areas/ResourcesSection';
+import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
+import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
+import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
 import { Scale, Users } from 'lucide-react';
 
 const AccessibleLegalAid = () => {
@@ -41,13 +44,85 @@ const AccessibleLegalAid = () => {
     { label: focusArea.title }
   ];
 
+  const highlights = [
+    {
+      title: "Mobile Legal Clinics",
+      description: "Bringing justice directly to rural communities through our mobile legal aid units that travel to remote areas.",
+      backgroundImage: "/lovable-uploads/background with mother umage .png",
+      buttonText: "Find a Clinic"
+    },
+    {
+      title: "Digital Legal Platform",
+      description: "24/7 online legal consultation platform connecting citizens with qualified legal professionals instantly.",
+      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
+      buttonText: "Get Help Online"
+    },
+    {
+      title: "Community Paralegals",
+      description: "Trained community advocates providing first-line legal support and guidance in local languages.",
+      backgroundImage: "/lovable-uploads/background with mother umage .png",
+      buttonText: "Meet Paralegals"
+    }
+  ];
+
+  const partners = [
+    {
+      name: "Sarah Mwamba",
+      role: "Community Paralegal",
+      image: "/lovable-uploads/background with mother umage .png",
+      quote: "Through LSF training, I've helped over 300 families in my community resolve legal issues and access their rights."
+    },
+    {
+      name: "Dr. John Msami",
+      role: "Legal Aid Coordinator",
+      image: "/lovable-uploads/backgound lsf colours.png",
+      quote: "Our mobile clinics have transformed access to justice in remote areas, bringing hope where there was none."
+    },
+    {
+      name: "Amina Hassan",
+      role: "Women's Rights Advocate",
+      image: "/lovable-uploads/background with mother umage .png",
+      quote: "LSF's support helped me fight for my inheritance rights and now I help other women do the same."
+    }
+  ];
+
   return (
     <Layout>
       <FocusAreaHero focusArea={focusArea} breadcrumbItems={breadcrumbItems} />
+      
+      <ImpactStorySection
+        title="Every Person Deserves Access to Justice"
+        subtitle="Breaking Barriers"
+        description="In rural Tanzania, legal help was once a luxury only the wealthy could afford. Today, through our innovative mobile clinics and digital platforms, we're ensuring that distance and poverty no longer determine who gets justice."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+        ctaText="Find Legal Help Near You"
+        stats={[
+          { value: "5,000+", label: "Lives Changed" },
+          { value: "150+", label: "Communities Served" },
+          { value: "24/7", label: "Support Available" },
+          { value: "85%", label: "Success Rate" }
+        ]}
+      />
+
       <KeyActivitiesSection 
         keyActivities={focusArea.keyActivities} 
         testimonial={focusArea.testimonial}
       />
+
+      <VisualHighlightSection
+        title="How We're Making Justice Accessible"
+        subtitle="Our Approach"
+        highlights={highlights}
+      />
+
+      <PartnersShowcaseSection
+        title="Voices from the Field"
+        subtitle="Community Champions"
+        description="Meet the dedicated individuals who are making legal aid accessible in their communities. Their stories inspire us and show the real impact of accessible justice."
+        partners={partners}
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
+
       <ResourcesSection resources={focusArea.resources} />
     </Layout>
   );

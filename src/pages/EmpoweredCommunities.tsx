@@ -3,6 +3,9 @@ import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
 import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
 import ResourcesSection from '../components/focus-areas/ResourcesSection';
+import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
+import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
+import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
 import { Users } from 'lucide-react';
 
 const EmpoweredCommunities = () => {
@@ -41,13 +44,85 @@ const EmpoweredCommunities = () => {
     { label: focusArea.title }
   ];
 
+  const highlights = [
+    {
+      title: "Paralegal Champions",
+      description: "Training community members to become certified paralegals who provide first-line legal support in their neighborhoods.",
+      backgroundImage: "/lovable-uploads/background with mother umage .png",
+      buttonText: "Join Training"
+    },
+    {
+      title: "Youth Legal Clubs",
+      description: "Engaging young people in legal education and empowerment activities to build the next generation of rights advocates.",
+      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
+      buttonText: "Start a Club"
+    },
+    {
+      title: "Community Forums",
+      description: "Regular community meetings where legal issues are discussed and collective solutions are developed.",
+      backgroundImage: "/lovable-uploads/background with mother umage .png",
+      buttonText: "Attend Forum"
+    }
+  ];
+
+  const partners = [
+    {
+      name: "Grace Mbwana",
+      role: "Community Paralegal Leader",
+      image: "/lovable-uploads/background with mother umage .png",
+      quote: "I've trained 50 paralegals in my district. Now every village has someone who can help with legal problems."
+    },
+    {
+      name: "Michael Kileo",
+      role: "Youth Legal Club Coordinator",
+      image: "/lovable-uploads/backgound lsf colours.png",
+      quote: "Our youth club has 200 members who are learning about their rights and helping their families navigate legal issues."
+    },
+    {
+      name: "Fatuma Seif",
+      role: "Women's Group Leader",
+      image: "/lovable-uploads/background with mother umage .png",
+      quote: "Through legal education, our women's group now helps members with property rights and domestic violence cases."
+    }
+  ];
+
   return (
     <Layout>
       <FocusAreaHero focusArea={focusArea} breadcrumbItems={breadcrumbItems} />
+      
+      <ImpactStorySection
+        title="Communities that Know Their Rights, Protect Their Rights"
+        subtitle="Grassroots Power"
+        description="When communities understand the law, they become powerful agents of change. Our grassroots approach has created a network of over 4,000 trained paralegals who are transforming justice from the ground up."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+        ctaText="Become a Community Champion"
+        stats={[
+          { value: "4,000+", label: "Paralegals Trained" },
+          { value: "184", label: "Communities Served" },
+          { value: "85%", label: "Disputes Resolved" },
+          { value: "50,000+", label: "People Reached" }
+        ]}
+      />
+
       <KeyActivitiesSection 
         keyActivities={focusArea.keyActivities} 
         testimonial={focusArea.testimonial}
       />
+
+      <VisualHighlightSection
+        title="Building Legally Empowered Communities"
+        subtitle="Our Programs"
+        highlights={highlights}
+      />
+
+      <PartnersShowcaseSection
+        title="Community Champions in Action"
+        subtitle="Local Heroes"
+        description="Meet the remarkable individuals who are leading legal empowerment efforts in their communities. Their dedication and impact inspire us every day."
+        partners={partners}
+        backgroundImage="/lovable-uploads/background with mother umage .png"
+      />
+
       <ResourcesSection resources={focusArea.resources} />
     </Layout>
   );
