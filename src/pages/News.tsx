@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
@@ -19,7 +18,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { NewsItem, newsService } from '@/services/dataService';
+import { NewsItem } from '@/services/dataService';
+import { newsService } from '@/services/api';
 
 const News = () => {
   const [searchTerm, setSearchTerm] = useState('');
