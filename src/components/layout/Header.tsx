@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight, Search, Phone } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Search, Phone, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
@@ -167,9 +168,39 @@ const Header = () => {
   
   return (
     <>
+      {/* Contact Information Strip */}
+      <div className="bg-primary text-white py-2 border-b border-primary-dark">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center text-sm space-y-1 sm:space-y-0">
+            <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-6">
+              <div className="flex items-center space-x-2">
+                <Phone className="h-4 w-4" />
+                <span>24/7 Legal Helpline: +255 870 119 363</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail className="h-4 w-4" />
+                <span>info@legalservicesfacility.org</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MapPin className="h-4 w-4" />
+                <span>Dar es Salaam, Tanzania</span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Link to="/contact" className="hover:text-secondary-orange transition-colors">
+                Contact Us
+              </Link>
+              <Link to="/opportunities" className="hover:text-secondary-orange transition-colors">
+                Careers
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-10 left-0 right-0 z-50 transition-all duration-300",
           isScrolled || mobileMenuOpen
             ? "bg-white shadow-lg border-b border-gray-100"
             : "bg-white/95 backdrop-blur-sm"

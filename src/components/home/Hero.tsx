@@ -108,57 +108,57 @@ const Hero = () => {
   const currentSlideData = heroSlides[currentSlide];
 
   return (
-    <section className="relative text-white min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background with enhanced dark transparent overlay */}
+    <section className="relative text-white min-h-[95vh] flex items-center overflow-hidden">
+      {/* Background with much darker overlay */}
       <div className="absolute inset-0">
         <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000"
           style={{ backgroundImage: `url(${currentSlideData.image})` }}
         ></div>
-        {/* Enhanced transparent dark overlay */}
-        <div className="absolute inset-0 bg-black/70"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60"></div>
+        {/* Much darker overlay for better contrast */}
+        <div className="absolute inset-0 bg-black/85"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/80"></div>
       </div>
       
       <div className="container mx-auto px-4 py-12 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Hero content with increased heading sizes */}
+          {/* Hero content with significantly increased heading sizes */}
           <div className="lg:col-span-7">
             <div className="transition-all duration-500">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="inline-block bg-secondary-orange text-white text-sm font-bold px-4 py-2 rounded uppercase tracking-wider">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="inline-block bg-secondary-orange text-white text-base font-bold px-6 py-3 rounded uppercase tracking-wider">
                   {currentSlideData.category}
                 </span>
                 <div className="flex items-center text-secondary-teal">
-                  <span className="text-4xl md:text-5xl font-bold mr-3">{currentSlideData.stat}</span>
-                  <span className="text-base">{currentSlideData.statLabel}</span>
+                  <span className="text-5xl md:text-6xl lg:text-7xl font-bold mr-4">{currentSlideData.stat}</span>
+                  <span className="text-lg md:text-xl">{currentSlideData.statLabel}</span>
                 </div>
               </div>
               
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight">
                 {currentSlideData.title}
               </h1>
               
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium mb-8 text-secondary-teal">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-10 text-secondary-teal">
                 {currentSlideData.subtitle}
               </h2>
               
-              <p className="text-xl md:text-2xl mb-10 text-white/90 max-w-2xl leading-relaxed">
+              <p className="text-2xl md:text-3xl mb-12 text-white/95 max-w-2xl leading-relaxed">
                 {currentSlideData.description}
               </p>
               
-              <div className="flex flex-wrap gap-6">
+              <div className="flex flex-wrap gap-8">
                 <Link 
                   to="/legal-help"
-                  className="bg-primary hover:bg-primary-dark text-white px-10 py-5 rounded-lg font-bold transition duration-300 inline-flex items-center text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  className="bg-primary hover:bg-primary-dark text-white px-12 py-6 rounded-lg font-bold transition duration-300 inline-flex items-center text-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Get Legal Help Now
-                  <ArrowRight className="ml-3 h-6 w-6" />
+                  <ArrowRight className="ml-4 h-7 w-7" />
                 </Link>
                 <Link 
                   to="/what-we-do"
-                  className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-10 py-5 rounded-lg font-bold transition duration-300 inline-flex items-center text-xl"
+                  className="bg-white/15 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/25 px-12 py-6 rounded-lg font-bold transition duration-300 inline-flex items-center text-2xl"
                 >
                   Learn More
                 </Link>
@@ -168,18 +168,18 @@ const Hero = () => {
           
           {/* Enhanced Legal Aid Widget */}
           <div className="lg:col-span-5">
-            <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-white/20">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="bg-primary/10 p-3 rounded-xl">
-                  <Scale className="h-8 w-8 text-primary" />
+            <div className="bg-white/98 backdrop-blur-sm p-10 rounded-3xl shadow-2xl border border-white/30">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="bg-primary/10 p-4 rounded-xl">
+                  <Scale className="h-10 w-10 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-primary text-2xl font-bold">Get Free Legal Aid</h3>
-                  <p className="text-neutral-600">Available in all 184 districts</p>
+                  <h3 className="text-primary text-3xl font-bold">Get Free Legal Aid</h3>
+                  <p className="text-neutral-600 text-lg">Available in all 184 districts</p>
                 </div>
               </div>
               
-              <div className="mb-6">
+              <div className="mb-8">
                 <label htmlFor="region-select" className="block text-base font-medium mb-3 text-neutral-dark">
                   Select Your Region
                 </label>
