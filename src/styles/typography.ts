@@ -11,12 +11,12 @@ export const typography = {
   // Font sizes and line heights - Increased for better readability
   sizes: {
     display: {
-      fontSize: '48px',
+      fontSize: '46px',
       lineHeight: '52px',
       fontWeight: 900, // black
     },
     h1: {
-      fontSize: '40px',
+      fontSize: '38px',
       lineHeight: '44px',
       fontWeight: 700, // bold
     },
@@ -64,8 +64,8 @@ export const typography = {
 
   // Utility classes for consistent styling - Updated with larger sizes
   classes: {
-    display: 'text-[48px] font-black leading-[52px]',
-    h1: 'text-[40px] font-bold leading-[44px]',
+    display: 'text-[46px] font-black leading-[52px]',
+    h1: 'text-[38px] font-bold leading-[44px]',
     h2: 'text-[32px] font-bold leading-[36px]',
     h3: 'text-[24px] font-semibold leading-[28px]',
     h4: 'text-[20px] font-semibold leading-[24px]',
