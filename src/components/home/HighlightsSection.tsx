@@ -76,7 +76,7 @@ const HighlightsSection = () => {
 
   return (
     <>
-      <section className="relative h-screen min-h-[500px] overflow-hidden">
+      <section className="relative h-screen min-h-[600px] overflow-hidden">
         {/* Background Images with Transition */}
         {slideContents.map((slide, index) => (
           <div
@@ -94,46 +94,46 @@ const HighlightsSection = () => {
           </div>
         ))}
 
-        {/* Content Overlay */}
+        {/* Content Overlay - Fixed alignment and spacing */}
         <div className="relative z-10 h-full flex items-center">
-          <Container size="xl">
-            <div className="max-w-3xl">
+          <Container size="xl" className="w-full">
+            <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
               {/* Animated Content */}
               <div
                 key={currentSlide}
-                className="animate-fade-in"
+                className="animate-fade-in space-y-6 md:space-y-8"
               >
                 {/* Highlight Small Heading */}
-                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6 border border-white/20">
-                  <TrendingUp className="h-4 w-4 md:h-5 md:w-5 mr-2 md:mr-3 text-secondary-orange" />
-                  <Typography variant="small" className="text-secondary-orange font-bold text-xs md:text-sm">
+                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
+                  <TrendingUp className="h-5 w-5 mr-3 text-secondary-orange" />
+                  <Typography variant="overline" className="text-secondary-orange font-bold">
                     {currentContent.highlightHeading}
                   </Typography>
                 </div>
 
-                {/* Main Heading */}
-                <Typography variant="h1" className="mb-4 md:mb-6 text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                {/* Main Heading - Increased size */}
+                <Typography variant="display" className="text-white font-heading max-w-4xl">
                   {currentContent.mainHeading}
                 </Typography>
 
-                {/* Description */}
-                <Typography variant="bodySmall" className="text-white/90 mb-6 md:mb-8 text-base md:text-lg leading-relaxed max-w-2xl">
+                {/* Description - Increased size and better spacing */}
+                <Typography variant="body" className="text-white/90 max-w-3xl leading-relaxed">
                   {currentContent.description}
                 </Typography>
 
-                {/* Action Buttons */}
-                <div className="flex flex-wrap gap-3 md:gap-4">
+                {/* Action Buttons - Consistent spacing */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Link to={currentContent.link}>
-                    <Button size="default" className="bg-primary hover:bg-primary-dark text-white px-6 py-3 text-sm md:text-base">
+                    <Button size="lg" className="bg-primary hover:bg-primary-dark text-white px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                       Learn More
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
                   <Button 
-                    size="default"
+                    size="lg"
                     variant="outline" 
                     onClick={() => setLegalAidDialogOpen(true)}
-                    className="border-white text-white hover:bg-white hover:text-primary px-6 py-3 text-sm md:text-base backdrop-blur-sm"
+                    className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                   >
                     Get Legal Help
                   </Button>
@@ -143,24 +143,24 @@ const HighlightsSection = () => {
           </Container>
         </div>
 
-        {/* Navigation Controls */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-          <div className="flex items-center gap-3">
+        {/* Navigation Controls - Consistent positioning */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+          <div className="flex items-center gap-4">
             {/* Previous Button */}
             <button
               onClick={prevSlide}
-              className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+              className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-6 w-6" />
             </button>
 
             {/* Slide Indicators */}
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               {slideContents.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
                       ? 'bg-secondary-orange scale-125' 
                       : 'bg-white/40 hover:bg-white/60'
@@ -172,9 +172,9 @@ const HighlightsSection = () => {
             {/* Next Button */}
             <button
               onClick={nextSlide}
-              className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+              className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-6 w-6" />
             </button>
           </div>
         </div>
