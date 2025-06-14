@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
 import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
@@ -39,9 +38,9 @@ const EmpoweredCommunities = () => {
   };
 
   const breadcrumbItems = [
-    { label: "What We Do", href: "/what-we-do" },
-    { label: "Focus Areas", href: "/what-we-do#focus-areas" },
-    { label: focusArea.title }
+    { name: "What We Do", href: "/what-we-do" },
+    { name: "Focus Areas", href: "/what-we-do#focus-areas" },
+    { name: focusArea.title }
   ];
 
   const highlights = [
