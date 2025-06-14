@@ -23,11 +23,11 @@ const HeroContent = ({ currentSlide }: HeroContentProps) => {
         </div>
         
         {/* Main Headlines with Enhanced Typography */}
-        <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight font-heading drop-shadow-2xl">
+        <h1 className="text-8xl md:text-9xl lg:text-[9rem] font-bold mb-8 leading-[1.075] font-heading drop-shadow-2xl">
           {currentSlide.title}
         </h1>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-10 text-secondary-teal font-heading drop-shadow-lg">
+        <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium mb-10 text-secondary-teal font-heading drop-shadow-lg">
           {currentSlide.subtitle}
         </h2>
         
@@ -61,3 +61,4 @@ const HeroContent = ({ currentSlide }: HeroContentProps) => {
 };
 
 export default HeroContent;
+
