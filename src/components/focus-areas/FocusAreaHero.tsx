@@ -6,6 +6,11 @@ import Typography from '../shared/Typography';
 import Breadcrumb from '../shared/Breadcrumb';
 import AnimatedCounter from '../shared/AnimatedCounter';
 
+interface BreadcrumbItem {
+  name: string;
+  href?: string;
+}
+
 interface FocusAreaHeroProps {
   focusArea: {
     id: string;
@@ -14,7 +19,7 @@ interface FocusAreaHeroProps {
     icon: React.ReactNode;
     impactStats: { value: string; label: string; icon: React.ReactNode }[];
   };
-  breadcrumbItems: { label: string; href?: string }[];
+  breadcrumbItems: BreadcrumbItem[];
 }
 
 const FocusAreaHero = ({ focusArea, breadcrumbItems }: FocusAreaHeroProps) => {

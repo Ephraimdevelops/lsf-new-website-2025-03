@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import Typography from '@/components/shared/Typography';
 import Container from '@/components/shared/Container';
@@ -228,8 +227,8 @@ const Approaches = () => {
   ];
 
   const breadcrumbItems = [
-    { label: "What We Do", href: "/what-we-do" },
-    { label: "Our Approaches" }
+    { name: "What We Do", href: "/what-we-do" },
+    { name: "Our Approaches" }
   ];
 
   return (
