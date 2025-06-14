@@ -1,5 +1,10 @@
+
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
+import Typography from '@/components/shared/Typography';
+import Container from '@/components/shared/Container';
+import Section from '@/components/shared/Section';
+import Card from '@/components/shared/Card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Heart, Users, Globe } from 'lucide-react';
 
@@ -70,104 +75,96 @@ const partners: Partner[] = [
   }
 ];
 
-const categories = ['All', 'International Organizations', 'Foundations', 'Professional Bodies', 'Academic Institutions', 'NGOs', 'Government'];
-
 const Partners = () => {
   return (
     <Layout>
-      {/* Hero Section with new design */}
       <HeroSection
-        icon={<Users className="h-10 w-10" />}
+        icon={<Users className="h-8 w-8" />}
         badge="Partnerships"
         title="Our Partners"
         description="Together with our partners, we're building a more just and equitable Tanzania where everyone has access to legal protection and empowerment."
+        backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      {/* Partners Grid */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <Section variant="default" padding="xl">
+        <Container size="xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {partners.map((partner) => (
-              <div key={partner.id} className="group">
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group-hover:border-primary/20 h-full">
-                  {/* Logo */}
-                  <div className="p-6 bg-gray-50">
-                    <div className="w-full h-32 flex items-center justify-center">
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="max-w-full max-h-full object-contain"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                        {partner.partnership_type}
-                      </span>
-                      <span className="text-xs text-neutral-gray">{partner.category}</span>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold mb-3 text-neutral-dark group-hover:text-primary transition-colors duration-300">
-                      {partner.name}
-                    </h3>
-                    
-                    <p className="text-neutral-gray text-sm leading-relaxed mb-4">
-                      {partner.description}
-                    </p>
-                    
-                    <a
-                      href={partner.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-primary font-semibold text-sm hover:text-primary-dark transition-colors group/link"
-                    >
-                      Visit Website
-                      <ExternalLink className="ml-1 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
-                    </a>
+              <Card key={partner.id} variant="elevated" hover className="h-full">
+                {/* Logo */}
+                <div className="p-6 bg-neutral-50 rounded-t-2xl">
+                  <div className="w-full h-32 flex items-center justify-center">
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
                 </div>
-              </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">
+                      {partner.partnership_type}
+                    </span>
+                    <Typography variant="caption" className="text-neutral-gray">{partner.category}</Typography>
+                  </div>
+                  
+                  <Typography variant="h3" className="text-neutral-dark mb-3">
+                    {partner.name}
+                  </Typography>
+                  
+                  <Typography variant="bodySmall" className="text-neutral-gray leading-relaxed mb-4">
+                    {partner.description}
+                  </Typography>
+                  
+                  <a
+                    href={partner.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary font-bold text-sm hover:text-primary-dark transition-colors group/link"
+                  >
+                    Visit Website
+                    <ExternalLink className="ml-1 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </Card>
             ))}
           </div>
 
           {/* Partnership Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="text-center p-8 bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-xl">
+            <Card className="text-center bg-gradient-to-br from-primary/5 to-secondary-teal/5">
               <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-              <div className="text-3xl font-bold text-primary mb-2">25+</div>
-              <div className="text-neutral-dark">Active Partners</div>
-            </div>
-            <div className="text-center p-8 bg-gradient-to-br from-secondary-teal/5 to-secondary-orange/5 rounded-xl">
+              <Typography variant="h1" className="text-primary mb-2">25+</Typography>
+              <Typography variant="body" className="text-neutral-dark">Active Partners</Typography>
+            </Card>
+            <Card className="text-center bg-gradient-to-br from-secondary-teal/5 to-secondary-orange/5">
               <Globe className="h-12 w-12 text-secondary-teal mx-auto mb-4" />
-              <div className="text-3xl font-bold text-secondary-teal mb-2">15</div>
-              <div className="text-neutral-dark">Countries Represented</div>
-            </div>
-            <div className="text-center p-8 bg-gradient-to-br from-secondary-orange/5 to-primary/5 rounded-xl">
+              <Typography variant="h1" className="text-secondary-teal mb-2">15</Typography>
+              <Typography variant="body" className="text-neutral-dark">Countries Represented</Typography>
+            </Card>
+            <Card className="text-center bg-gradient-to-br from-secondary-orange/5 to-primary/5">
               <Heart className="h-12 w-12 text-secondary-orange mx-auto mb-4" />
-              <div className="text-3xl font-bold text-secondary-orange mb-2">$2.5M</div>
-              <div className="text-neutral-dark">Joint Investment</div>
-            </div>
+              <Typography variant="h1" className="text-secondary-orange mb-2">$2.5M</Typography>
+              <Typography variant="body" className="text-neutral-dark">Joint Investment</Typography>
+            </Card>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* Partnership CTA */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Partner With Us</h2>
-            <p className="text-lg text-neutral-dark mb-8">
-              Join our mission to advance access to justice across Tanzania. Together, we can create lasting change in communities that need it most.
-            </p>
-            <Button size="lg" className="bg-primary hover:bg-primary-dark">
-              Explore Partnership Opportunities
-            </Button>
-          </div>
-        </div>
-      </section>
+      <Section variant="secondary" padding="lg">
+        <Container size="md" className="text-center">
+          <Typography variant="h1" className="mb-6">Partner With Us</Typography>
+          <Typography variant="body" className="text-neutral-dark mb-8">
+            Join our mission to advance access to justice across Tanzania. Together, we can create lasting change in communities that need it most.
+          </Typography>
+          <Button size="lg" className="bg-primary hover:bg-primary-dark">
+            Explore Partnership Opportunities
+          </Button>
+        </Container>
+      </Section>
     </Layout>
   );
 };

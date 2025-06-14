@@ -1,6 +1,8 @@
+
 import { Link } from 'react-router-dom';
 import { Calendar, Eye, ArrowRight } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
+import Card from '@/components/shared/Card';
 
 interface NewsItem {
   id: string;
@@ -35,7 +37,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
       to={`/news/${news.id}`}
       className="group block"
     >
-      <article className="bg-white rounded-2xl hover:shadow-xl transition-all duration-500 overflow-hidden group-hover:-translate-y-2 h-full">
+      <Card className="overflow-hidden group-hover:-translate-y-2 h-full" hover>
         <div className="relative h-52 overflow-hidden">
           <img 
             src={news.image}
@@ -44,7 +46,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-secondary-orange/70 via-transparent to-transparent"></div>
           <div className="absolute top-4 left-4">
-            <span className={`px-4 py-2 rounded-full text-sm font-black ${getCategoryColor(news.category)}`}>
+            <span className={`px-4 py-2 rounded-full text-sm font-bold ${getCategoryColor(news.category)}`}>
               {news.category}
             </span>
           </div>
@@ -53,7 +55,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
             {news.readTime}
           </div>
         </div>
-        <div className="p-8">
+        <div className="p-6">
           <div className="flex items-center text-xs text-neutral-gray mb-3">
             <Calendar size={13} className="mr-3" />
             {new Date(news.date).toLocaleDateString('en-US', { 
@@ -63,8 +65,8 @@ const NewsCard = ({ news }: NewsCardProps) => {
             })}
           </div>
           <Typography
-            variant="h2"
-            className="text-neutral-dark font-heading font-extrabold group-hover:text-secondary-orange transition-colors mb-3 line-clamp-2 leading-tight text-2xl md:text-2xl lg:text-3xl"
+            variant="h3"
+            className="text-neutral-dark font-heading group-hover:text-secondary-orange transition-colors mb-3 line-clamp-2 leading-tight"
           >
             {news.title}
           </Typography>
@@ -76,7 +78,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
-      </article>
+      </Card>
     </Link>
   );
 };

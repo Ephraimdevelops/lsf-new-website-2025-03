@@ -90,12 +90,11 @@ const HighlightsSection = () => {
               alt={slide.mainHeading}
               className="w-full h-full object-cover"
             />
-            {/* Darker maroon overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/50"></div>
           </div>
         ))}
 
-        {/* Content Overlay - Bigger Headings */}
+        {/* Content Overlay */}
         <div className="relative z-10 h-full flex items-center">
           <Container size="xl" className="w-full">
             <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
@@ -103,37 +102,37 @@ const HighlightsSection = () => {
                 key={currentSlide}
                 className="animate-fade-in space-y-6 md:space-y-8"
               >
-                {/* Highlight Small Heading - increase font size */}
-                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
-                  <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
+                {/* Highlight Badge */}
+                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
+                  <TrendingUp className="h-5 w-5 mr-3 text-secondary-orange" />
                   <Typography
                     variant="overline"
-                    className="text-secondary-orange font-bold text-2xl md:text-3xl tracking-wider"
+                    className="text-secondary-orange font-bold tracking-wider"
                   >
                     {currentContent.highlightHeading}
                   </Typography>
                 </div>
 
-                {/* Main Heading - Larger */}
+                {/* Main Heading */}
                 <Typography
-                  variant="h1"
-                  className="text-white font-heading max-w-5xl text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
+                  variant="display"
+                  className="text-white font-heading max-w-5xl"
                 >
                   {currentContent.mainHeading}
                 </Typography>
 
-                {/* Description - just a touch bigger */}
+                {/* Description */}
                 <Typography
                   variant="body"
-                  className="text-white/90 max-w-3xl text-2xl md:text-3xl leading-relaxed"
+                  className="text-white/90 max-w-3xl leading-relaxed"
                 >
                   {currentContent.description}
                 </Typography>
 
-                {/* Action Buttons - Consistent spacing */}
+                {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Link to={currentContent.link}>
-                    <Button size="lg" className="bg-primary hover:bg-primary-dark text-white px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                    <Button size="lg" className="bg-primary hover:bg-primary-dark text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                       Learn More
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
@@ -142,7 +141,7 @@ const HighlightsSection = () => {
                     size="lg"
                     variant="outline" 
                     onClick={() => setLegalAidDialogOpen(true)}
-                    className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                    className="border-2 border-white text-white hover:bg-white hover:text-primary backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                   >
                     Get Legal Help
                   </Button>
@@ -152,10 +151,9 @@ const HighlightsSection = () => {
           </Container>
         </div>
 
-        {/* Navigation Controls - Consistent positioning */}
+        {/* Navigation Controls */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
           <div className="flex items-center gap-4">
-            {/* Previous Button */}
             <button
               onClick={prevSlide}
               className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
@@ -163,7 +161,6 @@ const HighlightsSection = () => {
               <ChevronLeft className="h-6 w-6" />
             </button>
 
-            {/* Slide Indicators */}
             <div className="flex gap-3">
               {slideContents.map((_, index) => (
                 <button
@@ -178,7 +175,6 @@ const HighlightsSection = () => {
               ))}
             </div>
 
-            {/* Next Button */}
             <button
               onClick={nextSlide}
               className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
@@ -206,4 +202,5 @@ const HighlightsSection = () => {
     </>
   );
 };
+
 export default HighlightsSection;

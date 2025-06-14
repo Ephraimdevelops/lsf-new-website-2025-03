@@ -1,9 +1,10 @@
+
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
-import Typography from '../components/shared/Typography';
-import Section from '../components/shared/Section';
-import Container from '../components/shared/Container';
-import Card from '../components/shared/Card';
+import Typography from '@/components/shared/Typography';
+import Section from '@/components/shared/Section';
+import Container from '@/components/shared/Container';
+import Card from '@/components/shared/Card';
 import { Users, BookOpen, Award, Target } from 'lucide-react';
 
 const CapacityBuilding = () => {
@@ -43,11 +44,11 @@ const CapacityBuilding = () => {
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      <Section variant="default" padding="lg">
+      <Section variant="default" padding="xl">
         <Container size="xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <Typography variant="h2" className="mb-6">
+              <Typography variant="h1" className="mb-6">
                 Building Sustainable Capacity
               </Typography>
               <Typography variant="body" className="mb-6 text-neutral-gray">
@@ -61,21 +62,21 @@ const CapacityBuilding = () => {
                 communities we serve.
               </Typography>
             </div>
-            <div className="bg-secondary-teal/5 rounded-lg p-8">
+            <Card className="bg-secondary-teal/5">
               <div className="flex items-center mb-4">
                 <Users className="h-8 w-8 text-secondary-teal mr-3" />
-                <Typography variant="h3" className="text-secondary-teal">
+                <Typography variant="display" className="text-secondary-teal">
                   500+
                 </Typography>
               </div>
               <Typography variant="body" className="text-neutral-gray">
                 Paralegals and legal aid providers trained through our capacity building programs
               </Typography>
-            </div>
+            </Card>
           </div>
 
           <div className="mb-16">
-            <Typography variant="h2" className="text-center mb-12">
+            <Typography variant="h1" className="text-center mb-12">
               Capacity Building Focus Areas
             </Typography>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -86,7 +87,7 @@ const CapacityBuilding = () => {
                       {area.icon}
                     </div>
                   </div>
-                  <Typography variant="h4" className="mb-3">
+                  <Typography variant="h3" className="mb-3">
                     {area.title}
                   </Typography>
                   <Typography variant="body" className="text-neutral-gray">
@@ -97,20 +98,20 @@ const CapacityBuilding = () => {
             </div>
           </div>
 
-          <div className="bg-primary/5 rounded-xl p-8">
-            <Typography variant="h2" className="text-center mb-8">
+          <Card className="bg-primary/5">
+            <Typography variant="h1" className="text-center mb-8">
               Training Programs
             </Typography>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {programs.map((program, index) => (
-                <div key={index} className="bg-white rounded-lg p-4 shadow-sm">
+                <Card key={index} variant="flat" padding="md">
                   <Typography variant="h4" className="text-primary">
                     {program}
                   </Typography>
-                </div>
+                </Card>
               ))}
             </div>
-          </div>
+          </Card>
         </Container>
       </Section>
     </Layout>
