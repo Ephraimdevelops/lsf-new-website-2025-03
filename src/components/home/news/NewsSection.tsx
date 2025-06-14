@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { ArrowRight, Newspaper } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
@@ -5,7 +6,7 @@ import NewsCard from './NewsCard';
 import { featuredNews } from './newsData';
 
 const NewsSection = () => {
-  const featuredNews = featuredNews;
+  // Just use featuredNews from the import!
 
   return (
     <div className="flex-1">
@@ -36,3 +37,4 @@ const NewsSection = () => {
   );
 };
 export default NewsSection;
+
