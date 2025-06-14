@@ -2,11 +2,17 @@
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import CategoryCard from '../components/shared/CategoryCard';
+import Container from '@/components/shared/Container';
+import Breadcrumb from '@/components/shared/Breadcrumb';
 import { Button } from '@/components/ui/button';
 import { FileText, Search, Download, Book, Users, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Resources = () => {
+  const breadcrumbItems = [
+    { name: "Resources" }
+  ];
+
   const resourceCategories = [
     {
       title: "Legal Empowerment",
@@ -62,6 +68,10 @@ const Resources = () => {
         description="Access our comprehensive collection of research, reports, guides, and tools designed to advance legal empowerment and access to justice across Tanzania."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
+
+      <Container size="xl" className="pt-8">
+        <Breadcrumb items={breadcrumbItems} />
+      </Container>
 
       {/* Search Section */}
       <section className="py-16 bg-gray-50">

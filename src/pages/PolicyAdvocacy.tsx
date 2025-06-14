@@ -36,8 +36,9 @@ const PolicyAdvocacy = () => {
   };
 
   const breadcrumbItems = [
-    { label: "What We Do", href: "/what-we-do" },
-    { label: focusArea.title }
+    { name: "What We Do", href: "/what-we-do" },
+    { name: "Focus Areas", href: "/what-we-do#focus-areas" },
+    { name: focusArea.title }
   ];
 
   return (

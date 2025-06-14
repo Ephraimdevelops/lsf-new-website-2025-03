@@ -1,9 +1,15 @@
 
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
+import Container from '@/components/shared/Container';
+import Breadcrumb from '@/components/shared/Breadcrumb';
 import { Briefcase, Users, Target, Award } from 'lucide-react';
 
 const Programs = () => {
+  const breadcrumbItems = [
+    { name: "Programs" }
+  ];
+
   return (
     <Layout>
       <HeroSection
@@ -13,6 +19,10 @@ const Programs = () => {
         description="Discover our comprehensive range of programs designed to increase access to justice, empower communities, and create lasting change across Tanzania."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
+
+      <Container size="xl" className="pt-8">
+        <Breadcrumb items={breadcrumbItems} />
+      </Container>
 
       {/* Programs Grid */}
       <section className="py-20 bg-neutral-light">

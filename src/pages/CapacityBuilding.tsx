@@ -1,13 +1,18 @@
-
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Typography from '@/components/shared/Typography';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
 import Card from '@/components/shared/Card';
+import Breadcrumb from '@/components/shared/Breadcrumb';
 import { Users, BookOpen, Award, Target } from 'lucide-react';
 
 const CapacityBuilding = () => {
+  const breadcrumbItems = [
+    { name: "What We Do", href: "/what-we-do" },
+    { name: "Capacity Building" }
+  ];
+
   const buildingAreas = [
     {
       title: "Institutional Capacity",
@@ -46,6 +51,8 @@ const CapacityBuilding = () => {
 
       <Section variant="default" padding="xl">
         <Container size="xl">
+          <Breadcrumb items={breadcrumbItems} />
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <Typography variant="h1" className="mb-6">

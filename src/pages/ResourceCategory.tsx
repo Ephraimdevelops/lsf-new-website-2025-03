@@ -4,6 +4,13 @@ import { Search, Filter } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import ResourceCard from '../components/shared/ResourceCard';
+import Container from '@/components/shared/Container';
+import Breadcrumb from '@/components/shared/Breadcrumb';
+
+interface BreadcrumbItem {
+  name: string;
+  href?: string;
+}
 
 interface ResourceCategoryProps {
   category: string;
@@ -11,6 +18,7 @@ interface ResourceCategoryProps {
   description: string;
   icon: React.ReactNode;
   backgroundImage?: string;
+  breadcrumbItems?: BreadcrumbItem[];
 }
 
 interface ResourceData {
@@ -29,7 +37,8 @@ const ResourceCategory = ({
   title, 
   description, 
   icon, 
-  backgroundImage = "/lovable-uploads/background with mother umage .png"
+  backgroundImage = "/lovable-uploads/background with mother umage .png",
+  breadcrumbItems
 }: ResourceCategoryProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeType, setActiveType] = useState<string>('All');
@@ -92,7 +101,9 @@ const ResourceCategory = ({
       
       {/* Search and Filter */}
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <Container size="xl">
+          {breadcrumbItems && <Breadcrumb items={breadcrumbItems} />}
+          
           <div className="bg-white p-6 rounded-lg shadow-md mb-12 max-w-4xl mx-auto">
             <div className="mb-6">
               <div className="relative">
@@ -152,7 +163,7 @@ const ResourceCategory = ({
               <p className="mt-2 text-neutral-gray">Try adjusting your search or filters</p>
             </div>
           )}
-        </div>
+        </Container>
       </section>
     </Layout>
   );
