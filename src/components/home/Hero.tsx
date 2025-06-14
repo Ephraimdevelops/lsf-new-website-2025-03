@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Phone, Download, Users, Scale, Heart } from 'lucide-react';
@@ -109,56 +110,57 @@ const Hero = () => {
 
   return (
     <section className="relative text-white min-h-[95vh] flex items-center overflow-hidden">
-      {/* Background with much darker overlay */}
+      {/* Background with enhanced dark overlays */}
       <div className="absolute inset-0">
         <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000"
           style={{ backgroundImage: `url(${currentSlideData.image})` }}
         ></div>
-        {/* Much darker overlay for better contrast */}
-        <div className="absolute inset-0 bg-black/85"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/80"></div>
+        {/* Enhanced dark overlays for better contrast */}
+        <div className="absolute inset-0 bg-black/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-black opacity-95"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90"></div>
       </div>
       
       <div className="container mx-auto px-4 py-12 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Hero content with significantly increased heading sizes */}
+          {/* Hero content with significantly increased heading sizes to match design system */}
           <div className="lg:col-span-7">
             <div className="transition-all duration-500">
               <div className="flex items-center gap-3 mb-8">
-                <span className="inline-block bg-secondary-orange text-white text-base font-bold px-6 py-3 rounded uppercase tracking-wider">
+                <span className="inline-block bg-secondary-orange text-white text-lg font-bold px-8 py-4 rounded uppercase tracking-wider">
                   {currentSlideData.category}
                 </span>
                 <div className="flex items-center text-secondary-teal">
-                  <span className="text-5xl md:text-6xl lg:text-7xl font-bold mr-4">{currentSlideData.stat}</span>
-                  <span className="text-lg md:text-xl">{currentSlideData.statLabel}</span>
+                  <span className="text-6xl md:text-7xl lg:text-8xl font-bold mr-4 font-heading">{currentSlideData.stat}</span>
+                  <span className="text-xl md:text-2xl">{currentSlideData.statLabel}</span>
                 </div>
               </div>
               
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight">
+              <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight font-heading">
                 {currentSlideData.title}
               </h1>
               
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-10 text-secondary-teal">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-10 text-secondary-teal font-heading">
                 {currentSlideData.subtitle}
               </h2>
               
-              <p className="text-2xl md:text-3xl mb-12 text-white/95 max-w-2xl leading-relaxed">
+              <p className="text-xl md:text-2xl lg:text-3xl mb-12 text-white/95 max-w-2xl leading-relaxed">
                 {currentSlideData.description}
               </p>
               
               <div className="flex flex-wrap gap-8">
                 <Link 
                   to="/legal-help"
-                  className="bg-primary hover:bg-primary-dark text-white px-12 py-6 rounded-lg font-bold transition duration-300 inline-flex items-center text-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  className="bg-primary hover:bg-primary-dark text-white px-12 py-6 rounded-lg font-bold transition duration-300 inline-flex items-center text-xl md:text-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Get Legal Help Now
                   <ArrowRight className="ml-4 h-7 w-7" />
                 </Link>
                 <Link 
                   to="/what-we-do"
-                  className="bg-white/15 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/25 px-12 py-6 rounded-lg font-bold transition duration-300 inline-flex items-center text-2xl"
+                  className="bg-white/15 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/25 px-12 py-6 rounded-lg font-bold transition duration-300 inline-flex items-center text-xl md:text-2xl"
                 >
                   Learn More
                 </Link>
@@ -174,7 +176,7 @@ const Hero = () => {
                   <Scale className="h-10 w-10 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-primary text-3xl font-bold">Get Free Legal Aid</h3>
+                  <h3 className="text-primary text-3xl font-bold font-heading">Get Free Legal Aid</h3>
                   <p className="text-neutral-600 text-lg">Available in all 184 districts</p>
                 </div>
               </div>
