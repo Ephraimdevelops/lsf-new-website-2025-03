@@ -109,71 +109,89 @@ const Hero = () => {
   const currentSlideData = heroSlides[currentSlide];
 
   return (
-    <section className="relative text-white min-h-[95vh] flex items-center overflow-hidden">
-      {/* Background with enhanced dark overlays */}
+    <section className="relative text-white min-h-[100vh] flex items-center overflow-hidden">
+      {/* Enhanced Multi-Layer Background Treatment */}
       <div className="absolute inset-0">
+        {/* Base Image with Ken Burns Effect */}
         <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000"
-          style={{ backgroundImage: `url(${currentSlideData.image})` }}
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-[8000ms] ease-in-out transform scale-105 hover:scale-100"
+          style={{ 
+            backgroundImage: `url(${currentSlideData.image})`,
+            backgroundPosition: 'center center'
+          }}
         ></div>
-        {/* Enhanced dark overlays for better contrast */}
-        <div className="absolute inset-0 bg-black/90"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-black opacity-95"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90"></div>
+        
+        {/* Sophisticated Multi-Layer Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-primary/75 to-black/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
+        
+        {/* Subtle Pattern Overlay for Texture */}
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,.15)_1px,transparent_0)] bg-[length:20px_20px]"></div>
+        
+        {/* Dynamic Light Rays */}
+        <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-secondary-orange/30 via-transparent to-transparent transform -skew-x-12"></div>
+        <div className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-secondary-teal/30 via-transparent to-transparent transform skew-x-12"></div>
       </div>
       
       <div className="container mx-auto px-4 py-12 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Hero content with significantly increased heading sizes to match design system */}
+          {/* Enhanced Hero Content */}
           <div className="lg:col-span-7">
             <div className="transition-all duration-500">
+              {/* Category Badge with Glow Effect */}
               <div className="flex items-center gap-3 mb-8">
-                <span className="inline-block bg-secondary-orange text-white text-lg font-bold px-8 py-4 rounded uppercase tracking-wider">
+                <span className="inline-block bg-gradient-to-r from-secondary-orange to-secondary-orange/80 text-white text-lg font-bold px-8 py-4 rounded-full uppercase tracking-wider shadow-lg shadow-secondary-orange/30">
                   {currentSlideData.category}
                 </span>
                 <div className="flex items-center text-secondary-teal">
-                  <span className="text-6xl md:text-7xl lg:text-8xl font-bold mr-4 font-heading">{currentSlideData.stat}</span>
+                  <span className="text-6xl md:text-7xl lg:text-8xl font-bold mr-4 font-heading drop-shadow-lg">{currentSlideData.stat}</span>
                   <span className="text-xl md:text-2xl">{currentSlideData.statLabel}</span>
                 </div>
               </div>
               
-              <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight font-heading">
+              {/* Main Headlines with Enhanced Typography */}
+              <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight font-heading drop-shadow-2xl">
                 {currentSlideData.title}
               </h1>
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-10 text-secondary-teal font-heading">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-10 text-secondary-teal font-heading drop-shadow-lg">
                 {currentSlideData.subtitle}
               </h2>
               
-              <p className="text-xl md:text-2xl lg:text-3xl mb-12 text-white/95 max-w-2xl leading-relaxed">
-                {currentSlideData.description}
-              </p>
+              {/* Description with Better Visual Hierarchy */}
+              <div className="bg-black/30 backdrop-blur-sm border-l-4 border-secondary-orange pl-8 py-6 mb-12 rounded-r-2xl">
+                <p className="text-xl md:text-2xl lg:text-3xl text-white/95 max-w-2xl leading-relaxed">
+                  {currentSlideData.description}
+                </p>
+              </div>
               
+              {/* Enhanced CTA Buttons */}
               <div className="flex flex-wrap gap-8">
                 <Link 
                   to="/legal-help"
-                  className="bg-primary hover:bg-primary-dark text-white px-12 py-6 rounded-lg font-bold transition duration-300 inline-flex items-center text-xl md:text-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  className="group bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white px-12 py-6 rounded-2xl font-bold transition-all duration-300 inline-flex items-center text-xl md:text-2xl shadow-2xl hover:shadow-primary/50 transform hover:-translate-y-2 hover:scale-105"
                 >
                   Get Legal Help Now
-                  <ArrowRight className="ml-4 h-7 w-7" />
+                  <ArrowRight className="ml-4 h-7 w-7 group-hover:translate-x-2 transition-transform" />
                 </Link>
                 <Link 
                   to="/what-we-do"
-                  className="bg-white/15 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/25 px-12 py-6 rounded-lg font-bold transition duration-300 inline-flex items-center text-xl md:text-2xl"
+                  className="group bg-white/20 backdrop-blur-md border-2 border-white/50 text-white hover:bg-white/30 hover:border-white/70 px-12 py-6 rounded-2xl font-bold transition-all duration-300 inline-flex items-center text-xl md:text-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
                 >
                   Learn More
+                  <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </div>
           </div>
           
-          {/* Enhanced Legal Aid Widget */}
+          {/* Enhanced Legal Aid Widget with Glass Morphism */}
           <div className="lg:col-span-5">
-            <div className="bg-white/98 backdrop-blur-sm p-10 rounded-3xl shadow-2xl border border-white/30">
+            <div className="bg-white/95 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-white/40 hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
               <div className="flex items-center gap-4 mb-8">
-                <div className="bg-primary/10 p-4 rounded-xl">
-                  <Scale className="h-10 w-10 text-primary" />
+                <div className="bg-gradient-to-br from-primary to-primary-dark p-4 rounded-2xl shadow-lg">
+                  <Scale className="h-10 w-10 text-white" />
                 </div>
                 <div>
                   <h3 className="text-primary text-3xl font-bold font-heading">Get Free Legal Aid</h3>
@@ -189,7 +207,7 @@ const Hero = () => {
                   value={selectedRegion}
                   onValueChange={(value) => setSelectedRegion(value)}
                 >
-                  <SelectTrigger className="w-full bg-white border-gray-200 h-12">
+                  <SelectTrigger className="w-full bg-white border-gray-200 h-12 shadow-sm hover:shadow-md transition-shadow">
                     <SelectValue placeholder="Select a region" />
                   </SelectTrigger>
                   <SelectContent>
@@ -202,11 +220,11 @@ const Hero = () => {
                 </Select>
               </div>
               
-              <div className="flex items-center gap-4 mb-8 p-6 bg-gradient-to-r from-primary/10 to-secondary-teal/10 rounded-xl border border-primary/20">
+              <div className="flex items-center gap-4 mb-8 p-6 bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-primary/10 rounded-2xl border border-primary/20 shadow-inner">
                 <Phone className="h-10 w-10 text-primary flex-shrink-0" />
                 <div>
                   <p className="font-medium text-neutral-dark">24/7 Legal Helpline</p>
-                  <a href={`tel:${hotlineNumber.replace(/\s/g, '')}`} className="text-2xl font-bold text-primary">
+                  <a href={`tel:${hotlineNumber.replace(/\s/g, '')}`} className="text-2xl font-bold text-primary hover:text-primary-dark transition-colors">
                     {hotlineNumber}
                   </a>
                 </div>
@@ -215,7 +233,7 @@ const Hero = () => {
               <div className="grid grid-cols-2 gap-4">
                 <a 
                   href={`tel:${hotlineNumber.replace(/\s/g, '')}`}
-                  className="bg-primary text-white hover:bg-primary-dark px-6 py-4 rounded-lg text-center font-bold transition-colors flex items-center justify-center gap-2"
+                  className="bg-gradient-to-r from-primary to-primary-dark text-white hover:from-primary-dark hover:to-primary px-6 py-4 rounded-xl text-center font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   <Phone className="h-5 w-5" />
                   Call Now
@@ -224,7 +242,7 @@ const Hero = () => {
                   href="https://play.google.com/store/apps/details?id=com.hakiyangu.app" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-secondary-teal text-white hover:bg-opacity-90 px-6 py-4 rounded-lg text-center font-bold transition-colors flex items-center justify-center gap-2"
+                  className="bg-gradient-to-r from-secondary-teal to-secondary-teal/80 text-white hover:from-secondary-teal/90 hover:to-secondary-teal px-6 py-4 rounded-xl text-center font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   <Download className="h-5 w-5" />
                   Get App
@@ -240,31 +258,34 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Slider navigation */}
-        <div className="absolute bottom-8 right-8 z-30 flex space-x-2">
+        {/* Enhanced Slider Navigation */}
+        <div className="absolute bottom-8 right-8 z-30 flex space-x-3">
           <button 
             onClick={prevSlide}
-            className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-colors border border-white/30"
+            className="bg-white/25 hover:bg-white/40 backdrop-blur-md rounded-full p-4 transition-all duration-300 border border-white/40 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="h-5 w-5 text-white" />
+            <ChevronLeft className="h-6 w-6 text-white" />
           </button>
           <button 
             onClick={nextSlide}
-            className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-colors border border-white/30"
+            className="bg-white/25 hover:bg-white/40 backdrop-blur-md rounded-full p-4 transition-all duration-300 border border-white/40 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             aria-label="Next slide"
           >
-            <ChevronRight className="h-5 w-5 text-white" />
+            <ChevronRight className="h-6 w-6 text-white" />
           </button>
         </div>
         
-        <div className="absolute bottom-8 left-8 z-30 flex space-x-2">
+        {/* Enhanced Slide Indicators */}
+        <div className="absolute bottom-8 left-8 z-30 flex space-x-3">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all border border-white/50 ${
-                currentSlide === index ? 'bg-white scale-125' : 'bg-white/30'
+              className={`w-4 h-4 rounded-full transition-all duration-300 border-2 shadow-lg ${
+                currentSlide === index 
+                  ? 'bg-secondary-orange border-secondary-orange scale-125 shadow-secondary-orange/50' 
+                  : 'bg-white/40 border-white/60 hover:bg-white/60 hover:scale-110'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
