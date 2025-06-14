@@ -63,7 +63,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
               year: 'numeric'
             })}
           </div>
-          <Typography variant="h4" className="text-neutral-dark font-heading font-bold group-hover:text-secondary-orange transition-colors mb-3 line-clamp-2">
+          <Typography variant="h2" className="text-neutral-dark font-heading font-extrabold group-hover:text-secondary-orange transition-colors mb-3 line-clamp-2 leading-tight text-3xl md:text-4xl lg:text-5xl">
             {news.title}
           </Typography>
           <Typography variant="bodySmall" className="text-neutral-gray line-clamp-3 leading-relaxed mb-4">
@@ -80,3 +80,4 @@ const NewsCard = ({ news }: NewsCardProps) => {
 };
 
 export default NewsCard;
+
