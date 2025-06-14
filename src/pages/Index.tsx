@@ -16,10 +16,10 @@ import CircularCalloutsSection from './home/CircularCalloutsSection';
 
 const Index = () => (
   <Layout>
+    
+    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
       {/* Highlights */}
       <HighlightsSection />
-      {/* Circular Callouts */}
-      <CircularCalloutsSection />
     </section>
 
     {/* Enhanced News and Documents Section */}
