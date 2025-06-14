@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import Hero from '@/components/home/Hero';
 import VisualImpactSection from '@/components/home/VisualImpactSection';
@@ -11,6 +10,10 @@ import CircularCallouts from '@/components/home/CircularCallouts';
 import ImpactMetricsSection from '@/components/home/ImpactMetricsSection';
 import CallToActionSection from '@/components/home/CallToActionSection';
 
+import ImpactMetricsSectionWrapper from './home/ImpactMetricsSectionWrapper';
+import CallToActionSectionWrapper from './home/CallToActionSectionWrapper';
+import CircularCalloutsSection from './home/CircularCalloutsSection';
+
 const Index = () => (
   <Layout>
     <Hero />
@@ -21,14 +24,14 @@ const Index = () => (
       {/* Highlights */}
       <HighlightsSection />
       {/* Circular Callouts */}
-      <CircularCallouts />
+      <CircularCalloutsSection />
     </section>
 
     {/* Enhanced News and Documents Section */}
     <CompactNewsUpdates />
 
     {/* Impact Metrics Section */}
-    <ImpactMetricsSection />
+    <ImpactMetricsSectionWrapper />
 
     {/* Our Focus Areas Section */}
     <FocusAreas />
@@ -37,7 +40,7 @@ const Index = () => (
     <PartnersCarousel />
 
     {/* Call to Action Section */}
-    <CallToActionSection />
+    <CallToActionSectionWrapper />
   </Layout>
 );
 
