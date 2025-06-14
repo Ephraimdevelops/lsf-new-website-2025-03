@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { FileText, ArrowRight, Download, Sparkles } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
@@ -26,7 +25,7 @@ const PublicationsSection = () => {
           {uploadedDocuments.map((doc, idx) => (
             <div 
               key={doc.id} 
-              className={`relative z-10 flex items-start gap-5 p-5 rounded-2xl bg-gradient-to-br from-white via-secondary-teal/5 to-secondary-teal/20 shadow-lg hover:scale-[1.025] hover:z-20 hover:shadow-2xl transition-all duration-300 border-2 border-secondary-teal/10 hover:border-secondary-teal/40`}
+              className="relative z-10 flex items-start gap-5 p-5 rounded-2xl bg-gradient-to-br from-white via-secondary-teal/5 to-secondary-teal/20 shadow-lg hover:scale-[1.025] hover:z-20 hover:shadow-2xl transition-all duration-300"
             >
               {/* File thumbnail with border ring */}
               <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-4 border-white shadow-sm ring-2 ring-secondary-teal/30 bg-gray-50">
@@ -91,4 +90,3 @@ const PublicationsSection = () => {
 };
 
 export default PublicationsSection;
-

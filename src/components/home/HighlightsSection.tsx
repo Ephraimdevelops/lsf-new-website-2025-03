@@ -90,35 +90,43 @@ const HighlightsSection = () => {
               alt={slide.mainHeading}
               className="w-full h-full object-cover"
             />
-            {/* Updated to use maroon gradient instead of black */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/100 via-primary/60 to-primary/40"></div>
+            {/* Darker maroon overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/50"></div>
           </div>
         ))}
 
-        {/* Content Overlay - Fixed alignment and spacing */}
+        {/* Content Overlay - Bigger Headings */}
         <div className="relative z-10 h-full flex items-center">
           <Container size="xl" className="w-full">
             <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0">
-              {/* Animated Content */}
               <div
                 key={currentSlide}
                 className="animate-fade-in space-y-6 md:space-y-8"
               >
-                {/* Highlight Small Heading */}
-                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
-                  <TrendingUp className="h-5 w-5 mr-3 text-secondary-orange" />
-                  <Typography variant="overline" className="text-secondary-orange font-bold">
+                {/* Highlight Small Heading - increase font size */}
+                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
+                  <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
+                  <Typography
+                    variant="overline"
+                    className="text-secondary-orange font-bold text-2xl md:text-3xl tracking-wider"
+                  >
                     {currentContent.highlightHeading}
                   </Typography>
                 </div>
 
-                {/* Main Heading - Increased size */}
-                <Typography variant="h1" className="text-white font-heading max-w-4xl">
+                {/* Main Heading - Larger */}
+                <Typography
+                  variant="h1"
+                  className="text-white font-heading max-w-5xl text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
+                >
                   {currentContent.mainHeading}
                 </Typography>
 
-                {/* Description - Increased size and better spacing */}
-                <Typography variant="body" className="text-white/90 max-w-3xl leading-relaxed">
+                {/* Description - just a touch bigger */}
+                <Typography
+                  variant="body"
+                  className="text-white/90 max-w-3xl text-2xl md:text-3xl leading-relaxed"
+                >
                   {currentContent.description}
                 </Typography>
 
@@ -191,12 +199,11 @@ const HighlightsSection = () => {
         </div>
       </section>
 
-      <LegalAidDialog 
-        open={legalAidDialogOpen} 
-        onOpenChange={setLegalAidDialogOpen} 
+      <LegalAidDialog
+        open={legalAidDialogOpen}
+        onOpenChange={setLegalAidDialogOpen}
       />
     </>
   );
 };
-
 export default HighlightsSection;

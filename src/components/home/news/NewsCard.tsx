@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Calendar, Eye, ArrowRight } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
@@ -63,7 +62,10 @@ const NewsCard = ({ news }: NewsCardProps) => {
               year: 'numeric'
             })}
           </div>
-          <Typography variant="h2" className="text-neutral-dark font-heading font-extrabold group-hover:text-secondary-orange transition-colors mb-3 line-clamp-2 leading-tight text-3xl md:text-4xl lg:text-5xl">
+          <Typography
+            variant="h2"
+            className="text-neutral-dark font-heading font-extrabold group-hover:text-secondary-orange transition-colors mb-3 line-clamp-2 leading-tight text-2xl md:text-2xl lg:text-3xl"
+          >
             {news.title}
           </Typography>
           <Typography variant="bodySmall" className="text-neutral-gray line-clamp-3 leading-relaxed mb-4">
@@ -80,4 +82,3 @@ const NewsCard = ({ news }: NewsCardProps) => {
 };
 
 export default NewsCard;
-

@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { ArrowRight, Newspaper } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
@@ -6,6 +5,8 @@ import NewsCard from './NewsCard';
 import { featuredNews } from './newsData';
 
 const NewsSection = () => {
+  const featuredNews = featuredNews;
+
   return (
     <div className="flex-1">
       <div className="flex items-center justify-between mb-12">
@@ -34,5 +35,4 @@ const NewsSection = () => {
     </div>
   );
 };
-
 export default NewsSection;
