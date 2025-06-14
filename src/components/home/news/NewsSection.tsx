@@ -8,9 +8,9 @@ import { featuredNews } from './newsData';
 const NewsSection = () => {
   return (
     <div className="flex-1">
-      <div className="flex items-center justify-between mb-10">
+      <div className="flex items-center justify-between mb-12">
         <div className="flex items-center gap-6">
-          <div className="bg-gradient-to-br from-primary to-secondary-orange p-4 rounded-2xl shadow-lg">
+          <div className="bg-gradient-to-br from-primary to-secondary-orange p-4 rounded-xl">
             <Newspaper className="h-8 w-8 text-white" />
           </div>
           <div>
@@ -26,7 +26,7 @@ const NewsSection = () => {
           <ArrowRight className="ml-3 h-5 w-5" />
         </Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {featuredNews.map((news) => (
           <NewsCard key={news.id} news={news} />
         ))}

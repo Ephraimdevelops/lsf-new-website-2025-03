@@ -12,7 +12,7 @@ interface AnimatedCounterProps {
 
 const AnimatedCounter = ({ 
   end, 
-  duration = 2000, 
+  duration = 2500, 
   suffix = '', 
   prefix = '',
   className = '' 
@@ -20,25 +20,32 @@ const AnimatedCounter = ({
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const countRef = useRef<HTMLSpanElement>(null);
-  const isVisible = useIntersectionObserver(countRef, { threshold: 0.5 });
+  const isVisible = useIntersectionObserver(countRef, { threshold: 0.3 });
 
   useEffect(() => {
     if (isVisible && !hasStarted) {
       setHasStarted(true);
-      const increment = end / (duration / 16);
-      let current = 0;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= end) {
-          setCount(end);
-          clearInterval(timer);
+      
+      // Smooth easing function
+      const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
+      
+      const startTime = Date.now();
+      
+      const animate = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        
+        setCount(Math.floor(easedProgress * end));
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
         } else {
-          setCount(Math.floor(current));
+          setCount(end);
         }
-      }, 16);
-
-      return () => clearInterval(timer);
+      };
+      
+      requestAnimationFrame(animate);
     }
   }, [isVisible, hasStarted, end, duration]);
 

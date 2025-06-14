@@ -6,7 +6,7 @@ import PublicationsSection from './news/PublicationsSection';
 
 const CompactNewsUpdates = () => {
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
       {/* Beautiful Glowing Background Blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-24 right-36 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
@@ -16,8 +16,8 @@ const CompactNewsUpdates = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center bg-gradient-to-r from-secondary-orange/10 to-secondary-teal/10 backdrop-blur-md rounded-full px-9 py-5 mb-8 border border-secondary-orange/20">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center bg-gradient-to-r from-secondary-orange/10 to-secondary-teal/10 backdrop-blur-md rounded-full px-9 py-5 mb-8">
             <TrendingUp className="h-7 w-7 mr-4 text-secondary-orange" />
             <Typography variant="overline" className="text-secondary-orange tracking-widest font-black text-lg">
               NEWS & RESEARCH
@@ -31,7 +31,7 @@ const CompactNewsUpdates = () => {
           </Typography>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-14">
+        <div className="flex flex-col lg:flex-row gap-20">
           <NewsSection />
           <PublicationsSection />
         </div>

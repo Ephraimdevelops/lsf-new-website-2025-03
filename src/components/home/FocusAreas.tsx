@@ -44,9 +44,9 @@ const focusAreasData = [
 ];
 
 const FocusAreas = () => (
-  <Section variant="secondary" padding="xl">
+  <Section variant="secondary" padding="lg">
     <Container size="xl">
-      <div className="text-center mb-12 md:mb-20 px-4">
+      <div className="text-center mb-16 px-4">
         <div className="inline-flex items-center bg-primary/10 rounded-full px-6 md:px-8 py-3 md:py-4 mb-6 md:mb-8">
           <span className="text-primary font-bold text-sm md:text-lg tracking-widest uppercase">OUR FOCUS</span>
         </div>
@@ -58,7 +58,7 @@ const FocusAreas = () => (
           We work tirelessly to ensure every Tanzanian has access to justice, legal education, and the support they need to live with dignity and security.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {focusAreasData.map((area, i) => (
           <FocusAreaImageCard
             key={i}
@@ -74,4 +74,3 @@ const FocusAreas = () => (
 );
 
 export default FocusAreas;
-

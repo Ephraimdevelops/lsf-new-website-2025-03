@@ -17,7 +17,7 @@ const FocusAreaImageCard = ({
   link,
 }: FocusAreaImageCardProps) => (
   <div className="flex flex-col group cursor-pointer">
-    <Link to={link} className="relative block overflow-hidden rounded-xl aspect-[4/3] mb-6 transition-shadow shadow-xl hover:shadow-2xl">
+    <Link to={link} className="relative block overflow-hidden rounded-xl aspect-[4/3] mb-6 transition-shadow hover:shadow-xl">
       <img
         src={image}
         alt={title}
@@ -43,4 +43,3 @@ const FocusAreaImageCard = ({
 );
 
 export default FocusAreaImageCard;
-

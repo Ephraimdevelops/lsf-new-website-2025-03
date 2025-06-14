@@ -36,7 +36,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
       to={`/news/${news.id}`}
       className="group block"
     >
-      <article className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 group-hover:border-secondary-orange/50 group-hover:-translate-y-2 h-full">
+      <article className="bg-white rounded-2xl hover:shadow-xl transition-all duration-500 overflow-hidden group-hover:-translate-y-2 h-full">
         <div className="relative h-52 overflow-hidden">
           <img 
             src={news.image}
@@ -45,7 +45,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-secondary-orange/70 via-transparent to-transparent"></div>
           <div className="absolute top-4 left-4">
-            <span className={`px-4 py-2 rounded-full text-sm font-black shadow-lg ${getCategoryColor(news.category)}`}>
+            <span className={`px-4 py-2 rounded-full text-sm font-black ${getCategoryColor(news.category)}`}>
               {news.category}
             </span>
           </div>
@@ -54,8 +54,8 @@ const NewsCard = ({ news }: NewsCardProps) => {
             {news.readTime}
           </div>
         </div>
-        <div className="p-7">
-          <div className="flex items-center text-xs text-neutral-gray mb-2">
+        <div className="p-8">
+          <div className="flex items-center text-xs text-neutral-gray mb-3">
             <Calendar size={13} className="mr-3" />
             {new Date(news.date).toLocaleDateString('en-US', { 
               month: 'short', 
@@ -63,10 +63,10 @@ const NewsCard = ({ news }: NewsCardProps) => {
               year: 'numeric'
             })}
           </div>
-          <Typography variant="h4" className="text-neutral-dark font-heading font-bold group-hover:text-secondary-orange transition-colors mb-2 line-clamp-2">
+          <Typography variant="h4" className="text-neutral-dark font-heading font-bold group-hover:text-secondary-orange transition-colors mb-3 line-clamp-2">
             {news.title}
           </Typography>
-          <Typography variant="bodySmall" className="text-neutral-gray line-clamp-3 leading-relaxed mb-3">
+          <Typography variant="bodySmall" className="text-neutral-gray line-clamp-3 leading-relaxed mb-4">
             {news.excerpt}
           </Typography>
           <div className="flex items-center text-primary font-bold group-hover:text-secondary-orange transition-colors">
