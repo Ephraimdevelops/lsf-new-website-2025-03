@@ -7,161 +7,214 @@ import Section from '@/components/shared/Section';
 import Typography from '@/components/shared/Typography';
 import Card from '@/components/shared/Card';
 import TestimonialSection from '@/components/shared/TestimonialSection';
-import FAQSection from '@/components/shared/FAQSection';
+import PartnershipsSection from '@/components/shared/PartnershipsSection';
 import GetInvolvedCTA from '@/components/what-we-do/GetInvolvedCTA';
-import ImpactStatsSection from '@/components/what-we-do/ImpactStatsSection';
-import { BookOpen, Users, Target, Award, MapPin, Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { 
+  Target, 
+  Users, 
+  BookOpen, 
+  Scale, 
+  Heart, 
+  Globe, 
+  Award,
+  ArrowRight,
+  CheckCircle,
+  TrendingUp,
+  MapPin,
+  Calendar,
+  DollarSign,
+  UserCheck
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Programs = () => {
   const programs = [
     {
-      id: 'legal-aid-coordination',
-      title: 'Legal Aid Coordination Program',
-      description: 'Strengthening the coordination and delivery of legal aid services across Tanzania through strategic partnerships and capacity building.',
-      image: 'https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=600&h=400&fit=crop',
-      duration: '2020-2025',
-      beneficiaries: '500,000+',
-      regions: '31 Regions',
-      status: 'Active',
-      keyActivities: [
-        'Training and mentoring legal aid providers',
-        'Developing standardized service delivery protocols',
-        'Creating referral networks between organizations',
-        'Monitoring and evaluation of legal aid services'
-      ]
+      id: 1,
+      title: "Grant Making Program",
+      description: "Supporting legal aid organizations through strategic funding and capacity building to expand access to justice across Tanzania.",
+      longDescription: "Our flagship grant-making program provides critical funding to legal aid organizations, community-based organizations, and civil society groups working to advance access to justice.",
+      category: "Funding",
+      status: "Active",
+      duration: "2020-2025",
+      budget: "$12M",
+      beneficiaries: "180+ organizations",
+      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop",
+      icon: <DollarSign className="h-8 w-8" />,
+      color: "from-primary to-primary-dark",
+      keyAchievements: [
+        "Disbursed $47M+ in grants",
+        "Supported 105,562+ community groups", 
+        "Reached 426,349+ legal aid beneficiaries",
+        "Trained 39.8M+ people through legal education"
+      ],
+      focusAreas: ["Legal Aid Coordination", "Capacity Building", "Access to Justice", "Community Empowerment"],
+      partners: ["USAID", "Ford Foundation", "Open Society Foundation"]
     },
     {
-      id: 'paralegal-development',
-      title: 'Community Paralegal Development',
-      description: 'Building a network of trained community paralegals to provide accessible legal assistance at the grassroots level.',
-      image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop',
-      duration: '2019-2024',
-      beneficiaries: '200,000+',
-      regions: '26 Regions',
-      status: 'Active',
-      keyActivities: [
-        'Paralegal training and certification',
-        'Community legal education programs',
-        'Mobile legal clinics in rural areas',
-        'Digital case management systems'
-      ]
+      id: 2,
+      title: "Capacity Building Initiative",
+      description: "Strengthening the skills and knowledge of legal aid providers and community paralegals through comprehensive training programs.",
+      longDescription: "Building sustainable capacity within Tanzania's legal aid sector through training, mentorship, and institutional development programs.",
+      category: "Training",
+      status: "Active", 
+      duration: "2019-2024",
+      budget: "$3.5M",
+      beneficiaries: "2,500+ paralegals",
+      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop",
+      icon: <Users className="h-8 w-8" />,
+      color: "from-secondary-teal to-secondary-teal/80",
+      keyAchievements: [
+        "Trained 2,500+ community paralegals",
+        "Certified 500+ legal aid providers",
+        "Established 50+ legal clinics",
+        "Developed 20+ training modules"
+      ],
+      focusAreas: ["Paralegal Training", "Legal Clinic Development", "Quality Standards", "Mentorship"],
+      partners: ["Tanzania Law Society", "Institute of Judicial Administration", "Legal Aid Providers"]
     },
     {
-      id: 'women-rights',
-      title: 'Women\'s Legal Rights Initiative',
-      description: 'Advancing women\'s access to justice through targeted legal aid, education, and advocacy for gender-responsive legal reforms.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=400&fit=crop',
-      duration: '2021-2026',
-      beneficiaries: '150,000+',
-      regions: '20 Regions',
-      status: 'Active',
-      keyActivities: [
-        'Gender-based violence legal support',
-        'Property rights advocacy and education',
-        'Women\'s legal literacy programs',
-        'Policy advocacy for gender equality'
-      ]
+      id: 3,
+      title: "Gender Justice Program",
+      description: "Advancing women's rights through targeted legal empowerment initiatives focusing on property rights and gender-based violence.",
+      longDescription: "Promoting gender equality and women's rights through legal empowerment, advocacy, and access to justice initiatives.",
+      category: "Rights",
+      status: "Active",
+      duration: "2018-2025",
+      budget: "$5.2M", 
+      beneficiaries: "62% women",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=400&fit=crop",
+      icon: <Heart className="h-8 w-8" />,
+      color: "from-secondary-yellow to-secondary-yellow/80",
+      keyAchievements: [
+        "Resolved 5,600+ GBV cases",
+        "Secured 3,200+ property rights",
+        "Trained 800+ women advocates",
+        "Influenced 8 gender-related policies"
+      ],
+      focusAreas: ["Women's Property Rights", "GBV Prevention", "Legal Literacy", "Policy Advocacy"],
+      partners: ["UN Women", "Tanzania Women Lawyers Association", "Women's Rights Organizations"]
     },
     {
-      id: 'climate-justice',
-      title: 'Climate Justice and Environmental Rights',
-      description: 'Supporting communities affected by climate change through legal empowerment and environmental justice advocacy.',
-      image: 'https://images.unsplash.com/photo-1569163139394-de44cb40ef4b?w=600&h=400&fit=crop',
-      duration: '2022-2027',
-      beneficiaries: '75,000+',
-      regions: '15 Regions',
-      status: 'Active',
-      keyActivities: [
-        'Environmental rights education',
-        'Climate litigation support',
-        'Community adaptation planning',
-        'Policy advocacy for climate justice'
-      ]
+      id: 4,
+      title: "Digital Innovation Project",
+      description: "Leveraging technology to expand access to legal information and services through the Haki Yangu mobile application and digital platforms.",
+      longDescription: "Harnessing digital technology to democratize access to legal information and connect citizens with legal aid services.",
+      category: "Technology",
+      status: "Active",
+      duration: "2021-2024",
+      budget: "$2.8M",
+      beneficiaries: "50,000+ users",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      icon: <Globe className="h-8 w-8" />,
+      color: "from-secondary-orange to-secondary-orange/80",
+      keyAchievements: [
+        "Launched Haki Yangu app",
+        "50,000+ app downloads",
+        "15,000+ legal queries resolved",
+        "Available in 3 languages"
+      ],
+      focusAreas: ["Mobile Technology", "Legal Information Access", "Digital Literacy", "Innovation"],
+      partners: ["GSMA", "Tech Companies", "Mobile Network Operators"]
     },
     {
-      id: 'digital-access',
-      title: 'Digital Access to Justice Platform',
-      description: 'Leveraging technology to improve access to legal information and services, especially in remote areas.',
-      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
-      duration: '2023-2028',
-      beneficiaries: '1,000,000+',
-      regions: 'National',
-      status: 'Launching',
-      keyActivities: [
-        'Online legal information portal',
-        'Mobile legal aid applications',
-        'Virtual legal consultations',
-        'Digital legal literacy programs'
-      ]
+      id: 5,
+      title: "Policy Advocacy Initiative", 
+      description: "Advocating for legal and policy reforms that strengthen access to justice and protect the rights of vulnerable populations.",
+      longDescription: "Working with government and stakeholders to create an enabling policy environment for legal empowerment and access to justice.",
+      category: "Advocacy",
+      status: "Active",
+      duration: "2017-2025",
+      budget: "$1.9M",
+      beneficiaries: "National impact",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+      icon: <Scale className="h-8 w-8" />,
+      color: "from-green-500 to-green-600",
+      keyAchievements: [
+        "Influenced 12 policy reforms",
+        "Established 25+ government partnerships", 
+        "Contributed to 5 legislative changes",
+        "Published 15+ policy briefs"
+      ],
+      focusAreas: ["Legal Aid Act", "Justice Sector Reform", "Human Rights", "Legislative Advocacy"],
+      partners: ["Ministry of Justice", "Judiciary", "Parliament", "Civil Society"]
     },
     {
-      id: 'youth-empowerment',
-      title: 'Youth Legal Empowerment Program',
-      description: 'Empowering young Tanzanians with legal knowledge and skills to advocate for their rights and contribute to justice reforms.',
-      image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&h=400&fit=crop',
-      duration: '2023-2025',
-      beneficiaries: '50,000+',
-      regions: '12 Regions',
-      status: 'Active',
-      keyActivities: [
-        'Youth legal education workshops',
-        'Peer-to-peer legal mentoring',
-        'Youth advocacy training',
-        'Student legal clinic programs'
-      ]
+      id: 6,
+      title: "Research & Learning Program",
+      description: "Generating evidence and knowledge to inform policy and practice in the legal empowerment and access to justice sector.",
+      longDescription: "Conducting research, documenting best practices, and facilitating learning to strengthen the legal aid ecosystem.",
+      category: "Research",
+      status: "Active",
+      duration: "2016-2025", 
+      budget: "$1.5M",
+      beneficiaries: "Sector-wide",
+      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop",
+      icon: <BookOpen className="h-8 w-8" />,
+      color: "from-purple-500 to-purple-600",
+      keyAchievements: [
+        "Published 25+ research reports",
+        "Documented 50+ best practices",
+        "Hosted 30+ learning events",
+        "Built knowledge management system"
+      ],
+      focusAreas: ["Impact Assessment", "Best Practices", "Knowledge Management", "Evidence-Based Advocacy"],
+      partners: ["Universities", "Research Institutions", "Think Tanks"]
+    }
+  ];
+
+  const upcomingPrograms = [
+    {
+      title: "Climate Justice Initiative",
+      description: "Addressing legal challenges related to climate change and environmental justice in Tanzania.",
+      launchDate: "Q2 2024",
+      budget: "$4M",
+      image: "https://images.unsplash.com/photo-1569163163395-4d8b29d5be3c?w=400&h=250&fit=crop",
+      status: "Planning"
+    },
+    {
+      title: "Youth Legal Empowerment",
+      description: "Engaging young people as agents of change in promoting access to justice in their communities.",
+      launchDate: "Q3 2024", 
+      budget: "$2.5M",
+      image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=400&h=250&fit=crop",
+      status: "Development"
     }
   ];
 
   const testimonials = [
     {
-      quote: "The Legal Aid Coordination Program has transformed how we deliver services to our communities. The training and support have been invaluable.",
-      author: "Maria Mwanga",
-      role: "Director",
-      organization: "Dodoma Legal Aid Center",
+      quote: "The Grant Making Program transformed our organization's capacity to serve vulnerable communities. We've increased our client base by 400% and expanded to three new regions.",
+      author: "Sarah Mwalimu",
+      role: "Executive Director",
+      organization: "Coastal Legal Aid Network",
       image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=faces",
       rating: 5
     },
     {
-      quote: "Through the paralegal program, I've been able to help over 200 families in my community resolve land disputes and access their rights.",
-      author: "James Malima",
+      quote: "Through the Capacity Building Initiative, I gained the skills to become a certified paralegal. I've now helped resolve over 200 cases in my community.",
+      author: "James Kimaro",
       role: "Community Paralegal",
-      organization: "Mwanza Region",
+      organization: "Moshi Legal Clinic",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces",
       rating: 5
     },
     {
-      quote: "The women's rights initiative gave me the knowledge and confidence to start my own business and support other women in my village.",
-      author: "Fatuma Said",
-      role: "Beneficiary",
-      organization: "Coastal Region",
+      quote: "The Digital Innovation Project brought legal services to my doorstep. Through the Haki Yangu app, I was able to understand my rights and get the help I needed.",
+      author: "Fatuma Hassan",
+      role: "App User",
+      organization: "Dar es Salaam",
       image: "https://images.unsplash.com/photo-1594736797933-d0401ba051ff?w=100&h=100&fit=crop&crop=faces",
       rating: 5
     }
   ];
 
-  const faqs = [
-    {
-      question: "How can my organization apply for program partnerships?",
-      answer: "Organizations can apply for partnerships by submitting a detailed proposal through our online portal. We evaluate applications based on alignment with our strategic objectives, organizational capacity, and potential impact on target communities."
-    },
-    {
-      question: "What support do program partners receive?",
-      answer: "Partners receive financial support, technical assistance, capacity building training, monitoring and evaluation support, and access to our network of legal aid providers and experts."
-    },
-    {
-      question: "How do you measure program impact?",
-      answer: "We use a comprehensive monitoring and evaluation framework that tracks both quantitative metrics (number of beneficiaries, cases resolved) and qualitative indicators (satisfaction levels, capacity improvements, systemic changes)."
-    },
-    {
-      question: "Can individuals benefit directly from these programs?",
-      answer: "Yes, individuals can benefit through our partner organizations that provide direct legal aid services, community education programs, and paralegal assistance in their local areas."
-    },
-    {
-      question: "How long do programs typically run?",
-      answer: "Our programs typically run for 3-5 years, allowing sufficient time for capacity building, implementation, and sustainable impact. Extensions are possible based on performance and continued need."
-    }
+  const partnerData = [
+    { name: "USAID", logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop", description: "Primary funding partner", category: "international" },
+    { name: "Ford Foundation", logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop", description: "Strategic partner", category: "international" },
+    { name: "Tanzania Law Society", logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop", description: "Professional body", category: "civil-society" },
+    { name: "Ministry of Justice", logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop", description: "Government partner", category: "government" }
   ];
 
   return (
@@ -174,116 +227,263 @@ const Programs = () => {
       </div>
 
       <HeroSection
-        icon={<BookOpen className="h-8 w-8" />}
+        icon={<Target className="h-8 w-8" />}
         badge="OUR PROGRAMS"
         title="Comprehensive Programs for Legal Empowerment"
-        description="Our strategic programs address critical gaps in Tanzania's legal aid landscape, building sustainable systems that ensure every citizen can access justice and claim their rights effectively."
+        description="Our diverse portfolio of programs addresses every aspect of legal empowerment, from direct service delivery to policy advocacy, ensuring sustainable impact across Tanzania's justice landscape."
         backgroundImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=800&fit=crop"
       />
 
-      {/* Impact Stats */}
-      <ImpactStatsSection />
+      {/* Program Overview Stats */}
+      <Section variant="secondary" padding="lg">
+        <Container size="xl">
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-6">
+              Programs at a Glance
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+              Six comprehensive programs working together to transform Tanzania's legal aid landscape
+            </Typography>
+          </div>
 
-      {/* Programs Overview */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card variant="elevated" hover className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Target className="h-8 w-8 text-primary" />
+              </div>
+              <Typography variant="h3" className="text-primary mb-2">6</Typography>
+              <Typography variant="h4" className="mb-2">Active Programs</Typography>
+              <Typography variant="bodySmall" className="text-neutral-gray">
+                Comprehensive coverage
+              </Typography>
+            </Card>
+
+            <Card variant="elevated" hover className="text-center">
+              <div className="w-16 h-16 bg-secondary-orange/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <DollarSign className="h-8 w-8 text-secondary-orange" />
+              </div>
+              <Typography variant="h3" className="text-secondary-orange mb-2">$27M+</Typography>
+              <Typography variant="h4" className="mb-2">Total Investment</Typography>
+              <Typography variant="bodySmall" className="text-neutral-gray">
+                Program budgets
+              </Typography>
+            </Card>
+
+            <Card variant="elevated" hover className="text-center">
+              <div className="w-16 h-16 bg-secondary-teal/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-secondary-teal" />
+              </div>
+              <Typography variant="h3" className="text-secondary-teal mb-2">500K+</Typography>
+              <Typography variant="h4" className="mb-2">Direct Beneficiaries</Typography>
+              <Typography variant="bodySmall" className="text-neutral-gray">
+                Lives impacted
+              </Typography>
+            </Card>
+
+            <Card variant="elevated" hover className="text-center">
+              <div className="w-16 h-16 bg-secondary-yellow/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Globe className="h-8 w-8 text-secondary-yellow" />
+              </div>
+              <Typography variant="h3" className="text-secondary-yellow mb-2">184</Typography>
+              <Typography variant="h4" className="mb-2">Districts Covered</Typography>
+              <Typography variant="bodySmall" className="text-neutral-gray">
+                Nationwide reach
+              </Typography>
+            </Card>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Detailed Program Showcase */}
       <Section variant="default" padding="xl">
         <Container size="xl">
           <div className="text-center mb-16">
-            <Typography variant="overline" className="text-primary font-bold mb-4">
-              ACTIVE PROGRAMS
-            </Typography>
+            <div className="inline-flex items-center bg-primary/10 rounded-full px-6 py-3 mb-6">
+              <BookOpen className="h-5 w-5 mr-3 text-primary" />
+              <Typography variant="overline" className="text-primary font-bold">
+                ACTIVE PROGRAMS
+              </Typography>
+            </div>
             <Typography variant="h2" className="mb-6">
-              Strategic Initiatives Driving Change
+              Our Comprehensive Program Portfolio
             </Typography>
             <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
               Each program is designed to address specific challenges in Tanzania's justice system, 
-              creating lasting impact through strategic partnerships and community empowerment.
+              working together to create a comprehensive ecosystem of legal empowerment.
+            </Typography>
+          </div>
+
+          <div className="space-y-16">
+            {programs.map((program, index) => (
+              <div key={program.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                  <Card variant="elevated" hover className="overflow-hidden group">
+                    <div className="relative">
+                      <img 
+                        src={program.image} 
+                        alt={program.title}
+                        className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className={`absolute inset-0 bg-gradient-to-t ${program.color} opacity-80`} />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-20 h-20 bg-white/20 rounded-xl flex items-center justify-center">
+                          <div className="text-white">
+                            {program.icon}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="absolute top-4 left-4 bg-white/90 text-primary px-3 py-1 rounded-full text-sm font-semibold">
+                        {program.category}
+                      </div>
+                      <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        {program.status}
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+
+                <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+                  <div className="space-y-6">
+                    <div>
+                      <Typography variant="h3" className="mb-4 group-hover:text-primary transition-colors">
+                        {program.title}
+                      </Typography>
+                      <Typography variant="body" className="text-neutral-gray mb-6 leading-relaxed">
+                        {program.longDescription}
+                      </Typography>
+                    </div>
+
+                    {/* Program Stats */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-4 bg-neutral-50 rounded-lg">
+                        <div className="flex items-center mb-2">
+                          <Calendar className="h-4 w-4 text-primary mr-2" />
+                          <Typography variant="bodySmall" className="text-neutral-gray">Duration</Typography>
+                        </div>
+                        <Typography variant="h4" className="text-primary">{program.duration}</Typography>
+                      </div>
+                      <div className="p-4 bg-neutral-50 rounded-lg">
+                        <div className="flex items-center mb-2">
+                          <DollarSign className="h-4 w-4 text-secondary-orange mr-2" />
+                          <Typography variant="bodySmall" className="text-neutral-gray">Budget</Typography>
+                        </div>
+                        <Typography variant="h4" className="text-secondary-orange">{program.budget}</Typography>
+                      </div>
+                      <div className="p-4 bg-neutral-50 rounded-lg col-span-2">
+                        <div className="flex items-center mb-2">
+                          <UserCheck className="h-4 w-4 text-secondary-teal mr-2" />
+                          <Typography variant="bodySmall" className="text-neutral-gray">Beneficiaries</Typography>
+                        </div>
+                        <Typography variant="h4" className="text-secondary-teal">{program.beneficiaries}</Typography>
+                      </div>
+                    </div>
+
+                    {/* Key Achievements */}
+                    <div>
+                      <Typography variant="h4" className="mb-3 flex items-center">
+                        <Award className="h-5 w-5 text-primary mr-2" />
+                        Key Achievements
+                      </Typography>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {program.keyAchievements.map((achievement, achIndex) => (
+                          <div key={achIndex} className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                            <Typography variant="bodySmall" className="text-neutral-gray">
+                              {achievement}
+                            </Typography>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Focus Areas */}
+                    <div>
+                      <Typography variant="h4" className="mb-3">Focus Areas</Typography>
+                      <div className="flex flex-wrap gap-2">
+                        {program.focusAreas.map((area, areaIndex) => (
+                          <span 
+                            key={areaIndex}
+                            className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
+                          >
+                            {area}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-4">
+                      <Link to={`/programs/${program.id}`}>
+                        <Button size="lg" className="group">
+                          Learn More About This Program
+                          <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Upcoming Programs */}
+      <Section variant="secondary" padding="lg">
+        <Container size="xl">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-secondary-orange/10 rounded-full px-6 py-3 mb-6">
+              <TrendingUp className="h-5 w-5 mr-3 text-secondary-orange" />
+              <Typography variant="overline" className="text-secondary-orange font-bold">
+                UPCOMING INITIATIVES
+              </Typography>
+            </div>
+            <Typography variant="h2" className="mb-6">
+              Future Programs in Development
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray">
+              New programs launching soon to address emerging challenges in access to justice
             </Typography>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {programs.map((program, index) => (
-              <Card key={index} variant="elevated" hover className="group overflow-hidden">
+            {upcomingPrograms.map((program, index) => (
+              <Card key={index} variant="elevated" hover className="overflow-hidden group">
                 <div className="relative">
                   <img 
                     src={program.image} 
                     alt={program.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold ${
-                    program.status === 'Active' 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-blue-100 text-blue-800'
-                  }`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4 bg-secondary-orange text-white px-3 py-1 rounded-full text-sm font-semibold">
                     {program.status}
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <Typography variant="h4" className="text-white mb-2">
+                      {program.title}
+                    </Typography>
                   </div>
                 </div>
                 
                 <div className="p-6">
-                  <Typography variant="h3" className="mb-3 group-hover:text-primary transition-colors">
-                    {program.title}
-                  </Typography>
-                  
                   <Typography variant="body" className="text-neutral-gray mb-4 leading-relaxed">
                     {program.description}
                   </Typography>
                   
-                  {/* Program Metrics */}
-                  <div className="grid grid-cols-3 gap-4 mb-6 py-4 border-t border-b border-neutral-100">
-                    <div className="text-center">
-                      <div className="flex items-center justify-center mb-2">
-                        <Users className="h-4 w-4 text-primary mr-1" />
-                      </div>
-                      <Typography variant="bodySmall" className="font-semibold text-primary">
-                        {program.beneficiaries}
-                      </Typography>
-                      <Typography variant="caption" className="text-neutral-gray">
-                        Beneficiaries
-                      </Typography>
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="p-3 bg-neutral-50 rounded-lg text-center">
+                      <Typography variant="bodySmall" className="text-neutral-gray mb-1">Launch Date</Typography>
+                      <Typography variant="h4" className="text-primary">{program.launchDate}</Typography>
                     </div>
-                    <div className="text-center">
-                      <div className="flex items-center justify-center mb-2">
-                        <MapPin className="h-4 w-4 text-secondary-teal mr-1" />
-                      </div>
-                      <Typography variant="bodySmall" className="font-semibold text-secondary-teal">
-                        {program.regions}
-                      </Typography>
-                      <Typography variant="caption" className="text-neutral-gray">
-                        Coverage
-                      </Typography>
-                    </div>
-                    <div className="text-center">
-                      <div className="flex items-center justify-center mb-2">
-                        <Calendar className="h-4 w-4 text-secondary-orange mr-1" />
-                      </div>
-                      <Typography variant="bodySmall" className="font-semibold text-secondary-orange">
-                        {program.duration}
-                      </Typography>
-                      <Typography variant="caption" className="text-neutral-gray">
-                        Duration
-                      </Typography>
+                    <div className="p-3 bg-neutral-50 rounded-lg text-center">
+                      <Typography variant="bodySmall" className="text-neutral-gray mb-1">Budget</Typography>
+                      <Typography variant="h4" className="text-secondary-orange">{program.budget}</Typography>
                     </div>
                   </div>
                   
-                  {/* Key Activities */}
-                  <div className="mb-6">
-                    <Typography variant="h4" className="mb-3">
-                      Key Activities
-                    </Typography>
-                    <ul className="space-y-2">
-                      {program.keyActivities.slice(0, 3).map((activity, activityIndex) => (
-                        <li key={activityIndex} className="flex items-start text-sm text-neutral-gray">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                          {activity}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <Link to={`/programs/${program.id}`}>
-                    <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-white transition-colors">
-                      Learn More About This Program
-                    </Button>
-                  </Link>
+                  <Button size="sm" variant="outline" className="w-full">
+                    Get Updates on This Program
+                  </Button>
                 </div>
               </Card>
             ))}
@@ -291,78 +491,55 @@ const Programs = () => {
         </Container>
       </Section>
 
-      {/* Program Application Process */}
-      <Section variant="secondary" padding="lg">
+      {/* Program Impact Visualization */}
+      <Section variant="default" padding="lg">
         <Container size="xl">
           <div className="text-center mb-12">
             <Typography variant="h2" className="mb-6">
-              How to Partner With Us
+              Interconnected Impact
             </Typography>
-            <Typography variant="body" className="text-neutral-gray">
-              Our partnership process ensures alignment with strategic objectives and sustainable impact
+            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+              Our programs work synergistically to create comprehensive change across the legal aid ecosystem
             </Typography>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              {
-                step: "1",
-                title: "Expression of Interest",
-                description: "Submit initial proposal outlining your organization's capacity and proposed program approach.",
-                icon: <Target className="h-6 w-6" />
-              },
-              {
-                step: "2", 
-                title: "Due Diligence Review",
-                description: "We conduct comprehensive assessment of organizational capacity and program feasibility.",
-                icon: <Users className="h-6 w-6" />
-              },
-              {
-                step: "3",
-                title: "Partnership Agreement",
-                description: "Formal agreement outlining roles, responsibilities, and performance indicators.",
-                icon: <BookOpen className="h-6 w-6" />
-              },
-              {
-                step: "4",
-                title: "Implementation & Support",
-                description: "Ongoing technical assistance, monitoring, and capacity building throughout program duration.",
-                icon: <Award className="h-6 w-6" />
-              }
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <div className="text-primary">
-                    {item.icon}
+          <div className="relative">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {programs.slice(0, 6).map((program, index) => (
+                <Card key={program.id} variant="flat" className="text-center group hover:shadow-lg transition-shadow">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${program.color} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
+                    <div className="text-white">
+                      {program.icon}
+                    </div>
                   </div>
-                </div>
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white font-bold">{item.step}</span>
-                </div>
-                <Typography variant="h4" className="mb-3">
-                  {item.title}
-                </Typography>
-                <Typography variant="bodySmall" className="text-neutral-gray">
-                  {item.description}
-                </Typography>
-              </div>
-            ))}
+                  <Typography variant="h4" className="mb-2">
+                    {program.title}
+                  </Typography>
+                  <Typography variant="bodySmall" className="text-neutral-gray mb-3">
+                    {program.description}
+                  </Typography>
+                  <Typography variant="caption" className="text-primary font-semibold">
+                    {program.beneficiaries}
+                  </Typography>
+                </Card>
+              ))}
+            </div>
           </div>
         </Container>
       </Section>
 
       {/* Testimonials */}
       <TestimonialSection
-        title="Voices from Our Programs"
-        subtitle="Hear from partners and beneficiaries about the impact of our program initiatives"
+        title="Program Impact Stories"
+        subtitle="Hear from program participants and beneficiaries about the transformative impact of our initiatives"
         testimonials={testimonials}
       />
 
-      {/* FAQ Section */}
-      <FAQSection
-        title="Program Partnership Questions"
-        subtitle="Common questions about our programs and partnership opportunities"
-        faqs={faqs}
+      {/* Partners Section */}
+      <PartnershipsSection
+        title="Program Partners"
+        subtitle="Collaborating with diverse stakeholders to maximize program effectiveness and reach"
+        partners={partnerData}
       />
 
       {/* Call to Action */}

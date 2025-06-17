@@ -16,13 +16,15 @@ interface FAQSectionProps {
   subtitle?: string;
   faqs: FAQ[];
   variant?: 'default' | 'secondary' | 'primary';
+  backgroundImage?: string;
 }
 
 const FAQSection = ({ 
   title, 
   subtitle, 
   faqs, 
-  variant = 'default' 
+  variant = 'default',
+  backgroundImage
 }: FAQSectionProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -31,8 +33,18 @@ const FAQSection = ({
   };
 
   return (
-    <Section variant={variant} padding="xl">
-      <Container size="xl">
+    <Section variant={variant} padding="xl" className="relative">
+      {backgroundImage && (
+        <>
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url('${backgroundImage}')` }}
+          />
+          <div className="absolute inset-0 bg-black/20" />
+        </>
+      )}
+      
+      <Container size="xl" className="relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-primary/10 rounded-full px-6 py-3 mb-6">
             <HelpCircle className="h-5 w-5 mr-3 text-primary" />
@@ -52,7 +64,7 @@ const FAQSection = ({
 
         <div className="max-w-4xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
-            <Card key={index} variant="flat" className="overflow-hidden">
+            <Card key={index} variant="elevated" className="overflow-hidden backdrop-blur-sm bg-white/95">
               <button
                 className="w-full text-left p-6 flex items-center justify-between hover:bg-neutral-50 transition-colors"
                 onClick={() => toggleFAQ(index)}
