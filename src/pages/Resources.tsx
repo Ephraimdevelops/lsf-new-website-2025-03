@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 import HeroSection from '@/components/shared/HeroSection';
 import Breadcrumb from '@/components/shared/Breadcrumb';
@@ -21,7 +20,8 @@ import {
   Heart,
   Clock,
   Eye,
-  Star
+  Star,
+  MessageSquare
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -238,27 +238,31 @@ const Resources = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {resourceCategories.slice(1).map((category, index) => (
-              <Card 
-                key={category.id} 
-                variant="elevated" 
-                hover 
-                className={`text-center cursor-pointer transition-all duration-300 ${
+              <div
+                key={category.id}
+                className={`cursor-pointer transition-all duration-300 ${
                   selectedCategory === category.id ? 'ring-2 ring-primary' : ''
                 }`}
                 onClick={() => setSelectedCategory(category.id)}
               >
-                <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <div className="text-primary">
-                    {category.icon}
+                <Card 
+                  variant="elevated" 
+                  hover 
+                  className="text-center"
+                >
+                  <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <div className="text-primary">
+                      {category.icon}
+                    </div>
                   </div>
-                </div>
-                <Typography variant="h4" className="mb-2">
-                  {category.name}
-                </Typography>
-                <Typography variant="bodySmall" className="text-primary font-semibold">
-                  {category.count} Resources
-                </Typography>
-              </Card>
+                  <Typography variant="h4" className="mb-2">
+                    {category.name}
+                  </Typography>
+                  <Typography variant="bodySmall" className="text-primary font-semibold">
+                    {category.count} Resources
+                  </Typography>
+                </Card>
+              </div>
             ))}
           </div>
         </Container>
