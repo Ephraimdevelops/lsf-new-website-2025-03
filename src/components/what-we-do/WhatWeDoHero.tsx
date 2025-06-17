@@ -1,9 +1,10 @@
 
-import { ArrowRight, PlayCircle, Target } from 'lucide-react';
+import { ArrowRight, PlayCircle, Target, Zap } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 
 const WhatWeDoHero = () => {
@@ -11,10 +12,10 @@ const WhatWeDoHero = () => {
   const [activeStatIndex, setActiveStatIndex] = useState(0);
   
   const impactStats = [
-    { value: "2.8M+", label: "Tanzanians Reached", color: "text-secondary-orange" },
-    { value: "4,000+", label: "Trained Paralegals", color: "text-secondary-teal" },
-    { value: "31", label: "Regions Covered", color: "text-secondary-yellow" },
-    { value: "78%", label: "Cases Resolved", color: "text-white" }
+    { value: "2.8M+", label: "Tanzanians Reached", color: "text-secondary-orange", icon: "👥" },
+    { value: "4,000+", label: "Trained Paralegals", color: "text-secondary-teal", icon: "⚖️" },
+    { value: "31", label: "Regions Covered", color: "text-secondary-yellow", icon: "📍" },
+    { value: "78%", label: "Cases Resolved", color: "text-white", icon: "✅" }
   ];
   
   useEffect(() => {
@@ -45,8 +46,8 @@ const WhatWeDoHero = () => {
         }}
       ></div>
       
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-black opacity-90"></div>
+      {/* Enhanced Gradient Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-dark/95 to-black/90"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
       
       {/* Animated Background Elements */}
@@ -57,7 +58,7 @@ const WhatWeDoHero = () => {
       </div>
       
       <Container size="xl" className="relative z-10">
-        <div className="text-center text-white max-w-5xl mx-auto px-4">
+        <div className="text-center text-white max-w-6xl mx-auto px-4">
           <div 
             className={`inline-flex items-center space-x-3 mb-6 md:mb-8 bg-white/10 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 border border-white/20 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}
           >
@@ -65,6 +66,10 @@ const WhatWeDoHero = () => {
             <span className="text-secondary-orange font-bold text-sm md:text-lg uppercase tracking-wider">
               Our Work
             </span>
+            <Badge className="bg-secondary-orange text-white border-0">
+              <Zap className="h-3 w-3 mr-1" />
+              Transforming Lives
+            </Badge>
           </div>
           
           <Typography 
@@ -72,38 +77,41 @@ const WhatWeDoHero = () => {
             className={`text-white mb-6 md:mb-8 leading-none text-4xl md:text-6xl lg:text-8xl font-bold transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
             Justice for All.
-            <span className="block text-secondary-orange">Empowerment for Each.</span>
+            <span className="block text-secondary-orange mt-4">Empowerment for Each.</span>
           </Typography>
           
           <Typography 
             variant="body" 
-            className={`text-white/90 mb-8 md:mb-12 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`text-white/95 mb-8 md:mb-12 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
             At the Legal Services Facility (LSF), our mission is clear: to ensure every Tanzanian—especially women, girls, and marginalized groups—can understand, access, and benefit from justice.
           </Typography>
           
           <div className={`flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-12 md:mb-16 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Link to="/what-we-do/grant-making">
-              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-8 md:px-10 py-4 md:py-5 text-base md:text-lg rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-8 md:px-10 py-4 md:py-5 text-base md:text-lg rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 shadow-2xl">
                 Explore Our Grants
                 <ArrowRight className="ml-3 h-5 w-5 md:h-6 md:w-6" />
               </Button>
             </Link>
             <Link to="/impact">
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-8 md:px-10 py-4 md:py-5 text-base md:text-lg rounded-full transition-all duration-300">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-8 md:px-10 py-4 md:py-5 text-base md:text-lg rounded-full transition-all duration-300 backdrop-blur-sm">
                 <PlayCircle className="mr-3 h-5 w-5 md:h-6 md:w-6" />
                 Watch Our Impact
               </Button>
             </Link>
           </div>
           
-          {/* Impact Stats - Enhanced with Animation */}
-          <div className={`grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {/* Enhanced Impact Stats with Animation */}
+          <div className={`grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {impactStats.map((stat, index) => (
               <div 
                 key={index} 
-                className={`text-center transform transition-all duration-500 ${activeStatIndex === index ? 'scale-110' : 'scale-100'}`}
+                className={`text-center transform transition-all duration-500 ${activeStatIndex === index ? 'scale-110' : 'scale-100'} bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 group`}
               >
+                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
+                  {stat.icon}
+                </div>
                 <div className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 ${stat.color} transition-all duration-500`}>
                   {stat.value}
                 </div>

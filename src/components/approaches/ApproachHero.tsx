@@ -30,8 +30,9 @@ const ApproachHero = ({ approaches }: ApproachHeroProps) => {
         }}
       ></div>
       
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-black opacity-95"></div>
+      {/* Enhanced Gradient Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-dark/95 to-black/90"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
@@ -49,36 +50,36 @@ const ApproachHero = ({ approaches }: ApproachHeroProps) => {
             </span>
           </div>
           
-          <Typography variant="display" className="text-white mb-8 leading-none text-6xl font-bold">
+          <Typography variant="display" className="text-white mb-8 leading-none text-5xl md:text-7xl font-bold">
             How We Drive
-            <span className="block text-secondary-orange">Lasting Change</span>
+            <span className="block text-secondary-orange mt-4">Lasting Change</span>
           </Typography>
           
-          <Typography variant="body" className="text-white/90 mb-12 text-2xl max-w-4xl mx-auto leading-relaxed">
+          <Typography variant="body" className="text-white/95 mb-12 text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
             Five integrated approaches that multiply our impact and create sustainable pathways to justice for all Tanzanians.
           </Typography>
 
           {/* Key Metrics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-16">
-            <div className="text-center">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <div className="text-4xl font-bold mb-2 text-secondary-orange">
                 <AnimatedCounter end={totalPartners} suffix="+" />
               </div>
               <div className="text-white/80 text-sm uppercase tracking-wide">Partners</div>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <div className="text-4xl font-bold mb-2 text-secondary-teal">
                 <AnimatedCounter end={totalFunds} suffix="M+" />
               </div>
               <div className="text-white/80 text-sm uppercase tracking-wide">Funds Distributed</div>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <div className="text-4xl font-bold mb-2 text-secondary-yellow">
                 <AnimatedCounter end={totalReforms} suffix="+" />
               </div>
               <div className="text-white/80 text-sm uppercase tracking-wide">Policy Reforms</div>
             </div>
-            <div className="text-center">
+            <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <div className="text-4xl font-bold mb-2 text-white">
                 <AnimatedCounter end={totalStudies} suffix="+" />
               </div>
