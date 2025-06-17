@@ -4,6 +4,9 @@ import Layout from '../components/layout/Layout';
 import WhatWeDoHero from '../components/what-we-do/WhatWeDoHero';
 import StrategicFocusSection from '../components/what-we-do/StrategicFocusSection';
 import ProjectsCarousel from '../components/what-we-do/ProjectsCarousel';
+import StrategicPartnershipsSection from '../components/what-we-do/StrategicPartnershipsSection';
+import SuccessStoriesSection from '../components/what-we-do/SuccessStoriesSection';
+import ResourcesToolsSection from '../components/what-we-do/ResourcesToolsSection';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
@@ -168,6 +171,9 @@ const WhatWeDo = () => {
       </section>
       
       <StrategicFocusSection />
+      <SuccessStoriesSection />
+      <StrategicPartnershipsSection />
+      <ResourcesToolsSection />
       <ProjectsCarousel />
       
       {/* Call to Action */}
