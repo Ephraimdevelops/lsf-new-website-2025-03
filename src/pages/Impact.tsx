@@ -1,318 +1,412 @@
 
-import Layout from '../components/layout/Layout';
-import HeroSection from '../components/shared/HeroSection';
+import Layout from '@/components/layout/Layout';
+import HeroSection from '@/components/shared/HeroSection';
+import Breadcrumb from '@/components/shared/Breadcrumb';
 import Container from '@/components/shared/Container';
+import Section from '@/components/shared/Section';
 import Typography from '@/components/shared/Typography';
-import AnimatedCounter from '@/components/shared/AnimatedCounter';
+import Card from '@/components/shared/Card';
+import TestimonialSection from '@/components/shared/TestimonialSection';
+import AnimatedStats from '@/components/about/AnimatedStats';
+import GetInvolvedCTA from '@/components/what-we-do/GetInvolvedCTA';
+import { BarChart, TrendingUp, Users, MapPin, Scale, Award, Heart, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  TrendingUp, Users, Scale, Heart, MapPin, Target, Award, 
-  Globe, Briefcase, BookOpen, Shield, Lightbulb, ArrowRight,
-  CheckCircle, Clock, Star, Calendar, Phone, Mail, Download,
-  BarChart3, Quote
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const Impact = () => {
-  const bigPictureMetrics = [
-    { value: 31, suffix: "/31", label: "Regions Served", description: "Across Mainland Tanzania and Zanzibar", icon: MapPin },
-    { value: 4000, suffix: "+", label: "Community Paralegals", description: "Trained and active nationwide", icon: Users },
-    { value: 2800000, suffix: "+", label: "Tanzanians Reached", description: "With legal education and support", icon: Globe },
-    { value: 184, label: "Community Justice Units", description: "Supported across the country", icon: Scale },
-    { value: 60, suffix: "%", label: "Women & Girls", description: "Of total beneficiaries served", icon: Heart },
-    { value: 78, suffix: "%", label: "Community Resolution", description: "Disputes resolved at local level", icon: Target }
+  const impactAreas = [
+    {
+      title: "Legal Aid Access",
+      description: "Dramatically increased access to quality legal aid services across Tanzania",
+      metrics: [
+        { label: "People Served", value: "426,349+", change: "+23% from 2023" },
+        { label: "Legal Aid Providers", value: "180+", change: "+15% from 2023" },
+        { label: "Case Resolution Rate", value: "78%", change: "+5% from 2023" }
+      ],
+      icon: <Scale className="h-8 w-8" />,
+      color: "from-primary to-primary-dark"
+    },
+    {
+      title: "Community Empowerment",
+      description: "Strengthened community capacity to understand and claim legal rights",
+      metrics: [
+        { label: "Paralegals Trained", value: "2,500+", change: "+30% from 2023" },
+        { label: "Communities Reached", value: "1,200+", change: "+25% from 2023" },
+        { label: "Legal Literacy Rate", value: "65%", change: "+12% from 2023" }
+      ],
+      icon: <Users className="h-8 w-8" />,
+      color: "from-secondary-teal to-secondary-teal/80"
+    },
+    {
+      title: "Policy Influence",
+      description: "Successfully advocated for legal reforms that benefit vulnerable populations",
+      metrics: [
+        { label: "Policy Reforms", value: "12", change: "+3 from 2023" },
+        { label: "Government Partnerships", value: "25+", change: "+8 from 2023" },
+        { label: "Legislative Changes", value: "5", change: "+2 from 2023" }
+      ],
+      icon: <Award className="h-8 w-8" />,
+      color: "from-secondary-orange to-secondary-orange/80"
+    },
+    {
+      title: "Women's Rights",
+      description: "Advanced gender equality through targeted legal empowerment initiatives",
+      metrics: [
+        { label: "Women Beneficiaries", value: "62%", change: "+8% from 2023" },
+        { label: "GBV Cases Resolved", value: "5,600+", change: "+18% from 2023" },
+        { label: "Property Rights Claims", value: "3,200+", change: "+22% from 2023" }
+      ],
+      icon: <Heart className="h-8 w-8" />,
+      color: "from-secondary-yellow to-secondary-yellow/80"
+    }
   ];
 
-  const impactStories = [
+  const successStories = [
     {
-      title: "From Silence to Strength",
-      subtitle: "Women's Rights Champion",
-      description: "Amina's journey from a voiceless widow to a community advocate who helped 200+ women claim their inheritance rights.",
-      image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
-      category: "Gender Justice",
-      impact: "200+ Women Empowered",
-      readTime: "3 min read"
+      title: "Land Rights Victory in Mwanza",
+      description: "Community paralegals helped 150 families secure land titles, protecting them from illegal evictions and enabling them to access credit for agricultural development.",
+      image: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=600&h=400&fit=crop",
+      impact: "150 families secured land rights",
+      location: "Mwanza Region",
+      category: "Land Rights"
     },
     {
-      title: "The Paralegal Who Changed Everything",
-      subtitle: "Community Leadership",
-      description: "How John transformed dispute resolution in his village, saving families thousands in legal fees and years of court battles.",
-      image: "/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png",
-      category: "Legal Empowerment",
-      impact: "500+ Cases Resolved",
-      readTime: "4 min read"
+      title: "Women's Cooperative Legal Support",
+      description: "Legal aid enabled 80 women to formalize their cooperative business, access microfinance, and increase their collective income by 300%.",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=400&fit=crop",
+      impact: "300% income increase",
+      location: "Dodoma Region",
+      category: "Economic Rights"
     },
     {
-      title: "Justice Through Technology",
-      subtitle: "Digital Innovation",
-      description: "The story of how our Haki Yangu app reached remote communities, bringing legal aid to people who never thought it was possible.",
-      image: "/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png",
-      category: "Digital Access",
-      impact: "75,000+ Users Served",
-      readTime: "2 min read"
+      title: "Environmental Justice Advocacy",
+      description: "Successful advocacy led to new environmental regulations protecting 5 communities from mining activities affecting their water sources.",
+      image: "https://images.unsplash.com/photo-1569163139394-de44cb40ef4b?w=600&h=400&fit=crop",
+      impact: "5 communities protected",
+      location: "Northern Tanzania",
+      category: "Environmental Rights"
+    },
+    {
+      title: "Youth Legal Empowerment",
+      description: "Trained 200 young advocates who now provide peer legal education in schools, reaching over 5,000 students across 12 regions.",
+      image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&h=400&fit=crop",
+      impact: "5,000 students reached",
+      location: "National Program",
+      category: "Youth Rights"
     }
   ];
 
   const testimonials = [
     {
-      quote: "Through LSF's support, I was able to secure my land rights and now my children have a secure future. The paralegals made legal help accessible in our remote village.",
-      name: "Fatuma M.",
-      location: "Mtwara Region",
-      role: "Farmer & Land Rights Beneficiary",
-      image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png"
+      quote: "Thanks to LSF's support, our organization has grown from serving 50 clients annually to over 2,000. The capacity building and funding have been transformational.",
+      author: "Dr. Elizabeth Mwakatundu",
+      role: "Executive Director",
+      organization: "Arusha Legal Aid Network",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=faces",
+      rating: 5
     },
     {
-      quote: "As a community paralegal trained by LSF, I've been able to help over 200 families in our district resolve disputes without expensive court proceedings.",
-      name: "John K.",
-      location: "Arusha Region", 
+      quote: "The paralegal training changed my life. I've helped resolve over 100 family disputes and now serve as a bridge between my community and the formal justice system.",
+      author: "Mwalimu Hassan",
       role: "Community Paralegal",
-      image: "/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png"
+      organization: "Kilimanjaro Region",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces",
+      rating: 5
     },
     {
-      quote: "LSF's legal empowerment programs transformed our organization's capacity to serve marginalized communities effectively.",
-      name: "Dr. Sarah W.",
-      location: "Dar es Salaam",
-      role: "Partner Organization Director",
-      image: "/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png"
+      quote: "LSF's advocacy work directly contributed to the Legal Aid Act. This framework now ensures that legal aid is coordinated nationally and reaches those who need it most.",
+      author: "Hon. Justice Stella Manyara",
+      role: "High Court Judge",
+      organization: "Judiciary of Tanzania",
+      image: "https://images.unsplash.com/photo-1594736797933-d0401ba051ff?w=100&h=100&fit=crop&crop=faces",
+      rating: 5
     }
+  ];
+
+  const regionalImpact = [
+    { region: "Dar es Salaam", beneficiaries: 45000, providers: 25, color: "bg-primary" },
+    { region: "Mwanza", beneficiaries: 38000, providers: 18, color: "bg-secondary-teal" },
+    { region: "Arusha", beneficiaries: 32000, providers: 16, color: "bg-secondary-orange" },
+    { region: "Dodoma", beneficiaries: 28000, providers: 14, color: "bg-secondary-yellow" },
+    { region: "Mbeya", beneficiaries: 25000, providers: 12, color: "bg-green-500" },
+    { region: "Morogoro", beneficiaries: 22000, providers: 11, color: "bg-blue-500" }
   ];
 
   return (
     <Layout>
-      {/* Hero Section with Compelling Story */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('/lovable-uploads/background with mother umage .png')` }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-primary/30"></div>
-        
-        <Container className="relative z-10 text-center text-white">
-          <Typography variant="overline" className="text-secondary-orange mb-6 text-lg font-bold tracking-wider">
-            REAL STORIES. REAL IMPACT.
-          </Typography>
-          <Typography variant="h1" className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            Every Case Changes<br />
-            <span className="text-secondary-orange">Everything</span>
-          </Typography>
-          <Typography variant="body" className="text-2xl mb-12 max-w-4xl mx-auto text-white/90 leading-relaxed">
-            Behind every statistic is a human story of transformation. Meet the people whose lives have been forever changed through access to justice.
-          </Typography>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-xl px-8 py-4">
-              <Heart className="mr-3 h-6 w-6" />
-              Read Their Stories
-            </Button>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-xl px-8 py-4">
-              <BarChart3 className="mr-3 h-6 w-6" />
-              See Our Impact
-            </Button>
+      {/* Breadcrumb Navigation */}
+      <div className="bg-neutral-light py-4">
+        <Container size="xl">
+          <Breadcrumb />
+        </Container>
+      </div>
+
+      <HeroSection
+        icon={<TrendingUp className="h-8 w-8" />}
+        badge="OUR IMPACT"
+        title="Measuring Change, Creating Lasting Impact"
+        description="Over 15 years, we've transformed Tanzania's legal aid landscape through strategic interventions, innovative partnerships, and evidence-based advocacy that puts justice within reach of every citizen."
+        backgroundImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=800&fit=crop"
+      />
+
+      {/* Overall Impact Stats */}
+      <AnimatedStats />
+
+      {/* Impact Areas Detail */}
+      <Section variant="default" padding="xl">
+        <Container size="xl">
+          <div className="text-center mb-16">
+            <Typography variant="overline" className="text-primary font-bold mb-4">
+              IMPACT AREAS
+            </Typography>
+            <Typography variant="h2" className="mb-6">
+              Transforming Lives Through
+              <span className="block text-primary">Strategic Interventions</span>
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Our comprehensive approach addresses multiple dimensions of legal empowerment, 
+              creating sustainable change that benefits individuals, communities, and the justice system as a whole.
+            </Typography>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {impactAreas.map((area, index) => (
+              <Card key={index} variant="elevated" hover className="group">
+                <div className={`bg-gradient-to-br ${area.color} p-6 rounded-t-2xl -m-8 mb-6`}>
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-4">
+                      <div className="text-white">
+                        {area.icon}
+                      </div>
+                    </div>
+                    <Typography variant="h3" className="text-white">
+                      {area.title}
+                    </Typography>
+                  </div>
+                  <Typography variant="body" className="text-white/90">
+                    {area.description}
+                  </Typography>
+                </div>
+
+                <div className="space-y-4">
+                  {area.metrics.map((metric, metricIndex) => (
+                    <div key={metricIndex} className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                      <div>
+                        <Typography variant="bodySmall" className="text-neutral-gray mb-1">
+                          {metric.label}
+                        </Typography>
+                        <Typography variant="h4" className="text-neutral-dark">
+                          {metric.value}
+                        </Typography>
+                      </div>
+                      <div className="text-right">
+                        <div className="flex items-center text-green-600 text-sm font-semibold">
+                          <TrendingUp className="h-4 w-4 mr-1" />
+                          {metric.change}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            ))}
           </div>
         </Container>
-      </section>
+      </Section>
 
-      {/* Featured Impact Stories */}
-      <section className="py-24 bg-white">
-        <Container>
-          <div className="text-center mb-16">
-            <Typography variant="h2" className="mb-8 text-4xl md:text-5xl">
-              Stories That Inspire Change
+      {/* Regional Impact Map */}
+      <Section variant="secondary" padding="lg">
+        <Container size="xl">
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-6">
+              Regional Impact Overview
             </Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-xl">
-              These aren't just success stories—they're proof that justice can reach anyone, anywhere.
+            <Typography variant="body" className="text-neutral-gray">
+              Our presence and impact across Tanzania's key regions
             </Typography>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {impactStories.map((story, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4">
-                <div className="aspect-[4/5] relative">
-                  <img 
-                    src={story.image}
-                    alt={story.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
-                  
-                  {/* Category Badge */}
-                  <div className="absolute top-6 left-6">
-                    <span className="bg-secondary-orange/90 text-white px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm">
-                      {story.category}
-                    </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {regionalImpact.map((region, index) => (
+              <Card key={index} variant="elevated" hover className="text-center">
+                <div className={`w-16 h-16 ${region.color} rounded-xl flex items-center justify-center mx-auto mb-4`}>
+                  <MapPin className="h-8 w-8 text-white" />
+                </div>
+                <Typography variant="h3" className="mb-2">
+                  {region.region}
+                </Typography>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Typography variant="bodySmall" className="text-neutral-gray">
+                      Beneficiaries:
+                    </Typography>
+                    <Typography variant="bodySmall" className="font-semibold">
+                      {region.beneficiaries.toLocaleString()}
+                    </Typography>
                   </div>
+                  <div className="flex justify-between items-center">
+                    <Typography variant="bodySmall" className="text-neutral-gray">
+                      Providers:
+                    </Typography>
+                    <Typography variant="bodySmall" className="font-semibold">
+                      {region.providers}
+                    </Typography>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
-                  {/* Impact Badge */}
-                  <div className="absolute top-6 right-6">
-                    <span className="bg-white/20 text-white px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">
-                      {story.impact}
-                    </span>
+      {/* Success Stories */}
+      <Section variant="default" padding="xl">
+        <Container size="xl">
+          <div className="text-center mb-16">
+            <Typography variant="overline" className="text-primary font-bold mb-4">
+              SUCCESS STORIES
+            </Typography>
+            <Typography variant="h2" className="mb-6">
+              Real Lives, Real Change
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Behind every statistic is a human story of empowerment, justice, and hope. 
+              These stories showcase the transformative power of accessible legal aid.
+            </Typography>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {successStories.map((story, index) => (
+              <Card key={index} variant="elevated" hover className="group overflow-hidden">
+                <div className="relative">
+                  <img 
+                    src={story.image} 
+                    alt={story.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    {story.category}
                   </div>
+                </div>
+                
+                <div className="p-6">
+                  <Typography variant="h3" className="mb-3 group-hover:text-primary transition-colors">
+                    {story.title}
+                  </Typography>
                   
-                  {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <Typography variant="overline" className="text-secondary-orange mb-2 text-sm">
-                      {story.subtitle}
-                    </Typography>
-                    <Typography variant="h3" className="text-white mb-4 text-2xl leading-tight">
-                      {story.title}
-                    </Typography>
-                    <Typography variant="body" className="text-white/90 mb-6 leading-relaxed">
-                      {story.description}
-                    </Typography>
-                    <div className="flex items-center justify-between">
-                      <Button className="bg-primary hover:bg-primary/90 group-hover:bg-secondary-orange group-hover:hover:bg-secondary-orange/90 transition-all duration-300">
-                        Read Full Story
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                      <span className="text-white/70 text-sm">{story.readTime}</span>
+                  <Typography variant="body" className="text-neutral-gray mb-4 leading-relaxed">
+                    {story.description}
+                  </Typography>
+                  
+                  <div className="flex items-center justify-between pt-4 border-t border-neutral-100">
+                    <div>
+                      <Typography variant="bodySmall" className="font-semibold text-primary">
+                        {story.impact}
+                      </Typography>
+                      <Typography variant="caption" className="text-neutral-gray">
+                        Key Impact
+                      </Typography>
+                    </div>
+                    <div className="text-right">
+                      <Typography variant="bodySmall" className="font-semibold">
+                        {story.location}
+                      </Typography>
+                      <Typography variant="caption" className="text-neutral-gray">
+                        Location
+                      </Typography>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </Container>
-      </section>
+      </Section>
 
-      {/* Visual Impact Statistics */}
-      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-secondary-orange rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 bg-secondary-teal rounded-full blur-3xl"></div>
-        </div>
-        
-        <Container className="relative z-10">
-          <div className="text-center mb-16">
-            <Typography variant="h2" className="text-white mb-8 text-4xl md:text-5xl">
-              The Numbers Tell Our Story
+      {/* Impact Methodology */}
+      <Section variant="secondary" padding="lg">
+        <Container size="xl">
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-6">
+              How We Measure Impact
             </Typography>
-            <Typography variant="body" className="text-white/90 max-w-3xl mx-auto text-xl">
-              Each statistic represents lives transformed and communities empowered across Tanzania.
-            </Typography>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {bigPictureMetrics.map((metric, index) => (
-              <div key={index} className="group text-center">
-                <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-105">
-                  <div className="w-20 h-20 bg-secondary-orange/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-secondary-orange/30 transition-colors">
-                    <metric.icon className="h-10 w-10 text-secondary-orange" />
-                  </div>
-                  <div className="mb-4">
-                    <Typography variant="h1" className="text-5xl text-white font-bold">
-                      <AnimatedCounter 
-                        end={metric.value} 
-                        suffix={metric.suffix || ""} 
-                        duration={2000}
-                      />
-                    </Typography>
-                  </div>
-                  <Typography variant="h4" className="text-white mb-3 text-xl">
-                    {metric.label}
-                  </Typography>
-                  <Typography variant="bodySmall" className="text-white/80">
-                    {metric.description}
-                  </Typography>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Human Stories Testimonials */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <Container>
-          <div className="text-center mb-16">
-            <Typography variant="h2" className="mb-8 text-4xl md:text-5xl">
-              In Their Own Words
-            </Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-xl">
-              The most powerful measure of our impact comes from the voices of those we serve.
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Our comprehensive monitoring and evaluation framework ensures accountability 
+              and continuous improvement in all our interventions.
             </Typography>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                <Quote className="h-12 w-12 text-primary/20 absolute top-6 right-6" />
-                
-                <div className="flex items-center mb-6">
-                  <img 
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover mr-4 border-4 border-primary/10"
-                  />
-                  <div>
-                    <Typography variant="h4" className="mb-1">{testimonial.name}</Typography>
-                    <Typography variant="bodySmall" className="text-primary font-medium">{testimonial.role}</Typography>
-                    <Typography variant="small" className="text-neutral-gray">{testimonial.location}</Typography>
+            {[
+              {
+                icon: <BarChart className="h-8 w-8" />,
+                title: "Quantitative Metrics",
+                description: "We track concrete numbers: people served, cases resolved, providers trained, and geographic coverage.",
+                color: "from-primary to-primary-dark"
+              },
+              {
+                icon: <Users className="h-8 w-8" />,
+                title: "Qualitative Assessment",
+                description: "Regular surveys and interviews capture satisfaction levels, capacity improvements, and quality of services.",
+                color: "from-secondary-teal to-secondary-teal/80"
+              },
+              {
+                icon: <TrendingUp className="h-8 w-8" />,
+                title: "Systemic Change",
+                description: "We measure policy influence, institutional strengthening, and long-term sustainability of interventions.",
+                color: "from-secondary-orange to-secondary-orange/80"
+              }
+            ].map((method, index) => (
+              <Card key={index} variant="elevated" hover className="text-center">
+                <div className={`w-16 h-16 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center mx-auto mb-4`}>
+                  <div className="text-white">
+                    {method.icon}
                   </div>
                 </div>
-                
-                <blockquote className="mb-6">
-                  <Typography variant="body" className="text-neutral-gray italic leading-relaxed text-lg">
-                    "{testimonial.quote}"
-                  </Typography>
-                </blockquote>
-                
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-secondary-orange fill-current" />
-                    ))}
-                  </div>
-                  <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                    Read More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
+                <Typography variant="h4" className="mb-3">
+                  {method.title}
+                </Typography>
+                <Typography variant="bodySmall" className="text-neutral-gray">
+                  {method.description}
+                </Typography>
+              </Card>
             ))}
           </div>
         </Container>
-      </section>
+      </Section>
 
-      {/* Call to Action */}
-      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: `url('/lovable-uploads/background with mother umage .png')` }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
-        
-        <Container className="relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <Typography variant="h2" className="text-white mb-8 text-4xl md:text-5xl">
-              Your Support Creates These Stories
+      {/* Testimonials */}
+      <TestimonialSection
+        title="Voices of Impact"
+        subtitle="Hear from stakeholders about the real-world changes our work has created"
+        testimonials={testimonials}
+      />
+
+      {/* Annual Reports CTA */}
+      <Section variant="gradient" padding="lg">
+        <Container size="xl">
+          <div className="max-w-3xl mx-auto text-center text-white">
+            <Globe className="h-16 w-16 mx-auto mb-6 text-secondary-orange" />
+            <Typography variant="h2" className="text-white mb-6">
+              Explore Our Impact in Detail
             </Typography>
-            <Typography variant="body" className="text-white/90 mb-12 text-xl leading-relaxed">
-              Every donation, every partnership, every voice raised for justice contributes to the transformation you see here. 
-              Be part of the next success story.
+            <Typography variant="body" className="text-white/90 mb-8">
+              Download our comprehensive annual reports to see detailed impact data, 
+              financial information, and stories from the communities we serve.
             </Typography>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 font-bold py-4 text-lg">
-                <Heart className="mr-2 h-6 w-6" />
-                Donate Now
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                View Annual Reports
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
-                <Users className="mr-2 h-6 w-6" />
-                Partner With Us
-              </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
-                <Download className="mr-2 h-6 w-6" />
-                Read Reports
-              </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
-                <Briefcase className="mr-2 h-6 w-6" />
-                Join Our Team
+              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90">
+                Impact Dashboard
               </Button>
             </div>
           </div>
         </Container>
-      </section>
+      </Section>
+
+      {/* Call to Action */}
+      <GetInvolvedCTA />
     </Layout>
   );
 };
