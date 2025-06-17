@@ -1,11 +1,14 @@
-
+import { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
+import ProviderFinder from '../components/legal-aid/ProviderFinder';
+import ProviderRegistration from '../components/legal-aid/ProviderRegistration';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MapPin, Clock, Users, Scale, Heart, ArrowRight, CheckCircle, AlertCircle, FileText, Gavel, Shield, BookOpen } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Phone, Mail, MapPin, Clock, Users, Scale, Heart, ArrowRight, CheckCircle, AlertCircle, FileText, Gavel, Shield, BookOpen, Search, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const legalServices = [
@@ -43,7 +46,7 @@ const contactMethods = [
   {
     icon: <Phone className="h-6 w-6" />,
     title: "Emergency Hotline",
-    details: "+255 123 456 789",
+    details: "+255 870 119 363",
     description: "24/7 emergency legal assistance",
     availability: "Available 24/7"
   },
@@ -63,10 +66,10 @@ const contactMethods = [
   },
   {
     icon: <Users className="h-6 w-6" />,
-    title: "Community Paralegals",
-    details: "Local Support Network",
-    description: "Find a paralegal in your area",
-    availability: "Across all 184 districts"
+    title: "Find Local Provider",
+    details: "Paralegal Network",
+    description: "Connect with verified providers",
+    availability: "Search below"
   }
 ];
 
@@ -144,14 +147,16 @@ const applicationSteps = [
 ];
 
 const LegalHelp = () => {
+  const [activeTab, setActiveTab] = useState("find-help");
+
   return (
     <Layout>
       {/* Hero Section */}
       <HeroSection
         icon={<Scale className="h-8 w-8" />}
-        badge="Legal Assistance"
-        title="Get Legal Help"
-        description="Access free legal aid services across Tanzania. Our qualified lawyers and paralegals are here to help you navigate the justice system and protect your rights."
+        badge="Legal Assistance Platform"
+        title="Connect with Legal Aid Providers"
+        description="Find qualified lawyers, paralegals, and legal aid centers across Tanzania. Get the legal help you need, when you need it."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
@@ -165,7 +170,7 @@ const LegalHelp = () => {
                 Emergency Legal Assistance
               </Typography>
               <Typography variant="body" className="text-red-700">
-                If you're in immediate danger or need urgent legal help, call our 24/7 hotline: +255 123 456 789
+                If you're in immediate danger or need urgent legal help, call our 24/7 hotline: +255 870 119 363
               </Typography>
             </div>
           </div>
@@ -178,7 +183,7 @@ const LegalHelp = () => {
           <div className="text-center mb-12">
             <Typography variant="h2" className="mb-6">Our Legal Aid Network</Typography>
             <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              A comprehensive network of trained professionals ready to assist you across Tanzania.
+              A comprehensive network of verified professionals ready to assist you across Tanzania.
             </Typography>
           </div>
           
@@ -205,13 +210,62 @@ const LegalHelp = () => {
         </Container>
       </section>
 
-      {/* Contact Methods */}
+      {/* Main Legal Aid Platform */}
       <section className="py-16 bg-white">
         <Container>
           <div className="text-center mb-12">
-            <Typography variant="h2" className="mb-6">How to Reach Us</Typography>
+            <Typography variant="h2" className="mb-6">Legal Aid Platform</Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Whether you need legal help or want to provide legal services, our platform connects Tanzanians with quality legal aid.
+            </Typography>
+          </div>
+          
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 mb-8">
+              <TabsTrigger value="find-help" className="flex items-center gap-2">
+                <Search className="h-4 w-4" />
+                Find Legal Help
+              </TabsTrigger>
+              <TabsTrigger value="join-network" className="flex items-center gap-2">
+                <UserPlus className="h-4 w-4" />
+                Join Our Network
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="find-help">
+              <div className="mb-8">
+                <Typography variant="h3" className="text-center mb-4">
+                  Find Legal Aid Providers Near You
+                </Typography>
+                <Typography variant="body" className="text-center text-neutral-gray mb-8">
+                  Search our network of verified lawyers, paralegals, and legal aid centers across all 184 districts in Tanzania.
+                </Typography>
+              </div>
+              <ProviderFinder />
+            </TabsContent>
+            
+            <TabsContent value="join-network">
+              <div className="mb-8">
+                <Typography variant="h3" className="text-center mb-4">
+                  Join Our Legal Aid Network
+                </Typography>
+                <Typography variant="body" className="text-center text-neutral-gray mb-8">
+                  Are you a qualified legal professional? Register to join our network and help provide legal aid to Tanzanians in need.
+                </Typography>
+              </div>
+              <ProviderRegistration />
+            </TabsContent>
+          </Tabs>
+        </Container>
+      </section>
+
+      {/* Contact Methods */}
+      <section className="py-16 bg-gray-50">
+        <Container>
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-6">Additional Ways to Get Help</Typography>
             <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              Multiple ways to access legal help, designed to meet you where you are.
+              Multiple channels to access legal assistance, designed to meet you where you are.
             </Typography>
           </div>
           
@@ -242,109 +296,6 @@ const LegalHelp = () => {
         </Container>
       </section>
 
-      {/* Legal Services */}
-      <section className="py-16 bg-gray-50">
-        <Container>
-          <div className="text-center mb-12">
-            <Typography variant="h2" className="mb-6">Our Legal Services</Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              Comprehensive legal aid services designed to address the most common legal challenges facing Tanzanians.
-            </Typography>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {legalServices.map((service, index) => (
-              <Card key={index} className="hover:shadow-xl transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary flex-shrink-0">
-                      {service.icon}
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                      <Typography variant="body" className="text-neutral-gray">
-                        {service.description}
-                      </Typography>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="font-medium">Eligibility:</span>
-                      <span className="text-neutral-gray">{service.eligibility}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="font-medium">Process:</span>
-                      <span className="text-neutral-gray">{service.process}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Eligibility & Application Process */}
-      <section className="py-16 bg-white">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Eligibility */}
-            <div>
-              <Typography variant="h2" className="mb-6">Eligibility Criteria</Typography>
-              <Typography variant="body" className="text-neutral-gray mb-8">
-                To qualify for free legal aid, you must meet certain criteria. We prioritize those most in need.
-              </Typography>
-              
-              <div className="space-y-4">
-                {eligibilityCriteria.map((criteria, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="text-green-600 mt-1">
-                      {criteria.icon}
-                    </div>
-                    <div>
-                      <Typography variant="h4" className="font-semibold mb-1">
-                        {criteria.title}
-                      </Typography>
-                      <Typography variant="body" className="text-neutral-gray text-sm">
-                        {criteria.description}
-                      </Typography>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Application Process */}
-            <div>
-              <Typography variant="h2" className="mb-6">Application Process</Typography>
-              <Typography variant="body" className="text-neutral-gray mb-8">
-                Getting legal help is straightforward. Follow these simple steps to access our services.
-              </Typography>
-              
-              <div className="space-y-6">
-                {applicationSteps.map((step, index) => (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
-                      {step.step}
-                    </div>
-                    <div>
-                      <Typography variant="h4" className="font-semibold mb-2">
-                        {step.title}
-                      </Typography>
-                      <Typography variant="body" className="text-neutral-gray text-sm">
-                        {step.description}
-                      </Typography>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       {/* Success Stories CTA */}
       <section className="py-16 bg-primary/5">
         <Container>
@@ -363,7 +314,7 @@ const LegalHelp = () => {
               </Link>
               <Button size="lg" className="bg-primary hover:bg-primary/90">
                 <Phone className="mr-2 h-5 w-5" />
-                Call Now: +255 123 456 789
+                Call Now: +255 870 119 363
               </Button>
             </div>
           </div>
@@ -399,13 +350,15 @@ const LegalHelp = () => {
             <Card className="text-center hover:shadow-lg transition-shadow">
               <CardContent className="pt-8">
                 <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-                <Typography variant="h3" className="mb-4">Find a Paralegal</Typography>
+                <Typography variant="h3" className="mb-4">Community Programs</Typography>
                 <Typography variant="body" className="text-neutral-gray mb-6">
-                  Connect with trained community paralegals in your local area.
+                  Learn about our community legal education and empowerment programs.
                 </Typography>
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                  Find Local Help
-                </Button>
+                <Link to="/empowered-communities">
+                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                    Learn More
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
             
