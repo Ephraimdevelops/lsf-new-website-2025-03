@@ -1,112 +1,38 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Index from '@/pages/Index';
+import AlternativeIndex from '@/pages/AlternativeIndex';
+import About from '@/pages/About';
+import WhatWeDo from '@/pages/WhatWeDo';
+import Contact from '@/pages/Contact';
+import News from '@/pages/News';
+import SingleNews from '@/pages/SingleNews';
+import FocusArea from '@/pages/FocusArea';
+import LegalHelp from '@/pages/LegalHelp';
+import Resources from '@/pages/Resources';
 
-import React from 'react';
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ErrorBoundary from "./components/ErrorBoundary";
-import Index from "./pages/Index";
-import ProgramDetail from "./pages/ProgramDetail";
-import NotFound from "./pages/NotFound";
-import News from "./pages/News";
-import NewsDetail from "./pages/NewsDetail";
-import Publications from "./pages/Publications";
-import PublicationDetail from "./pages/PublicationDetail";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Team from "./pages/Team";
-import TeamDetail from "./pages/TeamDetail";
-import BoardDetail from "./pages/BoardDetail";
-import Partners from "./pages/Partners";
-import Resources from "./pages/Resources";
-import Programs from "./pages/Programs";
-import Projects from "./pages/Projects";
-import Donate from "./pages/Donate";
-import WhatWeDo from "./pages/WhatWeDo";
-import Heroes from "./pages/Heroes";
-import HeroDetail from "./pages/HeroDetail";
-import Opportunities from "./pages/Opportunities";
-import OpportunityDetail from "./pages/OpportunityDetail";
-import Impact from "./pages/Impact";
-import Whistleblower from "./pages/Whistleblower";
-import Admin from "./pages/Admin";
-import LegalHelp from "./pages/LegalHelp";
-import GrantMaking from "./pages/GrantMaking";
-import CapacityBuilding from "./pages/CapacityBuilding";
-import PartnershipsNetworking from "./pages/PartnershipsNetworking";
-import LearningResearch from "./pages/LearningResearch";
-import PolicyAdvocacy from "./pages/PolicyAdvocacy";
-import FocusAreaDetail from "./pages/FocusAreaDetail";
-import ApproachDetail from "./pages/ApproachDetail";
-import AccessibleLegalAid from "./pages/AccessibleLegalAid";
-import EmpoweredCommunities from "./pages/EmpoweredCommunities";
-import ConduciveEnvironment from "./pages/ConduciveEnvironment";
-import InstitutionalDevelopment from "./pages/InstitutionalDevelopment";
+const queryClient = new QueryClient();
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 1,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      refetchOnWindowFocus: false,
-    },
-  },
-});
-
-const App = () => {
+function App() {
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/team/:teamId" element={<TeamDetail />} />
-              <Route path="/board/:boardId" element={<BoardDetail />} />
-              <Route path="/partners" element={<Partners />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/news/:newsId" element={<NewsDetail />} />
-              <Route path="/publications" element={<Publications />} />
-              <Route path="/publications/:publicationId" element={<PublicationDetail />} />
-              <Route path="/resources" element={<Resources />} />
-              <Route path="/programs" element={<Programs />} />
-              <Route path="/programs/:programId" element={<ProgramDetail />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/donate" element={<Donate />} />
-              <Route path="/what-we-do" element={<WhatWeDo />} />
-              <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
-              <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
-              <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
-              <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
-              <Route path="/what-we-do/policy-advocacy" element={<PolicyAdvocacy />} />
-              <Route path="/focus-areas/:focusAreaId" element={<FocusAreaDetail />} />
-              <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
-              <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
-              <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
-              <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
-              <Route path="/approach/:approachId" element={<ApproachDetail />} />
-              <Route path="/heroes" element={<Heroes />} />
-              <Route path="/heroes/:heroId" element={<HeroDetail />} />
-              <Route path="/opportunities" element={<Opportunities />} />
-              <Route path="/opportunities/:opportunityId" element={<OpportunityDetail />} />
-              <Route path="/impact" element={<Impact />} />
-              <Route path="/whistleblower" element={<Whistleblower />} />
-              <Route path="/legal-help" element={<LegalHelp />} />
-              <Route path="/admin/*" element={<Admin />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/alternative" element={<AlternativeIndex />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/what-we-do" element={<WhatWeDo />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<SingleNews />} />
+          <Route path="/focus-areas/:slug" element={<FocusArea />} />
+           <Route path="/legal-help" element={<LegalHelp />} />
+           <Route path="/resources" element={<Resources />} />
+        </Routes>
+      </Router>
+    </QueryClientProvider>
   );
-};
+}
 
 export default App;
+
