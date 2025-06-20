@@ -2,6 +2,10 @@
 import Container from "@/components/shared/Container";
 import Section from "@/components/shared/Section";
 import FocusAreaImageCard from "./FocusAreaImageCard";
+import Heading from "@/components/design-system/Heading";
+import Text from "@/components/design-system/Text";
+import DesignIcon from "@/components/design-system/DesignIcon";
+import { useDesignSystem } from "@/hooks/useDesignSystem";
 
 // Updated focus areas data with better color coordination and clearer messaging
 const focusAreasData = [
@@ -43,83 +47,105 @@ const focusAreasData = [
   },
 ];
 
-const FocusAreas = () => (
-  <Section variant="default" padding="xl">
-    <Container size="xl">
-      {/* Enhanced header with better visual hierarchy */}
-      <div className="text-center mb-20 px-4 relative">
-        {/* Floating badge */}
-        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
-          <div className="w-3 h-3 bg-primary rounded-full mr-4 animate-pulse"></div>
-          <span className="text-primary font-bold text-lg tracking-widest uppercase">Strategic Focus Areas</span>
-        </div>
-        
-        {/* Main heading with gradient text */}
-        <h2 className="mb-8 text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight">
-          <span className="bg-gradient-to-r from-primary via-secondary-teal to-primary bg-clip-text text-transparent">
-            Transforming Justice
-          </span>
-          <span className="block text-neutral-dark mt-2">
-            Across Tanzania
-          </span>
-        </h2>
-        
-        {/* Enhanced description */}
-        <div className="max-w-4xl mx-auto">
-          <p className="text-neutral-gray text-xl md:text-2xl leading-relaxed mb-6">
-            Our comprehensive approach addresses every aspect of legal empowerment—from individual support to systemic change.
-          </p>
-          <div className="flex items-center justify-center gap-8 text-sm text-neutral-600">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full"></div>
-              <span>426,349+ Beneficiaries</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-secondary-teal rounded-full"></div>
-              <span>25 Regions Covered</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-secondary-orange rounded-full"></div>
-              <span>15+ Years Experience</span>
-            </div>
-          </div>
-        </div>
-      </div>
+const FocusAreas = () => {
+  const { tokens, getPrimaryColor, getSecondaryColor } = useDesignSystem();
 
-      {/* Grid with enhanced spacing and visual flow */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-        {focusAreasData.map((area, i) => (
-          <div 
-            key={i} 
-            className="group"
-            style={{ 
-              animationDelay: `${i * 0.1}s`,
-            }}
-          >
-            <FocusAreaImageCard
-              image={area.image}
-              title={area.title}
-              description={area.description}
-              link={area.link}
+  return (
+    <Section variant="default" padding="xl">
+      <Container size="xl">
+        {/* Enhanced header with better visual hierarchy */}
+        <div className="text-center mb-20 px-4 relative">
+          {/* Floating badge */}
+          <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
             />
+            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
+              Strategic Focus Areas
+            </Text>
           </div>
-        ))}
-      </div>
-
-      {/* Bottom call-to-action */}
-      <div className="text-center mt-16 pt-12 border-t border-neutral-100">
-        <p className="text-neutral-gray text-lg mb-6">
-          Each focus area represents decades of expertise and thousands of lives transformed.
-        </p>
-        <div className="inline-flex items-center gap-4">
-          <div className="flex items-center gap-2 text-primary font-semibold">
-            <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-            <span>Explore our comprehensive approach</span>
+          
+          {/* Main heading with gradient text */}
+          <Heading level={2} variant="hero" gradient className="mb-8">
+            Transforming Justice
+            <span className="block text-neutral-dark mt-2">
+              Across Tanzania
+            </span>
+          </Heading>
+          
+          {/* Enhanced description */}
+          <div className="max-w-4xl mx-auto">
+            <Text variant="body-large" color="neutral" className="mb-6">
+              Our comprehensive approach addresses every aspect of legal empowerment—from individual support to systemic change.
+            </Text>
+            <div className="flex items-center justify-center gap-8 text-sm text-neutral-600">
+              <div className="flex items-center gap-2">
+                <DesignIcon 
+                  icon={<div className="w-2 h-2 bg-primary rounded-full"></div>}
+                  size="xs"
+                />
+                <Text variant="caption" color="muted">426,349+ Beneficiaries</Text>
+              </div>
+              <div className="flex items-center gap-2">
+                <DesignIcon 
+                  icon={<div className="w-2 h-2 bg-secondary-teal rounded-full"></div>}
+                  size="xs"
+                />
+                <Text variant="caption" color="muted">25 Regions Covered</Text>
+              </div>
+              <div className="flex items-center gap-2">
+                <DesignIcon 
+                  icon={<div className="w-2 h-2 bg-secondary-orange rounded-full"></div>}
+                  size="xs"
+                />
+                <Text variant="caption" color="muted">15+ Years Experience</Text>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </Container>
-  </Section>
-);
+
+        {/* Grid with enhanced spacing and visual flow */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          {focusAreasData.map((area, i) => (
+            <div 
+              key={i} 
+              className="group"
+              style={{ 
+                animationDelay: `${i * 0.1}s`,
+              }}
+            >
+              <FocusAreaImageCard
+                image={area.image}
+                title={area.title}
+                description={area.description}
+                link={area.link}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom call-to-action */}
+        <div className="text-center mt-16 pt-12 border-t border-neutral-100">
+          <Text variant="body-large" color="neutral" className="mb-6">
+            Each focus area represents decades of expertise and thousands of lives transformed.
+          </Text>
+          <div className="inline-flex items-center gap-4">
+            <div className="flex items-center gap-2 text-primary font-semibold">
+              <DesignIcon 
+                icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+                size="sm"
+              />
+              <Text variant="body" color="primary" className="font-semibold">
+                Explore our comprehensive approach
+              </Text>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  );
+};
 
 export default FocusAreas;
