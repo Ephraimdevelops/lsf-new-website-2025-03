@@ -104,7 +104,7 @@ const WhatWeDo = () => {
         "Partner capacity-building and technical support"
       ],
       image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=200&h=200&fit=crop&crop=faces",
-      link: "/approach/grant-making",
+      link: "/what-we-do/grant-making",
       variant: 'primary' as const
     },
     {
@@ -180,7 +180,7 @@ const WhatWeDo = () => {
           </Typography>
           
           <Link 
-            to="/approach" 
+            to="/what-we-do" 
             className="inline-flex items-center text-primary font-medium hover:underline"
           >
             Explore our comprehensive approach

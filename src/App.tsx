@@ -11,6 +11,8 @@ import NewsDetail from '@/pages/NewsDetail';
 import FocusAreaDetail from '@/pages/FocusAreaDetail';
 import LegalHelp from '@/pages/LegalHelp';
 import Resources from '@/pages/Resources';
+import GrantMaking from '@/pages/GrantMaking';
+import ApproachDetail from '@/pages/ApproachDetail';
 import NotFound from '@/pages/NotFound';
 import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -33,6 +35,8 @@ function App() {
             <Route path="/alternative" element={<AlternativeIndex />} />
             <Route path="/about" element={<About />} />
             <Route path="/what-we-do" element={<WhatWeDo />} />
+            <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
+            <Route path="/approach/:approachId" element={<ApproachDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/news" element={<News />} />
             <Route path="/news/:id" element={<NewsDetail />} />
