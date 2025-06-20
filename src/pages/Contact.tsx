@@ -3,16 +3,17 @@ import Layout from '@/components/layout/Layout';
 import Contact from '@/components/home/Contact';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import Container from '@/components/shared/Container';
+import Section from '@/components/shared/Section';
 
 const ContactPage = () => {
   return (
     <Layout>
       {/* Breadcrumb Navigation */}
-      <section className="bg-neutral-light py-4">
+      <Section variant="secondary" padding="sm">
         <Container size="xl">
           <Breadcrumb />
         </Container>
-      </section>
+      </Section>
 
       {/* Main Contact Content */}
       <div className="w-full">

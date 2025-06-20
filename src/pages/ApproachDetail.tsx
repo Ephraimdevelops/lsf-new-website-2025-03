@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import { DollarSign, Wrench, Megaphone, BookOpen, Users } from 'lucide-react';
-import Typography from '@/components/shared/Typography';
+import Heading from '@/components/design-system/Heading';
+import Text from '@/components/design-system/Text';
+import DesignCard from '@/components/design-system/DesignCard';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
 import Breadcrumb from '@/components/shared/Breadcrumb';
@@ -94,20 +96,20 @@ const ApproachDetail = () => {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <Typography variant="h2" className="mb-8 text-center">
+            <Heading level={2} variant="section" className="mb-8 text-center">
               Key Components
-            </Typography>
+            </Heading>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {approach.details.map((detail: string, index: number) => (
-                <div key={index} className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <DesignCard key={index} variant="elevated" padding="lg" className="border border-gray-100">
                   <div className="flex items-start">
                     <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-4 flex-shrink-0"></div>
-                    <Typography variant="body" className="text-neutral-gray">
+                    <Text variant="body" color="muted">
                       {detail}
-                    </Typography>
+                    </Text>
                   </div>
-                </div>
+                </DesignCard>
               ))}
             </div>
           </div>

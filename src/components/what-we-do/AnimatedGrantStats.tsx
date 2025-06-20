@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from 'react';
 import { Check } from 'lucide-react';
-import Card from '@/components/shared/Card';
-import Typography from '@/components/shared/Typography';
+import DesignCard from '@/components/design-system/DesignCard';
+import Heading from '@/components/design-system/Heading';
+import Text from '@/components/design-system/Text';
 import ProgressIndicator from '@/components/shared/ProgressIndicator';
 
 interface StatCardProps {
@@ -25,21 +26,22 @@ const StatCard = ({ icon, title, value, percentage, color, delay = 0 }: StatCard
   }, [delay]);
 
   return (
-    <Card 
+    <DesignCard 
       variant="elevated" 
-      className={`p-6 transition-all duration-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+      padding="lg"
+      className={`transition-all duration-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
     >
       <div className="flex items-start mb-4">
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-${color}/20 text-${color}`}>
           {icon}
         </div>
         <div className="ml-4">
-          <Typography variant="h4" className="mb-1">
+          <Heading level={4} variant="card" className="mb-1">
             {value}
-          </Typography>
-          <Typography variant="bodySmall" className="text-neutral-gray">
+          </Heading>
+          <Text variant="body-small" color="muted">
             {title}
-          </Typography>
+          </Text>
         </div>
       </div>
       
@@ -52,7 +54,7 @@ const StatCard = ({ icon, title, value, percentage, color, delay = 0 }: StatCard
           className="mt-3"
         />
       )}
-    </Card>
+    </DesignCard>
   );
 };
 

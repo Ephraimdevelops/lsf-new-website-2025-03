@@ -9,16 +9,17 @@ import InteractiveTimeline from '@/components/about/InteractiveTimeline';
 import TestimonialCarousel from '@/components/about/TestimonialCarousel';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import Container from '@/components/shared/Container';
+import Section from '@/components/shared/Section';
 
 const About = () => {
   return (
     <Layout>
       {/* Breadcrumb Navigation */}
-      <div className="bg-neutral-light py-4">
+      <Section variant="secondary" padding="sm">
         <Container size="xl">
           <Breadcrumb />
         </Container>
-      </div>
+      </Section>
 
       <AboutHero />
       <MissionVisionSection />

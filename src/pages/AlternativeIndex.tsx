@@ -8,6 +8,7 @@ import FocusAreas from '@/components/home/FocusAreas';
 import VisualImpactSection from '@/components/home/VisualImpactSection';
 import CallToActionSectionWrapper from './home/CallToActionSectionWrapper';
 import FAQSection from '@/components/shared/FAQSection';
+import Section from '@/components/shared/Section';
 
 const AlternativeIndex = () => {
   const faqs = [
@@ -35,9 +36,9 @@ const AlternativeIndex = () => {
       <AlternativeHero />
 
       {/* Enhanced Highlights */}
-      <section className="py-16 lg:py-20 bg-gradient-to-br from-white via-blue-50/30 to-neutral-50 relative overflow-hidden">
+      <Section variant="secondary" padding="lg">
         <EnhancedHighlights />
-      </section>
+      </Section>
 
       {/* Visual Impact Stories */}
       <VisualImpactSection />

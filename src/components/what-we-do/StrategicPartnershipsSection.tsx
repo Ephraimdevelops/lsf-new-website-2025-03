@@ -1,11 +1,12 @@
 
 import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, Users, Globe, Heart } from 'lucide-react';
-import Typography from '@/components/shared/Typography';
+import Heading from '@/components/design-system/Heading';
+import Text from '@/components/design-system/Text';
+import DesignButton from '@/components/design-system/DesignButton';
+import DesignCard from '@/components/design-system/DesignCard';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
-import Card from '@/components/shared/Card';
-import { Button } from '@/components/ui/button';
 
 const StrategicPartnershipsSection = () => {
   const partnerCategories = [
@@ -43,64 +44,70 @@ const StrategicPartnershipsSection = () => {
     <Section variant="secondary" padding="xl">
       <Container size="xl">
         <div className="text-center mb-16">
-          <Typography variant="overline" className="text-primary font-bold mb-4">
+          <Text variant="overline" color="primary" className="font-bold mb-4 block">
             STRATEGIC PARTNERSHIPS
-          </Typography>
-          <Typography variant="h2" className="mb-6">
+          </Text>
+          <Heading level={2} variant="section" className="mb-6">
             Building Coalitions for
             <span className="block text-primary">Lasting Change</span>
-          </Typography>
-          <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+          </Heading>
+          <Text variant="body" color="muted" className="max-w-3xl mx-auto">
             Our impact is multiplied through strategic partnerships across government, civil society, 
             international organizations, and the private sector.
-          </Typography>
+          </Text>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {partnerCategories.map((category, index) => (
-            <Card key={index} variant="elevated" hover className="group">
-              <div className={`bg-gradient-to-br ${category.color} p-6 rounded-t-2xl -m-8 mb-6`}>
+            <DesignCard key={index} variant="elevated" padding="sm" hover className="group">
+              <div className={`bg-gradient-to-br ${category.color} p-6 rounded-t-2xl -m-6 mb-6`}>
                 <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                   <div className="text-white">
                     {category.icon}
                   </div>
                 </div>
-                <Typography variant="h4" className="text-white mb-2">
+                <Heading level={4} variant="card" color="white" className="mb-2">
                   {category.title}
-                </Typography>
-                <Typography variant="bodySmall" className="text-white/90">
+                </Heading>
+                <Text variant="body-small" color="white" className="opacity-90">
                   {category.description}
-                </Typography>
+                </Text>
               </div>
-              <div className="space-y-3">
-                <Typography variant="h4" className="text-neutral-dark mb-4">
+              <div className="space-y-3 p-6">
+                <Heading level={4} variant="card" color="neutral" className="mb-4">
                   Key Partners
-                </Typography>
+                </Heading>
                 {category.partners.map((partner, partnerIndex) => (
-                  <div key={partnerIndex} className="flex items-center text-sm text-neutral-gray">
+                  <div key={partnerIndex} className="flex items-center">
                     <div className="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></div>
-                    {partner}
+                    <Text variant="body-small" color="muted">
+                      {partner}
+                    </Text>
                   </div>
                 ))}
               </div>
-            </Card>
+            </DesignCard>
           ))}
         </div>
 
-        <div className="text-center bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-2xl p-8">
-          <Typography variant="h3" className="mb-4">
+        <DesignCard variant="minimal" padding="xl" className="text-center bg-gradient-to-br from-primary/5 to-secondary-teal/5">
+          <Heading level={3} variant="subsection" className="mb-4">
             Become a Partner
-          </Typography>
-          <Typography variant="body" className="text-neutral-gray mb-6 max-w-2xl mx-auto">
+          </Heading>
+          <Text variant="body" color="muted" className="mb-6 max-w-2xl mx-auto">
             Join our network of partners committed to advancing access to justice across Tanzania.
-          </Typography>
+          </Text>
           <Link to="/partners">
-            <Button size="lg" className="bg-primary hover:bg-primary-dark">
+            <DesignButton 
+              variant="primary" 
+              size="lg" 
+              icon={<ArrowRight className="h-5 w-5" />}
+              iconPosition="right"
+            >
               Explore Partnerships
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </DesignButton>
           </Link>
-        </div>
+        </DesignCard>
       </Container>
     </Section>
   );
