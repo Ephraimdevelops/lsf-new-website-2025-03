@@ -11,27 +11,40 @@ import NewsDetail from '@/pages/NewsDetail';
 import FocusAreaDetail from '@/pages/FocusAreaDetail';
 import LegalHelp from '@/pages/LegalHelp';
 import Resources from '@/pages/Resources';
+import NotFound from '@/pages/NotFound';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 1,
+    },
+  },
+});
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/alternative" element={<AlternativeIndex />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/what-we-do" element={<WhatWeDo />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:id" element={<NewsDetail />} />
-          <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
-           <Route path="/legal-help" element={<LegalHelp />} />
-           <Route path="/resources" element={<Resources />} />
-        </Routes>
-      </Router>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/alternative" element={<AlternativeIndex />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/what-we-do" element={<WhatWeDo />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
+            <Route path="/legal-help" element={<LegalHelp />} />
+            <Route path="/resources" element={<Resources />} />
+            {/* Catch all unmatched routes */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 

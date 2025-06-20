@@ -1,9 +1,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
-import { Search, X, Clock, TrendingUp } from 'lucide-react';
+import { Search, X, Clock, TrendingUp, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useDebounce } from '@/hooks/useDebounce';
+import { cn } from '@/lib/utils';
 
 interface SearchResult {
   id: string;
@@ -19,6 +20,8 @@ interface EnhancedSearchProps {
   value: string;
   onChange: (value: string) => void;
   showSuggestions?: boolean;
+  isLoading?: boolean;
+  className?: string;
 }
 
 const EnhancedSearch = ({ 
@@ -26,7 +29,9 @@ const EnhancedSearch = ({
   onSearch, 
   value, 
   onChange,
-  showSuggestions = true 
+  showSuggestions = true,
+  isLoading = false,
+  className 
 }: EnhancedSearchProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -47,9 +52,13 @@ const EnhancedSearch = ({
   }, [debouncedValue, onSearch]);
 
   useEffect(() => {
-    const saved = localStorage.getItem('recentSearches');
-    if (saved) {
-      setRecentSearches(JSON.parse(saved));
+    try {
+      const saved = localStorage.getItem('recentSearches');
+      if (saved) {
+        setRecentSearches(JSON.parse(saved));
+      }
+    } catch (error) {
+      console.warn('Failed to load recent searches:', error);
     }
   }, []);
 
@@ -57,7 +66,11 @@ const EnhancedSearch = ({
     if (searchTerm.trim()) {
       const updated = [searchTerm, ...recentSearches.filter(s => s !== searchTerm)].slice(0, 5);
       setRecentSearches(updated);
-      localStorage.setItem('recentSearches', JSON.stringify(updated));
+      try {
+        localStorage.setItem('recentSearches', JSON.stringify(updated));
+      } catch (error) {
+        console.warn('Failed to save recent searches:', error);
+      }
       onChange(searchTerm);
       setIsFocused(false);
     }
@@ -69,17 +82,27 @@ const EnhancedSearch = ({
   };
 
   return (
-    <div className="relative w-full">
-      <div className={`relative transition-all duration-300 ${isFocused ? 'transform scale-105' : ''}`}>
-        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 transition-colors duration-200" size={20} />
+    <div className={cn("relative w-full", className)}>
+      <div className={cn(
+        "relative transition-all duration-300",
+        isFocused ? 'transform scale-105' : ''
+      )}>
+        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex items-center">
+          {isLoading ? (
+            <Loader2 className="animate-spin text-gray-400" size={20} />
+          ) : (
+            <Search className="text-gray-400 transition-colors duration-200" size={20} />
+          )}
+        </div>
         <Input
           type="search"
           placeholder={placeholder}
-          className={`pl-14 pr-12 py-4 rounded-2xl border-2 transition-all duration-300 shadow-lg bg-white text-lg ${
+          className={cn(
+            "pl-14 pr-12 py-4 rounded-2xl border-2 transition-all duration-300 shadow-lg bg-white text-lg",
             isFocused 
               ? 'border-primary ring-4 ring-primary/20 shadow-xl' 
               : 'border-gray-200 hover:border-gray-300'
-          }`}
+          )}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onFocus={() => setIsFocused(true)}

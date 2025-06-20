@@ -8,13 +8,16 @@ const ContactPage = () => {
   return (
     <Layout>
       {/* Breadcrumb Navigation */}
-      <div className="bg-neutral-light py-4">
+      <section className="bg-neutral-light py-4">
         <Container size="xl">
           <Breadcrumb />
         </Container>
-      </div>
+      </section>
 
-      <Contact />
+      {/* Main Contact Content */}
+      <div className="w-full">
+        <Contact />
+      </div>
     </Layout>
   );
 };
