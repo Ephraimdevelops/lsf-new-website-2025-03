@@ -111,7 +111,7 @@ const CapacityBuilding = () => {
             </div>
           </div>
 
-          <Des ignCard variant="minimal" padding="xl" className="bg-primary/5">
+          <DesignCard variant="minimal" padding="xl" className="bg-primary/5">
             <Heading level={1} variant="section" className="text-center mb-8">
               Training Programs
             </Heading>
