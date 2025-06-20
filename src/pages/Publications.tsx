@@ -18,119 +18,24 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { publicationService } from '@/services/api';
-
-interface Publication {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  type: string;
-  cover: string;
-  fileUrl: string;
-  fileSize: string;
-}
-
-const getPublications = (): Publication[] => {
-  return [
-    {
-      id: "annual-report-2023",
-      title: "Annual Report 2023: Impact and Progress in Legal Aid Delivery",
-      excerpt: "A comprehensive report detailing LSF's activities, achievements, and impact across Tanzania during the 2023 fiscal year.",
-      date: "March 15, 2023",
-      type: "Report",
-      cover: "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Zm9jdXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-      fileUrl: "/publications/annual-report-2023.pdf",
-      fileSize: "3.2 MB"
-    },
-    {
-      id: "womens-land-rights",
-      title: "Women's Land Rights in Tanzania: Challenges and Opportunities",
-      excerpt: "A research study examining the status of women's land rights in Tanzania, identifying key challenges and proposing strategies for improvement.",
-      date: "January 20, 2023",
-      type: "Research",
-      cover: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGxhbmQlMjBmYXJtfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-      fileUrl: "/publications/womens-land-rights.pdf",
-      fileSize: "2.8 MB"
-    },
-    {
-      id: "digital-legal-services",
-      title: "Digital Legal Services: Best Practices and Lessons Learned",
-      excerpt: "A guide exploring effective approaches to implementing digital legal services in rural and underserved communities based on LSF's experience.",
-      date: "November 10, 2022",
-      type: "Guide",
-      cover: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGlnaXRhbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-      fileUrl: "/publications/digital-legal-services.pdf",
-      fileSize: "4.5 MB"
-    },
-    {
-      id: "policy-brief-climate-justice",
-      title: "Policy Brief: Climate Justice and Legal Empowerment",
-      excerpt: "A concise policy brief outlining key recommendations for integrating climate justice considerations into legal empowerment initiatives.",
-      date: "October 05, 2022",
-      type: "Brief",
-      cover: "https://images.unsplash.com/photo-1569163139500-66446e7f7233?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsaW1hdGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-      fileUrl: "/publications/policy-brief-climate-justice.pdf",
-      fileSize: "1.5 MB"
-    },
-    {
-      id: "legal-aid-handbook",
-      title: "Legal Aid Handbook for Community Paralegals",
-      excerpt: "A comprehensive manual providing guidance and resources for community paralegals working in rural and underserved areas of Tanzania.",
-      date: "August 22, 2022",
-      type: "Manual",
-      cover: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxhd3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-      fileUrl: "/publications/legal-aid-handbook.pdf",
-      fileSize: "5.1 MB"
-    },
-    {
-      id: "gender-justice-toolkit",
-      title: "Gender Justice Toolkit: Addressing GBV Through Legal Empowerment",
-      excerpt: "A practical toolkit providing strategies and resources for addressing gender-based violence through community-based legal empowerment approaches.",
-      date: "June 15, 2022",
-      type: "Toolkit",
-      cover: "https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHdvbWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-      fileUrl: "/publications/gender-justice-toolkit.pdf",
-      fileSize: "3.7 MB"
-    },
-    {
-      id: "justice-needs-survey-2022",
-      title: "Justice Needs Survey 2022: Understanding Legal Needs in Tanzania",
-      excerpt: "A comprehensive survey documenting the legal needs and challenges faced by communities across Tanzania, with regional analysis and recommendations.",
-      date: "April 10, 2022",
-      type: "Survey",
-      cover: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHN1cnZleXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-      fileUrl: "/publications/justice-needs-survey-2022.pdf",
-      fileSize: "4.2 MB"
-    },
-    {
-      id: "annual-report-2022",
-      title: "Annual Report 2022: Building Back Better After COVID-19",
-      excerpt: "A report outlining LSF's activities and impact during 2022, with special focus on recovery and adaptation strategies following the COVID-19 pandemic.",
-      date: "March 20, 2022",
-      type: "Report",
-      cover: "https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YW5udWFsJTIwcmVwb3J0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-      fileUrl: "/publications/annual-report-2022.pdf",
-      fileSize: "3.5 MB"
-    }
-  ];
-};
+import { dataService } from '@/services/dataService';
 
 const Publications = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [publicationType, setPublicationType] = useState('all');
   const [year, setYear] = useState('all');
-  const [publications, setPublications] = useState<Publication[]>([]);
-  const [filteredPublications, setFilteredPublications] = useState<Publication[]>([]);
+  const [publications, setPublications] = useState<any[]>([]);
+  const [filteredPublications, setFilteredPublications] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   
-  // Load publications
+  // Load publications from mock data
   useEffect(() => {
     const fetchPublications = async () => {
       setIsLoading(true);
       try {
-        const data = getPublications();
+        // Use mock data instead of API calls
+        const data = dataService.getPublications();
         setPublications(data);
         setFilteredPublications(data);
       } catch (error) {
@@ -163,9 +68,9 @@ const Publications = () => {
   const years = ['all', ...Array.from(new Set(publications.map(pub => new Date(pub.date).getFullYear().toString())))];
   
   // Track publication download
-  const handleDownload = async (publication: Publication) => {
+  const handleDownload = async (publication: any) => {
     try {
-      window.open(publication.fileUrl, '_blank');
+      window.open(publication.downloadUrl || publication.fileUrl, '_blank');
     } catch (error) {
       console.error("Error tracking download:", error);
     }
@@ -371,7 +276,7 @@ const Publications = () => {
                     {/* Enhanced Image Header */}
                     <div className="relative h-56 overflow-hidden">
                       <img 
-                        src={publication.cover} 
+                        src={publication.image || publication.cover} 
                         alt={publication.title} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
@@ -388,7 +293,7 @@ const Publications = () => {
                       {/* File Size Badge */}
                       <div className="absolute top-4 right-4">
                         <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/90 text-gray-700 shadow-lg">
-                          {publication.fileSize}
+                          {publication.fileSize || '2.5 MB'}
                         </span>
                       </div>
                     </div>
