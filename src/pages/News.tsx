@@ -5,9 +5,9 @@ import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import LoadingState from '../components/shared/LoadingState';
 import ErrorState from '../components/shared/ErrorState';
-import { Newspaper, Calendar, Clock, Search, Filter, ChevronDown, Tag } from 'lucide-react';
+import EnhancedSearch from '../components/shared/EnhancedSearch';
+import { Newspaper, Calendar, Clock, Filter, ChevronDown, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -26,6 +26,7 @@ const News = () => {
   const [news, setNews] = useState<any[]>([]);
   const [filteredNews, setFilteredNews] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -52,7 +53,25 @@ const News = () => {
     fetchNews();
   }, []);
 
-  // Filter news based on search term and category
+  // Enhanced search handler with loading state
+  const handleSearch = async (term: string) => {
+    setIsSearching(true);
+    setSearchTerm(term);
+    
+    // Simulate search delay for better UX
+    setTimeout(() => {
+      const filtered = news.filter(item => {
+        const matchesSearch = item.title.toLowerCase().includes(term.toLowerCase()) ||
+                            item.excerpt.toLowerCase().includes(term.toLowerCase());
+        const matchesCategory = selectedCategory === 'all' || item.category.toLowerCase() === selectedCategory.toLowerCase();
+        return matchesSearch && matchesCategory;
+      });
+      setFilteredNews(filtered);
+      setIsSearching(false);
+    }, 300);
+  };
+
+  // Filter news based on category
   useEffect(() => {
     const filtered = news.filter(item => {
       const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -61,7 +80,7 @@ const News = () => {
       return matchesSearch && matchesCategory;
     });
     setFilteredNews(filtered);
-  }, [searchTerm, selectedCategory, news]);
+  }, [selectedCategory, news, searchTerm]);
 
   // Get unique categories for filter
   const categories = ['all', ...Array.from(new Set(news.map(item => item.category)))];
@@ -107,18 +126,18 @@ const News = () => {
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      {/* Filter Section */}
+      {/* Enhanced Search Section */}
       <section className="py-8 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-            <div className="relative flex-grow lg:max-w-md">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-              <Input
-                type="search"
+            <div className="flex-grow lg:max-w-md">
+              <EnhancedSearch
                 placeholder="Search news articles..."
-                className="pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary-teal transition-colors shadow-sm"
+                onSearch={handleSearch}
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={setSearchTerm}
+                isLoading={isSearching}
+                className="w-full"
               />
             </div>
             
@@ -182,10 +201,14 @@ const News = () => {
         </div>
       </section>
 
-      {/* News Grid */}
+      {/* News Grid with Loading State */}
       <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-50">
         <div className="container mx-auto px-4">
-          {filteredNews.length > 0 ? (
+          {isSearching ? (
+            <div className="flex items-center justify-center py-16">
+              <LoadingState text="Searching articles..." />
+            </div>
+          ) : filteredNews.length > 0 ? (
             <>
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-neutral-dark mb-4">
