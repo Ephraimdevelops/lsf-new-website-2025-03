@@ -85,7 +85,7 @@ function App() {
             <Route path="/approach/research-learning" element={<ApproachDetail />} />
             <Route path="/approach/partnerships-networking" element={<ApproachDetail />} />
             
-            {/* Focus areas routes */}
+            {/* Focus areas routes - Updated to match actual slugs */}
             <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
             <Route path="/focus-areas/accessible-legal-aid" element={<FocusAreaDetail />} />
             <Route path="/focus-areas/empowered-communities" element={<FocusAreaDetail />} />

@@ -1,9 +1,10 @@
+
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
 import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
 import ResourcesSection from '../components/focus-areas/ResourcesSection';
-import { Scale, Users, Gavel, Building } from 'lucide-react';
+import { Scale, Users, Gavel, Building, Leaf, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface FocusArea {
@@ -33,8 +34,8 @@ const focusAreas: { [key: string]: any } = {
     ],
     impactStats: [
       { value: '5000+', label: 'People Served Annually', icon: <Users className="h-6 w-6" /> },
-      { value: '24/7', label: 'Legal Helpline Availability', icon: <Users className="h-6 w-6" /> },
-      { value: '150+', label: 'Community Clinics', icon: <Users className="h-6 w-6" /> }
+      { value: '24/7', label: 'Legal Helpline Availability', icon: <Scale className="h-6 w-6" /> },
+      { value: '150+', label: 'Community Clinics', icon: <Building className="h-6 w-6" /> }
     ],
     resources: [
       { title: 'Know Your Rights Guide', type: 'PDF', link: '#' },
@@ -61,8 +62,8 @@ const focusAreas: { [key: string]: any } = {
     ],
     impactStats: [
       { value: '4000+', label: 'Paralegals Trained', icon: <Users className="h-6 w-6" /> },
-      { value: '184', label: 'Communities Served', icon: <Users className="h-6 w-6" /> },
-      { value: '85%', label: 'Dispute Resolution Rate', icon: <Users className="h-6 w-6" /> }
+      { value: '184', label: 'Communities Served', icon: <Building className="h-6 w-6" /> },
+      { value: '85%', label: 'Dispute Resolution Rate', icon: <Scale className="h-6 w-6" /> }
     ],
     resources: [
       { title: 'Community Legal Guide', type: 'PDF', link: '#' },
@@ -117,8 +118,8 @@ const focusAreas: { [key: string]: any } = {
     ],
     impactStats: [
       { value: '200+', label: 'Strategic Partners', icon: <Users className="h-6 w-6" /> },
-      { value: '15+', label: 'Years of Operation', icon: <Users className="h-6 w-6" /> },
-      { value: '5+', label: 'Resources Mobilized (M)', icon: <Users className="h-6 w-6" /> }
+      { value: '15+', label: 'Years of Operation', icon: <Building className="h-6 w-6" /> },
+      { value: '$47M+', label: 'Resources Mobilized', icon: <Scale className="h-6 w-6" /> }
     ],
     resources: [
       { title: 'Annual Report 2024', type: 'PDF', link: '#' },
@@ -130,12 +131,68 @@ const focusAreas: { [key: string]: any } = {
       author: "Dr. Sarah Mitchell",
       role: "International Development Advisor"
     }
+  },
+  'climate-justice': {
+    id: 'climate-justice',
+    title: 'Climate Justice and Environmental Rights',
+    description: 'Integrating climate justice in legal empowerment—protecting land rights and supporting vulnerable communities affected by climate change.',
+    fullDescription: 'LSF recognizes that climate change disproportionately affects the most vulnerable populations, often those already facing barriers to justice. Our climate justice work focuses on protecting land rights, supporting communities displaced by environmental changes, and advocating for policies that address climate-related legal issues. We work to ensure that environmental policies consider the rights and needs of marginalized communities, particularly women and rural populations who depend on natural resources for their livelihoods.',
+    icon: <Leaf className="h-8 w-8" />,
+    keyActivities: [
+      'Land Rights Protection: Securing tenure for climate-vulnerable communities',
+      'Environmental Advocacy: Legal support for communities affected by environmental degradation',
+      'Climate Policy: Advocating for inclusive climate adaptation and mitigation policies',
+      'Community Resilience: Building legal capacity for climate adaptation strategies'
+    ],
+    impactStats: [
+      { value: '2000+', label: 'Families Protected', icon: <Users className="h-6 w-6" /> },
+      { value: '50+', label: 'Communities Supported', icon: <Building className="h-6 w-6" /> },
+      { value: '12', label: 'Policy Interventions', icon: <Gavel className="h-6 w-6" /> }
+    ],
+    resources: [
+      { title: 'Climate Justice Handbook', type: 'PDF', link: '#' },
+      { title: 'Land Rights Guide', type: 'PDF', link: '#' },
+      { title: 'Environmental Law Toolkit', type: 'Resource Kit', link: '#' }
+    ],
+    testimonial: {
+      quote: "LSF helped our community secure our ancestral lands against illegal mining operations. Now we can protect our environment for future generations.",
+      author: "Grace Mollel",
+      role: "Community Leader, Arusha"
+    }
+  },
+  'digital-transformation': {
+    id: 'digital-transformation',
+    title: 'Digital Transformation in Legal Services',
+    description: 'Leveraging technology for wider access: digital case tracking, online legal aid, and digital training platforms.',
+    fullDescription: 'LSF embraces digital innovation to bridge the justice gap and make legal services more accessible, efficient, and responsive to community needs. Through digital platforms, mobile applications, and online training programs, we are transforming how legal aid is delivered across Tanzania. Our digital transformation initiatives include the HakiYangu mobile app, online legal consultation platforms, and digital paralegal training modules that reach communities regardless of their geographic location.',
+    icon: <Smartphone className="h-8 w-8" />,
+    keyActivities: [
+      'HakiYangu Mobile App: Digital platform for accessing legal aid and information',
+      'Online Legal Consultation: Virtual legal advice and support services',
+      'Digital Training Platforms: E-learning modules for paralegal and community education',
+      'Case Management Systems: Digital tools for tracking and managing legal cases'
+    ],
+    impactStats: [
+      { value: '15000+', label: 'App Users', icon: <Smartphone className="h-6 w-6" /> },
+      { value: '1000+', label: 'Online Consultations', icon: <Users className="h-6 w-6" /> },
+      { value: '500+', label: 'Digital Training Graduates', icon: <Building className="h-6 w-6" /> }
+    ],
+    resources: [
+      { title: 'HakiYangu User Guide', type: 'PDF', link: '#' },
+      { title: 'Digital Legal Services Overview', type: 'Video', link: '#' },
+      { title: 'Online Training Portal', type: 'Platform Access', link: '#' }
+    ],
+    testimonial: {
+      quote: "The HakiYangu app connected me with a lawyer when I couldn't travel to the city. Technology truly brought justice to my doorstep.",
+      author: "Ahmed Hassan",
+      role: "Small Business Owner, Mwanza"
+    }
   }
 };
 
 const FocusAreaDetail = () => {
-  const { focusAreaId } = useParams();
-  const focusArea = focusAreaId ? focusAreas[focusAreaId] : null;
+  const { slug } = useParams();
+  const focusArea = slug ? focusAreas[slug] : null;
 
   if (!focusArea) {
     return (
@@ -155,8 +212,8 @@ const FocusAreaDetail = () => {
   }
 
   const breadcrumbItems = [
-    { name: "What We Do", href: "/what-we-do" },
-    { name: "Focus Areas", href: "/what-we-do#focus-areas" },
+    { name: "Home", href: "/" },
+    { name: "Focus Areas", href: "/#focus-areas" },
     { name: focusArea.title }
   ];
 
