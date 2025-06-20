@@ -1,329 +1,84 @@
 
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
-import { ArrowLeft, DollarSign, Wrench, Megaphone, BookOpen, Users, Target, CheckCircle, Sparkles, TrendingUp, Award, Zap } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-
-interface Approach {
-  id: string;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  keyFeatures: string[];
-  currentProjects: { title: string; description: string; status: string }[];
-  achievements: string[];
-  futureGoals: string[];
-  methodology: string[];
-  impact: { metric: string; value: string }[];
-}
-
-const approaches: { [key: string]: Approach } = {
-  'grant-making': {
-    id: 'grant-making',
-    title: 'Grant Making and Management',
-    description: 'For over a decade, LSF has established itself as a trusted and capable fund manager, overseeing more than USD 47 million in donor contributions through robust grant-making architecture.',
-    icon: <DollarSign className="h-8 w-8" />,
-    keyFeatures: [
-      'Rigorous due diligence and partner selection processes',
-      'Comprehensive financial accountability systems',
-      'Regular monitoring and evaluation frameworks',
-      'Capacity building support for grantees',
-      'Technical assistance and mentorship programs'
-    ],
-    currentProjects: [
-      {
-        title: 'Community Legal Aid Network Expansion',
-        description: 'Supporting 50+ community-based organizations to expand legal aid services in rural areas.',
-        status: 'Active'
-      },
-      {
-        title: 'Women\'s Legal Empowerment Initiative',
-        description: 'Funding programs specifically targeting women\'s access to justice and legal awareness.',
-        status: 'Active'
-      },
-      {
-        title: 'Digital Legal Services Platform',
-        description: 'Supporting technology-driven solutions for improved legal service delivery.',
-        status: 'In Development'
-      }
-    ],
-    achievements: [
-      'Successfully managed over USD 47 million in donor funds',
-      'Supported 200+ community-based legal aid providers',
-      'Maintained 98% financial compliance rate across all grants',
-      'Facilitated legal aid services to over 100,000 beneficiaries'
-    ],
-    futureGoals: [
-      'Expand grant portfolio to USD 75 million by 2027',
-      'Support 300+ legal aid providers nationwide',
-      'Develop innovative financing mechanisms for sustainability',
-      'Strengthen South-South learning and exchange programs'
-    ],
-    methodology: [
-      'Competitive grant application processes',
-      'Multi-stage due diligence and assessment',
-      'Results-based monitoring and evaluation',
-      'Regular capacity building workshops',
-      'Annual partner convenings and learning exchanges'
-    ],
-    impact: [
-      { metric: 'Total Funds Managed', value: 'USD 47M+' },
-      { metric: 'Active Grantees', value: '200+' },
-      { metric: 'Districts Covered', value: '184' },
-      { metric: 'Compliance Rate', value: '98%' }
-    ]
-  },
-  'direct-implementation': {
-    id: 'direct-implementation',
-    title: 'Direct Project Implementation',
-    description: 'Since 2023, LSF has strategically expanded to include direct project implementation, enhancing agility and impact through high-impact initiatives.',
-    icon: <Wrench className="h-8 w-8" />,
-    keyFeatures: [
-      'Agile project management and implementation',
-      'Community-centered design and delivery',
-      'Technology-enabled service delivery',
-      'Partnership-based implementation models',
-      'Real-time monitoring and adaptive management'
-    ],
-    currentProjects: [
-      {
-        title: 'Sauti ya Mwanamke',
-        description: 'EU-funded project strengthening women\'s access to justice and voice in governance.',
-        status: 'Active'
-      },
-      {
-        title: 'Wanawake Tunaweza',
-        description: 'Women\'s economic and legal empowerment program in rural communities.',
-        status: 'Active'
-      },
-      {
-        title: 'Mobile Legal Clinic Network',
-        description: 'Direct delivery of legal services to remote and underserved communities.',
-        status: 'Expanding'
-      }
-    ],
-    achievements: [
-      'Successfully launched first direct implementation projects in 2023',
-      'Reached 15,000+ direct beneficiaries in first year',
-      'Established mobile legal clinic services in 25 districts',
-      'Achieved 95% beneficiary satisfaction rate'
-    ],
-    futureGoals: [
-      'Scale direct implementation to 50+ districts by 2026',
-      'Develop replicable implementation models',
-      'Integrate technology solutions across all projects',
-      'Establish permanent field offices in key regions'
-    ],
-    methodology: [
-      'Community needs assessment and mapping',
-      'Participatory project design and planning',
-      'Phased implementation with continuous learning',
-      'Technology integration for efficiency and reach',
-      'Impact measurement and documentation'
-    ],
-    impact: [
-      { metric: 'Direct Beneficiaries', value: '15,000+' },
-      { metric: 'Districts Reached', value: '25' },
-      { metric: 'Satisfaction Rate', value: '95%' },
-      { metric: 'Active Projects', value: '8' }
-    ]
-  },
-  'advocacy-policy': {
-    id: 'advocacy-policy',
-    title: 'Advocacy and Policy Influence',
-    description: 'LSF has played a pivotal role in shaping Tanzania\'s access to justice landscape, championing the Legal Aid Act and driving nationwide legal empowerment initiatives.',
-    icon: <Megaphone className="h-8 w-8" />,
-    keyFeatures: [
-      'Evidence-based policy research and analysis',
-      'Strategic stakeholder engagement and coalition building',
-      'Legislative advocacy and policy development',
-      'Public awareness campaigns and mobilization',
-      'Monitoring and evaluation of policy implementation'
-    ],
-    currentProjects: [
-      {
-        title: 'Legal Aid Act Implementation',
-        description: 'Supporting operationalization of the Legal Aid Act and its regulations.',
-        status: 'Ongoing'
-      },
-      {
-        title: 'Mama Samia Legal Aid Campaign',
-        description: 'Nationwide campaign to increase awareness and access to legal aid services.',
-        status: 'Active'
-      },
-      {
-        title: 'Justice Sector Reform Advocacy',
-        description: 'Advocating for reforms to improve access to justice and legal empowerment.',
-        status: 'Ongoing'
-      }
-    ],
-    achievements: [
-      'Led successful advocacy for the Legal Aid Act enactment',
-      'Influenced development of Legal Aid Act regulations',
-      'Launched the national Mama Samia Legal Aid Campaign',
-      'Established multi-stakeholder coordination mechanisms'
-    ],
-    futureGoals: [
-      'Advocate for additional legal and policy reforms',
-      'Strengthen civil society advocacy capacity',
-      'Expand policy influence at regional and continental levels',
-      'Develop sustainable advocacy funding mechanisms'
-    ],
-    methodology: [
-      'Strategic policy analysis and research',
-      'Coalition building and stakeholder mobilization',
-      'Legislative engagement and lobbying',
-      'Public campaign development and implementation',
-      'Policy monitoring and accountability mechanisms'
-    ],
-    impact: [
-      { metric: 'Policies Influenced', value: '5+' },
-      { metric: 'Campaign Reach', value: '2M+' },
-      { metric: 'Stakeholder Partnerships', value: '100+' },
-      { metric: 'Media Coverage', value: '500+' }
-    ]
-  },
-  'research-learning': {
-    id: 'research-learning',
-    title: 'Research, Learning, and Innovation',
-    description: 'LSF actively invests in research, monitoring, and learning to ensure evidence-based programming and informed policy engagement through academic partnerships.',
-    icon: <BookOpen className="h-8 w-8" />,
-    keyFeatures: [
-      'Rigorous research methodology and design',
-      'Academic and institutional partnerships',
-      'Innovation labs and pilot testing',
-      'Knowledge management and dissemination',
-      'Capacity building for research excellence'
-    ],
-    currentProjects: [
-      {
-        title: 'Legal Empowerment Impact Study',
-        description: 'Comprehensive research on the impact of legal empowerment initiatives in Tanzania.',
-        status: 'Ongoing'
-      },
-      {
-        title: 'Digital Justice Innovation Lab',
-        description: 'Testing and developing technology solutions for improved access to justice.',
-        status: 'Pilot Phase'
-      },
-      {
-        title: 'Gender and Justice Research Program',
-        description: 'Research on gender dimensions of access to justice and legal empowerment.',
-        status: 'Active'
-      }
-    ],
-    achievements: [
-      'Published 15+ research reports and policy briefs',
-      'Established partnerships with 5 academic institutions',
-      'Developed innovative research methodologies for legal empowerment',
-      'Created evidence base for policy advocacy and program design'
-    ],
-    futureGoals: [
-      'Establish LSF as a leading research institution in legal empowerment',
-      'Develop institutional research capacity and expertise',
-      'Create a comprehensive knowledge management system',
-      'Expand international research collaborations and exchanges'
-    ],
-    methodology: [
-      'Mixed-methods research approaches',
-      'Participatory research with communities',
-      'Technology-enabled data collection and analysis',
-      'Peer review and academic quality assurance',
-      'Dissemination through multiple channels and formats'
-    ],
-    impact: [
-      { metric: 'Research Publications', value: '15+' },
-      { metric: 'Academic Partners', value: '5' },
-      { metric: 'Innovation Pilots', value: '8' },
-      { metric: 'Research Uptake', value: '80%' }
-    ]
-  },
-  'partnerships-networking': {
-    id: 'partnerships-networking',
-    title: 'Strategic Partnerships and Networking',
-    description: 'LSF\'s impact is amplified through diverse partnerships with civil society, development partners, government entities, and private sector actors to co-create solutions.',
-    icon: <Users className="h-8 w-8" />,
-    keyFeatures: [
-      'Multi-stakeholder partnership development',
-      'Strategic alliance building and management',
-      'Network facilitation and coordination',
-      'Resource sharing and collaboration',
-      'Joint programming and implementation'
-    ],
-    currentProjects: [
-      {
-        title: 'Tanzania Legal Aid Network',
-        description: 'Coordinating network of legal aid providers across Tanzania.',
-        status: 'Active'
-      },
-      {
-        title: 'East Africa Legal Empowerment Initiative',
-        description: 'Regional partnership for legal empowerment knowledge sharing.',
-        status: 'Developing'
-      },
-      {
-        title: 'Private Sector Justice Alliance',
-        description: 'Engaging private sector in supporting access to justice initiatives.',
-        status: 'Pilot Phase'
-      }
-    ],
-    achievements: [
-      'Established partnerships with 200+ organizations',
-      'Facilitated coordination among 180+ legal aid providers',
-      'Created multi-sector collaboration platforms',
-      'Leveraged USD 20M+ in additional resources through partnerships'
-    ],
-    futureGoals: [
-      'Expand regional and international partnerships',
-      'Strengthen private sector engagement',
-      'Develop sustainable partnership models',
-      'Create innovation ecosystems for justice solutions'
-    ],
-    methodology: [
-      'Strategic partnership mapping and analysis',
-      'Collaborative planning and resource mobilization',
-      'Regular coordination and communication mechanisms',
-      'Joint monitoring and evaluation frameworks',
-      'Mutual accountability and learning systems'
-    ],
-    impact: [
-      { metric: 'Active Partners', value: '200+' },
-      { metric: 'Network Members', value: '180+' },
-      { metric: 'Resources Leveraged', value: 'USD 20M+' },
-      { metric: 'Joint Initiatives', value: '25+' }
-    ]
-  }
-};
+import { DollarSign, Wrench, Megaphone, BookOpen, Users } from 'lucide-react';
+import Typography from '@/components/shared/Typography';
+import Section from '@/components/shared/Section';
+import Container from '@/components/shared/Container';
+import Breadcrumb from '@/components/shared/Breadcrumb';
 
 const ApproachDetail = () => {
   const { approachId } = useParams();
-  const approach = approachId ? approaches[approachId] : null;
 
-  if (!approach) {
-    return (
-      <Layout>
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-          <div className="text-center bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-gray-200/50">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Target className="h-10 w-10 text-primary" />
-            </div>
-            <h1 className="text-3xl font-bold mb-4 text-neutral-dark">Approach Not Found</h1>
-            <p className="text-neutral-gray mb-8">The approach you're looking for doesn't exist.</p>
-            <Link to="/">
-              <Button className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </Layout>
-    );
-  }
+  const approachData: Record<string, any> = {
+    'grant-making': {
+      icon: <DollarSign className="h-8 w-8" />,
+      title: 'Grant Making and Management',
+      description: 'For over a decade, LSF has established itself as a trusted and capable fund manager, overseeing more than USD 47 million in donor contributions through robust grant-making architecture.',
+      details: [
+        'Successfully managed over 200 subgrantees across Tanzania',
+        'Proven financial accountability systems and compliance',
+        'Partner capacity-building and technical support',
+        'Comprehensive monitoring and evaluation frameworks'
+      ]
+    },
+    'direct-implementation': {
+      icon: <Wrench className="h-8 w-8" />,
+      title: 'Direct Project Implementation',
+      description: 'Since 2023, LSF has strategically expanded to include direct project implementation, enhancing agility and impact through high-impact initiatives.',
+      details: [
+        "'Sauti ya Mwanamke' - EU-funded women's access to justice",
+        "'Wanawake Tunaweza' - women's economic and legal empowerment",
+        'Enhanced operational flexibility and community reach',
+        'Direct community engagement and support'
+      ]
+    },
+    'advocacy-policy': {
+      icon: <Megaphone className="h-8 w-8" />,
+      title: 'Advocacy and Policy Influence',
+      description: 'LSF has played a pivotal role in shaping Tanzania\'s access to justice landscape, championing the Legal Aid Act and driving nationwide campaigns.',
+      details: [
+        'Led development of the Legal Aid Act and regulations',
+        'Spearheaded Mama Samia Legal Aid Campaign',
+        'National framework for coordinated stakeholder engagement',
+        'Policy reform advocacy based on evidence'
+      ]
+    },
+    'research-learning': {
+      icon: <BookOpen className="h-8 w-8" />,
+      title: 'Research, Learning, and Innovation',
+      description: 'LSF actively invests in research, monitoring, and learning to ensure evidence-based programming and informed policy engagement.',
+      details: [
+        'Evidence-based program design and evaluation',
+        'Academic institution partnerships for research',
+        'Data-driven policy reform advocacy',
+        'Innovation in legal empowerment approaches'
+      ]
+    },
+    'partnerships-networking': {
+      icon: <Users className="h-8 w-8" />,
+      title: 'Strategic Partnerships and Networking',
+      description: 'LSF\'s impact is amplified through diverse partnerships with civil society, development partners, government entities, and private sector actors.',
+      details: [
+        'Multi-stakeholder collaboration and coordination',
+        'Bridging grassroots efforts with national policy',
+        'Convening power for systemic change in access to justice',
+        'Co-creation of innovative solutions'
+      ]
+    }
+  };
+
+  const approach = approachData[approachId || ''] || approachData['grant-making'];
+  
+  const breadcrumbItems = [
+    { name: 'Home', href: '/' },
+    { name: 'What We Do', href: '/what-we-do' },
+    { name: approach.title }
+  ];
 
   return (
     <Layout>
-      {/* Enhanced Hero Section */}
       <HeroSection
         icon={approach.icon}
         badge="Our Approach"
@@ -332,207 +87,32 @@ const ApproachDetail = () => {
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      {/* Main Content with Enhanced Design */}
-      <section className="relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute top-1/3 right-0 w-96 h-96 bg-gradient-to-tl from-secondary-teal/5 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-tr from-secondary-orange/5 to-transparent rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            {/* Enhanced Back Button */}
-            <Link to="/" className="inline-flex items-center bg-white/70 backdrop-blur-sm text-primary hover:bg-white/90 hover:text-primary/80 px-6 py-3 rounded-xl font-semibold shadow-lg border border-gray-200/50 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 mb-12">
-              <ArrowLeft className="h-5 w-5 mr-2" />
-              Back to Home
-            </Link>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              {/* Enhanced Main Content */}
-              <div className="lg:col-span-2 space-y-16">
-                {/* Key Features with Enhanced Design */}
-                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
-                  <div className="flex items-center mb-8">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mr-6">
-                      <Target className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <h2 className="text-3xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-primary bg-clip-text text-transparent">
-                        Key Features
-                      </h2>
-                      <div className="w-16 h-1 bg-gradient-to-r from-primary to-secondary-teal rounded-full mt-2"></div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid gap-6">
-                    {approach.keyFeatures.map((feature, index) => (
-                      <div key={index} className="group flex items-start p-4 rounded-2xl hover:bg-gradient-to-r hover:from-primary/5 hover:to-secondary-teal/5 transition-all duration-300">
-                        <div className="w-10 h-10 bg-gradient-to-br from-secondary-teal/20 to-secondary-teal/30 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                          <CheckCircle className="h-5 w-5 text-secondary-teal" />
-                        </div>
-                        <p className="text-neutral-gray text-lg leading-relaxed">{feature}</p>
-                      </div>
-                    ))}
+      <Section variant="default" padding="lg">
+        <Container size="xl">
+          <div className="mb-8">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <Typography variant="h2" className="mb-8 text-center">
+              Key Components
+            </Typography>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {approach.details.map((detail: string, index: number) => (
+                <div key={index} className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-4 flex-shrink-0"></div>
+                    <Typography variant="body" className="text-neutral-gray">
+                      {detail}
+                    </Typography>
                   </div>
                 </div>
-
-                {/* Current Projects with Enhanced Cards */}
-                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
-                  <div className="flex items-center mb-8">
-                    <div className="w-16 h-16 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-2xl flex items-center justify-center mr-6">
-                      <Zap className="h-8 w-8 text-secondary-teal" />
-                    </div>
-                    <div>
-                      <h2 className="text-3xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-secondary-teal bg-clip-text text-transparent">
-                        Current Projects
-                      </h2>
-                      <div className="w-16 h-1 bg-gradient-to-r from-secondary-teal to-secondary-orange rounded-full mt-2"></div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid gap-6">
-                    {approach.currentProjects.map((project, index) => (
-                      <div key={index} className="group bg-gradient-to-r from-gray-50/50 to-white/50 hover:from-primary/5 hover:to-secondary-teal/5 p-6 rounded-2xl border border-gray-200/50 hover:border-secondary-teal/30 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-1">
-                        <div className="flex items-start justify-between mb-4">
-                          <h3 className="text-xl font-semibold text-neutral-dark group-hover:text-secondary-teal transition-colors duration-300">{project.title}</h3>
-                          <span className={`px-4 py-2 rounded-full text-sm font-bold shadow-md ${
-                            project.status === 'Active' ? 'bg-gradient-to-r from-green-100 to-green-200 text-green-800' :
-                            project.status === 'Ongoing' ? 'bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800' :
-                            project.status === 'Expanding' ? 'bg-gradient-to-r from-purple-100 to-purple-200 text-purple-800' :
-                            'bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800'
-                          }`}>
-                            <Sparkles className="h-3 w-3 inline mr-1" />
-                            {project.status}
-                          </span>
-                        </div>
-                        <p className="text-neutral-gray leading-relaxed">{project.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Methodology with Enhanced Design */}
-                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
-                  <div className="flex items-center mb-8">
-                    <div className="w-16 h-16 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-2xl flex items-center justify-center mr-6">
-                      <Target className="h-8 w-8 text-secondary-orange" />
-                    </div>
-                    <div>
-                      <h2 className="text-3xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-secondary-orange bg-clip-text text-transparent">
-                        Methodology
-                      </h2>
-                      <div className="w-16 h-1 bg-gradient-to-r from-secondary-orange to-primary rounded-full mt-2"></div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid gap-6">
-                    {approach.methodology.map((method, index) => (
-                      <div key={index} className="group flex items-start p-4 rounded-2xl hover:bg-gradient-to-r hover:from-secondary-orange/5 hover:to-primary/5 transition-all duration-300">
-                        <div className="w-12 h-12 bg-gradient-to-br from-secondary-orange/20 to-secondary-orange/30 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                          <span className="text-secondary-orange font-bold text-lg">{index + 1}</span>
-                        </div>
-                        <p className="text-neutral-gray text-lg leading-relaxed pt-2">{method}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Achievements with Enhanced Design */}
-                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50">
-                  <div className="flex items-center mb-8">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mr-6">
-                      <Award className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <h2 className="text-3xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-primary bg-clip-text text-transparent">
-                        Key Achievements
-                      </h2>
-                      <div className="w-16 h-1 bg-gradient-to-r from-primary to-secondary-teal rounded-full mt-2"></div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid gap-6">
-                    {approach.achievements.map((achievement, index) => (
-                      <div key={index} className="group flex items-start p-4 rounded-2xl hover:bg-gradient-to-r hover:from-primary/5 hover:to-secondary-teal/5 transition-all duration-300">
-                        <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary-teal rounded-full mt-3 mr-6 flex-shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                        <p className="text-neutral-gray text-lg leading-relaxed">{achievement}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Enhanced Sidebar */}
-              <div className="lg:col-span-1">
-                <div className="sticky top-8 space-y-8">
-                  {/* Impact Metrics with Enhanced Design */}
-                  <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200/50">
-                    <div className="flex items-center mb-8">
-                      <div className="w-12 h-12 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-xl flex items-center justify-center mr-4">
-                        <TrendingUp className="h-6 w-6 text-secondary-teal" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-secondary-teal bg-clip-text text-transparent">
-                        Impact Metrics
-                      </h3>
-                    </div>
-                    
-                    <div className="grid gap-6">
-                      {approach.impact.map((metric, index) => (
-                        <div key={index} className="group text-center p-6 bg-gradient-to-br from-primary/5 via-secondary-teal/5 to-secondary-orange/5 hover:from-primary/10 hover:via-secondary-teal/10 hover:to-secondary-orange/10 rounded-2xl border border-gray-200/50 hover:border-secondary-teal/30 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-1">
-                          <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
-                            {metric.value}
-                          </div>
-                          <div className="text-sm text-neutral-gray font-semibold">{metric.metric}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Future Goals with Enhanced Design */}
-                  <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200/50">
-                    <div className="flex items-center mb-6">
-                      <div className="w-12 h-12 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-xl flex items-center justify-center mr-4">
-                        <Target className="h-6 w-6 text-secondary-orange" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-neutral-dark bg-gradient-to-r from-neutral-dark to-secondary-orange bg-clip-text text-transparent">
-                        Future Goals
-                      </h3>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      {approach.futureGoals.map((goal, index) => (
-                        <div key={index} className="group flex items-start p-3 rounded-xl hover:bg-gradient-to-r hover:from-secondary-orange/5 hover:to-primary/5 transition-all duration-300">
-                          <div className="w-2 h-2 bg-gradient-to-r from-secondary-orange to-primary rounded-full mt-2.5 mr-4 flex-shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                          <p className="text-sm text-neutral-gray leading-relaxed">{goal}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Call to Action */}
-                  <div className="bg-gradient-to-br from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200/50 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                      <Users className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold text-neutral-dark mb-4">Get Involved</h3>
-                    <p className="text-sm text-neutral-gray mb-6 leading-relaxed">
-                      Join us in advancing this approach and creating lasting impact in Tanzania's justice landscape.
-                    </p>
-                    <Link to="/contact">
-                      <Button className="w-full bg-gradient-to-r from-primary to-secondary-teal hover:from-primary/90 hover:to-secondary-teal/90 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                        Contact Us
-                        <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </Layout>
   );
 };

@@ -48,31 +48,33 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
   const breadcrumbItems = generateBreadcrumbs();
 
   return (
-    <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-sm">
-      {breadcrumbItems.map((item, index) => (
-        <div key={index} className="flex items-center">
-          {index === 0 && (
-            <Home className="h-4 w-4 mr-2 text-neutral-gray" />
-          )}
-          
-          {item.href ? (
-            <Link 
-              to={item.href}
-              className="text-neutral-gray hover:text-primary transition-colors duration-200"
-            >
-              {item.name}
-            </Link>
-          ) : (
-            <span className="text-neutral-dark font-medium">
-              {item.name}
-            </span>
-          )}
-          
-          {index < breadcrumbItems.length - 1 && (
-            <ChevronRight className="h-4 w-4 mx-2 text-neutral-gray" />
-          )}
-        </div>
-      ))}
+    <nav aria-label="Breadcrumb">
+      <ol className="flex items-center space-x-2 text-sm">
+        {breadcrumbItems.map((item, index) => (
+          <li key={index} className="flex items-center">
+            {index === 0 && (
+              <Home className="h-4 w-4 mr-2 text-neutral-gray" />
+            )}
+            
+            {item.href ? (
+              <Link 
+                to={item.href}
+                className="text-neutral-gray hover:text-primary transition-colors duration-200"
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <span className="text-neutral-dark font-medium">
+                {item.name}
+              </span>
+            )}
+            
+            {index < breadcrumbItems.length - 1 && (
+              <ChevronRight className="h-4 w-4 mx-2 text-neutral-gray" />
+            )}
+          </li>
+        ))}
+      </ol>
     </nav>
   );
 };

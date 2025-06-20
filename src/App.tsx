@@ -11,6 +11,8 @@ import NewsDetail from '@/pages/NewsDetail';
 import FocusAreaDetail from '@/pages/FocusAreaDetail';
 import LegalHelp from '@/pages/LegalHelp';
 import Resources from '@/pages/Resources';
+import Publications from '@/pages/Publications';
+import PublicationDetail from '@/pages/PublicationDetail';
 import GrantMaking from '@/pages/GrantMaking';
 import ApproachDetail from '@/pages/ApproachDetail';
 import NotFound from '@/pages/NotFound';
@@ -37,9 +39,16 @@ function App() {
             <Route path="/what-we-do" element={<WhatWeDo />} />
             <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
             <Route path="/approach/:approachId" element={<ApproachDetail />} />
+            {/* Add specific approach routes to match the links in WhatWeDo component */}
+            <Route path="/approach/direct-implementation" element={<ApproachDetail />} />
+            <Route path="/approach/advocacy-policy" element={<ApproachDetail />} />
+            <Route path="/approach/research-learning" element={<ApproachDetail />} />
+            <Route path="/approach/partnerships-networking" element={<ApproachDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/news" element={<News />} />
             <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/publications" element={<Publications />} />
+            <Route path="/publications/:id" element={<PublicationDetail />} />
             <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
             <Route path="/legal-help" element={<LegalHelp />} />
             <Route path="/resources" element={<Resources />} />
