@@ -6,7 +6,7 @@ import { designTokens } from '@/styles/designTokens';
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-interface DesignButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface DesignButtonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children: React.ReactNode;
@@ -14,21 +14,27 @@ interface DesignButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
   iconPosition?: 'left' | 'right';
   fullWidth?: boolean;
   href?: string;
-  as?: 'button' |'a';
+  as?: 'button' | 'a';
+  className?: string;
 }
 
-const DesignButton = ({ 
-  variant = 'primary',
-  size = 'md',
-  children,
-  icon,
-  iconPosition = 'left',
-  fullWidth = false,
-  href,
-  as = 'button',
-  className = '',
-  ...props
-}: DesignButtonProps) => {
+type ButtonElementProps = DesignButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type AnchorElementProps = DesignButtonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
+const DesignButton = (props: ButtonElementProps | AnchorElementProps) => {
+  const { 
+    variant = 'primary',
+    size = 'md',
+    children,
+    icon,
+    iconPosition = 'left',
+    fullWidth = false,
+    href,
+    as = 'button',
+    className = '',
+    ...restProps
+  } = props;
+
   const sizeStyles = {
     sm: 'px-4 py-2 text-sm rounded-lg',
     md: 'px-6 py-3 text-base rounded-xl',
@@ -69,7 +75,7 @@ const DesignButton = ({
       <a
         href={href}
         className={combinedClassName}
-        {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        {...(restProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {content}
       </a>
@@ -79,7 +85,7 @@ const DesignButton = ({
   return (
     <button
       className={combinedClassName}
-      {...props}
+      {...(restProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {content}
     </button>
