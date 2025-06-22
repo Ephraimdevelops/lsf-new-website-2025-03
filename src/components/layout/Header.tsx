@@ -7,27 +7,28 @@ import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 import LegalAidDialog from '@/components/shared/LegalAidDialog';
 
-// Streamlined navigation structure with essential links only
+// Enhanced navigation structure with images
 const navigationItems = [
   { 
     name: 'About', 
     href: '/about',
     description: 'Our mission and organization',
+    image: '/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png',
     sections: [
       {
         title: 'Organization',
         links: [
-          { name: 'About LSF', href: '/about', description: 'Mission, vision, and history' },
-          { name: 'Our Team', href: '/team', description: 'Leadership and staff' },
-          { name: 'Partners', href: '/partners', description: 'Strategic partnerships' },
+          { name: 'About LSF', href: '/about', description: 'Mission, vision, and history', image: '/lovable-uploads/background with mother umage .png' },
+          { name: 'Our Team', href: '/team', description: 'Leadership and staff', image: '/lovable-uploads/backgound lsf colours.png' },
+          { name: 'Partners', href: '/partners', description: 'Strategic partnerships', image: '/lovable-uploads/background with mother umage .png' },
         ]
       },
       {
         title: 'Get Involved',
         links: [
-          { name: 'Contact Us', href: '/contact', description: 'Get in touch' },
-          { name: 'Opportunities', href: '/opportunities', description: 'Join our team' },
-          { name: 'Donate', href: '/donate', description: 'Support our mission' },
+          { name: 'Contact Us', href: '/contact', description: 'Get in touch', image: '/lovable-uploads/backgound lsf colours.png' },
+          { name: 'Opportunities', href: '/opportunities', description: 'Join our team', image: '/lovable-uploads/background with mother umage .png' },
+          { name: 'Donate', href: '/donate', description: 'Support our mission', image: '/lovable-uploads/backgound lsf colours.png' },
         ]
       }
     ]
@@ -36,23 +37,24 @@ const navigationItems = [
     name: 'Our Work', 
     href: '/what-we-do',
     description: 'How we strengthen access to justice',
+    image: '/lovable-uploads/background with mother umage .png',
     sections: [
       {
         title: 'Approaches',
         links: [
-          { name: 'What We Do', href: '/what-we-do', description: 'Our comprehensive approach' },
-          { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Funding justice organizations' },
-          { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening providers' },
-          { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy', description: 'Systemic change' },
+          { name: 'What We Do', href: '/what-we-do', description: 'Our comprehensive approach', image: '/lovable-uploads/backgound lsf colours.png' },
+          { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Funding justice organizations', image: '/lovable-uploads/background with mother umage .png' },
+          { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening providers', image: '/lovable-uploads/backgound lsf colours.png' },
+          { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy', description: 'Systemic change', image: '/lovable-uploads/background with mother umage .png' },
         ]
       },
       {
         title: 'Focus Areas',
         links: [
-          { name: 'Legal Aid', href: '/focus-areas/accessible-legal-aid', description: 'Quality services' },
-          { name: 'Community Empowerment', href: '/focus-areas/empowered-communities', description: 'Legal empowerment' },
-          { name: 'Climate Justice', href: '/focus-areas/climate-justice', description: 'Environmental rights' },
-          { name: 'Digital Innovation', href: '/focus-areas/digital-transformation', description: 'Technology solutions' },
+          { name: 'Legal Aid', href: '/focus-areas/accessible-legal-aid', description: 'Quality services', image: '/lovable-uploads/backgound lsf colours.png' },
+          { name: 'Community Empowerment', href: '/focus-areas/empowered-communities', description: 'Legal empowerment', image: '/lovable-uploads/background with mother umage .png' },
+          { name: 'Climate Justice', href: '/focus-areas/climate-justice', description: 'Environmental rights', image: '/lovable-uploads/backgound lsf colours.png' },
+          { name: 'Digital Innovation', href: '/focus-areas/digital-transformation', description: 'Technology solutions', image: '/lovable-uploads/background with mother umage .png' },
         ]
       }
     ]
@@ -61,12 +63,13 @@ const navigationItems = [
     name: 'Programs', 
     href: '/programs',
     description: 'Our active initiatives',
+    image: '/lovable-uploads/backgound lsf colours.png',
     sections: [
       {
         title: 'Current Programs',
         links: [
-          { name: 'All Programs', href: '/programs', description: 'Active program portfolio' },
-          { name: 'Get Legal Help', href: '/legal-help', description: 'Access assistance' },
+          { name: 'All Programs', href: '/programs', description: 'Active program portfolio', image: '/lovable-uploads/background with mother umage .png' },
+          { name: 'Get Legal Help', href: '/legal-help', description: 'Access assistance', image: '/lovable-uploads/backgound lsf colours.png' },
         ]
       }
     ]
@@ -75,12 +78,13 @@ const navigationItems = [
     name: 'Impact', 
     href: '/impact',
     description: 'Stories and results',
+    image: '/lovable-uploads/background with mother umage .png',
     sections: [
       {
         title: 'Our Impact',
         links: [
-          { name: 'Success Stories', href: '/heroes', description: 'Inspiring stories' },
-          { name: 'Impact Metrics', href: '/impact', description: 'Measurable outcomes' },
+          { name: 'Success Stories', href: '/heroes', description: 'Inspiring stories', image: '/lovable-uploads/backgound lsf colours.png' },
+          { name: 'Impact Metrics', href: '/impact', description: 'Measurable outcomes', image: '/lovable-uploads/background with mother umage .png' },
         ]
       }
     ]
@@ -89,13 +93,14 @@ const navigationItems = [
     name: 'Resources', 
     href: '/resources',
     description: 'Publications and information',
+    image: '/lovable-uploads/backgound lsf colours.png',
     sections: [
       {
         title: 'Information',
         links: [
-          { name: 'Latest News', href: '/news', description: 'Current developments' },
-          { name: 'Publications', href: '/publications', description: 'Reports and research' },
-          { name: 'Legal Resources', href: '/resources', description: 'Practical information' },
+          { name: 'Latest News', href: '/news', description: 'Current developments', image: '/lovable-uploads/background with mother umage .png' },
+          { name: 'Publications', href: '/publications', description: 'Reports and research', image: '/lovable-uploads/backgound lsf colours.png' },
+          { name: 'Legal Resources', href: '/resources', description: 'Practical information', image: '/lovable-uploads/background with mother umage .png' },
         ]
       }
     ]
@@ -137,7 +142,7 @@ const Header = () => {
             : "bg-white/95 backdrop-blur-sm"
         )}
       >
-        {/* Contact Strip - simplified */}
+        {/* Contact Strip */}
         <div className={cn(
           "bg-primary text-white py-2 transition-all duration-300",
           isScrolled ? "h-0 overflow-hidden opacity-0" : "h-auto opacity-100"
@@ -197,10 +202,22 @@ const Header = () => {
                     <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
                   </button>
                   
-                  {/* Streamlined Dropdown */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-96 rounded-xl shadow-xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  {/* Enhanced Dropdown with Images */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-[500px] rounded-xl shadow-xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                     <div className="p-6">
-                      <div className="space-y-6">
+                      {/* Header with main image */}
+                      <div className="mb-6 relative overflow-hidden rounded-lg">
+                        <img 
+                          src={item.image} 
+                          alt={item.name}
+                          className="w-full h-24 object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                          <h3 className="text-white font-bold text-lg">{item.name}</h3>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-6">
                         {item.sections?.map((section, index) => (
                           <div key={index}>
                             <h4 className="font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide border-b border-gray-200 pb-2">
@@ -211,13 +228,20 @@ const Header = () => {
                                 <li key={link.name}>
                                   <Link
                                     to={link.href}
-                                    className="block p-2 rounded-lg hover:bg-gray-50 transition-colors group/link"
+                                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors group/link"
                                   >
-                                    <div className="font-semibold text-gray-900 group-hover/link:text-primary transition-colors mb-1 text-sm">
-                                      {link.name}
-                                    </div>
-                                    <div className="text-xs text-gray-500">
-                                      {link.description}
+                                    <img 
+                                      src={link.image} 
+                                      alt={link.name}
+                                      className="w-10 h-10 object-cover rounded-md"
+                                    />
+                                    <div>
+                                      <div className="font-semibold text-gray-900 group-hover/link:text-primary transition-colors text-sm">
+                                        {link.name}
+                                      </div>
+                                      <div className="text-xs text-gray-500">
+                                        {link.description}
+                                      </div>
                                     </div>
                                   </Link>
                                 </li>
@@ -288,7 +312,7 @@ const Header = () => {
                 </div>
               </div>
               
-            <nav className="space-y-1">
+              <nav className="space-y-1">
                 {navigationItems.map((item) => (
                   <div key={item.name} className="py-1">
                     <div>
@@ -322,14 +346,21 @@ const Header = () => {
                                     <Link
                                       to={link.href}
                                       className={cn(
-                                        "block px-3 py-2 text-sm rounded-md transition-colors",
+                                        "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
                                         location.pathname === link.href
                                           ? "text-primary bg-primary/5"
                                           : "text-gray-600 hover:bg-gray-50"
                                       )}
                                     >
-                                      <div className="font-medium">{link.name}</div>
-                                      <div className="text-xs text-gray-500 mt-1">{link.description}</div>
+                                      <img 
+                                        src={link.image} 
+                                        alt={link.name}
+                                        className="w-8 h-8 object-cover rounded"
+                                      />
+                                      <div>
+                                        <div className="font-medium">{link.name}</div>
+                                        <div className="text-xs text-gray-500 mt-1">{link.description}</div>
+                                      </div>
                                     </Link>
                                   </li>
                                 ))}

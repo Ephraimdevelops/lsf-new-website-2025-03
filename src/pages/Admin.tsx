@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import AdminLogin from '../components/admin/AdminLogin';
 import AdminDashboard from '../components/admin/AdminDashboard';
-import Breadcrumb from '../components/shared/Breadcrumb';
 import { useToast } from '@/hooks/use-toast';
 
 const Admin = () => {
@@ -28,10 +27,6 @@ const Admin = () => {
   
   const [failedAttempts, setFailedAttempts] = useState(0);
   const { toast } = useToast();
-
-  const breadcrumbItems = [
-    { name: "Admin Dashboard" }
-  ];
   
   const handleLogin = (username: string, password: string) => {
     // Admin credentials
@@ -71,12 +66,7 @@ const Admin = () => {
   return isLoggedIn ? (
     <AdminDashboard onLogout={handleLogout} />
   ) : (
-    <Layout>
-      <div className="container mx-auto px-4 pt-8">
-        <Breadcrumb items={breadcrumbItems} />
-        <AdminLogin onLogin={handleLogin} isLocked={loginLocked} />
-      </div>
-    </Layout>
+    <AdminLogin onLogin={handleLogin} isLocked={loginLocked} />
   );
 };
 
