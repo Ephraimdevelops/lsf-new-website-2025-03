@@ -33,6 +33,9 @@ import ClimateJustice from "./pages/ClimateJustice";
 import DigitalTransformation from "./pages/DigitalTransformation";
 import FocusAreaDetail from "./pages/FocusAreaDetail";
 import ClimateJusticeResources from "./pages/ClimateJusticeResources";
+import GenderJusticeResources from "./pages/GenderJusticeResources";
+import LegalEmpowermentResources from "./pages/LegalEmpowermentResources";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -66,12 +69,16 @@ const App = () => (
           <Route path="/publications" element={<Publications />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources/climate-justice" element={<ClimateJusticeResources />} />
+          <Route path="/resources/gender-justice" element={<GenderJusticeResources />} />
+          <Route path="/resources/legal-empowerment" element={<LegalEmpowermentResources />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/team" element={<Team />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/opportunities" element={<Opportunities />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/admin" element={<Admin />} />
+          {/* Catch all route for 404 pages */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
