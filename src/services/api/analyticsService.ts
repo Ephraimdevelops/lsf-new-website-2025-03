@@ -141,6 +141,21 @@ const analyticsService = {
     } catch (error) {
       console.error('Error tracking download:', error);
     }
+  },
+
+  trackEvent: async (eventName: string, properties?: Record<string, any>): Promise<void> => {
+    try {
+      console.log(`Event tracked: ${eventName}`, properties);
+      const events = JSON.parse(localStorage.getItem('events') || '[]');
+      events.push({
+        event: eventName,
+        properties,
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('events', JSON.stringify(events));
+    } catch (error) {
+      console.error('Error tracking event:', error);
+    }
   }
 };
 

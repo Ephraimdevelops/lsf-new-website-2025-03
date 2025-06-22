@@ -119,7 +119,7 @@ const LegalAidFinder = () => {
   useEffect(() => {
     const trackFinder = async () => {
       try {
-        await analyticsService.trackPageView('/legal-aid-finder', 'Legal Aid Finder');
+        await analyticsService.trackPageView('/legal-aid-finder');
       } catch (error) {
         console.error("Failed to record analytics:", error);
       }
@@ -136,7 +136,7 @@ const LegalAidFinder = () => {
     
     // Track this interaction
     try {
-      analyticsService.trackPageView(`/legal-aid-finder/contact/${center.id}`, `Contact ${center.name}`);
+      analyticsService.trackPageView(`/legal-aid-finder/contact/${center.id}`);
     } catch (error) {
       console.error("Failed to record contact analytics:", error);
     }

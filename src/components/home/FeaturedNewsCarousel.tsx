@@ -41,7 +41,7 @@ const newsItems: NewsItem[] = [
     title: "New Climate Justice Initiative Tackles Environmental Legal Challenges",
     excerpt: "LSF launches a groundbreaking program to address climate-related legal issues affecting communities across Tanzania, with a focus on land rights, resource management, and sustainable development.",
     date: "February 22, 2024",
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1521791136064-0369a794ec0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
     category: "Climate Justice"
   },
   {
