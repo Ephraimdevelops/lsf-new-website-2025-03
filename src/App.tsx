@@ -1,7 +1,7 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
@@ -41,47 +41,49 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/what-we-do" element={<WhatWeDo />} />
-          <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
-          <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
-          <Route path="/what-we-do/policy-advocacy" element={<PolicyAdvocacy />} />
-          <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
-          <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
-          <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
-          <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
-          <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
-          <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
-          <Route path="/focus-areas/climate-justice" element={<ClimateJustice />} />
-          <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
-          <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
-          <Route path="/programs" element={<Programs />} />
-          <Route path="/legal-help" element={<LegalHelp />} />
-          <Route path="/impact" element={<Impact />} />
-          <Route path="/heroes" element={<Heroes />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/publications" element={<Publications />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/resources/climate-justice" element={<ClimateJusticeResources />} />
-          <Route path="/resources/gender-justice" element={<GenderJusticeResources />} />
-          <Route path="/resources/legal-empowerment" element={<LegalEmpowermentResources />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/opportunities" element={<Opportunities />} />
-          <Route path="/donate" element={<Donate />} />
-          <Route path="/admin" element={<Admin />} />
-          {/* Catch all route for 404 pages */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/what-we-do" element={<WhatWeDo />} />
+            <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
+            <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
+            <Route path="/what-we-do/policy-advocacy" element={<PolicyAdvocacy />} />
+            <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
+            <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
+            <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
+            <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
+            <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
+            <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
+            <Route path="/focus-areas/climate-justice" element={<ClimateJustice />} />
+            <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
+            <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/legal-help" element={<LegalHelp />} />
+            <Route path="/impact" element={<Impact />} />
+            <Route path="/heroes" element={<Heroes />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/publications" element={<Publications />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/climate-justice" element={<ClimateJusticeResources />} />
+            <Route path="/resources/gender-justice" element={<GenderJusticeResources />} />
+            <Route path="/resources/legal-empowerment" element={<LegalEmpowermentResources />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/opportunities" element={<Opportunities />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="/admin" element={<Admin />} />
+            {/* Catch all route for 404 pages */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
