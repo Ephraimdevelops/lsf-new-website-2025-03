@@ -30,13 +30,12 @@ const Admin = () => {
   const { toast } = useToast();
 
   const breadcrumbItems = [
-    { name: "Admin" }
+    { name: "Admin Dashboard" }
   ];
   
   const handleLogin = (username: string, password: string) => {
-    // In a real app, this would validate against a backend API
-    // For demo purposes, we're using hardcoded credentials
-    if (username === 'admin' && password === 'lsfadmin2024') {
+    // Admin credentials
+    if (username === 'lsfadmin' && password === 'LSF2024@Admin') {
       localStorage.setItem('admin-auth', 'true');
       localStorage.setItem('admin-last-login', Date.now().toString());
       setIsLoggedIn(true);
@@ -46,9 +45,8 @@ const Admin = () => {
       const newFailedAttempts = failedAttempts + 1;
       setFailedAttempts(newFailedAttempts);
       
-      // Lock login after 5 failed attempts
       if (newFailedAttempts >= 5) {
-        const lockUntil = Date.now() + 15 * 60 * 1000; // 15 minutes
+        const lockUntil = Date.now() + 15 * 60 * 1000;
         localStorage.setItem('admin-login-locked-until', lockUntil.toString());
         setLoginLocked(true);
         toast({

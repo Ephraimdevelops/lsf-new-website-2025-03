@@ -12,7 +12,7 @@ import { Users, BookOpen, Award, Target } from 'lucide-react';
 
 const CapacityBuilding = () => {
   const breadcrumbItems = [
-    { name: "What We Do", href: "/what-we-do" },
+    { name: "Our Work", href: "/what-we-do" },
     { name: "Capacity Building" }
   ];
 
@@ -46,7 +46,7 @@ const CapacityBuilding = () => {
     <Layout>
       <HeroSection
         icon={<Users className="h-8 w-8" />}
-        badge="What We Do"
+        badge="Our Work"
         title="Capacity Building"
         description="LSF strengthens both institutional and technical capacity among legal aid providers, paralegals, and community-based organizations."
         backgroundImage="/lovable-uploads/background with mother umage .png"
