@@ -136,11 +136,7 @@ const FeaturedNewsCarousel = () => {
               <CarouselContent>
                 {news.map((item, index) => (
                   <CarouselItem key={index}>
-                    <Link 
-                      to={`/news/${item.id}`} 
-                      className="block" 
-                      onClick={() => trackNewsView(item.id)}
-                    >
+                    <div className="block">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-white rounded-xl overflow-hidden shadow-lg">
                         <div className="h-64 lg:h-[400px] overflow-hidden">
                           <img 
@@ -164,13 +160,17 @@ const FeaturedNewsCarousel = () => {
                           <p className="text-neutral-gray mb-6 font-calibri">
                             {item.excerpt}
                           </p>
-                          <span className="inline-flex items-center text-primary font-medium font-calibri">
+                          <Link 
+                            to="/news" 
+                            onClick={() => trackNewsView(item.id)}
+                            className="inline-flex items-center text-primary font-medium font-calibri hover:text-primary/80 transition-colors"
+                          >
                             Read full story
                             <ArrowRight className="ml-1 h-5 w-5" />
-                          </span>
+                          </Link>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>

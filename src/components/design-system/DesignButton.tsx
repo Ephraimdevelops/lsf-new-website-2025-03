@@ -13,6 +13,8 @@ interface DesignButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   fullWidth?: boolean;
+  href?: string;
+  as?: 'button' |'a';
 }
 
 const DesignButton = ({ 
@@ -22,6 +24,8 @@ const DesignButton = ({
   icon,
   iconPosition = 'left',
   fullWidth = false,
+  href,
+  as = 'button',
   className = '',
   ...props
 }: DesignButtonProps) => {
@@ -38,17 +42,18 @@ const DesignButton = ({
     ghost: 'text-primary-500 hover:bg-primary-50 active:bg-primary-100',
   };
 
-  return (
-    <button
-      className={cn(
-        'font-heading font-semibold transition-all duration-300 hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed',
-        sizeStyles[size],
-        variantStyles[variant],
-        fullWidth && 'w-full',
-        className
-      )}
-      {...props}
-    >
+  const baseStyles = 'font-heading font-semibold transition-all duration-300 hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed';
+
+  const combinedClassName = cn(
+    baseStyles,
+    sizeStyles[size],
+    variantStyles[variant],
+    fullWidth && 'w-full',
+    className
+  );
+
+  const content = (
+    <>
       {icon && iconPosition === 'left' && (
         <span className="mr-2">{icon}</span>
       )}
@@ -56,6 +61,27 @@ const DesignButton = ({
       {icon && iconPosition === 'right' && (
         <span className="ml-2">{icon}</span>
       )}
+    </>
+  );
+
+  if (as === 'a' && href) {
+    return (
+      <a
+        href={href}
+        className={combinedClassName}
+        {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      className={combinedClassName}
+      {...props}
+    >
+      {content}
     </button>
   );
 };

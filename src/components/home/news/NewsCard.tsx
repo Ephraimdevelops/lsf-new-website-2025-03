@@ -34,7 +34,7 @@ const NewsCard = ({ news }: NewsCardProps) => {
 
   return (
     <Link 
-      to={`/news/${news.id}`}
+      to="/news"
       className="group block"
     >
       <Card className="overflow-hidden group-hover:-translate-y-2 h-full" hover>

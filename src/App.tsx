@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -35,6 +36,12 @@ import FocusAreaDetail from "./pages/FocusAreaDetail";
 import ClimateJusticeResources from "./pages/ClimateJusticeResources";
 import GenderJusticeResources from "./pages/GenderJusticeResources";
 import LegalEmpowermentResources from "./pages/LegalEmpowermentResources";
+import NewsDetail from "./pages/NewsDetail";
+import PublicationDetail from "./pages/PublicationDetail";
+import ProgramDetail from "./pages/ProgramDetail";
+import OpportunityDetail from "./pages/OpportunityDetail";
+import TeamDetail from "./pages/TeamDetail";
+import HeroDetail from "./pages/HeroDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -63,21 +70,27 @@ const App = () => (
             <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
             <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
             <Route path="/programs" element={<Programs />} />
+            <Route path="/programs/:id" element={<ProgramDetail />} />
             <Route path="/legal-help" element={<LegalHelp />} />
             <Route path="/impact" element={<Impact />} />
             <Route path="/heroes" element={<Heroes />} />
+            <Route path="/heroes/:id" element={<HeroDetail />} />
             <Route path="/news" element={<News />} />
+            <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/publications" element={<Publications />} />
+            <Route path="/publications/:id" element={<PublicationDetail />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/resources/climate-justice" element={<ClimateJusticeResources />} />
             <Route path="/resources/gender-justice" element={<GenderJusticeResources />} />
             <Route path="/resources/legal-empowerment" element={<LegalEmpowermentResources />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/team/:id" element={<TeamDetail />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/opportunities" element={<Opportunities />} />
+            <Route path="/opportunities/:id" element={<OpportunityDetail />} />
             <Route path="/donate" element={<Donate />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/*" element={<Admin />} />
             {/* Catch all route for 404 pages */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { User, LayoutDashboard, Settings, Users, FileText, X, Menu, BarChart, Briefcase, FolderOpen } from 'lucide-react';
 import AdminNews from './AdminNews';
@@ -18,9 +18,16 @@ interface AdminDashboardProps {
 
 const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const location = useLocation();
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const isActiveRoute = (path: string) => {
+    if (path === '/admin' && location.pathname === '/admin') return true;
+    if (path !== '/admin' && location.pathname.startsWith(path)) return true;
+    return false;
   };
 
   return (
@@ -42,49 +49,89 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         <nav className="p-4">
           <ul className="space-y-2">
             <li>
-              <Link to="/admin" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+              <Link 
+                to="/admin" 
+                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
+                  isActiveRoute('/admin') ? 'bg-primary text-white hover:bg-primary/90' : ''
+                }`}
+              >
                 <LayoutDashboard size={18} className="mr-2" />
                 {sidebarOpen && <span>Dashboard</span>}
               </Link>
             </li>
             <li>
-              <Link to="/admin/analytics" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+              <Link 
+                to="/admin/analytics" 
+                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
+                  isActiveRoute('/admin/analytics') ? 'bg-primary text-white hover:bg-primary/90' : ''
+                }`}
+              >
                 <BarChart size={18} className="mr-2" />
                 {sidebarOpen && <span>Analytics</span>}
               </Link>
             </li>
             <li>
-              <Link to="/admin/news" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+              <Link 
+                to="/admin/news" 
+                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
+                  isActiveRoute('/admin/news') ? 'bg-primary text-white hover:bg-primary/90' : ''
+                }`}
+              >
                 <FileText size={18} className="mr-2" />
                 {sidebarOpen && <span>News</span>}
               </Link>
             </li>
             <li>
-              <Link to="/admin/publications" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+              <Link 
+                to="/admin/publications" 
+                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
+                  isActiveRoute('/admin/publications') ? 'bg-primary text-white hover:bg-primary/90' : ''
+                }`}
+              >
                 <FileText size={18} className="mr-2" />
                 {sidebarOpen && <span>Publications</span>}
               </Link>
             </li>
             <li>
-              <Link to="/admin/resources" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+              <Link 
+                to="/admin/resources" 
+                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
+                  isActiveRoute('/admin/resources') ? 'bg-primary text-white hover:bg-primary/90' : ''
+                }`}
+              >
                 <FolderOpen size={18} className="mr-2" />
                 {sidebarOpen && <span>Resources</span>}
               </Link>
             </li>
             <li>
-              <Link to="/admin/programs" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+              <Link 
+                to="/admin/programs" 
+                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
+                  isActiveRoute('/admin/programs') ? 'bg-primary text-white hover:bg-primary/90' : ''
+                }`}
+              >
                 <Users size={18} className="mr-2" />
                 {sidebarOpen && <span>Programs</span>}
               </Link>
             </li>
             <li>
-              <Link to="/admin/opportunities" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+              <Link 
+                to="/admin/opportunities" 
+                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
+                  isActiveRoute('/admin/opportunities') ? 'bg-primary text-white hover:bg-primary/90' : ''
+                }`}
+              >
                 <Briefcase size={18} className="mr-2" />
                 {sidebarOpen && <span>Opportunities</span>}
               </Link>
             </li>
             <li>
-              <Link to="/admin/settings" className="flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri">
+              <Link 
+                to="/admin/settings" 
+                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
+                  isActiveRoute('/admin/settings') ? 'bg-primary text-white hover:bg-primary/90' : ''
+                }`}
+              >
                 <Settings size={18} className="mr-2" />
                 {sidebarOpen && <span>Settings</span>}
               </Link>
