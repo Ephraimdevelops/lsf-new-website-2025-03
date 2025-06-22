@@ -19,16 +19,23 @@ interface FocusAreaHeroProps {
     icon: React.ReactNode;
     impactStats: { value: string; label: string; icon: React.ReactNode }[];
   };
-  breadcrumbItems: BreadcrumbItem[];
+  breadcrumbItems?: BreadcrumbItem[];
 }
 
 const FocusAreaHero = ({ focusArea, breadcrumbItems }: FocusAreaHeroProps) => {
+  // Generate default breadcrumb items if none provided
+  const defaultBreadcrumbItems = [
+    { name: 'Home', href: '/' },
+    { name: 'What We Do', href: '/what-we-do' },
+    { name: focusArea.title }
+  ];
+
   return (
     <>
       {/* Breadcrumb Navigation */}
       <div className="bg-neutral-light/50 backdrop-blur-sm py-4 border-b border-neutral-light">
         <Container size="xl">
-          <Breadcrumb items={breadcrumbItems} />
+          <Breadcrumb items={breadcrumbItems || defaultBreadcrumbItems} />
         </Container>
       </div>
 
