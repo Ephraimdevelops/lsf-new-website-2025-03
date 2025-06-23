@@ -1,3 +1,4 @@
+
 import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
 import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
@@ -36,12 +37,6 @@ const EmpoweredCommunities = () => {
       role: "Community Paralegal, Dodoma"
     }
   };
-
-  const breadcrumbItems = [
-    { name: "What We Do", href: "/what-we-do" },
-    { name: "Focus Areas", href: "/what-we-do#focus-areas" },
-    { name: focusArea.title }
-  ];
 
   const highlights = [
     {
@@ -87,7 +82,7 @@ const EmpoweredCommunities = () => {
 
   return (
     <Layout>
-      <FocusAreaHero focusArea={focusArea} breadcrumbItems={breadcrumbItems} />
+      <FocusAreaHero focusArea={focusArea} />
       
       <ImpactStorySection
         title="Communities that Know Their Rights, Protect Their Rights"

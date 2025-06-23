@@ -1,4 +1,3 @@
-
 import { useParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
@@ -8,7 +7,6 @@ import Text from '@/components/design-system/Text';
 import DesignCard from '@/components/design-system/DesignCard';
 import Section from '@/components/shared/Section';
 import Container from '@/components/shared/Container';
-import Breadcrumb from '@/components/shared/Breadcrumb';
 
 const ApproachDetail = () => {
   const { approachId } = useParams();
@@ -72,12 +70,6 @@ const ApproachDetail = () => {
   };
 
   const approach = approachData[approachId || ''] || approachData['grant-making'];
-  
-  const breadcrumbItems = [
-    { label: 'Home', href: '/' },
-    { label: 'What We Do', href: '/what-we-do' },
-    { label: approach.title }
-  ];
 
   return (
     <Layout>
@@ -91,10 +83,6 @@ const ApproachDetail = () => {
 
       <Section variant="default" padding="lg">
         <Container size="xl">
-          <div className="mb-8">
-            <Breadcrumb items={breadcrumbItems} />
-          </div>
-          
           <div className="max-w-4xl mx-auto">
             <Heading level={2} variant="section" className="mb-8 text-center">
               Key Components

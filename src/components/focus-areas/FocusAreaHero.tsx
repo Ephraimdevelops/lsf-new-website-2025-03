@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import Container from '../shared/Container';
 import Typography from '../shared/Typography';
-import Breadcrumb from '../shared/Breadcrumb';
 import AnimatedCounter from '../shared/AnimatedCounter';
-
-interface BreadcrumbItem {
-  label: string;
-  href?: string;
-}
 
 interface FocusAreaHeroProps {
   focusArea: {
@@ -19,26 +13,11 @@ interface FocusAreaHeroProps {
     icon: React.ReactNode;
     impactStats: { value: string; label: string; icon: React.ReactNode }[];
   };
-  breadcrumbItems?: BreadcrumbItem[];
 }
 
-const FocusAreaHero = ({ focusArea, breadcrumbItems }: FocusAreaHeroProps) => {
-  // Generate default breadcrumb items if none provided
-  const defaultBreadcrumbItems = [
-    { label: 'Home', href: '/' },
-    { label: 'What We Do', href: '/what-we-do' },
-    { label: focusArea.title }
-  ];
-
+const FocusAreaHero = ({ focusArea }: FocusAreaHeroProps) => {
   return (
     <>
-      {/* Breadcrumb Navigation */}
-      <div className="bg-neutral-light/50 backdrop-blur-sm py-4 border-b border-neutral-light">
-        <Container size="xl">
-          <Breadcrumb items={breadcrumbItems || defaultBreadcrumbItems} />
-        </Container>
-      </div>
-
       {/* Enhanced Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}

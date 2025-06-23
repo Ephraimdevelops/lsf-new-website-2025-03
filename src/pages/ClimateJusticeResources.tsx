@@ -1,4 +1,3 @@
-
 import { Leaf, TreePine, Droplets, Sun, Wind, Recycle, Users, BookOpen, FileText, Video, Download, ExternalLink } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
@@ -7,7 +6,6 @@ import Typography from '../components/shared/Typography';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import Breadcrumb from '../components/shared/Breadcrumb';
 
 const climateResources = [
   {
@@ -122,61 +120,45 @@ const successStories = [
     title: 'Coastal Mangrove Protection',
     description: 'Legal intervention prevented mangrove destruction, protecting 500 families from coastal erosion.',
     impact: '500 families',
-    location: 'Coastal Tanzania'
-  },
-  {
-    title: 'Indigenous Forest Rights',
-    description: 'Secured traditional forest use rights for Hadza community, preserving cultural practices and biodiversity.',
-    impact: '2,500 Hadza people',
-    location: 'Northern Tanzania'
+    location: 'Coastal Region'
   }
 ];
 
 const ClimateJusticeResources = () => {
-  const breadcrumbItems = [
-    { name: "Resources", href: "/resources" },
-    { name: "Climate Justice" }
-  ];
-
   return (
     <Layout>
-      {/* Hero Section */}
       <HeroSection
         icon={<Leaf className="h-8 w-8" />}
-        badge="Climate Justice Resources"
-        title="Climate Justice & Environmental Rights"
-        description="Empowering communities with knowledge and tools to defend their environmental rights and build climate resilience through legal empowerment."
+        badge="Resources"
+        title="Climate Justice Resources"
+        description="Legal tools, guides, and resources for protecting environmental rights and advancing climate justice in Tanzania."
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
 
-      {/* Breadcrumb */}
-      <div className="bg-neutral-light/50 py-4 border-b">
-        <Container>
-          <Breadcrumb items={breadcrumbItems} />
-        </Container>
-      </div>
-
       {/* Key Topics Section */}
-      <section className="py-16 bg-gradient-to-br from-green-50 to-blue-50">
-        <Container>
+      <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+        <Container size="xl">
           <div className="text-center mb-12">
-            <Typography variant="h2" className="mb-6">Key Climate Justice Areas</Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              Understanding the intersection of climate change and legal rights across critical environmental sectors.
+            <Typography variant="h2" className="mb-4">
+              Key Climate Justice Areas
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Our climate justice work spans multiple interconnected areas, from forest rights to energy transition, ensuring comprehensive protection for all communities.
             </Typography>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {keyTopics.map((topic, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm hover:-translate-y-2">
-                <CardContent className="pt-8 pb-6 text-center">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${topic.color} rounded-2xl flex items-center justify-center mx-auto mb-4 text-white group-hover:scale-110 transition-transform`}>
+              <Card key={index} className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+                <div className={`absolute inset-0 bg-gradient-to-br ${topic.color} opacity-10 group-hover:opacity-20 transition-opacity`}></div>
+                <CardContent className="p-6 relative">
+                  <div className="text-primary mb-4">
                     {topic.icon}
                   </div>
-                  <Typography variant="h3" className="mb-4 font-semibold">
+                  <Typography variant="h4" className="mb-3">
                     {topic.title}
                   </Typography>
-                  <Typography variant="bodySmall" className="text-neutral-gray">
+                  <Typography variant="body" className="text-neutral-gray text-sm">
                     {topic.description}
                   </Typography>
                 </CardContent>
@@ -187,116 +169,84 @@ const ClimateJusticeResources = () => {
       </section>
 
       {/* Featured Resources */}
-      <section className="py-16 bg-white">
-        <Container>
+      <section className="py-16">
+        <Container size="xl">
           <div className="text-center mb-12">
-            <Typography variant="h2" className="mb-6">Featured Climate Justice Resources</Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              Essential publications and tools for understanding and exercising climate rights in Tanzania.
+            <Typography variant="h2" className="mb-4">
+              Featured Climate Justice Resources
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Essential guides and tools for understanding and advancing climate justice in Tanzania.
             </Typography>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             {climateResources.filter(resource => resource.featured).map((resource) => (
-              <Card key={resource.id} className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white overflow-hidden">
-                <div className="relative overflow-hidden">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img 
-                      src={resource.image} 
-                      alt={resource.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-green-600 text-white">
-                      <Leaf className="h-3 w-3 mr-1" />
-                      Featured
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <Badge variant="outline" className="border-white text-white mb-2">
-                      {resource.category}
-                    </Badge>
-                  </div>
-                </div>
-
-                <CardContent className="p-6">
-                  <Typography variant="h3" className="font-bold mb-3 group-hover:text-green-600 transition-colors">
-                    {resource.title}
-                  </Typography>
-                  
-                  <Typography variant="body" className="text-neutral-gray text-sm mb-4 leading-relaxed">
-                    {resource.description}
-                  </Typography>
-                  
-                  <div className="flex items-center gap-4 text-sm text-neutral-gray mb-6">
-                    <div className="flex items-center gap-1">
-                      <FileText className="h-4 w-4" />
+              <Card key={resource.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
+                <div className="aspect-video bg-gradient-to-br from-green-500 to-emerald-600 relative">
+                  <div className="absolute inset-0 bg-black/20"></div>
+                  <div className="absolute bottom-4 left-4">
+                    <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
                       {resource.type}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <BookOpen className="h-4 w-4" />
-                      {resource.pages} pages
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-2">
-                    <Button className="flex-1 bg-green-600 hover:bg-green-700">
-                      <Download className="h-4 w-4 mr-2" />
-                      Download
-                    </Button>
-                    <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* All Resources Grid */}
-      <section className="py-16 bg-neutral-light">
-        <Container>
-          <Typography variant="h2" className="text-center mb-12">All Climate Justice Resources</Typography>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {climateResources.filter(resource => !resource.featured).map((resource) => (
-              <Card key={resource.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="relative overflow-hidden">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img 
-                      src={resource.image} 
-                      alt={resource.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="absolute top-4 left-4">
-                    <Badge variant="secondary" className="bg-white/90 text-green-700">
-                      {resource.category}
                     </Badge>
                   </div>
                 </div>
-
                 <CardContent className="p-6">
-                  <Typography variant="h4" className="font-semibold mb-3">
+                  <Typography variant="h3" className="mb-3 group-hover:text-primary transition-colors">
                     {resource.title}
                   </Typography>
-                  
-                  <Typography variant="bodySmall" className="text-neutral-gray mb-4">
+                  <Typography variant="body" className="text-neutral-gray mb-4 text-sm">
                     {resource.description}
                   </Typography>
                   
                   <div className="flex items-center justify-between text-sm text-neutral-gray mb-4">
+                    <div className="flex items-center">
+                      <FileText className="h-4 w-4 mr-1" />
+                      {resource.pages} pages
+                    </div>
+                    <div className="flex items-center">
+                      <Users className="h-4 w-4 mr-1" />
+                      {resource.language}
+                    </div>
+                  </div>
+                  
+                  <Button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
+                    <Download className="h-4 w-4 mr-2" />
+                    Download Resource
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* All Resources Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {climateResources.filter(resource => !resource.featured).map((resource) => (
+              <Card key={resource.id} className="overflow-hidden hover:shadow-md transition-all duration-300 group">
+                <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-500 relative">
+                  <div className="absolute inset-0 bg-black/10"></div>
+                  <div className="absolute bottom-2 left-2">
+                    <Badge variant="outline" className="bg-white/90 text-green-700 border-green-200">
+                      {resource.category}
+                    </Badge>
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <Typography variant="h4" className="mb-2 group-hover:text-primary transition-colors text-sm font-semibold">
+                    {resource.title}
+                  </Typography>
+                  <Typography variant="body" className="text-neutral-gray mb-3 text-xs line-clamp-2">
+                    {resource.description}
+                  </Typography>
+                  
+                  <div className="flex items-center justify-between text-xs text-neutral-gray mb-3">
                     <span>{resource.type}</span>
                     <span>{resource.pages} pages</span>
                   </div>
                   
-                  <Button variant="outline" className="w-full border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download Resource
+                  <Button size="sm" variant="outline" className="w-full text-xs">
+                    <Download className="h-3 w-3 mr-1" />
+                    Download
                   </Button>
                 </CardContent>
               </Card>
@@ -306,35 +256,39 @@ const ClimateJusticeResources = () => {
       </section>
 
       {/* Success Stories */}
-      <section className="py-16 bg-green-50">
-        <Container>
+      <section className="py-16 bg-gradient-to-br from-emerald-50 to-green-50">
+        <Container size="xl">
           <div className="text-center mb-12">
-            <Typography variant="h2" className="mb-6">Climate Justice in Action</Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              Real stories of communities using legal empowerment to defend their environmental rights and build climate resilience.
+            <Typography variant="h2" className="mb-4">
+              Climate Justice Success Stories
+            </Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
+              Real examples of how our climate justice resources and advocacy have protected communities and environmental rights.
             </Typography>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {successStories.map((story, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow bg-white">
-                <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Users className="h-8 w-8 text-green-600" />
+              <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                    <Leaf className="h-6 w-6 text-white" />
                   </div>
-                  <Typography variant="h3" className="mb-4 font-semibold">
-                    {story.title}
-                  </Typography>
-                  <Typography variant="body" className="text-neutral-gray mb-4">
-                    {story.description}
-                  </Typography>
-                  <div className="space-y-2">
-                    <Badge className="bg-green-600 text-white">
-                      {story.impact}
-                    </Badge>
-                    <div className="text-sm text-neutral-gray">{story.location}</div>
+                  <div>
+                    <Typography variant="h3" className="mb-2">
+                      {story.title}
+                    </Typography>
+                    <Typography variant="body" className="text-neutral-gray text-sm mb-3">
+                      {story.description}
+                    </Typography>
+                    <div className="flex items-center text-sm">
+                      <Badge variant="outline" className="mr-2 bg-green-50 text-green-700 border-green-200">
+                        {story.impact}
+                      </Badge>
+                      <span className="text-neutral-gray">{story.location}</span>
+                    </div>
                   </div>
-                </CardContent>
+                </div>
               </Card>
             ))}
           </div>
@@ -342,19 +296,23 @@ const ClimateJusticeResources = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-green-600 text-white">
-        <Container>
-          <div className="text-center">
-            <Typography variant="h2" className="text-white mb-6">Need Climate Justice Legal Support?</Typography>
-            <Typography variant="body" className="text-green-100 mb-8 max-w-2xl mx-auto">
-              Connect with our network of environmental law experts and climate justice advocates across Tanzania.
+      <section className="py-16 bg-gradient-to-br from-primary to-primary-dark text-white">
+        <Container size="xl">
+          <div className="text-center max-w-3xl mx-auto">
+            <Typography variant="h2" className="text-white mb-6">
+              Join the Climate Justice Movement
+            </Typography>
+            <Typography variant="body" className="text-white/90 mb-8">
+              Climate change affects us all, but impacts the most vulnerable first and worst. Download our resources, share them with your community, and join us in building a just and sustainable future for Tanzania.
             </Typography>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-green-600 hover:bg-green-50">
-                Find Legal Support
+              <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
+                <Download className="mr-2 h-5 w-5" />
+                Download All Resources
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
-                Join Our Network
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                <ExternalLink className="mr-2 h-5 w-5" />
+                Contact Our Team
               </Button>
             </div>
           </div>

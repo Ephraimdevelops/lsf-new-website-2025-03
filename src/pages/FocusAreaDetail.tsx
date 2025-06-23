@@ -1,4 +1,3 @@
-
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
@@ -211,15 +210,9 @@ const FocusAreaDetail = () => {
     );
   }
 
-  const breadcrumbItems = [
-    { name: "Home", href: "/" },
-    { name: "Focus Areas", href: "/#focus-areas" },
-    { name: focusArea.title }
-  ];
-
   return (
     <Layout>
-      <FocusAreaHero focusArea={focusArea} breadcrumbItems={breadcrumbItems} />
+      <FocusAreaHero focusArea={focusArea} />
       <KeyActivitiesSection 
         keyActivities={focusArea.keyActivities} 
         testimonial={focusArea.testimonial}

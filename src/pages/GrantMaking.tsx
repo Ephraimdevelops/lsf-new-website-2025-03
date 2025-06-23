@@ -4,7 +4,6 @@ import Typography from '../components/shared/Typography';
 import Section from '../components/shared/Section';
 import Container from '../components/shared/Container';
 import Card from '../components/shared/Card';
-import Breadcrumb from '../components/shared/Breadcrumb';
 import { Button } from '../components/ui/button';
 import { 
   DollarSign, 
@@ -123,12 +122,6 @@ const GrantMaking = () => {
     }
   ];
 
-  const breadcrumbItems = [
-    { label: 'Home', href: '/' },
-    { label: 'What We Do', href: '/what-we-do' },
-    { label: 'Grant Making' }
-  ];
-
   const handleTabChange = (value: string) => {
     setActiveGrantArea(value);
   };
@@ -137,13 +130,6 @@ const GrantMaking = () => {
 
   return (
     <Layout>
-      {/* Breadcrumb Navigation */}
-      <div className="bg-neutral-light py-4">
-        <Container size="xl">
-          <Breadcrumb items={breadcrumbItems} />
-        </Container>
-      </div>
-
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
         <div 

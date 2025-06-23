@@ -3,7 +3,6 @@ import { Container, Heading, Text } from '../components/design-system';
 import ApproachHero from '../components/approaches/ApproachHero';
 import ApproachDetailSection from '../components/approaches/ApproachDetailSection';
 import CallToActionSection from '../components/shared/CallToActionSection';
-import Breadcrumb from '../components/shared/Breadcrumb';
 import { 
   DollarSign, 
   Target, 
@@ -224,20 +223,8 @@ const Approaches = () => {
     }
   ];
 
-  const breadcrumbItems = [
-    { label: "What We Do", href: "/what-we-do" },
-    { label: "Our Approaches" }
-  ];
-
   return (
     <Layout>
-      {/* Modern Breadcrumb Navigation */}
-      <section className="bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-100">
-        <Container size="xl" className="py-4">
-          <Breadcrumb items={breadcrumbItems} />
-        </Container>
-      </section>
-
       <ApproachHero approaches={approaches} />
 
       {/* Approaches Detail Sections */}
