@@ -1,5 +1,13 @@
+
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ApiResponse, PaginatedResponse } from '@/types';
+
+// Extend the Axios request config to include metadata
+interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
+  metadata?: {
+    startTime: Date;
+  };
+}
 
 class EnhancedApiClient {
   private client: AxiosInstance;
@@ -22,10 +30,11 @@ class EnhancedApiClient {
   private setupInterceptors() {
     // Request interceptor
     this.client.interceptors.request.use(
-      (config) => {
+      (config: ExtendedAxiosRequestConfig) => {
         // Add auth token if available
         const token = localStorage.getItem('auth-token');
         if (token) {
+          config.headers = config.headers || {};
           config.headers.Authorization = `Bearer ${token}`;
         }
         
@@ -45,7 +54,8 @@ class EnhancedApiClient {
       (response: AxiosResponse) => {
         // Log response time for debugging
         const endTime = new Date();
-        const duration = endTime.getTime() - response.config.metadata?.startTime?.getTime();
+        const config = response.config as ExtendedAxiosRequestConfig;
+        const duration = config.metadata?.startTime ? endTime.getTime() - config.metadata.startTime.getTime() : 0;
         console.log(`API call to ${response.config.url} took ${duration}ms`);
         
         return response.data;
@@ -56,7 +66,7 @@ class EnhancedApiClient {
     );
   }
 
-  private async handleError(error: any): Promise<never> {
+  private async handleError(error: any): Promise<any> {
     // Network error or timeout
     if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED' || error.code === 'TIMEOUT') {
       console.warn('Network error detected, attempting to use mock data...');
