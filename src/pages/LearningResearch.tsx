@@ -9,8 +9,8 @@ import { BookOpen, BarChart, Lightbulb, Search } from 'lucide-react';
 
 const LearningResearch = () => {
   const breadcrumbItems = [
-    { name: "What We Do", href: "/what-we-do" },
-    { name: "Learning & Research" }
+    { label: "What We Do", href: "/what-we-do" },
+    { label: "Learning & Research" }
   ];
 
   const researchAreas = [

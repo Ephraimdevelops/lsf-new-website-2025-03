@@ -35,15 +35,9 @@ const PolicyAdvocacy = () => {
     }
   };
 
-  const breadcrumbItems = [
-    { name: "What We Do", href: "/what-we-do" },
-    { name: "Focus Areas", href: "/what-we-do#focus-areas" },
-    { name: focusArea.title }
-  ];
-
   return (
     <Layout>
-      <FocusAreaHero focusArea={focusArea} breadcrumbItems={breadcrumbItems} />
+      <FocusAreaHero focusArea={focusArea} />
       
       <KeyActivitiesSection 
         keyActivities={focusArea.keyActivities} 
