@@ -10,36 +10,38 @@ import CallToActionSectionWrapper from './home/CallToActionSectionWrapper';
 
 const Index = () => (
   <Layout>
-    {/* Hero Section - Clean, minimal with no borders */}
+    {/* Hero Section - Clean, minimal with consistent spacing */}
     <section className="relative overflow-hidden">
       <HighlightsSection />
     </section>
 
-    {/* About Us Section - Soft, editorial style */}
-    <About />
-
-    {/* Latest Stories & Publications - Editorial newsroom feed */}
-    <section className="relative bg-white">
-      <CompactNewsUpdates />
+    {/* About Us Section - Consistent padding */}
+    <section className="py-16 md:py-20">
+      <About />
     </section>
 
-    {/* Impact Metrics - Clean, minimal background */}
-    <section className="bg-neutral-50/30 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(147,30,92,.03)_0%,transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(20,184,166,.02)_0%,transparent_50%)]"></div>
+    {/* Combined Strategic Focus & Approaches - Streamlined single section */}
+    <section className="py-16 md:py-20 bg-gradient-to-br from-neutral-50 to-white">
+      <CombinedApproachSection />
+    </section>
+
+    {/* Impact Metrics - Clean, consistent spacing */}
+    <section className="py-16 md:py-20 bg-white">
       <ImpactMetricsSectionWrapper />
     </section>
 
-    {/* Combined Strategic Focus & Approaches - Integrated methodology */}
-    <CombinedApproachSection />
+    {/* Latest Stories & Publications - Editorial newsroom feed */}
+    <section className="py-16 md:py-20 bg-neutral-50/50">
+      <CompactNewsUpdates />
+    </section>
 
-    {/* Partners - Clean, borderless */}
-    <section className="bg-white py-12">
+    {/* Partners - Clean, consistent */}
+    <section className="py-12 md:py-16 bg-white">
       <PartnersCarousel />
     </section>
 
     {/* Call to Action - Clean, editorial */}
-    <section className="relative">
+    <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
       <CallToActionSectionWrapper />
     </section>
   </Layout>
