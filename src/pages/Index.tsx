@@ -3,8 +3,7 @@ import Layout from '@/components/layout/Layout';
 import HighlightsSection from '@/components/home/HighlightsSection';
 import CompactNewsUpdates from '@/components/home/CompactNewsUpdates';
 import PartnersCarousel from '@/components/home/PartnersCarousel';
-import FocusAreas from '@/components/home/FocusAreas';
-import WhatWeDo from '@/components/home/WhatWeDo';
+import CombinedApproachSection from '@/components/home/CombinedApproachSection';
 import About from '@/components/home/About';
 import ImpactMetricsSectionWrapper from './home/ImpactMetricsSectionWrapper';
 import CallToActionSectionWrapper from './home/CallToActionSectionWrapper';
@@ -31,17 +30,8 @@ const Index = () => (
       <ImpactMetricsSectionWrapper />
     </section>
 
-    {/* Focus Areas - Clean section divisions */}
-    <section className="bg-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/3 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary-teal/3 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-      <FocusAreas />
-    </section>
-
-    {/* Our Approach - Minimal, clean */}
-    <section className="bg-neutral-50/20 relative">
-      <WhatWeDo />
-    </section>
+    {/* Combined Strategic Focus & Approaches - Integrated methodology */}
+    <CombinedApproachSection />
 
     {/* Partners - Clean, borderless */}
     <section className="bg-white py-12">
