@@ -80,7 +80,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography Hierarchy */
+/* Typography Hierarchy - Consistent sizes */
 .font-heading {
   font-family: 'Merriweather Sans', 'system-ui', 'sans-serif';
 }
@@ -88,6 +88,18 @@ body {
 .font-sans {
   font-family: 'Calibri', 'system-ui', 'sans-serif';
 }
+
+/* Standardized heading sizes */
+h1, .h1 { @apply text-[32px] font-bold leading-[36px] font-heading; }
+h2, .h2 { @apply text-[28px] font-bold leading-[32px] font-heading; }
+h3, .h3 { @apply text-[24px] font-semibold leading-[28px] font-heading; }
+h4, .h4 { @apply text-[20px] font-semibold leading-[24px] font-heading; }
+h5, .h5 { @apply text-[18px] font-semibold leading-[22px] font-heading; }
+h6, .h6 { @apply text-[16px] font-semibold leading-[20px] font-heading; }
+
+/* Standardized spacing */
+p, .body { @apply text-[16px] leading-[24px] font-sans mb-4; }
+.body-small { @apply text-[14px] leading-[20px] font-sans; }
 
 /* Enhanced Focus States for Accessibility */
 *:focus-visible {
@@ -104,19 +116,19 @@ body {
 @layer components {
   /* Enhanced Button Variants - Consistent spacing */
   .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 font-heading text-lg;
+    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 font-heading text-[16px];
   }
   
   .btn-secondary {
-    @apply bg-secondary-teal hover:bg-secondary-teal/90 active:bg-secondary-teal/80 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 font-heading text-lg;
+    @apply bg-secondary-teal hover:bg-secondary-teal/90 active:bg-secondary-teal/80 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 font-heading text-[16px];
   }
 
   .btn-outline {
-    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white active:bg-primary-600 px-8 py-4 rounded-xl font-semibold transition-all duration-300 font-heading text-lg;
+    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white active:bg-primary-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-heading text-[16px];
   }
 
   .btn-ghost {
-    @apply text-primary-500 hover:bg-primary-50 active:bg-primary-100 px-8 py-4 rounded-xl font-semibold transition-all duration-300 font-heading text-lg;
+    @apply text-primary-500 hover:bg-primary-50 active:bg-primary-100 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-heading text-[16px];
   }
   
   /* Enhanced Card Variants */
@@ -148,20 +160,28 @@ body {
   
   /* Grid System - Consistent spacing */
   .grid-container {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
   }
 
   .grid-container-4 {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4;
   }
   
-  /* Spacing Utilities - Consistent and larger */
+  /* Spacing Utilities - Reduced and consistent */
   .section-padding {
-    @apply py-20 md:py-24 lg:py-28;
+    @apply py-12 md:py-16 lg:py-20;
   }
 
   .container-padding {
-    @apply px-6 sm:px-8 lg:px-12;
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .content-spacing {
+    @apply space-y-4;
+  }
+
+  .content-spacing-lg {
+    @apply space-y-6;
   }
   
   /* Enhanced Typography */

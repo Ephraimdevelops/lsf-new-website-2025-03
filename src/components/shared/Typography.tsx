@@ -20,7 +20,7 @@ const Typography = ({
 }: TypographyProps) => {
   const baseClasses = typography.classes[variant];
   
-  // Updated font family mapping for Merriweather Sans (headings) and Calibri (descriptions)
+  // Font family mapping for Merriweather Sans (headings) and Calibri (body)
   const getFontFamily = (variant: TypographyVariant): string => {
     switch (variant) {
       case 'display':

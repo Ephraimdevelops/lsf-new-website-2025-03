@@ -1,10 +1,9 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { designTokens } from '@/styles/designTokens';
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
-type HeadingVariant = 'display' | 'hero' | 'section' | 'subsection' | 'card';
+type HeadingVariant = 'display' | 'h1' | 'h2' | 'h3' | 'h4';
 
 interface HeadingProps {
   level?: HeadingLevel;
@@ -17,7 +16,7 @@ interface HeadingProps {
 
 const Heading = ({ 
   level = 1, 
-  variant = 'section',
+  variant = 'h1',
   children, 
   className = '',
   color = 'neutral',
@@ -26,11 +25,11 @@ const Heading = ({
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 
   const variantStyles = {
-    display: 'text-6xl md:text-7xl font-black leading-tight',
-    hero: 'text-4xl md:text-5xl lg:text-6xl font-bold leading-tight',
-    section: 'text-3xl md:text-4xl font-bold leading-tight',
-    subsection: 'text-2xl md:text-3xl font-semibold leading-tight',
-    card: 'text-xl md:text-2xl font-semibold leading-tight',
+    display: 'text-[36px] font-black leading-[40px]',
+    h1: 'text-[32px] font-bold leading-[36px]',
+    h2: 'text-[28px] font-bold leading-[32px]',
+    h3: 'text-[24px] font-semibold leading-[28px]',
+    h4: 'text-[20px] font-semibold leading-[24px]',
   };
 
   const colorStyles = {

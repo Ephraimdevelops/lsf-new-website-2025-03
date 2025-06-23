@@ -19,7 +19,7 @@ interface SectionProps {
 const Section = ({ 
   children, 
   variant = 'default',
-  size = 'lg',
+  size = 'md',
   className = '',
   containerSize = 'xl',
   background,
@@ -32,11 +32,12 @@ const Section = ({
     accent: 'bg-neutral-50',
   };
 
+  // Reduced spacing - more compact sections
   const sizeStyles = {
-    sm: 'py-12',
-    md: 'py-16',
-    lg: 'py-20',
-    xl: 'py-24',
+    sm: 'py-8',
+    md: 'py-12',
+    lg: 'py-16',
+    xl: 'py-20',
   };
 
   return (
