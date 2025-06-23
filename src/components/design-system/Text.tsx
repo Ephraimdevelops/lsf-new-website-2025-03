@@ -2,7 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-type TextVariant = 'body' | 'body-small' | 'caption' | 'overline' | 'small';
+type TextVariant = 'body' | 'body-large' | 'body-small' | 'caption' | 'overline' | 'small';
 type TextColor = 'primary' | 'secondary' | 'neutral' | 'muted' | 'white';
 
 interface TextProps {
@@ -24,6 +24,7 @@ const Text = ({
 
   const variantStyles = {
     'body': 'text-[16px] leading-[24px]',
+    'body-large': 'text-[18px] leading-[28px]',
     'body-small': 'text-[14px] leading-[20px]',
     'caption': 'text-[12px] leading-[16px]',
     'overline': 'text-[12px] font-bold uppercase tracking-wider leading-[16px]',
