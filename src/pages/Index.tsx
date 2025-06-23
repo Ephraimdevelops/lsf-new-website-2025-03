@@ -1,55 +1,35 @@
 
 import Layout from '@/components/layout/Layout';
-import HighlightsSection from '@/components/home/HighlightsSection';
-import CompactNewsUpdates from '@/components/home/CompactNewsUpdates';
-import PartnersCarousel from '@/components/home/PartnersCarousel';
-import CombinedApproachSection from '@/components/home/CombinedApproachSection';
-import About from '@/components/home/About';
-import SuccessStories from '@/components/home/SuccessStories';
-import ImpactMetricsSectionWrapper from './home/ImpactMetricsSectionWrapper';
-import CallToActionSectionWrapper from './home/CallToActionSectionWrapper';
+import CinematicHero from '@/components/home/CinematicHero';
+import FloatingImpactCards from '@/components/home/FloatingImpactCards';
+import InteractiveStorySection from '@/components/home/InteractiveStorySection';
+import ImmersiveApproachSection from '@/components/home/ImmersiveApproachSection';
+import AnimatedPartnersSection from '@/components/home/AnimatedPartnersSection';
+import FuturisticCallToAction from '@/components/home/FuturisticCallToAction';
+import ParallaxNewsSection from '@/components/home/ParallaxNewsSection';
 
 const Index = () => (
   <Layout>
-    {/* Hero Section - Clean, minimal with consistent spacing */}
-    <section className="relative overflow-hidden">
-      <HighlightsSection />
-    </section>
+    {/* Cinematic Hero with Parallax Effects */}
+    <CinematicHero />
 
-    {/* About Us Section - Consistent padding */}
-    <section className="py-16 md:py-20">
-      <About />
-    </section>
+    {/* Floating Impact Cards with 3D Effects */}
+    <FloatingImpactCards />
 
-    {/* Combined Strategic Focus & Approaches - Streamlined single section */}
-    <section className="py-16 md:py-20 bg-gradient-to-br from-neutral-50 to-white">
-      <CombinedApproachSection />
-    </section>
+    {/* Interactive Story Timeline */}
+    <InteractiveStorySection />
 
-    {/* Success Stories - New sliding section */}
-    <section className="relative">
-      <SuccessStories />
-    </section>
+    {/* Immersive Approach Section with Hover Effects */}
+    <ImmersiveApproachSection />
 
-    {/* Impact Metrics - Clean, consistent spacing */}
-    <section className="py-16 md:py-20 bg-white">
-      <ImpactMetricsSectionWrapper />
-    </section>
+    {/* Parallax News & Updates */}
+    <ParallaxNewsSection />
 
-    {/* Latest Stories & Publications - Editorial newsroom feed */}
-    <section className="py-16 md:py-20 bg-neutral-50/50">
-      <CompactNewsUpdates />
-    </section>
+    {/* Animated Partners Showcase */}
+    <AnimatedPartnersSection />
 
-    {/* Partners - Clean, consistent */}
-    <section className="py-12 md:py-16 bg-white">
-      <PartnersCarousel />
-    </section>
-
-    {/* Call to Action - Clean, editorial */}
-    <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
-      <CallToActionSectionWrapper />
-    </section>
+    {/* Futuristic Call to Action */}
+    <FuturisticCallToAction />
   </Layout>
 );
 
