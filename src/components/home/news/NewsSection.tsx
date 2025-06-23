@@ -1,13 +1,11 @@
 
 import { Link } from 'react-router-dom';
 import { ArrowRight, Newspaper } from 'lucide-react';
-import Typography from '@/components/shared/Typography';
+import { Heading, Text } from '../../design-system';
 import NewsCard from './NewsCard';
 import { featuredNews } from './newsData';
 
 const NewsSection = () => {
-  // Just use featuredNews from the import!
-
   return (
     <div className="flex-1">
       <div className="flex items-center justify-between mb-12">
@@ -16,15 +14,15 @@ const NewsSection = () => {
             <Newspaper className="h-8 w-8 text-white" />
           </div>
           <div>
-            <Typography variant="h2" className="text-neutral-dark font-bold text-3xl">Breaking News</Typography>
-            <Typography variant="bodySmall" className="text-neutral-gray text-lg">Latest developments &amp; impact</Typography>
+            <Heading variant="section" color="neutral" className="font-bold">Breaking News</Heading>
+            <Text variant="body-large" color="neutral">Latest developments &amp; impact</Text>
           </div>
         </div>
         <Link 
           to="/news" 
           className="inline-flex items-center bg-primary/10 hover:bg-primary hover:text-white text-primary px-9 py-4 rounded-full font-semibold transition-all duration-300 text-lg"
         >
-          <Typography variant="bodySmall" className="font-extrabold">View All</Typography>
+          <Text variant="body-small" className="font-extrabold">View All</Text>
           <ArrowRight className="ml-3 h-5 w-5" />
         </Link>
       </div>
@@ -36,5 +34,5 @@ const NewsSection = () => {
     </div>
   );
 };
-export default NewsSection;
 
+export default NewsSection;

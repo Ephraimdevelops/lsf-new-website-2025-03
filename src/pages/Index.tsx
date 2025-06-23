@@ -5,6 +5,7 @@ import CompactNewsUpdates from '@/components/home/CompactNewsUpdates';
 import PartnersCarousel from '@/components/home/PartnersCarousel';
 import FocusAreas from '@/components/home/FocusAreas';
 import WhatWeDo from '@/components/home/WhatWeDo';
+import About from '@/components/home/About';
 import ImpactMetricsSectionWrapper from './home/ImpactMetricsSectionWrapper';
 import CallToActionSectionWrapper from './home/CallToActionSectionWrapper';
 
@@ -15,16 +16,19 @@ const Index = () => (
       <HighlightsSection />
     </section>
 
-    {/* Impact Metrics - Build credibility early */}
+    {/* About Us Section - Right after hero */}
+    <About />
+
+    {/* News and Publications - Compact design */}
+    <section className="relative">
+      <CompactNewsUpdates />
+    </section>
+
+    {/* Impact Metrics - Build credibility */}
     <section className="bg-gradient-to-br from-neutral-50 via-white to-neutral-50 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(147,30,92,.08)_0%,transparent_50%)]"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(20,184,166,.06)_0%,transparent_50%)]"></div>
       <ImpactMetricsSectionWrapper />
-    </section>
-
-    {/* Our Approach - Core methodology */}
-    <section className="bg-white relative">
-      <WhatWeDo />
     </section>
 
     {/* Focus Areas - Detailed work areas */}
@@ -34,13 +38,13 @@ const Index = () => (
       <FocusAreas />
     </section>
 
-    {/* News and Resources - Stay informed */}
-    <section className="relative">
-      <CompactNewsUpdates />
+    {/* Our Approach - Core methodology */}
+    <section className="bg-white relative">
+      <WhatWeDo />
     </section>
 
     {/* Partners - Build trust through associations */}
-    <section className="bg-white py-16 border-t border-neutral-100">
+    <section className="bg-white py-12 border-t border-neutral-100/50">
       <PartnersCarousel />
     </section>
 

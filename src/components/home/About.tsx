@@ -1,10 +1,8 @@
 
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Scale, Heart, Globe, MapPin, Award, Lightbulb, CheckCircle } from 'lucide-react';
-import Section from '../shared/Section';
-import Container from '../shared/Container';
+import { Section, Container, Heading, Text } from '../design-system';
 import Card from '../shared/Card';
-import Typography from '../shared/Typography';
 import IconWrapper from '../shared/IconWrapper';
 
 const About = () => {
@@ -41,7 +39,7 @@ const About = () => {
   ];
 
   return (
-    <Section variant="secondary" padding="xl">
+    <Section variant="secondary" size="lg">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Content Column */}
@@ -50,26 +48,26 @@ const About = () => {
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-teal rounded-full"></div>
-                <Typography variant="overline" className="text-primary-500 font-bold tracking-wider">
+                <Text variant="overline" color="primary" className="font-bold tracking-wider">
                   About LSF
-                </Typography>
+                </Text>
               </div>
               
-              <Typography variant="h2" className="bg-gradient-to-r from-primary-500 to-secondary-teal bg-clip-text text-transparent leading-tight">
+              <Heading variant="section" gradient className="leading-tight">
                 Empowering Justice for All
-              </Typography>
+              </Heading>
               
-              <Typography variant="body" className="text-xl text-neutral-gray leading-relaxed">
+              <Text variant="body-large" color="neutral" className="leading-relaxed">
                 We are Tanzania's leading non-profit organization promoting access to justice through innovative legal empowerment approaches, with a special focus on women's rights.
-              </Typography>
+              </Text>
             </div>
             
             {/* Enhanced Main Content */}
             <div className="space-y-6">
-              <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-                <Typography variant="body" className="text-lg leading-relaxed text-neutral-dark">
+              <div className="p-6 bg-white rounded-xl border border-gray-100/50">
+                <Text variant="body-large" color="neutral" className="leading-relaxed">
                   Established in 2011, we work with over 180 community-based legal aid providers across all 184 districts of Tanzania, creating a comprehensive network of justice champions.
-                </Typography>
+                </Text>
               </div>
 
               {/* Key Facts List */}
@@ -79,9 +77,9 @@ const About = () => {
                     <div className="w-6 h-6 bg-gradient-to-br from-primary-500 to-secondary-teal rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300">
                       <CheckCircle className="h-4 w-4 text-white" />
                     </div>
-                    <Typography variant="body" className="text-neutral-dark font-medium">
+                    <Text variant="body" color="neutral" className="font-medium">
                       {fact}
-                    </Typography>
+                    </Text>
                   </div>
                 ))}
               </div>
@@ -91,18 +89,18 @@ const About = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {highlights.map((highlight, index) => (
                 <div key={index} className="text-center group">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${highlight.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 shadow-lg`}>
+                  <div className={`w-16 h-16 bg-gradient-to-br ${highlight.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300`}>
                     <highlight.icon className="h-8 w-8 text-white" />
                   </div>
                   <div className={`text-2xl lg:text-3xl font-bold bg-gradient-to-r ${highlight.color} bg-clip-text text-transparent mb-2`}>
                     {highlight.value}
                   </div>
-                  <div className="text-sm font-bold text-gray-800 mb-1">
+                  <Text variant="body-small" color="neutral" className="font-bold mb-1">
                     {highlight.label}
-                  </div>
-                  <div className="text-xs text-gray-600">
+                  </Text>
+                  <Text variant="caption" color="muted">
                     {highlight.description}
-                  </div>
+                  </Text>
                 </div>
               ))}
             </div>
@@ -111,14 +109,14 @@ const About = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 to="/about" 
-                className="inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-lg transform hover:-translate-y-1"
               >
                 Learn Our Story
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link 
                 to="/impact" 
-                className="inline-flex items-center justify-center border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-lg"
+                className="inline-flex items-center justify-center border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-lg"
               >
                 See Our Impact
               </Link>
@@ -129,7 +127,7 @@ const About = () => {
           <div className="relative order-1 lg:order-2">
             {/* Main Image Container with Enhanced Design */}
             <div className="relative z-10">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-transparent bg-gradient-to-r from-primary-500 via-secondary-teal to-secondary-orange p-1">
+              <div className="relative rounded-3xl overflow-hidden border border-transparent bg-gradient-to-r from-primary-500 via-secondary-teal to-secondary-orange p-1">
                 <div className="rounded-2xl overflow-hidden">
                   <img 
                     src="/lovable-uploads/background with mother umage .png" 
@@ -145,16 +143,16 @@ const About = () => {
             <Card 
               variant="elevated" 
               padding="lg" 
-              className="absolute -bottom-6 -left-6 z-20 max-w-xs border-l-4 border-secondary-teal bg-white/95 backdrop-blur-sm shadow-xl"
+              className="absolute -bottom-6 -left-6 z-20 max-w-xs border-l-4 border-secondary-teal bg-white/95 backdrop-blur-sm"
             >
               <div className="flex items-center space-x-4">
                 <IconWrapper variant="secondary" size="lg">
                   <Heart className="h-6 w-6" />
                 </IconWrapper>
                 <div>
-                  <Typography variant="h4" className="text-primary-500">26,000+</Typography>
-                  <Typography variant="caption" className="font-medium">Lives Transformed</Typography>
-                  <Typography variant="caption" className="text-xs text-gray-500">Through our programs</Typography>
+                  <Heading variant="h4" color="primary">26,000+</Heading>
+                  <Text variant="caption" className="font-medium">Lives Transformed</Text>
+                  <Text variant="caption" color="muted" className="text-xs">Through our programs</Text>
                 </div>
               </div>
             </Card>
@@ -162,15 +160,15 @@ const About = () => {
             <Card 
               variant="elevated" 
               padding="sm" 
-              className="absolute -top-4 -right-4 z-20 border-l-4 border-secondary-orange bg-gradient-to-br from-orange-50 to-orange-100 shadow-lg"
+              className="absolute -top-4 -right-4 z-20 border-l-4 border-secondary-orange bg-gradient-to-br from-orange-50 to-orange-100"
             >
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center">
                   <Lightbulb className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <Typography variant="body" className="text-orange-600 font-bold text-sm">Innovation</Typography>
-                  <Typography variant="caption" className="text-orange-500">Digital First</Typography>
+                  <Text variant="body-small" className="text-orange-600 font-bold">Innovation</Text>
+                  <Text variant="caption" className="text-orange-500">Digital First</Text>
                 </div>
               </div>
             </Card>
@@ -179,15 +177,15 @@ const About = () => {
             <Card 
               variant="elevated" 
               padding="sm" 
-              className="absolute top-1/2 -left-4 z-20 border-l-4 border-purple-500 bg-gradient-to-br from-purple-50 to-purple-100 shadow-lg"
+              className="absolute top-1/2 -left-4 z-20 border-l-4 border-purple-500 bg-gradient-to-br from-purple-50 to-purple-100"
             >
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
                   <Scale className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <Typography variant="body" className="text-purple-600 font-bold text-sm">Justice</Typography>
-                  <Typography variant="caption" className="text-purple-500">For All</Typography>
+                  <Text variant="body-small" className="text-purple-600 font-bold">Justice</Text>
+                  <Text variant="caption" className="text-purple-500">For All</Text>
                 </div>
               </div>
             </Card>

@@ -114,30 +114,30 @@ p, .body { @apply text-[16px] leading-[24px] font-sans mb-4; }
 }
 
 @layer components {
-  /* Enhanced Button Variants - Consistent spacing */
+  /* Enhanced Button Variants - Reduced shadows */
   .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 font-heading text-[16px];
+    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 font-heading text-[16px];
   }
   
   .btn-secondary {
-    @apply bg-secondary-teal hover:bg-secondary-teal/90 active:bg-secondary-teal/80 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 font-heading text-[16px];
+    @apply bg-secondary-teal hover:bg-secondary-teal/90 active:bg-secondary-teal/80 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 font-heading text-[16px];
   }
 
   .btn-outline {
-    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white active:bg-primary-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-heading text-[16px];
+    @apply border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white active:bg-primary-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-heading text-[16px];
   }
 
   .btn-ghost {
     @apply text-primary-500 hover:bg-primary-50 active:bg-primary-100 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-heading text-[16px];
   }
   
-  /* Enhanced Card Variants */
+  /* Enhanced Card Variants - Reduced shadows and borders */
   .card-elevated {
-    @apply bg-white shadow-lg hover:shadow-xl border border-neutral-100 rounded-2xl transition-all duration-300;
+    @apply bg-white shadow-sm hover:shadow-md border border-neutral-100/50 rounded-2xl transition-all duration-300;
   }
 
   .card-interactive {
-    @apply bg-white shadow-lg hover:shadow-2xl hover:-translate-y-1 border border-neutral-100 rounded-2xl transition-all duration-300 cursor-pointer;
+    @apply bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 border border-neutral-100/50 rounded-2xl transition-all duration-300 cursor-pointer;
   }
   
   /* Pattern Backgrounds with Overlay */
@@ -220,9 +220,9 @@ p, .body { @apply text-[16px] leading-[24px] font-sans mb-4; }
     @apply animate-pulse bg-neutral-200 rounded;
   }
 
-  /* Border Utilities */
+  /* Border Utilities - Reduced borders */
   .border-gradient {
-    @apply border-2;
+    @apply border;
     border-image: linear-gradient(135deg, #931E5C, #59B5B0) 1;
   }
 
