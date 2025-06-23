@@ -1,9 +1,8 @@
-
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ApiResponse, PaginatedResponse } from '@/types';
 
-// Extend the Axios request config to include metadata
-interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
+// Extend the internal Axios request config to include metadata
+interface ExtendedInternalAxiosRequestConfig extends InternalAxiosRequestConfig {
   metadata?: {
     startTime: Date;
   };
@@ -30,11 +29,10 @@ class EnhancedApiClient {
   private setupInterceptors() {
     // Request interceptor
     this.client.interceptors.request.use(
-      (config: ExtendedAxiosRequestConfig) => {
+      (config: ExtendedInternalAxiosRequestConfig) => {
         // Add auth token if available
         const token = localStorage.getItem('auth-token');
         if (token) {
-          config.headers = config.headers || {};
           config.headers.Authorization = `Bearer ${token}`;
         }
         
@@ -54,7 +52,7 @@ class EnhancedApiClient {
       (response: AxiosResponse) => {
         // Log response time for debugging
         const endTime = new Date();
-        const config = response.config as ExtendedAxiosRequestConfig;
+        const config = response.config as ExtendedInternalAxiosRequestConfig;
         const duration = config.metadata?.startTime ? endTime.getTime() - config.metadata.startTime.getTime() : 0;
         console.log(`API call to ${response.config.url} took ${duration}ms`);
         
