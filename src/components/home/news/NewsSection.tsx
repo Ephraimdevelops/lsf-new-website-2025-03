@@ -65,39 +65,48 @@ const NewsSection = () => {
         </Link>
       )}
 
-      {/* Additional stories - clean grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Additional stories - equal height cards to match publications */}
+      <div className="space-y-8">
         {featuredNews.slice(1).map((news) => (
           <Link key={news.id} to="/news" className="group block">
             <article className="hover:opacity-95 transition-opacity duration-300">
-              <div className="relative overflow-hidden rounded-lg mb-4">
-                <img 
-                  src={news.image}
-                  alt={news.title}
-                  className="w-full h-56 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-secondary-orange text-white text-xs font-bold px-3 py-2 rounded-full">
-                    {news.category.toUpperCase()}
-                  </span>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-20 h-24 rounded-lg overflow-hidden bg-neutral-100">
+                  <img 
+                    src={news.image}
+                    alt={news.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-              </div>
-              <div className="flex items-center text-sm text-neutral-500 mb-3">
-                <Calendar size={14} className="mr-2" />
-                {new Date(news.date).toLocaleDateString('en-US', { 
-                  month: 'short', 
-                  day: 'numeric'
-                })}
-              </div>
-              <Heading variant="card" className="text-neutral-800 group-hover:text-primary transition-colors mb-3 leading-snug">
-                {news.title}
-              </Heading>
-              <Text variant="body-small" className="text-neutral-600 line-clamp-2 leading-relaxed mb-4">
-                {news.excerpt}
-              </Text>
-              <div className="inline-flex items-center text-primary font-semibold group-hover:underline transition-all duration-300">
-                Read More
-                <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform duration-300" />
+                
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-xs text-neutral-500 font-medium uppercase tracking-wider">
+                      {news.category}
+                    </span>
+                    <span className="bg-secondary-orange text-white text-xs font-bold px-2 py-1 rounded-full">
+                      STORY
+                    </span>
+                  </div>
+                  
+                  <Heading variant="card" color="neutral" className="leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-300 mb-2">
+                    {news.title}
+                  </Heading>
+
+                  <div className="flex items-center text-sm text-neutral-500 mb-3">
+                    <Calendar size={14} className="mr-2" />
+                    {new Date(news.date).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      year: 'numeric'
+                    })}
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <span className="text-primary hover:text-secondary-teal font-semibold text-sm hover:underline transition-all duration-300">
+                      Read More
+                    </span>
+                  </div>
+                </div>
               </div>
             </article>
           </Link>
