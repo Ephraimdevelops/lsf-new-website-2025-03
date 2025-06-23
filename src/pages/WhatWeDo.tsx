@@ -8,8 +8,7 @@ import StrategicPartnershipsSection from '../components/what-we-do/StrategicPart
 import SuccessStoriesSection from '../components/what-we-do/SuccessStoriesSection';
 import ResourcesToolsSection from '../components/what-we-do/ResourcesToolsSection';
 import Breadcrumb from '../components/shared/Breadcrumb';
-import Container from '../components/shared/Container';
-import Typography from '../components/shared/Typography';
+import { Container, Heading, Text } from '../components/design-system';
 import Card from '../components/shared/Card';
 import { Button } from '../components/ui/button';
 import { 
@@ -20,7 +19,8 @@ import {
   Megaphone, 
   ArrowRight,
   Target,
-  Heart
+  Heart,
+  TrendingUp
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -71,72 +71,81 @@ const WhatWeDo = () => {
   ];
 
   const impactStats = [
-    { value: "2.8M+", label: "Tanzanians Reached" },
-    { value: "78%", label: "Cases Resolved" },
-    { value: "31", label: "Regions Covered" },
-    { value: "85%", label: "Community Satisfaction" }
+    { value: "2.8M+", label: "Tanzanians Reached", change: "+12%" },
+    { value: "78%", label: "Cases Resolved", change: "+8%" },
+    { value: "31", label: "Regions Covered", change: "+3" },
+    { value: "85%", label: "Community Satisfaction", change: "+5%" }
   ];
 
   return (
     <Layout>
-      {/* Breadcrumb Navigation */}
-      <div className="bg-neutral-light py-4">
-        <Container size="xl">
+      {/* Modern Breadcrumb Section */}
+      <section className="bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-100">
+        <Container size="xl" className="py-4">
           <Breadcrumb />
         </Container>
-      </div>
+      </section>
       
       <WhatWeDoHero />
       
-      {/* Interactive Overview Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <Container size="xl">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center bg-primary/10 rounded-full px-6 py-3 mb-6">
+      {/* Enhanced Overview Section */}
+      <section className="py-20 bg-gradient-to-br from-white via-neutral-50/30 to-white relative overflow-hidden">
+        {/* Modern background elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(147,30,92,0.03)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(89,181,176,0.03)_0%,transparent_50%)]"></div>
+        
+        <Container size="xl" className="relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-gradient-to-r from-primary/10 to-secondary-teal/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-white/20">
               <Target className="h-5 w-5 mr-3 text-primary" />
-              <Typography variant="overline" className="text-primary font-bold">
-                OUR APPROACH
-              </Typography>
+              <Text variant="overline" className="text-primary font-bold tracking-wider">
+                OUR STRATEGIC APPROACH
+              </Text>
             </div>
-            <Typography variant="h1" className="mb-6 text-4xl md:text-5xl font-bold">
+            <Heading variant="section" className="mb-8 text-5xl md:text-6xl font-bold">
               Five Pillars of
-              <span className="block text-primary">Legal Empowerment</span>
-            </Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-lg">
+              <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+                Legal Empowerment
+              </span>
+            </Heading>
+            <Text variant="body" className="text-neutral-600 max-w-4xl mx-auto text-lg leading-relaxed">
               Our comprehensive approach combines strategic grant-making, capacity building, partnerships, 
               research, and advocacy to create lasting change in Tanzania's justice landscape.
-            </Typography>
+            </Text>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {whatWeDoAreas.map((area, index) => (
-              <Card key={index} variant="elevated" hover className="group overflow-hidden">
-                <div className={`bg-gradient-to-br ${area.color} p-6 relative`}>
-                  <div className="absolute top-4 right-4 text-2xl font-bold text-white/20">
+              <Card key={index} className="group overflow-hidden bg-white hover:scale-[1.02] transition-all duration-300 border-0 shadow-sm hover:shadow-md">
+                <div className={`bg-gradient-to-br ${area.color} p-8 relative`}>
+                  <div className="absolute top-6 right-6 text-3xl font-black text-white/15">
                     {String(index + 1).padStart(2, '0')}
                   </div>
                   <div className="relative z-10">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                    <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                       <div className="text-white">
                         {area.icon}
                       </div>
                     </div>
-                    <Typography variant="h4" className="text-white mb-2">
+                    <Heading variant="card" className="text-white mb-3 text-xl">
                       {area.title}
-                    </Typography>
-                    <Typography variant="bodySmall" className="text-white/90 font-medium">
-                      {area.stats}
-                    </Typography>
+                    </Heading>
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="h-4 w-4 text-white/80" />
+                      <Text variant="body-small" className="text-white/90 font-semibold">
+                        {area.stats}
+                      </Text>
+                    </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <Typography variant="body" className="text-neutral-gray mb-4 leading-relaxed">
+                <div className="p-8">
+                  <Text variant="body" className="text-neutral-600 mb-6 leading-relaxed">
                     {area.description}
-                  </Typography>
+                  </Text>
                   <Link to={area.link}>
-                    <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold group-hover:translate-x-1 transition-transform">
+                    <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold group-hover:translate-x-2 transition-all duration-300 flex items-center">
                       Learn More
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>
                   </Link>
                 </div>
@@ -144,23 +153,29 @@ const WhatWeDo = () => {
             ))}
           </div>
 
-          {/* Impact Stats */}
-          <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-2xl p-8 md:p-12">
-            <div className="text-center mb-8">
-              <Typography variant="h2" className="mb-4">
+          {/* Enhanced Impact Stats */}
+          <div className="bg-gradient-to-br from-white to-neutral-50/50 rounded-3xl p-12 border border-neutral-100/50 backdrop-blur-sm">
+            <div className="text-center mb-12">
+              <Heading variant="section" className="mb-6 text-4xl">
                 Measurable Impact
-              </Typography>
-              <Typography variant="body" className="text-neutral-gray">
+              </Heading>
+              <Text variant="body" className="text-neutral-600 text-lg">
                 Our work creates tangible results across Tanzania's legal landscape
-              </Typography>
+              </Text>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {impactStats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                    {stat.value}
+                <div key={index} className="text-center group">
+                  <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-2xl p-6 mb-4 group-hover:scale-105 transition-transform duration-300">
+                    <div className="text-4xl md:text-5xl font-black text-primary mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <TrendingUp className="h-4 w-4 text-green-500" />
+                      <span className="text-green-500 font-semibold text-sm">{stat.change}</span>
+                    </div>
                   </div>
-                  <div className="text-neutral-gray text-sm md:text-base">
+                  <div className="text-neutral-600 font-medium">
                     {stat.label}
                   </div>
                 </div>
@@ -176,32 +191,36 @@ const WhatWeDo = () => {
       <ResourcesToolsSection />
       <ProjectsCarousel />
       
-      {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-br from-primary via-primary-dark to-black text-white">
-        <Container size="xl">
+      {/* Enhanced Call to Action */}
+      <section className="py-20 bg-gradient-to-br from-primary via-primary-dark to-black text-white relative overflow-hidden">
+        {/* Modern background pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(89,181,176,0.1)_0%,transparent_50%)]"></div>
+        
+        <Container size="xl" className="relative z-10">
           <div className="text-center">
-            <div className="inline-flex items-center bg-white/10 rounded-full px-6 py-3 mb-6">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-white/20">
               <Heart className="h-5 w-5 mr-3 text-secondary-orange" />
-              <Typography variant="overline" className="text-secondary-orange font-bold">
-                GET INVOLVED
-              </Typography>
+              <Text variant="overline" className="text-secondary-orange font-bold tracking-wider">
+                JOIN OUR MISSION
+              </Text>
             </div>
-            <Typography variant="h2" className="mb-6 text-white">
+            <Heading variant="section" className="mb-8 text-white text-5xl">
               Partner With Us for Justice
-            </Typography>
-            <Typography variant="body" className="text-white/90 mb-8 max-w-2xl mx-auto">
+            </Heading>
+            <Text variant="body" className="text-white/90 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
               Join our mission to strengthen legal empowerment across Tanzania. 
-              Whether you're seeking legal assistance or want to support our work.
-            </Typography>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              Whether you're seeking legal assistance or want to support our work, we're here to collaborate.
+            </Text>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link to="/contact">
-                <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white">
+                <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white px-8 py-4 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
                   Partner With Us
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/legal-help">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
                   Get Legal Help
                 </Button>
               </Link>

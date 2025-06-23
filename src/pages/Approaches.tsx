@@ -1,10 +1,9 @@
 import Layout from '../components/layout/Layout';
-import Typography from '@/components/shared/Typography';
-import Container from '@/components/shared/Container';
+import { Container, Heading, Text } from '../components/design-system';
 import ApproachHero from '../components/approaches/ApproachHero';
 import ApproachDetailSection from '../components/approaches/ApproachDetailSection';
 import CallToActionSection from '../components/shared/CallToActionSection';
-import Breadcrumb from '@/components/shared/Breadcrumb';
+import Breadcrumb from '../components/shared/Breadcrumb';
 import { 
   DollarSign, 
   Target, 
@@ -12,7 +11,6 @@ import {
   BookOpen, 
   Users, 
   ArrowRight,
-  CheckCircle,
   Handshake,
   Download
 } from 'lucide-react';
@@ -233,12 +231,12 @@ const Approaches = () => {
 
   return (
     <Layout>
-      {/* Breadcrumb Navigation */}
-      <div className="bg-neutral-light py-4">
-        <Container size="xl">
+      {/* Modern Breadcrumb Navigation */}
+      <section className="bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-100">
+        <Container size="xl" className="py-4">
           <Breadcrumb items={breadcrumbItems} />
         </Container>
-      </div>
+      </section>
 
       <ApproachHero approaches={approaches} />
 
@@ -251,7 +249,7 @@ const Approaches = () => {
         />
       ))}
 
-      {/* Call to Action */}
+      {/* Enhanced Call to Action */}
       <CallToActionSection
         title="Partner With Us"
         subtitle="JOIN OUR MISSION"

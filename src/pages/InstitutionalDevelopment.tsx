@@ -1,7 +1,10 @@
+
 import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
 import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
 import ResourcesSection from '../components/focus-areas/ResourcesSection';
+import Breadcrumb from '../components/shared/Breadcrumb';
+import { Container } from '../components/design-system';
 import { Building, Users } from 'lucide-react';
 
 const InstitutionalDevelopment = () => {
@@ -42,6 +45,13 @@ const InstitutionalDevelopment = () => {
 
   return (
     <Layout>
+      {/* Modern Breadcrumb Navigation */}
+      <section className="bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-100">
+        <Container size="xl" className="py-4">
+          <Breadcrumb items={breadcrumbItems} />
+        </Container>
+      </section>
+
       <FocusAreaHero focusArea={focusArea} breadcrumbItems={breadcrumbItems} />
       
       <KeyActivitiesSection 
