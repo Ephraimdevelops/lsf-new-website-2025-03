@@ -14,7 +14,7 @@ interface BookmarkButtonProps {
   description?: string;
   image?: string;
   variant?: 'default' | 'ghost' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'default' | 'lg';
   showLabel?: boolean;
   className?: string;
 }
@@ -77,7 +77,7 @@ const BookmarkButton = ({
       aria-label={bookmarked ? 'Remove bookmark' : 'Add bookmark'}
     >
       <Icon 
-        size={size === 'sm' ? 16 : size === 'md' ? 20 : 24} 
+        size={size === 'sm' ? 16 : size === 'default' ? 20 : 24} 
         className={cn(
           'transition-all duration-200',
           bookmarked && 'fill-current',

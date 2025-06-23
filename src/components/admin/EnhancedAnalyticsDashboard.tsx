@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import {
   Users,
@@ -29,7 +28,8 @@ import {
   PieChart as RechartsPieChart,
   Cell,
   Area,
-  AreaChart
+  AreaChart,
+  Pie
 } from 'recharts';
 import { enhancedAnalyticsService } from '@/services/api/enhancedAnalyticsService';
 
