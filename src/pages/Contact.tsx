@@ -6,12 +6,17 @@ import Container from '@/components/shared/Container';
 import Section from '@/components/shared/Section';
 
 const ContactPage = () => {
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Contact Us' }
+  ];
+
   return (
     <Layout>
       {/* Breadcrumb Navigation */}
       <Section variant="secondary" padding="sm">
         <Container size="xl">
-          <Breadcrumb />
+          <Breadcrumb items={breadcrumbItems} />
         </Container>
       </Section>
 

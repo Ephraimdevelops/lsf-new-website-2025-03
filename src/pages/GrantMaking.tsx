@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import Typography from '../components/shared/Typography';
@@ -124,6 +123,12 @@ const GrantMaking = () => {
     }
   ];
 
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'What We Do', href: '/what-we-do' },
+    { label: 'Grant Making' }
+  ];
+
   const handleTabChange = (value: string) => {
     setActiveGrantArea(value);
   };
@@ -135,7 +140,7 @@ const GrantMaking = () => {
       {/* Breadcrumb Navigation */}
       <div className="bg-neutral-light py-4">
         <Container size="xl">
-          <Breadcrumb />
+          <Breadcrumb items={breadcrumbItems} />
         </Container>
       </div>
 

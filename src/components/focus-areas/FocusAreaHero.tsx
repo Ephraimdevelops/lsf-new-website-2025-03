@@ -7,7 +7,7 @@ import Breadcrumb from '../shared/Breadcrumb';
 import AnimatedCounter from '../shared/AnimatedCounter';
 
 interface BreadcrumbItem {
-  name: string;
+  label: string;
   href?: string;
 }
 
@@ -25,9 +25,9 @@ interface FocusAreaHeroProps {
 const FocusAreaHero = ({ focusArea, breadcrumbItems }: FocusAreaHeroProps) => {
   // Generate default breadcrumb items if none provided
   const defaultBreadcrumbItems = [
-    { name: 'Home', href: '/' },
-    { name: 'What We Do', href: '/what-we-do' },
-    { name: focusArea.title }
+    { label: 'Home', href: '/' },
+    { label: 'What We Do', href: '/what-we-do' },
+    { label: focusArea.title }
   ];
 
   return (

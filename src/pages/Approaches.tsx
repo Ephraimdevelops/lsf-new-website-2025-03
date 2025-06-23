@@ -225,8 +225,8 @@ const Approaches = () => {
   ];
 
   const breadcrumbItems = [
-    { name: "What We Do", href: "/what-we-do" },
-    { name: "Our Approaches" }
+    { label: "What We Do", href: "/what-we-do" },
+    { label: "Our Approaches" }
   ];
 
   return (

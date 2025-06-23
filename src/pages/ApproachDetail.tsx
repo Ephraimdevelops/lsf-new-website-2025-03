@@ -74,9 +74,9 @@ const ApproachDetail = () => {
   const approach = approachData[approachId || ''] || approachData['grant-making'];
   
   const breadcrumbItems = [
-    { name: 'Home', href: '/' },
-    { name: 'What We Do', href: '/what-we-do' },
-    { name: approach.title }
+    { label: 'Home', href: '/' },
+    { label: 'What We Do', href: '/what-we-do' },
+    { label: approach.title }
   ];
 
   return (
