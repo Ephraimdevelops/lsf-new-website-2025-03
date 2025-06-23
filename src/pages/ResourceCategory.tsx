@@ -5,23 +5,16 @@ import HeroSection from '@/components/shared/HeroSection';
 import Container from '@/components/shared/Container';
 import Section from '@/components/shared/Section';
 import Typography from '@/components/shared/Typography';
-import Breadcrumb from '@/components/shared/Breadcrumb';
 import { Download, ExternalLink } from 'lucide-react';
-
-interface BreadcrumbItem {
-  name: string;
-  href?: string;
-}
 
 interface ResourceCategoryProps {
   category: string;
   title: string;
   description: string;
   icon: ReactNode;
-  breadcrumbItems?: BreadcrumbItem[];
 }
 
-const ResourceCategory = ({ category, title, description, icon, breadcrumbItems }: ResourceCategoryProps) => {
+const ResourceCategory = ({ category, title, description, icon }: ResourceCategoryProps) => {
   // Sample resources - in a real app, these would come from an API
   const resources = [
     {
@@ -49,13 +42,6 @@ const ResourceCategory = ({ category, title, description, icon, breadcrumbItems 
 
   return (
     <Layout>
-      {/* Breadcrumb Navigation */}
-      <Section variant="secondary" padding="sm">
-        <Container size="xl">
-          <Breadcrumb items={breadcrumbItems} />
-        </Container>
-      </Section>
-
       <HeroSection
         icon={icon}
         badge="RESOURCES"

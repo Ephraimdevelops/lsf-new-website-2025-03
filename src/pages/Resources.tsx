@@ -6,7 +6,6 @@ import Container from '@/components/shared/Container';
 import Section from '@/components/shared/Section';
 import Typography from '@/components/shared/Typography';
 import { Link } from 'react-router-dom';
-import Breadcrumb from '@/components/shared/Breadcrumb';
 
 const Resources = () => {
   const resourceCategories = [
@@ -35,13 +34,6 @@ const Resources = () => {
 
   return (
     <Layout>
-      {/* Breadcrumb Navigation */}
-      <Section variant="secondary" padding="sm">
-        <Container size="xl">
-          <Breadcrumb />
-        </Container>
-      </Section>
-
       <HeroSection
         icon={<Download className="h-8 w-8" />}
         badge="RESOURCE CENTER"

@@ -7,7 +7,6 @@ import ProjectsCarousel from '../components/what-we-do/ProjectsCarousel';
 import StrategicPartnershipsSection from '../components/what-we-do/StrategicPartnershipsSection';
 import SuccessStoriesSection from '../components/what-we-do/SuccessStoriesSection';
 import ResourcesToolsSection from '../components/what-we-do/ResourcesToolsSection';
-import Breadcrumb from '../components/shared/Breadcrumb';
 import { Container, Heading, Text } from '../components/design-system';
 import Card from '../components/shared/Card';
 import { Button } from '../components/ui/button';
@@ -79,13 +78,6 @@ const WhatWeDo = () => {
 
   return (
     <Layout>
-      {/* Modern Breadcrumb Section */}
-      <section className="bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-100">
-        <Container size="xl" className="py-4">
-          <Breadcrumb />
-        </Container>
-      </section>
-      
       <WhatWeDoHero />
       
       {/* Enhanced Overview Section */}
