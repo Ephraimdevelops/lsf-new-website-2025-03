@@ -1,37 +1,35 @@
 
-import { TrendingUp } from 'lucide-react';
 import { Section, Container, Heading, Text } from '../design-system';
 import NewsSection from './news/NewsSection';
 import PublicationsSection from './news/PublicationsSection';
 
 const CompactNewsUpdates = () => {
   return (
-    <Section variant="secondary" size="lg" className="relative overflow-hidden">
-      {/* Background Elements */}
+    <Section variant="default" size="xl" className="relative overflow-hidden py-20 md:py-24">
+      {/* Minimal background elements - very subtle */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-24 right-36 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-28 w-64 h-64 bg-secondary-teal/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-secondary-orange/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-24 right-36 w-80 h-80 bg-primary/2 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-28 w-96 h-96 bg-secondary-teal/2 rounded-full blur-3xl"></div>
       </div>
 
       <Container size="xl" className="relative z-10">
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-gradient-to-r from-secondary-orange/10 to-secondary-teal/10 backdrop-blur-md rounded-full px-8 py-4 mb-8">
-            <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
-            <Text variant="overline" className="text-secondary-orange tracking-widest font-bold">
-              NEWS & RESEARCH
+        {/* Clean, editorial header */}
+        <div className="text-center mb-16 md:mb-20">
+          <div className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-neutral-100/50">
+            <Text variant="overline" className="text-neutral-600 tracking-wider font-medium text-sm">
+              NEWSROOM
             </Text>
           </div>
-          <Heading variant="section" className="mb-6 font-heading">
-            Latest <span className="text-secondary-orange">Stories</span> &amp; <span className="text-secondary-teal">Publications</span>
+          <Heading variant="section" className="mb-6 font-heading text-4xl md:text-5xl lg:text-6xl">
+            Latest Stories & Publications
           </Heading>
-          <Text variant="body" color="neutral" className="max-w-4xl mx-auto leading-relaxed">
-            Discover our most recent impact stories and cutting-edge research transforming Tanzania's justice landscape.
+          <Text variant="body-large" color="neutral" className="max-w-4xl mx-auto leading-relaxed text-lg">
+            Read real stories from the field, updates from our partners, and new reports that shape justice across Tanzania.
           </Text>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-16">
+        {/* Editorial-style layout */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           <NewsSection />
           <PublicationsSection />
         </div>
