@@ -1,11 +1,11 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight, Search, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Search, Phone, Mail, MapPin, Bookmark } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 import LegalAidDialog from '@/components/shared/LegalAidDialog';
+import { useBookmarks } from '@/hooks/useBookmarks';
 
 // Enhanced navigation structure with images
 const navigationItems = [
@@ -113,6 +113,7 @@ const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [legalAidDialogOpen, setLegalAidDialogOpen] = useState(false);
   const location = useLocation();
+  const { count } = useBookmarks();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -186,7 +187,7 @@ const Header = () => {
             </div>
             
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1">
+            <nav className="hidden lg:flex items-center space-x-8">
               {navigationItems.map((item) => (
                 <div key={item.name} className="relative group">
                   <button
@@ -254,6 +255,20 @@ const Header = () => {
                   </div>
                 </div>
               ))}
+              
+              {/* Add Bookmarks link */}
+              <Link
+                to="/bookmarks"
+                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors duration-200 relative"
+              >
+                <Bookmark size={18} />
+                <span>Bookmarks</span>
+                {count > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {count > 99 ? '99+' : count}
+                  </span>
+                )}
+              </Link>
               
               {/* Action buttons */}
               <div className="flex items-center ml-6 space-x-3 border-l border-gray-200 pl-6">
