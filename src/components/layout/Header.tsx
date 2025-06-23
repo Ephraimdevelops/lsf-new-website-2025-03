@@ -1,72 +1,83 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Phone, Mail, Search, Bookmark } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Mail, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 import LegalAidDialog from '@/components/shared/LegalAidDialog';
-import { useBookmarks } from '@/hooks/useBookmarks';
 
-// Comprehensive navigation structure without mega menus
+// Enhanced navigation structure with visual elements
 const navigationItems = [
   { 
     name: 'About', 
     href: '/about',
+    description: 'Learn about our mission and team',
+    image: '/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png',
     subItems: [
-      { name: 'About LSF', href: '/about' },
-      { name: 'Our Team', href: '/team' },
-      { name: 'Partners', href: '/partners' },
-      { name: 'Contact Us', href: '/contact' },
-      { name: 'Opportunities', href: '/opportunities' },
+      { name: 'About LSF', href: '/about', description: 'Our story and mission' },
+      { name: 'Our Team', href: '/team', description: 'Meet our leadership' },
+      { name: 'Partners', href: '/partners', description: 'Strategic collaborations' },
+      { name: 'Contact Us', href: '/contact', description: 'Get in touch' },
+      { name: 'Opportunities', href: '/opportunities', description: 'Join our team' },
     ]
   },
   { 
     name: 'What We Do', 
     href: '/what-we-do',
+    description: 'Our comprehensive approach to justice',
+    image: '/lovable-uploads/background with mother umage .png',
     subItems: [
-      { name: 'Overview', href: '/what-we-do' },
-      { name: 'Grant Making', href: '/what-we-do/grant-making' },
-      { name: 'Capacity Building', href: '/what-we-do/capacity-building' },
-      { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy' },
-      { name: 'Partnerships & Networking', href: '/partnerships-networking' },
-      { name: 'Learning & Research', href: '/learning-research' },
-      { name: 'Institutional Development', href: '/institutional-development' },
+      { name: 'Overview', href: '/what-we-do', description: 'Complete picture of our work' },
+      { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Strategic funding approach' },
+      { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening organizations' },
+      { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy', description: 'System-level change' },
+      { name: 'Partnerships & Networking', href: '/partnerships-networking', description: 'Building alliances' },
+      { name: 'Learning & Research', href: '/learning-research', description: 'Evidence-based insights' },
+      { name: 'Institutional Development', href: '/institutional-development', description: 'Organizational growth' },
     ]
   },
   { 
     name: 'Focus Areas', 
     href: '/focus-areas',
+    description: 'Strategic intervention areas',
+    image: '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png',
     subItems: [
-      { name: 'Accessible Legal Aid', href: '/focus-areas/accessible-legal-aid' },
-      { name: 'Empowered Communities', href: '/focus-areas/empowered-communities' },
-      { name: 'Climate Justice', href: '/focus-areas/climate-justice' },
-      { name: 'Digital Transformation', href: '/focus-areas/digital-transformation' },
+      { name: 'Accessible Legal Aid', href: '/focus-areas/accessible-legal-aid', description: 'Breaking barriers to justice' },
+      { name: 'Empowered Communities', href: '/focus-areas/empowered-communities', description: 'Local capacity building' },
+      { name: 'Climate Justice', href: '/focus-areas/climate-justice', description: 'Environmental rights protection' },
+      { name: 'Digital Transformation', href: '/focus-areas/digital-transformation', description: 'Technology for justice' },
     ]
   },
   { 
     name: 'Programs', 
     href: '/programs',
+    description: 'Our active initiatives',
+    image: '/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png',
     subItems: [
-      { name: 'All Programs', href: '/programs' },
-      { name: 'Get Legal Help', href: '/legal-help' },
+      { name: 'All Programs', href: '/programs', description: 'Browse all initiatives' },
+      { name: 'Get Legal Help', href: '/legal-help', description: 'Find assistance' },
     ]
   },
   { 
     name: 'Impact', 
     href: '/impact',
+    description: 'Measurable change and stories',
+    image: '/lovable-uploads/b2226752-4a54-463b-af38-a1dd2b57350b.png',
     subItems: [
-      { name: 'Success Stories', href: '/heroes' },
-      { name: 'Impact Metrics', href: '/impact' },
+      { name: 'Success Stories', href: '/heroes', description: 'Real impact stories' },
+      { name: 'Impact Metrics', href: '/impact', description: 'Data and outcomes' },
     ]
   },
   { 
     name: 'Resources', 
     href: '/resources',
+    description: 'Publications and tools',
+    image: '/lovable-uploads/7718b32e-3138-4e78-a7a1-4d63935a2951.png',
     subItems: [
-      { name: 'Latest News', href: '/news' },
-      { name: 'Publications', href: '/publications' },
-      { name: 'Legal Resources', href: '/resources' },
+      { name: 'Latest News', href: '/news', description: 'Updates and announcements' },
+      { name: 'Publications', href: '/publications', description: 'Research and reports' },
+      { name: 'Legal Resources', href: '/resources', description: 'Tools and guides' },
     ]
   },
 ];
@@ -77,7 +88,6 @@ const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [legalAidDialogOpen, setLegalAidDialogOpen] = useState(false);
   const location = useLocation();
-  const { count } = useBookmarks();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -158,10 +168,10 @@ const Header = () => {
                 <div key={item.name} className="relative group">
                   <button
                     className={cn(
-                      "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 transform hover:scale-105",
+                      "flex items-center px-6 py-4 text-sm font-medium rounded-xl transition-all duration-300 transform hover:scale-105 border-2 border-transparent",
                       location.pathname === item.href || location.pathname.startsWith(`${item.href}/`)
-                        ? "text-primary bg-primary/10 shadow-sm"
-                        : "text-gray-700 hover:text-primary hover:bg-primary/5"
+                        ? "text-primary bg-gradient-to-r from-primary/10 to-secondary-teal/10 border-primary/20 shadow-lg"
+                        : "text-gray-700 hover:text-primary hover:bg-gradient-to-r hover:from-primary/5 hover:to-secondary-teal/5 hover:border-primary/10 hover:shadow-md"
                     )}
                     onMouseEnter={() => setActiveDropdown(item.name)}
                     onMouseLeave={() => setActiveDropdown(null)}
@@ -170,37 +180,55 @@ const Header = () => {
                     <ChevronDown 
                       size={16} 
                       className={cn(
-                        "ml-1 transition-all duration-300",
+                        "ml-2 transition-all duration-300",
                         activeDropdown === item.name ? "rotate-180 text-primary" : "group-hover:text-primary"
                       )}
                     />
                   </button>
                   
-                  {/* Animated Dropdown */}
+                  {/* Enhanced Visual Dropdown */}
                   <div 
                     className={cn(
-                      "absolute left-0 top-full mt-2 w-64 rounded-xl shadow-xl bg-white ring-1 ring-black/5 transition-all duration-300 transform origin-top",
+                      "absolute left-0 top-full mt-4 w-80 rounded-2xl shadow-2xl bg-white ring-1 ring-black/5 transition-all duration-300 transform origin-top border border-gray-100/50 backdrop-blur-sm",
                       activeDropdown === item.name 
                         ? "opacity-100 visible scale-100 translate-y-0" 
-                        : "opacity-0 invisible scale-95 -translate-y-2"
+                        : "opacity-0 invisible scale-95 -translate-y-4"
                     )}
                     onMouseEnter={() => setActiveDropdown(item.name)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <div className="p-2">
+                    {/* Header with image */}
+                    <div className="relative h-32 rounded-t-2xl overflow-hidden">
+                      <img 
+                        src={item.image} 
+                        alt={item.name}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                      <div className="absolute bottom-4 left-4 text-white">
+                        <div className="font-bold text-lg">{item.name}</div>
+                        <div className="text-sm text-white/90">{item.description}</div>
+                      </div>
+                    </div>
+                    
+                    {/* Menu items */}
+                    <div className="p-4">
                       {item.subItems?.map((subItem) => (
                         <Link
                           key={subItem.name}
                           to={subItem.href}
                           className={cn(
-                            "flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-200 hover:bg-primary/10 hover:text-primary hover:translate-x-1",
+                            "flex items-start p-3 rounded-xl transition-all duration-200 hover:bg-gradient-to-r hover:from-primary/5 hover:to-secondary-teal/5 hover:translate-x-1 group",
                             location.pathname === subItem.href
-                              ? "text-primary bg-primary/5 font-medium"
-                              : "text-gray-700"
+                              ? "text-primary bg-gradient-to-r from-primary/5 to-secondary-teal/5 font-medium border border-primary/10"
+                              : "text-gray-700 hover:text-primary"
                           )}
                         >
-                          <span className="w-2 h-2 bg-primary/20 rounded-full mr-3 transition-all duration-200 hover:bg-primary"></span>
-                          {subItem.name}
+                          <div className="w-2 h-2 bg-primary/30 rounded-full mr-3 mt-2 transition-all duration-200 group-hover:bg-primary group-hover:scale-125"></div>
+                          <div>
+                            <div className="font-medium text-sm">{subItem.name}</div>
+                            <div className="text-xs text-gray-500 mt-1">{subItem.description}</div>
+                          </div>
                         </Link>
                       ))}
                     </div>
@@ -208,28 +236,14 @@ const Header = () => {
                 </div>
               ))}
               
-              {/* Bookmarks link with animation */}
-              <Link
-                to="/bookmarks"
-                className="flex items-center gap-2 px-4 py-3 text-gray-700 hover:text-primary transition-all duration-200 relative transform hover:scale-105"
-              >
-                <Bookmark size={18} className="transition-transform duration-200 hover:rotate-12" />
-                <span>Bookmarks</span>
-                {count > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
-                    {count > 99 ? '99+' : count}
-                  </span>
-                )}
-              </Link>
-              
-              {/* Action buttons with enhanced animations */}
+              {/* Action buttons */}
               <div className="flex items-center ml-6 space-x-3 border-l border-gray-200 pl-6">
                 <div className="transform hover:scale-110 transition-transform duration-200">
                   <SearchDialog />
                 </div>
                 <Button 
                   size="sm" 
-                  className="bg-primary hover:bg-primary/90 flex items-center space-x-2 transform hover:scale-105 transition-all duration-200 hover:shadow-lg"
+                  className="bg-primary hover:bg-primary/90 flex items-center space-x-2 transform hover:scale-105 transition-all duration-200 hover:shadow-lg rounded-xl px-6"
                   onClick={() => setLegalAidDialogOpen(true)}
                 >
                   <Phone className="h-4 w-4" />
@@ -239,7 +253,7 @@ const Header = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                    className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg rounded-xl px-6"
                   >
                     Donate
                   </Button>
@@ -277,26 +291,13 @@ const Header = () => {
         )}>
           <div className="container mx-auto px-4 py-4">
             <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-secondary-teal/5 rounded-xl">
-              <div className="grid grid-cols-2 gap-3">
-                <Button 
-                  className="w-full justify-center bg-primary hover:bg-primary/90 transition-all duration-200"
-                  onClick={() => setLegalAidDialogOpen(true)}
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  Get Help
-                </Button>
-                <Link to="/bookmarks" className="w-full relative">
-                  <Button variant="outline" className="w-full justify-center border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200">
-                    <Bookmark className="h-4 w-4 mr-2" />
-                    Bookmarks
-                    {count > 0 && (
-                      <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                        {count > 99 ? '99+' : count}
-                      </span>
-                    )}
-                  </Button>
-                </Link>
-              </div>
+              <Button 
+                className="w-full justify-center bg-primary hover:bg-primary/90 transition-all duration-200"
+                onClick={() => setLegalAidDialogOpen(true)}
+              >
+                <Phone className="h-4 w-4 mr-2" />
+                Get Help
+              </Button>
             </div>
             
             <nav className="space-y-1 max-h-96 overflow-y-auto">
