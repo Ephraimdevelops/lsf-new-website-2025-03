@@ -1,11 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart, Star, Users, TrendingUp, Award, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Quote, Heart, Star, Users, TrendingUp, Award, Sparkles, PlayCircle, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
+import SuccessStoryCard from '@/components/shared/SuccessStoryCard';
 
 interface SuccessStory {
   id: string;
@@ -64,30 +65,30 @@ const successStories: SuccessStory[] = [
 
 const SuccessStories = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   
-  const featuredStories = successStories.filter(story => story.featured);
-  const allStories = successStories;
+  // Auto-slide functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % successStories.length);
+    }, 5000); // Change slide every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
   
   const handleNext = () => {
-    if (animating) return;
-    setAnimating(true);
-    setActiveIndex((current) => (current + 1) % allStories.length);
-    setTimeout(() => setAnimating(false), 500);
+    setActiveIndex((current) => (current + 1) % successStories.length);
   };
   
   const handlePrev = () => {
-    if (animating) return;
-    setAnimating(true);
-    setActiveIndex((current) => current === 0 ? allStories.length - 1 : current - 1);
-    setTimeout(() => setAnimating(false), 500);
+    setActiveIndex((current) => current === 0 ? successStories.length - 1 : current - 1);
   };
 
-  const visibleStories = [
-    allStories[activeIndex],
-    allStories[(activeIndex + 1) % allStories.length],
-    allStories[(activeIndex + 2) % allStories.length]
-  ];
+  const toggleAutoPlay = () => {
+    setIsAutoPlaying(!isAutoPlaying);
+  };
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -122,19 +123,30 @@ const SuccessStories = () => {
           </Typography>
         </div>
 
-        {/* All Stories Section */}
+        {/* Sliding Stories Carousel */}
         <div className="mb-20">
           <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-16">
             <div className="max-w-2xl">
               <Typography variant="h2" className="text-white mb-6 font-heading">
-                Every Story Matters
+                Transforming Lives Daily
               </Typography>
               <Typography variant="body" className="text-white/80 text-lg">
                 Each story represents hope, resilience, and the transformative power of accessible justice.
               </Typography>
             </div>
             
-            <div className="flex space-x-4 mt-8 lg:mt-0">
+            <div className="flex items-center space-x-4 mt-8 lg:mt-0">
+              <button 
+                onClick={toggleAutoPlay}
+                className="p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full transition-all duration-300 shadow-xl border border-white/30"
+                aria-label={isAutoPlaying ? "Pause slideshow" : "Play slideshow"}
+              >
+                {isAutoPlaying ? (
+                  <Pause className="h-5 w-5 text-white" />
+                ) : (
+                  <PlayCircle className="h-5 w-5 text-white" />
+                )}
+              </button>
               <button 
                 onClick={handlePrev}
                 className="p-4 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full transition-all duration-300 shadow-xl border border-white/30 group"
@@ -152,74 +164,34 @@ const SuccessStories = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
-            {visibleStories.map((story, index) => (
-              <Link 
-                key={`${story.id}-${index}`}
-                to={`/heroes/${story.id}`}
-                className="group"
-              >
-                <Card 
-                  className={`overflow-hidden transition-all duration-700 hover:shadow-2xl bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-white/50 ${
-                    animating ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
-                  } hover:-translate-y-4 group-hover:border-white hover:bg-white group-hover:shadow-white/20`}
-                  style={{ 
-                    transitionDelay: `${index * 150}ms`,
-                    animationDelay: `${index * 150}ms`
-                  }}
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src={story.image} 
-                      alt={story.name} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
-                    <div className="absolute top-6 left-6">
-                      <span className="bg-secondary-orange text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide shadow-lg border border-white/20">
-                        {story.category}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-0 left-0 w-full p-6">
-                      <Typography variant="h4" className="text-white mb-2 font-heading">
-                        {story.name}
-                      </Typography>
-                      <div className="flex items-center text-white/90 text-sm">
-                        <MapPin className="h-4 w-4 mr-2" />
-                        {story.location}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-8">
-                    <blockquote className="mb-6">
-                      <Quote className="h-8 w-8 text-primary/30 mb-4" />
-                      <Typography variant="body" className="text-neutral-dark italic leading-relaxed text-lg">
-                        "{story.quote}"
-                      </Typography>
-                    </blockquote>
-                    
-                    <div className="flex justify-between items-center mt-8">
-                      <span className="text-primary font-bold group-hover:underline flex items-center text-sm tracking-wide uppercase">
-                        READ STORY
-                        <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-2" />
-                      </span>
-                      <Heart className="h-6 w-6 text-gray-300 group-hover:text-red-400 transition-colors" />
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-            ))}
+          {/* Carousel Container */}
+          <div className="relative overflow-hidden rounded-3xl">
+            <div 
+              className="flex transition-transform duration-700 ease-in-out"
+              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+            >
+              {successStories.map((story, index) => (
+                <div key={story.id} className="w-full flex-shrink-0 px-4">
+                  <SuccessStoryCard 
+                    story={story} 
+                    linkTo={`/heroes/${story.id}`}
+                    className="mx-auto max-w-2xl"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
           
           {/* Story indicators */}
-          <div className="flex justify-center mb-16 space-x-3">
-            {allStories.map((_, index) => (
+          <div className="flex justify-center mt-8 space-x-3">
+            {successStories.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                  index === activeIndex ? 'bg-secondary-orange scale-125 shadow-lg' : 'bg-white/40 hover:bg-white/60'
+                className={`h-3 rounded-full transition-all duration-300 ${
+                  index === activeIndex 
+                    ? 'w-12 bg-secondary-orange scale-125 shadow-lg' 
+                    : 'w-3 bg-white/40 hover:bg-white/60'
                 }`}
                 aria-label={`Go to story ${index + 1}`}
               />
@@ -227,14 +199,14 @@ const SuccessStories = () => {
           </div>
         </div>
 
-        {/* Enhanced Impact Stats */}
+        {/* New Impact Transformation Section */}
         <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 p-12 mb-16">
           <div className="text-center mb-16">
             <Typography variant="h2" className="text-white mb-6 font-heading">
-              Stories That Transform Communities
+              Ripple Effects of Justice
             </Typography>
-            <Typography variant="body" className="text-white/80 text-lg max-w-2xl mx-auto">
-              The ripple effect of justice reaches far beyond individual cases
+            <Typography variant="body" className="text-white/80 text-lg max-w-3xl mx-auto">
+              When one person's rights are protected, entire communities benefit. See how individual victories create lasting change.
             </Typography>
           </div>
           
@@ -250,7 +222,7 @@ const SuccessStories = () => {
                 Lives Transformed
               </Typography>
               <Typography variant="body" className="text-white/70">
-                Direct beneficiaries of our legal empowerment programs
+                Each success story creates a ripple effect, empowering families and communities
               </Typography>
             </div>
             
@@ -265,7 +237,7 @@ const SuccessStories = () => {
                 Success Rate
               </Typography>
               <Typography variant="body" className="text-white/70">
-                Cases resolved through our paralegal network
+                Proven track record of turning legal challenges into victories
               </Typography>
             </div>
             
@@ -277,15 +249,16 @@ const SuccessStories = () => {
                 184
               </Typography>
               <Typography variant="h3" className="text-white/90 mb-3">
-                Districts Reached
+                Communities Reached
               </Typography>
               <Typography variant="body" className="text-white/70">
-                Communities across Tanzania accessing justice
+                From urban centers to remote villages, justice knows no boundaries
               </Typography>
             </div>
           </div>
         </div>
-        
+
+        {/* Call to Action */}
         <div className="text-center">
           <Link to="/heroes">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 hover:text-primary font-bold px-16 py-6 rounded-2xl shadow-2xl hover:shadow-white/20 transition-all duration-300 transform hover:-translate-y-2 text-lg">

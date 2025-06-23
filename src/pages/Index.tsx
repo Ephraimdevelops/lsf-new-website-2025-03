@@ -5,6 +5,7 @@ import CompactNewsUpdates from '@/components/home/CompactNewsUpdates';
 import PartnersCarousel from '@/components/home/PartnersCarousel';
 import CombinedApproachSection from '@/components/home/CombinedApproachSection';
 import About from '@/components/home/About';
+import SuccessStories from '@/components/home/SuccessStories';
 import ImpactMetricsSectionWrapper from './home/ImpactMetricsSectionWrapper';
 import CallToActionSectionWrapper from './home/CallToActionSectionWrapper';
 
@@ -23,6 +24,11 @@ const Index = () => (
     {/* Combined Strategic Focus & Approaches - Streamlined single section */}
     <section className="py-16 md:py-20 bg-gradient-to-br from-neutral-50 to-white">
       <CombinedApproachSection />
+    </section>
+
+    {/* Success Stories - New sliding section */}
+    <section className="relative">
+      <SuccessStories />
     </section>
 
     {/* Impact Metrics - Clean, consistent spacing */}

@@ -1,8 +1,8 @@
-
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
+import SuccessStoryCard from '../components/shared/SuccessStoryCard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Heart, Users, Scale, ArrowRight, Quote, MapPin, Calendar, Award, CheckCircle, Star, Briefcase, GraduationCap } from 'lucide-react';
@@ -47,7 +47,9 @@ const successStories = [
     image: 'https://images.unsplash.com/photo-1494790108755-2616c82ca017?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     year: '2024',
     impact: 'High',
-    tags: ['Women\'s Rights', 'Property Law', 'Family Protection']
+    tags: ['Women\'s Rights', 'Property Law', 'Family Protection'],
+    quote: 'After her husband\'s death, Amina faced eviction from her family home. With LSF\'s help, she successfully defended her inheritance rights and secured land titles for her three children.',
+    brief: 'After Amina\'s husband passed away, her in-laws attempted to evict her from her ancestral home. With guidance from an LSF-trained paralegal, Amina learned about women\'s inheritance rights and successfully retained her home.'
   },
   {
     id: 'story-2',
@@ -60,7 +62,9 @@ const successStories = [
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     year: '2024',
     impact: 'High',
-    tags: ['Disability Rights', 'Employment Law', 'Anti-Discrimination']
+    tags: ['Disability Rights', 'Employment Law', 'Anti-Discrimination'],
+    quote: 'Joseph was unfairly dismissed from his teaching position due to his disability. LSF represented him in court, resulting in reinstatement and compensation for lost wages.',
+    brief: 'Joseph was a dedicated teacher for over 10 years when he was unfairly dismissed due to his disability. LSF provided legal representation that not only restored his position but also led to policy changes protecting disabled workers.'
   },
   {
     id: 'story-3',
@@ -73,7 +77,9 @@ const successStories = [
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     year: '2023',
     impact: 'Life-Saving',
-    tags: ['GBV Protection', 'Family Law', 'Economic Empowerment']
+    tags: ['GBV Protection', 'Family Law', 'Economic Empowerment'],
+    quote: 'Grace escaped an abusive marriage with LSF\'s assistance. We helped her obtain a restraining order, secure custody of her children, and access counseling services.',
+    brief: 'Grace endured years of domestic violence before finding the courage to seek help. LSF provided comprehensive support including legal aid, counseling, and economic empowerment training.'
   },
   {
     id: 'story-4',
@@ -86,7 +92,9 @@ const successStories = [
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     year: '2023',
     impact: 'Life-Changing',
-    tags: ['Criminal Justice', 'Wrongful Conviction', 'Legal Reform']
+    tags: ['Criminal Justice', 'Wrongful Conviction', 'Legal Reform'],
+    quote: 'Wrongfully accused of theft, David spent three years in prison before LSF took his case. New evidence and legal advocacy led to his complete exoneration.',
+    brief: 'David was wrongfully convicted based on circumstantial evidence. LSF\'s investigation uncovered new evidence and witness testimony that proved his innocence, leading to his release and compensation.'
   },
   {
     id: 'story-5',
@@ -99,7 +107,9 @@ const successStories = [
     image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     year: '2024',
     impact: 'Educational',
-    tags: ['Child Rights', 'Education Access', 'Documentation']
+    tags: ['Child Rights', 'Education Access', 'Documentation'],
+    quote: 'When Fatuma\'s daughter was denied school admission due to lack of birth certificate, LSF helped secure legal documentation and fought for her right to education.',
+    brief: 'Fatuma\'s daughter was denied education because she lacked a birth certificate. LSF helped navigate the bureaucratic process and ensured her daughter\'s right to education was protected.'
   },
   {
     id: 'story-6',
@@ -112,7 +122,9 @@ const successStories = [
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     year: '2023',
     impact: 'Environmental',
-    tags: ['Environmental Law', 'Community Rights', 'Natural Resources']
+    tags: ['Environmental Law', 'Community Rights', 'Natural Resources'],
+    quote: 'Emmanuel led his community in fighting illegal mining that threatened their water supply. LSF provided legal representation that resulted in mine closure and environmental restoration.',
+    brief: 'When illegal mining operations threatened the community\'s water source, Emmanuel organized resistance. LSF provided legal expertise that successfully shut down the illegal operations.'
   }
 ];
 
@@ -172,7 +184,7 @@ const Heroes = () => {
         </Container>
       </section>
 
-      {/* Success Stories Grid */}
+      {/* Success Stories Grid - Using new card design */}
       <section className="py-16 bg-white">
         <Container>
           <div className="text-center mb-12">
@@ -184,84 +196,12 @@ const Heroes = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {successStories.map((story, index) => (
-              <Card key={story.id} className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white overflow-hidden">
-                <div className="relative overflow-hidden">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img 
-                      src={story.image} 
-                      alt={story.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  
-                  {/* Impact Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${getImpactColor(story.impact)}`}>
-                      <Star className="h-3 w-3 mr-1" />
-                      {story.impact} Impact
-                    </span>
-                  </div>
-                  
-                  {/* Location & Year */}
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <div className="flex items-center text-sm mb-1">
-                      <MapPin size={14} className="mr-1" />
-                      {story.location}
-                    </div>
-                    <div className="flex items-center text-xs opacity-90">
-                      <Calendar size={12} className="mr-1" />
-                      {story.year}
-                    </div>
-                  </div>
-                </div>
-
-                <CardContent className="p-6">
-                  <div className="mb-4">
-                    <span className="bg-primary/10 text-primary px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wider">
-                      {story.category}
-                    </span>
-                  </div>
-                  
-                  <Typography variant="h3" className="font-bold mb-2 group-hover:text-primary transition-colors">
-                    {story.name}
-                  </Typography>
-                  
-                  <Typography variant="h4" className="text-lg font-semibold mb-3 text-neutral-dark">
-                    {story.title}
-                  </Typography>
-                  
-                  <Typography variant="body" className="text-neutral-gray text-sm line-clamp-3 mb-4 leading-relaxed">
-                    {story.story}
-                  </Typography>
-                  
-                  <div className="mb-4">
-                    <Typography variant="bodySmall" className="font-semibold text-green-700 mb-1">
-                      Outcome:
-                    </Typography>
-                    <Typography variant="bodySmall" className="text-neutral-gray">
-                      {story.outcome}
-                    </Typography>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {story.tags.slice(0, 2).map((tag, tagIndex) => (
-                      <span key={tagIndex} className="bg-gray-100 text-gray-700 px-2 py-1 text-xs rounded">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <Link 
-                    to={`/heroes/${story.id}`}
-                    className="inline-flex items-center text-primary font-semibold text-sm hover:underline group-hover:translate-x-1 transition-all"
-                  >
-                    Read Full Story
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </CardContent>
-              </Card>
+            {successStories.map((story) => (
+              <SuccessStoryCard 
+                key={story.id} 
+                story={story} 
+                linkTo={`/heroes/${story.id}`}
+              />
             ))}
           </div>
         </Container>

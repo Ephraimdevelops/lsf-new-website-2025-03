@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 import { TrendingUp, Users, Scale, Target, MapPin, Award, Heart, Globe, Star, ChevronRight, ArrowRight } from 'lucide-react';
 import HeroSection from '@/components/shared/HeroSection';
@@ -7,6 +6,7 @@ import Section from '@/components/shared/Section';
 import Typography from '@/components/shared/Typography';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
+import SuccessStoryCard from '@/components/shared/SuccessStoryCard';
 import { Link } from 'react-router-dom';
 
 const Impact = () => {
@@ -47,28 +47,40 @@ const Impact = () => {
 
   const successStories = [
     {
+      id: "mariam-hassan",
       name: "Mariam Hassan",
       location: "Dar es Salaam",
       story: "Through LSF's paralegal support, I successfully reclaimed my family land that was illegally taken after my husband's death.",
       impact: "Now I can provide for my children with dignity and security.",
       category: "Land Rights",
-      image: "/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png"
+      image: "/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png",
+      quote: "Through LSF's paralegal support, I successfully reclaimed my family land that was illegally taken after my husband's death. Now I can provide for my children with dignity and security.",
+      brief: "After Mariam's husband passed away, her in-laws attempted to evict her from her ancestral home. With guidance from an LSF-trained paralegal, Mariam learned about women's inheritance rights and successfully retained her home.",
+      year: "2024"
     },
     {
+      id: "joseph-mkwawa",
       name: "Joseph Mkwawa", 
       location: "Mbeya",
       story: "The LSF mobile legal clinic helped me understand my rights as a small business owner and resolve disputes.",
       impact: "My carpentry business is now legally protected and thriving.",
       category: "Business Rights",
-      image: "/lovable-uploads/cbf914e5-d076-4c31-9e29-dacc8069c97a.png"
+      image: "/lovable-uploads/cbf914e5-d076-4c31-9e29-dacc8069c97a.png",
+      quote: "The LSF mobile legal clinic in our village helped me understand my rights as a small business owner and resolve a longstanding dispute that was threatening my family's livelihood.",
+      brief: "Joseph's small carpentry workshop was threatened by illegal demands from local officials. The LSF mobile clinic helped him properly register his business and provided documentation showing the demands were illegal.",
+      year: "2024"
     },
     {
+      id: "neema-urio",
       name: "Neema Urio",
       location: "Arusha", 
       story: "After attending LSF's legal empowerment workshops, I now lead a women's group advocating for our rights.",
       impact: "Our group has successfully mediated over 30 disputes across three villages.",
       category: "Women's Empowerment",
-      image: "/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png"
+      image: "/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png",
+      quote: "After attending LSF's legal empowerment workshops, I now lead a women's group that advocates for our community's rights and provides peer support to women facing legal challenges.",
+      brief: "Inspired by LSF's legal literacy program, Neema established the 'Tunaweza' women's group, which now includes over 50 members across three villages and has successfully mediated over 30 disputes.",
+      year: "2023"
     }
   ];
 
@@ -214,7 +226,7 @@ const Impact = () => {
         </Container>
       </Section>
 
-      {/* Success Stories Section */}
+      {/* Success Stories Section - Redesigned */}
       <section className="py-20 bg-gradient-to-br from-neutral-50 to-white">
         <Container size="xl">
           <div className="text-center mb-16">
@@ -234,46 +246,11 @@ const Impact = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {successStories.map((story, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
-                  <div className="relative h-64">
-                    <img 
-                      src={story.image} 
-                      alt={story.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-secondary-orange text-white text-xs font-bold px-3 py-1 rounded-full">
-                        {story.category}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <Typography variant="h4" className="text-white mb-1 font-heading">
-                        {story.name}
-                      </Typography>
-                      <div className="flex items-center text-white/90 text-sm">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        {story.location}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <Typography variant="body" className="text-neutral-gray italic mb-4 leading-relaxed">
-                      "{story.story}"
-                    </Typography>
-                    <div className="bg-primary/5 rounded-lg p-4">
-                      <Typography variant="bodySmall" className="font-semibold text-primary mb-1">
-                        Impact:
-                      </Typography>
-                      <Typography variant="bodySmall" className="text-neutral-gray">
-                        {story.impact}
-                      </Typography>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SuccessStoryCard 
+                key={story.id} 
+                story={story} 
+                linkTo={`/heroes/${story.id}`}
+              />
             ))}
           </div>
 
