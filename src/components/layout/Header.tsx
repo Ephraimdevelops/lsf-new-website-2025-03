@@ -1,108 +1,72 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight, Search, Phone, Mail, MapPin, Bookmark } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Mail, Search, Bookmark } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 import LegalAidDialog from '@/components/shared/LegalAidDialog';
 import { useBookmarks } from '@/hooks/useBookmarks';
 
-// Enhanced navigation structure with images
+// Comprehensive navigation structure without mega menus
 const navigationItems = [
   { 
     name: 'About', 
     href: '/about',
-    description: 'Our mission and organization',
-    image: '/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png',
-    sections: [
-      {
-        title: 'Organization',
-        links: [
-          { name: 'About LSF', href: '/about', description: 'Mission, vision, and history', image: '/lovable-uploads/background with mother umage .png' },
-          { name: 'Our Team', href: '/team', description: 'Leadership and staff', image: '/lovable-uploads/backgound lsf colours.png' },
-          { name: 'Partners', href: '/partners', description: 'Strategic partnerships', image: '/lovable-uploads/background with mother umage .png' },
-        ]
-      },
-      {
-        title: 'Get Involved',
-        links: [
-          { name: 'Contact Us', href: '/contact', description: 'Get in touch', image: '/lovable-uploads/backgound lsf colours.png' },
-          { name: 'Opportunities', href: '/opportunities', description: 'Join our team', image: '/lovable-uploads/background with mother umage .png' },
-          { name: 'Donate', href: '/donate', description: 'Support our mission', image: '/lovable-uploads/backgound lsf colours.png' },
-        ]
-      }
+    subItems: [
+      { name: 'About LSF', href: '/about' },
+      { name: 'Our Team', href: '/team' },
+      { name: 'Partners', href: '/partners' },
+      { name: 'Contact Us', href: '/contact' },
+      { name: 'Opportunities', href: '/opportunities' },
     ]
   },
   { 
-    name: 'Our Work', 
+    name: 'What We Do', 
     href: '/what-we-do',
-    description: 'How we strengthen access to justice',
-    image: '/lovable-uploads/background with mother umage .png',
-    sections: [
-      {
-        title: 'Approaches',
-        links: [
-          { name: 'What We Do', href: '/what-we-do', description: 'Our comprehensive approach', image: '/lovable-uploads/backgound lsf colours.png' },
-          { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Funding justice organizations', image: '/lovable-uploads/background with mother umage .png' },
-          { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening providers', image: '/lovable-uploads/backgound lsf colours.png' },
-          { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy', description: 'Systemic change', image: '/lovable-uploads/background with mother umage .png' },
-        ]
-      },
-      {
-        title: 'Focus Areas',
-        links: [
-          { name: 'Legal Aid', href: '/focus-areas/accessible-legal-aid', description: 'Quality services', image: '/lovable-uploads/backgound lsf colours.png' },
-          { name: 'Community Empowerment', href: '/focus-areas/empowered-communities', description: 'Legal empowerment', image: '/lovable-uploads/background with mother umage .png' },
-          { name: 'Climate Justice', href: '/focus-areas/climate-justice', description: 'Environmental rights', image: '/lovable-uploads/backgound lsf colours.png' },
-          { name: 'Digital Innovation', href: '/focus-areas/digital-transformation', description: 'Technology solutions', image: '/lovable-uploads/background with mother umage .png' },
-        ]
-      }
+    subItems: [
+      { name: 'Overview', href: '/what-we-do' },
+      { name: 'Grant Making', href: '/what-we-do/grant-making' },
+      { name: 'Capacity Building', href: '/what-we-do/capacity-building' },
+      { name: 'Policy & Advocacy', href: '/what-we-do/policy-advocacy' },
+      { name: 'Partnerships & Networking', href: '/partnerships-networking' },
+      { name: 'Learning & Research', href: '/learning-research' },
+      { name: 'Institutional Development', href: '/institutional-development' },
+    ]
+  },
+  { 
+    name: 'Focus Areas', 
+    href: '/focus-areas',
+    subItems: [
+      { name: 'Accessible Legal Aid', href: '/focus-areas/accessible-legal-aid' },
+      { name: 'Empowered Communities', href: '/focus-areas/empowered-communities' },
+      { name: 'Climate Justice', href: '/focus-areas/climate-justice' },
+      { name: 'Digital Transformation', href: '/focus-areas/digital-transformation' },
     ]
   },
   { 
     name: 'Programs', 
     href: '/programs',
-    description: 'Our active initiatives',
-    image: '/lovable-uploads/backgound lsf colours.png',
-    sections: [
-      {
-        title: 'Current Programs',
-        links: [
-          { name: 'All Programs', href: '/programs', description: 'Active program portfolio', image: '/lovable-uploads/background with mother umage .png' },
-          { name: 'Get Legal Help', href: '/legal-help', description: 'Access assistance', image: '/lovable-uploads/backgound lsf colours.png' },
-        ]
-      }
+    subItems: [
+      { name: 'All Programs', href: '/programs' },
+      { name: 'Get Legal Help', href: '/legal-help' },
     ]
   },
   { 
     name: 'Impact', 
     href: '/impact',
-    description: 'Stories and results',
-    image: '/lovable-uploads/background with mother umage .png',
-    sections: [
-      {
-        title: 'Our Impact',
-        links: [
-          { name: 'Success Stories', href: '/heroes', description: 'Inspiring stories', image: '/lovable-uploads/backgound lsf colours.png' },
-          { name: 'Impact Metrics', href: '/impact', description: 'Measurable outcomes', image: '/lovable-uploads/background with mother umage .png' },
-        ]
-      }
+    subItems: [
+      { name: 'Success Stories', href: '/heroes' },
+      { name: 'Impact Metrics', href: '/impact' },
     ]
   },
   { 
     name: 'Resources', 
     href: '/resources',
-    description: 'Publications and information',
-    image: '/lovable-uploads/backgound lsf colours.png',
-    sections: [
-      {
-        title: 'Information',
-        links: [
-          { name: 'Latest News', href: '/news', description: 'Current developments', image: '/lovable-uploads/background with mother umage .png' },
-          { name: 'Publications', href: '/publications', description: 'Reports and research', image: '/lovable-uploads/backgound lsf colours.png' },
-          { name: 'Legal Resources', href: '/resources', description: 'Practical information', image: '/lovable-uploads/background with mother umage .png' },
-        ]
-      }
+    subItems: [
+      { name: 'Latest News', href: '/news' },
+      { name: 'Publications', href: '/publications' },
+      { name: 'Legal Resources', href: '/resources' },
     ]
   },
 ];
@@ -161,7 +125,7 @@ const Header = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <Link to="/contact" className="hover:text-secondary-orange transition-colors">
+                <Link to="/contact" className="hover:text-secondary-orange transition-colors duration-200">
                   Contact Us
                 </Link>
               </div>
@@ -180,109 +144,103 @@ const Header = () => {
                   className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="hidden md:block">
-                  <div className="text-sm font-bold text-primary">Legal Services Facility</div>
+                  <div className="text-sm font-bold text-primary transition-colors duration-200 group-hover:text-primary/80">
+                    Legal Services Facility
+                  </div>
                   <div className="text-xs text-neutral-gray">Empowering Justice Since 2011</div>
                 </div>
               </Link>
             </div>
             
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center space-x-1">
               {navigationItems.map((item) => (
                 <div key={item.name} className="relative group">
                   <button
                     className={cn(
-                      "flex items-center px-4 py-3 text-sm font-medium rounded-md transition-all duration-200",
+                      "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 transform hover:scale-105",
                       location.pathname === item.href || location.pathname.startsWith(`${item.href}/`)
-                        ? "text-primary bg-primary/5"
-                        : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                        ? "text-primary bg-primary/10 shadow-sm"
+                        : "text-gray-700 hover:text-primary hover:bg-primary/5"
                     )}
-                    onClick={() => toggleDropdown(item.name)}
+                    onMouseEnter={() => setActiveDropdown(item.name)}
+                    onMouseLeave={() => setActiveDropdown(null)}
                   >
                     {item.name}
-                    <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
+                    <ChevronDown 
+                      size={16} 
+                      className={cn(
+                        "ml-1 transition-all duration-300",
+                        activeDropdown === item.name ? "rotate-180 text-primary" : "group-hover:text-primary"
+                      )}
+                    />
                   </button>
                   
-                  {/* Enhanced Dropdown with Images */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-1 w-[500px] rounded-xl shadow-xl bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                    <div className="p-6">
-                      {/* Header with main image */}
-                      <div className="mb-6 relative overflow-hidden rounded-lg">
-                        <img 
-                          src={item.image} 
-                          alt={item.name}
-                          className="w-full h-24 object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                          <h3 className="text-white font-bold text-lg">{item.name}</h3>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-6">
-                        {item.sections?.map((section, index) => (
-                          <div key={index}>
-                            <h4 className="font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide border-b border-gray-200 pb-2">
-                              {section.title}
-                            </h4>
-                            <ul className="space-y-2">
-                              {section.links.map((link) => (
-                                <li key={link.name}>
-                                  <Link
-                                    to={link.href}
-                                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors group/link"
-                                  >
-                                    <img 
-                                      src={link.image} 
-                                      alt={link.name}
-                                      className="w-10 h-10 object-cover rounded-md"
-                                    />
-                                    <div>
-                                      <div className="font-semibold text-gray-900 group-hover/link:text-primary transition-colors text-sm">
-                                        {link.name}
-                                      </div>
-                                      <div className="text-xs text-gray-500">
-                                        {link.description}
-                                      </div>
-                                    </div>
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
+                  {/* Animated Dropdown */}
+                  <div 
+                    className={cn(
+                      "absolute left-0 top-full mt-2 w-64 rounded-xl shadow-xl bg-white ring-1 ring-black/5 transition-all duration-300 transform origin-top",
+                      activeDropdown === item.name 
+                        ? "opacity-100 visible scale-100 translate-y-0" 
+                        : "opacity-0 invisible scale-95 -translate-y-2"
+                    )}
+                    onMouseEnter={() => setActiveDropdown(item.name)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <div className="p-2">
+                      {item.subItems?.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          to={subItem.href}
+                          className={cn(
+                            "flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-200 hover:bg-primary/10 hover:text-primary hover:translate-x-1",
+                            location.pathname === subItem.href
+                              ? "text-primary bg-primary/5 font-medium"
+                              : "text-gray-700"
+                          )}
+                        >
+                          <span className="w-2 h-2 bg-primary/20 rounded-full mr-3 transition-all duration-200 hover:bg-primary"></span>
+                          {subItem.name}
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
               ))}
               
-              {/* Add Bookmarks link */}
+              {/* Bookmarks link with animation */}
               <Link
                 to="/bookmarks"
-                className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors duration-200 relative"
+                className="flex items-center gap-2 px-4 py-3 text-gray-700 hover:text-primary transition-all duration-200 relative transform hover:scale-105"
               >
-                <Bookmark size={18} />
+                <Bookmark size={18} className="transition-transform duration-200 hover:rotate-12" />
                 <span>Bookmarks</span>
                 {count > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
                     {count > 99 ? '99+' : count}
                   </span>
                 )}
               </Link>
               
-              {/* Action buttons */}
+              {/* Action buttons with enhanced animations */}
               <div className="flex items-center ml-6 space-x-3 border-l border-gray-200 pl-6">
-                <SearchDialog />
+                <div className="transform hover:scale-110 transition-transform duration-200">
+                  <SearchDialog />
+                </div>
                 <Button 
                   size="sm" 
-                  className="bg-primary hover:bg-primary/90 flex items-center space-x-2"
+                  className="bg-primary hover:bg-primary/90 flex items-center space-x-2 transform hover:scale-105 transition-all duration-200 hover:shadow-lg"
                   onClick={() => setLegalAidDialogOpen(true)}
                 >
                   <Phone className="h-4 w-4" />
                   <span>Get Help</span>
                 </Button>
                 <Link to="/donate">
-                  <Button variant="outline" size="sm" className="border-2 hover:bg-primary hover:text-white transition-all duration-300">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                  >
                     Donate
                   </Button>
                 </Link>
@@ -291,13 +249,19 @@ const Header = () => {
             
             {/* Mobile menu button */}
             <div className="flex items-center lg:hidden space-x-3">
+              <div className="transform hover:scale-110 transition-transform duration-200">
+                <SearchDialog />
+              </div>
               <Link to="/donate">
-                <Button size="sm" className="bg-primary hover:bg-primary/90">
+                <Button size="sm" className="bg-primary hover:bg-primary/90 transition-all duration-200">
                   Donate
                 </Button>
               </Link>
               <button 
-                className="p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
+                className={cn(
+                  "p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-all duration-200 transform hover:scale-110",
+                  mobileMenuOpen && "bg-gray-100"
+                )}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -306,95 +270,84 @@ const Header = () => {
           </div>
         </div>
         
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg max-h-[80vh] overflow-y-auto">
-            <div className="container mx-auto px-4 py-4">
-              <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-secondary-teal/5 rounded-xl">
-                <div className="grid grid-cols-2 gap-3">
-                  <Button 
-                    className="w-full justify-center bg-primary hover:bg-primary/90"
-                    onClick={() => setLegalAidDialogOpen(true)}
-                  >
-                    <Phone className="h-4 w-4 mr-2" />
-                    Get Help
+        {/* Enhanced Mobile Navigation */}
+        <div className={cn(
+          "lg:hidden bg-white border-t border-gray-100 shadow-lg transition-all duration-300 overflow-hidden",
+          mobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
+        )}>
+          <div className="container mx-auto px-4 py-4">
+            <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-secondary-teal/5 rounded-xl">
+              <div className="grid grid-cols-2 gap-3">
+                <Button 
+                  className="w-full justify-center bg-primary hover:bg-primary/90 transition-all duration-200"
+                  onClick={() => setLegalAidDialogOpen(true)}
+                >
+                  <Phone className="h-4 w-4 mr-2" />
+                  Get Help
+                </Button>
+                <Link to="/bookmarks" className="w-full relative">
+                  <Button variant="outline" className="w-full justify-center border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200">
+                    <Bookmark className="h-4 w-4 mr-2" />
+                    Bookmarks
+                    {count > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        {count > 99 ? '99+' : count}
+                      </span>
+                    )}
                   </Button>
-                  <Link to="/donate" className="w-full">
-                    <Button variant="outline" className="w-full justify-center border-primary text-primary hover:bg-primary hover:text-white">
-                      Donate
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-              
-              <nav className="space-y-1">
-                {navigationItems.map((item) => (
-                  <div key={item.name} className="py-1">
-                    <div>
-                      <button
-                        className={cn(
-                          "flex items-center justify-between w-full px-4 py-3 text-base font-medium rounded-lg transition-all duration-200",
-                          activeDropdown === item.name ? "text-primary bg-primary/5" : "text-gray-700 hover:bg-gray-50"
-                        )}
-                        onClick={() => toggleDropdown(item.name)}
-                      >
-                        <span>{item.name}</span>
-                        <ChevronDown 
-                          size={16} 
-                          className={cn(
-                            "transition-transform duration-200",
-                            activeDropdown === item.name ? "transform rotate-180" : ""
-                          )}
-                        />
-                      </button>
-                      
-                      {activeDropdown === item.name && (
-                        <div className="mt-2 pl-4 border-l-2 border-primary/20 bg-gray-50/50 rounded-r-lg">
-                          {item.sections?.map((section) => (
-                            <div key={section.title} className="mb-4">
-                              <h4 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide border-b border-gray-200 pb-1">
-                                {section.title}
-                              </h4>
-                              <ul className="space-y-2">
-                                {section.links.map((link) => (
-                                  <li key={link.name}>
-                                    <Link
-                                      to={link.href}
-                                      className={cn(
-                                        "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
-                                        location.pathname === link.href
-                                          ? "text-primary bg-primary/5"
-                                          : "text-gray-600 hover:bg-gray-50"
-                                      )}
-                                    >
-                                      <img 
-                                        src={link.image} 
-                                        alt={link.name}
-                                        className="w-8 h-8 object-cover rounded"
-                                      />
-                                      <div>
-                                        <div className="font-medium">{link.name}</div>
-                                        <div className="text-xs text-gray-500 mt-1">{link.description}</div>
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </nav>
-              
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <SearchDialog />
+                </Link>
               </div>
             </div>
+            
+            <nav className="space-y-1 max-h-96 overflow-y-auto">
+              {navigationItems.map((item) => (
+                <div key={item.name} className="py-1">
+                  <div>
+                    <button
+                      className={cn(
+                        "flex items-center justify-between w-full px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 hover:bg-primary/5",
+                        activeDropdown === item.name ? "text-primary bg-primary/10" : "text-gray-700"
+                      )}
+                      onClick={() => toggleDropdown(item.name)}
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown 
+                        size={16} 
+                        className={cn(
+                          "transition-transform duration-300",
+                          activeDropdown === item.name ? "transform rotate-180" : ""
+                        )}
+                      />
+                    </button>
+                    
+                    <div className={cn(
+                      "transition-all duration-300 overflow-hidden",
+                      activeDropdown === item.name ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    )}>
+                      <div className="mt-2 pl-4 border-l-2 border-primary/20 bg-gray-50/50 rounded-r-lg">
+                        {item.subItems?.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            to={subItem.href}
+                            className={cn(
+                              "flex items-center gap-3 px-3 py-3 text-sm rounded-md transition-all duration-200 hover:bg-white hover:translate-x-1",
+                              location.pathname === subItem.href
+                                ? "text-primary bg-white font-medium shadow-sm"
+                                : "text-gray-600"
+                            )}
+                          >
+                            <span className="w-2 h-2 bg-primary/30 rounded-full transition-all duration-200"></span>
+                            <div className="font-medium">{subItem.name}</div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </nav>
           </div>
-        )}
+        </div>
       </header>
 
       <LegalAidDialog 
