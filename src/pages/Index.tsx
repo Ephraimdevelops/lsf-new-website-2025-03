@@ -1,6 +1,6 @@
 
 import Layout from '@/components/layout/Layout';
-import CinematicHero from '@/components/home/CinematicHero';
+import Hero from '@/components/home/Hero';
 import FloatingImpactCards from '@/components/home/FloatingImpactCards';
 import InteractiveStorySection from '@/components/home/InteractiveStorySection';
 import ImmersiveApproachSection from '@/components/home/ImmersiveApproachSection';
@@ -10,16 +10,16 @@ import ParallaxNewsSection from '@/components/home/ParallaxNewsSection';
 
 const Index = () => (
   <Layout>
-    {/* Cinematic Hero with Parallax Effects */}
-    <CinematicHero />
+    {/* Simplified Hero with Content Carousel */}
+    <Hero />
 
-    {/* Floating Impact Cards with 3D Effects */}
+    {/* Floating Impact Cards */}
     <FloatingImpactCards />
 
-    {/* Interactive Story Timeline */}
+    {/* Simplified Heroes of Justice Section */}
     <InteractiveStorySection />
 
-    {/* Immersive Approach Section with Hover Effects */}
+    {/* Strategic Approaches Section */}
     <ImmersiveApproachSection />
 
     {/* Parallax News & Updates */}
@@ -28,7 +28,7 @@ const Index = () => (
     {/* Animated Partners Showcase */}
     <AnimatedPartnersSection />
 
-    {/* Futuristic Call to Action */}
+    {/* Call to Action */}
     <FuturisticCallToAction />
   </Layout>
 );

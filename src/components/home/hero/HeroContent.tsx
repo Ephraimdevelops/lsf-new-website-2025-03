@@ -9,56 +9,41 @@ interface HeroContentProps {
 
 const HeroContent = ({ currentSlide }: HeroContentProps) => {
   return (
-    <div className="lg:col-span-7">
-      <div className="transition-all duration-500">
-        {/* Category Badge with Glow Effect */}
-        <div className="flex items-center gap-3 mb-8">
-          <span className="inline-block bg-gradient-to-r from-secondary-orange to-secondary-orange/80 text-white text-lg font-bold px-8 py-4 rounded-full uppercase tracking-wider shadow-lg shadow-secondary-orange/30">
+    <div className="lg:col-span-12">
+      <div className="max-w-4xl mx-auto text-center transition-all duration-500">
+        {/* Category Badge */}
+        <div className="inline-flex items-center bg-primary/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6">
+          <span className="text-primary font-bold uppercase tracking-wider">
             {currentSlide.category}
           </span>
-          <div className="flex items-center text-secondary-teal">
-            <span className="text-6xl md:text-7xl lg:text-8xl font-bold mr-4 font-heading drop-shadow-lg">{currentSlide.stat}</span>
-            <span className="text-xl md:text-2xl">{currentSlide.statLabel}</span>
-          </div>
         </div>
         
-        {/* Main Headlines with Enhanced Typography */}
-        <h1 className="text-8xl md:text-9xl lg:text-[9rem] font-bold mb-8 leading-[1.075] font-heading drop-shadow-2xl">
+        {/* Main Headline */}
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
           {currentSlide.title}
         </h1>
         
-        <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium mb-10 text-secondary-teal font-heading drop-shadow-lg">
+        {/* Subtitle */}
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-medium mb-8 text-white/90">
           {currentSlide.subtitle}
         </h2>
         
-        {/* Description with Better Visual Hierarchy */}
-        <div className="bg-black/30 backdrop-blur-sm border-l-4 border-secondary-orange pl-8 py-6 mb-12 rounded-r-2xl">
-          <p className="text-xl md:text-2xl lg:text-3xl text-white/95 max-w-2xl leading-relaxed">
-            {currentSlide.description}
-          </p>
-        </div>
+        {/* Description */}
+        <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10">
+          {currentSlide.description}
+        </p>
         
-        {/* Enhanced CTA Buttons */}
-        <div className="flex flex-wrap gap-8">
-          <Link 
-            to="/legal-help"
-            className="group bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white px-12 py-6 rounded-2xl font-bold transition-all duration-300 inline-flex items-center text-xl md:text-2xl shadow-2xl hover:shadow-primary/50 transform hover:-translate-y-2 hover:scale-105"
-          >
-            Get Legal Help Now
-            <ArrowRight className="ml-4 h-7 w-7 group-hover:translate-x-2 transition-transform" />
-          </Link>
-          <Link 
-            to="/what-we-do"
-            className="group bg-white/20 backdrop-blur-md border-2 border-white/50 text-white hover:bg-white/30 hover:border-white/70 px-12 py-6 rounded-2xl font-bold transition-all duration-300 inline-flex items-center text-xl md:text-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-          >
-            Learn More
-            <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
+        {/* CTA Button */}
+        <Link 
+          to="/what-we-do"
+          className="inline-flex items-center bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+        >
+          Read More
+          <ArrowRight className="ml-3 h-5 w-5" />
+        </Link>
       </div>
     </div>
   );
 };
 
 export default HeroContent;
-
