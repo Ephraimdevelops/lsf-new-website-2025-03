@@ -1,7 +1,24 @@
-
 import { HeroSlide, Region } from './types';
 
-export const heroSlides: HeroSlide[] = [
+// Function to get hero slides from localStorage or return defaults
+export const getHeroSlides = (): HeroSlide[] => {
+  if (typeof window !== 'undefined') {
+    const savedSlides = localStorage.getItem('hero-slides');
+    if (savedSlides) {
+      try {
+        return JSON.parse(savedSlides);
+      } catch (error) {
+        console.error('Error parsing hero slides from localStorage:', error);
+      }
+    }
+  }
+  
+  // Return default slides if none found or error occurred
+  return defaultHeroSlides;
+};
+
+// Default hero slides (fallback)
+const defaultHeroSlides: HeroSlide[] = [
   {
     id: 'empowerment',
     title: 'Justice is not a privilege.',
@@ -33,6 +50,9 @@ export const heroSlides: HeroSlide[] = [
     statLabel: 'App Users Helped'
   }
 ];
+
+// Keep the original export for backward compatibility
+export const heroSlides = getHeroSlides();
 
 export const regions: Region[] = [
   { name: "All Regions", phone: "+255 870 119 363" },

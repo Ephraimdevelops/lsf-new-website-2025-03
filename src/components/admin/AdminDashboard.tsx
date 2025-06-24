@@ -1,183 +1,125 @@
 
-import { useState } from 'react';
-import { Link, Routes, Route, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { 
+  Home, 
+  FileText, 
+  Calendar, 
+  Briefcase, 
+  Users, 
+  Settings, 
+  LogOut,
+  BarChart3,
+  BookOpen,
+  Presentation
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { User, LayoutDashboard, Settings, Users, FileText, X, Menu, BarChart, Briefcase, FolderOpen } from 'lucide-react';
+import AdminHome from './AdminHome';
 import AdminNews from './AdminNews';
-import AdminPublications from './AdminPublications';
 import AdminPrograms from './AdminPrograms';
 import AdminOpportunities from './AdminOpportunities';
-import AdminSettings from './AdminSettings';
-import AdminHome from './AdminHome';
-import AdminAnalytics from './AdminAnalytics';
+import AdminPublications from './AdminPublications';
 import AdminResources from './AdminResources';
+import AdminSettings from './AdminSettings';
+import AdminHeroSlides from './AdminHeroSlides';
+import EnhancedAnalyticsDashboard from './EnhancedAnalyticsDashboard';
 
 interface AdminDashboardProps {
   onLogout: () => void;
 }
 
 const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const location = useLocation();
+  const [activeTab, setActiveTab] = useState('home');
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  const menuItems = [
+    { id: 'home', label: 'Dashboard', icon: Home },
+    { id: 'hero-slides', label: 'Hero Slides', icon: Presentation },
+    { id: 'news', label: 'News', icon: FileText },
+    { id: 'programs', label: 'Programs', icon: Calendar },
+    { id: 'publications', label: 'Publications', icon: BookOpen },
+    { id: 'opportunities', label: 'Opportunities', icon: Briefcase },
+    { id: 'resources', label: 'Resources', icon: Users },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'settings', label: 'Settings', icon: Settings },
+  ];
 
-  const isActiveRoute = (path: string) => {
-    if (path === '/admin' && location.pathname === '/admin') return true;
-    if (path !== '/admin' && location.pathname.startsWith(path)) return true;
-    return false;
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home':
+        return <AdminHome />;
+      case 'hero-slides':
+        return <AdminHeroSlides />;
+      case 'news':
+        return <AdminNews />;
+      case 'programs':
+        return <AdminPrograms />;
+      case 'publications':
+        return <AdminPublications />;
+      case 'opportunities':
+        return <AdminOpportunities />;
+      case 'resources':
+        return <AdminResources />;
+      case 'analytics':
+        return <EnhancedAnalyticsDashboard />;
+      case 'settings':
+        return <AdminSettings />;
+      default:
+        return <AdminHome />;
+    }
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <div 
-        className={`bg-white shadow-md transition-all duration-300 ${
-          sidebarOpen ? 'w-64' : 'w-0 md:w-16'
-        }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b">
-          {sidebarOpen && (
-            <div className="font-bold text-primary font-panton">LSF Admin</div>
-          )}
-          <Button variant="ghost" size="icon" onClick={toggleSidebar} className="ml-auto">
-            {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
-          </Button>
+      <div className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50">
+        <div className="flex flex-col h-full">
+          {/* Header */}
+          <div className="flex items-center justify-center h-16 border-b border-gray-200">
+            <h1 className="text-xl font-bold text-gray-800">LSF Admin</h1>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1 px-4 py-6">
+            <ul className="space-y-2">
+              {menuItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <li key={item.id}>
+                    <button
+                      onClick={() => setActiveTab(item.id)}
+                      className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-colors duration-200 ${
+                        activeTab === item.id
+                          ? 'bg-primary text-white'
+                          : 'text-gray-600 hover:bg-gray-100'
+                      }`}
+                    >
+                      <IconComponent className="w-5 h-5 mr-3" />
+                      {item.label}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* Logout Button */}
+          <div className="p-4 border-t border-gray-200">
+            <Button
+              onClick={onLogout}
+              variant="outline"
+              className="w-full flex items-center justify-center"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Logout
+            </Button>
+          </div>
         </div>
-        <nav className="p-4">
-          <ul className="space-y-2">
-            <li>
-              <Link 
-                to="/admin" 
-                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
-                  isActiveRoute('/admin') ? 'bg-primary text-white hover:bg-primary/90' : ''
-                }`}
-              >
-                <LayoutDashboard size={18} className="mr-2" />
-                {sidebarOpen && <span>Dashboard</span>}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/analytics" 
-                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
-                  isActiveRoute('/admin/analytics') ? 'bg-primary text-white hover:bg-primary/90' : ''
-                }`}
-              >
-                <BarChart size={18} className="mr-2" />
-                {sidebarOpen && <span>Analytics</span>}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/news" 
-                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
-                  isActiveRoute('/admin/news') ? 'bg-primary text-white hover:bg-primary/90' : ''
-                }`}
-              >
-                <FileText size={18} className="mr-2" />
-                {sidebarOpen && <span>News</span>}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/publications" 
-                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
-                  isActiveRoute('/admin/publications') ? 'bg-primary text-white hover:bg-primary/90' : ''
-                }`}
-              >
-                <FileText size={18} className="mr-2" />
-                {sidebarOpen && <span>Publications</span>}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/resources" 
-                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
-                  isActiveRoute('/admin/resources') ? 'bg-primary text-white hover:bg-primary/90' : ''
-                }`}
-              >
-                <FolderOpen size={18} className="mr-2" />
-                {sidebarOpen && <span>Resources</span>}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/programs" 
-                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
-                  isActiveRoute('/admin/programs') ? 'bg-primary text-white hover:bg-primary/90' : ''
-                }`}
-              >
-                <Users size={18} className="mr-2" />
-                {sidebarOpen && <span>Programs</span>}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/opportunities" 
-                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
-                  isActiveRoute('/admin/opportunities') ? 'bg-primary text-white hover:bg-primary/90' : ''
-                }`}
-              >
-                <Briefcase size={18} className="mr-2" />
-                {sidebarOpen && <span>Opportunities</span>}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/settings" 
-                className={`flex items-center p-2 rounded-md hover:bg-gray-100 font-calibri ${
-                  isActiveRoute('/admin/settings') ? 'bg-primary text-white hover:bg-primary/90' : ''
-                }`}
-              >
-                <Settings size={18} className="mr-2" />
-                {sidebarOpen && <span>Settings</span>}
-              </Link>
-            </li>
-          </ul>
-        </nav>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <header className="bg-white shadow-sm">
-          <div className="flex items-center justify-between p-4">
-            <h1 className="text-xl font-bold font-panton">Dashboard</h1>
-            <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-600 font-calibri hidden md:block">
-                Last login: {localStorage.getItem('admin-last-login') 
-                  ? new Date(parseInt(localStorage.getItem('admin-last-login') || '0')).toLocaleString() 
-                  : 'Unknown'}
-              </div>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="flex items-center font-calibri"
-                onClick={onLogout}
-              >
-                <User size={16} className="mr-2" />
-                Logout
-              </Button>
-            </div>
-          </div>
-        </header>
-
-        {/* Content Area */}
-        <main className="flex-1 overflow-y-auto p-6">
-          <Routes>
-            <Route path="/" element={<AdminHome />} />
-            <Route path="/analytics" element={<AdminAnalytics />} />
-            <Route path="/news" element={<AdminNews />} />
-            <Route path="/publications" element={<AdminPublications />} />
-            <Route path="/resources" element={<AdminResources />} />
-            <Route path="/programs" element={<AdminPrograms />} />
-            <Route path="/opportunities" element={<AdminOpportunities />} />
-            <Route path="/settings" element={<AdminSettings />} />
-          </Routes>
-        </main>
+      {/* Main content */}
+      <div className="ml-64">
+        <div className="p-8">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

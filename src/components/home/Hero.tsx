@@ -1,16 +1,40 @@
 
 import { useState, useEffect } from 'react';
-import { heroSlides } from './hero/heroData';
+import { getHeroSlides } from './hero/heroData';
 import HeroBackground from './hero/HeroBackground';
 import HeroContent from './hero/HeroContent';
 import HeroNavigation from './hero/HeroNavigation';
 
 const Hero = () => {
+  const [heroSlides, setHeroSlides] = useState(getHeroSlides());
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  // Listen for localStorage changes to update slides dynamically
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updatedSlides = getHeroSlides();
+      setHeroSlides(updatedSlides);
+      // Reset to first slide if current slide is out of bounds
+      if (currentSlide >= updatedSlides.length) {
+        setCurrentSlide(0);
+      }
+    };
+
+    // Listen for storage events (changes from other tabs/windows)
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also check for changes periodically (for same-tab updates)
+    const interval = setInterval(handleStorageChange, 1000);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(interval);
+    };
+  }, [currentSlide]);
+
   const nextSlide = () => {
-    if (!isAnimating) {
+    if (!isAnimating && heroSlides.length > 0) {
       setIsAnimating(true);
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
       setTimeout(() => setIsAnimating(false), 500);
@@ -18,7 +42,7 @@ const Hero = () => {
   };
 
   const prevSlide = () => {
-    if (!isAnimating) {
+    if (!isAnimating && heroSlides.length > 0) {
       setIsAnimating(true);
       setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
       setTimeout(() => setIsAnimating(false), 500);
@@ -26,12 +50,30 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 8000);
+    if (heroSlides.length > 1) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 8000);
 
-    return () => clearInterval(interval);
-  }, []);
+      return () => clearInterval(interval);
+    }
+  }, [heroSlides.length]);
+
+  // Handle case where no slides exist
+  if (!heroSlides.length) {
+    return (
+      <section className="relative text-white min-h-[100vh] flex items-center overflow-hidden bg-primary">
+        <div className="container mx-auto px-4 py-12 relative z-20 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Welcome to LSF
+          </h1>
+          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
+            Please configure your hero slides in the admin panel.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   const currentSlideData = heroSlides[currentSlide];
 
@@ -44,14 +86,16 @@ const Hero = () => {
           <HeroContent currentSlide={currentSlideData} />
         </div>
         
-        <HeroNavigation
-          currentSlide={currentSlide}
-          totalSlides={heroSlides.length}
-          onPrevSlide={prevSlide}
-          onNextSlide={nextSlide}
-          onSlideChange={setCurrentSlide}
-          heroSlides={heroSlides}
-        />
+        {heroSlides.length > 1 && (
+          <HeroNavigation
+            currentSlide={currentSlide}
+            totalSlides={heroSlides.length}
+            onPrevSlide={prevSlide}
+            onNextSlide={nextSlide}
+            onSlideChange={setCurrentSlide}
+            heroSlides={heroSlides}
+          />
+        )}
       </div>
     </section>
   );
