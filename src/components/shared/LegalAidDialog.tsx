@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Phone, Download, MapPin, Users, Scale, X } from 'lucide-react';
+import { Phone, Download, MapPin, Users, Scale, ArrowRight } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -17,19 +17,8 @@ import {
 } from "@/components/ui/select";
 import { Button } from '@/components/ui/button';
 import Typography from '@/components/shared/Typography';
-
-// Regional coverage with localized hotlines
-const regions = [
-  { name: "All Regions", phone: "+255 870 119 363" },
-  { name: "Dar es Salaam", phone: "+255 717 111 764" },
-  { name: "Mwanza", phone: "+255 769 517 305" },
-  { name: "Arusha", phone: "+255 629 296 306" },
-  { name: "Dodoma", phone: "+255 754 110 307" },
-  { name: "Tanga", phone: "+255 711 032 998" },
-  { name: "Morogoro", phone: "+255 800 110 309" },
-  { name: "Mbeya", phone: "+255 745 887 221" },
-  { name: "Iringa", phone: "+255 762 334 556" }
-];
+import { Link } from 'react-router-dom';
+import { legalAidData } from '@/data/legalAidData';
 
 interface LegalAidDialogProps {
   open: boolean;
@@ -38,12 +27,12 @@ interface LegalAidDialogProps {
 
 const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
   const [selectedRegion, setSelectedRegion] = useState<string>("All Regions");
-  const [hotlineNumber, setHotlineNumber] = useState(regions[0].phone);
+  const [hotlineNumber, setHotlineNumber] = useState(legalAidData.regions[0].phone);
 
   // Update hotline number when region changes
   const handleRegionChange = (value: string) => {
     setSelectedRegion(value);
-    const region = regions.find(r => r.name === value);
+    const region = legalAidData.regions.find(r => r.name === value);
     if (region) {
       setHotlineNumber(region.phone);
     }
@@ -74,7 +63,7 @@ const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
                 <SelectValue placeholder="Select a region" />
               </SelectTrigger>
               <SelectContent>
-                {regions.map((region) => (
+                {legalAidData.regions.map((region) => (
                   <SelectItem key={region.name} value={region.name}>
                     {region.name}
                   </SelectItem>
@@ -112,10 +101,16 @@ const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
             </a>
           </div>
           
-          <div className="pt-4 border-t border-gray-200">
+          <div className="pt-4 border-t border-gray-200 space-y-3">
             <Typography variant="small" className="text-gray-600 text-center">
               Free legal consultation • Available in Swahili & English • Confidential support
             </Typography>
+            <Link to="/legal-help" onClick={() => onOpenChange(false)}>
+              <Button variant="ghost" className="w-full text-primary hover:bg-primary/10">
+                <ArrowRight className="h-4 w-4 mr-2" />
+                Visit Legal Help Page for More Options
+              </Button>
+            </Link>
           </div>
         </div>
       </DialogContent>

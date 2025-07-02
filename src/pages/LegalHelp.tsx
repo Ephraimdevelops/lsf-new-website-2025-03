@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Phone, Mail, MapPin, Clock, Users, Scale, Heart, ArrowRight, CheckCircle, AlertCircle, FileText, Gavel, Shield, BookOpen, Search, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { legalAidData } from '@/data/legalAidData';
 
 const legalServices = [
   {
@@ -46,23 +47,23 @@ const contactMethods = [
   {
     icon: <Phone className="h-6 w-6" />,
     title: "Emergency Hotline",
-    details: "+255 870 119 363",
-    description: "24/7 emergency legal assistance",
+    details: legalAidData.nationalHotline,
+    description: legalAidData.contactMethods.emergency.description,
     availability: "Available 24/7"
   },
   {
     icon: <Mail className="h-6 w-6" />,
     title: "Email Support",
-    details: "help@lsf.or.tz",
-    description: "Send us your legal questions",
+    details: legalAidData.contactMethods.email.address,
+    description: legalAidData.contactMethods.email.description,
     availability: "Response within 24 hours"
   },
   {
     icon: <MapPin className="h-6 w-6" />,
     title: "Visit Our Office",
     details: "Dar es Salaam Office",
-    description: "Plot 123, Msimbazi Street",
-    availability: "Mon-Fri: 8AM-5PM"
+    description: legalAidData.contactMethods.office.address,
+    availability: legalAidData.contactMethods.office.hours
   },
   {
     icon: <Users className="h-6 w-6" />,
@@ -170,7 +171,7 @@ const LegalHelp = () => {
                 Emergency Legal Assistance
               </Typography>
               <Typography variant="body" className="text-red-700">
-                If you're in immediate danger or need urgent legal help, call our 24/7 hotline: +255 870 119 363
+                If you're in immediate danger or need urgent legal help, call our 24/7 hotline: {legalAidData.nationalHotline}
               </Typography>
             </div>
           </div>
@@ -314,7 +315,7 @@ const LegalHelp = () => {
               </Link>
               <Button size="lg" className="bg-primary hover:bg-primary/90">
                 <Phone className="mr-2 h-5 w-5" />
-                Call Now: +255 870 119 363
+                Call Now: {legalAidData.nationalHotline}
               </Button>
             </div>
           </div>

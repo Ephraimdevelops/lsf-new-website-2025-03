@@ -369,6 +369,28 @@ p, .body { @apply text-[16px] leading-[1.6] font-sans mb-4; }
   }
 }
 
+/* Layout fixes for header spacing */
+.main-content {
+  padding-top: 140px; /* Account for header height + contact strip */
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 120px; /* Smaller padding on mobile */
+  }
+}
+
+/* Fix dropdown z-index and visibility */
+.header-dropdown {
+  z-index: 60 !important;
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.header-dropdown [data-state="open"] {
+  z-index: 60 !important;
+}
+
 /* Modern Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

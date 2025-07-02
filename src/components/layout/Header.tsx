@@ -225,11 +225,11 @@ const Header = () => {
                     </Link>
                   )}
                   
-                  {/* Dropdown menu */}
+                   {/* Dropdown menu */}
                   {item.subItems.length > 0 && (
                     <div 
                       className={cn(
-                        "absolute left-0 top-full mt-2 w-72 rounded-lg shadow-xl bg-background border border-border transition-all duration-200 z-50",
+                        "absolute left-0 top-full mt-2 w-80 rounded-lg shadow-xl bg-white border border-gray-200 transition-all duration-200 z-[60]",
                         activeDropdown === item.name 
                           ? "opacity-100 visible translate-y-0" 
                           : "opacity-0 invisible -translate-y-2"
@@ -237,17 +237,16 @@ const Header = () => {
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
-                      {/* Header with image */}
-                      <div className="relative h-24 rounded-t-lg overflow-hidden">
-                        <img 
-                          src={item.image} 
-                          alt={item.name}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div className="absolute bottom-2 left-3 text-white">
-                          <div className="font-semibold text-sm">{item.name}</div>
-                          <div className="text-xs text-white/90">{item.description}</div>
+                      {/* Header with icon instead of image */}
+                      <div className="relative bg-gradient-to-r from-primary/10 to-primary/5 p-4 rounded-t-lg border-b border-gray-100">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                            <div className="w-4 h-4 bg-primary rounded-sm"></div>
+                          </div>
+                          <div>
+                            <div className="font-semibold text-sm text-gray-900">{item.name}</div>
+                            <div className="text-xs text-gray-600">{item.description}</div>
+                          </div>
                         </div>
                       </div>
                       
