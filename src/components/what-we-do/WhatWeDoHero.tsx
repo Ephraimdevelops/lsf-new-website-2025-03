@@ -76,28 +76,29 @@ const WhatWeDoHero = () => {
             variant="display" 
             className={`text-white mb-6 md:mb-8 leading-none text-4xl md:text-6xl lg:text-8xl font-bold transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            Justice for All.
-            <span className="block text-secondary-orange mt-4">Empowerment for Each.</span>
+            Transforming Justice.
+            <span className="block text-secondary-orange mt-4">Empowering People.</span>
+            <span className="block text-secondary-teal mt-4">Changing Systems.</span>
           </Typography>
           
           <Typography 
             variant="body" 
             className={`text-white/95 mb-8 md:mb-12 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           >
-            At the Legal Services Facility (LSF), our mission is clear: to ensure every Tanzanian—especially women, girls, and marginalized groups—can understand, access, and benefit from justice.
+            Explore how our legal empowerment model drives impact in Tanzania through sustainable strategies, inclusive partnerships, and transformative focus areas.
           </Typography>
           
           <div className={`flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-12 md:mb-16 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <Link to="/what-we-do/grant-making">
+            <Link to="#strategic-approaches">
               <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-8 md:px-10 py-4 md:py-5 text-base md:text-lg rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 shadow-2xl">
-                Explore Our Grants
+                Explore Our Model
                 <ArrowRight className="ml-3 h-5 w-5 md:h-6 md:w-6" />
               </Button>
             </Link>
-            <Link to="/impact">
+            <Link to="#focus-areas">
               <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-8 md:px-10 py-4 md:py-5 text-base md:text-lg rounded-full transition-all duration-300 backdrop-blur-sm">
-                <PlayCircle className="mr-3 h-5 w-5 md:h-6 md:w-6" />
-                Watch Our Impact
+                <Target className="mr-3 h-5 w-5 md:h-6 md:w-6" />
+                See Impact by Focus Area
               </Button>
             </Link>
           </div>
