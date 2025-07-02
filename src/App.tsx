@@ -76,8 +76,8 @@ function App() {
                   <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
                   <Route path="/programs" element={<Programs />} />
                   <Route path="/programs/:id" element={<ProgramDetail />} />
-                  <Route path="/legal-help" element={<LegalHelp />} />
-                  <Route path="/impact" element={<Impact />} />
+        <Route path="/legal-help" element={<LegalHelp />} />
+        <Route path="/impact" element={<Impact />} />
                   <Route path="/heroes" element={<Heroes />} />
                   <Route path="/heroes/:id" element={<HeroDetail />} />
                   <Route path="/news" element={<News />} />
