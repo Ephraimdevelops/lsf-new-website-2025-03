@@ -10,75 +10,84 @@ import { TouchTarget } from '@/components/shared/TouchTarget';
 
 const navigationItems = [
   { 
-    name: 'Home', 
-    href: '/',
-    description: 'Welcome to LSF',
-    image: '/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png',
-    subItems: []
+    name: 'About Us', 
+    href: '/about',
+    description: 'Who we are and our mission',
+    image: '/lovable-uploads/bd699246-15c2-42da-aac8-85925fa200f4.png',
+    subItems: [
+      { name: 'Who We Are', href: '/about', description: 'Our story and mission' },
+      { name: 'Our Vision & Mission', href: '/about#mission', description: 'What drives us' },
+      { name: 'Our Team', href: '/team', description: 'Meet our leadership' },
+      { name: 'Partners & Donors', href: '/partners', description: 'Strategic collaborations' },
+      { name: 'Governance & Transparency', href: '/about#governance', description: 'How we operate' },
+    ]
+  },
+  { 
+    name: 'What We Do', 
+    href: '/what-we-do',
+    description: 'Our comprehensive approach to justice',
+    image: '/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png',
+    subItems: [
+      { name: 'Strategic Focus Areas', href: '/what-we-do#focus-areas', description: 'Key intervention areas' },
+      { name: 'Accessible Legal Aid', href: '/focus-areas/accessible-legal-aid', description: 'Breaking barriers to justice' },
+      { name: 'Empowered Communities', href: '/focus-areas/empowered-communities', description: 'Local capacity building' },
+      { name: 'Conducive Legal Environment', href: '/focus-areas/conducive-environment', description: 'Policy & framework' },
+      { name: 'Institutional Sustainability', href: '/focus-areas/institutional-development', description: 'Organizational growth' },
+      { name: 'Our Approaches', href: '/what-we-do#approaches', description: 'How we work' },
+      { name: 'Grant Making & Management', href: '/what-we-do/grant-making', description: 'Strategic funding approach' },
+      { name: 'Direct Implementation', href: '/what-we-do/direct-implementation', description: 'On-ground projects' },
+      { name: 'Advocacy', href: '/what-we-do/advocacy-policy', description: 'System-level change' },
+      { name: 'Research & Learning', href: '/what-we-do/learning-research', description: 'Evidence-based insights' },
+      { name: 'Policy Influence', href: '/what-we-do/advocacy-policy#policy', description: 'Shaping legal frameworks' },
+      { name: 'Partnerships & Networking', href: '/what-we-do/partnerships-networking', description: 'Collaborative approach' },
+    ]
   },
   { 
     name: 'Our Impact', 
     href: '/impact',
     description: 'Measurable change and stories',
-    image: '/lovable-uploads/b2226752-4a54-463b-af38-a1dd2b57350b.png',
+    image: '/lovable-uploads/bd699246-15c2-42da-aac8-85925fa200f4.png',
     subItems: [
-      { name: 'Impact Overview', href: '/impact', description: 'Data and outcomes' },
-      { name: 'Success Stories', href: '/heroes', description: 'Real impact stories' },
+      { name: 'Impact Dashboard', href: '/impact', description: 'Data and outcomes' },
+      { name: 'Stories of Change', href: '/heroes', description: 'Real impact stories' },
+      { name: 'SDG Alignment', href: '/impact#sdg', description: 'UN Sustainable Development Goals' },
+      { name: 'Reports & Achievements', href: '/impact#reports', description: 'Annual reports and milestones' },
     ]
   },
   { 
-    name: 'Our Work', 
-    href: '/what-we-do',
-    description: 'Our comprehensive approach to justice',
-    image: '/lovable-uploads/background with mother umage .png',
+    name: 'Programs', 
+    href: '/programs',
+    description: 'Our flagship initiatives',
+    image: '/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png',
     subItems: [
-      { name: 'What We Do', href: '/what-we-do', description: 'Complete picture of our work' },
-      { name: 'Grant Making', href: '/what-we-do/grant-making', description: 'Strategic funding approach' },
-      { name: 'Direct Implementation', href: '/what-we-do/direct-implementation', description: 'On-ground projects' },
-      { name: 'Advocacy & Policy', href: '/what-we-do/advocacy-policy', description: 'System-level change' },
-      { name: 'Capacity Building', href: '/what-we-do/capacity-building', description: 'Strengthening organizations' },
-      { name: 'Learning & Research', href: '/what-we-do/learning-research', description: 'Evidence-based insights' },
-      { name: 'Strategic Focus Areas', href: '/focus-areas', description: 'Key intervention areas' },
-      { name: 'Accessible Legal Aid', href: '/focus-areas/accessible-legal-aid', description: 'Breaking barriers to justice' },
-      { name: 'Empowered Communities', href: '/focus-areas/empowered-communities', description: 'Local capacity building' },
-      { name: 'Conducive Environment', href: '/focus-areas/conducive-environment', description: 'Policy & framework' },
-      { name: 'Institutional Development', href: '/focus-areas/institutional-development', description: 'Organizational growth' },
-      { name: 'Climate Justice', href: '/focus-areas/climate-justice', description: 'Environmental rights protection' },
-      { name: 'Digital Transformation', href: '/focus-areas/digital-transformation', description: 'Technology for justice' },
+      { name: 'Sauti ya Mwanamke', href: '/programs#sauti', description: 'Women\'s voice program' },
+      { name: 'Wanawake Tunaweza', href: '/programs#wanawake', description: 'Women empowerment initiative' },
+      { name: 'Haki Yangu App', href: '/programs#haki', description: 'Legal rights mobile app' },
+      { name: 'Other Flagship Initiatives', href: '/programs', description: 'All our programs' },
     ]
   },
   { 
-    name: 'About Us', 
-    href: '/about',
-    description: 'Learn about our mission and team',
-    image: '/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png',
+    name: 'Resources', 
+    href: '/resources',
+    description: 'Publications and learning materials',
+    image: '/lovable-uploads/bd699246-15c2-42da-aac8-85925fa200f4.png',
     subItems: [
-      { name: 'About LSF', href: '/about', description: 'Our story and mission' },
-      { name: 'Our Team', href: '/team', description: 'Meet our leadership' },
-      { name: 'Partners', href: '/partners', description: 'Strategic collaborations' },
-      { name: 'Contact Us', href: '/contact', description: 'Get in touch' },
-      { name: 'Opportunities', href: '/opportunities', description: 'Join our team' },
+      { name: 'Publications & Reports', href: '/publications', description: 'Research and reports' },
+      { name: 'Research & Studies', href: '/resources#research', description: 'Academic insights' },
+      { name: 'Policies & Toolkits', href: '/resources#policies', description: 'Implementation guides' },
+      { name: 'Training Manuals', href: '/resources#training', description: 'Capacity building materials' },
     ]
   },
   { 
-    name: 'Stories', 
-    href: '/heroes',
-    description: 'Real impact stories from communities',
-    image: '/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png',
-    subItems: [
-      { name: 'All Stories', href: '/heroes', description: 'Browse all success stories' },
-      { name: 'Programs', href: '/programs', description: 'Our active initiatives' },
-    ]
-  },
-  { 
-    name: "What's New", 
+    name: 'News', 
     href: '/news',
-    description: 'Latest updates and publications',
-    image: '/lovable-uploads/7718b32e-3138-4e78-a7a1-4d63935a2951.png',
+    description: 'Latest updates and events',
+    image: '/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png',
     subItems: [
-      { name: 'Latest News', href: '/news', description: 'Updates and announcements' },
-      { name: 'Publications', href: '/publications', description: 'Research and reports' },
-      { name: 'Resources', href: '/resources', description: 'Tools and guides' },
+      { name: 'Blog', href: '/news', description: 'Latest articles and insights' },
+      { name: 'Press Releases', href: '/news#press', description: 'Official announcements' },
+      { name: 'Events', href: '/news#events', description: 'Upcoming and past events' },
+      { name: 'Campaigns', href: '/news#campaigns', description: 'Inspire To Lead and more' },
     ]
   },
 ];
@@ -112,12 +121,22 @@ const Header = () => {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 relative overflow-hidden",
           isScrolled || mobileMenuOpen
             ? "bg-white shadow-lg border-b border-gray-100"
             : "bg-white/95 backdrop-blur-sm"
         )}
       >
+        {/* Subtle Brand Pattern */}
+        <div 
+          className="absolute top-0 right-0 w-32 h-32 opacity-3 pointer-events-none"
+          style={{
+            backgroundImage: `url('/lovable-uploads/bd699246-15c2-42da-aac8-85925fa200f4.png')`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+          }}
+        />
         {/* Contact Strip - Improved Mobile Behavior */}
         <div className={cn(
           "bg-primary text-primary-foreground transition-all duration-300",
