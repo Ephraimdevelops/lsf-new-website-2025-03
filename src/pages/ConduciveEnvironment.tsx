@@ -1,123 +1,170 @@
-
+import { useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
-import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
-import ResourcesSection from '../components/focus-areas/ResourcesSection';
-import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
-import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
-import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
-import { Gavel, Users, Scale } from 'lucide-react';
+import { focusAreaData } from '../data/focusAreaData';
+import NotFound from './NotFound';
 
 const ConduciveEnvironment = () => {
-  const focusArea = {
-    id: 'conducive-environment',
-    title: 'Enhancing a Conducive Environment for Sustainable Access to Justice',
-    description: 'Working systemically to create an enabling ecosystem for justice by engaging with policymakers, institutions, and civil society.',
-    fullDescription: 'LSF works systemically to create an enabling ecosystem for justice by engaging with policymakers, justice institutions, and civil society. This includes advocating for fair laws, supporting reforms in judicial processes, and building networks of pro-bono professionals. A conducive environment matters because structural change—like improved legal frameworks and accountable institutions—ensures that legal empowerment endures over time. The impact is long-term: new policies enacted, more transparent governance, and improved public trust in legal institutions.',
-    icon: <Gavel className="h-8 w-8" />,
-    keyActivities: [
-      'Legal Reform: Evidence-based advocacy for fair and inclusive laws',
-      'Judicial Training: Capacity building for justice sector professionals',
-      'Anti-Corruption: Initiatives to promote transparency and accountability',
-      'Policy Development: Research and recommendations for systemic improvements'
-    ],
-    impactStats: [
-      { value: '15+', label: 'Policy Reforms Influenced', icon: <Gavel className="h-6 w-6" /> },
-      { value: '500+', label: 'Judges Trained', icon: <Users className="h-6 w-6" /> },
-      { value: '30+', label: 'Laws Influenced', icon: <Scale className="h-6 w-6" /> }
-    ],
-    resources: [
-      { title: 'Policy Impact Report', type: 'PDF', link: '#' },
-      { title: 'Legal Reform Toolkit', type: 'Resource Kit', link: '#' },
-      { title: 'Advocacy Guidelines', type: 'PDF', link: '#' }
-    ],
-    testimonial: {
-      quote: "LSF's policy advocacy has been instrumental in creating a more inclusive and accessible justice system for all Tanzanians.",
-      author: "Hon. Dr. Tulia Ackson",
-      role: "Speaker of Parliament"
-    }
-  };
-
-  const highlights = [
-    {
-      title: "Policy Reform Advocacy",
-      description: "Working with government and civil society to advocate for laws and policies that promote access to justice for all.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "See Our Impact"
-    },
-    {
-      title: "Judicial Training Programs",
-      description: "Building capacity of judges, magistrates, and court officials to deliver fair and efficient justice services.",
-      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
-      buttonText: "Training Schedule"
-    },
-    {
-      title: "Transparency Initiatives",
-      description: "Promoting accountability and transparency in the justice system through research, monitoring, and advocacy.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Read Reports"
-    }
-  ];
-
-  const partners = [
-    {
-      name: "Hon. Justice Mwamba",
-      role: "High Court Judge",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "LSF's judicial training programs have enhanced our understanding of human rights and improved our case management skills."
-    },
-    {
-      name: "Dr. Amina Rashid",
-      role: "Policy Research Director",
-      image: "/lovable-uploads/backgound lsf colours.png",
-      quote: "Through evidence-based advocacy, we've successfully influenced 15 major policy reforms that benefit vulnerable populations."
-    },
-    {
-      name: "Advocate James Mollel",
-      role: "Bar Association President",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "LSF's work on legal reform has strengthened the foundation of our justice system and improved access for all citizens."
-    }
-  ];
+  const focusArea = focusAreaData.find(area => area.slug === 'conducive-environment');
+  
+  useEffect(() => {
+    document.title = 'Conducive Environment - Legal Services Facility';
+  }, []);
+  
+  if (!focusArea) {
+    return <NotFound />;
+  }
 
   return (
     <Layout>
       <FocusAreaHero focusArea={focusArea} />
       
-      <ImpactStorySection
-        title="Creating Systems that Work for Everyone"
-        subtitle="Systemic Change"
-        description="True justice requires more than individual cases - it needs strong institutions, fair laws, and accountable systems. We work at the highest levels to create an environment where justice can flourish for all."
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-        ctaText="See Our Policy Impact"
-        stats={[
-          { value: "15+", label: "Policy Reforms" },
-          { value: "500+", label: "Officials Trained" },
-          { value: "30+", label: "Laws Influenced" },
-          { value: "10M+", label: "Lives Impacted" }
-        ]}
-      />
+      {/* Why This Matters */}
+      <section id="why-this-matters" className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Why This Matters
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            {focusArea.whyItMatters.overview}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {focusArea.whyItMatters.statistics.map((stat, index) => (
+              <div key={index} className="bg-muted rounded-lg p-6">
+                <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
+                <div className="text-muted-foreground">{stat.description}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <KeyActivitiesSection 
-        keyActivities={focusArea.keyActivities} 
-        testimonial={focusArea.testimonial}
-      />
+      {/* Our Approach */}
+      <section className="py-16 bg-muted/50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Our Approach
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            {focusArea.ourApproach.description}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {focusArea.ourApproach.methods.map((method, index) => (
+              <div key={index} className="bg-background rounded-lg p-6 border">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                    <method.icon className="h-6 w-6 text-primary-foreground" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground">
+                    {method.title}
+                  </h4>
+                </div>
+                <p className="text-muted-foreground">
+                  {method.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <VisualHighlightSection
-        title="Building a Justice System that Works"
-        subtitle="Our Approach"
-        highlights={highlights}
-      />
+      {/* Featured Projects */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Featured Projects
+          </h2>
+          
+          <div className="space-y-8">
+            {focusArea.featuredProjects.map((project, index) => (
+              <div key={index} className="bg-muted/50 rounded-lg p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  {project.name}
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <div className="text-2xl font-bold text-secondary mb-2">{project.regions}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Regions Covered</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-accent mb-2">{project.beneficiaries}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Direct Beneficiaries</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-primary mb-2">{project.outcome}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Key Outcome</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <PartnersShowcaseSection
-        title="Leaders Driving Change"
-        subtitle="Justice Champions"
-        description="Working alongside government officials, judges, and civil society leaders to create lasting systemic change in Tanzania's justice sector."
-        partners={partners}
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
+      {/* Impact Section */}
+      <section className="py-16 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-8">
+              Impact Achieved
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+              {focusArea.impact.metrics.map((metric, index) => (
+                <div key={index}>
+                  <div className="text-4xl font-bold mb-2">{metric.value}</div>
+                  <div className="text-primary-foreground/80 text-sm uppercase tracking-wide">{metric.label}</div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="max-w-3xl mx-auto">
+              <blockquote className="text-xl italic mb-6">
+                "{focusArea.impact.testimonial.quote}"
+              </blockquote>
+              <cite className="text-primary-foreground/80">
+                — {focusArea.impact.testimonial.author}, {focusArea.impact.testimonial.title}
+              </cite>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <ResourcesSection resources={focusArea.resources} />
+      {/* Call to Action */}
+      <section className="py-16 bg-muted/50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-8">
+              {focusArea.callToAction.title}
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              {focusArea.callToAction.description}
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {focusArea.callToAction.buttons.map((button, index) => (
+                <a
+                  key={index}
+                  href={button.link}
+                  className={`px-8 py-4 rounded-lg font-semibold transition-colors duration-200 ${
+                    button.variant === 'primary' 
+                      ? 'bg-primary hover:bg-primary/90 text-primary-foreground'
+                      : 'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground'
+                  }`}
+                >
+                  {button.text}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

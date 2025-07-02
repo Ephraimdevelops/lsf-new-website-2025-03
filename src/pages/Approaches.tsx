@@ -3,6 +3,7 @@ import { Container, Heading, Text } from '../components/design-system';
 import ApproachHero from '../components/approaches/ApproachHero';
 import ApproachDetailSection from '../components/approaches/ApproachDetailSection';
 import CallToActionSection from '../components/shared/CallToActionSection';
+import { approachData } from '../data/approachData';
 import { 
   DollarSign, 
   Target, 
@@ -225,7 +226,7 @@ const Approaches = () => {
 
   return (
     <Layout>
-      <ApproachHero approaches={approaches} />
+      <ApproachHero approach={approachData[0]} />
 
       {/* Approaches Detail Sections */}
       {approaches.map((approach, index) => (

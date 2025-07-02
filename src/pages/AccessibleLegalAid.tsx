@@ -1,123 +1,170 @@
-
+import { useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
-import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
-import ResourcesSection from '../components/focus-areas/ResourcesSection';
-import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
-import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
-import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
-import { Scale, Users } from 'lucide-react';
+import { focusAreaData } from '../data/focusAreaData';
+import NotFound from './NotFound';
 
 const AccessibleLegalAid = () => {
-  const focusArea = {
-    id: 'accessible-legal-aid',
-    title: 'Increasing Accessibility to Quality Legal Aid Services',
-    description: 'Breaking down barriers to justice by bringing affordable, high-quality legal aid within reach of all communities across the country.',
-    fullDescription: 'LSF, a leading national legal empowerment institution, breaks down barriers to justice by bringing affordable, high-quality legal aid within reach of all communities across the country. Through innovative outreach programs, remote clinics, and digital platforms, LSF ensures that vulnerable and marginalized individuals can secure timely legal advice and representation. This focus is equity-driven: it matters because only an accessible justice system can truly uphold rights and fairness for everyone. The impact is demonstrable – thousands of individuals have successfully navigated legal processes and regained confidence in the justice system.',
-    icon: <Scale className="h-8 w-8" />,
-    keyActivities: [
-      'Legal Helpline: 24/7 phone and digital support for immediate legal guidance',
-      'Community Clinics: Mobile and fixed legal aid centers in remote areas', 
-      'Online Consultation: Digital platforms connecting citizens with legal experts',
-      'Paralegal Training: Comprehensive certification programs for community advocates'
-    ],
-    impactStats: [
-      { value: '5000+', label: 'People Served Annually', icon: <Users className="h-6 w-6" /> },
-      { value: '24/7', label: 'Legal Helpline Availability', icon: <Users className="h-6 w-6" /> },
-      { value: '150+', label: 'Community Clinics', icon: <Users className="h-6 w-6" /> }
-    ],
-    resources: [
-      { title: 'Know Your Rights Guide', type: 'PDF', link: '#' },
-      { title: 'Legal Aid Directory', type: 'Interactive Map', link: '#' },
-      { title: 'How to Access Help', type: 'Video Guide', link: '#' }
-    ],
-    testimonial: {
-      quote: "LSF's legal clinic helped me secure my land rights and gave me confidence to stand up for what's rightfully mine.",
-      author: "Maria Kibwana",
-      role: "Community Member, Mbeya"
-    }
-  };
-
-  const highlights = [
-    {
-      title: "Mobile Legal Clinics",
-      description: "Bringing justice directly to rural communities through our mobile legal aid units that travel to remote areas.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Find a Clinic"
-    },
-    {
-      title: "Digital Legal Platform",
-      description: "24/7 online legal consultation platform connecting citizens with qualified legal professionals instantly.",
-      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
-      buttonText: "Get Help Online"
-    },
-    {
-      title: "Community Paralegals",
-      description: "Trained community advocates providing first-line legal support and guidance in local languages.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Meet Paralegals"
-    }
-  ];
-
-  const partners = [
-    {
-      name: "Sarah Mwamba",
-      role: "Community Paralegal",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "Through LSF training, I've helped over 300 families in my community resolve legal issues and access their rights."
-    },
-    {
-      name: "Dr. John Msami",
-      role: "Legal Aid Coordinator",
-      image: "/lovable-uploads/backgound lsf colours.png",
-      quote: "Our mobile clinics have transformed access to justice in remote areas, bringing hope where there was none."
-    },
-    {
-      name: "Amina Hassan",
-      role: "Women's Rights Advocate",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "LSF's support helped me fight for my inheritance rights and now I help other women do the same."
-    }
-  ];
+  const focusArea = focusAreaData.find(area => area.slug === 'accessible-legal-aid');
+  
+  useEffect(() => {
+    document.title = 'Accessible Legal Aid - Legal Services Facility';
+  }, []);
+  
+  if (!focusArea) {
+    return <NotFound />;
+  }
 
   return (
     <Layout>
       <FocusAreaHero focusArea={focusArea} />
       
-      <ImpactStorySection
-        title="Every Person Deserves Access to Justice"
-        subtitle="Breaking Barriers"
-        description="In rural Tanzania, legal help was once a luxury only the wealthy could afford. Today, through our innovative mobile clinics and digital platforms, we're ensuring that distance and poverty no longer determine who gets justice."
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-        ctaText="Find Legal Help Near You"
-        stats={[
-          { value: "5,000+", label: "Lives Changed" },
-          { value: "150+", label: "Communities Served" },
-          { value: "24/7", label: "Support Available" },
-          { value: "85%", label: "Success Rate" }
-        ]}
-      />
+      {/* Why This Matters */}
+      <section id="why-this-matters" className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Why This Matters
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            {focusArea.whyItMatters.overview}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {focusArea.whyItMatters.statistics.map((stat, index) => (
+              <div key={index} className="bg-muted rounded-lg p-6">
+                <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
+                <div className="text-muted-foreground">{stat.description}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <KeyActivitiesSection 
-        keyActivities={focusArea.keyActivities} 
-        testimonial={focusArea.testimonial}
-      />
+      {/* Our Approach */}
+      <section className="py-16 bg-muted/50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Our Approach
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            {focusArea.ourApproach.description}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {focusArea.ourApproach.methods.map((method, index) => (
+              <div key={index} className="bg-background rounded-lg p-6 border">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                    <method.icon className="h-6 w-6 text-primary-foreground" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground">
+                    {method.title}
+                  </h4>
+                </div>
+                <p className="text-muted-foreground">
+                  {method.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <VisualHighlightSection
-        title="How We're Making Justice Accessible"
-        subtitle="Our Approach"
-        highlights={highlights}
-      />
+      {/* Featured Projects */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Featured Projects
+          </h2>
+          
+          <div className="space-y-8">
+            {focusArea.featuredProjects.map((project, index) => (
+              <div key={index} className="bg-muted/50 rounded-lg p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  {project.name}
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <div className="text-2xl font-bold text-secondary mb-2">{project.regions}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Regions Covered</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-accent mb-2">{project.beneficiaries}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Direct Beneficiaries</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-primary mb-2">{project.outcome}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Key Outcome</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <PartnersShowcaseSection
-        title="Voices from the Field"
-        subtitle="Community Champions"
-        description="Meet the dedicated individuals who are making legal aid accessible in their communities. Their stories inspire us and show the real impact of accessible justice."
-        partners={partners}
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
+      {/* Impact Section */}
+      <section className="py-16 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-8">
+              Impact Achieved
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+              {focusArea.impact.metrics.map((metric, index) => (
+                <div key={index}>
+                  <div className="text-4xl font-bold mb-2">{metric.value}</div>
+                  <div className="text-primary-foreground/80 text-sm uppercase tracking-wide">{metric.label}</div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="max-w-3xl mx-auto">
+              <blockquote className="text-xl italic mb-6">
+                "{focusArea.impact.testimonial.quote}"
+              </blockquote>
+              <cite className="text-primary-foreground/80">
+                — {focusArea.impact.testimonial.author}, {focusArea.impact.testimonial.title}
+              </cite>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <ResourcesSection resources={focusArea.resources} />
+      {/* Call to Action */}
+      <section className="py-16 bg-muted/50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-8">
+              {focusArea.callToAction.title}
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              {focusArea.callToAction.description}
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {focusArea.callToAction.buttons.map((button, index) => (
+                <a
+                  key={index}
+                  href={button.link}
+                  className={`px-8 py-4 rounded-lg font-semibold transition-colors duration-200 ${
+                    button.variant === 'primary' 
+                      ? 'bg-primary hover:bg-primary/90 text-primary-foreground'
+                      : 'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground'
+                  }`}
+                >
+                  {button.text}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

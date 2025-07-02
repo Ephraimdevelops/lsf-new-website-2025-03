@@ -23,15 +23,12 @@ import LegalHelp from "./pages/LegalHelp";
 import Impact from "./pages/Impact";
 import GrantMaking from "./pages/GrantMaking";
 import CapacityBuilding from "./pages/CapacityBuilding";
-import PolicyAdvocacy from "./pages/PolicyAdvocacy";
 import LearningResearch from "./pages/LearningResearch";
 import PartnershipsNetworking from "./pages/PartnershipsNetworking";
 import AccessibleLegalAid from "./pages/AccessibleLegalAid";
 import EmpoweredCommunities from "./pages/EmpoweredCommunities";
 import ConduciveEnvironment from "./pages/ConduciveEnvironment";
 import InstitutionalDevelopment from "./pages/InstitutionalDevelopment";
-import ClimateJustice from "./pages/ClimateJustice";
-import DigitalTransformation from "./pages/DigitalTransformation";
 import FocusAreaDetail from "./pages/FocusAreaDetail";
 import ClimateJusticeResources from "./pages/ClimateJusticeResources";
 import GenderJusticeResources from "./pages/GenderJusticeResources";
@@ -62,15 +59,12 @@ function App() {
                   <Route path="/what-we-do" element={<WhatWeDo />} />
                   <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
                   <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
-                  <Route path="/what-we-do/policy-advocacy" element={<PolicyAdvocacy />} />
                   <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
                   <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
                   <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
                   <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
                   <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
                   <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
-                  <Route path="/focus-areas/climate-justice" element={<ClimateJustice />} />
-                  <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
                   <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
                   <Route path="/programs" element={<Programs />} />
                   <Route path="/programs/:id" element={<ProgramDetail />} />

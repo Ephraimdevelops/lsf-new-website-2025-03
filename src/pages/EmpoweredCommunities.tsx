@@ -1,123 +1,170 @@
-
+import { useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
-import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
-import ResourcesSection from '../components/focus-areas/ResourcesSection';
-import ImpactStorySection from '../components/focus-areas/ImpactStorySection';
-import VisualHighlightSection from '../components/focus-areas/VisualHighlightSection';
-import PartnersShowcaseSection from '../components/focus-areas/PartnersShowcaseSection';
-import { Users } from 'lucide-react';
+import { focusAreaData } from '../data/focusAreaData';
+import NotFound from './NotFound';
 
 const EmpoweredCommunities = () => {
-  const focusArea = {
-    id: 'empowered-communities',
-    title: 'Promoting Legally Empowered Communities',
-    description: 'Investing in community-centered empowerment by equipping local groups and citizens with knowledge and tools to use the law effectively.',
-    fullDescription: 'LSF invests in community-centered empowerment by equipping local groups and citizens with the knowledge and tools to use the law effectively. We support paralegal training, legal awareness workshops, and youth engagement so that rights are understood and defended from the ground up. This approach matters because empowered communities become agents of change, resolving disputes constructively and preventing abuse of power. The impact is seen in communities confidently asserting legal solutions—reducing conflicts, strengthening social cohesion, and fostering a culture of rights and responsibilities.',
-    icon: <Users className="h-8 w-8" />,
-    keyActivities: [
-      'Legal Education: Comprehensive rights awareness programs for all community members',
-      'Paralegal Training: Building local capacity through certified community advocates',
-      'Community Forums: Regular dialogue sessions on legal issues and solutions',
-      'Youth Engagement: Targeted programs to engage young people in legal empowerment'
-    ],
-    impactStats: [
-      { value: '4000+', label: 'Paralegals Trained', icon: <Users className="h-6 w-6" /> },
-      { value: '184', label: 'Communities Served', icon: <Users className="h-6 w-6" /> },
-      { value: '85%', label: 'Dispute Resolution Rate', icon: <Users className="h-6 w-6" /> }
-    ],
-    resources: [
-      { title: 'Community Legal Guide', type: 'PDF', link: '#' },
-      { title: 'Paralegal Training Manual', type: 'PDF', link: '#' },
-      { title: 'Workshop Toolkit', type: 'Resource Kit', link: '#' }
-    ],
-    testimonial: {
-      quote: "Through LSF's training, I became a paralegal and now help my community resolve disputes peacefully. I've assisted over 200 families.",
-      author: "John Mwalimu",
-      role: "Community Paralegal, Dodoma"
-    }
-  };
-
-  const highlights = [
-    {
-      title: "Paralegal Champions",
-      description: "Training community members to become certified paralegals who provide first-line legal support in their neighborhoods.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Join Training"
-    },
-    {
-      title: "Youth Legal Clubs",
-      description: "Engaging young people in legal education and empowerment activities to build the next generation of rights advocates.",
-      backgroundImage: "/lovable-uploads/backgound lsf colours.png",
-      buttonText: "Start a Club"
-    },
-    {
-      title: "Community Forums",
-      description: "Regular community meetings where legal issues are discussed and collective solutions are developed.",
-      backgroundImage: "/lovable-uploads/background with mother umage .png",
-      buttonText: "Attend Forum"
-    }
-  ];
-
-  const partners = [
-    {
-      name: "Grace Mbwana",
-      role: "Community Paralegal Leader",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "I've trained 50 paralegals in my district. Now every village has someone who can help with legal problems."
-    },
-    {
-      name: "Michael Kileo",
-      role: "Youth Legal Club Coordinator",
-      image: "/lovable-uploads/backgound lsf colours.png",
-      quote: "Our youth club has 200 members who are learning about their rights and helping their families navigate legal issues."
-    },
-    {
-      name: "Fatuma Seif",
-      role: "Women's Group Leader",
-      image: "/lovable-uploads/background with mother umage .png",
-      quote: "Through legal education, our women's group now helps members with property rights and domestic violence cases."
-    }
-  ];
+  const focusArea = focusAreaData.find(area => area.slug === 'empowered-communities');
+  
+  useEffect(() => {
+    document.title = 'Empowered Communities - Legal Services Facility';
+  }, []);
+  
+  if (!focusArea) {
+    return <NotFound />;
+  }
 
   return (
     <Layout>
       <FocusAreaHero focusArea={focusArea} />
       
-      <ImpactStorySection
-        title="Communities that Know Their Rights, Protect Their Rights"
-        subtitle="Grassroots Power"
-        description="When communities understand the law, they become powerful agents of change. Our grassroots approach has created a network of over 4,000 trained paralegals who are transforming justice from the ground up."
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-        ctaText="Become a Community Champion"
-        stats={[
-          { value: "4,000+", label: "Paralegals Trained" },
-          { value: "184", label: "Communities Served" },
-          { value: "85%", label: "Disputes Resolved" },
-          { value: "50,000+", label: "People Reached" }
-        ]}
-      />
+      {/* Why This Matters */}
+      <section id="why-this-matters" className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Why This Matters
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            {focusArea.whyItMatters.overview}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {focusArea.whyItMatters.statistics.map((stat, index) => (
+              <div key={index} className="bg-muted rounded-lg p-6">
+                <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
+                <div className="text-muted-foreground">{stat.description}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <KeyActivitiesSection 
-        keyActivities={focusArea.keyActivities} 
-        testimonial={focusArea.testimonial}
-      />
+      {/* Our Approach */}
+      <section className="py-16 bg-muted/50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Our Approach
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            {focusArea.ourApproach.description}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {focusArea.ourApproach.methods.map((method, index) => (
+              <div key={index} className="bg-background rounded-lg p-6 border">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                    <method.icon className="h-6 w-6 text-primary-foreground" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground">
+                    {method.title}
+                  </h4>
+                </div>
+                <p className="text-muted-foreground">
+                  {method.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <VisualHighlightSection
-        title="Building Legally Empowered Communities"
-        subtitle="Our Programs"
-        highlights={highlights}
-      />
+      {/* Featured Projects */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-bold text-foreground mb-8">
+            Featured Projects
+          </h2>
+          
+          <div className="space-y-8">
+            {focusArea.featuredProjects.map((project, index) => (
+              <div key={index} className="bg-muted/50 rounded-lg p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  {project.name}
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <div className="text-2xl font-bold text-secondary mb-2">{project.regions}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Regions Covered</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-accent mb-2">{project.beneficiaries}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Direct Beneficiaries</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-primary mb-2">{project.outcome}</div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">Key Outcome</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <PartnersShowcaseSection
-        title="Community Champions in Action"
-        subtitle="Local Heroes"
-        description="Meet the remarkable individuals who are leading legal empowerment efforts in their communities. Their dedication and impact inspire us every day."
-        partners={partners}
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
+      {/* Impact Section */}
+      <section className="py-16 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-8">
+              Impact Achieved
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+              {focusArea.impact.metrics.map((metric, index) => (
+                <div key={index}>
+                  <div className="text-4xl font-bold mb-2">{metric.value}</div>
+                  <div className="text-primary-foreground/80 text-sm uppercase tracking-wide">{metric.label}</div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="max-w-3xl mx-auto">
+              <blockquote className="text-xl italic mb-6">
+                "{focusArea.impact.testimonial.quote}"
+              </blockquote>
+              <cite className="text-primary-foreground/80">
+                — {focusArea.impact.testimonial.author}, {focusArea.impact.testimonial.title}
+              </cite>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <ResourcesSection resources={focusArea.resources} />
+      {/* Call to Action */}
+      <section className="py-16 bg-muted/50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-8">
+              {focusArea.callToAction.title}
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              {focusArea.callToAction.description}
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {focusArea.callToAction.buttons.map((button, index) => (
+                <a
+                  key={index}
+                  href={button.link}
+                  className={`px-8 py-4 rounded-lg font-semibold transition-colors duration-200 ${
+                    button.variant === 'primary' 
+                      ? 'bg-primary hover:bg-primary/90 text-primary-foreground'
+                      : 'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground'
+                  }`}
+                >
+                  {button.text}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };
