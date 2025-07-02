@@ -4,7 +4,7 @@ import { approachData } from '../data/approachData';
 import ApproachHero from '../components/approaches/ApproachHero';
 import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
-import { NotFound } from './NotFound';
+import NotFound from './NotFound';
 
 const ApproachDetail = () => {
   const { approachId } = useParams();
