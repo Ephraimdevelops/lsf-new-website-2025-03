@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/shared/SearchDialog';
 import LegalAidDialog from '@/components/shared/LegalAidDialog';
+import { TouchTarget } from '@/components/shared/TouchTarget';
 
 // Enhanced navigation structure with visual elements
 const navigationItems = [
@@ -276,15 +277,16 @@ const Header = () => {
                   Donate
                 </Button>
               </Link>
-              <button 
-                className={cn(
-                  "p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-all duration-200 transform hover:scale-110",
-                  mobileMenuOpen && "bg-gray-100"
-                )}
+              <TouchTarget
+                size="lg"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className={cn(
+                  "rounded-md text-neutral-600 hover:bg-neutral-100 transition-all duration-200",
+                  mobileMenuOpen && "bg-neutral-100"
+                )}
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
+              </TouchTarget>
             </div>
           </div>
         </div>
@@ -330,19 +332,19 @@ const Header = () => {
                       "transition-all duration-300 overflow-hidden",
                       activeDropdown === item.name ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                     )}>
-                      <div className="mt-2 pl-4 border-l-2 border-primary/20 bg-gray-50/50 rounded-r-lg">
+                      <div className="mt-2 pl-4 border-l-2 border-primary/20 bg-neutral-50/50 rounded-r-lg">
                         {item.subItems?.map((subItem) => (
                           <Link
                             key={subItem.name}
                             to={subItem.href}
                             className={cn(
-                              "flex items-center gap-3 px-3 py-3 text-sm rounded-md transition-all duration-200 hover:bg-white hover:translate-x-1",
+                              "flex items-center gap-3 py-3 text-sm rounded-md transition-all duration-200 hover:bg-card hover:translate-x-1 min-h-[44px]",
                               location.pathname === subItem.href
-                                ? "text-primary bg-white font-medium shadow-sm"
-                                : "text-gray-600"
+                                ? "text-primary bg-card font-medium shadow-sm px-3"
+                                : "text-muted-foreground px-3"
                             )}
                           >
-                            <span className="w-2 h-2 bg-primary/30 rounded-full transition-all duration-200"></span>
+                            <span className="w-2 h-2 bg-primary/30 rounded-full transition-all duration-200 flex-shrink-0"></span>
                             <div className="font-medium">{subItem.name}</div>
                           </Link>
                         ))}
