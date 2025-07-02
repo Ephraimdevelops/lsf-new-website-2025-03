@@ -62,12 +62,12 @@ const Hero = () => {
   // Handle case where no slides exist
   if (!heroSlides.length) {
     return (
-      <section className="relative text-white min-h-[100vh] flex items-center overflow-hidden bg-primary">
+      <section className="relative text-white min-h-[80vh] flex items-center overflow-hidden bg-white">
         <div className="container mx-auto px-4 py-12 relative z-20 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-neutral-900">
             Welcome to LSF
           </h1>
-          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-neutral-600 max-w-3xl mx-auto">
             Please configure your hero slides in the admin panel.
           </p>
         </div>
@@ -78,7 +78,7 @@ const Hero = () => {
   const currentSlideData = heroSlides[currentSlide];
 
   return (
-    <section className="relative text-white min-h-[100vh] flex items-center overflow-hidden">
+    <section className="relative text-white min-h-[80vh] flex items-center overflow-hidden">
       <HeroBackground currentSlide={currentSlideData} />
       
       <div className="container mx-auto px-4 py-12 relative z-20">
