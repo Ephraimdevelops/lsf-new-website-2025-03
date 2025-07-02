@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ icon, badge, title, description, backgroundImage }: HeroSectionProps) => {
   return (
-    <section className="relative py-32 md:py-40 overflow-hidden">
+    <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden">
       {/* Background Image */}
       {backgroundImage ? (
         <div 
@@ -21,12 +21,12 @@ const HeroSection = ({ icon, badge, title, description, backgroundImage }: HeroS
           }}
         ></div>
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-neutral-900"></div>
       )}
       
       {/* Enhanced Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary-dark/90 to-black/85"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary-dark/90 to-neutral-900/85"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/40 via-transparent to-transparent"></div>
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
@@ -36,17 +36,21 @@ const HeroSection = ({ icon, badge, title, description, backgroundImage }: HeroS
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto text-center text-white">
-          <div className="inline-flex items-center space-x-3 mb-8 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
+        <div className="max-w-5xl mx-auto text-center text-primary-foreground">
+          <div className="inline-flex items-center space-x-3 mb-6 md:mb-8 bg-white/10 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 border border-white/20">
             <div className="text-secondary-orange">
               {icon}
             </div>
-            <span className="text-secondary-orange font-bold text-lg uppercase tracking-wider">
+            <span className="text-secondary-orange font-bold text-sm md:text-lg uppercase tracking-wider">
               {badge}
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 leading-tight font-heading">{title}</h1>
-          <p className="text-xl md:text-2xl opacity-95 max-w-4xl mx-auto leading-relaxed font-sans">
+          
+          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-6 md:mb-8 leading-tight font-heading">
+            {title}
+          </h1>
+          
+          <p className="text-lg md:text-xl lg:text-2xl opacity-95 max-w-4xl mx-auto leading-relaxed font-sans">
             {description}
           </p>
         </div>

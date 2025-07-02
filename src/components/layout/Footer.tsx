@@ -56,12 +56,12 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Main Footer Content */}
+      {/* Main Footer Content - Improved Responsive Grid */}
       <div className="py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Organization Info */}
-            <div className="lg:col-span-1">
+            <div className="sm:col-span-2 lg:col-span-1">
               <div className="mb-6">
                 <img 
                   src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
@@ -162,11 +162,11 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="border-t border-white/10 py-8">
+      {/* Bottom Section - Enhanced Mobile Layout */}
+      <div className="border-t border-white/10 py-6 md:py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
+            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-center sm:text-left">
               <Typography variant="bodySmall" className="text-white/70">
                 © 2024 Legal Services Facility. All rights reserved.
               </Typography>

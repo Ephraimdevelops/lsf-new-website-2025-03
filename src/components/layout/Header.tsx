@@ -117,25 +117,28 @@ const Header = () => {
             : "bg-white/95 backdrop-blur-sm"
         )}
       >
-        {/* Contact Strip */}
+        {/* Contact Strip - Improved Mobile Behavior */}
         <div className={cn(
-          "bg-primary text-white py-2 transition-all duration-300",
-          isScrolled ? "h-0 overflow-hidden opacity-0" : "h-auto opacity-100"
+          "bg-primary text-primary-foreground transition-all duration-300",
+          isScrolled ? "h-0 overflow-hidden opacity-0 py-0" : "py-2 opacity-100"
         )}>
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center text-sm">
-              <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-4 md:space-x-6">
                 <div className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
-                  <span>Legal Helpline: +255 870 119 363</span>
+                  <Phone className="h-4 w-4 flex-shrink-0" />
+                  <span className="truncate">Legal Helpline: +255 870 119 363</span>
                 </div>
-                <div className="hidden md:flex items-center space-x-2">
-                  <Mail className="h-4 w-4" />
-                  <span>info@legalservicesfacility.org</span>
+                <div className="hidden sm:flex items-center space-x-2">
+                  <Mail className="h-4 w-4 flex-shrink-0" />
+                  <span className="truncate">info@legalservicesfacility.org</span>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <Link to="/contact" className="hover:text-secondary-orange transition-colors duration-200">
+                <Link 
+                  to="/contact" 
+                  className="hover:text-secondary-orange transition-colors duration-200 whitespace-nowrap text-sm"
+                >
                   Contact Us
                 </Link>
               </div>
@@ -144,20 +147,22 @@ const Header = () => {
         </div>
 
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
+          <div className="flex justify-between items-center h-16 md:h-20">
+            {/* Logo - Improved Mobile Responsiveness */}
             <div className="flex-shrink-0">
-              <Link to="/" className="flex items-center space-x-3 group">
+              <Link to="/" className="flex items-center space-x-2 md:space-x-3 group">
                 <img 
                   src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
                   alt="LSF Logo"
-                  className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+                  className="h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="hidden md:block">
-                  <div className="text-sm font-bold text-primary transition-colors duration-200 group-hover:text-primary/80">
+                <div className="hidden sm:block">
+                  <div className="text-xs md:text-sm font-bold text-primary transition-colors duration-200 group-hover:text-primary-dark leading-tight">
                     Legal Services Facility
                   </div>
-                  <div className="text-xs text-neutral-gray">Empowering Justice Since 2011</div>
+                  <div className="text-[10px] md:text-xs text-neutral-gray leading-tight">
+                    Empowering Justice Since 2011
+                  </div>
                 </div>
               </Link>
             </div>
