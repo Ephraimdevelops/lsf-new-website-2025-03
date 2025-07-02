@@ -1,10 +1,10 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
+import { focusAreaData } from '../data/focusAreaData';
 import FocusAreaHero from '../components/focus-areas/FocusAreaHero';
-import KeyActivitiesSection from '../components/focus-areas/KeyActivitiesSection';
-import ResourcesSection from '../components/focus-areas/ResourcesSection';
-import { Scale, Users, Gavel, Building, Leaf, Smartphone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import Container from '../components/shared/Container';
+import Typography from '../components/shared/Typography';
+import { NotFound } from './NotFound';
 
 interface FocusArea {
   id: string;
@@ -190,34 +190,70 @@ const focusAreas: { [key: string]: any } = {
 };
 
 const FocusAreaDetail = () => {
-  const { slug } = useParams();
-  const focusArea = slug ? focusAreas[slug] : null;
-
+  const { slug } = useParams<{ slug: string }>();
+  
+  const focusArea = focusAreaData.find(area => area.slug === slug);
+  
   if (!focusArea) {
-    return (
-      <Layout>
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-primary-dark to-black">
-          <div className="text-center text-white px-4">
-            <h1 className="text-4xl font-bold mb-8">Focus Area Not Found</h1>
-            <Link to="/">
-              <Button className="bg-secondary-orange hover:bg-secondary-orange/90 text-white">
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </Layout>
-    );
+    return <NotFound />;
   }
 
   return (
     <Layout>
       <FocusAreaHero focusArea={focusArea} />
-      <KeyActivitiesSection 
-        keyActivities={focusArea.keyActivities} 
-        testimonial={focusArea.testimonial}
-      />
-      <ResourcesSection resources={focusArea.resources} />
+      
+      {/* Why This Matters */}
+      <section className="py-16 bg-white">
+        <Container size="xl">
+          <div className="max-w-4xl mx-auto">
+            <Typography variant="h2" className="text-3xl font-bold text-neutral-900 mb-8">
+              Why This Matters
+            </Typography>
+            <Typography variant="body" className="text-neutral-600 text-lg leading-relaxed mb-8">
+              {focusArea.whyItMatters.overview}
+            </Typography>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {focusArea.whyItMatters.statistics.map((stat, index) => (
+                <div key={index} className="bg-neutral-50 rounded-lg p-6">
+                  <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
+                  <div className="text-neutral-600">{stat.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-16 bg-neutral-50">
+        <Container size="xl">
+          <div className="text-center max-w-4xl mx-auto">
+            <Typography variant="h2" className="text-3xl font-bold text-neutral-900 mb-8">
+              {focusArea.callToAction.title}
+            </Typography>
+            <Typography variant="body" className="text-neutral-600 text-lg leading-relaxed mb-8">
+              {focusArea.callToAction.description}
+            </Typography>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {focusArea.callToAction.buttons.map((button, index) => (
+                <a
+                  key={index}
+                  href={button.link}
+                  className={`px-8 py-4 rounded-lg font-semibold transition-colors duration-200 ${
+                    button.variant === 'primary' 
+                      ? 'bg-primary hover:bg-primary-dark text-white'
+                      : 'border-2 border-primary text-primary hover:bg-primary hover:text-white'
+                  }`}
+                >
+                  {button.text}
+                </a>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
     </Layout>
   );
 };

@@ -1,12 +1,10 @@
 import { useParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import HeroSection from '../components/shared/HeroSection';
-import { DollarSign, Wrench, Megaphone, BookOpen, Users } from 'lucide-react';
-import Heading from '@/components/design-system/Heading';
-import Text from '@/components/design-system/Text';
-import DesignCard from '@/components/design-system/DesignCard';
-import Section from '@/components/shared/Section';
-import Container from '@/components/shared/Container';
+import { approachData } from '../data/approachData';
+import ApproachHero from '../components/approaches/ApproachHero';
+import Container from '../components/shared/Container';
+import Typography from '../components/shared/Typography';
+import { NotFound } from './NotFound';
 
 const ApproachDetail = () => {
   const { approachId } = useParams();
