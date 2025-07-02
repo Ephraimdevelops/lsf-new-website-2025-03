@@ -33,6 +33,10 @@ import FocusAreaDetail from "./pages/FocusAreaDetail";
 import ClimateJusticeResources from "./pages/ClimateJusticeResources";
 import GenderJusticeResources from "./pages/GenderJusticeResources";
 import LegalEmpowermentResources from "./pages/LegalEmpowermentResources";
+import ClimateJustice from "./pages/ClimateJustice";
+import DigitalTransformation from "./pages/DigitalTransformation";
+import DirectImplementation from "./pages/DirectImplementation";
+import AdvocacyPolicy from "./pages/AdvocacyPolicy";
 import NewsDetail from "./pages/NewsDetail";
 import PublicationDetail from "./pages/PublicationDetail";
 import ProgramDetail from "./pages/ProgramDetail";
@@ -58,6 +62,8 @@ function App() {
                   <Route path="/about" element={<About />} />
                   <Route path="/what-we-do" element={<WhatWeDo />} />
                   <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
+                  <Route path="/what-we-do/direct-implementation" element={<DirectImplementation />} />
+                  <Route path="/what-we-do/advocacy-policy" element={<AdvocacyPolicy />} />
                   <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
                   <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
                   <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
@@ -65,6 +71,8 @@ function App() {
                   <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
                   <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
                   <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
+                  <Route path="/focus-areas/climate-justice" element={<ClimateJustice />} />
+                  <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
                   <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
                   <Route path="/programs" element={<Programs />} />
                   <Route path="/programs/:id" element={<ProgramDetail />} />
