@@ -58,24 +58,17 @@ const StrategicApproachesSection = () => {
   ];
 
   return (
-    <section id="strategic-approaches" className="py-20 bg-gradient-to-br from-white via-neutral-50/30 to-white relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(147,30,92,0.02)_0%,transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(89,181,176,0.02)_0%,transparent_50%)]"></div>
-      
-      <Container size="xl" className="relative z-10">
+    <section id="strategic-approaches" className="py-20 bg-neutral-50">
+      <Container size="xl">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-gradient-to-r from-primary/10 to-secondary-teal/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8">
+          <div className="inline-flex items-center bg-primary/10 rounded-full px-6 py-3 mb-8">
             <Zap className="h-5 w-5 mr-3 text-primary" />
-            <Typography variant="overline" className="text-primary font-bold tracking-wider text-sm">
+            <span className="text-primary font-semibold text-sm uppercase tracking-wider">
               HOW WE WORK
-            </Typography>
-          </div>
-          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
-            Our Strategic
-            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
-              Approaches
             </span>
+          </div>
+          <Typography variant="h2" className="mb-8 text-4xl md:text-5xl font-bold text-neutral-900">
+            Our Strategic Approaches
           </Typography>
           <Typography variant="body" className="text-neutral-600 max-w-4xl mx-auto text-lg leading-relaxed">
             We use six synergistic approaches to deliver on our mission. These are not just methods; they are how we implement, scale, and sustain justice innovation across Tanzania.
@@ -84,30 +77,26 @@ const StrategicApproachesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {approaches.map((approach, index) => (
-            <Card key={index} className="group overflow-hidden bg-white hover:scale-[1.02] transition-all duration-300 border-0 shadow-sm hover:shadow-lg">
-              {/* Image Header */}
+            <div key={index} className="bg-white rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300">
+              {/* Clean Image Header */}
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={approach.image} 
                   alt={approach.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-br ${approach.color} opacity-80`}></div>
-                <div className="absolute top-6 left-6">
-                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                    <div className="text-white">
+                <div className="absolute top-4 left-4">
+                  <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                    <div className="text-primary">
                       {approach.icon}
                     </div>
                   </div>
                 </div>
-                <div className="absolute top-6 right-6 text-6xl font-black text-white/15">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
               </div>
 
-              {/* Content */}
-              <div className="p-8">
-                <Typography variant="h4" className="text-xl font-bold mb-4 text-primary group-hover:text-secondary-teal transition-colors duration-300">
+              {/* Clean Content */}
+              <div className="p-6">
+                <Typography variant="h4" className="text-xl font-bold mb-3 text-neutral-900">
                   {approach.title}
                 </Typography>
                 
@@ -116,13 +105,13 @@ const StrategicApproachesSection = () => {
                 </Typography>
 
                 <Link to={approach.link}>
-                  <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold group-hover:translate-x-2 transition-all duration-300 flex items-center">
+                  <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold transition-colors duration-200 flex items-center">
                     Learn More
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </Container>

@@ -88,46 +88,36 @@ const StrategicFocusAreasSection = () => {
   ];
 
   return (
-    <section id="focus-areas" className="py-20 bg-gradient-to-br from-neutral-50 via-white to-neutral-50/30 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(147,30,92,0.02)_0%,transparent_40%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(89,181,176,0.02)_0%,transparent_40%)]"></div>
-      
-      <Container size="xl" className="relative z-10">
+    <section id="focus-areas" className="py-20 bg-white">
+      <Container size="xl">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-gradient-to-r from-secondary-orange/10 to-secondary-teal/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8">
+          <div className="inline-flex items-center bg-secondary-orange/10 rounded-full px-6 py-3 mb-8">
             <Building className="h-5 w-5 mr-3 text-secondary-orange" />
-            <Typography variant="overline" className="text-secondary-orange font-bold tracking-wider text-sm">
+            <span className="text-secondary-orange font-semibold text-sm uppercase tracking-wider">
               WHERE WE FOCUS
-            </Typography>
-          </div>
-          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
-            Expanding Strategic
-            <span className="block bg-gradient-to-r from-secondary-orange to-secondary-teal bg-clip-text text-transparent">
-              Focus Areas
             </span>
+          </div>
+          <Typography variant="h2" className="mb-8 text-4xl md:text-5xl font-bold text-neutral-900">
+            Strategic Focus Areas
           </Typography>
           <Typography variant="body" className="text-neutral-600 max-w-4xl mx-auto text-lg leading-relaxed">
-            Our expanded Strategic Focus Areas align with Tanzania's legal development needs and global justice goals. Each area represents a priority theme where we deliver structured, scalable impact.
+            Our Strategic Focus Areas align with Tanzania's legal development needs and global justice goals. Each area represents a priority theme where we deliver structured, scalable impact.
           </Typography>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {focusAreas.map((area, index) => (
-            <Card key={index} className="group overflow-hidden bg-white hover:scale-[1.01] transition-all duration-300 border-0 shadow-sm hover:shadow-lg">
+            <div key={index} className="bg-white rounded-lg border border-neutral-200 overflow-hidden hover:shadow-md transition-shadow duration-300">
               <div className="flex gap-6 p-8">
                 {/* Content Section */}
                 <div className="flex-1">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${area.color} rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center text-white">
                       {area.icon}
-                    </div>
-                    <div className="text-3xl font-black text-neutral-100">
-                      {String(index + 1).padStart(2, '0')}
                     </div>
                   </div>
 
-                  <Typography variant="h4" className="text-xl font-bold mb-4 text-primary group-hover:text-secondary-teal transition-colors duration-300">
+                  <Typography variant="h4" className="text-xl font-bold mb-4 text-neutral-900">
                     {area.title}
                   </Typography>
                   
@@ -135,13 +125,11 @@ const StrategicFocusAreasSection = () => {
                     {area.description}
                   </Typography>
 
-                  {/* Stats */}
+                  {/* Clean Stats */}
                   <div className="space-y-3 mb-6">
                     {area.stats.map((stat, statIndex) => (
                       <div key={statIndex} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-gradient-to-br from-primary/20 to-secondary-teal/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                          <TrendingUp className="h-3 w-3 text-primary" />
-                        </div>
+                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0 mt-3"></div>
                         <Typography variant="bodySmall" className="text-neutral-600 leading-relaxed font-medium">
                           {stat}
                         </Typography>
@@ -150,29 +138,25 @@ const StrategicFocusAreasSection = () => {
                   </div>
 
                   <Link to={area.link}>
-                    <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold group-hover:translate-x-2 transition-all duration-300 flex items-center">
+                    <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold transition-colors duration-200 flex items-center">
                       {area.cta}
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                 </div>
 
-                {/* Image Section */}
+                {/* Clean Image Section */}
                 <div className="w-32 h-32 flex-shrink-0">
-                  <div className="relative group/image">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${area.color} rounded-2xl transform rotate-6 group-hover:rotate-3 transition-transform duration-300`}></div>
-                    <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300">
-                      <img 
-                        src={area.image} 
-                        alt={area.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className={`absolute inset-0 bg-gradient-to-t ${area.color} opacity-20`}></div>
-                    </div>
+                  <div className="bg-white rounded-lg overflow-hidden">
+                    <img 
+                      src={area.image} 
+                      alt={area.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </Container>

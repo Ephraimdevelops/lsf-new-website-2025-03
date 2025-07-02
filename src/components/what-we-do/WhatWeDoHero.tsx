@@ -8,133 +8,75 @@ import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 
 const WhatWeDoHero = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [activeStatIndex, setActiveStatIndex] = useState(0);
-  
-  const impactStats = [
-    { value: "2.8M+", label: "Tanzanians Reached", color: "text-secondary-orange", icon: "👥" },
-    { value: "4,000+", label: "Trained Paralegals", color: "text-secondary-teal", icon: "⚖️" },
-    { value: "31", label: "Regions Covered", color: "text-secondary-yellow", icon: "📍" },
-    { value: "78%", label: "Cases Resolved", color: "text-white", icon: "✅" }
-  ];
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-    
-    // Rotate through stats
-    const intervalId = setInterval(() => {
-      setActiveStatIndex((prev) => (prev + 1) % impactStats.length);
-    }, 3000);
-    
-    return () => {
-      clearTimeout(timer);
-      clearInterval(intervalId);
-    };
-  }, []);
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ 
-          backgroundImage: `url('/lovable-uploads/background with mother umage .png')`,
-          opacity: isLoaded ? 1 : 0,
-          transition: 'opacity 1s ease-in-out'
-        }}
-      ></div>
-      
-      {/* Enhanced Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-dark/95 to-black/90"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-      
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-secondary-teal/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-yellow/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+    <section className="relative">
+      {/* Clean Hero Section with Real Image */}
+      <div className="relative h-[80vh] bg-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="/lovable-uploads/background with mother umage .png"
+            alt="Women participating in legal empowerment program"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-primary/60"></div>
+        </div>
+        
+        <Container size="xl" className="relative z-10 h-full flex items-center">
+          <div className="max-w-4xl text-white">
+            <div className="inline-flex items-center gap-3 mb-6 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
+              <Target className="h-5 w-5" />
+              <span className="font-semibold text-sm uppercase tracking-wider">Our Work</span>
+            </div>
+            
+            <Typography variant="h1" className="text-white mb-6 text-5xl md:text-6xl leading-tight">
+              Transforming Justice.<br/>
+              <span className="text-secondary-orange">Empowering People.</span>
+            </Typography>
+            
+            <Typography variant="body" className="text-white/90 mb-8 text-xl max-w-3xl leading-relaxed">
+              Explore how our legal empowerment model drives impact in Tanzania through sustainable strategies, inclusive partnerships, and transformative focus areas.
+            </Typography>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="#strategic-approaches">
+                <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange-dark text-white font-semibold px-8 py-4 rounded-lg">
+                  Explore Our Model
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="#focus-areas">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 rounded-lg">
+                  <PlayCircle className="mr-2 h-5 w-5" />
+                  Watch Our Impact Video
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
       </div>
-      
-      <Container size="xl" className="relative z-10">
-        <div className="text-center text-white max-w-6xl mx-auto px-4">
-          <div 
-            className={`inline-flex items-center space-x-3 mb-6 md:mb-8 bg-white/10 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 border border-white/20 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}
-          >
-            <Target className="h-5 w-5 md:h-6 md:w-6 text-secondary-orange" />
-            <span className="text-secondary-orange font-bold text-sm md:text-lg uppercase tracking-wider">
-              Our Work
-            </span>
-            <Badge className="bg-secondary-orange text-white border-0">
-              <Zap className="h-3 w-3 mr-1" />
-              Transforming Lives
-            </Badge>
+
+      {/* Clean Stats Section */}
+      <div className="bg-white py-16">
+        <Container size="xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">2.8M+</div>
+              <div className="text-neutral-600 text-sm uppercase tracking-wide">Tanzanians Reached</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-secondary-teal mb-2">4,000+</div>
+              <div className="text-neutral-600 text-sm uppercase tracking-wide">Trained Paralegals</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-secondary-orange mb-2">31</div>
+              <div className="text-neutral-600 text-sm uppercase tracking-wide">Regions Covered</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-secondary-yellow mb-2">78%</div>
+              <div className="text-neutral-600 text-sm uppercase tracking-wide">Cases Resolved</div>
+            </div>
           </div>
-          
-          <Typography 
-            variant="display" 
-            className={`text-white mb-6 md:mb-8 leading-none text-4xl md:text-6xl lg:text-8xl font-bold transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          >
-            Transforming Justice.
-            <span className="block text-secondary-orange mt-4">Empowering People.</span>
-            <span className="block text-secondary-teal mt-4">Changing Systems.</span>
-          </Typography>
-          
-          <Typography 
-            variant="body" 
-            className={`text-white/95 mb-8 md:mb-12 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          >
-            Explore how our legal empowerment model drives impact in Tanzania through sustainable strategies, inclusive partnerships, and transformative focus areas.
-          </Typography>
-          
-          <div className={`flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-12 md:mb-16 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <Link to="#strategic-approaches">
-              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-bold px-8 md:px-10 py-4 md:py-5 text-base md:text-lg rounded-full hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 shadow-2xl">
-                Explore Our Model
-                <ArrowRight className="ml-3 h-5 w-5 md:h-6 md:w-6" />
-              </Button>
-            </Link>
-            <Link to="#focus-areas">
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold px-8 md:px-10 py-4 md:py-5 text-base md:text-lg rounded-full transition-all duration-300 backdrop-blur-sm">
-                <Target className="mr-3 h-5 w-5 md:h-6 md:w-6" />
-                See Impact by Focus Area
-              </Button>
-            </Link>
-          </div>
-          
-          {/* Enhanced Impact Stats with Animation */}
-          <div className={`grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            {impactStats.map((stat, index) => (
-              <div 
-                key={index} 
-                className={`text-center transform transition-all duration-500 ${activeStatIndex === index ? 'scale-110' : 'scale-100'} bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 group`}
-              >
-                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
-                  {stat.icon}
-                </div>
-                <div className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 ${stat.color} transition-all duration-500`}>
-                  {stat.value}
-                </div>
-                <div className="text-white/80 text-xs md:text-sm uppercase tracking-wide">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Container>
-      
-      {/* Enhanced Scroll Indicator */}
-      <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-70' : 'opacity-0'}`}>
-        <div className="flex flex-col items-center">
-          <Typography variant="small" className="text-white/70 mb-2">
-            Scroll to explore
-          </Typography>
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center animate-bounce">
-            <div className="w-1 h-3 bg-white/70 rounded-full mt-2"></div>
-          </div>
-        </div>
+        </Container>
       </div>
     </section>
   );
