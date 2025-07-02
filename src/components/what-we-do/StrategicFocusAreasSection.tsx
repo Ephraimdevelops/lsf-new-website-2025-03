@@ -17,7 +17,8 @@ const StrategicFocusAreasSection = () => {
       ],
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop&crop=faces",
       color: "from-secondary-orange to-secondary-orange/80",
-      link: "/focus-areas/legal-aid"
+      link: "/accessible-legal-aid",
+      cta: "Explore This Focus Area"
     },
     {
       icon: <GraduationCap className="h-8 w-8" />,
@@ -29,7 +30,8 @@ const StrategicFocusAreasSection = () => {
       ],
       image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=400&h=300&fit=crop&crop=faces",
       color: "from-secondary-teal to-secondary-teal/80",
-      link: "/focus-areas/legal-empowerment"
+      link: "/empowered-communities",
+      cta: "Learn About Legal Empowerment"
     },
     {
       icon: <Heart className="h-8 w-8" />,
@@ -41,7 +43,8 @@ const StrategicFocusAreasSection = () => {
       ],
       image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&h=300&fit=crop&crop=faces",
       color: "from-primary to-primary-dark",
-      link: "/focus-areas/gender-justice"
+      link: "/gender-justice-resources",
+      cta: "Dive into Gender Justice Work"
     },
     {
       icon: <FileText className="h-8 w-8" />,
@@ -53,7 +56,8 @@ const StrategicFocusAreasSection = () => {
       ],
       image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&h=300&fit=crop&crop=faces",
       color: "from-secondary-yellow to-secondary-yellow/80",
-      link: "/focus-areas/policy-reform"
+      link: "/policy-advocacy",
+      cta: "See Our Policy Influence"
     },
     {
       icon: <Building className="h-8 w-8" />,
@@ -65,7 +69,8 @@ const StrategicFocusAreasSection = () => {
       ],
       image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400&h=300&fit=crop&crop=faces",
       color: "from-green-500 to-green-600",
-      link: "/focus-areas/sustainable-systems"
+      link: "/institutional-development",
+      cta: "Learn How We Build Sustainability"
     },
     {
       icon: <Lightbulb className="h-8 w-8" />,
@@ -77,7 +82,8 @@ const StrategicFocusAreasSection = () => {
       ],
       image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=300&fit=crop&crop=faces",
       color: "from-purple-500 to-purple-600",
-      link: "/focus-areas/inclusive-innovation"
+      link: "/digital-transformation",
+      cta: "Discover Inclusive Legal Innovation"
     }
   ];
 
@@ -145,7 +151,7 @@ const StrategicFocusAreasSection = () => {
 
                   <Link to={area.link}>
                     <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold group-hover:translate-x-2 transition-all duration-300 flex items-center">
-                      Explore This Focus Area
+                      {area.cta}
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>
                   </Link>
