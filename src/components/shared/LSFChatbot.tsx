@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Sparkles, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -14,10 +14,11 @@ interface Message {
 
 const LSFChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [threadId, setThreadId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m the LSF AI Assistant. How can I help you with legal services today?',
+      text: 'Hello! I\'m your LSF AI Assistant. I can help you with legal services, information about our programs, and connect you with resources. What would you like to know?',
       sender: 'bot',
       timestamp: new Date()
     }
@@ -25,6 +26,12 @@ const LSFChatbot = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const quickActions = [
+    { text: "Legal Aid Services", icon: <HelpCircle size={14} /> },
+    { text: "Our Programs", icon: <Sparkles size={14} /> },
+    { text: "Contact Information", icon: <MessageCircle size={14} /> },
+  ];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -34,12 +41,13 @@ const LSFChatbot = () => {
     scrollToBottom();
   }, [messages]);
 
-  const sendMessage = async () => {
-    if (!inputMessage.trim()) return;
+  const sendMessage = async (messageText?: string) => {
+    const textToSend = messageText || inputMessage;
+    if (!textToSend.trim()) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      text: inputMessage,
+      text: textToSend,
       sender: 'user',
       timestamp: new Date()
     };
@@ -49,22 +57,34 @@ const LSFChatbot = () => {
     setIsLoading(true);
 
     try {
+      const requestBody: any = {
+        message: textToSend,
+        timestamp: new Date().toISOString()
+      };
+
+      // Include threadId if available for conversation continuity
+      if (threadId) {
+        requestBody.threadId = threadId;
+      }
+
       const response = await fetch('https://lsfai.app.n8n.cloud/webhook-test/43fc1f39-c9ef-4313-afce-c266d0cd81b5', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          message: inputMessage,
-          timestamp: new Date().toISOString()
-        })
+        body: JSON.stringify(requestBody)
       });
 
       const data = await response.json();
       
+      // Store threadId for conversation continuity
+      if (data.threadId && !threadId) {
+        setThreadId(data.threadId);
+      }
+      
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: data.response || data.message || 'I apologize, but I\'m having trouble processing your request right now. Please try again.',
+        text: data.output || data.response || data.message || 'I apologize, but I\'m having trouble processing your request right now. Please try again.',
         sender: 'bot',
         timestamp: new Date()
       };
@@ -81,6 +101,10 @@ const LSFChatbot = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSendClick = () => {
+    sendMessage();
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -127,49 +151,75 @@ const LSFChatbot = () => {
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={cn(
-                  "flex items-start space-x-3",
-                  message.sender === 'user' ? "flex-row-reverse space-x-reverse" : ""
-                )}
-              >
-                <div className={cn(
-                  "w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0",
-                  message.sender === 'user' 
-                    ? "bg-secondary-teal text-white" 
-                    : "bg-primary/10 text-primary"
-                )}>
-                  {message.sender === 'user' ? <User size={16} /> : <Bot size={16} />}
-                </div>
-                <div className={cn(
-                  "max-w-[70%] p-3 rounded-lg text-sm",
-                  message.sender === 'user'
-                    ? "bg-secondary-teal text-white rounded-br-sm"
-                    : "bg-neutral-100 text-neutral-800 rounded-bl-sm"
-                )}>
-                  <p>{message.text}</p>
-                  <span className={cn(
-                    "text-xs mt-1 block",
-                    message.sender === 'user' ? "text-white/70" : "text-neutral-500"
+            {messages.map((message, index) => (
+              <div key={message.id}>
+                <div
+                  className={cn(
+                    "flex items-start space-x-3",
+                    message.sender === 'user' ? "flex-row-reverse space-x-reverse" : ""
+                  )}
+                >
+                  <div className={cn(
+                    "w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0",
+                    message.sender === 'user' 
+                      ? "bg-secondary-teal text-white shadow-md" 
+                      : "bg-gradient-to-br from-primary/10 to-primary/20 text-primary border border-primary/20"
                   )}>
-                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </span>
+                    {message.sender === 'user' ? <User size={16} /> : <Bot size={16} />}
+                  </div>
+                  <div className={cn(
+                    "max-w-[70%] p-3 rounded-xl text-sm shadow-sm",
+                    message.sender === 'user'
+                      ? "bg-gradient-to-br from-secondary-teal to-secondary-teal/90 text-white rounded-br-md"
+                      : "bg-gradient-to-br from-neutral-50 to-neutral-100 text-neutral-800 rounded-bl-md border border-neutral-200"
+                  )}>
+                    <p className="leading-relaxed">{message.text}</p>
+                    <span className={cn(
+                      "text-xs mt-2 block",
+                      message.sender === 'user' ? "text-white/70" : "text-neutral-500"
+                    )}>
+                      {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </span>
+                  </div>
                 </div>
+                
+                {/* Show quick actions after the first bot message */}
+                {index === 0 && message.sender === 'bot' && (
+                  <div className="mt-4 ml-11">
+                    <p className="text-xs text-neutral-500 mb-2 font-medium">Quick Actions:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {quickActions.map((action, actionIndex) => (
+                        <Button
+                          key={actionIndex}
+                          variant="outline"
+                          size="sm"
+                          onClick={() => sendMessage(action.text)}
+                          disabled={isLoading}
+                          className="h-8 text-xs bg-white hover:bg-primary/5 border-primary/20 text-primary hover:text-primary transition-all duration-200"
+                        >
+                          <span className="mr-1.5">{action.icon}</span>
+                          {action.text}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
             
             {isLoading && (
               <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/10 to-primary/20 text-primary border border-primary/20 flex items-center justify-center">
                   <Bot size={16} />
                 </div>
-                <div className="bg-neutral-100 p-3 rounded-lg rounded-bl-sm">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 border border-neutral-200 p-3 rounded-xl rounded-bl-md shadow-sm">
+                  <div className="flex items-center space-x-2">
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    </div>
+                    <span className="text-xs text-neutral-500">Thinking...</span>
                   </div>
                 </div>
               </div>
@@ -189,7 +239,7 @@ const LSFChatbot = () => {
                 disabled={isLoading}
               />
               <Button
-                onClick={sendMessage}
+                onClick={handleSendClick}
                 disabled={!inputMessage.trim() || isLoading}
                 className="bg-primary hover:bg-primary-600 px-3"
               >
