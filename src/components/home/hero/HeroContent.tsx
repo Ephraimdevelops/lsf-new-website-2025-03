@@ -10,7 +10,7 @@ interface HeroContentProps {
 const HeroContent = ({ currentSlide }: HeroContentProps) => {
   return (
     <div className="lg:col-span-12">
-      <div className="max-w-4xl mx-auto text-center transition-all duration-500">
+      <div className="max-w-4xl text-left transition-all duration-500">
         {/* Category Badge */}
         <div className="inline-flex items-center bg-primary/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6">
           <span className="text-primary font-bold uppercase tracking-wider">
@@ -29,7 +29,7 @@ const HeroContent = ({ currentSlide }: HeroContentProps) => {
         </h2>
         
         {/* Description */}
-        <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-10">
+        <p className="text-lg md:text-xl text-white/80 max-w-3xl leading-relaxed mb-10">
           {currentSlide.description}
         </p>
         

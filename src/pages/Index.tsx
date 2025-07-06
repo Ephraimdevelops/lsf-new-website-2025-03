@@ -6,7 +6,7 @@ import InteractiveStorySection from '@/components/home/InteractiveStorySection';
 import ImmersiveApproachSection from '@/components/home/ImmersiveApproachSection';
 import AnimatedPartnersSection from '@/components/home/AnimatedPartnersSection';
 import FuturisticCallToAction from '@/components/home/FuturisticCallToAction';
-import ParallaxNewsSection from '@/components/home/ParallaxNewsSection';
+import CleanNewsSection from '@/components/home/CleanNewsSection';
 
 const Index = () => (
   <Layout>
@@ -22,8 +22,8 @@ const Index = () => (
     {/* Strategic Approaches Section */}
     <ImmersiveApproachSection />
 
-    {/* Parallax News & Updates */}
-    <ParallaxNewsSection />
+    {/* Clean News & Publications Section */}
+    <CleanNewsSection />
 
     {/* Animated Partners Showcase */}
     <AnimatedPartnersSection />

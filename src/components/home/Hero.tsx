@@ -82,7 +82,7 @@ const Hero = () => {
       <HeroBackground currentSlide={currentSlideData} />
       
       <div className="container mx-auto px-4 py-12 relative z-20">
-        <div className="grid grid-cols-1 gap-8 items-center">
+        <div className="grid grid-cols-1 gap-8 items-center justify-start">
           <HeroContent currentSlide={currentSlideData} />
         </div>
         
