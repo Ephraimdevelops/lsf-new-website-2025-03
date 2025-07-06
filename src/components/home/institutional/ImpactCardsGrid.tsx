@@ -1,0 +1,101 @@
+import { Users, BookOpen, Gavel, Heart, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const impactAreas = [
+  {
+    icon: Users,
+    title: "Community Empowerment",
+    description: "Training paralegals and building local capacity for sustainable legal support across Tanzania.",
+    stats: "4,000+ paralegals trained",
+    color: "from-primary to-primary-dark",
+    link: "/what-we-do/capacity-building"
+  },
+  {
+    icon: Gavel,
+    title: "Access to Justice",
+    description: "Providing direct legal aid services to vulnerable populations, ensuring no one is left behind.",
+    stats: "85% case resolution rate",
+    color: "from-secondary-teal to-secondary-teal-dark",
+    link: "/what-we-do/direct-implementation"
+  },
+  {
+    icon: BookOpen,
+    title: "Policy & Advocacy",
+    description: "Influencing legal frameworks and policies to create systemic change for marginalized communities.",
+    stats: "15 policy reforms influenced",
+    color: "from-secondary-orange to-secondary-orange-dark",
+    link: "/what-we-do/advocacy-policy"
+  },
+  {
+    icon: Heart,
+    title: "Digital Innovation",
+    description: "Leveraging technology to expand reach and improve service delivery through digital platforms.",
+    stats: "50,000+ app downloads",
+    color: "from-secondary-yellow to-secondary-yellow-dark",
+    link: "/what-we-do/digital-transformation"
+  }
+];
+
+const ImpactCardsGrid = () => {
+  return (
+    <section className="py-20 bg-neutral-50">
+      <div className="container mx-auto px-6">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-serif font-light text-neutral-900 mb-6">
+            Our Impact Areas
+          </h2>
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto font-light leading-relaxed">
+            Through four strategic approaches, we're transforming the legal landscape 
+            and creating lasting change for communities across Tanzania.
+          </p>
+        </div>
+        
+        {/* Apple-style cards grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {impactAreas.map((area, index) => {
+            const IconComponent = area.icon;
+            return (
+              <Link 
+                key={index}
+                to={area.link}
+                className="group block"
+              >
+                <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border border-neutral-100 hover:border-neutral-200">
+                  {/* Icon with gradient background */}
+                  <div className={`w-16 h-16 bg-gradient-to-r ${area.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent className="h-8 w-8 text-white" />
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-xl font-semibold text-neutral-900 mb-4 group-hover:text-primary transition-colors">
+                    {area.title}
+                  </h3>
+                  
+                  <p className="text-neutral-600 mb-6 leading-relaxed">
+                    {area.description}
+                  </p>
+                  
+                  {/* Stats badge */}
+                  <div className="inline-flex items-center bg-neutral-100 rounded-full px-4 py-2 mb-4">
+                    <span className="text-sm font-medium text-neutral-700">
+                      {area.stats}
+                    </span>
+                  </div>
+                  
+                  {/* Apple-style arrow */}
+                  <div className="flex items-center text-primary font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    Learn more
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ImpactCardsGrid;

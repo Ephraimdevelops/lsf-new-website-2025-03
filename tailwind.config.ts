@@ -104,12 +104,12 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'display': ['Merriweather Sans', 'system-ui', 'sans-serif'],
-				'heading': ['Merriweather Sans', 'system-ui', 'sans-serif'],
-				'body': ['Inter', 'Calibri', 'system-ui', 'sans-serif'],
-				'sans': ['Inter', 'Calibri', 'system-ui', 'sans-serif'],
-				'serif': ['"Noto Serif"', 'serif'],
-				'serif-condensed': ['"Noto Serif Condensed"', '"Noto Serif"', 'serif'],
+				'display': ['Playfair Display', 'serif'],
+				'heading': ['Playfair Display', 'serif'],
+				'body': ['Inter', 'system-ui', 'sans-serif'],
+				'sans': ['Inter', 'system-ui', 'sans-serif'],
+				'serif': ['Playfair Display', 'serif'],
+				'serif-condensed': ['Playfair Display', 'serif'],
 			},
 			fontSize: {
 				'xs': ['0.75rem', { lineHeight: '1rem' }],

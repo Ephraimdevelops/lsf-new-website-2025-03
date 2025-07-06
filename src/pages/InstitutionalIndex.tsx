@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 import InstitutionalHero from '@/components/home/institutional/InstitutionalHero';
 import ImpactCardsGrid from '@/components/home/institutional/ImpactCardsGrid';
@@ -6,7 +5,7 @@ import TestimonialSection from '@/components/home/institutional/TestimonialSecti
 import PartnersSection from '@/components/home/institutional/PartnersSection';
 import CallToActionBanner from '@/components/home/institutional/CallToActionBanner';
 
-const Index = () => (
+const InstitutionalIndex = () => (
   <Layout>
     {/* UN-style Hero with Apple UX principles */}
     <InstitutionalHero />
@@ -25,4 +24,4 @@ const Index = () => (
   </Layout>
 );
 
-export default Index;
+export default InstitutionalIndex;
