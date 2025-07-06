@@ -113,7 +113,7 @@ const SuccessStories = () => {
             </Typography>
           </div>
           
-          <Typography variant="display" className="text-white mb-8 font-heading max-w-4xl mx-auto">
+          <Typography variant="display" className="text-white mb-8 font-light max-w-4xl mx-auto">
             Stories That Transform Lives
           </Typography>
           
@@ -127,7 +127,7 @@ const SuccessStories = () => {
         <div className="mb-20">
           <div className="flex flex-col lg:flex-row lg:justify-between items-start lg:items-center mb-16">
             <div className="max-w-2xl">
-              <Typography variant="h2" className="text-white mb-6 font-heading">
+              <Typography variant="h2" className="text-white mb-6 font-light">
                 Transforming Lives Daily
               </Typography>
               <Typography variant="body" className="text-white/80 text-lg">
@@ -202,7 +202,7 @@ const SuccessStories = () => {
         {/* New Impact Transformation Section */}
         <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 p-12 mb-16">
           <div className="text-center mb-16">
-            <Typography variant="h2" className="text-white mb-6 font-heading">
+            <Typography variant="h2" className="text-white mb-6 font-light">
               Ripple Effects of Justice
             </Typography>
             <Typography variant="body" className="text-white/80 text-lg max-w-3xl mx-auto">
@@ -215,7 +215,7 @@ const SuccessStories = () => {
               <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-all duration-300 border border-white/30">
                 <Users className="h-12 w-12 text-white" />
               </div>
-              <Typography variant="display" className="text-white mb-4 font-black">
+              <Typography variant="display" className="text-white mb-4 font-medium">
                 426K+
               </Typography>
               <Typography variant="h3" className="text-white/90 mb-3">
@@ -230,7 +230,7 @@ const SuccessStories = () => {
               <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-all duration-300 border border-white/30">
                 <TrendingUp className="h-12 w-12 text-white" />
               </div>
-              <Typography variant="display" className="text-white mb-4 font-black">
+              <Typography variant="display" className="text-white mb-4 font-medium">
                 96%
               </Typography>
               <Typography variant="h3" className="text-white/90 mb-3">
@@ -245,7 +245,7 @@ const SuccessStories = () => {
               <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-all duration-300 border border-white/30">
                 <Award className="h-12 w-12 text-white" />
               </div>
-              <Typography variant="display" className="text-white mb-4 font-black">
+              <Typography variant="display" className="text-white mb-4 font-medium">
                 184
               </Typography>
               <Typography variant="h3" className="text-white/90 mb-3">

@@ -16,17 +16,31 @@ export const navigationItems = [
     href: '/what-we-do',
     description: 'Our comprehensive approach to justice',
     subItems: [
-      { name: 'Strategic Focus Areas', href: '/what-we-do#focus-areas', description: 'Key intervention areas' },
+      { name: 'What We Do', href: '/what-we-do', description: 'Overview of our work' },
+      { name: 'Strategic Focuses', href: '/strategic-focuses', description: 'Key focus areas' },
+      { name: 'Strategic Approaches', href: '/approaches', description: 'How we work' },
+    ]
+  },
+  { 
+    name: 'Strategic Focuses', 
+    href: '/strategic-focuses',
+    description: 'Our key focus areas',
+    subItems: [
       { name: 'Accessible Legal Aid', href: '/focus-areas/accessible-legal-aid', description: 'Breaking barriers to justice' },
       { name: 'Empowered Communities', href: '/focus-areas/empowered-communities', description: 'Local capacity building' },
       { name: 'Conducive Legal Environment', href: '/focus-areas/conducive-environment', description: 'Policy & framework' },
       { name: 'Institutional Sustainability', href: '/focus-areas/institutional-development', description: 'Organizational growth' },
-      { name: 'Our Approaches', href: '/what-we-do#approaches', description: 'How we work' },
+    ]
+  },
+  { 
+    name: 'Strategic Approaches', 
+    href: '/approaches',
+    description: 'How we work',
+    subItems: [
       { name: 'Grant Making & Management', href: '/what-we-do/grant-making', description: 'Strategic funding approach' },
       { name: 'Direct Implementation', href: '/what-we-do/direct-implementation', description: 'On-ground projects' },
-      { name: 'Advocacy', href: '/what-we-do/advocacy-policy', description: 'System-level change' },
+      { name: 'Advocacy & Policy', href: '/what-we-do/advocacy-policy', description: 'System-level change' },
       { name: 'Research & Learning', href: '/what-we-do/learning-research', description: 'Evidence-based insights' },
-      { name: 'Policy Influence', href: '/what-we-do/advocacy-policy#policy', description: 'Shaping legal frameworks' },
       { name: 'Partnerships & Networking', href: '/what-we-do/partnerships-networking', description: 'Collaborative approach' },
     ]
   },

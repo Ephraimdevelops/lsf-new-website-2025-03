@@ -1,27 +1,19 @@
 
 import Layout from '@/components/layout/Layout';
-import InstitutionalHero from '@/components/home/institutional/InstitutionalHero';
-import ImpactCardsGrid from '@/components/home/institutional/ImpactCardsGrid';
-import TestimonialSection from '@/components/home/institutional/TestimonialSection';
-import PartnersSection from '@/components/home/institutional/PartnersSection';
-import CallToActionBanner from '@/components/home/institutional/CallToActionBanner';
+import SlidingHero from '@/components/home/hero/SlidingHero';
+import SuccessStories from '@/components/home/SuccessStories';
+import Partners from '@/components/home/Partners';
 
 const Index = () => (
   <Layout>
-    {/* UN-style Hero with Apple UX principles */}
-    <InstitutionalHero />
+    {/* Sliding Hero Section */}
+    <SlidingHero />
 
-    {/* Apple-style Impact Cards */}
-    <ImpactCardsGrid />
+    {/* Success Stories Section */}
+    <SuccessStories />
 
-    {/* Testimonials with clean design */}
-    <TestimonialSection />
-
-    {/* Partners showcase */}
-    <PartnersSection />
-
-    {/* Professional Call to Action */}
-    <CallToActionBanner />
+    {/* Partners Network */}
+    <Partners />
   </Layout>
 );
 

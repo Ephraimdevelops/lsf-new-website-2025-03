@@ -104,12 +104,12 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'display': ['Playfair Display', 'serif'],
-				'heading': ['Playfair Display', 'serif'],
-				'body': ['Inter', 'system-ui', 'sans-serif'],
-				'sans': ['Inter', 'system-ui', 'sans-serif'],
-				'serif': ['Playfair Display', 'serif'],
-				'serif-condensed': ['Playfair Display', 'serif'],
+				'display': ['Ubuntu', 'system-ui', 'sans-serif'],
+				'heading': ['Ubuntu', 'system-ui', 'sans-serif'],
+				'body': ['Ubuntu', 'system-ui', 'sans-serif'],
+				'sans': ['Ubuntu', 'system-ui', 'sans-serif'],
+				'serif': ['Ubuntu', 'system-ui', 'sans-serif'],
+				'serif-condensed': ['Ubuntu', 'system-ui', 'sans-serif'],
 			},
 			fontSize: {
 				'xs': ['0.75rem', { lineHeight: '1rem' }],

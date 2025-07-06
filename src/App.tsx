@@ -44,6 +44,8 @@ import OpportunityDetail from "./pages/OpportunityDetail";
 import TeamDetail from "./pages/TeamDetail";
 import HeroDetail from "./pages/HeroDetail";
 import NotFound from "./pages/NotFound";
+import StrategicFocuses from "./pages/StrategicFocuses";
+import Approaches from "./pages/Approaches";
 import Bookmarks from '@/pages/Bookmarks';
 import ErrorBoundary from '@/components/ErrorBoundary';
 
@@ -61,6 +63,8 @@ function App() {
                   <Route path="/" element={<Index />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/what-we-do" element={<WhatWeDo />} />
+                  <Route path="/strategic-focuses" element={<StrategicFocuses />} />
+                  <Route path="/approaches" element={<Approaches />} />
                   <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
                   <Route path="/what-we-do/direct-implementation" element={<DirectImplementation />} />
                   <Route path="/what-we-do/advocacy-policy" element={<AdvocacyPolicy />} />

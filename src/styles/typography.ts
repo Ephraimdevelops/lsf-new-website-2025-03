@@ -1,11 +1,11 @@
 
 export const typography = {
-  // Font families - Updated for Merriweather Sans and Calibri
+  // Font families - Updated for Ubuntu
   fonts: {
-    heading: ['Merriweather Sans', 'system-ui', 'sans-serif'],
-    body: ['Calibri', 'system-ui', 'sans-serif'],
-    display: ['Merriweather Sans', 'system-ui', 'sans-serif'],
-    sans: ['Calibri', 'system-ui', 'sans-serif'],
+    heading: ['Ubuntu', 'system-ui', 'sans-serif'],
+    body: ['Ubuntu', 'system-ui', 'sans-serif'],
+    display: ['Ubuntu', 'system-ui', 'sans-serif'],
+    sans: ['Ubuntu', 'system-ui', 'sans-serif'],
   },
 
   // Standardized font sizes - Consistent hierarchy
