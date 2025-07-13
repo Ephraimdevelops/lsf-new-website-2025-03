@@ -1,19 +1,38 @@
-
 import Layout from '@/components/layout/Layout';
 import SlidingHero from '@/components/home/hero/SlidingHero';
-import SuccessStories from '@/components/home/SuccessStories';
-import Partners from '@/components/home/Partners';
+import FeaturedNewsSection from '@/components/home/FeaturedNewsSection';
+import AboutUsHighlight from '@/components/home/AboutUsHighlight';
+import PublicationsShowcase from '@/components/home/PublicationsShowcase';
+import TestimonialSection from '@/components/home/TestimonialSection';
+import OrganizationHighlights from '@/components/home/OrganizationHighlights';
+import PartnersSection from '@/components/home/PartnersSection';
+import CallToActionBanner from '@/components/home/CallToActionBanner';
 
 const Index = () => (
   <Layout>
-    {/* Sliding Hero Section */}
+    {/* Hero Section with Sliding Carousel */}
     <SlidingHero />
 
-    {/* Success Stories Section */}
-    <SuccessStories />
+    {/* Featured News & Updates */}
+    <FeaturedNewsSection />
+
+    {/* About Us Highlight */}
+    <AboutUsHighlight />
+
+    {/* Organization Highlights & Impact */}
+    <OrganizationHighlights />
+
+    {/* Publications Showcase */}
+    <PublicationsShowcase />
+
+    {/* Testimonials */}
+    <TestimonialSection />
 
     {/* Partners Network */}
-    <Partners />
+    <PartnersSection />
+
+    {/* Call to Action */}
+    <CallToActionBanner />
   </Layout>
 );
 
