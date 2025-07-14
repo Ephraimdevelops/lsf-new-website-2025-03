@@ -55,7 +55,16 @@ const MobileNavigation = ({
                     )}
                     onClick={() => toggleDropdown(item.name)}
                   >
-                    <span>{item.name}</span>
+                    <div className="flex items-center space-x-3">
+                      {(item as any).icon && (
+                        <img 
+                          src={(item as any).icon} 
+                          alt={item.name}
+                          className="w-5 h-5 object-contain"
+                        />
+                      )}
+                      <span>{item.name}</span>
+                    </div>
                     <ChevronDown 
                       size={16} 
                       className={cn(
@@ -68,11 +77,18 @@ const MobileNavigation = ({
                   <Link
                     to={item.href}
                     className={cn(
-                      "flex items-center px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 hover:bg-muted/50",
+                      "flex items-center space-x-3 px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 hover:bg-muted/50",
                       location.pathname === item.href ? "text-primary bg-primary/10" : "text-foreground"
                     )}
                   >
-                    {item.name}
+                    {(item as any).icon && (
+                      <img 
+                        src={(item as any).icon} 
+                        alt={item.name}
+                        className="w-5 h-5 object-contain"
+                      />
+                    )}
+                    <span>{item.name}</span>
                   </Link>
                 )}
                 

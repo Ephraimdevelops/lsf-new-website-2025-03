@@ -48,6 +48,9 @@ import StrategicFocuses from "./pages/StrategicFocuses";
 import Approaches from "./pages/Approaches";
 import Bookmarks from '@/pages/Bookmarks';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import SuccessStories from './pages/SuccessStories';
+import Whistleblower from './pages/Whistleblower';
+import FAQ from './pages/FAQ';
 
 const queryClient = new QueryClient();
 
@@ -84,6 +87,7 @@ function App() {
         <Route path="/impact" element={<Impact />} />
                   <Route path="/heroes" element={<Heroes />} />
                   <Route path="/heroes/:id" element={<HeroDetail />} />
+                  <Route path="/success-stories" element={<SuccessStories />} />
                   <Route path="/news" element={<News />} />
                   <Route path="/news/:id" element={<NewsDetail />} />
                   <Route path="/publications" element={<Publications />} />
@@ -101,6 +105,8 @@ function App() {
                   <Route path="/donate" element={<Donate />} />
                   <Route path="/admin/*" element={<Admin />} />
                   <Route path="/bookmarks" element={<Bookmarks />} />
+                  <Route path="/whistleblower" element={<Whistleblower />} />
+                  <Route path="/faq" element={<FAQ />} />
                   {/* Catch all route for 404 pages */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

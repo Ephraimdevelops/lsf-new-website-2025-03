@@ -20,25 +20,32 @@ const DesktopNavigation = ({
   const location = useLocation();
 
   return (
-    <nav className="hidden lg:flex items-center space-x-1">
+    <nav className="hidden lg:flex items-center space-x-4">
       {navigationItems.map((item) => (
         <div key={item.name} className="relative group">
           {item.subItems.length > 0 ? (
             <button
               className={cn(
-                "flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
+                "flex items-center space-x-2 px-5 py-3 text-sm font-medium rounded-lg transition-all duration-300 hover:scale-105",
                 location.pathname === item.href || location.pathname.startsWith(`${item.href}/`)
-                  ? "text-primary bg-primary/10"
-                  : "text-foreground hover:text-primary hover:bg-muted/50"
+                  ? "text-primary bg-primary/10 shadow-sm"
+                  : "text-foreground hover:text-primary hover:bg-muted/50 hover:shadow-md"
               )}
               onMouseEnter={() => setActiveDropdown(item.name)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              {item.name}
+              {(item as any).icon && (
+                <img 
+                  src={(item as any).icon} 
+                  alt={item.name}
+                  className="w-5 h-5 object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+              )}
+              <span>{item.name}</span>
               <ChevronDown 
                 size={16} 
                 className={cn(
-                  "ml-1 transition-transform duration-200",
+                  "transition-transform duration-300",
                   activeDropdown === item.name ? "rotate-180" : ""
                 )}
               />
@@ -47,13 +54,20 @@ const DesktopNavigation = ({
             <Link
               to={item.href}
               className={cn(
-                "flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
+                "flex items-center space-x-2 px-5 py-3 text-sm font-medium rounded-lg transition-all duration-300 hover:scale-105",
                 location.pathname === item.href
-                  ? "text-primary bg-primary/10"
-                  : "text-foreground hover:text-primary hover:bg-muted/50"
+                  ? "text-primary bg-primary/10 shadow-sm"
+                  : "text-foreground hover:text-primary hover:bg-muted/50 hover:shadow-md"
               )}
             >
-              {item.name}
+              {(item as any).icon && (
+                <img 
+                  src={(item as any).icon} 
+                  alt={item.name}
+                  className="w-5 h-5 object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+              )}
+              <span>{item.name}</span>
             </Link>
           )}
           
