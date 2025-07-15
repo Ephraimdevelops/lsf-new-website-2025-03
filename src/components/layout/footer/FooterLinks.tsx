@@ -8,6 +8,7 @@ const quickLinks = [
   { name: 'Programs', href: '/programs' },
   { name: 'Get Legal Help', href: '/legal-help' },
   { name: 'Contact Us', href: '/contact' },
+  { name: 'Sign Up', href: '/signup' },
 ];
 
 const resources = [

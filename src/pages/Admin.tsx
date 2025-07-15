@@ -5,6 +5,9 @@ import AdminLogin from '../components/admin/AdminLogin';
 import AdminDashboard from '../components/admin/AdminDashboard';
 import { useToast } from '@/hooks/use-toast';
 
+const HARDCODED_ADMIN_EMAIL = "admin@lsf.local";
+const HARDCODED_ADMIN_PASSWORD = "LSF2024@Admin";
+
 const Admin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const savedAuth = localStorage.getItem('admin-auth');
@@ -28,9 +31,18 @@ const Admin = () => {
   const [failedAttempts, setFailedAttempts] = useState(0);
   const { toast } = useToast();
   
-  const handleLogin = (username: string, password: string) => {
+  const handleLogin = (email: string, password: string) => {
+    // Hardcoded admin fallback
+    if (email === HARDCODED_ADMIN_EMAIL && password === HARDCODED_ADMIN_PASSWORD) {
+      localStorage.setItem('admin-auth', 'true');
+      localStorage.setItem('user-role', 'admin');
+      setIsLoggedIn(true);
+      setFailedAttempts(0);
+      toast({ title: "Hardcoded Admin Login", description: "You are logged in as hardcoded admin.", });
+      return true;
+    }
     // Admin credentials
-    if (username === 'lsfadmin' && password === 'LSF2024@Admin') {
+    if (email === 'lsfadmin' && password === 'LSF2024@Admin') {
       localStorage.setItem('admin-auth', 'true');
       localStorage.setItem('admin-last-login', Date.now().toString());
       setIsLoggedIn(true);
@@ -56,6 +68,7 @@ const Admin = () => {
   
   const handleLogout = () => {
     localStorage.removeItem('admin-auth');
+    localStorage.removeItem('user-role');
     setIsLoggedIn(false);
     toast({
       title: "Logged Out",

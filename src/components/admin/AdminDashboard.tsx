@@ -22,6 +22,7 @@ import AdminResources from './AdminResources';
 import AdminSettings from './AdminSettings';
 import AdminHeroSlides from './AdminHeroSlides';
 import EnhancedAnalyticsDashboard from './EnhancedAnalyticsDashboard';
+import AdminUserManagement from './AdminUserManagement';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -40,6 +41,7 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
     { id: 'resources', label: 'Resources', icon: Users },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'user-management', label: 'User Management', icon: Users },
   ];
 
   const renderContent = () => {
@@ -62,6 +64,8 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <EnhancedAnalyticsDashboard />;
       case 'settings':
         return <AdminSettings />;
+      case 'user-management':
+        return <AdminUserManagement />;
       default:
         return <AdminHome />;
     }

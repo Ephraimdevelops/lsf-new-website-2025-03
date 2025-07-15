@@ -51,6 +51,10 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import SuccessStories from './pages/SuccessStories';
 import Whistleblower from './pages/Whistleblower';
 import FAQ from './pages/FAQ';
+import StaffDashboard from "./pages/StaffDashboard";
+import ParalegalDashboard from "./pages/ParalegalDashboard";
+import StakeholderDashboard from "./pages/StakeholderDashboard";
+import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient();
 
@@ -104,9 +108,13 @@ function App() {
                   <Route path="/opportunities/:id" element={<OpportunityDetail />} />
                   <Route path="/donate" element={<Donate />} />
                   <Route path="/admin/*" element={<Admin />} />
+                  <Route path="/dashboard/staff" element={<StaffDashboard />} />
+                  <Route path="/dashboard/paralegal" element={<ParalegalDashboard />} />
+                  <Route path="/dashboard/stakeholder" element={<StakeholderDashboard />} />
                   <Route path="/bookmarks" element={<Bookmarks />} />
                   <Route path="/whistleblower" element={<Whistleblower />} />
                   <Route path="/faq" element={<FAQ />} />
+                  <Route path="/signup" element={<Signup />} />
                   {/* Catch all route for 404 pages */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
