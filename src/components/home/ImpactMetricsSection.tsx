@@ -39,7 +39,7 @@ const ImpactMetricsSection = () => (
           </Typography>
         </div>
 
-        <Typography variant="display" className="text-white font-heading text-7xl lg:text-8xl">
+        <Typography variant="display" className="text-white font-heading text-4xl lg:text-8xl">
           Real Results.
           <span className="block text-secondary-orange">Lasting Change.</span>
         </Typography>

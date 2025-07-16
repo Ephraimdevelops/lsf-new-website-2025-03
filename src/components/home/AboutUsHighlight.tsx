@@ -2,6 +2,9 @@ import { ArrowRight, Users, Target, Globe, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
+import { DesignIcon } from '../design-system';
+import Text from '../shared/Typography';
+import Typography from '../shared/Typography';
 
 const AboutUsHighlight = () => {
   const stats = [
@@ -16,18 +19,29 @@ const AboutUsHighlight = () => {
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
-          <div>
-            <div className="inline-flex items-center bg-secondary-teal/10 rounded-full px-6 py-3 mb-6">
-              <span className="text-secondary-teal font-medium text-sm uppercase tracking-wider">
-                About LSF
-              </span>
-            </div>
-            
-            <h2 className="text-3xl lg:text-4xl font-light mb-6 text-foreground">
-              Empowering Communities Through 
-              <span className="text-primary font-medium block">Legal Innovation</span>
-            </h2>
-            
+          <div>    
+            <div className="text-left mb-12">
+        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
+            about us 
+            </Text>
+          </div>
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+          Empowering Communities through <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+              Legal Access for all.
+            </span>
+          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Stay informed about our latest initiatives, partnerships, and impact stories from across Tanzania.
+          </p>
+         
+        </div>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
               Since 2009, the Legal Support Facility has been Tanzania's leading organization 
               in making justice accessible to all. We bridge the gap between legal systems 
@@ -77,20 +91,6 @@ const AboutUsHighlight = () => {
               );
             })}
           </div>
-        </div>
-
-        {/* Mission Statement */}
-        <div className="mt-20 text-center">
-          <Card className="border-0 shadow-lg bg-gradient-to-r from-primary/5 to-secondary-teal/5">
-            <CardContent className="p-12">
-              <h3 className="text-2xl font-light mb-6 text-foreground">Our Mission</h3>
-              <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                "To enhance access to justice for poor and marginalized communities in Tanzania through 
-                legal empowerment, innovative service delivery, and systemic advocacy that promotes 
-                the rule of law and human rights."
-              </p>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>

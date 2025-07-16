@@ -45,22 +45,22 @@ const InteractiveStorySection = () => {
   const [activeStory, setActiveStory] = useState(0);
 
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section className="relative py-10 px-5 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div 
           className="absolute inset-0 bg-cover bg-center transform scale-110"
           style={{ 
             backgroundImage: `url(${stories[activeStory].image})`,
-            filter: 'blur(2px)'
+            filter: 'blur(1px)'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-primary/85" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/90 to-primary/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/60" />
       </div>
 
-      <Container size="xl" className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <Container size="xl" className="relative z-10 ">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Story Navigation Panel */}
           <div className="lg:col-span-4">
             <div className="sticky top-32">
@@ -69,11 +69,11 @@ const InteractiveStorySection = () => {
                 <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-white/20">
                   <Quote className="h-5 w-5 mr-3 text-white" />
                   <Typography variant="overline" className="text-white font-bold">
-                    REAL STORIES
+                    REAL STORIES from
                   </Typography>
                 </div>
-                <Typography variant="h1" className="text-white mb-4">
-                  Heroes of Justice
+                <Typography variant="h1" className="text-white mb-4 mb-8 text-5xl md:text-6xl font-bold">
+                  Our Heroes
                 </Typography>
                 <Typography variant="body" className="text-white/80 text-lg">
                   Meet the people whose lives have been transformed through legal empowerment.
@@ -86,7 +86,7 @@ const InteractiveStorySection = () => {
                   <button
                     key={story.id}
                     onClick={() => setActiveStory(index)}
-                    className={`group w-full text-left p-6 rounded-2xl border transition-all duration-500 hover:scale-105 transform ${
+                    className={`group w-full text-left p-6 rounded-1xl border transition-all duration-500 hover:scale-105 transform ${
                       activeStory === index
                         ? 'bg-white/20 backdrop-blur-xl border-white/40 shadow-xl'
                         : 'bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 hover:border-white/30'
@@ -125,7 +125,7 @@ const InteractiveStorySection = () => {
 
           {/* Active Story Display */}
           <div className="lg:col-span-8">
-            <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl overflow-hidden border border-white/30 hover:border-white/50 transition-all duration-700 shadow-2xl">
+            <div className="relative bg-white/15 backdrop-blur-1xl rounded-1xl overflow-hidden border border-white/30 hover:border-white/50 transition-all duration-700 shadow-2xl">
               
               {/* Story Image Header */}
               <div className="relative h-80 overflow-hidden">

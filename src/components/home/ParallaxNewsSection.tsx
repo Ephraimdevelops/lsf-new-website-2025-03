@@ -34,7 +34,47 @@ const newsItems = [
     image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
     color: "from-green-500 to-emerald-600",
     featured: false
-  }
+  },
+  {
+    id: 4,
+    title: "New Legal Aid Clinics Launched",
+    excerpt: "Expanding access to justice with new clinics in rural areas.",
+    category: "Expansion",
+    date: "2024-01-20",
+    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
+    color: "from-yellow-500 to-orange-600",
+    featured: false
+  },
+  {
+    id: 5,
+    title: "Youth Empowerment Through Legal Education",
+    excerpt: "Engaging the next generation in legal rights and responsibilities.",
+    category: "Education",
+    date: "2024-01-25",
+    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
+    color: "from-purple-500 to-violet-600",
+    featured: false
+  },
+  {
+    id: 6,
+    title: "Partnership with Local NGOs Strengthens Impact",
+    excerpt: "Collaborating for a greater reach and deeper community engagement.",
+    category: "Partnership",
+    date: "2024-01-30",
+    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
+    color: "from-red-500 to-pink-600",
+    featured: false
+  },
+  {
+    id: 7,
+    title: "Advocacy for Policy Change Gains Momentum",
+    excerpt: "Pushing for reforms to improve legal frameworks and protections.",
+    category: "Advocacy",
+    date: "2024-02-01",
+    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
+    color: "from-teal-500 to-cyan-600",
+    featured: false
+  },
 ];
 
 const publications = [
@@ -65,70 +105,57 @@ const publications = [
 ];
 
 const ParallaxNewsSection = () => {
-  const [activeTab, setActiveTab] = useState<'news' | 'publications'>('news');
+  const [activeTab, setActiveTab] = useState('news');
+
+  // Filter and limit to 6 non-featured news items
+  const otherNews = newsItems.filter(item => !item.featured).slice(0, 6);
 
   return (
-    <section className="relative py-32 overflow-hidden">
-      {/* Parallax Background */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ 
-            backgroundImage: "url('/lovable-uploads/background with mother umage .png')",
-            transform: 'scale(1.1)'
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-black/95" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/60" />
-        
-        {/* Dynamic Light Rays */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-blue-400/30 via-transparent to-transparent transform -skew-x-12 animate-pulse" />
-          <div className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-purple-400/30 via-transparent to-transparent transform skew-x-12 animate-pulse delay-1000" />
-        </div>
-      </div>
+    <section className="relative py-64 overflow-hidden">
+      {/* Simplified White Background */}
+      <div className="absolute inset-0 bg-white" />
 
-      <Container size="xl" className="relative z-10">
+      <Container size="xl" className="relative z-10 px-5">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-white/20">
-            <Calendar className="h-6 w-6 mr-4 text-blue-400" />
-            <Typography variant="overline" className="text-blue-400 font-bold text-lg">
+          <div className="inline-flex items-center bg-gray-100 rounded-full px-8 py-4 mb-8 border border-gray-300">
+            <Calendar className="h-6 w-6 mr-4 text-blue-600" />
+            <Typography variant="overline" className="text-blue-600 font-bold text-base">
               NEWSROOM
             </Typography>
           </div>
 
-          <Typography variant="display" className="text-white font-black text-6xl lg:text-7xl mb-6 leading-tight">
+          <Typography variant="display" className="text-gray-900 font-black text-5xl lg:text-6xl mb-6 leading-tight">
             Latest Updates
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
               & Publications
             </span>
           </Typography>
 
-          <Typography variant="body" className="text-white/80 max-w-3xl mx-auto text-xl leading-relaxed">
+          <Typography variant="body" className="text-gray-700 max-w-3xl mx-auto text-lg leading-relaxed">
             Stay informed with real stories from the field and comprehensive research that shapes justice across Tanzania.
           </Typography>
         </div>
 
         {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
-          <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-2 border border-white/20">
+          <div className="bg-gray-100 rounded-2xl p-2 border border-gray-300">
             <button
               onClick={() => setActiveTab('news')}
-              className={`px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
+              className={`px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 ${
                 activeTab === 'news'
                   ? 'bg-white text-gray-900 shadow-lg'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
+                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-200'
               }`}
             >
               Latest News
             </button>
             <button
               onClick={() => setActiveTab('publications')}
-              className={`px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
+              className={`px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 ${
                 activeTab === 'publications'
                   ? 'bg-white text-gray-900 shadow-lg'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
+                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-200'
               }`}
             >
               Publications
@@ -146,45 +173,43 @@ const ParallaxNewsSection = () => {
           }`}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               {/* Featured News */}
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-6">
                 {newsItems.filter(item => item.featured).map((news) => (
-                  <Link key={news.id} to={`/news/${news.id}`} className="group block">
-                    <div className="relative bg-white/15 backdrop-blur-2xl rounded-3xl overflow-hidden border border-white/30 hover:border-white/50 transition-all duration-700 hover:scale-105 shadow-2xl hover:shadow-4xl">
-                      <div className="relative h-80 overflow-hidden">
-                        <img 
-                          src={news.image} 
-                          alt={news.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                        
-                        <div className="absolute top-6 left-6">
-                          <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-white bg-gradient-to-r ${news.color} shadow-lg`}>
-                            <Tag className="h-4 w-4 mr-2" />
-                            {news.category}
-                          </span>
-                        </div>
+                  <Link key={news.id} to={`/news/${news.id}`} className="group block h-[600px]">
+                    <div className="relative h-full overflow-hidden rounded-3xl border border-gray-300 bg-gradient-to-br from-white to-gray-100 transition-all duration-700 hover:scale-105 shadow-xl hover:shadow-2xl">
+                      <img 
+                        src={news.image} 
+                        alt={news.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                      
+                      <div className="absolute top-6 left-6">
+                        <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-white bg-gradient-to-r ${news.color} shadow-lg`}>
+                          <Tag className="h-4 w-4 mr-2" />
+                          {news.category}
+                        </span>
+                      </div>
 
-                        <div className="absolute bottom-6 left-6 right-6">
-                          <Typography variant="h2" className="text-white font-black text-2xl md:text-3xl mb-3 leading-tight">
-                            {news.title}
-                          </Typography>
-                          <Typography variant="body" className="text-white/90 text-lg leading-relaxed mb-4">
-                            {news.excerpt}
-                          </Typography>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center text-white/80">
-                              <Calendar className="h-4 w-4 mr-2" />
-                              {new Date(news.date).toLocaleDateString('en-US', { 
-                                year: 'numeric', 
-                                month: 'long', 
-                                day: 'numeric' 
-                              })}
-                            </div>
-                            <div className="flex items-center text-white font-semibold group-hover:text-blue-400 transition-colors">
-                              Read More
-                              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
-                            </div>
+                      <div className="absolute bottom-6 left-6 right-6">
+                        <Typography variant="h2" className="text-white font-black text-xl md:text-2xl mb-3 leading-tight">
+                          {news.title}
+                        </Typography>
+                        <Typography variant="body" className="text-white/90 text-base leading-relaxed mb-4">
+                          {news.excerpt}
+                        </Typography>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center text-white/80">
+                            <Calendar className="h-4 w-4 mr-2" />
+                            {new Date(news.date).toLocaleDateString('en-US', { 
+                              year: 'numeric', 
+                              month: 'long', 
+                              day: 'numeric' 
+                            })}
+                          </div>
+                          <div className="flex items-center text-white font-semibold group-hover:text-blue-400 transition-colors">
+                            Read More
+                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
                           </div>
                         </div>
                       </div>
@@ -194,44 +219,47 @@ const ParallaxNewsSection = () => {
               </div>
 
               {/* Other News */}
-              <div className="lg:col-span-5">
-                <div className="space-y-6">
-                  {newsItems.filter(item => !item.featured).map((news) => (
-                    <Link key={news.id} to={`/news/${news.id}`} className="group block">
-                      <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-xl hover:shadow-2xl">
-                        <div className="flex gap-4">
-                          <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
-                            <img 
-                              src={news.image} 
-                              alt={news.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-2">
-                              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${news.color}`}>
-                                {news.category}
-                              </span>
+              <div className="lg:col-span-6">
+                <div className="h-[600px] overflow-y-auto">
+                  <div className="space-y-6 p-4">
+                    {otherNews.map((news) => (
+                      <Link key={news.id} to={`/news/${news.id}`} className="group block">
+                        <div className="bg-gradient-to-br from-white to-gray-100 rounded-2xl p-6 border border-gray-300 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-xl hover:shadow-2xl">
+                          <div className="flex gap-4">
+                            <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                              <img 
+                                src={news.image} 
+                                alt={news.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              />
                             </div>
-                            <Typography variant="h4" className="text-white font-bold mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
-                              {news.title}
-                            </Typography>
-                            <Typography variant="bodySmall" className="text-white/70 line-clamp-2 leading-relaxed">
-                              {news.excerpt}
-                            </Typography>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${news.color}`}>
+                                  {news.category}
+                                </span>
+                              </div>
+                              <Typography variant="h4" className="text-gray-900 font-bold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors text-base">
+                                {news.title}
+                              </Typography>
+                              <Typography variant="bodySmall" className="text-gray-600 leading-relaxed text-sm">
+                                {news.excerpt}
+                              </Typography>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-
-                <Link to="/news">
-                  <button className="w-full mt-8 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
-                    View All News
-                    <ExternalLink className="ml-2 h-5 w-5" />
-                  </button>
-                </Link>
+                <div className="mt-8">
+                  <Link to="/news">
+                    <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
+                      View All News
+                      <ExternalLink className="ml-2 h-5 w-5" />
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -243,28 +271,26 @@ const ParallaxNewsSection = () => {
               : 'opacity-0 translate-y-8 pointer-events-none absolute inset-0'
           }`}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {publications.map((pub, index) => (
+              {publications.map((pub) => (
                 <div key={pub.id} className="group">
-                  <div className={`relative bg-white/15 backdrop-blur-2xl rounded-3xl p-8 border border-white/30 hover:border-white/50 transition-all duration-700 hover:scale-105 hover:-translate-y-4 shadow-xl hover:shadow-2xl`}>
-                    
-                    {/* Publication Icon */}
+                  <div className="relative bg-gradient-to-br from-white to-gray-100 rounded-3xl p-8 border border-gray-300 transition-all duration-700 hover:scale-105 hover:-translate-y-4 shadow-xl hover:shadow-2xl">
                     <div className={`mb-6 p-4 rounded-2xl bg-gradient-to-r ${pub.color} inline-flex transition-all duration-500 group-hover:scale-125 group-hover:rotate-12`}>
                       <Download className="h-8 w-8 text-white" />
                     </div>
 
-                    <Typography variant="h3" className="text-white font-bold text-xl mb-4 leading-tight">
+                    <Typography variant="h3" className="text-gray-900 font-bold text-lg mb-4 leading-tight">
                       {pub.title}
                     </Typography>
 
-                    <Typography variant="body" className="text-white/80 mb-6 leading-relaxed">
+                    <Typography variant="body" className="text-gray-700 mb-6 leading-relaxed text-base">
                       {pub.description}
                     </Typography>
 
                     <div className="flex items-center justify-between mb-6">
-                      <span className="bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full">
+                      <span className="bg-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full">
                         {pub.type}
                       </span>
-                      <span className="text-white/60 text-sm">
+                      <span className="text-gray-600 text-sm">
                         {pub.pages}
                       </span>
                     </div>
@@ -282,8 +308,7 @@ const ParallaxNewsSection = () => {
               <Link to="/publications">
                 <button className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-pink-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl flex items-center mx-auto">
                   View All Publications
-                  <ExternalLink className="ml-2 h-5 w-5" />
-                </button>
+                  <ExternalLink className="ml-2 h-5 w-5" /></button>
               </Link>
             </div>
           </div>

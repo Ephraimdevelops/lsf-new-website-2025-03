@@ -96,11 +96,11 @@ const SlidingHero = () => {
                 </span>
               </div>
               
-              <h1 className="text-4xl lg:text-6xl font-light mb-6 leading-tight">
+              <h1 className="text-4xl lg:text-7xl font-bold mb-6 leading-tight">
                 {slide.title}
               </h1>
               
-              <p className="text-xl text-white/90 mb-8 leading-relaxed font-light">
+              <p className="text-xl text-white/90 mb-8 leading-relaxed font-normal">
                 {slide.description}
               </p>
               

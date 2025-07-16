@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowRight, Phone, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Typography from '@/components/shared/Typography';
@@ -20,6 +20,12 @@ const NewsletterSection = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
+        <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-white/20">
+            <Heart className="h-5 w-5 mr-3 text-secondary-orange" />
+            <Typography variant="overline" className="text-secondary-orange font-bold tracking-wider text-sm">
+              NEWSLETTER
+            </Typography>
+          </div>
           <Typography variant="h2" className="text-white mb-6 font-bold">
             Stay Connected with Our Mission
           </Typography>

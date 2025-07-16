@@ -7,17 +7,27 @@ import TestimonialSection from '@/components/home/TestimonialSection';
 import OrganizationHighlights from '@/components/home/OrganizationHighlights';
 import PartnersSection from '@/components/home/PartnersSection';
 import CallToActionBanner from '@/components/home/CallToActionBanner';
+import HakiYanguHighlight from '@/components/home/HakiYanguHighlight';
+import ImpactMetricsSection from '@/components/home/ImpactMetricsSection';
+import InteractiveStorySection from '@/components/home/InteractiveStorySection';
+import CombinedApproachSection from '@/components/home/CombinedApproachSection';
+import ParallaxNewsSection from '@/components/home/ParallaxNewsSection';
 
 const Index = () => (
   <Layout>
     {/* Hero Section with Sliding Carousel */}
     <SlidingHero />
+    
 
     {/* Featured News & Updates */}
-    <FeaturedNewsSection />
-
-    {/* About Us Highlight */}
+    <ParallaxNewsSection />
+    <InteractiveStorySection />
+    
+    
+     {/* About Us Highlight */}
     <AboutUsHighlight />
+    <CombinedApproachSection />
+    <ImpactMetricsSection /> 
 
     {/* Organization Highlights & Impact */}
     <OrganizationHighlights />
@@ -27,6 +37,10 @@ const Index = () => (
 
     {/* Testimonials */}
     <TestimonialSection />
+    <ImpactMetricsSection />   
+
+    {/* Haki Yangu Highlight */}
+    <HakiYanguHighlight />
 
     {/* Partners Network */}
     <PartnersSection />

@@ -39,7 +39,7 @@ const FooterLinks = () => {
                 className="h-16 w-auto mb-4"
               />
               <Typography variant="h4" className="text-white mb-4">
-                Legal Services Facility
+                LSF
               </Typography>
               <Typography variant="bodySmall" className="text-white/80 leading-relaxed mb-6">
                 Empowering communities through accessible legal aid and justice reform across Tanzania.
@@ -52,7 +52,7 @@ const FooterLinks = () => {
                 <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                 <div>
                   <Typography variant="bodySmall" className="text-white/90">
-                    Mikocheni Light Industrial Area<br />
+                  Chole Rd, Masaki - Dar es Salaam, Tanzania<br />
                     Dar es Salaam, Tanzania
                   </Typography>
                 </div>
@@ -60,13 +60,13 @@ const FooterLinks = () => {
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
                 <Typography variant="bodySmall" className="text-white/90">
-                  +255 22 277 5567
+                +255 (0) 22260 1534
                 </Typography>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
                 <Typography variant="bodySmall" className="text-white/90">
-                  info@legalservicesfacility.org
+                  info@lsftz.org
                 </Typography>
               </div>
             </div>

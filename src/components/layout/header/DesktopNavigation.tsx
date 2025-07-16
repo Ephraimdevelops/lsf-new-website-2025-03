@@ -35,7 +35,7 @@ const DesktopNavigation = ({
               onMouseLeave={() => setActiveDropdown(null)}
             >
               {(item as any).icon && (
-                <img 
+             <img 
                   src={(item as any).icon} 
                   alt={item.name}
                   className="w-5 h-5 object-contain group-hover:scale-110 transition-transform duration-300"
