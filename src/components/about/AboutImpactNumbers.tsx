@@ -3,6 +3,8 @@ import { Users, Scale, Award, Globe, TrendingUp, Heart } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import { Card, CardContent } from '@/components/ui/card';
+import { DesignIcon } from '../design-system';
+import Text from '../shared/Typography';
 
 const impactNumbers = [
   {
@@ -57,15 +59,31 @@ const impactNumbers = [
 
 const AboutImpactNumbers = () => {
   return (
-    <section className="py-20 bg-white">
-      <Container size="xl">
-        <div className="text-center mb-16">
-          <Typography variant="h1" className="mb-6 font-heading">
+    <section className=" py-20 text-center mb-16 bg-neutral-dark text-white overflow-hidden ">
+      <Container size="xl" >
+
+        {/* Header */}
+        <div className="text-center mb-12">
+        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
             Our Impact in Numbers
+            </Text>
+          </div>
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+          Our National <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+              FootPrint
+            </span>
           </Typography>
-          <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto text-lg">
-            Every number represents real lives transformed, communities empowered, and justice served across Tanzania.
-          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Every number represents real lives transformed, communities empowered, and justice served across Tanzania.
+          </p>
+         
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -12,10 +12,8 @@ const Programs = () => {
     <Layout>
       <ProgramsHero />
       <FlagshipPrograms />
-      <OngoingProjects />
       <ProjectMap />
       <MeasureImpact />
-      <PartnerWithUs />
     </Layout>
   );
 };

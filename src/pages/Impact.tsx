@@ -1,5 +1,5 @@
 import Layout from '../components/layout/Layout';
-import { ImpactHero } from './impact/ImpactHero';
+import ImpactHero  from './impact/ImpactHero';
 import { ImpactStats } from './impact/ImpactStats';
 import { ThematicImpact } from './impact/ThematicImpact';
 import { ImpactStories } from './impact/ImpactStories';

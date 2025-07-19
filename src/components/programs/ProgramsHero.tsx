@@ -39,7 +39,7 @@ const ProgramsHero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ 
-          backgroundImage: `url('/lovable-uploads/background with mother umage .png')`,
+          backgroundImage: `url('/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png')`,
           opacity: isLoaded ? 1 : 0,
           transition: 'opacity 1s ease-in-out'
         }}
@@ -56,7 +56,7 @@ const ProgramsHero = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-yellow/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
       
-      <Container size="xl" className="relative z-10">
+      <Container size="xl" className="relative z-10 py-20">
         <div className="text-center text-white max-w-6xl mx-auto px-4">
           <div 
             className={`inline-flex items-center space-x-3 mb-6 md:mb-8 bg-white/10 backdrop-blur-sm rounded-full px-6 md:px-8 py-3 md:py-4 border border-white/20 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}
@@ -72,9 +72,9 @@ const ProgramsHero = () => {
           </div>
           
           <Typography 
-            variant="display" 
-            className={`text-white mb-6 md:mb-8 leading-none text-4xl md:text-6xl lg:text-8xl font-bold transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          >
+  variant="h2" 
+  className={`text-white mb-8 md:mb-8 leading-none text-4xl md:text-5xl lg:text-6xl font-bold transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+>
             Strategy into Action.
             <span className="block text-secondary-orange mt-4">Impact into Change.</span>
           </Typography>
@@ -101,35 +101,7 @@ const ProgramsHero = () => {
             </Link>
           </div>
           
-          {/* Enhanced Impact Stats with Animation */}
-          <div className={`grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            {impactStats.map((stat, index) => (
-              <div 
-                key={index} 
-                className={`text-center transform transition-all duration-500 ${activeStatIndex === index ? 'scale-110' : 'scale-100'} bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 group`}
-              >
-                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
-                  {stat.icon}
-                </div>
-                <div className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 ${stat.color} transition-all duration-500`}>
-                  {stat.value}
-                </div>
-                <div className="text-white/80 text-xs md:text-sm uppercase tracking-wide">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Hero Quote Section */}
-          <div className={`mt-16 md:mt-20 bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/10 transition-all duration-700 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <Typography variant="h2" className="text-white mb-6 text-2xl md:text-4xl italic leading-relaxed">
-              "Through our projects, we don't just serve — we shift systems. We don't just fund — we empower."
-            </Typography>
-            <Typography variant="body" className="text-secondary-orange font-semibold text-lg">
-              — LSF Executive Director
-            </Typography>
-          </div>
+          
         </div>
       </Container>
       

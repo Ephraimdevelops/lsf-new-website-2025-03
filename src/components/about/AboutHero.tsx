@@ -1,16 +1,96 @@
-
-import { Users, Heart, Scale } from 'lucide-react';
-import HeroSection from '@/components/shared/HeroSection';
+import { ArrowRight, PlayCircle, Target } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Link } from 'react-router-dom';
 
 const AboutHero = () => {
+  const images = [
+    '/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png',
+    '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
+    '/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png',
+    '/lovable-uploads/b2226752-4a54-463b-af38-a1dd2b57350b.png',
+    '/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png'
+  ];
+
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
-    <HeroSection
-      icon={<Users className="h-8 w-8" />}
-      badge="ABOUT US"
-      title="Empowering Justice Through Legal Innovation"
-      description="For over 15 years, the Legal Services Facility has been at the forefront of strengthening legal empowerment across Tanzania, ensuring that every citizen has access to justice regardless of their economic status or social background."
-      backgroundImage="https://images.unsplash.com/photo-1589578527966-fdac0f44566c?w=1200&h=800&fit=crop"
-    />
+    <section className="relative">
+      {/* Slideshow Hero Section */}
+      <div className="relative h-[70vh] bg-white overflow-hidden">
+        {/* Image Slideshow */}
+        <div className="absolute inset-0">
+          {images.map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt={`Hero image ${index + 1}`}
+              className={`w-full h-full object-cover absolute top-0 left-0 transition-all duration-1000 ease-in-out ${
+                index === currentImage ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
+          <div className="absolute inset-0 bg-primary/70"></div>
+        </div>
+
+        <Container size="xl" className="relative z-10 h-full flex items-center">
+          <div className="max-w-3xl text-white">
+            <div className="inline-flex items-center gap-3 mb-4 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2">
+              <Target className="h-6 w-6" />
+              <span className="font-semibold text-sm uppercase tracking-wider">About Us</span>
+            </div>
+
+            <Typography
+              variant="h1"
+              className="text-white mb-6 text-4xl md:text-6xl font-bold leading-tight [text-shadow:_0_2px_3px_rgba(0,0,0,0.5)]"
+            >
+              Empowering Communities
+              <br />
+              <span className="text-secondary-orange">Through Access to Justice</span>
+            </Typography>
+
+            <Typography
+              variant="body"
+              className="text-white/90 mb-6 text-lg md:text-xl max-w-2xl leading-relaxed [text-shadow:_0_1px_2px_rgba(0,0,0,0.4)]"
+            >
+              For over 15 years, the Legal Services Facility has been at the forefront of strengthening legal empowerment across Tanzania, ensuring that every citizen has access to justice regardless of their economic status or social background.
+            </Typography>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="#strategic-approaches">
+                <Button
+                  size="lg"
+                  className="bg-secondary-orange hover:bg-secondary-orange-dark text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
+                >
+                  Explore Our Model
+                  <ArrowRight className="ml-2 h-6 w-6" />
+                </Button>
+              </Link>
+              <Link to="#focus-areas">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
+                >
+                  <PlayCircle className="mr-2 h-6 w-6" />
+                  Watch Our Impact Video
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </div>
+    </section>
   );
 };
 

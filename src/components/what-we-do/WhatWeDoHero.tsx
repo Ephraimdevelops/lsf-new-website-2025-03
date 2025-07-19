@@ -14,7 +14,7 @@ const WhatWeDoHero = () => {
       <div className="relative h-[80vh] bg-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="/lovable-uploads/background with mother umage .png"
+            src="/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png"
             alt="Women participating in legal empowerment program"
             className="w-full h-full object-cover"
           />
@@ -56,24 +56,24 @@ const WhatWeDoHero = () => {
       </div>
 
       {/* Clean Stats Section */}
-      <div className="bg-white py-16">
+      <div className="bg-neutral-dark text-white overflow-hidden py-16">
         <Container size="xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold text-primary mb-2">2.8M+</div>
-              <div className="text-neutral-600 text-sm uppercase tracking-wide">Tanzanians Reached</div>
+              <div className="text-neutral-200 text-sm uppercase tracking-wide">Tanzanians Reached</div>
             </div>
             <div>
               <div className="text-4xl font-bold text-secondary-teal mb-2">4,000+</div>
-              <div className="text-neutral-600 text-sm uppercase tracking-wide">Trained Paralegals</div>
+              <div className="text-neutral-200 text-sm uppercase tracking-wide">Trained Paralegals</div>
             </div>
             <div>
               <div className="text-4xl font-bold text-secondary-orange mb-2">31</div>
-              <div className="text-neutral-600 text-sm uppercase tracking-wide">Regions Covered</div>
+              <div className="text-neutral-200 text-sm uppercase tracking-wide">Regions Covered</div>
             </div>
             <div>
               <div className="text-4xl font-bold text-secondary-yellow mb-2">78%</div>
-              <div className="text-neutral-600 text-sm uppercase tracking-wide">Cases Resolved</div>
+              <div className="text-neutral-200 text-sm uppercase tracking-wide">Cases Resolved</div>
             </div>
           </div>
         </Container>

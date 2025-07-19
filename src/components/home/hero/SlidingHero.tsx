@@ -100,7 +100,7 @@ const SlidingHero = () => {
                 {slide.title}
               </h1>
               
-              <p className="text-xl text-white/90 mb-8 leading-relaxed font-normal">
+              <p className="text-xl text-white/90 mb-8 leading-relaxed font-light">
                 {slide.description}
               </p>
               

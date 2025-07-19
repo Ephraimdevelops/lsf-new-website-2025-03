@@ -5,8 +5,9 @@ import Typography from '../components/shared/Typography';
 import SuccessStoryCard from '../components/shared/SuccessStoryCard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Heart, Users, Scale, ArrowRight, Quote, MapPin, Calendar, Award, CheckCircle, Star, Briefcase, GraduationCap } from 'lucide-react';
+import { Heart, Users, Scale, ArrowRight, Quote, MapPin, Calendar, Award, CheckCircle, Star, Briefcase, GraduationCap, Target, Phone, MessageSquare, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CinematicHero from '@/components/home/CinematicHero';
 
 const impactStats = [
   {
@@ -37,28 +38,12 @@ const impactStats = [
 
 const successStories = [
   {
-    id: 'story-1',
-    name: 'Amina Hassan',
-    location: 'Dar es Salaam',
-    category: 'Land Rights',
-    title: 'Securing Her Family\'s Future',
-    story: 'After her husband\'s death, Amina faced eviction from her family home. With LSF\'s help, she successfully defended her inheritance rights and secured land titles for her three children.',
-    outcome: 'Family home secured, children\'s education funded through property rights',
-    image: 'https://images.unsplash.com/photo-1494790108755-2616c82ca017?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    year: '2024',
-    impact: 'High',
-    tags: ['Women\'s Rights', 'Property Law', 'Family Protection'],
-    quote: 'After her husband\'s death, Amina faced eviction from her family home. With LSF\'s help, she successfully defended her inheritance rights and secured land titles for her three children.',
-    brief: 'After Amina\'s husband passed away, her in-laws attempted to evict her from her ancestral home. With guidance from an LSF-trained paralegal, Amina learned about women\'s inheritance rights and successfully retained her home.'
-  },
-  {
     id: 'story-2',
     name: 'Joseph Mwalimu',
     location: 'Mwanza',
     category: 'Employment Rights',
     title: 'Fighting Workplace Discrimination',
     story: 'Joseph was unfairly dismissed from his teaching position due to his disability. LSF represented him in court, resulting in reinstatement and compensation for lost wages.',
-    outcome: 'Reinstated to position, received 18 months back pay, policy changes implemented',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     year: '2024',
     impact: 'High',
@@ -73,28 +58,12 @@ const successStories = [
     category: 'Gender-Based Violence',
     title: 'Breaking the Cycle of Violence',
     story: 'Grace escaped an abusive marriage with LSF\'s assistance. We helped her obtain a restraining order, secure custody of her children, and access counseling services.',
-    outcome: 'Safety secured, full custody granted, launched successful small business',
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     year: '2023',
     impact: 'Life-Saving',
     tags: ['GBV Protection', 'Family Law', 'Economic Empowerment'],
     quote: 'Grace escaped an abusive marriage with LSF\'s assistance. We helped her obtain a restraining order, secure custody of her children, and access counseling services.',
     brief: 'Grace endured years of domestic violence before finding the courage to seek help. LSF provided comprehensive support including legal aid, counseling, and economic empowerment training.'
-  },
-  {
-    id: 'story-4',
-    name: 'David Msigwa',
-    location: 'Dodoma',
-    category: 'Criminal Defense',
-    title: 'Proven Innocent After 3 Years',
-    story: 'Wrongfully accused of theft, David spent three years in prison before LSF took his case. New evidence and legal advocacy led to his complete exoneration.',
-    outcome: 'Charges dropped, compensation awarded, criminal justice reform advocacy',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    year: '2023',
-    impact: 'Life-Changing',
-    tags: ['Criminal Justice', 'Wrongful Conviction', 'Legal Reform'],
-    quote: 'Wrongfully accused of theft, David spent three years in prison before LSF took his case. New evidence and legal advocacy led to his complete exoneration.',
-    brief: 'David was wrongfully convicted based on circumstantial evidence. LSF\'s investigation uncovered new evidence and witness testimony that proved his innocence, leading to his release and compensation.'
   },
   {
     id: 'story-5',
@@ -143,16 +112,80 @@ const Heroes = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <HeroSection
-        icon={<Heart className="h-8 w-8" />}
-        badge="Success Stories"
-        title="Heroes of Justice"
-        description="Meet the brave individuals whose lives have been transformed through access to justice. These are stories of courage, resilience, and the power of legal empowerment to change lives."
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png')` }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-primary/60 to-black/70"></div>
+        
+        <Container className="relative z-10 text-center text-white">
+          <div className="flex items-center justify-center mb-8">
+            <div className="bg-secondary-orange/20 p-6 rounded-full backdrop-blur-sm border border-secondary-orange/30">
+              <Target className="h-16 w-16 text-secondary-orange" />
+            </div>
+          </div>
+          
+          <Typography variant="overline" className="text-secondary-orange mb-6 text-lg font-bold tracking-wider">
+          Stories of Transformation.
+          </Typography>
+          <Typography variant="h1" className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            Our<br />
+            <span className="text-secondary-orange">Heroes</span>
+          </Typography>
+          <Typography variant="body" className="text-2xl mb-12 max-w-4xl mx-auto text-white/90 leading-relaxed">
+          Meet the brave individuals whose lives have been transformed through access to justice. These are stories of courage, resilience, and the power of legal empowerment to change lives.
+          </Typography>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-xl px-8 py-4">
+              <MessageSquare className="mr-3 h-6 w-6" />
+              Submit Report Now
+            </Button>
+            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-xl px-8 py-4">
+              <Phone className="mr-3 h-6 w-6" />
+              Get legal Help 
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+
+      {/* Success Stories Grid - Using new card design */}
+      <section className="py-16 bg-white">
+      <Container>
+      <div className="flex flex-col items-center mb-12">
+          <div className="inline-flex items-center gap-3 mb-6 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
+            <Target className="h-5 w-5 text-primary" />
+            <span className="font-semibold text-sm uppercase tracking-wider text-neutral-900">
+              Our Heroes
+            </span>
+          </div>
+          
+          <Typography variant="h1" className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6 leading-tight text-center">
+            Stories of <br className="block md:hidden" />
+            <span className="text-primary">Transformation.</span>
+          </Typography>
+          
+          <Typography variant="body" className="text-lg text-neutral-600 max-w-3xl leading-relaxed text-center">
+            Behind every legal victory is a human story of courage, determination, and hope. These are the heroes who refused to give up on justice.
+          </Typography>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {successStories.map((story) => (
+            <SuccessStoryCard 
+              key={story.id} 
+              story={story} 
+              linkTo={`/heroes/${story.id}`}
+            />
+          ))}
+        </div>
+      </Container>
+      </section >
 
       {/* Impact Statistics */}
-      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
+      <section className="bg-neutral-dark text-white overflow-hidden py-16">
         <Container>
           <div className="text-center mb-12">
             <Typography variant="h2" className="mb-6">Real Impact, Real Lives</Typography>
@@ -180,76 +213,6 @@ const Heroes = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Success Stories Grid - Using new card design */}
-      <section className="py-16 bg-white">
-        <Container>
-          <div className="text-center mb-12">
-            <div className="w-12 h-1 bg-primary mb-4 mx-auto"></div>
-            <Typography variant="h2" className="mb-6">Stories of Transformation</Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              Behind every legal victory is a human story of courage, determination, and hope. These are the heroes who refused to give up on justice.
-            </Typography>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {successStories.map((story) => (
-              <SuccessStoryCard 
-                key={story.id} 
-                story={story} 
-                linkTo={`/heroes/${story.id}`}
-              />
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-16 bg-primary/5">
-        <Container>
-          <div className="text-center">
-            <Typography variant="h2" className="mb-6">Your Story Could Be Next</Typography>
-            <Typography variant="body" className="text-neutral-gray mb-8 max-w-2xl mx-auto">
-              Don't let legal challenges hold you back. Join thousands of Tanzanians who have found justice and transformed their lives with our help.
-            </Typography>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/legal-help">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Get Legal Help Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/news">
-                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                  Read More Stories
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Newsletter Signup */}
-      <section className="py-16 bg-white">
-        <Container>
-          <div className="max-w-2xl mx-auto text-center">
-            <Typography variant="h2" className="mb-6">Stay Inspired</Typography>
-            <Typography variant="body" className="text-neutral-gray mb-8">
-              Subscribe to receive regular updates about our impact and new success stories from across Tanzania.
-            </Typography>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-              />
-              <Button className="bg-primary hover:bg-primary/90 px-8">
-                Subscribe
-              </Button>
-            </div>
           </div>
         </Container>
       </section>

@@ -2,6 +2,7 @@ import Section from '../../components/shared/Section';
 import ResponsiveContainer from '../../components/shared/ResponsiveContainer';
 import Typography from '../../components/shared/Typography';
 import { Scale, Shield, Gavel, Smartphone, Leaf } from 'lucide-react';
+import DesignIcon from '../../components/design-system/DesignIcon';
 
 const impactAreas = [
   {
@@ -61,12 +62,29 @@ export const ThematicImpact = () => {
     <Section variant="secondary" padding="xl">
       <ResponsiveContainer>
         <div className="text-center mb-16">
-          <Typography variant="h2" className="mb-4">
-            Thematic Impact Areas
+          {/* Header */}
+         <div className="text-center mb-12">
+        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Typography variant="overline" color="primary" className="font-bold text-lg tracking-widest">
+            Impact
+            </Typography>
+          </div>
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+          Thematic<span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+            Impact Areas
+            </span>
           </Typography>
-          <Typography variant="body" className="text-muted-foreground max-w-3xl mx-auto">
-            Our comprehensive approach addresses multiple dimensions of justice and legal empowerment.
-          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Our comprehensive approach addresses multiple dimensions of justice and legal empowerment.
+          </p>
+         
+        </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

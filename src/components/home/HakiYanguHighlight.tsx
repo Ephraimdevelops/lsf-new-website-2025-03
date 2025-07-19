@@ -1,27 +1,41 @@
 
 import { Link } from 'react-router-dom';
-import { Download, Smartphone, MapPin, Users, Clock, Shield } from 'lucide-react';
+import { Download, Smartphone, MapPin, Users, Clock, Shield, Container } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
+import { DesignIcon } from '../design-system';
+import Text from '../shared/Typography';
 
 const HakiYanguHighlight = () => {
   return (
-    <section className="py-16 lg:py-20 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
+    <section size="2xl" className=" py-0 lg:py-20 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <div className="order-2 lg:order-1">
-            <Typography variant="overline" className="text-primary mb-4">
-              Digital Legal Aid
-            </Typography>
-            
-            <Typography variant="display" className="text-neutral-dark mb-6">
-              Download HAKI Yangu App
-            </Typography>
-            
-            <Typography variant="body" className="text-neutral-gray mb-8">
-              Get instant access to legal support, connect with paralegals, and resolve disputes 
-              right from your mobile phone. Justice is now just a tap away.
-            </Typography>
+
+            <div className="text-left mb-12">
+        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
+            Digital Legal Aid
+            </Text>
+          </div>
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+          Download  <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+            HAKI Yangu App
+            </span>
+          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Get instant access to legal support, connect with paralegals, and resolve disputes 
+          right from your mobile phone. Justice is now just a tap away.
+          </p>
+         
+        </div>
             
             {/* Features */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
@@ -114,15 +128,13 @@ const HakiYanguHighlight = () => {
           {/* App Preview */}
           <div className="order-1 lg:order-2 relative">
             <div className="relative max-w-sm mx-auto">
-              {/* Phone mockup */}
-              <div className="bg-gradient-to-br from-primary to-secondary-teal p-1 rounded-[2.5rem] shadow-2xl">
-                <div className="bg-white rounded-[2rem] p-6">
+              {/* image  */}
+              <div>
                   <img 
-                    src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                    src="public/lovable-uploads/2.png" 
                     alt="Haki Yangu App Interface" 
-                    className="w-full rounded-xl shadow-lg"
+                    className="w-full h-full object-cover rounded-t-xxl rounded-b-none"
                   />
-                </div>
               </div>
               
               {/* Floating stats */}
@@ -145,6 +157,7 @@ const HakiYanguHighlight = () => {
         </div>
       </div>
     </section>
+   
   );
 };
 

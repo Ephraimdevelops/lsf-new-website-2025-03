@@ -10,10 +10,6 @@ const partners = [
   { id: 2, name: "World Bank", logo: "/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png", category: "international" },
   { id: 3, name: "USAID", logo: "/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png", category: "international" },
   { id: 4, name: "Ford Foundation", logo: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png", category: "foundation" },
-  { id: 5, name: "Open Society", logo: "/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png", category: "foundation" },
-  { id: 6, name: "Legal Aid Organizations", logo: "/lovable-uploads/background with mother umage .png", category: "civil_society" },
-  { id: 7, name: "Community Partners", logo: "/lovable-uploads/b2226752-4a54-463b-af38-a1dd2b57350b.png", category: "civil_society" },
-  { id: 8, name: "Academic Institutions", logo: "/lovable-uploads/7718b32e-3138-4e78-a7a1-4d63935a2951.png", category: "academic" }
 ];
 
 const partnerCategories = [
@@ -29,7 +25,7 @@ const partnerCategories = [
     key: "international",
     title: "International Organizations",
     description: "Global partnerships for sustainable development",
-    icon: <Users className="h-6 w-6" />,
+    icon: <Users className="h-6 w-6" />, 
     color: "from-emerald-500 to-teal-600",
     count: 8
   },
@@ -177,7 +173,7 @@ const AnimatedPartnersSection = () => {
             </Typography>
 
             {/* Animated Logo Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-8 gap-8 items-center">
               {filteredPartners.map((partner, index) => (
                 <div
                   key={partner.id}

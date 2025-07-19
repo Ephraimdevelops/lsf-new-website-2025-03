@@ -1,8 +1,10 @@
 
 import { useState, useEffect } from 'react';
-import { Users, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
 import Container from '@/components/shared/Container';
+import { DesignIcon } from '../design-system';
+import Text from '../shared/Typography';
 
 const PartnersCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -22,6 +24,11 @@ const PartnersCarousel = () => {
       name: 'Ministry of Justice',
       logo: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
       partnership: 'Policy Partner'
+    },
+    {
+      name: 'UK Aid',
+      logo: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+      partnership: 'Development Partner'
     }
   ];
 
@@ -47,22 +54,28 @@ const PartnersCarousel = () => {
   return (
     <section className="py-20 bg-white relative">
       <Container size="xl" className="relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-gray-100 rounded-full px-6 py-3 mb-6">
-            <Users className="h-5 w-5 mr-3 text-gray-600" />
-            <Typography variant="overline" className="text-gray-600 font-bold">
-              PARTNERSHIPS
-            </Typography>
+         {/* Header */}
+         <div className="text-center mb-12">
+        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
+            Latest Updates
+            </Text>
           </div>
-          
-          <Typography variant="h1" className="mb-6 md:mb-8 text-3xl md:text-5xl lg:text-6xl font-bold">
-            Our Partners &
-            <span className="block text-primary">Donors</span>
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+          News & <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+              Development
+            </span>
           </Typography>
-          
-          <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto text-lg leading-relaxed">
-            Working together with international development partners to amplify our impact across Tanzania.
-          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Stay informed about our latest initiatives, partnerships, and impact stories from across Tanzania.
+          </p>
+         
         </div>
 
         {/* Partners Carousel */}
@@ -74,12 +87,12 @@ const PartnersCarousel = () => {
             >
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                 <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-8">
                     {partners.slice(slideIndex * partnersPerSlide, (slideIndex + 1) * partnersPerSlide).map((partner, index) => (
                       <div key={partner.name} className="group">
                         <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full text-center group-hover:-translate-y-1">
                           {/* Logo */}
-                          <div className="w-20 h-20 mx-auto mb-6 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
+                          <div className="w-20 h-20 mx-auto mb-4 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
                             <img
                               src={partner.logo}
                               alt={partner.name}

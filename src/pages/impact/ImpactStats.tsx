@@ -11,6 +11,7 @@ import {
   Heart,
   BarChart3
 } from 'lucide-react';
+import DesignIcon from '../../components/design-system/DesignIcon';
 
 const keyStats = [
   {
@@ -67,13 +68,30 @@ export const ImpactStats = () => {
   return (
     <Section variant="default" padding="xl">
       <ResponsiveContainer>
-        <div className="text-center mb-16">
-          <Typography variant="h2" className="mb-4">
-            Impact by the Numbers
+        <div className="text-center mb-1 ">
+        </div>
+         {/* Header */}
+         <div className="text-center mb-12">
+        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-1 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Typography variant="overline" color="primary" className="font-bold text-lg tracking-widest">
+            Impact
+            </Typography>
+          </div>
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+          Impact by the <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+              Numbers
+            </span>
           </Typography>
-          <Typography variant="body" className="text-muted-foreground max-w-3xl mx-auto">
-            Our commitment to transparency means we measure and report on every aspect of our work.
-          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Our commitment to transparency means we measure and report on every aspect of our work.
+          </p>
+         
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -1,126 +1,132 @@
-
-import { Calendar, Award, Users, Globe, BookOpen } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import Typography from '@/components/shared/Typography';
-import Section from '@/components/shared/Section';
-import Container from '@/components/shared/Container';
-import Card from '@/components/shared/Card';
+import { DesignIcon } from '../design-system';
+import Text from '../shared/Typography';
 
-const AchievementsTimelineSection = () => {
-  const milestones = [
-    {
-      year: "2009",
-      title: "LSF Establishment",
-      description: "Legal Services Facility established to coordinate and strengthen legal aid services across Tanzania.",
-      icon: <BookOpen className="h-6 w-6" />,
-      color: "from-primary to-primary-dark",
-      achievements: ["First strategic framework developed", "Initial partnerships formed"]
-    },
-    {
-      year: "2012",
-      title: "National Reach Expansion",
-      description: "Expanded operations to cover all 31 regions of Tanzania with comprehensive legal aid programs.",
-      icon: <Globe className="h-6 w-6" />,
-      color: "from-secondary-teal to-secondary-teal/80",
-      achievements: ["31 regions covered", "500+ paralegals trained"]
-    },
-    {
-      year: "2017",
-      title: "Legal Aid Act Success",
-      description: "Successfully advocated for the Legal Aid Act, establishing a national framework for legal aid coordination.",
-      icon: <Award className="h-6 w-6" />,
-      color: "from-secondary-orange to-secondary-orange/80",
-      achievements: ["Legal Aid Act enacted", "National coordination framework established"]
-    },
-    {
-      year: "2020",
-      title: "Digital Transformation",
-      description: "Launched digital platforms and virtual legal aid services, adapting to modern service delivery needs.",
-      icon: <Users className="h-6 w-6" />,
-      color: "from-secondary-yellow to-secondary-yellow/80",
-      achievements: ["Digital platforms launched", "Remote legal aid services established"]
-    },
-    {
-      year: "2024",
-      title: "15 Years of Impact",
-      description: "Celebrating 15 years of strengthening legal empowerment with over 2.8 million Tanzanians reached.",
-      icon: <Calendar className="h-6 w-6" />,
-      color: "from-green-500 to-green-600",
-      achievements: ["2.8M+ people reached", "78% case resolution rate", "200+ active partners"]
-    }
-  ];
+const timelineData = [
+  {
+    year: '2015',
+    title: 'Foundation & Vision',
+    description: 'This is the year the strategy began. We set our roots and defined our legal empowerment mission.',
+    image: '/lovable-uploads/e1ab15b7-1be8-4b43-a3c3-0e4c6b7a0c02.png',
+  },
+  {
+    year: '2016',
+    title: 'Community Legal Awareness',
+    description: 'Increased access to justice through community legal education sessions and training.',
+    image: '/lovable-uploads/e8daf61f-bec3-4182-b37c-69a73a839f6b.png',
+  },
+  {
+    year: '2018',
+    title: 'Expansion & Collaboration',
+    description: 'We expanded to 50+ districts and formed partnerships with local paralegal units.',
+    image: '/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png',
+  },
+  {
+    year: '2020',
+    title: 'Strengthening Legal Aid',
+    description: 'Focused on policy-level interventions and expanding our legal aid framework.',
+    image: '/lovable-uploads/697177d1-fcb8-4356-b773-aca9e11107aa.png',
+  },
+  {
+    year: '2021',
+    title: 'Nationwide Coverage',
+    description: 'Our reach now covers all regions in Tanzania with over 2,000 trained paralegals.',
+    image: '/lovable-uploads/cbf914e5-d076-4c31-9e29-dacc8069c97a.png',
+  },
+  {
+    year: '2023',
+    title: 'Digital Innovation',
+    description: 'Launch of our digital justice tools and AI-powered support systems.',
+    image: '/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png',
+  },
+  {
+    year: '2024',
+    title: 'Deepening Access & Data Insights',
+    description: 'Nationwide data mapping and monitoring tools now drive our program delivery.',
+    image: '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png',
+  },
+];
+
+export default function OurReachTimeline() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto-rotate timeline every 7 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % timelineData.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const activeItem = timelineData[activeIndex];
 
   return (
-    <Section variant="default" padding="xl">
-      <Container size="xl">
+    <section className="relative bg-gray-900 text-white py-20 overflow-hidden">
+      {/* Dynamic Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-20"
+        style={{ backgroundImage: `url(${activeItem.image})` }}
+      ></div>
+      <div className="relative z-10 container mx-auto px-4">
+
+        {/* Header */}
         <div className="text-center mb-16">
-          <Typography variant="overline" className="text-primary font-bold mb-4">
-            OUR JOURNEY
+          <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
+              WHERE WE REACHED
+            </Text>
+          </div>
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+            Our Strategic <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">Reach</span>
           </Typography>
-          <Typography variant="h2" className="mb-6">
-            15 Years of
-            <span className="block text-primary">Transformative Impact</span>
-          </Typography>
-          <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
-            From our establishment in 2009 to becoming Tanzania's leading legal empowerment organization, 
-            our journey reflects our commitment to expanding access to justice for all.
-          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-gray-300">
+            From grassroots to national impact — discover our growing footprint in legal empowerment across Tanzania.
+          </p>
         </div>
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-0.5 h-full w-1 bg-gradient-to-b from-primary via-secondary-teal to-secondary-orange hidden lg:block"></div>
-          
-          <div className="space-y-12">
-            {milestones.map((milestone, index) => (
-              <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-4 border-primary rounded-full z-10 hidden lg:block"></div>
-                
-                {/* Content Card */}
-                <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'}`}>
-                  <Card variant="elevated" hover className="group">
-                    <div className={`bg-gradient-to-br ${milestone.color} p-6 rounded-t-2xl -m-8 mb-6`}>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                          <div className="text-white">
-                            {milestone.icon}
-                          </div>
-                        </div>
-                        <Typography variant="h3" className="text-white font-bold">
-                          {milestone.year}
-                        </Typography>
-                      </div>
-                      <Typography variant="h4" className="text-white mb-2">
-                        {milestone.title}
-                      </Typography>
-                      <Typography variant="bodySmall" className="text-white/90">
-                        {milestone.description}
-                      </Typography>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <Typography variant="h4" className="text-neutral-dark mb-4">
-                        Key Achievements
-                      </Typography>
-                      {milestone.achievements.map((achievement, achievementIndex) => (
-                        <div key={achievementIndex} className="flex items-center text-sm text-neutral-gray">
-                          <div className="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></div>
-                          {achievement}
-                        </div>
-                      ))}
-                    </div>
-                  </Card>
-                </div>
-                
-                {/* Spacer for alternating layout */}
-                <div className="w-full lg:w-5/12 hidden lg:block"></div>
-              </div>
-            ))}
+        {/* Timeline Navigation */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {timelineData.map((item, index) => (
+            <button
+              key={item.year}
+              onClick={() => setActiveIndex(index)}
+              className={`px-4 py-2 border rounded-full text-sm font-medium transition ${
+                activeIndex === index
+                  ? 'bg-secondary-orange text-white border-secondary-orange'
+                  : 'bg-white/10 hover:bg-white/20 border-white/20 text-white'
+              }`}
+            >
+              {item.year}
+            </button>
+          ))}
+        </div>
+
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Image */}
+          <div className="w-full h-auto rounded overflow-hidden">
+            <img
+              src={activeItem.image}
+              alt={`Map ${activeItem.year}`}
+              className="w-full rounded-xl shadow-lg transition duration-500"
+            />
+          </div>
+
+          {/* Text */}
+          <div>
+            <h3 className="text-2xl font-bold mb-4">{activeItem.title}</h3>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              {activeItem.description}
+            </p>
           </div>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
-};
-
-export default AchievementsTimelineSection;
+}

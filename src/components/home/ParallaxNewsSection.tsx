@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Tag, Download, ExternalLink } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
+import { DesignIcon } from '../design-system';
+import Text from '../shared/Typography';
 
 const newsItems = [
   {
@@ -111,35 +113,37 @@ const ParallaxNewsSection = () => {
   const otherNews = newsItems.filter(item => !item.featured).slice(0, 6);
 
   return (
-    <section className="relative py-64 overflow-hidden">
+    <section className="relative py-14 overflow-hidden">
       {/* Simplified White Background */}
       <div className="absolute inset-0 bg-white" />
 
-      <Container size="xl" className="relative z-10 px-5">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-gray-100 rounded-full px-8 py-4 mb-8 border border-gray-300">
-            <Calendar className="h-6 w-6 mr-4 text-blue-600" />
-            <Typography variant="overline" className="text-blue-600 font-bold text-base">
-              NEWSROOM
-            </Typography>
-          </div>
-
-          <Typography variant="display" className="text-gray-900 font-black text-5xl lg:text-6xl mb-6 leading-tight">
+      <Container size="2xl" className="relative z-10 px-5">
+        {/* Header */}
+        <div className="text-center mb-12">
+        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
             Latest Updates
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
-              & Publications
+            </Text>
+          </div>
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+          News & <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+              Development
             </span>
           </Typography>
-
-          <Typography variant="body" className="text-gray-700 max-w-3xl mx-auto text-lg leading-relaxed">
-            Stay informed with real stories from the field and comprehensive research that shapes justice across Tanzania.
-          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Stay informed about our latest initiatives, partnerships, and impact stories from across Tanzania.
+          </p>
+         
         </div>
-
         {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
-          <div className="bg-gray-100 rounded-2xl p-2 border border-gray-300">
+          <div className="bg-gray-100 rounded-2xl p-1.2 border border-gray-300">
             <button
               onClick={() => setActiveTab('news')}
               className={`px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 ${
@@ -173,7 +177,7 @@ const ParallaxNewsSection = () => {
           }`}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               {/* Featured News */}
-              <div className="lg:col-span-6">
+              <div className="lg:col-span-7">
                 {newsItems.filter(item => item.featured).map((news) => (
                   <Link key={news.id} to={`/news/${news.id}`} className="group block h-[600px]">
                     <div className="relative h-full overflow-hidden rounded-3xl border border-gray-300 bg-gradient-to-br from-white to-gray-100 transition-all duration-700 hover:scale-105 shadow-xl hover:shadow-2xl">
@@ -219,7 +223,7 @@ const ParallaxNewsSection = () => {
               </div>
 
               {/* Other News */}
-              <div className="lg:col-span-6">
+              <div className="lg:col-span-5">
                 <div className="h-[600px] overflow-y-auto">
                   <div className="space-y-6 p-4">
                     {otherNews.map((news) => (
@@ -239,7 +243,7 @@ const ParallaxNewsSection = () => {
                                   {news.category}
                                 </span>
                               </div>
-                              <Typography variant="h4" className="text-gray-900 font-bold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors text-base">
+                              <Typography variant="h3" className="text-gray-900 font-bold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors text-base">
                                 {news.title}
                               </Typography>
                               <Typography variant="bodySmall" className="text-gray-600 leading-relaxed text-sm">

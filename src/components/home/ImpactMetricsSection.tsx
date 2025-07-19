@@ -30,8 +30,8 @@ const ImpactMetricsSection = () => (
     {/* Subtle overlay pattern */}
     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,.2)_2px,transparent_0)] bg-[length:30px_30px]"></div>
 
-    <Container size="xl" className="relative z-10">
-      <div className="text-center mb-20 space-y-9">
+    <Container size="2xl" className="relative z-10">
+      <div className="text-center mb-16 space-y-9">
         <div className="inline-flex items-center bg-white/15 backdrop-blur-sm rounded-full px-8 py-4 border border-white/30">
           <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
           <Typography variant="overline" className="text-secondary-orange font-bold text-lg">
@@ -39,7 +39,7 @@ const ImpactMetricsSection = () => (
           </Typography>
         </div>
 
-        <Typography variant="display" className="text-white font-heading text-4xl lg:text-8xl">
+        <Typography variant="h2" className="mb-8 text-white text-5xl md:text-6xl font-bold">
           Real Results.
           <span className="block text-secondary-orange">Lasting Change.</span>
         </Typography>
@@ -52,7 +52,7 @@ const ImpactMetricsSection = () => (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
         {successMetrics.map((metric, index) => (
           <div key={index} className="group">
-            <div className="bg-white/15 backdrop-blur-sm rounded-3xl p-10 border border-white/30 hover:border-secondary-orange/50 transition-all duration-300 text-center group-hover:-translate-y-3 hover:shadow-2xl">
+            <div className="bg-white/15 backdrop-blur-sm rounded-3xl p-10 border border-white/10 hover:border-secondary-orange/50 transition-all duration-300 text-center group-hover:-translate-y-3 hover:shadow-2xl">
               <Typography variant="display" className="text-secondary-orange mb-6 font-heading text-4xl md:text-5xl">
                 {metric.value}
               </Typography>

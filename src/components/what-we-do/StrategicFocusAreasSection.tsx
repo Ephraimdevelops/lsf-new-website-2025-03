@@ -4,18 +4,19 @@ import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import Card from '@/components/shared/Card';
 import { Button } from '@/components/ui/button';
+import { DesignIcon } from '../design-system';
+import Text from '../shared/Typography';
 
 const StrategicFocusAreasSection = () => {
   const focusAreas = [
     {
-      icon: <Scale className="h-8 w-8" />,
+      icon: <Scale className="h-18 w-18" />,
       title: "Expanding Access to Quality Legal Aid",
       description: "We support and scale access to affordable, high-quality legal aid services, prioritizing rural areas, women, and underserved populations.",
       stats: [
         "426,000+ direct legal aid beneficiaries",
         "105,000+ supported legal service providers"
       ],
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop&crop=faces",
       color: "from-secondary-orange to-secondary-orange/80",
       link: "/accessible-legal-aid",
       cta: "Explore This Focus Area"
@@ -90,19 +91,27 @@ const StrategicFocusAreasSection = () => {
   return (
     <section id="focus-areas" className="py-20 bg-white">
       <Container size="xl">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-secondary-orange/10 rounded-full px-6 py-3 mb-8">
-            <Building className="h-5 w-5 mr-3 text-secondary-orange" />
-            <span className="text-secondary-orange font-semibold text-sm uppercase tracking-wider">
-              WHERE WE FOCUS
-            </span>
+         {/* Header */}
+       <div className="text-center mb-12">
+        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+            <DesignIcon 
+              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              size="sm"
+              className="mr-4"
+            />
+            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
+            WHERE WE FOCUS
+            </Text>
           </div>
-          <Typography variant="h2" className="mb-8 text-4xl md:text-5xl font-bold text-neutral-900">
-            Strategic Focus Areas
+          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+          Our Strategic <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+            Focus Areas 
+            </span>
           </Typography>
-          <Typography variant="body" className="text-neutral-600 max-w-4xl mx-auto text-lg leading-relaxed">
-            Our Strategic Focus Areas align with Tanzania's legal development needs and global justice goals. Each area represents a priority theme where we deliver structured, scalable impact.
-          </Typography>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          We use five synergistic approaches to deliver on our mission. These are not just methods; they are how we implement, scale, and sustain justice innovation across Tanzania.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -143,17 +152,6 @@ const StrategicFocusAreasSection = () => {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
-                </div>
-
-                {/* Clean Image Section */}
-                <div className="w-32 h-32 flex-shrink-0">
-                  <div className="bg-white rounded-lg overflow-hidden">
-                    <img 
-                      src={area.image} 
-                      alt={area.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
                 </div>
               </div>
             </div>

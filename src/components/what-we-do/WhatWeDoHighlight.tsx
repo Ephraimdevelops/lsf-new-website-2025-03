@@ -5,13 +5,7 @@ import { DesignIcon } from '../design-system';
 import Text from '../shared/Typography';
 import Typography from '../shared/Typography';
 
-const AboutUsHighlight = () => {
-  const stats = [
-    { icon: Users, value: '426,000+', label: 'Lives Transformed' },
-    { icon: Target, value: '31', label: 'Regions Covered' },
-    { icon: Globe, value: '500+', label: 'Paralegals Trained' },
-    { icon: Award, value: '15+', label: 'Years of Impact' }
-  ];
+const WhatWeDoHighlight = () => {
 
   return (
     <section className="py-0 bg-background">
@@ -26,28 +20,19 @@ const AboutUsHighlight = () => {
                   size="sm"
                   className="mr-4"
                 />
-                <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
-                  about us 
+                <Text variant="overline" className="font-bold text-lg tracking-widest">
+                Our Strategy
                 </Text>
               </div>
               <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
-                Empowering Communities through
-                <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
-                  Legal Access for all.
+              Focus Areas <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+                & Approaches
                 </span>
               </Typography>
             </div>
             <div>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Since 2009, the Legal Support Facility has been Tanzania's leading organization 
-                in making justice accessible to all. We bridge the gap between legal systems 
-                and communities through innovative approaches, technology, and sustainable partnerships.
-              </p>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Our work spans from training community paralegals in rural villages to developing 
-                digital platforms that connect people with legal services. We believe that justice 
-                is not a privilege—it's a fundamental right that should be accessible to every Tanzanian, 
-                regardless of their location, income, or background.
+              At the LSF, we champion access to justice through an integrated model grounded in legal empowerment. Our work is guided by two complementary pillars: <span className="font-semibold text-primary">Strategic Approaches</span> (how we work) and <span className="font-semibold text-secondary-teal">Strategic Focus Areas</span> (where we focus). These intersect to deliver lasting, rights-based change for women, marginalized communities, and the justice ecosystem at large.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="group">
@@ -79,4 +64,4 @@ const AboutUsHighlight = () => {
   );
 };
 
-export default AboutUsHighlight;
+export default WhatWeDoHighlight;

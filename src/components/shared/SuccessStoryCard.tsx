@@ -24,7 +24,7 @@ const SuccessStoryCard = ({ story, linkTo, className = "" }: SuccessStoryCardPro
   const CardContent = () => (
     <div className={`group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-2xl transition-all duration-500 ${className}`}>
       {/* Image with overlay */}
-      <div className="relative h-80 overflow-hidden">
+      <div className="relative h-100 overflow-hidden">
         <img 
           src={story.image} 
           alt={story.name}
@@ -67,31 +67,12 @@ const SuccessStoryCard = ({ story, linkTo, className = "" }: SuccessStoryCardPro
       
       {/* Content section */}
       <div className="p-8">
-        {/* Quote */}
-        <div className="relative mb-6">
-          <Quote className="h-8 w-8 text-primary/20 absolute -top-2 -left-2" />
-          <Typography variant="body" className="text-neutral-dark italic leading-relaxed pl-6 text-lg">
-            "{story.quote}"
-          </Typography>
-        </div>
         
         {/* Brief description (if available) */}
         {story.brief && (
           <Typography variant="body" className="text-neutral-gray mb-6 leading-relaxed">
             {story.brief}
           </Typography>
-        )}
-        
-        {/* Outcome (if available) */}
-        {story.outcome && (
-          <div className="bg-gradient-to-r from-primary/5 to-secondary-teal/5 rounded-lg p-4 mb-6">
-            <Typography variant="bodySmall" className="font-semibold text-primary mb-2">
-              Outcome:
-            </Typography>
-            <Typography variant="bodySmall" className="text-neutral-gray leading-relaxed">
-              {story.outcome}
-            </Typography>
-          </div>
         )}
         
         {/* Read more link */}
