@@ -5,7 +5,6 @@ import StrategicApproachesSection from '../components/what-we-do/StrategicApproa
 import StrategicFocusAreasSection from '../components/what-we-do/StrategicFocusAreasSection';
 import ImpactShowcaseSection from '../components/what-we-do/ImpactShowcaseSection';
 import StrategicPartnershipsSection from '../components/what-we-do/StrategicPartnershipsSection';
-import StrategicFocusSection from '@/components/what-we-do/StrategicFocusSection';
 import WhatWeDoHighlight from '@/components/what-we-do/WhatWeDoHighlight';
 
 const WhatWeDo = () => {
@@ -16,7 +15,6 @@ const WhatWeDo = () => {
       <WhatWeDoHighlight />
       <StrategicApproachesSection />
       <StrategicFocusAreasSection />
-      <StrategicFocusSection />
       <ImpactShowcaseSection />
       <StrategicPartnershipsSection />
     </Layout>

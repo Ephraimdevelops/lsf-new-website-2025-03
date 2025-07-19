@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
@@ -6,7 +5,7 @@ import HeroSection from '../components/shared/HeroSection';
 import LoadingState from '../components/shared/LoadingState';
 import ErrorState from '../components/shared/ErrorState';
 import EnhancedSearch from '../components/shared/EnhancedSearch';
-import { Newspaper, Calendar, Clock, Filter, ChevronDown, Tag } from 'lucide-react';
+import { Newspaper, Calendar, Clock, Filter, ChevronDown, Tag, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -87,11 +86,11 @@ const News = () => {
 
   const getCategoryColor = (category: string) => {
     switch (category.toLowerCase()) {
-      case 'innovation': return 'bg-primary/10 text-primary border-primary/20';
-      case 'legal victory': return 'bg-secondary-teal/10 text-secondary-teal border-secondary-teal/20';
-      case 'training': return 'bg-secondary-orange/10 text-secondary-orange border-secondary-orange/20';
-      case 'outreach': return 'bg-secondary-yellow/10 text-secondary-yellow border-secondary-yellow/20';
-      default: return 'bg-gray-100 text-gray-600 border-gray-200';
+      case 'innovation': return 'bg-primary/10 text-primary';
+      case 'legal victory': return 'bg-secondary-teal/10 text-secondary-teal';
+      case 'training': return 'bg-secondary-orange/10 text-secondary-orange';
+      case 'outreach': return 'bg-secondary-yellow/10 text-secondary-yellow';
+      default: return 'bg-gray-100 text-gray-600';
     }
   };
 
@@ -217,60 +216,71 @@ const News = () => {
                 <p className="text-neutral-gray">Latest news and updates from our work</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 gap-8">
                 {filteredNews.map((article) => (
                   <Link 
                     key={article.id}
                     to={`/news/${article.id}`}
-                    className="group block"
+                    className="group block w-full"
                   >
-                    <article className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-secondary-teal/30 transform hover:-translate-y-2">
-                      {/* Image */}
-                      <div className="relative h-56 overflow-hidden">
-                        <img 
-                          src={article.image} 
-                          alt={article.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                        
-                        {/* Category Badge */}
-                        <div className="absolute top-4 left-4">
-                          <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold shadow-lg border ${getCategoryColor(article.category)}`}>
-                            <Tag className="h-3 w-3 mr-1" />
-                            {article.category.toUpperCase()}
-                          </span>
-                        </div>
-
-                        {/* Read Time */}
-                        {article.readTime && (
-                          <div className="absolute top-4 right-4">
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/90 text-gray-700 shadow-lg">
-                              <Clock className="h-3 w-3 mr-1" />
-                              {article.readTime}
+                    <article className="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+                      <div className="flex flex-col md:flex-row">
+                        {/* Image */}
+                        <div className="relative w-full md:w-1/3 h-64 md:h-auto overflow-hidden">
+                          <img 
+                            src={article.image} 
+                            alt={article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                          
+                          {/* Category Badge */}
+                          <div className="absolute top-4 left-4">
+                            <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold ${getCategoryColor(article.category)}`}>
+                              <Tag className="h-3 w-3 mr-1" />
+                              {article.category.toUpperCase()}
                             </span>
                           </div>
-                        )}
-                      </div>
 
-                      {/* Content */}
-                      <div className="p-8">
-                        <div className="flex items-center text-sm text-gray-500 mb-4">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          {new Date(article.date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          })}
+                          {/* Read Time */}
+                          {article.readTime && (
+                            <div className="absolute top-4 right-4">
+                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/95 text-gray-600">
+                                <Clock className="h-3 w-3 mr-1" />
+                                {article.readTime}
+                              </span>
+                            </div>
+                          )}
                         </div>
-                        
-                        <h3 className="text-xl font-bold mb-4 text-neutral-dark line-clamp-2 group-hover:text-secondary-teal transition-colors duration-300">
-                          {article.title}
-                        </h3>
-                        
-                        <p className="text-neutral-gray text-sm line-clamp-3 leading-relaxed">
-                          {article.excerpt}
-                        </p>
+
+                        {/* Content */}
+                        <div className="flex-1 p-8 flex flex-col justify-center gap-4">
+                          <div className="flex items-center text-sm text-gray-500">
+                            <Calendar className="h-4 w-4 mr-2" />
+                            {new Date(article.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </div>
+                          
+                          <h3 className="text-2xl font-semibold text-neutral-dark line-clamp-2 group-hover:text-secondary-teal transition-colors duration-300 ease-in-out">
+                            {article.title}
+                          </h3>
+                          
+                          <p className="text-neutral-gray text-base line-clamp-4 leading-relaxed">
+                            {article.excerpt}
+                          </p>
+
+                          {/* Call to Action */}
+                          <Button
+                            variant="ghost"
+                            className="w-fit flex items-center gap-2 text-secondary-teal hover:bg-secondary-teal/10 rounded-full px-6 py-2 text-base font-medium transition-colors duration-300 ease-in-out"
+                          >
+                            Read More
+                            <ArrowRight className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
                     </article>
                   </Link>

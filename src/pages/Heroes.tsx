@@ -120,22 +120,22 @@ const Heroes = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-primary/60 to-black/70"></div>
         
         <Container className="relative z-10 text-center text-white">
+          
+          
+          
+          <Typography variant="h1" className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            Our<br />
+            <span className="text-secondary-orange">Heroes</span>
+          </Typography>
+          
+          <Typography variant="body" className="text-2xl mb-12 max-w-4xl mx-auto text-white/90 leading-relaxed">
+          Meet the brave individuals whose lives have been transformed through access to justice. These are stories of courage, resilience, and the power of legal empowerment to change lives.
+          </Typography>
           <div className="flex items-center justify-center mb-8">
             <div className="bg-secondary-orange/20 p-6 rounded-full backdrop-blur-sm border border-secondary-orange/30">
               <Target className="h-16 w-16 text-secondary-orange" />
             </div>
           </div>
-          
-          <Typography variant="overline" className="text-secondary-orange mb-6 text-lg font-bold tracking-wider">
-          Stories of Transformation.
-          </Typography>
-          <Typography variant="h1" className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            Our<br />
-            <span className="text-secondary-orange">Heroes</span>
-          </Typography>
-          <Typography variant="body" className="text-2xl mb-12 max-w-4xl mx-auto text-white/90 leading-relaxed">
-          Meet the brave individuals whose lives have been transformed through access to justice. These are stories of courage, resilience, and the power of legal empowerment to change lives.
-          </Typography>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-xl px-8 py-4">
@@ -155,7 +155,7 @@ const Heroes = () => {
       <section className="py-16 bg-white">
       <Container>
       <div className="flex flex-col items-center mb-12">
-          <div className="inline-flex items-center gap-3 mb-6 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
+          <div className="inline-flex items-center gap-2 mb-4 bg-white/20 backdrop-blur-sm rounded-full px-3 py-3">
             <Target className="h-5 w-5 text-primary" />
             <span className="font-semibold text-sm uppercase tracking-wider text-neutral-900">
               Our Heroes

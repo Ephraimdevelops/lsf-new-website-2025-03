@@ -133,6 +133,36 @@ const Whistleblower = () => {
         </Container>
       </section>
 
+      {/* Final CTA */}
+      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white">
+        <Container>
+          <div className="max-w-4xl mx-auto text-center">
+            <Typography variant="h2" className="text-white mb-8 text-4xl md:text-5xl">
+              Your Voice Creates Change
+            </Typography>
+            <Typography variant="body" className="text-white/90 mb-12 text-xl">
+              Every report helps us build a more ethical, transparent, and accountable organization. 
+              Join us in maintaining the highest standards of integrity.
+            </Typography>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 font-bold py-4 text-lg">
+                <MessageSquare className="mr-3 h-6 w-6" />
+                Submit Report
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
+                <Phone className="mr-3 h-6 w-6" />
+                Call Hotline
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
+                <Mail className="mr-3 h-6 w-6" />
+                Email Ethics Team
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Enhanced Reporting Options */}
       <section className="py-24 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
         <Container>
@@ -420,35 +450,7 @@ const Whistleblower = () => {
         </Container>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24 bg-gradient-to-br from-primary via-primary-dark to-black text-white">
-        <Container>
-          <div className="max-w-4xl mx-auto text-center">
-            <Typography variant="h2" className="text-white mb-8 text-4xl md:text-5xl">
-              Your Voice Creates Change
-            </Typography>
-            <Typography variant="body" className="text-white/90 mb-12 text-xl">
-              Every report helps us build a more ethical, transparent, and accountable organization. 
-              Join us in maintaining the highest standards of integrity.
-            </Typography>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 font-bold py-4 text-lg">
-                <MessageSquare className="mr-3 h-6 w-6" />
-                Submit Report
-              </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
-                <Phone className="mr-3 h-6 w-6" />
-                Call Hotline
-              </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 text-lg">
-                <Mail className="mr-3 h-6 w-6" />
-                Email Ethics Team
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
+      
     </Layout>
   );
 };

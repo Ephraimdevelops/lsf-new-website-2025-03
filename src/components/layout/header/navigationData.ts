@@ -24,9 +24,9 @@ export const navigationItems = [
     href: '/impact',
     description: 'Measurable change and real stories',
     subItems: [
-      { name: 'Impact Dashboard', href: '/impact', description: 'Data and outcomes' },
       { name: 'Success Stories', href: '/heroes', description: 'Real impact stories' },
-      { name: 'Reports & Achievements', href: '/impact#reports', description: 'Annual reports and milestones' },
+      { name: 'Impact Dashboard', href: '/impact', description: 'Data and outcomes' },
+      
     ]
   },
   { 
@@ -35,7 +35,6 @@ export const navigationItems = [
     description: 'Latest updates and insights',
     subItems: [
       { name: 'News & Blog', href: '/news', description: 'Latest articles and insights' },
-      { name: 'Press Releases', href: '/news#press', description: 'Official announcements' },
       { name: 'Opportunities', href: '/opportunities', description: 'New opportunities' },
     ]
   },

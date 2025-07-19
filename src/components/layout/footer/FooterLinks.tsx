@@ -64,7 +64,8 @@ const FooterLinks = () => {
                 </Typography>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-primary flex-shrink-0" />
+                <Mail className="h-5 
+                w-5 text-primary flex-shrink-0" />
                 <Typography variant="bodySmall" className="text-white/90">
                   info@lsftz.org
                 </Typography>

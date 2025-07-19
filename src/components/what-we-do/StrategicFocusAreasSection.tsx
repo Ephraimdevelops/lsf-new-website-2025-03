@@ -1,8 +1,7 @@
-import { ArrowRight, Scale, GraduationCap, Heart, FileText, Building, Lightbulb, TrendingUp } from 'lucide-react';
+import { ArrowRight, Scale, GraduationCap, Heart, FileText, Building, Lightbulb, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
-import Card from '@/components/shared/Card';
 import { Button } from '@/components/ui/button';
 import { DesignIcon } from '../design-system';
 import Text from '../shared/Typography';
@@ -10,149 +9,162 @@ import Text from '../shared/Typography';
 const StrategicFocusAreasSection = () => {
   const focusAreas = [
     {
-      icon: <Scale className="h-18 w-18" />,
-      title: "Expanding Access to Quality Legal Aid",
-      description: "We support and scale access to affordable, high-quality legal aid services, prioritizing rural areas, women, and underserved populations.",
+      icon: <Scale className="h-12 w-12" />,
+      title: "Expanding Access to Legal Aid",
+      description: "Scaling affordable, high-quality legal aid for rural areas, women, and underserved communities.",
       stats: [
-        "426,000+ direct legal aid beneficiaries",
-        "105,000+ supported legal service providers"
+        "426,000+ beneficiaries served",
+        "105,000+ legal providers supported"
       ],
+      image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=600&h=400&fit=crop&crop=faces",
       color: "from-secondary-orange to-secondary-orange/80",
-      link: "/accessible-legal-aid",
-      cta: "Explore This Focus Area"
+      link: "/focus-areas/accessible-legal-aid",
+      cta: "Explore Legal Aid"
     },
     {
-      icon: <GraduationCap className="h-8 w-8" />,
+      icon: <GraduationCap className="h-12 w-12" />,
       title: "Advancing Legal Empowerment",
-      description: "We increase legal literacy and community-level rights awareness, enabling individuals to advocate for themselves and others.",
+      description: "Boosting legal literacy and rights awareness to empower community advocacy.",
       stats: [
-        "39.8 million+ reached through legal education",
-        "Legal clubs, dialogues, and paralegal outreach"
+        "39.8M+ reached via education",
+        "Legal clubs and paralegal outreach"
       ],
-      image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=400&h=300&fit=crop&crop=faces",
+      image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&h=400&fit=crop&crop=faces",
       color: "from-secondary-teal to-secondary-teal/80",
-      link: "/empowered-communities",
-      cta: "Learn About Legal Empowerment"
+      link: "/focus-areas/empowered-communities",
+      cta: "Learn Empowerment"
     },
     {
-      icon: <Heart className="h-8 w-8" />,
+      icon: <Heart className="h-12 w-12" />,
       title: "Strengthening Gender Justice",
-      description: "We fight gender-based violence, promote women's rights, and elevate gender equality in law and practice.",
+      description: "Fighting gender-based violence and promoting equality in law and practice.",
       stats: [
-        "Sauti ya Mwanamke: multi-region women's justice program",
-        "Survivors supported through legal and psychosocial services"
+        "Sauti ya Mwanamke program",
+        "Survivors aided with services"
       ],
-      image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&h=300&fit=crop&crop=faces",
+      image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=600&h=400&fit=crop&crop=faces",
       color: "from-primary to-primary-dark",
-      link: "/gender-justice-resources",
-      cta: "Dive into Gender Justice Work"
+      link: "/resources/gender-justice",
+      cta: "Discover Gender Justice"
     },
     {
-      icon: <FileText className="h-8 w-8" />,
-      title: "Supporting Policy and Legal Reform",
-      description: "We engage lawmakers and policymakers to review, reform, and align laws with justice and human rights standards.",
+      icon: <FileText className="h-12 w-12" />,
+      title: "Supporting Legal Reform",
+      description: "Engaging policymakers to align laws with justice and human rights.",
       stats: [
-        "Engaged in constitutional review and criminal code reforms",
-        "Drafted/Influenced key gender and legal aid policies"
+        "Constitutional and code reforms",
+        "Influenced key legal policies"
       ],
-      image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&h=300&fit=crop&crop=faces",
+      image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=400&fit=crop&crop=faces",
       color: "from-secondary-yellow to-secondary-yellow/80",
-      link: "/policy-advocacy",
-      cta: "See Our Policy Influence"
+      link: "/what-we-do/advocacy-policy",
+      cta: "See Policy Impact"
     },
     {
-      icon: <Building className="h-8 w-8" />,
-      title: "Building Sustainable Justice Systems",
-      description: "We invest in institutional capacity—strengthening paralegal units, CSOs, and LSF itself to ensure long-term legal aid delivery.",
+      icon: <Building className="h-12 w-12" />,
+      title: "Building Justice Systems",
+      description: "Strengthening paralegal units and CSOs for sustainable legal aid.",
       stats: [
-        "Toolkits, capacity building, and sustainability audits",
-        "Monitoring and evaluation of legal aid systems"
+        "Toolkits and capacity building",
+        "Monitoring justice systems"
       ],
-      image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400&h=300&fit=crop&crop=faces",
+      image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600&h=400&fit=crop&crop=faces",
       color: "from-green-500 to-green-600",
-      link: "/institutional-development",
-      cta: "Learn How We Build Sustainability"
+      link: "/focus-areas/institutional-development",
+      cta: "Explore Sustainability"
     },
     {
-      icon: <Lightbulb className="h-8 w-8" />,
+      icon: <Lightbulb className="h-12 w-12" />,
       title: "Promoting Inclusive Innovation",
-      description: "We develop and scale digital justice solutions to ensure no one is left behind—especially youth, people with disabilities, and women in tech deserts.",
+      description: "Scaling digital justice for youth, disabled, and tech-desert communities.",
       stats: [
         "Haki Yangu App + WhatsApp bots",
-        "Legal aid via IVR, SMS & USSD codes"
+        "Legal aid via SMS & USSD"
       ],
-      image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=300&fit=crop&crop=faces",
+      image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600&h=400&fit=crop&crop=faces",
       color: "from-purple-500 to-purple-600",
-      link: "/digital-transformation",
-      cta: "Discover Inclusive Legal Innovation"
+      link: "/focus-areas/digital-transformation",
+      cta: "Discover Innovation"
     }
   ];
 
   return (
-    <section id="focus-areas" className="py-20 bg-white">
+    <section id="focus-areas" className="py-24 bg-primary">
       <Container size="xl">
-         {/* Header */}
-       <div className="text-center mb-12">
-        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+        {/* Header */}
+        <div className="text-center mb-16 max-w-4xl mx-auto">
+          <div className="inline-flex items-center bg-white/10 rounded-full px-6 py-3 mb-6">
             <DesignIcon 
-              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              icon={<div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>}
               size="sm"
-              className="mr-4"
+              className="mr-3"
             />
-            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
-            WHERE WE FOCUS
+            <Text variant="overline" color="white" className="font-semibold text-base tracking-wider">
+              OUR PRIORITIES
             </Text>
           </div>
-          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
-          Our Strategic <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
-            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
-            Focus Areas 
+          <Typography variant="h2" className="text-4xl md:text-5xl font-semibold text-white mb-6">
+            Strategic Focus Areas
+            <span className="block bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+              Driving Justice Innovation
             </span>
           </Typography>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          We use five synergistic approaches to deliver on our mission. These are not just methods; they are how we implement, scale, and sustain justice innovation across Tanzania.
-          </p>
+          <Typography variant="body" className="text-lg text-white/80 leading-relaxed">
+            Our six focus areas empower communities, reform systems, and scale sustainable justice across Tanzania with impact and innovation.
+          </Typography>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Focus Areas */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {focusAreas.map((area, index) => (
-            <div key={index} className="bg-white rounded-lg border border-neutral-200 overflow-hidden hover:shadow-md transition-shadow duration-300">
-              <div className="flex gap-6 p-8">
-                {/* Content Section */}
-                <div className="flex-1">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center text-white">
-                      {area.icon}
-                    </div>
-                  </div>
-
-                  <Typography variant="h4" className="text-xl font-bold mb-4 text-neutral-900">
-                    {area.title}
-                  </Typography>
-                  
-                  <Typography variant="body" className="text-neutral-600 mb-6 leading-relaxed">
-                    {area.description}
-                  </Typography>
-
-                  {/* Clean Stats */}
-                  <div className="space-y-3 mb-6">
-                    {area.stats.map((stat, statIndex) => (
-                      <div key={statIndex} className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0 mt-3"></div>
-                        <Typography variant="bodySmall" className="text-neutral-600 leading-relaxed font-medium">
-                          {stat}
-                        </Typography>
-                      </div>
-                    ))}
-                  </div>
-
-                  <Link to={area.link}>
-                    <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold transition-colors duration-200 flex items-center">
-                      {area.cta}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+            <div 
+              key={index} 
+              className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out overflow-hidden relative max-w-sm mx-auto"
+              style={{
+                backgroundImage: `url(${area.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundBlendMode: 'overlay',
+                backgroundColor: 'rgba(255, 255, 255, 0.95)'
+              }}
+            >
+              <div className="p-6 flex flex-col items-center gap-5">
+                {/* Icon */}
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white bg-gradient-to-r ${area.color} group-hover:scale-110 transition-transform duration-500 ease-in-out`}>
+                  {area.icon}
                 </div>
+
+                {/* Title */}
+                <Typography variant="h4" className="text-2xl font-semibold text-neutral-900 text-center">
+                  {area.title}
+                </Typography>
+
+                {/* Description */}
+                <Typography variant="body" className="text-neutral-600 text-base leading-relaxed text-center max-w-xs">
+                  {area.description}
+                </Typography>
+
+                {/* Infographic Stats */}
+                <div className="flex flex-col items-center gap-2">
+                  {area.stats.map((stat, statIndex) => (
+                    <div key={statIndex} className="flex items-center gap-2">
+                      <CheckCircle className="w-5 h-5 text-neutral-400" />
+                      <Typography variant="bodySmall" className={`text-neutral-600 font-medium bg-gradient-to-r ${area.color} bg-clip-text text-transparent`}>
+                        {stat}
+                      </Typography>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <Link to={area.link}>
+                  <Button 
+                    className={`w-fit rounded-full px-6 py-3 text-base font-semibold text-white bg-gradient-to-r ${area.color} hover:opacity-90 transition-all duration-300 ease-in-out flex items-center gap-2`}
+                  >
+                    {area.cta}
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
           ))}

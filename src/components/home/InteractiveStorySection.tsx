@@ -71,7 +71,7 @@ const stories = [
     title: "Youth Empowerment Mentor",
     location: "Zanzibar",
     year: "2024",
-    image: "/public/lovable-uploads/2.png",
+    image: "/lovable-uploads/2.png",
     thumbnail: "public/lovable-uploads/2.png",
     quote: "LSF’s mentorship helped me guide youth on their rights.",
     brief: "Maryam empowered youth through LSF’s programs.",
@@ -120,7 +120,7 @@ const InteractiveStorySection = () => {
     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,.2)_2px,transparent_0)] bg-[length:30px_30px]"></div>
 
 
-      <Container size="2xl" className="relative z-10">
+      <Container size="xl" className="relative z-10">
         <div className="text-center mb-16 space-y-9">
         <div className="inline-flex items-center bg-white/15 backdrop-blur-sm rounded-full px-8 py-4 border border-white/30">
           <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />

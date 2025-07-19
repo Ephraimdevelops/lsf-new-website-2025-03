@@ -11,6 +11,7 @@ import { ImpactCTA } from './impact/ImpactCTA';
 import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
 import { Card, CardContent } from '@/components/ui/card';
+import InteractiveStorySection from '@/components/home/InteractiveStorySection';
 
 const sdgGoals = [
   {
@@ -134,6 +135,7 @@ const Impact = () => {
     <Layout>
       <ImpactHero />
       <ImpactStats />
+      <InteractiveStorySection />
       <ThematicImpact />
       <ImpactStories />
       <RegionalImpact />

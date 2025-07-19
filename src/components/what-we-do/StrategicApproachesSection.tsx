@@ -1,8 +1,7 @@
-import { ArrowRight, DollarSign, Users, Megaphone, BookOpen, Zap, Network } from 'lucide-react';
+import { ArrowRight, DollarSign, Users, Megaphone, BookOpen, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
-import Card from '@/components/shared/Card';
 import { Button } from '@/components/ui/button';
 import { DesignIcon } from '../design-system';
 import Text from '../shared/Typography';
@@ -10,107 +9,115 @@ import Text from '../shared/Typography';
 const StrategicApproachesSection = () => {
   const approaches = [
     {
-      icon: <DollarSign className="h-8 w-8" />,
+      icon: <DollarSign className="h-12 w-12" />,
       title: "Grant-Making and Management",
-      description: "We fund and support over 100 organizations, enabling them to provide frontline legal aid and paralegal services in underserved regions.",
+      description: "Funding over 100 organizations to deliver frontline legal aid in underserved regions.",
       image: "public/lovable-uploads/7.png",
       color: "from-secondary-orange to-secondary-orange/80",
-      link: "/what-we-do/grant-making"
+      link: "/what-we-do/grant-making",
+      cta: "Explore Grant-Making"
     },
     {
-      icon: <Users className="h-8 w-8" />,
+      icon: <Users className="h-12 w-12" />,
       title: "Direct Project Implementation",
-      description: "We design and implement high-impact programs like Wanawake Tunaweza and Sauti ya Mwanamke, reaching communities with custom legal interventions and rights-based empowerment.",
+      description: "Designing high-impact programs like Wanawake Tunaweza for legal interventions.",
       image: "public/lovable-uploads/8.png",
       color: "from-secondary-teal to-secondary-teal/80",
-      link: "/programs"
+      link: "/what-we-do/direct-implementation",
+      cta: "Discover Our Programs"
     },
     {
-      icon: <Megaphone className="h-8 w-8" />,
+      icon: <Megaphone className="h-12 w-12" />,
       title: "Policy Influence and Advocacy",
-      description: "We push for laws and policies that center justice, gender equality, and human dignity. Our advocacy spans community mobilization to parliamentary engagement.",
+      description: "Pushing for justice-centered laws from communities to parliament.",
       image: "public/lovable-uploads/9.png",
       color: "from-primary to-primary-dark",
-      link: "/approach/advocacy-policy"
+      link: "/what-we-do/advocacy-policy",
+      cta: "Learn About Advocacy"
     },
     {
-      icon: <BookOpen className="h-8 w-8" />,
+      icon: <BookOpen className="h-12 w-12" />,
       title: "Research, Monitoring, and Learning",
-      description: "We generate and translate evidence into action—improving programs, influencing reform, and ensuring our partners have access to knowledge that matters.",
+      description: "Translating evidence into action to improve programs and reforms.",
       image: "public/lovable-uploads/10.png",
       color: "from-secondary-yellow to-secondary-yellow/80",
-      link: "/approach/research-learning"
+      link: "/what-we-do/learning-research",
+      cta: "Explore Our Research"
     },
     {
-      icon: <Zap className="h-8 w-8" />,
-      title: "Technology and Innovation",
-      description: "We invest in digital legal aid tools like the Haki Yangu App, USSD/IVR services, and WhatsApp bots, closing the access gap for low-literacy, remote, or low-tech communities.",
+      icon: <Zap className="h-12 w-12" />,
+      title: "Partnerships & Networking",
+      description: "Scaling digital tools like Haki Yangu App for low-tech communities.",
       image: "public/lovable-uploads/11.png",
       color: "from-purple-500 to-purple-600",
-      link: "/legal-help"
+      link: "/what-we-do/partnerships-networking",
+      cta: "Join Our Network"
     }
   ];
 
   return (
-    <section id="strategic-approaches" className="py-20 bg-neutral-50">
+    <section id="approaches" className="py-24 bg-gray-50">
       <Container size="xl">
-         {/* Header */}
-       <div className="text-center mb-12">
-        <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+        {/* Header */}
+        <div className="text-center mb-16 max-w-4xl mx-auto">
+          <div className="inline-flex items-center bg-gradient-to-r from-primary/10 to-secondary-teal/10 rounded-full px-6 py-3 mb-6">
             <DesignIcon 
-              icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
+              icon={<div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>}
               size="sm"
-              className="mr-4"
+              className="mr-3"
             />
-            <Text variant="overline" color="primary" className="font-bold text-lg tracking-widest">
-            HOW WE WORK
+            <Text variant="overline" color="primary" className="font-semibold text-base tracking-wider">
+              HOW WE WORK
             </Text>
           </div>
-          <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
-          Our Strategic <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent"></span>
+          <Typography variant="h2" className="text-4xl md:text-5xl font-semibold text-neutral-900 mb-6">
+            Strategic Approaches
             <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
-            Approaches 
+              Scaling Justice Innovation
             </span>
           </Typography>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          We use five synergistic approaches to deliver on our mission. These are not just methods; they are how we implement, scale, and sustain justice innovation across Tanzania.
-          </p>
-         
+          <Typography variant="body" className="text-lg text-neutral-600 leading-relaxed">
+            Our five approaches drive impactful, sustainable change, empowering communities and transforming justice systems across Tanzania.
+          </Typography>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Approaches */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {approaches.map((approach, index) => (
-            <div key={index} className="bg-white rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300">
-              {/* Clean Image Header */}
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={approach.image} 
-                  alt={approach.title}
-                  className="w-100% h-full object-cover"
-                />
-                <div className="absolute text-center top-4 left-4">
-                  <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm">
-                    <div className="text-primary">
-                      {approach.icon}
-                    </div>
-                  </div>
+            <div 
+              key={index} 
+              className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out overflow-hidden relative max-w-sm mx-auto"
+              style={{
+                backgroundImage: `url(${approach.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundBlendMode: 'overlay',
+                backgroundColor: 'rgba(255, 255, 255, 0.95)'
+              }}
+            >
+              <div className="p-6 flex flex-col items-center gap-5">
+                {/* Icon */}
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white bg-gradient-to-r ${approach.color} group-hover:scale-110 transition-transform duration-500 ease-in-out`}>
+                  {approach.icon}
                 </div>
-              </div>
 
-              {/* Clean Content */}
-              <div className="p-6">
-                <Typography variant="h4" className="text-xl font-bold mb-3 text-neutral-900">
+                {/* Title */}
+                <Typography variant="h4" className="text-2xl font-semibold text-neutral-900 text-center">
                   {approach.title}
                 </Typography>
-                
-                <Typography variant="body" className="text-neutral-600 mb-6 leading-relaxed">
+
+                {/* Description */}
+                <Typography variant="body" className="text-neutral-600 text-base leading-relaxed text-center max-w-xs">
                   {approach.description}
                 </Typography>
 
+                {/* CTA */}
                 <Link to={approach.link}>
-                  <Button variant="ghost" className="p-0 h-auto text-primary hover:text-secondary-teal font-semibold transition-colors duration-200 flex items-center">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button 
+                    className={`w-fit rounded-full px-6 py-3 text-base font-semibold text-white bg-gradient-to-r ${approach.color} hover:opacity-90 transition-all duration-300 ease-in-out flex items-center gap-2`}
+                  >
+                    {approach.cta}
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
               </div>

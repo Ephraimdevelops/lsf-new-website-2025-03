@@ -1,37 +1,24 @@
 
 import { useState, useEffect } from 'react';
-import { getHeroSlides } from './hero/heroData';
+import { getHeroSlidesFromAPI } from './hero/heroData';
 import HeroBackground from './hero/HeroBackground';
 import HeroContent from './hero/HeroContent';
 import HeroNavigation from './hero/HeroNavigation';
 
 const Hero = () => {
-  const [heroSlides, setHeroSlides] = useState(getHeroSlides());
+  const [heroSlides, setHeroSlides] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Listen for localStorage changes to update slides dynamically
+  // Fetch hero slides from API on mount
   useEffect(() => {
-    const handleStorageChange = () => {
-      const updatedSlides = getHeroSlides();
-      setHeroSlides(updatedSlides);
-      // Reset to first slide if current slide is out of bounds
-      if (currentSlide >= updatedSlides.length) {
-        setCurrentSlide(0);
-      }
+    const fetchSlides = async () => {
+      const slides = await getHeroSlidesFromAPI();
+      setHeroSlides(slides);
+      setCurrentSlide(0);
     };
-
-    // Listen for storage events (changes from other tabs/windows)
-    window.addEventListener('storage', handleStorageChange);
-    
-    // Also check for changes periodically (for same-tab updates)
-    const interval = setInterval(handleStorageChange, 1000);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      clearInterval(interval);
-    };
-  }, [currentSlide]);
+    fetchSlides();
+  }, []);
 
   const nextSlide = () => {
     if (!isAnimating && heroSlides.length > 0) {

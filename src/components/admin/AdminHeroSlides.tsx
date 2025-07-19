@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { HeroSlide } from '@/components/home/hero/types';
+import axios from 'axios';
 
 const AdminHeroSlides = () => {
   const [slides, setSlides] = useState<HeroSlide[]>([]);
@@ -28,36 +29,31 @@ const AdminHeroSlides = () => {
     loadSlides();
   }, []);
 
-  const loadSlides = () => {
-    const savedSlides = localStorage.getItem('hero-slides');
-    if (savedSlides) {
-      setSlides(JSON.parse(savedSlides));
-    } else {
-      // Load default slides if none exist
-      const defaultSlides: HeroSlide[] = [
-        {
-          id: 'empowerment',
-          title: 'Justice is not a privilege.',
-          subtitle: 'It\'s a fundamental right for every Tanzanian.',
-          description: 'From bustling urban centers to remote rural villages, our comprehensive network of paralegals, mobile clinics, and digital platforms ensures that quality legal aid, education, and advocacy reach those who need it most—because no Tanzanian should be denied justice due to geography, poverty, or lack of knowledge.',
-          category: 'Legal Empowerment',
-          image: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
-          stat: '426,000+',
-          statLabel: 'Lives Transformed'
-        }
-      ];
-      setSlides(defaultSlides);
-      localStorage.setItem('hero-slides', JSON.stringify(defaultSlides));
+  const loadSlides = async () => {
+    try {
+      const response = await axios.get('/hero');
+      setSlides(response.data.hero || []);
+    } catch (error) {
+      toast({ title: 'Error', description: 'Failed to load hero slides.' });
     }
   };
 
-  const saveSlides = (updatedSlides: HeroSlide[]) => {
-    setSlides(updatedSlides);
-    localStorage.setItem('hero-slides', JSON.stringify(updatedSlides));
-    toast({
-      title: "Success",
-      description: "Hero slides updated successfully",
-    });
+  const saveSlides = async (updatedSlides: HeroSlide[]) => {
+    try {
+      // For each slide, upsert (create or update)
+      await Promise.all(updatedSlides.map(async (slide) => {
+        if (slide.id) {
+          await axios.put(`/hero/${slide.id}`, slide);
+        } else {
+          await axios.post('/hero', slide);
+        }
+      }));
+      setSlides(updatedSlides);
+      toast({ title: 'Success', description: 'Hero slides updated successfully' });
+      loadSlides();
+    } catch (error) {
+      toast({ title: 'Error', description: 'Failed to save hero slides.' });
+    }
   };
 
   const handleSave = () => {

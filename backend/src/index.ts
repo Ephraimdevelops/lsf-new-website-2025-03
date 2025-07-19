@@ -9,6 +9,9 @@ import resourcesRouter from "./routes/resources.js";
 import analyticsRouter from "./routes/analytics.js";
 import paralegalFormsRouter from "./routes/paralegalForms.js";
 import usersRouter from "./routes/users.js";
+import teamRouter from "./routes/team.js";
+import heroRouter from "./routes/hero.js";
+import testimonialsRouter from "./routes/testimonials.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -30,6 +33,9 @@ app.use("/resources", resourcesRouter);
 app.use("/analytics", analyticsRouter);
 app.use("/paralegal-forms", paralegalFormsRouter);
 app.use("/users", usersRouter);
+app.use("/team", teamRouter);
+app.use("/hero", heroRouter);
+app.use("/testimonials", testimonialsRouter);
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

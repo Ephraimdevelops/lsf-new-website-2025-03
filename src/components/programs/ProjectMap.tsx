@@ -41,14 +41,25 @@ export default function NationalReachSection() {
 
           {/* Map Illustration */}
           <div className="relative w-full h-[400px] rounded-xl overflow-hidden border bg-background shadow-md">
-            <iframe
-              title="Tanzania Coverage Map"
-              src="https://www.google.com/maps/d/embed?mid=1GhFqgZoE6dRgKbU_3OyU0FZbgYArEiY&hl=en"
-              width="100%"
-              height="100%"
-              className="absolute inset-0 w-full h-full"
-              loading="lazy"
-            ></iframe>
+            {/* Enhanced Impact Stats with Animation */}
+          <div className={`grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {impactStats.map((stat, index) => (
+              <div 
+                key={index} 
+                className={`text-center transform transition-all duration-500 ${activeStatIndex === index ? 'scale-110' : 'scale-100'} bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 group`}
+              >
+                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
+                  {stat.icon}
+                </div>
+                <div className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-2 ${stat.color} transition-all duration-500`}>
+                  {stat.value}
+                </div>
+                <div className="text-white/80 text-xs md:text-sm uppercase tracking-wide">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
           </div>
         </div>
       </Container>
