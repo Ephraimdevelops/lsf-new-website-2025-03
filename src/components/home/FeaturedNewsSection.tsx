@@ -184,7 +184,7 @@ const UnifiedNewsPublications = () => {
                   <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight drop-shadow-lg">
                     {mainItem.title}
                   </h3>
-                  <div className="flex items-center text-white/90 text-base gap-6">
+                    <div className="flex items-center text-white/90 text-base gap-6">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-5 w-5" />
                       {new Date(mainItem.date).toLocaleDateString('en-US', { 
@@ -196,12 +196,12 @@ const UnifiedNewsPublications = () => {
                     {activeTab === 'news' ? (
                       <div className="flex items-center gap-2">
                         <Clock className="h-5 w-5" />
-                        {mainItem.readTime}
+                        {(mainItem as any).readTime || '3 min read'}
                       </div>
                     ) : (
                       <div className="flex items-center gap-2">
                         <Download className="h-5 w-5" />
-                        {mainItem.downloads?.toLocaleString()} downloads
+                        {(mainItem as any).downloads?.toLocaleString() || 0} downloads
                       </div>
                     )}
                   </div>
@@ -216,11 +216,11 @@ const UnifiedNewsPublications = () => {
                     <div className="flex items-center gap-6 text-base text-muted-foreground">
                       <span className="flex items-center gap-2">
                         <FileText className="h-5 w-5" />
-                        {mainItem.fileSize}
+                        {(mainItem as any).fileSize || '2.5 MB'}
                       </span>
                       <span className="flex items-center gap-2">
                         <Eye className="h-5 w-5" />
-                        {mainItem.downloads?.toLocaleString()} views
+                        {(mainItem as any).downloads?.toLocaleString() || 0} views
                       </span>
                     </div>
                   )}
@@ -265,12 +265,12 @@ const UnifiedNewsPublications = () => {
                       {activeTab === 'news' ? (
                         <span className="flex items-center gap-1">
                           <Clock className="h-4 w-4" />
-                          {item.readTime}
+                          {(item as any).readTime || '3 min read'}
                         </span>
                       ) : (
                         <span className="flex items-center gap-1">
                           <Download className="h-4 w-4" />
-                          {item.downloads?.toLocaleString()}
+                          {(item as any).downloads?.toLocaleString() || 0}
                         </span>
                       )}
                     </div>

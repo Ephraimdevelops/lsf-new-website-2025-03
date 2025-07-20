@@ -87,7 +87,7 @@ const StrategicPartnershipsSection = () => {
               Lasting Change
             </span>
           </Heading>
-          <Text variant="body" color="white/80" className="text-lg leading-relaxed">
+          <Text variant="body" className="text-lg leading-relaxed text-white/80">
             Our impact is amplified through strategic partnerships with government, civil society, international organizations, and the private sector.
           </Text>
         </div>

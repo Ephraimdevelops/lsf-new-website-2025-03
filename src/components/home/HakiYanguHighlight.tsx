@@ -7,7 +7,7 @@ import Text from '../shared/Typography';
 
 const HakiYanguHighlight = () => {
   return (
-    <section size="2xl" className=" py-0 lg:py-20 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
+    <section className="py-0 lg:py-20 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}

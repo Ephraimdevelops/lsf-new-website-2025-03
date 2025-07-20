@@ -9,6 +9,7 @@ interface TypographyProps {
   className?: string;
   as?: keyof JSX.IntrinsicElements;
   style?: CSSProperties;
+  color?: string;
 }
 
 const Typography = ({ 
@@ -16,7 +17,8 @@ const Typography = ({
   variant = 'body', 
   className = '',
   as,
-  style 
+  style,
+  color 
 }: TypographyProps) => {
   const baseClasses = typography.classes[variant];
   
@@ -58,8 +60,10 @@ const Typography = ({
 
   const Element = elementType as keyof JSX.IntrinsicElements;
 
+  const colorClass = color ? `text-${color}` : '';
+
   return (
-    <Element className={cn(baseClasses, fontFamily, className)} style={style}>
+    <Element className={cn(baseClasses, fontFamily, colorClass, className)} style={style}>
       {children}
     </Element>
   );

@@ -1,6 +1,7 @@
-import { MapPin, Users, Landmark } from 'lucide-react';
+import { MapPin, Users, Landmark, Globe, Heart, Building } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
 import Container from '@/components/shared/Container';
+import { useState, useEffect } from 'react';
 
 const coverage = [
   { icon: <MapPin className="text-primary w-6 h-6" />, label: 'Regions Covered', value: 25 },
@@ -8,7 +9,44 @@ const coverage = [
   { icon: <Landmark className="text-primary w-6 h-6" />, label: 'Ward-Level Presence', value: 1300 },
 ];
 
+const impactStats = [
+  { 
+    icon: <Users className="w-8 h-8" />, 
+    value: "426,000+", 
+    label: "Lives Transformed",
+    color: "text-white"
+  },
+  { 
+    icon: <Globe className="w-8 h-8" />, 
+    value: "184", 
+    label: "Districts Covered",
+    color: "text-white"
+  },
+  { 
+    icon: <Heart className="w-8 h-8" />, 
+    value: "15,000+", 
+    label: "App Users Helped",
+    color: "text-white"
+  },
+  { 
+    icon: <Building className="w-8 h-8" />, 
+    value: "500+", 
+    label: "Paralegals Trained",
+    color: "text-white"
+  }
+];
+
 export default function NationalReachSection() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeStatIndex, setActiveStatIndex] = useState(0);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    const interval = setInterval(() => {
+      setActiveStatIndex(prev => (prev + 1) % impactStats.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <section className="relative py-24 bg-muted/20">
       <Container>

@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 interface ContainerProps {
   children: ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
   className?: string;
 }
 
@@ -18,6 +18,7 @@ const Container = ({
     md: 'max-w-4xl',
     lg: 'max-w-6xl',
     xl: 'max-w-7xl',
+    '2xl': 'max-w-8xl',
     full: 'max-w-full'
   };
 
