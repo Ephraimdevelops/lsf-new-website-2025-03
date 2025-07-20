@@ -53,6 +53,126 @@ export type Database = {
         }
         Relationships: []
       }
+      news: {
+        Row: {
+          author: string | null
+          category: string | null
+          content: string | null
+          created_at: string
+          date: string
+          excerpt: string | null
+          featured: boolean | null
+          id: string
+          image: string | null
+          keywords: string[] | null
+          read_time: string | null
+          seo_description: string | null
+          seo_title: string | null
+          slug: string | null
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string | null
+          category?: string | null
+          content?: string | null
+          created_at?: string
+          date?: string
+          excerpt?: string | null
+          featured?: boolean | null
+          id?: string
+          image?: string | null
+          keywords?: string[] | null
+          read_time?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          slug?: string | null
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string | null
+          category?: string | null
+          content?: string | null
+          created_at?: string
+          date?: string
+          excerpt?: string | null
+          featured?: boolean | null
+          id?: string
+          image?: string | null
+          keywords?: string[] | null
+          read_time?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          slug?: string | null
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      opportunities: {
+        Row: {
+          application_url: string | null
+          created_at: string
+          deadline: string | null
+          description: string | null
+          employment_type: string | null
+          featured: boolean | null
+          id: string
+          is_open: boolean | null
+          location: string | null
+          organization: string | null
+          requirements: string[] | null
+          responsibilities: string[] | null
+          salary_range: string | null
+          status: string | null
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          application_url?: string | null
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          employment_type?: string | null
+          featured?: boolean | null
+          id?: string
+          is_open?: boolean | null
+          location?: string | null
+          organization?: string | null
+          requirements?: string[] | null
+          responsibilities?: string[] | null
+          salary_range?: string | null
+          status?: string | null
+          title: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          application_url?: string | null
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          employment_type?: string | null
+          featured?: boolean | null
+          id?: string
+          is_open?: boolean | null
+          location?: string | null
+          organization?: string | null
+          requirements?: string[] | null
+          responsibilities?: string[] | null
+          salary_range?: string | null
+          status?: string | null
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       paralegal_cases: {
         Row: {
           case_status: string | null
@@ -77,6 +197,183 @@ export type Database = {
           id?: string
           opened_at?: string | null
           paralegal_id?: string | null
+        }
+        Relationships: []
+      }
+      programs: {
+        Row: {
+          approach: string | null
+          beneficiaries: Json | null
+          best_practices: string[] | null
+          budget: number | null
+          created_at: string
+          description: string | null
+          donors: string[] | null
+          end_date: string | null
+          featured: boolean | null
+          geographic_coverage: string[] | null
+          id: string
+          image: string | null
+          location: string[] | null
+          objectives: string[] | null
+          partners: string[] | null
+          results: Json[] | null
+          start_date: string | null
+          status: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          approach?: string | null
+          beneficiaries?: Json | null
+          best_practices?: string[] | null
+          budget?: number | null
+          created_at?: string
+          description?: string | null
+          donors?: string[] | null
+          end_date?: string | null
+          featured?: boolean | null
+          geographic_coverage?: string[] | null
+          id?: string
+          image?: string | null
+          location?: string[] | null
+          objectives?: string[] | null
+          partners?: string[] | null
+          results?: Json[] | null
+          start_date?: string | null
+          status?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          approach?: string | null
+          beneficiaries?: Json | null
+          best_practices?: string[] | null
+          budget?: number | null
+          created_at?: string
+          description?: string | null
+          donors?: string[] | null
+          end_date?: string | null
+          featured?: boolean | null
+          geographic_coverage?: string[] | null
+          id?: string
+          image?: string | null
+          location?: string[] | null
+          objectives?: string[] | null
+          partners?: string[] | null
+          results?: Json[] | null
+          start_date?: string | null
+          status?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      publications: {
+        Row: {
+          category: string | null
+          created_at: string
+          date: string
+          description: string | null
+          download_count: number | null
+          excerpt: string | null
+          featured: boolean | null
+          file_size: string | null
+          file_url: string | null
+          id: string
+          image: string | null
+          keywords: string[] | null
+          pages: string | null
+          seo_description: string | null
+          seo_title: string | null
+          title: string
+          type: string | null
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          date?: string
+          description?: string | null
+          download_count?: number | null
+          excerpt?: string | null
+          featured?: boolean | null
+          file_size?: string | null
+          file_url?: string | null
+          id?: string
+          image?: string | null
+          keywords?: string[] | null
+          pages?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          title: string
+          type?: string | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          date?: string
+          description?: string | null
+          download_count?: number | null
+          excerpt?: string | null
+          featured?: boolean | null
+          file_size?: string | null
+          file_url?: string | null
+          id?: string
+          image?: string | null
+          keywords?: string[] | null
+          pages?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          title?: string
+          type?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      resources: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          download_count: number | null
+          featured: boolean | null
+          file_url: string | null
+          id: string
+          image: string | null
+          title: string
+          type: string | null
+          updated_at: string
+          url: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          download_count?: number | null
+          featured?: boolean | null
+          file_url?: string | null
+          id?: string
+          image?: string | null
+          title: string
+          type?: string | null
+          updated_at?: string
+          url?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          download_count?: number | null
+          featured?: boolean | null
+          file_url?: string | null
+          id?: string
+          image?: string | null
+          title?: string
+          type?: string | null
+          updated_at?: string
+          url?: string | null
         }
         Relationships: []
       }
@@ -137,6 +434,51 @@ export type Database = {
           stakeholder_id?: string | null
           start_date?: string | null
           status?: string | null
+        }
+        Relationships: []
+      }
+      success_stories: {
+        Row: {
+          category: string | null
+          client_image: string | null
+          client_name: string | null
+          content: string | null
+          created_at: string
+          excerpt: string | null
+          featured: boolean | null
+          id: string
+          impact_metrics: Json | null
+          location: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          client_image?: string | null
+          client_name?: string | null
+          content?: string | null
+          created_at?: string
+          excerpt?: string | null
+          featured?: boolean | null
+          id?: string
+          impact_metrics?: Json | null
+          location?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          client_image?: string | null
+          client_name?: string | null
+          content?: string | null
+          created_at?: string
+          excerpt?: string | null
+          featured?: boolean | null
+          id?: string
+          impact_metrics?: Json | null
+          location?: string | null
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
