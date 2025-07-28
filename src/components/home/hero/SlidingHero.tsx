@@ -16,30 +16,30 @@ interface HeroSlide {
 const defaultSlides: HeroSlide[] = [
   {
     id: '1',
-    title: 'Justice for Everyone',
-    subtitle: 'Legal Support Facility',
-    description: 'Empowering communities across Tanzania through accessible legal services, innovative technology, and sustainable partnerships.',
-    image: '/lovable-uploads/background with mother umage .png',
-    ctaText: 'Explore Our Work',
-    ctaLink: '/what-we-do'
+    title: 'LSF Annual Report 2024 is out Now',
+    subtitle: 'Justice for Everyone:',
+    description: 'Explore how LSF empowered over 400,000 Tanzanians through legal aid, digital access, and community-driven justice. Our 2024 report highlights nationwide achievements, innovations, and the future of legal empowerment in Tanzania.',
+    image: '/lovable-uploads/LSF 2024 ANNUAL REPORT (Mobile Video).png',
+    ctaText: 'Read the Full report',
+    ctaLink: '/publications'
   },
   {
     id: '2',
-    title: 'Empowering Communities',
+    title: 'LSF Gender Justice Campaign Launches in Njombe',
     subtitle: 'Building Local Capacity',
-    description: 'Training paralegals and building sustainable legal support systems across Tanzania\'s 31 regions.',
-    image: '/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png',
+    description: 'We’ve launched a nationwide initiative supporting women and girls to access legal support, claim land rights, and challenge discrimination. Join us in advancing gender equality through grassroots justice.',
+    image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
     ctaText: 'Learn More',
-    ctaLink: '/what-we-do/capacity-building'
+    ctaLink: '/News'
   },
   {
     id: '3',
-    title: 'Digital Innovation',
-    subtitle: 'Technology for Justice',
-    description: 'Leveraging technology to expand reach and improve service delivery through digital platforms and mobile applications.',
-    image: '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png',
+    title: 'LSF Signs Landmark Partnership with NMB Bank',
+    subtitle: 'Partnering for Justice: LSF & NMB Join Forces',
+    description: 'LSF has signed a strategic partnership with NMB Bank to expand legal access and financial inclusion for underserved communities. This collaboration will enhance grassroots justice efforts through sustainable support and innovation.',
+    image: '/lovable-uploads/lsf NMB signign.jpeg',
     ctaText: 'View Impact',
-    ctaLink: '/impact'
+    ctaLink: '/News'
   }
 ];
 
@@ -68,7 +68,7 @@ const SlidingHero = () => {
   };
   
   return (
-    <section className="relative bg-white overflow-hidden min-h-[80vh]">
+    <section className="relative bg-white overflow-hidden min-h-[100vh]">
       {slides.map((slide, index) => (
         <div
           key={slide.id}

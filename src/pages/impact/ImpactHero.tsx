@@ -13,7 +13,7 @@ const ImpactHero = () => {
       <div className="relative h-[90vh] bg-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png"
+            src="/lovable-uploads/03e3e41e-930e-409b-9697-0530773cca4c.png"
             alt="Women participating in legal empowerment program"
             className="w-full h-full object-cover"
           />

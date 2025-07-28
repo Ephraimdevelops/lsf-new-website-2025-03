@@ -5,12 +5,14 @@ import MissionVisionSection from '@/components/about/MissionVisionSection';
 import AboutImpactNumbers from '@/components/about/AboutImpactNumbers';
 import GovernanceSection from '@/components/about/GovernanceSection';
 import AchievementsTimelineSection from '@/components/about/AchievementsTimelineSection';
+import InteractiveTimeline from '@/components/about/InteractiveTimeline';
 
 const About = () => {
   return (
     <Layout>
       <AboutHero />
       <MissionVisionSection />
+      <InteractiveTimeline />
       <AchievementsTimelineSection />
       <GovernanceSection />
       <AboutImpactNumbers />

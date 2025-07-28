@@ -110,11 +110,11 @@ export default function OurReachTimeline() {
         {/* Main Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Image */}
-          <div className="w-full h-auto rounded overflow-hidden">
+          <div className="w-full h-30 rounded overflow-hidden">
             <img
               src={activeItem.image}
               alt={`Map ${activeItem.year}`}
-              className="w-full rounded-xl shadow-lg transition duration-500"
+              className="w-full h-30 rounded-xl shadow-lg transition duration-500"
             />
           </div>
 

@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ icon, badge, title, description, backgroundImage }: HeroSectionProps) => {
   return (
-    <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden">
+    <section className="relative py-24 md:py-36 lg:py-40 overflow-hidden">
       {/* Background Image */}
       {backgroundImage ? (
         <div 

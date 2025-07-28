@@ -151,7 +151,7 @@ const Heroes = () => {
       </section>
 
 
-      {/* Success Stories Grid - Using new card design */}
+      {/* Success Stories Grid - Using new card design with reduced height */}
       <section className="py-16 bg-white">
       <Container>
       <div className="flex flex-col items-center mb-12">
@@ -162,7 +162,7 @@ const Heroes = () => {
             </span>
           </div>
           
-          <Typography variant="h1" className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6 leading-tight text-center">
+          <Typography variant="h1" className="text-4xl md:text-6xl font-bold text-neutral-900 mb-6 leading-tight text-center">
             Stories of <br className="block md:hidden" />
             <span className="text-primary">Transformation.</span>
           </Typography>
@@ -172,7 +172,7 @@ const Heroes = () => {
           </Typography>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {successStories.map((story) => (
             <SuccessStoryCard 
               key={story.id} 
@@ -188,7 +188,7 @@ const Heroes = () => {
       <section className="bg-neutral-dark text-white overflow-hidden py-16">
         <Container>
           <div className="text-center mb-12">
-            <Typography variant="h2" className="mb-6">Real Impact, Real Lives</Typography>
+            <Typography variant="h2" className="text-4xl md:text-6xl font-bold text-neutral-900 mb-6 leading-tight text-centermb-6">Real Impact, Real Lives</Typography>
             <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
               Every number represents a life changed, a family protected, and a community strengthened through access to justice.
             </Typography>

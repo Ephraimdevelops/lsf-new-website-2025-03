@@ -7,38 +7,38 @@ import Typography from '@/components/shared/Typography';
 const stories = [
   {
     id: 1,
-    name: "Amina Hassan",
+    name: "Furaha Mwambwiga",
     title: "Land Rights Champion",
-    location: "Morogoro Region",
-    year: "2023",
-    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
-    thumbnail: "/lovable-uploads/thumbs/amina-thumb.png",
-    quote: "LSF helped me reclaim my family's land and taught me to help others.",
-    brief: "Amina challenged a land grab with LSF's legal aid, empowering her community.",
+    location: "Mbeya Region",
+    year: "2022",
+    image: "/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png",
+    thumbnail: "public/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png",
+    brief: "Furaha established a paralegal took on her case center after LSF training.",
+    quote: "Furaha discovered that her husband had secretly sold her family’s farmland in Kyela. After being misrepresented at the land tribunal, she sought help from an LSF-trained paralegal, who facilitated an appeal. ",
     category: "Land Rights"
   },
   {
     id: 2,
-    name: "James Mwalimu",
-    title: "Community Paralegal Leader",
-    location: "Mwanza Region",
+    name: " Fausta Marandu ",
+    title: "Fausta Marandu Survives Violence & Secures Justice",
+    location: "Manyara Region",
     year: "2022",
-    image: "/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png",
-    thumbnail: "/lovable-uploads/thumbs/james-thumb.png",
-    quote: "Paralegal training changed my life; I've resolved over 200 cases.",
-    brief: "James established a community justice center after LSF training.",
-    category: "Community Leadership"
+    image: "/lovable-uploads/enabel -un-lsf.png",
+    thumbnail: "/lovable-uploads/enabel -un-lsf.png",
+    quote: "After being brutally attacked by her partner, Fausta—a widow and mother in Babati—received legal support from a paralegal. She filed a criminal complaint that led to the attacker’s imprisonment and later successfully secured her share of joint property.",
+    brief: "After being brutally attacked by her partner, Fausta—a widow and mother in Babati—received legal support from a paralegal. She filed a criminal complaint that led to the attacker’s imprisonment and later successfully secured her share of joint property. ",
+    category: "Gender Based Violence"
   },
   {
     id: 3,
-    name: "Sarah Kimaro",
+    name: "Mwanamvua Kibwana",
     title: "Women's Rights Advocate",
     location: "Arusha Region",
     year: "2023",
-    image: "/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png",
-    thumbnail: "/lovable-uploads/thumbs/sarah-thumb.png",
+    image: "/lovable-uploads/WhatsApp Image 2024-06-19 at 11.45.15.jpeg",
+    thumbnail: "/lovable-uploads/WhatsApp Image 2024-06-19 at 11.45.15.jpeg",
     quote: "LSF helped me escape violence and advocate for women’s rights.",
-    brief: "Sarah became an advocate after receiving LSF’s legal support.",
+    brief: "After the death of her husband, Mwanamvua was evicted from her home and denied inheritance. With guidance from LSF-trained paralegals, she reclaimed ownership of her property. Her restored house now provides stability and shelter for her and her children.",
     category: "Women's Rights"
   },
   {
@@ -47,8 +47,8 @@ const stories = [
     title: "Education Rights Advocate",
     location: "Dodoma Region",
     year: "2024",
-    image: "public/lovable-uploads/2.png",
-    thumbnail: "public/lovable-uploads/2.png",
+    image: "/lovable-uploads/fadhila.jpeg",
+    thumbnail: "/lovable-uploads/fadhila.jpeg",
     quote: "LSF ensured my children’s education rights, inspiring others.",
     brief: "Fatuma secured educational access with LSF’s support.",
     category: "Education Rights"
@@ -59,8 +59,8 @@ const stories = [
     title: "Environmental Justice Leader",
     location: "Kilimanjaro Region",
     year: "2023",
-    image: "public/lovable-uploads/2.png",
-    thumbnail: "public/lovable-uploads/2.png",
+    image: "/lovable-uploads/Land (Uyui).JPG",
+    thumbnail: "/lovable-uploads/Land (Uyui).JPG",
     quote: "LSF helped me protect our land from illegal logging.",
     brief: "David led environmental protection efforts with LSF’s aid.",
     category: "Environmental Justice"
@@ -71,8 +71,8 @@ const stories = [
     title: "Youth Empowerment Mentor",
     location: "Zanzibar",
     year: "2024",
-    image: "/lovable-uploads/2.png",
-    thumbnail: "public/lovable-uploads/2.png",
+    image: "/lovable-uploads/WhatsApp Image 2025-01-28 at 19.02.57.jpeg",
+    thumbnail: "/lovable-uploads/WhatsApp Image 2025-01-28 at 19.02.57.jpeg",
     quote: "LSF’s mentorship helped me guide youth on their rights.",
     brief: "Maryam empowered youth through LSF’s programs.",
     category: "Youth Empowerment"
@@ -104,7 +104,7 @@ const InteractiveStorySection = () => {
        {/* Multi-layer background treatment */}
     <div 
       className="absolute inset-0 bg-cover bg-center"
-      style={{ backgroundImage: "url('/lovable-uploads/background with mother umage .png')" }}
+      style={{ backgroundImage: "url('/lovable-uploads/WhatsApp Image 2025-01-28 at 19.02.57.jpeg')" }}
     ></div>
     <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-dark/85 to-black/90"></div>
     <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/60"></div>
@@ -120,27 +120,27 @@ const InteractiveStorySection = () => {
     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,.2)_2px,transparent_0)] bg-[length:30px_30px]"></div>
 
 
-      <Container size="xl" className="relative z-10">
+      <Container size="2xl" className="relative z-10">
         <div className="text-center mb-16 space-y-9">
-        <div className="inline-flex items-center bg-white/15 backdrop-blur-sm rounded-full px-8 py-4 border border-white/30">
+        <div className="inline-flex items-center bg-white/15 backdrop-blur-sm rounded-full px-8 py-2 border border-white/30">
           <TrendingUp className="h-6 w-6 mr-4 text-secondary-orange" />
           <Typography variant="overline" className="text-secondary-orange font-bold text-lg">
-            MEASURABLE IMPACT
+            Our Heroes
           </Typography>
         </div>
 
         <Typography variant="h2" className="mb-8 text-white text-5xl md:text-6xl font-bold">
           Real Stories.
-          <span className="block text-secondary-orange">Our Heroes.</span>
+          <span className="block text-secondary-orange">from Our Heroes.</span>
         </Typography>
 
         <Typography variant="body" className="text-white/90 max-w-4xl mx-auto text-2xl leading-relaxed">
-        Meet the extraordinary individuals who have reshaped their communities with LSF’s support.        </Typography>
+        Meet courageous community members whose lives—and communities—have been transformed by legal empowerment.        </Typography>
       </div>
 
         {/* Hero Story Showcase */}
         <div className="relative mb-12">
-          <div className="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl group">
+          <div className="relative w-full h-[600px] rounded-3xl overflow-hidden shadow-xl group">
             <img
               src={stories[activeStory].image || '/lovable-uploads/fallback-image.png'}
               alt={stories[activeStory].name}
@@ -171,7 +171,7 @@ const InteractiveStorySection = () => {
           {/* Navigation Arrows */}
           <button
             onClick={prevStory}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all"
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-10 bg-white/20 rounded-full hover:bg-white/30 transition-all"
           >
             <ChevronLeft className="h-6 w-6 text-white" />
           </button>
@@ -199,7 +199,7 @@ const InteractiveStorySection = () => {
               <img
                 src={story.thumbnail || '/lovable-uploads/fallback-thumb.png'}
                 alt={story.name}
-                className="w-full h-32 object-cover rounded-lg mb-3"
+                className="w-full h-32 object-cover rounded-lg mb-1"
               />
               <Typography variant="h4" className="text-white text-base font-semibold mb-1">
                 {story.name}
@@ -213,12 +213,15 @@ const InteractiveStorySection = () => {
 
         {/* All Stories Link */}
         <div className="text-center mt-12">
+          
           <Link to="/heroes">
-            <button className="bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
+            <button className="bg-gradient-to-r from-neutral-600 to-teal-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
               Explore All Heroes
             </button>
           </Link>
+          <div/>
         </div>
+        
       </Container>
     </section>
   );

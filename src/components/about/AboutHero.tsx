@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const AboutHero = () => {
   const images = [
     '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
-    '/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png',
+    '/lovable-uploads/lsf from IGP sirro police award.jpg',
     '/lovable-uploads/b2226752-4a54-463b-af38-a1dd2b57350b.png',
     '/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png'
   ];

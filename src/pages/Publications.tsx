@@ -93,15 +93,15 @@ const Publications = () => {
     <Layout>
       {/* Enhanced Hero Section */}
       <HeroSection
-        icon={<BookOpen className="h-8 w-8" />}
+        icon={<BookOpen className="h-4 w-8" />}
         badge="Knowledge Base"
-        title="Publications & Research"
-        description="Explore our comprehensive collection of research reports, policy briefs, and resources driving justice reform across Tanzania"
-        backgroundImage="/lovable-uploads/background with mother umage .png"
+        title="Publications"
+        description="Explore our comprehensive collection of reports, policy briefs, and resources driving justice reform across Tanzania"
+        backgroundImage="/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png"
       />
       
       {/* Enhanced Filters Section */}
-      <section className="py-8 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200/50">
+      <section className="py-10 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row lg:items-center gap-6">
             <div className="relative flex-grow lg:max-w-md">
@@ -209,45 +209,6 @@ const Publications = () => {
               )}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Impact Stats Section */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <FileText className="h-8 w-8 text-primary" />
-              </div>
-              <div className="text-3xl font-bold text-primary mb-1">{publications.length}+</div>
-              <div className="text-sm text-gray-600 font-medium">Total Publications</div>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Download className="h-8 w-8 text-secondary-teal" />
-              </div>
-              <div className="text-3xl font-bold text-secondary-teal mb-1">25K+</div>
-              <div className="text-sm text-gray-600 font-medium">Downloads</div>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Eye className="h-8 w-8 text-secondary-orange" />
-              </div>
-              <div className="text-3xl font-bold text-secondary-orange mb-1">100K+</div>
-              <div className="text-sm text-gray-600 font-medium">Page Views</div>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary-yellow/10 to-secondary-yellow/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="h-8 w-8 text-secondary-yellow" />
-              </div>
-              <div className="text-3xl font-bold text-secondary-yellow mb-1">15+</div>
-              <div className="text-sm text-gray-600 font-medium">Policy Changes</div>
-            </div>
-          </div>
         </div>
       </section>
       
@@ -365,6 +326,44 @@ const Publications = () => {
               </Button>
             </div>
           )}
+        </div>
+      </section>
+        {/* Impact Stats Section */}
+        <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <FileText className="h-8 w-8 text-primary" />
+              </div>
+              <div className="text-3xl font-bold text-primary mb-1">{publications.length}+</div>
+              <div className="text-sm text-gray-600 font-medium">Total Publications</div>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Download className="h-8 w-8 text-secondary-teal" />
+              </div>
+              <div className="text-3xl font-bold text-secondary-teal mb-1">25K+</div>
+              <div className="text-sm text-gray-600 font-medium">Downloads</div>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Eye className="h-8 w-8 text-secondary-orange" />
+              </div>
+              <div className="text-3xl font-bold text-secondary-orange mb-1">100K+</div>
+              <div className="text-sm text-gray-600 font-medium">Page Views</div>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-secondary-yellow/10 to-secondary-yellow/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="h-8 w-8 text-secondary-yellow" />
+              </div>
+              <div className="text-3xl font-bold text-secondary-yellow mb-1">15+</div>
+              <div className="text-sm text-gray-600 font-medium">Policy Changes</div>
+            </div>
+          </div>
         </div>
       </section>
     </Layout>

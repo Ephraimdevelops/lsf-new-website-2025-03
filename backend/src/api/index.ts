@@ -2,10 +2,11 @@ import express from "express";
 
 import type MessageResponse from "../interfaces/message-response.js";
 
+import hero from "../routes/hero.js";
+import paralegals from "../routes/paralegals.js";
+import team from "../routes/team.js";
+import testimonials from "../routes/testimonials.js";
 import emojis from "./emojis.js";
-import team from "./team.js";
-import hero from "./hero.js";
-import testimonials from "./testimonials.js";
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.use("/emojis", emojis);
 router.use("/team", team);
 router.use("/hero", hero);
 router.use("/testimonials", testimonials);
+router.use("/paralegals", paralegals);
 
 export default router;

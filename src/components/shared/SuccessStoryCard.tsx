@@ -24,7 +24,7 @@ const SuccessStoryCard = ({ story, linkTo, className = "" }: SuccessStoryCardPro
   const CardContent = () => (
     <div className={`group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-2xl transition-all duration-500 ${className}`}>
       {/* Image with overlay */}
-      <div className="relative h-100 overflow-hidden">
+      <div className="relative h-80 overflow-hidden">
         <img 
           src={story.image} 
           alt={story.name}
