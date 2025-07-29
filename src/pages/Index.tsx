@@ -7,6 +7,7 @@ import InteractiveStorySection from '@/components/home/InteractiveStorySection';
 import EnhancedNewsSection from '@/components/home/EnhancedNewsSection';
 import PartnersCarousel from '@/components/home/PartnersCarousel';
 import ParallaxNewsSection from '@/components/home/ParallaxNewsSection';
+import NewsSection from '@/components/home/NewsSection';
 
 const Index = () => (
   <Layout>
@@ -18,7 +19,7 @@ const Index = () => (
      <AboutUsHighlight />
      
     <InteractiveStorySection />
-
+<NewsSection />
     <ParallaxNewsSection />
 
     {/* Enhanced News & Publications Section */}

@@ -1,5 +1,8 @@
 
-import { useState } from 'react';
+import { useNews } from '@/hooks/useContent';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Tag, ExternalLink } from 'lucide-react';
 import { dataService } from '@/services/dataService';

@@ -1,128 +1,109 @@
 import { useState, useEffect } from 'react';
 import Container from '../shared/Container';
-import { ArrowRight, Calendar, Tag, Download, ExternalLink, ChevronLeft, ChevronRight, Scale, Users, FileText } from 'lucide-react';
-// Mock Link component for demo
-const Link = ({ to, children, className }) => (
-  <a href={to} className={className}>{children}</a>
-);
+import { ArrowRight, Calendar, Tag, ChevronLeft, ChevronRight, Download, ExternalLink, Scale, Users, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Typography from '@/components/shared/Typography';
+import { useNews, usePublications } from '@/hooks/useContent';
+import { format } from 'date-fns';
 import { DesignIcon } from '../design-system';
 import Text from '../shared/Typography';
 
-const newsItems = [
-  {
-    id: 1,
-    title: "LSF Empowers 26,000+ Tanzanians Through Legal Aid Revolution",
-    excerpt: "Community paralegals provide essential legal support across the nation, transforming access to justice in rural and urban areas.",
-    category: "Impact Story",
-    date: "2024-01-15",
-    image: "/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png",
-    color: "from-emerald-500 to-teal-600",
-    featured: true
-  },
-  {
-    id: 2,
-    title: "Digital Innovation: Haki Yangu App Reaches 10,000+ Users",
-    excerpt: "Revolutionary mobile platform connects vulnerable communities with legal support, breaking geographical barriers.",
-    category: "Technology",
-    date: "2024-01-10",
-    image: "/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png",
-    color: "from-blue-500 to-indigo-600",
-    featured: false
-  },
-  {
-    id: 3,
-    title: "Climate Justice Initiative Protects 2,000+ Families",
-    excerpt: "New program addresses environmental legal challenges, empowering communities to defend their land rights.",
-    category: "Climate Justice",
-    date: "2024-01-05",
-    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
-    color: "from-green-500 to-emerald-600",
-    featured: false
-  },
-  {
-    id: 4,
-    title: "New Legal Aid Clinics Launched",
-    excerpt: "Expanding access to justice with new clinics in rural areas.",
-    category: "Expansion",
-    date: "2024-01-20",
-    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
-    color: "from-yellow-500 to-orange-600",
-    featured: false
-  },
-  {
-    id: 5,
-    title: "Youth Empowerment Through Legal Education",
-    excerpt: "Engaging the next generation in legal rights and responsibilities.",
-    category: "Education",
-    date: "2024-01-25",
-    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
-    color: "from-purple-500 to-violet-600",
-    featured: false
-  },
-  {
-    id: 6,
-    title: "Partnership with Local NGOs Strengthens Impact",
-    excerpt: "Collaborating for a greater reach and deeper community engagement.",
-    category: "Partnership",
-    date: "2024-01-30",
-    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
-    color: "from-red-500 to-pink-600",
-    featured: false
-  },
-  {
-    id: 7,
-    title: "Advocacy for Policy Change Gains Momentum",
-    excerpt: "Pushing for reforms to improve legal frameworks and protections.",
-    category: "Advocacy",
-    date: "2024-02-01",
-    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
-    color: "from-teal-500 to-cyan-600",
-    featured: false
-  },
-];
+interface NewsItem {
+  id: string;
+  title: string;
+  content: string;
+  imageUrl: string;
+  category: string;
+  publishedDate: string;
+  author: string;
+  tags?: string[];
+}
 
-const publications = [
-  {
-    id: 1,
-    title: "Annual Impact Report 2024: Justice That Works",
-    description: "Comprehensive analysis of LSF's achievements and impact across Tanzania",
-    type: "Annual Report",
-    pages: "64 pages",
-    color: "from-blue-600 to-indigo-700",
-    image: "/lovable-uploads/0061b566-21e8-4b27-9bdc-9fa464f0b580.png",
-    icon: <Scale className="h-6 w-6" />
-  },
-  {
-    id: 2,
-    title: "Gender Justice Research Brief",
-    description: "Evidence-based insights on women's access to legal empowerment",
-    type: "Research Brief",
-    pages: "24 pages",
-    color: "from-emerald-600 to-teal-700",
-    image: "/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png",
-    icon: <Users className="h-6 w-6" />
-  },
-  {
-    id: 3,
-    title: "Digital Legal Aid Innovation Study",
-    description: "Technology integration in community-based legal services",
-    type: "Study Report",
-    pages: "32 pages",
-    color: "from-amber-600 to-orange-700",
-    image: "/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png",
-    icon: <FileText className="h-6 w-6" />
-  }
-];
+type PublicationType = 'Annual Report' | 'Research Brief' | 'Study Report';
+
+interface Publication {
+  id: string;
+  title: string;
+  description: string;
+  coverImageUrl: string;
+  pdfUrl: string;
+  category: string;
+  type: PublicationType;
+  publishedDate: string;
+  authors?: string[];
+  pages?: string;
+}
+
+interface EnhancedNewsItem extends NewsItem {
+  color: string;
+  featured: boolean;
+  image: string;
+  date: string;
+  excerpt: string;
+}
+
+interface EnhancedPublication extends Omit<Publication, 'coverImageUrl' | 'pdfUrl'> {
+  color: string;
+  icon: JSX.Element;
+  image: string;
+  downloadUrl: string;
+  pages: string;
+}
+
+const categoryColors = {
+  'Impact Story': 'from-emerald-500 to-teal-600',
+  'Technology': 'from-blue-500 to-indigo-600',
+  'Climate Justice': 'from-green-500 to-emerald-600',
+  'Expansion': 'from-yellow-500 to-orange-600',
+  'Education': 'from-purple-500 to-violet-600',
+  'Partnership': 'from-red-500 to-pink-600',
+  'Advocacy': 'from-teal-500 to-cyan-600',
+  'default': 'from-blue-600 to-emerald-600'
+};
+
+const publicationColors = {
+  'Annual Report': 'from-blue-600 to-indigo-700',
+  'Research Brief': 'from-emerald-600 to-teal-700',
+  'Study Report': 'from-amber-600 to-orange-700',
+  'default': 'from-blue-600 to-emerald-600'
+};
+
+const publicationIcons = {
+  'Annual Report': <Scale className="h-6 w-6" />,
+  'Research Brief': <Users className="h-6 w-6" />,
+  'Study Report': <FileText className="h-6 w-6" />,
+  'default': <FileText className="h-6 w-6" />
+};
 
 const ParallaxNewsSection = () => {
+  const { news = [], loading: newsLoading } = useNews();
+  const { publications = [], loading: pubLoading } = usePublications();
   const [activeTab, setActiveTab] = useState('news');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Filter featured news for sliding
-  const featuredNews = newsItems.filter(item => item.featured);
-  const otherNews = newsItems.filter(item => !item.featured).slice(0, 6);
+  // Transform news items with required fields
+  const enhancedNews: EnhancedNewsItem[] = news.map(item => ({
+    ...item,
+    color: categoryColors[item.category] || categoryColors.default,
+    featured: false,
+    image: item.imageUrl,
+    date: item.publishedDate,
+    excerpt: item.content.substring(0, 150) + '...'
+  }));  // Transform publications with required fields
+  const enhancedPublications: EnhancedPublication[] = publications.map((pub: Publication) => ({
+    ...pub,
+    type: pub.type,
+    pages: pub.pages || '32 pages',
+    color: publicationColors[pub.type] || publicationColors.default,
+    icon: publicationIcons[pub.type] || publicationIcons.default,
+    image: pub.coverImageUrl,
+    downloadUrl: pub.pdfUrl
+  }));
+
+  // Set up featured and other news
+  const featuredNews = enhancedNews.slice(0, 3); // Take first 3 items as featured
+  const otherNews = enhancedNews.slice(3, 9); // Take next 6 items as other news
 
   // Auto-slide functionality
   useEffect(() => {
@@ -351,7 +332,7 @@ const ParallaxNewsSection = () => {
               : 'opacity-0 translate-y-8 pointer-events-none absolute inset-0'
           }`}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {publications.map((pub) => (
+              {enhancedPublications.map((pub) => (
                 <div key={pub.id} className="group">
                   <div className="relative bg-white rounded-3xl overflow-hidden border border-slate-200 transition-all duration-700 hover:scale-105 hover:-translate-y-4 shadow-xl hover:shadow-2xl">
                     {/* Image Header */}
@@ -393,10 +374,15 @@ const ParallaxNewsSection = () => {
                         <Download className="h-5 w-5 text-slate-400" />
                       </div>
 
-                      <button className={`w-full bg-gradient-to-r ${pub.color} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl flex items-center justify-center group-hover:shadow-2xl`}>
+                      <a 
+                        href={pub.downloadUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={`w-full bg-gradient-to-r ${pub.color} text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-110 shadow-lg hover:shadow-xl flex items-center justify-center group-hover:shadow-2xl`}
+                      >
                         <Download className="mr-2 h-5 w-5" />
                         Download PDF
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </div>
