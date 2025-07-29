@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import api from '@/lib/axios';
 
 interface AdminLoginProps {
   isLocked: boolean;
@@ -39,7 +39,7 @@ const AdminLogin = ({ isLocked, onLogin }: AdminLoginProps) => {
         navigate('/admin');
         return;
       }
-      const res = await axios.post('/auth/login', { email, password });
+      const res = await api.post('/auth/login', { email, password });
       const { session, user } = res.data;
       localStorage.setItem('auth-token', session.access_token);
       localStorage.setItem('user-role', user.user_metadata?.role || '');
@@ -56,10 +56,10 @@ const AdminLogin = ({ isLocked, onLogin }: AdminLoginProps) => {
       } else {
         setError('Unknown user role.');
       }
-    } catch (err: unknown) {
+    } catch (error) {
       let message = 'Invalid credentials. Please try again.';
-      if (err && typeof err === 'object' && 'response' in err && (err as any).response?.data?.error) {
-        message = (err as any).response.data.error;
+      if (error instanceof Error) {
+        message = error.message;
       }
       setError(message);
       toast({

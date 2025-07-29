@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '@/lib/axios';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -10,13 +11,25 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    // TODO: Replace with your actual login logic (e.g., Supabase, API call)
+    
     if (!email || !password) {
       setError('Please enter both email and password.');
       return;
     }
-    // Simulate login success
-    navigate('/admin');
+
+    try {
+      const res = await api.post('/auth/login', { email, password });
+      const { session, user } = res.data;
+      localStorage.setItem('auth-token', session.access_token);
+      localStorage.setItem('user-role', user.user_metadata?.role || '');
+      navigate('/admin');
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('Login failed. Please try again.');
+      }
+    }
   };
 
   return (

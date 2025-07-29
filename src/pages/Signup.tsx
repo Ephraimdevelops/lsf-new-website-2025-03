@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useToast } from '@/hooks/use-toast';
+import api from '@/lib/axios';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -25,7 +25,7 @@ const Signup = () => {
     setIsLoading(true);
     setError('');
     try {
-      const res = await axios.post('/auth/signup', {
+      const res = await api.post('/auth/signup', {
         email,
         password,
         role: 'stakeholder', // Default role
