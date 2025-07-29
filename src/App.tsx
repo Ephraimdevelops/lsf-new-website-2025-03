@@ -57,9 +57,9 @@ import Signup from "./pages/Signup";
 import { RequireAuth } from "./utils/RequireAuth";
 import { isAuthenticated, getUserRole, logout } from "./utils/authUtils";
 
-// Set up axios base URL to use VITE_API_URL for all API calls
+// Set up axios base URL to use VITE_API_BASE_URL for all API calls
 import axios from 'axios';
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || '';
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL || '';
 import LSFChatbotFullPage from './components/shared/chatbot/LSFChatbotFullPage';
 
 import Login from "./pages/Login";
