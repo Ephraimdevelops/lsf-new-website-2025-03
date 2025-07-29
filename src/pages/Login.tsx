@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '@/lib/axios';
+import { supabase } from '@/lib/supabase';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -18,11 +18,18 @@ const Login: React.FC = () => {
     }
 
     try {
-      const res = await api.post('/auth/login', { email, password });
-      const { session, user } = res.data;
-      localStorage.setItem('auth-token', session.access_token);
-      localStorage.setItem('user-role', user.user_metadata?.role || '');
-      navigate('/admin');
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (signInError) throw signInError;
+
+      if (data?.session) {
+        localStorage.setItem('auth-token', data.session.access_token);
+        localStorage.setItem('user-role', data.user?.user_metadata?.role || '');
+        navigate('/admin');
+      }
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
