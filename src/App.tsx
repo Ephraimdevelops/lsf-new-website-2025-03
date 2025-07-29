@@ -58,6 +58,8 @@ import { RequireAuth } from "./utils/RequireAuth";
 import { isAuthenticated, getUserRole, logout } from "./utils/authUtils";
 import LSFChatbotFullPage from './components/shared/chatbot/LSFChatbotFullPage';
 
+import Login from "./pages/Login";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -133,6 +135,7 @@ function App() {
                   <Route path="/whistleblower" element={<Whistleblower />} />
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/signup" element={<Signup />} />
+                 <Route path="/login" element={<Login />} />
                   <Route path="/lsfchatbot" element={<LSFChatbotFullPage />} />
                   {/* Catch all route for 404 pages */}
                   <Route path="*" element={<NotFound />} />

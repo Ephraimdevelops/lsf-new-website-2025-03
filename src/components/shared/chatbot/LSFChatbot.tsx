@@ -12,7 +12,11 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
   const [messages, setMessages] = useState([
     {
       id: '1',
-      text: "Hi there! I'm Sarah, your personal legal support assistant from LSF. I'm here to listen, understand your situation, and guide you toward the help you need. What's on your mind today?",
+      text: "Hi there! I'm       {
+        "rewrites": [
+          { "source": "/(.*)", "destination": "/" }
+        ]
+      }, your personal legal support assistant from LSF. I'm here to listen, understand your situation, and guide you toward the help you need. What's on your mind today?",
       sender: 'assistant',
       timestamp: new Date(),
       typing: false
