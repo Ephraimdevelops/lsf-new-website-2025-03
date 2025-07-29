@@ -55,6 +55,8 @@ import StaffDashboard from "./pages/StaffDashboard";
 import ParalegalDashboard from "./pages/ParalegalDashboard";
 import StakeholderDashboard from "./pages/StakeholderDashboard";
 import Signup from "./pages/Signup";
+import { RequireAuth } from "./utils/RequireAuth";
+import { isAuthenticated, getUserRole, logout } from "./utils/authUtils";
 
 const queryClient = new QueryClient();
 
@@ -107,10 +109,26 @@ function App() {
                   <Route path="/opportunities" element={<Opportunities />} />
                   <Route path="/opportunities/:id" element={<OpportunityDetail />} />
                   <Route path="/donate" element={<Donate />} />
-                  <Route path="/admin/*" element={<Admin />} />
-                  <Route path="/dashboard/staff" element={<StaffDashboard />} />
-                  <Route path="/dashboard/paralegal" element={<ParalegalDashboard />} />
-                  <Route path="/dashboard/stakeholder" element={<StakeholderDashboard />} />
+                  <Route path="/admin/*" element={
+                    <RequireAuth allowedRoles={["admin"]}>
+                      <Admin />
+                    </RequireAuth>
+                  } />
+                  <Route path="/dashboard/staff" element={
+                    <RequireAuth allowedRoles={["staff"]}>
+                      <StaffDashboard />
+                    </RequireAuth>
+                  } />
+                  <Route path="/dashboard/paralegal" element={
+                    <RequireAuth allowedRoles={["paralegal"]}>
+                      <ParalegalDashboard />
+                    </RequireAuth>
+                  } />
+                  <Route path="/dashboard/stakeholder" element={
+                    <RequireAuth allowedRoles={["stakeholder"]}>
+                      <StakeholderDashboard />
+                    </RequireAuth>
+                  } />
                   <Route path="/bookmarks" element={<Bookmarks />} />
                   <Route path="/whistleblower" element={<Whistleblower />} />
                   <Route path="/faq" element={<FAQ />} />
