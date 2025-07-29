@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { HeroSlide } from '@/components/home/hero/types';
-import axios from 'axios';
+import api from '@/lib/axios';
 
 const AdminHeroSlides = () => {
   const [slides, setSlides] = useState<HeroSlide[]>([]);
@@ -31,8 +31,8 @@ const AdminHeroSlides = () => {
 
   const loadSlides = async () => {
     try {
-      const response = await axios.get('/hero');
-      setSlides(response.data.hero || []);
+      const response = await api.get('/hero');
+      setSlides(response.data);
     } catch (error) {
       toast({ title: 'Error', description: 'Failed to load hero slides.' });
     }
@@ -43,9 +43,9 @@ const AdminHeroSlides = () => {
       // For each slide, upsert (create or update)
       await Promise.all(updatedSlides.map(async (slide) => {
         if (slide.id) {
-          await axios.put(`/hero/${slide.id}`, slide);
+          await api.put(`/hero/${slide.id}`, slide);
         } else {
-          await axios.post('/hero', slide);
+          await api.post('/hero', slide);
         }
       }));
       setSlides(updatedSlides);

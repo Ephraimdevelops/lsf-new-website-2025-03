@@ -1,9 +1,24 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '@/lib/axios';
 
 const StaffDashboard = () => {
-  const [user, setUser] = useState<any>(null);
-  const [tasks, setTasks] = useState<any[]>([]);
+  interface User {
+    id: string;
+    email: string;
+    name?: string;
+    role: string;
+  }
+
+  interface Task {
+    id: string;
+    title: string;
+    description: string;
+    status: string;
+    dueDate?: string;
+  }
+
+  const [user, setUser] = useState<User | null>(null);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -12,10 +27,7 @@ const StaffDashboard = () => {
       setLoading(true);
       setError('');
       try {
-        const token = localStorage.getItem('auth-token');
-        const res = await axios.get('/dashboard/staff', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get('/dashboard/staff');
         setUser(res.data.user);
         setTasks(res.data.tasks || []);
       } catch (err) {
@@ -53,7 +65,7 @@ const StaffDashboard = () => {
                 <td className="border px-4 py-2">{task.title}</td>
                 <td className="border px-4 py-2">{task.description}</td>
                 <td className="border px-4 py-2">{task.status}</td>
-                <td className="border px-4 py-2">{task.due_date}</td>
+                <td className="border px-4 py-2">{task.dueDate}</td>
               </tr>
             ))}
           </tbody>

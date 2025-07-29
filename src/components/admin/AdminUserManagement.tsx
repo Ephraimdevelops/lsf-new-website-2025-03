@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '@/lib/axios';
 
 const roles = ['admin', 'staff', 'paralegal', 'stakeholder'];
 
 const AdminUserManagement = () => {
-  const [users, setUsers] = useState<any[]>([]);
+  interface User {
+    id: string;
+    email: string;
+    name?: string;
+    role: string;
+    createdAt: string;
+  }
+
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [saving, setSaving] = useState<string | null>(null);
@@ -14,10 +22,7 @@ const AdminUserManagement = () => {
       setLoading(true);
       setError('');
       try {
-        const token = localStorage.getItem('auth-token');
-        const res = await axios.get('/users', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get('/users');
         setUsers(res.data.users);
       } catch (err) {
         setError('Failed to load users.');
@@ -29,16 +34,13 @@ const AdminUserManagement = () => {
   }, []);
 
   const handleRoleChange = (id: string, newRole: string) => {
-    setUsers(users.map(u => u.id === id ? { ...u, user_metadata: { ...u.user_metadata, role: newRole } } : u));
+    setUsers(users.map(u => u.id === id ? { ...u, role: newRole } : u));
   };
 
   const handleSave = async (id: string, role: string) => {
     setSaving(id);
     try {
-      const token = localStorage.getItem('auth-token');
-      await axios.patch(`/users/${id}/role`, { role }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await api.patch(`/users/${id}/role`, { role });
     } catch (err) {
       alert('Failed to update role.');
     } finally {
@@ -66,7 +68,7 @@ const AdminUserManagement = () => {
               <td className="border px-4 py-2">{user.email}</td>
               <td className="border px-4 py-2">
                 <select
-                  value={user.user_metadata?.role || ''}
+                  value={user.role || ''}
                   onChange={e => handleRoleChange(user.id, e.target.value)}
                   className="border rounded px-2 py-1"
                 >
@@ -77,7 +79,7 @@ const AdminUserManagement = () => {
               <td className="border px-4 py-2">
                 <button
                   className="bg-primary text-white px-3 py-1 rounded"
-                  onClick={() => handleSave(user.id, user.user_metadata?.role)}
+                  onClick={() => handleSave(user.id, user.role)}
                   disabled={saving === user.id}
                 >
                   {saving === user.id ? 'Saving...' : 'Save'}

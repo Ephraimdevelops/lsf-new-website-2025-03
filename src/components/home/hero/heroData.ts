@@ -1,5 +1,5 @@
 import { HeroSlide, Region } from './types';
-import axios from 'axios';
+import api from '@/lib/axios';
 
 // Function to get hero slides from localStorage or return defaults
 export const getHeroSlides = (): HeroSlide[] => {
@@ -20,7 +20,7 @@ export const getHeroSlides = (): HeroSlide[] => {
 
 export const getHeroSlidesFromAPI = async () => {
   try {
-    const response = await axios.get('/hero');
+    const response = await api.get('/hero');
     return response.data.hero || [];
   } catch (error) {
     console.error('Error fetching hero slides from API:', error);

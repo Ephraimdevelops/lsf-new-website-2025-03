@@ -1,9 +1,25 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '@/lib/axios';
 
 const ParalegalDashboard = () => {
-  const [user, setUser] = useState<any>(null);
-  const [cases, setCases] = useState<any[]>([]);
+  interface User {
+    id: string;
+    email: string;
+    name?: string;
+    role: string;
+  }
+
+  interface Case {
+    id: string;
+    title: string;
+    description: string;
+    status: string;
+    clientName: string;
+    dateOpened: string;
+  }
+
+  const [user, setUser] = useState<User | null>(null);
+  const [cases, setCases] = useState<Case[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -12,10 +28,7 @@ const ParalegalDashboard = () => {
       setLoading(true);
       setError('');
       try {
-        const token = localStorage.getItem('auth-token');
-        const res = await axios.get('/dashboard/paralegal', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get('/dashboard/paralegal');
         setUser(res.data.user);
         setCases(res.data.cases || []);
       } catch (err) {
@@ -50,10 +63,10 @@ const ParalegalDashboard = () => {
           <tbody>
             {cases.map((c) => (
               <tr key={c.id}>
-                <td className="border px-4 py-2">{c.case_title}</td>
-                <td className="border px-4 py-2">{c.case_status}</td>
-                <td className="border px-4 py-2">{c.opened_at}</td>
-                <td className="border px-4 py-2">{c.details}</td>
+                <td className="border px-4 py-2">{c.title}</td>
+                <td className="border px-4 py-2">{c.status}</td>
+                <td className="border px-4 py-2">{c.dateOpened}</td>
+                <td className="border px-4 py-2">{c.description}</td>
               </tr>
             ))}
           </tbody>

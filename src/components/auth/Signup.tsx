@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '@/lib/axios';
 import { useToast } from '@/hooks/use-toast';
 
 const roles = [
@@ -28,7 +28,7 @@ const Signup = () => {
     setIsLoading(true);
     setError('');
     try {
-      const res = await axios.post('/auth/signup', { email, password, role });
+      const res = await api.post('/auth/signup', { email, password, role });
       toast({
         title: 'Registration Successful',
         description: 'You can now log in.',

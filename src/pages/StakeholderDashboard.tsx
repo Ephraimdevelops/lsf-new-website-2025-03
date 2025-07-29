@@ -1,9 +1,26 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '@/lib/axios';
 
 const StakeholderDashboard = () => {
-  const [user, setUser] = useState<any>(null);
-  const [projects, setProjects] = useState<any[]>([]);
+  interface User {
+    id: string;
+    email: string;
+    name?: string;
+    role: string;
+  }
+
+  interface Project {
+    id: string;
+    title: string;
+    description: string;
+    status: string;
+    startDate: string;
+    endDate?: string;
+    budget?: number;
+  }
+
+  const [user, setUser] = useState<User | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -12,10 +29,7 @@ const StakeholderDashboard = () => {
       setLoading(true);
       setError('');
       try {
-        const token = localStorage.getItem('auth-token');
-        const res = await axios.get('/dashboard/stakeholder', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get('/dashboard/stakeholder');
         setUser(res.data.user);
         setProjects(res.data.projects || []);
       } catch (err) {
@@ -51,11 +65,11 @@ const StakeholderDashboard = () => {
           <tbody>
             {projects.map((p) => (
               <tr key={p.id}>
-                <td className="border px-4 py-2">{p.project_name}</td>
-                <td className="border px-4 py-2">{p.role}</td>
+                <td className="border px-4 py-2">{p.title}</td>
+                <td className="border px-4 py-2">{p.description}</td>
                 <td className="border px-4 py-2">{p.status}</td>
-                <td className="border px-4 py-2">{p.start_date}</td>
-                <td className="border px-4 py-2">{p.end_date}</td>
+                <td className="border px-4 py-2">{p.startDate}</td>
+                <td className="border px-4 py-2">{p.endDate}</td>
               </tr>
             ))}
           </tbody>
