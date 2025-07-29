@@ -12,11 +12,7 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
   const [messages, setMessages] = useState([
     {
       id: '1',
-      text: "Hi there! I'm       {
-        "rewrites": [
-          { "source": "/(.*)", "destination": "/" }
-        ]
-      }, your personal legal support assistant from LSF. I'm here to listen, understand your situation, and guide you toward the help you need. What's on your mind today?",
+      text: "Hi there! I'm your personal legal support assistant from LSF. I'm here to listen, understand your situation, and guide you toward the help you need. What's on your mind today?",
       sender: 'assistant',
       timestamp: new Date(),
       typing: false
@@ -55,17 +51,14 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
 
   const sendMessageToAPI = async (messageText) => {
     setIsTyping(true);
-    
     try {
-      const requestBody = {
+      const requestBody: any = {
         message: messageText,
         timestamp: new Date().toISOString()
       };
-
       if (threadId) {
         requestBody.threadId = threadId;
       }
-
       const response = await fetch('https://lsfai.app.n8n.cloud/webhook-test/43fc1f39-c9ef-4313-afce-c266d0cd81b5', {
         method: 'POST',
         headers: {
@@ -73,13 +66,10 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
         },
         body: JSON.stringify(requestBody)
       });
-
       const data = await response.json();
-      
       if (data.threadId && !threadId) {
         setThreadId(data.threadId);
       }
-      
       const assistantMessage = {
         id: Date.now().toString(),
         text: data.output || data.response || data.message || "I understand you're reaching out for help. Let me connect you with the right resources. Could you tell me a bit more about your situation?",
@@ -87,7 +77,6 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
         timestamp: new Date(),
         typing: false
       };
-
       setMessages(prev => [...prev, assistantMessage]);
       playNotificationSound();
     } catch (error) {
@@ -202,14 +191,11 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
                       : 'bg-white text-gray-800 rounded-bl-md border border-gray-100'
                   }`}>
                     <p className="text-sm leading-relaxed">{message.text}</p>
-                    <div className={`text-xs mt-1 ${message.sender === 'user' ? 'text-blue-100' : 'text-gray-500'}`}>
-                      {formatTime(message.timestamp)}
-                    </div>
+                    <div className={`text-xs mt-1 ${message.sender === 'user' ? 'text-blue-100' : 'text-gray-500'}`}>{formatTime(message.timestamp)}</div>
                   </div>
                 </div>
               </div>
             ))}
-            
             {isTyping && (
               <div className="flex justify-start">
                 <div className="flex items-end space-x-2 max-w-[85%]">
