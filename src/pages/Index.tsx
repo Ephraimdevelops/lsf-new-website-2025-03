@@ -6,18 +6,22 @@ import ImpactMetricsSection from '@/components/home/ImpactMetricsSection';
 import InteractiveStorySection from '@/components/home/InteractiveStorySection';
 import EnhancedNewsSection from '@/components/home/EnhancedNewsSection';
 import PartnersCarousel from '@/components/home/PartnersCarousel';
+import ParallaxNewsSection from '@/components/home/ParallaxNewsSection';
 
 const Index = () => (
   <Layout>
     {/* Enhanced Hero Section with Database Integration */}
     <EnhancedSlidingHero />
-    
-    {/* About Us Highlight */}
-    <AboutUsHighlight />
+
+
+        {/* About Us Highlight */}
+     <AboutUsHighlight />
+     
     <InteractiveStorySection />
-    
+
+    <ParallaxNewsSection />
+
     {/* Enhanced News & Publications Section */}
-    <EnhancedNewsSection />
     <ImpactMetricsSection /> 
   
 
