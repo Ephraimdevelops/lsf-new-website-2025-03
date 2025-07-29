@@ -1,8 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, User, Minimize, X, Phone, Mail, Clock, Heart, MessageCircle, Volume2, VolumeX, Scale } from 'lucide-react';
 
-const LSFPersonalAssistant = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface LSFPersonalAssistantProps {
+  forceOpen?: boolean;
+  fullPage?: boolean;
+}
+
+const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPersonalAssistantProps) => {
+  const [isOpen, setIsOpen] = useState(forceOpen);
   const [threadId, setThreadId] = useState(null);
   const [messages, setMessages] = useState([
     {
@@ -131,10 +136,13 @@ const LSFPersonalAssistant = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 font-sans">
+    <div className={fullPage ? "w-full" : "fixed bottom-4 right-4 z-50 font-sans"}>
       {/* Chat Window */}
-      {isOpen && (
-        <div className="mb-4 w-96 h-[650px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
+      {(isOpen || forceOpen) && (
+        <div className={fullPage
+          ? "w-full max-w-2xl mx-auto h-[80vh] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
+          : "mb-4 w-96 h-[650px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+        }>
           {/* Header */}
           <div className="bg-gradient-to-r from-red-900 to-red-800 text-white p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -265,55 +273,59 @@ const LSFPersonalAssistant = () => {
         </div>
       )}
 
-      {/* Chat Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 bg-gradient-to-r from-red-900 to-red-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110 active:scale-95 flex items-center justify-center group relative"
-      >
-        {isOpen ? (
-          <X className="w-6 h-6" />
-        ) : (
-          <>
-            <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
-            <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center border-2 border-white">
-              <span className="text-white font-bold text-xs">S</span>
-            </div>
-          </>
-        )}
-      </button>
+      {/* Chat Button (hide in fullPage/forceOpen mode) */}
+      {!forceOpen && !fullPage && (
+        <>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-16 h-16 bg-gradient-to-r from-red-900 to-red-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-110 active:scale-95 flex items-center justify-center group relative"
+          >
+            {isOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <>
+                <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center border-2 border-white">
+                  <span className="text-white font-bold text-xs">S</span>
+                </div>
+              </>
+            )}
+          </button>
 
-      {/* Personal Assistant Info */}
-      {!isOpen && (
-        <div className="absolute bottom-20 right-0 bg-white rounded-lg shadow-lg p-4 w-72 border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-          <div className="text-sm">
-            <div className="flex items-center space-x-3 mb-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">S</span>
-              </div>
-              <div>
-                <div className="font-semibold text-gray-800">Sarah Williams</div>
-                <div className="text-xs text-gray-600">Legal Support Specialist</div>
+          {/* Personal Assistant Info */}
+          {!isOpen && (
+            <div className="absolute bottom-20 right-0 bg-white rounded-lg shadow-lg p-4 w-72 border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <div className="text-sm">
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold">S</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-800">Sarah Williams</div>
+                    <div className="text-xs text-gray-600">Legal Support Specialist</div>
+                  </div>
+                </div>
+                <div className="text-gray-600 mb-3 text-xs leading-relaxed">
+                  "I'm here to listen and guide you through your legal concerns with care and understanding."
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <Clock className="w-4 h-4 text-red-800" />
+                    <span>Available 24/7</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <Phone className="w-4 h-4 text-red-800" />
+                    <span>Emergency: +255-XXX-XXXX</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gray-600">
+                    <Heart className="w-4 h-4 text-red-800" />
+                    <span>Confidential & Supportive</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="text-gray-600 mb-3 text-xs leading-relaxed">
-              "I'm here to listen and guide you through your legal concerns with care and understanding."
-            </div>
-            <div className="space-y-1">
-              <div className="flex items-center space-x-2 text-gray-600">
-                <Clock className="w-4 h-4 text-red-800" />
-                <span>Available 24/7</span>
-              </div>
-              <div className="flex items-center space-x-2 text-gray-600">
-                <Phone className="w-4 h-4 text-red-800" />
-                <span>Emergency: +255-XXX-XXXX</span>
-              </div>
-              <div className="flex items-center space-x-2 text-gray-600">
-                <Heart className="w-4 h-4 text-red-800" />
-                <span>Confidential & Supportive</span>
-              </div>
-            </div>
-          </div>
-        </div>
+          )}
+        </>
       )}
     </div>
   );

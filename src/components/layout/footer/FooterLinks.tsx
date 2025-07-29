@@ -9,6 +9,7 @@ const quickLinks = [
   { name: 'Get Legal Help', href: '/legal-help' },
   { name: 'Contact Us', href: '/contact' },
   { name: 'Sign Up', href: '/signup' },
+  { name: 'AI Legal Assistant', href: '/lsfchatbot' }, // Added chatbot page link
 ];
 
 const resources = [

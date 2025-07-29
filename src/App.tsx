@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -57,6 +56,7 @@ import StakeholderDashboard from "./pages/StakeholderDashboard";
 import Signup from "./pages/Signup";
 import { RequireAuth } from "./utils/RequireAuth";
 import { isAuthenticated, getUserRole, logout } from "./utils/authUtils";
+import LSFChatbotFullPage from './components/shared/chatbot/LSFChatbotFullPage';
 
 const queryClient = new QueryClient();
 
@@ -133,6 +133,7 @@ function App() {
                   <Route path="/whistleblower" element={<Whistleblower />} />
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/signup" element={<Signup />} />
+                  <Route path="/lsfchatbot" element={<LSFChatbotFullPage />} />
                   {/* Catch all route for 404 pages */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
