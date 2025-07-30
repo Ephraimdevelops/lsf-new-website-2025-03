@@ -1,0 +1,40 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AdminDashboard from '../components/admin/AdminDashboard';
+import { supabase } from '@/lib/supabase';
+import { useToast } from '@/hooks/use-toast';
+
+const Admin = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      const userRole = localStorage.getItem('user-role');
+      
+      if (!session || userRole !== 'admin') {
+        toast({
+          title: "Unauthorized",
+          description: "Please login with an admin account",
+          variant: "destructive",
+        });
+        navigate('/login');
+        return;
+      }
+      
+      setIsAuthorized(true);
+    };
+    
+    checkAuth();
+  }, [navigate, toast]);
+
+  if (!isAuthorized) {
+    return null;
+  }
+
+  return <AdminDashboard />;
+};
+
+export default Admin;

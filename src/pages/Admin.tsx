@@ -1,43 +1,24 @@
 
-import { useState } from 'react';
-import Layout from '../components/layout/Layout';
-import AdminLogin from '../components/admin/AdminLogin';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AdminDashboard from '../components/admin/AdminDashboard';
-import { useToast } from '@/hooks/use-toast';
-
-const HARDCODED_ADMIN_EMAIL = "admin@lsf.local";
-const HARDCODED_ADMIN_PASSWORD = "LSF2024@Admin";
+import { supabase } from '@/lib/supabase';
 
 const Admin = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const savedAuth = localStorage.getItem('admin-auth');
-    return savedAuth === 'true';
-  });
-  
-  const [loginLocked, setLoginLocked] = useState(() => {
-    const lockUntil = localStorage.getItem('admin-login-locked-until');
-    if (lockUntil) {
-      const lockUntilTime = parseInt(lockUntil);
-      if (lockUntilTime > Date.now()) {
-        return true;
-      } else {
-        localStorage.removeItem('admin-login-locked-until');
-        return false;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      const userRole = localStorage.getItem('user-role');
+      
+      if (!session || userRole !== 'admin') {
+        navigate('/login');
       }
-    }
-    return false;
-  });
-  
-  const [failedAttempts, setFailedAttempts] = useState(0);
-  const { toast } = useToast();
-  
-  const handleLogin = (email: string, password: string) => {
-    // Hardcoded admin fallback
-    if (email === HARDCODED_ADMIN_EMAIL && password === HARDCODED_ADMIN_PASSWORD) {
-      localStorage.setItem('admin-auth', 'true');
-      localStorage.setItem('user-role', 'admin');
-      setIsLoggedIn(true);
-      setFailedAttempts(0);
+    };
+    
+    checkAuth();
+  }, [navigate]);
       toast({ title: "Hardcoded Admin Login", description: "You are logged in as hardcoded admin.", });
       return true;
     }
