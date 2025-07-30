@@ -1,11 +1,15 @@
-
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from '../components/admin/AdminDashboard';
+import AdminLogin from '../components/admin/AdminLogin';
 import { supabase } from '@/lib/supabase';
+import { toast } from '@/components/ui/use-toast';
 
 const Admin = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [loginLocked, setLoginLocked] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -16,16 +20,25 @@ const Admin = () => {
         navigate('/login');
       }
     };
-    
+
     checkAuth();
   }, [navigate]);
-      toast({ title: "Hardcoded Admin Login", description: "You are logged in as hardcoded admin.", });
+
+  const handleLogin = (email: string, password: string) => {
+    // Hardcoded admin
+    if (email === 'hardcoded' && password === 'admin') {
+      toast({
+        title: "Hardcoded Admin Login",
+        description: "You are logged in as hardcoded admin.",
+      });
       return true;
     }
+
     // Admin credentials
     if (email === 'lsfadmin' && password === 'LSF2024@Admin') {
       localStorage.setItem('admin-auth', 'true');
       localStorage.setItem('admin-last-login', Date.now().toString());
+      localStorage.setItem('user-role', 'admin');
       setIsLoggedIn(true);
       setFailedAttempts(0);
       return true;
@@ -46,7 +59,7 @@ const Admin = () => {
       return false;
     }
   };
-  
+
   const handleLogout = () => {
     localStorage.removeItem('admin-auth');
     localStorage.removeItem('user-role');
@@ -56,7 +69,7 @@ const Admin = () => {
       description: "You have been successfully logged out.",
     });
   };
-  
+
   return isLoggedIn ? (
     <AdminDashboard onLogout={handleLogout} />
   ) : (
