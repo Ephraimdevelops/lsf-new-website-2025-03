@@ -145,12 +145,12 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold text-lg">Sarah Williams</h3>
+                <h3 className="font-semibold text-lg">SARA</h3>
                 <div className="flex items-center space-x-1 text-sm text-white/90">
                   <div className={`w-2 h-2 ${isOnline ? 'bg-green-400 animate-pulse' : 'bg-gray-400'} rounded-full`}></div>
                   <span>{isOnline ? 'Available to help' : 'Reconnecting...'}</span>
                 </div>
-                <p className="text-xs text-white/70">Legal Support Specialist</p>
+                <p className="text-xs text-white/70">Legal Aid Support Specialist</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
@@ -204,7 +204,7 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
                   </div>
                   <div className="bg-white rounded-2xl rounded-bl-md px-4 py-3 shadow-sm border border-gray-100">
                     <div className="flex items-center space-x-1">
-                      <span className="text-sm text-gray-600">Sarah is typing</span>
+                      <span className="text-sm text-gray-600">Sara is typing</span>
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-red-800 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
                         <div className="w-2 h-2 bg-red-800 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
@@ -291,7 +291,7 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
                     <span className="text-white font-bold">S</span>
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-800">Sarah Williams</div>
+                    <div className="font-semibold text-gray-800">Sara Ai Assistant</div>
                     <div className="text-xs text-gray-600">Legal Support Specialist</div>
                   </div>
                 </div>

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from '../components/admin/AdminDashboard';
+import { toast } from '@/components/ui/use-toast';
 import AdminLogin from '../components/admin/AdminLogin';
 import { supabase } from '@/lib/supabase';
-import { toast } from '@/components/ui/use-toast';
+
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -78,3 +79,4 @@ const Admin = () => {
 };
 
 export default Admin;
+
