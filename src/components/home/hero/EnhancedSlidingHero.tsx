@@ -105,9 +105,9 @@ const EnhancedSlidingHero = () => {
       </div>
 
       {/* Content */}
-      <Container size="2xl" className="relative h-full">
+      <Container size="xl" className="relative h-full">
         <div className="flex items-center h-full">
-          <div className="max-w-3xl text-white">
+          <div className="max-w-2xl text-white">
             {/* Animated Content */}
             <div className="space-y-8 animate-fade-in">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">

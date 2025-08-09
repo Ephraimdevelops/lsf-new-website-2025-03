@@ -59,7 +59,7 @@ const LSFPersonalAssistant = ({ forceOpen = false, fullPage = false }: LSFPerson
       if (threadId) {
         requestBody.threadId = threadId;
       }
-      const response = await fetch('https://lsfai.app.n8n.cloud/webhook-test/43fc1f39-c9ef-4313-afce-c266d0cd81b5', {
+      const response = await fetch('https://lsfai2025.app.n8n.cloud/webhook-test/sara-message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -154,68 +154,18 @@ const LegalHelp = () => {
     <Layout>
       {/* Hero Section */}
       <HeroSection
-        icon={<Scale className="h-8 w-8" />}
+        icon={<Scale className="h-10 w-8" />}
         badge="Legal Assistance Platform"
         title="Connect with Legal Aid Providers"
-        description="Find qualified lawyers, paralegals, and legal aid centers across Tanzania. Get the legal help you need, when you need it."
-        backgroundImage="/lovable-uploads/background with mother umage .png"
+        description="Find qualified paralegals, and legal aid centers across Tanzania. Get the legal help you need, when you need it."
+        backgroundImage="/lovable-uploads/LEGAL AID BENEFICIARY.jpeg"
       />
-
-      {/* Emergency Notice */}
-      <section className="bg-red-50 border-l-4 border-red-400 py-4">
-        <Container>
-          <div className="flex items-center">
-            <AlertCircle className="h-6 w-6 text-red-400 mr-3" />
-            <div>
-              <Typography variant="h4" className="text-red-800 font-semibold">
-                Emergency Legal Assistance
-              </Typography>
-              <Typography variant="body" className="text-red-700">
-                If you're in immediate danger or need urgent legal help, call our 24/7 hotline: {legalAidData.nationalHotline}
-              </Typography>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Network Statistics */}
-      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary-teal/5">
-        <Container>
-          <div className="text-center mb-12">
-            <Typography variant="h2" className="mb-6">Our Legal Aid Network</Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
-              A comprehensive network of verified professionals ready to assist you across Tanzania.
-            </Typography>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {networkStats.map((stat, index) => (
-              <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
-                <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-primary">
-                    {stat.icon}
-                  </div>
-                  <Typography variant="h1" className="text-primary font-black mb-2">
-                    {stat.number}
-                  </Typography>
-                  <Typography variant="h4" className="font-semibold mb-2">
-                    {stat.label}
-                  </Typography>
-                  <Typography variant="bodySmall" className="text-neutral-gray">
-                    {stat.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
 
       {/* Main Legal Aid Platform */}
       <section className="py-16 bg-white">
         <Container>
           <div className="text-center mb-12">
-            <Typography variant="h2" className="mb-6">Legal Aid Platform</Typography>
+            <Typography variant="h2" className="text-4xl font-bold mb-4 ">Legal Aid Platform</Typography>
             <Typography variant="body" className="text-neutral-gray max-w-3xl mx-auto">
               Whether you need legal help or want to provide legal services, our platform connects Tanzanians with quality legal aid.
             </Typography>
@@ -247,7 +197,7 @@ const LegalHelp = () => {
             
             <TabsContent value="join-network">
               <div className="mb-8">
-                <Typography variant="h3" className="text-center mb-4">
+                <Typography variant="h2" className="text-center mb-4">
                   Join Our Legal Aid Network
                 </Typography>
                 <Typography variant="body" className="text-center text-neutral-gray mb-8">
@@ -259,6 +209,59 @@ const LegalHelp = () => {
           </Tabs>
         </Container>
       </section>
+
+
+            {/* Network Statistics */}
+      <section className="py-16 bg-red-50 border-l-4 border-red-400 py-4">
+        <Container>
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-6">Our Legal Aid Network</Typography>
+            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+              A comprehensive network of verified professionals ready to assist you across Tanzania.
+            </Typography>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {networkStats.map((stat, index) => (
+              <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+                <CardContent className="pt-8 pb-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-primary">
+                    {stat.icon}
+                  </div>
+                  <Typography variant="h1" className="text-primary font-black mb-2">
+                    {stat.number}
+                  </Typography>
+                  <Typography variant="h4" className="font-semibold mb-2">
+                    {stat.label}
+                  </Typography>
+                  <Typography variant="bodySmall" className="text-neutral-gray">
+                    {stat.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+
+      {/* Emergency Notice */}
+      <section className="bg-red-50 border-l-4 border-red-400 py-4">
+        <Container>
+          <div className="flex items-center">
+            <AlertCircle className="h-6 w-6 text-red-400 mr-3" />
+            <div>
+              <Typography variant="h4" className="text-red-800 font-semibold">
+                Emergency Legal Assistance
+              </Typography>
+              <Typography variant="body" className="text-red-700">
+                If you're in immediate danger or need urgent legal help, call our 24/7 hotline: {legalAidData.nationalHotline}
+              </Typography>
+            </div>
+          </div>
+        </Container>
+      </section>
+
 
       {/* Contact Methods */}
       <section className="py-16 bg-gray-50">

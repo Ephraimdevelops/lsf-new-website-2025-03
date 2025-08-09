@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from '../components/admin/AdminDashboard';
 import { toast } from '@/components/ui/use-toast';
-import AdminLogin from '../components/admin/AdminLogin';
+import { AdminLogin } from '../components/admin/AdminLogin.tsx';
 import { supabase } from '@/lib/supabase';
 
 
