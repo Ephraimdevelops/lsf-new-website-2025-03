@@ -10,7 +10,7 @@ const HeroBackground = ({ currentSlide }: HeroBackgroundProps) => {
     <div className="absolute inset-0">
       {/* Base Image with Ken Burns Effect - Higher opacity */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-[8000ms] ease-in-out transform scale-105 hover:scale-100 opacity-70"
+        className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-8000 ease-in-out transform scale-105 hover:scale-100 opacity-70"
         style={{ 
           backgroundImage: `url(${currentSlide.image})`,
           backgroundPosition: 'center center'

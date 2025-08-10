@@ -1,14 +1,25 @@
+// Helper to check for admin role in user_metadata or app_metadata
+function isAdminUser(user: any): boolean {
+  if (!user) return false;
+  // Check user_metadata
+  if (user.user_metadata && user.user_metadata.role === 'admin') return true;
+  // Check app_metadata
+  if (user.app_metadata && user.app_metadata.role === 'admin') return true;
+  // Check custom claims (optional, for advanced setups)
+  if (user.role === 'admin') return true;
+  return false;
+}
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/lib/supabase';
 
 interface AdminLoginProps {
-  onLogin?: (email: string, password: string) => void; // optional callback if needed
+  onLogin?: (email: string, password: string) => boolean;
   isLocked: boolean;
 }
 
-const AdminLogin = ({ isLocked }: AdminLoginProps) => {
+const AdminLogin = ({ isLocked, onLogin }: AdminLoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -46,17 +57,17 @@ const AdminLogin = ({ isLocked }: AdminLoginProps) => {
 
       if (data?.session) {
         localStorage.setItem('auth-token', data.session.access_token);
-        const userRole = data.user?.user_metadata?.role;
-        localStorage.setItem('user-role', userRole || '');
         localStorage.setItem('user-email', data.user?.email || '');
 
-        if (userRole !== 'admin') {
+        // Robust admin role check
+        if (!isAdminUser(data.user)) {
           throw new Error('Unauthorized. Admin access required.');
         }
+        localStorage.setItem('user-role', 'admin');
 
         toast({
           title: "Success",
-          description: "Logged in successfully.",
+          description: "Logged in successfully as admin.",
         });
 
         navigate('/admin');

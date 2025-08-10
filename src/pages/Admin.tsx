@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from '../components/admin/AdminDashboard';
 import { toast } from '@/components/ui/use-toast';
-import { AdminLogin } from '../components/admin/AdminLogin.tsx';
-import { supabase } from '@/lib/supabase';
+import AdminLogin from '../components/admin/AdminLogin.tsx';import { supabase } from '@/lib/supabase';
 
 
 const Admin = () => {
@@ -26,6 +25,13 @@ const Admin = () => {
   }, [navigate]);
 
   const handleLogin = (email: string, password: string) => {
+    // DEBUG: Show what is being checked
+    toast({
+      title: 'DEBUG',
+      description: `Checking email: ${email}, password: ${password}`,
+    });
+    console.log('DEBUG: handleLogin called with', { email, password });
+
     // Hardcoded admin
     if (email === 'hardcoded' && password === 'admin') {
       toast({
@@ -36,7 +42,11 @@ const Admin = () => {
     }
 
     // Admin credentials
-    if (email === 'lsfadmin' && password === 'LSF2024@Admin') {
+    if (email === 'LSF2024@Admin' && password === 'lsfadmin') {
+      toast({
+        title: "Hardcoded Admin Login",
+        description: "You are logged in as LSF2024@Admin.",
+      });
       localStorage.setItem('admin-auth', 'true');
       localStorage.setItem('admin-last-login', Date.now().toString());
       localStorage.setItem('user-role', 'admin');
@@ -44,6 +54,11 @@ const Admin = () => {
       setFailedAttempts(0);
       return true;
     } else {
+      toast({
+        title: 'DEBUG',
+        description: 'Credentials did not match hardcoded admin.',
+        variant: 'destructive',
+      });
       const newFailedAttempts = failedAttempts + 1;
       setFailedAttempts(newFailedAttempts);
       

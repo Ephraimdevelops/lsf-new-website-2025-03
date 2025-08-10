@@ -1,6 +1,5 @@
-
-import { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, Image, Save, X } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Plus, Edit, Trash2, Image, Save, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -9,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { useToast } from '@/hooks/use-toast';
 import { HeroSlide } from '@/components/home/hero/types';
 import api from '@/lib/axios';
+import { uploadFile, deleteFile } from '@/lib/upload';
 
 const AdminHeroSlides = () => {
   const [slides, setSlides] = useState<HeroSlide[]>([]);
@@ -25,18 +25,18 @@ const AdminHeroSlides = () => {
   });
   const { toast } = useToast();
 
-  useEffect(() => {
-    loadSlides();
-  }, []);
-
-  const loadSlides = async () => {
+  const loadSlides = useCallback(async () => {
     try {
       const response = await api.get('/hero');
       setSlides(response.data);
     } catch (error) {
       toast({ title: 'Error', description: 'Failed to load hero slides.' });
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    loadSlides();
+  }, [loadSlides]);
 
   const saveSlides = async (updatedSlides: HeroSlide[]) => {
     try {
@@ -130,6 +130,38 @@ const AdminHeroSlides = () => {
       statLabel: ''
     });
     setIsDialogOpen(false);
+  };
+
+  const handleImageUpload = async (file: File): Promise<string> => {
+    try {
+      const imageUrl = await uploadFile({
+        contentType: 'hero-slides',
+        subFolder: 'images',
+        file,
+        existingUrl: formData.image
+      });
+      
+      return imageUrl;
+    } catch (error) {
+      toast({ 
+        title: 'Error', 
+        description: 'Failed to upload image.' 
+      });
+      throw error;
+    }
+  };
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      try {
+        const imageUrl = await handleImageUpload(file);
+        setFormData((prev) => ({ ...prev, image: imageUrl }));
+        toast({ title: 'Success', description: 'Image uploaded successfully.' });
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   return (

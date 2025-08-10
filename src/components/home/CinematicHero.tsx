@@ -92,7 +92,7 @@ const CinematicHero = () => {
       {/* Dynamic Background with Parallax */}
       <div className="absolute inset-0">
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-all duration-[8000ms] ease-in-out transform scale-110"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-8000 ease-in-out transform scale-110"
           style={{ 
             backgroundImage: `url(${currentSlideData.image})`,
             transform: `scale(1.1) translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`

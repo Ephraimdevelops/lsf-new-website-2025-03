@@ -1,17 +1,8 @@
-import { createClient } from "@supabase/supabase-js";
-import dotenv from "dotenv";
 import { Router } from "express";
 import { requireRole } from "../middleware/roleAuth.js";
-
-dotenv.config();
+import { supabase as supabaseAdminClient } from "../supabaseClient";
 
 const router = Router();
-
-// Use the Supabase service role key for admin actions
-const supabaseAdminClient = createClient(
-  process.env.SUPABASE_URL as string,
-  process.env.SUPABASE_SERVICE_ROLE_KEY as string,
-);
 
 // GET /users - list all users (admin only)
 router.get("/", requireRole(["admin"]), async (req, res) => {

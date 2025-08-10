@@ -6,7 +6,7 @@ import path from "path";
 dotenv.config({ path: path.join(__dirname, "../.env") });
 
 const supabaseUrl = process.env.SUPABASE_URL as string;
-const supabaseKey = process.env.SUPABASE_KEY as string;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY as string;  // Using service role key for admin operations
 
 // Debug logging (remove in production)
 console.log("Loading environment variables...");
@@ -20,4 +20,9 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error("Missing Supabase environment variables. Make sure .env file exists in backend directory.");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: {
+    autoRefreshToken: false,
+    persistSession: false
+  }
+});

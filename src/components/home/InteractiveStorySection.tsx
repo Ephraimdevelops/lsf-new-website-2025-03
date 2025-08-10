@@ -6,23 +6,23 @@ import Typography from '@/components/shared/Typography';
 import { useStories } from '@/hooks/useStories';
 
 const InteractiveStorySection = () => {
-  const { stories: backendStories = [], loading: storiesLoading } = useStories();
+  const { stories: backendStories = [], loading: storiesLoading, error } = useStories();
   const [activeStory, setActiveStory] = useState(0);
   const scrollRef = useRef(null);
 
   // Transform backend stories to match the component's expected structure
-  const enhancedStories = backendStories.map(story => ({
-    id: story.id,
-    name: story.name,
-    heading: story.heading, // Adjusted field name
-    location: story.location,
-    year: new Date(story.publishedDate).getFullYear().toString(),
-    image: story.imageUrl,
-    thumbnail: story.thumbnailUrl || story.imageUrl,
-    brief: story.brief,
-    quote: story.quote,
-    category: story.category
-  }));
+const enhancedStories = Array.isArray(backendStories) ? backendStories.map(story => ({
+  id: story.id,
+  name: story.name,
+  heading: story.heading, // Adjusted field name
+  location: story.location,
+  year: new Date(story.publishedDate).getFullYear().toString(),
+  image: story.imageUrl,
+  thumbnail: story.thumbnailUrl || story.imageUrl,
+  brief: story.brief,
+  quote: story.quote,
+  category: story.category
+})) : [];
 
   const scrollToStory = (index) => {
     setActiveStory(index);
@@ -43,7 +43,25 @@ const InteractiveStorySection = () => {
   const nextStory = () => scrollToStory((activeStory + 1) % enhancedStories.length);
   const prevStory = () => scrollToStory((activeStory - 1 + enhancedStories.length) % enhancedStories.length);
 
-  if (storiesLoading || enhancedStories.length === 0) {
+  if (storiesLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-secondary-orange"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-16">
+        <Typography variant="body" className="text-red-500">
+          Failed to load stories. Please try again later.
+        </Typography>
+      </div>
+    );
+  }
+
+  if (enhancedStories.length === 0) {
     return null;
   }
 

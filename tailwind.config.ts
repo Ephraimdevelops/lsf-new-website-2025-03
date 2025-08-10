@@ -18,6 +18,9 @@ export default {
 			}
 		},
 		extend: {
+			transitionDuration: {
+				'8000': '8000ms',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
