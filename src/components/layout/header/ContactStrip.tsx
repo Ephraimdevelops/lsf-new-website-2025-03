@@ -22,16 +22,16 @@ const ContactStrip = ({ isScrolled }: ContactStripProps) => {
             <div className="flex items-center gap-2">
               <HeartHandshake className="h-4 w-4" />
               <span className="font-semibold text-white">
-                Free Legal Aid for All
+                Accesible Legal Aid for All
               </span>
             </div>
             <div className="hidden md:flex items-center gap-2">
               <Phone className="h-4 w-4" />
-              <span className="truncate">Helpline: +255 870 119 363</span>
+              <span className="truncate">Helpline: +255(0)222 601 534</span>
             </div>
             <div className="hidden lg:flex items-center gap-2">
               <Mail className="h-4 w-4" />
-              <span className="truncate">info@legalservicesfacility.org</span>
+              <span className="truncate">info@lsftz.org</span>
             </div>
           </div>
 

@@ -9,20 +9,20 @@ import Text from '../shared/Typography';
 const StrategicApproachesSection = () => {
   const approaches = [
     {
-      icon: <DollarSign className="h-12 w-12" />,
+      icon: <DollarSign className="h-20 w-20" />,
       title: "Grant-Making and Management",
       description: "Funding over 100 organizations to deliver frontline legal aid in underserved regions.",
       image: "public/lovable-uploads/7.png",
-      color: "from-secondary-orange to-secondary-orange/80",
+      color: "from-primary to-primary-dark",
       link: "/what-we-do/grant-making",
       cta: "Explore Grant-Making"
     },
     {
-      icon: <Users className="h-12 w-12" />,
+      icon: <Users className="h-20 w-20" />,
       title: "Direct Project Implementation",
       description: "Designing high-impact programs like Wanawake Tunaweza for legal interventions.",
       image: "public/lovable-uploads/8.png",
-      color: "from-secondary-teal to-secondary-teal/80",
+      color: "from-primary to-primary-dark",
       link: "/what-we-do/direct-implementation",
       cta: "Discover Our Programs"
     },
@@ -40,7 +40,7 @@ const StrategicApproachesSection = () => {
       title: "Research, Monitoring, and Learning",
       description: "Translating evidence into action to improve programs and reforms.",
       image: "public/lovable-uploads/10.png",
-      color: "from-secondary-yellow to-secondary-yellow/80",
+      color: "from-primary to-primary-dark",
       link: "/what-we-do/learning-research",
       cta: "Explore Our Research"
     },
@@ -49,7 +49,7 @@ const StrategicApproachesSection = () => {
       title: "Partnerships & Networking",
       description: "Scaling digital tools like Haki Yangu App for low-tech communities.",
       image: "public/lovable-uploads/11.png",
-      color: "from-purple-500 to-purple-600",
+      color: "from-primary to-primary-dark",
       link: "/what-we-do/partnerships-networking",
       cta: "Join Our Network"
     }
@@ -71,9 +71,9 @@ const StrategicApproachesSection = () => {
             </Text>
           </div>
           <Typography variant="h2" className="text-4xl md:text-5xl font-semibold text-neutral-900 mb-6">
-            Strategic Approaches
+            Our Proven Approaches to
             <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
-              Scaling Justice Innovation
+              Expanding Access to Justice in Tanzania
             </span>
           </Typography>
           <Typography variant="body" className="text-lg text-neutral-600 leading-relaxed">

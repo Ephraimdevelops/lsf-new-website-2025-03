@@ -37,14 +37,14 @@ const GovernanceSection = () => {
         {/* Board Chairperson */}
         <div className="text-center md:text-left">
           <img
-            src="/board-chair.jpg"
+            src="/lovable-uploads/Board Chairperson.png"
             alt="Board Chairperson"
-            width={150}
-            height={150}
+            width={250}
+            height={250}
             className="mx-auto md:mx-0 rounded-full object-cover mb-6"
           />
           <Typography variant="h4" className="text-2xl font-semibold mb-2">
-            Dr. Jane Doe
+            Judge Robert Makaramba
           </Typography>
           <p className="text-primary font-medium mb-4">Board Chairperson</p>
           <blockquote className="text-muted-foreground italic text-lg leading-relaxed">
@@ -57,14 +57,14 @@ const GovernanceSection = () => {
         {/* Executive Director */}
         <div className="text-center md:text-left">
           <img
-            src="/executive-director.jpg"
+            src="/lovable-uploads/lulu ng'wanakilala-LSF_Executive Director.png"
             alt="Executive Director"
-            width={150}
-            height={150}
+            width={250}
+            height={250}
             className="mx-auto md:mx-0 rounded-full object-cover mb-6"
           />
           <Typography variant="h4" className="text-2xl font-semibold mb-2">
-            Mr. John Smith
+            lulu ng'wanakilala
           </Typography>
           <p className="text-primary font-medium mb-4">Executive Director</p>
           <blockquote className="text-muted-foreground italic text-lg leading-relaxed">

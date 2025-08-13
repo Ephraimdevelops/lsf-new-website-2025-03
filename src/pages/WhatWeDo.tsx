@@ -13,7 +13,6 @@ const WhatWeDo = () => {
     <Layout>
       <WhatWeDoHero />
       <WhatWeDoHighlight />
-      <StrategicApproachesSection />
       <StrategicFocusAreasSection />
       <ImpactShowcaseSection />
       <StrategicPartnershipsSection />

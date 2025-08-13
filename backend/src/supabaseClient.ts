@@ -5,8 +5,8 @@ import path from "path";
 // Load environment variables from the backend root directory
 dotenv.config({ path: path.join(__dirname, "../.env") });
 
-const supabaseUrl = process.env.SUPABASE_URL as string;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY as string;  // Using service role key for admin operations
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;  // Using service role key for admin operations
 
 // Debug logging (remove in production)
 console.log("Loading environment variables...");

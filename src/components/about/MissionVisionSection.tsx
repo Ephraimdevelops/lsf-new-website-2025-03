@@ -7,25 +7,25 @@ import Card from '@/components/shared/Card';
 const MissionVisionSection = () => {
   const values = [
     {
-      icon: <Scale className="h-8 w-8" />,
+      icon: <Scale className="h-12 w-12" />,
       title: "Justice for All",
       description: "We believe every Tanzanian deserves equal access to legal protection and representation.",
       color: "from-primary to-primary-dark"
     },
     {
-      icon: <Heart className="h-8 w-8" />,
+      icon: <Heart className="h-12 w-12" />,
       title: "Community Empowerment",
       description: "We strengthen communities by building local capacity and knowledge of legal rights.",
       color: "from-secondary-teal to-secondary-teal/80"
     },
     {
-      icon: <Target className="h-8 w-8" />,
+      icon: <Target className="h-12 w-12" />,
       title: "Sustainable Impact",
       description: "We focus on creating lasting change through systemic improvements and partnerships.",
       color: "from-secondary-orange to-secondary-orange/80"
     },
     {
-      icon: <Eye className="h-8 w-8" />,
+      icon: <Eye className="h-12 w-12" />,
       title: "Transparency",
       description: "We operate with complete transparency and accountability in all our activities.",
       color: "from-secondary-yellow to-secondary-yellow/80"
@@ -39,8 +39,8 @@ const MissionVisionSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10 lg:divide-x lg:divide-gray-200">
           {/* Mission */}
           <div className="lg:pr-6">
-            <div className="inline-flex items-center bg-primary/10 rounded-full px-3 py-1 mb-3">
-              <Target className="h-4 w-4 mr-2 text-primary" />
+            <div className="inline-flex items-center bg-primary/10 rounded-full px-3 py-1 mb-8">
+              <Target className="h-12 w-12 mr-2 text-primary" />
               <Typography variant="overline" className="text-primary font-bold text-xs">
                 OUR MISSION
               </Typography>
@@ -58,8 +58,8 @@ const MissionVisionSection = () => {
 
           {/* Vision */}
           <div className="lg:pl-6">
-            <div className="inline-flex items-center bg-secondary-teal/10 rounded-full px-3 py-1 mb-3">
-              <Eye className="h-4 w-4 mr-2 text-secondary-teal" />
+            <div className="inline-flex items-center bg-secondary-teal/10 rounded-full px-3 py-1 mb-8">
+              <Eye className="h-12 w-12 mr-2 text-secondary-teal" />
               <Typography variant="overline" className="text-secondary-teal font-bold text-xs">
                 OUR VISION
               </Typography>
@@ -78,7 +78,7 @@ const MissionVisionSection = () => {
 
         {/* Core Values */}
         <div className="text-center mb-6">
-          <Typography variant="overline" className="text-primary font-bold mb-2 text-xs">
+          <Typography variant="h3" className="text-primary font-bold mb-2 text-xs">
             OUR VALUES
           </Typography>
           <Typography variant="h2" className="mb-3 text-2xl md:text-3xl font-serif">
@@ -97,7 +97,7 @@ const MissionVisionSection = () => {
               variant="elevated"
               className="text-center p-4 hover:scale-105 transition-transform duration-300"
             >
-              <div className={`w-12 h-12 bg-gradient-to-br ${value.color} rounded-lg flex items-center justify-center mx-auto mb-3`}>
+              <div className={`w-18 h-18 bg-gradient-to-br ${value.color} rounded-lg flex items-center justify-center mx-auto mb-3`}>
                 <div className="text-white">
                   {value.icon}
                 </div>

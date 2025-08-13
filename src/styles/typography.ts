@@ -1,79 +1,85 @@
-
 export const typography = {
-  // Font families - Updated for Ubuntu
   fonts: {
     heading: ['Ubuntu', 'system-ui', 'sans-serif'],
     body: ['Ubuntu', 'system-ui', 'sans-serif'],
     display: ['Ubuntu', 'system-ui', 'sans-serif'],
-    sans: ['Ubuntu', 'system-ui', 'sans-serif'],
   },
 
-  // Standardized font sizes - Consistent hierarchy
   sizes: {
     display: {
-      fontSize: '36px',
-      lineHeight: '40px',
-      fontWeight: 900, // black
+      fontSize: 'clamp(38px, 5vw, 48px)', // hero & banners
+      lineHeight: '1.2',
+      fontWeight: 900,
+      letterSpacing: '-0.01em',
     },
     h1: {
-      fontSize: '32px',
-      lineHeight: '36px',
-      fontWeight: 700, // bold
+      fontSize: 'clamp(30px, 4vw, 36px)',
+      lineHeight: '1.25',
+      fontWeight: 700,
+      letterSpacing: '-0.005em',
     },
     h2: {
-      fontSize: '28px',
-      lineHeight: '32px',
-      fontWeight: 700, // bold
+      fontSize: 'clamp(26px, 3vw, 32px)',
+      lineHeight: '1.3',
+      fontWeight: 600,
+      letterSpacing: '0em',
     },
     h3: {
-      fontSize: '24px',
-      lineHeight: '28px',
-      fontWeight: 600, // semibold
+      fontSize: '22px',
+      lineHeight: '1.3',
+      fontWeight: 600,
+      letterSpacing: '0em',
     },
     h4: {
-      fontSize: '20px',
-      lineHeight: '24px',
-      fontWeight: 600, // semibold
+      fontSize: '18px',
+      lineHeight: '1.4',
+      fontWeight: 500,
+      letterSpacing: '0.005em',
     },
     body: {
-      fontSize: '16px',
-      lineHeight: '24px',
-      fontWeight: 400, // normal
+      fontSize: '14px',
+      lineHeight: '1.5',
+      fontWeight: 400,
+      letterSpacing: '0em',
     },
     bodySmall: {
       fontSize: '14px',
-      lineHeight: '20px',
-      fontWeight: 400, // normal
+      lineHeight: '1.5',
+      fontWeight: 400,
+      letterSpacing: '0.005em',
     },
     overline: {
       fontSize: '12px',
-      lineHeight: '16px',
-      fontWeight: 700, // bold
+      lineHeight: '1.4',
+      fontWeight: 600,
+      letterSpacing: '0.05em',
+      textTransform: 'uppercase',
     },
     caption: {
       fontSize: '12px',
-      lineHeight: '16px',
-      fontWeight: 400, // normal
+      lineHeight: '1.4',
+      fontWeight: 400,
+      letterSpacing: '0.02em',
     },
     small: {
       fontSize: '11px',
-      lineHeight: '14px',
-      fontWeight: 400, // normal
+      lineHeight: '1.4',
+      fontWeight: 400,
+      letterSpacing: '0.02em',
     },
   },
 
-  // Utility classes for consistent styling - Standardized sizes
   classes: {
-    display: 'text-[36px] font-black leading-[40px]',
-    h1: 'text-[32px] font-bold leading-[36px]',
-    h2: 'text-[28px] font-bold leading-[32px]',
-    h3: 'text-[24px] font-semibold leading-[28px]',
-    h4: 'text-[20px] font-semibold leading-[24px]',
-    body: 'text-[16px] font-normal leading-[24px]',
-    bodySmall: 'text-[14px] font-normal leading-[20px]',
-    overline: 'text-[12px] font-bold leading-[16px] uppercase tracking-wider',
-    caption: 'text-[12px] font-normal leading-[16px]',
-    small: 'text-[11px] font-normal leading-[14px]',
+    display: 'text-[clamp(38px,5vw,48px)] font-black leading-[1.2] tracking-[-0.01em]',
+    h1: 'text-[clamp(30px,4vw,36px)] font-bold leading-[1.25] tracking-[-0.005em]',
+    h2: 'text-[clamp(26px,3vw,32px)] font-semibold leading-[1.3]',
+    h3: 'text-[22px] font-semibold leading-[1.3]',
+    h4: 'text-[18px] font-medium leading-[1.4]',
+    body: 'text-[16px] font-normal leading-[1.5]',
+    bodySmall: 'text-[14px] font-normal leading-[1.5]',
+    overline: 'text-[12px] font-semibold leading-[1.4] tracking-[0.05em] uppercase',
+    caption: 'text-[12px] font-normal leading-[1.4] tracking-[0.02em]',
+    small: 'text-[11px] font-normal leading-[1.4] tracking-[0.02em]',
   },
 } as const;
 

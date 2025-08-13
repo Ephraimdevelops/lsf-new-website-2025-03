@@ -8,9 +8,10 @@ import { Link } from 'react-router-dom';
 
 const AboutHero = () => {
   const images = [
-    '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
+    '/lovable-uploads/msaada kisheria lsf yazindua .webp',
     '/lovable-uploads/lsf from IGP sirro police award.jpg',
     '/lovable-uploads/b2226752-4a54-463b-af38-a1dd2b57350b.png',
+    '/lovable-uploads/SaveVid.Net_484979213_18264975220279523_3508195274631451945_n.jpg',
     '/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png'
   ];
 
@@ -19,14 +20,14 @@ const AboutHero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 3500); // Change image every 3.5 seconds
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
     <section className="relative">
       {/* Slideshow Hero Section */}
-      <div className="relative h-[90vh] bg-white overflow-hidden">
+      <div className="relative h-[100vh] bg-white overflow-hidden">
         {/* Image Slideshow */}
         <div className="absolute inset-0">
           {images.map((src, index) => (
@@ -66,7 +67,7 @@ const AboutHero = () => {
             </Typography>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="#strategic-approaches">
+              <Link to="/what-we-do">
                 <Button
                   size="lg"
                   className="bg-secondary-orange hover:bg-secondary-orange-dark text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"

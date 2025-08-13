@@ -13,7 +13,7 @@ const WhatWeDoHighlight = () => {
           {/* Content */}
           <div className="flex flex-col py-10">
             <div className="text-left mb-0">
-              <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+              <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-0 mb-4 border border-primary/20">
                 <DesignIcon 
                   icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
                   size="xl"
