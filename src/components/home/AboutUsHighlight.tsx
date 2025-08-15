@@ -66,11 +66,11 @@ const AboutUsHighlight = () => {
           </div>
 
           {/* Image */}
-          <div className="relative h-full mb-0">
+          <div className="relative h-full mb-10">
             <img 
-              src="/lovable-uploads/paralegals -2.png" 
+              src="/lovable-uploads/Untitled design-5.png" 
               alt="Haki Yangu App Interface" 
-              className="w-full h-full object-cover rounded-t-xxl rounded-b-none"
+              className="w-full h-full object-cover "
             />
           </div>
         </div>
