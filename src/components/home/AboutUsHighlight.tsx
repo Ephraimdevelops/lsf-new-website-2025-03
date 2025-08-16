@@ -30,7 +30,7 @@ const AboutUsHighlight = () => {
                   about us 
                 </Text>
               </div>
-              <Typography variant="h2" className="mb-8 text-5xl md:text-6xl font-bold">
+              <Typography variant="h2" className="mb-8 text-4xl md:text-6xl font-bold">
                 Empowering Communities through
                 <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
                   Legal Access for all.

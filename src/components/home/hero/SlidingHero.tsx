@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
 
 interface HeroSlide {
   id: string;
@@ -27,7 +29,7 @@ const defaultSlides: HeroSlide[] = [
     id: '2',
     title: 'LSF Gender Justice Campaign Launches in Njombe',
     subtitle: 'Building Local Capacity',
-    description: 'We’ve launched a nationwide initiative supporting women and girls to access legal support, claim land rights, and challenge discrimination. Join us in advancing gender equality through grassroots justice.',
+    description: 'We've launched a nationwide initiative supporting women and girls to access legal support, claim land rights, and challenge discrimination. Join us in advancing gender equality through grassroots justice.',
     image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
     ctaText: 'Learn More',
     ctaLink: '/News'
@@ -43,16 +45,21 @@ const defaultSlides: HeroSlide[] = [
   }
 ];
 
-const SlidingHero = () => {
+interface SlidingHeroProps {
+  slides?: HeroSlide[];
+}
+
+const SlidingHero = ({ slides = defaultSlides }: SlidingHeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [slides] = useState<HeroSlide[]>(defaultSlides);
   
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    
-    return () => clearInterval(timer);
+    if (slides.length > 1) {
+      const timer = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }, 8000); // Slower transition like the news hero
+      
+      return () => clearInterval(timer);
+    }
   }, [slides.length]);
   
   const nextSlide = () => {
@@ -66,87 +73,150 @@ const SlidingHero = () => {
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
+
+  if (!slides || slides.length === 0) {
+    return (
+      <section className="relative h-[100vh] bg-gradient-to-br from-primary to-secondary-teal flex items-center">
+        <Container size="xl" className="text-center text-white">
+          <Typography variant="h1" className="text-white mb-4">Welcome to LSF</Typography>
+          <Typography variant="body" className="text-white/90">Empowering communities through access to justice</Typography>
+        </Container>
+      </section>
+    );
+  }
   
   return (
-    <section className="relative bg-white overflow-hidden min-h-[100vh]">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-transform duration-700 ease-in-out ${
-            index === currentSlide ? 'translate-x-0' : 
-            index < currentSlide ? '-translate-x-full' : 'translate-x-full'
-          }`}
-        >
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src={slide.image} 
-              alt={slide.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
-          </div>
-          
-          {/* Content */}
-          <div className="relative container mx-auto px-6 py-20 lg:py-32 h-full flex items-center">
-            <div className="max-w-2xl text-white">
-              <div className="inline-flex items-center bg-primary/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6">
-                <span className="text-white font-medium text-sm uppercase tracking-wider">
-                  {slide.subtitle}
-                </span>
-              </div>
-              
-              <h1 className="text-4xl lg:text-7xl font-bold mb-6 leading-tight">
-                {slide.title}
-              </h1>
-              
-              <p className="text-xl text-white/90 mb-8 leading-relaxed font-light">
-                {slide.description}
-              </p>
-              
-              <Button 
-                size="lg"
-                className="bg-primary hover:bg-primary-dark text-white px-8 py-4 text-lg font-medium"
-                onClick={() => window.location.href = slide.ctaLink}
-              >
-                {slide.ctaText}
-              </Button>
-            </div>
-          </div>
-        </div>
-      ))}
-      
-      {/* Navigation Controls */}
-      <div className="absolute inset-y-0 left-4 flex items-center">
-        <button 
-          onClick={prevSlide}
-          className="p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full text-white transition-colors"
-        >
-          <ChevronLeft className="h-6 w-6" />
-        </button>
-      </div>
-      
-      <div className="absolute inset-y-0 right-4 flex items-center">
-        <button 
-          onClick={nextSlide}
-          className="p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full text-white transition-colors"
-        >
-          <ChevronRight className="h-6 w-6" />
-        </button>
-      </div>
-      
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentSlide ? 'bg-white' : 'bg-white/50'
+    <section className="relative h-[100vh] overflow-hidden">
+      {/* Slides Container */}
+      <div className="relative h-full">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-all duration-2000 ease-out ${
+              index === currentSlide ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
             }`}
-          />
+          >
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30"></div>
+            </div>
+
+            {/* Content */}
+            <Container size="xl" className="relative z-10 h-full flex items-center">
+              <div className="max-w-4xl text-white">
+                {/* Subtitle Badge */}
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
+                    <PlayCircle className="h-6 w-6" />
+                    <span className="font-semibold text-sm uppercase tracking-wider">
+                      {slide.subtitle}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Title */}
+                <Typography
+                  variant="h1"
+                  className="text-white mb-6 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]"
+                >
+                  {slide.title}
+                </Typography>
+
+                {/* Description */}
+                <Typography
+                  variant="body"
+                  className="text-white/95 mb-8 text-lg md:text-xl max-w-3xl leading-relaxed [text-shadow:_0_1px_3px_rgba(0,0,0,0.4)]"
+                >
+                  {slide.description}
+                </Typography>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    size="lg"
+                    className="bg-secondary-orange hover:bg-secondary-orange/90 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105"
+                    onClick={() => window.location.href = slide.ctaLink}
+                  >
+                    {slide.ctaText}
+                    <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105"
+                    onClick={() => {
+                      // Scroll to next section or specific content
+                      const nextSection = document.querySelector('#main-content') || document.querySelector('main');
+                      nextSection?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    Explore More
+                  </Button>
+                </div>
+              </div>
+            </Container>
+          </div>
         ))}
       </div>
+
+      {/* Navigation Controls */}
+      {slides.length > 1 && (
+        <>
+          {/* Previous/Next Buttons */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`transition-all duration-500 ${
+                  index === currentSlide 
+                    ? 'w-12 h-3 bg-white rounded-full shadow-lg' 
+                    : 'w-3 h-3 bg-white/50 hover:bg-white/75 rounded-full'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Slide Counter */}
+          <div className="absolute top-8 right-8 z-20 bg-black/40 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+            {currentSlide + 1} / {slides.length}
+          </div>
+        </>
+      )}
+
+      {/* Progress Bar */}
+      {slides.length > 1 && (
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20 z-10">
+          <div 
+            className="h-full bg-secondary-orange transition-all duration-8000 ease-linear"
+            style={{
+              width: `${((currentSlide + 1) / slides.length) * 100}%`
+            }}
+          />
+        </div>
+      )}
     </section>
   );
 };
