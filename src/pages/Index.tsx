@@ -14,12 +14,13 @@ const Index = () => (
     {/* Enhanced Hero Section with Database Integration */}
     <EnhancedSlidingHero />
 
-
-        {/* About Us Highlight */}
+    {/* About Us Highlight */}
      <AboutUsHighlight />
-     
-    <InteractiveStorySection />
-<NewsSection />
+
+     <InteractiveStorySection />
+
+    <NewsSection />
+    
     <ParallaxNewsSection />
 
     {/* Enhanced News & Publications Section */}

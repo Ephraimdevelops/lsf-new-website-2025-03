@@ -74,7 +74,7 @@ function pickAssistantText(data: any): string {
   if (typeof text === "string") {
     text = text.trim().replace(/^"+|"+$/g, "").replace(/^`{3}[\s\S]*?\n|`{3}$/g, "");
   }
-  return text || "I’m here to help. Could you share a bit more about your situation?";
+  return text || "Karibu sana! Mimi ni SARA kutoka LSF. Nipo hapa kukusaidia kuelewa haki zako na kukuunganisha na msaada unaokufaa. Tuanzie hapa—ni kipi unahitaji leo?";
 }
 
 const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
