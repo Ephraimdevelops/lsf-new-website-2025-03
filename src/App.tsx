@@ -140,7 +140,7 @@ function App() {
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/signup" element={<Signup />} />
                  <Route path="/login" element={<Login />} />
-                  <Route path="/lsfchatbot" element={<LSFChatbotFullPage />} />
+                 <Route path="/lsfchatbot" element={<LSFChatbotFullPage env="production" />} />
                   {/* Catch all route for 404 pages */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
