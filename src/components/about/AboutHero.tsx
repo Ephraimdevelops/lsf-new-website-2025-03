@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
+
 
 const AboutHero = () => {
   const images = [
@@ -20,14 +20,13 @@ const AboutHero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 3500); // Change image every 3.5 seconds
+    }, 3500);
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
     <section className="relative">
-      {/* Slideshow Hero Section */}
-      <div className="relative h-[100vh] bg-white overflow-hidden">
+      <div className="relative h-[90vh] overflow-hidden">
         {/* Image Slideshow */}
         <div className="absolute inset-0">
           {images.map((src, index) => (
@@ -40,25 +39,28 @@ const AboutHero = () => {
               }`}
             />
           ))}
-          <div className="absolute inset-0 bg-primary/70"></div>
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
         <Container size="xl" className="relative z-10 h-full flex items-center">
           <div className="max-w-3xl text-white">
-            <div className="inline-flex items-center gap-3 mb-4 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2">
-              <Target className="h-6 w-6" />
-              <span className="font-semibold text-sm uppercase tracking-wider">About Us</span>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-3 mb-4 bg-primary/20 backdrop-blur-sm rounded-full px-5 py-2">
+              <Target className="h-6 w-6 text-primary" />
+              <span className="font-semibold text-sm uppercase tracking-wider text-white">About Us</span>
             </div>
 
+            {/* Title */}
             <Typography
               variant="h1"
               className="text-white mb-6 text-4xl md:text-6xl font-bold leading-tight [text-shadow:_0_2px_3px_rgba(0,0,0,0.5)]"
             >
               Empowering Communities
               <br />
-              <span className="text-secondary-orange">Through Access to Justice</span>
+              <span className="text-white">Through Access to Justice</span>
             </Typography>
 
+            {/* Description */}
             <Typography
               variant="body"
               className="text-white/90 mb-6 text-lg md:text-xl max-w-2xl leading-relaxed [text-shadow:_0_1px_2px_rgba(0,0,0,0.4)]"
@@ -66,11 +68,12 @@ const AboutHero = () => {
               For over 15 years, the Legal Services Facility has been at the forefront of strengthening legal empowerment across Tanzania, ensuring that every citizen has access to justice regardless of their economic status or social background.
             </Typography>
 
+            {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-3">
               <Link to="/what-we-do">
                 <Button
                   size="lg"
-                  className="bg-secondary-orange hover:bg-secondary-orange-dark text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
+                  className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
                 >
                   Explore Our Model
                   <ArrowRight className="ml-2 h-6 w-6" />
@@ -78,9 +81,10 @@ const AboutHero = () => {
               </Link>
               <Link to="#focus-areas">
                 <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
+                size="lg"
+                variant="outline"
+                onClick={() => setIsVideoOpen(true)}
+                className="border-2 border-primary text-white hover:bg-primary hover:text-white font-semibold px-8 py-4 rounded-lg flex items-center"
                 >
                   <PlayCircle className="mr-2 h-6 w-6" />
                   Watch Our Impact Video

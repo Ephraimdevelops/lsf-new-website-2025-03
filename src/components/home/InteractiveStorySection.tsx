@@ -247,7 +247,7 @@ const InteractiveStorySection: React.FC<{ storiesProp?: RawStory[]; autoplayMs?:
   const goTo = (i: number) => setActive(Math.max(0, Math.min(i, safeStories.length - 1)));
 
   return (
-    <section id="our-heroes" className="py-5 bg-white">
+    <section id="our-heroes" className="py-3 bg-white">
       <Container size="2xl">
         {/* Heading */}
         <div className="max-w-4xl mx-auto text-center mb-8">
@@ -278,43 +278,72 @@ const InteractiveStorySection: React.FC<{ storiesProp?: RawStory[]; autoplayMs?:
         {/* Split layout */}
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* Left: hero */}
-          <div className="lg:w-2/3 w-full rounded-lg overflow-hidden shadow-2xl relative">
-            <img src={current.image} alt={current.name} className="w-full h-[540px] object-cover" loading="eager" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
-            <div className="absolute left-6 bottom-6 right-6 pointer-events-auto">
-              <div className="inline-block bg-primary 500/10 text-white px-3 py-1 rounded-md mb-3">
-                <Typography variant="overline" className="text-teal ">{current.category || 'Featured'}</Typography>
-              </div>
+          {/* Left: hero */}
+<div className="lg:w-2/3 w-full rounded-xl overflow-hidden shadow-2xl relative group">
+  <img
+    src={current.image}
+    alt={current.name}
+    className="w-full h-[540px] object-cover transform transition-transform duration-700 group-hover:scale-105"
+    loading="eager"
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
+  
+  <div className="absolute left-6 bottom-6 right-6 pointer-events-auto">
+    {/* Category */}
+    <div className="inline-block bg-primary/80 text-white px-3 py-1 rounded-full mb-3 shadow-sm">
+      <Typography variant="overline" className="tracking-wide font-medium">
+        {current.category || "Featured"}
+      </Typography>
+    </div>
 
-              <Typography variant="h3" className="text-3xl md:text-4xl text-white font-bold mb-2">
-                {current.name}
-              </Typography>
+    {/* Name */}
+    <Typography
+      variant="h3"
+      className="text-4xl md:text-5xl text-white font-bold mb-2 leading-tight"
+    >
+      {current.name}
+    </Typography>
 
-              <div className="flex items-center gap-3 text-white/90 mb-4">
-                <MapPin className="w-4 h-4" />
-                <span>{current.location} {current.year ? `• ${current.year}` : ''}</span>
-              </div>
+    {/* Location & Year */}
+    <div className="flex items-center gap-3 text-white/80 mb-4">
+      <MapPin className="w-4 h-4" />
+      <span>{current.location} {current.year ? `• ${current.year}` : ""}</span>
+    </div>
 
-              {current.quote && <blockquote className="text-white/90 italic max-w-2xl mb-4">“{current.quote}”</blockquote>}
+    {/* Quote */}
+    {current.quote && (
+      <blockquote className="text-white/90 italic max-w-2xl mb-6">
+        “{current.quote}”
+      </blockquote>
+    )}
 
-              <div>
-                {/* less rounded primary CTA */}
-                <Link to={`/heroes/${current.id}`}>
-                  <button className="bg-primary text-white px-5 py-2 rounded-md font-semibold shadow hover:shadow-lg transition">
-                    Read Full Story
-                  </button>
-                </Link>
-              </div>
-            </div>
+    {/* CTA */}
+    <Link to={`/heroes/${current.id}`}>
+      <button className="bg-primary text-white px-6 py-3 rounded-md font-semibold shadow-lg hover:shadow-xl hover:-translate-y-[1px] transition">
+        Read Full Story
+      </button>
+    </Link>
+  </div>
 
-            {/* Prev/Next smaller rounded controls */}
-            <button aria-label="Previous story" onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-md p-2 shadow transition hover:scale-105">
-              <ChevronLeft className="w-5 h-5 text-primary-600" />
-            </button>
-            <button aria-label="Next story" onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-md p-2 shadow transition hover:scale-105">
-              <ChevronRight className="w-5 h-5 text-primary-600" />
-            </button>
-          </div>
+  {/* Prev/Next */}
+  <button
+    aria-label="Previous story"
+    onClick={prev}
+    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-3 shadow transition hover:scale-110"
+  >
+    <ChevronLeft className="w-5 h-5 text-primary-600" />
+  </button>
+  <button
+    aria-label="Next story"
+    onClick={next}
+    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-3 shadow transition hover:scale-110"
+  >
+    <ChevronRight className="w-5 h-5 text-primary-600" />
+  </button>
+</div>
+
+
+
 
           {/* Right: vertical thumbnails */}
           <div className="lg:w-1/3 w-full space-y-2">

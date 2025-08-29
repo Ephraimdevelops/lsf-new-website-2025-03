@@ -6,36 +6,9 @@ import { MapPin, Clock, Users, Briefcase, GraduationCap, Heart, ArrowRight, Cale
 import { Link } from 'react-router-dom';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
-
-const opportunities = [
-  {
-    id: 1,
-    title: "Volunteer Legal Assistant",
-    location: "Dar es Salaam, Tanzania",
-    deadline: "2025-07-25",
-    type: "Volunteer",
-    description: "Assist with case intake, community outreach, and paralegal coordination in regional offices.",
-    image: "/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png"
-  },
-  {
-    id: 2,
-    title: "Internship – Digital Communication",
-    location: "Remote / Dar es Salaam",
-    deadline: "2025-07-28",
-    type: "Internship",
-    description: "Support social media, content writing, and digital campaigns across our platforms.",
-    image: "/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png"
-  },
-  {
-    id: 3,
-    title: "Project Officer – Access to Justice",
-    location: "Mbeya, Tanzania",
-    deadline: "2025-08-05",
-    type: "Full Time",
-    description: "Coordinate regional activities, monitor paralegal programs, and report implementation progress.",
-    image: "/lovable-uploads/20fb51ec-eb2b-49e9-9b3e-f6fb1ad52532.png"
-  },
-];
+import { useOpportunities } from '@/hooks/useOpportunities';
+import LoadingState from '@/components/shared/LoadingState';
+import ErrorState from '@/components/shared/ErrorState';
 
 const getDaysLeft = (deadline: string) => {
   const now = new Date();
@@ -46,8 +19,26 @@ const getDaysLeft = (deadline: string) => {
 };
 
 const OpportunitiesPage = () => {
+  const { opportunities, loading, error } = useOpportunities();
+
+  if (loading) {
+    return (
+      <Layout>
+        <LoadingState />
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <ErrorState message={error} />
+      </Layout>
+    );
+  }
+
   return (
-       <Layout>
+    <Layout>
       <HeroSection
         icon={<Newspaper className="h-10 w-8" />}
         badge="We need You"
@@ -57,52 +48,70 @@ const OpportunitiesPage = () => {
       />
 
       <Container className="py-40">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-          {opportunities.map((opportunity) => (
-            <div
-              key={opportunity.id}
-              className="rounded-xl border bg-white shadow-sm hover:shadow-md transition-all overflow-hidden"
-            >
-              {opportunity.image && (
-                <img
-                  src={opportunity.image}
-                  alt={opportunity.title}
-                  className="w-full h-40 object-cover"
-                />
-              )}
-              <div className="p-5 space-y-3">
-                <Typography variant="h3" className="text-lg font-semibold">
-                  {opportunity.title}
-                </Typography>
+        {opportunities.length === 0 ? (
+          <div className="text-center py-20">
+            <Briefcase className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+            <Typography variant="h2" className="text-gray-600 mb-4">
+              No Open Positions
+            </Typography>
+            <Typography variant="body" className="text-gray-500 mb-8">
+              We don't have any open positions at the moment. Please check back later or contact us to learn about future opportunities.
+            </Typography>
+            <Link to="/contact">
+              <Button size="lg" className="bg-primary hover:bg-primary-dark">
+                Contact Us
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+            {opportunities.map((opportunity) => (
+              <div
+                key={opportunity.id}
+                className="rounded-xl border bg-white shadow-sm hover:shadow-md transition-all overflow-hidden"
+              >
+                {opportunity.image && (
+                  <img
+                    src={opportunity.image}
+                    alt={opportunity.title}
+                    className="w-full h-40 object-cover"
+                  />
+                )}
+                <div className="p-5 space-y-3">
+                  <Typography variant="h3" className="text-lg font-semibold">
+                    {opportunity.title}
+                  </Typography>
 
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {opportunity.description}
-                </p>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {opportunity.description}
+                  </p>
 
-                <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    <span>{opportunity.location}</span>
+                  <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      <span>{opportunity.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      <span>Deadline: {new Date(opportunity.deadline).toLocaleDateString()}</span>
+                    </div>
+                    <div className="text-xs font-medium text-green-600">
+                      {getDaysLeft(opportunity.deadline)}
+                    </div>
+                    <div className="text-sm font-semibold">{opportunity.employment_type}</div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    <span>Deadline: {new Date(opportunity.deadline).toLocaleDateString()}</span>
-                  </div>
-                  <div className="text-xs font-medium text-green-600">
-                    {getDaysLeft(opportunity.deadline)}
-                  </div>
-                  <div className="text-sm font-semibold">{opportunity.type}</div>
-                </div>
 
-                <div className="pt-4 flex justify-between items-center">
-                  <Button size="sm" asChild>
-                    <Link to={`/opportunities/${opportunity.id}`}>View Details</Link>
-                  </Button>
+                  <div className="pt-4 flex justify-between items-center">
+                    <Button size="sm" asChild>
+                      <Link to={`/opportunities/${opportunity.id}`}>View Details</Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </Container>
     </Layout>
   );

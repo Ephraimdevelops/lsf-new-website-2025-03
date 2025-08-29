@@ -21,20 +21,20 @@ import { Button } from '@/components/ui/button';
 
 const WhatWeDoHighlight = () => {
   return (
-    <section className="py-12 bg-white mb-0">
-      <div className="container max-w-6xl mx-auto px-6">
+    <section className="py-8 bg-white mb-0">
+      <div className="container max-w-7xl mx-auto px-2">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Content */}
           <div className="flex flex-col py-6">
             <div className="text-left mb-6">
-              <div className="inline-flex items-center bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 rounded-full px-6 py-2 mb-4 border border-blue-600/20">
-                <Target className="h-5 w-5 text-blue-600 mr-3" />
+              <div className="inline-flex items-center bg-gradient-to-r from-neutral-600/10 via-purple-600/10 to-pink-600/10 rounded-full px-6 py-2 mb-4 border border-blue-600/20">
+                <Target className="h-5 w-5 text-neutral-600 mr-3" />
                 <Typography variant="overline" className="font-bold text-base tracking-wider text-gray-900">
                   Our Strategy
                 </Typography>
               </div>
               <Typography variant="h2" className="mb-6 text-4xl md:text-5xl font-bold text-gray-900">
-                Focus Areas <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Focus Areas <span className="block bg-gradient-to-r from-primary-300 bg-clip-text">
                   & Approaches
                 </span>
               </Typography>
@@ -62,12 +62,35 @@ const WhatWeDoHighlight = () => {
           {/* Image */}
           <div className="relative h-full">
             <img 
-              src="/lovable-uploads/3.png" 
+              src="/lovable-uploads/image copy.png" 
               alt="Haki Yangu App Interface" 
               className="w-full h-full object-cover rounded-lg image-overlay"
             />
           </div>
         </div>
+          {/* Stats Section */}
+      <div className="bg-neutral-dark text-white overflow-hidden py-16">
+        <Container size="xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">2.8M+</div>
+              <div className="text-neutral-200 text-sm uppercase tracking-wide">Tanzanians Reached</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">4,000+</div>
+              <div className="text-neutral-200 text-sm uppercase tracking-wide">Trained Paralegals</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">31</div>
+              <div className="text-neutral-200 text-sm uppercase tracking-wide">Regions Covered</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">78%</div>
+              <div className="text-neutral-200 text-sm uppercase tracking-wide">Cases Resolved</div>
+            </div>
+          </div>
+        </Container>
+      </div>
       </div>
     </section>
   );

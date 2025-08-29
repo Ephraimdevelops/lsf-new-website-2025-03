@@ -367,6 +367,216 @@ class SupabaseService {
     }
   }
 
+  // Team members methods
+  async getAllTeamMembers(): Promise<any[]> {
+    const cacheKey = this.getCacheKey('getAllTeamMembers');
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const { data, error } = await supabase
+        .from('team_members')
+        .select('*')
+        .order('order', { ascending: true });
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data);
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching team members:', error);
+      return [];
+    }
+  }
+
+  async getTeamMemberById(id: string): Promise<any | null> {
+    const cacheKey = this.getCacheKey('getTeamMemberById', { id });
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const { data, error } = await supabase
+        .from('team_members')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching team member by ID:', error);
+      return null;
+    }
+  }
+
+  async getTeamMembersByType(type: 'team' | 'board'): Promise<any[]> {
+    const cacheKey = this.getCacheKey('getTeamMembersByType', { type });
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const { data, error } = await supabase
+        .from('team_members')
+        .select('*')
+        .eq('type', type)
+        .order('order', { ascending: true });
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data);
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching team members by type:', error);
+      return [];
+    }
+  }
+
+  // Enhanced opportunities methods
+  async getOpportunityById(id: string): Promise<Opportunity | null> {
+    const cacheKey = this.getCacheKey('getOpportunityById', { id });
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const { data, error } = await supabase
+        .from('opportunities')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data);
+      return data as Opportunity;
+    } catch (error) {
+      console.error('Error fetching opportunity by ID:', error);
+      return null;
+    }
+  }
+
+  // Enhanced news methods
+  async getNewsBySlug(slug: string): Promise<News | null> {
+    const cacheKey = this.getCacheKey('getNewsBySlug', { slug });
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const { data, error } = await supabase
+        .from('news')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data);
+      return {...data, readTime: data.read_time} as News;
+    } catch (error) {
+      console.error('Error fetching news by slug:', error);
+      return null;
+    }
+  }
+
+  // Enhanced publications methods
+  async getPublicationBySlug(slug: string): Promise<Publication | null> {
+    const cacheKey = this.getCacheKey('getPublicationBySlug', { slug });
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const { data, error } = await supabase
+        .from('publications')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data);
+      return {
+        ...data,
+        file: data.file_url,
+        downloadCount: data.download_count,
+        fileSize: data.file_size
+      } as Publication;
+    } catch (error) {
+      console.error('Error fetching publication by slug:', error);
+      return null;
+    }
+  }
+
+  // Search methods
+  async searchNews(query: string, filters?: SearchFilters): Promise<News[]> {
+    const cacheKey = this.getCacheKey('searchNews', { query, filters });
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      let supabaseQuery = supabase
+        .from('news')
+        .select('*')
+        .or(`title.ilike.%${query}%,excerpt.ilike.%${query}%,content.ilike.%${query}%`)
+        .order('date', { ascending: false });
+
+      if (filters?.featured !== undefined) {
+        supabaseQuery = supabaseQuery.eq('featured', filters.featured);
+      }
+
+      if (filters?.category) {
+        supabaseQuery = supabaseQuery.eq('category', filters.category);
+      }
+
+      const { data, error } = await supabaseQuery;
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data);
+      return data?.map(item => ({...item, readTime: item.read_time})) as News[];
+    } catch (error) {
+      console.error('Error searching news:', error);
+      return [];
+    }
+  }
+
+  async searchPublications(query: string, filters?: SearchFilters): Promise<Publication[]> {
+    const cacheKey = this.getCacheKey('searchPublications', { query, filters });
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      let supabaseQuery = supabase
+        .from('publications')
+        .select('*')
+        .or(`title.ilike.%${query}%,description.ilike.%${query}%,excerpt.ilike.%${query}%`)
+        .order('date', { ascending: false });
+
+      if (filters?.featured !== undefined) {
+        supabaseQuery = supabaseQuery.eq('featured', filters.featured);
+      }
+
+      if (filters?.category) {
+        supabaseQuery = supabaseQuery.eq('category', filters.category);
+      }
+
+      const { data, error } = await supabaseQuery;
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data);
+      return data?.map(item => ({
+        ...item,
+        file: item.file_url,
+        downloadCount: item.download_count,
+        fileSize: item.file_size
+      })) as Publication[];
+    } catch (error) {
+      console.error('Error searching publications:', error);
+      return [];
+    }
+  }
+
   clearCache(): void {
     this.cache.clear();
   }

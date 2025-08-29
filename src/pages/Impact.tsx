@@ -2,7 +2,6 @@ import Layout from '../components/layout/Layout';
 import ImpactHero  from './impact/ImpactHero';
 import { ImpactStats } from './impact/ImpactStats';
 import { ThematicImpact } from './impact/ThematicImpact';
-import { ImpactStories } from './impact/ImpactStories';
 import { RegionalImpact } from './impact/RegionalImpact';
 import { ImpactReports } from './impact/ImpactReports';
 import { ImpactCTA } from './impact/ImpactCTA';
@@ -11,7 +10,6 @@ import { ImpactCTA } from './impact/ImpactCTA';
 import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
 import { Card, CardContent } from '@/components/ui/card';
-import InteractiveStorySection from '@/components/home/InteractiveStorySection';
 
 const sdgGoals = [
   {
@@ -135,9 +133,7 @@ const Impact = () => {
     <Layout>
       <ImpactHero />
       <ImpactStats />
-      <InteractiveStorySection />
       <ThematicImpact />
-      <ImpactStories />
       <RegionalImpact />
       <SDGProgress />
       <PartnerRecognition />

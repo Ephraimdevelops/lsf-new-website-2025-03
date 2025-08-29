@@ -4,18 +4,17 @@ import WhatWeDoHero from '../components/what-we-do/WhatWeDoHero';
 import StrategicApproachesSection from '../components/what-we-do/StrategicApproachesSection';
 import StrategicFocusAreasSection from '../components/what-we-do/StrategicFocusAreasSection';
 import ImpactShowcaseSection from '../components/what-we-do/ImpactShowcaseSection';
-import StrategicPartnershipsSection from '../components/what-we-do/StrategicPartnershipsSection';
-import WhatWeDoHighlight from '@/components/what-we-do/WhatWeDoHighlight';
+import StrategicPartnershipsSection from '@/components/what-we-do/StrategicPartnershipsSection';
 
 const WhatWeDo = () => {
 
   return (
     <Layout>
       <WhatWeDoHero />
-      <WhatWeDoHighlight />
       <StrategicFocusAreasSection />
       <ImpactShowcaseSection />
       <StrategicPartnershipsSection />
+
     </Layout>
   );
 };

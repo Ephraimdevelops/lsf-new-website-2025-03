@@ -1,96 +1,133 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from '../components/admin/AdminDashboard';
-import { toast } from '@/components/ui/use-toast';
-import AdminLogin from '../components/admin/AdminLogin.tsx';import { supabase } from '@/lib/supabase';
-
+import { supabase } from '@/lib/supabase';
+import { useToast } from '@/hooks/use-toast';
 
 const Admin = () => {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [failedAttempts, setFailedAttempts] = useState(0);
-  const [loginLocked, setLoginLocked] = useState(false);
+  const { toast } = useToast();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      const userRole = localStorage.getItem('user-role');
-      
-      if (!session || userRole !== 'admin') {
+      try {
+        setIsLoading(true);
+        
+        // Get current session
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+        
+        if (sessionError) {
+          console.error('Session error:', sessionError);
+          navigate('/login');
+          return;
+        }
+
+        if (!session) {
+          toast({
+            title: "Authentication Required",
+            description: "Please login to access the admin panel",
+            variant: "destructive",
+          });
+          navigate('/login');
+          return;
+        }
+
+        // Get user details
+        const { data: { user }, error: userError } = await supabase.auth.getUser();
+        
+        if (userError || !user) {
+          console.error('User error:', userError);
+          navigate('/login');
+          return;
+        }
+
+        // Check if user has admin role
+        const userRole = user.user_metadata?.role || user.app_metadata?.role;
+        
+        if (userRole !== 'admin') {
+          toast({
+            title: "Access Denied",
+            description: "Admin privileges required to access this page",
+            variant: "destructive",
+          });
+          navigate('/login');
+          return;
+        }
+
+        // User is authenticated and authorized
+        setIsAuthorized(true);
+        toast({
+          title: "Welcome",
+          description: `Logged in as ${user.email}`,
+        });
+
+      } catch (error) {
+        console.error('Auth check error:', error);
+        toast({
+          title: "Authentication Error",
+          description: "Please login again",
+          variant: "destructive",
+        });
         navigate('/login');
+      } finally {
+        setIsLoading(false);
       }
     };
 
     checkAuth();
-  }, [navigate]);
+  }, [navigate, toast]);
 
-  const handleLogin = (email: string, password: string) => {
-    // DEBUG: Show what is being checked
-    toast({
-      title: 'DEBUG',
-      description: `Checking email: ${email}, password: ${password}`,
-    });
-    console.log('DEBUG: handleLogin called with', { email, password });
-
-    // Hardcoded admin
-    if (email === 'hardcoded' && password === 'admin') {
-      toast({
-        title: "Hardcoded Admin Login",
-        description: "You are logged in as hardcoded admin.",
-      });
-      return true;
-    }
-
-    // Admin credentials
-    if (email === 'LSF2024@Admin' && password === 'lsfadmin') {
-      toast({
-        title: "Hardcoded Admin Login",
-        description: "You are logged in as LSF2024@Admin.",
-      });
-      localStorage.setItem('admin-auth', 'true');
-      localStorage.setItem('admin-last-login', Date.now().toString());
-      localStorage.setItem('user-role', 'admin');
-      setIsLoggedIn(true);
-      setFailedAttempts(0);
-      return true;
-    } else {
-      toast({
-        title: 'DEBUG',
-        description: 'Credentials did not match hardcoded admin.',
-        variant: 'destructive',
-      });
-      const newFailedAttempts = failedAttempts + 1;
-      setFailedAttempts(newFailedAttempts);
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
       
-      if (newFailedAttempts >= 5) {
-        const lockUntil = Date.now() + 15 * 60 * 1000;
-        localStorage.setItem('admin-login-locked-until', lockUntil.toString());
-        setLoginLocked(true);
-        toast({
-          title: "Login Locked",
-          description: "Too many failed attempts. Try again in 15 minutes.",
-          variant: "destructive",
-        });
+      if (error) {
+        console.error('Logout error:', error);
       }
-      return false;
+
+      // Clear local storage
+      localStorage.removeItem('auth-token');
+      localStorage.removeItem('user-role');
+      localStorage.removeItem('user-email');
+      localStorage.removeItem('admin-auth');
+      localStorage.removeItem('admin-last-login');
+
+      setIsAuthorized(false);
+      
+      toast({
+        title: "Logged Out",
+        description: "You have been successfully logged out",
+      });
+      
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      toast({
+        title: "Logout Error",
+        description: "There was an error logging out",
+        variant: "destructive",
+      });
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('admin-auth');
-    localStorage.removeItem('user-role');
-    setIsLoggedIn(false);
-    toast({
-      title: "Logged Out",
-      description: "You have been successfully logged out.",
-    });
-  };
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-600">Checking authentication...</p>
+        </div>
+      </div>
+    );
+  }
 
-  return isLoggedIn ? (
-    <AdminDashboard onLogout={handleLogout} />
-  ) : (
-    <AdminLogin onLogin={handleLogin} isLocked={loginLocked} />
-  );
+  if (!isAuthorized) {
+    return null;
+  }
+
+  return <AdminDashboard onLogout={handleLogout} />;
 };
 
 export default Admin;

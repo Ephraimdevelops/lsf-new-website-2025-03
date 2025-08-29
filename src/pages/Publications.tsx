@@ -18,35 +18,27 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { dataService } from '@/services/dataService';
+import { usePublications } from '@/hooks/usePublications';
+import LoadingState from '@/components/shared/LoadingState';
+import ErrorState from '@/components/shared/ErrorState';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
 
 const Publications = () => {
+  const { publications, loading, error, searchPublications } = usePublications();
   const [searchTerm, setSearchTerm] = useState('');
   const [publicationType, setPublicationType] = useState('all');
   const [year, setYear] = useState('all');
-  const [publications, setPublications] = useState<any[]>([]);
   const [filteredPublications, setFilteredPublications] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   
-  // Load publications from mock data
+  // Update filtered publications when publications data changes
   useEffect(() => {
-    const fetchPublications = async () => {
-      setIsLoading(true);
-      try {
-        // Use mock data instead of API calls
-        const data = dataService.getPublications();
-        setPublications(data);
-        setFilteredPublications(data);
-      } catch (error) {
-        console.error("Error fetching publications:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    
-    fetchPublications();
-  }, []);
+    if (publications.length > 0) {
+      setFilteredPublications(publications);
+    }
+  }, [publications]);
   
   // Filter publications when search term, type, or year changes
   useEffect(() => {
@@ -70,7 +62,7 @@ const Publications = () => {
   // Track publication download
   const handleDownload = async (publication: any) => {
     try {
-      window.open(publication.downloadUrl || publication.fileUrl, '_blank');
+      window.open(publication.file || publication.fileUrl, '_blank');
     } catch (error) {
       console.error("Error tracking download:", error);
     }
@@ -88,6 +80,22 @@ const Publications = () => {
       default: return 'bg-gray-100 text-gray-600 border-gray-200';
     }
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <LoadingState />
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <ErrorState message={error} />
+      </Layout>
+    );
+  }
   
   return (
     <Layout>
@@ -127,21 +135,18 @@ const Publications = () => {
                     className="w-full lg:w-auto flex items-center justify-between gap-2 rounded-xl border-2 border-gray-200 hover:border-secondary-teal transition-colors px-6 py-3"
                   >
                     <Filter size={16} />
-                    Advanced Filters
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform duration-200 ${isFilterOpen ? 'rotate-180' : ''}`}
-                    />
+                    <span>Filter Publications</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} />
                   </Button>
                 </CollapsibleTrigger>
-                <CollapsibleContent className="mt-4 lg:absolute lg:right-0 lg:mt-2 lg:bg-white lg:shadow-xl lg:rounded-2xl lg:p-6 lg:z-10 lg:min-w-[280px] lg:border lg:border-gray-200">
-                  <div className="space-y-6">
+                <CollapsibleContent className="mt-4 lg:mt-0">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="publication-type" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
                         Publication Type
                       </label>
                       <Select value={publicationType} onValueChange={setPublicationType}>
-                        <SelectTrigger className="w-full rounded-xl border-2" id="publication-type">
+                        <SelectTrigger className="w-full rounded-xl border-2">
                           <SelectValue placeholder="All Types" />
                         </SelectTrigger>
                         <SelectContent>
@@ -153,217 +158,168 @@ const Publications = () => {
                         </SelectContent>
                       </Select>
                     </div>
-                    
                     <div>
-                      <label htmlFor="year" className="block text-sm font-semibold text-gray-700 mb-2">
-                        Publication Year
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Year
                       </label>
                       <Select value={year} onValueChange={setYear}>
-                        <SelectTrigger className="w-full rounded-xl border-2" id="year">
+                        <SelectTrigger className="w-full rounded-xl border-2">
                           <SelectValue placeholder="All Years" />
                         </SelectTrigger>
                         <SelectContent>
-                          {years.map((yearOption) => (
-                            <SelectItem key={yearOption} value={yearOption}>
-                              {yearOption === 'all' ? 'All Years' : yearOption}
+                          {years.map((year) => (
+                            <SelectItem key={year} value={year}>
+                              {year === 'all' ? 'All Years' : year}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </div>
-                    
-                    <Button
-                      variant="outline"
-                      className="w-full rounded-xl"
-                      onClick={() => {
-                        setSearchTerm('');
-                        setPublicationType('all');
-                        setYear('all');
-                      }}
-                    >
-                      Clear All Filters
-                    </Button>
                   </div>
                 </CollapsibleContent>
               </Collapsible>
             </div>
           </div>
-
-          {/* Filter Summary */}
-          {(searchTerm || publicationType !== 'all' || year !== 'all') && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              {searchTerm && (
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-secondary-teal/10 text-secondary-teal border border-secondary-teal/20">
-                  Search: "{searchTerm}"
-                </span>
-              )}
-              {publicationType !== 'all' && (
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-primary/10 text-primary border border-primary/20">
-                  Type: {publicationType.charAt(0).toUpperCase() + publicationType.slice(1)}
-                </span>
-              )}
-              {year !== 'all' && (
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-secondary-orange/10 text-secondary-orange border border-secondary-orange/20">
-                  Year: {year}
-                </span>
-              )}
-            </div>
-          )}
         </div>
       </section>
-      
-      {/* Enhanced Publications Grid */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+
+      {/* Publications Content Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          {isLoading ? (
-            <div className="flex items-center justify-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+          {filteredPublications.length === 0 ? (
+            <div className="text-center py-20">
+              <BookOpen className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+              <Typography variant="h2" className="text-gray-600 mb-4">
+                {searchTerm || publicationType !== 'all' || year !== 'all' ? 'No Publications Found' : 'No Publications Available'}
+              </Typography>
+              <Typography variant="body" className="text-gray-500 mb-8">
+                {searchTerm || publicationType !== 'all' || year !== 'all'
+                  ? 'No publications found matching your criteria. Try adjusting your search terms or filters.'
+                  : 'We don\'t have any publications at the moment. Please check back later.'
+                }
+              </Typography>
+              {(searchTerm || publicationType !== 'all' || year !== 'all') && (
+                <Button 
+                  onClick={() => {
+                    setSearchTerm('');
+                    setPublicationType('all');
+                    setYear('all');
+                  }}
+                  className="bg-primary hover:bg-primary-dark"
+                >
+                  Clear All Filters
+                </Button>
+              )}
             </div>
-          ) : filteredPublications.length > 0 ? (
+          ) : (
             <>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-neutral-dark mb-4">
-                  {filteredPublications.length} {filteredPublications.length === 1 ? 'Publication' : 'Publications'} Found
-                </h2>
-                <p className="text-neutral-gray">Discover evidence-based insights and practical resources</p>
+              {/* Results Header */}
+              <div className="mb-12">
+                <Typography variant="h2" className="text-3xl md:text-4xl font-bold mb-4">
+                  Publications & Resources
+                </Typography>
+                <Typography variant="body" className="text-gray-600">
+                  {filteredPublications.length} publication{filteredPublications.length !== 1 ? 's' : ''} found
+                </Typography>
               </div>
-              
+
+              {/* Publications Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPublications.map((publication) => (
-                  <div 
-                    key={publication.id} 
-                    className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-secondary-teal/30 transform hover:-translate-y-2"
-                  >
-                    {/* Enhanced Image Header */}
-                    <div className="relative h-56 overflow-hidden">
-                      <img 
-                        src={publication.image || publication.cover} 
-                        alt={publication.title} 
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                      
-                      {/* Floating Type Badge */}
-                      <div className="absolute top-4 left-4">
-                        <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold shadow-lg border ${getTypeColor(publication.type)}`}>
-                          <FileText className="h-3 w-3 mr-1" />
-                          {publication.type.toUpperCase()}
-                        </span>
-                      </div>
+                  <article key={publication.id} className="group">
+                    <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 group-hover:border-primary/30 group-hover:-translate-y-2">
+                      {/* Image */}
+                      {publication.image && (
+                        <div className="relative h-48 overflow-hidden">
+                          <img
+                            src={publication.image}
+                            alt={publication.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                      )}
 
-                      {/* File Size Badge */}
-                      <div className="absolute top-4 right-4">
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/90 text-gray-700 shadow-lg">
-                          {publication.fileSize || '2.5 MB'}
-                        </span>
-                      </div>
-                    </div>
+                      {/* Content */}
+                      <div className="p-6">
+                        {/* Type Badge */}
+                        <div className="mb-4">
+                          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border ${getTypeColor(publication.type)}`}>
+                            <FileText className="h-3 w-3" />
+                            {publication.type}
+                          </span>
+                        </div>
 
-                    {/* Enhanced Content */}
-                    <div className="p-8">
-                      <div className="flex items-center text-sm text-gray-500 mb-4">
-                        <CalendarIcon className="h-4 w-4 mr-2" /> 
-                        {new Date(publication.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </div>
-                      
-                      <Link to={`/publications/${publication.id}`}>
-                        <h3 className="text-xl font-bold mb-4 text-neutral-dark line-clamp-2 group-hover:text-secondary-teal transition-colors duration-300">
+                        {/* Date */}
+                        <div className="flex items-center text-gray-500 text-sm mb-3">
+                          <CalendarIcon className="h-4 w-4 mr-2" />
+                          <span>
+                            {new Date(publication.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            })}
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <Typography variant="h3" className="text-xl font-bold mb-3 text-neutral-dark group-hover:text-primary transition-colors duration-300 line-clamp-2">
                           {publication.title}
-                        </h3>
-                      </Link>
-                      
-                      <p className="text-neutral-gray text-sm line-clamp-3 leading-relaxed mb-6">
-                        {publication.excerpt}
-                      </p>
-                      
-                      {/* Enhanced Action Buttons */}
-                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <Link 
-                          to={`/publications/${publication.id}`}
-                          className="inline-flex items-center text-secondary-teal font-semibold hover:text-secondary-teal/80 transition-colors text-sm group/link"
-                        >
-                          Read More
-                          <ChevronDown className="ml-1 h-4 w-4 -rotate-90 group-hover/link:translate-x-1 transition-transform" />
-                        </Link>
-                        
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          className="flex items-center gap-2 rounded-xl border-2 hover:bg-secondary-teal hover:text-white hover:border-secondary-teal transition-all duration-300"
-                          onClick={() => handleDownload(publication)}
-                        >
-                          <Download size={14} />
-                          Download
-                        </Button>
+                        </Typography>
+
+                        {/* Excerpt */}
+                        <Typography variant="body" className="text-gray-600 mb-4 line-clamp-3">
+                          {publication.excerpt}
+                        </Typography>
+
+                        {/* File Info */}
+                        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                          <div className="flex items-center gap-4">
+                            {publication.fileSize && (
+                              <span className="flex items-center gap-1">
+                                <FileText className="h-3 w-3" />
+                                {publication.fileSize}
+                              </span>
+                            )}
+                            {publication.pages && (
+                              <span className="flex items-center gap-1">
+                                <Eye className="h-3 w-3" />
+                                {publication.pages}
+                              </span>
+                            )}
+                          </div>
+                          {publication.downloadCount && (
+                            <span className="flex items-center gap-1">
+                              <Download className="h-3 w-3" />
+                              {publication.downloadCount} downloads
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            onClick={() => handleDownload(publication)}
+                            className="flex-1 bg-primary hover:bg-primary-dark"
+                          >
+                            <Download className="h-4 w-4 mr-2" />
+                            Download
+                          </Button>
+                          <Link to={`/publications/${publication.slug || publication.id}`}>
+                            <Button size="sm" variant="outline">
+                              <Eye className="h-4 w-4 mr-2" />
+                              View
+                            </Button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </article>
                 ))}
               </div>
             </>
-          ) : (
-            <div className="text-center py-16">
-              <div className="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FileText className="h-16 w-16 text-gray-400" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-neutral-dark">No Publications Found</h3>
-              <p className="text-neutral-gray mb-8 max-w-md mx-auto">
-                We couldn't find any publications matching your search criteria. Try adjusting your filters or search terms.
-              </p>
-              <Button 
-                onClick={() => {
-                  setSearchTerm('');
-                  setPublicationType('all');
-                  setYear('all');
-                }}
-                className="rounded-xl px-8 py-3"
-              >
-                Clear All Filters
-              </Button>
-            </div>
           )}
-        </div>
-      </section>
-        {/* Impact Stats Section */}
-        <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <FileText className="h-8 w-8 text-primary" />
-              </div>
-              <div className="text-3xl font-bold text-primary mb-1">{publications.length}+</div>
-              <div className="text-sm text-gray-600 font-medium">Total Publications</div>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary-teal/10 to-secondary-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Download className="h-8 w-8 text-secondary-teal" />
-              </div>
-              <div className="text-3xl font-bold text-secondary-teal mb-1">25K+</div>
-              <div className="text-sm text-gray-600 font-medium">Downloads</div>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary-orange/10 to-secondary-orange/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Eye className="h-8 w-8 text-secondary-orange" />
-              </div>
-              <div className="text-3xl font-bold text-secondary-orange mb-1">100K+</div>
-              <div className="text-sm text-gray-600 font-medium">Page Views</div>
-            </div>
-            
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-secondary-yellow/10 to-secondary-yellow/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="h-8 w-8 text-secondary-yellow" />
-              </div>
-              <div className="text-3xl font-bold text-secondary-yellow mb-1">15+</div>
-              <div className="text-sm text-gray-600 font-medium">Policy Changes</div>
-            </div>
-          </div>
         </div>
       </section>
     </Layout>
