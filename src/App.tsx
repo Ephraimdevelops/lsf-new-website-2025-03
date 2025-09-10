@@ -56,6 +56,7 @@ import StakeholderDashboard from "./pages/StakeholderDashboard";
 import Signup from "./pages/Signup";
 import { RequireAuth } from "./utils/RequireAuth";
 import { isAuthenticated, getUserRole, logout } from "./utils/authUtils";
+import AuthProvider from '@/providers/AuthProvider';
 
 // Set up axios base URL to use VITE_API_BASE_URL for all API calls
 import axios from 'axios';
@@ -69,32 +70,33 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <TooltipProvider>
-          <Router>
-            <div className="min-h-screen bg-white">
-              <ErrorBoundary>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/what-we-do" element={<WhatWeDo />} />
-                  <Route path="/strategic-focuses" element={<StrategicFocuses />} />
-                  <Route path="/approaches" element={<Approaches />} />
-                  <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
-                  <Route path="/what-we-do/direct-implementation" element={<DirectImplementation />} />
-                  <Route path="/what-we-do/advocacy-policy" element={<AdvocacyPolicy />} />
-                  <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
-                  <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
-                  <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
-                  <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
-                  <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
-                  <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
-                  <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
-                  <Route path="/focus-areas/climate-justice" element={<ClimateJustice />} />
-                  <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
-                  <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
-                  <Route path="/programs" element={<Programs />} />
-                  <Route path="/programs/:id" element={<ProgramDetail />} />
+      <AuthProvider>
+        <ThemeProvider>
+          <TooltipProvider>
+            <Router>
+              <div className="min-h-screen bg-white">
+                <ErrorBoundary>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/what-we-do" element={<WhatWeDo />} />
+                    <Route path="/strategic-focuses" element={<StrategicFocuses />} />
+                    <Route path="/approaches" element={<Approaches />} />
+                    <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
+                    <Route path="/what-we-do/direct-implementation" element={<DirectImplementation />} />
+                    <Route path="/what-we-do/advocacy-policy" element={<AdvocacyPolicy />} />
+                    <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
+                    <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
+                    <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
+                    <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
+                    <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
+                    <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
+                    <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
+                    <Route path="/focus-areas/climate-justice" element={<ClimateJustice />} />
+                    <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
+                    <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
+                    <Route path="/programs" element={<Programs />} />
+                    <Route path="/programs/:id" element={<ProgramDetail />} />
         <Route path="/legal-help" element={<LegalHelp />} />
         <Route path="/impact" element={<Impact />} />
                   <Route path="/heroes" element={<Heroes />} />
@@ -151,6 +153,7 @@ function App() {
           <Sonner />
         </TooltipProvider>
       </ThemeProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

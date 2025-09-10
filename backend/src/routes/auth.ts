@@ -74,6 +74,21 @@ router.post("/signup", signupLimiter, async (req, res) => {
 
     console.log('User created successfully:', data.user?.id);
 
+    // Persist role in server-controlled profiles table for authoritative checks
+    try {
+      if (data.user?.id) {
+        const { error: profileError } = await supabaseAdmin
+          .from('profiles')
+          .upsert({ id: data.user.id, role }, { returning: 'minimal' });
+        if (profileError) {
+          console.error('Failed to upsert profile:', profileError);
+          // non-fatal: continue
+        }
+      }
+    } catch (err) {
+      console.error('Profile upsert error:', err);
+    }
+
     res.status(201).json({ 
       message: "Account created and confirmed successfully",
       user: {
@@ -145,23 +160,83 @@ router.post("/login", loginLimiter, async (req, res) => {
   }
 });
 
+// POST /auth/login-cookie - server sets HttpOnly cookie for session
+router.post("/login-cookie", loginLimiter, async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email and password are required" });
+    }
+
+    // Sign in using Supabase client (anon key) to obtain session
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      console.error('Login-cookie error:', error);
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    if (!data.session || !data.user) {
+      return res.status(401).json({ error: "Login failed" });
+    }
+
+    const accessToken = data.session.access_token;
+    const refreshToken = (data.session.refresh_token as string) || '';
+    const maxAge = 1000 * 60 * 60 * 24 * 7; // 7 days in ms
+
+    // Set HttpOnly cookies
+    res.cookie('sb-access-token', accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge,
+    });
+
+    if (refreshToken) {
+      res.cookie('sb-refresh-token', refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge,
+      });
+    }
+
+    // Persist role into profiles table (ensure consistency)
+    try {
+      const role = data.user.user_metadata?.role || data.user.app_metadata?.role || 'stakeholder';
+      if (data.user.id) {
+        await supabaseAdmin.from('profiles').upsert({ id: data.user.id, role }, { onConflict: 'id' });
+      }
+    } catch (err) {
+      console.error('Profile upsert error during login-cookie:', err);
+    }
+
+    // Return minimal user info
+    const userRole = data.user.user_metadata?.role || data.user.app_metadata?.role || 'stakeholder';
+    res.json({ message: 'Login successful', user: { id: data.user.id, email: data.user.email, role: userRole } });
+  } catch (err) {
+    console.error('Login-cookie error:', err);
+    res.status(500).json({ error: 'Internal server error during login' });
+  }
+});
+
 // GET /auth/me
 router.get("/me", async (req, res) => {
   try {
+    let token: string | undefined;
+
     const authHeader = req.headers.authorization;
-    
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ error: "Missing or invalid authorization header" });
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7);
+    } else if (req.cookies && req.cookies['sb-access-token']) {
+      token = req.cookies['sb-access-token'];
     }
-    
-    const token = authHeader.substring(7);
-    
+
     if (!token) {
-      return res.status(401).json({ error: "Missing token" });
+      return res.status(401).json({ error: "Missing or invalid authorization token" });
     }
 
     const { data, error } = await supabase.auth.getUser(token);
-    
+
     if (error) {
       console.error('Get user error:', error);
       return res.status(401).json({ error: "Invalid or expired token" });
@@ -171,7 +246,20 @@ router.get("/me", async (req, res) => {
       return res.status(401).json({ error: "User not found" });
     }
 
-    const userRole = data.user.user_metadata?.role || 'stakeholder';
+    // Check server-side profiles table for authoritative role
+    let userRole = data.user.user_metadata?.role || data.user.app_metadata?.role || 'stakeholder';
+    try {
+      const { data: profile, error: profileError } = await supabaseAdmin
+        .from('profiles')
+        .select('role')
+        .eq('id', data.user.id)
+        .single();
+      if (!profileError && profile?.role) {
+        userRole = profile.role;
+      }
+    } catch (err) {
+      console.error('Profile lookup error in /me:', err);
+    }
 
     res.json({ 
       user: {
@@ -194,6 +282,9 @@ router.get("/me", async (req, res) => {
 // POST /auth/logout
 router.post("/logout", async (req, res) => {
   try {
+    // Clear cookies
+    res.clearCookie('sb-access-token');
+    res.clearCookie('sb-refresh-token');
     res.json({ message: "Logged out successfully" });
   } catch (error) {
     console.error('Logout error:', error);

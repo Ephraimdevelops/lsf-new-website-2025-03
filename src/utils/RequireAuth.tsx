@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { ReactNode } from 'react';
+import { useAuth } from '@/providers/AuthProvider';
 
 export function isAuthenticated(): boolean {
   return !!localStorage.getItem('auth-token');
@@ -17,9 +18,17 @@ export function logout(): void {
 
 export function RequireAuth({ children, allowedRoles }: { children: ReactNode; allowedRoles?: string[] }) {
   const location = useLocation();
+  const auth = useAuth();
+
+  // Wait for auth to load
+  if (auth.isLoading) {
+    return null;
+  }
+
   const token = localStorage.getItem('auth-token');
-  const role = localStorage.getItem('user-role');
-  if (!token) {
+  const role = auth.user?.role || localStorage.getItem('user-role');
+
+  if (!token || !auth.user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
   if (allowedRoles && (!role || !allowedRoles.includes(role))) {

@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, Shield, User } from 'lucide-react';
+import api from '@/lib/axios';
+import { useAuth } from '@/providers/AuthProvider';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -17,6 +19,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
+  const auth = useAuth();
 
   // Get the intended destination from location state
   const from = (location.state as any)?.from?.pathname || '/admin';
@@ -33,66 +36,36 @@ const Login: React.FC = () => {
     }
 
     try {
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      // Call server login endpoint which sets HttpOnly cookies
+      const res = await api.post('/auth/login-cookie', { email, password });
+
+      toast({
+        title: "Login Successful",
+        description: `Welcome back, ${res.data.user.email}`,
       });
 
-      if (signInError) {
-        throw signInError;
-      }
+      // Tell provider to fetch user via cookie
+      await auth.setToken(undefined);
 
-      if (data?.session && data?.user) {
-        // Store session data
-        localStorage.setItem('auth-token', data.session.access_token);
-        localStorage.setItem('user-email', data.user.email || '');
-        
-        // Get user role
-        const userRole = data.user.user_metadata?.role || data.user.app_metadata?.role || 'user';
-        localStorage.setItem('user-role', userRole);
-
-        // Show success message
-        toast({
-          title: "Login Successful",
-          description: `Welcome back, ${data.user.email}`,
-        });
-
-        // Redirect based on role
-        if (userRole === 'admin') {
-          navigate('/admin');
-        } else if (userRole === 'staff') {
-          navigate('/dashboard/staff');
-        } else if (userRole === 'paralegal') {
-          navigate('/dashboard/paralegal');
-        } else if (userRole === 'stakeholder') {
-          navigate('/dashboard/stakeholder');
-        } else {
-          navigate('/');
-        }
+      // Redirect based on role
+      const role = res.data.user.role;
+      if (role === 'admin') {
+        navigate('/admin');
+      } else if (role === 'staff') {
+        navigate('/dashboard/staff');
+      } else if (role === 'paralegal') {
+        navigate('/dashboard/paralegal');
+      } else if (role === 'stakeholder') {
+        navigate('/dashboard/stakeholder');
       } else {
-        throw new Error('Login failed. Please try again.');
+        navigate('/');
       }
     } catch (error) {
       console.error('Login error:', error);
-      
       let errorMessage = 'Login failed. Please try again.';
-      
-      if (error instanceof Error) {
-        if (error.message.includes('Invalid login credentials')) {
-          errorMessage = 'Invalid email or password.';
-        } else if (error.message.includes('Email not confirmed')) {
-          errorMessage = 'Please check your email and confirm your account.';
-        } else {
-          errorMessage = error.message;
-        }
-      }
-      
+      if (error instanceof Error) errorMessage = error.message;
       setError(errorMessage);
-      toast({
-        title: "Login Failed",
-        description: errorMessage,
-        variant: "destructive",
-      });
+      toast({ title: "Login Failed", description: errorMessage, variant: "destructive" });
     } finally {
       setIsLoading(false);
     }

@@ -12,7 +12,8 @@ function isAdminUser(user: any): boolean {
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/lib/supabase';
+import api from '@/lib/axios';
+import { useAuth } from '@/providers/AuthProvider';
 
 interface AdminLoginProps {
   onLogin?: (email: string, password: string) => boolean;
@@ -26,6 +27,7 @@ const AdminLogin = ({ isLocked, onLogin }: AdminLoginProps) => {
   const [error, setError] = useState('');
   const { toast } = useToast();
   const navigate = useNavigate();
+  const auth = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,32 +50,18 @@ const AdminLogin = ({ isLocked, onLogin }: AdminLoginProps) => {
     setError('');
 
     try {
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      // Call server endpoint that sets HttpOnly cookies
+      const res = await api.post('/auth/login-cookie', { email, password });
+
+      // Let AuthProvider fetch the user from cookie and populate context/localStorage
+      await auth.setToken(undefined);
+
+      toast({
+        title: 'Success',
+        description: `Logged in successfully as ${res.data.user?.email || email}`,
       });
 
-      if (signInError) throw signInError;
-
-      if (data?.session) {
-        localStorage.setItem('auth-token', data.session.access_token);
-        localStorage.setItem('user-email', data.user?.email || '');
-
-        // Robust admin role check
-        if (!isAdminUser(data.user)) {
-          throw new Error('Unauthorized. Admin access required.');
-        }
-        localStorage.setItem('user-role', 'admin');
-
-        toast({
-          title: "Success",
-          description: "Logged in successfully as admin.",
-        });
-
-        navigate('/admin');
-      } else {
-        throw new Error('Login failed. Please try again.');
-      }
+      navigate('/admin');
     } catch (err) {
       console.error('Login error:', err);
       if (err instanceof Error) {

@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 import type MessageResponse from "./interfaces/message-response.js";
 
@@ -12,6 +13,7 @@ const app = express();
 
 app.use(morgan("dev"));
 app.use(helmet());
+app.use(cookieParser());
 app.use(cors({
   origin: "*",
   credentials: true,

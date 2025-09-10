@@ -16,7 +16,8 @@
     "build": "tsc",
     "lint": "eslint --fix src test",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seed:admin": "tsx backend/scripts/create_admin.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.51.0",
