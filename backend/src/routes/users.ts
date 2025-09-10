@@ -1,40 +1,40 @@
 import { Router } from "express";
 import { requireRole } from "../middleware/roleAuth.js";
 import { supabaseAdmin } from "../supabaseClient.js";
+import type { AdminUserAttributes } from "../types/user";
 
 const router = Router();
 
+// Helper to normalize a Supabase user object for responses
+function normalizeUser(user: any) {
+  const metadata = user.user_metadata || {};
+  const appMeta = user.app_metadata || {};
+  const role = metadata.role || appMeta.role || "user";
+  return {
+    id: user.id,
+    email: user.email,
+    role,
+    email_confirmed_at: user.email_confirmed_at,
+    created_at: user.created_at,
+    last_sign_in_at: user.last_sign_in_at,
+    banned: !!metadata.banned,
+    banned_until: metadata.banned_until || null,
+    deleted_at: user.deleted_at,
+  };
+}
+
 // GET /users - list all users (admin only)
-router.get("/", requireRole(["admin"]), async (req, res) => {
+router.get("/", requireRole(["admin"]), async (_req, res) => {
   try {
     const { data, error } = await supabaseAdmin.auth.admin.listUsers();
-    
-    if (error) {
-      console.error('List users error:', error);
-      return res.status(500).json({ error: error.message });
-    }
+    if (error) throw error;
 
-    // Filter out sensitive information and format user data
-    const users = data.users.map(user => ({
-      id: user.id,
-      email: user.email,
-      role: user.user_metadata?.role || user.app_metadata?.role || 'user',
-      email_confirmed_at: user.email_confirmed_at,
-      created_at: user.created_at,
-      last_sign_in_at: user.last_sign_in_at,
-      banned_until: user.banned_until,
-      deleted_at: user.deleted_at
-    }));
+    const users = (data?.users || []).map(normalizeUser);
 
-    res.json({ 
-      users,
-      total: users.length
-    });
-  } catch (error) {
-    console.error('List users error:', error);
-    res.status(500).json({ 
-      error: "Internal server error while fetching users" 
-    });
+    res.json({ users, total: users.length });
+  } catch (err: any) {
+    console.error("List users error:", err);
+    res.status(500).json({ error: err.message || "Internal server error while fetching users" });
   }
 });
 
@@ -42,36 +42,14 @@ router.get("/", requireRole(["admin"]), async (req, res) => {
 router.get("/:id", requireRole(["admin"]), async (req, res) => {
   try {
     const { id } = req.params;
-    
     const { data, error } = await supabaseAdmin.auth.admin.getUserById(id);
-    
-    if (error) {
-      console.error('Get user error:', error);
-      return res.status(400).json({ error: error.message });
-    }
+    if (error) throw error;
+    if (!data?.user) return res.status(404).json({ error: "User not found" });
 
-    if (!data.user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-
-    // Filter out sensitive information
-    const user = {
-      id: data.user.id,
-      email: data.user.email,
-      role: data.user.user_metadata?.role || data.user.app_metadata?.role || 'user',
-      email_confirmed_at: data.user.email_confirmed_at,
-      created_at: data.user.created_at,
-      last_sign_in_at: data.user.last_sign_in_at,
-      banned_until: data.user.banned_until,
-      deleted_at: data.user.deleted_at
-    };
-
-    res.json({ user });
-  } catch (error) {
-    console.error('Get user error:', error);
-    res.status(500).json({ 
-      error: "Internal server error while fetching user" 
-    });
+    res.json({ user: normalizeUser(data.user) });
+  } catch (err: any) {
+    console.error("Get user error:", err);
+    res.status(500).json({ error: err.message || "Internal server error while fetching user" });
   }
 });
 
@@ -80,72 +58,60 @@ router.patch("/:id/role", requireRole(["admin"]), async (req, res) => {
   try {
     const { id } = req.params;
     const { role } = req.body;
-    
-    if (!role) {
-      return res.status(400).json({ error: "Role is required" });
-    }
+    if (!role) return res.status(400).json({ error: "Role is required" });
 
-    // Validate role
-    const validRoles = ['admin', 'staff', 'paralegal', 'stakeholder', 'user'];
+    const validRoles = ["admin", "staff", "paralegal", "stakeholder", "user"];
     if (!validRoles.includes(role)) {
-      return res.status(400).json({ 
-        error: "Invalid role. Must be one of: admin, staff, paralegal, stakeholder, user" 
-      });
+      return res.status(400).json({ error: `Invalid role. Must be one of: ${validRoles.join(', ')}` });
     }
 
-    const { data, error } = await supabaseAdmin.auth.admin.updateUserById(id, {
-      user_metadata: { role },
-    });
+    // Fetch existing user metadata to preserve other metadata fields
+    const { data: fetched, error: fetchErr } = await supabaseAdmin.auth.admin.getUserById(id);
+    if (fetchErr) throw fetchErr;
+    const existingMetadata = fetched?.user?.user_metadata || {};
 
-    if (error) {
-      console.error('Update user role error:', error);
-      return res.status(400).json({ error: error.message });
-    }
+    const updatePayload: AdminUserAttributes = {
+      user_metadata: { ...existingMetadata, role }
+    };
 
-    res.json({ 
-      message: "User role updated successfully",
-      user: {
-        id: data.user.id,
-        email: data.user.email,
-        role: data.user.user_metadata?.role
-      }
-    });
-  } catch (error) {
-    console.error('Update user role error:', error);
-    res.status(500).json({ 
-      error: "Internal server error while updating user role" 
-    });
+    const { data, error } = await supabaseAdmin.auth.admin.updateUserById(id, updatePayload);
+    if (error) throw error;
+
+    res.json({ message: "User role updated successfully", user: normalizeUser(data.user) });
+  } catch (err: any) {
+    console.error("Update user role error:", err);
+    res.status(500).json({ error: err.message || "Internal server error while updating user role" });
   }
 });
 
-// PATCH /users/:id/ban - ban user (admin only)
+// PATCH /users/:id/ban - ban or unban user (admin only)
 router.patch("/:id/ban", requireRole(["admin"]), async (req, res) => {
   try {
     const { id } = req.params;
-    const { banned_until } = req.body; // ISO string or null to unban
-    
-    const { data, error } = await supabaseAdmin.auth.admin.updateUserById(id, {
-      banned_until: banned_until || null,
-    });
+    const { banned_until } = req.body; // ISO string or null
 
-    if (error) {
-      console.error('Ban user error:', error);
-      return res.status(400).json({ error: error.message });
-    }
+    const { data: fetched, error: fetchErr } = await supabaseAdmin.auth.admin.getUserById(id);
+    if (fetchErr) throw fetchErr;
+    if (!fetched?.user) return res.status(404).json({ error: "User not found" });
 
-    res.json({ 
+    const existingMetadata = fetched.user.user_metadata || {};
+    const newMetadata = {
+      ...existingMetadata,
+      banned: !!banned_until,
+      banned_until: banned_until ?? null,
+    };
+
+    const updatePayload: AdminUserAttributes = { user_metadata: newMetadata };
+    const { data, error } = await supabaseAdmin.auth.admin.updateUserById(id, updatePayload);
+    if (error) throw error;
+
+    res.json({
       message: banned_until ? "User banned successfully" : "User unbanned successfully",
-      user: {
-        id: data.user.id,
-        email: data.user.email,
-        banned_until: data.user.banned_until
-      }
+      user: normalizeUser(data.user),
     });
-  } catch (error) {
-    console.error('Ban user error:', error);
-    res.status(500).json({ 
-      error: "Internal server error while banning user" 
-    });
+  } catch (err: any) {
+    console.error("Ban user error:", err);
+    res.status(500).json({ error: err.message || "Internal server error while banning user" });
   }
 });
 
@@ -153,39 +119,24 @@ router.patch("/:id/ban", requireRole(["admin"]), async (req, res) => {
 router.delete("/:id", requireRole(["admin"]), async (req, res) => {
   try {
     const { id } = req.params;
-    
     const { error } = await supabaseAdmin.auth.admin.deleteUser(id);
-    
-    if (error) {
-      console.error('Delete user error:', error);
-      return res.status(400).json({ error: error.message });
-    }
-
+    if (error) throw error;
     res.json({ message: "User deleted successfully" });
-  } catch (error) {
-    console.error('Delete user error:', error);
-    res.status(500).json({ 
-      error: "Internal server error while deleting user" 
-    });
+  } catch (err: any) {
+    console.error("Delete user error:", err);
+    res.status(500).json({ error: err.message || "Internal server error while deleting user" });
   }
 });
 
-// POST /users/:id/invite - invite user (admin only)
-router.post("/:id/invite", requireRole(["admin"]), async (req, res) => {
+// POST /users/invite - invite user by email (admin only)
+router.post("/invite", requireRole(["admin"]), async (req, res) => {
   try {
-    const { id } = req.params;
     const { email, role = 'stakeholder' } = req.body;
-    
-    if (!email) {
-      return res.status(400).json({ error: "Email is required" });
-    }
+    if (!email) return res.status(400).json({ error: "Email is required" });
 
-    // Validate role
-    const validRoles = ['admin', 'staff', 'paralegal', 'stakeholder'];
+    const validRoles = ["admin", "staff", "paralegal", "stakeholder"];
     if (!validRoles.includes(role)) {
-      return res.status(400).json({ 
-        error: "Invalid role. Must be one of: admin, staff, paralegal, stakeholder" 
-      });
+      return res.status(400).json({ error: `Invalid role. Must be one of: ${validRoles.join(', ')}` });
     }
 
     const { data, error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {
@@ -193,43 +144,27 @@ router.post("/:id/invite", requireRole(["admin"]), async (req, res) => {
       redirectTo: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/login`
     });
 
-    if (error) {
-      console.error('Invite user error:', error);
-      return res.status(400).json({ error: error.message });
-    }
+    if (error) throw error;
 
-    res.json({ 
-      message: "User invited successfully",
-      user: {
-        id: data.user.id,
-        email: data.user.email,
-        role: data.user.user_metadata?.role
-      }
-    });
-  } catch (error) {
-    console.error('Invite user error:', error);
-    res.status(500).json({ 
-      error: "Internal server error while inviting user" 
-    });
+    res.json({ message: "User invited successfully", user: normalizeUser(data.user) });
+  } catch (err: any) {
+    console.error("Invite user error:", err);
+    res.status(500).json({ error: err.message || "Internal server error while inviting user" });
   }
 });
 
-// GET /users/stats - get user statistics (admin only)
-router.get("/stats", requireRole(["admin"]), async (req, res) => {
+// GET /users/stats - user statistics (admin only)
+router.get("/stats", requireRole(["admin"]), async (_req, res) => {
   try {
     const { data, error } = await supabaseAdmin.auth.admin.listUsers();
-    
-    if (error) {
-      console.error('Get user stats error:', error);
-      return res.status(500).json({ error: error.message });
-    }
+    if (error) throw error;
+    const users = data?.users || [];
 
-    const users = data.users;
     const stats = {
       total: users.length,
       confirmed: users.filter(u => u.email_confirmed_at).length,
       unconfirmed: users.filter(u => !u.email_confirmed_at).length,
-      banned: users.filter(u => u.banned_until).length,
+      banned: users.filter(u => u.user_metadata?.banned).length,
       deleted: users.filter(u => u.deleted_at).length,
       byRole: {
         admin: users.filter(u => (u.user_metadata?.role || u.app_metadata?.role) === 'admin').length,
@@ -241,12 +176,40 @@ router.get("/stats", requireRole(["admin"]), async (req, res) => {
     };
 
     res.json({ stats });
-  } catch (error) {
-    console.error('Get user stats error:', error);
-    res.status(500).json({ 
-      error: "Internal server error while fetching user statistics" 
-    });
+  } catch (err: any) {
+    console.error("Get user stats error:", err);
+    res.status(500).json({ error: err.message || "Internal server error while fetching user statistics" });
   }
 });
 
-export default router; 
+// PUT /users/:id - update user (admin only)
+router.put("/users/:id", requireRole(["admin"]), async (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+
+  try {
+    const { data: existingUser, error: fetchError } = await supabaseAdmin.auth.admin.getUserById(id);
+    if (fetchError) throw fetchError;
+
+    const existingMetadata = existingUser.user?.user_metadata || {};
+    const updateData: AdminUserAttributes = {
+      ...updates,
+      user_metadata: {
+        ...existingMetadata,
+        ...updates.user_metadata,
+        banned: updates.user_metadata?.banned ?? existingMetadata.banned ?? false,
+        banned_until: updates.user_metadata?.banned_until ?? existingMetadata.banned_until ?? null,
+      }
+    };
+
+    const { data, error } = await supabaseAdmin.auth.admin.updateUserById(id, updateData);
+    if (error) throw error;
+
+    res.json({ message: "User updated successfully", user: normalizeUser(data.user) });
+  } catch (err: any) {
+    console.error("Update user error:", err);
+    res.status(500).json({ error: err.message || "Failed to update user" });
+  }
+});
+
+export default router;

@@ -79,7 +79,7 @@ router.post("/signup", signupLimiter, async (req, res) => {
       if (data.user?.id) {
         const { error: profileError } = await supabaseAdmin
           .from('profiles')
-          .upsert({ id: data.user.id, role }, { returning: 'minimal' });
+          .upsert({ id: data.user.id, role }, { onConflict: 'id' });
         if (profileError) {
           console.error('Failed to upsert profile:', profileError);
           // non-fatal: continue

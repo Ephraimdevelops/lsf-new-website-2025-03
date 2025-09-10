@@ -17,10 +17,12 @@
     "lint": "eslint --fix src test",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "seed:admin": "tsx backend/scripts/create_admin.ts"
+    "seed:admin": "tsx scripts/create_admin.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.51.0",
+    "@types/cookie-parser": "^1.4.9",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
