@@ -180,6 +180,36 @@ supabase db push
 npm run dev
 ```
 
+---
+
+## 🔐 Environment Variables (Required)
+
+Set these for both local development and deployments (Vercel/Render). Do not hardcode keys in source files.
+
+```bash
+# Frontend (Vite)
+# .env.local (local)
+VITE_SUPABASE_URL=https://<your-project>.supabase.co
+VITE_SUPABASE_ANON_KEY=<anon-public-key>
+VITE_API_BASE_URL=http://localhost:4000
+
+# Production (Vercel Project Settings)
+VITE_SUPABASE_URL=https://<your-project>.supabase.co
+VITE_SUPABASE_ANON_KEY=<anon-public-key>
+VITE_API_BASE_URL=https://<your-backend-host>
+
+# Backend (.env)
+SUPABASE_URL=https://<your-project>.supabase.co
+SUPABASE_ANON_KEY=<anon-public-key>
+SUPABASE_SERVICE_ROLE_KEY=<service-role-secret>
+FRONTEND_URL=http://localhost:5173
+PORT=4000
+```
+
+Notes:
+- Ensure `VITE_API_BASE_URL` is reachable from the browser. If you see "Network Error" on login/signup, the URL may be missing or blocked by CORS.
+- Keep `SUPABASE_SERVICE_ROLE_KEY` only on the server. Never expose it to the browser.
+
 ### **3. Verify Data Loading**
 - Visit `/team` - Should show team members from database
 - Visit `/opportunities` - Should show opportunities from database
@@ -197,7 +227,7 @@ npm run dev
 ```typescript
 // Check if Supabase connection is working
 console.log('Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
-console.log('Supabase Key:', import.meta.env.VITE_SUPABASE_KEY);
+console.log('Supabase Key set?:', Boolean(import.meta.env.VITE_SUPABASE_ANON_KEY));
 ```
 
 #### **2. CORS Issues**

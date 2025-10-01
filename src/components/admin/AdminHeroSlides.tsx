@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { useToast } from '@/hooks/use-toast';
 import { HeroSlide } from '@/components/home/hero/types';
 import api from '@/lib/axios';
-import { uploadFile, deleteFile } from '@/lib/upload';
+import { supabase } from '@/lib/supabase';
 
 const AdminHeroSlides = () => {
   const [slides, setSlides] = useState<HeroSlide[]>([]);
@@ -28,7 +28,7 @@ const AdminHeroSlides = () => {
   const loadSlides = useCallback(async () => {
     try {
       const response = await api.get('/hero');
-      setSlides(response.data);
+      setSlides(response.data.hero || []);
     } catch (error) {
       toast({ title: 'Error', description: 'Failed to load hero slides.' });
     }
@@ -41,11 +41,32 @@ const AdminHeroSlides = () => {
   const saveSlides = async (updatedSlides: HeroSlide[]) => {
     try {
       // For each slide, upsert (create or update)
-      await Promise.all(updatedSlides.map(async (slide) => {
+      await Promise.all(updatedSlides.map(async (slide, index) => {
+        const payload: {
+          id?: string;
+          title: string;
+          subtitle: string;
+          description: string;
+          category?: string;
+          image?: string;
+          stat?: string;
+          stat_label?: string;
+          order: number;
+        } = {
+          id: slide.id,
+          title: slide.title,
+          subtitle: slide.subtitle,
+          description: slide.description,
+          category: slide.category,
+          image: slide.image,
+          stat: slide.stat,
+          stat_label: slide.statLabel,
+          order: index + 1,
+        };
         if (slide.id) {
-          await api.put(`/hero/${slide.id}`, slide);
+          await api.put(`/hero/${slide.id}`, payload);
         } else {
-          await api.post('/hero', slide);
+          await api.post('/hero', payload);
         }
       }));
       setSlides(updatedSlides);
@@ -134,14 +155,13 @@ const AdminHeroSlides = () => {
 
   const handleImageUpload = async (file: File): Promise<string> => {
     try {
-      const imageUrl = await uploadFile({
-        contentType: 'hero-slides',
-        subFolder: 'images',
-        file,
-        existingUrl: formData.image
+      const objectName = `hero/${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
+      const { error: uploadError } = await supabase.storage.from('media').upload(objectName, file, {
+        cacheControl: '3600', upsert: false,
       });
-      
-      return imageUrl;
+      if (uploadError) throw uploadError;
+      const { data } = supabase.storage.from('media').getPublicUrl(objectName);
+      return data?.publicUrl || '';
     } catch (error) {
       toast({ 
         title: 'Error', 
@@ -229,12 +249,11 @@ const AdminHeroSlides = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2">Background Image URL</label>
-                <Input
-                  value={formData.image || ''}
-                  onChange={(e) => setFormData({...formData, image: e.target.value})}
-                  placeholder="/lovable-uploads/your-image.png"
-                />
+                <label className="block text-sm font-medium mb-2">Background Image</label>
+                <input type="file" accept="image/*" onChange={handleFileChange} />
+                {formData.image && (
+                  <p className="text-xs text-gray-500 mt-1 break-all">{formData.image}</p>
+                )}
               </div>
               
               <div className="grid grid-cols-2 gap-4">

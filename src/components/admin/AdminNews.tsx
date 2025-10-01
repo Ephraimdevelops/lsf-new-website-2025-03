@@ -5,25 +5,25 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus, Search, Edit, Trash } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import NewsForm from './NewsForm';
+import { supabase } from '@/lib/supabase';
 
 interface NewsItem {
   id: string;
   title: string;
   date: string;
+  excerpt?: string;
+  category?: string;
+  featured?: boolean;
+  image?: string;
 }
 
 const AdminNews = () => {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Sample news data
-  const [newsItems, setNewsItems] = useState<NewsItem[]>([
-    { id: 'legal-empowerment-initiatives', title: 'LSF launches new paralegal training program in Dodoma region', date: '2023-05-15' },
-    { id: 'gender-justice-workshop', title: "Women's rights workshop reaches 500 participants across Tanzania", date: '2023-04-22' },
-    { id: 'climate-justice-advocacy', title: 'New policy brief on climate justice and land rights released', date: '2023-03-10' },
-    { id: 'digital-legal-aid', title: 'Mobile legal aid clinics reach remote communities in Mwanza', date: '2023-02-28' },
-    { id: 'government-partnership', title: 'LSF signs MOU with Ministry of Justice to strengthen legal empowerment', date: '2023-01-15' }
-  ]);
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+  const [openForm, setOpenForm] = useState(false);
 
   const filteredNews = newsItems.filter(item => 
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -60,7 +60,7 @@ const AdminNews = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <Button className="shrink-0 gap-1 font-calibri">
+          <Button className="shrink-0 gap-1 font-calibri" onClick={() => setOpenForm(true)}>
             <Plus size={16} /> Add News
           </Button>
         </div>
@@ -106,6 +106,11 @@ const AdminNews = () => {
           </div>
         </CardContent>
       </Card>
+      <NewsForm
+        open={openForm}
+        onClose={() => setOpenForm(false)}
+        onCreated={(news) => setNewsItems((items) => [news, ...items])}
+      />
     </div>
   );
 };
