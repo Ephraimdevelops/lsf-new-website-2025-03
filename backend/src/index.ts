@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 import authRouter from "./routes/auth.js";
 import dashboardRouter from "./routes/dashboard.js";
 import programsRouter from "./routes/programs.js";
@@ -14,8 +16,29 @@ import teamRouter from "./routes/team.js";
 import heroRouter from "./routes/hero.js";
 import testimonialsRouter from "./routes/testimonials.js";
 
+dotenv.config();
+
 const app = express();
 const port = process.env.PORT || 4000;
+
+// CORS configuration
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  process.env.FRONTEND_URL as string,
+  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined,
+].filter(Boolean) as string[];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+  credentials: false,
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

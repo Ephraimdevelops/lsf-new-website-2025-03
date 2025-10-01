@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,6 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Plus, Search, Edit, Trash, Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useForm } from 'react-hook-form';
+import { supabase } from '@/lib/supabase';
 
 interface Opportunity {
   id: string;
@@ -46,35 +47,24 @@ const AdminOpportunities = () => {
     }
   });
 
-  // Sample opportunities data
-  const [opportunities, setOpportunities] = useState<Opportunity[]>([
-    {
-      id: '1',
-      title: 'Legal Officer Position',
-      description: 'Join our team as a Legal Officer to provide direct legal assistance to communities in need.',
-      type: 'job',
-      status: 'open',
-      is_open: true,
-      deadline: '2024-02-15',
-      organization: 'Legal Services Facility',
-      location: 'Dar es Salaam',
-      created_at: '2024-01-01',
-      application_url: 'mailto:jobs@lsf.or.tz'
-    },
-    {
-      id: '2',
-      title: 'Community Paralegal Training Grant',
-      description: 'Grant opportunity for organizations interested in training community paralegals.',
-      type: 'grant',
-      status: 'open',
-      is_open: true,
-      deadline: '2024-03-01',
-      organization: 'LSF Grant Program',
-      location: 'Tanzania-wide',
-      created_at: '2024-01-10',
-      application_url: 'mailto:grants@lsf.or.tz'
-    }
-  ]);
+  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('opportunities')
+          .select('*')
+          .order('created_at', { ascending: false });
+        if (error) throw error;
+        setOpportunities(((data || []) as unknown as Opportunity[]));
+      } catch (err) {
+        console.error('Load opportunities error:', err);
+        toast({ title: 'Failed to load opportunities', variant: 'destructive' });
+      }
+    };
+    load();
+  }, [toast]);
 
   const filteredOpportunities = opportunities.filter(opportunity => 
     opportunity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -82,40 +72,66 @@ const AdminOpportunities = () => {
     opportunity.type.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const onSubmit = (data: any) => {
-    if (editingOpportunity) {
-      // Update existing opportunity
-      setOpportunities(opportunities.map(opp => 
-        opp.id === editingOpportunity.id 
-          ? { 
-              ...opp, 
-              ...data, 
-              is_open: data.status === 'open' 
-            }
-          : opp
-      ));
-      toast({
-        title: "Opportunity Updated",
-        description: "The opportunity has been updated successfully.",
-      });
-    } else {
-      // Create new opportunity
-      const newOpportunity: Opportunity = {
-        id: Date.now().toString(),
-        ...data,
-        is_open: data.status === 'open',
-        created_at: new Date().toISOString().split('T')[0]
-      };
-      setOpportunities([...opportunities, newOpportunity]);
-      toast({
-        title: "Opportunity Created",
-        description: "New opportunity has been created successfully.",
-      });
+  const onSubmit = async (data: {
+    title: string;
+    description: string;
+    type: string;
+    status: string;
+    deadline?: string;
+    organization?: string;
+    location?: string;
+    application_url?: string;
+  }) => {
+    try {
+      if (editingOpportunity) {
+        const updatePayload = {
+          title: data.title,
+          description: data.description,
+          type: data.type,
+          status: data.status,
+          is_open: data.status === 'open',
+          deadline: data.deadline || null,
+          organization: data.organization || null,
+          location: data.location || null,
+          application_url: data.application_url || null,
+        };
+        const { data: updated, error } = await supabase
+          .from('opportunities')
+          .update(updatePayload)
+          .eq('id', editingOpportunity.id)
+          .select()
+          .single();
+        if (error) throw error;
+        setOpportunities(opportunities.map((o) => (o.id === editingOpportunity.id ? (updated as Opportunity) : o)));
+        toast({ title: 'Opportunity Updated' });
+      } else {
+        const insertPayload = {
+          title: data.title,
+          description: data.description,
+          type: data.type,
+          status: data.status,
+          is_open: data.status === 'open',
+          deadline: data.deadline || null,
+          organization: data.organization || null,
+          location: data.location || null,
+          application_url: data.application_url || null,
+        };
+        const { data: created, error } = await supabase
+          .from('opportunities')
+          .insert(insertPayload)
+          .select()
+          .single();
+        if (error) throw error;
+        setOpportunities([(created as Opportunity), ...opportunities]);
+        toast({ title: 'Opportunity Created' });
+      }
+      setIsDialogOpen(false);
+      setEditingOpportunity(null);
+      form.reset();
+    } catch (err) {
+      console.error('Save opportunity error:', err);
+      toast({ title: 'Failed to save opportunity', variant: 'destructive' });
     }
-    
-    setIsDialogOpen(false);
-    setEditingOpportunity(null);
-    form.reset();
   };
 
   const handleEdit = (opportunity: Opportunity) => {
@@ -133,12 +149,16 @@ const AdminOpportunities = () => {
     setIsDialogOpen(true);
   };
 
-  const handleDelete = (id: string) => {
-    setOpportunities(opportunities.filter(opp => opp.id !== id));
-    toast({
-      title: "Opportunity Deleted",
-      description: "The opportunity has been deleted successfully.",
-    });
+  const handleDelete = async (id: string) => {
+    try {
+      const { error } = await supabase.from('opportunities').delete().eq('id', id);
+      if (error) throw error;
+      setOpportunities(opportunities.filter(opp => opp.id !== id));
+      toast({ title: 'Opportunity Deleted' });
+    } catch (err) {
+      console.error('Delete opportunity error:', err);
+      toast({ title: 'Failed to delete', variant: 'destructive' });
+    }
   };
 
   const handleNewOpportunity = () => {

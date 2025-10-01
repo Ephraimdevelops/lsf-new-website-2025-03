@@ -10,7 +10,8 @@ import {
   LogOut,
   BarChart3,
   BookOpen,
-  Presentation
+  Presentation,
+  Image as ImageIcon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AdminHome from './AdminHome';
@@ -23,6 +24,7 @@ import AdminSettings from './AdminSettings';
 import AdminHeroSlides from './AdminHeroSlides';
 import EnhancedAnalyticsDashboard from './EnhancedAnalyticsDashboard';
 import AdminUserManagement from './AdminUserManagement';
+import AdminMediaLibrary from './AdminMediaLibrary';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -39,6 +41,7 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
     { id: 'publications', label: 'Publications', icon: BookOpen },
     { id: 'opportunities', label: 'Opportunities', icon: Briefcase },
     { id: 'resources', label: 'Resources', icon: Users },
+    { id: 'media', label: 'Media', icon: ImageIcon },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'settings', label: 'Settings', icon: Settings },
     { id: 'user-management', label: 'User Management', icon: Users },
@@ -62,6 +65,8 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <AdminResources />;
       case 'analytics':
         return <EnhancedAnalyticsDashboard />;
+      case 'media':
+        return <AdminMediaLibrary />;
       case 'settings':
         return <AdminSettings />;
       case 'user-management':

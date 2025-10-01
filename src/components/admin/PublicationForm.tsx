@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -112,27 +113,48 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
     },
   });
 
-  const handleSubmit = (data: PublicationFormData) => {
-    const newPublication: Publication = {
-      id: publication?.id || `pub-${Date.now()}`,
-      title: data.title,
-      description: data.description,
-      type: data.type,
-      date: data.date,
-      downloadUrl: selectedFile ? URL.createObjectURL(selectedFile) : publication?.downloadUrl || '',
-      fileSize: selectedFile ? `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB` : publication?.fileSize,
-      tags,
-      author: data.author,
-      language: data.language,
-      category: data.category,
-    };
+  const handleSubmit = async (data: PublicationFormData) => {
+    try {
+      let publicUrl = publication?.downloadUrl || '';
+      let fileSizeLabel = publication?.fileSize;
 
-    onSubmit(newPublication);
-    toast({
-      title: mode === 'create' ? "Publication Created" : "Publication Updated",
-      description: `The publication has been ${mode === 'create' ? 'created' : 'updated'} successfully.`,
-    });
-    onClose();
+      // Upload file to Supabase Storage if provided
+      if (selectedFile) {
+        const objectName = `publications/${Date.now()}-${selectedFile.name.replace(/\s+/g, '-')}`;
+        const { error: uploadError } = await supabase.storage.from('media').upload(objectName, selectedFile, {
+          cacheControl: '3600',
+          upsert: false,
+        });
+        if (uploadError) throw uploadError;
+        const { data: pub } = supabase.storage.from('media').getPublicUrl(objectName);
+        publicUrl = pub?.publicUrl || '';
+        fileSizeLabel = `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`;
+      }
+
+      const newPublication: Publication = {
+        id: publication?.id || `pub-${Date.now()}`,
+        title: data.title,
+        description: data.description,
+        type: data.type,
+        date: data.date,
+        downloadUrl: publicUrl,
+        fileSize: fileSizeLabel,
+        tags,
+        author: data.author,
+        language: data.language,
+        category: data.category,
+      };
+
+      onSubmit(newPublication);
+      toast({
+        title: mode === 'create' ? "Publication Created" : "Publication Updated",
+        description: `The publication has been ${mode === 'create' ? 'created' : 'updated'} successfully.`,
+      });
+      onClose();
+    } catch (err) {
+      console.error('Publication submit error:', err);
+      toast({ title: 'Failed to save publication', variant: 'destructive' });
+    }
   };
 
   const addTag = () => {

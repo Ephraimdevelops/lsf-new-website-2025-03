@@ -1,4 +1,4 @@
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/lib/supabase';
 import { News, Publication, Program, Opportunity, Resource, PaginatedResponse, SearchFilters } from '@/types';
 
 class SupabaseService {
