@@ -1,10 +1,6 @@
 import Layout from '../components/layout/Layout';
-import ImpactHero  from './impact/ImpactHero';
-import { ImpactStats } from './impact/ImpactStats';
-import { ThematicImpact } from './impact/ThematicImpact';
-import { RegionalImpact } from './impact/RegionalImpact';
-import { ImpactReports } from './impact/ImpactReports';
-import { ImpactCTA } from './impact/ImpactCTA';
+import AppleStyleMetrics from '../components/home/AppleStyleMetrics';
+import ModernCallToAction from '../components/home/ModernCallToAction';
 
 // SDG Progress Section
 import Container from '../components/shared/Container';
@@ -131,14 +127,54 @@ const PartnerRecognition = () => (
 const Impact = () => {
   return (
     <Layout>
-      <ImpactHero />
-      <ImpactStats />
-      <ThematicImpact />
-      <RegionalImpact />
+      {/* Hero Section */}
+      <section className="py-24 md:py-32 bg-gradient-to-b from-background via-neutral-50/50 to-background relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-80 h-80 bg-secondary-teal/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <Container size="2xl" className="relative z-10">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
+              <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+              <Typography variant="overline" className="text-primary font-bold text-lg tracking-wider">
+                Our Impact
+              </Typography>
+            </div>
+            
+            <Typography 
+              variant="h1" 
+              className="mb-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+            >
+              Transforming Lives Through
+              <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+                Access to Justice
+              </span>
+            </Typography>
+            
+            <Typography 
+              variant="body" 
+              className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+            >
+              Discover the measurable impact of our legal empowerment programs across Tanzania, 
+              from individual stories of transformation to systemic change that benefits entire communities.
+            </Typography>
+          </div>
+        </Container>
+      </section>
+
+      {/* Impact Metrics */}
+      <AppleStyleMetrics />
+      
+      {/* SDG Progress */}
       <SDGProgress />
+      
+      {/* Partner Recognition */}
       <PartnerRecognition />
-      <ImpactReports />
-      <ImpactCTA />
+      
+      {/* Call to Action */}
+      <ModernCallToAction />
     </Layout>
   );
 };

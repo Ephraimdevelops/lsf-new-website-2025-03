@@ -1,37 +1,38 @@
 import Layout from '@/components/layout/Layout';
-import EnhancedSlidingHero from '@/components/home/hero/EnhancedSlidingHero';
-import AboutUsHighlight from '@/components/home/AboutUsHighlight';
-import HakiYanguHighlight from '@/components/home/HakiYanguHighlight';
-import ImpactMetricsSection from '@/components/home/ImpactMetricsSection';
-import InteractiveStorySection from '@/components/home/InteractiveStorySection';
-import EnhancedNewsSection from '@/components/home/EnhancedNewsSection';
-import PartnersCarousel from '@/components/home/PartnersCarousel';
-import ParallaxNewsSection from '@/components/home/ParallaxNewsSection';
-import NewsSection from '@/components/home/NewsSection';
+import CinematicHero from '@/components/home/hero/CinematicHero';
+import ModernAboutSection from '@/components/home/ModernAboutSection';
+import NetflixStyleCarousel from '@/components/home/NetflixStyleCarousel';
+import AppleStyleMetrics from '@/components/home/AppleStyleMetrics';
+import EnhancedStorySection from '@/components/home/EnhancedStorySection';
+import ModernHakiYanguSection from '@/components/home/ModernHakiYanguSection';
+import ModernPartnersSection from '@/components/home/ModernPartnersSection';
+import ModernCallToAction from '@/components/home/ModernCallToAction';
 
 const Index = () => (
   <Layout>
-    {/* Enhanced Hero Section with Database Integration */}
-    <EnhancedSlidingHero />
+    {/* Cinematic Hero Section with Apple/Netflix-level storytelling */}
+    <CinematicHero />
 
-    {/* About Us Highlight */}
-     <AboutUsHighlight />
+    {/* Modern About Section with enhanced storytelling */}
+    <ModernAboutSection />
 
-     <InteractiveStorySection />
+    {/* Enhanced Story Section */}
+    <EnhancedStorySection />
 
-    <NewsSection />
-    
-    <ParallaxNewsSection />
+    {/* Netflix-style Content Carousel for News & Publications */}
+    <NetflixStyleCarousel />
 
-    {/* Enhanced News & Publications Section */}
-    <ImpactMetricsSection /> 
-  
+    {/* Apple-style Impact Metrics with data visualization */}
+    <AppleStyleMetrics />
 
-    {/* Haki Yangu Highlight */}
-    <HakiYanguHighlight />
-    <PartnersCarousel />
-  
+    {/* Modern Haki Yangu Section */}
+    <ModernHakiYanguSection />
 
+    {/* Modern Partners Section */}
+    <ModernPartnersSection />
+
+    {/* Modern Call-to-Action Section */}
+    <ModernCallToAction />
   </Layout>
 );
 
