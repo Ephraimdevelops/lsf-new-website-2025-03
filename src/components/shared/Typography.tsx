@@ -55,10 +55,11 @@ const Typography = ({
     small: 'span'
   };
 
-  const elementType = as || defaultElements[variant];
+  const elementType = as || defaultElements[variant] || 'div';
   const fontFamily = getFontFamily(variant);
 
-  const Element = elementType as keyof JSX.IntrinsicElements;
+  // Ensure elementType is valid and fallback to div if not
+  const Element = (elementType && typeof elementType === 'string') ? elementType as keyof JSX.IntrinsicElements : 'div';
 
   const colorClass = color ? `text-${color}` : '';
 
