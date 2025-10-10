@@ -13,8 +13,8 @@ if (!baseUrl) {
 
 const api = axios.create({
   baseURL: baseUrl, // Expect values like http://localhost:4000 or https://api.example.com
-  withCredentials: false,
-  timeout: 20000,
+  withCredentials: true, // Enable credentials for cookie-based auth
+  timeout: 30000, // Increased timeout for production
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
