@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Phone, Mail, MapPin, Clock, Users, Scale, Heart, ArrowRight, CheckCircle, AlertCircle, FileText, Gavel, Shield, BookOpen, Search, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { legalAidData } from '@/data/legalAidData';
+import SaraAISection from '@/components/home/SaraAISection';
 
 const legalServices = [
   {
@@ -261,7 +262,7 @@ const LegalHelp = () => {
           </div>
         </Container>
       </section>
-
+<SaraAISection />
 
       {/* Contact Methods */}
       <section className="py-16 bg-gray-50">

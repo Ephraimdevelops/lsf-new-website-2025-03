@@ -154,8 +154,8 @@ const CinematicHero = () => {
               className="w-full h-full object-cover transition-all duration-2000 ease-out"
             />
             {/* Cinematic Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/70 to-black/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20"></div>
           </div>
         </div>
       )}
@@ -169,12 +169,12 @@ const CinematicHero = () => {
 
       {/* Content */}
       <Container size="xl" className="relative z-10 h-full flex items-center">
-        <div className="max-w-6xl text-white">
+        <div className="max-w-4xl text-white">
           {/* Story Badge */}
           <div className="mb-8 animate-fade-in">
             <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-md rounded-full px-8 py-4 border border-white/20">
-              <div className="w-3 h-3 bg-secondary-orange rounded-full animate-pulse"></div>
-              <Typography variant="overline" className="text-secondary-orange font-bold text-lg tracking-wider">
+              <div className="w-3 h-2 bg-secondary-orange rounded-full animate-pulse"></div>
+              <Typography variant="overline" className="text-secondary-primary font-bold text-sm tracking-wider">
                 Legal Empowerment Stories
               </Typography>
             </div>
@@ -183,7 +183,7 @@ const CinematicHero = () => {
           {/* Main Headline */}
           <Typography
             variant="h1"
-            className="text-white mb-8 text-5xl md:text-6xl lg:text-8xl font-bold leading-[0.9] [text-shadow:_0_4px_8px_rgba(0,0,0,0.7)] animate-fade-in delay-300"
+            className="text-white mb-8 text-3xl md:text-4xl lg:text-6xl font-bold leading-[0.9] [text-shadow:_0_4px_8px_rgba(0,0,0,0.7)] animate-fade-in delay-300"
           >
             {currentSlideData.headline}
           </Typography>
@@ -219,7 +219,7 @@ const CinematicHero = () => {
           <div className="flex flex-col sm:flex-row gap-6 animate-fade-in delay-1000">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-primary to-secondary-orange hover:from-primary-dark hover:to-secondary-orange-dark text-white font-bold px-10 py-6 rounded-2xl transition-all duration-300 hover:shadow-2xl hover:scale-105 group text-lg"
+              className="bg-gradient-to-r from-primary to-primary 600 hover:from-primary-dark hover:to-secondary-orange-dark text-white font-bold px-10 py-6 rounded-2xl transition-all duration-300 hover:shadow-2xl hover:scale-105 group text-lg"
               onClick={() => window.location.href = currentSlideData.cta_link || '/legal-help'}
             >
               {currentSlideData.cta_text || 'Get Legal Help'}
@@ -277,7 +277,7 @@ const CinematicHero = () => {
           {/* Story Progress */}
           <div className="absolute bottom-0 left-0 right-0 h-2 bg-black/30 z-10">
             <div 
-              className="h-full bg-gradient-to-r from-primary to-secondary-orange transition-all duration-8000 ease-linear"
+              className="h-full bg-gradient-to-r from-primary to-secondary-primary-600 transition-all duration-8000 ease-linear"
               style={{
                 width: `${((currentSlide + 1) / slides.length) * 100}%`
               }}

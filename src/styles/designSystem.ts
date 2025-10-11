@@ -1,4 +1,3 @@
-
 // Design System Tokens for LSF Website
 export const designTokens = {
   // Color Palette
@@ -40,22 +39,22 @@ export const designTokens = {
   // Typography Scale
   typography: {
     fontFamily: {
-      sans: ['Calibri', 'system-ui', 'sans-serif'],
-      heading: ['Merriweather Sans', 'system-ui', 'sans-serif'],
-      display: ['Panton Narrow', 'system-ui', 'sans-serif'],
+      sans: ['Roboto', 'Noto Sans', 'Product Sans', 'system-ui', 'sans-serif'],
+      heading: ['Ubuntu', 'system-ui', 'sans-serif'],
+      display: ['Ubuntu', 'system-ui', 'sans-serif'],
     },
     fontSize: {
-      xs: '0.75rem',
-      sm: '0.875rem',
-      base: '1rem',
-      lg: '1.125rem',
-      xl: '1.25rem',
-      '2xl': '1.5rem',
-      '3xl': '1.875rem',
-      '4xl': '2.25rem',
-      '5xl': '3rem',
-      '6xl': '3.75rem',
-      '7xl': '4.5rem',
+      xs: '0.625rem',
+      sm: '0.75rem',
+      base: '0.875rem',
+      lg: '1rem',
+      xl: '1.125rem',
+      '2xl': '1.25rem',
+      '3xl': '1.5rem',
+      '4xl': '1.875rem',
+      '5xl': '2.25rem',
+      '6xl': '3rem',
+      '7xl': '3.75rem',
     },
     lineHeight: {
       tight: 1.25,
@@ -65,11 +64,11 @@ export const designTokens = {
       loose: 2,
     },
     fontWeight: {
-      normal: 400,
-      medium: 500,
-      semibold: 600,
-      bold: 700,
-      black: 900,
+      normal: 300,
+      medium: 400,
+      semibold: 500,
+      bold: 600,
+      black: 700,
     }
   },
 
@@ -133,10 +132,10 @@ export const designTokens = {
 // Component Variants
 export const componentVariants = {
   button: {
-    primary: 'bg-primary-500 hover:bg-primary-600 text-white',
-    secondary: 'bg-secondary-teal hover:bg-secondary-teal/90 text-white',
-    outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white',
-    ghost: 'text-primary-500 hover:bg-primary-50',
+    primary: 'bg-primary-500 hover:bg-primary-600 text-white font-normal',
+    secondary: 'bg-secondary-teal hover:bg-secondary-teal/90 text-white font-normal',
+    outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-normal',
+    ghost: 'text-primary-500 hover:bg-primary-50 font-normal',
   },
   card: {
     elevated: 'bg-white shadow-lg rounded-2xl border border-neutral-100',
@@ -144,9 +143,9 @@ export const componentVariants = {
     minimal: 'bg-neutral-50 rounded-lg',
   },
   text: {
-    heading: 'font-heading font-bold text-neutral-900',
-    subheading: 'font-heading font-semibold text-neutral-800',
-    body: 'font-sans text-neutral-700 leading-relaxed',
-    caption: 'font-sans text-sm text-neutral-600',
+    heading: 'font-heading font-semibold text-neutral-700',
+    subheading: 'font-heading font-medium text-neutral-700',
+    body: 'font-sans font-normal text-neutral-600 leading-relaxed',
+    caption: 'font-sans text-sm font-normal text-neutral-500',
   }
 };

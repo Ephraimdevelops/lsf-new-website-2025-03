@@ -1,12 +1,13 @@
 import Layout from '@/components/layout/Layout';
 import CinematicHero from '@/components/home/hero/CinematicHero';
 import ModernAboutSection from '@/components/home/ModernAboutSection';
-import NetflixStyleCarousel from '@/components/home/NetflixStyleCarousel';
-import AppleStyleMetrics from '@/components/home/AppleStyleMetrics';
-import EnhancedStorySection from '@/components/home/EnhancedStorySection';
-import ModernHakiYanguSection from '@/components/home/ModernHakiYanguSection';
+import CompactNewsSection from '@/components/home/CompactNewsSection';
+import SimpleTestimonialsSection from '@/components/home/SimpleTestimonialsSection';
 import ModernPartnersSection from '@/components/home/ModernPartnersSection';
 import ModernCallToAction from '@/components/home/ModernCallToAction';
+import HakiYanguDownload from '@/components/haki-yangu/HakiYanguDownload';
+
+// Ensure we're using the correct testimonials component
 
 const Index = () => (
   <Layout>
@@ -16,20 +17,17 @@ const Index = () => (
     {/* Modern About Section with enhanced storytelling */}
     <ModernAboutSection />
 
-    {/* Enhanced Story Section */}
-    <EnhancedStorySection />
+            {/* Simple Testimonials Section */}
+            <SimpleTestimonialsSection />
 
-    {/* Netflix-style Content Carousel for News & Publications */}
-    <NetflixStyleCarousel />
-
-    {/* Apple-style Impact Metrics with data visualization */}
-    <AppleStyleMetrics />
-
-    {/* Modern Haki Yangu Section */}
-    <ModernHakiYanguSection />
+            {/* Compact News & Publications Section */}
+            <CompactNewsSection />
 
     {/* Modern Partners Section */}
     <ModernPartnersSection />
+
+    {/* Simple Haki Yangu Section */}
+    <HakiYanguDownload />
 
     {/* Modern Call-to-Action Section */}
     <ModernCallToAction />

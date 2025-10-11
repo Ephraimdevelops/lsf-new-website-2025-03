@@ -1,7 +1,7 @@
 
-import NewsletterSection from './footer/NewsletterSection';
-import FooterLinks from './footer/FooterLinks';
-import FooterBottom from './footer/FooterBottom';
+import ModernNewsletterSection from './footer/ModernNewsletterSection';
+import ModernFooterLinks from './footer/ModernFooterLinks';
+import ModernFooterBottom from './footer/ModernFooterBottom';
 
 const Footer = () => {
   return (
@@ -16,9 +16,9 @@ const Footer = () => {
         }}
       />
       
-      <NewsletterSection />
-      <FooterLinks />
-      <FooterBottom />
+      <ModernNewsletterSection />
+      <ModernFooterLinks />
+      <ModernFooterBottom />
     </footer>
   );
 };

@@ -1,4 +1,3 @@
-
 // Design Tokens - Central source of truth for all design elements
 export const designTokens = {
   // Color Palette
@@ -44,22 +43,22 @@ export const designTokens = {
   // Typography Scale
   typography: {
     fontFamilies: {
-      heading: ['Merriweather Sans', 'system-ui', 'sans-serif'],
-      body: ['Calibri', 'system-ui', 'sans-serif'],
-      display: ['Merriweather Sans', 'system-ui', 'sans-serif'],
+      heading: ['Ubuntu', 'system-ui', 'sans-serif'],
+      body: ['Roboto', 'Noto Sans', 'Product Sans', 'system-ui', 'sans-serif'],
+      display: ['Ubuntu', 'system-ui', 'sans-serif'],
     },
     fontSizes: {
-      xs: '0.75rem',    // 12px
-      sm: '0.875rem',   // 14px
-      base: '1rem',     // 16px
-      lg: '1.125rem',   // 18px
-      xl: '1.25rem',    // 20px
-      '2xl': '1.5rem',  // 24px
-      '3xl': '1.875rem', // 30px
-      '4xl': '2.25rem', // 36px
-      '5xl': '3rem',    // 48px
-      '6xl': '3.75rem', // 60px
-      '7xl': '4.5rem',  // 72px
+      xs: '0.625rem',    // 10px
+      sm: '0.75rem',     // 12px
+      base: '0.875rem',  // 14px
+      lg: '1rem',        // 16px
+      xl: '1.125rem',    // 18px
+      '2xl': '1.25rem',  // 20px
+      '3xl': '1.5rem',   // 24px
+      '4xl': '1.875rem', // 30px
+      '5xl': '2.25rem',  // 36px
+      '6xl': '3rem',     // 48px
+      '7xl': '3.75rem',  // 60px
     },
     fontWeights: {
       light: 300,
@@ -131,18 +130,21 @@ export const designTokens = {
       sizes: {
         sm: {
           padding: '0.5rem 1rem',
-          fontSize: '0.875rem',
+          fontSize: '0.75rem',
           borderRadius: '0.5rem',
+          fontWeight: 400,
         },
         md: {
           padding: '0.75rem 1.5rem',
-          fontSize: '1rem',
+          fontSize: '0.875rem',
           borderRadius: '0.75rem',
+          fontWeight: 400,
         },
         lg: {
           padding: '1rem 2rem',
-          fontSize: '1.125rem',
+          fontSize: '1rem',
           borderRadius: '1rem',
+          fontWeight: 400,
         },
       },
       variants: {
@@ -150,11 +152,13 @@ export const designTokens = {
           backgroundColor: '#931E5C',
           color: '#FFFFFF',
           hoverBackgroundColor: '#7A184C',
+          fontWeight: 400,
         },
         secondary: {
           backgroundColor: '#59B5B0',
           color: '#FFFFFF',
           hoverBackgroundColor: '#4A9A96',
+          fontWeight: 400,
         },
         outline: {
           backgroundColor: 'transparent',
@@ -162,6 +166,7 @@ export const designTokens = {
           border: '2px solid #931E5C',
           hoverBackgroundColor: '#931E5C',
           hoverColor: '#FFFFFF',
+          fontWeight: 400,
         },
       }
     },
@@ -182,6 +187,45 @@ export const designTokens = {
           backgroundColor: '#FAFAFA',
           borderRadius: '0.75rem',
         },
+      }
+    },
+    text: {
+      variants: {
+        heading: {
+          fontFamily: 'Ubuntu',
+          fontSize: '1.5rem',
+          fontWeight: 600,
+          lineHeight: 1.1,
+          color: '#404040',
+        },
+        subheading: {
+          fontFamily: 'Ubuntu',
+          fontSize: '1.125rem',
+          fontWeight: 500,
+          lineHeight: 1.3,
+          color: '#525252',
+        },
+        body: {
+          fontFamily: 'Roboto, Noto Sans, Product Sans',
+          fontSize: '0.875rem',
+          fontWeight: 400,
+          lineHeight: 1.5,
+          color: '#525252',
+        },
+        caption: {
+          fontFamily: 'Roboto, Noto Sans, Product Sans',
+          fontSize: '0.75rem',
+          fontWeight: 400,
+          lineHeight: 1.4,
+          color: '#737373',
+        },
+        display: {
+          fontFamily: 'Ubuntu',
+          fontSize: '2.25rem',
+          fontWeight: 600,
+          lineHeight: 1.1,
+          color: '#404040',
+        }
       }
     },
     section: {

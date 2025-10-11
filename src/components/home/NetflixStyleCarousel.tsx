@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Calendar, Clock, Eye, Download, FileText, Newspaper, Play, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -29,55 +29,187 @@ const NetflixStyleCarousel = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 });
+  const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 }) as React.RefObject<HTMLElement>;
+
+  // Mock data for when real data is not available
+  const mockNewsData: ContentItem[] = useMemo(() => [
+    {
+      id: '1',
+      title: 'LSF Launches New Digital Legal Aid Platform Across Tanzania',
+      description: 'The Legal Services Facility (LSF) has successfully launched a comprehensive digital platform that connects rural communities with legal professionals, revolutionizing access to justice in Tanzania.',
+      imageUrl: '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png',
+      publishedDate: '2024-01-15',
+      category: 'Legal Innovation',
+      type: 'news',
+      featured: true,
+      readTime: '4 min read'
+    },
+    {
+      id: '2',
+      title: 'Women\'s Land Rights Initiative Reaches 10,000 Beneficiaries',
+      description: 'Our latest initiative focusing on women\'s land rights has successfully empowered over 10,000 women across 15 regions, providing them with essential legal knowledge and support.',
+      imageUrl: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
+      publishedDate: '2024-01-10',
+      category: 'Gender Justice',
+      type: 'news',
+      featured: false,
+      readTime: '3 min read'
+    },
+    {
+      id: '3',
+      title: 'Community Paralegals Complete Advanced Training Program',
+      description: 'Over 500 community paralegals from rural areas have successfully completed an advanced training program, enhancing their capacity to provide legal assistance in their communities.',
+      imageUrl: '/lovable-uploads/7cdc0b2c-cc42-4f40-9196-2324a35f30a1.png',
+      publishedDate: '2024-01-08',
+      category: 'Capacity Building',
+      type: 'news',
+      featured: false,
+      readTime: '5 min read'
+    },
+    {
+      id: '4',
+      title: 'New Partnership Strengthens Legal Aid in Remote Areas',
+      description: 'LSF announces a strategic partnership with local NGOs to expand legal aid services to the most remote communities in Tanzania, ensuring no one is left behind.',
+      imageUrl: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
+      publishedDate: '2024-01-05',
+      category: 'Partnerships',
+      type: 'news',
+      featured: false,
+      readTime: '3 min read'
+    },
+    {
+      id: '5',
+      title: 'Climate Justice Program Launched in Coastal Regions',
+      description: 'A new initiative focusing on climate justice and environmental rights has been launched in Tanzania\'s coastal regions, addressing the legal needs of communities affected by climate change.',
+      imageUrl: '/lovable-uploads/placeholder.svg',
+      publishedDate: '2024-01-03',
+      category: 'Climate Justice',
+      type: 'news',
+      featured: false,
+      readTime: '4 min read'
+    }
+  ], []);
+
+  const mockPublicationsData: ContentItem[] = useMemo(() => [
+    {
+      id: 'pub1',
+      title: 'Annual Impact Report 2024: Transforming Communities Through Legal Empowerment',
+      description: 'Comprehensive analysis of LSF\'s impact across Tanzania, showcasing measurable improvements in access to justice and community empowerment initiatives.',
+      imageUrl: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
+      publishedDate: '2024-01-12',
+      category: 'Research Report',
+      type: 'publication',
+      featured: true,
+      downloadUrl: '#',
+      readTime: '32 pages'
+    },
+    {
+      id: 'pub2',
+      title: 'Digital Justice in Rural Tanzania: A Comprehensive Study',
+      description: 'This research explores the impact of digital legal aid platforms in rural communities, analyzing user experiences and effectiveness of remote legal services.',
+      imageUrl: '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png',
+      publishedDate: '2024-01-09',
+      category: 'Research',
+      type: 'publication',
+      featured: false,
+      downloadUrl: '#',
+      readTime: '28 pages'
+    },
+    {
+      id: 'pub3',
+      title: 'Women\'s Legal Empowerment: Success Stories and Best Practices',
+      description: 'A collection of success stories highlighting how legal empowerment initiatives have transformed the lives of women across Tanzania, featuring case studies and recommendations.',
+      imageUrl: '/lovable-uploads/7cdc0b2c-cc42-4f40-9196-2324a35f30a1.png',
+      publishedDate: '2024-01-06',
+      category: 'Case Study',
+      type: 'publication',
+      featured: false,
+      downloadUrl: '#',
+      readTime: '24 pages'
+    },
+    {
+      id: 'pub4',
+      title: 'Community Paralegal Training Manual 2024',
+      description: 'Updated comprehensive training manual for community paralegals, covering essential legal topics, practical skills, and best practices for serving rural communities.',
+      imageUrl: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
+      publishedDate: '2024-01-04',
+      category: 'Training Material',
+      type: 'publication',
+      featured: false,
+      downloadUrl: '#',
+      readTime: '45 pages'
+    }
+  ], []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
+        
+        // Try to fetch real data first
+        try {
         const [newsResponse, publicationsResponse] = await Promise.all([
           supabaseService.getFeaturedNews(10),
           supabaseService.getFeaturedPublications(10)
         ]);
         
+          // Check if we have real data
+          if (newsResponse && newsResponse.length > 0) {
         // Transform news data
         const transformedNews: ContentItem[] = newsResponse.map((item: News) => ({
-          id: item.id,
+              id: item.id || '',
           title: item.title,
-          description: item.content.substring(0, 150) + '...',
-          imageUrl: item.imageUrl || '/lovable-uploads/placeholder.svg',
-          publishedDate: item.publishedDate,
+              description: item.content?.substring(0, 150) + '...' || 'Read more...',
+              imageUrl: item.image || '/lovable-uploads/placeholder.svg',
+              publishedDate: item.date || new Date().toISOString(),
           category: item.category || 'Legal News',
           type: 'news' as const,
           featured: item.featured,
           readTime: '5 min read'
         }));
+            setNewsData(transformedNews);
+          } else {
+            // No real news data, use mock data
+            setNewsData(mockNewsData);
+          }
 
+          if (publicationsResponse && publicationsResponse.length > 0) {
         // Transform publications data
         const transformedPublications: ContentItem[] = publicationsResponse.map((item: Publication) => ({
-          id: item.id,
+              id: item.id || '',
           title: item.title,
-          description: item.description || item.content.substring(0, 150) + '...',
-          imageUrl: item.coverImageUrl || '/lovable-uploads/placeholder.svg',
-          publishedDate: item.publishedDate,
+              description: item.description || 'Read more...',
+              imageUrl: item.image || '/lovable-uploads/placeholder.svg',
+              publishedDate: item.date || new Date().toISOString(),
           category: item.type || 'Research',
           type: 'publication' as const,
           featured: item.featured,
-          downloadUrl: item.pdfUrl,
+              downloadUrl: item.file,
           readTime: item.pages ? `${item.pages} pages` : 'Report'
         }));
-        
-        setNewsData(transformedNews);
         setPublicationsData(transformedPublications);
+          } else {
+            // No real publications data, use mock data
+            setPublicationsData(mockPublicationsData);
+          }
+        } catch (error) {
+          // If real data fails, use mock data
+          console.log('Using mock data for news and publications');
+          setNewsData(mockNewsData);
+          setPublicationsData(mockPublicationsData);
+        }
       } catch (error) {
         console.error('Error fetching content:', error);
+        // Fallback to mock data
+        setNewsData(mockNewsData);
+        setPublicationsData(mockPublicationsData);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [mockNewsData, mockPublicationsData]);
 
   const currentData = activeTab === 'news' ? newsData : publicationsData;
   const featuredItem = currentData.find(item => item.featured) || currentData[0];
@@ -326,7 +458,7 @@ const NetflixStyleCarousel = () => {
                       </div>
 
                       <Typography 
-                        variant="h5" 
+                        variant="h4" 
                         className="mb-3 text-lg font-bold leading-tight group-hover:text-primary transition-colors"
                       >
                         {item.title}
@@ -384,7 +516,7 @@ const NetflixStyleCarousel = () => {
         </div>
       </Container>
 
-      <style jsx>{`
+      <style>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }

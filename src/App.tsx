@@ -50,6 +50,12 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import SuccessStories from './pages/SuccessStories';
 import Whistleblower from './pages/Whistleblower';
 import FAQ from './pages/FAQ';
+import HakiYangu from './pages/HakiYangu';
+import SaraAI from './pages/SaraAI';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Cookies from './pages/Cookies';
+import Accessibility from './pages/Accessibility';
 import StaffDashboard from "./pages/StaffDashboard";
 import ParalegalDashboard from "./pages/ParalegalDashboard";
 import StakeholderDashboard from "./pages/StakeholderDashboard";
@@ -138,6 +144,12 @@ function App() {
                   <Route path="/bookmarks" element={<Bookmarks />} />
                   <Route path="/whistleblower" element={<Whistleblower />} />
                   <Route path="/faq" element={<FAQ />} />
+                  <Route path="/haki-yangu" element={<HakiYangu />} />
+                  <Route path="/sara-ai" element={<SaraAI />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/cookies" element={<Cookies />} />
+                  <Route path="/accessibility" element={<Accessibility />} />
                   <Route path="/signup" element={<Signup />} />
                  <Route path="/login" element={<Login />} />
                  <Route path="/lsfchatbot" element={<LSFChatbotFullPage env="production" />} />

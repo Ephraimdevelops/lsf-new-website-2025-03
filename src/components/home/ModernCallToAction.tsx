@@ -76,7 +76,7 @@ const ModernCallToAction = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 md:py-32 bg-gradient-to-b from-background via-neutral-50/50 to-background relative overflow-hidden"
+      className="py-5 md:py-5 mb-5 bg-gradient-to-b from-background via-neutral-50/50 to-background relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
@@ -116,7 +116,7 @@ const ModernCallToAction = () => {
           </div>
 
           {/* Action Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 py-10">
             {actionCards.map((card, index) => (
               <div 
                 key={index}
@@ -145,75 +145,6 @@ const ModernCallToAction = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Contact Information */}
-          <div className="bg-gradient-to-br from-primary/5 via-secondary-teal/5 to-secondary-orange/5 rounded-3xl p-12 border border-primary/10">
-            <div className="text-center mb-12">
-              <Typography variant="h3" className="mb-4 text-3xl font-bold">
-                Get in Touch
-              </Typography>
-              <Typography variant="body" className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Have questions? Need more information? We're here to help you connect with the legal support you need.
-              </Typography>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {contactInfo.map((contact, index) => (
-                <div 
-                  key={index}
-                  className="text-center group transition-all duration-500"
-                >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary-orange rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <contact.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <Typography variant="h5" className="mb-2 text-lg font-bold">
-                    {contact.label}
-                  </Typography>
-                  <a 
-                    href={contact.link}
-                    className="text-primary hover:text-primary-dark font-semibold transition-colors"
-                  >
-                    {contact.value}
-                  </a>
-                </div>
-              ))}
-            </div>
-
-            {/* Emergency Contact Highlight */}
-            <div className="mt-12 text-center">
-              <div className="inline-flex items-center gap-4 bg-red-50 border border-red-200 rounded-2xl px-8 py-4">
-                <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                <Typography variant="body" className="text-red-700 font-semibold">
-                  Need immediate legal assistance? Call our emergency hotline: +255 870 119 363
-                </Typography>
-              </div>
-            </div>
-          </div>
-
-          {/* Newsletter Signup */}
-          <div className="mt-20 text-center">
-            <Typography variant="h3" className="mb-4 text-3xl font-bold">
-              Stay Updated
-            </Typography>
-            <Typography variant="body" className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Get the latest updates on legal developments, our programs, and opportunities to get involved in building a more just Tanzania.
-            </Typography>
-
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 px-6 py-4 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-              />
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-primary to-secondary-orange hover:opacity-90 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 group"
-              >
-                Subscribe
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </div>
           </div>
         </div>
       </Container>

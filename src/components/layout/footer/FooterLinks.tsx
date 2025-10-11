@@ -9,7 +9,7 @@ const quickLinks = [
   { name: 'Get Legal Help', href: '/legal-help' },
   { name: 'Contact Us', href: '/contact' },
   { name: 'Sign Up', href: '/signup' },
-  { name: 'AI Legal Assistant', href: '/lsfchatbot' }, // Added chatbot page link
+  { name: 'Sara AI Assistant', href: '/sara-ai' }, // Sara AI legal assistant
 ];
 
 const resources = [
@@ -17,14 +17,9 @@ const resources = [
   { name: 'Publications', href: '/publications' },
   { name: 'Success Stories', href: '/heroes' },
   { name: 'Legal Resources', href: '/resources' },
+  { name: 'Haki Yangu App', href: '/haki-yangu' },
 ];
 
-const support = [
-  { name: 'Contact Us', href: '/contact' },
-  { name: 'Careers & Opportunities', href: '/opportunities' },
-  { name: 'Whistleblower Channel', href: '/whistleblower' },
-  { name: 'FAQs', href: '/faq' },
-];
 
 const FooterLinks = () => {
   return (
@@ -112,24 +107,6 @@ const FooterLinks = () => {
             </ul>
           </div>
 
-          {/* Support */}
-          <div>
-            <Typography variant="h4" className="text-white mb-6 uppercase tracking-wide">
-              Support Us
-            </Typography>
-            <ul className="space-y-3">
-              {support.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="text-white/80 hover:text-primary transition-colors duration-300 text-sm block"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </div>

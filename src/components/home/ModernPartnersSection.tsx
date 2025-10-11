@@ -54,7 +54,7 @@ const ModernPartnersSection = () => {
     }
   ];
 
-  const partnersPerSlide = 3;
+  const partnersPerSlide = 4;
   const totalSlides = Math.ceil(partners.length / partnersPerSlide);
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const ModernPartnersSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 md:py-32 bg-gradient-to-b from-background via-neutral-50/50 to-background relative overflow-hidden"
+      className="py-8 md:py-8 bg-gradient-to-b from-background via-neutral-50/50 to-background relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
@@ -129,7 +129,7 @@ const ModernPartnersSection = () => {
               >
                 {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                   <div key={slideIndex} className="w-full flex-shrink-0">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 px-4">
                       {partners.slice(slideIndex * partnersPerSlide, (slideIndex + 1) * partnersPerSlide).map((partner, index) => {
                         const typeInfo = partnerTypes[partner.type as keyof typeof partnerTypes];
                         return (
@@ -137,10 +137,10 @@ const ModernPartnersSection = () => {
                             key={partner.name}
                             className={`group transition-all duration-700 delay-${index * 100} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                           >
-                            <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100 h-full">
+                            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100 h-full">
                               {/* Logo */}
                               <div className="text-center mb-6">
-                                <div className="w-24 h-24 mx-auto mb-4 overflow-hidden bg-neutral-50 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 overflow-hidden bg-neutral-50 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                   <img
                                     src={partner.logo}
                                     alt={partner.name}
@@ -151,7 +151,7 @@ const ModernPartnersSection = () => {
 
                               {/* Partner Info */}
                               <div className="text-center">
-                                <Typography variant="h4" className="mb-2 text-xl font-bold">
+                                <Typography variant="h4" className="mb-2 text-lg sm:text-xl font-bold">
                                   {partner.name}
                                 </Typography>
                                 
@@ -207,6 +207,7 @@ const ModernPartnersSection = () => {
               />
             ))}
           </div>
+
 
           {/* Partnership Impact */}
           <div className="bg-gradient-to-br from-primary/5 via-secondary-teal/5 to-secondary-orange/5 rounded-3xl p-12 border border-primary/10">
@@ -266,6 +267,7 @@ const ModernPartnersSection = () => {
               </div>
             </div>
           </div>
+
         </div>
       </Container>
     </section>

@@ -577,6 +577,29 @@ class SupabaseService {
     }
   }
 
+  // Testimonials methods
+  async getTestimonials(): Promise<any[]> {
+    const cacheKey = this.getCacheKey('getTestimonials');
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const { data, error } = await supabase
+        .from('testimonials')
+        .select('*')
+        .eq('featured', true)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      this.setCache(cacheKey, data || []);
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching testimonials:', error);
+      return [];
+    }
+  }
+
   clearCache(): void {
     this.cache.clear();
   }
