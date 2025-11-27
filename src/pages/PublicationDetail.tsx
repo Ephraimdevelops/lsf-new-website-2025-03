@@ -1,22 +1,25 @@
 
 import { useParams, Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { Id } from "../../convex/_generated/dataModel";
 import { format } from 'date-fns';
 import { ArrowLeft, Calendar, Download, Share2, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Separator } from '../components/ui/separator';
-import { publicationService, analyticsService } from '../services/api';
+import { analyticsService } from '../services/api';
 
 const PublicationDetail = () => {
   const { publicationId } = useParams<{ publicationId: string }>();
-  
-  const { data: publication, isLoading, error } = useQuery({
-    queryKey: ['publication', publicationId],
-    queryFn: () => publicationId ? publicationService.getPublicationById(publicationId) : null,
-    enabled: !!publicationId,
-  });
+  const id = publicationId as Id<"publications">;
+
+  const publicationData = useQuery(api.publications.getById, { id });
+  const publication = publicationData ? { ...publicationData, id: publicationData._id } : null;
+
+  const isLoading = publicationData === undefined;
+  const error = publicationData === null; // If null returned, it means not found
 
   const trackDownload = () => {
     if (publication) {
@@ -73,20 +76,20 @@ const PublicationDetail = () => {
             {/* Publication Details */}
             <div className="lg:col-span-2">
               <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">{publication.title}</h1>
-              
+
               <div className="flex items-center text-neutral-gray mb-6">
                 <Calendar className="h-4 w-4 mr-1" />
                 <span>Published: {format(new Date(publication.date), 'MMMM d, yyyy')}</span>
               </div>
-              
+
               <div className="prose max-w-none mb-8">
                 <p className="text-lg">{publication.description}</p>
               </div>
-              
+
               <div className="flex flex-wrap gap-4 mb-8">
-                <a 
-                  href={publication.file} 
-                  target="_blank" 
+                <a
+                  href={publication.file}
+                  target="_blank"
                   rel="noopener noreferrer"
                   onClick={trackDownload}
                 >
@@ -95,15 +98,15 @@ const PublicationDetail = () => {
                     Download Publication
                   </Button>
                 </a>
-                
+
                 <Button variant="outline" className="gap-2">
                   <Share2 className="h-4 w-4" />
                   Share
                 </Button>
               </div>
-              
+
               <Separator className="my-8" />
-              
+
               {/* Publication Metadata */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Card>
@@ -128,7 +131,7 @@ const PublicationDetail = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Related Publications - Placeholder for future implementation */}
           <div className="mt-16">
             <h2 className="text-2xl font-bold text-primary mb-6">Related Publications</h2>
@@ -146,7 +149,7 @@ const PublicationDetail = () => {
                 </Card>
               ))}
             </div>
-            
+
             <div className="flex justify-center mt-8 gap-2">
               <Button variant="outline" size="icon">
                 <ChevronLeft className="h-4 w-4" />

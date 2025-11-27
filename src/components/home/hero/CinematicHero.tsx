@@ -3,7 +3,8 @@ import { ChevronLeft, ChevronRight, Play, ArrowRight, Phone, MapPin, Users, Awar
 import { Button } from '@/components/ui/button';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
-import { supabaseService } from '@/services/api/supabaseService';
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 import { heroSlides } from './heroData';
 
 interface HeroSlide {
@@ -30,68 +31,63 @@ const CinematicHero = () => {
     { icon: Phone, value: '24/7', label: 'Legal Support' }
   ];
 
+  const convexSlides = useQuery(api.hero.get);
+
   useEffect(() => {
-    const fetchHeroSlides = async () => {
-      try {
-        const data = await supabaseService.getHeroSlides();
-        if (data.length > 0) {
-          setSlides(data);
-        } else {
-          // Enhanced fallback data with storytelling elements
-          setSlides([
-            {
-              id: '1',
-              headline: 'Justice for Every Tanzanian',
-              subheadline: 'Empowering communities through accessible legal aid and innovative technology solutions that bridge the gap between law and people.',
-              image_url: '/lovable-uploads/background with mother umage .png',
-              cta_text: 'Get Legal Help',
-              cta_link: '/legal-help',
-              stats: impactStats.slice(0, 2)
-            },
-            {
-              id: '2',
-              headline: 'Haki Yangu Digital Platform',
-              subheadline: 'Connecting communities with legal services through our revolutionary mobile app, making justice accessible at your fingertips.',
-              image_url: '/lovable-uploads/haki yangu app uzinuzi.webp',
-              cta_text: 'Download App',
-              cta_link: '/legal-help',
-              stats: impactStats.slice(1, 3)
-            },
-            {
-              id: '3',
-              headline: 'Community Paralegal Network',
-              subheadline: 'Training and empowering local champions who bring legal knowledge directly to rural communities across Tanzania.',
-              image_url: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
-              cta_text: 'Join Our Network',
-              cta_link: '/programs',
-              stats: impactStats.slice(2, 4)
-            }
-          ]);
-        }
-      } catch (error) {
-        console.error('Error fetching hero slides:', error);
+    if (convexSlides) {
+      if (convexSlides.length > 0) {
+        const mappedSlides = convexSlides
+          .filter(s => s.isActive)
+          .sort((a, b) => a.order - b.order)
+          .map(s => ({
+            id: s._id,
+            headline: s.title,
+            subheadline: s.subtitle || s.description,
+            image_url: s.imageUrl,
+            cta_text: s.ctaText,
+            cta_link: s.ctaLink,
+            stats: impactStats.slice(0, 4) // Add stats if needed, or map from DB if available
+          }));
+        setSlides(mappedSlides);
+      } else {
+        // Enhanced fallback data with storytelling elements
         setSlides([
           {
             id: '1',
             headline: 'Justice for Every Tanzanian',
-            subheadline: 'Empowering communities through accessible legal aid and innovative technology solutions.',
+            subheadline: 'Empowering communities through accessible legal aid and innovative technology solutions that bridge the gap between law and people.',
             image_url: '/lovable-uploads/background with mother umage .png',
             cta_text: 'Get Legal Help',
             cta_link: '/legal-help',
             stats: impactStats.slice(0, 2)
+          },
+          {
+            id: '2',
+            headline: 'Haki Yangu Digital Platform',
+            subheadline: 'Connecting communities with legal services through our revolutionary mobile app, making justice accessible at your fingertips.',
+            image_url: '/lovable-uploads/haki yangu app uzinuzi.webp',
+            cta_text: 'Download App',
+            cta_link: '/legal-help',
+            stats: impactStats.slice(1, 3)
+          },
+          {
+            id: '3',
+            headline: 'Community Paralegal Network',
+            subheadline: 'Training and empowering local champions who bring legal knowledge directly to rural communities across Tanzania.',
+            image_url: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
+            cta_text: 'Join Our Network',
+            cta_link: '/programs',
+            stats: impactStats.slice(2, 4)
           }
         ]);
-      } finally {
-        setIsLoading(false);
       }
-    };
-
-    fetchHeroSlides();
-  }, []);
+      setIsLoading(false);
+    }
+  }, [convexSlides]);
 
   useEffect(() => {
     if (slides.length === 0 || !isPlaying) return;
-    
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 8000); // 8 seconds for better storytelling
@@ -148,7 +144,7 @@ const CinematicHero = () => {
       {currentSlideData.image_url && (
         <div className="absolute inset-0">
           <div className="relative w-full h-full">
-            <img 
+            <img
               src={currentSlideData.image_url}
               alt={currentSlideData.headline}
               className="w-full h-full object-cover transition-all duration-2000 ease-out"
@@ -217,18 +213,18 @@ const CinematicHero = () => {
 
           {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 animate-fade-in delay-1000">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-to-r from-primary to-primary 600 hover:from-primary-dark hover:to-secondary-orange-dark text-white font-bold px-10 py-6 rounded-2xl transition-all duration-300 hover:shadow-2xl hover:scale-105 group text-lg"
               onClick={() => window.location.href = currentSlideData.cta_link || '/legal-help'}
             >
               {currentSlideData.cta_text || 'Get Legal Help'}
               <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
-            
-            <Button 
-              variant="outline" 
-              size="lg" 
+
+            <Button
+              variant="outline"
+              size="lg"
               className="border-2 border-white/30 text-white hover:bg-white hover:text-primary font-bold px-10 py-6 rounded-2xl transition-all duration-300 hover:shadow-xl hover:scale-105 group text-lg backdrop-blur-sm"
               onClick={() => window.location.href = 'tel:+255870119363'}
             >
@@ -264,11 +260,10 @@ const CinematicHero = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`transition-all duration-500 ${
-                  index === currentSlide 
-                    ? 'w-16 h-3 bg-white rounded-full shadow-lg' 
-                    : 'w-4 h-4 bg-white/40 hover:bg-white/60 rounded-full'
-                }`}
+                className={`transition-all duration-500 ${index === currentSlide
+                  ? 'w-16 h-3 bg-white rounded-full shadow-lg'
+                  : 'w-4 h-4 bg-white/40 hover:bg-white/60 rounded-full'
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -276,7 +271,7 @@ const CinematicHero = () => {
 
           {/* Story Progress */}
           <div className="absolute bottom-0 left-0 right-0 h-2 bg-black/30 z-10">
-            <div 
+            <div
               className="h-full bg-gradient-to-r from-primary to-secondary-primary-600 transition-all duration-8000 ease-linear"
               style={{
                 width: `${((currentSlide + 1) / slides.length) * 100}%`

@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
-import { supabaseService } from '@/services/api/supabaseService';
-import { News, Publication } from '@/types';
+import { useNews, usePublications } from '@/hooks/useContent';
 
 interface ContentItem {
   id: string;
@@ -165,66 +164,61 @@ const CompactNewsSection = () => {
     }
   ];
 
+  const { news, loading: newsLoading } = useNews();
+  const { publications, loading: publicationsLoading } = usePublications();
+
   useEffect(() => {
     const fetchContent = async () => {
-      try {
-        setIsLoading(true);
-        
-        // Always use mock data for now to ensure visibility
-        setContent(activeTab === 'news' ? mockNewsData : mockPublicationsData);
-        
-        // Try to fetch real data in background (optional)
-        try {
-          if (activeTab === 'news') {
-            const realNews = await supabaseService.getFeaturedNews(10);
-            if (realNews && realNews.length > 0) {
-              const transformedNews: ContentItem[] = realNews.map((item: News) => ({
-                id: item.id || '',
-                title: item.title,
-                description: item.content?.substring(0, 100) + '...' || 'Read more...',
-                imageUrl: item.image || '/lovable-uploads/placeholder.svg',
-                publishedDate: item.date || new Date().toISOString(),
-                category: item.category || 'News',
-                type: 'news' as const,
-                featured: item.featured,
-                readTime: '5 min',
-                views: Math.floor(Math.random() * 2000),
-                trending: Math.random() > 0.7
-              }));
-              setContent(transformedNews);
-            }
-          } else {
-            const realPublications = await supabaseService.getFeaturedPublications(10);
-            if (realPublications && realPublications.length > 0) {
-              const transformedPublications: ContentItem[] = realPublications.map((item: Publication) => ({
-                id: item.id || '',
-                title: item.title,
-                description: item.description || 'Read more...',
-                imageUrl: item.image || '/lovable-uploads/placeholder.svg',
-                publishedDate: item.date || new Date().toISOString(),
-                category: item.type || 'Publication',
-                type: 'publication' as const,
-                featured: item.featured,
-                readTime: item.pages ? `${item.pages} pages` : 'Report',
-                views: Math.floor(Math.random() * 1500),
-                trending: Math.random() > 0.6
-              }));
-              setContent(transformedPublications);
-            }
-          }
-        } catch (error) {
-          console.log('Using mock data');
+      setIsLoading(true);
+
+      if (activeTab === 'news') {
+        if (news && news.length > 0) {
+          const transformedNews: ContentItem[] = news.map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            description: item.excerpt || item.content?.substring(0, 100) + '...' || 'Read more...',
+            imageUrl: item.image || '/lovable-uploads/placeholder.svg',
+            publishedDate: item.date || new Date().toISOString(),
+            category: item.category || 'News',
+            type: 'news' as const,
+            featured: item.featured,
+            readTime: '5 min',
+            views: Math.floor(Math.random() * 2000), // Placeholder for views
+            trending: item.featured // Use featured as proxy for trending for now
+          }));
+          setContent(transformedNews);
+        } else {
+          // Fallback to empty or keep previous if needed, but for now empty is fine or maybe keep mock if empty?
+          // Let's stick to real data. If empty, it shows empty.
+          setContent([]);
         }
-      } catch (error) {
-        console.error('Error fetching content:', error);
-        setContent(activeTab === 'news' ? mockNewsData : mockPublicationsData);
-      } finally {
-        setIsLoading(false);
+      } else {
+        if (publications && publications.length > 0) {
+          const transformedPublications: ContentItem[] = publications.map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description || 'Read more...',
+            imageUrl: item.coverImageUrl || '/lovable-uploads/placeholder.svg',
+            publishedDate: item.publishedDate || new Date().toISOString(),
+            category: item.category || 'Publication',
+            type: 'publication' as const,
+            featured: item.featured,
+            readTime: item.type === 'report' ? 'Report' : 'Publication',
+            views: Math.floor(Math.random() * 1500),
+            trending: item.featured
+          }));
+          setContent(transformedPublications);
+        } else {
+          setContent([]);
+        }
       }
+      setIsLoading(false);
     };
 
-    fetchContent();
-  }, [activeTab]);
+    if (!newsLoading && !publicationsLoading) {
+      fetchContent();
+    }
+  }, [activeTab, news, publications, newsLoading, publicationsLoading]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -297,9 +291,9 @@ const CompactNewsSection = () => {
               {activeTab === 'news' ? 'Latest News' : 'Publications'}
             </Typography>
           </div>
-          
-          <Typography 
-            variant="h2" 
+
+          <Typography
+            variant="h2"
             className="mb-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
           >
             Stay Informed with
@@ -307,9 +301,9 @@ const CompactNewsSection = () => {
               Latest Updates
             </span>
           </Typography>
-          
-          <Typography 
-            variant="body" 
+
+          <Typography
+            variant="body"
             className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8"
           >
             Discover the latest news, publications, and insights driving justice reform across Tanzania.
@@ -320,21 +314,19 @@ const CompactNewsSection = () => {
             <div className="flex bg-white rounded-lg p-1 shadow-sm border">
               <button
                 onClick={() => setActiveTab('news')}
-                className={`px-6 py-3 rounded-md text-sm font-medium transition-all ${
-                  activeTab === 'news'
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
+                className={`px-6 py-3 rounded-md text-sm font-medium transition-all ${activeTab === 'news'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+                  }`}
               >
                 News
               </button>
               <button
                 onClick={() => setActiveTab('publications')}
-                className={`px-6 py-3 rounded-md text-sm font-medium transition-all ${
-                  activeTab === 'publications'
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
+                className={`px-6 py-3 rounded-md text-sm font-medium transition-all ${activeTab === 'publications'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+                  }`}
               >
                 Publications
               </button>
@@ -342,29 +334,29 @@ const CompactNewsSection = () => {
           </div>
         </div>
 
-          {/* Navigation arrows */}
-          {content.length > itemsPerView && (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={prevSlide}
-                disabled={currentIndex === 0}
-                className="p-2 rounded-full bg-white shadow-sm border hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
-                onClick={nextSlide}
-                disabled={currentIndex >= maxIndex}
-                className="p-2 rounded-full bg-white shadow-sm border hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          )}
+        {/* Navigation arrows */}
+        {content.length > itemsPerView && (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={prevSlide}
+              disabled={currentIndex === 0}
+              className="p-2 rounded-full bg-white shadow-sm border hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              onClick={nextSlide}
+              disabled={currentIndex >= maxIndex}
+              className="p-2 rounded-full bg-white shadow-sm border hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        )}
 
         {/* Content Grid - Netflix-style horizontal scroll */}
         <div className="relative">
-          <div 
+          <div
             className="flex gap-4 sm:gap-6 transition-transform duration-300 ease-out"
             style={{ transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` }}
           >
@@ -384,7 +376,7 @@ const CompactNewsSection = () => {
                         (e.target as HTMLImageElement).src = '/lovable-uploads/placeholder.svg';
                       }}
                     />
-                    
+
                     {/* Overlay badges */}
                     <div className="absolute top-3 left-3 flex gap-2">
                       {item.featured && (
@@ -402,8 +394,8 @@ const CompactNewsSection = () => {
 
                     {/* Category badge */}
                     <div className="absolute top-3 right-3">
-                      <Badge 
-                        variant="outline" 
+                      <Badge
+                        variant="outline"
                         className={`text-xs px-2 py-1 ${getCategoryColor(item.category)}`}
                       >
                         {item.category}
@@ -437,7 +429,7 @@ const CompactNewsSection = () => {
                           {item.readTime}
                         </div>
                       </div>
-                      
+
                       {item.views && (
                         <div className="flex items-center gap-1">
                           <Eye className="h-3 w-3" />
@@ -454,8 +446,8 @@ const CompactNewsSection = () => {
 
         {/* View all button */}
         <div className="mt-8 text-center">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="border-primary text-primary hover:bg-primary hover:text-white"
           >
             View All {activeTab === 'news' ? 'News' : 'Publications'}

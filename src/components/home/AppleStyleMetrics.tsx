@@ -231,48 +231,70 @@ const AppleStyleMetrics = () => {
             ))}
           </div>
 
-          {/* Impact Story */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <Typography variant="h3" className="text-white mb-6 text-3xl font-bold">
-                  The Power of Collective Action
-                </Typography>
-                <Typography variant="body" className="text-white/90 text-lg leading-relaxed mb-8">
-                  These numbers represent more than statistics—they represent real people whose lives have been transformed through access to justice. Every beneficiary is a story of hope, every region covered is a step toward nationwide equality, and every dollar invested creates ripple effects that strengthen entire communities.
-                </Typography>
-                <Typography variant="body" className="text-white/90 text-lg leading-relaxed mb-8">
-                  Our approach combines grassroots community engagement with innovative technology solutions, ensuring that legal empowerment reaches the most remote areas while building sustainable systems for long-term impact.
-                </Typography>
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-secondary-orange to-primary hover:from-secondary-orange-dark hover:to-primary-dark text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:shadow-xl hover:scale-105 group"
-                >
-                  Read Our Impact Stories
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
+          {/* Impact Story - Redesigned */}
+          <div className="relative mt-24">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary-orange/20 rounded-[3rem] blur-3xl opacity-30"></div>
+            <div className="relative bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-12 border border-white/10 overflow-hidden">
+              {/* Decorative background pattern */}
+              <div className="absolute top-0 right-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.4)_0%,transparent_60%)]"></div>
+              
+              <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                <div className="order-2 lg:order-1">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-8">
+                    <span className="w-2 h-2 rounded-full bg-secondary-orange animate-pulse"></span>
+                    <span className="text-white/90 text-sm font-medium tracking-wide uppercase">Real Stories</span>
+                  </div>
+                  
+                  <Typography variant="h3" className="text-white mb-6 text-4xl md:text-5xl font-bold leading-tight tracking-tight">
+                    The Power of <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">Collective Action</span>
+                  </Typography>
+                  
+                  <div className="space-y-6 text-lg text-white/80 font-light leading-relaxed">
+                    <p>
+                      These numbers represent more than statistics—they represent real people whose lives have been transformed through access to justice. 
+                    </p>
+                    <p>
+                      Every beneficiary is a story of hope, every region covered is a step toward nationwide equality, and every dollar invested creates ripple effects that strengthen entire communities.
+                    </p>
+                  </div>
 
-              <div className="relative">
-                <div className="aspect-square rounded-3xl overflow-hidden">
-                  <img 
-                    src="/lovable-uploads/Untitled design-5.png" 
-                    alt="LSF Impact Visualization" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Floating Stats */}
-                <div className="absolute -top-6 -right-6 bg-gradient-to-br from-secondary-orange to-primary text-white p-4 rounded-2xl shadow-xl">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold">426K+</div>
-                    <div className="text-xs font-medium">Lives Changed</div>
+                  <div className="mt-10 flex flex-wrap gap-4">
+                    <Button 
+                      size="lg" 
+                      className="bg-white text-primary hover:bg-white/90 font-bold px-8 py-6 rounded-2xl text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-white/10"
+                    >
+                      Read Impact Stories
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
                   </div>
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-secondary-teal to-primary text-white p-4 rounded-2xl shadow-xl">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold">31</div>
-                    <div className="text-xs font-medium">Regions</div>
+
+                <div className="order-1 lg:order-2 relative">
+                  <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 group">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+                    <img 
+                      src="/lovable-uploads/Untitled design-5.png" 
+                      alt="LSF Impact Visualization" 
+                      className="w-full aspect-[4/3] object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    />
+                    
+                    {/* Integrated Stats Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20 flex justify-between items-end">
+                      <div>
+                        <div className="text-white/60 text-sm font-medium uppercase tracking-wider mb-1">Total Reach</div>
+                        <div className="text-white text-3xl font-bold">426K+</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-white/60 text-sm font-medium uppercase tracking-wider mb-1">Coverage</div>
+                        <div className="text-white text-3xl font-bold">31 Regions</div>
+                      </div>
+                    </div>
                   </div>
+                  
+                  {/* Decorative Elements */}
+                  <div className="absolute -top-12 -right-12 w-24 h-24 bg-secondary-orange/30 rounded-full blur-2xl"></div>
+                  <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-primary/30 rounded-full blur-2xl"></div>
                 </div>
               </div>
             </div>

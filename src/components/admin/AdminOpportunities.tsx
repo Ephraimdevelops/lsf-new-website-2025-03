@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,20 +12,24 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Plus, Search, Edit, Trash, Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useForm } from 'react-hook-form';
-import { supabase } from '@/lib/supabase';
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
 
 interface Opportunity {
-  id: string;
+  _id: Id<"opportunities">;
   title: string;
   description: string;
-  type: string;
-  status: string;
-  is_open: boolean;
-  deadline?: string;
-  organization?: string;
-  location?: string;
-  created_at: string;
-  application_url?: string;
+  type: "job" | "grant" | "tender" | "consultancy" | "other";
+  status: "open" | "closed";
+  deadline: string;
+  location: string;
+  organization?: string; // Not in schema but in UI
+  applicationLink?: string;
+  category: string;
+  department: string;
+  duration: string;
+  salary: string;
 }
 
 const AdminOpportunities = () => {
@@ -33,7 +37,12 @@ const AdminOpportunities = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingOpportunity, setEditingOpportunity] = useState<Opportunity | null>(null);
-  
+
+  const opportunities = useQuery(api.opportunities.get) || [];
+  const createOpportunity = useMutation(api.opportunities.create);
+  const updateOpportunity = useMutation(api.opportunities.update);
+  const deleteOpportunity = useMutation(api.opportunities.remove);
+
   const form = useForm({
     defaultValues: {
       title: '',
@@ -43,86 +52,45 @@ const AdminOpportunities = () => {
       deadline: '',
       organization: '',
       location: '',
-      application_url: ''
+      applicationLink: '',
+      category: 'General',
+      department: 'General',
+      duration: 'N/A',
+      salary: 'Competitive'
     }
   });
 
-  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
-
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('opportunities')
-          .select('*')
-          .order('created_at', { ascending: false });
-        if (error) throw error;
-        setOpportunities(((data || []) as unknown as Opportunity[]));
-      } catch (err) {
-        console.error('Load opportunities error:', err);
-        toast({ title: 'Failed to load opportunities', variant: 'destructive' });
-      }
-    };
-    load();
-  }, [toast]);
-
-  const filteredOpportunities = opportunities.filter(opportunity => 
+  const filteredOpportunities = opportunities.filter(opportunity =>
     opportunity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     opportunity.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
     opportunity.type.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const onSubmit = async (data: {
-    title: string;
-    description: string;
-    type: string;
-    status: string;
-    deadline?: string;
-    organization?: string;
-    location?: string;
-    application_url?: string;
-  }) => {
+  const onSubmit = async (data: any) => {
     try {
+      const payload = {
+        title: data.title,
+        description: data.description,
+        type: data.type as "job" | "grant" | "tender" | "consultancy" | "other",
+        status: data.status as "open" | "closed",
+        deadline: data.deadline,
+        location: data.location,
+        applicationLink: data.applicationLink,
+        category: data.category,
+        department: data.department,
+        duration: data.duration,
+        salary: data.salary,
+        // organization is not in schema, ignoring for now or map to something else if needed
+      };
+
       if (editingOpportunity) {
-        const updatePayload = {
-          title: data.title,
-          description: data.description,
-          type: data.type,
-          status: data.status,
-          is_open: data.status === 'open',
-          deadline: data.deadline || null,
-          organization: data.organization || null,
-          location: data.location || null,
-          application_url: data.application_url || null,
-        };
-        const { data: updated, error } = await supabase
-          .from('opportunities')
-          .update(updatePayload)
-          .eq('id', editingOpportunity.id)
-          .select()
-          .single();
-        if (error) throw error;
-        setOpportunities(opportunities.map((o) => (o.id === editingOpportunity.id ? (updated as Opportunity) : o)));
+        await updateOpportunity({
+          id: editingOpportunity._id,
+          ...payload
+        });
         toast({ title: 'Opportunity Updated' });
       } else {
-        const insertPayload = {
-          title: data.title,
-          description: data.description,
-          type: data.type,
-          status: data.status,
-          is_open: data.status === 'open',
-          deadline: data.deadline || null,
-          organization: data.organization || null,
-          location: data.location || null,
-          application_url: data.application_url || null,
-        };
-        const { data: created, error } = await supabase
-          .from('opportunities')
-          .insert(insertPayload)
-          .select()
-          .single();
-        if (error) throw error;
-        setOpportunities([(created as Opportunity), ...opportunities]);
+        await createOpportunity(payload);
         toast({ title: 'Opportunity Created' });
       }
       setIsDialogOpen(false);
@@ -144,16 +112,18 @@ const AdminOpportunities = () => {
       deadline: opportunity.deadline || '',
       organization: opportunity.organization || '',
       location: opportunity.location || '',
-      application_url: opportunity.application_url || ''
+      applicationLink: opportunity.applicationLink || '',
+      category: opportunity.category || 'General',
+      department: opportunity.department || 'General',
+      duration: opportunity.duration || 'N/A',
+      salary: opportunity.salary || 'Competitive'
     });
     setIsDialogOpen(true);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: Id<"opportunities">) => {
     try {
-      const { error } = await supabase.from('opportunities').delete().eq('id', id);
-      if (error) throw error;
-      setOpportunities(opportunities.filter(opp => opp.id !== id));
+      await deleteOpportunity({ id });
       toast({ title: 'Opportunity Deleted' });
     } catch (err) {
       console.error('Delete opportunity error:', err);
@@ -163,7 +133,20 @@ const AdminOpportunities = () => {
 
   const handleNewOpportunity = () => {
     setEditingOpportunity(null);
-    form.reset();
+    form.reset({
+      title: '',
+      description: '',
+      type: 'job',
+      status: 'open',
+      deadline: '',
+      organization: '',
+      location: '',
+      applicationLink: '',
+      category: 'General',
+      department: 'General',
+      duration: 'N/A',
+      salary: 'Competitive'
+    });
     setIsDialogOpen(true);
   };
 
@@ -239,8 +222,8 @@ const AdminOpportunities = () => {
                               <SelectItem value="job">Job</SelectItem>
                               <SelectItem value="grant">Grant</SelectItem>
                               <SelectItem value="tender">Tender</SelectItem>
-                              <SelectItem value="internship">Internship</SelectItem>
-                              <SelectItem value="volunteer">Volunteer</SelectItem>
+                              <SelectItem value="consultancy">Consultancy</SelectItem>
+                              <SelectItem value="other">Other</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -262,7 +245,6 @@ const AdminOpportunities = () => {
                             <SelectContent>
                               <SelectItem value="open">Open</SelectItem>
                               <SelectItem value="closed">Closed</SelectItem>
-                              <SelectItem value="draft">Draft</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -314,12 +296,40 @@ const AdminOpportunities = () => {
                     />
                     <FormField
                       control={form.control}
-                      name="application_url"
+                      name="applicationLink"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Application URL</FormLabel>
                           <FormControl>
                             <Input placeholder="Application link or email" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="category"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Category</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g. Employment" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="department"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Department</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g. Legal" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -360,7 +370,7 @@ const AdminOpportunities = () => {
             <TableBody>
               {filteredOpportunities.length > 0 ? (
                 filteredOpportunities.map(opportunity => (
-                  <TableRow key={opportunity.id}>
+                  <TableRow key={opportunity._id}>
                     <TableCell>
                       <div>
                         <div className="font-medium">{opportunity.title}</div>
@@ -375,13 +385,12 @@ const AdminOpportunities = () => {
                       </span>
                     </TableCell>
                     <TableCell>
-                      <span className={`text-xs px-2 py-1 rounded ${
-                        opportunity.status === 'open' 
-                          ? 'bg-green-100 text-green-800' 
+                      <span className={`text-xs px-2 py-1 rounded ${opportunity.status === 'open'
+                          ? 'bg-green-100 text-green-800'
                           : opportunity.status === 'closed'
-                          ? 'bg-red-100 text-red-800'
-                          : 'bg-gray-100 text-gray-800'
-                      }`}>
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-gray-100 text-gray-800'
+                        }`}>
                         {opportunity.status}
                       </span>
                     </TableCell>
@@ -398,18 +407,18 @@ const AdminOpportunities = () => {
                     <TableCell>{opportunity.location || 'Not specified'}</TableCell>
                     <TableCell>
                       <div className="flex gap-2">
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => handleEdit(opportunity)}
                         >
                           <Edit size={14} className="mr-1" /> Edit
                         </Button>
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
+                        <Button
+                          variant="outline"
+                          size="sm"
                           className="text-red-500 border-red-200 hover:bg-red-50"
-                          onClick={() => handleDelete(opportunity.id)}
+                          onClick={() => handleDelete(opportunity._id)}
                         >
                           <Trash size={14} className="mr-1" /> Delete
                         </Button>

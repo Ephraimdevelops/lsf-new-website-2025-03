@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import { supabaseService } from '@/services/api/supabaseService';
-import { useToast } from './useToast';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import { Opportunity } from '@/types';
 
 interface UseOpportunitiesResult {
@@ -12,44 +11,21 @@ interface UseOpportunitiesResult {
 }
 
 export function useOpportunities(): UseOpportunitiesResult {
-  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
-  const [featuredOpportunities, setFeaturedOpportunities] = useState<Opportunity[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const { toast } = useToast();
+  const opportunitiesData = useQuery(api.opportunities.get);
 
-  const fetchOpportunities = async () => {
-    try {
-      setLoading(true);
-      const [allOpportunities, featured] = await Promise.all([
-        supabaseService.getAllOpportunities(1, 50), // Get first 50 opportunities
-        supabaseService.getFeaturedOpportunities(3)
-      ]);
-      
-      setOpportunities(allOpportunities.data || []);
-      setFeaturedOpportunities(featured);
-      setError(null);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch opportunities');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch opportunities',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Map Convex _id to id
+  const opportunities = (opportunitiesData || []).map((item: any) => ({ ...item, id: item._id }));
 
-  useEffect(() => {
-    fetchOpportunities();
-  }, []);
+  // Filter featured in memory for now (or add backend query)
+  const featuredOpportunities = opportunities.filter((item: any) => item.featured === true).slice(0, 3);
+
+  const loading = opportunitiesData === undefined;
 
   return {
     opportunities,
     featuredOpportunities,
     loading,
-    error,
-    refetch: fetchOpportunities,
+    error: null,
+    refetch: async () => { },
   };
 }

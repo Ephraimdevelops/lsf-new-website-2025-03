@@ -1,8 +1,10 @@
+
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star, MapPin, User } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
-import { supabaseService } from '@/services/api/supabaseService';
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 import { useIntersectionObserverCallback } from '@/hooks/useIntersectionObserver';
 
 interface Testimonial {
@@ -18,9 +20,9 @@ interface Testimonial {
 }
 
 const ModernTestimonialsSection = () => {
+  const convexStories = useQuery(api.stories.get);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 }) as React.RefObject<HTMLElement>;
 
@@ -37,105 +39,36 @@ const ModernTestimonialsSection = () => {
       category: 'Land Rights',
       featured: true
     },
-    {
-      id: '2',
-      name: 'Juma Kimaro',
-      role: 'Farmer',
-      location: 'Arusha',
-      content: 'As someone living in a remote village, I never thought I could access legal help. This app changed everything. Now I can get legal advice right from my phone, even without internet.',
-      imageUrl: '/lovable-uploads/testimonial-2.jpg',
-      rating: 5,
-      category: 'Rural Access',
-      featured: true
-    },
-    {
-      id: '3',
-      name: 'Grace Mwamba',
-      role: 'Small Business Owner',
-      location: 'Mwanza',
-      content: 'The document templates saved me thousands of shillings. I was able to create proper contracts for my business without hiring expensive lawyers. The app is a game-changer!',
-      imageUrl: '/lovable-uploads/testimonial-3.jpg',
-      rating: 5,
-      category: 'Business Law',
-      featured: true
-    },
-    {
-      id: '4',
-      name: 'Ahmed Hassan',
-      role: 'Student',
-      location: 'Zanzibar',
-      content: 'The educational videos helped me understand my rights as a tenant. When my landlord tried to increase rent unfairly, I knew exactly what to do. Knowledge is power!',
-      imageUrl: '/lovable-uploads/testimonial-4.jpg',
-      rating: 5,
-      category: 'Tenant Rights',
-      featured: true
-    },
-    {
-      id: '5',
-      name: 'Mary Kisanga',
-      role: 'Community Leader',
-      location: 'Dodoma',
-      content: 'Our entire village now uses Haki Yangu. We\'ve resolved so many disputes that used to divide our community. It\'s bringing peace and understanding to our people.',
-      imageUrl: '/lovable-uploads/testimonial-5.jpg',
-      rating: 5,
-      category: 'Community Harmony',
-      featured: true
-    },
-    {
-      id: '6',
-      name: 'Peter Mwangi',
-      role: 'Driver',
-      location: 'Kilimanjaro',
-      content: 'When I had an accident and the insurance company was giving me trouble, Haki Yangu connected me with a legal expert who helped me get fair compensation.',
-      imageUrl: '/lovable-uploads/testimonial-6.jpg',
-      rating: 5,
-      category: 'Insurance Justice',
-      featured: true
-    }
+    // ... (keep other fallbacks if needed, or just rely on Convex)
   ];
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        setIsLoading(true);
-        
-        // Always start with fallback data immediately
-        setTestimonials(fallbackTestimonials);
-        setIsLoading(false);
-        
-        // Try to fetch real testimonials from Supabase in background (non-blocking)
-        setTimeout(async () => {
-          try {
-            const realTestimonials = await supabaseService.getTestimonials();
-            if (realTestimonials && realTestimonials.length > 0) {
-              // Transform real data to match our interface
-              const transformedTestimonials: Testimonial[] = realTestimonials.map((testimonial: any) => ({
-                id: testimonial.id || '',
-                name: testimonial.name || 'Anonymous',
-                role: testimonial.role || 'Community Member',
-                location: testimonial.location || 'Tanzania',
-                content: testimonial.content || testimonial.story || '',
-                imageUrl: testimonial.image || testimonial.photo || '/lovable-uploads/placeholder.svg',
-                rating: testimonial.rating || 5,
-                category: testimonial.category || 'Legal Support',
-                featured: testimonial.featured || true
-              }));
-              setTestimonials(transformedTestimonials);
-            }
-          } catch (error) {
-            console.log('Using fallback testimonials data');
-          }
-        }, 100);
-        
-      } catch (error) {
-        console.error('Error fetching testimonials:', error);
-        setTestimonials(fallbackTestimonials);
-        setIsLoading(false);
-      }
-    };
+    if (convexStories) {
+      const transformedStories: Testimonial[] = convexStories.map(story => ({
+        id: story._id,
+        name: story.personName,
+        role: story.title, // Using title as role/headline for now
+        location: story.location,
+        content: story.story,
+        imageUrl: story.imageUrl,
+        rating: 5, // Default
+        category: 'Success Story', // Default
+        featured: story.featured || false
+      }));
 
-    fetchTestimonials();
-  }, []);
+      if (transformedStories.length > 0) {
+        setTestimonials(transformedStories);
+      } else {
+        setTestimonials(fallbackTestimonials);
+      }
+    } else {
+      // While loading or if undefined, we could show fallback or loading state
+      // For now, let's initialize with fallback to avoid empty flash if desired, 
+      // but typically we wait for data. 
+      // Given the existing code structure, setting fallback initially is fine.
+      setTestimonials(fallbackTestimonials);
+    }
+  }, [convexStories]);
 
   // Auto-slide functionality
   useEffect(() => {
@@ -163,7 +96,7 @@ const ModernTestimonialsSection = () => {
   }
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="py-16 md:py-24 bg-gradient-to-br from-neutral-50 via-white to-primary/5 relative overflow-hidden"
     >
@@ -183,9 +116,9 @@ const ModernTestimonialsSection = () => {
                 Success Stories
               </Typography>
             </div>
-            
-            <Typography 
-              variant="h2" 
+
+            <Typography
+              variant="h2"
               className="mb-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
             >
               Real Stories from
@@ -193,9 +126,9 @@ const ModernTestimonialsSection = () => {
                 Real People
               </span>
             </Typography>
-            
-            <Typography 
-              variant="body" 
+
+            <Typography
+              variant="body"
               className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
             >
               Hear from Tanzanians whose lives have been transformed through accessible legal support.
@@ -204,13 +137,13 @@ const ModernTestimonialsSection = () => {
 
           {/* Main Content - Two Column Layout */}
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            
+
             {/* Left Column - Testimonial Card */}
             <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
               <div className="bg-white rounded-3xl shadow-2xl border border-neutral-100 p-8 lg:p-12 relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-secondary-orange/10 rounded-full blur-2xl"></div>
-                
+
                 {/* Quote Icon */}
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary-orange rounded-2xl flex items-center justify-center shadow-lg mb-8 relative z-10">
                   <Quote className="h-8 w-8 text-white" />
@@ -276,15 +209,15 @@ const ModernTestimonialsSection = () => {
                       (e.target as HTMLImageElement).src = '/lovable-uploads/placeholder.svg';
                     }}
                   />
-                  
+
                   {/* Overlay Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                  
+
                   {/* Floating Quote Icon */}
                   <div className="absolute top-8 right-8 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
                     <Quote className="h-8 w-8 text-primary" />
                   </div>
-                  
+
                   {/* Bottom Quote */}
                   <div className="absolute bottom-8 left-8 right-8">
                     <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
@@ -294,7 +227,7 @@ const ModernTestimonialsSection = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Decorative Elements */}
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-secondary-teal/20 rounded-full blur-xl"></div>
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-secondary-orange/20 rounded-full blur-xl"></div>
@@ -327,11 +260,10 @@ const ModernTestimonialsSection = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentIndex 
-                        ? 'bg-primary scale-125' 
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
+                        ? 'bg-primary scale-125'
                         : 'bg-neutral-300 hover:bg-neutral-400'
-                    }`}
+                      }`}
                   />
                 ))}
               </div>

@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import { supabaseService } from '@/services/api/supabaseService';
-import { useToast } from './useToast';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import { Publication } from '@/types';
 
 interface UsePublicationsResult {
@@ -13,54 +12,30 @@ interface UsePublicationsResult {
 }
 
 export function usePublications(): UsePublicationsResult {
-  const [publications, setPublications] = useState<Publication[]>([]);
-  const [featuredPublications, setFeaturedPublications] = useState<Publication[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const { toast } = useToast();
+  const publicationsData = useQuery(api.publications.get);
+  const featuredPublicationsData = useQuery(api.publications.getFeatured);
 
-  const fetchPublications = async () => {
-    try {
-      setLoading(true);
-      const [allPublications, featured] = await Promise.all([
-        supabaseService.getAllPublications(1, 50), // Get first 50 publications
-        supabaseService.getFeaturedPublications(3)
-      ]);
-      
-      setPublications(allPublications.data || []);
-      setFeaturedPublications(featured);
-      setError(null);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch publications');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch publications',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Map Convex _id to id
+  const publications = (publicationsData || []).map((item: any) => ({ ...item, id: item._id }));
+  const featuredPublications = (featuredPublicationsData || []).map((item: any) => ({ ...item, id: item._id }));
+
+  const loading = publicationsData === undefined || featuredPublicationsData === undefined;
 
   const searchPublications = async (query: string): Promise<Publication[]> => {
-    try {
-      return await supabaseService.searchPublications(query);
-    } catch (err) {
-      console.error('Error searching publications:', err);
-      return [];
-    }
+    if (!publications) return [];
+    const lowerQuery = query.toLowerCase();
+    return publications.filter(item =>
+      item.title.toLowerCase().includes(lowerQuery) ||
+      (item.description && item.description.toLowerCase().includes(lowerQuery))
+    );
   };
-
-  useEffect(() => {
-    fetchPublications();
-  }, []);
 
   return {
     publications,
     featuredPublications,
     loading,
-    error,
-    refetch: fetchPublications,
+    error: null,
+    refetch: async () => { },
     searchPublications,
   };
 }

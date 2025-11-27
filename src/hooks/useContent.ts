@@ -1,192 +1,260 @@
-import { useState, useEffect, useCallback } from 'react';
-import contentService, { 
-  HeroSlide,
-  Publication,
-  NewsItem,
-  Opportunity,
-  SuccessStory
-} from '@/services/contentService';
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { Id } from "../../convex/_generated/dataModel";
 import { useToast } from '@/hooks/use-toast';
 
 // Hook for Success Stories
-export const useStories = () => {
-  const [stories, setStories] = useState<SuccessStory[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export const useSuccessStories = () => {
+  const storiesData = useQuery(api.stories.get);
+  const createMutation = useMutation(api.stories.create);
+  const updateMutation = useMutation(api.stories.update);
+  const deleteMutation = useMutation(api.stories.remove);
   const { toast } = useToast();
 
-  const fetchStories = useCallback(async () => {
-    setLoading(true);
+  const stories = (storiesData || []).map((item: any) => ({ ...item, id: item._id }));
+  const loading = storiesData === undefined;
+
+  const createStory = async (story: any) => {
     try {
-      const data = await contentService.getStories();
-      setStories(data);
-      setError(null);
+      await createMutation(story);
+      toast({ title: 'Success', description: 'Story created successfully' });
     } catch (err) {
-      setError('Failed to fetch success stories');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch success stories',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
+      toast({ title: 'Error', description: 'Failed to create story', variant: 'destructive' });
+      throw err;
     }
-  }, [toast]);
+  };
 
-  useEffect(() => {
-    void fetchStories();
-  }, [fetchStories]);
+  const updateStory = async (story: any) => {
+    try {
+      const { id, ...rest } = story;
+      await updateMutation({ id: id as Id<"success_stories">, ...rest });
+      toast({ title: 'Success', description: 'Story updated successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to update story', variant: 'destructive' });
+      throw err;
+    }
+  };
 
-  return { stories, loading, error, refetch: fetchStories };
+  const deleteStory = async (id: string) => {
+    try {
+      await deleteMutation({ id: id as Id<"success_stories"> });
+      toast({ title: 'Success', description: 'Story deleted successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to delete story', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  return { stories, loading, error: null, createStory, updateStory, deleteStory, refetch: async () => { } };
 };
 
 // Hook for Hero Slides
 export const useHeroSlides = () => {
-  const [slides, setSlides] = useState<HeroSlide[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const slidesData = useQuery(api.hero.get);
+  const createMutation = useMutation(api.hero.create);
+  const updateMutation = useMutation(api.hero.update);
+  const deleteMutation = useMutation(api.hero.remove);
   const { toast } = useToast();
 
-  const fetchSlides = useCallback(async () => {
-    setLoading(true);
-    try {
-      const data = await contentService.getHeroSlides();
-      setSlides(data);
-      setError(null);
-    } catch (err) {
-      setError('Failed to fetch hero slides');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch hero slides',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
-  }, [toast]);
+  const slides = (slidesData || []).map((item: any) => ({ ...item, id: item._id }));
+  const loading = slidesData === undefined;
 
-  useEffect(() => {
-    void fetchSlides();
-  }, [fetchSlides]);
-
-  const updateSlide = async (slide: HeroSlide) => {
+  const createSlide = async (slide: any) => {
     try {
-      const updatedSlide = await contentService.updateHeroSlide(slide);
-      setSlides(current => 
-        current.map(s => s.id === updatedSlide.id ? updatedSlide : s)
-      );
-      toast({
-        title: 'Success',
-        description: 'Hero slide updated successfully',
-      });
+      await createMutation(slide);
+      toast({ title: 'Success', description: 'Hero slide created successfully' });
     } catch (err) {
-      toast({
-        title: 'Error',
-        description: 'Failed to update hero slide',
-        variant: 'destructive',
-      });
+      toast({ title: 'Error', description: 'Failed to create hero slide', variant: 'destructive' });
+      throw err;
     }
   };
 
-  return { slides, loading, error, updateSlide, refetch: fetchSlides };
+  const updateSlide = async (slide: any) => {
+    try {
+      const { id, ...rest } = slide;
+      if (id) {
+        await updateMutation({ id: id as Id<"hero_slides">, ...rest });
+      } else {
+        await createMutation(rest);
+      }
+      toast({ title: 'Success', description: 'Hero slide saved successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to save hero slide', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  const deleteSlide = async (id: string) => {
+    try {
+      await deleteMutation({ id: id as Id<"hero_slides"> });
+      toast({ title: 'Success', description: 'Hero slide deleted successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to delete hero slide', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  return { slides, loading, error: null, createSlide, updateSlide, deleteSlide, refetch: async () => { } };
 };
 
 // Hook for Publications
 export const usePublications = (category?: string) => {
-  const [publications, setPublications] = useState<Publication[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const publicationsData = useQuery(api.publications.get);
+  const createMutation = useMutation(api.publications.create);
+  const updateMutation = useMutation(api.publications.update);
+  const deleteMutation = useMutation(api.publications.remove);
   const { toast } = useToast();
 
-  const fetchPublications = useCallback(async () => {
-    setLoading(true);
+  let publications = (publicationsData || []).map((item: any) => ({ ...item, id: item._id }));
+
+  if (category && category !== 'all') {
+    publications = publications.filter((p: any) => p.category?.toLowerCase() === category.toLowerCase());
+  }
+
+  const loading = publicationsData === undefined;
+
+  const createPublication = async (publication: any) => {
     try {
-      const data = await contentService.getPublications(category);
-      setPublications(data);
-      setError(null);
+      await createMutation(publication);
+      toast({ title: 'Success', description: 'Publication created successfully' });
     } catch (err) {
-      setError('Failed to fetch publications');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch publications',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
+      toast({ title: 'Error', description: 'Failed to create publication', variant: 'destructive' });
+      throw err;
     }
-  }, [category, toast]);
+  };
 
-  useEffect(() => {
-    void fetchPublications();
-  }, [fetchPublications]);
+  const updatePublication = async (publication: any) => {
+    try {
+      const { id, ...rest } = publication;
+      if (id) {
+        await updateMutation({ id: id as Id<"publications">, ...rest });
+      } else {
+        await createMutation(rest);
+      }
+      toast({ title: 'Success', description: 'Publication saved successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to save publication', variant: 'destructive' });
+      throw err;
+    }
+  };
 
-  return { publications, loading, error, refetch: fetchPublications };
+  const deletePublication = async (id: string) => {
+    try {
+      await deleteMutation({ id: id as Id<"publications"> });
+      toast({ title: 'Success', description: 'Publication deleted successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to delete publication', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  return { publications, loading, error: null, createPublication, updatePublication, deletePublication, refetch: async () => { } };
 };
 
 // Hook for News
 export const useNews = (category?: string) => {
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const newsData = useQuery(api.news.get);
+  const createMutation = useMutation(api.news.create);
+  const updateMutation = useMutation(api.news.update);
+  const deleteMutation = useMutation(api.news.remove);
   const { toast } = useToast();
 
-  const fetchNews = useCallback(async () => {
-    setLoading(true);
+  let news = (newsData || []).map((item: any) => ({ ...item, id: item._id }));
+
+  if (category && category !== 'all') {
+    news = news.filter((n: any) => n.category?.toLowerCase() === category.toLowerCase());
+  }
+
+  const loading = newsData === undefined;
+
+  const createNewsItem = async (newsItem: any) => {
     try {
-      const data = await contentService.getNews(category);
-      setNews(data);
-      setError(null);
+      await createMutation(newsItem);
+      toast({ title: 'Success', description: 'News item created successfully' });
     } catch (err) {
-      setError('Failed to fetch news');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch news',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
+      toast({ title: 'Error', description: 'Failed to create news item', variant: 'destructive' });
+      throw err;
     }
-  }, [category, toast]);
+  };
 
-  useEffect(() => {
-    void fetchNews();
-  }, [fetchNews]);
+  const updateNewsItem = async (newsItem: any) => {
+    try {
+      const { id, ...rest } = newsItem;
+      if (id) {
+        await updateMutation({ id: id as Id<"news">, ...rest });
+      } else {
+        await createMutation(rest);
+      }
+      toast({ title: 'Success', description: 'News item saved successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to save news item', variant: 'destructive' });
+      throw err;
+    }
+  };
 
-  return { news, loading, error, refetch: fetchNews };
+  const deleteNewsItem = async (id: string) => {
+    try {
+      await deleteMutation({ id: id as Id<"news"> });
+      toast({ title: 'Success', description: 'News item deleted successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to delete news item', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  return { news, loading, error: null, createNewsItem, updateNewsItem, deleteNewsItem, refetch: async () => { } };
 };
 
 // Hook for Opportunities
 export const useOpportunities = (type?: string) => {
-  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const opportunitiesData = useQuery(api.opportunities.get);
+  const createMutation = useMutation(api.opportunities.create);
+  const updateMutation = useMutation(api.opportunities.update);
+  const deleteMutation = useMutation(api.opportunities.remove);
   const { toast } = useToast();
 
-  const fetchOpportunities = useCallback(async () => {
-    setLoading(true);
+  let opportunities = (opportunitiesData || []).map((item: any) => ({ ...item, id: item._id }));
+
+  if (type && type !== 'all') {
+    opportunities = opportunities.filter((o: any) => o.type?.toLowerCase() === type.toLowerCase());
+  }
+
+  const loading = opportunitiesData === undefined;
+
+  const createOpportunity = async (opportunity: any) => {
     try {
-      const data = await contentService.getOpportunities(type);
-      setOpportunities(data);
-      setError(null);
+      await createMutation(opportunity);
+      toast({ title: 'Success', description: 'Opportunity created successfully' });
     } catch (err) {
-      setError('Failed to fetch opportunities');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch opportunities',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
+      toast({ title: 'Error', description: 'Failed to create opportunity', variant: 'destructive' });
+      throw err;
     }
-  }, [type, toast]);
+  };
 
-  useEffect(() => {
-    void fetchOpportunities();
-  }, [fetchOpportunities]);
+  const updateOpportunity = async (opportunity: any) => {
+    try {
+      const { id, ...rest } = opportunity;
+      if (id) {
+        await updateMutation({ id: id as Id<"opportunities">, ...rest });
+      } else {
+        await createMutation(rest);
+      }
+      toast({ title: 'Success', description: 'Opportunity saved successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to save opportunity', variant: 'destructive' });
+      throw err;
+    }
+  };
 
-  return { opportunities, loading, error, refetch: fetchOpportunities };
+  const deleteOpportunity = async (id: string) => {
+    try {
+      await deleteMutation({ id: id as Id<"opportunities"> });
+      toast({ title: 'Success', description: 'Opportunity deleted successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to delete opportunity', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  return { opportunities, loading, error: null, createOpportunity, updateOpportunity, deleteOpportunity, refetch: async () => { } };
 };
-
-
-
-

@@ -6,4 +6,10 @@ import '@fontsource/ubuntu/700.css'
 import App from './App.tsx'
 import './index.css'
 
-createRoot(document.getElementById("root")!).render(<App />);
+import { ConvexClientProvider } from './components/ConvexClientProvider';
+
+createRoot(document.getElementById("root")!).render(
+    <ConvexClientProvider>
+        <App />
+    </ConvexClientProvider>
+);

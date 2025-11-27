@@ -6,10 +6,12 @@ import { Input } from '@/components/ui/input';
 import { Plus, Search, Edit, Trash } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import NewsForm from './NewsForm';
-import { supabase } from '@/lib/supabase';
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
 
 interface NewsItem {
-  id: string;
+  _id: Id<"news">;
   title: string;
   date: string;
   excerpt?: string;
@@ -21,23 +23,33 @@ interface NewsItem {
 const AdminNews = () => {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
-  
-  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
   const [openForm, setOpenForm] = useState(false);
 
-  const filteredNews = newsItems.filter(item => 
+  const newsItems = useQuery(api.news.get) || [];
+  const deleteNews = useMutation(api.news.remove);
+
+  const filteredNews = newsItems.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleDeleteNews = (id: string) => {
-    setNewsItems(newsItems.filter(item => item.id !== id));
-    toast({
-      title: "News Deleted",
-      description: "The news item has been deleted successfully.",
-    });
+  const handleDeleteNews = async (id: Id<"news">) => {
+    try {
+      await deleteNews({ id });
+      toast({
+        title: "News Deleted",
+        description: "The news item has been deleted successfully.",
+      });
+    } catch (err) {
+      console.error("Failed to delete news:", err);
+      toast({
+        title: "Error",
+        description: "Failed to delete news item.",
+        variant: "destructive"
+      });
+    }
   };
 
-  const handleEditNews = (id: string) => {
+  const handleEditNews = (id: Id<"news">) => {
     // In a real application, this would open an edit form
     toast({
       title: "Edit News",
@@ -74,24 +86,24 @@ const AdminNews = () => {
           <div className="space-y-4">
             {filteredNews.length > 0 ? (
               filteredNews.map(item => (
-                <div key={item.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                <div key={item._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
                   <div>
                     <h3 className="font-medium font-calibri">{item.title}</h3>
                     <p className="text-sm text-gray-500 font-calibri">Published: {new Date(item.date).toLocaleDateString()}</p>
                   </div>
                   <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
-                      onClick={() => handleEditNews(item.id)}
+                      onClick={() => handleEditNews(item._id)}
                     >
                       <Edit size={14} className="mr-1" /> Edit
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
+                    <Button
+                      variant="outline"
+                      size="sm"
                       className="text-red-500 border-red-200 hover:bg-red-50"
-                      onClick={() => handleDeleteNews(item.id)}
+                      onClick={() => handleDeleteNews(item._id)}
                     >
                       <Trash size={14} className="mr-1" /> Delete
                     </Button>
@@ -109,7 +121,7 @@ const AdminNews = () => {
       <NewsForm
         open={openForm}
         onClose={() => setOpenForm(false)}
-        onCreated={(news) => setNewsItems((items) => [news, ...items])}
+        onCreated={() => { }} // No need to manually update state with Convex
       />
     </div>
   );

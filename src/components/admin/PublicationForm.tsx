@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -30,8 +29,11 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { X, Upload, FileText } from 'lucide-react';
+import { X, Upload, FileText, Image as ImageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
 
 const publicationSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -39,6 +41,7 @@ const publicationSchema = z.object({
   type: z.string().min(1, "Type is required"),
   date: z.string().min(1, "Date is required"),
   file: z.instanceof(File).optional(),
+  coverImage: z.instanceof(File).optional(),
   tags: z.array(z.string()).optional(),
   author: z.string().optional(),
   language: z.string().default("English"),
@@ -48,23 +51,22 @@ const publicationSchema = z.object({
 type PublicationFormData = z.infer<typeof publicationSchema>;
 
 interface Publication {
-  id: string;
+  _id: Id<"publications">;
   title: string;
   description: string;
   type: string;
-  date: string;
-  downloadUrl: string;
-  fileSize?: string;
-  tags?: string[];
-  author?: string;
-  language?: string;
-  category?: string;
+  publishedDate: string;
+  pdfUrl: string;
+  coverImageUrl: string;
+  category: string;
+  authors?: string[];
+  featured?: boolean;
 }
 
 interface PublicationFormProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (data: Publication) => void;
+  onSubmit: (data: any) => void;
   publication?: Publication;
   mode: 'create' | 'edit';
 }
@@ -95,9 +97,15 @@ const categories = [
 
 const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: PublicationFormProps) => {
   const { toast } = useToast();
-  const [tags, setTags] = useState<string[]>(publication?.tags || []);
+  const [tags, setTags] = useState<string[]>(publication?.authors || []); // Using authors as tags for now based on schema mapping
   const [newTag, setNewTag] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedCoverImage, setSelectedCoverImage] = useState<File | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const generateUploadUrl = useMutation(api.media.generateUploadUrl);
+  const createPublication = useMutation(api.publications.create);
+  const updatePublication = useMutation(api.publications.update);
 
   const form = useForm<PublicationFormData>({
     resolver: zodResolver(publicationSchema),
@@ -105,47 +113,66 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
       title: publication?.title || '',
       description: publication?.description || '',
       type: publication?.type || '',
-      date: publication?.date || new Date().toISOString().split('T')[0],
-      author: publication?.author || '',
-      language: publication?.language || 'English',
+      date: publication?.publishedDate || new Date().toISOString().split('T')[0],
+      author: publication?.authors?.[0] || '',
+      language: 'English',
       category: publication?.category || '',
-      tags: publication?.tags || [],
+      tags: publication?.authors || [],
     },
   });
 
+  const handleUpload = async (file: File) => {
+    const postUrl = await generateUploadUrl();
+    const result = await fetch(postUrl, {
+      method: "POST",
+      headers: { "Content-Type": file.type },
+      body: file,
+    });
+    const { storageId } = await result.json();
+    return storageId;
+  };
+
   const handleSubmit = async (data: PublicationFormData) => {
     try {
-      let publicUrl = publication?.downloadUrl || '';
-      let fileSizeLabel = publication?.fileSize;
+      setSubmitting(true);
+      let pdfUrl = publication?.pdfUrl || '';
+      let coverImageUrl = publication?.coverImageUrl || '';
 
-      // Upload file to Supabase Storage if provided
       if (selectedFile) {
-        const objectName = `publications/${Date.now()}-${selectedFile.name.replace(/\s+/g, '-')}`;
-        const { error: uploadError } = await supabase.storage.from('media').upload(objectName, selectedFile, {
-          cacheControl: '3600',
-          upsert: false,
-        });
-        if (uploadError) throw uploadError;
-        const { data: pub } = supabase.storage.from('media').getPublicUrl(objectName);
-        publicUrl = pub?.publicUrl || '';
-        fileSizeLabel = `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`;
+        pdfUrl = await handleUpload(selectedFile);
       }
 
-      const newPublication: Publication = {
-        id: publication?.id || `pub-${Date.now()}`,
+      if (selectedCoverImage) {
+        coverImageUrl = await handleUpload(selectedCoverImage);
+      }
+
+      // If creating, we need at least a placeholder if no image uploaded
+      if (!coverImageUrl && mode === 'create') {
+        // coverImageUrl = 'placeholder_id'; // Or handle validation
+      }
+
+      const publicationData = {
         title: data.title,
         description: data.description,
         type: data.type,
-        date: data.date,
-        downloadUrl: publicUrl,
-        fileSize: fileSizeLabel,
-        tags,
-        author: data.author,
-        language: data.language,
-        category: data.category,
+        publishedDate: data.date,
+        pdfUrl,
+        coverImageUrl,
+        category: data.category || 'General',
+        authors: tags.length > 0 ? tags : (data.author ? [data.author] : []),
+        featured: false,
       };
 
-      onSubmit(newPublication);
+      if (mode === 'create') {
+        await createPublication(publicationData);
+      } else if (publication) {
+        await updatePublication({
+          id: publication._id,
+          ...publicationData,
+        });
+      }
+
+      onSubmit({});
       toast({
         title: mode === 'create' ? "Publication Created" : "Publication Updated",
         description: `The publication has been ${mode === 'create' ? 'created' : 'updated'} successfully.`,
@@ -154,6 +181,8 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
     } catch (err) {
       console.error('Publication submit error:', err);
       toast({ title: 'Failed to save publication', variant: 'destructive' });
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -175,6 +204,13 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
     }
   };
 
+  const handleCoverImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedCoverImage(file);
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -183,8 +219,8 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
             {mode === 'create' ? 'Add New Publication' : 'Edit Publication'}
           </DialogTitle>
           <DialogDescription className="font-calibri">
-            {mode === 'create' 
-              ? 'Fill in the details to create a new publication.' 
+            {mode === 'create'
+              ? 'Fill in the details to create a new publication.'
               : 'Update the publication details below.'
             }
           </DialogDescription>
@@ -276,7 +312,7 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
                 name="author"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-calibri font-semibold">Author</FormLabel>
+                    <FormLabel className="font-calibri font-semibold">Author (Primary)</FormLabel>
                     <FormControl>
                       <Input placeholder="Enter author name" {...field} className="font-calibri" />
                     </FormControl>
@@ -293,9 +329,9 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
                 <FormItem>
                   <FormLabel className="font-calibri font-semibold">Description</FormLabel>
                   <FormControl>
-                    <Textarea 
-                      placeholder="Enter publication description" 
-                      {...field} 
+                    <Textarea
+                      placeholder="Enter publication description"
+                      {...field}
                       className="font-calibri min-h-[100px]"
                     />
                   </FormControl>
@@ -304,32 +340,53 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
               )}
             />
 
-            {/* File Upload */}
-            <div className="space-y-2">
-              <label className="text-sm font-semibold font-calibri">Publication File</label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                <input
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  onChange={handleFileChange}
-                  className="hidden"
-                  id="file-upload"
-                />
-                <label htmlFor="file-upload" className="cursor-pointer">
-                  <Upload className="h-8 w-8 mx-auto mb-2 text-gray-400" />
-                  <p className="text-sm text-gray-600 font-calibri">
-                    {selectedFile ? selectedFile.name : 'Click to upload PDF or DOC file'}
-                  </p>
-                </label>
+            {/* File Uploads */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold font-calibri">Publication File (PDF)</label>
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                  <input
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    id="file-upload"
+                  />
+                  <label htmlFor="file-upload" className="cursor-pointer">
+                    <Upload className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                    <p className="text-sm text-gray-600 font-calibri">
+                      {selectedFile ? selectedFile.name : 'Click to upload PDF'}
+                    </p>
+                  </label>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-semibold font-calibri">Cover Image</label>
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleCoverImageChange}
+                    className="hidden"
+                    id="cover-upload"
+                  />
+                  <label htmlFor="cover-upload" className="cursor-pointer">
+                    <ImageIcon className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                    <p className="text-sm text-gray-600 font-calibri">
+                      {selectedCoverImage ? selectedCoverImage.name : 'Click to upload Cover'}
+                    </p>
+                  </label>
+                </div>
               </div>
             </div>
 
-            {/* Tags */}
+            {/* Tags/Authors */}
             <div className="space-y-3">
-              <label className="text-sm font-semibold font-calibri">Tags</label>
+              <label className="text-sm font-semibold font-calibri">Additional Authors / Tags</label>
               <div className="flex gap-2">
                 <Input
-                  placeholder="Add a tag"
+                  placeholder="Add author/tag"
                   value={newTag}
                   onChange={(e) => setNewTag(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
@@ -356,8 +413,8 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
               <Button type="button" variant="outline" onClick={onClose} className="font-calibri">
                 Cancel
               </Button>
-              <Button type="submit" className="font-calibri">
-                {mode === 'create' ? 'Create Publication' : 'Update Publication'}
+              <Button type="submit" disabled={submitting} className="font-calibri">
+                {submitting ? 'Saving...' : (mode === 'create' ? 'Create Publication' : 'Update Publication')}
               </Button>
             </div>
           </form>

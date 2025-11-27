@@ -60,9 +60,7 @@ import StaffDashboard from "./pages/StaffDashboard";
 import ParalegalDashboard from "./pages/ParalegalDashboard";
 import StakeholderDashboard from "./pages/StakeholderDashboard";
 import Signup from "./pages/Signup";
-import { RequireAuth } from "./utils/RequireAuth";
-import { isAuthenticated, getUserRole, logout } from "./utils/authUtils";
-import AuthProvider from '@/providers/AuthProvider';
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 // axios base URL and auth headers are configured centrally in src/lib/axios.ts
 import LSFChatbotFullPage from './components/shared/chatbot/LSFChatbotFullPage';
@@ -74,35 +72,34 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <ThemeProvider>
-          <TooltipProvider>
-            <Router>
-              <div className="min-h-screen bg-white">
-                <ErrorBoundary>
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/what-we-do" element={<WhatWeDo />} />
-                    <Route path="/strategic-focuses" element={<StrategicFocuses />} />
-                    <Route path="/approaches" element={<Approaches />} />
-                    <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
-                    <Route path="/what-we-do/direct-implementation" element={<DirectImplementation />} />
-                    <Route path="/what-we-do/advocacy-policy" element={<AdvocacyPolicy />} />
-                    <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
-                    <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
-                    <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
-                    <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
-                    <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
-                    <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
-                    <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
-                    <Route path="/focus-areas/climate-justice" element={<ClimateJustice />} />
-                    <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
-                    <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
-                    <Route path="/programs" element={<Programs />} />
-                    <Route path="/programs/:id" element={<ProgramDetail />} />
-        <Route path="/legal-help" element={<LegalHelp />} />
-        <Route path="/impact" element={<Impact />} />
+      <ThemeProvider>
+        <TooltipProvider>
+          <Router>
+            <div className="min-h-screen bg-white">
+              <ErrorBoundary>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/what-we-do" element={<WhatWeDo />} />
+                  <Route path="/strategic-focuses" element={<StrategicFocuses />} />
+                  <Route path="/approaches" element={<Approaches />} />
+                  <Route path="/what-we-do/grant-making" element={<GrantMaking />} />
+                  <Route path="/what-we-do/direct-implementation" element={<DirectImplementation />} />
+                  <Route path="/what-we-do/advocacy-policy" element={<AdvocacyPolicy />} />
+                  <Route path="/what-we-do/capacity-building" element={<CapacityBuilding />} />
+                  <Route path="/what-we-do/learning-research" element={<LearningResearch />} />
+                  <Route path="/what-we-do/partnerships-networking" element={<PartnershipsNetworking />} />
+                  <Route path="/focus-areas/accessible-legal-aid" element={<AccessibleLegalAid />} />
+                  <Route path="/focus-areas/empowered-communities" element={<EmpoweredCommunities />} />
+                  <Route path="/focus-areas/conducive-environment" element={<ConduciveEnvironment />} />
+                  <Route path="/focus-areas/institutional-development" element={<InstitutionalDevelopment />} />
+                  <Route path="/focus-areas/climate-justice" element={<ClimateJustice />} />
+                  <Route path="/focus-areas/digital-transformation" element={<DigitalTransformation />} />
+                  <Route path="/focus-areas/:slug" element={<FocusAreaDetail />} />
+                  <Route path="/programs" element={<Programs />} />
+                  <Route path="/programs/:id" element={<ProgramDetail />} />
+                  <Route path="/legal-help" element={<LegalHelp />} />
+                  <Route path="/impact" element={<Impact />} />
                   <Route path="/heroes" element={<Heroes />} />
                   <Route path="/heroes/:id" element={<HeroDetail />} />
                   <Route path="/success-stories" element={<SuccessStories />} />
@@ -122,24 +119,24 @@ function App() {
                   <Route path="/opportunities/:id" element={<OpportunityDetail />} />
                   <Route path="/donate" element={<Donate />} />
                   <Route path="/admin/*" element={
-                    <RequireAuth allowedRoles={["admin"]}>
+                    <ProtectedRoute allowedRoles={["admin"]}>
                       <Admin />
-                    </RequireAuth>
+                    </ProtectedRoute>
                   } />
                   <Route path="/dashboard/staff" element={
-                    <RequireAuth allowedRoles={["staff"]}>
+                    <ProtectedRoute allowedRoles={["staff"]}>
                       <StaffDashboard />
-                    </RequireAuth>
+                    </ProtectedRoute>
                   } />
                   <Route path="/dashboard/paralegal" element={
-                    <RequireAuth allowedRoles={["paralegal"]}>
+                    <ProtectedRoute allowedRoles={["paralegal"]}>
                       <ParalegalDashboard />
-                    </RequireAuth>
+                    </ProtectedRoute>
                   } />
                   <Route path="/dashboard/stakeholder" element={
-                    <RequireAuth allowedRoles={["stakeholder"]}>
+                    <ProtectedRoute allowedRoles={["stakeholder"]}>
                       <StakeholderDashboard />
-                    </RequireAuth>
+                    </ProtectedRoute>
                   } />
                   <Route path="/bookmarks" element={<Bookmarks />} />
                   <Route path="/whistleblower" element={<Whistleblower />} />
@@ -151,8 +148,8 @@ function App() {
                   <Route path="/cookies" element={<Cookies />} />
                   <Route path="/accessibility" element={<Accessibility />} />
                   <Route path="/signup" element={<Signup />} />
-                 <Route path="/login" element={<Login />} />
-                 <Route path="/lsfchatbot" element={<LSFChatbotFullPage env="production" />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/lsfchatbot" element={<LSFChatbotFullPage />} />
                   {/* Catch all route for 404 pages */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
@@ -163,7 +160,6 @@ function App() {
           <Sonner />
         </TooltipProvider>
       </ThemeProvider>
-      </AuthProvider>
     </QueryClientProvider>
   );
 }

@@ -1,0 +1,310 @@
+
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Upload, Image as ImageIcon } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
+
+const storySchema = z.object({
+    title: z.string().min(1, "Title is required"),
+    story: z.string().min(1, "Story content is required"),
+    personName: z.string().min(1, "Person name is required"),
+    location: z.string().min(1, "Location is required"),
+    programId: z.string().optional(),
+    featured: z.boolean().default(false),
+    image: z.instanceof(File).optional(),
+});
+
+type StoryFormData = z.infer<typeof storySchema>;
+
+interface Story {
+    _id: Id<"success_stories">;
+    title: string;
+    story: string;
+    personName: string;
+    location: string;
+    imageUrl: string;
+    programId?: string;
+    featured?: boolean;
+}
+
+interface StoryFormProps {
+    open: boolean;
+    onClose: () => void;
+    onSubmit: (data: any) => void;
+    story?: Story;
+    mode: 'create' | 'edit';
+}
+
+const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => {
+    const { toast } = useToast();
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [submitting, setSubmitting] = useState(false);
+
+    const generateUploadUrl = useMutation(api.media.generateUploadUrl);
+    const createStory = useMutation(api.stories.create);
+    const updateStory = useMutation(api.stories.update);
+
+    const form = useForm<StoryFormData>({
+        resolver: zodResolver(storySchema),
+        defaultValues: {
+            title: story?.title || '',
+            story: story?.story || '',
+            personName: story?.personName || '',
+            location: story?.location || '',
+            programId: story?.programId || '',
+            featured: story?.featured || false,
+        },
+    });
+
+    const handleUpload = async (file: File) => {
+        const postUrl = await generateUploadUrl();
+        const result = await fetch(postUrl, {
+            method: "POST",
+            headers: { "Content-Type": file.type },
+            body: file,
+        });
+        const { storageId } = await result.json();
+        return storageId;
+    };
+
+    const handleSubmit = async (data: StoryFormData) => {
+        try {
+            setSubmitting(true);
+            let imageUrl = story?.imageUrl || '';
+
+            if (selectedImage) {
+                imageUrl = await handleUpload(selectedImage);
+            }
+
+            // If creating, we need at least a placeholder if no image uploaded
+            // For now, we'll assume image is optional or handled elsewhere if missing, 
+            // but schema says imageUrl is string (required).
+            if (!imageUrl && mode === 'create') {
+                // In a real app, force upload or use default.
+                // For now, let's just use a placeholder if empty to avoid schema error
+                // or let it fail if schema enforces it.
+                // Schema: imageUrl: v.string()
+                // So it IS required.
+                if (!selectedImage) {
+                    toast({ title: 'Image required', description: 'Please upload an image.', variant: 'destructive' });
+                    setSubmitting(false);
+                    return;
+                }
+            }
+
+            const storyData = {
+                title: data.title,
+                story: data.story,
+                personName: data.personName,
+                location: data.location,
+                imageUrl,
+                programId: data.programId,
+                featured: data.featured,
+            };
+
+            if (mode === 'create') {
+                await createStory(storyData);
+            } else if (story) {
+                await updateStory({
+                    id: story._id,
+                    ...storyData,
+                });
+            }
+
+            onSubmit({});
+            toast({
+                title: mode === 'create' ? "Story Created" : "Story Updated",
+                description: `The story has been ${mode === 'create' ? 'created' : 'updated'} successfully.`,
+            });
+            onClose();
+        } catch (err) {
+            console.error('Story submit error:', err);
+            toast({ title: 'Failed to save story', variant: 'destructive' });
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            setSelectedImage(file);
+        }
+    };
+
+    return (
+        <Dialog open={open} onOpenChange={onClose}>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                    <DialogTitle className="font-panton">
+                        {mode === 'create' ? 'Add New Success Story' : 'Edit Success Story'}
+                    </DialogTitle>
+                    <DialogDescription className="font-calibri">
+                        {mode === 'create'
+                            ? 'Share a new success story or testimonial.'
+                            : 'Update the story details below.'
+                        }
+                    </DialogDescription>
+                </DialogHeader>
+
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+                        <FormField
+                            control={form.control}
+                            name="title"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="font-calibri font-semibold">Title</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Enter story title" {...field} className="font-calibri" />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <FormField
+                                control={form.control}
+                                name="personName"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className="font-calibri font-semibold">Person Name</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="e.g. Jane Doe" {...field} className="font-calibri" />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name="location"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className="font-calibri font-semibold">Location</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="e.g. Arusha, Tanzania" {...field} className="font-calibri" />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <FormField
+                            control={form.control}
+                            name="story"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="font-calibri font-semibold">Story Content</FormLabel>
+                                    <FormControl>
+                                        <Textarea
+                                            placeholder="Write the full story here..."
+                                            {...field}
+                                            className="font-calibri min-h-[150px]"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="programId"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="font-calibri font-semibold">Related Program ID (Optional)</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Enter program ID" {...field} className="font-calibri" />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="featured"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel className="font-calibri font-semibold">
+                                            Featured Story
+                                        </FormLabel>
+                                        <p className="text-sm text-muted-foreground font-calibri">
+                                            This story will be highlighted on the homepage or main sections.
+                                        </p>
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
+
+                        {/* Image Upload */}
+                        <div className="space-y-2">
+                            <label className="text-sm font-semibold font-calibri">Story Image</label>
+                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    className="hidden"
+                                    id="image-upload"
+                                />
+                                <label htmlFor="image-upload" className="cursor-pointer">
+                                    <ImageIcon className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                                    <p className="text-sm text-gray-600 font-calibri">
+                                        {selectedImage ? selectedImage.name : 'Click to upload image'}
+                                    </p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-end gap-3 pt-4">
+                            <Button type="button" variant="outline" onClick={onClose} className="font-calibri">
+                                Cancel
+                            </Button>
+                            <Button type="submit" disabled={submitting} className="font-calibri">
+                                {submitting ? 'Saving...' : (mode === 'create' ? 'Create Story' : 'Update Story')}
+                            </Button>
+                        </div>
+                    </form>
+                </Form>
+            </DialogContent>
+        </Dialog>
+    );
+};
+
+export default StoryForm;

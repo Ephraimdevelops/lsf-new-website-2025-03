@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import { supabaseService } from '@/services/api/supabaseService';
-import { useToast } from './useToast';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import { News } from '@/types';
 
 interface UseNewsResult {
@@ -13,54 +12,34 @@ interface UseNewsResult {
 }
 
 export function useNews(): UseNewsResult {
-  const [news, setNews] = useState<News[]>([]);
-  const [featuredNews, setFeaturedNews] = useState<News[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const { toast } = useToast();
+  const newsData = useQuery(api.news.get);
+  const featuredNewsData = useQuery(api.news.getFeatured);
 
-  const fetchNews = async () => {
-    try {
-      setLoading(true);
-      const [allNews, featured] = await Promise.all([
-        supabaseService.getAllNews(1, 50), // Get first 50 news articles
-        supabaseService.getFeaturedNews(5) // Get 5 featured articles for hero
-      ]);
-      
-      setNews(allNews.data || []);
-      setFeaturedNews(featured);
-      setError(null);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch news');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch news',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Map Convex _id to id
+  const news = (newsData || []).map((item: any) => ({ ...item, id: item._id }));
+  const featuredNews = (featuredNewsData || []).map((item: any) => ({ ...item, id: item._id }));
 
+  const loading = newsData === undefined || featuredNewsData === undefined;
+
+  // Search is now handled by filtering the already loaded data or a specific search query
+  // For simplicity and speed, we can filter client-side since we have the data, 
+  // or implement a specific search query in Convex if dataset is large.
+  // The original hook had an async search. We'll simulate that for compatibility.
   const searchNews = async (query: string): Promise<News[]> => {
-    try {
-      return await supabaseService.searchNews(query);
-    } catch (err) {
-      console.error('Error searching news:', err);
-      return [];
-    }
+    if (!news) return [];
+    const lowerQuery = query.toLowerCase();
+    return news.filter(item =>
+      item.title.toLowerCase().includes(lowerQuery) ||
+      item.excerpt.toLowerCase().includes(lowerQuery)
+    );
   };
-
-  useEffect(() => {
-    fetchNews();
-  }, []);
 
   return {
     news,
     featuredNews,
     loading,
-    error,
-    refetch: fetchNews,
+    error: null, // Convex handles errors internally usually, or we can wrap
+    refetch: async () => { }, // Convex updates automatically, no need to refetch manually
     searchNews,
   };
 }

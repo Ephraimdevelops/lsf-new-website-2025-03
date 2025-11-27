@@ -1,162 +1,32 @@
 
 import { useParams, Link } from 'react-router-dom';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { Id } from "../../convex/_generated/dataModel";
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
 import { MapPin, Clock, Users, Briefcase, Calendar, CheckCircle, ArrowLeft } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-// Detailed opportunity data
-const opportunities = {
-  '1': {
-    id: '1',
-    title: 'Community Paralegal Coordinator',
-    type: 'Full-time',
-    location: 'Dar es Salaam',
-    duration: '2 years',
-    salary: 'Competitive package',
-    deadline: '2024-07-15',
-    description: 'Lead and coordinate our community paralegal program across multiple districts, providing training and support to grassroots legal aid providers. This role involves strategic planning, capacity building, and direct community engagement.',
-    responsibilities: [
-      'Develop and implement community paralegal training programs',
-      'Coordinate with district-level legal aid providers',
-      'Monitor and evaluate program effectiveness',
-      'Provide technical support to community paralegals',
-      'Facilitate partnerships with local organizations',
-      'Prepare reports and documentation for stakeholders'
-    ],
-    requirements: [
-      'Law degree or equivalent qualification',
-      '3+ years experience in legal aid or community development',
-      'Fluency in Swahili and English',
-      'Strong community engagement and leadership skills',
-      'Experience in training and capacity building',
-      'Excellent communication and report writing skills'
-    ],
-    benefits: [
-      'Competitive salary and benefits package',
-      'Professional development opportunities',
-      'Health insurance coverage',
-      'Transportation allowance',
-      'Annual leave and sick leave',
-      'Opportunity to make a meaningful impact'
-    ],
-    category: 'Employment',
-    department: 'Programs'
-  },
-  '2': {
-    id: '2',
-    title: 'Legal Research Intern',
-    type: 'Internship',
-    location: 'Remote/Hybrid',
-    duration: '6 months',
-    salary: 'Stipend provided',
-    deadline: '2024-06-30',
-    description: 'Support our policy research initiatives by conducting legal research, analyzing legislation, and contributing to publications on access to justice. This internship provides excellent exposure to legal research methodologies.',
-    responsibilities: [
-      'Conduct legal research on access to justice issues',
-      'Analyze legislation and policy documents',
-      'Assist in preparing research reports and publications',
-      'Support advocacy and policy initiatives',
-      'Participate in research meetings and workshops',
-      'Maintain research databases and documentation'
-    ],
-    requirements: [
-      'Law student (final year) or recent graduate',
-      'Strong research and analytical skills',
-      'Excellent writing and communication abilities',
-      'Interest in human rights and access to justice',
-      'Computer literacy and research database skills',
-      'Self-motivated and detail-oriented'
-    ],
-    benefits: [
-      'Monthly stipend',
-      'Mentorship from senior legal professionals',
-      'Certificate of completion',
-      'Networking opportunities',
-      'Skills development in legal research',
-      'Potential for future employment opportunities'
-    ],
-    category: 'Internship',
-    department: 'Research & Policy'
-  },
-  '3': {
-    id: '3',
-    title: 'Volunteer Legal Clinic Assistant',
-    type: 'Volunteer',
-    location: 'Multiple locations',
-    duration: 'Flexible',
-    salary: 'Volunteer position',
-    deadline: 'Ongoing',
-    description: 'Assist in our mobile legal clinics, helping community members access legal information and connect with appropriate legal services. This volunteer role provides hands-on experience in community legal aid.',
-    responsibilities: [
-      'Assist in mobile legal clinic operations',
-      'Help community members complete legal forms',
-      'Provide basic legal information and guidance',
-      'Connect clients with appropriate legal services',
-      'Support clinic logistics and administration',
-      'Maintain client records and documentation'
-    ],
-    requirements: [
-      'Interest in community service and legal aid',
-      'Basic legal knowledge preferred but not required',
-      'Weekend availability for clinic operations',
-      'Own transportation or ability to travel',
-      'Good communication skills',
-      'Commitment to confidentiality and ethics'
-    ],
-    benefits: [
-      'Valuable hands-on legal experience',
-      'Community service certificate',
-      'Training in legal aid provision',
-      'Networking with legal professionals',
-      'Transportation reimbursement',
-      'Opportunity to make a direct impact'
-    ],
-    category: 'Volunteer',
-    department: 'Community Outreach'
-  },
-  '4': {
-    id: '4',
-    title: 'Digital Innovation Fellow',
-    type: 'Fellowship',
-    location: 'Dar es Salaam',
-    duration: '1 year',
-    salary: 'Fellowship stipend',
-    deadline: '2024-08-01',
-    description: 'Develop and implement digital solutions to improve access to legal services, including mobile apps and online platforms. This fellowship focuses on leveraging technology for justice delivery.',
-    responsibilities: [
-      'Design and develop digital legal aid platforms',
-      'Create mobile applications for legal service delivery',
-      'Implement online legal information systems',
-      'Collaborate with legal and technical teams',
-      'Test and refine digital solutions',
-      'Train staff on new technologies'
-    ],
-    requirements: [
-      'Computer science, IT, or related field degree',
-      'Mobile app development experience (Android/iOS)',
-      'Web development skills (HTML, CSS, JavaScript)',
-      'Understanding of legal technology trends',
-      'Innovation mindset and problem-solving skills',
-      'Portfolio of previous tech projects'
-    ],
-    benefits: [
-      'Annual fellowship stipend',
-      'Access to cutting-edge technology',
-      'Mentorship from tech and legal experts',
-      'Conference and training opportunities',
-      'Portfolio development support',
-      'Potential for permanent placement'
-    ],
-    category: 'Fellowship',
-    department: 'Innovation & Technology'
-  }
-};
-
 const OpportunityDetail = () => {
-  const { opportunityId } = useParams();
-  const opportunity = opportunities[opportunityId as keyof typeof opportunities];
+  const { opportunityId } = useParams<{ opportunityId: string }>();
+  const id = opportunityId as Id<"opportunities">;
+
+  const opportunityData = useQuery(api.opportunities.getById, { id });
+  const opportunity = opportunityData ? { ...opportunityData, id: opportunityData._id } : null;
+
+  const isLoading = opportunityData === undefined;
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="container mx-auto py-16 px-4 text-center">
+          <div className="animate-pulse text-primary">Loading opportunity details...</div>
+        </div>
+      </Layout>
+    );
+  }
 
   if (!opportunity) {
     return (
@@ -195,16 +65,15 @@ const OpportunityDetail = () => {
             <CardHeader>
               <div className="flex justify-between items-start mb-4">
                 <CardTitle className="text-2xl">{opportunity.title}</CardTitle>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                  opportunity.category === 'Employment' ? 'bg-primary/10 text-primary' :
+                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${opportunity.category === 'Employment' ? 'bg-primary/10 text-primary' :
                   opportunity.category === 'Internship' ? 'bg-secondary-teal/10 text-secondary-teal' :
-                  opportunity.category === 'Volunteer' ? 'bg-secondary-orange/10 text-secondary-orange' :
-                  'bg-neutral-dark/10 text-neutral-dark'
-                }`}>
+                    opportunity.category === 'Volunteer' ? 'bg-secondary-orange/10 text-secondary-orange' :
+                      'bg-neutral-dark/10 text-neutral-dark'
+                  }`}>
                   {opportunity.category}
                 </span>
               </div>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-neutral-gray">
                 <div className="flex items-center">
                   <MapPin size={14} className="mr-2" />
@@ -302,7 +171,7 @@ const OpportunityDetail = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Application Deadline</h4>
-                    <p className="text-neutral-gray">{new Date(opportunity.deadline).toLocaleDateString('en-US', { 
+                    <p className="text-neutral-gray">{new Date(opportunity.deadline).toLocaleDateString('en-US', {
                       weekday: 'long',
                       year: 'numeric',
                       month: 'long',

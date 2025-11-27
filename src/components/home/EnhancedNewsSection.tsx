@@ -1,38 +1,50 @@
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 import { ArrowRight, Calendar, Clock, ChevronRight, Download, FileText, Eye, BookOpen, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { supabaseService } from '@/services/api/supabaseService';
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 import { News, Publication } from '@/types';
 
 const EnhancedNewsSection = () => {
   const [activeTab, setActiveTab] = useState('news');
-  const [newsData, setNewsData] = useState<News[]>([]);
-  const [publicationsData, setPublicationsData] = useState<Publication[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const [newsResponse, publicationsResponse] = await Promise.all([
-          supabaseService.getFeaturedNews(3),
-          supabaseService.getFeaturedPublications(3)
-        ]);
-        
-        setNewsData(newsResponse);
-        setPublicationsData(publicationsResponse);
-      } catch (error) {
-        console.error('Error fetching news and publications:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const news = useQuery(api.news.getFeatured) || [];
+  const publications = useQuery(api.publications.getFeatured) || [];
 
-    fetchData();
-  }, []);
+  // Map to component types
+  const newsData: News[] = news.slice(0, 3).map(item => ({
+    id: item._id,
+    title: item.title,
+    excerpt: item.excerpt,
+    content: item.content,
+    image: item.image,
+    date: item.date,
+    category: item.category,
+    readTime: '3 min read', // Default
+    featured: item.featured,
+    slug: item.slug || item._id
+  }));
+
+  const publicationsData: Publication[] = publications.slice(0, 3).map(item => ({
+    id: item._id,
+    title: item.title,
+    excerpt: item.description, // Map description to excerpt
+    description: item.description,
+    image: item.coverImageUrl,
+    date: item.publishedDate,
+    category: item.category,
+    type: item.type as any, // Cast to any to match specific union type
+    downloadCount: item.downloadCount || 0,
+    fileSize: '2.5 MB', // Default
+    featured: item.featured,
+    file: item.pdfUrl
+  }));
+
+  const isLoading = news === undefined || publications === undefined;
 
   const currentData = activeTab === 'news' ? newsData : publicationsData;
   const mainItem = currentData[0];
@@ -76,22 +88,20 @@ const EnhancedNewsSection = () => {
           <div className="inline-flex p-1 bg-muted rounded-full">
             <button
               onClick={() => setActiveTab('news')}
-              className={`inline-flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeTab === 'news'
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
+              className={`inline-flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === 'news'
+                ? 'bg-primary text-white shadow-lg'
+                : 'text-muted-foreground hover:text-foreground'
+                }`}
             >
               <Newspaper className="mr-2 h-4 w-4" />
               Latest News
             </button>
             <button
               onClick={() => setActiveTab('publications')}
-              className={`inline-flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeTab === 'publications'
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
+              className={`inline-flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === 'publications'
+                ? 'bg-primary text-white shadow-lg'
+                : 'text-muted-foreground hover:text-foreground'
+                }`}
             >
               <BookOpen className="mr-2 h-4 w-4" />
               Publications
@@ -106,8 +116,8 @@ const EnhancedNewsSection = () => {
             <div className="lg:col-span-3">
               <Card className="group overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 bg-white/50 backdrop-blur-sm">
                 <div className="relative">
-                  <img 
-                    src={mainItem.image || '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png'} 
+                  <img
+                    src={mainItem.image || '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png'}
                     alt={mainItem.title}
                     className="w-full h-[24rem] lg:h-[28rem] object-cover group-hover:scale-110 transition-transform duration-700"
                   />
@@ -122,10 +132,10 @@ const EnhancedNewsSection = () => {
                     <div className="flex items-center text-white/90 text-base gap-6">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-5 w-5" />
-                        {new Date(mainItem.date).toLocaleDateString('en-US', { 
-                          month: 'long', 
-                          day: 'numeric', 
-                          year: 'numeric' 
+                        {new Date(mainItem.date).toLocaleDateString('en-US', {
+                          month: 'long',
+                          day: 'numeric',
+                          year: 'numeric'
                         })}
                       </div>
                       {activeTab === 'news' ? (
@@ -184,8 +194,8 @@ const EnhancedNewsSection = () => {
               {sideItems.map((item) => (
                 <Card key={item.id} className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 bg-white/80 backdrop-blur-sm">
                   <div className="relative">
-                    <img 
-                      src={item.image || '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png'} 
+                    <img
+                      src={item.image || '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png'}
                       alt={item.title}
                       className="w-full h-48 lg:h-56 object-cover group-hover:scale-110 transition-transform duration-700"
                     />

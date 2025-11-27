@@ -1,107 +1,66 @@
-import { useState, useEffect } from 'react';
-import { storiesService } from '../services/supabase/stories';
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { Id } from "../../convex/_generated/dataModel";
 import { useToast } from '../hooks/useToast';
-import { Story, CreateStoryInput, UpdateStoryInput } from '../types/story';
+// We might need to adjust types if Story/CreateStoryInput don't match exactly
+// import { Story, CreateStoryInput, UpdateStoryInput } from '../types/story';
 
 interface UseStoriesResult {
-  stories: Story[];
+  stories: any[]; // Using any for now to avoid strict type mismatch during migration
   loading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
-  createStory: (story: CreateStoryInput) => Promise<void>;
-  updateStory: (id: string, story: UpdateStoryInput) => Promise<void>;
+  createStory: (story: any) => Promise<void>;
+  updateStory: (id: string, story: any) => Promise<void>;
   deleteStory: (id: string) => Promise<void>;
 }
 
 export function useStories(): UseStoriesResult {
-  const [stories, setStories] = useState<Story[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const storiesData = useQuery(api.stories.get);
+  const createMutation = useMutation(api.stories.create);
+  const updateMutation = useMutation(api.stories.update);
+  const deleteMutation = useMutation(api.stories.remove);
+
   const { toast } = useToast();
 
-  const fetchStories = async () => {
-    try {
-      setLoading(true);
-      const data = await storiesService.getStories();
-      setStories(data);
-      setError(null);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch stories');
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch stories',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const stories = (storiesData || []).map((item: any) => ({ ...item, id: item._id }));
+  const loading = storiesData === undefined;
 
-  const createStory = async (story: CreateStoryInput) => {
+  const createStory = async (story: any) => {
     try {
-      const newStory = await storiesService.createStory(story);
-      setStories(current => [newStory, ...current]);
-      toast({
-        title: 'Success',
-        description: 'Story created successfully',
-      });
+      await createMutation(story);
+      toast({ title: 'Success', description: 'Story created successfully' });
     } catch (err) {
-      toast({
-        title: 'Error',
-        description: 'Failed to create story',
-        variant: 'destructive',
-      });
+      toast({ title: 'Error', description: 'Failed to create story', variant: 'destructive' });
       throw err;
     }
   };
 
-  const updateStory = async (id: string, story: UpdateStoryInput) => {
+  const updateStory = async (id: string, story: any) => {
     try {
-      const updatedStory = await storiesService.updateStory(id, story);
-      setStories(current =>
-        current.map(s => (s.id === id ? updatedStory : s))
-      );
-      toast({
-        title: 'Success',
-        description: 'Story updated successfully',
-      });
+      await updateMutation({ id: id as Id<"success_stories">, ...story });
+      toast({ title: 'Success', description: 'Story updated successfully' });
     } catch (err) {
-      toast({
-        title: 'Error',
-        description: 'Failed to update story',
-        variant: 'destructive',
-      });
+      toast({ title: 'Error', description: 'Failed to update story', variant: 'destructive' });
       throw err;
     }
   };
 
   const deleteStory = async (id: string) => {
     try {
-      await storiesService.deleteStory(id);
-      setStories(current => current.filter(s => s.id !== id));
-      toast({
-        title: 'Success',
-        description: 'Story deleted successfully',
-      });
+      await deleteMutation({ id: id as Id<"success_stories"> });
+      toast({ title: 'Success', description: 'Story deleted successfully' });
     } catch (err) {
-      toast({
-        title: 'Error',
-        description: 'Failed to delete story',
-        variant: 'destructive',
-      });
+      toast({ title: 'Error', description: 'Failed to delete story', variant: 'destructive' });
       throw err;
     }
   };
 
-  useEffect(() => {
-    fetchStories();
-  }, []);
-
   return {
     stories,
     loading,
-    error,
-    refetch: fetchStories,
+    error: null,
+    refetch: async () => { },
     createStory,
     updateStory,
     deleteStory,

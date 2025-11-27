@@ -1,17 +1,17 @@
 
 import React, { useState } from 'react';
-import { 
-  Home, 
-  FileText, 
-  Calendar, 
-  Briefcase, 
-  Users, 
-  Settings, 
+import {
+  Home,
+  FileText,
+  Calendar,
+  Briefcase,
+  Users,
+  Settings,
   LogOut,
   BarChart3,
   BookOpen,
   Presentation,
-  Image as ImageIcon
+  Heart
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AdminHome from './AdminHome';
@@ -23,8 +23,7 @@ import AdminResources from './AdminResources';
 import AdminSettings from './AdminSettings';
 import AdminHeroSlides from './AdminHeroSlides';
 import EnhancedAnalyticsDashboard from './EnhancedAnalyticsDashboard';
-import AdminUserManagement from './AdminUserManagement';
-import AdminMediaLibrary from './AdminMediaLibrary';
+import AdminStories from './AdminStories';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -37,14 +36,13 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
     { id: 'home', label: 'Dashboard', icon: Home },
     { id: 'hero-slides', label: 'Hero Slides', icon: Presentation },
     { id: 'news', label: 'News', icon: FileText },
+    { id: 'stories', label: 'Success Stories', icon: Heart },
     { id: 'programs', label: 'Programs', icon: Calendar },
     { id: 'publications', label: 'Publications', icon: BookOpen },
     { id: 'opportunities', label: 'Opportunities', icon: Briefcase },
     { id: 'resources', label: 'Resources', icon: Users },
-    { id: 'media', label: 'Media', icon: ImageIcon },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'settings', label: 'Settings', icon: Settings },
-    { id: 'user-management', label: 'User Management', icon: Users },
   ];
 
   const renderContent = () => {
@@ -55,6 +53,8 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <AdminHeroSlides />;
       case 'news':
         return <AdminNews />;
+      case 'stories':
+        return <AdminStories />;
       case 'programs':
         return <AdminPrograms />;
       case 'publications':
@@ -65,12 +65,8 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <AdminResources />;
       case 'analytics':
         return <EnhancedAnalyticsDashboard />;
-      case 'media':
-        return <AdminMediaLibrary />;
       case 'settings':
         return <AdminSettings />;
-      case 'user-management':
-        return <AdminUserManagement />;
       default:
         return <AdminHome />;
     }
@@ -95,11 +91,10 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
                   <li key={item.id}>
                     <button
                       onClick={() => setActiveTab(item.id)}
-                      className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-colors duration-200 ${
-                        activeTab === item.id
-                          ? 'bg-primary text-white'
-                          : 'text-gray-600 hover:bg-gray-100'
-                      }`}
+                      className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-colors duration-200 ${activeTab === item.id
+                        ? 'bg-primary text-white'
+                        : 'text-gray-600 hover:bg-gray-100'
+                        }`}
                     >
                       <IconComponent className="w-5 h-5 mr-3" />
                       {item.label}
