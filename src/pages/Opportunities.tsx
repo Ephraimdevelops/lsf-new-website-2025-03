@@ -1,11 +1,9 @@
-
-import Layout from '../components/layout/Layout';
-import HeroSection from '../components/shared/HeroSection';
-import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Users, Briefcase, GraduationCap, Heart, ArrowRight, Calendar, Star, Globe, Award, Target, Lightbulb, AlertTriangle, CheckCircle, Newspaper } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Layout from '../components/layout/Layout';
+import { Button } from '@/components/ui/button';
+import CinematicHero from '@/components/shared/CinematicHero';
+import { MapPin, Calendar, Briefcase, ArrowRight, Star, Clock, TrendingUp } from 'lucide-react';
 import Container from '@/components/shared/Container';
-import Typography from '@/components/shared/Typography';
 import { useOpportunities } from '@/hooks/useOpportunities';
 import LoadingState from '@/components/shared/LoadingState';
 import ErrorState from '@/components/shared/ErrorState';
@@ -39,80 +37,127 @@ const OpportunitiesPage = () => {
 
   return (
     <Layout>
-      <HeroSection
-        icon={<Newspaper className="h-10 w-8" />}
-        badge="We need You"
+      <CinematicHero
         title="Join Our Mission"
-        description="Explore open roles and help us expand access to justice across Tanzania."
-        backgroundImage="/lovable-uploads/03e3e41e-930e-409b-9697-0530773cca4c.png"
+        badge="Careers"
+        description="Explore open roles and help us expand access to justice across Tanzania. Your skills can help millions."
+        backgroundImage="/lovable-uploads/opportunities-hero-bg.png"
       />
 
-      <Container className="py-40">
-        {opportunities.length === 0 ? (
-          <div className="text-center py-20">
-            <Briefcase className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-            <Typography variant="h2" className="text-gray-600 mb-4">
-              No Open Positions
-            </Typography>
-            <Typography variant="body" className="text-gray-500 mb-8">
-              We don't have any open positions at the moment. Please check back later or contact us to learn about future opportunities.
-            </Typography>
-            <Link to="/contact">
-              <Button size="lg" className="bg-primary hover:bg-primary-dark">
-                Contact Us
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+      {/* Opportunities Grid */}
+      <section className="py-24 bg-white">
+        <Container size="xl">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-secondary-orange/10 text-secondary-orange text-sm font-bold px-4 py-2 rounded-full mb-4 uppercase tracking-widest">
+              Open Positions
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">
+              Current Opportunities
+            </h2>
+            <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
+              Find your next role and be part of Tanzania's justice movement.
+            </p>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-            {opportunities.map((opportunity) => (
-              <div
-                key={opportunity.id}
-                className="rounded-xl border bg-white shadow-sm hover:shadow-md transition-all overflow-hidden"
-              >
-                {opportunity.image && (
-                  <img
-                    src={opportunity.image}
-                    alt={opportunity.title}
-                    className="w-full h-40 object-cover"
-                  />
-                )}
-                <div className="p-5 space-y-3">
-                  <Typography variant="h3" className="text-lg font-semibold">
-                    {opportunity.title}
-                  </Typography>
 
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {opportunity.description}
-                  </p>
+          {opportunities.length === 0 ? (
+            <div className="text-center py-20 bg-neutral-50 rounded-3xl">
+              <Briefcase className="h-16 w-16 mx-auto text-neutral-300 mb-4" />
+              <h3 className="text-2xl font-bold text-neutral-900 mb-4">
+                No Open Positions Right Now
+              </h3>
+              <p className="text-neutral-600 mb-8 max-w-md mx-auto">
+                We don't have any open positions at the moment. Check back later or join our talent network.
+              </p>
+              <Link to="/contact">
+                <Button size="lg" className="bg-primary hover:bg-primary-dark rounded-full">
+                  Contact Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {opportunities.map((opportunity) => (
+                <Link
+                  key={opportunity.id}
+                  to={`/opportunities/${opportunity.id}`}
+                  className="group"
+                >
+                  <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-neutral-100 hover:border-secondary-orange/30 hover:-translate-y-2 h-full">
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="bg-secondary-orange text-white text-xs font-bold px-3 py-1 rounded-full">
+                          {opportunity.employment_type}
+                        </span>
+                        <span className="text-green-600 text-xs font-bold">
+                          {getDaysLeft(opportunity.deadline)}
+                        </span>
+                      </div>
 
-                  <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4" />
-                      <span>{opportunity.location}</span>
+                      <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-secondary-orange transition-colors">
+                        {opportunity.title}
+                      </h3>
+
+                      <p className="text-neutral-600 text-sm line-clamp-2 mb-4">
+                        {opportunity.description}
+                      </p>
+
+                      <div className="space-y-2 text-sm text-neutral-500 mb-4">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4" />
+                          <span>{opportunity.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span>Deadline: {new Date(opportunity.deadline).toLocaleDateString()}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center text-secondary-orange font-bold text-sm group-hover:gap-2 transition-all">
+                        View Details
+                        <ArrowRight className="ml-1 h-4 w-4" />
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>Deadline: {new Date(opportunity.deadline).toLocaleDateString()}</span>
-                    </div>
-                    <div className="text-xs font-medium text-green-600">
-                      {getDaysLeft(opportunity.deadline)}
-                    </div>
-                    <div className="text-sm font-semibold">{opportunity.employment_type}</div>
                   </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </Container>
+      </section>
 
-                  <div className="pt-4 flex justify-between items-center">
-                    <Button size="sm" asChild>
-                      <Link to={`/opportunities/${opportunity.id}`}>View Details</Link>
-                    </Button>
-                  </div>
-                </div>
+      {/* Why Work With Us */}
+      <section className="py-24 bg-neutral-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Why Work With Us?</h2>
+          <p className="text-white/80 text-xl max-w-2xl mx-auto mb-12">
+            Join a mission-driven organization making real impact across Tanzania.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <div className="w-12 h-12 bg-secondary-orange rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Star className="h-6 w-6 text-white" />
               </div>
-            ))}
+              <h3 className="text-xl font-bold mb-2">Meaningful Work</h3>
+              <p className="text-white/70 text-sm">Every role contributes to justice for millions</p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <div className="w-12 h-12 bg-secondary-teal rounded-xl flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Career Growth</h3>
+              <p className="text-white/70 text-sm">Professional development opportunities</p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Work-Life Balance</h3>
+              <p className="text-white/70 text-sm">Flexible policies that respect your time</p>
+            </div>
           </div>
-        )}
-      </Container>
+        </div>
+      </section>
     </Layout>
   );
 };

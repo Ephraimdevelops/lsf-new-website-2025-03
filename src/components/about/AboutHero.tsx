@@ -34,15 +34,14 @@ const AboutHero = () => {
               key={index}
               src={src}
               alt={`Hero image ${index + 1}`}
-              className={`w-full h-full object-cover absolute top-0 left-0 transition-all duration-1000 ease-in-out ${
-                index === currentImage ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`w-full h-full object-cover absolute top-0 left-0 transition-all duration-1000 ease-in-out ${index === currentImage ? 'opacity-100' : 'opacity-0'
+                }`}
             />
           ))}
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
-        <Container size="xl" className="relative z-10 h-full flex items-center">
+        <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
           <div className="max-w-3xl text-white">
             {/* Badge */}
             <div className="inline-flex items-center gap-3 mb-4 bg-primary/20 backdrop-blur-sm rounded-full px-5 py-2">
@@ -81,10 +80,10 @@ const AboutHero = () => {
               </Link>
               <Link to="#focus-areas">
                 <Button
-                size="lg"
-                variant="outline"
-                onClick={() => setIsVideoOpen(true)}
-                className="border-2 border-primary text-white hover:bg-primary hover:text-white font-semibold px-8 py-4 rounded-lg flex items-center"
+                  size="lg"
+                  variant="outline"
+                  onClick={() => setIsVideoOpen(true)}
+                  className="border-2 border-primary text-white hover:bg-primary hover:text-white font-semibold px-8 py-4 rounded-lg flex items-center"
                 >
                   <PlayCircle className="mr-2 h-6 w-6" />
                   Watch Our Impact Video
@@ -92,7 +91,7 @@ const AboutHero = () => {
               </Link>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
     </section>
   );

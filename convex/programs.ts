@@ -20,6 +20,14 @@ export const getBySlug = query({
     },
 });
 
+// Get program by ID
+export const getById = query({
+    args: { id: v.id("programs") },
+    handler: async (ctx, args) => {
+        return await ctx.db.get(args.id);
+    },
+});
+
 // Create program
 export const create = mutation({
     args: {

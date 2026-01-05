@@ -63,3 +63,60 @@ export const remove = mutation({
         await ctx.db.delete(args.id);
     },
 });
+
+// Seed initial team members
+export const seed = mutation({
+    args: {},
+    handler: async (ctx) => {
+        const existing = await ctx.db.query("team_members").collect();
+        if (existing.length > 0) return;
+
+        const team = [
+            {
+                name: 'Dr. John Doe',
+                position: 'Executive Director',
+                bio: 'Leading LSF with over 20 years of experience in legal aid and development.',
+                image: '/lovable-uploads/placeholder.svg',
+                type: 'team',
+                order: 1
+            },
+            {
+                name: 'Jane Smith',
+                position: 'Head of Programs',
+                bio: 'Expert in program management and community development.',
+                image: '/lovable-uploads/placeholder.svg',
+                type: 'team',
+                order: 2
+            },
+            {
+                name: 'Michael Johnson',
+                position: 'Finance Manager',
+                bio: 'Ensuring financial sustainability and transparency.',
+                image: '/lovable-uploads/placeholder.svg',
+                type: 'team',
+                order: 3
+            },
+            {
+                name: 'Sarah Williams',
+                position: 'Board Chair',
+                bio: 'Distinguished legal professional guiding our strategic vision.',
+                image: '/lovable-uploads/placeholder.svg',
+                type: 'board',
+                order: 1
+            },
+            {
+                name: 'David Brown',
+                position: 'Board Member',
+                bio: 'Advocate for human rights and social justice.',
+                image: '/lovable-uploads/placeholder.svg',
+                type: 'board',
+                order: 2
+            }
+        ];
+
+        for (const member of team) {
+            // Cast type to union literal
+            await ctx.db.insert("team_members", { ...member, type: member.type as "team" | "board" });
+        }
+    },
+});

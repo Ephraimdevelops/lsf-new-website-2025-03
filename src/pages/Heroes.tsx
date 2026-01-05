@@ -1,3 +1,5 @@
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import Container from '../components/shared/Container';
@@ -9,8 +11,6 @@ import { Heart, Users, Scale, Crown, ArrowRight, Quote, MapPin, Calendar, Award,
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
-
 const impactStats = [
   {
     icon: <Users className="h-8 w-8" />,
@@ -38,234 +38,241 @@ const impactStats = [
   }
 ];
 
-const successStories = [
-  {
-    id: 'story-2',
-    name: 'Joseph Mwalimu',
-    location: 'Mwanza',
-    category: 'Employment Rights',
-    title: 'Fighting Workplace Discrimination',
-    story: 'Joseph was unfairly dismissed from his teaching position due to his disability. LSF represented him in court, resulting in reinstatement and compensation for lost wages.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    year: '2024',
-    impact: 'High',
-    tags: ['Disability Rights', 'Employment Law', 'Anti-Discrimination'],
-    quote: 'Joseph was unfairly dismissed from his teaching position due to his disability. LSF represented him in court, resulting in reinstatement and compensation for lost wages.',
-    brief: 'Joseph was a dedicated teacher for over 10 years when he was unfairly dismissed due to his disability. LSF provided legal representation that not only restored his position but also led to policy changes protecting disabled workers.'
-  },
-  {
-    id: 'story-3',
-    name: 'Grace Kimani',
-    location: 'Arusha',
-    category: 'Gender-Based Violence',
-    title: 'Breaking the Cycle of Violence',
-    story: 'Grace escaped an abusive marriage with LSF\'s assistance. We helped her obtain a restraining order, secure custody of her children, and access counseling services.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    year: '2023',
-    impact: 'Life-Saving',
-    tags: ['GBV Protection', 'Family Law', 'Economic Empowerment'],
-    quote: 'Grace escaped an abusive marriage with LSF\'s assistance. We helped her obtain a restraining order, secure custody of her children, and access counseling services.',
-    brief: 'Grace endured years of domestic violence before finding the courage to seek help. LSF provided comprehensive support including legal aid, counseling, and economic empowerment training.'
-  },
-  {
-    id: 'story-5',
-    name: 'Fatuma Ali',
-    location: 'Mbeya',
-    category: 'Child Rights',
-    title: 'Education Rights for Every Child',
-    story: 'When Fatuma\'s daughter was denied school admission due to lack of birth certificate, LSF helped secure legal documentation and fought for her right to education.',
-    outcome: 'Birth certificate obtained, school admission secured, scholarship awarded',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    year: '2024',
-    impact: 'Educational',
-    tags: ['Child Rights', 'Education Access', 'Documentation'],
-    quote: 'When Fatuma\'s daughter was denied school admission due to lack of birth certificate, LSF helped secure legal documentation and fought for her right to education.',
-    brief: 'Fatuma\'s daughter was denied education because she lacked a birth certificate. LSF helped navigate the bureaucratic process and ensured her daughter\'s right to education was protected.'
-  },
-  {
-    id: 'story-6',
-    name: 'Emmanuel Ndege',
-    location: 'Kilimanjaro',
-    category: 'Environmental Justice',
-    title: 'Protecting Community Resources',
-    story: 'Emmanuel led his community in fighting illegal mining that threatened their water supply. LSF provided legal representation that resulted in mine closure and environmental restoration.',
-    outcome: 'Mining operations stopped, water supply restored, community compensation',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    year: '2023',
-    impact: 'Environmental',
-    tags: ['Environmental Law', 'Community Rights', 'Natural Resources'],
-    quote: 'Emmanuel led his community in fighting illegal mining that threatened their water supply. LSF provided legal representation that resulted in mine closure and environmental restoration.',
-    brief: 'When illegal mining operations threatened the community\'s water source, Emmanuel organized resistance. LSF provided legal expertise that successfully shut down the illegal operations.'
-  }
-];
 
-const getImpactColor = (impact: string) => {
-  switch (impact) {
-    case 'Life-Saving': return 'bg-red-100 text-red-800 border-red-200';
-    case 'Life-Changing': return 'bg-purple-100 text-purple-800 border-purple-200';
-    case 'High': return 'bg-green-100 text-green-800 border-green-200';
-    case 'Educational': return 'bg-blue-100 text-blue-800 border-blue-200';
-    case 'Environmental': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
-    default: return 'bg-gray-100 text-gray-800 border-gray-200';
-  }
-};
 
 const Heroes = () => {
+  // Fetch stories from Convex
+  const stories = useQuery(api.stories.get) || [];
+
   return (
     <Layout>
       {/* Hero Section */}
-    {/* Heroes Section */}
-<section className="relative">
-  <div className="relative h-[90vh] overflow-hidden">
-    {/* Sliding background images */}
-    <Slider
-      autoplay
-      autoplaySpeed={4000}
-      infinite
-      fade
-      arrows={false}
-      pauseOnHover={false}
-      speed={1000}
-      className="absolute inset-0"
-    >
-      {[
-        "/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png",
-        "/lovable-uploads/second-hero-image.jpg",
-        "/lovable-uploads/third-hero-image.jpg"
-      ].map((img, idx) => (
-        <div key={idx} className="h-[90vh]">
-          <img
-            src={img}
-            alt={`Slide ${idx + 1}`}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      ))}
-    </Slider>
+      {/* Heroes Section */}
+      <section className="relative bg-black">
+        <div className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
+          {/* Sliding background images */}
+          <div className="absolute inset-0 z-0">
+            <Slider
+              autoplay
+              autoplaySpeed={4000}
+              infinite
+              fade
+              arrows={false}
+              pauseOnHover={false}
+              speed={1000}
+              className="h-full"
+            >
+              {[
+                "/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png",
+                "/lovable-uploads/second-hero-image.jpg",
+                "/lovable-uploads/third-hero-image.jpg"
+              ].map((img, idx) => (
+                <div key={idx} className="h-full">
+                  <img
+                    src={img}
+                    alt={`Slide ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
 
-    {/* Dark gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent"></div>
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent z-10 pointer-events-none"></div>
 
-    <Container size="xl" className="relative z-10 h-full flex items-center">
-      <div className="max-w-4xl text-white drop-shadow-lg">
+          <div className="container mx-auto px-4 relative z-20 h-full flex items-center flex-grow py-20">
+            <div className="max-w-4xl text-white drop-shadow-lg">
 
-        {/* Icon */}
-        <div className="mb-8">
-          <div className="bg-secondary-orange/20 p-6 rounded-full backdrop-blur-sm border border-secondary-orange/30 shadow-lg shadow-secondary-orange/40 inline-flex">
-            <Crown className="h-08 w-08 text-secondary-orange drop-shadow-md" />
+              {/* Icon */}
+              <div className="mb-8">
+                <div className="bg-secondary-orange/20 p-6 rounded-full backdrop-blur-sm border border-secondary-orange/30 shadow-lg shadow-secondary-orange/40 inline-flex">
+                  <Crown className="h-08 w-08 text-secondary-orange drop-shadow-md" />
+                </div>
+              </div>
+              {/* Title */}
+              <Typography
+                variant="h1"
+                className="text-5xl md:text-7xl font-bold mb-8 leading-tight drop-shadow-lg"
+              >
+                Our
+                <br />
+                <span className="text-secondary-orange drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+                  Heroes
+                </span>
+              </Typography>
+
+              {/* Description */}
+              <Typography
+                variant="body"
+                className="text-xl md:text-2xl mb-12 max-w-3xl text-white/90 leading-relaxed drop-shadow-md"
+              >
+                Meet the brave individuals whose lives have been transformed through
+                access to justice. These are stories of courage, resilience, and the
+                power of legal empowerment to change lives.
+              </Typography>
+
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-6">
+                <Button
+                  size="lg"
+                  className="bg-secondary-orange hover:bg-secondary-orange/90 text-xl px-8 py-4 shadow-lg shadow-secondary-orange/40"
+                >
+                  <MessageSquare className="mr-3 h-6 w-6" />
+                  Submit Report Now
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white hover:text-primary text-xl px-8 py-4 shadow-lg shadow-black/40"
+                >
+                  <Phone className="mr-3 h-6 w-6" />
+                  Get Legal Help
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-        {/* Title */}
-        <Typography
-          variant="h1"
-          className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
-        >
-          Our
-          <br />
-          <span className="text-secondary-orange drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-            Heroes
-          </span>
-        </Typography>
-
-        {/* Description */}
-        <Typography
-          variant="body"
-          className="text-xl md:text-2xl mb-12 max-w-3xl text-white/90 leading-relaxed drop-shadow-md"
-        >
-          Meet the brave individuals whose lives have been transformed through
-          access to justice. These are stories of courage, resilience, and the
-          power of legal empowerment to change lives.
-        </Typography>
-
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6">
-          <Button
-            size="lg"
-            className="bg-secondary-orange hover:bg-secondary-orange/90 text-xl px-8 py-4 shadow-lg shadow-secondary-orange/40"
-          >
-            <MessageSquare className="mr-3 h-6 w-6" />
-            Submit Report Now
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-2 border-white text-white hover:bg-white hover:text-primary text-xl px-8 py-4 shadow-lg shadow-black/40"
-          >
-            <Phone className="mr-3 h-6 w-6" />
-            Get Legal Help
-          </Button>
-        </div>
-      </div>
-    </Container>
-  </div>
-</section>
+      </section>
 
 
 
-      {/* Success Stories Grid - Using new card design with reduced height */}
-      <section className="py-16 bg-white">
-      <Container>
-      <div className="flex flex-col items-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-4 bg-white/20 backdrop-blur-sm rounded-full px-3 py-3">
-            <Target className="h-5 w-5 text-primary" />
-            <span className="font-semibold text-sm uppercase tracking-wider text-neutral-900">
-              Our Heroes
-            </span>
+      {/* Success Stories Grid - Premium Donor-Focused Design */}
+      <section className="py-24 md:py-32 bg-gradient-to-b from-white via-neutral-50/50 to-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary-orange/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Section Header */}
+          <div className="flex flex-col items-center mb-16">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-primary/10 border border-primary/20 rounded-full mb-8">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span className="font-bold text-sm uppercase tracking-widest text-primary">
+                Real Stories of Impact
+              </span>
+            </div>
+
+            <Typography variant="h1" className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight text-center tracking-tight">
+              Lives Changed.
+              <br />
+              <span className="text-primary">
+                Justice Delivered.
+              </span>
+            </Typography>
+
+            <Typography variant="body" className="text-lg md:text-xl text-neutral-600 max-w-3xl leading-relaxed text-center">
+              Every story represents a family reunited, a community empowered, and the transformative power of legal aid reaching those who need it most.
+            </Typography>
           </div>
-          
-          <Typography variant="h1" className="text-4xl md:text-6xl font-bold text-neutral-900 mb-6 leading-tight text-center">
-            Stories of <br className="block md:hidden" />
-            <span className="text-primary">Transformation.</span>
-          </Typography>
-          
-          <Typography variant="body" className="text-lg text-neutral-600 max-w-3xl leading-relaxed text-center">
-            Behind every legal victory is a human story of courage, determination, and hope. These are the heroes who refused to give up on justice.
-          </Typography>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {successStories.map((story) => (
-            <SuccessStoryCard 
-              key={story.id} 
-              story={story} 
-              linkTo={`/heroes/${story.id}`}
-            />
-          ))}
-        </div>
-      </Container>
-      </section >
 
-      {/* Impact Statistics */}
-      <section className="bg-neutral-dark text-white overflow-hidden py-16">
-        <Container>
-          <div className="text-center mb-12">
-            <Typography variant="h2" className="text-4xl md:text-6xl font-bold text-neutral-900 mb-6 leading-tight text-centermb-6">Real Impact, Real Lives</Typography>
-            <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto">
+          {/* Story Cards Grid - 3 columns for impact */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {stories.map((story) => (
+              <SuccessStoryCard
+                key={story._id}
+                story={story}
+                linkTo={`/stories/${story._id}`}
+              />
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="mt-16 text-center">
+            <Typography variant="body" className="text-neutral-600 mb-6">
+              Your support makes these stories possible.
+            </Typography>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-10 py-4 rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105">
+                <Heart className="mr-2 h-5 w-5" />
+                Support Our Mission
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary font-bold px-10 py-4 rounded-full transition-all duration-300">
+                Read All Stories
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Statistics - Premium Dark Section */}
+      <section className="relative py-24 md:py-32 bg-gradient-to-br from-neutral-900 via-primary-dark to-neutral-900 text-white overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-secondary-orange/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-teal/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 backdrop-blur-sm rounded-full mb-8">
+              <Award className="h-5 w-5 text-secondary-orange" />
+              <span className="font-bold text-sm uppercase tracking-widest text-white/90">
+                Proven Impact
+              </span>
+            </div>
+
+            <Typography variant="h2" className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+              Real Impact.
+              <br />
+              <span className="text-secondary-orange">
+                Real Lives Changed.
+              </span>
+            </Typography>
+
+            <Typography variant="body" className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
               Every number represents a life changed, a family protected, and a community strengthened through access to justice.
             </Typography>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {impactStats.map((stat, index) => (
-              <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
-                <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-primary">
+              <div
+                key={index}
+                className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-center hover:from-white/15 hover:to-white/10 hover:border-white/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden"
+              >
+                {/* Subtle gradient accent */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
+
+                {/* Icon */}
+                <div className="w-18 h-18 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
+                  <div className="text-white p-4">
                     {stat.icon}
                   </div>
-                  <Typography variant="h1" className="text-primary font-black mb-2">
-                    {stat.number}
-                  </Typography>
-                  <Typography variant="h4" className="font-semibold mb-2">
-                    {stat.label}
-                  </Typography>
-                  <Typography variant="bodySmall" className="text-neutral-gray">
-                    {stat.description}
-                  </Typography>
-                </CardContent>
-              </Card>
+                </div>
+
+                {/* Number - enhanced contrast */}
+                <Typography variant="h1" className="text-4xl md:text-5xl font-black text-white mb-3 drop-shadow-lg">
+                  {stat.number}
+                </Typography>
+
+                {/* Label */}
+                <Typography variant="h4" className="font-bold text-white text-lg mb-3">
+                  {stat.label}
+                </Typography>
+
+                {/* Description - improved readability */}
+                <Typography variant="bodySmall" className="text-white/80 leading-relaxed">
+                  {stat.description}
+                </Typography>
+              </div>
             ))}
           </div>
-        </Container>
+
+          {/* Trust Badges */}
+          <div className="mt-16 pt-12 border-t border-white/10">
+            <Typography variant="body" className="text-center text-white/50 text-sm uppercase tracking-widest mb-8">
+              Trusted by Leading Organizations
+            </Typography>
+            <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
+              <img src="/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png" alt="Partner" className="h-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png" alt="Partner" className="h-12 object-contain grayscale hover:grayscale-0 transition-all" />
+              <img src="/lovable-uploads/d0aa1db9-f1b6-4c1a-a98f-1d5b6f106317.png" alt="Partner" className="h-12 object-contain grayscale hover:grayscale-0 transition-all" />
+            </div>
+          </div>
+        </div>
       </section>
     </Layout>
   );

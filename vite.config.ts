@@ -32,9 +32,46 @@ export default defineConfig(({ mode }) => ({
         return id.includes('@rollup/rollup-linux-x64-gnu');
       },
       output: {
-        manualChunks: undefined
+        manualChunks: {
+          // React ecosystem
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          // UI libraries
+          'ui-vendor': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-alert-dialog',
+            '@radix-ui/react-avatar',
+            '@radix-ui/react-checkbox',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-label',
+            '@radix-ui/react-popover',
+            '@radix-ui/react-select',
+            '@radix-ui/react-separator',
+            '@radix-ui/react-slot',
+            '@radix-ui/react-switch',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-tooltip',
+          ],
+          // Data/Forms
+          'data-vendor': [
+            '@tanstack/react-query',
+            'react-hook-form',
+            '@hookform/resolvers',
+            'zod',
+          ],
+          // Animation/Motion
+          'animation-vendor': ['framer-motion'],
+          // Charts (heavy library)
+          'charts-vendor': ['recharts'],
+          // Auth
+          'auth-vendor': ['@clerk/clerk-react', 'convex'],
+          // Icons
+          'icons-vendor': ['lucide-react'],
+        },
       }
-    }
+    },
+    chunkSizeWarningLimit: 1000,
   },
   define: {
     global: 'globalThis',

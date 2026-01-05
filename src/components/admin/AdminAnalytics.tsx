@@ -1,43 +1,22 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
-  LineChart, Line, PieChart, Pie, Cell, AreaChart, Area 
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  LineChart, Line, PieChart, Pie, Cell, AreaChart, Area
 } from 'recharts';
 import { Calendar, Download, Eye, Users, TrendingUp, Globe, FileText, Activity } from 'lucide-react';
-import analyticsService, { AnalyticsData } from '@/services/api/analyticsService';
-import { useToast } from '@/hooks/use-toast';
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6'];
 
 const AdminAnalytics = () => {
-  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const analytics = useQuery(api.admin.getAnalytics);
+  const loading = analytics === undefined;
   const [selectedPeriod, setSelectedPeriod] = useState('30d');
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const fetchAnalytics = async () => {
-      try {
-        const data = await analyticsService.getAnalytics();
-        setAnalytics(data);
-      } catch (error) {
-        console.error('Failed to fetch analytics:', error);
-        toast({
-          title: "Error",
-          description: "Failed to load analytics data",
-          variant: "destructive",
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAnalytics();
-  }, [toast, selectedPeriod]);
 
   if (loading) {
     return (
@@ -79,22 +58,22 @@ const AdminAnalytics = () => {
           <p className="text-gray-600 font-calibri">Comprehensive insights into your website performance</p>
         </div>
         <div className="flex gap-2">
-          <Button 
-            variant={selectedPeriod === '7d' ? 'default' : 'outline'} 
+          <Button
+            variant={selectedPeriod === '7d' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setSelectedPeriod('7d')}
           >
             7 Days
           </Button>
-          <Button 
-            variant={selectedPeriod === '30d' ? 'default' : 'outline'} 
+          <Button
+            variant={selectedPeriod === '30d' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setSelectedPeriod('30d')}
           >
             30 Days
           </Button>
-          <Button 
-            variant={selectedPeriod === '90d' ? 'default' : 'outline'} 
+          <Button
+            variant={selectedPeriod === '90d' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setSelectedPeriod('90d')}
           >
@@ -102,7 +81,7 @@ const AdminAnalytics = () => {
           </Button>
         </div>
       </div>
-      
+
       {/* Key Performance Indicators */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
@@ -118,7 +97,7 @@ const AdminAnalytics = () => {
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium font-calibri">Page Views</CardTitle>
@@ -129,7 +108,7 @@ const AdminAnalytics = () => {
             <p className="text-xs text-gray-500 mt-1 font-calibri">Across all pages</p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium font-calibri">Content Views</CardTitle>
@@ -152,7 +131,7 @@ const AdminAnalytics = () => {
           </CardContent>
         </Card>
       </div>
-      
+
       <Tabs defaultValue="traffic" className="w-full">
         <TabsList className="mb-4">
           <TabsTrigger value="traffic">Traffic</TabsTrigger>
@@ -160,7 +139,7 @@ const AdminAnalytics = () => {
           <TabsTrigger value="downloads">Downloads</TabsTrigger>
           <TabsTrigger value="pages">Top Pages</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="traffic" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
@@ -175,12 +154,12 @@ const AdminAnalytics = () => {
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={analytics.visitors.daily}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis 
-                        dataKey="date" 
+                      <XAxis
+                        dataKey="date"
                         tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                       />
                       <YAxis />
-                      <Tooltip 
+                      <Tooltip
                         labelFormatter={(value) => new Date(value).toLocaleDateString()}
                         formatter={(value) => [value, 'Visitors']}
                       />
@@ -229,7 +208,7 @@ const AdminAnalytics = () => {
             </Card>
           </div>
         </TabsContent>
-        
+
         <TabsContent value="content" className="pt-4">
           <Card>
             <CardHeader>
@@ -243,10 +222,10 @@ const AdminAnalytics = () => {
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={analytics.engagement.views}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis 
-                      dataKey="name" 
-                      angle={-45} 
-                      textAnchor="end" 
+                    <XAxis
+                      dataKey="name"
+                      angle={-45}
+                      textAnchor="end"
                       height={100}
                       fontSize={12}
                     />
@@ -260,7 +239,7 @@ const AdminAnalytics = () => {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="downloads" className="pt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
@@ -275,10 +254,10 @@ const AdminAnalytics = () => {
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={analytics.engagement.downloads}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis 
-                        dataKey="name" 
-                        angle={-45} 
-                        textAnchor="end" 
+                      <XAxis
+                        dataKey="name"
+                        angle={-45}
+                        textAnchor="end"
                         height={100}
                         fontSize={12}
                       />

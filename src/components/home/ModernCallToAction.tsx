@@ -1,153 +1,110 @@
-import { useState } from 'react';
-import { ArrowRight, Phone, Mail, MapPin, Download, Users, Shield, Lightbulb } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Phone, Heart, Users, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Container from '@/components/shared/Container';
-import Typography from '@/components/shared/Typography';
-import { useIntersectionObserverCallback } from '@/hooks/useIntersectionObserver';
 
 const ModernCallToAction = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 });
-
-  const actionCards = [
+  const actions = [
     {
-      icon: Phone,
+      icon: <Phone className="h-8 w-8" />,
       title: 'Get Legal Help',
-      description: 'Connect with our legal aid services and community paralegals',
-      action: 'Call Now',
-      link: 'tel:+255870119363',
-      color: 'from-green-500 to-emerald-600',
-      bgColor: 'bg-green-50',
-      textColor: 'text-green-700'
+      description: 'Connect with our paralegals',
+      cta: 'Call Now',
+      href: 'tel:+255870119363',
+      color: 'bg-green-500',
     },
     {
-      icon: Download,
-      title: 'Download Haki Yangu',
-      description: 'Access legal services through our mobile app',
-      action: 'Download App',
-      link: '/legal-help',
-      color: 'from-blue-500 to-cyan-600',
-      bgColor: 'bg-blue-50',
-      textColor: 'text-blue-700'
-    },
-    {
-      icon: Users,
+      icon: <Users className="h-8 w-8" />,
       title: 'Join Our Network',
-      description: 'Become a community paralegal or partner organization',
-      action: 'Join Network',
-      link: '/programs',
-      color: 'from-purple-500 to-indigo-600',
-      bgColor: 'bg-purple-50',
-      textColor: 'text-purple-700'
+      description: 'Become a community paralegal',
+      cta: 'Learn More',
+      href: '/opportunities',
+      color: 'bg-secondary-teal',
     },
     {
-      icon: Shield,
+      icon: <Heart className="h-8 w-8" />,
       title: 'Support Our Mission',
-      description: 'Help us expand access to justice across Tanzania',
-      action: 'Donate Now',
-      link: '/donate',
-      color: 'from-orange-500 to-red-600',
-      bgColor: 'bg-orange-50',
-      textColor: 'text-orange-700'
-    }
-  ];
-
-  const contactInfo = [
-    {
-      icon: Phone,
-      label: 'Call Us',
-      value: '+255 870 119 363',
-      link: 'tel:+255870119363'
+      description: 'Help expand access to justice',
+      cta: 'Donate',
+      href: '/donate',
+      color: 'bg-secondary-orange',
     },
     {
-      icon: Mail,
-      label: 'Email Us',
-      value: 'info@lsf.or.tz',
-      link: 'mailto:info@lsf.or.tz'
+      icon: <MessageSquare className="h-8 w-8" />,
+      title: 'AI Legal Assistant',
+      description: '24/7 legal guidance',
+      cta: 'Chat Now',
+      href: '/lsfchatbot',
+      color: 'bg-primary',
     },
-    {
-      icon: MapPin,
-      label: 'Visit Us',
-      value: 'Dar es Salaam, Tanzania',
-      link: '/contact'
-    }
   ];
 
   return (
-    <section 
-      ref={sectionRef}
-      className="py-5 md:py-5 mb-5 bg-gradient-to-b from-background via-neutral-50/50 to-background relative overflow-hidden"
-    >
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-secondary-teal/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-orange/5 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
+    <section className="py-24 bg-neutral-50 relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px]"></div>
 
-      <Container size="2xl" className="relative z-10">
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Section Header */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
-              <Lightbulb className="h-6 w-6 text-primary animate-pulse" />
-              <Typography variant="overline" className="text-primary font-bold text-lg tracking-wider">
-                Take Action
-              </Typography>
-            </div>
-            
-            <Typography 
-              variant="h2" 
-              className="mb-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-            >
-              Ready to Make a
-              <span className="block bg-gradient-to-r from-primary to-secondary-orange bg-clip-text text-transparent">
-                Difference?
-              </span>
-            </Typography>
-            
-            <Typography 
-              variant="body" 
-              className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
-            >
-              Join thousands of Tanzanians who are already transforming their communities through access to justice. 
-              Whether you need legal help, want to volunteer, or support our mission, there's a way for you to get involved.
-            </Typography>
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-3 mb-6 bg-primary/10 rounded-full px-5 py-2">
+            <Heart className="h-4 w-4 text-primary" />
+            <span className="text-primary font-bold text-sm uppercase tracking-widest">Take Action</span>
           </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
+            Ready to Make a <span className="text-primary">Difference?</span>
+          </h2>
+          <p className="text-neutral-600 text-lg">
+            Join thousands of Tanzanians transforming their communities through access to justice.
+          </p>
+        </div>
 
-          {/* Action Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 py-10">
-            {actionCards.map((card, index) => (
-              <div 
-                key={index}
-                className={`group transition-all duration-700 delay-${index * 100} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              >
-                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100 h-full">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${card.color} rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <card.icon className="h-8 w-8 text-white" />
-                  </div>
-
-                  <Typography variant="h4" className="mb-4 text-xl font-bold">
-                    {card.title}
-                  </Typography>
-
-                  <Typography variant="body" className="text-muted-foreground mb-6 leading-relaxed">
-                    {card.description}
-                  </Typography>
-
-                  <Button 
-                    className={`w-full bg-gradient-to-r ${card.color} hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-105 group`}
-                    onClick={() => window.location.href = card.link}
-                  >
-                    {card.action}
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
+        {/* Action Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {actions.map((action, index) => (
+            <Link
+              key={index}
+              to={action.href}
+              className="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl border border-neutral-100 hover:border-primary/20 transition-all duration-500 hover:-translate-y-2"
+            >
+              <div className={`w-16 h-16 ${action.color} rounded-2xl flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform`}>
+                {action.icon}
               </div>
-            ))}
+              <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
+                {action.title}
+              </h3>
+              <p className="text-neutral-500 mb-6">{action.description}</p>
+              <div className="flex items-center gap-2 text-primary font-bold group-hover:gap-3 transition-all">
+                {action.cta}
+                <ArrowRight className="h-4 w-4" />
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Contact Strip */}
+        <div className="bg-neutral-900 rounded-3xl p-8 md:p-12 text-white">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-2">Have Questions?</h3>
+              <p className="text-white/70">Our team is here to help you navigate legal challenges.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="tel:+255870119363">
+                <Button size="lg" className="bg-white text-neutral-900 hover:bg-white/90 font-bold px-8 py-5 rounded-full">
+                  <Phone className="mr-2 h-5 w-5" />
+                  +255 870 119 363
+                </Button>
+              </a>
+              <Link to="/contact">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold px-8 py-5 rounded-full">
+                  Contact Us
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };

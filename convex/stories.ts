@@ -69,3 +69,59 @@ export const remove = mutation({
         await ctx.db.delete(args.id);
     },
 });
+
+// Seed initial stories
+export const seed = mutation({
+    args: {},
+    handler: async (ctx) => {
+        const existing = await ctx.db.query("success_stories").collect();
+        if (existing.length > 0) return;
+
+        const stories = [
+            {
+                title: 'Reclaiming Land Rights in Kilolo',
+                story: 'After years of dispute, Mama John finally secured her land title deed with the help of LSF paralegals...',
+                personName: 'Mama John',
+                location: 'Kilolo, Iringa',
+                imageUrl: '/lovable-uploads/placeholder.svg',
+                featured: true
+            },
+            {
+                title: 'Justice for Child Support',
+                story: 'A young mother in Mtwara received legal aid to ensure her children receive the support they deserve...',
+                personName: 'Amina Juma',
+                location: 'Mtwara',
+                imageUrl: '/lovable-uploads/placeholder.svg',
+                featured: true
+            },
+            {
+                title: 'Resolving Community Water Dispute',
+                story: 'Two villages in Dodoma found a peaceful resolution to a water source conflict through mediation...',
+                personName: 'Village Elders',
+                location: 'Dodoma',
+                imageUrl: '/lovable-uploads/placeholder.svg',
+                featured: false
+            },
+            {
+                title: 'Empowering Women Entrepreneurs',
+                story: 'A group of women in Arusha registered their cooperative and protected their business assets...',
+                personName: 'Arusha Women Group',
+                location: 'Arusha',
+                imageUrl: '/lovable-uploads/placeholder.svg',
+                featured: true
+            },
+            {
+                title: 'Legal Education for Youth',
+                story: 'Students in Dar es Salaam learned about their constitutional rights through our outreach program...',
+                personName: 'City High School Students',
+                location: 'Dar es Salaam',
+                imageUrl: '/lovable-uploads/placeholder.svg',
+                featured: false
+            }
+        ];
+
+        for (const story of stories) {
+            await ctx.db.insert("success_stories", story);
+        }
+    },
+});

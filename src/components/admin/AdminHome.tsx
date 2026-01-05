@@ -1,37 +1,15 @@
 
-import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, FileText, Download, Eye, ArrowRight, TrendingUp, Calendar, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import analyticsService, { AnalyticsData } from '@/services/api/analyticsService';
-import { useToast } from '@/hooks/use-toast';
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 const AdminHome = () => {
-  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const fetchAnalytics = async () => {
-      try {
-        const data = await analyticsService.getAnalytics();
-        setAnalytics(data);
-      } catch (error) {
-        console.error('Failed to fetch analytics:', error);
-        toast({
-          title: "Error",
-          description: "Failed to load analytics data",
-          variant: "destructive",
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAnalytics();
-  }, [toast]);
+  const analytics = useQuery(api.admin.getAnalytics);
+  const loading = analytics === undefined;
 
   if (loading) {
     return (
@@ -74,7 +52,7 @@ const AdminHome = () => {
           </Link>
         </Button>
       </div>
-      
+
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
@@ -90,7 +68,7 @@ const AdminHome = () => {
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium font-calibri">Content Items</CardTitle>
@@ -105,7 +83,7 @@ const AdminHome = () => {
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium font-calibri">Total Downloads</CardTitle>
@@ -147,12 +125,12 @@ const AdminHome = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={analytics.visitors.daily.slice(-14)}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis 
-                    dataKey="date" 
+                  <XAxis
+                    dataKey="date"
                     tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   />
                   <YAxis />
-                  <Tooltip 
+                  <Tooltip
                     labelFormatter={(value) => new Date(value).toLocaleDateString()}
                     formatter={(value) => [value, 'Visitors']}
                   />
@@ -175,10 +153,10 @@ const AdminHome = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={analytics.engagement.downloads.slice(0, 5)}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis 
-                    dataKey="name" 
-                    angle={-45} 
-                    textAnchor="end" 
+                  <XAxis
+                    dataKey="name"
+                    angle={-45}
+                    textAnchor="end"
                     height={80}
                     fontSize={12}
                   />
@@ -191,7 +169,7 @@ const AdminHome = () => {
           </CardContent>
         </Card>
       </div>
-      
+
       {/* Content Overview and Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
@@ -241,7 +219,7 @@ const AdminHome = () => {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader>
             <CardTitle className="font-panton flex items-center gap-2">
@@ -253,17 +231,16 @@ const AdminHome = () => {
             <div className="space-y-4">
               {analytics.recentActivity.map((activity) => (
                 <div key={activity.id} className="flex items-start gap-4">
-                  <div className={`p-2 rounded-full ${
-                    activity.type === 'news' ? 'bg-primary/10' :
-                    activity.type === 'publication' ? 'bg-secondary-teal/10' :
-                    activity.type === 'program' ? 'bg-secondary-green/10' :
-                    'bg-gray-100'
-                  }`}>
+                  <div className={`p-2 rounded-full ${activity.type === 'news' ? 'bg-primary/10' :
+                      activity.type === 'publication' ? 'bg-secondary-teal/10' :
+                        activity.type === 'program' ? 'bg-secondary-green/10' :
+                          'bg-gray-100'
+                    }`}>
                     <FileText size={16} className={
                       activity.type === 'news' ? 'text-primary' :
-                      activity.type === 'publication' ? 'text-secondary-teal' :
-                      activity.type === 'program' ? 'text-secondary-green' :
-                      'text-gray-500'
+                        activity.type === 'publication' ? 'text-secondary-teal' :
+                          activity.type === 'program' ? 'text-secondary-green' :
+                            'text-gray-500'
                     } />
                   </div>
                   <div className="flex-1">

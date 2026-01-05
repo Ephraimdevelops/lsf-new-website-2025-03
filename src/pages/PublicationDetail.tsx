@@ -1,6 +1,6 @@
 
 import { useParams, Link } from 'react-router-dom';
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
 import { format } from 'date-fns';
@@ -9,7 +9,6 @@ import Layout from '../components/layout/Layout';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Separator } from '../components/ui/separator';
-import { analyticsService } from '../services/api';
 
 const PublicationDetail = () => {
   const { publicationId } = useParams<{ publicationId: string }>();
@@ -17,16 +16,14 @@ const PublicationDetail = () => {
 
   const publicationData = useQuery(api.publications.getById, { id });
   const publication = publicationData ? { ...publicationData, id: publicationData._id } : null;
+  const incrementDownload = useMutation(api.publications.incrementDownloadCount);
 
   const isLoading = publicationData === undefined;
   const error = publicationData === null; // If null returned, it means not found
 
   const trackDownload = () => {
     if (publication) {
-      analyticsService.trackEvent('publication_download', {
-        publication_id: publication.id,
-        publication_title: publication.title
-      });
+      incrementDownload({ id: publication.id });
     }
   };
 
@@ -65,7 +62,7 @@ const PublicationDetail = () => {
               <div className="bg-white p-6 rounded-lg shadow-sm flex justify-center">
                 <div className="relative w-full max-w-xs aspect-[3/4]">
                   <img
-                    src={publication.image || '/placeholder.svg'}
+                    src={publication.coverImageUrl || '/placeholder.svg'}
                     alt={publication.title}
                     className="w-full h-full object-cover rounded border"
                   />
@@ -79,7 +76,7 @@ const PublicationDetail = () => {
 
               <div className="flex items-center text-neutral-gray mb-6">
                 <Calendar className="h-4 w-4 mr-1" />
-                <span>Published: {format(new Date(publication.date), 'MMMM d, yyyy')}</span>
+                <span>Published: {format(new Date(publication.publishedDate), 'MMMM d, yyyy')}</span>
               </div>
 
               <div className="prose max-w-none mb-8">
@@ -88,7 +85,7 @@ const PublicationDetail = () => {
 
               <div className="flex flex-wrap gap-4 mb-8">
                 <a
-                  href={publication.file}
+                  href={publication.pdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={trackDownload}
@@ -119,7 +116,7 @@ const PublicationDetail = () => {
                       </li>
                       <li className="flex justify-between">
                         <span className="text-neutral-gray">Published:</span>
-                        <span>{format(new Date(publication.date), 'MMMM d, yyyy')}</span>
+                        <span>{format(new Date(publication.publishedDate), 'MMMM d, yyyy')}</span>
                       </li>
                       <li className="flex justify-between">
                         <span className="text-neutral-gray">Language:</span>

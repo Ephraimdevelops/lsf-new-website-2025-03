@@ -83,3 +83,89 @@ export const remove = mutation({
         await ctx.db.delete(args.id);
     },
 });
+
+// Increment download count
+export const incrementDownloadCount = mutation({
+    args: { id: v.id("publications") },
+    handler: async (ctx, args) => {
+        const publication = await ctx.db.get(args.id);
+        if (!publication) throw new Error("Publication not found");
+
+    },
+});
+
+// Seed initial publications
+export const seed = mutation({
+    args: {},
+    handler: async (ctx) => {
+        const existing = await ctx.db.query("publications").collect();
+        if (existing.length > 0) return;
+
+        const publications = [
+            {
+                title: 'Access to Justice in Rural Tanzania',
+                description: 'Comprehensive study examining challenges and opportunities for justice in rural communities.',
+                category: 'Research',
+                type: 'report',
+                coverImageUrl: '/lovable-uploads/placeholder.svg',
+                pdfUrl: '#',
+                publishedDate: '2024-01-20',
+                authors: ['Dr. Sarah Johnson', 'LSF Research Team'],
+                featured: true,
+                downloadCount: 120
+            },
+            {
+                title: 'Women\'s Legal Rights Handbook',
+                description: 'Practical guide covering land ownership, inheritance, and protection from violence.',
+                category: 'Guide',
+                type: 'handbook',
+                coverImageUrl: '/lovable-uploads/placeholder.svg',
+                pdfUrl: '#',
+                publishedDate: '2024-01-18',
+                authors: ['Legal Aid Department'],
+                featured: true,
+                downloadCount: 350
+            },
+            {
+                title: 'Climate Justice and Community Rights',
+                description: 'Exploring intersection of climate change and legal rights for communities.',
+                category: 'Policy',
+                type: 'policy-brief',
+                coverImageUrl: '/lovable-uploads/placeholder.svg',
+                pdfUrl: '#',
+                publishedDate: '2024-01-15',
+                authors: ['Environmental Law Team'],
+                featured: false,
+                downloadCount: 85
+            },
+            {
+                title: 'Digital Legal Services in Africa',
+                description: 'Analysis of technology adoption in legal aid across African countries.',
+                category: 'Research',
+                type: 'report',
+                coverImageUrl: '/lovable-uploads/placeholder.svg',
+                pdfUrl: '#',
+                publishedDate: '2024-01-12',
+                authors: ['Tech Innovation Hub'],
+                featured: true,
+                downloadCount: 200
+            },
+            {
+                title: 'Annual Impact Report 2023',
+                description: 'Summary of LSF achievements, financial overview, and future goals.',
+                category: 'Report',
+                type: 'annual-report',
+                coverImageUrl: '/lovable-uploads/placeholder.svg',
+                pdfUrl: '#',
+                publishedDate: '2024-01-01',
+                authors: ['LSF Board'],
+                featured: true,
+                downloadCount: 500
+            }
+        ];
+
+        for (const item of publications) {
+            await ctx.db.insert("publications", item);
+        }
+    },
+});

@@ -1,48 +1,34 @@
-import { useEffect, useState } from 'react';
-import api from '@/lib/axios';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 const StakeholderDashboard = () => {
-  interface User {
-    id: string;
-    email: string;
-    name?: string;
-    role: string;
-  }
-
-  interface Project {
-    id: string;
-    title: string;
-    description: string;
-    status: string;
-    startDate: string;
-    endDate?: string;
-    budget?: number;
-  }
-
-  const [user, setUser] = useState<User | null>(null);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError('');
-      try {
-        const res = await api.get('/dashboard/stakeholder');
-        setUser(res.data.user);
-        setProjects(res.data.projects || []);
-      } catch (err) {
-        setError('Failed to load stakeholder dashboard.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  // Reusing the same query for now. In a real app, this would be a specific query.
+  const data = useQuery(api.users.getDashboardData);
+  const loading = data === undefined;
+  const error = data === null;
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (error) return <div>Failed to load stakeholder dashboard.</div>;
+
+  const { user } = data;
+  // Mock projects for now
+  const projects = [
+    {
+      id: "1",
+      title: "Community Outreach Program",
+      description: "Funding and oversight for Q4 outreach.",
+      status: "Active",
+      startDate: "2023-10-01",
+      endDate: "2023-12-31"
+    },
+    {
+      id: "2",
+      title: "Legal Aid Clinic Expansion",
+      description: "Planning phase for new clinics in rural areas.",
+      status: "Planning",
+      startDate: "2024-01-15"
+    }
+  ];
 
   return (
     <div className="p-8">

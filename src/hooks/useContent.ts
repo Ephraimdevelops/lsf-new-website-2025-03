@@ -258,3 +258,85 @@ export const useOpportunities = (type?: string) => {
 
   return { opportunities, loading, error: null, createOpportunity, updateOpportunity, deleteOpportunity, refetch: async () => { } };
 };
+
+// Hook for Testimonials
+export const useTestimonials = () => {
+  const testimonialsData = useQuery(api.testimonials.get);
+  const createMutation = useMutation(api.testimonials.create);
+  const updateMutation = useMutation(api.testimonials.update);
+  const deleteMutation = useMutation(api.testimonials.remove);
+  const seedMutation = useMutation(api.testimonials.seed);
+  const { toast } = useToast();
+
+  const testimonials = (testimonialsData || []).map((item: any) => ({ ...item, id: item._id }));
+  const loading = testimonialsData === undefined;
+
+  const createTestimonial = async (testimonial: any) => {
+    try {
+      await createMutation(testimonial);
+      toast({ title: 'Success', description: 'Testimonial created successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to create testimonial', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  const updateTestimonial = async (testimonial: any) => {
+    try {
+      const { id, ...rest } = testimonial;
+      if (id) {
+        await updateMutation({ id: id as Id<"testimonials">, ...rest });
+      } else {
+        await createMutation(rest);
+      }
+      toast({ title: 'Success', description: 'Testimonial saved successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to save testimonial', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  const deleteTestimonial = async (id: string) => {
+    try {
+      await deleteMutation({ id: id as Id<"testimonials"> });
+      toast({ title: 'Success', description: 'Testimonial deleted successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to delete testimonial', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  const seedTestimonials = async () => {
+    try {
+      await seedMutation();
+      toast({ title: 'Success', description: 'Testimonials seeded successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to seed testimonials', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  return { testimonials, loading, error: null, createTestimonial, updateTestimonial, deleteTestimonial, seedTestimonials, refetch: async () => { } };
+};
+
+// Hook for Stats
+export const useStats = () => {
+  const statsData = useQuery(api.stats.get);
+  const seedMutation = useMutation(api.stats.seed);
+  const { toast } = useToast();
+
+  const stats = statsData || [];
+  const loading = statsData === undefined;
+
+  const seedStats = async () => {
+    try {
+      await seedMutation();
+      toast({ title: 'Success', description: 'Stats seeded successfully' });
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to seed stats', variant: 'destructive' });
+      throw err;
+    }
+  };
+
+  return { stats, loading, seedStats };
+};

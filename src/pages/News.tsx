@@ -6,13 +6,13 @@ import ErrorState from '../components/shared/ErrorState';
 import EnhancedSearch from '../components/shared/EnhancedSearch';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
-import { 
-  Newspaper, 
-  Calendar, 
-  Clock, 
-  Filter, 
-  ChevronDown, 
-  Tag, 
+import {
+  Newspaper,
+  Calendar,
+  Clock,
+  Filter,
+  ChevronDown,
+  Tag,
   ArrowRight,
   Target,
   PlayCircle,
@@ -69,11 +69,11 @@ const SlidingNewsHero = ({ featuredNews }: { featuredNews: any[] }) => {
   if (!featuredNews || featuredNews.length === 0) {
     return (
       <section className="relative h-[80vh] bg-gradient-to-br from-primary to-secondary-teal flex items-center">
-        <Container size="xl" className="text-center text-white">
+        <div className="container mx-auto px-4 text-center text-white">
           <Newspaper className="h-16 w-16 mx-auto mb-6 opacity-50" />
           <Typography variant="h1" className="text-white mb-4">News & Updates</Typography>
           <Typography variant="body" className="text-white/90">Stay informed with our latest developments</Typography>
-        </Container>
+        </div>
       </section>
     );
   }
@@ -85,9 +85,8 @@ const SlidingNewsHero = ({ featuredNews }: { featuredNews: any[] }) => {
         {featuredNews.map((article, index) => (
           <div
             key={article.id}
-            className={`absolute inset-0 transition-all duration-2000 ease-out ${
-              index === currentSlide ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-            }`}
+            className={`absolute inset-0 transition-all duration-2000 ease-out ${index === currentSlide ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              }`}
           >
             {/* Background Image */}
             <div className="absolute inset-0">
@@ -100,7 +99,7 @@ const SlidingNewsHero = ({ featuredNews }: { featuredNews: any[] }) => {
             </div>
 
             {/* Content */}
-            <Container size="xl" className="relative z-10 h-full flex items-center">
+            <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
               <div className="max-w-4xl text-white">
                 {/* Category Badge */}
                 <div className="mb-6">
@@ -161,8 +160,8 @@ const SlidingNewsHero = ({ featuredNews }: { featuredNews: any[] }) => {
                     variant="outline"
                     className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105"
                     onClick={() => {
-                      document.getElementById('news-content')?.scrollIntoView({ 
-                        behavior: 'smooth' 
+                      document.getElementById('news-content')?.scrollIntoView({
+                        behavior: 'smooth'
                       });
                     }}
                   >
@@ -170,7 +169,7 @@ const SlidingNewsHero = ({ featuredNews }: { featuredNews: any[] }) => {
                   </Button>
                 </div>
               </div>
-            </Container>
+            </div>
           </div>
         ))}
       </div>
@@ -200,11 +199,10 @@ const SlidingNewsHero = ({ featuredNews }: { featuredNews: any[] }) => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`transition-all duration-500 ${
-                  index === currentSlide 
-                    ? 'w-12 h-3 bg-white rounded-full shadow-lg' 
+                className={`transition-all duration-500 ${index === currentSlide
+                    ? 'w-12 h-3 bg-white rounded-full shadow-lg'
                     : 'w-3 h-3 bg-white/50 hover:bg-white/75 rounded-full'
-                }`}
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -239,7 +237,7 @@ const News = () => {
   const handleSearch = async (term: string) => {
     setIsSearching(true);
     setSearchTerm(term);
-    
+
     if (term.trim() === '') {
       // If search is empty, show all news filtered by category
       const filtered = news.filter(item => {
@@ -266,7 +264,7 @@ const News = () => {
         // Fallback to local filtering
         const filtered = news.filter(item => {
           const matchesSearch = item.title.toLowerCase().includes(term.toLowerCase()) ||
-                              item.excerpt.toLowerCase().includes(term.toLowerCase());
+            item.excerpt.toLowerCase().includes(term.toLowerCase());
           const matchesCategory = selectedCategory === 'all' || item.category.toLowerCase() === selectedCategory.toLowerCase();
           return matchesSearch && matchesCategory;
         });
@@ -281,7 +279,7 @@ const News = () => {
   useEffect(() => {
     const filtered = news.filter(item => {
       const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          item.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+        item.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === 'all' || item.category.toLowerCase() === selectedCategory.toLowerCase();
       return matchesSearch && matchesCategory;
     });
@@ -336,7 +334,7 @@ const News = () => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </div>
-            
+
             <div className="lg:ml-auto">
               <Collapsible
                 open={isFilterOpen}
@@ -344,8 +342,8 @@ const News = () => {
                 className="w-full lg:w-auto"
               >
                 <CollapsibleTrigger asChild>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="w-full lg:w-auto flex items-center justify-between gap-2 rounded-xl border-2 border-gray-200 hover:border-secondary-teal transition-colors px-6 py-3"
                   >
                     <Filter size={16} />
@@ -389,13 +387,13 @@ const News = () => {
                 {searchTerm ? 'No News Found' : 'No News Available'}
               </Typography>
               <Typography variant="body" className="text-gray-500 mb-8">
-                {searchTerm 
+                {searchTerm
                   ? `No news articles found matching "${searchTerm}". Try different keywords or browse all news.`
                   : 'We don\'t have any news articles at the moment. Please check back later.'
                 }
               </Typography>
               {searchTerm && (
-                <Button 
+                <Button
                   onClick={() => {
                     setSearchTerm('');
                     setSelectedCategory('all');

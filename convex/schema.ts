@@ -85,6 +85,23 @@ export default defineSchema({
     objectives: v.optional(v.array(v.string())),
     impact: v.optional(v.string()),
     status: v.union(v.literal("active"), v.literal("completed")),
+    startDate: v.optional(v.string()),
+    endDate: v.optional(v.string()),
+    location: v.optional(v.array(v.string())),
+    approach: v.optional(v.string()),
+    results: v.optional(v.array(v.object({ value: v.string(), title: v.string() }))),
+    bestPractices: v.optional(v.array(v.string())),
+    geographicCoverage: v.optional(v.array(v.string())),
+    resources: v.optional(v.array(v.object({ url: v.string(), title: v.string(), type: v.string() }))),
+    gallery: v.optional(v.array(v.string())),
+    beneficiaries: v.optional(v.object({
+      total: v.optional(v.number()),
+      women: v.optional(v.number()),
+      children: v.optional(v.number()),
+      disputes: v.optional(v.number()),
+    })),
+    donors: v.optional(v.array(v.string())),
+    partners: v.optional(v.array(v.string())),
   }).index("by_slug", ["slug"]),
 
   // Hero Slides (Homepage)
@@ -125,4 +142,24 @@ export default defineSchema({
     uploadedBy: v.string(),
     uploadedAt: v.number(),
   }),
+
+  // Testimonials
+  testimonials: defineTable({
+    name: v.string(),
+    role: v.string(),
+    location: v.string(),
+    content: v.string(),
+    imageUrl: v.string(),
+    rating: v.number(),
+    category: v.string(),
+    featured: v.boolean(),
+  }).index("by_featured", ["featured"]),
+
+  // Global Stats
+  stats: defineTable({
+    label: v.string(),
+    value: v.string(),
+    icon: v.string(),
+    order: v.number(),
+  }).index("by_order", ["order"]),
 });

@@ -1,47 +1,35 @@
-import { useEffect, useState } from 'react';
-import api from '@/lib/axios';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 const ParalegalDashboard = () => {
-  interface User {
-    id: string;
-    email: string;
-    name?: string;
-    role: string;
-  }
-
-  interface Case {
-    id: string;
-    title: string;
-    description: string;
-    status: string;
-    clientName: string;
-    dateOpened: string;
-  }
-
-  const [user, setUser] = useState<User | null>(null);
-  const [cases, setCases] = useState<Case[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError('');
-      try {
-        const res = await api.get('/dashboard/paralegal');
-        setUser(res.data.user);
-        setCases(res.data.cases || []);
-      } catch (err) {
-        setError('Failed to load paralegal dashboard.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  // Reusing the same query for now. In a real app, this would be a specific query.
+  const data = useQuery(api.users.getDashboardData);
+  const loading = data === undefined;
+  const error = data === null;
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (error) return <div>Failed to load paralegal dashboard.</div>;
+
+  const { user } = data;
+  // Mock cases for now since we don't have them in the query yet
+  const cases = [
+    {
+      id: "1",
+      title: "Land Dispute - Case #123",
+      description: "Dispute over boundary lines in Village A.",
+      status: "Open",
+      clientName: "John Doe",
+      dateOpened: "2023-11-15"
+    },
+    {
+      id: "2",
+      title: "Family Law - Case #124",
+      description: "Child custody assistance.",
+      status: "In Progress",
+      clientName: "Jane Smith",
+      dateOpened: "2023-11-20"
+    }
+  ];
 
   return (
     <div className="p-8">

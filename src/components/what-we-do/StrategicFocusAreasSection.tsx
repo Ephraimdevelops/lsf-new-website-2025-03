@@ -1,38 +1,40 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, ArrowRight, Target } from "lucide-react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { ArrowRight, Target, ChevronLeft, ChevronRight } from "lucide-react";
 import Container from "@/components/shared/Container";
-import Typography from "@/components/shared/Typography";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 const StrategicFocusAreasSection = () => {
   const approaches = [
     {
-      title: "Grant-Making & Management",
-      description: "Funding 100+ organizations to deliver frontline legal aid where it’s needed most.",
+      title: "Grant-Making",
+      description: "Funding 100+ organizations to deliver frontline legal aid.",
       image: "/lovable-uploads/IMG-20230831-WA0003.jpg",
       link: "/what-we-do/grant-making",
     },
     {
-      title: "Direct Project Implementation",
-      description: "Designing high-impact programs like Wanawake Tunaweza for grassroots justice.",
+      title: "Project Implementation",
+      description: "Designing high-impact programs for grassroots justice.",
       image: "/lovable-uploads/1697191159.jpg",
       link: "/what-we-do/direct-implementation",
     },
     {
-      title: "Policy Influence & Advocacy",
-      description: "Pushing for justice-centered reforms from community voices to parliament.",
+      title: "Policy Advocacy",
+      description: "Pushing for justice-centered reforms in parliament.",
       image: "/lovable-uploads/IMG-20230831-WA0003.jpg",
       link: "/what-we-do/advocacy-policy",
     },
     {
-      title: "Research, Monitoring & Learning",
-      description: "Turning data into action to strengthen programs and drive systemic reform.",
+      title: "Research & Learning",
+      description: "Turning data into action to drive systemic reform.",
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
       link: "/what-we-do/learning-research",
     },
     {
-      title: "Partnerships & Networking",
-      description: "Scaling justice innovations with civil society, government, and global partners.",
+      title: "Partnerships",
+      description: "Scaling justice innovations with global partners.",
       image: "https://images.unsplash.com/photo-1516321318423-4b6a0b0f0e6a?w=800&h=600&fit=crop",
       link: "/what-we-do/partnerships-networking",
     },
@@ -40,146 +42,149 @@ const StrategicFocusAreasSection = () => {
 
   const focusAreas = [
     {
-      title: "Expanding Access to Legal Aid",
-      description: "Scaling affordable, high-quality legal aid so rural, underserved communities can secure justice when they need it most.",
+      title: "Access to Legal Aid",
+      description: "Scaling affordable aid so communities secure justice.",
       image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
       link: "/focus-areas/accessible-legal-aid",
     },
     {
-      title: "Advancing Legal Empowerment",
-      description: "Equipping communities with knowledge and skills to claim rights and advocate for systemic change.",
+      title: "Legal Empowerment",
+      description: "Equipping communities to claim rights and advocate.",
       image: "https://images.unsplash.com/photo-1516321318423-4b6a0b0f0e6a?w=800&h=600&fit=crop",
       link: "/focus-areas/empowered-communities",
     },
     {
-      title: "Strengthening Gender Justice",
-      description: "Confronting gender-based violence, promoting equality, and ensuring women’s rights are protected.",
+      title: "Gender Justice",
+      description: "Confronting GBV and ensuring women’s rights.",
       image: "https://images.unsplash.com/photo-1573496359142-b8d877c82899?w=800&h=600&fit=crop",
       link: "/resources/gender-justice",
     },
     {
-      title: "Supporting Legal Reform",
-      description: "Working with policymakers to strengthen laws and align policies with human rights.",
+      title: "Legal Reform",
+      description: "Working with policymakers to strengthen laws.",
       image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
       link: "/what-we-do/advocacy-policy",
     },
     {
-      title: "Promoting Inclusive Innovation",
-      description: "Leveraging digital tools like Haki Yangu App and WhatsApp bots to expand legal access.",
+      title: "Inclusive Innovation",
+      description: "Leveraging digital tools like Haki Yangu App.",
       image: "https://images.unsplash.com/photo-1516321318423-4b6a0b0f0e6a?w=800&h=600&fit=crop",
       link: "/focus-areas/digital-transformation",
     },
   ];
 
-  const [currentApproach, setCurrentApproach] = useState(0);
-  const [currentFocus, setCurrentFocus] = useState(0);
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
+  };
 
-  const prev = (setter) => setter((prev) => Math.max(prev - 1, 0));
-  const next = (setter, total) => setter((prev) => Math.min(prev + 1, total - 1));
+  const SliderSection = ({ title, subtitle, items, bgClass = "bg-white" }) => {
+    const sliderRef = useRef<Slider>(null);
 
-  const renderSlider = (cards, current, setter) => (
-    <div className="relative">
-      {/* Slider Track */}
-      <div
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${current * (100 / 2.7)}%)` }}
-      >
-        {cards.map((card, idx) => (
-          <div
-            key={idx}
-            className="min-w-[70%] md:min-w-[33%] max-w-[70%] md:max-w-[33%] flex-shrink-0 px-4"
-          >
-            <div className="rounded-2xl border border-gray-200 bg-white shadow hover:shadow-lg overflow-hidden transition-all duration-300 flex flex-col">
-              {/* Image */}
-              <div className="h-56 md:h-64 lg:h-72 w-full overflow-hidden">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+    return (
+      // Reduced py-20 to py-12 (decrease padding)
+      <section className={`py-12 ${bgClass} border-b border-neutral-100`}>
+        <Container size="xl"> {/* Restored to xl */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 px-2 gap-8">
+            <div className="max-w-4xl text-left"> {/* Explicit text-left */}
+              <div className="inline-flex items-center gap-2 text-primary font-bold mb-3 uppercase tracking-widest text-sm bg-primary/5 px-4 py-1.5 rounded-full"> {/* Increased text size and padding slightly */}
+                <Target className="h-4 w-4" />
+                {subtitle}
               </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900">{title}</h2> {/* Increased heading sizes */}
+            </div>
 
-              {/* Content */}
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                  {card.title}
-                </h3>
-                <p className="text-gray-600 text-base mb-4 flex-1">
-                  {card.description}
-                </p>
-                <Link
-                  to={card.link}
-                  className="inline-flex items-center text-[#931E5C] font-medium hover:underline"
-                >
-                  Learn more <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </div>
+            {/* Custom Arrows */}
+            <div className="flex gap-2 mt-4 md:mt-0 flex-shrink-0">
+              <button
+                onClick={() => sliderRef.current?.slickPrev()}
+                className="w-12 h-12 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all text-neutral-600 shadow-sm"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                onClick={() => sliderRef.current?.slickNext()}
+                className="w-12 h-12 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all text-neutral-600 shadow-sm"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
             </div>
           </div>
-        ))}
-      </div>
 
-      {/* Navigation */}
-      <button
-        onClick={() => prev(setter)}
-        disabled={current === 0}
-        className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow flex items-center justify-center border hover:bg-gray-100 transition disabled:opacity-40"
-      >
-        <ChevronLeft className="h-5 w-5 text-gray-600" />
-      </button>
-      <button
-        onClick={() => next(setter, cards.length)}
-        disabled={current === cards.length - 1}
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow flex items-center justify-center border hover:bg-gray-100 transition disabled:opacity-40"
-      >
-        <ChevronRight className="h-5 w-5 text-gray-600" />
-      </button>
-    </div>
-  );
+          <div className="-mx-3">
+            <Slider ref={sliderRef} {...sliderSettings}>
+              {items.map((item, idx) => (
+                <div key={idx} className="px-3 pb-6"> {/* Increased bottom padding for shadow room */}
+                  <Link to={item.link} className="block group h-full">
+                    {/* Increased border radius and shadow */}
+                    <div className="bg-white rounded-[1.5rem] overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                      {/* Image - Increased height by 1.5rem approx (h-64 is 16rem, was h-56 14rem) */}
+                      <div className="h-[18rem] overflow-hidden relative">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                      </div>
+
+                      {/* Content - Increased padding and font sizes */}
+                      <div className="p-8 flex flex-col flex-grow"> {/* p-6 -> p-8 (+?.5rem but larger feel) */}
+                        <h3 className="text-2xl font-bold text-neutral-900 mb-4 group-hover:text-primary transition-colors line-clamp-2"> {/* text-xl -> text-2xl */}
+                          {item.title}
+                        </h3>
+                        <p className="text-neutral-600 text-base mb-6 line-clamp-4 leading-relaxed flex-grow"> {/* text-sm -> text-base */}
+                          {item.description}
+                        </p>
+                        <div className="flex items-center text-primary font-bold text-base mt-auto"> {/* text-sm -> text-base */}
+                          Learn more <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" /> {/* icon w-4->w-5 */}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </Container>
+      </section>
+    );
+  };
 
   return (
     <>
-      {/* Approaches Section */}
-      <section className="py-20 bg-gray-50">
-        <Container size="xl">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center bg-primary/10 rounded-full px-6 py-2 mb-4">
-              <Target className="h-5 w-5 text-[#931E5C] mr-2" />
-              <span className="text-sm font-semibold text-gray-800">
-                Strategic Approaches
-              </span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              How We Drive <span className="text-[#931E5C]">Justice</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our five strategic approaches shape how we deliver impact and empower communities across Tanzania.
-            </p>
-          </div>
-          {renderSlider(approaches, currentApproach, setCurrentApproach)}
-        </Container>
-      </section>
-
-      {/* Focus Areas Section */}
-      <section className="py-20 bg-white">
-        <Container size="xl">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center bg-primary/10 rounded-full px-6 py-2 mb-4">
-              <Target className="h-5 w-5 text-[#931E5C] mr-2" />
-              <span className="text-sm font-semibold text-gray-800">
-                Strategic Focus Areas
-              </span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Where We <span className="text-[#931E5C]">Create Change</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              These focus areas ensure that our work remains bold, relevant, and impactful for women, youth, and marginalized communities.
-            </p>
-          </div>
-          {renderSlider(focusAreas, currentFocus, setCurrentFocus)}
-        </Container>
-      </section>
+      <SliderSection
+        title="Our Strategic Approaches"
+        subtitle="How We Work"
+        items={approaches}
+        bgClass="bg-neutral-50"
+      />
+      <SliderSection
+        title="Strategic Focus Areas"
+        subtitle="Where We Work"
+        items={focusAreas}
+        bgClass="bg-white"
+      />
     </>
   );
 };

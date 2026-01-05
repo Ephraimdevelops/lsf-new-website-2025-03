@@ -1,168 +1,122 @@
-import { useState } from 'react';
-import { 
-  Download, 
-  ArrowRight, 
-  Apple, 
-  Smartphone,
-  Shield,
-  Clock,
-  Globe,
-  CheckCircle
-} from 'lucide-react';
+import { Smartphone, Shield, Clock, Globe, CheckCircle, Apple, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Container from '@/components/shared/Container';
-import Typography from '@/components/shared/Typography';
-import { useIntersectionObserverCallback } from '@/hooks/useIntersectionObserver';
 
 const HakiYanguDownload = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 });
-
-  const downloadFeatures = [
-    {
-      icon: Shield,
-      title: "100% Secure",
-      description: "Your data is encrypted and protected with enterprise-grade security."
-    },
-    {
-      icon: Clock,
-      title: "Always Available",
-      description: "Access legal help 24/7, even offline in remote areas."
-    },
-    {
-      icon: Globe,
-      title: "Works Everywhere",
-      description: "Available in all regions of Tanzania with local language support."
-    },
-    {
-      icon: CheckCircle,
-      title: "Free to Use",
-      description: "No hidden costs, no subscriptions - justice should be accessible to all."
-    }
-  ];
-
-  const appStoreLinks = [
-    {
-      name: "Google Play Store",
-      icon: <Smartphone className="h-8 w-8" />,
-      description: "Download for Android",
-      color: "from-green-600 to-green-700",
-      hoverColor: "hover:from-green-700 hover:to-green-800",
-      link: "#"
-    },
-    {
-      name: "Apple App Store",
-      icon: <Apple className="h-8 w-8" />,
-      description: "Download for iPhone",
-      color: "from-gray-700 to-gray-800",
-      hoverColor: "hover:from-gray-800 hover:to-gray-900",
-      link: "#"
-    }
+  const features = [
+    { icon: <Shield className="h-5 w-5" />, title: '100% Secure', description: 'Enterprise-grade encryption' },
+    { icon: <Clock className="h-5 w-5" />, title: '24/7 Access', description: 'Legal help anytime' },
+    { icon: <Globe className="h-5 w-5" />, title: 'Nationwide', description: 'All regions covered' },
+    { icon: <CheckCircle className="h-5 w-5" />, title: 'Free to Use', description: 'No hidden costs' },
   ];
 
   return (
-    <section 
-      ref={sectionRef}
-      className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-secondary-teal/5 to-secondary-orange/5 relative overflow-hidden"
-    >
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary-teal/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-secondary-orange/5 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
+    <section className="py-24 bg-gradient-to-br from-secondary-teal via-secondary-teal to-secondary-teal-dark text-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-      <Container size="2xl" className="relative z-10">
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Content */}
-            <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-              <div className="space-y-8">
-                {/* Badge */}
-                <div className="inline-flex items-center gap-4 bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 border border-primary/20">
-                  <Download className="h-6 w-6 text-primary animate-pulse" />
-                  <Typography variant="overline" className="text-primary font-bold text-lg tracking-wider">
-                    Download Now
-                  </Typography>
-                </div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-                {/* Main Heading */}
-                <Typography 
-                  variant="h2" 
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-                >
-                  Get Started Today
-                  <span className="block bg-gradient-to-r from-primary via-secondary-teal to-secondary-orange bg-clip-text text-transparent">
-                    Download Haki Yangu
-                  </span>
-                </Typography>
-
-                {/* Description */}
-                <Typography 
-                  variant="body" 
-                  className="text-xl text-muted-foreground leading-relaxed"
-                >
-                  Join thousands of Tanzanians who are already accessing legal services through their smartphones. 
-                  Download the app now and experience the future of accessible justice.
-                </Typography>
-
-
-                {/* Features */}
-                <div className="grid grid-cols-2 gap-4 pt-8">
-                  {downloadFeatures.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary to-secondary-orange rounded-xl shadow-lg">
-                        <feature.icon className="h-5 w-5 text-white" />
-                      </div>
-                      <div>
-                        <Typography variant="h4" className="text-sm font-bold mb-1">
-                          {feature.title}
-                        </Typography>
-                        <Typography variant="bodySmall" className="text-muted-foreground">
-                          {feature.description}
-                        </Typography>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-
-                {/* Download Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  {appStoreLinks.map((store, index) => (
-                    <Button 
-                      key={index}
-                      size="lg" 
-                      className={`bg-gradient-to-r ${store.color} ${store.hoverColor} text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:shadow-xl hover:scale-105 group`}
-                    >
-                      {store.icon}
-                      <div className="ml-3 text-left">
-                        <div className="text-sm opacity-90">Get it on</div>
-                        <div className="text-lg font-bold">{store.name}</div>
-                      </div>
-                      <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  ))}
-                </div>
-              </div>
+          {/* Content */}
+          <div>
+            <div className="inline-flex items-center gap-3 mb-6 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2 border border-white/30">
+              <Smartphone className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Mobile App</span>
             </div>
 
-            {/* Visual */}
-            <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-              <div className="relative">
-                <div className="aspect-[4/4] overflow-hidden">
-                  <img 
-                    src="/lovable-uploads/2.png" 
-                    alt="Haki Yangu App Download" 
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              Justice in Your <br />
+              <span className="text-secondary-yellow">Pocket</span>
+            </h2>
+
+            <p className="text-white/90 text-xl leading-relaxed mb-10 max-w-lg">
+              Join <strong>45,000+ Tanzanians</strong> accessing legal services through their smartphones. Download Haki Yangu today.
+            </p>
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-2 gap-6 mb-10">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">{feature.title}</h4>
+                    <p className="text-white/70 text-sm">{feature.description}</p>
+                  </div>
                 </div>
-            
+              ))}
+            </div>
+
+            {/* App Store Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                size="lg"
+                className="bg-black hover:bg-black/90 text-white h-16 px-8 rounded-2xl group"
+              >
+                <Smartphone className="h-6 w-6 mr-3" />
+                <div className="text-left">
+                  <div className="text-xs opacity-70">GET IT ON</div>
+                  <div className="text-base font-bold">Google Play</div>
+                </div>
+              </Button>
+              <Button
+                size="lg"
+                className="bg-black hover:bg-black/90 text-white h-16 px-8 rounded-2xl group"
+              >
+                <Apple className="h-6 w-6 mr-3" />
+                <div className="text-left">
+                  <div className="text-xs opacity-70">DOWNLOAD ON</div>
+                  <div className="text-base font-bold">App Store</div>
+                </div>
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="flex gap-8 mt-10 pt-10 border-t border-white/20">
+              <div>
+                <p className="text-3xl font-black">45K+</p>
+                <p className="text-white/70 text-sm">Downloads</p>
+              </div>
+              <div>
+                <p className="text-3xl font-black">15%</p>
+                <p className="text-white/70 text-sm">Digital Intake</p>
+              </div>
+              <div>
+                <p className="text-3xl font-black">4.5★</p>
+                <p className="text-white/70 text-sm">App Rating</p>
+              </div>
+            </div>
+          </div>
+
+          {/* App Visual */}
+          <div className="relative">
+            <div className="aspect-square bg-white/10 backdrop-blur-sm rounded-3xl p-8 relative overflow-hidden border border-white/20">
+              {/* Decorative circles */}
+              <div className="absolute top-0 right-0 w-48 h-48 bg-secondary-yellow/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
+
+              <img
+                src="/lovable-uploads/2.png"
+                alt="Haki Yangu App"
+                className="w-full h-full object-contain relative z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            {/* Floating badge */}
+            <div className="absolute -bottom-6 -right-6 bg-secondary-yellow text-black px-6 py-4 rounded-2xl shadow-xl">
+              <div className="flex items-center gap-3">
+                <Download className="h-6 w-6" />
+                <div>
+                  <p className="font-black">Free Download</p>
+                  <p className="text-xs opacity-70">iOS & Android</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };

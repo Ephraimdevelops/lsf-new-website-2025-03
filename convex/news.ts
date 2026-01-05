@@ -116,3 +116,85 @@ export const remove = mutation({
         await ctx.db.delete(args.id);
     },
 });
+
+// Seed initial news
+export const seed = mutation({
+    args: {},
+    handler: async (ctx) => {
+        const existing = await ctx.db.query("news").collect();
+        if (existing.length > 0) return;
+
+        const newsItems = [
+            {
+                title: 'LSF Launches Digital Legal Aid Platform',
+                excerpt: 'Revolutionary platform connecting rural communities with legal professionals across Tanzania.',
+                content: '<p>Full content of the article...</p>',
+                category: 'Innovation',
+                image: '/lovable-uploads/28d292f2-ef17-4f1a-b33b-a06f39dec3ea.png',
+                date: '2024-01-15',
+                featured: true,
+                author: 'LSF Communications',
+                slug: 'lsf-launches-digital-legal-aid-platform'
+            },
+            {
+                title: 'Women\'s Land Rights Initiative Reaches 10K+',
+                excerpt: 'Empowering women across 15 regions with essential legal knowledge and support.',
+                content: '<p>Full content of the article...</p>',
+                category: 'Gender Justice',
+                image: '/lovable-uploads/placeholder.svg',
+                date: '2024-01-12',
+                featured: true,
+                author: 'Jane Doe',
+                slug: 'womens-land-rights-initiative'
+            },
+            {
+                title: 'Climate Justice Program Expands Nationwide',
+                excerpt: 'Protecting environmental rights across all coastal regions in Tanzania.',
+                content: '<p>Full content of the article...</p>',
+                category: 'Climate',
+                image: '/lovable-uploads/placeholder.svg',
+                date: '2024-01-10',
+                featured: false,
+                author: 'John Smith',
+                slug: 'climate-justice-program-expands'
+            },
+            {
+                title: '500+ Paralegals Graduate Training Program',
+                excerpt: 'Expanding community legal support network across Tanzania.',
+                content: '<p>Full content of the article...</p>',
+                category: 'Training',
+                image: '/lovable-uploads/placeholder.svg',
+                date: '2024-01-08',
+                featured: true,
+                author: 'LSF Training Team',
+                slug: '500-paralegals-graduate'
+            },
+            {
+                title: 'Digital Transformation Reaches Rural Areas',
+                excerpt: 'Bridging the digital divide in legal services for 100+ communities.',
+                content: '<p>Full content of the article...</p>',
+                category: 'Technology',
+                image: '/lovable-uploads/placeholder.svg',
+                date: '2024-01-05',
+                featured: false,
+                author: 'Tech Team',
+                slug: 'digital-transformation-rural-areas'
+            },
+            {
+                title: 'Government Partnership Strengthens Legal Aid',
+                excerpt: 'New collaboration reaching 50,000+ people in Q1 2024.',
+                content: '<p>Full content of the article...</p>',
+                category: 'Partnership',
+                image: '/lovable-uploads/placeholder.svg',
+                date: '2024-01-03',
+                featured: true,
+                author: 'Policy Team',
+                slug: 'government-partnership-strengthens-legal-aid'
+            }
+        ];
+
+        for (const item of newsItems) {
+            await ctx.db.insert("news", item);
+        }
+    },
+});

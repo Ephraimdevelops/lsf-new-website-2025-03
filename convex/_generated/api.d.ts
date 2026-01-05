@@ -16,8 +16,11 @@ import type * as news from "../news.js";
 import type * as opportunities from "../opportunities.js";
 import type * as programs from "../programs.js";
 import type * as publications from "../publications.js";
+import type * as seedContent from "../seedContent.js";
+import type * as stats from "../stats.js";
 import type * as stories from "../stories.js";
 import type * as team from "../team.js";
+import type * as testimonials from "../testimonials.js";
 import type * as users from "../users.js";
 
 import type {
@@ -35,8 +38,11 @@ declare const fullApi: ApiFromModules<{
   opportunities: typeof opportunities;
   programs: typeof programs;
   publications: typeof publications;
+  seedContent: typeof seedContent;
+  stats: typeof stats;
   stories: typeof stories;
   team: typeof team;
+  testimonials: typeof testimonials;
   users: typeof users;
 }>;
 

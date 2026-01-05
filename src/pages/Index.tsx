@@ -2,7 +2,7 @@ import Layout from '@/components/layout/Layout';
 import CinematicHero from '@/components/home/hero/CinematicHero';
 import ModernAboutSection from '@/components/home/ModernAboutSection';
 import CompactNewsSection from '@/components/home/CompactNewsSection';
-import SimpleTestimonialsSection from '@/components/home/SimpleTestimonialsSection';
+import ImpactStories from '@/components/home/ImpactStories';
 import ModernPartnersSection from '@/components/home/ModernPartnersSection';
 import ModernCallToAction from '@/components/home/ModernCallToAction';
 import HakiYanguDownload from '@/components/haki-yangu/HakiYanguDownload';
@@ -17,11 +17,11 @@ const Index = () => (
     {/* Modern About Section with enhanced storytelling */}
     <ModernAboutSection />
 
-            {/* Simple Testimonials Section */}
-            <SimpleTestimonialsSection />
+    {/* Impact Stories Section */}
+    <ImpactStories />
 
-            {/* Compact News & Publications Section */}
-            <CompactNewsSection />
+    {/* Compact News & Publications Section */}
+    <CompactNewsSection />
 
     {/* Modern Partners Section */}
     <ModernPartnersSection />

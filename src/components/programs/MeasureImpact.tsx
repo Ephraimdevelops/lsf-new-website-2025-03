@@ -37,8 +37,8 @@ const MeasureImpact = () => {
       {/* Background elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(147,30,92,0.03)_0%,transparent_50%)]"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(89,181,176,0.03)_0%,transparent_50%)]"></div>
-      
-      <Container size="xl" className="relative z-10">
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-gradient-to-r from-primary/10 to-secondary-teal/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-white/20">
             <BarChart3 className="h-5 w-5 mr-3 text-primary" />
@@ -48,7 +48,7 @@ const MeasureImpact = () => {
           </div>
           <Typography variant="h2" className="mb-8 text-4xl md:text-5xl font-bold">
             Data-Driven
-            <span className="block bg-gradient-to-r from-primary to-secondary-teal bg-clip-text text-transparent">
+            <span className="block text-primary">
               Results
             </span>
           </Typography>
@@ -65,15 +65,15 @@ const MeasureImpact = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-secondary-teal/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <TrendingUp className="h-8 w-8 text-primary" />
                 </div>
-                
+
                 <Typography variant="h3" className={`text-4xl font-bold mb-2 ${metric.color}`}>
                   {metric.value}
                 </Typography>
-                
+
                 <Typography variant="h4" className="font-semibold mb-3 text-primary">
                   {metric.label}
                 </Typography>
-                
+
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <Typography variant="bodySmall" className="text-green-600 font-medium">
@@ -95,7 +95,7 @@ const MeasureImpact = () => {
               <Typography variant="body" className="text-neutral-600 mb-8 text-lg leading-relaxed">
                 We employ rigorous monitoring and evaluation methodologies to track progress, measure impact, and ensure accountability to our beneficiaries and funders.
               </Typography>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-center gap-4">
                   <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary-teal rounded-lg flex items-center justify-center">
@@ -140,8 +140,8 @@ const MeasureImpact = () => {
 
             <div className="relative">
               <div className="bg-gradient-to-br from-primary/5 to-secondary-teal/5 rounded-3xl p-8 border border-primary/10">
-                <img 
-                  src="/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png" 
+                <img
+                  src="/lovable-uploads/97ffee5d-3957-47c9-820d-9c74a1766fa5.png"
                   alt="MEL Framework Visualization"
                   className="w-full h-64 object-cover rounded-2xl shadow-lg"
                 />
@@ -149,7 +149,7 @@ const MeasureImpact = () => {
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };

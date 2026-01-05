@@ -27,7 +27,7 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
-				
+
 				// Brand Primary Colors - Using HSL Variables
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
@@ -35,7 +35,7 @@ export default {
 					light: 'hsl(var(--primary-light))',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
-				
+
 				// Brand Secondary Colors - Using HSL Variables
 				'secondary-teal': {
 					DEFAULT: 'hsl(var(--secondary-teal))',
@@ -57,7 +57,7 @@ export default {
 					dark: 'hsl(var(--secondary-green-dark))',
 					light: 'hsl(var(--secondary-green-light))'
 				},
-				
+
 				// Neutral Scale - Using HSL Variables
 				neutral: {
 					50: 'hsl(var(--neutral-50))',
@@ -74,7 +74,7 @@ export default {
 					dark: 'hsl(var(--neutral-dark))',
 					light: 'hsl(var(--neutral-light))',
 				},
-				
+
 				// System Colors
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -107,12 +107,12 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
+				// Ubuntu + Avenir Font Pairing
 				'display': ['Ubuntu', 'system-ui', 'sans-serif'],
 				'heading': ['Ubuntu', 'system-ui', 'sans-serif'],
-				'body': ['Ubuntu', 'system-ui', 'sans-serif'],
-				'sans': ['Ubuntu', 'system-ui', 'sans-serif'],
+				'body': ['Avenir', 'Avenir Next', '-apple-system', 'Helvetica Neue', 'sans-serif'],
+				'sans': ['Avenir', 'Avenir Next', '-apple-system', 'Helvetica Neue', 'sans-serif'],
 				'serif': ['Ubuntu', 'system-ui', 'sans-serif'],
-				'serif-condensed': ['Ubuntu', 'system-ui', 'sans-serif'],
 			},
 			fontSize: {
 				'xs': ['0.75rem', { lineHeight: '1rem' }],
@@ -171,11 +171,11 @@ export default {
 					'50%': { transform: 'translateY(-10px)' },
 				},
 				'bounce-slow': {
-					'0%, 100%': { 
+					'0%, 100%': {
 						transform: 'translateY(-25%)',
 						animationTimingFunction: 'cubic-bezier(0.8,0,1,1)'
 					},
-					'50%': { 
+					'50%': {
 						transform: 'none',
 						animationTimingFunction: 'cubic-bezier(0,0,0.2,1)'
 					},

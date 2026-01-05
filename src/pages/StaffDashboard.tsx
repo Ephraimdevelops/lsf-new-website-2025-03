@@ -1,46 +1,15 @@
-import { useEffect, useState } from 'react';
-import api from '@/lib/axios';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 const StaffDashboard = () => {
-  interface User {
-    id: string;
-    email: string;
-    name?: string;
-    role: string;
-  }
-
-  interface Task {
-    id: string;
-    title: string;
-    description: string;
-    status: string;
-    dueDate?: string;
-  }
-
-  const [user, setUser] = useState<User | null>(null);
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError('');
-      try {
-        const res = await api.get('/dashboard/staff');
-        setUser(res.data.user);
-        setTasks(res.data.tasks || []);
-      } catch (err) {
-        setError('Failed to load staff dashboard.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const data = useQuery(api.users.getDashboardData);
+  const loading = data === undefined;
+  const error = data === null; // In case of null return (though our query throws)
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (error) return <div>Failed to load staff dashboard.</div>;
+
+  const { user, tasks } = data;
 
   return (
     <div className="p-8">

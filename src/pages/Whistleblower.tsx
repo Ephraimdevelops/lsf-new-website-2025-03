@@ -17,7 +17,7 @@ const Whistleblower = () => {
     },
     {
       icon: Lock,
-      title: "Absolute Confidentiality", 
+      title: "Absolute Confidentiality",
       description: "Your identity and information will be kept confidential to the fullest extent possible.",
       color: "from-secondary-teal to-secondary-teal/80"
     },
@@ -40,37 +40,47 @@ const Whistleblower = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
+        {/* Dynamic Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center transform scale-105 animate-ken-burns"
           style={{ backgroundImage: `url('/lovable-uploads/background with mother umage .png')` }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-primary/60 to-black/70"></div>
-        
+
+        {/* Premium Overlay System */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-primary/80 to-black/90 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
+
         <Container className="relative z-10 text-center text-white">
-          <div className="flex items-center justify-center mb-8">
-            <div className="bg-secondary-orange/20 p-6 rounded-full backdrop-blur-sm border border-secondary-orange/30">
-              <Shield className="h-16 w-16 text-secondary-orange" />
+          <div className="flex items-center justify-center mb-10">
+            <div className="relative">
+              <div className="absolute inset-0 bg-secondary-orange rounded-full blur-xl opacity-40 animate-pulse"></div>
+              <div className="bg-white/5 p-6 rounded-full backdrop-blur-md border border-white/10 relative z-10 shadow-2xl">
+                <Shield className="h-16 w-16 text-secondary-orange" />
+              </div>
             </div>
           </div>
-          
-          <Typography variant="overline" className="text-secondary-orange mb-6 text-lg font-bold tracking-wider">
-            SAFE. SECURE. PROTECTED.
+
+          <Typography variant="overline" className="text-secondary-orange mb-8 text-lg font-bold tracking-[0.3em] uppercase drop-shadow-sm">
+            Safe • Secure • Protected
           </Typography>
-          <Typography variant="h1" className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+
+          <Typography variant="h1" className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight tracking-tight drop-shadow-2xl">
             Speak Up with<br />
-            <span className="text-secondary-orange">Confidence</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-orange to-secondary-yellow">Confidence</span>
           </Typography>
-          <Typography variant="body" className="text-2xl mb-12 max-w-4xl mx-auto text-white/90 leading-relaxed">
-            Your voice matters in maintaining the highest standards of integrity. Report concerns safely, 
+
+          <Typography variant="body" className="text-2xl mb-12 max-w-4xl mx-auto text-white/80 leading-relaxed font-light drop-shadow-md">
+            Your voice matters in maintaining the highest standards of integrity. Report concerns safely,
             knowing you're protected every step of the way.
           </Typography>
-          
+
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-xl px-8 py-4">
+            <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 text-white text-xl px-10 py-8 rounded-2xl shadow-lg hover:shadow-secondary-orange/20 transition-all hover:-translate-y-1">
               <MessageSquare className="mr-3 h-6 w-6" />
               Submit Report Now
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-xl px-8 py-4">
+            <Button size="lg" variant="outline" className="border-2 border-white/20 bg-white/5 backdrop-blur-sm text-white hover:bg-white hover:text-primary text-xl px-10 py-8 rounded-2xl transition-all hover:-translate-y-1">
               <Phone className="mr-3 h-6 w-6" />
               Call Ethics Hotline
             </Button>
@@ -95,7 +105,7 @@ const Whistleblower = () => {
               <div key={index} className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                 <div className={`bg-gradient-to-br ${feature.color} p-8 text-white relative`}>
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-                  
+
                   <div className="relative z-10">
                     <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                       <feature.icon className="h-8 w-8 text-white" />
@@ -141,10 +151,10 @@ const Whistleblower = () => {
               Your Voice Creates Change
             </Typography>
             <Typography variant="body" className="text-white/90 mb-12 text-xl">
-              Every report helps us build a more ethical, transparent, and accountable organization. 
+              Every report helps us build a more ethical, transparent, and accountable organization.
               Join us in maintaining the highest standards of integrity.
             </Typography>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button size="lg" className="bg-secondary-orange hover:bg-secondary-orange/90 font-bold py-4 text-lg">
                 <MessageSquare className="mr-3 h-6 w-6" />
@@ -177,7 +187,7 @@ const Whistleblower = () => {
                 <TabsTrigger value="faq" className="font-calibri text-base">Common Questions</TabsTrigger>
               </TabsList>
             </div>
-            
+
             <TabsContent value="report">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Main Reporting Section */}
@@ -204,7 +214,7 @@ const Whistleblower = () => {
                         </Typography>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
                       <Clock className="h-6 w-6 text-primary mt-1" />
                       <div>
@@ -214,7 +224,7 @@ const Whistleblower = () => {
                         </Typography>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
                       <Globe className="h-6 w-6 text-primary mt-1" />
                       <div>
@@ -225,7 +235,7 @@ const Whistleblower = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <Button className="w-full text-lg py-4 bg-primary hover:bg-primary/90">
                       <MessageSquare className="mr-3 h-6 w-6" />
@@ -255,7 +265,7 @@ const Whistleblower = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {[
                         "Fraud or financial misconduct",
-                        "Conflicts of interest", 
+                        "Conflicts of interest",
                         "Policy violations",
                         "Safety concerns",
                         "Human rights abuses",
@@ -279,14 +289,14 @@ const Whistleblower = () => {
                       Remember: Every Report Matters
                     </Typography>
                     <Typography variant="body" className="text-neutral-gray leading-relaxed">
-                      Whether big or small, your concerns help us maintain the highest standards of integrity. 
+                      Whether big or small, your concerns help us maintain the highest standards of integrity.
                       If something doesn't feel right, trust your instincts and speak up.
                     </Typography>
                   </div>
                 </div>
               </div>
             </TabsContent>
-            
+
             <TabsContent value="policy">
               <Card>
                 <CardContent className="p-6">
@@ -294,7 +304,7 @@ const Whistleblower = () => {
                   <p className="text-neutral-gray mb-6 font-calibri">
                     Our whistleblower policy is designed to encourage staff, volunteers, partners, and other stakeholders to report suspected wrongdoing without fear of retaliation.
                   </p>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-xl font-bold mb-3 font-panton">Policy Objectives</h3>
@@ -309,14 +319,14 @@ const Whistleblower = () => {
                         <li>Ensure appropriate action is taken in response to substantiated concerns</li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-xl font-bold mb-3 font-panton">Protection from Retaliation</h3>
                       <p className="text-neutral-gray font-calibri">
                         LSF prohibits retaliation against any person who reports a concern in good faith or participates in an investigation. Retaliation includes dismissal, disciplinary action, threats, harassment, discrimination, or any other unfavorable treatment connected with raising a concern.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-xl font-bold mb-3 font-panton">Investigation Process</h3>
                       <p className="text-neutral-gray mb-4 font-calibri">
@@ -331,7 +341,7 @@ const Whistleblower = () => {
                         <li>Follow-up with the whistleblower when possible</li>
                       </ol>
                     </div>
-                    
+
                     <div className="flex justify-center">
                       <Button variant="outline" className="font-calibri">
                         Download Full Policy (PDF)
@@ -341,12 +351,12 @@ const Whistleblower = () => {
                 </CardContent>
               </Card>
             </TabsContent>
-            
+
             <TabsContent value="faq">
               <Card>
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-bold mb-6 font-panton">Frequently Asked Questions</h2>
-                  
+
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">
                       <AccordionTrigger className="text-lg font-calibri">Who can submit a whistleblower report?</AccordionTrigger>
@@ -354,35 +364,35 @@ const Whistleblower = () => {
                         Anyone associated with LSF can submit a report, including employees, volunteers, consultants, partners, beneficiaries, donors, and other stakeholders who have concerns about potential misconduct related to our operations.
                       </AccordionContent>
                     </AccordionItem>
-                    
+
                     <AccordionItem value="item-2">
                       <AccordionTrigger className="text-lg font-calibri">Can I remain anonymous when reporting?</AccordionTrigger>
                       <AccordionContent className="font-calibri">
                         Yes, you can choose to remain anonymous. However, providing your contact information allows us to follow up with questions that might be important for investigating your concerns. If you do provide your identity, we will make every effort to keep it confidential.
                       </AccordionContent>
                     </AccordionItem>
-                    
+
                     <AccordionItem value="item-3">
                       <AccordionTrigger className="text-lg font-calibri">What happens after I submit a report?</AccordionTrigger>
                       <AccordionContent className="font-calibri">
                         After submitting a report, you will receive an acknowledgment within 48 hours. An initial assessment will be conducted to determine if an investigation is needed. If an investigation proceeds, it will be conducted by appropriate personnel who are independent of the issue. You may be contacted for additional information, and you will receive updates on the status when possible.
                       </AccordionContent>
                     </AccordionItem>
-                    
+
                     <AccordionItem value="item-4">
                       <AccordionTrigger className="text-lg font-calibri">How am I protected from retaliation?</AccordionTrigger>
                       <AccordionContent className="font-calibri">
                         Our policy strictly prohibits retaliation against whistleblowers who report concerns in good faith. If you believe you are experiencing retaliation, report it immediately through the same whistleblower channels. Reports of retaliation will be investigated promptly, and appropriate disciplinary action will be taken against anyone found to have engaged in retaliatory conduct.
                       </AccordionContent>
                     </AccordionItem>
-                    
+
                     <AccordionItem value="item-5">
                       <AccordionTrigger className="text-lg font-calibri">What if my report involves a senior leader?</AccordionTrigger>
                       <AccordionContent className="font-calibri">
                         Reports involving senior leadership are handled with special protocols to ensure independence and objectivity. Such reports may be directed to the Board of Directors or an external investigator to avoid conflicts of interest. The same protections against retaliation apply regardless of who is named in the report.
                       </AccordionContent>
                     </AccordionItem>
-                    
+
                     <AccordionItem value="item-6">
                       <AccordionTrigger className="text-lg font-calibri">What if I'm not sure if what I observed is a violation?</AccordionTrigger>
                       <AccordionContent className="font-calibri">
@@ -390,7 +400,7 @@ const Whistleblower = () => {
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
-                  
+
                   <div className="mt-8 bg-neutral-light p-6 rounded-lg">
                     <h3 className="text-lg font-bold mb-3 font-panton">Still Have Questions?</h3>
                     <p className="mb-4 font-calibri">
@@ -450,7 +460,7 @@ const Whistleblower = () => {
         </Container>
       </section>
 
-      
+
     </Layout>
   );
 };

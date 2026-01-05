@@ -1,12 +1,8 @@
-
+import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import HeroSection from '../components/shared/HeroSection';
-import Typography from '@/components/shared/Typography';
-import Container from '@/components/shared/Container';
-import Section from '@/components/shared/Section';
-import Card from '@/components/shared/Card';
+import CinematicHero from '@/components/shared/CinematicHero';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Heart, Users, Globe } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 
 interface Partner {
   id: string;
@@ -21,54 +17,54 @@ interface Partner {
 const partners: Partner[] = [
   {
     id: '1',
-    name: 'UNDP Tanzania',
-    description: 'Supporting our legal empowerment programs and capacity building initiatives across rural communities.',
-    logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-    website: 'https://undp.org',
-    category: 'International Organizations',
-    partnership_type: 'Funding Partner'
+    name: 'European Union',
+    description: 'Major donor supporting legal empowerment programs across Tanzania.',
+    logo: '/lovable-uploads/Funded by European Union.png',
+    website: 'https://europa.eu',
+    category: 'International',
+    partnership_type: 'Major Donor'
   },
   {
     id: '2',
-    name: 'Ford Foundation',
-    description: 'Championing social justice through strategic funding of our access to justice initiatives.',
-    logo: 'https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-    website: 'https://fordfoundation.org',
-    category: 'Foundations',
-    partnership_type: 'Strategic Partner'
+    name: 'ENABEL',
+    description: 'Development partner building capacity for sustainable justice systems.',
+    logo: '/lovable-uploads/Enabel.png',
+    website: 'https://enabel.be',
+    category: 'Development',
+    partnership_type: 'Development Partner'
   },
   {
     id: '3',
-    name: 'Tanzania Law Society',
-    description: 'Collaborating on policy advocacy and professional development for legal practitioners.',
-    logo: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-    website: '#',
-    category: 'Professional Bodies',
-    partnership_type: 'Implementation Partner'
+    name: 'UK Aid',
+    description: 'Strengthening legal aid infrastructure across regions.',
+    logo: '/lovable-uploads/UKAid.png',
+    website: 'https://gov.uk',
+    category: 'Government',
+    partnership_type: 'Funding Partner'
   },
   {
     id: '4',
-    name: 'University of Dar es Salaam',
-    description: 'Research collaboration and training programs for legal education and community outreach.',
-    logo: 'https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+    name: 'Danish Embassy Tanzania',
+    description: 'Supporting community legal empowerment initiatives.',
+    logo: '/lovable-uploads/Danish amabssador.png',
     website: '#',
-    category: 'Academic Institutions',
-    partnership_type: 'Research Partner'
+    category: 'Government',
+    partnership_type: 'Development Partner'
   },
   {
     id: '5',
-    name: 'Oxfam Tanzania',
-    description: 'Joint programs addressing poverty, inequality, and human rights across Tanzania.',
-    logo: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-    website: 'https://oxfam.org',
-    category: 'NGOs',
-    partnership_type: 'Implementation Partner'
+    name: 'North-South Cooperation',
+    description: 'Advancing global justice cooperation and policy.',
+    logo: '/lovable-uploads/Northsouth cooperation.png',
+    website: '#',
+    category: 'International',
+    partnership_type: 'Policy Partner'
   },
   {
     id: '6',
-    name: 'Ministry of Justice',
-    description: 'Government partnership for policy development and justice sector reforms.',
-    logo: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+    name: 'Foreign Commonwealth Office',
+    description: 'Government partnership for policy development.',
+    logo: '/lovable-uploads/foregign, commonwealth, office.png',
     website: '#',
     category: 'Government',
     partnership_type: 'Policy Partner'
@@ -78,93 +74,87 @@ const partners: Partner[] = [
 const Partners = () => {
   return (
     <Layout>
-      <HeroSection
-        icon={<Users className="h-8 w-8" />}
-        badge="Partnerships"
+      <CinematicHero
         title="Our Partners"
-        description="Together with our partners, we're building a more just and equitable Tanzania where everyone has access to legal protection and empowerment."
-        backgroundImage="/lovable-uploads/background with mother umage .png"
+        badge="Strategic Partnerships"
+        description="Together with our partners, we're building a more just and equitable Tanzania where everyone has access to legal protection."
+        backgroundImage="/lovable-uploads/partners-hero-bg.png"
       />
 
-      <Section variant="default" padding="xl">
-        <Container size="xl">
+      {/* Partners Grid */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-secondary-teal/10 text-secondary-teal text-sm font-bold px-4 py-2 rounded-full mb-4 uppercase tracking-widest">
+              Our Network
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">
+              Funding & Development Partners
+            </h2>
+            <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
+              We are grateful to our partners who make our work possible.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {partners.map((partner) => (
-              <Card key={partner.id} variant="elevated" hover className="h-full">
+              <div key={partner.id} className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-neutral-100 hover:border-secondary-teal/30 hover:-translate-y-2">
                 {/* Logo */}
-                <div className="p-6 bg-neutral-50 rounded-t-2xl">
-                  <div className="w-full h-32 flex items-center justify-center">
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
+                <div className="p-8 bg-neutral-50 flex items-center justify-center h-40">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all"
+                  />
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">
+                    <span className="bg-secondary-teal/10 text-secondary-teal text-xs font-bold px-3 py-1 rounded-full">
                       {partner.partnership_type}
                     </span>
-                    <Typography variant="caption" className="text-neutral-gray">{partner.category}</Typography>
                   </div>
-                  
-                  <Typography variant="h3" className="text-neutral-dark mb-3">
+
+                  <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-secondary-teal transition-colors">
                     {partner.name}
-                  </Typography>
-                  
-                  <Typography variant="bodySmall" className="text-neutral-gray leading-relaxed mb-4">
+                  </h3>
+
+                  <p className="text-neutral-600 text-sm leading-relaxed mb-4">
                     {partner.description}
-                  </Typography>
-                  
+                  </p>
+
                   <a
                     href={partner.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary font-bold text-sm hover:text-primary-dark transition-colors group/link"
+                    className="inline-flex items-center text-secondary-teal font-bold text-sm hover:gap-2 transition-all"
                   >
                     Visit Website
-                    <ExternalLink className="ml-1 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                    <ExternalLink className="ml-1 h-4 w-4" />
                   </a>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Partnership Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <Card className="text-center bg-gradient-to-br from-primary/5 to-secondary-teal/5">
-              <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-              <Typography variant="h1" className="text-primary mb-2">25+</Typography>
-              <Typography variant="body" className="text-neutral-dark">Active Partners</Typography>
-            </Card>
-            <Card className="text-center bg-gradient-to-br from-secondary-teal/5 to-secondary-orange/5">
-              <Globe className="h-12 w-12 text-secondary-teal mx-auto mb-4" />
-              <Typography variant="h1" className="text-secondary-teal mb-2">15</Typography>
-              <Typography variant="body" className="text-neutral-dark">Countries Represented</Typography>
-            </Card>
-            <Card className="text-center bg-gradient-to-br from-secondary-orange/5 to-primary/5">
-              <Heart className="h-12 w-12 text-secondary-orange mx-auto mb-4" />
-              <Typography variant="h1" className="text-secondary-orange mb-2">$2.5M</Typography>
-              <Typography variant="body" className="text-neutral-dark">Joint Investment</Typography>
-            </Card>
-          </div>
-        </Container>
-      </Section>
-
-      <Section variant="secondary" padding="lg">
-        <Container size="md" className="text-center">
-          <Typography variant="h1" className="mb-6">Partner With Us</Typography>
-          <Typography variant="body" className="text-neutral-dark mb-8">
-            Join our mission to advance access to justice across Tanzania. Together, we can create lasting change in communities that need it most.
-          </Typography>
-          <Button size="lg" className="bg-primary hover:bg-primary-dark">
-            Explore Partnership Opportunities
-          </Button>
-        </Container>
-      </Section>
+      {/* Partner With Us CTA */}
+      <section className="py-24 bg-neutral-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Partner With Us</h2>
+          <p className="text-white/80 text-xl max-w-2xl mx-auto mb-10">
+            Join our mission to advance access to justice across Tanzania. Together, we can create lasting change.
+          </p>
+          <Link to="/contact">
+            <Button size="lg" className="bg-secondary-teal hover:bg-secondary-teal/90 text-white font-bold px-10 py-5 rounded-full text-lg">
+              Explore Partnership Opportunities
+              <ArrowRight className="ml-3 h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
+      </section>
     </Layout>
   );
 };
