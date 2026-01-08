@@ -1,16 +1,14 @@
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import Layout from '../components/layout/Layout';
-import HeroSection from '../components/shared/HeroSection';
+import HeroesPageHero from '../components/heroes/HeroesPageHero';
 import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
 import SuccessStoryCard from '../components/shared/SuccessStoryCard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
-import { Heart, Users, Scale, Crown, ArrowRight, Quote, MapPin, Calendar, Award, CheckCircle, Star, Briefcase, GraduationCap, Target, Phone, MessageSquare, Shield } from 'lucide-react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { Heart, Users, Scale, ArrowRight, MapPin, Award, CheckCircle, Star, Briefcase, GraduationCap, Target } from 'lucide-react';
+
 const impactStats = [
   {
     icon: <Users className="h-8 w-8" />,
@@ -47,93 +45,7 @@ const Heroes = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      {/* Heroes Section */}
-      <section className="relative bg-black">
-        <div className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
-          {/* Sliding background images */}
-          <div className="absolute inset-0 z-0">
-            <Slider
-              autoplay
-              autoplaySpeed={4000}
-              infinite
-              fade
-              arrows={false}
-              pauseOnHover={false}
-              speed={1000}
-              className="h-full"
-            >
-              {[
-                "/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png",
-                "/lovable-uploads/second-hero-image.jpg",
-                "/lovable-uploads/third-hero-image.jpg"
-              ].map((img, idx) => (
-                <div key={idx} className="h-full">
-                  <img
-                    src={img}
-                    alt={`Slide ${idx + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </Slider>
-          </div>
-
-          {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent z-10 pointer-events-none"></div>
-
-          <div className="container mx-auto px-4 relative z-20 h-full flex items-center flex-grow py-20">
-            <div className="max-w-4xl text-white drop-shadow-lg">
-
-              {/* Icon */}
-              <div className="mb-8">
-                <div className="bg-secondary-orange/20 p-6 rounded-full backdrop-blur-sm border border-secondary-orange/30 shadow-lg shadow-secondary-orange/40 inline-flex">
-                  <Crown className="h-08 w-08 text-secondary-orange drop-shadow-md" />
-                </div>
-              </div>
-              {/* Title */}
-              <Typography
-                variant="h1"
-                className="text-5xl md:text-7xl font-bold mb-8 leading-tight drop-shadow-lg"
-              >
-                Our
-                <br />
-                <span className="text-secondary-orange drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-                  Heroes
-                </span>
-              </Typography>
-
-              {/* Description */}
-              <Typography
-                variant="body"
-                className="text-xl md:text-2xl mb-12 max-w-3xl text-white/90 leading-relaxed drop-shadow-md"
-              >
-                Meet the brave individuals whose lives have been transformed through
-                access to justice. These are stories of courage, resilience, and the
-                power of legal empowerment to change lives.
-              </Typography>
-
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-6">
-                <Button
-                  size="lg"
-                  className="bg-secondary-orange hover:bg-secondary-orange/90 text-xl px-8 py-4 shadow-lg shadow-secondary-orange/40"
-                >
-                  <MessageSquare className="mr-3 h-6 w-6" />
-                  Submit Report Now
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-primary text-xl px-8 py-4 shadow-lg shadow-black/40"
-                >
-                  <Phone className="mr-3 h-6 w-6" />
-                  Get Legal Help
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroesPageHero />
 
 
 

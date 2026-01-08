@@ -1,252 +1,184 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Newspaper, FileText } from 'lucide-react';
+import { ArrowRight, Calendar, Newspaper, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNews, usePublications } from '@/hooks/useContent';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
 
 interface ContentItem {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  publishedDate: string;
-  category: string;
-  type: 'news' | 'publication';
+    id: string;
+    title: string;
+    description: string;
+    imageUrl: string;
+    publishedDate: string;
+    category: string;
+    type: 'news' | 'publication';
+    readTime?: string;
 }
 
 const CompactNewsSection = () => {
-  const [activeTab, setActiveTab] = useState<'news' | 'publications'>('news');
-  const [items, setItems] = useState<ContentItem[]>([]);
+    const [activeTab, setActiveTab] = useState<'news' | 'publications'>('news');
+    const [items, setItems] = useState<ContentItem[]>([]);
 
-  const { news, loading: newsLoading } = useNews();
-  const { publications, loading: publicationsLoading } = usePublications();
+    const { news } = useNews();
+    const { publications } = usePublications();
 
-  // Fallback items
-  const fallbackNews: ContentItem[] = [
-    {
-      id: '1',
-      title: 'Mama Samia Legal Aid Campaign Reaches 15,000+ Citizens',
-      description: 'The nationwide campaign provided free legal services to vulnerable communities across Tanzania.',
-      imageUrl: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
-      publishedDate: '2024-04-30',
-      category: 'Legal Empowerment',
-      type: 'news',
-    },
-    {
-      id: '2',
-      title: 'Haki Yangu Mobile App Expands Digital Access',
-      description: 'LSF\'s digital transformation initiative connects users with legal resources through mobile technology.',
-      imageUrl: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
-      publishedDate: '2024-03-15',
-      category: 'Digital Innovation',
-      type: 'news',
-    },
-    {
-      id: '3',
-      title: 'New Climate Justice Initiative Launches',
-      description: 'LSF launches groundbreaking program to address climate-related legal issues affecting communities.',
-      imageUrl: '/lovable-uploads/7cdc0b2c-cc42-4f40-9196-2324a35f30a1.png',
-      publishedDate: '2024-02-22',
-      category: 'Climate Justice',
-      type: 'news',
-    },
-  ];
+    const getCategoryStyles = (category: string) => {
+        const cat = category.toLowerCase();
+        if (cat.includes('legal')) return 'bg-primary text-white';
+        if (cat.includes('innov')) return 'bg-secondary-teal text-white';
+        if (cat.includes('commun')) return 'bg-secondary-orange text-white';
+        return 'bg-gray-800 text-white';
+    };
 
-  const fallbackPubs: ContentItem[] = [
-    {
-      id: '1',
-      title: 'LSF Annual Report 2023',
-      description: 'Comprehensive annual report showcasing the impact of legal aid services across Tanzania.',
-      imageUrl: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
-      publishedDate: '2024-01-15',
-      category: 'Annual Report',
-      type: 'publication',
-    },
-    {
-      id: '2',
-      title: 'Policy Brief: Gender Justice Mechanisms',
-      description: 'Analysis and recommendations for improving gender justice systems in Tanzania.',
-      imageUrl: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
-      publishedDate: '2023-11-20',
-      category: 'Policy Brief',
-      type: 'publication',
-    },
-    {
-      id: '3',
-      title: 'Community Paralegal Training Guide',
-      description: 'Comprehensive training manual for community paralegals.',
-      imageUrl: '/lovable-uploads/7cdc0b2c-cc42-4f40-9196-2324a35f30a1.png',
-      publishedDate: '2023-09-10',
-      category: 'Training Guide',
-      type: 'publication',
-    },
-  ];
+    useEffect(() => {
+        if (activeTab === 'news') {
+            if (news && news.length > 0) {
+                setItems(news.slice(0, 3).map((item: any) => ({
+                    id: item._id || item.id,
+                    title: item.title,
+                    description: item.excerpt || item.content?.substring(0, 100) + '...',
+                    imageUrl: item.image || '/lovable-uploads/placeholder.svg',
+                    publishedDate: item.date || new Date().toISOString(),
+                    category: item.category || 'News',
+                    type: 'news',
+                    readTime: item.readTime || '5 min read'
+                })));
+            } else {
+                setItems([{
+                    id: '1', title: 'Loading News...', description: 'Please wait...', imageUrl: '/lovable-uploads/placeholder.svg',
+                    publishedDate: new Date().toISOString(), category: 'Update', type: 'news', readTime: '2 min'
+                }]);
+            }
+        } else {
+            if (publications && publications.length > 0) {
+                setItems(publications.slice(0, 3).map((item: any) => ({
+                    id: item._id || item.id,
+                    title: item.title,
+                    description: item.description || 'Access this resource...',
+                    imageUrl: item.coverImageUrl || '/lovable-uploads/placeholder.svg',
+                    publishedDate: item.publishedDate || new Date().toISOString(),
+                    category: item.category || 'Publication',
+                    type: 'publication'
+                })));
+            } else {
+                setItems([{
+                    id: '1', title: 'Loading...', description: 'Please wait...', imageUrl: '/lovable-uploads/placeholder.svg',
+                    publishedDate: new Date().toISOString(), category: 'Resource', type: 'publication'
+                }]);
+            }
+        }
+    }, [activeTab, news, publications]);
 
-  useEffect(() => {
-    if (activeTab === 'news') {
-      if (news && news.length > 0) {
-        const transformed = news.slice(0, 3).map((item: any) => ({
-          id: item._id || item.id,
-          title: item.title,
-          description: item.excerpt || item.content?.substring(0, 100) + '...',
-          imageUrl: item.image || '/lovable-uploads/placeholder.svg',
-          publishedDate: item.date || new Date().toISOString(),
-          category: item.category || 'News',
-          type: 'news' as const,
-        }));
-        setItems(transformed);
-      } else {
-        setItems(fallbackNews);
-      }
-    } else {
-      if (publications && publications.length > 0) {
-        const transformed = publications.slice(0, 3).map((item: any) => ({
-          id: item._id || item.id,
-          title: item.title,
-          description: item.description || 'Read more...',
-          imageUrl: item.coverImageUrl || '/lovable-uploads/placeholder.svg',
-          publishedDate: item.publishedDate || new Date().toISOString(),
-          category: item.category || 'Publication',
-          type: 'publication' as const,
-        }));
-        setItems(transformed);
-      } else {
-        setItems(fallbackPubs);
-      }
-    }
-  }, [activeTab, news, publications]);
+    return (
+        <section className="py-20 bg-gray-50">
+            <Container>
+                {/* Header */}
+                <div className="mb-12">
+                    <div className="inline-flex items-center gap-3 bg-secondary-teal text-white rounded-full px-6 py-2 mb-5">
+                        <Newspaper className="h-4 w-4" />
+                        <span className="font-bold text-sm uppercase tracking-widest">Knowledge Hub</span>
+                    </div>
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  };
+                    <Typography variant="h2" className="font-bold text-gray-900 tracking-tight text-3xl md:text-4xl lg:text-5xl mb-4">
+                        Latest <span className="text-primary">{activeTab === 'news' ? 'News' : 'Publications'}</span>
+                    </Typography>
 
-  const isLoading = newsLoading || publicationsLoading;
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <p className="text-gray-600 text-lg max-w-xl border-l-4 border-secondary-teal pl-6">
+                            Stay informed with our latest updates, research, and resources.
+                        </p>
 
-  return (
-    <section className="py-24 bg-neutral-900 text-white relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16">
-          <div>
-            <div className="inline-flex items-center gap-3 mb-6 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 border border-white/20">
-              <Newspaper className="h-4 w-4 text-secondary-orange" />
-              <span className="text-white font-bold text-sm uppercase tracking-widest">Latest Updates</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              News & <span className="text-secondary-orange">Resources</span>
-            </h2>
-            <p className="text-white/70 text-lg max-w-xl">
-              Stay informed with our latest stories, reports, and publications.
-            </p>
-          </div>
-
-          {/* Tab Switcher */}
-          <div className="flex gap-1 bg-white/10 backdrop-blur-sm p-1.5 rounded-full border border-white/10">
-            <button
-              onClick={() => setActiveTab('news')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all ${activeTab === 'news'
-                  ? 'bg-secondary-orange text-white'
-                  : 'text-white/70 hover:text-white'
-                }`}
-            >
-              <Newspaper className="h-4 w-4" />
-              News
-            </button>
-            <button
-              onClick={() => setActiveTab('publications')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all ${activeTab === 'publications'
-                  ? 'bg-secondary-orange text-white'
-                  : 'text-white/70 hover:text-white'
-                }`}
-            >
-              <FileText className="h-4 w-4" />
-              Publications
-            </button>
-          </div>
-        </div>
-
-        {/* Content Grid */}
-        {isLoading ? (
-          <div className="grid md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white/5 h-96 rounded-3xl animate-pulse"></div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-3 gap-6">
-            {items.map((item, index) => (
-              <Link
-                key={item.id}
-                to={item.type === 'news' ? `/news/${item.id}` : `/publications/${item.id}`}
-                className="group flex flex-col rounded-3xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 hover:border-secondary-orange/50 transition-all duration-500 hover:-translate-y-2"
-              >
-                {/* Image */}
-                <div className="aspect-[4/3] overflow-hidden relative">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/lovable-uploads/placeholder.svg';
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-secondary-orange text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                      {item.category}
-                    </span>
-                  </div>
+                        <div className="inline-flex bg-white p-1 rounded-full shadow-sm">
+                            <button
+                                onClick={() => setActiveTab('news')}
+                                className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'news'
+                                    ? 'bg-primary text-white'
+                                    : 'text-gray-500 hover:text-gray-900'
+                                    }`}
+                            >
+                                News
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('publications')}
+                                className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'publications'
+                                    ? 'bg-primary text-white'
+                                    : 'text-gray-500 hover:text-gray-900'
+                                    }`}
+                            >
+                                Publications
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-secondary-orange transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/60 text-sm mb-6 line-clamp-2 flex-grow">
-                    {item.description}
-                  </p>
+                {/* Content Grid */}
+                <div className="grid md:grid-cols-3 gap-6 mb-10">
+                    {items.map((item) => (
+                        <Link
+                            key={item.id}
+                            to={item.type === 'news' ? `/news/${item.id}` : `/publications/${item.id}`}
+                            className="group block"
+                        >
+                            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 h-full flex flex-col">
+                                <div className="relative h-44 overflow-hidden">
+                                    <img
+                                        src={item.imageUrl}
+                                        alt={item.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                                    <div className="absolute top-3 left-3">
+                                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${getCategoryStyles(item.category)}`}>
+                                            {item.category}
+                                        </span>
+                                    </div>
+                                </div>
 
-                  {/* Meta */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                    <div className="flex items-center gap-2 text-white/50 text-xs">
-                      <Calendar className="h-3.5 w-3.5" />
-                      {formatDate(item.publishedDate)}
-                    </div>
-                    <div className="flex items-center gap-2 text-secondary-orange font-bold text-sm group-hover:gap-3 transition-all">
-                      Read
-                      <ArrowRight className="h-4 w-4" />
-                    </div>
-                  </div>
+                                <div className="p-5 flex flex-col flex-grow">
+                                    <div className="flex items-center text-gray-500 text-xs mb-2 gap-3">
+                                        <span className="flex items-center">
+                                            <Calendar className="h-3 w-3 mr-1" />
+                                            {new Date(item.publishedDate).toLocaleDateString()}
+                                        </span>
+                                        {item.readTime && (
+                                            <span className="flex items-center">
+                                                <Clock className="h-3 w-3 mr-1" />
+                                                {item.readTime}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                                        {item.title}
+                                    </h3>
+
+                                    <p className="text-gray-600 text-sm line-clamp-2 mb-3 flex-grow">
+                                        {item.description}
+                                    </p>
+
+                                    <span className="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                                        {item.type === 'news' ? 'Read Article' : 'Download'}
+                                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
-              </Link>
-            ))}
-          </div>
-        )}
 
-        {/* View All CTA */}
-        <div className="mt-12 text-center">
-          <Link to={activeTab === 'news' ? '/news' : '/publications'}>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold px-10 py-5 rounded-full text-lg">
-              View All {activeTab === 'news' ? 'News' : 'Publications'}
-              <ArrowRight className="ml-3 h-5 w-5" />
-            </Button>
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
+                <div className="text-center">
+                    <Button asChild size="lg" variant="outline" className="border-2 border-gray-200 text-gray-900 hover:border-primary hover:bg-primary hover:text-white rounded-full px-8 h-12 text-base font-bold transition-all">
+                        <Link to={activeTab === 'news' ? '/news' : '/publications'}>
+                            View All {activeTab === 'news' ? 'News' : 'Resources'}
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
+                </div>
+            </Container>
+        </section>
+    );
 };
 
 export default CompactNewsSection;

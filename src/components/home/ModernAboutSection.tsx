@@ -1,83 +1,91 @@
 import { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Scale, Heart, Users, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import { useIntersectionObserverCallback } from '@/hooks/useIntersectionObserver';
 
 const ModernAboutSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 }) as React.RefObject<HTMLElement>;
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 }) as React.RefObject<HTMLElement>;
 
-  return (
-    <section
-      ref={sectionRef as any}
-      className="pt-16 md:pt-24 pb-0 bg-white overflow-hidden"
-    >
-      <div className="container mx-auto px-4 h-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-end h-full">
+    const highlights = [
+        { icon: Scale, label: 'Legal Aid', description: 'For all Tanzanians' },
+        { icon: Heart, label: 'Community First', description: 'People-centered approach' },
+        { icon: Users, label: 'Partnerships', description: '50+ organizations' },
+    ];
 
-          {/* Content Side */}
-          <div className={`flex flex-col justify-center pb-16 md:pb-24 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <div className="flex items-start mb-6">
-              <span className="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-widest bg-primary text-white rounded-full">
-                Who We Are
-              </span>
-            </div>
+    return (
+        <section
+            ref={sectionRef as any}
+            className="py-20 bg-white"
+        >
+            <Container>
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-            <Typography
-              variant="h2"
-              className="mb-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-neutral-900 tracking-tight"
-            >
-              Justice Within <span className="text-primary">Reach</span>
-            </Typography>
+                    {/* Content Side */}
+                    <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
 
-            <div className="space-y-6 text-lg text-neutral-600 leading-relaxed md:pr-10">
-              <p className="font-medium text-neutral-900">
-                We believe the law should protect everyone, everywhere.
-              </p>
+                        {/* Colored Pill Badge */}
+                        <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-6">
+                            <Target className="h-4 w-4" />
+                            <span className="font-bold text-sm uppercase tracking-widest">Who We Are</span>
+                        </div>
 
-              <p>
-                Since 2009, LSF has worked to bring justice closer to the people. We know that for many Tanzanians,
-                the legal system feels far away, expensive, or too difficult to understand. We are here to change that.
-              </p>
+                        <Typography variant="h2" className="mb-6 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gray-900 tracking-tight">
+                            Justice Within <span className="text-primary">Reach</span>
+                        </Typography>
 
-              <p>
-                We are bridging the gap between the law and the community. By training local experts and using
-                simple technology, we ensure that every citizen—especially women and those in rural areas—can claim their rights.
-              </p>
-            </div>
+                        {/* Border-left accent */}
+                        <div className="border-l-4 border-primary pl-6 mb-8">
+                            <p className="font-medium text-gray-900 text-lg mb-3">
+                                We believe the law should protect everyone, everywhere.
+                            </p>
 
-            <div className="flex flex-wrap gap-4 mt-10">
-              <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-white rounded-xl px-8 h-14 text-base font-semibold transition-all hover:scale-105 shadow-md hover:shadow-xl">
-                <Link to="/about">
-                  Our Story
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-2 border-neutral-200 text-neutral-900 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white rounded-xl px-8 h-14 text-base font-semibold transition-all">
-                <Link to="/what-we-do">
-                  Our Programs
-                </Link>
-              </Button>
-            </div>
-          </div>
+                            <p className="text-gray-600 leading-relaxed mb-3">
+                                Since 2009, LSF has worked to bring justice closer to the people. We know that for many Tanzanians,
+                                the legal system feels far away, expensive, or too difficult to understand.
+                            </p>
 
-          {/* Image Side */}
-          <div className={`relative h-full transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <div className="relative z-10 h-full overflow-hidden rounded-t-3xl">
-              <img
-                src="/lovable-uploads/Untitled design-5.png"
-                alt="LSF Community Work"
-                className="w-full h-full object-cover object-bottom transform hover:scale-105 transition-transform duration-700 hover:scale-110"
-              />
-            </div>
-          </div>
+                            <p className="text-gray-600 leading-relaxed">
+                                We are bridging the gap between the law and the community through training local experts and using technology.
+                            </p>
+                        </div>
 
-        </div>
-      </div>
-    </section>
-  );
+                        {/* Highlights */}
+                        <div className="grid grid-cols-3 gap-3 mb-8">
+                            {highlights.map((item, index) => (
+                                <div key={index} className="group">
+                                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                        <item.icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
+                                    </div>
+                                    <p className="text-gray-900 font-bold text-sm">{item.label}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-5 h-auto text-base font-bold transition-all hover:scale-105 shadow-lg">
+                            <Link to="/about">
+                                Our Story
+                                <ArrowRight className="ml-2 h-5 w-5" />
+                            </Link>
+                        </Button>
+                    </div>
+
+                    {/* Image Side */}
+                    <div className={`relative transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+                        <img
+                            src="/lovable-uploads/Untitled design-5.png"
+                            alt="LSF Community Work"
+                            className="w-full h-[500px] object-cover rounded-3xl"
+                        />
+                    </div>
+
+                </div>
+            </Container>
+        </section>
+    );
 };
 
 export default ModernAboutSection;

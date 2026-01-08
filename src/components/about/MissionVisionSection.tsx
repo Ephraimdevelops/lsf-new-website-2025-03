@@ -1,118 +1,111 @@
-import { Target, Eye, Heart, Scale } from 'lucide-react';
-import Typography from '@/components/shared/Typography';
-import Section from '@/components/shared/Section';
-import Container from '@/components/shared/Container';
-import Card from '@/components/shared/Card';
+import { Target, Eye, Heart, Scale, Shield } from 'lucide-react';
 
 const MissionVisionSection = () => {
   const values = [
     {
-      icon: <Scale className="h-12 w-12" />,
+      icon: Scale,
       title: "Justice for All",
-      description: "We believe every Tanzanian deserves equal access to legal protection and representation.",
-      color: "from-primary to-primary-dark"
+      description: "Every Tanzanian deserves equal access to legal protection and representation.",
     },
     {
-      icon: <Heart className="h-12 w-12" />,
+      icon: Heart,
       title: "Community Empowerment",
-      description: "We strengthen communities by building local capacity and knowledge of legal rights.",
-      color: "from-secondary-teal to-secondary-teal/80"
+      description: "Building local capacity and knowledge of legal rights in communities.",
     },
     {
-      icon: <Target className="h-12 w-12" />,
+      icon: Target,
       title: "Sustainable Impact",
-      description: "We focus on creating lasting change through systemic improvements and partnerships.",
-      color: "from-secondary-orange to-secondary-orange/80"
+      description: "Creating systemic change through partnerships and policy reform.",
     },
     {
-      icon: <Eye className="h-12 w-12" />,
+      icon: Shield,
       title: "Transparency",
-      description: "We operate with complete transparency and accountability in all our activities.",
-      color: "from-secondary-yellow to-secondary-yellow/80"
+      description: "Operating with complete accountability in all our activities.",
     }
   ];
 
   return (
-    <Section variant="default" padding="md" className="bg-gradient-to-b from-white to-gray-100">
-      <Container size="xl">
-        {/* Mission & Vision */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10 lg:divide-x lg:divide-gray-200">
+    <section className="py-16 bg-white">
+      {/* Using same container as header for alignment with logo */}
+      <div className="container mx-auto px-4">
+        {/* Mission & Vision - Left Aligned */}
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Mission */}
-          <div className="lg:pr-6">
-            <div className="inline-flex items-center bg-primary/10 rounded-full px-3 py-1 mb-8">
-              <Target className="h-12 w-12 mr-2 text-primary" />
-              <Typography variant="overline" className="text-primary font-bold text-xs">
-                OUR MISSION
-              </Typography>
+          <div>
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+              <Target className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Our Mission</span>
             </div>
-            <Typography variant="h2" className="mb-3 text-2xl md:text-3xl font-serif">
+
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5 leading-tight">
               Strengthening Legal Empowerment Across Tanzania
-            </Typography>
-            <Typography variant="body" className="text-neutral-gray leading-relaxed font-sans text-sm md:text-base">
-              To strengthen legal empowerment in Tanzania by providing strategic grants, 
-              building capacity, fostering partnerships, conducting research, and advocating 
-              for policy reforms that ensure equal access to justice for all, with particular 
+            </h2>
+
+            <p className="text-gray-600 text-lg leading-relaxed border-l-4 border-primary pl-6">
+              To strengthen legal empowerment in Tanzania by providing strategic grants,
+              building capacity, fostering partnerships, conducting research, and advocating
+              for policy reforms that ensure equal access to justice for all, with particular
               focus on marginalized communities and women's rights.
-            </Typography>
+            </p>
           </div>
 
           {/* Vision */}
-          <div className="lg:pl-6">
-            <div className="inline-flex items-center bg-secondary-teal/10 rounded-full px-3 py-1 mb-8">
-              <Eye className="h-12 w-12 mr-2 text-secondary-teal" />
-              <Typography variant="overline" className="text-secondary-teal font-bold text-xs">
-                OUR VISION
-              </Typography>
+          <div>
+            <div className="inline-flex items-center gap-3 bg-secondary-teal text-white rounded-full px-6 py-2 mb-5">
+              <Eye className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Our Vision</span>
             </div>
-            <Typography variant="h2" className="mb-3 text-2xl md:text-3xl font-serif">
+
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5 leading-tight">
               A Tanzania Where Justice is Accessible to All
-            </Typography>
-            <Typography variant="body" className="text-neutral-gray leading-relaxed font-sans text-sm md:text-base">
-              We envision a Tanzania where every citizen, regardless of their economic status, 
-              gender, or social background, has meaningful access to quality legal services 
-              and can effectively claim their rights within a responsive and accountable 
+            </h2>
+
+            <p className="text-gray-600 text-lg leading-relaxed border-l-4 border-secondary-teal pl-6">
+              We envision a Tanzania where every citizen, regardless of their economic status,
+              gender, or social background, has meaningful access to quality legal services
+              and can effectively claim their rights within a responsive and accountable
               justice system.
-            </Typography>
+            </p>
           </div>
         </div>
 
-        {/* Core Values */}
-        <div className="text-center mb-6">
-          <Typography variant="h3" className="text-primary font-bold mb-2 text-xs">
-            OUR VALUES
-          </Typography>
-          <Typography variant="h2" className="mb-3 text-2xl md:text-3xl font-serif">
+        {/* Core Values - Left Aligned Header */}
+        <div className="mb-10">
+          <div className="inline-flex items-center gap-3 bg-secondary-orange text-white rounded-full px-6 py-2 mb-5">
+            <Heart className="h-4 w-4" />
+            <span className="font-bold text-sm uppercase tracking-widest">Our Values</span>
+          </div>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             Principles That Guide Our Work
-          </Typography>
-          <Typography variant="body" className="text-neutral-gray max-w-2xl mx-auto font-sans text-sm md:text-base">
-            Our values shape every decision we make and every partnership we forge, 
+          </h2>
+
+          <p className="text-gray-600 text-lg max-w-2xl border-l-4 border-secondary-orange pl-6">
+            Our values shape every decision we make and every partnership we forge,
             ensuring our work creates meaningful and lasting impact.
-          </Typography>
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((value, index) => (
-            <Card
+            <div
               key={index}
-              variant="elevated"
-              className="text-center p-4 hover:scale-105 transition-transform duration-300"
+              className="group"
             >
-              <div className={`w-18 h-18 bg-gradient-to-br ${value.color} rounded-lg flex items-center justify-center mx-auto mb-3`}>
-                <div className="text-white">
-                  {value.icon}
-                </div>
+              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                <value.icon className="h-7 w-7 text-primary group-hover:text-white transition-colors" />
               </div>
-              <Typography variant="h4" className="mb-2 text-lg font-serif">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
                 {value.title}
-              </Typography>
-              <Typography variant="bodySmall" className="text-neutral-gray font-sans text-sm">
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
                 {value.description}
-              </Typography>
-            </Card>
+              </p>
+            </div>
           ))}
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 };
 

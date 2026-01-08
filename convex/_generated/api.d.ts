@@ -9,13 +9,19 @@
  */
 
 import type * as admin from "../admin.js";
+import type * as formSubmissions from "../formSubmissions.js";
 import type * as hero from "../hero.js";
 import type * as init from "../init.js";
 import type * as media from "../media.js";
 import type * as news from "../news.js";
+import type * as newsletter from "../newsletter.js";
 import type * as opportunities from "../opportunities.js";
+import type * as paralegals from "../paralegals.js";
 import type * as programs from "../programs.js";
 import type * as publications from "../publications.js";
+import type * as sara from "../sara.js";
+import type * as sara_actions from "../sara_actions.js";
+import type * as sara_chat from "../sara_chat.js";
 import type * as seedContent from "../seedContent.js";
 import type * as stats from "../stats.js";
 import type * as stories from "../stories.js";
@@ -31,13 +37,19 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   admin: typeof admin;
+  formSubmissions: typeof formSubmissions;
   hero: typeof hero;
   init: typeof init;
   media: typeof media;
   news: typeof news;
+  newsletter: typeof newsletter;
   opportunities: typeof opportunities;
+  paralegals: typeof paralegals;
   programs: typeof programs;
   publications: typeof publications;
+  sara: typeof sara;
+  sara_actions: typeof sara_actions;
+  sara_chat: typeof sara_chat;
   seedContent: typeof seedContent;
   stats: typeof stats;
   stories: typeof stories;

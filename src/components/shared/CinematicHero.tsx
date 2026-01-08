@@ -6,6 +6,7 @@ interface CinematicHeroProps {
     description?: string;
     badge?: string;
     backgroundImage: string;
+    brandPattern?: string; // Optional brand pattern to display at bottom
     className?: string;
 }
 
@@ -14,6 +15,7 @@ const CinematicHero = ({
     description,
     badge,
     backgroundImage,
+    brandPattern,
     className
 }: CinematicHeroProps) => {
     return (
@@ -45,6 +47,18 @@ const CinematicHero = ({
                     </p>
                 )}
             </div>
+
+            {/* Brand Pattern at Bottom Border */}
+            {brandPattern && (
+                <div className="absolute bottom-0 left-0 right-0 h-16 md:h-20 lg:h-24 overflow-hidden z-20">
+                    <img
+                        src={brandPattern}
+                        alt=""
+                        className="w-full h-full object-cover object-top opacity-90"
+                        aria-hidden="true"
+                    />
+                </div>
+            )}
         </section>
     );
 };

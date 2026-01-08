@@ -14,25 +14,25 @@ const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [legalAidDialogOpen, setLegalAidDialogOpen] = useState(false);
   const location = useLocation();
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   useEffect(() => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
   }, [location]);
-  
+
   const toggleDropdown = (name: string) => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
-  
+
   return (
     <>
       <header
@@ -45,16 +45,16 @@ const Header = () => {
       >
         <ContactStrip isScrolled={isScrolled} />
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 md:h-20">
             <Logo />
-            
+
             <DesktopNavigation
               activeDropdown={activeDropdown}
               setActiveDropdown={setActiveDropdown}
               setLegalAidDialogOpen={setLegalAidDialogOpen}
             />
-            
+
             <MobileMenuButton
               mobileMenuOpen={mobileMenuOpen}
               setMobileMenuOpen={setMobileMenuOpen}
@@ -62,7 +62,7 @@ const Header = () => {
             />
           </div>
         </div>
-        
+
         <MobileNavigation
           mobileMenuOpen={mobileMenuOpen}
           activeDropdown={activeDropdown}
@@ -71,9 +71,9 @@ const Header = () => {
         />
       </header>
 
-      <LegalAidDialog 
-        open={legalAidDialogOpen} 
-        onOpenChange={setLegalAidDialogOpen} 
+      <LegalAidDialog
+        open={legalAidDialogOpen}
+        onOpenChange={setLegalAidDialogOpen}
       />
     </>
   );

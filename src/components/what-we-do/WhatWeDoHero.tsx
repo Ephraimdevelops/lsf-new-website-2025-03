@@ -60,7 +60,7 @@ const WhatWeDoHero = () => {
             <span className="font-bold text-sm uppercase tracking-widest">Our Mission in Action</span>
           </div>
 
-          <Typography variant="h1" className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-2xl">
+          <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-2xl">
             Everyday Justice <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-white">
               For Everyday People.
@@ -73,7 +73,7 @@ const WhatWeDoHero = () => {
 
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
             <Link to="#strategic-approaches">
-              <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-10 py-6 rounded-full text-lg shadow-[0_0_30px_-5px_var(--primary)] hover:shadow-[0_0_40px_-5px_var(--primary)] transition-all duration-300 hover:-translate-y-1">
+              <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-8 md:px-10 py-4 md:py-6 rounded-full text-base md:text-lg shadow-[0_0_30px_-5px_var(--primary)] hover:shadow-[0_0_40px_-5px_var(--primary)] transition-all duration-300 hover:-translate-y-1">
                 Explore Our Model
                 <ArrowRight className="ml-3 h-5 w-5" />
               </Button>
@@ -82,7 +82,7 @@ const WhatWeDoHero = () => {
               size="lg"
               variant="outline"
               onClick={() => setIsVideoOpen(true)}
-              className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-10 py-6 rounded-full text-lg flex items-center shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-8 md:px-10 py-4 md:py-6 rounded-full text-base md:text-lg flex items-center shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               <PlayCircle className="mr-3 h-6 w-6" />
               Watch Impact

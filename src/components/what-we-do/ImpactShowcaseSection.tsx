@@ -5,23 +5,22 @@ import { Button } from "@/components/ui/button";
 
 const ImpactShowcaseSection = () => {
   return (
-    <section className="py-24 bg-neutral-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-neutral-900 text-white relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
 
-      <Container size="xl" className="relative z-10"> {/* Restored to xl */}
+      <Container className="relative z-10">
         {/* Section Header */}
-        <div className="text-left mb-20 max-w-4xl"> {/* text-left, max-w-4xl to match hero */}
-          <div className="inline-flex items-center bg-primary/20 backdrop-blur-sm rounded-full px-8 py-2.5 mb-8 border border-primary/30">
-            <BarChart3 className="h-5 w-5 mr-3 text-primary-light" />
-            <span className="text-primary-light font-bold text-base uppercase tracking-widest">
-              Measurable Change
-            </span>
+        <div className="mb-16">
+          {/* Primary Pill Badge */}
+          <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+            <BarChart3 className="h-4 w-4" />
+            <span className="font-bold text-sm uppercase tracking-widest">Measurable Change</span>
           </div>
-          <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8">
-            See the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-white">Impact</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            See the <span className="text-white">Impact</span>
           </h2>
-          <p className="text-2xl md:text-3xl text-white/70 max-w-4xl leading-relaxed font-light">
+          <p className="text-xl text-white/70 max-w-2xl border-l-4 border-primary pl-6">
             Behind the statistics are stories of dignity restored and rights reclaimed.
             Explore our impact through real stories and data.
           </p>

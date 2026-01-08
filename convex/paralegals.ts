@@ -1,0 +1,166 @@
+import { v } from "convex/values";
+import { mutation, query } from "./_generated/server";
+
+// ==========================================
+// PARALEGAL MANAGEMENT
+// ==========================================
+
+// Get all approved paralegals (from applications)
+export const listApprovedParalegals = query({
+    args: {
+        region: v.optional(v.string()),
+        verifiedOnly: v.optional(v.boolean()),
+    },
+    handler: async (ctx, args) => {
+        let paralegals = await ctx.db
+            .query("paralegal_applications")
+            .withIndex("by_status", (q) => q.eq("status", "approved"))
+            .collect();
+
+        if (args.region) {
+            const searchRegion = args.region.toLowerCase();
+            paralegals = paralegals.filter((p) => p.region.toLowerCase().includes(searchRegion));
+        }
+
+        if (args.verifiedOnly) {
+            paralegals = paralegals.filter((p) => p.isVerified === true);
+        }
+
+        return paralegals;
+    },
+});
+
+// Get paralegal by ID
+export const getParalegal = query({
+    args: { id: v.id("paralegal_applications") },
+    handler: async (ctx, args) => {
+        return await ctx.db.get(args.id);
+    },
+});
+
+// Get paralegal by email (for dashboard)
+export const getParalegalByEmail = query({
+    args: { email: v.string() },
+    handler: async (ctx, args) => {
+        return await ctx.db
+            .query("paralegal_applications")
+            .filter((q) => q.eq(q.field("email"), args.email.toLowerCase()))
+            .first();
+    },
+});
+
+// Increment profile views
+export const incrementProfileViews = mutation({
+    args: { id: v.id("paralegal_applications") },
+    handler: async (ctx, args) => {
+        const paralegal = await ctx.db.get(args.id);
+        if (paralegal && paralegal.status === "approved") {
+            await ctx.db.patch(args.id, {
+                profileViews: (paralegal.profileViews || 0) + 1,
+            });
+        }
+    },
+});
+
+// Toggle verified status (admin only)
+export const toggleVerified = mutation({
+    args: { id: v.id("paralegal_applications") },
+    handler: async (ctx, args) => {
+        const paralegal = await ctx.db.get(args.id);
+        if (paralegal) {
+            await ctx.db.patch(args.id, {
+                isVerified: !paralegal.isVerified,
+            });
+        }
+        return { success: true };
+    },
+});
+
+// Update paralegal profile
+export const updateParalegalProfile = mutation({
+    args: {
+        id: v.id("paralegal_applications"),
+        fullName: v.optional(v.string()),
+        phone: v.optional(v.string()),
+        region: v.optional(v.string()),
+        district: v.optional(v.string()),
+        ward: v.optional(v.string()),
+        bio: v.optional(v.string()),
+        photoUrl: v.optional(v.string()),
+        specializations: v.optional(v.array(v.string())),
+        hasJoinedHakiYangu: v.optional(v.boolean()),
+        onboardingCompleted: v.optional(v.boolean()),
+    },
+    handler: async (ctx, args) => {
+        const { id, ...updates } = args;
+        await ctx.db.patch(id, updates);
+        return { success: true };
+    },
+});
+
+// Deactivate paralegal
+export const deactivateParalegal = mutation({
+    args: { id: v.id("paralegal_applications") },
+    handler: async (ctx, args) => {
+        await ctx.db.patch(args.id, {
+            status: "deactivated" as "rejected", // Using rejected as deactivated
+        });
+        return { success: true };
+    },
+});
+
+// Get paralegal stats for admin
+export const getParalegalStats = query({
+    handler: async (ctx) => {
+        const all = await ctx.db.query("paralegal_applications").collect();
+        const approved = all.filter((p) => p.status === "approved");
+
+        // Group by region
+        const byRegion: Record<string, number> = {};
+        approved.forEach((p) => {
+            byRegion[p.region] = (byRegion[p.region] || 0) + 1;
+        });
+
+        return {
+            total: approved.length,
+            verified: approved.filter((p) => p.isVerified).length,
+            pending: all.filter((p) => p.status === "pending").length,
+            byRegion,
+        };
+    },
+});
+
+// Get paralegal dashboard data
+export const getDashboardData = query({
+    args: { email: v.string() },
+    handler: async (ctx, args) => {
+        const paralegal = await ctx.db
+            .query("paralegal_applications")
+            .filter((q) => q.eq(q.field("email"), args.email.toLowerCase()))
+            .first();
+
+        if (!paralegal || paralegal.status !== "approved") {
+            return null;
+        }
+
+        // Get all approved paralegals for ranking
+        const allApproved = await ctx.db
+            .query("paralegal_applications")
+            .withIndex("by_status", (q) => q.eq("status", "approved"))
+            .collect();
+
+        const rank = allApproved
+            .sort((a, b) => (b.profileViews || 0) - (a.profileViews || 0))
+            .findIndex((p) => p._id === paralegal._id) + 1;
+
+        return {
+            paralegal,
+            stats: {
+                profileViews: paralegal.profileViews || 0,
+                rank,
+                totalParalegals: allApproved.length,
+                isVerified: paralegal.isVerified || false,
+            },
+        };
+    },
+});

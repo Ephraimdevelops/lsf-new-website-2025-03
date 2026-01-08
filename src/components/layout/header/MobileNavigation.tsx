@@ -11,11 +11,11 @@ interface MobileNavigationProps {
   setLegalAidDialogOpen: (open: boolean) => void;
 }
 
-const MobileNavigation = ({ 
-  mobileMenuOpen, 
-  activeDropdown, 
-  toggleDropdown, 
-  setLegalAidDialogOpen 
+const MobileNavigation = ({
+  mobileMenuOpen,
+  activeDropdown,
+  toggleDropdown,
+  setLegalAidDialogOpen
 }: MobileNavigationProps) => {
   const location = useLocation();
 
@@ -26,23 +26,36 @@ const MobileNavigation = ({
     )}>
       <div className="container mx-auto px-4 py-4">
         <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg">
-          <Button 
-            className="w-full justify-center bg-primary hover:bg-primary/90 transition-all duration-200 mb-3"
-            onClick={() => setLegalAidDialogOpen(true)}
-          >
-            <Phone className="h-4 w-4 mr-2" />
-            Get Legal Help
-          </Button>
-          <Link to="/donate" className="block">
-            <Button 
-              variant="outline" 
+          <Link to="/sara" className="block mb-3">
+            <Button
+              variant="default"
+              className="w-full justify-center bg-green-600 hover:bg-green-700 transition-all duration-200"
+            >
+              <span className="relative flex h-2 w-2 mr-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+              </span>
+              Chat with SARA AI
+            </Button>
+          </Link>
+          <Link to="/legal-help" className="block mb-3">
+            <Button
+              className="w-full justify-center bg-primary hover:bg-primary/90 transition-all duration-200"
+            >
+              <Phone className="h-4 w-4 mr-2" />
+              Get Legal Help
+            </Button>
+          </Link>
+          <Link to="/contact" className="block">
+            <Button
+              variant="outline"
               className="w-full justify-center border-border text-muted-foreground hover:bg-muted hover:text-foreground transition-all duration-200"
             >
-              Donate
+              Contact Us
             </Button>
           </Link>
         </div>
-        
+
         <nav className="space-y-1 max-h-96 overflow-y-auto">
           {navigationItems.map((item) => (
             <div key={item.name} className="py-1">
@@ -57,16 +70,16 @@ const MobileNavigation = ({
                   >
                     <div className="flex items-center space-x-3">
                       {(item as any).icon && (
-                        <img 
-                          src={(item as any).icon} 
+                        <img
+                          src={(item as any).icon}
                           alt={item.name}
                           className="w-5 h-5 object-contain"
                         />
                       )}
                       <span>{item.name}</span>
                     </div>
-                    <ChevronDown 
-                      size={16} 
+                    <ChevronDown
+                      size={16}
                       className={cn(
                         "transition-transform duration-200",
                         activeDropdown === item.name ? "transform rotate-180" : ""
@@ -82,8 +95,8 @@ const MobileNavigation = ({
                     )}
                   >
                     {(item as any).icon && (
-                      <img 
-                        src={(item as any).icon} 
+                      <img
+                        src={(item as any).icon}
                         alt={item.name}
                         className="w-5 h-5 object-contain"
                       />
@@ -91,7 +104,7 @@ const MobileNavigation = ({
                     <span>{item.name}</span>
                   </Link>
                 )}
-                
+
                 {/* Mobile Dropdown */}
                 {item.subItems.length > 0 && activeDropdown === item.name && (
                   <div className="ml-6 mt-2 space-y-1 pb-2 border-l-2 border-gray-200 pl-4">

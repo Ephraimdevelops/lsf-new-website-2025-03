@@ -79,6 +79,7 @@ const Partners = () => {
         badge="Strategic Partnerships"
         description="Together with our partners, we're building a more just and equitable Tanzania where everyone has access to legal protection."
         backgroundImage="/lovable-uploads/partners-hero-bg.png"
+        brandPattern="/lovable-uploads/brand-pattern-magenta.png"
       />
 
       {/* Partners Grid */}

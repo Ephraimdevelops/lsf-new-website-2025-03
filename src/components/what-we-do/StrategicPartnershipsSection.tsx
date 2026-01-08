@@ -53,21 +53,19 @@ const StrategicPartnershipsSection = () => {
   ];
 
   return (
-    <Section className="py-24 bg-white border-t border-neutral-100">
-      <Container size="xl"> {/* Restored to xl */}
+    <Section className="py-20 bg-white">
+      <Container>
         {/* Header */}
-        <div className="text-left mb-20 max-w-4xl"> {/* text-left to match hero alignment */}
-          <div className="inline-flex items-center bg-primary/10 rounded-full px-8 py-2.5 mb-8">
-            <Globe className="w-5 h-5 text-primary mr-3" />
-            <Text variant="overline" className="text-primary font-bold text-base tracking-wider">
-              Our Network
-            </Text>
+        <div className="mb-16">
+          {/* Primary Pill Badge */}
+          <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+            <Globe className="h-4 w-4" />
+            <span className="font-bold text-sm uppercase tracking-widest">Our Network</span>
           </div>
-          <Heading level={2} className="text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 mb-8">
-            Building Coalitions for{" "}
-            <span className="text-primary">Lasting Change</span>
+          <Heading level={2} className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Building Coalitions for <span className="text-primary">Lasting Change</span>
           </Heading>
-          <Text variant="body" className="text-2xl md:text-3xl text-neutral-600 leading-relaxed font-light">
+          <Text variant="body" className="text-lg text-gray-600 max-w-2xl border-l-4 border-primary pl-6">
             Our impact is amplified through strategic partnerships with government, civil society,
             international organizations, and the private sector.
           </Text>

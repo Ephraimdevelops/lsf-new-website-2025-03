@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom';
 import {
-  Users, Globe, Scale, MapPin, TrendingUp, Heart, Award, Smartphone,
-  ArrowRight, CheckCircle2, BarChart3, Shield, Home, Baby, Briefcase,
-  Building, Vote, Wallet, Download, MessageSquare
+  Users, Globe, Scale, TrendingUp, Heart, Award, Smartphone,
+  ArrowRight, CheckCircle2, BarChart3, Shield, Home, Baby,
+  Building, Vote, Wallet, Download, MessageSquare, Target
 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import Typography from '../components/shared/Typography';
+import Container from '../components/shared/Container';
 import { Button } from '../components/ui/button';
-import CinematicHero from '@/components/shared/CinematicHero';
+import ImpactPageHero from '@/components/impact/ImpactPageHero';
 
 const Impact = () => {
   // Headline Stats
   const headlineStats = [
-    { value: '6.5M+', label: 'Tanzanians Reached', description: 'With legal education and awareness since inception', icon: <Users className="h-8 w-8" /> },
-    { value: '4,000+', label: 'Paralegals Deployed', description: 'Actively serving across 184 Districts', icon: <Scale className="h-8 w-8" /> },
-    { value: '680,000+', label: 'Legal Aid Recipients', description: 'Indigent people received direct legal assistance', icon: <Shield className="h-8 w-8" /> },
-    { value: '100%', label: 'National Coverage', description: 'Of Tanzania\'s regions covered by paralegal units', icon: <Globe className="h-8 w-8" /> },
+    { value: '6.5M+', label: 'Tanzanians Reached', description: 'With legal education and awareness since inception', icon: <Users className="h-7 w-7" /> },
+    { value: '4,000+', label: 'Paralegals Deployed', description: 'Actively serving across 184 Districts', icon: <Scale className="h-7 w-7" /> },
+    { value: '680,000+', label: 'Legal Aid Recipients', description: 'Indigent people received direct legal assistance', icon: <Shield className="h-7 w-7" /> },
+    { value: '100%', label: 'National Coverage', description: 'Of Tanzania\'s regions covered by paralegal units', icon: <Globe className="h-7 w-7" /> },
   ];
 
   // Access to Justice Stats
@@ -23,10 +24,10 @@ const Impact = () => {
     resolution: '62%',
     savings: 'TZS 4B',
     caseTypes: [
-      { type: 'Family/Matrimonial', percent: 45, description: 'Inheritance, Divorce, Child Maintenance', color: 'bg-secondary-orange' },
-      { type: 'Land Disputes', percent: 30, description: 'Property and land rights cases', color: 'bg-secondary-teal' },
-      { type: 'Gender-Based Violence', percent: 15, description: 'Civil aspects of GBV cases', color: 'bg-primary' },
-      { type: 'Other', percent: 10, description: 'Labor, Contract, Criminal', color: 'bg-neutral-500' },
+      { type: 'Family/Matrimonial', percent: 45, description: 'Inheritance, Divorce, Child Maintenance', color: 'bg-primary' },
+      { type: 'Land Disputes', percent: 30, description: 'Property and land rights cases', color: 'bg-primary/80' },
+      { type: 'Gender-Based Violence', percent: 15, description: 'Civil aspects of GBV cases', color: 'bg-primary/60' },
+      { type: 'Other', percent: 10, description: 'Labor, Contract, Criminal', color: 'bg-gray-400' },
     ],
   };
 
@@ -53,117 +54,128 @@ const Impact = () => {
 
   return (
     <Layout>
-      <CinematicHero
-        title="Real Change, Real Impact"
-        badge="Measuring Success"
-        description="See how we are transforming lives and expanding access to justice across Tanzania through measurable, community-driven action."
-        backgroundImage="/lovable-uploads/impact-hero-bg.png"
-      />
+      <ImpactPageHero />
 
-      {/* HEADLINE STATS SECTION */}
-      <section className="py-12 bg-neutral-900 -mt-2 relative z-20">
-        <div className="container mx-auto px-4">
+      {/* HEADLINE STATS SECTION - Primary Color Focus */}
+      <section className="py-16 bg-primary relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "url('/lovable-uploads/brand-pattern.png')",
+            backgroundSize: '200px',
+            backgroundRepeat: 'repeat',
+          }}
+        />
+        <Container className="relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {headlineStats.map((stat, index) => (
-              <div key={index} className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-secondary-orange/50 transition-all hover:-translate-y-2 group">
-                <div className="w-16 h-16 bg-secondary-orange/20 rounded-2xl flex items-center justify-center mb-6 text-secondary-orange group-hover:bg-secondary-orange group-hover:text-white transition-all">
+              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all group">
+                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform">
                   {stat.icon}
                 </div>
                 <p className="text-4xl lg:text-5xl font-black text-white mb-2">{stat.value}</p>
-                <p className="text-secondary-orange font-bold text-lg mb-2">{stat.label}</p>
-                <p className="text-white/60 text-sm">{stat.description}</p>
+                <p className="text-white font-bold text-base mb-1">{stat.label}</p>
+                <p className="text-white/70 text-sm">{stat.description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ACCESS TO JUSTICE SECTION */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-4">
+      {/* ACCESS TO JUSTICE SECTION - With Image */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <Container>
+          {/* Header */}
+          <div className="mb-16">
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
               <Scale className="h-4 w-4" />
-              Access to Justice
+              <span className="font-bold text-sm uppercase tracking-widest">Access to Justice</span>
             </div>
-            <Typography variant="h2" className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
-              Systemic Efficiency
+            <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Systemic <span className="text-primary">Efficiency</span>
             </Typography>
-            <p className="text-neutral-600 text-lg max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl border-l-4 border-primary pl-6">
               Our paralegals are saving the government money and reducing court backlog through community-level dispute resolution.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-            {/* Resolution Rate */}
-            <div className="text-center lg:text-left">
-              <p className="text-8xl md:text-9xl font-black text-primary mb-4">{accessStats.resolution}</p>
-              <Typography variant="h3" className="text-2xl font-bold text-neutral-900 mb-4">
-                Community Resolution Rate
-              </Typography>
-              <p className="text-neutral-600 text-lg leading-relaxed mb-6">
-                Of disputes reported to paralegals are resolved at the community level through Alternative Dispute Resolution (ADR), preventing them from clogging the court system.
-              </p>
-              <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full font-bold">
-                <CheckCircle2 className="h-5 w-5" />
-                Reduced court backlog significantly
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Resolution Rate with Image */}
+            <div className="relative rounded-3xl overflow-hidden h-[400px]">
+              <img
+                src="/lovable-uploads/wanawake tunaweza beenficiaries.jpg"
+                alt="Community justice"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                <p className="text-7xl md:text-8xl font-black mb-2">{accessStats.resolution}</p>
+                <p className="text-xl font-bold mb-2">Community Resolution Rate</p>
+                <p className="text-white/80">Disputes resolved at community level through ADR</p>
               </div>
             </div>
 
             {/* Cost Savings */}
-            <div className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-10 text-white text-center">
-              <Award className="h-12 w-12 mx-auto mb-6 text-secondary-orange" />
+            <div className="bg-primary rounded-3xl p-10 text-white">
+              <Award className="h-12 w-12 mb-6 text-white/80" />
               <p className="text-6xl md:text-7xl font-black mb-4">{accessStats.savings}</p>
-              <p className="text-xl font-bold text-secondary-orange mb-4">Estimated Savings</p>
-              <p className="text-white/80 leading-relaxed">
+              <p className="text-xl font-bold text-white/90 mb-4">Estimated Government Savings</p>
+              <p className="text-white/80 leading-relaxed mb-6">
                 Saved in potential litigation costs for the judiciary due to paralegal intervention.
               </p>
+              <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full font-bold">
+                <CheckCircle2 className="h-5 w-5" />
+                Reduced court backlog significantly
+              </div>
             </div>
           </div>
 
           {/* Case Types Breakdown */}
-          <div className="bg-neutral-50 rounded-3xl p-10">
-            <Typography variant="h3" className="text-2xl font-bold text-neutral-900 mb-8 text-center">
+          <div className="bg-gray-50 rounded-3xl p-8 md:p-10">
+            <Typography variant="h3" className="text-xl font-bold text-gray-900 mb-8">
               Case Types Handled
             </Typography>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {accessStats.caseTypes.map((caseType, index) => (
-                <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-neutral-100">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`w-12 h-12 ${caseType.color} rounded-xl flex items-center justify-center text-white font-black text-xl`}>
-                      {caseType.percent}%
-                    </div>
+                <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                  <div className={`w-14 h-14 ${caseType.color} rounded-xl flex items-center justify-center text-white font-black text-xl mb-4`}>
+                    {caseType.percent}%
                   </div>
-                  <p className="font-bold text-neutral-900 mb-2">{caseType.type}</p>
-                  <p className="text-neutral-500 text-sm">{caseType.description}</p>
-                  {/* Progress bar */}
-                  <div className="mt-4 bg-neutral-200 rounded-full h-2 overflow-hidden">
+                  <p className="font-bold text-gray-900 mb-2">{caseType.type}</p>
+                  <p className="text-gray-500 text-sm">{caseType.description}</p>
+                  <div className="mt-4 bg-gray-200 rounded-full h-2 overflow-hidden">
                     <div className={`h-full ${caseType.color}`} style={{ width: `${caseType.percent}%` }}></div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* SAUTI YA MWANAMKE SECTION */}
-      <section className="py-24 bg-gradient-to-br from-secondary-orange via-secondary-orange to-secondary-orange-dark text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 text-white/80 font-bold text-sm uppercase tracking-widest mb-4">
+      {/* SAUTI YA MWANAMKE SECTION - With Background Image */}
+      <section className="py-20 relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/lovable-uploads/mwanamke shamba.png')" }}
+        />
+        <div className="absolute inset-0 bg-primary/90" />
+
+        <Container className="relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-white">
+              <div className="inline-flex items-center gap-3 bg-white/20 text-white rounded-full px-6 py-2 mb-5">
                 <Heart className="h-4 w-4" />
-                Sauti ya Mwanamke
+                <span className="font-bold text-sm uppercase tracking-widest">Sauti ya Mwanamke</span>
               </div>
-              <Typography variant="h2" className="text-4xl md:text-5xl font-bold mb-6">
-                Women's Rights Impact
+              <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Women's Rights <span className="text-white">Impact</span>
               </Typography>
-              <p className="text-white/90 text-lg leading-relaxed mb-8">
+              <p className="text-white/80 text-lg leading-relaxed mb-8 border-l-4 border-white/30 pl-6">
                 Our flagship program amplifies women's voices and delivers tangible results in protecting their rights and recovering their assets.
               </p>
               <Link to="/programs/sauti-ya-mwanamke">
-                <Button size="lg" className="bg-white text-secondary-orange hover:bg-white/90 font-bold px-8 py-5 rounded-full">
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold px-8 py-5 rounded-full">
                   Explore Program
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -173,34 +185,34 @@ const Impact = () => {
             <div className="grid grid-cols-2 gap-4">
               {sautiStats.map((stat, index) => (
                 <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-4 text-primary">
                     {stat.icon}
                   </div>
-                  <p className="text-3xl md:text-4xl font-black mb-1">{stat.value}</p>
+                  <p className="text-3xl md:text-4xl font-black text-white mb-1">{stat.value}</p>
                   <p className="text-white font-semibold mb-1">{stat.label}</p>
                   <p className="text-white/70 text-sm">{stat.description}</p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* WANAWAKE TUNAWEZA SECTION */}
-      <section className="py-24 bg-secondary-teal text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-20 bg-gray-50">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-4">
                 {tunawezaStats.map((stat, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 flex items-center gap-6">
-                    <div className="w-16 h-16 bg-secondary-yellow rounded-2xl flex items-center justify-center text-black flex-shrink-0">
+                  <div key={index} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex items-center gap-6 hover:shadow-lg transition-shadow">
+                    <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white flex-shrink-0">
                       {stat.icon}
                     </div>
                     <div>
-                      <p className="text-3xl font-black mb-1">{stat.value}</p>
-                      <p className="text-white font-semibold">{stat.label}</p>
-                      <p className="text-white/70 text-sm">{stat.description}</p>
+                      <p className="text-3xl font-black text-primary mb-1">{stat.value}</p>
+                      <p className="text-gray-900 font-semibold">{stat.label}</p>
+                      <p className="text-gray-500 text-sm">{stat.description}</p>
                     </div>
                   </div>
                 ))}
@@ -208,87 +220,93 @@ const Impact = () => {
             </div>
 
             <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 text-secondary-yellow font-bold text-sm uppercase tracking-widest mb-4">
+              <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
                 <Award className="h-4 w-4" />
-                Wanawake Tunaweza
+                <span className="font-bold text-sm uppercase tracking-widest">Wanawake Tunaweza</span>
               </div>
-              <Typography variant="h2" className="text-4xl md:text-5xl font-bold mb-6">
-                Leadership & Governance
+              <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                Leadership & <span className="text-primary">Governance</span>
               </Typography>
-              <p className="text-white/90 text-lg leading-relaxed mb-8">
+              <p className="text-lg text-gray-600 mb-8 border-l-4 border-primary pl-6">
                 Empowering women to move from the back of the room to the head of the table. Our leadership program is reshaping local governance across Tanzania.
               </p>
               <Link to="/programs/wanawake-tunaweza">
-                <Button size="lg" className="bg-secondary-yellow text-black hover:bg-secondary-yellow/90 font-bold px-8 py-5 rounded-full">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-5 rounded-full">
                   Explore Program
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* HAKI YANGU DIGITAL SECTION */}
-      <section className="py-24 bg-neutral-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 text-secondary-teal font-bold text-sm uppercase tracking-widest mb-4">
+      <section className="py-20 relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/lovable-uploads/haki yangu app uzinuzi.webp')" }}
+        />
+        <div className="absolute inset-0 bg-black/80" />
+
+        <Container className="relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
               <Smartphone className="h-4 w-4" />
-              Haki Yangu Platform
+              <span className="font-bold text-sm uppercase tracking-widest">Haki Yangu Platform</span>
             </div>
-            <Typography variant="h2" className="text-4xl md:text-5xl font-bold mb-6">
-              Justice Goes Digital
+            <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Justice Goes <span className="text-primary">Digital</span>
             </Typography>
-            <p className="text-white/80 text-lg leading-relaxed">
+            <p className="text-white/80 text-lg border-l-4 border-primary pl-6 text-left max-w-xl mx-auto">
               We're modernizing access to justice. The Haki Yangu app provides discreet reporting, legal information, and connects users directly to paralegals.
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-center gap-8 max-w-3xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-center gap-6 max-w-2xl mx-auto">
             {digitalStats.map((stat, index) => (
-              <div key={index} className="flex-1 bg-gradient-to-br from-secondary-teal to-secondary-teal-dark rounded-3xl p-10 text-center">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <div key={index} className="flex-1 bg-primary rounded-2xl p-8 text-center">
+                <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 text-white">
                   {stat.icon}
                 </div>
-                <p className="text-5xl md:text-6xl font-black mb-2">{stat.value}</p>
-                <p className="text-secondary-yellow font-bold text-lg mb-2">{stat.label}</p>
-                <p className="text-white/70">{stat.description}</p>
+                <p className="text-4xl md:text-5xl font-black text-white mb-2">{stat.value}</p>
+                <p className="text-white font-bold mb-2">{stat.label}</p>
+                <p className="text-white/70 text-sm">{stat.description}</p>
               </div>
             ))}
           </div>
-
-          <div className="text-center mt-12">
-            <p className="text-white/60 text-sm">Increasing accessibility for youth and remote communities</p>
-          </div>
-        </div>
+        </Container>
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Typography variant="h2" className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-              Partner in Our Impact
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+              <Target className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Get Involved</span>
+            </div>
+            <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Partner in Our <span className="text-primary">Impact</span>
             </Typography>
-            <p className="text-neutral-600 text-lg mb-10 max-w-2xl mx-auto">
+            <p className="text-gray-600 text-lg mb-10 border-l-4 border-primary pl-6 text-left max-w-xl mx-auto">
               Every statistic represents a life transformed. Join us in expanding access to justice for millions more Tanzanians.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/donate">
-                <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-10 py-5 rounded-full text-lg">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-10 py-5 rounded-full text-base">
                   Support Our Work
                   <ArrowRight className="ml-3 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/publications">
-                <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-10 py-5 rounded-full text-lg">
+                <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-10 py-5 rounded-full text-base">
                   Download Impact Reports
                 </Button>
               </Link>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </Layout>
   );

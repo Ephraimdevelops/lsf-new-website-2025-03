@@ -114,35 +114,43 @@ const DesktopNavigation = ({
       <div className="flex items-center ml-6 space-x-3 border-l border-border pl-6">
         {/* search button */}
         <div className="transform hover:scale-110 transition-transform duration-300">
-          <SearchDialog>
-            <button className="p-2 rounded-full bg-white/80 backdrop-blur border border-neutral-200 shadow-sm hover:shadow-md transition">
-              <Search className="h-4 w-4 text-neutral-600" />
-            </button>
-          </SearchDialog>
+          <SearchDialog />
         </div>
 
-        {/* legal help CTA */}
-        <Button
-          size="sm"
-          className="bg-primary hover:bg-primary/90 flex items-center space-x-2 rounded-lg px-4 animate-pulse-slow hover:animate-none shadow-md hover:shadow-lg transition"
-          onClick={() => setLegalAidDialogOpen(true)}
-        >
-          <Phone className="h-4 w-4" />
-          <span>Get Legal Help</span>
-        </Button>
+        {/* SARA AI Link */}
+        <Link to="/sara" className="relative group mr-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex items-center gap-2 hover:bg-primary/10 hover:text-primary transition-colors font-medium"
+          >
+            <span className="relative flex h-2 w-2 mr-1">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            SARA AI
+          </Button>
+        </Link>
 
-        {/* donate */}
-        <Link to="/donate">
+        {/* legal help CTA */}
+        <Link to="/legal-help">
+          <Button
+            size="sm"
+            className="bg-primary hover:bg-primary/90 flex items-center space-x-2 rounded-lg px-4 shadow-md hover:shadow-lg transition"
+          >
+            <Phone className="h-4 w-4" />
+            <span>Get Legal Help</span>
+          </Button>
+        </Link>
+
+        {/* Contact Us */}
+        <Link to="/contact">
           <Button
             variant="outline"
             size="sm"
-            className="relative overflow-hidden border-2 border-transparent rounded-lg px-4
-                       text-muted-foreground hover:text-foreground
-                       before:absolute before:inset-0 before:rounded-lg before:border-2
-                       before:border-gradient-to-r before:from-primary before:to-secondary-teal
-                       before:opacity-0 hover:before:opacity-100 before:transition"
+            className="rounded-lg px-4 border-2 border-primary/20 hover:border-primary/40"
           >
-            Donate
+            Contact
           </Button>
         </Link>
       </div>

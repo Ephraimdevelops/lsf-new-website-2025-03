@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import LSFChatbot from '@/components/shared/LSFChatbot';
+import SaraFloatingWidget from '@/components/SaraFloatingWidget';
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,7 +17,8 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
       <Footer />
-      <LSFChatbot />
+      <Footer />
+      <SaraFloatingWidget />
     </div>
   );
 };

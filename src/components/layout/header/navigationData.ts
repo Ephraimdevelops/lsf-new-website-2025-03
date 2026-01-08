@@ -1,6 +1,6 @@
 export const navigationItems = [
-  { 
-    name: 'About', 
+  {
+    name: 'About',
     href: '/about',
     description: 'Who we are and our mission',
     subItems: [
@@ -10,27 +10,28 @@ export const navigationItems = [
       { name: 'Partners & Donors', href: '/partners', description: 'Strategic collaborations' },
     ]
   },
-  { 
-    name: 'What We Do', 
+  {
+    name: 'What We Do',
     href: '/what-we-do',
     description: 'Our comprehensive approach to justice',
     subItems: [
       { name: 'What We Do', href: '/what-we-do', description: 'Overview of our work' },
       { name: 'Programs', href: '/programs', description: 'Our flagship initiatives' },
+      { name: 'Legal Assistance', href: '/legal-help', description: 'Find legal aid & paralegals' },
     ]
   },
-  { 
-    name: 'Our Impact', 
+  {
+    name: 'Our Impact',
     href: '/impact',
     description: 'Measurable change and real stories',
     subItems: [
       { name: 'Success Stories', href: '/heroes', description: 'Real impact stories' },
       { name: 'Impact Dashboard', href: '/impact', description: 'Data and outcomes' },
-      
+
     ]
   },
-  { 
-    name: "What's New", 
+  {
+    name: "What's New",
     href: '/news',
     description: 'Latest updates and insights',
     subItems: [
@@ -38,8 +39,8 @@ export const navigationItems = [
       { name: 'Opportunities', href: '/opportunities', description: 'New opportunities' },
     ]
   },
-  { 
-    name: 'Resources', 
+  {
+    name: 'Resources',
     href: '/resources',
     description: 'Publications and learning materials',
     subItems: [

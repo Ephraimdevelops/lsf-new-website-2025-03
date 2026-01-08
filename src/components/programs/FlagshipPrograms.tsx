@@ -63,7 +63,7 @@ const FlagshipPrograms = () => {
   ];
 
   return (
-    <section id="flagship-programs" className="py-28 bg-neutral-50 relative overflow-hidden">
+    <section id="flagship-programs" className="py-16 md:py-28 bg-neutral-50 relative overflow-hidden">
       {/* Premium subtle patterns */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(147,30,92,0.03)_50%,transparent_51%,transparent_100%)] bg-[length:80px_100%]"></div>
@@ -79,7 +79,7 @@ const FlagshipPrograms = () => {
             </span>
           </div>
 
-          <Typography variant="h2" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-neutral-900">
+          <Typography variant="h2" className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-neutral-900">
             Transforming Lives
             <span className="block text-primary mt-2">Across Tanzania</span>
           </Typography>
@@ -90,7 +90,7 @@ const FlagshipPrograms = () => {
         </div>
 
         {/* Programs - Premium Cards */}
-        <div className="space-y-32">
+        <div className="space-y-16 lg:space-y-32">
           {programs.map((program, index) => (
             <div
               key={index}
@@ -131,7 +131,7 @@ const FlagshipPrograms = () => {
 
               {/* Content Side - Premium Card */}
               <div className="lg:w-1/2 w-full">
-                <div className={`bg-white rounded-3xl shadow-xl p-8 lg:p-10 border-l-4 ${program.borderColor} relative overflow-hidden`}>
+                <div className={`bg-white rounded-3xl shadow-xl p-6 md:p-8 lg:p-10 border-l-4 ${program.borderColor} relative overflow-hidden`}>
                   {/* Decorative corner accent */}
                   <div className={`absolute top-0 right-0 w-32 h-32 ${program.color} opacity-5 rounded-bl-full`}></div>
 
@@ -181,8 +181,8 @@ const FlagshipPrograms = () => {
         </div>
 
         {/* Bottom CTA Section */}
-        <div className="mt-32 text-center">
-          <div className="bg-gradient-to-r from-primary via-primary-dark to-primary rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
+        <div className="mt-16 lg:mt-32 text-center">
+          <div className="bg-gradient-to-r from-primary via-primary-dark to-primary rounded-3xl p-8 md:p-16 text-white relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary-orange/20 rounded-full blur-3xl"></div>

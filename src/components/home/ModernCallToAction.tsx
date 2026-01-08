@@ -1,112 +1,117 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, Heart, Users, MessageSquare } from 'lucide-react';
+import { ArrowRight, Mail, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import Container from '@/components/shared/Container';
 
 const ModernCallToAction = () => {
-  const actions = [
-    {
-      icon: <Phone className="h-8 w-8" />,
-      title: 'Get Legal Help',
-      description: 'Connect with our paralegals',
-      cta: 'Call Now',
-      href: 'tel:+255870119363',
-      color: 'bg-green-500',
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: 'Join Our Network',
-      description: 'Become a community paralegal',
-      cta: 'Learn More',
-      href: '/opportunities',
-      color: 'bg-secondary-teal',
-    },
-    {
-      icon: <Heart className="h-8 w-8" />,
-      title: 'Support Our Mission',
-      description: 'Help expand access to justice',
-      cta: 'Donate',
-      href: '/donate',
-      color: 'bg-secondary-orange',
-    },
-    {
-      icon: <MessageSquare className="h-8 w-8" />,
-      title: 'AI Legal Assistant',
-      description: '24/7 legal guidance',
-      cta: 'Chat Now',
-      href: '/lsfchatbot',
-      color: 'bg-primary',
-    },
-  ];
+    const [email, setEmail] = useState('');
+    const [submitted, setSubmitted] = useState(false);
 
-  return (
-    <section className="py-24 bg-neutral-50 relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (email) {
+            setSubmitted(true);
+            setEmail('');
+            setTimeout(() => setSubmitted(false), 3000);
+        }
+    };
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-3 mb-6 bg-primary/10 rounded-full px-5 py-2">
-            <Heart className="h-4 w-4 text-primary" />
-            <span className="text-primary font-bold text-sm uppercase tracking-widest">Take Action</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
-            Ready to Make a <span className="text-primary">Difference?</span>
-          </h2>
-          <p className="text-neutral-600 text-lg">
-            Join thousands of Tanzanians transforming their communities through access to justice.
-          </p>
-        </div>
+    return (
+        <section className="relative py-16 md:py-20 overflow-hidden shadow-[0_20px_50px_-20px_rgba(0,0,0,0.3)]">
+            {/* Brand Pattern Background */}
+            <div
+                className="absolute inset-0"
+                style={{
+                    backgroundImage: "url('/lovable-uploads/brand-pattern.png')",
+                    backgroundSize: '300px',
+                    backgroundRepeat: 'repeat',
+                }}
+            />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-primary/95" />
 
-        {/* Action Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {actions.map((action, index) => (
-            <Link
-              key={index}
-              to={action.href}
-              className="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl border border-neutral-100 hover:border-primary/20 transition-all duration-500 hover:-translate-y-2"
-            >
-              <div className={`w-16 h-16 ${action.color} rounded-2xl flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform`}>
-                {action.icon}
-              </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary transition-colors">
-                {action.title}
-              </h3>
-              <p className="text-neutral-500 mb-6">{action.description}</p>
-              <div className="flex items-center gap-2 text-primary font-bold group-hover:gap-3 transition-all">
-                {action.cta}
-                <ArrowRight className="h-4 w-4" />
-              </div>
-            </Link>
-          ))}
-        </div>
 
-        {/* Contact Strip */}
-        <div className="bg-neutral-900 rounded-3xl p-8 md:p-12 text-white">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-2">Have Questions?</h3>
-              <p className="text-white/70">Our team is here to help you navigate legal challenges.</p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="tel:+255870119363">
-                <Button size="lg" className="bg-white text-neutral-900 hover:bg-white/90 font-bold px-8 py-5 rounded-full">
-                  <Phone className="mr-2 h-5 w-5" />
-                  +255 870 119 363
-                </Button>
-              </a>
-              <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold px-8 py-5 rounded-full">
-                  Contact Us
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+
+            <Container className="relative z-10">
+                <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+
+                    {/* Left: Contact CTA */}
+                    <div className="text-white text-center md:text-left">
+                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+                            Ready to Take Action?
+                        </h2>
+                        <p className="text-white/80 text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
+                            Whether you need legal help, want to partner with us, or support our mission — we're here to help.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                            <Link to="/contact">
+                                <Button size="lg" className="w-full sm:w-auto bg-white hover:bg-white/90 text-primary font-bold px-6 md:px-8 py-4 md:py-5 h-auto rounded-full text-sm md:text-base shadow-lg transition-all hover:-translate-y-1">
+                                    Contact Us
+                                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
+                                </Button>
+                            </Link>
+                            <Link to="/legal-help">
+                                <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-white text-white bg-transparent hover:bg-white hover:text-primary font-bold px-6 md:px-8 py-4 md:py-5 h-auto rounded-full text-sm md:text-base transition-all">
+                                    Get Legal Help
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Right: Newsletter - Branded */}
+                    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl">
+                        {/* Brand Pattern Background for Newsletter */}
+                        <div
+                            className="absolute inset-0"
+                            style={{
+                                backgroundImage: "url('/lovable-uploads/brand-pattern.png')",
+                                backgroundSize: '200px',
+                                backgroundRepeat: 'repeat',
+                            }}
+                        />
+                        <div className="absolute inset-0 bg-black/70" />
+
+                        <div className="relative z-10 p-6 md:p-8">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                                    <Mail className="h-5 w-5 text-white" />
+                                </div>
+                                <h3 className="text-white font-bold text-lg md:text-xl">Stay Updated</h3>
+                            </div>
+
+                            <p className="text-white/70 mb-5 md:mb-6 text-sm md:text-base">
+                                Subscribe to our newsletter for the latest updates on legal aid, resources, and impact stories.
+                            </p>
+
+                            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                                <Input
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-full px-5 h-11 md:h-12 flex-1 focus:border-primary"
+                                />
+                                <Button
+                                    type="submit"
+                                    size="lg"
+                                    className="bg-primary hover:bg-primary/90 text-white font-bold px-5 md:px-6 h-11 md:h-12 rounded-full text-sm md:text-base"
+                                >
+                                    {submitted ? 'Subscribed!' : 'Subscribe'}
+                                    <Send className="ml-2 h-4 w-4" />
+                                </Button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </Container>
+
+
+        </section>
+    );
 };
 
 export default ModernCallToAction;

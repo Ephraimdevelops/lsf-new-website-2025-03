@@ -11,7 +11,12 @@ import {
   BarChart3,
   BookOpen,
   Presentation,
-  Heart
+  Heart,
+  Mail,
+  MessageSquare,
+  MessageSquare,
+  Scale,
+  Bot
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AdminHome from './AdminHome';
@@ -24,6 +29,10 @@ import AdminSettings from './AdminSettings';
 import AdminHeroSlides from './AdminHeroSlides';
 import EnhancedAnalyticsDashboard from './EnhancedAnalyticsDashboard';
 import AdminStories from './AdminStories';
+import AdminNewsletter from './AdminNewsletter';
+import AdminFormSubmissions from './AdminFormSubmissions';
+import AdminParalegals from './AdminParalegals';
+import AdminSaraAnalytics from './AdminSaraAnalytics';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -40,8 +49,12 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
     { id: 'programs', label: 'Programs', icon: Calendar },
     { id: 'publications', label: 'Publications', icon: BookOpen },
     { id: 'opportunities', label: 'Opportunities', icon: Briefcase },
+    { id: 'newsletter', label: 'Newsletter', icon: Mail },
+    { id: 'submissions', label: 'Submissions', icon: MessageSquare },
+    { id: 'paralegals', label: 'Paralegals', icon: Scale },
     { id: 'resources', label: 'Resources', icon: Users },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'sara-analytics', label: 'SARA AI Stats', icon: Bot },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
@@ -61,10 +74,18 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <AdminPublications />;
       case 'opportunities':
         return <AdminOpportunities />;
+      case 'newsletter':
+        return <AdminNewsletter />;
+      case 'submissions':
+        return <AdminFormSubmissions />;
+      case 'paralegals':
+        return <AdminParalegals />;
       case 'resources':
         return <AdminResources />;
       case 'analytics':
         return <EnhancedAnalyticsDashboard />;
+      case 'sara-analytics':
+        return <AdminSaraAnalytics />;
       case 'settings':
         return <AdminSettings />;
       default:

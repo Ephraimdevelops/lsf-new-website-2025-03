@@ -2,23 +2,38 @@ import { useState } from 'react';
 import { Mail, Send, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Typography from '@/components/shared/Typography';
+import { useMutation } from 'convex/react';
+import { api } from '../../../../convex/_generated/api';
 
 const ModernNewsletterSection = () => {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const subscribeNewsletter = useMutation(api.newsletter.subscribe);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubscribed(true);
+    setError(null);
+
+    try {
+      const result = await subscribeNewsletter({ email, source: 'footer' });
+      if (result.success) {
+        setIsSubscribed(true);
+        setEmail('');
+      } else {
+        setError(result.message || 'Subscription failed');
+      }
+    } catch (err) {
+      setError('Failed to subscribe. Please try again.');
+      console.error('Newsletter subscription error:', err);
+    } finally {
       setIsLoading(false);
-      setEmail('');
-    }, 2000);
+    }
   };
 
   return (
@@ -39,11 +54,11 @@ const ModernNewsletterSection = () => {
                 Stay Connected
               </Typography>
             </div>
-            
+
             <Typography variant="h2" className="text-white mb-4 text-3xl md:text-4xl font-bold">
               Stay Updated with Our Latest Impact
             </Typography>
-            
+
             <Typography variant="body" className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto">
               Get the latest news about our programs, success stories, and opportunities to make a difference in your community.
             </Typography>
@@ -63,7 +78,7 @@ const ModernNewsletterSection = () => {
                     required
                   />
                 </div>
-                <Button 
+                <Button
                   type="submit"
                   disabled={isLoading}
                   className="bg-gradient-to-r from-primary to-secondary-orange hover:opacity-90 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -81,7 +96,7 @@ const ModernNewsletterSection = () => {
                   )}
                 </Button>
               </div>
-              
+
               <Typography variant="bodySmall" className="text-white/60 mt-4">
                 We respect your privacy. Unsubscribe at any time.
               </Typography>
@@ -115,7 +130,7 @@ const ModernNewsletterSection = () => {
                 Get the latest news and impact stories
               </Typography>
             </div>
-            
+
             <div className="text-center">
               <div className="w-12 h-12 bg-secondary-teal/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Send className="h-6 w-6 text-secondary-teal" />
@@ -127,7 +142,7 @@ const ModernNewsletterSection = () => {
                 Be the first to know about new opportunities
               </Typography>
             </div>
-            
+
             <div className="text-center">
               <div className="w-12 h-12 bg-secondary-orange/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-6 w-6 text-secondary-orange" />

@@ -1,0 +1,87 @@
+import { ArrowRight, TrendingUp } from 'lucide-react';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+const ImpactPageHero = () => {
+    const images = [
+        "/lovable-uploads/msaada kisheria lsf yazindua .webp",
+        "/lovable-uploads/Danida-lsf-signing.jpg",
+        "/lovable-uploads/lsf-10years-annivervasry.jpg",
+        "/lovable-uploads/Screenshot 2023-11-27 at 3.55.01 PM.png"
+    ];
+
+    const sliderSettings = {
+        autoplay: true,
+        autoplaySpeed: 5000,
+        infinite: true,
+        fade: true,
+        arrows: false,
+        pauseOnHover: false,
+        speed: 2000,
+        cssEase: "cubic-bezier(0.87, 0, 0.13, 1)"
+    };
+
+    return (
+        <section className="relative bg-black h-[85vh] min-h-[550px] overflow-hidden group">
+            {/* Background Slider */}
+            <div className="absolute inset-0 z-0">
+                <Slider {...sliderSettings} className="h-full w-full [&_.slick-slider]:h-full [&_.slick-list]:h-full [&_.slick-track]:h-full [&_.slick-slide]:h-full [&_.slick-slide>div]:h-full">
+                    {images.map((img, idx) => (
+                        <div key={idx} className="h-full w-full relative">
+                            <div className="absolute inset-0 bg-black/40 z-10" />
+                            <img
+                                src={img}
+                                alt={`Impact slide ${idx + 1}`}
+                                className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-[10000ms] ease-linear"
+                            />
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+
+            {/* Cinematic Gradient Overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
+
+            {/* Content */}
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex flex-col justify-center">
+                <div className="max-w-4xl space-y-6 animate-fade-in">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 shadow-2xl backdrop-blur-md border border-white/10">
+                        <TrendingUp className="h-4 w-4" />
+                        <span className="font-bold text-sm uppercase tracking-widest">Measuring Success</span>
+                    </div>
+
+                    <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
+                        Real Change, <span className="text-white">Real Impact</span>
+                    </Typography>
+
+                    <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl leading-relaxed font-light drop-shadow-md border-l-4 border-primary pl-6">
+                        See how we are transforming lives and expanding access to justice across Tanzania through measurable, community-driven action.
+                    </Typography>
+
+                    <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                        <Link to="#stats">
+                            <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-8 py-5 rounded-full text-base shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                View Our Impact
+                                <ArrowRight className="ml-3 h-5 w-5" />
+                            </Button>
+                        </Link>
+                        <Link to="/publications">
+                            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-8 py-5 rounded-full text-base transition-all duration-300 hover:-translate-y-1">
+                                Download Reports
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default ImpactPageHero;

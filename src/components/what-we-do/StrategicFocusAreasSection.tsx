@@ -98,35 +98,40 @@ const StrategicFocusAreasSection = () => {
     ]
   };
 
-  const SliderSection = ({ title, subtitle, items, bgClass = "bg-white" }) => {
+  const SliderSection = ({ title, subtitle, description, items, bgClass = "bg-white" }) => {
     const sliderRef = useRef<Slider>(null);
 
     return (
-      // Reduced py-20 to py-12 (decrease padding)
-      <section className={`py-12 ${bgClass} border-b border-neutral-100`}>
-        <Container size="xl"> {/* Restored to xl */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 px-2 gap-8">
-            <div className="max-w-4xl text-left"> {/* Explicit text-left */}
-              <div className="inline-flex items-center gap-2 text-primary font-bold mb-3 uppercase tracking-widest text-sm bg-primary/5 px-4 py-1.5 rounded-full"> {/* Increased text size and padding slightly */}
+      <section className={`py-20 ${bgClass}`}>
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+            <div className="max-w-3xl">
+              {/* Primary Pill Badge - About Page Style */}
+              <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
                 <Target className="h-4 w-4" />
-                {subtitle}
+                <span className="font-bold text-sm uppercase tracking-widest">{subtitle}</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900">{title}</h2> {/* Increased heading sizes */}
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{title}</h2>
+              {description && (
+                <p className="text-lg text-gray-600 border-l-4 border-primary pl-6 max-w-2xl">
+                  {description}
+                </p>
+              )}
             </div>
 
             {/* Custom Arrows */}
-            <div className="flex gap-2 mt-4 md:mt-0 flex-shrink-0">
+            <div className="flex gap-2 flex-shrink-0">
               <button
                 onClick={() => sliderRef.current?.slickPrev()}
-                className="w-12 h-12 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all text-neutral-600 shadow-sm"
+                className="w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all text-gray-600"
               >
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={() => sliderRef.current?.slickNext()}
-                className="w-12 h-12 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all text-neutral-600 shadow-sm"
+                className="w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all text-gray-600"
               >
-                <ChevronRight className="h-6 w-6" />
+                <ChevronRight className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -149,7 +154,7 @@ const StrategicFocusAreasSection = () => {
                       </div>
 
                       {/* Content - Increased padding and font sizes */}
-                      <div className="p-8 flex flex-col flex-grow"> {/* p-6 -> p-8 (+?.5rem but larger feel) */}
+                      <div className="p-6 md:p-8 flex flex-col flex-grow"> {/* p-6 -> p-8 (+?.5rem but larger feel) */}
                         <h3 className="text-2xl font-bold text-neutral-900 mb-4 group-hover:text-primary transition-colors line-clamp-2"> {/* text-xl -> text-2xl */}
                           {item.title}
                         </h3>
@@ -176,12 +181,14 @@ const StrategicFocusAreasSection = () => {
       <SliderSection
         title="Our Strategic Approaches"
         subtitle="How We Work"
+        description="We deploy a multi-pronged strategy combining grant-making, direct implementation, policy advocacy, and research to create systemic change in access to justice."
         items={approaches}
-        bgClass="bg-neutral-50"
+        bgClass="bg-gray-50"
       />
       <SliderSection
         title="Strategic Focus Areas"
         subtitle="Where We Work"
+        description="Our work spans legal aid, community empowerment, gender justice, and digital innovation to ensure every Tanzanian can claim their rights."
         items={focusAreas}
         bgClass="bg-white"
       />

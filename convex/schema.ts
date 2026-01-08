@@ -162,4 +162,166 @@ export default defineSchema({
     icon: v.string(),
     order: v.number(),
   }).index("by_order", ["order"]),
+
+  // ==========================================
+  // FORM SUBMISSIONS & NEWSLETTER MANAGEMENT
+  // ==========================================
+
+  // Newsletter Subscribers
+  newsletter_subscribers: defineTable({
+    email: v.string(),
+    firstName: v.optional(v.string()),
+    lastName: v.optional(v.string()),
+    subscribedAt: v.number(),
+    status: v.union(v.literal("active"), v.literal("unsubscribed"), v.literal("bounced")),
+    source: v.optional(v.string()), // 'website', 'import', 'manual'
+    tags: v.optional(v.array(v.string())), // For segmentation
+    lastEmailSentAt: v.optional(v.number()),
+    openCount: v.optional(v.number()),
+    clickCount: v.optional(v.number()),
+  }).index("by_email", ["email"])
+    .index("by_status", ["status"]),
+
+  // Newsletter Campaigns (for sending newsletters)
+  newsletter_campaigns: defineTable({
+    title: v.string(),
+    subject: v.string(),
+    previewText: v.optional(v.string()),
+    content: v.string(), // HTML content
+    pdfUrl: v.optional(v.string()), // Uploaded PDF newsletter
+    coverImageUrl: v.optional(v.string()),
+    status: v.union(v.literal("draft"), v.literal("scheduled"), v.literal("sent"), v.literal("archived")),
+    scheduledAt: v.optional(v.number()),
+    sentAt: v.optional(v.number()),
+    createdAt: v.number(),
+    createdBy: v.optional(v.string()),
+    recipientCount: v.optional(v.number()),
+    openRate: v.optional(v.number()),
+    clickRate: v.optional(v.number()),
+    tags: v.optional(v.array(v.string())), // Target specific subscriber segments
+  }).index("by_status", ["status"])
+    .index("by_created", ["createdAt"]),
+
+  // Newsletter Templates (reusable templates)
+  newsletter_templates: defineTable({
+    name: v.string(),
+    description: v.optional(v.string()),
+    content: v.string(), // HTML template
+    thumbnailUrl: v.optional(v.string()),
+    category: v.optional(v.string()), // 'announcement', 'update', 'event', etc.
+    isDefault: v.optional(v.boolean()),
+    createdAt: v.number(),
+  }),
+
+  // Contact Form Submissions
+  contact_submissions: defineTable({
+    name: v.string(),
+    email: v.string(),
+    phone: v.optional(v.string()),
+    category: v.string(),
+    subject: v.string(),
+    message: v.string(),
+    submittedAt: v.number(),
+    status: v.union(v.literal("new"), v.literal("read"), v.literal("replied"), v.literal("archived")),
+    notes: v.optional(v.string()), // Admin notes
+    assignedTo: v.optional(v.string()),
+    repliedAt: v.optional(v.number()),
+  }).index("by_status", ["status"])
+    .index("by_category", ["category"]),
+
+  // Whistleblower Reports
+  whistleblower_reports: defineTable({
+    reportType: v.string(), // 'fraud', 'misconduct', 'safety', 'harassment', etc.
+    description: v.string(),
+    evidenceUrls: v.optional(v.array(v.string())), // Uploaded evidence files
+    contactEmail: v.optional(v.string()),
+    contactPhone: v.optional(v.string()),
+    isAnonymous: v.boolean(),
+    submittedAt: v.number(),
+    status: v.union(v.literal("new"), v.literal("investigating"), v.literal("resolved"), v.literal("dismissed")),
+    priority: v.optional(v.union(v.literal("low"), v.literal("medium"), v.literal("high"), v.literal("critical"))),
+    assignedTo: v.optional(v.string()),
+    resolution: v.optional(v.string()),
+    resolvedAt: v.optional(v.number()),
+  }).index("by_status", ["status"]),
+
+  // Paralegal Applications
+  paralegal_applications: defineTable({
+    fullName: v.string(),
+    email: v.string(),
+    phone: v.string(),
+    whatsapp: v.optional(v.string()), // WhatsApp number (may differ from phone)
+    region: v.string(),
+    district: v.string(),
+    ward: v.optional(v.string()),
+    education: v.string(),
+    experience: v.string(),
+    motivation: v.string(),
+    languages: v.optional(v.array(v.string())),
+    resumeUrl: v.optional(v.string()),
+    idDocumentUrl: v.optional(v.string()),
+    submittedAt: v.number(),
+    status: v.union(v.literal("pending"), v.literal("under_review"), v.literal("approved"), v.literal("rejected")),
+    reviewNotes: v.optional(v.string()),
+    reviewedBy: v.optional(v.string()),
+    reviewedAt: v.optional(v.number()),
+    // New fields for approved paralegals
+    isVerified: v.optional(v.boolean()),
+    profileViews: v.optional(v.number()),
+    bio: v.optional(v.string()),
+    photoUrl: v.optional(v.string()),
+    specializations: v.optional(v.array(v.string())),
+    hasJoinedHakiYangu: v.optional(v.boolean()),
+    onboardingCompleted: v.optional(v.boolean()),
+    approvedAt: v.optional(v.number()),
+  }).index("by_status", ["status"])
+    .index("by_region", ["region"])
+    .index("by_email", ["email"]),
+
+  // ==========================================
+  // SARA AI KNOWLEDGE BASE (RAG)
+  // ==========================================
+
+  // Documents (Sources)
+  documents: defineTable({
+    title: v.string(),
+    text: v.optional(v.string()), // extracted text
+    storageId: v.id("_storage"), // PDF file in Convex storage
+    type: v.string(), // 'pdf', 'text', 'url'
+    sourceUrl: v.optional(v.string()), // URL if applicable
+    metadata: v.optional(v.any()), // PDF metadata
+    uploadedAt: v.number(),
+    processedAt: v.optional(v.number()),
+  }),
+
+  // Embeddings (Chunks)
+  embeddings: defineTable({
+    documentId: v.id("documents"),
+    text: v.string(), // Chunk text
+    embedding: v.array(v.number()), // Vector embedding (1536 dim for OpenAI)
+    chunkIndex: v.number(),
+  }).vectorIndex("by_embedding", {
+    vectorField: "embedding",
+    dimensions: 1536,
+  }).index("by_documentId", ["documentId"]),
+
+  // SARA Chat History
+  sara_chats: defineTable({
+    userId: v.string(), // Clerk ID
+    sessionId: v.optional(v.string()),
+    role: v.union(v.literal("user"), v.literal("assistant")),
+    content: v.string(),
+    timestamp: v.number(),
+    // Analytics & Metadata
+    tokens: v.optional(v.number()),
+    toolCalls: v.optional(v.array(v.string())), // Track tools used (e.g. "find_paralegals")
+    metadata: v.optional(v.any()),
+  }).index("by_user", ["userId"])
+    .index("by_timestamp", ["timestamp"]),
+
+  // SARA Configuration (System Prompt, etc.)
+  sara_config: defineTable({
+    key: v.string(), // e.g. 'system_prompt'
+    value: v.string(),
+  }).index("by_key", ["key"]),
 });

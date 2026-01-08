@@ -8,24 +8,16 @@ interface ContainerProps {
   className?: string;
 }
 
-const Container = ({ 
-  children, 
+const Container = ({
+  children,
   size = 'xl',
-  className = '' 
+  className = ''
 }: ContainerProps) => {
-  const sizeClasses = {
-    sm: 'max-w-2xl',
-    md: 'max-w-4xl',
-    lg: 'max-w-6xl',
-    xl: 'max-w-7xl',
-    '2xl': 'max-w-8xl',
-    full: 'max-w-full'
-  };
-
+  // Using Tailwind's container class to match Header exactly
+  // This ensures content aligns perfectly with the logo
   return (
     <div className={cn(
-      'mx-auto px-4 sm:px-6 lg:px-8',
-      sizeClasses[size],
+      'container mx-auto px-4 sm:px-6 lg:px-8',
       className
     )}>
       {children}

@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
+import Container from '@/components/shared/Container';
+import Typography from '@/components/shared/Typography';
 import {
   Phone, Mail, MapPin, Clock, MessageCircle, Send,
-  CheckCircle, ArrowRight, Globe, Users, Building
+  CheckCircle, ArrowRight, Globe, Users, Building, Headphones
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useMutation } from 'convex/react';
+import { api } from '../../convex/_generated/api';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const ContactPage = () => {
+  useEffect(() => {
+    document.title = 'Contact Us - Legal Services Facility';
+  }, []);
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -18,148 +29,155 @@ const ContactPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const submitContactForm = useMutation(api.formSubmissions.submitContact);
+
+  const heroImages = [
+    "/lovable-uploads/lsf-10years-annivervasry.jpg",
+    "/lovable-uploads/Danida-lsf-signing.jpg",
+    "/lovable-uploads/wanawake tunaweza beenficiaries.jpg"
+  ];
+
+  const sliderSettings = {
+    autoplay: true, autoplaySpeed: 5000, infinite: true, fade: true, arrows: false, pauseOnHover: false, speed: 2000,
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setError(null);
+
+    try {
+      await submitContactForm({
+        name: `${formData.firstName} ${formData.lastName}`.trim(),
+        email: formData.email,
+        phone: formData.phone || undefined,
+        category: 'general',
+        subject: formData.subject,
+        message: formData.message,
+      });
       setIsSubmitted(true);
-    }, 2000);
+      setFormData({ firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      setError('Failed to submit. Please try again.');
+      console.error('Contact form error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactMethods = [
-    {
-      icon: <Phone className="h-6 w-6" />,
-      title: 'Call Us',
-      primary: '+255 870 119 363',
-      secondary: '+255 22 260 1534',
-      action: 'tel:+255870119363',
-      color: 'bg-green-500',
-    },
-    {
-      icon: <Mail className="h-6 w-6" />,
-      title: 'Email Us',
-      primary: 'info@lsftz.org',
-      secondary: 'support@lsftz.org',
-      action: 'mailto:info@lsftz.org',
-      color: 'bg-secondary-orange',
-    },
-    {
-      icon: <MapPin className="h-6 w-6" />,
-      title: 'Visit Us',
-      primary: 'Chole Rd, Masaki',
-      secondary: 'Dar es Salaam, Tanzania',
-      action: '#map',
-      color: 'bg-primary',
-    },
-    {
-      icon: <Clock className="h-6 w-6" />,
-      title: 'Office Hours',
-      primary: 'Mon - Fri: 8:00 AM - 5:00 PM',
-      secondary: 'Sat: 9:00 AM - 1:00 PM',
-      action: null,
-      color: 'bg-secondary-teal',
-    },
+    { icon: <Phone className="h-6 w-6" />, title: 'Call Us', value: '+255 870 119 363', description: 'Mon-Fri 8AM-5PM EAT', link: 'tel:+255870119363', color: 'bg-green-500' },
+    { icon: <Mail className="h-6 w-6" />, title: 'Email Us', value: 'info@lsftz.org', description: 'Response within 24 hours', link: 'mailto:info@lsftz.org', color: 'bg-blue-500' },
+    { icon: <MapPin className="h-6 w-6" />, title: 'Visit Us', value: 'Chole Rd, Masaki', description: 'Dar es Salaam, Tanzania', link: 'https://maps.google.com/?q=Chole+Road+Masaki+Dar+es+Salaam+Tanzania', color: 'bg-primary' },
+    { icon: <MessageCircle className="h-6 w-6" />, title: 'AI Assistant', value: 'Chat Now', description: 'Get instant legal guidance', link: '/lsfchatbot', color: 'bg-purple-500' }
   ];
 
-  const quickActions = [
+  const quickLinks = [
     { icon: <Users className="h-5 w-5" />, label: 'Find a Paralegal', href: '/legal-help' },
-    { icon: <MessageCircle className="h-5 w-5" />, label: 'AI Legal Assistant', href: '/lsfchatbot' },
-    { icon: <Building className="h-5 w-5" />, label: 'Partner With Us', href: '/programs' },
-    { icon: <Globe className="h-5 w-5" />, label: 'Regional Offices', href: '/about' },
+    { icon: <Headphones className="h-5 w-5" />, label: 'Legal Helpline', href: 'tel:+255870119363' },
+    { icon: <Building className="h-5 w-5" />, label: 'Partner With Us', href: '/opportunities' },
+    { icon: <Globe className="h-5 w-5" />, label: 'About LSF', href: '/about' }
   ];
 
   return (
     <Layout>
-      {/* Hero Section - Dark */}
-      <section className="relative min-h-[60vh] flex items-center bg-neutral-900 text-white overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-        </div>
-
-        {/* Gradient orbs */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-primary/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary-teal/30 rounded-full blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative z-10 py-24">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-3 mb-6 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 border border-white/20">
-              <MessageCircle className="h-4 w-4 text-secondary-orange" />
-              <span className="text-white font-bold text-sm uppercase tracking-widest">Get in Touch</span>
-            </div>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              We're Here to <span className="text-secondary-orange">Help.</span>
-            </h1>
-
-            <p className="text-white/80 text-xl md:text-2xl max-w-2xl leading-relaxed mb-10">
-              Whether you need legal assistance, want to partner with us, or have questions about our work—our team is ready to support you.
-            </p>
-
-            {/* Quick Actions */}
-            <div className="flex flex-wrap gap-3">
-              {quickActions.map((action, index) => (
-                <Link
-                  key={index}
-                  to={action.href}
-                  className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-5 py-3 rounded-full border border-white/20 transition-all hover:scale-105"
-                >
-                  {action.icon}
-                  <span className="font-medium">{action.label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Methods */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 -mt-24 relative z-20">
-            {contactMethods.map((method, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-3xl p-8 shadow-xl border border-neutral-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className={`w-14 h-14 ${method.color} rounded-2xl flex items-center justify-center mb-6 text-white`}>
-                  {method.icon}
-                </div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-3">{method.title}</h3>
-                {method.action ? (
-                  <a href={method.action} className="block group">
-                    <p className="text-neutral-900 font-semibold group-hover:text-primary transition-colors">{method.primary}</p>
-                    <p className="text-neutral-500 text-sm">{method.secondary}</p>
-                  </a>
-                ) : (
-                  <>
-                    <p className="text-neutral-900 font-semibold">{method.primary}</p>
-                    <p className="text-neutral-500 text-sm">{method.secondary}</p>
-                  </>
-                )}
+      {/* Hero Section - Unique Split Design with Brand Pattern */}
+      <section className="relative bg-black min-h-[70vh] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Slider {...sliderSettings} className="h-full w-full [&_.slick-slider]:h-full [&_.slick-list]:h-full [&_.slick-track]:h-full [&_.slick-slide]:h-full [&_.slick-slide>div]:h-full">
+            {heroImages.map((img, idx) => (
+              <div key={idx} className="h-full w-full relative">
+                <div className="absolute inset-0 bg-primary/70 z-10" />
+                <img src={img} alt={`Contact slide ${idx + 1}`} className="w-full h-full object-cover" />
               </div>
             ))}
+          </Slider>
+        </div>
+        {/* Brand Pattern Overlay */}
+        <div
+          className="absolute inset-0 z-[5] opacity-10 pointer-events-none"
+          style={{
+            backgroundImage: "url('/lovable-uploads/brand-pattern.png')",
+            backgroundSize: '150px',
+            backgroundRepeat: 'repeat',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 min-h-[70vh] flex flex-col justify-center items-center text-center py-20">
+          <div className="max-w-4xl space-y-6">
+            <div className="inline-flex items-center gap-3 bg-white/20 text-white rounded-full px-6 py-2 shadow-2xl backdrop-blur-md border border-white/10">
+              <Send className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Get In Touch</span>
+            </div>
+            <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
+              We're Here To Help You
+            </Typography>
+            <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
+              Whether you need legal assistance, want to partner with us, or have questions — our team is ready to support you.
+            </Typography>
           </div>
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="py-20 bg-neutral-50">
-        <div className="container mx-auto px-4">
+      {/* Floating Contact Cards - Unique to Contact Page */}
+      <section className="relative z-30 -mt-20 pb-10">
+        <Container>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {contactMethods.map((method, index) => (
+              <a
+                key={index}
+                href={method.link}
+                target={method.link.startsWith('http') ? '_blank' : undefined}
+                rel={method.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group"
+              >
+                <div className={`w-14 h-14 ${method.color} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+                  {method.icon}
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-1">{method.title}</h3>
+                <p className="text-primary font-bold mb-1">{method.value}</p>
+                <p className="text-gray-500 text-sm">{method.description}</p>
+              </a>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Quick Links Bar */}
+      <section className="py-8 bg-primary">
+        <Container>
+          <div className="flex flex-wrap gap-4 justify-center">
+            {quickLinks.map((link, index) => (
+              <Link
+                key={index}
+                to={link.href}
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full border border-white/20 transition-all font-bold text-sm"
+              >
+                {link.icon}
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Contact Form Section - Premium Design */}
+      <section className="py-20 bg-gray-50">
+        <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left - Info */}
             <div>
-              <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-4">
+              <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
                 <Send className="h-4 w-4" />
-                Send a Message
+                <span className="font-bold text-sm uppercase tracking-widest">Send a Message</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-                Let's Start a Conversation
-              </h2>
-              <p className="text-neutral-600 text-lg leading-relaxed mb-10">
+              <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                Let's Start a <span className="text-primary">Conversation</span>
+              </Typography>
+              <p className="text-lg text-gray-600 mb-10">
                 Have a question about our services? Need legal assistance? Want to partner with us? Fill out the form and we'll get back to you within 24 hours.
               </p>
 
@@ -168,173 +186,235 @@ const ContactPage = () => {
                 {[
                   'Free initial consultation for legal matters',
                   'Confidential and secure communication',
-                  'Multilingual support available (Swahili & English)',
-                  'Response within 24 business hours',
+                  'Multilingual support (Swahili & English)',
+                  'Response within 24 business hours'
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                    <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                      <CheckCircle className="h-4 w-4 text-primary" />
                     </div>
-                    <span className="text-neutral-700">{benefit}</span>
+                    <span className="text-gray-700">{benefit}</span>
                   </div>
                 ))}
               </div>
 
               {/* Emergency Contact */}
-              <div className="bg-secondary-orange/10 border-l-4 border-secondary-orange rounded-r-2xl p-6">
-                <h4 className="font-bold text-neutral-900 mb-2">Need Urgent Legal Help?</h4>
-                <p className="text-neutral-600 mb-4 text-sm">For emergency legal assistance, call our helpline directly:</p>
-                <a href="tel:+255870119363" className="inline-flex items-center gap-2 text-secondary-orange font-bold text-lg hover:gap-3 transition-all">
-                  <Phone className="h-5 w-5" />
+              <div className="bg-gradient-to-br from-primary to-primary/80 rounded-3xl p-8 text-white">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Phone className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-lg">Need Urgent Legal Help?</p>
+                    <p className="text-white/80 text-sm">Call our helpline directly</p>
+                  </div>
+                </div>
+                <a
+                  href="tel:+255870119363"
+                  className="inline-flex items-center gap-3 bg-white text-primary font-bold text-xl px-6 py-4 rounded-xl hover:bg-white/90 transition-all"
+                >
                   +255 870 119 363
+                  <ArrowRight className="h-5 w-5" />
                 </a>
               </div>
             </div>
 
             {/* Right - Form */}
-            <div className="bg-white rounded-3xl p-10 shadow-xl border border-neutral-100">
-              {isSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="h-10 w-10 text-green-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-4">Message Sent!</h3>
-                  <p className="text-neutral-600 mb-8">Thank you for reaching out. We'll get back to you within 24 hours.</p>
-                  <Button onClick={() => setIsSubmitted(false)} variant="outline" className="rounded-full">
-                    Send Another Message
-                  </Button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-neutral-700 mb-2">First Name *</label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.firstName}
-                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                        className="w-full px-4 py-3.5 bg-neutral-50 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent focus:bg-white transition-all"
-                        placeholder="John"
-                      />
+            <div>
+              <div className="bg-white rounded-3xl p-10 shadow-xl border border-gray-100">
+                {isSubmitted ? (
+                  <div className="text-center py-16">
+                    <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                      <CheckCircle className="h-12 w-12 text-green-600" />
                     </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-neutral-700 mb-2">Last Name *</label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.lastName}
-                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                        className="w-full px-4 py-3.5 bg-neutral-50 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent focus:bg-white transition-all"
-                        placeholder="Doe"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-neutral-700 mb-2">Email Address *</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-neutral-50 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent focus:bg-white transition-all"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-neutral-700 mb-2">Phone Number</label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-neutral-50 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent focus:bg-white transition-all"
-                      placeholder="+255 xxx xxx xxx"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-neutral-700 mb-2">Subject *</label>
-                    <select
-                      required
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-neutral-50 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent focus:bg-white transition-all"
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">Message Sent!</h3>
+                    <p className="text-gray-600 mb-8 text-lg">
+                      Thank you for reaching out. We'll get back to you within 24 hours.
+                    </p>
+                    <Button
+                      onClick={() => setIsSubmitted(false)}
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-5 rounded-full"
                     >
-                      <option value="">Select a subject</option>
-                      <option value="legal-help">I need legal help</option>
-                      <option value="partnership">Partnership inquiry</option>
-                      <option value="donation">Donation / Support</option>
-                      <option value="media">Media inquiry</option>
-                      <option value="careers">Careers / Opportunities</option>
-                      <option value="other">Other</option>
-                    </select>
+                      Send Another Message
+                    </Button>
                   </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">First Name *</label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.firstName}
+                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                          className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
+                          placeholder="John"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Last Name *</label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.lastName}
+                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                          className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
+                          placeholder="Doe"
+                        />
+                      </div>
+                    </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-neutral-700 mb-2">Message *</label>
-                    <textarea
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-neutral-50 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent focus:bg-white transition-all resize-none"
-                      placeholder="Tell us how we can help you..."
-                    />
-                  </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Email Address *</label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
+                          placeholder="john@example.com"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold text-gray-700 mb-2">Phone Number</label>
+                        <input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
+                          placeholder="+255 xxx xxx xxx"
+                        />
+                      </div>
+                    </div>
 
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-xl text-lg"
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Sending...
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-2">
-                        Send Message
-                        <ArrowRight className="h-5 w-5" />
-                      </span>
+                    <div>
+                      <label className="block text-sm font-bold text-gray-700 mb-2">Subject *</label>
+                      <select
+                        required
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all"
+                      >
+                        <option value="">Select a subject</option>
+                        <option value="legal-help">I need legal help</option>
+                        <option value="partnership">Partnership inquiry</option>
+                        <option value="donation">Donation / Support</option>
+                        <option value="media">Media inquiry</option>
+                        <option value="careers">Careers / Opportunities</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-bold text-gray-700 mb-2">Message *</label>
+                      <textarea
+                        required
+                        rows={5}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all resize-none"
+                        placeholder="Tell us how we can help you..."
+                      />
+                    </div>
+
+                    {error && (
+                      <div className="bg-red-50 text-red-600 px-4 py-3 rounded-xl text-sm">
+                        {error}
+                      </div>
                     )}
-                  </Button>
-                </form>
-              )}
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-full text-lg"
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          Send Message
+                          <ArrowRight className="h-5 w-5" />
+                        </span>
+                      )}
+                    </Button>
+                  </form>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Map Section */}
-      <section id="map" className="py-20 bg-neutral-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Find Us</h2>
-            <p className="text-white/70">Our main office in Dar es Salaam</p>
-          </div>
+      {/* Office Hours & Location */}
+      <section className="py-16 bg-white">
+        <Container>
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Office Hours */}
+            <div className="bg-gray-50 rounded-3xl p-10">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center text-white">
+                  <Clock className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900">Office Hours</h3>
+                  <p className="text-gray-600">When you can reach us</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                  <span className="font-bold text-gray-900">Monday - Friday</span>
+                  <span className="text-primary font-bold">8:00 AM - 5:00 PM</span>
+                </div>
+                <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                  <span className="font-bold text-gray-900">Saturday</span>
+                  <span className="text-gray-500">Closed</span>
+                </div>
+                <div className="flex justify-between items-center py-3">
+                  <span className="font-bold text-gray-900">Sunday</span>
+                  <span className="text-gray-500">Closed</span>
+                </div>
+              </div>
+              <p className="mt-6 text-gray-600 text-sm">
+                <strong>Note:</strong> For urgent legal matters outside office hours, please use our AI Legal Assistant or call our emergency helpline.
+              </p>
+            </div>
 
-          <div className="bg-neutral-800 rounded-3xl overflow-hidden h-96 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="h-16 w-16 text-secondary-orange mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Legal Services Facility</h3>
-              <p className="text-white/70 mb-6">Chole Rd, Masaki, Dar es Salaam, Tanzania</p>
+            {/* Location */}
+            <div className="bg-primary rounded-3xl p-10 text-white">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold">Our Location</h3>
+                  <p className="text-white/80">Visit our office</p>
+                </div>
+              </div>
+              <div className="space-y-4 mb-8">
+                <p className="text-xl font-bold">Legal Services Facility</p>
+                <p className="text-white/80">Chole Road, Masaki</p>
+                <p className="text-white/80">Dar es Salaam, Tanzania</p>
+              </div>
               <a
                 href="https://maps.google.com/?q=Chole+Road+Masaki+Dar+es+Salaam+Tanzania"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button className="bg-secondary-orange hover:bg-secondary-orange/90 text-white rounded-full">
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold px-8 py-5 rounded-full">
                   Open in Google Maps
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-3 h-5 w-5" />
                 </Button>
               </a>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </Layout>
   );

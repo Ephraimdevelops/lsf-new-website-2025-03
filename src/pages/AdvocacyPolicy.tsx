@@ -1,341 +1,284 @@
 import { useEffect } from 'react';
 import Layout from '../components/layout/Layout';
-import ApproachHero from '../components/approaches/ApproachHero';
-import { Megaphone, Scale, FileText, Users, Gavel, Building2 } from 'lucide-react';
+import Typography from '../components/shared/Typography';
+import Container from '../components/shared/Container';
+import { Button } from '../components/ui/button';
+import { Link } from 'react-router-dom';
+import { Megaphone, Scale, FileText, Users, Gavel, Building2, ArrowRight, CheckCircle, Award, Calendar } from 'lucide-react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const AdvocacyPolicy = () => {
-  const approach = {
-    slug: 'advocacy-policy',
-    title: 'Advocacy and Policy Influence',
-    subtitle: 'Shaping Tanzania\'s access to justice landscape through strategic advocacy',
-    description: 'LSF has played a pivotal role in shaping Tanzania\'s access to justice landscape, notably championing the Legal Aid Act and spearheading the Mama Samia Legal Aid Campaign.',
-    heroImage: '/lovable-uploads/background with mother umage .png',
-    overview: 'LSF has played a pivotal role in shaping Tanzania\'s access to justice landscape. Notably, the organization championed the development and enactment of the Legal Aid Act and its accompanying regulations, establishing a national framework for legal aid provision. LSF also spearheaded the Mama Samia Legal Aid Campaign, a nationwide initiative that operationalizes the Act and fosters coordinated stakeholder engagement in expanding legal empowerment.',
-    objectives: [
-      {
-        icon: Scale,
-        title: 'Policy Development',
-        description: 'Champion the development of progressive legal frameworks that enhance access to justice for all Tanzanians.'
-      },
-      {
-        icon: Megaphone,
-        title: 'Strategic Advocacy',
-        description: 'Influence policy decisions through evidence-based advocacy and strategic stakeholder engagement.'
-      },
-      {
-        icon: Users,
-        title: 'Coalition Building',
-        description: 'Foster collaborative approaches among civil society, government, and development partners.'
-      },
-      {
-        icon: Gavel,
-        title: 'Implementation Support',
-        description: 'Support the effective implementation of progressive legal and policy reforms.'
-      }
-    ],
-    keyActivities: [
-      {
-        icon: FileText,
-        title: 'Policy Research & Analysis',
-        description: 'Conducting comprehensive research to inform evidence-based policy recommendations and advocacy strategies.'
-      },
-      {
-        icon: Users,
-        title: 'Stakeholder Engagement',
-        description: 'Facilitating multi-stakeholder dialogues and building coalitions for justice sector reforms.'
-      },
-      {
-        icon: Building2,
-        title: 'Campaign Implementation',
-        description: 'Leading national campaigns to raise awareness and build support for key policy initiatives.'
-      }
-    ],
-    integration: [
-      {
-        focusArea: 'Accessible Legal Aid Services',
-        description: 'Policy advocacy ensures legal frameworks support accessible and quality legal aid service delivery.'
-      },
-      {
-        focusArea: 'Empowered Communities',
-        description: 'Advocacy efforts promote policies that strengthen community legal empowerment and participation.'
-      },
-      {
-        focusArea: 'Conducive Environment',
-        description: 'Core focus on creating enabling policy environments for sustainable access to justice.'
-      },
-      {
-        focusArea: 'Institutional Development',
-        description: 'Policy work supports the development of strong institutions for justice delivery.'
-      }
-    ],
-    flagshipProjects: [
-      {
-        name: 'Legal Aid Act Development',
-        description: 'Championed the development and enactment of Tanzania\'s comprehensive Legal Aid Act, establishing a national framework for legal aid provision.',
-        outcomes: [
-          { value: '100%', label: 'Parliamentary Approval' },
-          { value: '26', label: 'Regions Covered' },
-          { value: '50M+', label: 'Citizens Benefited' }
-        ]
-      },
-      {
-        name: 'Mama Samia Legal Aid Campaign',
-        description: 'Nationwide initiative operationalizing the Legal Aid Act and fostering coordinated stakeholder engagement in expanding legal empowerment.',
-        outcomes: [
-          { value: '200+', label: 'Stakeholders Engaged' },
-          { value: '26', label: 'Regions Reached' },
-          { value: '85%', label: 'Awareness Increase' }
-        ]
-      }
-    ],
-    achievements: [
-      {
-        value: '1',
-        metric: 'National Legal Framework',
-        description: 'Successfully advocated for the Legal Aid Act, establishing a national framework'
-      },
-      {
-        value: '15+',
-        metric: 'Policy Reforms',
-        description: 'Influenced key policy reforms improving access to justice'
-      },
-      {
-        value: '500+',
-        metric: 'Stakeholders Engaged',
-        description: 'Built extensive networks of advocates for justice reform'
-      }
-    ],
-    whatsNext: [
-      {
-        title: 'Legal Aid Act Implementation',
-        description: 'Supporting full implementation of the Legal Aid Act across all regions of Tanzania.',
-        timeline: '2024-2026'
-      },
-      {
-        title: 'Gender Justice Policies',
-        description: 'Advocating for enhanced legal frameworks addressing gender-based violence and women\'s rights.',
-        timeline: '2024-2025'
-      },
-      {
-        title: 'Climate Justice Legal Framework',
-        description: 'Developing policy recommendations for climate justice and environmental rights protection.',
-        timeline: '2025-2027'
-      },
-      {
-        title: 'Digital Rights Advocacy',
-        description: 'Promoting policies that protect digital rights and enhance online access to justice.',
-        timeline: '2025-2028'
-      }
-    ],
-    callToAction: {
-      title: 'Join Our Advocacy Efforts',
-      description: 'Partner with us to shape policies that advance access to justice and legal empowerment for all Tanzanians.',
-      buttons: [
-        { text: 'Get Involved in Advocacy', link: '/opportunities', variant: 'primary' as const },
-        { text: 'View Policy Resources', link: '/resources', variant: 'secondary' as const }
-      ]
-    }
-  };
-  
   useEffect(() => {
     document.title = 'Advocacy and Policy Influence - Legal Services Facility';
   }, []);
 
+  const heroImages = [
+    "/lovable-uploads/Danida-lsf-signing.jpg",
+    "/lovable-uploads/lsf-10years-annivervasry.jpg",
+    "/lovable-uploads/msaada kisheria lsf yazindua .webp"
+  ];
+
+  const sliderSettings = {
+    autoplay: true, autoplaySpeed: 5000, infinite: true, fade: true, arrows: false, pauseOnHover: false, speed: 2000,
+  };
+
+  const objectives = [
+    { icon: <Scale className="h-6 w-6" />, title: 'Policy Development', description: 'Champion the development of progressive legal frameworks that enhance access to justice for all Tanzanians.' },
+    { icon: <Megaphone className="h-6 w-6" />, title: 'Strategic Advocacy', description: 'Influence policy decisions through evidence-based advocacy and strategic stakeholder engagement.' },
+    { icon: <Users className="h-6 w-6" />, title: 'Coalition Building', description: 'Foster collaborative approaches among civil society, government, and development partners.' },
+    { icon: <Gavel className="h-6 w-6" />, title: 'Implementation Support', description: 'Support the effective implementation of progressive legal and policy reforms.' }
+  ];
+
+  const keyActivities = [
+    { icon: <FileText className="h-6 w-6" />, title: 'Policy Research & Analysis', description: 'Conducting comprehensive research to inform evidence-based policy recommendations and advocacy strategies.' },
+    { icon: <Users className="h-6 w-6" />, title: 'Stakeholder Engagement', description: 'Facilitating multi-stakeholder dialogues and building coalitions for justice sector reforms.' },
+    { icon: <Building2 className="h-6 w-6" />, title: 'Campaign Implementation', description: 'Leading national campaigns to raise awareness and build support for key policy initiatives.' }
+  ];
+
+  const flagshipProjects = [
+    { name: 'Legal Aid Act Development', description: 'Championed the development and enactment of Tanzania\'s comprehensive Legal Aid Act, establishing a national framework for legal aid provision.', outcomes: [{ value: '100%', label: 'Parliamentary Approval' }, { value: '26', label: 'Regions Covered' }, { value: '50M+', label: 'Citizens Benefited' }] },
+    { name: 'Mama Samia Legal Aid Campaign', description: 'Nationwide initiative operationalizing the Legal Aid Act and fostering coordinated stakeholder engagement in expanding legal empowerment.', outcomes: [{ value: '200+', label: 'Stakeholders Engaged' }, { value: '26', label: 'Regions Reached' }, { value: '85%', label: 'Awareness Increase' }] }
+  ];
+
+  const achievements = [
+    { value: '1', label: 'National Legal Framework', description: 'Successfully advocated for the Legal Aid Act' },
+    { value: '15+', label: 'Policy Reforms', description: 'Influenced key policy reforms improving access to justice' },
+    { value: '500+', label: 'Stakeholders Engaged', description: 'Built extensive networks of advocates for justice reform' }
+  ];
+
+  const whatsNext = [
+    { title: 'Legal Aid Act Implementation', description: 'Supporting full implementation of the Legal Aid Act across all regions.', timeline: '2024-2026' },
+    { title: 'Gender Justice Policies', description: 'Advocating for enhanced legal frameworks addressing gender-based violence.', timeline: '2024-2025' },
+    { title: 'Climate Justice Legal Framework', description: 'Developing policy recommendations for climate justice and environmental rights.', timeline: '2025-2027' },
+    { title: 'Digital Rights Advocacy', description: 'Promoting policies that protect digital rights and enhance online access to justice.', timeline: '2025-2028' }
+  ];
+
   return (
     <Layout>
-      <ApproachHero approach={approach} />
-      
-      {/* Overview */}
-      <section id="overview" className="py-16 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-foreground mb-8">
-            Overview
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            {approach.overview}
-          </p>
+      {/* Hero Section */}
+      <section className="relative bg-black h-[85vh] min-h-[550px] overflow-hidden group">
+        <div className="absolute inset-0 z-0">
+          <Slider {...sliderSettings} className="h-full w-full [&_.slick-slider]:h-full [&_.slick-list]:h-full [&_.slick-track]:h-full [&_.slick-slide]:h-full [&_.slick-slide>div]:h-full">
+            {heroImages.map((img, idx) => (
+              <div key={idx} className="h-full w-full relative">
+                <div className="absolute inset-0 bg-black/40 z-10" />
+                <img src={img} alt={`Advocacy slide ${idx + 1}`} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </Slider>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex flex-col justify-center">
+          <div className="max-w-4xl space-y-6">
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 shadow-2xl backdrop-blur-md border border-white/10">
+              <Megaphone className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Strategic Approach</span>
+            </div>
+            <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
+              Advocacy & <span className="text-white">Policy Influence</span>
+            </Typography>
+            <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl leading-relaxed font-light drop-shadow-md border-l-4 border-primary pl-6">
+              Shaping Tanzania's access to justice landscape through strategic advocacy, championing the Legal Aid Act and national campaigns.
+            </Typography>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Link to="#flagship-projects">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-5 rounded-full text-base shadow-lg transition-all hover:-translate-y-1">
+                  View Our Impact <ArrowRight className="ml-3 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-8 py-5 rounded-full text-base transition-all hover:-translate-y-1">
+                  Join Our Advocacy
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Goals and Objectives */}
-      <section className="py-16 bg-muted/50">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-foreground mb-8">
-            Goals & Objectives
-          </h2>
-          
+      {/* Overview Section */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+                <Scale className="h-4 w-4" />
+                <span className="font-bold text-sm uppercase tracking-widest">Overview</span>
+              </div>
+              <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                Shaping Policy for <span className="text-primary">Justice</span>
+              </Typography>
+              <p className="text-lg text-gray-600 mb-8 border-l-4 border-primary pl-6">
+                LSF has played a pivotal role in shaping Tanzania's access to justice landscape, notably championing the Legal Aid Act and spearheading the Mama Samia Legal Aid Campaign.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                The organization championed the development and enactment of the Legal Aid Act and its accompanying regulations, establishing a national framework for legal aid provision. LSF also spearheaded a nationwide initiative that operationalizes the Act and fosters coordinated stakeholder engagement in expanding legal empowerment.
+              </p>
+            </div>
+            <div className="relative rounded-3xl overflow-hidden h-[400px]">
+              <img src="/lovable-uploads/Danida-lsf-signing.jpg" alt="Policy signing" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Goals & Objectives */}
+      <section className="py-20 bg-gray-50">
+        <Container>
+          <div className="mb-12 text-center">
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+              <Gavel className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Our Objectives</span>
+            </div>
+            <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Goals & <span className="text-primary">Objectives</span>
+            </Typography>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {approach.objectives.map((objective, index) => (
-              <div key={index} className="bg-background rounded-lg p-6 border">
+            {objectives.map((obj, index) => (
+              <div key={index} className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-lg transition-shadow">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                    <objective.icon className="h-6 w-6 text-primary-foreground" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-foreground">
-                    {objective.title}
-                  </h4>
+                  <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center text-white">{obj.icon}</div>
+                  <h4 className="text-xl font-bold text-gray-900">{obj.title}</h4>
                 </div>
-                <p className="text-muted-foreground">
-                  {objective.description}
-                </p>
+                <p className="text-gray-600">{obj.description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Key Activities */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-foreground mb-8">
-            Key Activities
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {approach.keyActivities.map((activity, index) => (
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="mb-12">
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+              <FileText className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">How We Work</span>
+            </div>
+            <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Key <span className="text-primary">Activities</span>
+            </Typography>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {keyActivities.map((activity, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <activity.icon className="h-8 w-8 text-secondary-foreground" />
-                </div>
-                <h4 className="text-xl font-semibold text-foreground mb-3">
-                  {activity.title}
-                </h4>
-                <p className="text-muted-foreground">
-                  {activity.description}
-                </p>
+                <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4 text-white">{activity.icon}</div>
+                <h4 className="text-xl font-bold text-gray-900 mb-3">{activity.title}</h4>
+                <p className="text-gray-600">{activity.description}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Integration with Focus Areas */}
-      <section className="py-16 bg-muted/50">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-foreground mb-8">
-            Integration with Strategic Focus Areas
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {approach.integration.map((area, index) => (
-              <div key={index} className="bg-background rounded-lg p-6 border">
-                <h4 className="text-xl font-semibold text-primary mb-3">
-                  {area.focusArea}
-                </h4>
-                <p className="text-muted-foreground">
-                  {area.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+        </Container>
       </section>
 
       {/* Flagship Projects */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-foreground mb-8">
-            Flagship Projects
-          </h2>
-          
-          <div className="space-y-8">
-            {approach.flagshipProjects.map((project, index) => (
-              <div key={index} className="bg-muted/50 rounded-lg p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  {project.name}
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {project.outcomes.map((outcome, outcomeIndex) => (
-                    <div key={outcomeIndex}>
-                      <div className="text-2xl font-bold text-secondary mb-2">{outcome.value}</div>
-                      <div className="text-sm text-muted-foreground uppercase tracking-wide">{outcome.label}</div>
+      <section id="flagship-projects" className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/lovable-uploads/brand-pattern.png')", backgroundSize: '200px' }} />
+        <div className="absolute inset-0 bg-primary/95" />
+        <Container className="relative z-10">
+          <div className="mb-12 text-center text-white">
+            <div className="inline-flex items-center gap-3 bg-white/20 text-white rounded-full px-6 py-2 mb-5">
+              <Award className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Landmark Initiatives</span>
+            </div>
+            <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              Flagship <span className="text-white">Projects</span>
+            </Typography>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {flagshipProjects.map((project, index) => (
+              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+                <h3 className="text-2xl font-bold text-white mb-4">{project.name}</h3>
+                <p className="text-white/80 mb-6">{project.description}</p>
+                <div className="grid grid-cols-3 gap-4">
+                  {project.outcomes.map((outcome, oi) => (
+                    <div key={oi} className="text-center">
+                      <p className="text-2xl font-black text-white">{outcome.value}</p>
+                      <p className="text-white/70 text-sm">{outcome.label}</p>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Achievements */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-8">
-              Achievements & Milestones
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {approach.achievements.map((achievement, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-4xl font-bold mb-2">{achievement.value}</div>
-                  <div className="text-primary-foreground/80 text-sm uppercase tracking-wide mb-3">{achievement.metric}</div>
-                  <div className="text-primary-foreground/90">{achievement.description}</div>
-                </div>
-              ))}
-            </div>
+      <section className="py-16 bg-primary">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {achievements.map((achievement, index) => (
+              <div key={index} className="text-center text-white">
+                <p className="text-5xl md:text-6xl font-black mb-2">{achievement.value}</p>
+                <p className="text-white/90 font-bold text-lg mb-2">{achievement.label}</p>
+                <p className="text-white/70">{achievement.description}</p>
+              </div>
+            ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* What's Next */}
-      <section className="py-16 bg-muted/50">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-foreground mb-8">
-            What's Next
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {approach.whatsNext.map((initiative, index) => (
-              <div key={index} className="bg-background rounded-lg p-6 border">
-                <h4 className="text-xl font-semibold text-foreground mb-3">
-                  {initiative.title}
-                </h4>
-                <p className="text-muted-foreground mb-4">
-                  {initiative.description}
-                </p>
-                <div className="text-sm text-secondary font-semibold">
-                  Timeline: {initiative.timeline}
+      <section className="py-20 bg-gray-50">
+        <Container>
+          <div className="mb-12">
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+              <Calendar className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Future Plans</span>
+            </div>
+            <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              What's <span className="text-primary">Next</span>
+            </Typography>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {whatsNext.map((initiative, index) => (
+              <div key={index} className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h4 className="text-xl font-bold text-gray-900 mb-3">{initiative.title}</h4>
+                <p className="text-gray-600 mb-4">{initiative.description}</p>
+                <div className="inline-flex items-center text-sm text-primary font-bold">
+                  <Calendar className="h-4 w-4 mr-2" />{initiative.timeline}
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">
-              {approach.callToAction.title}
-            </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              {approach.callToAction.description}
+      {/* CTA Section */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
+              <Megaphone className="h-4 w-4" />
+              <span className="font-bold text-sm uppercase tracking-widest">Get Involved</span>
+            </div>
+            <Typography variant="h2" className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Join Our <span className="text-primary">Advocacy Efforts</span>
+            </Typography>
+            <p className="text-gray-600 text-lg mb-10 border-l-4 border-primary pl-6 text-left max-w-xl mx-auto">
+              Partner with us to shape policies that advance access to justice and legal empowerment for all Tanzanians.
             </p>
-            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {approach.callToAction.buttons.map((button, index) => (
-                <a
-                  key={index}
-                  href={button.link}
-                  className={`px-8 py-4 rounded-lg font-semibold transition-colors duration-200 ${
-                    button.variant === 'primary' 
-                      ? 'bg-primary hover:bg-primary/90 text-primary-foreground'
-                      : 'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground'
-                  }`}
-                >
-                  {button.text}
-                </a>
-              ))}
+              <Link to="/opportunities">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-10 py-5 rounded-full text-base">
+                  Get Involved <ArrowRight className="ml-3 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/resources">
+                <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-10 py-5 rounded-full text-base">
+                  View Policy Resources
+                </Button>
+              </Link>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </Layout>
   );

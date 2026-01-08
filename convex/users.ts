@@ -99,3 +99,23 @@ export const getCurrentUser = query({
 
 // Alias for compatibility
 export const current = getCurrentUser;
+
+// Make user admin by email (for initial admin setup)
+export const makeAdmin = mutation({
+    args: {
+        email: v.string(),
+    },
+    handler: async (ctx, args) => {
+        const user = await ctx.db
+            .query("users")
+            .filter((q) => q.eq(q.field("email"), args.email))
+            .first();
+
+        if (!user) {
+            throw new Error(`User with email ${args.email} not found. Please sign up first.`);
+        }
+
+        await ctx.db.patch(user._id, { role: "admin" });
+        return { success: true, message: `User ${args.email} is now an admin!` };
+    },
+});

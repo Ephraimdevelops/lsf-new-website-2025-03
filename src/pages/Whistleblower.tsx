@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
@@ -5,9 +6,62 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Shield, Lock, Eye, AlertCircle, CheckCircle, Users, Scale, Heart, Phone, Mail, FileText, MessageSquare, Clock, Globe } from 'lucide-react';
+import { Shield, Lock, Eye, AlertCircle, CheckCircle, Users, Scale, Heart, Phone, Mail, FileText, MessageSquare, Clock, Globe, Send } from 'lucide-react';
+import { useMutation } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 const Whistleblower = () => {
+  // Form state
+  const [formData, setFormData] = useState({
+    reportType: '',
+    description: '',
+    contactEmail: '',
+    contactPhone: '',
+    isAnonymous: true,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const submitReport = useMutation(api.formSubmissions.submitWhistleblowerReport);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.reportType || !formData.description) {
+      setError('Please fill in all required fields.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      await submitReport({
+        reportType: formData.reportType,
+        description: formData.description,
+        contactEmail: formData.isAnonymous ? undefined : formData.contactEmail || undefined,
+        contactPhone: formData.isAnonymous ? undefined : formData.contactPhone || undefined,
+        isAnonymous: formData.isAnonymous,
+      });
+      setIsSubmitted(true);
+    } catch (err) {
+      setError('Failed to submit report. Please try again or use the hotline.');
+      console.error('Whistleblower submission error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const reportTypes = [
+    { value: 'fraud', label: 'Fraud or Financial Misconduct' },
+    { value: 'misconduct', label: 'Staff Misconduct' },
+    { value: 'harassment', label: 'Harassment or Discrimination' },
+    { value: 'safety', label: 'Safety Concerns' },
+    { value: 'policy', label: 'Policy Violations' },
+    { value: 'conflict', label: 'Conflict of Interest' },
+    { value: 'other', label: 'Other Concerns' },
+  ];
+
   const protectionFeatures = [
     {
       icon: Shield,
@@ -204,55 +258,139 @@ const Whistleblower = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-6 mb-8">
-                    <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
-                      <CheckCircle className="h-6 w-6 text-primary mt-1" />
+                  {isSubmitted ? (
+                    <div className="text-center py-12">
+                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle className="h-10 w-10 text-green-600" />
+                      </div>
+                      <Typography variant="h3" className="mb-4 text-2xl">Report Submitted Successfully</Typography>
+                      <Typography variant="body" className="text-neutral-gray mb-6">
+                        Your report has been securely received. We will investigate within 48 hours.
+                        {!formData.isAnonymous && " We may contact you for additional information."}
+                      </Typography>
+                      <Button onClick={() => { setIsSubmitted(false); setFormData({ reportType: '', description: '', contactEmail: '', contactPhone: '', isAnonymous: true }); }}>
+                        Submit Another Report
+                      </Button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      {error && (
+                        <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+                          {error}
+                        </div>
+                      )}
+
+                      {/* Report Type */}
                       <div>
-                        <Typography variant="h4" className="mb-1">Encrypted Transmission</Typography>
-                        <Typography variant="body" className="text-neutral-gray">
-                          All reports are encrypted end-to-end for maximum security
+                        <label className="block text-sm font-semibold text-neutral-700 mb-2">
+                          Type of Concern *
+                        </label>
+                        <select
+                          value={formData.reportType}
+                          onChange={(e) => setFormData({ ...formData, reportType: e.target.value })}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                          required
+                        >
+                          <option value="">Select type of concern</option>
+                          {reportTypes.map((type) => (
+                            <option key={type.value} value={type.value}>{type.label}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Description */}
+                      <div>
+                        <label className="block text-sm font-semibold text-neutral-700 mb-2">
+                          Describe Your Concern *
+                        </label>
+                        <textarea
+                          value={formData.description}
+                          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                          rows={6}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                          placeholder="Please provide as much detail as possible. Include dates, names, locations, and any evidence you may have..."
+                          required
+                        />
+                      </div>
+
+                      {/* Anonymous Toggle */}
+                      <div className="flex items-center gap-3 p-4 bg-secondary-orange/10 rounded-xl border border-secondary-orange/20">
+                        <input
+                          type="checkbox"
+                          id="anonymous"
+                          checked={formData.isAnonymous}
+                          onChange={(e) => setFormData({ ...formData, isAnonymous: e.target.checked })}
+                          className="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <label htmlFor="anonymous" className="flex-1">
+                          <span className="font-semibold text-neutral-900">Submit Anonymously</span>
+                          <p className="text-sm text-neutral-600">Your identity will be completely protected</p>
+                        </label>
+                        <Lock className="h-5 w-5 text-secondary-orange" />
+                      </div>
+
+                      {/* Contact Info (if not anonymous) */}
+                      {!formData.isAnonymous && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 rounded-xl">
+                          <div>
+                            <label className="block text-sm font-semibold text-neutral-700 mb-2">
+                              Email (for follow-up)
+                            </label>
+                            <input
+                              type="email"
+                              value={formData.contactEmail}
+                              onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
+                              className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
+                              placeholder="your.email@example.com"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-semibold text-neutral-700 mb-2">
+                              Phone (optional)
+                            </label>
+                            <input
+                              type="tel"
+                              value={formData.contactPhone}
+                              onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
+                              className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
+                              placeholder="+255 XXX XXX XXX"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Submit Button */}
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full text-lg py-6 bg-primary hover:bg-primary/90"
+                      >
+                        {isSubmitting ? (
+                          <span className="flex items-center gap-2">
+                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Submitting Securely...
+                          </span>
+                        ) : (
+                          <span className="flex items-center gap-2">
+                            <Send className="h-5 w-5" />
+                            Submit Secure Report
+                          </span>
+                        )}
+                      </Button>
+
+                      <div className="text-center">
+                        <Typography variant="body" className="text-neutral-gray mb-2">
+                          Need to speak to someone directly?
+                        </Typography>
+                        <Typography variant="body" className="font-bold text-primary">
+                          Ethics Hotline: +255 123 456 789
+                        </Typography>
+                        <Typography variant="bodySmall" className="text-neutral-gray">
+                          Available 24/7 in Swahili and English
                         </Typography>
                       </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
-                      <Clock className="h-6 w-6 text-primary mt-1" />
-                      <div>
-                        <Typography variant="h4" className="mb-1">Immediate Receipt</Typography>
-                        <Typography variant="body" className="text-neutral-gray">
-                          Get instant confirmation and tracking number
-                        </Typography>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
-                      <Globe className="h-6 w-6 text-primary mt-1" />
-                      <div>
-                        <Typography variant="h4" className="mb-1">24/7 Availability</Typography>
-                        <Typography variant="body" className="text-neutral-gray">
-                          Submit reports anytime, from anywhere
-                        </Typography>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <Button className="w-full text-lg py-4 bg-primary hover:bg-primary/90">
-                      <MessageSquare className="mr-3 h-6 w-6" />
-                      Start Secure Report
-                    </Button>
-                    <div className="text-center">
-                      <Typography variant="body" className="text-neutral-gray mb-2">
-                        Need to speak to someone directly?
-                      </Typography>
-                      <Typography variant="body" className="font-bold text-primary">
-                        Ethics Hotline: +255 123 456 789
-                      </Typography>
-                      <Typography variant="bodySmall" className="text-neutral-gray">
-                        Available 24/7 in Swahili and English
-                      </Typography>
-                    </div>
-                  </div>
+                    </form>
+                  )}
                 </div>
 
                 {/* What to Report Section */}

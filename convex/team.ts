@@ -9,6 +9,14 @@ export const get = query({
     },
 });
 
+// Get team member by ID
+export const getById = query({
+    args: { id: v.id("team_members") },
+    handler: async (ctx, args) => {
+        return await ctx.db.get(args.id);
+    },
+});
+
 // Create team member
 export const create = mutation({
     args: {

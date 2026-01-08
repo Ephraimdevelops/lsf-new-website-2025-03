@@ -1,37 +1,35 @@
 import Layout from '@/components/layout/Layout';
 import CinematicHero from '@/components/home/hero/CinematicHero';
 import ModernAboutSection from '@/components/home/ModernAboutSection';
+import HomeImpactNumbers from '@/components/home/HomeImpactNumbers';
 import CompactNewsSection from '@/components/home/CompactNewsSection';
 import ImpactStories from '@/components/home/ImpactStories';
 import ModernPartnersSection from '@/components/home/ModernPartnersSection';
 import ModernCallToAction from '@/components/home/ModernCallToAction';
-import HakiYanguDownload from '@/components/haki-yangu/HakiYanguDownload';
-
-// Ensure we're using the correct testimonials component
 
 const Index = () => (
-  <Layout>
-    {/* Cinematic Hero Section with Apple/Netflix-level storytelling */}
-    <CinematicHero />
+    <Layout>
+        {/* Cinematic Hero Section */}
+        <CinematicHero />
 
-    {/* Modern About Section with enhanced storytelling */}
-    <ModernAboutSection />
+        {/* Modern About Section - With pill badge, gradient text, border accent */}
+        <ModernAboutSection />
 
-    {/* Impact Stories Section */}
-    <ImpactStories />
+        {/* Impact Numbers - Full-bleed dramatic section */}
+        <HomeImpactNumbers />
 
-    {/* Compact News & Publications Section */}
-    <CompactNewsSection />
+        {/* Impact Stories Section */}
+        <ImpactStories />
 
-    {/* Modern Partners Section */}
-    <ModernPartnersSection />
+        {/* Compact News & Publications Section */}
+        <CompactNewsSection />
 
-    {/* Simple Haki Yangu Section */}
-    <HakiYanguDownload />
+        {/* Call-to-Action with Newsletter */}
+        <ModernCallToAction />
 
-    {/* Modern Call-to-Action Section */}
-    <ModernCallToAction />
-  </Layout>
+        {/* Modern Partners Section */}
+        <ModernPartnersSection />
+    </Layout>
 );
 
 export default Index;

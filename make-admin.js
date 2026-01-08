@@ -5,7 +5,7 @@ const users = await ctx.db.query("users").collect();
 console.log("All users:", users);
 
 // Replace with your actual email
-const myEmail = "YOUR_EMAIL_HERE";
+const myEmail = "ephraba@gmail.com";
 const myUser = users.find(u => u.email === myEmail);
 
 if (myUser) {
