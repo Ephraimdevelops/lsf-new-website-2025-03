@@ -2,7 +2,7 @@ import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
-import { Bot, Users, MessageSquare, Zap, Clock, Activity } from "lucide-react";
+import { Bot, Users, MessageSquare, Zap, Clock, Activity, ThumbsUp, ThumbsDown, DollarSign } from "lucide-react";
 
 const AdminSaraAnalytics = () => {
     const analytics = useQuery(api.sara_chat.getAnalytics);
@@ -22,6 +22,11 @@ const AdminSaraAnalytics = () => {
 
     const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088FE'];
 
+    // Calculate satisfaction rate
+    const satisfactionRate = analytics.feedback?.total > 0
+        ? Math.round((analytics.feedback.positive / analytics.feedback.total) * 100)
+        : 0;
+
     return (
         <div className="space-y-8 animate-fade-in">
             <div className="flex items-center justify-between">
@@ -36,7 +41,7 @@ const AdminSaraAnalytics = () => {
             </div>
 
             {/* Key Metrics */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Total Messages</CardTitle>
@@ -65,6 +70,28 @@ const AdminSaraAnalytics = () => {
                     <CardContent>
                         <div className="text-2xl font-bold">{analytics.last24h}</div>
                         <p className="text-xs text-muted-foreground">Messages today</p>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Satisfaction</CardTitle>
+                        <ThumbsUp className="h-4 w-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold">{satisfactionRate}%</div>
+                        <p className="text-xs text-muted-foreground">
+                            {analytics.feedback?.positive || 0} 👍 / {analytics.feedback?.negative || 0} 👎
+                        </p>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">API Cost</CardTitle>
+                        <DollarSign className="h-4 w-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold">{analytics.tokens?.estimatedCost || '$0.00'}</div>
+                        <p className="text-xs text-muted-foreground">{(analytics.tokens?.total || 0).toLocaleString()} tokens</p>
                     </CardContent>
                 </Card>
                 <Card>

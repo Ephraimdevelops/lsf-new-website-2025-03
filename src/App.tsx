@@ -172,7 +172,11 @@ function App() {
                       <Route path="/haki-yangu" element={<HakiYangu />} />
                       <Route path="/sara-ai" element={<SaraAI />} />
                       <Route path="/sara" element={<SaraAI />} />
-                      <Route path="/sara/train" element={<SaraTrain />} />
+                      <Route path="/sara/train" element={
+                        <ProtectedRoute allowedRoles={["admin"]}>
+                          <SaraTrain />
+                        </ProtectedRoute>
+                      } />
                       <Route path="/privacy" element={<Privacy />} />
                       <Route path="/terms" element={<Terms />} />
                       <Route path="/cookies" element={<Cookies />} />

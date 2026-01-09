@@ -14,7 +14,6 @@ import {
   Heart,
   Mail,
   MessageSquare,
-  MessageSquare,
   Scale,
   Bot
 } from 'lucide-react';

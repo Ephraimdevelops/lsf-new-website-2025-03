@@ -316,7 +316,19 @@ export default defineSchema({
     tokens: v.optional(v.number()),
     toolCalls: v.optional(v.array(v.string())), // Track tools used (e.g. "find_paralegals")
     metadata: v.optional(v.any()),
+    // Feedback (for assistant messages)
+    feedback: v.optional(v.union(v.literal("positive"), v.literal("negative"))),
   }).index("by_user", ["userId"])
+    .index("by_timestamp", ["timestamp"]),
+
+  // SARA Feedback (for detailed analytics)
+  sara_feedback: defineTable({
+    messageId: v.id("sara_chats"),
+    userId: v.string(),
+    rating: v.union(v.literal("positive"), v.literal("negative")),
+    comment: v.optional(v.string()),
+    timestamp: v.number(),
+  }).index("by_rating", ["rating"])
     .index("by_timestamp", ["timestamp"]),
 
   // SARA Configuration (System Prompt, etc.)

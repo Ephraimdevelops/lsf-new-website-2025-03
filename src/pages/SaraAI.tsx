@@ -7,7 +7,7 @@ import { api } from "../../convex/_generated/api";
 import { Link } from 'react-router-dom';
 import {
   ArrowUp, Bot, RotateCcw, Home, Phone,
-  Scale, Users, Heart, Sparkles, BookOpen
+  Scale, Users, Heart, Sparkles, BookOpen, ThumbsUp, ThumbsDown
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -23,6 +23,9 @@ const SaraAIPage = () => {
   const askSara = useAction(api.sara_actions.ask);
   const clearHistory = useMutation(api.sara_chat.clearHistory);
   const history = useQuery(api.sara_chat.getMessages);
+  const convexUser = useQuery(api.users.current);
+  const isAdmin = convexUser?.role === 'admin';
+  const submitFeedback = useMutation(api.sara_chat.submitFeedback);
 
   // Use history from DB, fallback to empty array
   // We can add a local "optimistic" message if needed, but let's try pure DB sync first for simplicity
@@ -157,10 +160,12 @@ const SaraAIPage = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Link to="/sara/train" className="hidden sm:flex items-center gap-2 px-4 py-2 text-xs font-bold text-gray-600 hover:text-primary bg-gray-50 hover:bg-primary/5 rounded-full transition-all border border-transparent hover:border-primary/10">
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Train</span>
-            </Link>
+            {isAdmin && (
+              <Link to="/sara/train" className="hidden sm:flex items-center gap-2 px-4 py-2 text-xs font-bold text-gray-600 hover:text-primary bg-gray-50 hover:bg-primary/5 rounded-full transition-all border border-transparent hover:border-primary/10">
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Train</span>
+              </Link>
+            )}
 
             <div className="h-8 w-px bg-gray-200 mx-2"></div>
 
@@ -296,6 +301,26 @@ const SaraAIPage = () => {
                             {msg.text}
                           </ReactMarkdown>
                         </div>
+
+                        {/* Feedback buttons for assistant messages */}
+                        {msg.sender === 'assistant' && (
+                          <div className="flex items-center gap-1 mt-2 pt-2 border-t border-gray-100">
+                            <button
+                              onClick={() => submitFeedback({ messageId: msg.id as any, rating: 'positive' })}
+                              className="p-1.5 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all"
+                              title="Helpful"
+                            >
+                              <ThumbsUp className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              onClick={() => submitFeedback({ messageId: msg.id as any, rating: 'negative' })}
+                              className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                              title="Not helpful"
+                            >
+                              <ThumbsDown className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </motion.div>
@@ -361,8 +386,8 @@ const SaraAIPage = () => {
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </main >
+    </div >
   );
 };
 

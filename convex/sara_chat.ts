@@ -61,14 +61,11 @@ export const clearHistory = mutation({
 export const getAnalytics = query({
     args: {},
     handler: async (ctx) => {
-        // In a real app, check for admin role here
-        // const identity = await ctx.auth.getUserIdentity();
-        // if (!identity || identity.role !== "admin") ...
-
         const allMessages = await ctx.db.query("sara_chats").collect();
+        const allFeedback = await ctx.db.query("sara_feedback").collect();
 
         const totalMessages = allMessages.length;
-        const totalConversations = new Set(allMessages.map(m => m.userId)).size; // Approx as unique users
+        const totalConversations = new Set(allMessages.map(m => m.userId)).size;
         const toolUsage = allMessages.reduce((acc, curr) => {
             if (curr.toolCalls) {
                 curr.toolCalls.forEach(tool => {
@@ -78,11 +75,81 @@ export const getAnalytics = query({
             return acc;
         }, {} as Record<string, number>);
 
+        // Feedback stats
+        const positiveFeedback = allFeedback.filter(f => f.rating === "positive").length;
+        const negativeFeedback = allFeedback.filter(f => f.rating === "negative").length;
+
+        // Token/cost tracking
+        const totalTokens = allMessages.reduce((sum, m) => sum + (m.tokens || 0), 0);
+        const estimatedCost = (totalTokens / 1000) * 0.01; // Rough estimate for GPT-4o
+
         return {
             totalMessages,
             activeUsers: totalConversations,
             toolUsage,
-            last24h: allMessages.filter(m => m.timestamp > Date.now() - 24 * 60 * 60 * 1000).length
+            last24h: allMessages.filter(m => m.timestamp > Date.now() - 24 * 60 * 60 * 1000).length,
+            feedback: {
+                positive: positiveFeedback,
+                negative: negativeFeedback,
+                total: allFeedback.length
+            },
+            tokens: {
+                total: totalTokens,
+                estimatedCost: `$${estimatedCost.toFixed(2)}`
+            }
         };
+    }
+});
+
+// Submit feedback on a message
+export const submitFeedback = mutation({
+    args: {
+        messageId: v.id("sara_chats"),
+        rating: v.union(v.literal("positive"), v.literal("negative")),
+        comment: v.optional(v.string()),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) throw new Error("Unauthorized");
+
+        // Update the message with feedback
+        await ctx.db.patch(args.messageId, {
+            feedback: args.rating
+        });
+
+        // Also store in detailed feedback table
+        await ctx.db.insert("sara_feedback", {
+            messageId: args.messageId,
+            userId: identity.subject,
+            rating: args.rating,
+            comment: args.comment,
+            timestamp: Date.now(),
+        });
+
+        return { success: true };
+    }
+});
+
+// Get feedback for admin review
+export const getFeedbackList = query({
+    args: {},
+    handler: async (ctx) => {
+        const feedback = await ctx.db
+            .query("sara_feedback")
+            .order("desc")
+            .take(50);
+
+        // Get the associated messages
+        const feedbackWithMessages = await Promise.all(
+            feedback.map(async (f) => {
+                const message = await ctx.db.get(f.messageId);
+                return {
+                    ...f,
+                    messageContent: message?.content || "[deleted]"
+                };
+            })
+        );
+
+        return feedbackWithMessages;
     }
 });
