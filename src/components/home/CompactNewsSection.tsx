@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Newspaper, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,7 +19,6 @@ interface ContentItem {
 
 const CompactNewsSection = () => {
     const [activeTab, setActiveTab] = useState<'news' | 'publications'>('news');
-    const [items, setItems] = useState<ContentItem[]>([]);
 
     const { news } = useNews();
     const { publications } = usePublications();
@@ -32,41 +31,42 @@ const CompactNewsSection = () => {
         return 'bg-gray-800 text-white';
     };
 
-    useEffect(() => {
+    // Use useMemo instead of useState + useEffect to avoid infinite re-renders
+    const items = useMemo<ContentItem[]>(() => {
         if (activeTab === 'news') {
             if (news && news.length > 0) {
-                setItems(news.slice(0, 3).map((item: any) => ({
+                return news.slice(0, 3).map((item: any) => ({
                     id: item._id || item.id,
                     title: item.title,
                     description: item.excerpt || item.content?.substring(0, 100) + '...',
                     imageUrl: item.image || '/lovable-uploads/placeholder.svg',
                     publishedDate: item.date || new Date().toISOString(),
                     category: item.category || 'News',
-                    type: 'news',
+                    type: 'news' as const,
                     readTime: item.readTime || '5 min read'
-                })));
+                }));
             } else {
-                setItems([{
+                return [{
                     id: '1', title: 'Loading News...', description: 'Please wait...', imageUrl: '/lovable-uploads/placeholder.svg',
-                    publishedDate: new Date().toISOString(), category: 'Update', type: 'news', readTime: '2 min'
-                }]);
+                    publishedDate: new Date().toISOString(), category: 'Update', type: 'news' as const, readTime: '2 min'
+                }];
             }
         } else {
             if (publications && publications.length > 0) {
-                setItems(publications.slice(0, 3).map((item: any) => ({
+                return publications.slice(0, 3).map((item: any) => ({
                     id: item._id || item.id,
                     title: item.title,
                     description: item.description || 'Access this resource...',
                     imageUrl: item.coverImageUrl || '/lovable-uploads/placeholder.svg',
                     publishedDate: item.publishedDate || new Date().toISOString(),
                     category: item.category || 'Publication',
-                    type: 'publication'
-                })));
+                    type: 'publication' as const
+                }));
             } else {
-                setItems([{
+                return [{
                     id: '1', title: 'Loading...', description: 'Please wait...', imageUrl: '/lovable-uploads/placeholder.svg',
-                    publishedDate: new Date().toISOString(), category: 'Resource', type: 'publication'
-                }]);
+                    publishedDate: new Date().toISOString(), category: 'Resource', type: 'publication' as const
+                }];
             }
         }
     }, [activeTab, news, publications]);

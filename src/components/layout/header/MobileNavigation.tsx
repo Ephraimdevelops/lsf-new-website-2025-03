@@ -26,18 +26,6 @@ const MobileNavigation = ({
     )}>
       <div className="container mx-auto px-4 py-4">
         <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg">
-          <Link to="/sara" className="block mb-3">
-            <Button
-              variant="default"
-              className="w-full justify-center bg-green-600 hover:bg-green-700 transition-all duration-200"
-            >
-              <span className="relative flex h-2 w-2 mr-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-              </span>
-              Chat with SARA AI
-            </Button>
-          </Link>
           <Link to="/legal-help" className="block mb-3">
             <Button
               className="w-full justify-center bg-primary hover:bg-primary/90 transition-all duration-200"

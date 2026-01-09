@@ -9,6 +9,7 @@
  */
 
 import type * as admin from "../admin.js";
+import type * as debug from "../debug.js";
 import type * as formSubmissions from "../formSubmissions.js";
 import type * as hero from "../hero.js";
 import type * as init from "../init.js";
@@ -37,6 +38,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   admin: typeof admin;
+  debug: typeof debug;
   formSubmissions: typeof formSubmissions;
   hero: typeof hero;
   init: typeof init;

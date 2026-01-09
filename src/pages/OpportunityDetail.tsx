@@ -10,10 +10,10 @@ import { MapPin, Clock, Users, Briefcase, Calendar, CheckCircle, ArrowLeft } fro
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const OpportunityDetail = () => {
-  const { opportunityId } = useParams<{ opportunityId: string }>();
-  const id = opportunityId as Id<"opportunities">;
+  const { id } = useParams<{ id: string }>();
+  const opportunityId = id as Id<"opportunities">;
 
-  const opportunityData = useQuery(api.opportunities.getById, { id });
+  const opportunityData = useQuery(api.opportunities.getById, id ? { id: opportunityId } : "skip");
   const opportunity = opportunityData ? { ...opportunityData, id: opportunityData._id } : null;
 
   const isLoading = opportunityData === undefined;

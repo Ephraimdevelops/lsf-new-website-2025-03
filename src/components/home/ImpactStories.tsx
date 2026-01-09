@@ -61,7 +61,7 @@ const ImpactStories = () => {
                     {displayStories.map((story) => (
                         <Link
                             key={story._id}
-                            to={`/heroes/${story._id}`}
+                            to={`/stories/${story._id}`}
                             className="group block"
                         >
                             <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
