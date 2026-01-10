@@ -4,10 +4,10 @@ import Typography from '@/components/shared/Typography';
 
 const WhyLSFSection = () => {
     const stats = [
-        { value: '14+', label: 'Years of Impact', description: 'Since 2011' },
-        { value: '4,000+', label: 'Trained Paralegals', description: 'Across Tanzania' },
-        { value: '184', label: 'Districts Covered', description: 'Nationwide reach' },
-        { value: '2.8M+', label: 'Cases Resolved', description: 'Lives transformed' },
+        { value: '6M+', label: 'People Reached', description: 'Annually across Tanzania' },
+        { value: '168', label: 'Districts Covered', description: 'Full nationwide presence' },
+        { value: '4,000+', label: 'Paralegals', description: 'Active frontline network' },
+        { value: '60%', label: 'Resolution Rate', description: 'Disputes resolved locally' },
     ];
 
     const features = [
@@ -45,18 +45,24 @@ const WhyLSFSection = () => {
                     </Typography>
                 </div>
 
-                {/* Stats Section - Clean Design */}
-                <div className="bg-gray-50 rounded-3xl p-10 md:p-12 border border-gray-100 mb-16">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {/* Stats Section - Premium Branded */}
+                <div className="bg-primary rounded-3xl p-10 md:p-12 shadow-2xl mb-16 relative overflow-hidden text-white">
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary-yellow rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+                    </div>
+
+                    <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8 divider-x-white/20">
                         {stats.map((stat, index) => (
                             <div key={index} className="text-center group">
-                                <Typography variant="h1" className="text-4xl md:text-5xl text-primary mb-2 font-bold group-hover:scale-110 transition-transform duration-300">
+                                <Typography variant="h1" className="text-4xl md:text-5xl text-secondary-yellow mb-2 font-black group-hover:scale-105 transition-transform duration-300">
                                     {stat.value}
                                 </Typography>
-                                <Typography variant="h4" className="mb-2 text-lg font-semibold text-gray-900">
+                                <Typography variant="h4" className="mb-2 text-lg font-bold text-white tracking-wide">
                                     {stat.label}
                                 </Typography>
-                                <Typography variant="body" className="text-gray-500 text-sm">
+                                <Typography variant="body" className="text-white/70 text-sm font-medium">
                                     {stat.description}
                                 </Typography>
                             </div>
