@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 
 const StrategicFocusAreasSection = () => {
-  // 4 Core Strategic Pillars (from LSF Annual Report 2024)
-  const corePillars = [
+  // All 6 Strategic Focus Areas (4 Core Pillars + 2 Emerging combined)
+  const focusAreas = [
     {
       title: "Increasing Accessibility to Quality Legal Aid Services",
       description: "Prioritizing accessible, affordable, quality legal aid services to marginalized populations, with emphasis on women and girls.",
@@ -33,10 +33,6 @@ const StrategicFocusAreasSection = () => {
       image: "/lovable-uploads/1697191159.jpg",
       link: "/focus-areas/institutional-development",
     },
-  ];
-
-  // 2 Emerging Strategic Priorities (New for 2025)
-  const emergingPriorities = [
     {
       title: "Climate Justice",
       description: "Integrating climate justice into programming, including land rights, environmental governance, and climate-related disputes.",
@@ -110,13 +106,12 @@ const StrategicFocusAreasSection = () => {
     isNew?: boolean;
   }
 
-  const SliderSection = ({ title, subtitle, description, items, bgClass = "bg-white", showNewBadge = false }: {
+  const SliderSection = ({ title, subtitle, description, items, bgClass = "bg-white" }: {
     title: string;
     subtitle: string;
     description: string;
     items: SliderItem[];
     bgClass?: string;
-    showNewBadge?: boolean;
   }) => {
     const sliderRef = useRef<Slider>(null);
 
@@ -199,32 +194,22 @@ const StrategicFocusAreasSection = () => {
 
   return (
     <>
-      {/* STRATEGIC FOCUS AREAS FIRST */}
+      {/* STRATEGIC FOCUS AREAS (All 6 combined) */}
       <SliderSection
         title="Strategic Focus Areas"
-        subtitle="Our 4 Core Pillars"
-        description="Our work is organized around four interconnected pillars that address fundamental challenges in accessing justice across Tanzania."
-        items={corePillars}
+        subtitle="Where We Focus"
+        description="Our work is organized around six strategic focus areas that address fundamental challenges in accessing justice across Tanzania."
+        items={focusAreas}
         bgClass="bg-white"
       />
 
-      {/* EMERGING PRIORITIES (New for 2025) */}
-      <SliderSection
-        title="Emerging Strategic Priorities"
-        subtitle="New for 2025"
-        description="Expanding our focus to address new challenges and opportunities in the access to justice landscape."
-        items={emergingPriorities}
-        bgClass="bg-gray-900 [&_h2]:text-white [&_p]:text-white/80 [&_.border-primary]:border-secondary-orange"
-        showNewBadge={true}
-      />
-
-      {/* APPROACHES SECOND */}
+      {/* APPROACHES - Slightly grey background */}
       <SliderSection
         title="Our Strategic Approaches"
         subtitle="How We Work"
         description="We deploy a multi-pronged strategy combining grant-making, direct implementation, policy advocacy, and research."
         items={approaches}
-        bgClass="bg-gray-50"
+        bgClass="bg-gray-50/70"
       />
     </>
   );
