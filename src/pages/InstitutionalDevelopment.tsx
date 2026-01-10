@@ -71,10 +71,10 @@ const InstitutionalDevelopment = () => {
               <span className="font-bold text-sm uppercase tracking-widest">Focus Area</span>
             </div>
             <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
-              Institutional Development
+              Institutional Development and Sustainability
             </Typography>
             <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
-              Building sustainable capacity for long-term impact through strong governance and strategic partnerships.
+              Strengthening the organizational capacity, financial sustainability, and operational effectiveness of LSF and the broader legal aid sector to ensure long-term impact and resilience.
             </Typography>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <Link to="#why-this-matters">

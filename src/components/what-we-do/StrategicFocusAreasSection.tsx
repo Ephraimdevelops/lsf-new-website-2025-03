@@ -1,75 +1,89 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ArrowRight, Target, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Target, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import Container from "@/components/shared/Container";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 
 const StrategicFocusAreasSection = () => {
+  // 4 Core Strategic Pillars (from LSF Annual Report 2024)
+  const corePillars = [
+    {
+      title: "Increasing Accessibility to Quality Legal Aid Services",
+      description: "Prioritizing accessible, affordable, quality legal aid services to marginalized populations, with emphasis on women and girls.",
+      image: "/lovable-uploads/SaveVid.Net_484842638_18264975178279523_2515659245077784889_n.jpg",
+      link: "/focus-areas/accessible-legal-aid",
+    },
+    {
+      title: "Promoting Legally Empowered Communities",
+      description: "Advancing community legal empowerment through legal education, awareness, and strengthening paralegal networks.",
+      image: "/lovable-uploads/wanawake tunaweza beenficiaries.jpg",
+      link: "/focus-areas/empowered-communities",
+    },
+    {
+      title: "Enhancing a Conducive Environment for Access to Justice",
+      description: "Supporting policy reform, legal frameworks, and advocacy for inclusive, sustainable access to justice.",
+      image: "/lovable-uploads/IMG-20230831-WA0003.jpg",
+      link: "/focus-areas/conducive-environment",
+    },
+    {
+      title: "Institutional Development and Sustainability",
+      description: "Strengthening organizational capacity and financial sustainability of LSF and the broader legal aid sector.",
+      image: "/lovable-uploads/1697191159.jpg",
+      link: "/focus-areas/institutional-development",
+    },
+  ];
+
+  // 2 Emerging Strategic Priorities (New for 2025)
+  const emergingPriorities = [
+    {
+      title: "Climate Justice",
+      description: "Integrating climate justice into programming, including land rights, environmental governance, and climate-related disputes.",
+      image: "/lovable-uploads/mwanamke shamba.png",
+      link: "/focus-areas/climate-justice",
+      isNew: true,
+    },
+    {
+      title: "Digital Transformation",
+      description: "Modernizing operations through digitalization of legal aid service delivery, case tracking, and data systems.",
+      image: "/lovable-uploads/lsf-paralegal-servicing.jpeg",
+      link: "/focus-areas/digital-transformation",
+      isNew: true,
+    },
+  ];
+
+  // Strategic Approaches
   const approaches = [
     {
       title: "Grant-Making",
-      description: "Funding 100+ organizations to deliver frontline legal aid.",
+      description: "Funding 100+ organizations to deliver frontline legal aid across Tanzania.",
       image: "/lovable-uploads/IMG-20230831-WA0003.jpg",
       link: "/what-we-do/grant-making",
     },
     {
       title: "Project Implementation",
-      description: "Designing high-impact programs for grassroots justice.",
+      description: "Designing and executing high-impact programs for grassroots justice delivery.",
       image: "/lovable-uploads/1697191159.jpg",
       link: "/what-we-do/direct-implementation",
     },
     {
       title: "Policy Advocacy",
-      description: "Pushing for justice-centered reforms in parliament.",
-      image: "/lovable-uploads/IMG-20230831-WA0003.jpg",
+      description: "Pushing for justice-centered reforms and legislation like the Legal Aid Act 2017.",
+      image: "/lovable-uploads/wanawake tunaweza beenficiaries.jpg",
       link: "/what-we-do/advocacy-policy",
     },
     {
       title: "Research & Learning",
-      description: "Turning data into action to drive systemic reform.",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
+      description: "Turning data into action to drive evidence-based systemic reform.",
+      image: "/lovable-uploads/SaveVid.Net_484842638_18264975178279523_2515659245077784889_n.jpg",
       link: "/what-we-do/learning-research",
     },
     {
-      title: "Partnerships",
-      description: "Scaling justice innovations with global partners.",
-      image: "https://images.unsplash.com/photo-1516321318423-4b6a0b0f0e6a?w=800&h=600&fit=crop",
+      title: "Partnerships & Networking",
+      description: "Scaling justice innovations with government, donors, and civil society partners.",
+      image: "/lovable-uploads/mwanamke shamba.png",
       link: "/what-we-do/partnerships-networking",
-    },
-  ];
-
-  const focusAreas = [
-    {
-      title: "Access to Legal Aid",
-      description: "Scaling affordable aid so communities secure justice.",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
-      link: "/focus-areas/accessible-legal-aid",
-    },
-    {
-      title: "Legal Empowerment",
-      description: "Equipping communities to claim rights and advocate.",
-      image: "https://images.unsplash.com/photo-1516321318423-4b6a0b0f0e6a?w=800&h=600&fit=crop",
-      link: "/focus-areas/empowered-communities",
-    },
-    {
-      title: "Gender Justice",
-      description: "Confronting GBV and ensuring women’s rights.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d877c82899?w=800&h=600&fit=crop",
-      link: "/resources/gender-justice",
-    },
-    {
-      title: "Legal Reform",
-      description: "Working with policymakers to strengthen laws.",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop",
-      link: "/what-we-do/advocacy-policy",
-    },
-    {
-      title: "Inclusive Innovation",
-      description: "Leveraging digital tools like Haki Yangu App.",
-      image: "https://images.unsplash.com/photo-1516321318423-4b6a0b0f0e6a?w=800&h=600&fit=crop",
-      link: "/focus-areas/digital-transformation",
     },
   ];
 
@@ -83,22 +97,27 @@ const StrategicFocusAreasSection = () => {
     autoplaySpeed: 4000,
     arrows: false,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        }
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-        }
-      }
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 640, settings: { slidesToShow: 1 } }
     ]
   };
 
-  const SliderSection = ({ title, subtitle, description, items, bgClass = "bg-white" }) => {
+  interface SliderItem {
+    title: string;
+    description: string;
+    image: string;
+    link: string;
+    isNew?: boolean;
+  }
+
+  const SliderSection = ({ title, subtitle, description, items, bgClass = "bg-white", showNewBadge = false }: {
+    title: string;
+    subtitle: string;
+    description: string;
+    items: SliderItem[];
+    bgClass?: string;
+    showNewBadge?: boolean;
+  }) => {
     const sliderRef = useRef<Slider>(null);
 
     return (
@@ -106,7 +125,6 @@ const StrategicFocusAreasSection = () => {
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="max-w-3xl">
-              {/* Primary Pill Badge - About Page Style */}
               <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-5">
                 <Target className="h-4 w-4" />
                 <span className="font-bold text-sm uppercase tracking-widest">{subtitle}</span>
@@ -119,7 +137,6 @@ const StrategicFocusAreasSection = () => {
               )}
             </div>
 
-            {/* Custom Arrows */}
             <div className="flex gap-2 flex-shrink-0">
               <button
                 onClick={() => sliderRef.current?.slickPrev()}
@@ -139,11 +156,10 @@ const StrategicFocusAreasSection = () => {
           <div className="-mx-3">
             <Slider ref={sliderRef} {...sliderSettings}>
               {items.map((item, idx) => (
-                <div key={idx} className="px-3 pb-6"> {/* Increased bottom padding for shadow room */}
+                <div key={idx} className="px-3 pb-6">
                   <Link to={item.link} className="block group h-full">
-                    {/* Increased border radius and shadow */}
                     <div className="bg-white rounded-[1.5rem] overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                      {/* Image - Increased height by 1.5rem approx (h-64 is 16rem, was h-56 14rem) */}
+                      {/* Image with optional NEW badge */}
                       <div className="h-[18rem] overflow-hidden relative">
                         <img
                           src={item.image}
@@ -151,18 +167,23 @@ const StrategicFocusAreasSection = () => {
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                        {item.isNew && (
+                          <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-secondary-orange text-white text-xs font-bold px-3 py-1 rounded-full">
+                            <Sparkles className="h-3 w-3" /> NEW 2025
+                          </div>
+                        )}
                       </div>
 
-                      {/* Content - Increased padding and font sizes */}
-                      <div className="p-6 md:p-8 flex flex-col flex-grow"> {/* p-6 -> p-8 (+?.5rem but larger feel) */}
-                        <h3 className="text-2xl font-bold text-neutral-900 mb-4 group-hover:text-primary transition-colors line-clamp-2"> {/* text-xl -> text-2xl */}
+                      {/* Content */}
+                      <div className="p-6 md:p-8 flex flex-col flex-grow">
+                        <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
                           {item.title}
                         </h3>
-                        <p className="text-neutral-600 text-base mb-6 line-clamp-4 leading-relaxed flex-grow"> {/* text-sm -> text-base */}
+                        <p className="text-neutral-600 text-base mb-6 line-clamp-3 leading-relaxed flex-grow">
                           {item.description}
                         </p>
-                        <div className="flex items-center text-primary font-bold text-base mt-auto"> {/* text-sm -> text-base */}
-                          Learn more <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" /> {/* icon w-4->w-5 */}
+                        <div className="flex items-center text-primary font-bold text-base mt-auto">
+                          Learn more <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
                     </div>
@@ -178,19 +199,32 @@ const StrategicFocusAreasSection = () => {
 
   return (
     <>
+      {/* STRATEGIC FOCUS AREAS FIRST */}
+      <SliderSection
+        title="Strategic Focus Areas"
+        subtitle="Our 4 Core Pillars"
+        description="Our work is organized around four interconnected pillars that address fundamental challenges in accessing justice across Tanzania."
+        items={corePillars}
+        bgClass="bg-white"
+      />
+
+      {/* EMERGING PRIORITIES (New for 2025) */}
+      <SliderSection
+        title="Emerging Strategic Priorities"
+        subtitle="New for 2025"
+        description="Expanding our focus to address new challenges and opportunities in the access to justice landscape."
+        items={emergingPriorities}
+        bgClass="bg-gray-900 [&_h2]:text-white [&_p]:text-white/80 [&_.border-primary]:border-secondary-orange"
+        showNewBadge={true}
+      />
+
+      {/* APPROACHES SECOND */}
       <SliderSection
         title="Our Strategic Approaches"
         subtitle="How We Work"
-        description="We deploy a multi-pronged strategy combining grant-making, direct implementation, policy advocacy, and research to create systemic change in access to justice."
+        description="We deploy a multi-pronged strategy combining grant-making, direct implementation, policy advocacy, and research."
         items={approaches}
         bgClass="bg-gray-50"
-      />
-      <SliderSection
-        title="Strategic Focus Areas"
-        subtitle="Where We Work"
-        description="Our work spans legal aid, community empowerment, gender justice, and digital innovation to ensure every Tanzanian can claim their rights."
-        items={focusAreas}
-        bgClass="bg-white"
       />
     </>
   );

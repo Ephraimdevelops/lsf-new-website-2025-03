@@ -71,10 +71,10 @@ const AccessibleLegalAid = () => {
               <span className="font-bold text-sm uppercase tracking-widest">Focus Area</span>
             </div>
             <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
-              Accessible Legal Aid
+              Increasing Accessibility to Quality Legal Aid Services
             </Typography>
             <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
-              Ensuring every woman and marginalized person can access legal assistance when they need it most.
+              Prioritizing the provision of accessible, affordable, quality legal aid services to marginalized populations, with a strong emphasis on women and girls.
             </Typography>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <Link to="#why-this-matters">

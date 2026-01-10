@@ -71,10 +71,10 @@ const EmpoweredCommunities = () => {
               <span className="font-bold text-sm uppercase tracking-widest">Focus Area</span>
             </div>
             <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
-              Empowered Communities
+              Promoting Legally Empowered Communities
             </Typography>
             <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
-              Building legal knowledge and capacity within communities to create sustainable access to justice.
+              Advancing community legal empowerment particularly for women, girls, and marginalized groups through legal education, awareness, and strengthening of paralegal networks.
             </Typography>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <Link to="#why-this-matters">
