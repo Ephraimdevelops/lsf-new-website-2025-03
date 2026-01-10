@@ -189,7 +189,7 @@ const mamaSamiaLegalAid = {
   title: 'Justice for Every Tanzanian.',
   subtitle: 'A State-Civil Society Partnership Operationalizing the Legal Aid Act.',
   heroDescription: 'The Mama Samia Legal Aid Campaign (MSLAC) is Tanzania\'s largest coordinated effort to bring legal aid to every citizen. LSF serves as Vice-Chair of the National Campaign Committee alongside the Ministry of Constitutional and Legal Affairs. In 2023, LSF disbursed TZS 3.1 billion to 168 implementing partners, deploying 4,000+ paralegals as the campaign\'s primary frontline workforce.',
-  heroImage: '/lovable-uploads/mama samia legal aid campaingn.jpg',
+  heroImage: '/lovable-uploads/mama%20samia%20legal%20aid%20campaingn.jpg',
 
   // The Challenge Section
   challenge: {
@@ -562,7 +562,7 @@ const ProgramDetail = () => {
       <Layout>
         {/* HERO SECTION - Government Partnership Theme */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
-          <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: `url(${program.heroImage})` }} />
+          <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: `url("${program.heroImage}")` }} />
           <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-primary/70 to-black/80"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 

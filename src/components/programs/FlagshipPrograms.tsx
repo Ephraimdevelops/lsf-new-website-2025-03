@@ -44,7 +44,7 @@ const FlagshipPrograms = () => {
       subtitle: 'Strategic Co-Lead & National Funder',
       description:
         'LSF serves as Vice-Chair of the National Campaign Committee alongside the Ministry of Constitutional and Legal Affairs. In 2023, LSF disbursed TZS 3.1 billion to 168 implementing partners, deploying 4,000+ paralegals as the primary frontline workforce.',
-      image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
+      image: '/lovable-uploads/mama%20samia%20legal%20aid%20campaingn.jpg',
       highlights: [
         'LSF CEO is Vice-Chair of National Committee',
         'TZS 3.1 Billion disbursed to 168 partners',
