@@ -1,118 +1,68 @@
-import { useState, useEffect, useRef } from 'react';
+import { Award, Users, MapPin, Calendar, CheckCircle, Shield, Scale, Heart, TrendingUp, Globe } from 'lucide-react';
 import Container from '@/components/shared/Container';
-import { CalendarClock, Users, Scale, MapPin } from 'lucide-react';
-
-const stats = [
-    {
-        value: 15,
-        suffix: '+',
-        label: 'Years of Impact',
-        icon: <CalendarClock className="w-6 h-6 md:w-8 md:h-8" />
-    },
-    {
-        value: 40,
-        suffix: 'M+',
-        label: 'People Reached',
-        icon: <Users className="w-6 h-6 md:w-8 md:h-8" />
-    },
-    {
-        value: 4000,
-        suffix: '+',
-        label: 'Paralegals',
-        icon: <Scale className="w-6 h-6 md:w-8 md:h-8" />
-    },
-    {
-        value: 168,
-        suffix: '',
-        label: 'Districts',
-        icon: <MapPin className="w-6 h-6 md:w-8 md:h-8" />
-    },
-];
-
-// Animated number component
-const AnimatedNumber = ({ value, suffix }: { value: number; suffix: string }) => {
-    const [count, setCount] = useState(0);
-    const ref = useRef<HTMLSpanElement>(null);
-    const [hasAnimated, setHasAnimated] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !hasAnimated) {
-                    setHasAnimated(true);
-                    const duration = 2000;
-                    const steps = 60;
-                    const increment = value / steps;
-                    let current = 0;
-
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= value) {
-                            setCount(value);
-                            clearInterval(timer);
-                        } else {
-                            setCount(Math.floor(current));
-                        }
-                    }, duration / steps);
-                }
-            },
-            { threshold: 0.5 }
-        );
-
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
-
-        return () => observer.disconnect();
-    }, [value, hasAnimated]);
-
-    const formatNumber = (num: number) => {
-        if (num >= 1000) {
-            return num.toLocaleString();
-        }
-        return num.toString();
-    };
-
-    return (
-        <span ref={ref}>
-            {formatNumber(count)}{suffix}
-        </span>
-    );
-};
 
 const HomeImpactNumbers = () => {
+    // Expanded stats list for continuous ticker with icons
+    const stats = [
+        { value: '15+', label: 'Years of Impact', icon: Calendar },
+        { value: '40M+', label: 'People Reached', icon: Users },
+        { value: '4,000+', label: 'Paralegals', icon: Scale },
+        { value: '168', label: 'Districts', icon: MapPin },
+        { value: '60%', label: 'Resolution Rate', icon: CheckCircle },
+        { value: '3.1B', label: 'TZS Disbursed', icon: TrendingUp },
+        { value: '31', label: 'Regions', icon: Globe },
+        { value: '209', label: 'Women Leaders', icon: Award },
+        { value: '100%', label: 'Gov Compliance', icon: Shield },
+        { value: '1,214', label: 'Girls Supported', icon: Heart },
+    ];
+
     return (
-        <section className="py-12 md:py-20 relative overflow-hidden bg-primary/95 text-white">
-            {/* Subtle Pattern Overlay */}
-            <div className="absolute inset-0 opacity-10"
-                style={{
-                    backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-                    backgroundSize: "40px 40px"
-                }}
-            />
+        <section className="py-20 bg-white overflow-hidden p-0 m-0">
+            {/* Continuous Stats Ticker - Deep Maroon Brand Theme */}
+            <div className="w-full bg-primary border-y border-primary-dark py-12 relative overflow-hidden">
+                {/* Background Pattern */}
+                <div
+                    className="absolute inset-0 opacity-10 bg-repeat space-x-4"
+                    style={{ backgroundImage: `url('/lovable-uploads/brand-pattern.png')`, backgroundSize: '200px' }}
+                ></div>
 
-            <Container className="relative z-10">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                    {stats.map((stat, index) => (
-                        <div key={index} className="flex flex-col items-center text-center group">
-                            {/* Icon Circle */}
-                            <div className="mb-4 p-4 rounded-full bg-white/10 text-white backdrop-blur-sm group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300 shadow-lg border border-white/10">
-                                {stat.icon}
+                {/* Gradient Fades for Smooth Edge Effect (Matching Maroon) */}
+                <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-primary via-primary/80 to-transparent z-10 pointer-events-none"></div>
+
+                <div className="flex w-full group relative z-20">
+                    <div className="flex animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused] items-center">
+                        {/* First set of stats */}
+                        {stats.map((stat, index) => (
+                            <div key={`stat-1-${index}`} className="flex flex-col items-center justify-center gap-2 mx-16">
+                                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/10 mb-2 backdrop-blur-sm shadow-xl">
+                                    <stat.icon className="h-7 w-7 text-white" />
+                                </div>
+                                <span className="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-sm">
+                                    {stat.value}
+                                </span>
+                                <span className="text-sm font-bold text-white/80 uppercase tracking-widest text-center">
+                                    {stat.label}
+                                </span>
                             </div>
-
-                            {/* Number */}
-                            <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-2 text-white drop-shadow-sm">
-                                <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                            </p>
-
-                            {/* Label */}
-                            <p className="text-white/80 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest">
-                                {stat.label}
-                            </p>
-                        </div>
-                    ))}
+                        ))}
+                        {/* Duplicate set for seamless scroll */}
+                        {stats.map((stat, index) => (
+                            <div key={`stat-2-${index}`} className="flex flex-col items-center justify-center gap-2 mx-16">
+                                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/10 mb-2 backdrop-blur-sm shadow-xl">
+                                    <stat.icon className="h-7 w-7 text-white" />
+                                </div>
+                                <span className="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-sm">
+                                    {stat.value}
+                                </span>
+                                <span className="text-sm font-bold text-white/80 uppercase tracking-widest text-center">
+                                    {stat.label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };
