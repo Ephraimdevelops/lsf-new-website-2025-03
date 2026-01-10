@@ -19,18 +19,18 @@ const ModernAboutSection = () => {
     return (
         <section
             ref={sectionRef as any}
-            className="py-20 bg-white"
+            className="py-10 md:py-12 bg-white"
         >
             <Container>
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
                     {/* Content Side */}
                     <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
 
                         {/* Colored Pill Badge */}
-                        <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-6">
-                            <Target className="h-4 w-4" />
-                            <span className="font-bold text-sm uppercase tracking-widest">Who We Are</span>
+                        <div className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-5 py-1.5 mb-4">
+                            <Target className="h-3.5 w-3.5" />
+                            <span className="font-bold text-xs uppercase tracking-widest">Who We Are</span>
                         </div>
 
                         <Typography variant="h2" className="mb-6 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gray-900 tracking-tight">
@@ -78,7 +78,7 @@ const ModernAboutSection = () => {
                         <img
                             src="/lovable-uploads/Untitled design-5.png"
                             alt="LSF Community Work"
-                            className="w-full h-[500px] object-cover rounded-3xl"
+                            className="w-full h-[600px] lg:h-[700px] object-cover rounded-3xl shadow-xl hover:scale-[1.02] transition-transform duration-500"
                         />
                     </div>
 
