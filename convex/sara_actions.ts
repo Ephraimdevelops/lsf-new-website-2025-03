@@ -104,8 +104,10 @@ export const ask = action({
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
-        // TODO: Re-enable strict auth
-        const userId = identity?.subject || "anonymous_dev_user";
+        if (!identity) {
+            throw new Error("Unauthenticated call to Sara AI Action");
+        }
+        const userId = identity.subject;
         const openai = getOpenAI();
 
         // 1. Create Placeholder Bot Message

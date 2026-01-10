@@ -6,8 +6,13 @@ export const getMessages = query({
     args: {},
     handler: async (ctx) => {
         const identity = await ctx.auth.getUserIdentity();
-        // TODO: Re-enable strict auth after fixing Clerk session issue
-        const userId = identity?.subject || "anonymous_dev_user";
+        if (!identity) {
+            // If not logged in, return empty or throw. 
+            // Better to return empty so the UI doesn't crash, but handles "Guest" state if needed.
+            // But for SARA, we want strict user isolation.
+            return [];
+        }
+        const userId = identity.subject;
 
         const messages = await ctx.db
             .query("sara_chats")
@@ -47,8 +52,10 @@ export const sendMessage = mutation({
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
-        // TODO: Re-enable strict auth
-        const userId = identity?.subject || "anonymous_dev_user";
+        if (!identity) {
+            throw new Error("You must be logged in to send messages.");
+        }
+        const userId = identity.subject;
 
         await ctx.db.insert("sara_chats", {
             userId,
