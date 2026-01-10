@@ -12,6 +12,7 @@ import {
   BadgeCheck, Eye, MapPin, TrendingUp, Smartphone, Download,
   CheckCircle, ArrowRight, ExternalLink, User, Edit, Star
 } from 'lucide-react';
+import ParalegalProfileEdit from '@/components/paralegal/ParalegalProfileEdit';
 
 const ParalegalDashboard = () => {
   const { user } = useUser();
@@ -211,10 +212,7 @@ const ParalegalDashboard = () => {
                 </Typography>
               </div>
             </div>
-            <Button variant="outline" className="mt-4 md:mt-0 gap-2">
-              <Edit className="h-4 w-4" />
-              Edit Profile
-            </Button>
+            <ParalegalProfileEdit paralegal={paralegal} />
           </div>
 
           {/* Stats Cards */}

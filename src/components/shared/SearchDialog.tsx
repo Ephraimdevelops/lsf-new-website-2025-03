@@ -1,159 +1,201 @@
 
-import { useState } from 'react';
-import { Search, X, FileText, Users, BookOpen, MapPin, Zap } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useMemo } from "react";
+import {
+  Calculator,
+  Calendar,
+  CreditCard,
+  Settings,
+  Smile,
+  User,
+  Search,
+  Zap,
+  BookOpen,
+  Users,
+  Target,
+  FileText,
+  ArrowRight,
+  Command as CommandIcon,
+  X,
+  LayoutGrid,
+  Heart,
+  Globe,
+  Scale
+} from "lucide-react";
 
-const SearchDialog = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command";
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { useNavigate } from "react-router-dom";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
-  // Enhanced search suggestions with focus areas and approaches
-  const searchSuggestions = [
-    { icon: <Users className="h-4 w-4" />, title: 'Legal Aid Services', description: 'Get free legal assistance', href: '/legal-help', category: 'Services' },
-    { icon: <BookOpen className="h-4 w-4" />, title: 'What We Do', description: 'Our strategic approach to justice', href: '/what-we-do', category: 'About' },
-    { icon: <FileText className="h-4 w-4" />, title: 'Grant Making', description: 'Results-driven funding for justice', href: '/what-we-do/grant-making', category: 'Approaches' },
-    { icon: <Users className="h-4 w-4" />, title: 'Capacity Building', description: 'Strengthening legal aid providers', href: '/what-we-do/capacity-building', category: 'Approaches' },
-    { icon: <Zap className="h-4 w-4" />, title: 'Accessible Legal Aid', description: 'Quality legal services for all', href: '/focus-areas/accessible-legal-aid', category: 'Focus Areas' },
-    { icon: <Users className="h-4 w-4" />, title: 'Empowered Communities', description: 'Legal empowerment programs', href: '/focus-areas/empowered-communities', category: 'Focus Areas' },
-    { icon: <MapPin className="h-4 w-4" />, title: 'Climate Justice', description: 'Environmental rights advocacy', href: '/focus-areas/climate-justice', category: 'Focus Areas' },
-    { icon: <Zap className="h-4 w-4" />, title: 'Digital Transformation', description: 'Technology solutions for justice', href: '/focus-areas/digital-transformation', category: 'Focus Areas' },
-    { icon: <BookOpen className="h-4 w-4" />, title: 'Success Stories', description: 'Real impact, real lives', href: '/heroes', category: 'Impact' },
-    { icon: <FileText className="h-4 w-4" />, title: 'Publications', description: 'Research and reports', href: '/publications', category: 'Resources' },
-    { icon: <Users className="h-4 w-4" />, title: 'Policy & Advocacy', description: 'Systemic change initiatives', href: '/what-we-do/policy-advocacy', category: 'Approaches' },
-    { icon: <MapPin className="h-4 w-4" />, title: 'Learning & Research', description: 'Evidence-based solutions', href: '/learning-research', category: 'Approaches' },
+// Redesigned Search Component - CLEAN, FAST, INTUITIVE
+export default function SearchDialog() {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // Data Fetching
+  const programsQuery = useQuery(api.programs.get, {});
+  const newsQuery = useQuery(api.news.get, {});
+  const storiesQuery = useQuery(api.stories.get, {});
+  const paralegalsQuery = useQuery(api.paralegals.listApprovedParalegals, {});
+
+  // Safe Data Fallbacks
+  const programs = Array.isArray(programsQuery) ? programsQuery : [];
+  const news = Array.isArray(newsQuery) ? newsQuery : [];
+  const stories = Array.isArray(storiesQuery) ? storiesQuery : [];
+  const paralegals = Array.isArray(paralegalsQuery) ? paralegalsQuery : [];
+
+  // Comprehensive Static Navigation Index
+  // This ensures "Resources", "Strategies", "Focus Areas" are all searchable
+  const navigationItems = [
+    // Main Pages
+    { title: "Home", href: "/", group: "Pages", icon: <LayoutGrid className="mr-2 h-4 w-4" /> },
+    { title: "About Us", href: "/about", group: "Pages", icon: <Users className="mr-2 h-4 w-4" /> },
+    { title: "Our Approaches", href: "/approaches", group: "Pages", icon: <Target className="mr-2 h-4 w-4" /> },
+    { title: "Strategic Focuses", href: "/strategic-focuses", group: "Pages", icon: <Target className="mr-2 h-4 w-4" /> },
+    { title: "Contact Us", href: "/contact", group: "Pages", icon: <User className="mr-2 h-4 w-4" /> },
+    { title: "Donate", href: "/donate", group: "Pages", icon: <Heart className="mr-2 h-4 w-4 text-red-500" /> },
+
+    // Resources Section
+    { title: "Resources Center", href: "/resources", group: "Resources", icon: <BookOpen className="mr-2 h-4 w-4" /> },
+    { title: "Climate Justice Resources", href: "/resources/climate-justice", group: "Resources", icon: <Globe className="mr-2 h-4 w-4" /> },
+    { title: "Gender Justice Resources", href: "/resources/gender-justice", group: "Resources", icon: <Users className="mr-2 h-4 w-4" /> },
+    { title: "Legal Empowerment Resources", href: "/resources/legal-empowerment", group: "Resources", icon: <Scale className="mr-2 h-4 w-4" /> },
+    { title: "News & Updates", href: "/news", group: "Resources", icon: <FileText className="mr-2 h-4 w-4" /> },
+    { title: "Publications", href: "/publications", group: "Resources", icon: <FileText className="mr-2 h-4 w-4" /> },
+
+    // What We Do (Strategies)
+    { title: "Grant Making", href: "/what-we-do/grant-making", group: "Strategies", icon: <Target className="mr-2 h-4 w-4" /> },
+    { title: "Direct Implementation", href: "/what-we-do/direct-implementation", group: "Strategies", icon: <Target className="mr-2 h-4 w-4" /> },
+    { title: "Advocacy & Policy", href: "/what-we-do/advocacy-policy", group: "Strategies", icon: <Target className="mr-2 h-4 w-4" /> },
+    { title: "Capacity Building", href: "/what-we-do/capacity-building", group: "Strategies", icon: <Target className="mr-2 h-4 w-4" /> },
+    { title: "Learning & Research", href: "/what-we-do/learning-research", group: "Strategies", icon: <Target className="mr-2 h-4 w-4" /> },
+
+    // Focus Areas
+    { title: "Accessible Legal Aid", href: "/focus-areas/accessible-legal-aid", group: "Focus Areas", icon: <Scale className="mr-2 h-4 w-4" /> },
+    { title: "Empowered Communities", href: "/focus-areas/empowered-communities", group: "Focus Areas", icon: <Users className="mr-2 h-4 w-4" /> },
+    { title: "Conducive Environment", href: "/focus-areas/conducive-environment", group: "Focus Areas", icon: <Globe className="mr-2 h-4 w-4" /> },
+    { title: "Institutional Development", href: "/focus-areas/institutional-development", group: "Focus Areas", icon: <Settings className="mr-2 h-4 w-4" /> },
   ];
 
-  const filteredSuggestions = searchQuery 
-    ? searchSuggestions.filter(item => 
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : searchSuggestions.slice(0, 8);
+  // Toggle Logic
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Searching for:', searchQuery);
-    setIsOpen(false);
-  };
-
-  const handleSuggestionClick = () => {
-    setIsOpen(false);
-    setSearchQuery('');
+  // Handlers
+  const runCommand = (command: () => void) => {
+    setOpen(false);
+    command();
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button 
-          variant="ghost" 
-          size="sm"
-          className="p-2 rounded-full text-gray-600 hover:bg-primary/10 hover:text-primary transition-all duration-200 transform hover:scale-110"
-          aria-label="Search"
-        >
-          <Search size={20} />
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="max-w-2xl animate-scale-in">
-        <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-primary">Search LSF</DialogTitle>
-        </DialogHeader>
-        
-        <div className="space-y-6">
-          {/* Search Input */}
-          <form onSubmit={handleSearch}>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-              <Input
-                placeholder="Search for programs, services, resources..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-12 py-3 text-base border-2 border-gray-200 focus:border-primary rounded-lg transition-all duration-200"
-                autoFocus
-              />
-              {searchQuery && (
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 hover:bg-gray-100 rounded-md transition-colors duration-200"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              )}
-            </div>
-          </form>
+    <>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="rounded-full w-10 h-10 bg-transparent text-gray-600 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-105"
+        onClick={() => setOpen(true)}
+      >
+        <Search className="h-5 w-5" />
+        <span className="sr-only">Search</span>
+      </Button>
 
-          {/* Search Suggestions */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-gray-600 uppercase tracking-wide">
-              {searchQuery ? 'Search Results' : 'Quick Access'}
-            </h4>
-            
-            <div className="space-y-2 max-h-96 overflow-y-auto">
-              {filteredSuggestions.length > 0 ? (
-                filteredSuggestions.map((item, index) => (
-                  <Link
-                    key={index}
-                    to={item.href}
-                    onClick={handleSuggestionClick}
-                    className="flex items-center space-x-4 p-4 rounded-lg hover:bg-primary/5 hover:scale-[1.02] transition-all duration-200 border border-gray-100 group"
-                  >
-                    <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-all duration-200">
-                      {item.icon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h5 className="font-semibold text-gray-900 group-hover:text-primary transition-colors duration-200">
-                        {item.title}
-                      </h5>
-                      <p className="text-sm text-gray-600 truncate">
-                        {item.description}
-                      </p>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <span className="text-xs px-3 py-1 bg-gray-100 text-gray-600 rounded-full group-hover:bg-primary/10 group-hover:text-primary transition-all duration-200">
-                        {item.category}
-                      </span>
-                    </div>
-                  </Link>
-                ))
-              ) : (
-                <div className="text-center py-8 text-gray-500">
-                  <Search className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                  <p>No results found for "{searchQuery}"</p>
-                  <p className="text-sm text-gray-400 mt-2">Try searching for legal aid, programs, or resources</p>
-                </div>
-              )}
-            </div>
-          </div>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList className="max-h-[500px] overflow-y-auto custom-scrollbar">
+          <CommandEmpty>No results found.</CommandEmpty>
 
-          {/* Popular Links */}
-          {!searchQuery && (
-            <div className="border-t pt-4">
-              <h4 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-3">Popular</h4>
-              <div className="flex flex-wrap gap-2">
-                {['Legal Aid', 'Grant Making', 'Success Stories', 'Climate Justice', 'Digital Transformation', 'Publications', 'Contact'].map((tag) => (
-                  <Button
-                    key={tag}
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setSearchQuery(tag)}
-                    className="text-xs hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
-                  >
-                    {tag}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* --- FLAGSHIP PROGRAMS (Top Priority) --- */}
+          <CommandGroup heading="Flagship Programs">
+            <CommandItem onSelect={() => runCommand(() => navigate("/programs/sauti-ya-mwanamke"))}>
+              <Target className="mr-2 h-4 w-4 text-primary" />
+              <span>Sauti ya Mwanamke</span>
+              <CommandShortcut>Gold</CommandShortcut>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => navigate("/programs/wanawake-tunaweza"))}>
+              <Target className="mr-2 h-4 w-4 text-primary" />
+              <span>Wanawake Tunaweza</span>
+              <CommandShortcut>Gold</CommandShortcut>
+            </CommandItem>
+          </CommandGroup>
+
+          <CommandSeparator />
+
+          {/* --- PAGES & NAVIGATION --- */}
+          <CommandGroup heading="Pages">
+            {navigationItems.filter(i => i.group === 'Pages').map((item, idx) => (
+              <CommandItem key={idx} onSelect={() => runCommand(() => navigate(item.href))}>
+                {item.icon}
+                <span>{item.title}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+          <CommandGroup heading="Resources">
+            {navigationItems.filter(i => i.group === 'Resources').map((item, idx) => (
+              <CommandItem key={idx} onSelect={() => runCommand(() => navigate(item.href))}>
+                {item.icon}
+                <span>{item.title}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+          <CommandGroup heading="Strategies & Focus Areas">
+            {navigationItems.filter(i => ['Strategies', 'Focus Areas'].includes(i.group)).map((item, idx) => (
+              <CommandItem key={idx} onSelect={() => runCommand(() => navigate(item.href))}>
+                {item.icon}
+                <span>{item.title}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+          <CommandSeparator />
+
+          {/* --- IMPACT STORIES --- */}
+          <CommandGroup heading="Impact Stories">
+            {stories.slice(0, 3).map((story: any) => (
+              <CommandItem key={story._id} onSelect={() => runCommand(() => navigate(`/stories/${story._id}`))}>
+                <BookOpen className="mr-2 h-4 w-4" />
+                <span>{story.title}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+          {/* --- LAST NEWS --- */}
+          <CommandGroup heading="Latest News">
+            {news.slice(0, 3).map((item: any) => (
+              <CommandItem key={item._id} onSelect={() => runCommand(() => navigate(`/news/${item.slug || item._id}`))}>
+                <FileText className="mr-2 h-4 w-4" />
+                <span>{item.title}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+        </CommandList>
+
+        {/* Footer Hint */}
+        <div className="border-t p-2 text-xs text-muted-foreground text-center bg-gray-50 flex items-center justify-center gap-2">
+          <span className="opacity-50">Search everything on LSF</span>
         </div>
-      </DialogContent>
-    </Dialog>
+      </CommandDialog>
+    </>
   );
-};
-
-export default SearchDialog;
+}

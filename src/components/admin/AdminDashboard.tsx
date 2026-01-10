@@ -32,6 +32,7 @@ import AdminNewsletter from './AdminNewsletter';
 import AdminFormSubmissions from './AdminFormSubmissions';
 import AdminParalegals from './AdminParalegals';
 import AdminSaraAnalytics from './AdminSaraAnalytics';
+import AdminTeam from './AdminTeam';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -52,6 +53,7 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
     { id: 'submissions', label: 'Submissions', icon: MessageSquare },
     { id: 'paralegals', label: 'Paralegals', icon: Scale },
     { id: 'resources', label: 'Resources', icon: Users },
+    { id: 'team', label: 'Team', icon: Users },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'sara-analytics', label: 'SARA AI Stats', icon: Bot },
     { id: 'settings', label: 'Settings', icon: Settings },
@@ -81,6 +83,8 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <AdminParalegals />;
       case 'resources':
         return <AdminResources />;
+      case 'team':
+        return <AdminTeam />;
       case 'analytics':
         return <EnhancedAnalyticsDashboard />;
       case 'sara-analytics':

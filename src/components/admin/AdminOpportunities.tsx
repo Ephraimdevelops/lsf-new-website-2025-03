@@ -30,6 +30,9 @@ interface Opportunity {
   department: string;
   duration: string;
   salary: string;
+  requirements?: string[];
+  responsibilities?: string[];
+  benefits?: string[];
 }
 
 const AdminOpportunities = () => {
@@ -56,7 +59,10 @@ const AdminOpportunities = () => {
       category: 'General',
       department: 'General',
       duration: 'N/A',
-      salary: 'Competitive'
+      salary: 'Competitive',
+      requirements: '',
+      responsibilities: '',
+      benefits: ''
     }
   });
 
@@ -68,6 +74,10 @@ const AdminOpportunities = () => {
 
   const onSubmit = async (data: any) => {
     try {
+      // Parse arrays from textarea (one item per line)
+      const parseLines = (text: string) =>
+        text.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+
       const payload = {
         title: data.title,
         description: data.description,
@@ -75,12 +85,14 @@ const AdminOpportunities = () => {
         status: data.status as "open" | "closed",
         deadline: data.deadline,
         location: data.location,
-        applicationLink: data.applicationLink,
+        applicationLink: data.applicationLink || undefined,
         category: data.category,
         department: data.department,
         duration: data.duration,
         salary: data.salary,
-        // organization is not in schema, ignoring for now or map to something else if needed
+        requirements: data.requirements ? parseLines(data.requirements) : undefined,
+        responsibilities: data.responsibilities ? parseLines(data.responsibilities) : undefined,
+        benefits: data.benefits ? parseLines(data.benefits) : undefined,
       };
 
       if (editingOpportunity) {
@@ -116,7 +128,10 @@ const AdminOpportunities = () => {
       category: opportunity.category || 'General',
       department: opportunity.department || 'General',
       duration: opportunity.duration || 'N/A',
-      salary: opportunity.salary || 'Competitive'
+      salary: opportunity.salary || 'Competitive',
+      requirements: (opportunity.requirements || []).join('\n'),
+      responsibilities: (opportunity.responsibilities || []).join('\n'),
+      benefits: (opportunity.benefits || []).join('\n')
     });
     setIsDialogOpen(true);
   };
@@ -145,7 +160,10 @@ const AdminOpportunities = () => {
       category: 'General',
       department: 'General',
       duration: 'N/A',
-      salary: 'Competitive'
+      salary: 'Competitive',
+      requirements: '',
+      responsibilities: '',
+      benefits: ''
     });
     setIsDialogOpen(true);
   };
@@ -336,6 +354,64 @@ const AdminOpportunities = () => {
                       )}
                     />
                   </div>
+
+                  {/* Array Fields Section */}
+                  <div className="space-y-4 border-t pt-4 mt-4">
+                    <h4 className="font-medium text-sm text-gray-500">Requirements, Responsibilities & Benefits (one per line)</h4>
+
+                    <FormField
+                      control={form.control}
+                      name="requirements"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Requirements</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Enter each requirement on a new line, e.g:&#10;3+ years experience&#10;Bachelor's degree&#10;Strong communication skills"
+                              rows={4}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="responsibilities"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Responsibilities</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Enter each responsibility on a new line, e.g:&#10;Lead the legal team&#10;Draft policy documents&#10;Coordinate with stakeholders"
+                              rows={4}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="benefits"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Benefits</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Enter each benefit on a new line, e.g:&#10;Competitive salary&#10;Health insurance&#10;Professional development"
+                              rows={4}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
                   <div className="flex justify-end gap-2">
                     <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                       Cancel
@@ -386,10 +462,10 @@ const AdminOpportunities = () => {
                     </TableCell>
                     <TableCell>
                       <span className={`text-xs px-2 py-1 rounded ${opportunity.status === 'open'
-                          ? 'bg-green-100 text-green-800'
-                          : opportunity.status === 'closed'
-                            ? 'bg-red-100 text-red-800'
-                            : 'bg-gray-100 text-gray-800'
+                        ? 'bg-green-100 text-green-800'
+                        : opportunity.status === 'closed'
+                          ? 'bg-red-100 text-red-800'
+                          : 'bg-gray-100 text-gray-800'
                         }`}>
                         {opportunity.status}
                       </span>

@@ -17,7 +17,6 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
       <Footer />
-      <Footer />
       <SaraFloatingWidget />
     </div>
   );

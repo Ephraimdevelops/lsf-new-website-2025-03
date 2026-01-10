@@ -38,9 +38,13 @@ const Footer = () => {
   return (
     <footer className="relative bg-primary text-white overflow-hidden">
       {/* Subtle branded background pattern */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <img
+          src="/pattern-bg.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/40" />
       </div>
 
       {/* Main Footer Content */}

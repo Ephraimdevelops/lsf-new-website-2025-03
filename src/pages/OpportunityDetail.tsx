@@ -1,18 +1,14 @@
-
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
 import Layout from '../components/layout/Layout';
-import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Users, Briefcase, Calendar, CheckCircle, ArrowLeft } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { MapPin, Clock, Briefcase, Calendar, ArrowLeft, ArrowRight, ExternalLink, Building2, Banknote, CheckCircle2 } from 'lucide-react';
 
 const OpportunityDetail = () => {
   const { id } = useParams<{ id: string }>();
   const opportunityId = id as Id<"opportunities">;
-
   const opportunityData = useQuery(api.opportunities.getById, id ? { id: opportunityId } : "skip");
   const opportunity = opportunityData ? { ...opportunityData, id: opportunityData._id } : null;
 
@@ -21,8 +17,11 @@ const OpportunityDetail = () => {
   if (isLoading) {
     return (
       <Layout>
-        <div className="container mx-auto py-16 px-4 text-center">
-          <div className="animate-pulse text-primary">Loading opportunity details...</div>
+        <div className="min-h-screen bg-gradient-to-b from-secondary-teal/5 to-white flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-12 h-12 border-4 border-secondary-teal border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-neutral-600 font-light">Loading opportunity...</p>
+          </div>
         </div>
       </Layout>
     );
@@ -31,190 +30,232 @@ const OpportunityDetail = () => {
   if (!opportunity) {
     return (
       <Layout>
-        <div className="container mx-auto py-16 px-4 text-center">
-          <h1 className="text-2xl font-bold mb-4">Opportunity Not Found</h1>
-          <Link to="/opportunities">
-            <Button>Back to Opportunities</Button>
-          </Link>
+        <div className="min-h-screen bg-gradient-to-b from-secondary-teal/5 to-white flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-3xl font-light text-neutral-900 mb-4">Opportunity Not Found</h1>
+            <p className="text-neutral-600 mb-8">The opportunity you're looking for doesn't exist or has been removed.</p>
+            <Link to="/opportunities">
+              <Button className="rounded-full px-8">Browse Opportunities</Button>
+            </Link>
+          </div>
         </div>
       </Layout>
     );
   }
 
+  const getTypeBadgeColor = (type: string) => {
+    switch (type) {
+      case 'job': return 'bg-primary/10 text-primary';
+      case 'grant': return 'bg-secondary-orange/10 text-secondary-orange';
+      case 'tender': return 'bg-secondary-teal/10 text-secondary-teal';
+      case 'consultancy': return 'bg-purple-100 text-purple-700';
+      default: return 'bg-neutral-100 text-neutral-700';
+    }
+  };
+
+  const isOpen = opportunity.status === 'open';
+
   return (
     <Layout>
-      {/* Hero Section */}
-      <HeroSection
-        icon={<Briefcase className="h-8 w-8" />}
-        badge={opportunity.category}
-        title={opportunity.title}
-        description={`Join our ${opportunity.department} team and make a meaningful impact on access to justice in Tanzania.`}
-        backgroundImage="/lovable-uploads/background with mother umage .png"
-      />
-
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
+      <div className="bg-gradient-to-b from-secondary-teal/5 to-white">
+        {/* Hero Section */}
+        <div className="container mx-auto px-6 pt-24 pb-12">
           {/* Back Navigation */}
-          <Link to="/opportunities" className="inline-flex items-center text-primary hover:text-primary/80 mb-8">
-            <ArrowLeft size={16} className="mr-2" />
+          <Link
+            to="/opportunities"
+            className="inline-flex items-center text-neutral-600 hover:text-primary transition-colors mb-8 group"
+          >
+            <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Opportunities
           </Link>
 
-          {/* Opportunity Overview */}
-          <Card className="mb-8">
-            <CardHeader>
-              <div className="flex justify-between items-start mb-4">
-                <CardTitle className="text-2xl">{opportunity.title}</CardTitle>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${opportunity.category === 'Employment' ? 'bg-primary/10 text-primary' :
-                  opportunity.category === 'Internship' ? 'bg-secondary-teal/10 text-secondary-teal' :
-                    opportunity.category === 'Volunteer' ? 'bg-secondary-orange/10 text-secondary-orange' :
-                      'bg-neutral-dark/10 text-neutral-dark'
-                  }`}>
-                  {opportunity.category}
-                </span>
-              </div>
+          {/* Type & Status Badges */}
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <span className={`px-4 py-2 rounded-full text-sm font-medium ${getTypeBadgeColor(opportunity.type)}`}>
+              {opportunity.type.charAt(0).toUpperCase() + opportunity.type.slice(1)}
+            </span>
+            <span className={`px-4 py-2 rounded-full text-sm font-medium ${isOpen ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+              {isOpen ? '● Open' : '● Closed'}
+            </span>
+            <span className="px-4 py-2 rounded-full text-sm font-medium bg-neutral-100 text-neutral-700">
+              {opportunity.category}
+            </span>
+          </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-neutral-gray">
-                <div className="flex items-center">
-                  <MapPin size={14} className="mr-2" />
-                  {opportunity.location}
-                </div>
-                <div className="flex items-center">
-                  <Clock size={14} className="mr-2" />
-                  {opportunity.duration}
-                </div>
-                <div className="flex items-center">
-                  <Briefcase size={14} className="mr-2" />
-                  {opportunity.type}
-                </div>
-                <div className="flex items-center">
-                  <Calendar size={14} className="mr-2" />
-                  Deadline: {new Date(opportunity.deadline).toLocaleDateString()}
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-neutral-gray leading-relaxed">{opportunity.description}</p>
-            </CardContent>
-          </Card>
+          {/* Title */}
+          <h1 className="text-4xl lg:text-5xl font-light text-neutral-900 mb-6 leading-tight">
+            {opportunity.title}
+          </h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main Content */}
+          {/* Meta Info Row */}
+          <div className="flex flex-wrap items-center gap-6 text-neutral-600 mb-8">
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-secondary-teal/10 rounded-xl flex items-center justify-center mr-3">
+                <MapPin size={18} className="text-secondary-teal" />
+              </div>
+              <span>{opportunity.location}</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-secondary-teal/10 rounded-xl flex items-center justify-center mr-3">
+                <Building2 size={18} className="text-secondary-teal" />
+              </div>
+              <span>{opportunity.department}</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-secondary-teal/10 rounded-xl flex items-center justify-center mr-3">
+                <Clock size={18} className="text-secondary-teal" />
+              </div>
+              <span>{opportunity.duration}</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-secondary-orange/10 rounded-xl flex items-center justify-center mr-3">
+                <Calendar size={18} className="text-secondary-orange" />
+              </div>
+              <span className="font-medium">Deadline: {new Date(opportunity.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="text-lg text-neutral-600 leading-relaxed max-w-4xl font-light">
+            {opportunity.description}
+          </p>
+        </div>
+
+        {/* Main Content */}
+        <div className="container mx-auto px-6 pb-20">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+            {/* Left Column - Details */}
             <div className="lg:col-span-2 space-y-8">
+
               {/* Responsibilities */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Key Responsibilities</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {opportunity.responsibilities.map((responsibility, index) => (
-                      <li key={index} className="flex items-start">
-                        <CheckCircle size={16} className="text-primary mr-3 mt-1 flex-shrink-0" />
-                        <span className="text-neutral-gray">{responsibility}</span>
+              {(opportunity.responsibilities || []).length > 0 && (
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-neutral-100">
+                  <h2 className="text-2xl font-medium text-neutral-900 mb-6">Key Responsibilities</h2>
+                  <ul className="space-y-4">
+                    {(opportunity.responsibilities || []).map((item, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <div className="w-2 h-2 bg-primary rounded-full mt-2.5 mr-4 flex-shrink-0"></div>
+                        <span className="text-neutral-600 leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </div>
+              )}
 
               {/* Requirements */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Requirements & Qualifications</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {opportunity.requirements.map((requirement, index) => (
-                      <li key={index} className="flex items-start">
-                        <CheckCircle size={16} className="text-secondary-teal mr-3 mt-1 flex-shrink-0" />
-                        <span className="text-neutral-gray">{requirement}</span>
+              {(opportunity.requirements || []).length > 0 && (
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-neutral-100">
+                  <h2 className="text-2xl font-medium text-neutral-900 mb-6">Requirements & Qualifications</h2>
+                  <ul className="space-y-4">
+                    {(opportunity.requirements || []).map((item, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <div className="w-2 h-2 bg-secondary-teal rounded-full mt-2.5 mr-4 flex-shrink-0"></div>
+                        <span className="text-neutral-600 leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </div>
+              )}
 
               {/* Benefits */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Benefits & Compensation</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {opportunity.benefits.map((benefit, index) => (
-                      <li key={index} className="flex items-start">
-                        <CheckCircle size={16} className="text-secondary-orange mr-3 mt-1 flex-shrink-0" />
-                        <span className="text-neutral-gray">{benefit}</span>
+              {(opportunity.benefits || []).length > 0 && (
+                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-neutral-100">
+                  <h2 className="text-2xl font-medium text-neutral-900 mb-6">Benefits & Compensation</h2>
+                  <ul className="space-y-4">
+                    {(opportunity.benefits || []).map((item, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <CheckCircle2 size={18} className="text-secondary-orange mt-0.5 mr-4 flex-shrink-0" />
+                        <span className="text-neutral-600 leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </div>
+              )}
             </div>
 
-            {/* Sidebar */}
+            {/* Right Column - Sidebar */}
             <div className="space-y-6">
-              {/* Quick Info */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Quick Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-1">Department</h4>
-                    <p className="text-neutral-gray">{opportunity.department}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Compensation</h4>
-                    <p className="text-neutral-gray">{opportunity.salary}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Application Deadline</h4>
-                    <p className="text-neutral-gray">{new Date(opportunity.deadline).toLocaleDateString('en-US', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}</p>
-                  </div>
-                </CardContent>
-              </Card>
 
-              {/* Apply Now */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Ready to Apply?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-neutral-gray mb-4">
-                    Send your CV and cover letter to join our mission of advancing access to justice.
-                  </p>
-                  <Button className="w-full bg-primary hover:bg-primary/90 mb-3">
-                    Apply Now
-                  </Button>
-                  <Link to="/contact">
-                    <Button variant="outline" className="w-full">
-                      Ask Questions
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+              {/* Quick Info Card */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-neutral-100 sticky top-24">
+                <h3 className="text-lg font-medium text-neutral-900 mb-6">Quick Information</h3>
 
-              {/* Contact Info */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Need More Information?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-neutral-gray text-sm">
-                    Contact our HR team for additional details about this position.
-                  </p>
-                  <Link to="/contact" className="text-primary text-sm hover:underline">
-                    Get in touch →
-                  </Link>
-                </CardContent>
-              </Card>
+                <div className="space-y-5">
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-secondary-teal/10 rounded-xl flex items-center justify-center mr-4">
+                      <Briefcase size={18} className="text-secondary-teal" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-neutral-500 uppercase tracking-wide">Type</p>
+                      <p className="text-neutral-900 font-medium">{opportunity.type.charAt(0).toUpperCase() + opportunity.type.slice(1)}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-secondary-orange/10 rounded-xl flex items-center justify-center mr-4">
+                      <Banknote size={18} className="text-secondary-orange" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-neutral-500 uppercase tracking-wide">Compensation</p>
+                      <p className="text-neutral-900 font-medium">{opportunity.salary || 'Competitive'}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
+                      <Clock size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-neutral-500 uppercase tracking-wide">Duration</p>
+                      <p className="text-neutral-900 font-medium">{opportunity.duration}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr className="my-6 border-neutral-100" />
+
+                {/* Apply CTA */}
+                {isOpen ? (
+                  <div className="space-y-3">
+                    {opportunity.applicationLink ? (
+                      <a href={opportunity.applicationLink} target="_blank" rel="noopener noreferrer" className="block">
+                        <Button className="w-full bg-primary hover:bg-primary/90 rounded-xl h-12 text-base font-medium group">
+                          Apply Now
+                          <ExternalLink size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </a>
+                    ) : (
+                      <Link to="/contact">
+                        <Button className="w-full bg-primary hover:bg-primary/90 rounded-xl h-12 text-base font-medium">
+                          Apply Now
+                        </Button>
+                      </Link>
+                    )}
+                    <Link to="/contact">
+                      <Button variant="outline" className="w-full rounded-xl h-12 text-base font-medium">
+                        Ask Questions
+                      </Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="bg-red-50 text-red-700 text-center py-4 rounded-xl font-medium">
+                    This opportunity is closed
+                  </div>
+                )}
+              </div>
+
+              {/* Contact Card */}
+              <div className="bg-gradient-to-br from-secondary-teal/10 to-primary/10 rounded-3xl p-6 border border-neutral-100">
+                <h3 className="text-lg font-medium text-neutral-900 mb-2">Need More Information?</h3>
+                <p className="text-neutral-600 text-sm mb-4">
+                  Our HR team is happy to answer any questions about this position.
+                </p>
+                <Link to="/contact" className="inline-flex items-center text-primary font-medium hover:underline group">
+                  Get in touch
+                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

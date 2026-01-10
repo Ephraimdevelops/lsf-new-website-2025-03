@@ -125,6 +125,7 @@ export default defineSchema({
     position: v.string(),
     bio: v.string(),
     image: v.string(),
+    quote: v.optional(v.string()), // Personal quote for detail page
     linkedin: v.optional(v.string()),
     email: v.optional(v.string()),
     twitter: v.optional(v.string()),
