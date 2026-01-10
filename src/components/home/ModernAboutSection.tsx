@@ -19,26 +19,26 @@ const ModernAboutSection = () => {
     return (
         <section
             ref={sectionRef as any}
-            className="py-10 md:py-12 bg-white"
+            className="py-20 bg-white"
         >
             <Container>
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
                     {/* Content Side */}
                     <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
 
                         {/* Colored Pill Badge */}
-                        <div className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-5 py-1.5 mb-4">
-                            <Target className="h-3.5 w-3.5" />
-                            <span className="font-bold text-xs uppercase tracking-widest">Who We Are</span>
+                        <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 mb-6">
+                            <Target className="h-4 w-4" />
+                            <span className="font-bold text-sm uppercase tracking-widest">Who We Are</span>
                         </div>
 
                         <Typography variant="h2" className="mb-6 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gray-900 tracking-tight">
                             Justice Within <span className="text-primary">Reach</span>
                         </Typography>
 
-                        {/* Removed Border-left accent for cleaner look */}
-                        <div className="mb-8">
+                        {/* Border-left accent */}
+                        <div className="border-l-4 border-primary pl-6 mb-8">
                             <p className="font-medium text-gray-900 text-lg mb-3">
                                 We believe the law should protect everyone, everywhere.
                             </p>
@@ -65,7 +65,7 @@ const ModernAboutSection = () => {
                             ))}
                         </div>
 
-                        <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-5 h-auto text-base font-bold transition-all hover:scale-105">
+                        <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-5 h-auto text-base font-bold transition-all hover:scale-105 shadow-lg">
                             <Link to="/about">
                                 Our Story
                                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -73,12 +73,12 @@ const ModernAboutSection = () => {
                         </Button>
                     </div>
 
-                    {/* Image Side - Removed Shadow */}
+                    {/* Image Side */}
                     <div className={`relative transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
                         <img
                             src="/lovable-uploads/Untitled design-5.png"
                             alt="LSF Community Work"
-                            className="w-full h-[600px] lg:h-[700px] object-cover rounded-3xl hover:scale-[1.02] transition-transform duration-500"
+                            className="w-full h-[500px] object-cover rounded-3xl"
                         />
                     </div>
 

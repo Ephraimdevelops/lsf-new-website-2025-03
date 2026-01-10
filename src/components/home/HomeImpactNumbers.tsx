@@ -19,9 +19,9 @@ const HomeImpactNumbers = () => {
     ];
 
     return (
-        <section className="py-20 bg-white overflow-hidden p-0 m-0">
+        <section className="bg-white overflow-hidden p-0 m-0 border-none">
             {/* Continuous Stats Ticker - Deep Maroon Brand Theme */}
-            <div className="w-full bg-primary border-y border-primary-dark py-12 relative overflow-hidden">
+            <div className="w-full bg-primary border-y border-primary-dark py-20 relative overflow-hidden">
                 {/* Background Pattern */}
                 <div
                     className="absolute inset-0 opacity-10 bg-repeat space-x-4"
