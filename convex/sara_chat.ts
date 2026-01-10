@@ -40,6 +40,58 @@ export const saveMessage = internalMutation({
     },
 });
 
+// Mutation for USER messages (called strictly from Frontend)
+export const sendMessage = mutation({
+    args: {
+        content: v.string(),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        // TODO: Re-enable strict auth
+        const userId = identity?.subject || "anonymous_dev_user";
+
+        await ctx.db.insert("sara_chats", {
+            userId,
+            role: "user",
+            content: args.content,
+            timestamp: Date.now(),
+        });
+    }
+});
+
+// Internal mutation to INITIALIZE a bot message 
+export const createBotMessage = internalMutation({
+    args: {
+        userId: v.string(),
+    },
+    handler: async (ctx, args) => {
+        return await ctx.db.insert("sara_chats", {
+            userId: args.userId,
+            role: "assistant",
+            content: "", // Start empty
+            timestamp: Date.now(),
+        });
+    }
+});
+
+// Internal mutation to UPDATE a message token-by-token (or chunk)
+export const updateMessage = internalMutation({
+    args: {
+        messageId: v.id("sara_chats"),
+        content: v.string(),
+        isDone: v.boolean(),
+        tokens: v.optional(v.number()),
+        toolCalls: v.optional(v.array(v.string()))
+    },
+    handler: async (ctx, args) => {
+        await ctx.db.patch(args.messageId, {
+            content: args.content,
+            ...(args.tokens && { tokens: args.tokens }),
+            ...(args.toolCalls && { toolCalls: args.toolCalls }),
+        });
+    }
+});
+
 // Mutation to clear history
 export const clearHistory = mutation({
     args: {},

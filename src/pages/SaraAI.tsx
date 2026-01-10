@@ -57,6 +57,8 @@ const SaraAIPage = () => {
     { icon: <Sparkles className="h-5 w-5" />, text: 'Explain inheritance laws in Tanzania', color: 'text-purple-600 bg-purple-50' }
   ];
 
+  const sendMessageMutation = useMutation(api.sara_chat.sendMessage);
+
   const sendMessage = async (text: string) => {
     if (!text.trim()) return;
 
@@ -64,21 +66,18 @@ const SaraAIPage = () => {
     setIsTyping(true);
 
     try {
-      // We rely on the Action to save the User message to the DB
-      // which will then auto-update via useQuery.
-      // However, to prevent a "flash" of empty state, we could optimistically add it,
-      // but for V1 let's trust the quick DB write.
+      // 1. Instantly save user message to DB
+      await sendMessageMutation({ content: text.trim() });
 
-      const responseText = await askSara({
+      // 2. Trigger AI Action (Background)
+      // We don't need to await the result for UI updates, but we await to catch errors
+      await askSara({
         message: text.trim(),
         history: messages.slice(-10).map(m => ({
           role: m.sender,
           content: m.text
         }))
       });
-
-      // We also verify if responseText was saved by checking if we need to do anything manually.
-      // The action saves it, so we do nothing!
 
     } catch (error) {
       console.error(error);
@@ -252,58 +251,66 @@ const SaraAIPage = () => {
                         : 'bg-white border border-gray-100 text-gray-800 rounded-tl-sm'
                         }`}>
                         <div className="prose prose-sm max-w-none break-words leading-relaxed">
-                          <ReactMarkdown
-                            components={{
-                              p: ({ node, children }) => {
-                                // Check if children is a string and contains our marker
-                                if (typeof children === 'string' && children.includes('::PARALEGAL_CARD:')) {
-                                  try {
-                                    const parts = children.split(/(::PARALEGAL_CARD:.*?::)/g);
-                                    return (
-                                      <span>
-                                        {parts.map((part, i) => {
-                                          if (part.startsWith('::PARALEGAL_CARD:')) {
-                                            const jsonStr = part.replace('::PARALEGAL_CARD:', '').replace('::', '');
-                                            const data = JSON.parse(jsonStr);
-                                            return (
-                                              <div key={i} className="my-4 bg-blue-50 border border-blue-100 rounded-xl p-4 not-prose hover:shadow-md transition-all">
-                                                <div className="flex items-start gap-3">
-                                                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-xl shadow-sm">
-                                                    ⚖️
-                                                  </div>
-                                                  <div>
-                                                    <h4 className="font-bold text-gray-900">{data.name}</h4>
-                                                    <div className="flex items-center gap-1 text-xs text-gray-600 mt-1">
-                                                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                                                      Verified Paralegal
+                          {!msg.text && msg.sender === 'assistant' ? (
+                            <div className="flex items-center gap-1.5 h-6 text-gray-400">
+                              <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse"></span>
+                              <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse delay-150"></span>
+                              <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse delay-300"></span>
+                            </div>
+                          ) : (
+                            <ReactMarkdown
+                              components={{
+                                p: ({ node, children }) => {
+                                  // Check if children is a string and contains our marker
+                                  if (typeof children === 'string' && children.includes('::PARALEGAL_CARD:')) {
+                                    try {
+                                      const parts = children.split(/(::PARALEGAL_CARD:.*?::)/g);
+                                      return (
+                                        <span>
+                                          {parts.map((part, i) => {
+                                            if (part.startsWith('::PARALEGAL_CARD:')) {
+                                              const jsonStr = part.replace('::PARALEGAL_CARD:', '').replace('::', '');
+                                              const data = JSON.parse(jsonStr);
+                                              return (
+                                                <div key={i} className="my-4 bg-blue-50 border border-blue-100 rounded-xl p-4 not-prose hover:shadow-md transition-all">
+                                                  <div className="flex items-start gap-3">
+                                                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-xl shadow-sm">
+                                                      ⚖️
                                                     </div>
-                                                    <p className="text-sm text-gray-700 mt-2 flex items-center gap-2">
-                                                      <span>📍 {data.region}</span>
-                                                      <span>•</span>
-                                                      <span>📞 {data.phone}</span>
-                                                    </p>
-                                                    <button className="mt-3 w-full bg-blue-600 text-white text-xs font-bold py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                                                      Connect Now
-                                                    </button>
+                                                    <div>
+                                                      <h4 className="font-bold text-gray-900">{data.name}</h4>
+                                                      <div className="flex items-center gap-1 text-xs text-gray-600 mt-1">
+                                                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                                        Verified Paralegal
+                                                      </div>
+                                                      <p className="text-sm text-gray-700 mt-2 flex items-center gap-2">
+                                                        <span>📍 {data.region}</span>
+                                                        <span>•</span>
+                                                        <span>📞 {data.phone}</span>
+                                                      </p>
+                                                      <button className="mt-3 w-full bg-blue-600 text-white text-xs font-bold py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                                        Connect Now
+                                                      </button>
+                                                    </div>
                                                   </div>
                                                 </div>
-                                              </div>
-                                            );
-                                          }
-                                          return part;
-                                        })}
-                                      </span>
-                                    );
-                                  } catch (e) {
-                                    return <p>{children}</p>;
+                                              );
+                                            }
+                                            return part;
+                                          })}
+                                        </span>
+                                      );
+                                    } catch (e) {
+                                      return <p>{children}</p>;
+                                    }
                                   }
+                                  return <p>{children}</p>;
                                 }
-                                return <p>{children}</p>;
-                              }
-                            }}
-                          >
-                            {msg.text}
-                          </ReactMarkdown>
+                              }}
+                            >
+                              {msg.text}
+                            </ReactMarkdown>
+                          )}
                         </div>
 
                         {/* Feedback buttons for assistant messages */}
