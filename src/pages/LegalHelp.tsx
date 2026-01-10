@@ -303,30 +303,49 @@ const LegalHelp = () => {
             )}
           </div>
 
-          {/* ALTERNATIVE HELP - Replaces "View Directory" */}
-          <div className="mt-24 pt-10 border-t border-gray-100">
-            <div className="max-w-4xl mx-auto bg-blue-50/50 rounded-3xl p-8 md:p-12 border border-blue-100 flex flex-col md:flex-row items-center gap-8 md:gap-12">
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Still need legal assistance?</h3>
-                <p className="text-gray-600 mb-6">
-                  If you can't find a paralegal nearby, our AI assistant SARA is available 24/7 to answer your questions, or you can use the Haki Yangu app.
-                </p>
-                <div className="flex flex-wrap justify-center md:justify-start gap-4">
+          {/* DIRECT HELP OPTIONS - CLEAN & ACCESSIBLE */}
+          <div className="mt-20 pt-10 border-t border-gray-100">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">More Ways to Get Help</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* SARA Card */}
+              <div className="bg-primary rounded-3xl p-8 text-white relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-8 opacity-10 transform group-hover:scale-110 transition-transform duration-700">
+                  <Bot className="w-32 h-32" />
+                </div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-6">
+                    <Bot className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold mb-2">Ask Sara AI</h4>
+                  <p className="text-white/80 mb-6 max-w-sm">
+                    Get instant legal guidance 24/7. Completely private and anonymous.
+                  </p>
                   <Link to="/sara-ai">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-6">
-                      Ask Sara AI
-                    </Button>
-                  </Link>
-                  <Link to="/haki-yangu">
-                    <Button variant="outline" className="bg-white border-gray-200 text-gray-900 rounded-xl px-6">
-                      Get the App
+                    <Button className="bg-white text-primary hover:bg-gray-100 rounded-xl px-6 font-bold">
+                      Start Chat
                     </Button>
                   </Link>
                 </div>
               </div>
-              <div className="w-full md:w-auto flex justify-center">
-                <div className="w-24 h-24 bg-white rounded-full p-4 shadow-xl shadow-blue-100/50 flex items-center justify-center ring-4 ring-blue-50">
-                  <Bot className="w-12 h-12 text-blue-600" />
+
+              {/* App Card */}
+              <div className="bg-gray-100 rounded-3xl p-8 text-gray-900 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-8 opacity-5 transform group-hover:scale-110 transition-transform duration-700">
+                  <Smartphone className="w-32 h-32" />
+                </div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6 shadow-sm">
+                    <Smartphone className="w-6 h-6 text-primary" />
+                  </div>
+                  <h4 className="text-2xl font-bold mb-2">Haki Yangu App</h4>
+                  <p className="text-gray-600 mb-6 max-w-sm">
+                    Report issues and access legal resources offline.
+                  </p>
+                  <Link to="/haki-yangu">
+                    <Button variant="outline" className="bg-white border-gray-200 text-gray-900 hover:bg-gray-50 rounded-xl px-6 font-bold">
+                      Download App
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -334,103 +353,65 @@ const LegalHelp = () => {
         </Container>
       </section>
 
-      {/* SARA AI SECTION - Redesigned as a Feature Block */}
-      <section className="py-24 relative overflow-hidden bg-primary"> {/* UPDATED TO PRIMARY */}
-        {/* Background Gradients */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary-teal/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-black/20 rounded-full blur-[100px]" />
+      {/* SARA AI SECTION - CLEAN & CORPORATE */}
+      <section className="py-24 relative overflow-hidden bg-primary">
+        {/* Simple Brand Pattern Overlay */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <img src="/pattern-bg.png" alt="" className="w-full h-full object-cover" />
+        </div>
 
         <Container className="relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 relative">
-              {/* Chat Interface Mockup */}
-              <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl mr-8">
-                <div className="p-4 border-b border-white/10 flex items-center gap-3 bg-white/5">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-bold shadow-lg shadow-cyan-500/30">
+              {/* Clean Chat Mockup */}
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/10">
+                <div className="bg-gray-50 p-4 border-b border-gray-100 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                     S
                   </div>
                   <div>
-                    <p className="font-bold text-white">Sara AI</p>
-                    <p className="text-xs text-cyan-400 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                      Online & Ready
+                    <p className="font-bold text-gray-900">Sara AI</p>
+                    <p className="text-xs text-green-600 flex items-center gap-1.5 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                      Online
                     </p>
                   </div>
                 </div>
-
-                <div className="p-6 h-[400px] flex flex-col justify-end space-y-4">
-                  {/* Mock Messages */}
-                  <div className="bg-white/5 rounded-2xl rounded-tl-sm p-4 text-gray-300 transform scale-95 opacity-50 origin-bottom-left">
-                    <p className="text-sm">I have a question about land inheritance.</p>
+                <div className="p-6 h-[350px] bg-white flex flex-col justify-end space-y-4">
+                  <div className="self-end bg-gray-100 rounded-2xl rounded-tr-sm p-4 max-w-[80%]">
+                    <p className="text-sm text-gray-800">Can I report a land dispute through my phone?</p>
                   </div>
-                  <div className="bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/20 rounded-2xl rounded-tl-sm p-4 text-white">
-                    <p className="text-sm leading-relaxed">
-                      Hello! As an AI assistant trained on Tanzanian law, I can help explaining the legal framework for land inheritance under the Land Act No. 4 of 1999 and the Village Land Act No. 5 of 1999.
+                  <div className="self-start bg-blue-50 border border-blue-100 rounded-2xl rounded-tl-sm p-4 max-w-[90%]">
+                    <p className="text-sm text-gray-800 leading-relaxed">
+                      Yes! You can report disputes directly using the Haki Yangu App, or I can help you find a paralegal in your district right now.
                     </p>
                   </div>
-                  <div className="bg-white/5 rounded-2xl p-2 mt-2">
-                    <div className="flex gap-2">
-                      <Input
-                        placeholder="Ask a legal question..."
-                        className="bg-transparent border-none text-white focus-visible:ring-0 placeholder:text-gray-500"
-                        value={chatInput}
-                        onChange={(e) => setChatInput(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                      />
-                      <Button size="icon" onClick={handleSendMessage} className="bg-cyan-500 hover:bg-cyan-400 rounded-xl text-black">
-                        <Send className="h-4 w-4" />
-                      </Button>
-                    </div>
+                  <div className="mt-4 pt-4 border-t border-gray-100 flex gap-2">
+                    <div className="h-10 flex-1 bg-gray-50 rounded-xl border border-gray-200" />
+                    <div className="h-10 w-10 bg-primary rounded-xl" />
                   </div>
-                </div>
-              </div>
-
-              {/* Floating Badge */}
-              <div className="absolute -bottom-6 -right-0 bg-white text-gray-900 p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce-slow">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                  <Bot className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="font-bold text-lg">24/7 Support</p>
-                  <p className="text-sm text-gray-500">Always available</p>
                 </div>
               </div>
             </div>
 
             <div className="order-1 lg:order-2 text-white">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-sm font-bold uppercase tracking-wider mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 text-sm font-bold uppercase tracking-wider mb-6">
                 <Sparkles className="h-4 w-4" />
-                <span>Meet Sara AI</span>
+                <span>AI Assistant</span>
               </div>
 
-              <h2 className="text-5xl lg:text-7xl font-black mb-6 leading-tight">
-                Legal Advice, <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Reimagined.</span>
+              <h2 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">
+                Instant Legal Guidance.<br />
+                <span className="text-white/70">Powered by LSF Data.</span>
               </h2>
 
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Don't wait for office hours. Sara provides instant, accurate legal information based on Tanzanian Acts and Regulations. Using advanced AI, she breaks down complex laws into simple, actionable advice.
+              <p className="text-lg text-white/80 mb-8 leading-relaxed max-w-xl">
+                Sara is trained on Tanzanian laws and LSF's extensive legal resources. She provides simple, accurate answers to your questions in seconds.
               </p>
 
-              <div className="space-y-4 mb-10">
-                {[
-                  "Instant responses in Swahili & English",
-                  "Trained on 500+ Tanzanian legal documents",
-                  "Completely private and anonymous",
-                  "Direct escalation to human paralegals"
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-cyan-400" />
-                    </div>
-                    <span className="text-gray-300 text-lg">{item}</span>
-                  </div>
-                ))}
-              </div>
-
               <Link to="/sara-ai">
-                <Button size="lg" className="h-16 px-8 rounded-full bg-white text-gray-900 hover:bg-gray-100 font-bold text-lg gap-2">
-                  Chat with Sara Now
+                <Button size="lg" className="h-14 px-8 rounded-xl bg-white text-primary hover:bg-gray-100 font-bold text-lg gap-2">
+                  Chat with Sara
                   <ArrowRight className="h-5 w-5" />
                 </Button>
               </Link>
@@ -439,60 +420,68 @@ const LegalHelp = () => {
         </Container>
       </section>
 
-      {/* HAKI YANGU SECTION - Full Feature */}
-      <section className="py-24 bg-white relative">
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-full bg-gray-50 -z-0 rounded-r-[100px]" />
-
-        <Container className="relative z-10">
+      {/* HAKI YANGU APP - CLEAN SPLIT */}
+      <section className="py-24 bg-white">
+        <Container>
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative mx-auto lg:mx-0">
-              {/* Phone Mockup would go here */}
-              <div className="relative z-10 w-[300px] h-[600px] bg-gray-900 rounded-[3rem] border-8 border-gray-900 shadow-2xl mx-auto overflow-hidden">
-                <img src="/lovable-uploads/haki yangu app uzinuzi.webp" alt="Haki Yangu App" className="w-full h-full object-cover" />
-              </div>
-
-              {/* Decorative Circle */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-gray-200 rounded-full -z-10" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-gray-200 rounded-full -z-10 bg-white" />
-            </div>
-
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-bold uppercase tracking-wider text-sm mb-6">
+            {/* Left: Content */}
+            <div className="order-2 lg:order-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary font-bold uppercase tracking-wider text-sm mb-6">
                 <Smartphone className="h-4 w-4" />
-                <span>Mobile App</span>
+                <span>Haki Yangu App</span>
               </div>
 
-              <h2 className="text-5xl font-bold text-gray-900 mb-6">Haki Yangu in Your Pocket</h2>
+              <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6">Your Pocket Legal Aid.</h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Download the award-winning Haki Yangu app to report human rights valuations, access legal resources offline, and track your cases securely.
+                Report human rights violations securely and access legal education materials offline. Designed for every Tanzanian.
               </p>
 
-              <div className="grid grid-cols-2 gap-6 mb-10">
-                <div className="p-4 bg-gray-50 rounded-2xl">
-                  <Shield className="h-8 w-8 text-primary mb-3" />
-                  <h3 className="font-bold text-gray-900 mb-1">Secure Reporting</h3>
-                  <p className="text-sm text-gray-500">Submit reports anonymously with evidence</p>
+              <div className="space-y-6 mb-10">
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+                    <Shield className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-lg">Secure Reporting</h4>
+                    <p className="text-gray-600">Submit reports with photos and location data securely.</p>
+                  </div>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-2xl">
-                  <Download className="h-8 w-8 text-primary mb-3" />
-                  <h3 className="font-bold text-gray-900 mb-1">Offline Access</h3>
-                  <p className="text-sm text-gray-500">Read legal guides without internet</p>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+                    <Download className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-lg">Offline Library</h4>
+                    <p className="text-gray-600">Access acts, regulations, and guides without internet.</p>
+                  </div>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <Button className="h-16 px-6 rounded-xl bg-black hover:bg-gray-800 text-white flex items-center gap-3">
+                <Button className="h-14 px-6 rounded-xl bg-black hover:bg-gray-800 text-white flex items-center gap-3">
                   <div className="text-left">
-                    <p className="text-[10px] uppercase font-bold tracking-wider">Download on the</p>
-                    <p className="text-lg font-bold leading-none">App Store</p>
+                    <span className="text-[10px] uppercase font-bold tracking-wider block">Download on</span>
+                    <span className="font-bold leading-none">App Store</span>
                   </div>
                 </Button>
-                <Button className="h-16 px-6 rounded-xl bg-black hover:bg-gray-800 text-white flex items-center gap-3">
+                <Button className="h-14 px-6 rounded-xl bg-black hover:bg-gray-800 text-white flex items-center gap-3">
                   <div className="text-left">
-                    <p className="text-[10px] uppercase font-bold tracking-wider">Get it on</p>
-                    <p className="text-lg font-bold leading-none">Google Play</p>
+                    <span className="text-[10px] uppercase font-bold tracking-wider block">Get it on</span>
+                    <span className="font-bold leading-none">Google Play</span>
                   </div>
                 </Button>
+              </div>
+            </div>
+
+            {/* Right: Mockup */}
+            <div className="order-1 lg:order-2 flex justify-center">
+              <div className="relative">
+                <div className="w-[300px] h-[600px] bg-gray-900 rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden relative z-10">
+                  {/* Replace with actual screenshot or placeholder */}
+                  <img src="/lovable-uploads/haki yangu app uzinuzi.webp" alt="Haki Yangu App Interface" className="w-full h-full object-cover" />
+                </div>
+                {/* Clean Circle Decor */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gray-50 rounded-full -z-0" />
               </div>
             </div>
           </div>
