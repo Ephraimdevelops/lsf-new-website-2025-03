@@ -40,7 +40,7 @@ const WhyLSFSection = () => {
                         Why Legal Services Facility?
                     </Typography>
                     <Typography variant="body" className="text-gray-600 max-w-3xl mx-auto text-xl leading-relaxed">
-                        For over 14 years, we've been building the infrastructure for accessible justice,
+                        For over 15 years, we've been building the infrastructure for accessible justice,
                         one community at a time.
                     </Typography>
                 </div>
