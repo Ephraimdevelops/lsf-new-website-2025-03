@@ -21,9 +21,9 @@ const timelineEvents: TimelineEvent[] = [
   {
     year: '2015',
     title: 'National Expansion',
-    description: 'Extended legal aid services to all 184 districts across Tanzania through strategic partnerships.',
+    description: 'Extended legal aid services to all 168 districts across Tanzania through strategic partnerships.',
     icon: <Globe className="h-6 w-6" />,
-    stats: '184 Districts'
+    stats: '168 Districts'
   },
   {
     year: '2018',

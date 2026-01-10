@@ -31,7 +31,7 @@ const LegalAidWidget = () => {
           </div>
           <div>
             <h3 className="text-primary text-3xl font-bold font-heading">Get Free Legal Aid</h3>
-            <p className="text-neutral-600 text-lg">Available in all 184 districts</p>
+            <p className="text-neutral-600 text-lg">Available in all 168 districts</p>
           </div>
         </div>
         

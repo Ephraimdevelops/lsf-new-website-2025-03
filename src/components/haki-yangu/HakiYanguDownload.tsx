@@ -7,7 +7,7 @@ const HakiYanguDownload = () => {
   const features = [
     { icon: Shield, label: 'Secure & Private', description: 'Your data is protected' },
     { icon: Clock, label: '24/7 Access', description: 'Anytime, anywhere' },
-    { icon: Globe, label: 'Nationwide', description: 'All 184 districts' },
+    { icon: Globe, label: 'Nationwide', description: 'All 168 districts' },
   ];
 
   return (

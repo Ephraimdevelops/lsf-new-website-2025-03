@@ -111,7 +111,7 @@ const mockPrograms: Program[] = [
     status: 'active',
     location: ['Dar es Salaam', 'Mwanza', 'Arusha', 'Dodoma', 'Mbeya'],
     objectives: [
-      'Train and deploy community paralegals in all 184 districts',
+      'Train and deploy community paralegals in all 168 districts',
       'Establish sustainable legal aid centers in rural areas',
       'Provide accessible legal information and education to communities',
       'Strengthen access to justice for vulnerable populations'

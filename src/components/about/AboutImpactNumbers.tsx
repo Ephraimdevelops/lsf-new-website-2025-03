@@ -40,7 +40,7 @@ const impactNumbers = [
   },
   {
     icon: <TrendingUp className="h-12 w-12" />,
-    number: "184",
+    number: "168",
     label: "Communities Served",
     description: "From urban centers to remote villages",
     color: "text-purple-500",

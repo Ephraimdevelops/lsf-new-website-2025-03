@@ -18,7 +18,7 @@ const impactStats = [
   },
   { 
     icon: <Globe className="w-8 h-8" />, 
-    value: "184", 
+    value: "168", 
     label: "Districts Covered",
     color: "text-white"
   },

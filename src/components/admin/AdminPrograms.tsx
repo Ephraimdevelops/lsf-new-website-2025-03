@@ -83,7 +83,7 @@ const AdminPrograms = () => {
       endDate: "2025-12-31",
       location: ["Dar es Salaam", "Mwanza", "Arusha"],
       objectives: [
-        "Train community paralegals in all 184 districts",
+        "Train community paralegals in all 168 districts",
         "Establish legal aid centers in rural areas"
       ],
       approach: "Community-driven approach focusing on building local capacity",

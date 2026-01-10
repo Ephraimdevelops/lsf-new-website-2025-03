@@ -48,7 +48,7 @@ const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
             </div>
             <div>
               <Typography variant="h3" className="text-primary">Get Free Legal Aid</Typography>
-              <Typography variant="bodySmall" className="text-neutral-600">Available in all 184 districts</Typography>
+              <Typography variant="bodySmall" className="text-neutral-600">Available in all 168 districts</Typography>
             </div>
           </DialogTitle>
         </DialogHeader>

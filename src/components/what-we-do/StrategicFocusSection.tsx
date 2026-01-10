@@ -79,7 +79,7 @@ const StrategicFocusSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {[
             { icon: Scale, value: "4K+", label: "Paralegals Trained", color: "text-secondary-orange", bg: "from-secondary-orange/20 to-secondary-orange/40" },
-            { icon: Users, value: "184", label: "Communities Served", color: "text-secondary-teal", bg: "from-secondary-teal/20 to-secondary-teal/40" },
+            { icon: Users, value: "168", label: "Communities Served", color: "text-secondary-teal", bg: "from-secondary-teal/20 to-secondary-teal/40" },
             { icon: TrendingUp, value: "15+", label: "Policy Reforms", color: "text-secondary-yellow", bg: "from-secondary-yellow/20 to-secondary-yellow/40" },
             { icon: Globe, value: "200+", label: "Strategic Partners", color: "text-white", bg: "from-white/20 to-white/40" }
           ].map((stat, idx) => (

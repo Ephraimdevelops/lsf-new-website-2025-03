@@ -33,7 +33,7 @@ const defaultHeroSlides: HeroSlide[] = [
     id: 'reach',
     title: 'Every district. Every community.',
     subtitle: 'Legal aid that reaches the unreachable.',
-    description: 'Our network of over 500 trained paralegals spans all 184 districts of Tanzania, bringing justice directly to communities that have been historically underserved. Through mobile clinics, community workshops, and innovative digital tools, we ensure that distance is never a barrier to accessing legal support.',
+    description: 'Our network of over 500 trained paralegals spans all 168 districts of Tanzania, bringing justice directly to communities that have been historically underserved. Through mobile clinics, community workshops, and innovative digital tools, we ensure that distance is never a barrier to accessing legal support.',
     category: 'National Coverage',
     image: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
     stat: '184',
