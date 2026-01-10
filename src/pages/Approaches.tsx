@@ -17,7 +17,7 @@ const approaches = [
     title: 'Direct Implementation',
     description: 'On-ground projects that directly serve communities through legal aid clinics, mobile services, and paralegal programs.',
     link: '/what-we-do/direct-implementation',
-    stats: '85% success rate',
+    stats: '60% ADR resolution rate',
     features: ['Mobile legal clinics', 'Community paralegals', 'Legal aid services']
   },
   {
@@ -56,11 +56,11 @@ const Approaches = () => {
               Strategic Approaches
             </h1>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto font-light leading-relaxed">
-              We employ five strategic approaches to advance access to justice, combining direct service 
+              We employ five strategic approaches to advance access to justice, combining direct service
               delivery with systemic change initiatives.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
             {approaches.map((approach, index) => {
               const IconComponent = approach.icon;
@@ -79,14 +79,14 @@ const Approaches = () => {
                       <CardDescription className="text-neutral-600 mb-4 leading-relaxed">
                         {approach.description}
                       </CardDescription>
-                      
+
                       <div className="mb-4">
                         <div className="inline-flex items-center bg-secondary-teal/10 rounded-full px-4 py-2 mb-3">
                           <span className="text-sm font-medium text-secondary-teal">
                             {approach.stats}
                           </span>
                         </div>
-                        
+
                         <ul className="space-y-2">
                           {approach.features.map((feature, idx) => (
                             <li key={idx} className="flex items-center text-sm text-neutral-600">
@@ -96,7 +96,7 @@ const Approaches = () => {
                           ))}
                         </ul>
                       </div>
-                      
+
                       <div className="flex items-center text-secondary-teal font-medium group-hover:translate-x-2 transition-transform duration-300">
                         Learn more
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -107,7 +107,7 @@ const Approaches = () => {
               );
             })}
           </div>
-          
+
           {/* Integration section */}
           <div className="bg-white/50 rounded-3xl p-12 backdrop-blur-sm border border-neutral-100">
             <div className="text-center mb-8">
@@ -115,11 +115,11 @@ const Approaches = () => {
                 Integrated Approach
               </h2>
               <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-                Our approaches work in synergy, creating a comprehensive ecosystem 
+                Our approaches work in synergy, creating a comprehensive ecosystem
                 for sustainable access to justice.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
                 <div className="text-2xl font-medium text-primary mb-2">Direct</div>
