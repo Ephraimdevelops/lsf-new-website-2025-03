@@ -236,21 +236,21 @@ export const approachData: ApproachData[] = [
     ],
     flagshipProjects: [
       {
-        name: 'Sauti ya Mwanamke',
-        description: 'EU-funded project strengthening women\'s access to justice and voice in governance through comprehensive legal empowerment.',
+        name: 'Sauti ya Mwanamke (IMPAWLA)',
+        description: 'EU-funded project (€4M) through Enabel deploying 4,000+ paralegals to address GBV, land rights, and legal empowerment.',
         outcomes: [
-          { value: '45,000', label: 'Women Empowered' },
-          { value: '15', label: 'Regions Covered' },
-          { value: '78%', label: 'Case Resolution Rate' }
+          { value: '168', label: 'Districts' },
+          { value: '4,000+', label: 'Paralegals' },
+          { value: '60%', label: 'ADR Resolution' }
         ]
       },
       {
         name: 'Wanawake Tunaweza',
-        description: 'Comprehensive women\'s economic and legal empowerment program, particularly targeting rural communities.',
+        description: 'North-South Cooperation initiative in Longido District empowering 209 Maasai women through VICOBA groups and 1,214 girls through education.',
         outcomes: [
-          { value: '30,000', label: 'Beneficiaries' },
-          { value: '12', label: 'Regions' },
-          { value: '85%', label: 'Economic Improvement' }
+          { value: '209', label: 'Women Trained' },
+          { value: '1,214', label: 'Girls Reached' },
+          { value: '11', label: 'VICOBA Groups' }
         ]
       }
     ],

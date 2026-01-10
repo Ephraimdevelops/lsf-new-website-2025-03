@@ -177,10 +177,10 @@ export const focusAreaData: FocusAreaData[] = [
     featuredProjects: [
       {
         name: 'Wanawake Tunaweza',
-        description: 'Empowering women economically and legally, particularly in rural communities, through comprehensive training and support programs.',
-        regions: '12',
-        beneficiaries: '30,000',
-        outcome: '85% economic improvement'
+        description: 'North-South Cooperation initiative in Longido District empowering 209 Maasai women through VICOBA groups and 1,214 girls through education.',
+        regions: 'Longido',
+        beneficiaries: '209+1,214',
+        outcome: 'Economic empowerment'
       },
       {
         name: 'Youth Legal Champions',
@@ -193,8 +193,8 @@ export const focusAreaData: FocusAreaData[] = [
     impact: {
       metrics: [
         { value: '4,000+', label: 'Paralegals Trained' },
-        { value: '184', label: 'Communities Served' },
-        { value: '85%', label: 'Local Dispute Resolution Rate' },
+        { value: '168', label: 'Districts Served' },
+        { value: '60%', label: 'ADR Resolution Rate' },
         { value: '31', label: 'Regions Covered' }
       ],
       testimonial: {
