@@ -39,7 +39,7 @@ const DirectImplementation = () => {
 
   const flagshipProjects = [
     { name: 'Sauti ya Mwanamke (Voice of Women)', description: 'EU-funded project through ENABEL strengthening women\'s access to justice and voice in governance across Tanzania.', outcomes: [{ value: '15,000+', label: 'Women Empowered' }, { value: '25', label: 'Districts' }, { value: '85%', label: 'Success Rate' }], image: '/lovable-uploads/mwanamke shamba.png' },
-    { name: 'Wanawake Tunaweza (Women We Can)', description: 'North South Cooperation-funded initiative empowering women economically and legally, particularly in rural communities.', outcomes: [{ value: '10,000+', label: 'Beneficiaries' }, { value: '12', label: 'Regions' }, { value: '92%', label: 'Satisfaction' }], image: '/lovable-uploads/wanawake tunaweza beenficiaries.jpg' }
+    { name: 'Wanawake Tunaweza (Women We Can)', description: 'North-South Cooperation-funded initiative in Longido District, Arusha Region, empowering Maasai women through VICOBA economic groups and girls\' education.', outcomes: [{ value: '209', label: 'Women Trained' }, { value: '1,214', label: 'Girls Reached' }, { value: '11', label: 'VICOBA Groups' }], image: '/lovable-uploads/wanawake tunaweza beenficiaries.jpg' }
   ];
 
   const achievements = [

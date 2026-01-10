@@ -37,7 +37,7 @@ const EmpoweredCommunities = () => {
   ];
 
   const projects = [
-    { name: 'Wanawake Tunaweza', description: 'Empowering women economically and legally, particularly in rural communities, through comprehensive training and support programs.', regions: '12', beneficiaries: '30,000', outcome: '85% improvement' },
+    { name: 'Wanawake Tunaweza', description: 'North-South Cooperation-funded initiative in Longido District empowering 209 Maasai women through VICOBA groups, with dormitories benefiting 1,214 girls.', regions: 'Longido', beneficiaries: '209+1,214', outcome: 'Economic Empowerment' },
     { name: 'Youth Legal Champions', description: 'Training young people as legal advocates and community mobilizers for peer-to-peer rights education.', regions: '20', beneficiaries: '25,000', outcome: '90% retention' }
   ];
 
