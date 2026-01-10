@@ -7,6 +7,7 @@ import {
   Award,
   CheckCircle2,
   Sparkles,
+  Scale,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Container from '@/components/shared/Container';
@@ -16,21 +17,21 @@ import { Button } from '@/components/ui/button';
 const FlagshipPrograms = () => {
   const programs = [
     {
-      title: 'Sauti ya Mwanamke',
-      subtitle: 'Voice. Rights. Justice.',
+      title: 'Sauti ya Mwanamke (IMPAWLA)',
+      subtitle: 'Improved Access to Justice for Women through Legal Aid',
       description:
-        'A nationwide program amplifying the voices of women and girls affected by violence and legal exclusion. We support survivors with paralegal aid, community dialogues, media advocacy, and legal empowerment.',
+        'Tanzania\'s largest grassroots movement for gender justice. Funded by the European Union (€4 million) and managed by Enabel, this initiative empowers 4,000+ paralegals across 168 districts to address GBV, land rights, and legal empowerment for women and marginalized groups.',
       image: '/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png',
       highlights: [
-        '6+ regions in Tanzania reached',
-        '20,000+ women accessed legal aid',
-        '130+ paralegals trained',
-        'Community leaders engaged',
+        'EU-funded through Enabel partnership',
+        '4,000+ community paralegals deployed',
+        '168 districts covered nationwide',
+        'TZS 10.7 billion (€4M) investment',
       ],
       stats: [
-        { value: '20K+', label: 'Women Reached' },
-        { value: '6', label: 'Regions' },
-        { value: '130+', label: 'Paralegals' },
+        { value: '168', label: 'Districts' },
+        { value: '4K+', label: 'Paralegals' },
+        { value: '60%', label: 'ADR Resolution' },
       ],
       color: 'bg-secondary-orange',
       accentColor: 'text-secondary-orange',
@@ -40,25 +41,49 @@ const FlagshipPrograms = () => {
     },
     {
       title: 'Wanawake Tunaweza',
-      subtitle: 'Empowering Women to Know and Use the Law',
+      subtitle: 'Women We Can – Economic & Legal Empowerment',
       description:
-        'Focused on strengthening women\'s legal capabilities — from land rights to GBV protection and identity access. Building literacy, confidence, and empowerment.',
+        'Implemented in Longido District (Arusha Region) with North-South Cooperation of Luxembourg. This initiative targets Maasai women through VICOBA economic groups, entrepreneurship training, girls\' dormitories, and male champion engagement to shift patriarchal norms.',
       image: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
       highlights: [
-        '12,000+ women trained in legal literacy',
-        'Women-led rights clubs in 8 districts',
-        'Gender rights reform advocacy',
+        '209 women in 11 economic groups trained',
+        '1,214 girls benefited from dormitories',
+        '20 traditional leaders engaged as change agents',
+        '"Osiligi" sewing cooperative established',
       ],
       stats: [
-        { value: '12K+', label: 'Women Trained' },
-        { value: '8', label: 'Districts' },
-        { value: '50+', label: 'Rights Clubs' },
+        { value: '209', label: 'Women Trained' },
+        { value: '1,214', label: 'Girls Reached' },
+        { value: '11', label: 'VICOBA Groups' },
       ],
       color: 'bg-secondary-teal',
       accentColor: 'text-secondary-teal',
       borderColor: 'border-secondary-teal',
       icon: <Users className="h-7 w-7" />,
       link: '/programs/wanawake-tunaweza',
+    },
+    {
+      title: 'Mama Samia Legal Aid Campaign',
+      subtitle: 'Strategic Co-Lead & National Funder',
+      description:
+        'LSF serves as Vice-Chair of the National Campaign Committee alongside the Ministry of Constitutional and Legal Affairs. In 2023, LSF disbursed TZS 3.1 billion to 168 implementing partners, deploying 4,000+ paralegals as the primary frontline workforce.',
+      image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
+      highlights: [
+        'LSF CEO is Vice-Chair of National Committee',
+        'TZS 3.1 Billion disbursed to 168 partners',
+        '4,000+ paralegals deployed nationwide',
+        'All 31 regions of Tanzania covered',
+      ],
+      stats: [
+        { value: '3.1B', label: 'TZS Disbursed' },
+        { value: '168', label: 'Partners' },
+        { value: '31', label: 'Regions' },
+      ],
+      color: 'bg-primary',
+      accentColor: 'text-primary',
+      borderColor: 'border-primary',
+      icon: <Scale className="h-7 w-7" />,
+      link: '/focus-areas/accessible-legal-aid',
     },
   ];
 
@@ -75,7 +100,7 @@ const FlagshipPrograms = () => {
           <div className="inline-flex items-center gap-3 bg-primary/10 rounded-full px-6 py-3 mb-8">
             <Sparkles className="h-5 w-5 text-primary" />
             <span className="text-primary font-bold text-sm uppercase tracking-widest">
-              Flagship Programs
+              Flagship Initiatives
             </span>
           </div>
 
@@ -138,7 +163,7 @@ const FlagshipPrograms = () => {
                   {/* Program Label */}
                   <div className={`inline-flex items-center gap-2 ${program.accentColor} font-bold text-sm uppercase tracking-widest mb-4`}>
                     <Award className="h-4 w-4" />
-                    Program
+                    Flagship Initiative
                   </div>
 
                   {/* Title & Subtitle */}
@@ -156,7 +181,7 @@ const FlagshipPrograms = () => {
 
                   {/* Impact Highlights */}
                   <div className="mb-8">
-                    <p className="text-sm font-bold text-neutral-500 uppercase tracking-wider mb-4">Impact Highlights</p>
+                    <p className="text-sm font-bold text-neutral-500 uppercase tracking-wider mb-4">Key Highlights</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {program.highlights.map((item, idx) => (
                         <div key={idx} className="flex items-start gap-3">
@@ -170,7 +195,7 @@ const FlagshipPrograms = () => {
                   {/* CTA Button */}
                   <Link to={program.link}>
                     <Button className={`${program.color} hover:opacity-90 text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}>
-                      Explore This Program
+                      Explore This Initiative
                       <ArrowRight className="ml-3 h-5 w-5" />
                     </Button>
                   </Link>
@@ -190,7 +215,7 @@ const FlagshipPrograms = () => {
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-5 py-2 mb-6">
                 <MapPin className="h-4 w-4" />
-                <span className="text-sm font-bold uppercase tracking-wider">26 Regions Across Tanzania</span>
+                <span className="text-sm font-bold uppercase tracking-wider">31 Regions Across Tanzania</span>
               </div>
 
               <Typography variant="h3" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
