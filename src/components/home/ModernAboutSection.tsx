@@ -37,8 +37,8 @@ const ModernAboutSection = () => {
                             Justice Within <span className="text-primary">Reach</span>
                         </Typography>
 
-                        {/* Border-left accent */}
-                        <div className="border-l-4 border-primary pl-6 mb-8">
+                        {/* Removed Border-left accent for cleaner look */}
+                        <div className="mb-8">
                             <p className="font-medium text-gray-900 text-lg mb-3">
                                 We believe the law should protect everyone, everywhere.
                             </p>
@@ -65,7 +65,7 @@ const ModernAboutSection = () => {
                             ))}
                         </div>
 
-                        <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-5 h-auto text-base font-bold transition-all hover:scale-105 shadow-lg">
+                        <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-5 h-auto text-base font-bold transition-all hover:scale-105">
                             <Link to="/about">
                                 Our Story
                                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -73,12 +73,12 @@ const ModernAboutSection = () => {
                         </Button>
                     </div>
 
-                    {/* Image Side */}
+                    {/* Image Side - Removed Shadow */}
                     <div className={`relative transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
                         <img
                             src="/lovable-uploads/Untitled design-5.png"
                             alt="LSF Community Work"
-                            className="w-full h-[600px] lg:h-[700px] object-cover rounded-3xl shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                            className="w-full h-[600px] lg:h-[700px] object-cover rounded-3xl hover:scale-[1.02] transition-transform duration-500"
                         />
                     </div>
 
