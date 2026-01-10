@@ -40,6 +40,29 @@ const FlagshipPrograms = () => {
       link: '/programs/sauti-ya-mwanamke',
     },
     {
+      title: 'Mama Samia Legal Aid Campaign',
+      subtitle: 'Strategic Co-Lead & National Funder',
+      description:
+        'LSF serves as Vice-Chair of the National Campaign Committee alongside the Ministry of Constitutional and Legal Affairs. In 2023, LSF disbursed TZS 3.1 billion to 168 implementing partners, deploying 4,000+ paralegals as the primary frontline workforce.',
+      image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
+      highlights: [
+        'LSF CEO is Vice-Chair of National Committee',
+        'TZS 3.1 Billion disbursed to 168 partners',
+        '4,000+ paralegals deployed nationwide',
+        'All 31 regions of Tanzania covered',
+      ],
+      stats: [
+        { value: '3.1B', label: 'TZS Disbursed' },
+        { value: '168', label: 'Partners' },
+        { value: '31', label: 'Regions' },
+      ],
+      color: 'bg-primary',
+      accentColor: 'text-primary',
+      borderColor: 'border-primary',
+      icon: <Scale className="h-7 w-7" />,
+      link: '/programs/mama-samia-legal-aid-campaign',
+    },
+    {
       title: 'Wanawake Tunaweza',
       subtitle: 'Women We Can – Economic & Legal Empowerment',
       description:
@@ -61,29 +84,6 @@ const FlagshipPrograms = () => {
       borderColor: 'border-secondary-teal',
       icon: <Users className="h-7 w-7" />,
       link: '/programs/wanawake-tunaweza',
-    },
-    {
-      title: 'Mama Samia Legal Aid Campaign',
-      subtitle: 'Strategic Co-Lead & National Funder',
-      description:
-        'LSF serves as Vice-Chair of the National Campaign Committee alongside the Ministry of Constitutional and Legal Affairs. In 2023, LSF disbursed TZS 3.1 billion to 168 implementing partners, deploying 4,000+ paralegals as the primary frontline workforce.',
-      image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
-      highlights: [
-        'LSF CEO is Vice-Chair of National Committee',
-        'TZS 3.1 Billion disbursed to 168 partners',
-        '4,000+ paralegals deployed nationwide',
-        'All 31 regions of Tanzania covered',
-      ],
-      stats: [
-        { value: '3.1B', label: 'TZS Disbursed' },
-        { value: '168', label: 'Partners' },
-        { value: '31', label: 'Regions' },
-      ],
-      color: 'bg-primary',
-      accentColor: 'text-primary',
-      borderColor: 'border-primary',
-      icon: <Scale className="h-7 w-7" />,
-      link: '/focus-areas/accessible-legal-aid',
     },
   ];
 

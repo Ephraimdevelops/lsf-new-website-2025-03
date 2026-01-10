@@ -183,6 +183,97 @@ const wanawakeTunaweza = {
   },
 };
 
+// Mama Samia Legal Aid Campaign Content (LSF as Strategic Co-Lead)
+const mamaSamiaLegalAid = {
+  slug: 'mama-samia-legal-aid-campaign',
+  title: 'Justice for Every Tanzanian.',
+  subtitle: 'A State-Civil Society Partnership Operationalizing the Legal Aid Act.',
+  heroDescription: 'The Mama Samia Legal Aid Campaign (MSLAC) is Tanzania\'s largest coordinated effort to bring legal aid to every citizen. LSF serves as Vice-Chair of the National Campaign Committee alongside the Ministry of Constitutional and Legal Affairs. In 2023, LSF disbursed TZS 3.1 billion to 168 implementing partners, deploying 4,000+ paralegals as the campaign\'s primary frontline workforce.',
+  heroImage: '/lovable-uploads/mama samia legal aid campaingn.jpg',
+
+  // The Challenge Section
+  challenge: {
+    headline: 'Closing the Justice Gap.',
+    intro: 'Despite the Legal Aid Act of 2017, millions of Tanzanians still lack access to basic legal services.',
+    points: [
+      {
+        title: 'The Awareness Gap',
+        stat: '70%',
+        description: 'An estimated 70% of rural Tanzanians are unaware of free legal aid services available through the Legal Aid Act.',
+        icon: <Globe className="h-6 w-6" />,
+      },
+      {
+        title: 'The Infrastructure Gap',
+        stat: 'Limited',
+        description: 'Legal aid desks exist in only a fraction of courts. Without community-based delivery, the law remains inaccessible.',
+        icon: <Scale className="h-6 w-6" />,
+      },
+      {
+        title: 'The Gender Gap',
+        stat: '60%+',
+        description: 'Women and children are disproportionately affected by the justice gap, particularly in cases of GBV, land disputes, and inheritance.',
+        icon: <Shield className="h-6 w-6" />,
+      },
+    ],
+    closing: 'The Mama Samia Legal Aid Campaign exists to bridge these gaps through coordinated national action.',
+  },
+
+  // Methodology Section
+  methodology: {
+    headline: 'The LSF Engine.',
+    approaches: [
+      {
+        number: '01',
+        title: 'Strategic Governance',
+        description: 'LSF CEO Ms. Lulu Ng\'wanakilala serves as Vice-Chair of the National Campaign Committee, positioning LSF directly alongside MoCLA in guiding the campaign\'s direction. This ensures it is a joint State-CSO partnership, not just a government initiative.',
+        icon: <Award className="h-8 w-8" />,
+      },
+      {
+        number: '02',
+        title: 'Financial Backbone',
+        description: 'In 2023, LSF directed TZS 3.1 billion to 168 implementing partners (NGOs and paralegal organizations) to execute campaign activities at the grassroots level. This bridges the gap between government planning and village-level delivery.',
+        icon: <TrendingUp className="h-8 w-8" />,
+      },
+      {
+        number: '03',
+        title: 'Operational Infrastructure',
+        description: 'The campaign relies on LSF\'s existing paralegal network of 4,000+ trained community legal workers to conduct legal education, dispute resolution, and case tracking across all 31 regions.',
+        icon: <Users className="h-8 w-8" />,
+      },
+    ],
+  },
+
+  // Impact Dashboard
+  impact: {
+    headline: '2023-2024 Results.',
+    stats: [
+      { value: 'TZS 3.1B', label: 'Funds Disbursed', description: 'Directed to 168 implementing partners across Tanzania.' },
+      { value: '31', label: 'Regions Covered', description: 'All regions of Mainland Tanzania and Zanzibar.' },
+      { value: '4,000+', label: 'Paralegals Deployed', description: 'The campaign\'s primary frontline workforce.' },
+    ],
+    achievement: {
+      text: 'The campaign specifically targets Gender-Based Violence (GBV), land disputes (inheritance/matrimonial), and legal education for women and children—aligning with LSF\'s "Access to Justice" and "Legal Empowerment" strategic pillars.',
+    },
+  },
+
+  // Case Study
+  caseStudy: {
+    headline: 'National Coordination in Action.',
+    quote: 'When government and civil society work together, no citizen is left behind.',
+    context: 'The Mama Samia Legal Aid Campaign represents a new model of State-CSO partnership in Tanzania. Named after President Samia Suluhu Hassan, the campaign operationalizes the Legal Aid Act that LSF helped champion.',
+    intervention: 'Rather than working in silos, LSF coordinates with MoCLA, the Judiciary, Tanzania Bar Association, and 168 grassroots organizations to deliver unified messaging and services.',
+    outcome: 'The result is unprecedented reach: legal awareness campaigns in every region, mobile legal clinics in remote wards, and thousands of cases resolved through Alternative Dispute Resolution at community level.',
+    image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
+  },
+
+  // Donors/Partners
+  donors: [
+    { name: 'Government of Tanzania', logo: '/lovable-uploads/tz-coat-of-arms.png', color: '#00A651' },
+    { name: 'Ministry of Constitutional and Legal Affairs', logo: '/lovable-uploads/mocla-logo.png', color: '#003399' },
+  ],
+};
+
+
 const ProgramDetail = () => {
   const { id } = useParams<{ id: string }>();
 
@@ -454,6 +545,219 @@ const ProgramDetail = () => {
               <Link to="/donate">
                 <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold px-10 py-5 rounded-full text-lg">
                   Support This Program
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </Layout>
+    );
+  }
+
+  // Mama Samia Legal Aid Campaign - Gold Standard Page
+  if (id === 'mama-samia-legal-aid-campaign') {
+    const program = mamaSamiaLegalAid;
+
+    return (
+      <Layout>
+        {/* HERO SECTION - Government Partnership Theme */}
+        <section className="relative min-h-screen flex items-center overflow-hidden">
+          <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: `url(${program.heroImage})` }} />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-primary/70 to-black/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+
+          <div className="container mx-auto px-4 relative z-10 py-32">
+            <div className="max-w-4xl">
+              <Link to="/programs" className="inline-flex items-center text-white/70 hover:text-white mb-8 transition-colors group">
+                <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+                Back to Programs
+              </Link>
+
+              <div className="inline-flex items-center gap-3 mb-8 bg-primary rounded-full px-5 py-2">
+                <Scale className="h-4 w-4 text-white" />
+                <span className="text-white font-bold text-sm uppercase tracking-widest">National Campaign</span>
+              </div>
+
+              <h1 className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-[0.95]">
+                {program.title}
+              </h1>
+
+              <p className="text-secondary-yellow text-xl md:text-2xl lg:text-3xl font-semibold mb-8 max-w-3xl">
+                {program.subtitle}
+              </p>
+
+              <p className="text-white/90 text-lg md:text-xl max-w-3xl leading-relaxed mb-12">
+                {program.heroDescription}
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <Link to="/impact">
+                  <Button size="lg" className="bg-secondary-yellow hover:bg-secondary-yellow/90 text-black font-bold px-10 py-6 text-lg rounded-full shadow-xl">
+                    <TrendingUp className="mr-3 h-5 w-5" />
+                    See Campaign Impact
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CHALLENGE SECTION */}
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-16">
+              <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-4">
+                <Target className="h-4 w-4" />
+                The Challenge
+              </div>
+              <Typography variant="h2" className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+                {program.challenge.headline}
+              </Typography>
+              <p className="text-neutral-600 text-lg leading-relaxed">
+                {program.challenge.intro}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {program.challenge.points.map((point, idx) => (
+                <div key={idx} className="bg-neutral-50 rounded-3xl p-8 text-center border border-neutral-100 hover:shadow-xl transition-all duration-300">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-2xl mb-6">
+                    {point.icon}
+                  </div>
+                  <p className="text-4xl font-black text-primary mb-2">{point.stat}</p>
+                  <h3 className="text-xl font-bold text-neutral-900 mb-3">{point.title}</h3>
+                  <p className="text-neutral-600 text-sm leading-relaxed">{point.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-center text-xl font-semibold text-primary max-w-3xl mx-auto border-l-4 border-primary pl-6 text-left">
+              {program.challenge.closing}
+            </p>
+          </div>
+        </section>
+
+        {/* METHODOLOGY SECTION */}
+        <section className="py-24 bg-neutral-900 text-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <Typography variant="h2" className="text-4xl md:text-5xl font-bold mb-4">
+                {program.methodology.headline}
+              </Typography>
+              <p className="text-white/70 text-lg max-w-2xl mx-auto">
+                How LSF drives the Mama Samia Legal Aid Campaign
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {program.methodology.approaches.map((approach, idx) => (
+                <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="text-5xl font-black text-primary/50">{approach.number}</span>
+                    <div className="text-secondary-yellow">{approach.icon}</div>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">{approach.title}</h3>
+                  <p className="text-white/80 leading-relaxed">{approach.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* IMPACT SECTION */}
+        <section className="py-24 bg-gradient-to-br from-primary to-primary-dark text-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <Typography variant="h2" className="text-4xl md:text-5xl font-bold mb-4">
+                {program.impact.headline}
+              </Typography>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {program.impact.stats.map((stat, idx) => (
+                <div key={idx} className="text-center bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+                  <p className="text-5xl md:text-6xl font-black mb-2">{stat.value}</p>
+                  <p className="text-secondary-yellow font-bold text-lg uppercase tracking-wider mb-2">{stat.label}</p>
+                  <p className="text-white/70 text-sm">{stat.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 text-center max-w-4xl mx-auto">
+              <CheckCircle2 className="h-12 w-12 text-green-400 mx-auto mb-4" />
+              <p className="text-xl leading-relaxed">{program.impact.achievement.text}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* CASE STUDY SECTION */}
+        <section className="py-24 bg-neutral-50">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="relative">
+                <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+                  <img
+                    src={program.caseStudy.image}
+                    alt="MSLAC Campaign"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  />
+                </div>
+                <div className="absolute -bottom-8 -right-8 bg-primary text-white p-8 rounded-3xl max-w-[280px] shadow-xl">
+                  <Quote className="h-8 w-8 mb-3 opacity-50" />
+                  <p className="font-bold text-lg leading-snug">"{program.caseStudy.quote}"</p>
+                </div>
+              </div>
+
+              <div>
+                <div className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-4">
+                  <Heart className="h-4 w-4" />
+                  Partnership Model
+                </div>
+                <Typography variant="h2" className="text-4xl md:text-5xl font-bold text-neutral-900 mb-8">
+                  {program.caseStudy.headline}
+                </Typography>
+
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="font-bold text-primary text-lg mb-2">The Context</h4>
+                    <p className="text-neutral-600 leading-relaxed">{program.caseStudy.context}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-primary text-lg mb-2">The Coordination</h4>
+                    <p className="text-neutral-600 leading-relaxed">{program.caseStudy.intervention}</p>
+                  </div>
+                  <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-xl">
+                    <h4 className="font-bold text-green-700 text-lg mb-2 flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5" />
+                      The Result
+                    </h4>
+                    <p className="text-green-800 leading-relaxed">{program.caseStudy.outcome}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 bg-neutral-900 text-white">
+          <div className="container mx-auto px-4 text-center">
+            <Typography variant="h3" className="text-3xl md:text-4xl font-bold mb-6">
+              Support the Mama Samia Legal Aid Campaign
+            </Typography>
+            <p className="text-white/80 max-w-2xl mx-auto mb-10 text-lg">
+              Partner with LSF to expand this historic State-CSO collaboration and bring legal aid to every corner of Tanzania.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/contact">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-10 py-5 rounded-full text-lg">
+                  Partner With Us
+                  <ArrowRight className="ml-3 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/donate">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-neutral-900 font-bold px-10 py-5 rounded-full text-lg">
+                  Support This Campaign
                 </Button>
               </Link>
             </div>
