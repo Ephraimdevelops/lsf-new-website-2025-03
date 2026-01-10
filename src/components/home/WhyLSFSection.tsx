@@ -1,21 +1,20 @@
-import { Award, Users, MapPin, Calendar, CheckCircle, Shield, Scale, Heart } from 'lucide-react';
+import { Award, Users, MapPin, Calendar, CheckCircle, Shield, Scale, Heart, TrendingUp, Globe } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 
 const WhyLSFSection = () => {
-    // Expanded stats list for continuous ticker
+    // Expanded stats list for continuous ticker with icons
     const stats = [
-        { value: '6M+', label: 'People Reached Annually' },
-        { value: '168', label: 'Districts Covered' },
-        { value: '4,000+', label: 'Active Paralegals' },
-        { value: '60%', label: 'Dispute Resolution Rate' },
-        { value: '15+', label: 'Years of Impact' },
-        { value: '31', label: 'Regions Served' },
-        { value: 'TZS 3.1B', label: 'Legal Aid Fund' },
-        { value: '209', label: 'Women Leaders Trained' },
-        { value: '100%', label: 'Government Compliance' },
-        { value: '1,214', label: 'Girls Supported' },
-        { value: '50+', label: 'Strategic Partnerships' },
+        { value: '15+', label: 'Years of Impact', icon: Calendar },
+        { value: '40M+', label: 'People Reached', icon: Users },
+        { value: '4,000+', label: 'Paralegals', icon: Scale },
+        { value: '168', label: 'Districts', icon: MapPin },
+        { value: '60%', label: 'Resolution Rate', icon: CheckCircle },
+        { value: '3.1B', label: 'TZS Disbursed', icon: TrendingUp },
+        { value: '31', label: 'Regions', icon: Globe },
+        { value: '209', label: 'Women Leaders', icon: Award },
+        { value: '100%', label: 'Gov Compliance', icon: Shield },
+        { value: '1,214', label: 'Girls Supported', icon: Heart },
     ];
 
     const features = [
@@ -40,7 +39,7 @@ const WhyLSFSection = () => {
     ];
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white overflow-hidden">
             <Container>
                 {/* Section Header */}
                 <div className="text-center mb-16">
@@ -52,42 +51,55 @@ const WhyLSFSection = () => {
                         one community at a time.
                     </Typography>
                 </div>
+            </Container>
 
-                {/* Stats Section - Premium Branded */}
-                {/* Continuous Stats Ticker - Light & Clean */}
-                <div className="w-full bg-neutral-50 border-y border-neutral-100 py-10 mb-16 relative overflow-hidden">
-                    <div className="flex w-full group">
-                        <div className="flex animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]">
-                            {/* First set of stats */}
-                            {stats.map((stat, index) => (
-                                <div key={`stat-1-${index}`} className="flex items-center gap-3 mx-12">
-                                    <span className="text-4xl md:text-5xl font-black text-primary">
-                                        {stat.value}
-                                    </span>
-                                    <span className="text-sm md:text-base font-bold text-neutral-500 uppercase tracking-wider">
-                                        {stat.label}
-                                    </span>
+            {/* Continuous Stats Ticker - Deep Maroon Brand Theme */}
+            <div className="w-full bg-primary border-y border-primary-dark py-12 mb-20 relative overflow-hidden">
+                {/* Background Pattern */}
+                <div
+                    className="absolute inset-0 opacity-10 bg-repeat space-x-4"
+                    style={{ backgroundImage: `url('/lovable-uploads/brand-pattern.png')`, backgroundSize: '200px' }}
+                ></div>
+
+                {/* Gradient Fades for Smooth Edge Effect (Matching Maroon) */}
+                <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-primary via-primary/80 to-transparent z-10 pointer-events-none"></div>
+
+                <div className="flex w-full group relative z-20">
+                    <div className="flex animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused] items-center">
+                        {/* First set of stats */}
+                        {stats.map((stat, index) => (
+                            <div key={`stat-1-${index}`} className="flex flex-col items-center justify-center gap-2 mx-16">
+                                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/10 mb-2 backdrop-blur-sm shadow-xl">
+                                    <stat.icon className="h-7 w-7 text-white" />
                                 </div>
-                            ))}
-                            {/* Duplicate set for seamless scroll */}
-                            {stats.map((stat, index) => (
-                                <div key={`stat-2-${index}`} className="flex items-center gap-3 mx-12">
-                                    <span className="text-4xl md:text-5xl font-black text-primary">
-                                        {stat.value}
-                                    </span>
-                                    <span className="text-sm md:text-base font-bold text-neutral-500 uppercase tracking-wider">
-                                        {stat.label}
-                                    </span>
+                                <span className="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-sm">
+                                    {stat.value}
+                                </span>
+                                <span className="text-sm font-bold text-white/80 uppercase tracking-widest text-center">
+                                    {stat.label}
+                                </span>
+                            </div>
+                        ))}
+                        {/* Duplicate set for seamless scroll */}
+                        {stats.map((stat, index) => (
+                            <div key={`stat-2-${index}`} className="flex flex-col items-center justify-center gap-2 mx-16">
+                                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/10 mb-2 backdrop-blur-sm shadow-xl">
+                                    <stat.icon className="h-7 w-7 text-white" />
                                 </div>
-                            ))}
-                        </div>
+                                <span className="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-sm">
+                                    {stat.value}
+                                </span>
+                                <span className="text-sm font-bold text-white/80 uppercase tracking-widest text-center">
+                                    {stat.label}
+                                </span>
+                            </div>
+                        ))}
                     </div>
-
-                    {/* Gradient Fades for Smooth Edge Effect */}
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-                    <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
                 </div>
+            </div>
 
+            <Container>
                 {/* Feature Cards - Clean & Distinct */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {features.map((feature, index) => (
