@@ -37,7 +37,7 @@ const AccessibleLegalAid = () => {
   ];
 
   const projects = [
-    { name: 'Sauti ya Mwanamke', description: 'EU-funded project strengthening women\'s access to justice and voice in governance through paralegal networks and legal empowerment.', regions: '15', beneficiaries: '45,000', outcome: '78% resolution' },
+    { name: 'Sauti ya Mwanamke (IMPAWLA)', description: 'EU-funded project (€4M) through Enabel deploying 4,000+ paralegals to address GBV, land rights, and legal empowerment for women.', regions: '168', beneficiaries: '4,000+ paralegals', outcome: '60% ADR resolution' },
     { name: 'Mobile Legal Clinics', description: 'Bringing legal services directly to remote communities through mobile legal aid units and trained paralegals.', regions: '25', beneficiaries: '18,000', outcome: '95% satisfaction' }
   ];
 

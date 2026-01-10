@@ -38,7 +38,7 @@ const DirectImplementation = () => {
   ];
 
   const flagshipProjects = [
-    { name: 'Sauti ya Mwanamke (Voice of Women)', description: 'EU-funded project through ENABEL strengthening women\'s access to justice and voice in governance across Tanzania.', outcomes: [{ value: '15,000+', label: 'Women Empowered' }, { value: '25', label: 'Districts' }, { value: '85%', label: 'Success Rate' }], image: '/lovable-uploads/mwanamke shamba.png' },
+    { name: 'Sauti ya Mwanamke (IMPAWLA)', description: 'EU-funded project (€4M) through Enabel. Tanzania\'s largest grassroots movement for gender justice, deploying 4,000+ paralegals to address GBV, land rights, and legal empowerment.', outcomes: [{ value: '168', label: 'Districts' }, { value: '4,000+', label: 'Paralegals' }, { value: '60%', label: 'ADR Resolution' }], image: '/lovable-uploads/mwanamke shamba.png' },
     { name: 'Wanawake Tunaweza (Women We Can)', description: 'North-South Cooperation-funded initiative in Longido District, Arusha Region, empowering Maasai women through VICOBA economic groups and girls\' education.', outcomes: [{ value: '209', label: 'Women Trained' }, { value: '1,214', label: 'Girls Reached' }, { value: '11', label: 'VICOBA Groups' }], image: '/lovable-uploads/wanawake tunaweza beenficiaries.jpg' }
   ];
 
