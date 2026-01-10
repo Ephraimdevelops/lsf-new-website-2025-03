@@ -13,7 +13,7 @@ const sautiYaMwanamke = {
   slug: 'sauti-ya-mwanamke',
   title: 'Amplifying Her Voice.',
   subtitle: 'From the village meeting to the high court, we ensure women are seen, heard, and protected.',
-  heroDescription: 'In partnership with the European Union and Enabel, the Sauti ya Mwanamke initiative is Tanzania\'s largest grassroots movement for gender justice. We don\'t just advocate for rights; we build the infrastructure to enforce them. By mobilizing over 4,000 paralegals across 184 districts, we are dismantling the barriers of silence, poverty, and custom that have held women back for generations.',
+  heroDescription: 'In partnership with the European Union and Enabel, the Sauti ya Mwanamke initiative is Tanzania\'s largest grassroots movement for gender justice. We don\'t just advocate for rights; we build the infrastructure to enforce them. By mobilizing over 4,000 paralegals across 168 districts, we are dismantling the barriers of silence, poverty, and custom that have held women back for generations. This initiative also encompasses IMPAWLA (Improving Women\'s Access to Land Rights), addressing climate-related land disputes affecting women.',
   heroImage: '/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png',
 
   // The Challenge Section
@@ -50,7 +50,7 @@ const sautiYaMwanamke = {
       {
         number: '01',
         title: 'The Paralegal First-Responders',
-        description: 'We have trained a specialized cadre of Community Paralegals embedded in 184 districts. These are not outsiders; they are trusted neighbors who speak the local dialect. They are trained to intervene in domestic disputes, draft simple wills, and stop land grabbing before it escalates to court.',
+        description: 'We have trained a specialized cadre of Community Paralegals embedded in 168 districts. These are not outsiders; they are trusted neighbors who speak the local dialect. They are trained to intervene in domestic disputes, draft simple wills, and stop land grabbing before it escalates to court.',
         icon: <Users className="h-8 w-8" />,
       },
       {
@@ -73,7 +73,7 @@ const sautiYaMwanamke = {
     headline: 'A Decade of Difference.',
     stats: [
       { value: '4,000+', label: 'Paralegals Deployed', description: 'The largest legal aid network in East Africa.' },
-      { value: '184', label: 'Districts Covered', description: 'Reaching from Arusha to Mtwara.' },
+      { value: '168', label: 'Districts Covered', description: 'Reaching from Arusha to Mtwara.' },
       { value: '60%', label: 'Case Resolution Rate', description: 'Disputes resolved at village level without costly litigation.' },
     ],
     achievement: {
