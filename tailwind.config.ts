@@ -180,6 +180,10 @@ export default {
 						animationTimingFunction: 'cubic-bezier(0,0,0.2,1)'
 					},
 				},
+				'marquee': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -191,6 +195,7 @@ export default {
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
 				'float': 'float 3s ease-in-out infinite',
 				'bounce-slow': 'bounce-slow 3s ease-in-out infinite',
+				'marquee': 'marquee 40s linear infinite',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

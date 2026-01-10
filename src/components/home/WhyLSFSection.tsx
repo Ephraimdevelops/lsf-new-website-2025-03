@@ -3,11 +3,19 @@ import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 
 const WhyLSFSection = () => {
+    // Expanded stats list for continuous ticker
     const stats = [
-        { value: '6M+', label: 'People Reached', description: 'Annually across Tanzania' },
-        { value: '168', label: 'Districts Covered', description: 'Full nationwide presence' },
-        { value: '4,000+', label: 'Paralegals', description: 'Active frontline network' },
-        { value: '60%', label: 'Resolution Rate', description: 'Disputes resolved locally' },
+        { value: '6M+', label: 'People Reached Annually' },
+        { value: '168', label: 'Districts Covered' },
+        { value: '4,000+', label: 'Active Paralegals' },
+        { value: '60%', label: 'Dispute Resolution Rate' },
+        { value: '15+', label: 'Years of Impact' },
+        { value: '31', label: 'Regions Served' },
+        { value: 'TZS 3.1B', label: 'Legal Aid Fund' },
+        { value: '209', label: 'Women Leaders Trained' },
+        { value: '100%', label: 'Government Compliance' },
+        { value: '1,214', label: 'Girls Supported' },
+        { value: '50+', label: 'Strategic Partnerships' },
     ];
 
     const features = [
@@ -46,28 +54,38 @@ const WhyLSFSection = () => {
                 </div>
 
                 {/* Stats Section - Premium Branded */}
-                <div className="bg-primary rounded-3xl p-10 md:p-12 shadow-2xl mb-16 relative overflow-hidden text-white">
-                    {/* Background Pattern */}
-                    <div className="absolute inset-0 opacity-10">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary-yellow rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+                {/* Continuous Stats Ticker - Light & Clean */}
+                <div className="w-full bg-neutral-50 border-y border-neutral-100 py-10 mb-16 relative overflow-hidden">
+                    <div className="flex w-full group">
+                        <div className="flex animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]">
+                            {/* First set of stats */}
+                            {stats.map((stat, index) => (
+                                <div key={`stat-1-${index}`} className="flex items-center gap-3 mx-12">
+                                    <span className="text-4xl md:text-5xl font-black text-primary">
+                                        {stat.value}
+                                    </span>
+                                    <span className="text-sm md:text-base font-bold text-neutral-500 uppercase tracking-wider">
+                                        {stat.label}
+                                    </span>
+                                </div>
+                            ))}
+                            {/* Duplicate set for seamless scroll */}
+                            {stats.map((stat, index) => (
+                                <div key={`stat-2-${index}`} className="flex items-center gap-3 mx-12">
+                                    <span className="text-4xl md:text-5xl font-black text-primary">
+                                        {stat.value}
+                                    </span>
+                                    <span className="text-sm md:text-base font-bold text-neutral-500 uppercase tracking-wider">
+                                        {stat.label}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8 divider-x-white/20">
-                        {stats.map((stat, index) => (
-                            <div key={index} className="text-center group">
-                                <Typography variant="h1" className="text-4xl md:text-5xl text-secondary-yellow mb-2 font-black group-hover:scale-105 transition-transform duration-300">
-                                    {stat.value}
-                                </Typography>
-                                <Typography variant="h4" className="mb-2 text-lg font-bold text-white tracking-wide">
-                                    {stat.label}
-                                </Typography>
-                                <Typography variant="body" className="text-white/70 text-sm font-medium">
-                                    {stat.description}
-                                </Typography>
-                            </div>
-                        ))}
-                    </div>
+                    {/* Gradient Fades for Smooth Edge Effect */}
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
                 </div>
 
                 {/* Feature Cards - Clean & Distinct */}
