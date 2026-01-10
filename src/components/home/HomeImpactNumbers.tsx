@@ -1,19 +1,21 @@
-import { Award, Users, MapPin, Calendar, CheckCircle, Shield, Scale, Heart, TrendingUp, Globe } from 'lucide-react';
+import { Award, Users, MapPin, Calendar, CheckCircle, Shield, Scale, Heart, TrendingUp, Globe, Gavel, Handshake, DollarSign } from 'lucide-react';
 import Container from '@/components/shared/Container';
 
 const HomeImpactNumbers = () => {
-    // Expanded stats list for continuous ticker with icons
+    // Final approved stats list for continuous ticker
     const stats = [
         { value: '15+', label: 'Years of Impact', icon: Calendar },
+        { value: '$47M+', label: 'Funds Managed', icon: DollarSign },
         { value: '40M+', label: 'People Reached', icon: Users },
+        { value: '54,000+', label: 'Disputes Resolved', icon: Gavel },
         { value: '4,000+', label: 'Paralegals', icon: Scale },
+        { value: '200+', label: 'Partners Supported', icon: Handshake },
+        { value: '70%', label: 'Women Beneficiaries', icon: Heart },
         { value: '168', label: 'Districts', icon: MapPin },
+        { value: '100%', label: 'Gov Compliance', icon: Shield },
         { value: '60%', label: 'Resolution Rate', icon: CheckCircle },
-        { value: '3.1B', label: 'TZS Disbursed', icon: TrendingUp },
         { value: '31', label: 'Regions', icon: Globe },
         { value: '209', label: 'Women Leaders', icon: Award },
-        { value: '100%', label: 'Gov Compliance', icon: Shield },
-        { value: '1,214', label: 'Girls Supported', icon: Heart },
     ];
 
     return (
