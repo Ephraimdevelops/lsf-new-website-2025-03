@@ -1,5 +1,4 @@
-
-import { Users } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import ResourceCategory from './ResourceCategory';
 
 const GenderJusticeResources = () => {
@@ -8,7 +7,8 @@ const GenderJusticeResources = () => {
       category="Gender Justice"
       title="Gender Justice Resources"
       description="Resources focusing on women's rights, gender-based violence prevention, and gender equality initiatives in Tanzania."
-      icon={<Users className="h-8 w-8" />}
+      icon={<Heart className="h-6 w-6" />}
+      accentColor="secondary-orange"
     />
   );
 };
