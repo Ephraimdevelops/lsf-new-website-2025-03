@@ -98,35 +98,35 @@ const sautiYaMwanamke = {
   ],
 };
 
-// Gold Standard Wanawake Tunaweza Content
+// Gold Standard Wanawake Tunaweza Content (Updated from 2024 Report)
 const wanawakeTunaweza = {
   slug: 'wanawake-tunaweza',
-  title: 'Leadership Has No Gender.',
-  subtitle: 'We are moving women from the back of the room to the head of the table.',
-  heroDescription: 'True justice requires representation. Wanawake Tunaweza is LSF\'s flagship initiative dedicated to increasing women\'s participation in leadership and decision-making bodies across Tanzania. From Village Councils to Ward Tribunals, we are equipping women with the legal literacy, economic confidence, and leadership skills to shape the future of their communities. We believe that when a woman leads, the entire nation succeeds.',
+  title: 'Women We Can.',
+  subtitle: 'Economic sovereignty and legal empowerment for Maasai women in Longido.',
+  heroDescription: 'Implemented in partnership with North-South Cooperation of Luxembourg (2022-2024), Wanawake Tunaweza is a transformative initiative targeting Maasai women in Longido District, Arusha Region. By fusing economic empowerment (VICOBA groups), legal literacy, educational infrastructure, and male champion engagement, we are dismantling the patriarchal barriers that have marginalized women for generations.',
   heroImage: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
 
   // The Challenge Section
   challenge: {
-    headline: 'The Representation Gap.',
-    intro: 'Women constitute more than 51% of Tanzania\'s population, yet their voice in local governance remains disproportionately low.',
+    headline: 'The Maasai Context.',
+    intro: 'In Longido District, deeply rooted patriarchal systems prevail. Women face structural barriers to voice, resources, and education.',
     points: [
       {
-        title: 'The "Silent" Seats',
-        stat: 'Silent',
-        description: 'Even when women are elected to quotas in village councils, cultural norms often pressure them to remain silent during debates.',
+        title: 'Voice Poverty',
+        stat: 'Silenced',
+        description: 'Women are often excluded from Boma councils where key decisions about land, marriage, and resources are made by men.',
         icon: 'volume-x',
       },
       {
-        title: 'The Economic Barrier',
+        title: 'Economic Dependency',
         stat: 'Blocked',
-        description: 'You cannot run for office if you cannot feed your family. Economic vulnerability is the primary barrier to political participation.',
+        description: 'While women manage households, livestock ownership—the primary currency of Maasai society—traditionally resides with men.',
         icon: 'ban',
       },
       {
-        title: 'The Knowledge Gap',
-        stat: 'Missing',
-        description: 'Many women aspire to lead but lack the technical knowledge of the Local Government Laws required to campaign and govern effectively.',
+        title: 'Educational Exclusion',
+        stat: '<20%',
+        description: 'Girls are viewed as temporary household members destined for marriage, disincentivizing investment in their education.',
         icon: 'book-x',
       },
     ],
@@ -134,24 +134,24 @@ const wanawakeTunaweza = {
 
   // Methodology Section
   methodology: {
-    headline: 'Cultivating Civics & Commerce.',
+    headline: 'The Four-Pillar Approach.',
     approaches: [
       {
         number: '01',
-        title: 'The "Seat at the Table" Strategy',
-        description: 'We don\'t just ask women to vote; we train them to run. We provide mentorship and legal training for women aspiring to positions in Village Councils, School Boards, and Water Committees. We teach them parliamentary procedure, public speaking, and the Local Government Act so they can govern with authority.',
-        icon: 'podium',
-      },
-      {
-        number: '02',
-        title: 'Economic Sovereignty (The Engine)',
-        description: 'Power requires resources. We link women\'s groups to Community Microfinance (VICOBA) and legal aid for business registration. By securing women\'s property rights, we give them the financial stability needed to enter the civic space without fear of intimidation.',
+        title: 'VICOBA Economic Groups',
+        description: 'We established 11 women\'s economic groups with 209 members trained in entrepreneurship. These Village Community Banks create internal capital markets, enabling women to access loans without male permission—a revolutionary act of financial independence.',
         icon: 'coins',
       },
       {
+        number: '02',
+        title: 'Educational Infrastructure',
+        description: 'Construction of dormitories at Lekule and Namanga Secondary Schools benefiting 1,214 girls. A dormitory is a "safe harbor" where a girl\'s primary identity is student, not bride. ICT facilities enable 40 students to receive digital literacy simultaneously.',
+        icon: 'school',
+      },
+      {
         number: '03',
-        title: 'Male Allyship',
-        description: 'You cannot change the system by talking only to women. We run dialogue sessions with traditional leaders and husbands to reframe women\'s leadership not as a threat, but as a community asset.',
+        title: 'Male Champion Model',
+        description: 'Through partner WASHEWILO, we trained 20 traditional leaders (Laigwanan) and 7 Male Champions on women\'s legal rights. When a traditional leader condemns GBV, it carries more weight than any statute. We shift norms from within.',
         icon: 'handshake',
       },
     ],
@@ -159,26 +159,26 @@ const wanawakeTunaweza = {
 
   // Impact Dashboard
   impact: {
-    headline: 'Shaping the Future.',
+    headline: '2024 Results.',
     stats: [
-      { value: '35%', label: 'Increase in Women Leaders', description: 'In target Village Councils since 2022.' },
-      { value: '2,500+', label: 'Women Trained', description: 'In leadership and governance protocols.' },
-      { value: '120+', label: 'Ward Tribunals', description: 'Now chaired or co-chaired by women in our zones.' },
+      { value: '209', label: 'Women Trained', description: 'In 11 VICOBA/economic groups across Kimokouwa and Eworendeka villages.' },
+      { value: '1,214', label: 'Girls Reached', description: 'Through dormitories and menstrual hygiene support at secondary schools.' },
+      { value: '2,500+', label: 'Community Members', description: 'Exposed to gender rights education and legal awareness campaigns.' },
     ],
     achievement: {
-      text: 'In the 2024 Local Government Elections, 40% of LSF-trained candidates in the Morogoro region successfully won their seats, shifting the gender balance in local decision-making for the next 5 years.',
+      text: 'The "Osiligi" (Hope) collective was established with 11 sewing machines to produce reusable sanitary pads, providing income for women while addressing menstrual hygiene for girls. 1,420 tree seedlings were successfully nurtured despite drought conditions, integrating climate resilience with social development.',
     },
   },
 
   // Case Study
   caseStudy: {
-    headline: 'From "Housewife" to Chairperson.',
-    quote: 'They said a woman cannot resolve land disputes. Now, they come to me for judgments.',
-    author: 'Hon. Neema M.',
-    role: 'Ward Tribunal Member',
-    journey: 'Neema used to be afraid to speak at village meetings. When LSF launched Wanawake Tunaweza in her district, she attended the leadership boot camp. She learned that the law explicitly allows women to sit on tribunals—a fact that had been hidden from her community.',
-    shift: 'Armed with knowledge of the Ward Tribunals Act, Neema campaigned for a seat. She faced ridicule, but her ability to quote the law silenced her critics.',
-    result: 'Today, Neema is a respected member of the tribunal. She has personally presided over 50+ cases, ensuring fair rulings for widows and orphans who were previously ignored. She is proof that competence conquers prejudice.',
+    headline: 'The Osiligi Collective.',
+    quote: 'Now we have our own money. We decide how to use it.',
+    author: 'Osiligi Group Member',
+    role: 'Entrepreneur, Longido',
+    journey: 'Before Wanawake Tunaweza, the women of Longido had no access to credit without male permission. The VICOBA model changed everything—pooling savings to create an internal capital market.',
+    shift: 'The Osiligi manufacturing group now produces reusable sanitary pads distributed to schools, closing the loop between economic production and social need.',
+    result: 'Women who once lacked voice in Boma councils now run businesses, own capital assets, and mentor the next generation. The 11 sewing machines represent more than equipment—they are tools of liberation.',
     image: '/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png',
   },
 };
