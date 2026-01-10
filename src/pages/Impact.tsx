@@ -14,14 +14,14 @@ const Impact = () => {
   // Headline Stats
   const headlineStats = [
     { value: '6.5M+', label: 'Tanzanians Reached', description: 'With legal education and awareness since inception', icon: <Users className="h-7 w-7" /> },
-    { value: '4,000+', label: 'Paralegals Deployed', description: 'Actively serving across 184 Districts', icon: <Scale className="h-7 w-7" /> },
+    { value: '4,000+', label: 'Paralegals Deployed', description: 'Actively serving across 168 Districts', icon: <Scale className="h-7 w-7" /> },
     { value: '680,000+', label: 'Legal Aid Recipients', description: 'Indigent people received direct legal assistance', icon: <Shield className="h-7 w-7" /> },
     { value: '100%', label: 'National Coverage', description: 'Of Tanzania\'s regions covered by paralegal units', icon: <Globe className="h-7 w-7" /> },
   ];
 
   // Access to Justice Stats
   const accessStats = {
-    resolution: '62%',
+    resolution: '60%',
     savings: 'TZS 4B',
     caseTypes: [
       { type: 'Family/Matrimonial', percent: 45, description: 'Inheritance, Divorce, Child Maintenance', color: 'bg-primary' },

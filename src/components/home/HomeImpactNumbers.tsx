@@ -4,13 +4,13 @@ import { CalendarClock, Users, Scale, MapPin } from 'lucide-react';
 
 const stats = [
     {
-        value: 14,
+        value: 15,
         suffix: '+',
         label: 'Years of Impact',
         icon: <CalendarClock className="w-6 h-6 md:w-8 md:h-8" />
     },
     {
-        value: 38,
+        value: 40,
         suffix: 'M+',
         label: 'People Reached',
         icon: <Users className="w-6 h-6 md:w-8 md:h-8" />
@@ -22,7 +22,7 @@ const stats = [
         icon: <Scale className="w-6 h-6 md:w-8 md:h-8" />
     },
     {
-        value: 184,
+        value: 168,
         suffix: '',
         label: 'Districts',
         icon: <MapPin className="w-6 h-6 md:w-8 md:h-8" />

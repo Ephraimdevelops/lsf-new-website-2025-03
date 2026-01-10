@@ -11,10 +11,10 @@ import { Link } from 'react-router-dom';
 
 const Donate = () => {
   const impactStats = [
-    { value: "26,000+", label: "Lives Transformed", icon: Users },
-    { value: "184", label: "Districts Reached", icon: MapPin },
+    { value: "90,000+", label: "Cases Annually", icon: Users },
+    { value: "168", label: "Districts Reached", icon: MapPin },
     { value: "4,000+", label: "Paralegals Trained", icon: Scale },
-    { value: "$2.5M", label: "Legal Costs Saved", icon: TrendingUp }
+    { value: "TZS 3.1B+", label: "Disbursed to Partners", icon: TrendingUp }
   ];
 
   const beneficiaries = [
@@ -123,7 +123,7 @@ const Donate = () => {
               {
                 icon: Building2,
                 title: "Institutional Excellence",
-                description: "30+ years of experience with robust governance, financial controls, and program management."
+                description: "15 years of impact with robust governance, financial controls, and program management."
               },
               {
                 icon: Globe,
@@ -133,7 +133,7 @@ const Donate = () => {
               {
                 icon: TrendingUp,
                 title: "Proven Results",
-                description: "85% case resolution rate with transparent M&E frameworks and regular impact reporting."
+                description: "60% ADR resolution rate with transparent M&E frameworks and regular impact reporting."
               }
             ].map((item, i) => (
               <Card key={i} className="border-0 shadow-lg hover:shadow-xl transition-shadow">

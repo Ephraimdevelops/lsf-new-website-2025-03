@@ -9,7 +9,7 @@ const focusAreas = [
     title: 'Accessible Legal Aid',
     description: 'Breaking down barriers to justice by providing accessible, affordable, and quality legal services to marginalized communities.',
     link: '/focus-areas/accessible-legal-aid',
-    stats: '85% case resolution rate'
+    stats: '60% ADR resolution rate'
   },
   {
     icon: Users,
@@ -44,11 +44,11 @@ const StrategicFocuses = () => {
               Strategic Focus Areas
             </h1>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto font-light leading-relaxed">
-              Our work is organized around four strategic focus areas that address the core challenges 
+              Our work is organized around four strategic focus areas that address the core challenges
               in accessing justice across Tanzania.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {focusAreas.map((area, index) => {
               const IconComponent = area.icon;

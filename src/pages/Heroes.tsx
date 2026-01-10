@@ -12,27 +12,27 @@ import { Heart, Users, Scale, ArrowRight, MapPin, Award, CheckCircle, Star, Brie
 const impactStats = [
   {
     icon: <Users className="h-8 w-8" />,
-    number: "75,000+",
-    label: "Lives Transformed",
-    description: "Individuals who received life-changing legal assistance"
+    number: "90,000+",
+    label: "Cases Annually",
+    description: "Disputes handled by our paralegal network each year"
   },
   {
     icon: <Scale className="h-8 w-8" />,
-    number: "89%",
-    label: "Success Rate",
-    description: "Cases resolved successfully in favor of our clients"
+    number: "60%",
+    label: "ADR Resolution",
+    description: "Cases resolved at community level without courts"
   },
   {
     icon: <Heart className="h-8 w-8" />,
-    number: "2,500+",
-    label: "Families Reunited",
-    description: "Families brought together through our legal interventions"
+    number: "89%",
+    label: "Paralegal Retention",
+    description: "Of trained paralegals remain active in the network"
   },
   {
     icon: <Award className="h-8 w-8" />,
-    number: "156",
-    label: "Awards & Recognition",
-    description: "Recognition for outstanding legal advocacy work"
+    number: "15+",
+    label: "Years of Impact",
+    description: "Recognized by Government & International Partners"
   }
 ];
 

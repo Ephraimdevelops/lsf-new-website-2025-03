@@ -190,7 +190,7 @@ const LegalHelp = () => {
               </div>
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Find a Paralegal Near You</h2>
               <p className="text-lg text-gray-600 max-w-2xl">
-                Browse our directory of {paralegals?.length || '4,000+'} verified community paralegals. They are trained, certified, and ready to assist with your legal needs.
+                Browse our directory of {paralegals?.length || '4,000+'} verified community paralegals across 168 districts. They are trained, certified, and ready to assist with your legal needs.
               </p>
             </div>
 

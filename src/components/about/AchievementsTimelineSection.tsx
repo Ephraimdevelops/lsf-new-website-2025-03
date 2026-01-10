@@ -15,7 +15,7 @@ const timelineData = [
     year: '2015',
     title: 'Paralegal Network Established',
     description:
-      'Trained over 4,628 paralegals and established paralegal units in all 158 districts. About 89% remained active, resolving 70% of cases at community level.',
+      'Trained over 4,628 paralegals and established paralegal units in 105 districts. About 89% remained active, resolving 70% of cases at community level.',
     image: '/lovable-uploads/lsf-paralegal-servicing.jpeg',
   },
   {
@@ -57,7 +57,7 @@ const timelineData = [
     year: '2024',
     title: 'Legal Services Facility and Enabel Sign Agreement to Enhance Access to Justice in Tanzania.',
     description:
-    'Signed a TZS 10.7 billion (€4 million) grant agreement with Enabel to launch the 26-month IMPAWLA project, funded under the EU’s Gender Transformative Action programme. The initiative will expand access to quality legal aid, address GBV, and empower women, girls, and marginalised groups through both formal and informal justice systems.',
+      'Signed a TZS 10.7 billion (€4 million) grant agreement with Enabel to launch the 26-month IMPAWLA project, funded under the EU’s Gender Transformative Action programme. The initiative will expand access to quality legal aid, address GBV, and empower women, girls, and marginalised groups through both formal and informal justice systems.',
     image: '/lovable-uploads/LSf-enabel-un-signing.jpeg',
   },
   {
@@ -91,10 +91,10 @@ export default function OurReachTimeline() {
       ></div>
       <div className="relative z-10 container mx-auto px-4">
 
-              {/* Header */}
+        {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-primary/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
-            <DesignIcon 
+            <DesignIcon
               icon={<div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>}
               size="sm"
               className="mr-4"
@@ -117,11 +117,10 @@ export default function OurReachTimeline() {
             <button
               key={item.year}
               onClick={() => setActiveIndex(index)}
-              className={`px-4 py-2 border rounded-full text-lg font-medium transition ${
-                activeIndex === index
+              className={`px-4 py-2 border rounded-full text-lg font-medium transition ${activeIndex === index
                   ? 'bg-primary-500 hover:bg-primary-600 text-white'
                   : 'bg-white/10 hover:bg-white/20 border-white/20 text-white'
-              }`}
+                }`}
             >
               {item.year}
             </button>
