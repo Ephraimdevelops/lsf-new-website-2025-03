@@ -27,7 +27,6 @@ export const navigationItems = [
     subItems: [
       { name: 'Success Stories', href: '/heroes', description: 'Real impact stories' },
       { name: 'Impact Dashboard', href: '/impact', description: 'Data and outcomes' },
-
     ]
   },
   {

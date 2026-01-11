@@ -17,7 +17,7 @@ const resources = [
   { name: 'Publications', href: '/publications' },
   { name: 'Success Stories', href: '/heroes' },
   { name: 'Legal Resources', href: '/resources' },
-  { name: 'Haki Yangu App', href: '/haki-yangu' },
+  { name: 'Digital Haki Yangu', href: '/haki-yangu' },
 ];
 
 
@@ -29,8 +29,8 @@ const FooterLinks = () => {
           {/* Organization Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-6">
-              <img 
-                src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png" 
+              <img
+                src="/lovable-uploads/b797c986-5b8f-48f5-968c-0b8313971893.png"
                 alt="LSF Logo"
                 className="h-16 w-auto mb-4"
               />
@@ -41,14 +41,14 @@ const FooterLinks = () => {
                 Empowering communities through accessible legal aid and justice reform across Tanzania.
               </Typography>
             </div>
-            
+
             {/* Contact Information */}
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                 <div>
                   <Typography variant="bodySmall" className="text-white/90">
-                  Chole Rd, Masaki - Dar es Salaam, Tanzania<br />
+                    Chole Rd, Masaki - Dar es Salaam, Tanzania<br />
                     Dar es Salaam, Tanzania
                   </Typography>
                 </div>
@@ -56,7 +56,7 @@ const FooterLinks = () => {
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
                 <Typography variant="bodySmall" className="text-white/90">
-                +255 (0) 22260 1534
+                  +255 (0) 22260 1534
                 </Typography>
               </div>
               <div className="flex items-center space-x-3">
@@ -77,7 +77,7 @@ const FooterLinks = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     to={link.href}
                     className="text-white/80 hover:text-primary transition-colors duration-300 text-sm block"
                   >
@@ -96,7 +96,7 @@ const FooterLinks = () => {
             <ul className="space-y-3">
               {resources.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     to={link.href}
                     className="text-white/80 hover:text-primary transition-colors duration-300 text-sm block"
                   >

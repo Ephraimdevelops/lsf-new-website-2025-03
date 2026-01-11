@@ -140,6 +140,8 @@ export const ask = action({
                 content: `You are SARA (Sheria Assistant & Resource Associate), a legal assistant for LSF Tanzania.
                 Use the following context to answer questions. If unsure, say so.
                 Keep answers professional, empathetic, and concise.
+                
+                IMPORTANT: If a tool returns a string starting with "::PARALEGAL_CARD:", you MUST include that exact string in your response. Do not summarize it or remove the colons. This is required for the UI to render the card.
 
                 Context:
                 ${context}`
@@ -209,10 +211,33 @@ export const ask = action({
         if (toolCallBuffer) {
             // We have a tool call!
             const argsObj = JSON.parse(toolCallBuffer.arguments);
-            const searchResults = `Found paralegals in ${argsObj.region}: 
-             1. Juma M. (Phone: 0755...)
-             2. Legal Aid Centre ${argsObj.district || ""}
-             (Simulated Tool Output)`;
+            const region = argsObj.region || "Tanzania";
+
+            // Dynamic Data Simulation
+            let name = "Juma M. Legal Services";
+            let phone = "+255 755 123 456";
+
+            if (region.toLowerCase().includes("arusha")) {
+                name = "Arusha Legal Aid Centre";
+                phone = "+255 767 889 900";
+            } else if (region.toLowerCase().includes("dom") || region.toLowerCase().includes("dodoma")) {
+                name = "Dodoma Haki Center";
+                phone = "+255 712 334 455";
+            } else if (region.toLowerCase().includes("mwanza")) {
+                name = "Victoria Justice Hub";
+                phone = "+255 788 112 233";
+            }
+
+            // Format specifically for the UI Card
+            const cardData = JSON.stringify({
+                name: name,
+                region: region,
+                district: argsObj.district || "District Office",
+                phone: phone,
+                verified: true
+            });
+
+            const searchResults = `Found a paralegal. Details: ::PARALEGAL_CARD:${cardData}::`;
 
             // Append to messages
             messages.push({

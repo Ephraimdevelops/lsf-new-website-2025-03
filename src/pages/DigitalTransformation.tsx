@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Smartphone, Database, Users, BarChart, ArrowRight, CheckCircle, Award, Quote } from 'lucide-react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import HakiYanguChatbot from '@/components/haki-yangu/HakiYanguChatbot';
 
 const DigitalTransformation = () => {
   useEffect(() => {
@@ -187,6 +187,9 @@ const DigitalTransformation = () => {
           </div>
         </Container>
       </section>
+
+      {/* WhatsApp Chatbot Integration */}
+      <HakiYanguChatbot />
 
       {/* Impact Stats */}
       <section className="py-16 bg-primary">

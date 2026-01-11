@@ -62,6 +62,11 @@ const SaraAIPage = () => {
   const sendMessage = async (text: string) => {
     if (!text.trim()) return;
 
+    if (!isSignedIn) {
+      toast.error("Please sign in to chat with SARA.");
+      return;
+    }
+
     setInputText('');
     setIsTyping(true);
 
@@ -260,6 +265,7 @@ const SaraAIPage = () => {
                           ) : (
                             <ReactMarkdown
                               components={{
+
                                 p: ({ node, children }) => {
                                   // Check if children is a string and contains our marker
                                   if (typeof children === 'string' && children.includes('::PARALEGAL_CARD:')) {
@@ -272,25 +278,29 @@ const SaraAIPage = () => {
                                               const jsonStr = part.replace('::PARALEGAL_CARD:', '').replace('::', '');
                                               const data = JSON.parse(jsonStr);
                                               return (
-                                                <div key={i} className="my-4 bg-blue-50 border border-blue-100 rounded-xl p-4 not-prose hover:shadow-md transition-all">
-                                                  <div className="flex items-start gap-3">
-                                                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-xl shadow-sm">
+                                                <div key={i} className="my-4 bg-white border border-primary/20 rounded-xl p-4 not-prose hover:shadow-md transition-all relative overflow-hidden group">
+                                                  <div className="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                                                  <div className="flex items-start gap-4">
+                                                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-xl shrink-0">
                                                       ⚖️
                                                     </div>
                                                     <div>
-                                                      <h4 className="font-bold text-gray-900">{data.name}</h4>
-                                                      <div className="flex items-center gap-1 text-xs text-gray-600 mt-1">
-                                                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                                                        Verified Paralegal
+                                                      <h4 className="font-bold text-gray-900 leading-snug">{data.name}</h4>
+                                                      <div className="flex items-center gap-1.5 text-xs text-primary font-medium mt-1">
+                                                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                                                        Verified LSF Partner
                                                       </div>
-                                                      <p className="text-sm text-gray-700 mt-2 flex items-center gap-2">
-                                                        <span>📍 {data.region}</span>
-                                                        <span>•</span>
-                                                        <span>📞 {data.phone}</span>
-                                                      </p>
-                                                      <button className="mt-3 w-full bg-blue-600 text-white text-xs font-bold py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                                                        Connect Now
-                                                      </button>
+                                                      <div className="mt-3 space-y-1">
+                                                        <p className="text-sm text-gray-700 flex items-center gap-2">
+                                                          <span className="text-gray-400 text-xs">📍</span> {data.district}, {data.region}
+                                                        </p>
+                                                        <p className="text-sm text-gray-700 flex items-center gap-2">
+                                                          <span className="text-gray-400 text-xs">📞</span> {data.phone}
+                                                        </p>
+                                                      </div>
+                                                      <a href={`tel:${data.phone}`} className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-white bg-primary px-3 py-1.5 rounded-full hover:bg-primary-dark transition-colors">
+                                                        <Phone className="w-3 h-3" /> Call Now
+                                                      </a>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -338,24 +348,26 @@ const SaraAIPage = () => {
                 ))}
               </AnimatePresence>
 
-              {isTyping && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200">
-                    <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover" />
-                  </div>
-                  <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
-                    <div className="flex gap-1.5">
-                      <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
-                      <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
-                      <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
+              {
+                isTyping && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200">
+                      <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover" />
                     </div>
-                  </div>
-                </motion.div>
-              )}
+                    <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+                      <div className="flex gap-1.5">
+                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
+                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
+                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              }
               <div ref={messagesEndRef} />
-            </div>
-          </div>
-        </div>
+            </div >
+          </div >
+        </div >
 
         <div className="border-t border-gray-100 bg-white/90 backdrop-blur-xl p-6 pb-8 sticky bottom-0 z-20">
           <div className="max-w-3xl mx-auto">

@@ -52,6 +52,7 @@ export const sendMessage = mutation({
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
+
         if (!identity) {
             throw new Error("You must be logged in to send messages.");
         }
