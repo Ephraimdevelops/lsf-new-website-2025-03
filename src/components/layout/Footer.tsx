@@ -55,9 +55,9 @@ const Footer = () => {
           <div className="max-w-xl">
             <Link to="/" className="inline-block mb-8">
               <img
-                src="/lovable-uploads/0ab56c9e-d19f-4e11-97f4-9e0dd22b6e0b.png"
+                src="/lsf-logo-white.png"
                 alt="Legal Services Facility"
-                className="h-20 w-auto brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
+                className="h-20 w-auto opacity-90 hover:opacity-100 transition-opacity"
               />
             </Link>
             <h2 className="text-3xl font-bold leading-tight mb-4">Empowering Justice for All.</h2>

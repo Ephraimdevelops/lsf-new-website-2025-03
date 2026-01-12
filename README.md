@@ -1,130 +1,88 @@
-# Welcome to your Lovable project
+# Legal Services Facility (LSF) Tanzania Website
 
-## Project info
+## Overview
 
-**URL**: https://lovable.dev/projects/9d4a1fee-3d9b-4a77-8bf0-c9d104c4b663
+This is the official website for the Legal Services Facility (LSF) Tanzania — a comprehensive digital platform for legal empowerment and access to justice.
 
-## How can I edit this code?
+## Tech Stack
 
-There are several ways of editing your application.
+- **Frontend:** React 18 + TypeScript + Vite
+- **UI:** Tailwind CSS + shadcn/ui
+- **Backend:** Convex (serverless database)
+- **Authentication:** Clerk
+- **Animations:** Framer Motion
 
-**Use Lovable**
+## Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9d4a1fee-3d9b-4a77-8bf0-c9d104c4b663) and start prompting.
+### Prerequisites
+- Node.js 18+
+- npm or bun
 
-Changes made via Lovable will be committed automatically to this repo.
+### Installation
 
-**Use your preferred IDE**
+```bash
+# Clone the repository
+git clone https://github.com/Ephraimdevelops/lsf-new-website-2025-03.git
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# Navigate to project
+cd lsf-new-website-2025-03
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Install dependencies
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Environment Variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Create a `.env.local` file with:
 
-**Use GitHub Codespaces**
+```bash
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_key
+VITE_CONVEX_URL=your_convex_url
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deployment
 
-## What technologies are used for this project?
+### Frontend (Vercel)
+1. Connect GitHub repository to Vercel
+2. Add environment variables
+3. Deploy
 
-This project is built with:
+### Backend (Convex)
+```bash
+npx convex deploy
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Admin Access
 
-## How can I deploy this project?
+For demo/review purposes, access the admin panel at:
+```
+/admin?demo=LSF2026
+```
 
-Simply open [Lovable](https://lovable.dev/projects/9d4a1fee-3d9b-4a77-8bf0-c9d104c4b663) and click on Share -> Publish.
+## Features
 
-## Can I connect a custom domain to my Lovable project?
+- **62 Pages** — Full organizational website
+- **SARA AI** — Legal assistant chatbot
+- **Admin CMS** — Content management system
+- **Paralegal Portal** — Registration and management
+- **Newsletter System** — Email marketing
+- **Whistleblower Portal** — Secure reporting
 
-Yes, you can!
+## Documentation
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+See the project documentation files for more details:
+- `PRODUCTION_DEPLOYMENT_GUIDE.md`
+- `SCALABILITY_SECURITY_PLAN.md`
+- `BUDGET_COST_ANALYSIS.md`
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## License
 
-# Backend deployment & admin seeding
+Proprietary — Legal Services Facility Tanzania
 
-## Backend deployment (Railway) and admin seeding
+## Contact
 
-If your Railway trial ended or you are moving to a new Railway account, follow these steps to deploy the backend and create the initial admin user.
-
-1. Create a new Railway project and connect your GitHub repository (this repo).
-2. Add the required environment variables in the Railway project settings:
-   - `SUPABASE_URL` — your Supabase project URL
-   - `SUPABASE_ANON_KEY` — Supabase anon/public key
-   - `SUPABASE_SERVICE_ROLE_KEY` — Supabase service role key (VERY SENSITIVE)
-   - `FRONTEND_URL` — your frontend URL (Vercel)
-   - `NODE_ENV` — `production`
-
-3. Set build & start commands in Railway (example):
-   - Build: `npm install && npm run build`
-   - Start: `npm run start`
-
-4. Deploy the project and verify the generated backend URL.
-
-5. In Supabase SQL editor, run the migration located at `supabase/001_create_profiles_and_policies.sql` to create the `profiles` table and example RLS policies.
-
-6. Seed the admin user (local or on the server):
-   - Locally (requires `SUPABASE_SERVICE_ROLE_KEY` in your `.env`):
-     - `cd backend`
-     - `npm i` (if you haven't already)
-     - `npm run seed:admin`
-   - On the server (Railway): add an environment variable `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` (optional) and run the `seed:admin` script as a one-off job or in CI.
-
-7. Update the frontend (Vercel) environment variables:
-   - `VITE_API_BASE_URL` → `https://<your-backend>/api/v1`
-   - `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (if used by frontend)
-   - Redeploy the frontend.
-
-8. Security best practices (important):
-   - Rotate the Supabase `SERVICE_ROLE` key after migration and update the Railway env var.
-   - Do NOT store the service role key in frontend or public places.
-   - Use HttpOnly cookies for admin sessions (the backend implements `/auth/login-cookie`).
-   - Limit CORS to your frontend domain in backend and Supabase settings.
-
-## Running locally
-
-1. Copy `.env.example` to `.env` and add the Supabase keys and `FRONTEND_URL`.
-2. Start backend in development mode:
-   - `cd backend && npm run dev`
-3. Start frontend:
-   - `npm install && npm run dev`
-4. Seed admin (optional):
-   - `cd backend && npm run seed:admin`
-
-
----
-
-If you want, I can also:
-- Add a single-command script to run migrations + seed in CI.
-- Provide a step-by-step Railway UI walkthrough with screenshots.
+- **Website:** https://lsftz.org
+- **Email:** info@lsftz.org
