@@ -2,6 +2,47 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
 // ==========================================
+// RATE LIMITING & SECURITY HELPERS
+// ==========================================
+
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const MAX_SUBMISSIONS_PER_WINDOW = 3; // 3 submissions per hour
+
+// Helper: Check Rate Limit
+async function checkRateLimit(
+    ctx: any,
+    identifier: string
+): Promise<{ allowed: boolean; remaining: number; resetAt: number }> {
+    const now = Date.now();
+    const existing = await ctx.db
+        .query("rate_limits")
+        .withIndex("by_identifier", (q: any) => q.eq("identifier", identifier))
+        .first();
+
+    if (!existing) {
+        await ctx.db.insert("rate_limits", { identifier, count: 1, windowStart: now });
+        return { allowed: true, remaining: MAX_SUBMISSIONS_PER_WINDOW - 1, resetAt: now + RATE_LIMIT_WINDOW };
+    }
+
+    if (now - existing.windowStart > RATE_LIMIT_WINDOW) {
+        await ctx.db.patch(existing._id, { count: 1, windowStart: now });
+        return { allowed: true, remaining: MAX_SUBMISSIONS_PER_WINDOW - 1, resetAt: now + RATE_LIMIT_WINDOW };
+    }
+
+    if (existing.count >= MAX_SUBMISSIONS_PER_WINDOW) {
+        return { allowed: false, remaining: 0, resetAt: existing.windowStart + RATE_LIMIT_WINDOW };
+    }
+
+    await ctx.db.patch(existing._id, { count: existing.count + 1 });
+    return { allowed: true, remaining: MAX_SUBMISSIONS_PER_WINDOW - existing.count - 1, resetAt: existing.windowStart + RATE_LIMIT_WINDOW };
+}
+
+// Helper: Validate Honeypot
+function validateHoneypot(honeypotValue: string | undefined): boolean {
+    return !honeypotValue || honeypotValue.trim() === "";
+}
+
+// ==========================================
 // CONTACT FORM SUBMISSIONS
 // ==========================================
 
@@ -13,10 +54,31 @@ export const submitContact = mutation({
         category: v.string(),
         subject: v.string(),
         message: v.string(),
+        // Security fields
+        clientIdentifier: v.optional(v.string()),
+        roleTitle: v.optional(v.string()), // Honeypot
     },
     handler: async (ctx, args) => {
+        // 1. Honeypot Check
+        if (!validateHoneypot(args.roleTitle)) {
+            console.log("[SECURITY] Contact form honeypot triggered");
+            return { success: true, id: "rejected" };
+        }
+
+        // 2. Rate Limit Check
+        const identifier = args.clientIdentifier || "anonymous_contact";
+        const rateCheck = await checkRateLimit(ctx, `contact:${identifier}`);
+        if (!rateCheck.allowed) {
+            throw new Error(`Rate limit exceeded. Try again in ${Math.ceil((rateCheck.resetAt - Date.now()) / 60000)} minutes.`);
+        }
+
         const id = await ctx.db.insert("contact_submissions", {
-            ...args,
+            name: args.name,
+            email: args.email,
+            phone: args.phone,
+            category: args.category,
+            subject: args.subject,
+            message: args.message,
             submittedAt: Date.now(),
             status: "new",
         });
@@ -76,10 +138,21 @@ export const submitWhistleblowerReport = mutation({
         contactEmail: v.optional(v.string()),
         contactPhone: v.optional(v.string()),
         isAnonymous: v.boolean(),
+        // Security fields added for consistency, though currently handled by whistleblower.ts
+        clientIdentifier: v.optional(v.string()),
+        roleTitle: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        // Honeypot check (redundant if using whistleblower.ts but good for safety)
+        if (args.roleTitle && !validateHoneypot(args.roleTitle)) return { success: true, id: "rejected" };
+
         const id = await ctx.db.insert("whistleblower_reports", {
-            ...args,
+            reportType: args.reportType,
+            description: args.description,
+            evidenceUrls: args.evidenceUrls,
+            contactEmail: args.contactEmail,
+            contactPhone: args.contactPhone,
+            isAnonymous: args.isAnonymous,
             submittedAt: Date.now(),
             status: "new",
             priority: "medium",
@@ -93,6 +166,21 @@ export const listWhistleblowerReports = query({
         status: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        // SECURITY: Only admin/staff can read reports (RLS)
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Unauthorized: You must be logged in");
+        }
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+
+        if (!user || !["admin", "staff"].includes(user.role)) {
+            throw new Error("Forbidden: Insufficient privileges. Admin or Staff role required.");
+        }
+
         if (args.status) {
             return await ctx.db
                 .query("whistleblower_reports")
@@ -140,8 +228,24 @@ export const submitParalegalApplication = mutation({
         languages: v.optional(v.array(v.string())),
         resumeUrl: v.optional(v.string()),
         idDocumentUrl: v.optional(v.string()),
+        // Security fields
+        clientIdentifier: v.optional(v.string()),
+        roleTitle: v.optional(v.string()), // Honeypot
     },
     handler: async (ctx, args) => {
+        // 1. Honeypot Check
+        if (!validateHoneypot(args.roleTitle)) {
+            console.log("[SECURITY] Paralegal app honeypot triggered");
+            return { success: true, id: "rejected" };
+        }
+
+        // 2. Rate Limit Check
+        const identifier = args.clientIdentifier || "anonymous_paralegal";
+        const rateCheck = await checkRateLimit(ctx, `paralegal:${identifier}`);
+        if (!rateCheck.allowed) {
+            throw new Error(`Rate limit exceeded. Try again in ${Math.ceil((rateCheck.resetAt - Date.now()) / 60000)} minutes.`);
+        }
+
         // Check for duplicate applications
         const existing = await ctx.db
             .query("paralegal_applications")
@@ -153,8 +257,18 @@ export const submitParalegalApplication = mutation({
         }
 
         const id = await ctx.db.insert("paralegal_applications", {
-            ...args,
+            fullName: args.fullName,
             email: args.email.toLowerCase(),
+            phone: args.phone,
+            region: args.region,
+            district: args.district,
+            ward: args.ward,
+            education: args.education,
+            experience: args.experience,
+            motivation: args.motivation,
+            languages: args.languages,
+            resumeUrl: args.resumeUrl,
+            idDocumentUrl: args.idDocumentUrl,
             submittedAt: Date.now(),
             status: "pending",
         });
@@ -169,6 +283,21 @@ export const listParalegalApplications = query({
         region: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        // SECURITY: Only admin/staff can view applications (RLS)
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Unauthorized: You must be logged in");
+        }
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+
+        if (!user || !["admin", "staff"].includes(user.role)) {
+            throw new Error("Forbidden: Insufficient privileges. Admin or Staff role required.");
+        }
+
         let results = await ctx.db.query("paralegal_applications").order("desc").collect();
 
         if (args.status) {

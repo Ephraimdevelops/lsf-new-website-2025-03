@@ -14,11 +14,11 @@ interface FileUploadProps {
   description?: string;
 }
 
-const FileUpload = ({ 
-  accept = "image/*,application/pdf,.doc,.docx", 
-  multiple = false, 
-  onUpload, 
-  maxSize = 5,
+const FileUpload = ({
+  accept = "image/*,application/pdf,.doc,.docx",
+  multiple = false,
+  onUpload,
+  maxSize = 2, // Default to 2MB as per safety requirements
   label = "Upload Files",
   description = "Select files to upload"
 }: FileUploadProps) => {
@@ -31,8 +31,8 @@ const FileUpload = ({
     // Check file size
     if (file.size > maxSize * 1024 * 1024) {
       toast({
-        title: "File too large",
-        description: `File size should be less than ${maxSize}MB`,
+        title: "File too large / Faili ni kubwa",
+        description: `Max size allowed is ${maxSize}MB. Tafadhali chagua faili dogo zaidi.`,
         variant: "destructive",
       });
       return false;
@@ -63,7 +63,7 @@ const FileUpload = ({
 
   const handleFiles = (files: FileList) => {
     const validFiles: File[] = [];
-    
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       if (validateFile(file)) {
@@ -74,7 +74,7 @@ const FileUpload = ({
     if (validFiles.length > 0) {
       setUploadedFiles(prev => multiple ? [...prev, ...validFiles] : validFiles);
       onUpload(validFiles);
-      
+
       toast({
         title: "Files uploaded",
         description: `${validFiles.length} file(s) uploaded successfully`,
@@ -85,7 +85,7 @@ const FileUpload = ({
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-    
+
     const files = e.dataTransfer.files;
     if (files.length > 0) {
       handleFiles(files);
@@ -134,13 +134,12 @@ const FileUpload = ({
         <label className="text-sm font-medium">{label}</label>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
-      
+
       <div
-        className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-          isDragging 
-            ? 'border-blue-500 bg-blue-50' 
+        className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${isDragging
+            ? 'border-blue-500 bg-blue-50'
             : 'border-gray-300 hover:border-gray-400'
-        }`}
+          }`}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}

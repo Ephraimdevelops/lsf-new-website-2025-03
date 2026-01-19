@@ -1,6 +1,7 @@
 import { Send, CheckCircle } from 'lucide-react';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import Typography from '@/components/shared/Typography';
+import { Honeypot } from '@/components/Honeypot';
 
 const serviceCategories = [
   { value: '', label: 'Select a category' },
@@ -28,6 +29,8 @@ interface ContactFormProps {
   error: string | null;
   submitted: boolean;
   setSubmitted: (value: boolean) => void;
+  // New props for Honeypot
+  honeypotProps?: any;
 }
 
 export const ContactForm = ({
@@ -37,7 +40,8 @@ export const ContactForm = ({
   isSubmitting,
   error,
   submitted,
-  setSubmitted
+  setSubmitted,
+  honeypotProps
 }: ContactFormProps) => {
   return (
     <div className="bg-card/90 backdrop-blur-sm p-6 md:p-8 rounded-3xl shadow-xl border border-border">
@@ -52,7 +56,7 @@ export const ContactForm = ({
           <Typography variant="body" className="text-muted-foreground mb-6">
             Your message has been sent successfully. We'll get back to you within 24 hours.
           </Typography>
-          <button 
+          <button
             onClick={() => setSubmitted(false)}
             className="bg-primary hover:bg-primary-dark text-primary-foreground font-semibold px-6 py-3 rounded-full transition-colors duration-300"
           >
@@ -61,6 +65,7 @@ export const ContactForm = ({
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          {honeypotProps && <Honeypot {...honeypotProps} />}
           <div className="text-center mb-8">
             <Typography variant="h3" className="mb-2 text-2xl">
               Send Us a Message
@@ -69,13 +74,13 @@ export const ContactForm = ({
               Fill out the form below and we'll respond promptly
             </Typography>
           </div>
-          
+
           {error && (
             <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive text-sm">
               {error}
             </div>
           )}
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label htmlFor="name" className="block mb-2 font-medium text-sm">
@@ -93,7 +98,7 @@ export const ContactForm = ({
                 disabled={isSubmitting}
               />
             </div>
-            
+
             <div>
               <label htmlFor="email" className="block mb-2 font-medium text-sm">
                 Email Address *
@@ -128,7 +133,7 @@ export const ContactForm = ({
                 disabled={isSubmitting}
               />
             </div>
-            
+
             <div>
               <label htmlFor="category" className="block mb-2 font-medium text-sm">
                 Category *
@@ -150,7 +155,7 @@ export const ContactForm = ({
               </select>
             </div>
           </div>
-          
+
           <div>
             <label htmlFor="subject" className="block mb-2 font-medium text-sm">
               Subject *
@@ -167,7 +172,7 @@ export const ContactForm = ({
               disabled={isSubmitting}
             />
           </div>
-          
+
           <div>
             <label htmlFor="message" className="block mb-2 font-medium text-sm">
               Message *
@@ -184,13 +189,12 @@ export const ContactForm = ({
               disabled={isSubmitting}
             ></textarea>
           </div>
-          
+
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full bg-gradient-to-r from-primary to-primary-dark text-primary-foreground py-4 px-6 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 ${
-              isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-lg hover:-translate-y-1'
-            }`}
+            className={`w-full bg-gradient-to-r from-primary to-primary-dark text-primary-foreground py-4 px-6 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-lg hover:-translate-y-1'
+              }`}
           >
             {isSubmitting ? (
               <>

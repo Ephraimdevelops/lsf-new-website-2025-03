@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery, useMutation } from 'convex/react';
+import { useQuery, useMutation, useAction } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import {
     Mail, Users, Send, FileText, Plus, Trash2, Eye, Download,
-    TrendingUp, UserPlus, UserMinus, BarChart3, Edit, Archive
+    TrendingUp, UserPlus, UserMinus, BarChart3, Edit, Archive, Loader2
 } from 'lucide-react';
 import { Id } from '../../../convex/_generated/dataModel';
 
@@ -51,12 +51,15 @@ const AdminNewsletter = () => {
     const campaigns = useQuery(api.newsletter.listCampaigns, {}) as Campaign[] | undefined;
     const stats = useQuery(api.newsletter.getSubscriberStats);
 
-    // Mutations
+    // Mutations & Actions
     const deleteSubscriber = useMutation(api.newsletter.deleteSubscriber);
     const deleteCampaign = useMutation(api.newsletter.deleteCampaign);
-    const sendCampaign = useMutation(api.newsletter.sendCampaign);
+    const sendCampaignMutation = useMutation(api.newsletter.sendCampaign);
     const createCampaign = useMutation(api.newsletter.createCampaign);
     const updateCampaign = useMutation(api.newsletter.updateCampaign);
+    const sendEmailAction = useAction(api.resend.sendEmail);
+
+    const [isSending, setIsSending] = useState(false);
 
     // Campaign form state
     const [campaignForm, setCampaignForm] = useState({
@@ -78,13 +81,37 @@ const AdminNewsletter = () => {
     };
 
     const handleSendCampaign = async (id: Id<"newsletter_campaigns">) => {
-        if (window.confirm('Are you sure you want to send this campaign to all active subscribers?')) {
-            try {
-                const result = await sendCampaign({ id });
-                alert(`Campaign sent to ${result.recipientCount} subscribers!`);
-            } catch (error) {
-                console.error('Failed to send campaign:', error);
+        if (!window.confirm('Are you sure you want to send this campaign to all active subscribers? This will send real emails.')) {
+            return;
+        }
+
+        setIsSending(true);
+        try {
+            // Step 1: Mark campaign as sent and get subscriber data
+            const result = await sendCampaignMutation({ id });
+
+            if (!result.subscribers || result.subscribers.length === 0) {
+                alert('No active subscribers to send to.');
+                return;
             }
+
+            // Step 2: Send actual emails via Resend
+            const emailResult = await sendEmailAction({
+                to: result.subscribers,
+                subject: result.campaignSubject,
+                html: result.campaignContent,
+            });
+
+            if (emailResult.totalFailed > 0) {
+                alert(`Campaign sent!\n✓ ${emailResult.totalSent} emails delivered\n✗ ${emailResult.totalFailed} failed`);
+            } else {
+                alert(`✓ Campaign successfully sent to ${emailResult.totalSent} subscribers!`);
+            }
+        } catch (error) {
+            console.error('Failed to send campaign:', error);
+            alert('Failed to send campaign. Please try again.');
+        } finally {
+            setIsSending(false);
         }
     };
 

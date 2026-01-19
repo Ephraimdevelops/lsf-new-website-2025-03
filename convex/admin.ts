@@ -5,9 +5,15 @@ import { mutation, query } from "./_generated/server";
 export const getAnalytics = query({
     args: {},
     handler: async (ctx) => {
-        // TODO: Re-enable auth check after fixing Clerk session issue
-        // const identity = await ctx.auth.getUserIdentity();
-        // if (!identity) throw new Error("Unauthorized");
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) throw new Error("Unauthorized");
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+
+        if (user?.role !== "admin") throw new Error("Forbidden");
 
         // Parallelize queries for performance
         const [
@@ -109,9 +115,15 @@ export const getAnalytics = query({
 export const getUsers = query({
     args: {},
     handler: async (ctx) => {
-        // TODO: Re-enable auth check after fixing Clerk session issue
-        // const identity = await ctx.auth.getUserIdentity();
-        // if (!identity) throw new Error("Unauthorized");
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) throw new Error("Unauthorized");
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+
+        if (user?.role !== "admin") throw new Error("Forbidden");
 
         return await ctx.db.query("users").order("desc").collect();
     },
@@ -127,7 +139,12 @@ export const updateUserRole = mutation({
         const identity = await ctx.auth.getUserIdentity();
         if (!identity) throw new Error("Unauthorized");
 
-        // Verify requester is admin (skipped for now for simplicity, but critical for prod)
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+
+        if (user?.role !== "admin") throw new Error("Forbidden");
 
         await ctx.db.patch(args.userId, { role: args.role });
     },

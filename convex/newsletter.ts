@@ -242,8 +242,11 @@ export const sendCampaign = mutation({
             .withIndex("by_status", (q) => q.eq("status", "active"))
             .collect();
 
-        // In a real app, this would integrate with an email service (SendGrid, Mailchimp, etc.)
-        // For now, we just mark it as sent
+        if (activeSubscribers.length === 0) {
+            throw new Error("No active subscribers to send to");
+        }
+
+        // Mark as sending (in progress)
         await ctx.db.patch(args.id, {
             status: "sent",
             sentAt: Date.now(),
@@ -255,7 +258,17 @@ export const sendCampaign = mutation({
             await ctx.db.patch(sub._id, { lastEmailSentAt: Date.now() });
         }
 
-        return { success: true, recipientCount: activeSubscribers.length };
+        // Note: Actual email sending happens via the Resend action
+        // which should be called from the frontend after this mutation succeeds
+        // Frontend will call api.resend.sendEmail with the subscriber list
+
+        return {
+            success: true,
+            recipientCount: activeSubscribers.length,
+            subscribers: activeSubscribers.map(s => s.email),
+            campaignSubject: campaign.subject,
+            campaignContent: campaign.content,
+        };
     },
 });
 

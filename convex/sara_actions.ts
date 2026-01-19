@@ -4,7 +4,54 @@ import { v } from "convex/values";
 import { api, internal } from "./_generated/api";
 import OpenAI from "openai";
 
-// Lazy load OpenAI
+// ==========================================
+// EMERGENCY SAFETY SYSTEM (CRITICAL)
+// ==========================================
+
+// EMERGENCY KEYWORDS - Bypass LLM entirely (0ms latency)
+const EMERGENCY_KEYWORDS = [
+    // English
+    "suicide", "kill myself", "want to die", "end my life", "kill me",
+    "hurt myself", "self harm", "danger", "emergency", "violence",
+    "abuse", "rape", "beat me", "hitting me",
+    // Swahili (Kiswahili cha Kitanzania)
+    "kujiua", "nijiue", "nataka kufa", "kumaliza maisha", "ukatili",
+    "hatari", "dharura", "kunibaka", "kunipiga", "kuniumiza",
+    "ubakaji", "unyanyasaji", "jeuri"
+];
+
+const EMERGENCY_RESPONSE = `🚨 **Msaada wa Dharura / Emergency Support**
+
+Nasikia unayopitia wakati mgumu. Msaada upo. Wewe si peke yako.
+
+**Piga simu SASA / Call NOW:**
+━━━━━━━━━━━━━━━━━━━━━━
+📞 **Police Emergency:** **112** (Tanzania)
+📞 **Gender Desk (GBV):** **116** (Women & Children)
+📞 **Mental Health:** **+255 22 215 0302** (Muhimbili)
+📞 **LHRC Hotline:** **+255 22 266 2755**
+━━━━━━━━━━━━━━━━━━━━━━
+
+**You are not alone. Kumbuka: Huko sawa.**
+
+*Tafadhali wasiliana na mtaalamu haraka iwezekanavyo.*
+*Please contact a professional as soon as possible.*
+
+---
+*Ujumbe huu umetumwa moja kwa moja bila kutumia AI kwa usalama wako.*
+*This message was sent directly without AI processing for your safety.*`;
+
+function checkEmergencyKeywords(message: string): boolean {
+    const lowerMessage = message.toLowerCase().trim();
+    return EMERGENCY_KEYWORDS.some(keyword =>
+        lowerMessage.includes(keyword.toLowerCase())
+    );
+}
+
+// ==========================================
+// OPENAI CLIENT
+// ==========================================
+
 const getOpenAI = () => {
     if (!process.env.OPENAI_API_KEY) {
         throw new Error("Missing OPENAI_API_KEY environment variable");
@@ -14,7 +61,10 @@ const getOpenAI = () => {
     });
 };
 
-// Helper to chunk text
+// ==========================================
+// TEXT CHUNKING FOR RAG
+// ==========================================
+
 function chunkText(text: string, chunkSize: number = 1000, overlap: number = 200): string[] {
     const chunks: string[] = [];
     let i = 0;
@@ -24,6 +74,10 @@ function chunkText(text: string, chunkSize: number = 1000, overlap: number = 200
     }
     return chunks;
 }
+
+// ==========================================
+// DOCUMENT INGESTION ACTION
+// ==========================================
 
 export const ingestDocument = action({
     args: {
@@ -94,6 +148,10 @@ export const ingestDocument = action({
     },
 });
 
+// ==========================================
+// MAIN CHAT ACTION (WITH SAFETY TRIGGERS)
+// ==========================================
+
 export const ask = action({
     args: {
         message: v.string(),
@@ -108,6 +166,29 @@ export const ask = action({
             throw new Error("Unauthenticated call to Sara AI Action");
         }
         const userId = identity.subject;
+
+        // =====================================================
+        // SAFETY FIRST: Check for emergency keywords (0ms latency)
+        // This bypasses OpenAI entirely for critical safety
+        // =====================================================
+        if (checkEmergencyKeywords(args.message)) {
+            console.log("[SARA SAFETY] Emergency keyword detected, bypassing LLM");
+
+            // Create and immediately complete the bot message
+            const botMessageId = await ctx.runMutation(internal.sara_chat.createBotMessage, {
+                userId,
+            });
+
+            await ctx.runMutation(internal.sara_chat.updateMessage, {
+                messageId: botMessageId,
+                content: EMERGENCY_RESPONSE,
+                isDone: true,
+                toolCalls: ["EMERGENCY_SAFETY_TRIGGER"],
+            });
+
+            return EMERGENCY_RESPONSE;
+        }
+
         const openai = getOpenAI();
 
         // 1. Create Placeholder Bot Message
@@ -127,26 +208,67 @@ export const ask = action({
             limit: 5,
         });
 
-        // CORRECTED: Use getChunks with vector search IDs
-        const chunks = await ctx.runQuery(internal.sara.getChunks, {
-            ids: results.map(r => r._id)
-        });
+        // =====================================================
+        // HALLUCINATION GUARD: Check confidence scores
+        // =====================================================
+        const HIGH_CONFIDENCE_THRESHOLD = 0.75;
+        const highConfidenceResults = results.filter(r =>
+            r._score !== undefined && r._score >= HIGH_CONFIDENCE_THRESHOLD
+        );
 
-        const context = chunks.map(chunk => chunk?.text || "").join("\n\n");
+        let context = "";
+        let confidenceWarning = "";
+
+        if (highConfidenceResults.length === 0 && results.length > 0) {
+            // Low confidence - warn SARA to be honest
+            confidenceWarning = `
+⚠️ IMPORTANT: The knowledge base returned LOW CONFIDENCE results for this query.
+You MUST be honest and say something like: "Samahani, sijui jibu la swali hilo kwa uhakika. 
+Tafadhali wasiliana na wakili au paralegal kwa ushauri sahihi."
+DO NOT make up legal information. It is SAFER to say "I don't know" than to guess.
+`;
+            // Still provide context but with low confidence
+            const chunks = await ctx.runQuery(internal.sara.getChunks, {
+                ids: results.map(r => r._id)
+            });
+            context = chunks.map(chunk => chunk?.text || "").join("\n\n");
+        } else if (highConfidenceResults.length > 0) {
+            // High confidence - use filtered results
+            const chunks = await ctx.runQuery(internal.sara.getChunks, {
+                ids: highConfidenceResults.map(r => r._id)
+            });
+            context = chunks.map(chunk => chunk?.text || "").join("\n\n");
+        }
+
+        // =====================================================
+        // SYSTEM PROMPT: Tanzanian Swahili Cultural Tuning
+        // =====================================================
+        const systemPrompt = `You are SARA (Sheria Assistant & Resource Associate), a legal assistant for LSF Tanzania.
+
+LANGUAGE & CULTURAL GUIDELINES:
+- Use Kiswahili cha Kitanzania (Tanzanian Swahili) when responding in Swahili
+- Avoid Kenyan idioms or slang (e.g., use "shida" not "shughuli", use "karibu" not "sawa sawa")
+- Simplify legal terms for accessibility:
+  • Use "Mirathi" instead of complex probate terminology
+  • Use "Haki za Ardhi" instead of "Property Rights"
+  • Use "Ndoa" instead of "Matrimonial"
+- Be empathetic and professional - many users face difficult situations
+
+RESPONSE GUIDELINES:
+- Keep answers professional, empathetic, and concise
+- If you're asked about specific legal advice, recommend consulting a paralegal
+- Always end with a helpful next step or offer to help further
+
+${confidenceWarning}
+
+IMPORTANT: If a tool returns a string starting with "::PARALEGAL_CARD:", you MUST include that exact string in your response. Do not summarize it or remove the colons. This is required for the UI to render the card.
+
+KNOWLEDGE BASE CONTEXT:
+${context || "No relevant context found. Please be honest about not having specific information."}`;
 
         const messages: any[] = [
-            {
-                role: "system",
-                content: `You are SARA (Sheria Assistant & Resource Associate), a legal assistant for LSF Tanzania.
-                Use the following context to answer questions. If unsure, say so.
-                Keep answers professional, empathetic, and concise.
-                
-                IMPORTANT: If a tool returns a string starting with "::PARALEGAL_CARD:", you MUST include that exact string in your response. Do not summarize it or remove the colons. This is required for the UI to render the card.
-
-                Context:
-                ${context}`
-            },
-            ...args.history,
+            { role: "system", content: systemPrompt },
+            ...args.history.slice(-10), // Limit to last 10 messages (5 turns)
             { role: "user", content: args.message }
         ];
 
@@ -156,10 +278,13 @@ export const ask = action({
                 type: "function",
                 function: {
                     name: "find_paralegals",
-                    description: "Find a paralegal in a specific region",
+                    description: "Find a paralegal in a specific region of Tanzania",
                     parameters: {
                         type: "object",
-                        properties: { region: { type: "string" }, district: { type: "string" } },
+                        properties: {
+                            region: { type: "string", description: "Tanzanian region (e.g., Arusha, Dodoma, Mwanza)" },
+                            district: { type: "string", description: "District within the region" }
+                        },
                         required: ["region"],
                     },
                 },
@@ -178,9 +303,15 @@ export const ask = action({
         let fullContent = "";
         let toolCallBuffer: any = null;
         let updateCount = 0;
+        let totalTokens = 0;
 
         for await (const chunk of stream) {
             const delta = chunk.choices[0]?.delta;
+
+            // Track token usage
+            if (chunk.usage) {
+                totalTokens = chunk.usage.total_tokens || 0;
+            }
 
             // Check for tool calls
             if (delta?.tool_calls) {
@@ -209,11 +340,10 @@ export const ask = action({
 
         // 5. Handle Tool Execution (if any)
         if (toolCallBuffer) {
-            // We have a tool call!
             const argsObj = JSON.parse(toolCallBuffer.arguments);
             const region = argsObj.region || "Tanzania";
 
-            // Dynamic Data Simulation
+            // Dynamic paralegal lookup (simulated for now)
             let name = "Juma M. Legal Services";
             let phone = "+255 755 123 456";
 
@@ -226,9 +356,12 @@ export const ask = action({
             } else if (region.toLowerCase().includes("mwanza")) {
                 name = "Victoria Justice Hub";
                 phone = "+255 788 112 233";
+            } else if (region.toLowerCase().includes("dar") || region.toLowerCase().includes("salaam")) {
+                name = "Dar es Salaam Legal Aid";
+                phone = "+255 765 432 100";
             }
 
-            // Format specifically for the UI Card
+            // Format for UI Card
             const cardData = JSON.stringify({
                 name: name,
                 region: region,
@@ -239,7 +372,7 @@ export const ask = action({
 
             const searchResults = `Found a paralegal. Details: ::PARALEGAL_CARD:${cardData}::`;
 
-            // Append to messages
+            // Append tool call result
             messages.push({
                 role: "assistant",
                 tool_calls: [{
@@ -257,7 +390,7 @@ export const ask = action({
                 content: searchResults
             });
 
-            // Stream the SECOND response (Final Answer)
+            // Stream second response
             const secondStream = await openai.chat.completions.create({
                 model: "gpt-4o",
                 messages: messages,
@@ -266,6 +399,9 @@ export const ask = action({
 
             for await (const chunk of secondStream) {
                 const content = chunk.choices[0]?.delta?.content || "";
+                if (chunk.usage) {
+                    totalTokens += chunk.usage.total_tokens || 0;
+                }
                 if (content) {
                     fullContent += content;
                     updateCount++;
@@ -280,11 +416,13 @@ export const ask = action({
             }
         }
 
-        // 6. Final Done Update
+        // 6. Final Done Update (with token tracking)
         await ctx.runMutation(internal.sara_chat.updateMessage, {
             messageId: botMessageId,
             content: fullContent,
             isDone: true,
+            tokens: totalTokens,
+            toolCalls: toolCallBuffer ? [toolCallBuffer.name] : undefined,
         });
 
         return fullContent;

@@ -10,6 +10,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
+import { Honeypot, useHoneypot } from '@/components/Honeypot';
+import { useFormPersistence } from '@/hooks/useFormPersistence';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -19,14 +22,26 @@ const ContactPage = () => {
     document.title = 'Contact Us - Legal Services Facility';
   }, []);
 
-  const [formData, setFormData] = useState({
+  /* 
+   * NEW: Security & Persistence Hooks 
+   */
+  const isOnline = useOnlineStatus();
+  const { honeypotValue, honeypotProps, isBotDetected } = useHoneypot('roleTitle');
+
+  const initialFormState = {
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
     subject: '',
     message: '',
-  });
+  };
+
+  const [formData, setFormData, clearStorage] = useFormPersistence(
+    'lsf_contact_form_v1',
+    initialFormState
+  );
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -45,6 +60,21 @@ const ContactPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 1. Security: Honeypot Check
+    if (isBotDetected()) {
+      console.log('[Security] Bot detected via honeypot');
+      setIsSubmitted(true);
+      clearStorage();
+      return;
+    }
+
+    // 2. Network Check
+    if (!isOnline) {
+      setError('You are offline. Your message is saved and can be sent when you are back online. / Uko nje ya mtandao. Ujumbe wako umehifadhiwa.');
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
@@ -56,8 +86,11 @@ const ContactPage = () => {
         category: 'general',
         subject: formData.subject,
         message: formData.message,
+        // Pass honeypot value to backend
+        roleTitle: honeypotValue,
       });
       setIsSubmitted(true);
+      clearStorage(); // Clear storage on success
       setFormData({ firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
     } catch (err) {
       setError('Failed to submit. Please try again.');
@@ -241,6 +274,13 @@ const ContactPage = () => {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    <Honeypot {...honeypotProps} />
+                    {!isOnline && (
+                      <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4" role="alert">
+                        <p className="font-bold">Offline Mode</p>
+                        <p>You are currently offline. Your form data is saved locally.</p>
+                      </div>
+                    )}
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-bold text-gray-700 mb-2">First Name *</label>

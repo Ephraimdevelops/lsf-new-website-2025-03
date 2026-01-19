@@ -18,6 +18,7 @@ import {
   Bot
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import OpsDashboard from './OpsDashboard';
 import AdminHome from './AdminHome';
 import AdminNews from './AdminNews';
 import AdminPrograms from './AdminPrograms';
@@ -145,7 +146,13 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
 
       {/* Main content */}
       <div className="ml-64">
+        import OpsDashboard from './OpsDashboard';
+
+        // ... (existing imports)
+
+        // Inside component:
         <div className="p-8">
+          <OpsDashboard />
           {renderContent()}
         </div>
       </div>

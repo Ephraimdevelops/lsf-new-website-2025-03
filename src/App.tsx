@@ -8,6 +8,7 @@ import { lazy, Suspense } from "react";
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { useStoreUserEffect } from "@/hooks/useStoreUserEffect";
+import CookieConsent from "@/components/CookieConsent";
 
 // Eager load critical components
 import Index from "./pages/Index";
@@ -196,6 +197,7 @@ function App() {
           </AuthSync>
           <Toaster />
           <Sonner />
+          <CookieConsent />
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>

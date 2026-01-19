@@ -293,6 +293,7 @@ export default defineSchema({
     metadata: v.optional(v.any()), // PDF metadata
     uploadedAt: v.number(),
     processedAt: v.optional(v.number()),
+    lastReviewedAt: v.optional(v.number()), // For content freshness alerts
   }),
 
   // Embeddings (Chunks)
@@ -337,4 +338,40 @@ export default defineSchema({
     key: v.string(), // e.g. 'system_prompt'
     value: v.string(),
   }).index("by_key", ["key"]),
+
+  // ==========================================
+  // RATE LIMITING (Anti-Spam Protection)
+  // ==========================================
+
+  rate_limits: defineTable({
+    identifier: v.string(), // Hashed IP or session ID
+    count: v.number(), // Number of requests in window
+    windowStart: v.number(), // Timestamp of window start
+  }).index("by_identifier", ["identifier"]),
+
+  // ==========================================
+  // AUDIT LOGS (For compliance/accountability)
+  // ==========================================
+
+  audit_logs: defineTable({
+    action: v.string(), // 'create', 'update', 'delete', 'login', etc.
+    entityType: v.string(), // 'whistleblower_report', 'paralegal_application', etc.
+    entityId: v.optional(v.string()), // ID of affected entity
+    userId: v.string(), // Clerk ID of user performing action
+    timestamp: v.number(),
+    metadata: v.optional(v.any()), // Additional context
+  }).index("by_action", ["action"])
+    .index("by_user", ["userId"])
+    .index("by_timestamp", ["timestamp"]),
+
+  // ==========================================
+  // SITE SETTINGS (Admin configurable)
+  // ==========================================
+
+  site_settings: defineTable({
+    key: v.string(), // Setting key (e.g., 'siteName', 'contactEmail')
+    value: v.string(), // Setting value
+    updatedAt: v.number(),
+  }).index("by_key", ["key"]),
 });
+

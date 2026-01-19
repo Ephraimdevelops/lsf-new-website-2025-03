@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
@@ -6,11 +6,19 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Shield, Lock, Eye, AlertCircle, CheckCircle, Users, Scale, Heart, Phone, Mail, FileText, MessageSquare, Clock, Globe, Send } from 'lucide-react';
+import { Shield, Lock, Eye, AlertCircle, CheckCircle, Users, Scale, Heart, Phone, Mail, FileText, MessageSquare, Clock, Globe, Send, WifiOff } from 'lucide-react';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
+import { Honeypot, useHoneypot } from '@/components/Honeypot';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 
 const Whistleblower = () => {
+  // Network status check
+  const isOnline = useOnlineStatus();
+
+  // Honeypot anti-bot protection
+  const { honeypotValue, honeypotProps, isBotDetected } = useHoneypot('roleTitle');
+
   // Form state
   const [formData, setFormData] = useState({
     reportType: '',
@@ -22,13 +30,38 @@ const Whistleblower = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [rateLimitInfo, setRateLimitInfo] = useState<{ remaining: number } | null>(null);
 
-  const submitReport = useMutation(api.formSubmissions.submitWhistleblowerReport);
+  // Generate unique client identifier for rate limiting
+  const [clientId] = useState(() => {
+    const stored = localStorage.getItem('lsf_client_id');
+    if (stored) return stored;
+    const newId = `client_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    localStorage.setItem('lsf_client_id', newId);
+    return newId;
+  });
+
+  const submitReport = useMutation(api.whistleblower.submit);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // SECURITY: Check honeypot
+    if (isBotDetected()) {
+      console.log('[Security] Bot detected via honeypot');
+      // Fake success to confuse bots
+      setIsSubmitted(true);
+      return;
+    }
+
+    // Check network
+    if (!isOnline) {
+      setError('Unganisho wa mtandao haupo. Tafadhali jaribu tena baadaye. / You are offline. Please try again later.');
+      return;
+    }
+
     if (!formData.reportType || !formData.description) {
-      setError('Please fill in all required fields.');
+      setError('Tafadhali jaza sehemu zote zinazohitajika. / Please fill in all required fields.');
       return;
     }
 
@@ -36,16 +69,28 @@ const Whistleblower = () => {
     setError(null);
 
     try {
-      await submitReport({
+      const result = await submitReport({
         reportType: formData.reportType,
         description: formData.description,
         contactEmail: formData.isAnonymous ? undefined : formData.contactEmail || undefined,
         contactPhone: formData.isAnonymous ? undefined : formData.contactPhone || undefined,
         isAnonymous: formData.isAnonymous,
+        clientIdentifier: clientId,
+        roleTitle: honeypotValue, // Honeypot value for backend validation
       });
+
+      if (result.remaining !== undefined) {
+        setRateLimitInfo({ remaining: result.remaining });
+      }
+
       setIsSubmitted(true);
-    } catch (err) {
-      setError('Failed to submit report. Please try again or use the hotline.');
+    } catch (err: any) {
+      // Check for rate limit error
+      if (err.message?.includes('Rate limit')) {
+        setError(err.message);
+      } else {
+        setError('Kushindwa kutuma ripoti. Tafadhali jaribu tena au tumia simu ya dharura. / Failed to submit report. Please try again or use the hotline.');
+      }
       console.error('Whistleblower submission error:', err);
     } finally {
       setIsSubmitting(false);
@@ -53,13 +98,13 @@ const Whistleblower = () => {
   };
 
   const reportTypes = [
-    { value: 'fraud', label: 'Fraud or Financial Misconduct' },
-    { value: 'misconduct', label: 'Staff Misconduct' },
-    { value: 'harassment', label: 'Harassment or Discrimination' },
-    { value: 'safety', label: 'Safety Concerns' },
-    { value: 'policy', label: 'Policy Violations' },
-    { value: 'conflict', label: 'Conflict of Interest' },
-    { value: 'other', label: 'Other Concerns' },
+    { value: 'fraud', label: 'Fraud or Financial Misconduct / Ulaghai wa Fedha' },
+    { value: 'misconduct', label: 'Staff Misconduct / Tabia mbaya ya Wafanyakazi' },
+    { value: 'harassment', label: 'Harassment or Discrimination / Unyanyasaji' },
+    { value: 'safety', label: 'Safety Concerns / Masuala ya Usalama' },
+    { value: 'policy', label: 'Policy Violations / Ukiukaji wa Sera' },
+    { value: 'conflict', label: 'Conflict of Interest / Mgongano wa Maslahi' },
+    { value: 'other', label: 'Other Concerns / Masuala Mengine' },
   ];
 
   const protectionFeatures = [
@@ -92,6 +137,14 @@ const Whistleblower = () => {
 
   return (
     <Layout>
+      {/* Offline Banner */}
+      {!isOnline && (
+        <div className="fixed top-0 left-0 right-0 z-[100] bg-yellow-500 text-black py-3 px-4 text-center font-medium flex items-center justify-center gap-2">
+          <WifiOff className="w-5 h-5" />
+          <span>Mtandao haupo / You are offline. Form submissions will not work.</span>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Dynamic Background */}
@@ -268,30 +321,47 @@ const Whistleblower = () => {
                         Your report has been securely received. We will investigate within 48 hours.
                         {!formData.isAnonymous && " We may contact you for additional information."}
                       </Typography>
+                      {rateLimitInfo && (
+                        <Typography variant="bodySmall" className="text-neutral-gray mb-4">
+                          You have {rateLimitInfo.remaining} submission(s) remaining this hour.
+                        </Typography>
+                      )}
                       <Button onClick={() => { setIsSubmitted(false); setFormData({ reportType: '', description: '', contactEmail: '', contactPhone: '', isAnonymous: true }); }}>
                         Submit Another Report
                       </Button>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {/* HONEYPOT - Hidden from users, visible to bots */}
+                      <Honeypot {...honeypotProps} />
+
                       {error && (
                         <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
                           {error}
                         </div>
                       )}
 
+                      {/* Offline Warning */}
+                      {!isOnline && (
+                        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-yellow-700 text-sm flex items-center gap-2">
+                          <WifiOff className="w-5 h-5" />
+                          <span>You are offline. Report cannot be submitted until connection is restored.</span>
+                        </div>
+                      )}
+
                       {/* Report Type */}
                       <div>
                         <label className="block text-sm font-semibold text-neutral-700 mb-2">
-                          Type of Concern *
+                          Type of Concern / Aina ya Tatizo *
                         </label>
                         <select
                           value={formData.reportType}
                           onChange={(e) => setFormData({ ...formData, reportType: e.target.value })}
                           className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                           required
+                          disabled={!isOnline}
                         >
-                          <option value="">Select type of concern</option>
+                          <option value="">Select type of concern / Chagua aina ya tatizo</option>
                           {reportTypes.map((type) => (
                             <option key={type.value} value={type.value}>{type.label}</option>
                           ))}
@@ -301,15 +371,16 @@ const Whistleblower = () => {
                       {/* Description */}
                       <div>
                         <label className="block text-sm font-semibold text-neutral-700 mb-2">
-                          Describe Your Concern *
+                          Describe Your Concern / Eleza Tatizo Lako *
                         </label>
                         <textarea
                           value={formData.description}
                           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                           rows={6}
                           className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                          placeholder="Please provide as much detail as possible. Include dates, names, locations, and any evidence you may have..."
+                          placeholder="Please provide as much detail as possible. Include dates, names, locations, and any evidence you may have... / Tafadhali eleza kwa undani zaidi. Weka tarehe, majina, maeneo, na ushahidi wowote..."
                           required
+                          disabled={!isOnline}
                         />
                       </div>
 
@@ -323,8 +394,8 @@ const Whistleblower = () => {
                           className="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary"
                         />
                         <label htmlFor="anonymous" className="flex-1">
-                          <span className="font-semibold text-neutral-900">Submit Anonymously</span>
-                          <p className="text-sm text-neutral-600">Your identity will be completely protected</p>
+                          <span className="font-semibold text-neutral-900">Submit Anonymously / Tuma Bila Jina</span>
+                          <p className="text-sm text-neutral-600">Your identity will be completely protected / Utambulisho wako utalindwa</p>
                         </label>
                         <Lock className="h-5 w-5 text-secondary-orange" />
                       </div>
@@ -342,6 +413,7 @@ const Whistleblower = () => {
                               onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
                               className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
                               placeholder="your.email@example.com"
+                              disabled={!isOnline}
                             />
                           </div>
                           <div>
@@ -354,6 +426,7 @@ const Whistleblower = () => {
                               onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
                               className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary"
                               placeholder="+255 XXX XXX XXX"
+                              disabled={!isOnline}
                             />
                           </div>
                         </div>
@@ -362,18 +435,23 @@ const Whistleblower = () => {
                       {/* Submit Button */}
                       <Button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="w-full text-lg py-6 bg-primary hover:bg-primary/90"
+                        disabled={isSubmitting || !isOnline}
+                        className="w-full text-lg py-6 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <span className="flex items-center gap-2">
                             <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                             Submitting Securely...
                           </span>
+                        ) : !isOnline ? (
+                          <span className="flex items-center gap-2">
+                            <WifiOff className="h-5 w-5" />
+                            Offline - Cannot Submit
+                          </span>
                         ) : (
                           <span className="flex items-center gap-2">
                             <Send className="h-5 w-5" />
-                            Submit Secure Report
+                            Submit Secure Report / Tuma Ripoti
                           </span>
                         )}
                       </Button>
