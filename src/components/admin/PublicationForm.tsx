@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -121,15 +121,52 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
     },
   });
 
+  // Reset form when publication or mode changes
+  useEffect(() => {
+    if (mode === 'edit' && publication) {
+      form.reset({
+        title: publication.title,
+        description: publication.description,
+        type: publication.type,
+        date: publication.publishedDate,
+        author: publication.authors?.[0] || '',
+        language: 'English',
+        category: publication.category,
+        tags: publication.authors || [],
+      });
+      setTags(publication.authors || []);
+    } else if (mode === 'create') {
+      form.reset({
+        title: '',
+        description: '',
+        type: '',
+        date: new Date().toISOString().split('T')[0],
+        author: '',
+        language: 'English',
+        category: '',
+        tags: [],
+      });
+      setTags([]);
+      setSelectedFile(null);
+      setSelectedCoverImage(null);
+    }
+  }, [publication, mode, form]);
+
   const handleUpload = async (file: File) => {
-    const postUrl = await generateUploadUrl();
-    const result = await fetch(postUrl, {
-      method: "POST",
-      headers: { "Content-Type": file.type },
-      body: file,
-    });
-    const { storageId } = await result.json();
-    return storageId;
+    try {
+      const postUrl = await generateUploadUrl();
+      const result = await fetch(postUrl, {
+        method: "POST",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+      if (!result.ok) throw new Error(`Upload failed: ${result.statusText}`);
+      const { storageId } = await result.json();
+      return storageId;
+    } catch (e) {
+      console.error("Upload error:", e);
+      throw e;
+    }
   };
 
   const handleSubmit = async (data: PublicationFormData) => {
@@ -137,6 +174,12 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
       setSubmitting(true);
       let pdfUrl = publication?.pdfUrl || '';
       let coverImageUrl = publication?.coverImageUrl || '';
+
+      // Validation: Require PDF for new publications
+      if (mode === 'create' && !selectedFile) {
+        toast({ title: "PDF Required", description: "Please upload a PDF file for the publication.", variant: "destructive" });
+        return;
+      }
 
       if (selectedFile) {
         pdfUrl = await handleUpload(selectedFile);

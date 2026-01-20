@@ -8,7 +8,8 @@ import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 
 const AdminHome = () => {
-  const analytics = useQuery(api.admin.getAnalytics);
+  // Use the REAL analytics query instead of the mock admin one
+  const analytics = useQuery(api.analytics.getDashboardOverview, { days: 30 });
   const loading = analytics === undefined;
 
   if (loading) {
@@ -39,6 +40,9 @@ const AdminHome = () => {
     );
   }
 
+  // Calculate generic content total (News + Pubs)
+  const totalContent = (analytics.documentCounts?.news || 0) + (analytics.documentCounts?.publications || 0);
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -57,14 +61,13 @@ const AdminHome = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium font-calibri">Total Visitors</CardTitle>
+            <CardTitle className="text-sm font-medium font-calibri">Unique Visitors (Est.)</CardTitle>
             <Users size={16} className="text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{analytics.visitors.total.toLocaleString()}</div>
+            <div className="text-2xl font-bold">{analytics.totalVisitors.toLocaleString()}</div>
             <p className="text-xs text-green-600 mt-1 font-calibri flex items-center">
-              <TrendingUp className="h-3 w-3 mr-1" />
-              +{analytics.visitors.growth}% from last month
+              Last 30 Days
             </p>
           </CardContent>
         </Card>
@@ -76,10 +79,10 @@ const AdminHome = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {analytics.content.totalNews + analytics.content.totalPublications + analytics.content.totalPrograms}
+              {totalContent}
             </div>
             <p className="text-xs text-gray-500 mt-1 font-calibri">
-              News, Publications & Programs
+              News & Publications
             </p>
           </CardContent>
         </Card>
@@ -91,7 +94,7 @@ const AdminHome = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {analytics.engagement.downloads.reduce((sum, item) => sum + item.downloads, 0).toLocaleString()}
+              {analytics.totalDownloads.toLocaleString()}
             </div>
             <p className="text-xs text-gray-500 mt-1 font-calibri">All publications</p>
           </CardContent>
@@ -104,7 +107,7 @@ const AdminHome = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {analytics.engagement.views.reduce((sum, item) => sum + item.views, 0).toLocaleString()}
+              {analytics.totalPageViews.toLocaleString()}
             </div>
             <p className="text-xs text-gray-500 mt-1 font-calibri">Total content views</p>
           </CardContent>
@@ -123,7 +126,7 @@ const AdminHome = () => {
           <CardContent>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={analytics.visitors.daily.slice(-14)}>
+                <LineChart data={analytics.dailyStats?.slice(-14) || []}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis
                     dataKey="date"
@@ -132,7 +135,7 @@ const AdminHome = () => {
                   <YAxis />
                   <Tooltip
                     labelFormatter={(value) => new Date(value).toLocaleDateString()}
-                    formatter={(value) => [value, 'Visitors']}
+                    formatter={(value: any) => [value, 'Visitors']}
                   />
                   <Line type="monotone" dataKey="visitors" stroke="#3B82F6" strokeWidth={2} />
                 </LineChart>
@@ -145,24 +148,26 @@ const AdminHome = () => {
           <CardHeader>
             <CardTitle className="font-panton flex items-center gap-2">
               <Download size={18} />
-              Top Downloads
+              Top Content by Performance
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={analytics.engagement.downloads.slice(0, 5)}>
+                <BarChart data={analytics.contentPerformance?.slice(0, 5) || []}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis
-                    dataKey="name"
+                    dataKey="title"
                     angle={-45}
                     textAnchor="end"
                     height={80}
                     fontSize={12}
+                    tickFormatter={(val) => val.length > 15 ? val.substring(0, 15) + '...' : val}
                   />
                   <YAxis />
                   <Tooltip />
-                  <Bar dataKey="downloads" fill="#10B981" />
+                  <Bar dataKey="views" fill="#8884d8" name="Views" />
+                  <Bar dataKey="downloads" fill="#10B981" name="Downloads" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -188,7 +193,7 @@ const AdminHome = () => {
                     <div className="text-sm text-gray-500 font-calibri">Published content</div>
                   </div>
                 </div>
-                <div className="text-xl font-bold">{analytics.content.totalNews}</div>
+                <div className="text-xl font-bold">{analytics.documentCounts?.news || 0}</div>
               </div>
 
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -201,20 +206,7 @@ const AdminHome = () => {
                     <div className="text-sm text-gray-500 font-calibri">Downloadable resources</div>
                   </div>
                 </div>
-                <div className="text-xl font-bold">{analytics.content.totalPublications}</div>
-              </div>
-
-              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="bg-secondary-green/10 p-2 rounded-full">
-                    <Users size={16} className="text-secondary-green" />
-                  </div>
-                  <div>
-                    <div className="font-medium font-calibri">Programs</div>
-                    <div className="text-sm text-gray-500 font-calibri">Active initiatives</div>
-                  </div>
-                </div>
-                <div className="text-xl font-bold">{analytics.content.totalPrograms}</div>
+                <div className="text-xl font-bold">{analytics.documentCounts?.publications || 0}</div>
               </div>
             </div>
           </CardContent>
@@ -229,25 +221,26 @@ const AdminHome = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {analytics.recentActivity.map((activity) => (
+              {analytics.recentActivity?.length === 0 && (
+                <div className="text-center text-gray-500 py-4">No recent activity</div>
+              )}
+              {analytics.recentActivity?.map((activity: any) => (
                 <div key={activity.id} className="flex items-start gap-4">
                   <div className={`p-2 rounded-full ${activity.type === 'news' ? 'bg-primary/10' :
-                      activity.type === 'publication' ? 'bg-secondary-teal/10' :
-                        activity.type === 'program' ? 'bg-secondary-green/10' :
-                          'bg-gray-100'
+                    activity.type === 'publication' ? 'bg-secondary-teal/10' :
+                      'bg-gray-100'
                     }`}>
                     <FileText size={16} className={
                       activity.type === 'news' ? 'text-primary' :
                         activity.type === 'publication' ? 'text-secondary-teal' :
-                          activity.type === 'program' ? 'text-secondary-green' :
-                            'text-gray-500'
+                          'text-gray-500'
                     } />
                   </div>
                   <div className="flex-1">
                     <div className="font-medium font-calibri capitalize">
                       {activity.action} {activity.type}
                     </div>
-                    <div className="text-sm text-gray-500 font-calibri mb-1">
+                    <div className="text-sm text-gray-500 font-calibri mb-1 line-clamp-1">
                       {activity.description}
                     </div>
                     <div className="text-xs text-gray-400 font-calibri">
@@ -272,7 +265,7 @@ const AdminHome = () => {
           <CardTitle className="font-panton">Quick Actions</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Button asChild variant="outline" className="h-auto p-4 flex flex-col gap-2">
               <Link to="/admin/news">
                 <FileText size={20} />
@@ -283,12 +276,6 @@ const AdminHome = () => {
               <Link to="/admin/publications">
                 <Download size={20} />
                 <span className="font-calibri">Manage Publications</span>
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="h-auto p-4 flex flex-col gap-2">
-              <Link to="/admin/programs">
-                <Users size={20} />
-                <span className="font-calibri">Manage Programs</span>
               </Link>
             </Button>
             <Button asChild variant="outline" className="h-auto p-4 flex flex-col gap-2">

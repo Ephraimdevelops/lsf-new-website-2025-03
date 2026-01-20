@@ -21,10 +21,8 @@ import { Button } from '@/components/ui/button';
 import OpsDashboard from './OpsDashboard';
 import AdminHome from './AdminHome';
 import AdminNews from './AdminNews';
-import AdminPrograms from './AdminPrograms';
 import AdminOpportunities from './AdminOpportunities';
 import AdminPublications from './AdminPublications';
-import AdminResources from './AdminResources';
 import AdminSettings from './AdminSettings';
 import AdminHeroSlides from './AdminHeroSlides';
 import EnhancedAnalyticsDashboard from './EnhancedAnalyticsDashboard';
@@ -47,13 +45,11 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
     { id: 'hero-slides', label: 'Hero Slides', icon: Presentation },
     { id: 'news', label: 'News', icon: FileText },
     { id: 'stories', label: 'Success Stories', icon: Heart },
-    { id: 'programs', label: 'Programs', icon: Calendar },
     { id: 'publications', label: 'Publications', icon: BookOpen },
     { id: 'opportunities', label: 'Opportunities', icon: Briefcase },
     { id: 'newsletter', label: 'Newsletter', icon: Mail },
     { id: 'submissions', label: 'Submissions', icon: MessageSquare },
     { id: 'paralegals', label: 'Paralegals', icon: Scale },
-    { id: 'resources', label: 'Resources', icon: Users },
     { id: 'team', label: 'Team', icon: Users },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'sara-analytics', label: 'SARA AI Stats', icon: Bot },
@@ -70,8 +66,6 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <AdminNews />;
       case 'stories':
         return <AdminStories />;
-      case 'programs':
-        return <AdminPrograms />;
       case 'publications':
         return <AdminPublications />;
       case 'opportunities':
@@ -82,8 +76,6 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <AdminFormSubmissions />;
       case 'paralegals':
         return <AdminParalegals />;
-      case 'resources':
-        return <AdminResources />;
       case 'team':
         return <AdminTeam />;
       case 'analytics':

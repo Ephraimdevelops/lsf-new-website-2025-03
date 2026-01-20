@@ -73,6 +73,18 @@ export const logEvent = mutation({
                 } catch (e) {
                     // Ignore invalid IDs
                 }
+            } else if (args.type === "page_view" && args.resourceType === "publication") {
+                try {
+                    const pubId = args.resourceId as any;
+                    const pub: any = await ctx.db.get(pubId);
+                    if (pub) {
+                        await ctx.db.patch(pubId, {
+                            views: (pub.views || 0) + 1
+                        });
+                    }
+                } catch (e) {
+                    // Ignore invalid IDs
+                }
             } else if (args.type === "news_view") {
                 try {
                     const newsId = args.resourceId as any;
@@ -604,12 +616,27 @@ export const getDashboardOverview = query({
             allDownloads,
             allNewsViews,
             allProgramViews,
+            totalNewsDocs,
+            totalPubDocs,
+            recentNews,
+            recentPubs
         ] = await Promise.all([
             ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "page_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
             ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "publication_download")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
             ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "news_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+
+            // Programs tracked via page reads (legacy or specific events)
             ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "paralegal_page_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+
+            // Document counts
+            ctx.db.query("news").collect().then(res => res.length),
+            ctx.db.query("publications").collect().then(res => res.length),
+
+            // Recent Items
+            ctx.db.query("news").order("desc").take(5),
+            ctx.db.query("publications").order("desc").take(5),
         ]);
+
 
         // 4. Calculate Key Metrics
         const totalPageViews = allPageViews.length + allNewsViews.length + allProgramViews.length;
@@ -684,6 +711,24 @@ export const getDashboardOverview = query({
             .slice(0, 5)
             .map(([title, stats]) => ({ title, ...stats }));
 
+        const recentActivity = [
+            ...recentNews.map(n => ({
+                id: n._id,
+                type: "news",
+                action: "Published",
+                description: n.title,
+                timestamp: n.date // Assuming date exists
+            })),
+            ...recentPubs.map(p => ({
+                id: p._id,
+                type: "publication",
+                action: "Uploaded",
+                description: p.title,
+                timestamp: p.publishedDate
+            }))
+        ].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+            .slice(0, 10);
+
 
         return {
             totalVisitors,
@@ -706,7 +751,12 @@ export const getDashboardOverview = query({
             realTimeStats: {
                 activeUsers: Math.floor(Math.random() * 5) + 1, // Mock activity
                 currentPageViews: dailyStats[dailyStats.length - 1]?.pageViews || 0
-            }
+            },
+            documentCounts: {
+                news: totalNewsDocs,
+                publications: totalPubDocs
+            },
+            recentActivity
         };
     },
 });

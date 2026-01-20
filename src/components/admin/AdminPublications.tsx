@@ -59,6 +59,8 @@ interface Publication {
   category: string;
   authors?: string[];
   featured?: boolean;
+  views?: number;
+  downloadCount?: number;
 }
 
 type SortField = 'title' | 'type' | 'date' | 'author';
@@ -347,6 +349,24 @@ const AdminPublications = () => {
                       Date {getSortIcon('date')}
                     </Button>
                   </TableHead>
+                  <TableHead className="font-semibold font-calibri">
+                    <Button
+                      variant="ghost"
+                      className="h-auto p-0 font-semibold font-calibri hover:bg-transparent"
+                      onClick={() => handleSort('views' as any)}
+                    >
+                      Views
+                    </Button>
+                  </TableHead>
+                  <TableHead className="font-semibold font-calibri">
+                    <Button
+                      variant="ghost"
+                      className="h-auto p-0 font-semibold font-calibri hover:bg-transparent"
+                      onClick={() => handleSort('downloads' as any)}
+                    >
+                      Downloads
+                    </Button>
+                  </TableHead>
                   <TableHead className="text-right font-semibold font-calibri">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -380,6 +400,12 @@ const AdminPublications = () => {
                       </TableCell>
                       <TableCell className="font-calibri">
                         {new Date(publication.publishedDate).toLocaleDateString()}
+                      </TableCell>
+                      <TableCell className="font-calibri">
+                        {publication.views || 0}
+                      </TableCell>
+                      <TableCell className="font-calibri">
+                        {publication.downloadCount || 0}
                       </TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>

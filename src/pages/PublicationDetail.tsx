@@ -1,5 +1,6 @@
 
 import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
@@ -23,11 +24,24 @@ const PublicationDetail = () => {
   const error = publicationData === null; // If null returned, it means not found
 
   // =====================================================
-  // ANALYTICS: Track PDF download on click
+  // ANALYTICS: Track PDF download on click & View on mount
   // =====================================================
+  useEffect(() => {
+    if (publication) {
+      logEvent({
+        type: "page_view",
+        resourceId: publicationId,
+        resourceType: "publication",
+        meta: {
+          title: publication.title
+        }
+      });
+    }
+  }, [publication, publicationId, logEvent]);
+
   const trackDownload = () => {
     if (publication) {
-      // Increment the old download counter
+      // Increment the old download counter (legacy)
       incrementDownload({ id: publication.id });
 
       // Log analytics event for detailed tracking

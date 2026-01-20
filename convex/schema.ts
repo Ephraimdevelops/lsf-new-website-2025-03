@@ -47,6 +47,7 @@ export default defineSchema({
     authors: v.optional(v.array(v.string())),
     featured: v.optional(v.boolean()),
     downloadCount: v.optional(v.number()),
+    views: v.optional(v.number()),
   }).index("by_category", ["category"]),
 
   // Opportunities (Jobs, Grants, Tenders)
