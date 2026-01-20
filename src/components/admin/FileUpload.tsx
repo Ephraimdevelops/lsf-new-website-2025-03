@@ -1,8 +1,8 @@
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Upload, X, File, Image } from 'lucide-react';
+import { Upload, X, File, Image, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface FileUploadProps {
@@ -12,18 +12,82 @@ interface FileUploadProps {
   maxSize?: number; // in MB
   label?: string;
   description?: string;
+  enableCompression?: boolean; // Enable image compression
+}
+
+// ==========================================
+// IMAGE COMPRESSION UTILITY
+// Uses Canvas to resize images before upload
+// Prevents 3G timeouts for large camera photos
+// ==========================================
+async function compressImage(file: File, maxWidth: number = 1920): Promise<File> {
+  return new Promise((resolve) => {
+    // Skip non-images
+    if (!file.type.startsWith('image/') || file.type === 'image/gif') {
+      resolve(file);
+      return;
+    }
+
+    const img = new window.Image();
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    img.onload = () => {
+      // Calculate new dimensions
+      let { width, height } = img;
+
+      if (width <= maxWidth) {
+        // Already small enough
+        resolve(file);
+        return;
+      }
+
+      // Scale down
+      const ratio = maxWidth / width;
+      width = maxWidth;
+      height = Math.round(height * ratio);
+
+      canvas.width = width;
+      canvas.height = height;
+
+      // Draw and compress
+      ctx?.drawImage(img, 0, 0, width, height);
+
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            const compressedFile = new File([blob], file.name, {
+              type: file.type,
+              lastModified: Date.now(),
+            });
+            console.log(`[OPTIMIZATION] Compressed ${file.name}: ${(file.size / 1024).toFixed(0)}KB → ${(blob.size / 1024).toFixed(0)}KB`);
+            resolve(compressedFile);
+          } else {
+            resolve(file);
+          }
+        },
+        file.type,
+        0.85 // 85% quality
+      );
+    };
+
+    img.onerror = () => resolve(file);
+    img.src = URL.createObjectURL(file);
+  });
 }
 
 const FileUpload = ({
   accept = "image/*,application/pdf,.doc,.docx",
   multiple = false,
   onUpload,
-  maxSize = 2, // Default to 2MB as per safety requirements
+  maxSize = 5, // Default to 5MB (upgraded from 2MB)
   label = "Upload Files",
-  description = "Select files to upload"
+  description = "Select files to upload",
+  enableCompression = true, // Compression on by default
 }: FileUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [isCompressing, setIsCompressing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -61,26 +125,59 @@ const FileUpload = ({
     return true;
   };
 
-  const handleFiles = (files: FileList) => {
-    const validFiles: File[] = [];
+  const handleFiles = useCallback(async (files: FileList) => {
+    const filesToProcess: File[] = [];
 
+    // Initial validation
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      if (validateFile(file)) {
-        validFiles.push(file);
+      // Pre-check before compression (allow slightly larger for compression)
+      if (file.size <= maxSize * 2 * 1024 * 1024) {
+        filesToProcess.push(file);
+      } else {
+        toast({
+          title: "File too large",
+          description: `${file.name} exceeds maximum size even after compression.`,
+          variant: "destructive",
+        });
       }
     }
 
-    if (validFiles.length > 0) {
-      setUploadedFiles(prev => multiple ? [...prev, ...validFiles] : validFiles);
-      onUpload(validFiles);
+    if (filesToProcess.length === 0) return;
+
+    // Compress images if enabled
+    setIsCompressing(true);
+    const processedFiles: File[] = [];
+
+    for (const file of filesToProcess) {
+      let processed = file;
+
+      if (enableCompression && file.type.startsWith('image/')) {
+        try {
+          processed = await compressImage(file, 1920);
+        } catch (e) {
+          console.warn('Compression failed, using original:', e);
+        }
+      }
+
+      // Final validation after compression
+      if (validateFile(processed)) {
+        processedFiles.push(processed);
+      }
+    }
+
+    setIsCompressing(false);
+
+    if (processedFiles.length > 0) {
+      setUploadedFiles(prev => multiple ? [...prev, ...processedFiles] : processedFiles);
+      onUpload(processedFiles);
 
       toast({
         title: "Files uploaded",
-        description: `${validFiles.length} file(s) uploaded successfully`,
+        description: `${processedFiles.length} file(s) uploaded successfully`,
       });
     }
-  };
+  }, [maxSize, enableCompression, multiple, onUpload, toast]);
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -137,29 +234,38 @@ const FileUpload = ({
 
       <div
         className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${isDragging
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 hover:border-gray-400'
+          ? 'border-blue-500 bg-blue-50'
+          : 'border-gray-300 hover:border-gray-400'
           }`}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
       >
-        <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-        <div className="space-y-2">
-          <p className="text-sm text-gray-600">
-            Drag and drop files here, or{' '}
-            <button
-              type="button"
-              className="text-blue-500 hover:text-blue-700 underline"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              browse
-            </button>
-          </p>
-          <p className="text-xs text-gray-500">
-            Max file size: {maxSize}MB. Accepted formats: {accept}
-          </p>
-        </div>
+        {isCompressing ? (
+          <div className="flex flex-col items-center">
+            <Loader2 className="h-12 w-12 text-blue-500 mb-4 animate-spin" />
+            <p className="text-sm text-gray-600">Optimizing images...</p>
+          </div>
+        ) : (
+          <>
+            <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">
+                Drag and drop files here, or{' '}
+                <button
+                  type="button"
+                  className="text-blue-500 hover:text-blue-700 underline"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  browse
+                </button>
+              </p>
+              <p className="text-xs text-gray-500">
+                Max file size: {maxSize}MB. Images auto-compressed for fast uploads.
+              </p>
+            </div>
+          </>
+        )}
         <Input
           ref={fileInputRef}
           type="file"

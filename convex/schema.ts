@@ -376,5 +376,27 @@ export default defineSchema({
     value: v.string(), // Setting value
     updatedAt: v.number(),
   }).index("by_key", ["key"]),
+
+  // ==========================================
+  // ANALYTICS EVENTS (Behavioral Tracking)
+  // ==========================================
+
+  analytics_events: defineTable({
+    type: v.union(
+      v.literal("page_view"),
+      v.literal("download"),
+      v.literal("search"),
+      v.literal("chat_topic"),
+      v.literal("click")
+    ),
+    resourceId: v.optional(v.string()), // Page URL, document ID, etc.
+    resourceType: v.optional(v.string()), // 'publication', 'news', 'program', etc.
+    meta: v.optional(v.any()), // Additional context
+    userId: v.string(), // Clerk ID or "anonymous"
+    timestamp: v.number(),
+    sessionDate: v.optional(v.string()), // YYYY-MM-DD for daily aggregation
+  }).index("by_type", ["type"])
+    .index("by_timestamp", ["timestamp"])
+    .index("by_user", ["userId"]),
 });
 

@@ -84,13 +84,19 @@ export const remove = mutation({
     },
 });
 
-// Increment download count
+// Increment download count (Public - called on download click)
 export const incrementDownloadCount = mutation({
     args: { id: v.id("publications") },
     handler: async (ctx, args) => {
         const publication = await ctx.db.get(args.id);
         if (!publication) throw new Error("Publication not found");
 
+        const currentCount = publication.downloadCount || 0;
+        await ctx.db.patch(args.id, {
+            downloadCount: currentCount + 1,
+        });
+
+        return { newCount: currentCount + 1 };
     },
 });
 
