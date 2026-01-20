@@ -384,10 +384,15 @@ export default defineSchema({
   analytics_events: defineTable({
     type: v.union(
       v.literal("page_view"),
-      v.literal("download"),
-      v.literal("search"),
+      v.literal("news_view"),
+      v.literal("publication_download"),
+      v.literal("paralegal_page_view"),
+      v.literal("paralegal_signup_start"),
+      v.literal("paralegal_signup_complete"),
+      v.literal("sara_session_start"),
       v.literal("chat_topic"),
-      v.literal("click")
+      v.literal("click"),
+      v.literal("search")
     ),
     resourceId: v.optional(v.string()), // Page URL, document ID, etc.
     resourceType: v.optional(v.string()), // 'publication', 'news', 'program', etc.

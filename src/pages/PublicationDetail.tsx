@@ -17,13 +17,30 @@ const PublicationDetail = () => {
   const publicationData = useQuery(api.publications.getById, { id });
   const publication = publicationData ? { ...publicationData, id: publicationData._id } : null;
   const incrementDownload = useMutation(api.publications.incrementDownloadCount);
+  const logEvent = useMutation(api.analytics.logEvent);
 
   const isLoading = publicationData === undefined;
   const error = publicationData === null; // If null returned, it means not found
 
+  // =====================================================
+  // ANALYTICS: Track PDF download on click
+  // =====================================================
   const trackDownload = () => {
     if (publication) {
+      // Increment the old download counter
       incrementDownload({ id: publication.id });
+
+      // Log analytics event for detailed tracking
+      logEvent({
+        type: "publication_download",
+        resourceId: publicationId,
+        resourceType: "publication",
+        meta: {
+          title: publication.title,
+          category: publication.category,
+          type: publication.type
+        },
+      });
     }
   };
 

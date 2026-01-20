@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useMutation } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 import Layout from '../components/layout/Layout';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
@@ -9,6 +12,19 @@ import {
 import ParalegalApplicationForm from '@/components/ParalegalApplicationForm';
 
 const ParalegalSignup = () => {
+    const logEvent = useMutation(api.analytics.logEvent);
+
+    // =====================================================
+    // ANALYTICS: Track paralegal page view on mount
+    // =====================================================
+    useEffect(() => {
+        logEvent({
+            type: "paralegal_page_view",
+            resourceId: "/paralegal-signup",
+            resourceType: "recruitment",
+        });
+    }, []); // Fire once on mount
+
     const benefits = [
         { icon: GraduationCap, title: 'Free Training', desc: 'Comprehensive legal aid training program' },
         { icon: Users, title: 'Community Impact', desc: 'Help thousands access justice in your area' },

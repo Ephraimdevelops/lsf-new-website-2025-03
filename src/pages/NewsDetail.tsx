@@ -7,7 +7,7 @@ import { ArrowLeft, Calendar, Share2, MessageSquare, Bookmark, Facebook, Twitter
 import { Button } from '@/components/ui/button';
 import NotFound from './NotFound';
 
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 
 const NewsDetail = () => {
@@ -15,6 +15,7 @@ const NewsDetail = () => {
 
   const newsItemData = useQuery(api.news.getBySlugOrId, { identifier: id || '' });
   const newsItem = newsItemData ? { ...newsItemData, id: newsItemData._id } : null;
+  const logEvent = useMutation(api.analytics.logEvent);
 
   const isLoading = newsItemData === undefined;
 
@@ -24,6 +25,20 @@ const NewsDetail = () => {
     .filter(item => item._id !== newsItemData?._id)
     .slice(0, 3)
     .map(item => ({ ...item, id: item._id }));
+
+  // =====================================================
+  // ANALYTICS: Track news article view on mount
+  // =====================================================
+  useEffect(() => {
+    if (newsItem && id) {
+      logEvent({
+        type: "news_view",
+        resourceId: id,
+        resourceType: "news",
+        meta: { title: newsItem.title, category: newsItem.category },
+      });
+    }
+  }, [newsItem?._id]); // Only fire once when article loads
 
 
   if (isLoading) {
