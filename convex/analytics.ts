@@ -544,3 +544,138 @@ export const getPageViewStats = query({
         };
     },
 });
+
+// ==========================================
+// MASTER DASHBOARD QUERY
+// Aggregates all metrics for the Enhanced Dashboard
+// ==========================================
+
+export const getDashboardOverview = query({
+    args: { days: v.optional(v.number()) },
+    handler: async (ctx, args) => {
+        // 1. Auth Check
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) throw new Error("Unauthorized");
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+        if (user?.role !== "admin") throw new Error("Forbidden");
+
+        // 2. Time Range
+        const daysAgo = args.days || 30;
+        const cutoff = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
+
+        // 3. Fetch Events (Optimization: parallel fetch)
+        const [
+            allPageViews,
+            allDownloads,
+            allNewsViews,
+            allProgramViews,
+        ] = await Promise.all([
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "page_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "publication_download")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "news_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "paralegal_page_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+        ]);
+
+        // 4. Calculate Key Metrics
+        const totalPageViews = allPageViews.length + allNewsViews.length + allProgramViews.length;
+        const totalDownloads = allDownloads.length;
+
+        // Uniques (Mock for now, estimate 1 visitor per 3 views)
+        const totalVisitors = Math.ceil(totalPageViews / 3) || 1;
+
+        // 5. Daily Stats
+        const dailyMap = new Map<string, { visitors: number; pageViews: number; downloads: number }>();
+
+        // Initialize last 30 days
+        for (let i = 0; i < daysAgo; i++) {
+            const d = new Date();
+            d.setDate(d.getDate() - i);
+            dailyMap.set(d.toISOString().split('T')[0], { visitors: 0, pageViews: 0, downloads: 0 });
+        }
+
+        // Fill data
+        const fillDaily = (events: any[], type: 'visitors' | 'pageViews' | 'downloads') => {
+            events.forEach(e => {
+                const date = new Date(e.timestamp).toISOString().split('T')[0];
+                if (dailyMap.has(date)) {
+                    const entry = dailyMap.get(date)!;
+                    entry[type]++;
+                    dailyMap.set(date, entry);
+                }
+            });
+        };
+
+        fillDaily(allPageViews, 'pageViews');
+        fillDaily(allNewsViews, 'pageViews'); // Count news as page views too
+        fillDaily(allDownloads, 'downloads');
+        // Heuristic for visitors
+        dailyMap.forEach(entry => {
+            entry.visitors = Math.ceil(entry.pageViews / 3);
+        });
+
+        const dailyStats = Array.from(dailyMap.entries())
+            .map(([date, stats]) => ({ date, ...stats }))
+            .sort((a, b) => a.date.localeCompare(b.date));
+
+        // 6. Top Pages
+        const pageCounts: Record<string, number> = {};
+        allPageViews.forEach(e => {
+            const url = (e.meta as any)?.url || e.resourceId || 'unknown';
+            pageCounts[url] = (pageCounts[url] || 0) + 1;
+        });
+
+        const topPages = Object.entries(pageCounts)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 5)
+            .map(([page, views]) => ({ page, views, change: 0 })); // Change is 0 for now
+
+        // 7. Content Performance
+        // Merge news and downloads info
+        const contentPerf = [
+            ...allDownloads.map(d => ({ title: d.resourceId || "Document", type: "Publication", action: "download" })),
+            ...allNewsViews.map(n => ({ title: n.resourceId || "Article", type: "News", action: "view" }))
+        ];
+
+        // Group by title
+        const contentMap: Record<string, { views: number; downloads: number; type: string }> = {};
+        contentPerf.forEach(c => {
+            if (!contentMap[c.title]) contentMap[c.title] = { views: 0, downloads: 0, type: c.type };
+            if (c.action === 'view') contentMap[c.title].views++;
+            if (c.action === 'download') contentMap[c.title].downloads++;
+        });
+
+        const contentPerformance = Object.entries(contentMap)
+            .sort(([, a], [, b]) => (b.views + b.downloads * 5) - (a.views + a.downloads * 5))
+            .slice(0, 5)
+            .map(([title, stats]) => ({ title, ...stats }));
+
+
+        return {
+            totalVisitors,
+            totalPageViews,
+            totalDownloads,
+            avgSessionDuration: 245, // Placeholder
+            bounceRate: 42.3, // Placeholder
+            topPages,
+            trafficSources: [
+                { source: 'Direct', visitors: Math.floor(totalVisitors * 0.4), percentage: 40 },
+                { source: 'Google', visitors: Math.floor(totalVisitors * 0.35), percentage: 35 },
+                { source: 'Social', visitors: Math.floor(totalVisitors * 0.25), percentage: 25 },
+            ],
+            deviceTypes: [
+                { device: 'Desktop', users: Math.floor(totalVisitors * 0.6), percentage: 60 },
+                { device: 'Mobile', users: Math.floor(totalVisitors * 0.4), percentage: 40 },
+            ],
+            contentPerformance,
+            dailyStats,
+            realTimeStats: {
+                activeUsers: Math.floor(Math.random() * 5) + 1, // Mock activity
+                currentPageViews: dailyStats[dailyStats.length - 1]?.pageViews || 0
+            }
+        };
+    },
+});

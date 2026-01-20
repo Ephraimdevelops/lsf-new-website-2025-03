@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Users,
-  FileText,
   TrendingUp,
   Download,
   Eye,
   Calendar,
   Activity,
-  BarChart3,
-  PieChart,
   LineChart
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,8 +13,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
-  LineChart as RechartsLineChart,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -31,93 +26,18 @@ import {
   AreaChart,
   Pie
 } from 'recharts';
-import { enhancedAnalyticsService } from '@/services/api/enhancedAnalyticsService';
-
-interface AnalyticsMetrics {
-  totalVisitors: number;
-  totalPageViews: number;
-  totalDownloads: number;
-  avgSessionDuration: number;
-  bounceRate: number;
-  topPages: Array<{ page: string; views: number; change: number }>;
-  trafficSources: Array<{ source: string; visitors: number; percentage: number }>;
-  deviceTypes: Array<{ device: string; users: number; percentage: number }>;
-  contentPerformance: Array<{ title: string; views: number; downloads: number; type: string }>;
-  dailyStats: Array<{ date: string; visitors: number; pageViews: number; downloads: number }>;
-  realTimeStats: {
-    activeUsers: number;
-    currentPageViews: number;
-  };
-}
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 const EnhancedAnalyticsDashboard = () => {
-  const [metrics, setMetrics] = useState<AnalyticsMetrics | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [timeRange, setTimeRange] = useState('30d');
   const [activeTab, setActiveTab] = useState('overview');
 
-  // Mock data for demonstration
-  const mockMetrics: AnalyticsMetrics = {
-    totalVisitors: 12543,
-    totalPageViews: 45672,
-    totalDownloads: 1892,
-    avgSessionDuration: 245,
-    bounceRate: 42.3,
-    topPages: [
-      { page: '/', views: 8932, change: 12.5 },
-      { page: '/legal-help', views: 5621, change: -3.2 },
-      { page: '/what-we-do', views: 4387, change: 8.7 },
-      { page: '/publications', views: 3254, change: 15.3 },
-      { page: '/news', views: 2876, change: 6.1 }
-    ],
-    trafficSources: [
-      { source: 'Direct', visitors: 5234, percentage: 41.7 },
-      { source: 'Google', visitors: 3876, percentage: 30.9 },
-      { source: 'Social Media', visitors: 2145, percentage: 17.1 },
-      { source: 'Referrals', visitors: 1288, percentage: 10.3 }
-    ],
-    deviceTypes: [
-      { device: 'Desktop', users: 7325, percentage: 58.4 },
-      { device: 'Mobile', users: 4123, percentage: 32.9 },
-      { device: 'Tablet', users: 1095, percentage: 8.7 }
-    ],
-    contentPerformance: [
-      { title: 'Women\'s Land Rights Report', views: 1234, downloads: 89, type: 'Publication' },
-      { title: 'Legal Aid Training Manual', views: 987, downloads: 156, type: 'Publication' },
-      { title: 'Climate Justice Workshop', views: 1456, downloads: 67, type: 'News' },
-      { title: 'Paralegal Certification Program', views: 2341, downloads: 234, type: 'Program' }
-    ],
-    dailyStats: Array.from({ length: 30 }, (_, i) => ({
-      date: new Date(Date.now() - (29 - i) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-      visitors: Math.floor(Math.random() * 500) + 200,
-      pageViews: Math.floor(Math.random() * 1500) + 800,
-      downloads: Math.floor(Math.random() * 50) + 10
-    })),
-    realTimeStats: {
-      activeUsers: 23,
-      currentPageViews: 156
-    }
-  };
+  const metrics = useQuery(api.analytics.getDashboardOverview, {
+    days: parseInt(timeRange)
+  });
 
-  useEffect(() => {
-    const loadAnalytics = async () => {
-      setIsLoading(true);
-      try {
-        // In a real app, this would fetch from the analytics service
-        // const data = await enhancedAnalyticsService.getAnalytics();
-        setTimeout(() => {
-          setMetrics(mockMetrics);
-          setIsLoading(false);
-        }, 1000);
-      } catch (error) {
-        console.error('Failed to load analytics:', error);
-        setMetrics(mockMetrics);
-        setIsLoading(false);
-      }
-    };
-
-    loadAnalytics();
-  }, [timeRange]);
+  const isLoading = metrics === undefined;
 
   if (isLoading) {
     return (
@@ -138,9 +58,10 @@ const EnhancedAnalyticsDashboard = () => {
     );
   }
 
-  if (!metrics) return null;
+  if (!metrics) return <div>Failed to load data</div>;
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+
 
   return (
     <div className="space-y-6">

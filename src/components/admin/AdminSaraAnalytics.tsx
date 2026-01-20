@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
 import { Bot, Users, MessageSquare, Zap, Clock, Activity, ThumbsUp, ThumbsDown, DollarSign } from "lucide-react";
 
+import OpsDashboard from './OpsDashboard';
+
 const AdminSaraAnalytics = () => {
     const analytics = useQuery(api.sara_chat.getAnalytics);
 
@@ -39,6 +41,9 @@ const AdminSaraAnalytics = () => {
                     System Healthy
                 </div>
             </div>
+
+            {/* CONTROL PANEL - KILL SWITCH */}
+            <OpsDashboard />
 
             {/* Key Metrics */}
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
