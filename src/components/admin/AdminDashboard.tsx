@@ -146,13 +146,7 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
 
       {/* Main content */}
       <div className="ml-64">
-        import OpsDashboard from './OpsDashboard';
-
-        // ... (existing imports)
-
-        // Inside component:
         <div className="p-8">
-          <OpsDashboard />
           {renderContent()}
         </div>
       </div>
