@@ -57,6 +57,37 @@ export const logEvent = mutation({
             sessionDate: new Date().toISOString().split('T')[0],
         });
 
+        // Sync counters to documents for easier admin display
+        if (args.resourceId) {
+            if (args.type === "publication_download") {
+                // We trust the resourceId is valid if the client sent it correctly
+                // Use a try-catch-like approach by getting first
+                try {
+                    const pubId = args.resourceId as any; // Cast to Id
+                    const pub: any = await ctx.db.get(pubId);
+                    if (pub) {
+                        await ctx.db.patch(pubId, {
+                            downloadCount: (pub.downloadCount || 0) + 1
+                        });
+                    }
+                } catch (e) {
+                    // Ignore invalid IDs
+                }
+            } else if (args.type === "news_view") {
+                try {
+                    const newsId = args.resourceId as any;
+                    const news: any = await ctx.db.get(newsId);
+                    if (news) {
+                        await ctx.db.patch(newsId, {
+                            views: (news.views || 0) + 1
+                        });
+                    }
+                } catch (e) {
+                    // Ignore invalid IDs
+                }
+            }
+        }
+
         return { success: true };
     },
 });

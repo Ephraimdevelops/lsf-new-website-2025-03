@@ -9,6 +9,7 @@ import {
     Mail, Users, Send, FileText, Plus, Trash2, Eye, Download,
     TrendingUp, UserPlus, UserMinus, BarChart3, Edit, Archive, Loader2
 } from 'lucide-react';
+import { RichTextEditor } from '@/components/ui/RichTextEditor';
 import { Id } from '../../../convex/_generated/dataModel';
 
 // Types
@@ -469,13 +470,11 @@ const AdminNewsletter = () => {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium mb-2">Content (HTML)</label>
-                                <textarea
+                                <RichTextEditor
                                     value={campaignForm.content}
-                                    onChange={(e) => setCampaignForm({ ...campaignForm, content: e.target.value })}
-                                    rows={10}
-                                    className="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary font-mono text-sm"
-                                    placeholder="<h1>Hello!</h1><p>Your newsletter content here...</p>"
-                                    required
+                                    onChange={(val: string) => setCampaignForm({ ...campaignForm, content: val })}
+                                    placeholder="Compose your newsletter email content..."
+                                    className="min-h-[300px]"
                                 />
                             </div>
                             <div className="flex gap-4 justify-end">

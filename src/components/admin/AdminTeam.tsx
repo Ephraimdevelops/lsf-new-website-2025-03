@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Plus, Search, Edit, Trash, Linkedin, Mail, Twitter, Users, Crown, ArrowUpDown } from 'lucide-react';
+import { Plus, Search, Edit, Trash, Linkedin, Mail, Twitter, Users, Crown, ArrowUpDown, Upload, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useForm } from 'react-hook-form';
 import { useQuery, useMutation } from "convex/react";
@@ -36,10 +36,16 @@ const AdminTeam = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
 
+    // Image Upload State
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [submitting, setSubmitting] = useState(false);
+
     const teamMembers = useQuery(api.team.get) || [];
     const createMember = useMutation(api.team.create);
     const updateMember = useMutation(api.team.update);
     const deleteMember = useMutation(api.team.remove);
+    const generateUploadUrl = useMutation(api.media.generateUploadUrl);
 
     const form = useForm({
         defaultValues: {
@@ -56,7 +62,7 @@ const AdminTeam = () => {
         }
     });
 
-    // Filter and search
+    // ... (Filter logic unchanged)
     const filteredMembers = teamMembers
         .filter(member => {
             const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -69,13 +75,42 @@ const AdminTeam = () => {
     const teamCount = teamMembers.filter(m => m.type === 'team').length;
     const boardCount = teamMembers.filter(m => m.type === 'board').length;
 
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setImageFile(file);
+            setImagePreview(URL.createObjectURL(file));
+        }
+    };
+
+    const clearImage = () => {
+        setImageFile(null);
+        setImagePreview(null);
+        form.setValue('image', '');
+    };
+
     const onSubmit = async (data: any) => {
         try {
+            setSubmitting(true);
+            let imageUrl = data.image || '/lovable-uploads/placeholder.svg';
+
+            // Handle Image Upload
+            if (imageFile) {
+                const postUrl = await generateUploadUrl();
+                const result = await fetch(postUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": imageFile.type },
+                    body: imageFile,
+                });
+                const { storageId } = await result.json();
+                imageUrl = storageId;
+            }
+
             const payload = {
                 name: data.name,
                 position: data.position,
                 bio: data.bio,
-                image: data.image || '/lovable-uploads/placeholder.svg',
+                image: imageUrl,
                 quote: data.quote || undefined,
                 linkedin: data.linkedin || undefined,
                 email: data.email || undefined,
@@ -95,9 +130,13 @@ const AdminTeam = () => {
             setIsDialogOpen(false);
             setEditingMember(null);
             form.reset();
+            setImageFile(null);
+            setImagePreview(null);
         } catch (err) {
             console.error('Save team member error:', err);
             toast({ title: 'Failed to save team member', variant: 'destructive' });
+        } finally {
+            setSubmitting(false);
         }
     };
 
@@ -115,18 +154,9 @@ const AdminTeam = () => {
             type: member.type,
             order: member.order || 1
         });
+        setImagePreview(member.image);
+        setImageFile(null);
         setIsDialogOpen(true);
-    };
-
-    const handleDelete = async (id: Id<"team_members">) => {
-        if (!confirm('Are you sure you want to delete this team member?')) return;
-        try {
-            await deleteMember({ id });
-            toast({ title: 'Team member deleted' });
-        } catch (err) {
-            console.error('Delete team member error:', err);
-            toast({ title: 'Failed to delete', variant: 'destructive' });
-        }
     };
 
     const handleNewMember = () => {
@@ -143,7 +173,21 @@ const AdminTeam = () => {
             type: 'team',
             order: teamMembers.length + 1
         });
+        setImagePreview(null);
+        setImageFile(null);
         setIsDialogOpen(true);
+    };
+
+    // ... (Delete handler unchanged)
+    const handleDelete = async (id: Id<"team_members">) => {
+        if (!confirm('Are you sure you want to delete this team member?')) return;
+        try {
+            await deleteMember({ id });
+            toast({ title: 'Team member deleted' });
+        } catch (err) {
+            console.error('Delete team member error:', err);
+            toast({ title: 'Failed to delete', variant: 'destructive' });
+        }
     };
 
     return (
@@ -252,19 +296,37 @@ const AdminTeam = () => {
                                     )}
                                 />
 
-                                <FormField
-                                    control={form.control}
-                                    name="image"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Profile Image URL</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="https://... or /lovable-uploads/..." {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
+                                {/* IMAGE UPLOAD */}
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium">Profile Image</label>
+                                    {imagePreview ? (
+                                        <div className="relative w-fit">
+                                            <img src={imagePreview} alt="Preview" className="h-32 w-32 object-cover rounded-lg border" />
+                                            <Button
+                                                type="button"
+                                                variant="destructive"
+                                                size="icon"
+                                                className="absolute -top-2 -right-2 h-6 w-6 rounded-full"
+                                                onClick={clearImage}
+                                            >
+                                                <div className="flex items-center justify-center"><X size={12} /></div>
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition-colors">
+                                            <input type="file" accept="image/*" id="team-image" className="hidden" onChange={handleImageChange} />
+                                            <label htmlFor="team-image" className="cursor-pointer block">
+                                                <div className="flex flex-col items-center gap-2">
+                                                    <div className="bg-primary/10 p-3 rounded-full text-primary">
+                                                        <Upload size={24} />
+                                                    </div>
+                                                    <p className="text-sm text-gray-600 font-medium">Click to upload profile photo</p>
+                                                    <p className="text-xs text-gray-400">JPG, PNG (Max 5MB)</p>
+                                                </div>
+                                            </label>
+                                        </div>
                                     )}
-                                />
+                                </div>
 
                                 <FormField
                                     control={form.control}
@@ -374,8 +436,8 @@ const AdminTeam = () => {
                                     <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                                         Cancel
                                     </Button>
-                                    <Button type="submit">
-                                        {editingMember ? 'Update Member' : 'Add Member'}
+                                    <Button type="submit" disabled={submitting}>
+                                        {submitting ? 'Saving...' : editingMember ? 'Update Member' : 'Add Member'}
                                     </Button>
                                 </div>
                             </form>
@@ -383,6 +445,7 @@ const AdminTeam = () => {
                     </DialogContent>
                 </Dialog>
             </div>
+
 
             {/* Team Members Table */}
             <Card>

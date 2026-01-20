@@ -24,6 +24,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Upload, X } from 'lucide-react';
+import { RichTextEditor } from '@/components/ui/RichTextEditor';
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Id } from "../../../convex/_generated/dataModel";
@@ -226,7 +227,12 @@ const NewsForm = ({ open, onClose, onCreated, editData }: NewsFormProps) => {
                 <FormItem>
                   <FormLabel>Content</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Write content (supports HTML)" className="min-h-[160px]" {...field} />
+                    <RichTextEditor
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder="Write the full news article content here..."
+                      className="min-h-[300px]"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

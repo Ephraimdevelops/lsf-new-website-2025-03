@@ -30,6 +30,7 @@ export default defineSchema({
     seoDescription: v.optional(v.string()),
     keywords: v.optional(v.array(v.string())),
     slug: v.optional(v.string()),
+    views: v.optional(v.number()),
   }).index("by_category", ["category"])
     .index("by_featured", ["featured"])
     .index("by_slug", ["slug"]),
