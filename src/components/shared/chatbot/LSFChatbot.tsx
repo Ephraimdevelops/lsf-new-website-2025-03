@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Send, X, Phone, Mail, Clock, Heart, MessageCircle, Volume2, VolumeX, Scale, User, WifiOff, Shield, AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useOnlineStatus } from "@/hooks/useOnlineStatus";
-import { useQuery } from "convex/react";
+import { useQuery, useMutation, useAction } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 
 export const designTokens = {
@@ -212,6 +212,52 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
   const systemStatus = useQuery(api.ops.getSystemStatus);
   const isMaintenance = systemStatus?.isMaintenance || false;
 
+  // =====================================================
+  // ANALYTICS: Session tracking and AI classification
+  // =====================================================
+  const logEvent = useMutation(api.analytics.logEvent);
+  const classifyChat = useAction(api.analytics.classifyChat);
+  const hasLoggedSession = useRef(false);
+  const userMessageCount = useRef(0);
+  const conversationTranscript = useRef<string[]>([]);
+
+  const trackSessionStart = () => {
+    if (!hasLoggedSession.current) {
+      hasLoggedSession.current = true;
+      logEvent({
+        type: "sara_session_start",
+        resourceId: threadId || `session-${Date.now()}`,
+        resourceType: "sara_chat",
+      });
+    }
+  };
+
+  const triggerClassification = async () => {
+    if (conversationTranscript.current.length >= 3) {
+      try {
+        const transcript = conversationTranscript.current.join("\n");
+        await classifyChat({
+          userId: "anonymous", // Will be replaced with actual user ID if authenticated
+          transcript,
+        });
+        console.log("[ANALYTICS] Chat classified successfully");
+      } catch (err) {
+        console.error("[ANALYTICS] Classification failed:", err);
+      }
+    }
+  };
+
+  // Trigger classification when chat closes or unmounts
+  useEffect(() => {
+    return () => {
+      // Trigger classification on component unmount (chat close)
+      if (userMessageCount.current >= 3) {
+        triggerClassification();
+      }
+    };
+  }, []);
+  // =====================================================
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
@@ -300,6 +346,20 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
 
     const trimmed = inputText.trim();
     if (!trimmed) return;
+
+    // =====================================================
+    // ANALYTICS: Track first message as session start
+    // =====================================================
+    trackSessionStart();
+    userMessageCount.current++;
+    conversationTranscript.current.push(`User: ${trimmed}`);
+
+    // Trigger classification after 5 user messages (background)
+    if (userMessageCount.current === 5) {
+      triggerClassification();
+    }
+    // =====================================================
+
     setMessages(prev => [...prev, { id: `u-${Date.now()}`, text: trimmed, sender: "user", timestamp: new Date() }]);
     setInputText("");
     setShowQuickActions(false);

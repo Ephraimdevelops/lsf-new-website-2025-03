@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useMutation } from 'convex/react';
+import { useState, useRef } from 'react';
+import { useMutation, useAction } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -15,10 +15,9 @@ const ParalegalApplicationForm = () => {
     const isOnline = useOnlineStatus();
 
     // 2. Honeypot Protection
-    // We use 'roleTitle' as the trap field name, passing it to the mutation
     const { honeypotValue, honeypotProps, isBotDetected } = useHoneypot('roleTitle');
 
-    // 3. Form Persistence (The Rural Reality)
+    // 3. Form Persistence
     const initialFormState = {
         fullName: '',
         email: '',
@@ -34,7 +33,7 @@ const ParalegalApplicationForm = () => {
     };
 
     const [formData, setFormData, clearStorage] = useFormPersistence(
-        'lsf_paralegal_application_v1', // unique key
+        'lsf_paralegal_application_v1',
         initialFormState
     );
 
@@ -42,6 +41,33 @@ const ParalegalApplicationForm = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // =====================================================
+    // ANALYTICS: Track signup funnel
+    // =====================================================
+    const logEvent = useMutation(api.analytics.logEvent);
+    const hasLoggedStart = useRef(false);
+
+    const trackSignupStart = () => {
+        if (!hasLoggedStart.current) {
+            hasLoggedStart.current = true;
+            logEvent({
+                type: "paralegal_signup_start",
+                resourceId: "/paralegal-signup",
+                resourceType: "recruitment",
+            });
+        }
+    };
+
+    const trackSignupComplete = () => {
+        logEvent({
+            type: "paralegal_signup_complete",
+            resourceId: "/paralegal-signup",
+            resourceType: "recruitment",
+            meta: { region: formData.region, education: formData.education },
+        });
+    };
+    // =====================================================
 
     // Convex Mutation
     const submitApplication = useMutation(api.formSubmissions.submitParalegalApplication);
@@ -84,7 +110,7 @@ const ParalegalApplicationForm = () => {
         // 1. Security Check: Honeypot
         if (isBotDetected()) {
             console.log('[Security] Bot detected via honeypot');
-            setIsSubmitted(true); // Fake success
+            setIsSubmitted(true);
             clearStorage();
             return;
         }
@@ -107,7 +133,6 @@ const ParalegalApplicationForm = () => {
         setError(null);
 
         try {
-            // 4. Submit with Honeypot value
             const result = await submitApplication({
                 fullName: formData.fullName,
                 email: formData.email,
@@ -119,18 +144,23 @@ const ParalegalApplicationForm = () => {
                 experience: formData.experience,
                 motivation: formData.motivation,
                 languages: formData.languages.length > 0 ? formData.languages : undefined,
-                roleTitle: honeypotValue, // Pass trap value to backend
+                roleTitle: honeypotValue,
             });
 
             if (result.success) {
+                // =====================================================
+                // ANALYTICS: Track signup completion
+                // =====================================================
+                trackSignupComplete();
+                // =====================================================
+
                 setIsSubmitted(true);
-                clearStorage(); // Clear local storage on success
+                clearStorage();
             } else {
                 setError(result.message || 'Failed to submit application.');
             }
         } catch (err: any) {
             console.error('Application submission error:', err);
-            // Handle specific backend errors if needed
             if (err.message && err.message.includes('Rate limit')) {
                 setError('You are submitting too fast. Please wait a moment.');
             } else {
@@ -206,6 +236,7 @@ const ParalegalApplicationForm = () => {
                                     type="text"
                                     value={formData.fullName}
                                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                                    onFocus={trackSignupStart}
                                     className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
                                     placeholder="Your full name"
                                     required
@@ -218,6 +249,7 @@ const ParalegalApplicationForm = () => {
                                     type="email"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    onFocus={trackSignupStart}
                                     className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
                                     placeholder="your.email@example.com"
                                     required
@@ -230,6 +262,7 @@ const ParalegalApplicationForm = () => {
                                     type="tel"
                                     value={formData.phone}
                                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                    onFocus={trackSignupStart}
                                     className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
                                     placeholder="+255 XXX XXX XXX"
                                     required
@@ -369,6 +402,7 @@ const ParalegalApplicationForm = () => {
                             <textarea
                                 value={formData.motivation}
                                 onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
+                                onFocus={trackSignupStart}
                                 rows={5}
                                 className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none resize-none"
                                 placeholder="Tell us about your passion for justice and community service. What motivates you to help others access legal aid?"
