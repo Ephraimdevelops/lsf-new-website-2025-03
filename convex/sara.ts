@@ -132,3 +132,34 @@ export const getChunks = internalQuery({
         return chunks;
     },
 });
+
+// ==========================================
+// INTERNAL QUERIES FOR SECURITY GATES
+// ==========================================
+
+/**
+ * Internal query to get SARA config value (for Kill Switch)
+ * Used by sara_actions.ts to check maintenance mode
+ */
+export const getConfigInternal = internalQuery({
+    args: { key: v.string() },
+    handler: async (ctx, args) => {
+        const config = await ctx.db
+            .query("sara_config")
+            .withIndex("by_key", (q) => q.eq("key", args.key))
+            .first();
+        return config?.value ?? null;
+    },
+});
+
+/**
+ * Internal query to get all SARA chat messages (for Budget check)
+ * Returns all messages to calculate total token usage
+ */
+export const getAllChats = internalQuery({
+    args: {},
+    handler: async (ctx) => {
+        return await ctx.db.query("sara_chats").collect();
+    },
+});
+

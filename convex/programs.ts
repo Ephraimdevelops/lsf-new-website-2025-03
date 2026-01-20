@@ -68,13 +68,40 @@ export const update = mutation({
     },
 });
 
-// Delete program
+// Delete program (with orphan cleanup)
 export const remove = mutation({
     args: { id: v.id("programs") },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
         if (!identity) throw new Error("Unauthorized");
 
+        // Admin check
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+        if (user?.role !== "admin") throw new Error("Forbidden: Admin access required");
+
+        // =====================================================
+        // ORPHAN DATA CLEANUP
+        // Find and unlink all success_stories referencing this program
+        // This prevents "ghost data" accumulation in the database
+        // =====================================================
+        const linkedStories = await ctx.db
+            .query("success_stories")
+            .filter((q) => q.eq(q.field("programId"), args.id.toString()))
+            .collect();
+
+        for (const story of linkedStories) {
+            // Option: Unlink (safe) vs Delete (aggressive)
+            // Using unlink to preserve the story data
+            await ctx.db.patch(story._id, { programId: undefined });
+            console.log(`[DATA CLEANUP] Unlinked success_story ${story._id} from deleted program`);
+        }
+
+        // Now safe to delete the program
         await ctx.db.delete(args.id);
+
+        console.log(`[ADMIN] Program ${args.id} deleted. ${linkedStories.length} stories unlinked.`);
     },
 });

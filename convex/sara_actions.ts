@@ -168,6 +168,27 @@ export const ask = action({
         const userId = identity.subject;
 
         // =====================================================
+        // SECURITY GATE 1: Kill Switch Check
+        // =====================================================
+        const systemConfig = await ctx.runQuery(internal.sara.getConfigInternal, { key: "system_status" });
+        if (systemConfig === "maintenance") {
+            console.log("[SARA SECURITY] Kill Switch active - blocking request");
+            throw new Error("SARA is temporarily unavailable for maintenance. Please try again later.");
+        }
+
+        // =====================================================
+        // SECURITY GATE 2: Budget Cap Enforcement
+        // =====================================================
+        const allChatsForBudget = await ctx.runQuery(internal.sara.getAllChats);
+        const budgetTokenCount = allChatsForBudget.reduce((sum: number, m: any) => sum + (m.tokens || 0), 0);
+        const BUDGET_LIMIT_TOKENS = 2000000; // ~$20 at $0.01/1k tokens
+
+        if (budgetTokenCount >= BUDGET_LIMIT_TOKENS) {
+            console.log("[SARA SECURITY] Budget cap reached - blocking request");
+            throw new Error("SARA has reached its monthly usage limit. Please contact the administrator.");
+        }
+
+        // =====================================================
         // SAFETY FIRST: Check for emergency keywords (0ms latency)
         // This bypasses OpenAI entirely for critical safety
         // =====================================================

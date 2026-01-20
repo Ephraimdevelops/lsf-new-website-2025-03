@@ -2,7 +2,7 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-  // Users (Synced from Clerk)
+  // Users (Synced from Clerk) - GDPR compliant with soft delete
   users: defineTable({
     name: v.string(),
     email: v.string(),
@@ -10,6 +10,9 @@ export default defineSchema({
     clerkId: v.string(),
     imageUrl: v.optional(v.string()),
     lastLogin: v.optional(v.number()),
+    // GDPR: Soft delete support for audit trails
+    isDeleted: v.optional(v.boolean()),
+    deletedAt: v.optional(v.number()),
   }).index("by_clerk_id", ["clerkId"])
     .index("by_email", ["email"]),
 
