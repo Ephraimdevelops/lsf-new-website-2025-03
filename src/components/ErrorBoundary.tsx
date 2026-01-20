@@ -1,4 +1,4 @@
-
+import * as Sentry from "@sentry/react";
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
@@ -22,6 +22,16 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    // =====================================================
+    // SENTRY: Capture error with full context
+    // =====================================================
+    Sentry.withScope((scope) => {
+      scope.setExtras({
+        componentStack: errorInfo.componentStack,
+      });
+      Sentry.captureException(error);
+    });
+
     console.error('Error caught by boundary:', error, errorInfo);
   }
 
@@ -37,7 +47,7 @@ class ErrorBoundary extends React.Component<
             <p className="text-gray-600 mb-6">
               We're sorry, but something unexpected happened. Please try refreshing the page.
             </p>
-            <Button 
+            <Button
               onClick={() => {
                 this.setState({ hasError: false, error: null });
                 window.location.reload();
@@ -47,7 +57,7 @@ class ErrorBoundary extends React.Component<
               <RefreshCw className="h-4 w-4 mr-2" />
               Refresh Page
             </Button>
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="mt-4 text-left">
                 <summary className="cursor-pointer text-sm text-gray-500">
                   Error Details (Development)
