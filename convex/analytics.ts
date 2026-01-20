@@ -470,7 +470,7 @@ export const getUserGrowth = query({
 // Uses GPT-4o-mini to categorize chat topics
 // ==========================================
 
-export const classifyChat = internalAction({
+export const classifyChat = action({
     args: {
         userId: v.string(),
         transcript: v.string(),

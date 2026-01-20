@@ -45,7 +45,10 @@ interface LSFPersonalAssistantProps {
 }
 
 function getWebhookUrl(env?: "test" | "production") {
-  return env === "production"
+  // Auto-detect production mode if env is not explicitly set
+  const isProduction = env ? env === "production" : import.meta.env.PROD;
+
+  return isProduction
     ? "https://lsfsaraai.app.n8n.cloud/webhook/webhook"
     : "https://lsfsaraai.app.n8n.cloud/webhook-test/webhook";
 }
