@@ -3,15 +3,15 @@ import { ConvexProviderWithClerk } from "convex/react-clerk";
 import { ConvexReactClient } from "convex/react";
 import { ReactNode } from "react";
 
-const convexUrl = import.meta.env.VITE_CONVEX_URL as string;
-const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY as string;
+const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL as string;
+const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY as string;
 
 // Prevent module-level crashes
 let convex: ConvexReactClient | null = null;
 if (convexUrl) {
     convex = new ConvexReactClient(convexUrl);
 } else {
-    console.error("CRITICAL: Missing VITE_CONVEX_URL. Application will fail to load data.");
+    console.error("CRITICAL: Missing NEXT_PUBLIC_CONVEX_URL. Application will fail to load data.");
 }
 
 export const ConvexClientProvider = ({ children }: { children: ReactNode }) => {
@@ -32,10 +32,10 @@ export const ConvexClientProvider = ({ children }: { children: ReactNode }) => {
                     <div className="bg-gray-100 p-4 rounded-lg font-mono text-sm mb-6 overflow-x-auto">
                         <ul className="space-y-2">
                             <li className={!convexUrl ? "text-red-600 font-bold" : "text-green-600"}>
-                                VITE_CONVEX_URL: {convexUrl ? "Set" : "MISSING"}
+                                NEXT_PUBLIC_CONVEX_URL: {convexUrl ? "Set" : "MISSING"}
                             </li>
                             <li className={!publishableKey ? "text-red-600 font-bold" : "text-green-600"}>
-                                VITE_CLERK_PUBLISHABLE_KEY: {publishableKey ? "Set" : "MISSING"}
+                                NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: {publishableKey ? "Set" : "MISSING"}
                             </li>
                         </ul>
                     </div>

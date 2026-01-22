@@ -57,7 +57,7 @@ class ErrorBoundary extends React.Component<
               <RefreshCw className="h-4 w-4 mr-2" />
               Refresh Page
             </Button>
-            {import.meta.env.DEV && this.state.error && (
+            {process.env.NODE_ENV === 'development' && this.state.error && (
               <details className="mt-4 text-left">
                 <summary className="cursor-pointer text-sm text-gray-500">
                   Error Details (Development)

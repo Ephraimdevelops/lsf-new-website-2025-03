@@ -22,10 +22,10 @@ Sentry.init({
     tracesSampleRate: 1.0, // Capture 100% of transactions
 
     // Only enable in production
-    enabled: import.meta.env.PROD,
+    enabled: process.env.NODE_ENV === 'production',
 
     // Set environment
-    environment: import.meta.env.MODE,
+    environment: process.env.NODE_ENV,
 });
 
 createRoot(document.getElementById("root")!).render(

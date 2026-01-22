@@ -24,7 +24,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Configuration
-const CONVEX_URL = process.env.VITE_CONVEX_URL || process.env.CONVEX_URL || "";
+const CONVEX_URL = process.env.NEXT_PUBLIC_CONVEX_URL || process.env.CONVEX_URL || "";
 const BATCH_SIZE = 25;
 const DEFAULT_LOCATION = "Tanzania";
 const WORDS_PER_MINUTE = 200;
@@ -36,129 +36,11 @@ const IMAGE_PATHS = {
     publications: "/PublicationsImages/",
 };
 
-// Allowed HTML tags (clean versions)
-const ALLOWED_TAGS = ["p", "b", "strong", "em", "ul", "li", "br", "ol", "h1", "h2", "h3", "h4", "h5", "h6"];
+// ... (skipping unchanged lines)
 
-/**
- * Strip HTML attributes and keep only clean tags
- */
-function cleanHtml(html: string | null | undefined): string {
-    if (!html) return "";
-
-    // Decode HTML entities
-    let cleaned = html
-        .replace(/&amp;/g, "&")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'")
-        .replace(/&nbsp;/g, " ")
-        .replace(/\\r\\n/g, "\n")
-        .replace(/\\n/g, "\n")
-        .replace(/\\"/g, '"')
-        .replace(/\\\//g, "/");
-
-    // Remove Word-specific tags like <o:p>
-    cleaned = cleaned.replace(/<o:p>[\s\S]*?<\/o:p>/gi, "");
-    cleaned = cleaned.replace(/<!\[if[\s\S]*?<!\[endif\]>/gi, "");
-
-    // Remove all attributes from tags (class, style, align, lang, etc.)
-    cleaned = cleaned.replace(/<(\w+)\s+[^>]*>/gi, (match, tagName) => {
-        const lowerTag = tagName.toLowerCase();
-        if (ALLOWED_TAGS.includes(lowerTag)) {
-            return `<${lowerTag}>`;
-        }
-        return "";
-    });
-
-    // Clean closing tags for non-allowed elements
-    cleaned = cleaned.replace(/<\/(\w+)>/gi, (match, tagName) => {
-        const lowerTag = tagName.toLowerCase();
-        if (ALLOWED_TAGS.includes(lowerTag)) {
-            return `</${lowerTag}>`;
-        }
-        return "";
-    });
-
-    // Remove empty tags
-    cleaned = cleaned.replace(/<(\w+)>\s*<\/\1>/gi, "");
-
-    // Normalize whitespace
-    cleaned = cleaned.replace(/\s+/g, " ").trim();
-
-    return cleaned;
-}
-
-/**
- * Calculate read time from text content (in minutes)
- */
-function calculateReadTime(html: string): number {
-    const plainText = html.replace(/<[^>]*>/g, " ");
-    const words = plainText.split(/\s+/).filter(w => w.length > 0);
-    const wordCount = words.length;
-    return Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
-}
-
-/**
- * Extract person name from title (e.g., "Maria's Story" -> "Maria")
- */
-function extractPersonName(title: string): string {
-    // Try to extract name from patterns like "Maria's Story" or "Story of John"
-    const possessiveMatch = title.match(/^(\w+)'s/i);
-    if (possessiveMatch) return possessiveMatch[1];
-
-    const ofMatch = title.match(/story of (\w+)/i);
-    if (ofMatch) return ofMatch[1];
-
-    // Default: Use first word of title or generic name
-    const firstWord = title.split(/\s+/)[0];
-    return firstWord || "Community Member";
-}
-
-/**
- * Map image filename to full path
- */
-function mapImagePath(filename: string | null | undefined, type: "heros" | "news" | "publications"): string {
-    if (!filename) return "/lovable-uploads/placeholder.svg";
-    return IMAGE_PATHS[type] + filename;
-}
-
-/**
- * Extract actual data from JSON structure (handles phpMyAdmin export format)
- */
-function extractData(jsonData: any[]): any[] {
-    const tableEntry = jsonData.find((item) => item.type === "table" && item.data);
-    if (tableEntry) {
-        return tableEntry.data;
-    }
-    return jsonData.filter((item) => !item.type);
-}
-
-/**
- * Process records in batches
- */
-async function processBatch<T>(
-    items: T[],
-    processor: (item: T) => Promise<void>,
-    label: string
-): Promise<void> {
-    const total = items.length;
-    let processed = 0;
-
-    for (let i = 0; i < items.length; i += BATCH_SIZE) {
-        const batch = items.slice(i, i + BATCH_SIZE);
-        await Promise.all(batch.map(processor));
-        processed += batch.length;
-        console.log(`✅ Imported ${processed}/${total} ${label} items...`);
-    }
-}
-
-/**
- * Main migration function
- */
 async function migrate() {
     if (!CONVEX_URL) {
-        console.error("❌ CONVEX_URL or VITE_CONVEX_URL environment variable not set");
+        console.error("❌ CONVEX_URL or NEXT_PUBLIC_CONVEX_URL environment variable not set");
         console.error("   Set it with: export CONVEX_URL='your-convex-url'");
         process.exit(1);
     }
