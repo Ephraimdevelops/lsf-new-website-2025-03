@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -22,7 +22,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Upload, Image as ImageIcon } from 'lucide-react';
+import { Upload, Image as ImageIcon, Clock, RefreshCw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
@@ -36,6 +36,7 @@ const storySchema = z.object({
     location: z.string().min(1, "Location is required"),
     programId: z.string().optional(),
     featured: z.boolean().default(false),
+    readTime: z.number().min(1).optional(),
     image: z.instanceof(File).optional(),
 });
 
@@ -49,6 +50,7 @@ interface Story {
     personName: string;
     location: string;
     imageUrl: string;
+    readTime?: number;
     programId?: string;
     featured?: boolean;
 }
@@ -64,6 +66,7 @@ interface StoryFormProps {
 const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => {
     const { toast } = useToast();
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [submitting, setSubmitting] = useState(false);
 
     const generateUploadUrl = useMutation(api.media.generateUploadUrl);
@@ -78,11 +81,25 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
             story: story?.story || '',
             quote: story?.quote || '',
             personName: story?.personName || '',
-            location: story?.location || '',
+            location: story?.location || 'Tanzania',
             programId: story?.programId || '',
             featured: story?.featured || false,
+            readTime: story?.readTime || 5,
         },
     });
+
+    // Calculate read time from story content
+    const calculateReadTime = (text: string): number => {
+        const plainText = text.replace(/<[^>]*>/g, ' ');
+        const words = plainText.split(/\s+/).filter(w => w.length > 0);
+        return Math.max(1, Math.ceil(words.length / 200));
+    };
+
+    // Auto-update read time when story changes
+    const handleStoryChange = (value: string) => {
+        form.setValue('story', value);
+        form.setValue('readTime', calculateReadTime(value));
+    };
 
     const handleUpload = async (file: File): Promise<string> => {
         // Step 1: Get upload URL
@@ -139,6 +156,7 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
                 personName: data.personName,
                 location: data.location,
                 imageUrl,
+                readTime: data.readTime,
                 programId: data.programId,
                 featured: data.featured,
             };
@@ -170,8 +188,16 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
         const file = event.target.files?.[0];
         if (file) {
             setSelectedImage(file);
+            setImagePreview(URL.createObjectURL(file));
         }
     };
+
+    // Set initial image preview
+    React.useEffect(() => {
+        if (story?.imageUrl) {
+            setImagePreview(story.imageUrl);
+        }
+    }, [story]);
 
     return (
         <Dialog open={open} onOpenChange={onClose}>

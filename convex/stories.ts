@@ -26,6 +26,7 @@ export const create = mutation({
         personName: v.string(),
         location: v.string(),
         imageUrl: v.string(),
+        readTime: v.optional(v.number()),
         impactMetrics: v.optional(v.any()),
         programId: v.optional(v.string()),
         featured: v.optional(v.boolean()),
@@ -33,6 +34,35 @@ export const create = mutation({
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
         if (!identity) throw new Error("Unauthorized");
+
+        return await ctx.db.insert("success_stories", args);
+    },
+});
+
+// Create story for migration (no auth check)
+export const createForMigration = mutation({
+    args: {
+        title: v.string(),
+        story: v.string(),
+        quote: v.optional(v.string()),
+        personName: v.string(),
+        location: v.string(),
+        imageUrl: v.string(),
+        readTime: v.optional(v.number()),
+        impactMetrics: v.optional(v.any()),
+        programId: v.optional(v.string()),
+        featured: v.optional(v.boolean()),
+    },
+    handler: async (ctx, args) => {
+        // Check for existing story by title to prevent duplicates
+        const existing = await ctx.db
+            .query("success_stories")
+            .filter((q) => q.eq(q.field("title"), args.title))
+            .first();
+
+        if (existing) {
+            return existing._id;
+        }
 
         return await ctx.db.insert("success_stories", args);
     },
@@ -48,6 +78,7 @@ export const update = mutation({
         personName: v.string(),
         location: v.string(),
         imageUrl: v.string(),
+        readTime: v.optional(v.number()),
         impactMetrics: v.optional(v.any()),
         programId: v.optional(v.string()),
         featured: v.optional(v.boolean()),

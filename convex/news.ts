@@ -81,6 +81,35 @@ export const create = mutation({
     },
 });
 
+export const createForMigration = mutation({
+    args: {
+        title: v.string(),
+        excerpt: v.string(),
+        content: v.string(),
+        category: v.string(),
+        image: v.string(),
+        date: v.string(),
+        featured: v.boolean(),
+        author: v.optional(v.string()),
+        seoTitle: v.optional(v.string()),
+        seoDescription: v.optional(v.string()),
+        keywords: v.optional(v.array(v.string())),
+    },
+    handler: async (ctx, args) => {
+        // Check for existing news by title
+        const existing = await ctx.db
+            .query("news")
+            .filter((q) => q.eq(q.field("title"), args.title))
+            .first();
+
+        if (existing) {
+            return existing._id;
+        }
+
+        return await ctx.db.insert("news", args);
+    },
+});
+
 // Update news (Admin only)
 export const update = mutation({
     args: {

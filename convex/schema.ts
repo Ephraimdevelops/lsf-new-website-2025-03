@@ -16,6 +16,17 @@ export default defineSchema({
   }).index("by_clerk_id", ["clerkId"])
     .index("by_email", ["email"]),
 
+  // Legacy Heros (success stories from old site)
+  heros: defineTable({
+    title: v.string(),
+    slug: v.string(), // URL-friendly identifier
+    description: v.string(), // Cleaned HTML content
+    image: v.optional(v.string()), // Full path to image or Convex storage URL
+    date: v.number(), // Unix timestamp
+    location: v.optional(v.string()), // Default: "Tanzania"
+    readTime: v.optional(v.number()), // Minutes, auto-calculated from word count
+  }).index("by_slug", ["slug"]),
+
   // News & Articles
   news: defineTable({
     title: v.string(),
@@ -77,6 +88,7 @@ export default defineSchema({
     personName: v.string(),
     location: v.string(),
     imageUrl: v.string(),
+    readTime: v.optional(v.number()), // Minutes, auto-calculated or manual
     impactMetrics: v.optional(v.any()), // Flexible JSON object for metrics
     programId: v.optional(v.string()), // Link to a program
     featured: v.optional(v.boolean()),

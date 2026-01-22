@@ -1,0 +1,19 @@
+[
+{"type":"header","version":"5.2.3","comment":"Export to JSON plugin for phpMyAdmin"},
+{"type":"database","name":"lsftz_lsf_sitedb"},
+{"type":"table","name":"publications","database":"lsftz_lsf_sitedb","data":
+[
+{"id":"21","title":"FACT SHEET - LSF - 2018","image":"1700551002.PNG","file":"FACT SHEET - LSF - 2018 (1).pdf","created_at":"2023-11-21 10:16:42","updated_at":"2023-11-21 10:16:42"},
+{"id":"22","title":"LSF_FACT SHEET_2019 final","image":"1700551117.PNG","file":"LSF_FACT SHEET_2019 final (1).pdf","created_at":"2023-11-21 10:18:37","updated_at":"2023-11-21 10:18:37"},
+{"id":"23","title":"LSF Newsletter June 2020","image":"1700551257.PNG","file":"LSF Newsletter June 2020 (1).pdf","created_at":"2023-11-21 10:19:40","updated_at":"2023-11-21 10:20:58"},
+{"id":"24","title":"LSF A5 FACT SHEET 2021","image":"1700551466.PNG","file":"LSF A5 FACT SHEET 2021 (1).pdf","created_at":"2023-11-21 10:24:26","updated_at":"2023-11-21 10:24:26"},
+{"id":"25","title":"FACT SHEET - LSF - 2021","image":"1700551544.PNG","file":"FACT SHEET - LSF - 2021 (1).pdf","created_at":"2023-11-21 10:25:44","updated_at":"2023-11-21 10:25:44"},
+{"id":"26","title":"LSF-SP-Branded-A4-2021-08-19","image":"1700551685.PNG","file":"LSF-SP-Branded-A4-2021-08-19 (1) (1).pdf","created_at":"2023-11-21 10:28:06","updated_at":"2023-11-21 10:28:06"},
+{"id":"28","title":"LSF Half Year Newsletter_Final","image":"1700552054.PNG","file":"LSF Half Year Newsletter_Final (1).pdf","created_at":"2023-11-21 10:34:14","updated_at":"2023-11-21 10:34:14"},
+{"id":"29","title":"LSFPDF_LSF MILESTONES WITHIN TWO YEARS","image":"1700552135.PNG","file":"LSFPDF_LSF MILESTONES WITHIN TWO YEARS  (2) (1).pdf","created_at":"2023-11-21 10:35:36","updated_at":"2023-11-21 10:35:36"},
+{"id":"30","title":"Dondoo","image":"1700552241.PNG","file":"dondoo.pdf","created_at":"2023-11-21 10:37:21","updated_at":"2023-11-21 10:37:21"},
+{"id":"31","title":"LSF STRATEGIC PLAN 2022-2026","image":"1700745749.PNG","file":"LSF STRATEGIC PLAN 2022-2026 (1).pdf","created_at":"2023-11-23 16:22:30","updated_at":"2023-11-23 16:22:30"},
+{"id":"32","title":"LSF QUARTER 01 NEWSLETTER","image":"1717327416.jpg","file":"Lsf  Quater 01 Newsletter (1).pdf","created_at":"2024-06-02 21:23:36","updated_at":"2024-06-02 21:23:36"}
+]
+}
+]

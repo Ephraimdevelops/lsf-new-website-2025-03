@@ -13,6 +13,7 @@ import type * as analytics from "../analytics.js";
 import type * as debug from "../debug.js";
 import type * as formSubmissions from "../formSubmissions.js";
 import type * as hero from "../hero.js";
+import type * as heros from "../heros.js";
 import type * as init from "../init.js";
 import type * as media from "../media.js";
 import type * as news from "../news.js";
@@ -47,6 +48,7 @@ declare const fullApi: ApiFromModules<{
   debug: typeof debug;
   formSubmissions: typeof formSubmissions;
   hero: typeof hero;
+  heros: typeof heros;
   init: typeof init;
   media: typeof media;
   news: typeof news;

@@ -50,6 +50,33 @@ export const create = mutation({
     },
 });
 
+export const createForMigration = mutation({
+    args: {
+        title: v.string(),
+        description: v.string(),
+        category: v.string(),
+        type: v.string(),
+        coverImageUrl: v.string(),
+        pdfUrl: v.string(),
+        publishedDate: v.string(),
+        authors: v.optional(v.array(v.string())),
+        featured: v.optional(v.boolean()),
+    },
+    handler: async (ctx, args) => {
+        // Check for existing publication by title
+        const existing = await ctx.db
+            .query("publications")
+            .filter((q) => q.eq(q.field("title"), args.title))
+            .first();
+
+        if (existing) {
+            return existing._id;
+        }
+
+        return await ctx.db.insert("publications", args);
+    },
+});
+
 // Update publication
 export const update = mutation({
     args: {
