@@ -73,6 +73,7 @@ export default defineSchema({
   success_stories: defineTable({
     title: v.string(),
     story: v.string(), // HTML or text
+    quote: v.optional(v.string()), // Short highlight quote for detail page
     personName: v.string(),
     location: v.string(),
     imageUrl: v.string(),

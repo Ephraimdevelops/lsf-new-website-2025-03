@@ -22,6 +22,7 @@ export const create = mutation({
     args: {
         title: v.string(),
         story: v.string(),
+        quote: v.optional(v.string()),
         personName: v.string(),
         location: v.string(),
         imageUrl: v.string(),
@@ -43,6 +44,7 @@ export const update = mutation({
         id: v.id("success_stories"),
         title: v.string(),
         story: v.string(),
+        quote: v.optional(v.string()),
         personName: v.string(),
         location: v.string(),
         imageUrl: v.string(),

@@ -31,6 +31,7 @@ import { Id } from "../../../convex/_generated/dataModel";
 const storySchema = z.object({
     title: z.string().min(1, "Title is required"),
     story: z.string().min(1, "Story content is required"),
+    quote: z.string().optional(),
     personName: z.string().min(1, "Person name is required"),
     location: z.string().min(1, "Location is required"),
     programId: z.string().optional(),
@@ -44,6 +45,7 @@ interface Story {
     _id: Id<"success_stories">;
     title: string;
     story: string;
+    quote?: string;
     personName: string;
     location: string;
     imageUrl: string;
@@ -65,6 +67,7 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
     const [submitting, setSubmitting] = useState(false);
 
     const generateUploadUrl = useMutation(api.media.generateUploadUrl);
+    const saveMedia = useMutation(api.media.saveMedia);
     const createStory = useMutation(api.stories.create);
     const updateStory = useMutation(api.stories.update);
 
@@ -73,6 +76,7 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
         defaultValues: {
             title: story?.title || '',
             story: story?.story || '',
+            quote: story?.quote || '',
             personName: story?.personName || '',
             location: story?.location || '',
             programId: story?.programId || '',
@@ -80,15 +84,27 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
         },
     });
 
-    const handleUpload = async (file: File) => {
+    const handleUpload = async (file: File): Promise<string> => {
+        // Step 1: Get upload URL
         const postUrl = await generateUploadUrl();
+
+        // Step 2: Upload the file
         const result = await fetch(postUrl, {
             method: "POST",
             headers: { "Content-Type": file.type },
             body: file,
         });
         const { storageId } = await result.json();
-        return storageId;
+
+        // Step 3: Convert storageId to actual URL via saveMedia
+        const url = await saveMedia({
+            storageId,
+            name: file.name,
+            type: file.type,
+            size: file.size,
+        });
+
+        return url;
     };
 
     const handleSubmit = async (data: StoryFormData) => {
@@ -119,6 +135,7 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
             const storyData = {
                 title: data.title,
                 story: data.story,
+                quote: data.quote,
                 personName: data.personName,
                 location: data.location,
                 imageUrl,
@@ -225,11 +242,35 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
                                     <FormLabel className="font-calibri font-semibold">Story Content</FormLabel>
                                     <FormControl>
                                         <Textarea
-                                            placeholder="Write the full story here..."
+                                            placeholder="Write the full story here. Use Enter key to create new paragraphs..."
                                             {...field}
                                             className="font-calibri min-h-[150px]"
                                         />
                                     </FormControl>
+                                    <p className="text-xs text-muted-foreground font-calibri">
+                                        Tip: Press Enter twice to create paragraph breaks. They will be preserved when displayed.
+                                    </p>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="quote"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="font-calibri font-semibold">Featured Quote (Optional)</FormLabel>
+                                    <FormControl>
+                                        <Textarea
+                                            placeholder="A short, impactful quote to highlight in the story detail page..."
+                                            {...field}
+                                            className="font-calibri min-h-[80px]"
+                                        />
+                                    </FormControl>
+                                    <p className="text-xs text-muted-foreground font-calibri">
+                                        This quote will be displayed prominently on the story detail page. If left empty, the first part of the story will be used.
+                                    </p>
                                     <FormMessage />
                                 </FormItem>
                             )}
