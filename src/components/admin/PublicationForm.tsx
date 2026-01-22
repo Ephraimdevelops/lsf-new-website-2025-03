@@ -174,24 +174,33 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
       setSubmitting(true);
       let pdfUrl = publication?.pdfUrl || '';
       let coverImageUrl = publication?.coverImageUrl || '';
+      let coverImageStorageId: string | undefined = undefined;
 
       // Validation: Require PDF for new publications
       if (mode === 'create' && !selectedFile) {
         toast({ title: "PDF Required", description: "Please upload a PDF file for the publication.", variant: "destructive" });
+        setSubmitting(false);
         return;
       }
 
       if (selectedFile) {
-        pdfUrl = await handleUpload(selectedFile);
+        if (selectedFile.size > 20 * 1024 * 1024) { // 20MB limit for PDFs
+          toast({ title: "File too large", description: "PDF must be less than 20MB", variant: "destructive" });
+          setSubmitting(false);
+          return;
+        }
+        pdfUrl = await handleUpload(selectedFile); // Returns storageId
       }
 
       if (selectedCoverImage) {
-        coverImageUrl = await handleUpload(selectedCoverImage);
-      }
-
-      // If creating, we need at least a placeholder if no image uploaded
-      if (!coverImageUrl && mode === 'create') {
-        // coverImageUrl = 'placeholder_id'; // Or handle validation
+        if (selectedCoverImage.size > 2 * 1024 * 1024) { // 2MB limit for images
+          toast({ title: "File too large", description: "Cover image must be less than 2MB", variant: "destructive" });
+          setSubmitting(false);
+          return;
+        }
+        const id = await handleUpload(selectedCoverImage);
+        coverImageStorageId = id;
+        coverImageUrl = ''; // Clear legacy URL if new upload
       }
 
       const publicationData = {
@@ -200,7 +209,8 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
         type: data.type,
         publishedDate: data.date,
         pdfUrl,
-        coverImageUrl,
+        coverImageUrl: coverImageStorageId ? undefined : coverImageUrl,
+        coverImageStorageId: coverImageStorageId,
         category: data.category || 'General',
         authors: tags.length > 0 ? tags : (data.author ? [data.author] : []),
         featured: false,

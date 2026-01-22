@@ -11,8 +11,11 @@ interface UseNewsResult {
   searchNews: (query: string) => Promise<News[]>;
 }
 
-export function useNews(): UseNewsResult {
-  const newsData = useQuery(api.news.get);
+export function useNews(search?: string, category?: string): UseNewsResult {
+  const newsData = useQuery(api.news.get, {
+    search: search || undefined,
+    category: category === 'all' ? undefined : category
+  });
   const featuredNewsData = useQuery(api.news.getFeatured);
 
   // Map Convex _id to id
@@ -21,25 +24,18 @@ export function useNews(): UseNewsResult {
 
   const loading = newsData === undefined || featuredNewsData === undefined;
 
-  // Search is now handled by filtering the already loaded data or a specific search query
-  // For simplicity and speed, we can filter client-side since we have the data, 
-  // or implement a specific search query in Convex if dataset is large.
-  // The original hook had an async search. We'll simulate that for compatibility.
+  // Search is now handled reactively by the backend query
   const searchNews = async (query: string): Promise<News[]> => {
-    if (!news) return [];
-    const lowerQuery = query.toLowerCase();
-    return news.filter(item =>
-      item.title.toLowerCase().includes(lowerQuery) ||
-      item.excerpt.toLowerCase().includes(lowerQuery)
-    );
+    // This is maintained for compatibility but the UI should rely on the reactive 'news' array
+    return [];
   };
 
   return {
     news,
     featuredNews,
     loading,
-    error: null, // Convex handles errors internally usually, or we can wrap
-    refetch: async () => { }, // Convex updates automatically, no need to refetch manually
+    error: null,
+    refetch: async () => { },
     searchNews,
   };
 }

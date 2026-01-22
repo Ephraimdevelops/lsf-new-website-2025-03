@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
@@ -18,6 +19,14 @@ const StoryDetail = () => {
 
     // Find the current story
     const story = allStories.find(s => s._id === storyId);
+
+    // SEO
+    useEffect(() => {
+        if (story) {
+            document.title = `${story.title} | LSF Stories`;
+        }
+        return () => { document.title = 'Legal Services Facility'; };
+    }, [story]);
 
     // Get related stories (excluding current)
     const relatedStories = allStories.filter(s => s._id !== storyId).slice(0, 3);

@@ -7,8 +7,21 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
-  // Only load variables starting with VITE_ or NEXT_PUBLIC_ to prevent leaking secrets.
-  const env = loadEnv(mode, process.cwd(), ['VITE_', 'NEXT_PUBLIC_']);
+  const loadedEnv = loadEnv(mode, process.cwd(), ['VITE_', 'NEXT_PUBLIC_']);
+
+  // Create a process.env polyfill that includes both loaded .env vars AND system env vars (e.g. Vercel Settings)
+  const processEnvValues: Record<string, string> = { ...loadedEnv, NODE_ENV: mode };
+
+  // Explicitly add system env vars starting with NEXT_PUBLIC_ or VITE_
+  // This is crucial for Vercel where vars are in the shell environment, not just .env files
+  for (const key in process.env) {
+    if (key.startsWith('NEXT_PUBLIC_') || key.startsWith('VITE_')) {
+      const value = process.env[key];
+      if (value !== undefined) {
+        processEnvValues[key] = value;
+      }
+    }
+  }
 
   return {
     server: {
@@ -81,7 +94,7 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       global: 'globalThis',
-      'process.env': { ...env, NODE_ENV: mode }, // Polyfill process.env with loaded safe vars
+      'process.env': processEnvValues, // Use the combined environment object
     }
   };
 });

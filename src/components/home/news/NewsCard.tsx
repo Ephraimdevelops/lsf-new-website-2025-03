@@ -10,7 +10,9 @@ interface NewsItem {
   category: string;
   date: string;
   image: string;
-  readTime: string;
+  readTime?: string;
+  storageId?: string; // Optional backend field
+  slug?: string;
 }
 
 interface NewsCardProps {
@@ -19,13 +21,13 @@ interface NewsCardProps {
 
 const NewsCard = ({ news }: NewsCardProps) => {
   return (
-    <Link 
+    <Link
       to="/news"
       className="group block"
     >
       <article className="hover:opacity-95 transition-opacity duration-300">
         <div className="relative overflow-hidden rounded-lg mb-4">
-          <img 
+          <img
             src={news.image}
             alt={news.title}
             className="w-full h-56 object-cover group-hover:scale-[1.02] transition-transform duration-500"
@@ -38,8 +40,8 @@ const NewsCard = ({ news }: NewsCardProps) => {
         </div>
         <div className="flex items-center text-sm text-neutral-500 mb-3">
           <Calendar size={14} className="mr-2" />
-          {new Date(news.date).toLocaleDateString('en-US', { 
-            month: 'short', 
+          {new Date(news.date).toLocaleDateString('en-US', {
+            month: 'short',
             day: 'numeric',
             year: 'numeric'
           })}

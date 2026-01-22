@@ -200,8 +200,8 @@ const SlidingNewsHero = ({ featuredNews }: { featuredNews: any[] }) => {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`transition-all duration-500 ${index === currentSlide
-                    ? 'w-12 h-3 bg-white rounded-full shadow-lg'
-                    : 'w-3 h-3 bg-white/50 hover:bg-white/75 rounded-full'
+                  ? 'w-12 h-3 bg-white rounded-full shadow-lg'
+                  : 'w-3 h-3 bg-white/50 hover:bg-white/75 rounded-full'
                   }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -219,75 +219,30 @@ const SlidingNewsHero = ({ featuredNews }: { featuredNews: any[] }) => {
 };
 
 const News = () => {
-  const { news, featuredNews, loading, error, searchNews } = useNews();
-  const [filteredNews, setFilteredNews] = useState<any[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  // Pass filter state directly to hook for backend filtering
+  const { news, featuredNews, loading, error } = useNews(searchTerm, selectedCategory);
+
+  const [isSearching, setIsSearching] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Update filtered news when news data changes
-  useEffect(() => {
-    if (news.length > 0) {
-      setFilteredNews(news);
-    }
-  }, [news]);
-
-  // Enhanced search handler with loading state
-  const handleSearch = async (term: string) => {
-    setIsSearching(true);
+  // Handle search input with debounce could be added here, but for now direct update
+  const handleSearch = (term: string) => {
     setSearchTerm(term);
-
-    if (term.trim() === '') {
-      // If search is empty, show all news filtered by category
-      const filtered = news.filter(item => {
-        const matchesCategory = selectedCategory === 'all' || item.category.toLowerCase() === selectedCategory.toLowerCase();
-        return matchesCategory;
-      });
-      setFilteredNews(filtered);
-      setIsSearching(false);
-      return;
-    }
-
-    // Simulate search delay for better UX
-    setTimeout(async () => {
-      try {
-        const searchResults = await searchNews(term);
-        // Apply category filter to search results
-        const filtered = searchResults.filter(item => {
-          const matchesCategory = selectedCategory === 'all' || item.category.toLowerCase() === selectedCategory.toLowerCase();
-          return matchesCategory;
-        });
-        setFilteredNews(filtered);
-      } catch (error) {
-        console.error('Search error:', error);
-        // Fallback to local filtering
-        const filtered = news.filter(item => {
-          const matchesSearch = item.title.toLowerCase().includes(term.toLowerCase()) ||
-            item.excerpt.toLowerCase().includes(term.toLowerCase());
-          const matchesCategory = selectedCategory === 'all' || item.category.toLowerCase() === selectedCategory.toLowerCase();
-          return matchesSearch && matchesCategory;
-        });
-        setFilteredNews(filtered);
-      } finally {
-        setIsSearching(false);
-      }
-    }, 300);
+    setIsSearching(!!term); // Just for UI feedback if needed
   };
 
-  // Filter news based on category
-  useEffect(() => {
-    const filtered = news.filter(item => {
-      const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory === 'all' || item.category.toLowerCase() === selectedCategory.toLowerCase();
-      return matchesSearch && matchesCategory;
-    });
-    setFilteredNews(filtered);
-  }, [selectedCategory, news, searchTerm]);
-
+  // Get unique categories for filter (In a real app, this should come from a separate query or aggregation)
+  // For now, we might lose categories if filtered result doesn't contain them.
+  // Ideally, fetch categories separate. But let's assume 'news' contains enough variety or hardcode robust list.
+  // Or, since we want to show all filter options even when filtered:
+  // We can't derive from 'news' if 'news' is filtered!
+  // Solution: Hardcode categories or fetch all distinct categories separately.
+  // Let's use a static list for reliability.
   // Get unique categories for filter
-  const categories = ['all', ...Array.from(new Set(news.map(item => item.category)))];
+  const categories = ['all', 'Innovation', 'Legal Victory', 'Training', 'Outreach', 'Gender Justice', 'Climate', 'Technology', 'Partnership'];
 
   const getCategoryColor = (category: string) => {
     switch (category.toLowerCase()) {
@@ -375,12 +330,12 @@ const News = () => {
       {/* News Content Section */}
       <section id="news-content" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          {isSearching ? (
+          {loading ? ( // Use loading directly (or isSearching if we want spinner on search)
             <div className="text-center py-20">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <Typography variant="h3" className="text-gray-600">Searching...</Typography>
             </div>
-          ) : filteredNews.length === 0 ? (
+          ) : news.length === 0 ? (
             <div className="text-center py-20">
               <Newspaper className="h-16 w-16 mx-auto text-gray-400 mb-4" />
               <Typography variant="h2" className="text-gray-600 mb-4">
@@ -397,7 +352,7 @@ const News = () => {
                   onClick={() => {
                     setSearchTerm('');
                     setSelectedCategory('all');
-                    setFilteredNews(news);
+                    // setFilteredNews(news); // No longer needed
                   }}
                   className="bg-primary hover:bg-primary-dark"
                 >
@@ -413,13 +368,13 @@ const News = () => {
                   {searchTerm ? `Search Results for "${searchTerm}"` : 'Latest News'}
                 </Typography>
                 <Typography variant="body" className="text-gray-600">
-                  {filteredNews.length} article{filteredNews.length !== 1 ? 's' : ''} found
+                  {news.length} article{news.length !== 1 ? 's' : ''} found
                 </Typography>
               </div>
 
               {/* News Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredNews.map((article) => (
+                {news.map((article) => (
                   <article key={article.id} className="group">
                     <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 group-hover:border-primary/30 group-hover:-translate-y-2">
                       {/* Image */}

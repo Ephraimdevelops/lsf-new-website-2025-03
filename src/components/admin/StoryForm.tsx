@@ -128,20 +128,34 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
         try {
             setSubmitting(true);
             let imageUrl = story?.imageUrl || '';
+            let newStorageId: string | undefined = undefined;
 
             if (selectedImage) {
-                imageUrl = await handleUpload(selectedImage);
+                // Validation
+                if (selectedImage.size > 2 * 1024 * 1024) {
+                    toast({ title: "File too large", description: "Image must be less than 2MB", variant: "destructive" });
+                    setSubmitting(false);
+                    return;
+                }
+
+                // Upload
+                const postUrl = await generateUploadUrl();
+                const result = await fetch(postUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": selectedImage.type },
+                    body: selectedImage,
+                });
+                const { storageId } = await result.json();
+                newStorageId = storageId;
+                // We don't need 'saveMedia' / handleUpload if we are using native storageId?
+                // But legacy might rely on it. Logic in backend 'get' prefers storageId.
+                // So we can skip saveMedia if we set storageId.
+                // Or we can still call it to get a URL for 'imageUrl' legacy field?
+                // Let's stick to the new pattern: Save storageId.
             }
 
-            // If creating, we need at least a placeholder if no image uploaded
-            // For now, we'll assume image is optional or handled elsewhere if missing, 
-            // but schema says imageUrl is string (required).
-            if (!imageUrl && mode === 'create') {
-                // In a real app, force upload or use default.
-                // For now, let's just use a placeholder if empty to avoid schema error
-                // or let it fail if schema enforces it.
-                // Schema: imageUrl: v.string()
-                // So it IS required.
+            // ... (validation for required image if create)
+            if (!imageUrl && !newStorageId && mode === 'create') {
                 if (!selectedImage) {
                     toast({ title: 'Image required', description: 'Please upload an image.', variant: 'destructive' });
                     setSubmitting(false);
@@ -155,7 +169,8 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
                 quote: data.quote,
                 personName: data.personName,
                 location: data.location,
-                imageUrl,
+                imageUrl: newStorageId ? undefined : imageUrl, // Clear legacy url if new storage
+                storageId: newStorageId, // Save new storage ID
                 readTime: data.readTime,
                 programId: data.programId,
                 featured: data.featured,

@@ -2,10 +2,48 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
 // Get all news
+// Get all news with optional search and filter
 export const get = query({
-    args: {},
-    handler: async (ctx) => {
-        return await ctx.db.query("news").order("desc").collect();
+    args: {
+        search: v.optional(v.string()),
+        category: v.optional(v.string()),
+    },
+    handler: async (ctx, args) => {
+        let results;
+
+        if (args.search) {
+            // Full text search
+            results = await ctx.db
+                .query("news")
+                .withSearchIndex("search_title", (q) =>
+                    args.category
+                        ? q.search("title", args.search!).eq("category", args.category)
+                        : q.search("title", args.search!)
+                )
+                .collect();
+        } else if (args.category) {
+            // Filter by category
+            results = await ctx.db
+                .query("news")
+                .withIndex("by_category", (q) => q.eq("category", args.category!))
+                .order("desc")
+                .collect();
+        } else {
+            // Get all
+            results = await ctx.db.query("news").order("desc").collect();
+        }
+
+        // URL Generation for images (Dynamic)
+        return await Promise.all(
+            results.map(async (item) => {
+                let imageUrl = item.image;
+                if (item.storageId) {
+                    const url = await ctx.storage.getUrl(item.storageId);
+                    if (url) imageUrl = url;
+                }
+                return { ...item, image: imageUrl };
+            })
+        );
     },
 });
 
@@ -13,11 +51,22 @@ export const get = query({
 export const getFeatured = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db
+        const results = await ctx.db
             .query("news")
             .withIndex("by_featured", (q) => q.eq("featured", true))
             .order("desc")
             .collect();
+
+        return await Promise.all(
+            results.map(async (item) => {
+                let imageUrl = item.image;
+                if (item.storageId) {
+                    const url = await ctx.storage.getUrl(item.storageId);
+                    if (url) imageUrl = url;
+                }
+                return { ...item, image: imageUrl };
+            })
+        );
     },
 });
 
@@ -59,7 +108,8 @@ export const create = mutation({
         excerpt: v.string(),
         content: v.string(),
         category: v.string(),
-        image: v.string(),
+        image: v.optional(v.string()),
+        storageId: v.optional(v.string()),
         date: v.string(),
         featured: v.boolean(),
         author: v.optional(v.string()),
@@ -118,7 +168,8 @@ export const update = mutation({
         excerpt: v.string(),
         content: v.string(),
         category: v.string(),
-        image: v.string(),
+        image: v.optional(v.string()),
+        storageId: v.optional(v.string()),
         date: v.string(),
         featured: v.boolean(),
         author: v.optional(v.string()),

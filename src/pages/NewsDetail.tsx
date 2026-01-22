@@ -20,7 +20,7 @@ const NewsDetail = () => {
   const isLoading = newsItemData === undefined;
 
   // Related news could be a separate query
-  const relatedNewsData = useQuery(api.news.get);
+  const relatedNewsData = useQuery(api.news.get, {});
   const relatedNews = (relatedNewsData || [])
     .filter(item => item._id !== newsItemData?._id)
     .slice(0, 3)
@@ -29,8 +29,14 @@ const NewsDetail = () => {
   // =====================================================
   // ANALYTICS: Track news article view on mount
   // =====================================================
+  // =====================================================
+  // ANALYTICS: Track news article view on mount
+  // =====================================================
   useEffect(() => {
     if (newsItem && id) {
+      // SEO
+      document.title = `${newsItem.title} | LSF News`;
+
       logEvent({
         type: "news_view",
         resourceId: id,
@@ -38,7 +44,10 @@ const NewsDetail = () => {
         meta: { title: newsItem.title, category: newsItem.category },
       });
     }
-  }, [newsItem?._id]); // Only fire once when article loads
+    return () => {
+      document.title = 'Legal Services Facility'; // Reset on unmount
+    };
+  }, [newsItem, id, logEvent]); // Only fire once when article loads
 
 
   if (isLoading) {

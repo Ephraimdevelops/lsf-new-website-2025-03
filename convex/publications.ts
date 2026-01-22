@@ -1,11 +1,61 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { Id } from "./_generated/dataModel";
 
 // Get all publications
+// Get all publications with optional search and filter
 export const get = query({
-    args: {},
-    handler: async (ctx) => {
-        return await ctx.db.query("publications").order("desc").collect();
+    args: {
+        search: v.optional(v.string()),
+        category: v.optional(v.string()),
+    },
+    handler: async (ctx, args) => {
+        let results;
+
+        if (args.search) {
+            results = await ctx.db
+                .query("publications")
+                .withSearchIndex("search_title", (q) =>
+                    args.category
+                        ? q.search("title", args.search!).eq("category", args.category)
+                        : q.search("title", args.search!)
+                )
+                .collect();
+        } else if (args.category) {
+            results = await ctx.db
+                .query("publications")
+                .withIndex("by_category", (q) => q.eq("category", args.category!))
+                .order("desc")
+                .collect();
+        } else {
+            results = await ctx.db.query("publications").order("desc").collect();
+        }
+
+        return await Promise.all(
+            results.map(async (item) => {
+                let coverImageUrl = item.coverImageUrl;
+                let pdfUrl = item.pdfUrl;
+
+                if (item.coverImageStorageId) {
+                    const url = await ctx.storage.getUrl(item.coverImageStorageId);
+                    if (url) coverImageUrl = url;
+                }
+
+                // Resolve PDF URL if it's a storage ID (heuristic: lacks http prefix and looks like ID)
+                // Or if we had a pdfStorageId field (which we don't officially in schema, but might have added)
+                // The form saves ID into 'pdfUrl'.
+                if (item.pdfUrl && !item.pdfUrl.startsWith('http')) {
+                    try {
+                        const url = await ctx.storage.getUrl(item.pdfUrl as Id<"_storage">);
+                        if (url) pdfUrl = url;
+                    } catch (e) {
+                        // ignore invalid ID
+                    }
+                }
+
+                return { ...item, coverImageUrl, pdfUrl };
+            })
+        );
     },
 });
 
@@ -36,8 +86,10 @@ export const create = mutation({
         description: v.string(),
         category: v.string(),
         type: v.string(),
-        coverImageUrl: v.string(),
-        pdfUrl: v.string(),
+        coverImageUrl: v.optional(v.string()),
+        coverImageStorageId: v.optional(v.string()),
+        pdfUrl: v.optional(v.string()),
+        pdfStorageId: v.optional(v.string()),
         publishedDate: v.string(),
         authors: v.optional(v.array(v.string())),
         featured: v.optional(v.boolean()),
@@ -85,8 +137,10 @@ export const update = mutation({
         description: v.string(),
         category: v.string(),
         type: v.string(),
-        coverImageUrl: v.string(),
-        pdfUrl: v.string(),
+        coverImageUrl: v.optional(v.string()),
+        coverImageStorageId: v.optional(v.string()),
+        pdfUrl: v.optional(v.string()),
+        pdfStorageId: v.optional(v.string()),
         publishedDate: v.string(),
         authors: v.optional(v.array(v.string())),
         featured: v.optional(v.boolean()),

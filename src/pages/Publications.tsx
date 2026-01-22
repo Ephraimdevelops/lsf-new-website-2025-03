@@ -10,24 +10,15 @@ import ErrorState from '@/components/shared/ErrorState';
 import CinematicHero from '@/components/shared/CinematicHero';
 
 const Publications = () => {
-  const { publications, loading, error } = usePublications();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
-  const [filteredPublications, setFilteredPublications] = useState<any[]>([]);
+  const { publications, loading, error } = usePublications(searchTerm, selectedType);
 
-  useEffect(() => {
-    if (publications.length > 0) {
-      const filtered = publications.filter(pub => {
-        const matchesSearch = pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          pub.excerpt?.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesType = selectedType === 'all' || pub.type?.toLowerCase() === selectedType.toLowerCase();
-        return matchesSearch && matchesType;
-      });
-      setFilteredPublications(filtered);
-    }
-  }, [searchTerm, selectedType, publications]);
-
-  const types = ['all', ...Array.from(new Set(publications.map(pub => pub.type?.toLowerCase()).filter(Boolean)))];
+  // Derive types from hardcoded list or assume 'all' is enough if backend filtering handles it.
+  // Original code derived from 'publications' (which was all). Now 'publications' is filtered result.
+  // To keep filter buttons working, we need a static list of types, or fetch standard types.
+  // Common types: Report, Research, Guide, Brief.
+  const types = ['all', 'Report', 'Research', 'Guide', 'Policy', 'Brief', 'Annual Report'];
 
   const handleDownload = (publication: any) => {
     window.open(publication.file || publication.fileUrl, '_blank');
@@ -89,8 +80,8 @@ const Publications = () => {
                   key={type}
                   onClick={() => setSelectedType(type)}
                   className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${selectedType === type
-                      ? 'bg-primary text-white'
-                      : 'bg-white text-neutral-600 hover:bg-neutral-100 border border-neutral-200'
+                    ? 'bg-primary text-white'
+                    : 'bg-white text-neutral-600 hover:bg-neutral-100 border border-neutral-200'
                     }`}
                 >
                   {type === 'all' ? 'All' : type.charAt(0).toUpperCase() + type.slice(1)}
@@ -104,7 +95,7 @@ const Publications = () => {
       {/* Publications Grid */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          {filteredPublications.length === 0 ? (
+          {publications.length === 0 ? (
             <div className="text-center py-20 bg-neutral-50 rounded-3xl">
               <BookOpen className="h-16 w-16 mx-auto text-neutral-300 mb-4" />
               <h3 className="text-2xl font-bold text-neutral-900 mb-4">No Publications Found</h3>
@@ -124,12 +115,12 @@ const Publications = () => {
             <>
               <div className="mb-8">
                 <p className="text-neutral-600">
-                  Showing <strong>{filteredPublications.length}</strong> publication{filteredPublications.length !== 1 ? 's' : ''}
+                  Showing <strong>{publications.length}</strong> publication{publications.length !== 1 ? 's' : ''}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPublications.map((publication) => (
+                {publications.map((publication) => (
                   <article key={publication.id} className="group">
                     <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-neutral-100 hover:border-primary/30 hover:-translate-y-2 h-full flex flex-col">
                       {publication.image && (
@@ -174,7 +165,7 @@ const Publications = () => {
                             <Download className="h-4 w-4 mr-2" />
                             Download
                           </Button>
-                          <Link to={`/publications/${publication.slug || publication.id}`}>
+                          <Link to={`/publications/${publication.id}`}>
                             <Button size="sm" variant="outline" className="rounded-full">
                               <Eye className="h-4 w-4" />
                             </Button>

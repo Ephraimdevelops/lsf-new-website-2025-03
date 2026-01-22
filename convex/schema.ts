@@ -33,7 +33,8 @@ export default defineSchema({
     excerpt: v.string(),
     content: v.string(), // HTML content
     category: v.string(),
-    image: v.string(),
+    image: v.optional(v.string()), // Legacy URL
+    storageId: v.optional(v.string()), // Convex Storage ID
     date: v.string(), // ISO date string
     featured: v.boolean(),
     author: v.optional(v.string()),
@@ -44,7 +45,11 @@ export default defineSchema({
     views: v.optional(v.number()),
   }).index("by_category", ["category"])
     .index("by_featured", ["featured"])
-    .index("by_slug", ["slug"]),
+    .index("by_slug", ["slug"])
+    .searchIndex("search_title", {
+      searchField: "title",
+      filterFields: ["category"],
+    }),
 
   // Publications (Reports, Briefs, etc.)
   publications: defineTable({
@@ -52,14 +57,20 @@ export default defineSchema({
     description: v.string(),
     category: v.string(), // 'report', 'policy-brief', etc.
     type: v.string(), // specific type if different from category
-    coverImageUrl: v.string(),
-    pdfUrl: v.string(),
+    coverImageUrl: v.optional(v.string()),
+    coverImageStorageId: v.optional(v.string()), // New
+    pdfUrl: v.optional(v.string()),
+    pdfStorageId: v.optional(v.string()), // New
     publishedDate: v.string(),
     authors: v.optional(v.array(v.string())),
     featured: v.optional(v.boolean()),
     downloadCount: v.optional(v.number()),
     views: v.optional(v.number()),
-  }).index("by_category", ["category"]),
+  }).index("by_category", ["category"])
+    .searchIndex("search_title", {
+      searchField: "title",
+      filterFields: ["category"],
+    }),
 
   // Opportunities (Jobs, Grants, Tenders)
   opportunities: defineTable({
@@ -87,7 +98,8 @@ export default defineSchema({
     quote: v.optional(v.string()), // Short highlight quote for detail page
     personName: v.string(),
     location: v.string(),
-    imageUrl: v.string(),
+    imageUrl: v.optional(v.string()),
+    storageId: v.optional(v.string()), // New
     readTime: v.optional(v.number()), // Minutes, auto-calculated or manual
     impactMetrics: v.optional(v.any()), // Flexible JSON object for metrics
     programId: v.optional(v.string()), // Link to a program

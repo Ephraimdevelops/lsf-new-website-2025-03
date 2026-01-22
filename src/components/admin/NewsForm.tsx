@@ -112,9 +112,21 @@ const NewsForm = ({ open, onClose, onCreated, editData }: NewsFormProps) => {
   const handleSubmit = async (data: NewsFormData) => {
     try {
       setSubmitting(true);
-      let heroImageUrl = editData?.image || '';
+      let storageId: string | undefined = undefined;
+      // Preserve existing image/storageId if in edit mode (we effectively keep the old image unless replaced)
+      // Since we don't have separate storageId in editData interface yet, we rely on what logic was there?
+      // Actually, if we edit, we should preserve existing unless new file.
+      // If new file -> upload -> get new storageId.
+
+      let finalImage = editData?.image; // keep legacy url or old id
 
       if (imageFile) {
+        if (imageFile.size > 2 * 1024 * 1024) {
+          toast({ title: "File too large", description: "Image must be less than 2MB", variant: "destructive" });
+          setSubmitting(false);
+          return;
+        }
+
         // 1. Get upload URL
         const postUrl = await generateUploadUrl();
 
@@ -124,8 +136,9 @@ const NewsForm = ({ open, onClose, onCreated, editData }: NewsFormProps) => {
           headers: { "Content-Type": imageFile.type },
           body: imageFile,
         });
-        const { storageId } = await result.json();
-        heroImageUrl = storageId;
+        const json = await result.json();
+        storageId = json.storageId;
+        finalImage = undefined; // Clear legacy URL if we have a new storage ID
       }
 
       if (isEditMode && editData) {
@@ -138,7 +151,8 @@ const NewsForm = ({ open, onClose, onCreated, editData }: NewsFormProps) => {
           category: data.category,
           date: data.date,
           featured: data.featured ?? false,
-          image: heroImageUrl,
+          image: finalImage, // might be undefined if we have storageId
+          storageId: storageId, // Save the new storageId
         });
         toast({ title: 'News updated successfully' });
       } else {
@@ -150,7 +164,8 @@ const NewsForm = ({ open, onClose, onCreated, editData }: NewsFormProps) => {
           category: data.category,
           date: data.date,
           featured: data.featured ?? false,
-          image: heroImageUrl,
+          image: undefined,
+          storageId: storageId,
         });
         toast({ title: 'News created successfully' });
       }

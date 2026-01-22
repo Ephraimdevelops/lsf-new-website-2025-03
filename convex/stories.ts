@@ -2,10 +2,22 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
 // Get all stories
+// Get all stories
 export const get = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db.query("success_stories").order("desc").collect();
+        const results = await ctx.db.query("success_stories").order("desc").collect();
+
+        return await Promise.all(
+            results.map(async (item) => {
+                let imageUrl = item.imageUrl;
+                if (item.storageId) {
+                    const url = await ctx.storage.getUrl(item.storageId);
+                    if (url) imageUrl = url;
+                }
+                return { ...item, imageUrl };
+            })
+        );
     },
 });
 
@@ -25,7 +37,8 @@ export const create = mutation({
         quote: v.optional(v.string()),
         personName: v.string(),
         location: v.string(),
-        imageUrl: v.string(),
+        imageUrl: v.optional(v.string()),
+        storageId: v.optional(v.string()),
         readTime: v.optional(v.number()),
         impactMetrics: v.optional(v.any()),
         programId: v.optional(v.string()),
@@ -77,7 +90,8 @@ export const update = mutation({
         quote: v.optional(v.string()),
         personName: v.string(),
         location: v.string(),
-        imageUrl: v.string(),
+        imageUrl: v.optional(v.string()),
+        storageId: v.optional(v.string()),
         readTime: v.optional(v.number()),
         impactMetrics: v.optional(v.any()),
         programId: v.optional(v.string()),

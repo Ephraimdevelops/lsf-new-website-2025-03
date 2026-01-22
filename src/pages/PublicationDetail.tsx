@@ -28,6 +28,7 @@ const PublicationDetail = () => {
   // =====================================================
   useEffect(() => {
     if (publication) {
+      document.title = `${publication.title} | LSF Publications`;
       logEvent({
         type: "page_view",
         resourceId: publicationId,
@@ -37,6 +38,7 @@ const PublicationDetail = () => {
         }
       });
     }
+    return () => { document.title = 'Legal Services Facility'; };
   }, [publication, publicationId, logEvent]);
 
   const trackDownload = () => {
