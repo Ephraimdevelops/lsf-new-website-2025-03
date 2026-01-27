@@ -20,7 +20,9 @@ const StoryDetail = () => {
     }, [storyId]);
 
     // Fetch all stories for the related section
-    const allStories = useQuery(api.stories.get) || [];
+    const allStoriesQuery = useQuery(api.stories.get);
+    const isLoading = allStoriesQuery === undefined;
+    const allStories = allStoriesQuery || [];
 
     // Find the current story
     const story = allStories.find(s => s._id === storyId);
@@ -36,6 +38,21 @@ const StoryDetail = () => {
     // Get related stories (excluding current)
     const relatedStories = allStories.filter(s => s._id !== storyId).slice(0, 3);
 
+    // Show loading spinner while data is being fetched
+    if (isLoading) {
+        return (
+            <Layout>
+                <section className="min-h-screen flex items-center justify-center bg-neutral-50">
+                    <div className="text-center">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                        <Typography variant="body" className="text-neutral-600">Loading story...</Typography>
+                    </div>
+                </section>
+            </Layout>
+        );
+    }
+
+    // Only show "Not Found" after loading is complete and story truly doesn't exist
     if (!story) {
         return (
             <Layout>

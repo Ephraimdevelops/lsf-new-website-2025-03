@@ -14,9 +14,12 @@ const stripHtml = (html: string): string => {
 };
 
 const ImpactStories = () => {
-    const stories = useQuery(api.stories.get) || [];
+    const storiesQuery = useQuery(api.stories.get);
+    const isLoading = storiesQuery === undefined;
+    const stories = storiesQuery || [];
 
-    const displayStories = stories.length > 0 ? stories.slice(0, 3) : [
+    // Fallback stories while loading or if no data
+    const fallbackStories = [
         {
             _id: '1',
             title: 'A Mother\'s Fight for Land Rights',
@@ -42,6 +45,9 @@ const ImpactStories = () => {
             imageUrl: '/lovable-uploads/third-hero-image.jpg'
         }
     ];
+
+    // Show fallback during loading, real stories once loaded
+    const displayStories = (isLoading || stories.length === 0) ? fallbackStories : stories.slice(0, 3);
 
     return (
         <section className="py-20 bg-white">
