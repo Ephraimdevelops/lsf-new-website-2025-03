@@ -77,9 +77,9 @@ const SaraTrain = () => {
                             <span className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-white rounded-full"></span>
                         </div>
                         <div>
-                            <h1 className="text-3xl font-heading font-bold text-gray-900 mb-2">Train SARA</h1>
+                            <h1 className="text-3xl font-heading font-bold text-gray-900 mb-2">Train Saada</h1>
                             <p className="text-gray-600 text-lg max-w-lg leading-relaxed">
-                                Upload verified legal documents (PDFs) to expand SARA's knowledge base and improve her accuracy.
+                                Upload verified legal documents (PDFs) to expand Saada's knowledge base and improve her accuracy.
                             </p>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ const SaraTrain = () => {
                         <AlertCircle className="h-5 w-5 shrink-0" />
                         <p>
                             <strong>Note:</strong> Uploaded documents are immediately processed.
-                            Text is extracted, chunked, and embedded into SARA's vector database.
+                            Text is extracted, chunked, and embedded into Saada's vector database.
                             She will use this knowledge to answer future questions.
                         </p>
                     </div>

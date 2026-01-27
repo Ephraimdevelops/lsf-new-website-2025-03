@@ -33,7 +33,7 @@ const AdminSaraAnalytics = () => {
         <div className="space-y-8 animate-fade-in">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">SARA AI Overview</h2>
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">Saada AI Overview</h2>
                     <p className="text-muted-foreground mt-1">Real-time performance metrics for the legal assistant.</p>
                 </div>
                 <div className="flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium border border-green-100">

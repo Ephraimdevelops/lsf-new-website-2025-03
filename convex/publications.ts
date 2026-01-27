@@ -63,7 +63,32 @@ export const get = query({
 export const getById = query({
     args: { id: v.id("publications") },
     handler: async (ctx, args) => {
-        return await ctx.db.get(args.id);
+        const item = await ctx.db.get(args.id);
+        if (!item) return null;
+
+        let coverImageUrl = item.coverImageUrl;
+        let pdfUrl = item.pdfUrl;
+
+        if (item.coverImageStorageId) {
+            const url = await ctx.storage.getUrl(item.coverImageStorageId);
+            if (url) coverImageUrl = url;
+        }
+
+        // Resolve PDF URL if it's a storage ID
+        if (item.pdfStorageId) {
+            const url = await ctx.storage.getUrl(item.pdfStorageId);
+            if (url) pdfUrl = url;
+        } else if (item.pdfUrl && !item.pdfUrl.startsWith('http')) {
+            try {
+                // Legacy or direct ID usage fallback
+                const url = await ctx.storage.getUrl(item.pdfUrl as Id<"_storage">);
+                if (url) pdfUrl = url;
+            } catch (e) {
+                // ignore
+            }
+        }
+
+        return { ...item, coverImageUrl, pdfUrl };
     },
 });
 

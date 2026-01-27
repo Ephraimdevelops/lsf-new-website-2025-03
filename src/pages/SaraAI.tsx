@@ -46,7 +46,7 @@ const SaraAIPage = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    document.title = 'SARA AI - Legal Assistant | LSF';
+    document.title = 'Saada - LSF Legal Assistant';
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
@@ -63,7 +63,7 @@ const SaraAIPage = () => {
     if (!text.trim()) return;
 
     if (!isSignedIn) {
-      toast.error("Please sign in to chat with SARA.");
+      toast.error("Please sign in to chat with Saada.");
       return;
     }
 
@@ -119,10 +119,10 @@ const SaraAIPage = () => {
         />
         <div className="relative bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-md w-full text-center">
           <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto mb-6">
-            <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover" />
+            <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Meet SARA</h1>
-          <p className="text-gray-600 mb-2">Your Smart Legal Assistant</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Meet Saada</h1>
+          <p className="text-gray-600 mb-2">Your Official Legal Assistant</p>
           <p className="text-sm text-gray-500 mb-8">
             Expert legal guidance on Tanzanian law. Trained on LSF knowledge base.
           </p>
@@ -152,14 +152,14 @@ const SaraAIPage = () => {
             <div className="relative group cursor-pointer">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
               <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover transform transition duration-500 group-hover:scale-110" />
+                <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover transform transition duration-500 group-hover:scale-110" />
               </div>
               <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
             </div>
 
             <div>
               <h1 className="font-heading font-bold text-gray-900 text-lg flex items-center gap-2">
-                SARA <span className="bg-gradient-to-r from-primary/10 to-purple-500/10 text-primary text-[10px] px-2 py-0.5 rounded-full uppercase tracking-widest font-bold border border-primary/10">AI Beta</span>
+                Saada <span className="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full uppercase tracking-widest font-bold border border-primary/10">LSF Assistant</span>
               </h1>
               <div className="flex items-center gap-1.5 opacity-60">
                 <p className="text-xs font-medium text-gray-500">Online & Ready to help</p>
@@ -208,14 +208,14 @@ const SaraAIPage = () => {
           <div className="max-w-3xl mx-auto px-4 py-8">
             {messages.length === 0 && (
               <div className="text-center py-12">
-                <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-primary/20 mx-auto mb-6 shadow-xl">
-                  <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover" />
+                <div className="mx-auto mb-6 flex justify-center w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                  <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  Habari {user?.firstName || ''}! 👋
+                  Karibu {user?.firstName || ''}! 👋
                 </h2>
                 <p className="text-gray-600 mb-8 max-w-md mx-auto leading-relaxed">
-                  I'm SARA, your smart legal assistant. I've been trained on LSF's legal database to give you accurate, Tanzania-specific advice.
+                  Naitwa <strong>Saada</strong> (Zamani SARA). Nimeboreshwa zaidi ili kukusaidia kuelewa sheria za Tanzania kwa lugha rahisi na kupata msaada wa kisheria.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
@@ -244,10 +244,10 @@ const SaraAIPage = () => {
                     className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div className={`flex items-start gap-3 max-w-[85%] ${msg.sender === 'user' ? 'flex-row-reverse' : ''}`}>
-                      <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center overflow-hidden border ${msg.sender === 'user' ? 'border-primary/20' : 'border-gray-200'}`}>
+                      <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center overflow-hidden border ${msg.sender === 'user' ? 'border-primary/20 bg-gray-100' : 'border-transparent'}`}>
                         {msg.sender === 'user'
                           ? user?.imageUrl ? <img src={user.imageUrl} alt="User" /> : <span className="text-xs font-bold">{user?.firstName?.[0]}</span>
-                          : <img src="/sara-avatar-v2.png" alt="SARA" />
+                          : <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
                         }
                       </div>
 
@@ -351,8 +351,8 @@ const SaraAIPage = () => {
               {
                 isTyping && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200">
-                      <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover" />
+                    <div className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center overflow-hidden border-transparent">
+                      <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
                     </div>
                     <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
                       <div className="flex gap-1.5">
@@ -377,7 +377,7 @@ const SaraAIPage = () => {
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask SARA anything about Tanzanian law..."
+                placeholder="Ask Saada anything about Tanzanian law..."
                 rows={1}
                 className="w-full bg-transparent px-6 py-4 pr-16 resize-none focus:outline-none text-gray-900 placeholder-gray-400 font-medium min-h-[64px] max-h-[200px] rounded-3xl"
               />
@@ -404,7 +404,7 @@ const SaraAIPage = () => {
               </p>
               <span className="text-gray-300 text-[10px]">•</span>
               <p className="text-[10px] text-gray-400">
-                Check important info. SARA can make mistakes.
+                Check important info. Saada can make mistakes.
               </p>
             </div>
           </div>

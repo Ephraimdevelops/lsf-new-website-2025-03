@@ -23,7 +23,7 @@ const SaraAISection = () => {
                             </Typography>
 
                             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                                SARA (Sheria Assistant & Resource Associate) is trained on Tanzanian laws to provide accurate, specific answers to your legal questions in seconds.
+                                Saada (Sheria Assistant & Resource Associate) is trained on Tanzanian laws to provide accurate, specific answers to your legal questions in seconds.
                             </p>
 
                             <div className="space-y-4 mb-10">
@@ -50,7 +50,7 @@ const SaraAISection = () => {
                             <Link to="/sara-ai" className="self-start">
                                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-6 rounded-full text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-3">
                                     <Bot className="w-6 h-6" />
-                                    Chat with SARA
+                                    Chat with Saada
                                     <ArrowRight className="w-5 h-5 opacity-80" />
                                 </Button>
                             </Link>
@@ -63,7 +63,9 @@ const SaraAISection = () => {
                                 <div className="bg-gray-50 h-full w-full overflow-hidden rounded-t-[1.5rem] border-b border-gray-200">
                                     {/* Header */}
                                     <div className="bg-white p-4 border-b border-gray-100 flex items-center gap-3">
-                                        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs">S</div>
+                                        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white overflow-hidden border border-primary/20">
+                                            <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
+                                        </div>
                                         <div className="flex-1">
                                             <div className="h-2 w-24 bg-gray-200 rounded-full mb-1"></div>
                                             <div className="h-1.5 w-16 bg-gray-100 rounded-full"></div>
@@ -72,7 +74,9 @@ const SaraAISection = () => {
                                     {/* Chat */}
                                     <div className="p-4 space-y-4 h-[300px]">
                                         <div className="flex gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-primary shrink-0"></div>
+                                            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white overflow-hidden shrink-0 border border-primary/20">
+                                                <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
+                                            </div>
                                             <div className="bg-white p-3 rounded-2xl rounded-tl-none border border-gray-100 shadow-sm text-xs text-gray-600 max-w-[85%]">
                                                 Habari! I can help you understand matters regarding Land Rights, Inheritance, and Family Law. What would you like to know?
                                             </div>

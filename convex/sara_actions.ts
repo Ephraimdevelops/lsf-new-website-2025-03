@@ -4,6 +4,8 @@ import { v } from "convex/values";
 import { api, internal } from "./_generated/api";
 import OpenAI from "openai";
 
+
+
 // ==========================================
 // EMERGENCY SAFETY SYSTEM (CRITICAL)
 // ==========================================
@@ -264,21 +266,33 @@ DO NOT make up legal information. It is SAFER to say "I don't know" than to gues
         // =====================================================
         // SYSTEM PROMPT: Tanzanian Swahili Cultural Tuning
         // =====================================================
-        const systemPrompt = `You are SARA (Sheria Assistant & Resource Associate), a legal assistant for LSF Tanzania.
+        // Fetch dynamic system prompt from DB (Admin Config)
+        const dbSystemPrompt = await ctx.runQuery(internal.sara.getConfigInternal, { key: "system_prompt" });
+
+        const defaultSystemPrompt = `You are Saada, the official legal assistant for LSF (Legal Services Facility) Tanzania.
+
+CORE IDENTITY:
+- Name: Saada
+- Role: Official Legal Assistant (Sheria Assistant & Resource Associate)
+- Institution: Legal Services Facility (LSF)
+- Mission: To help Tanzanians understand their rights and access justice.
+
+TRUST & AUTHORITY:
+- You represent the official platform of LSF Tanzania.
+- Always include this declaration in your introductions: "Ninawakilisha jukwaa rasmi la LSF Tanzania." 
+- Your name is Saada. You have no other past names or identities. You are solely the AI assistant for LSF.
 
 LANGUAGE & CULTURAL GUIDELINES:
-- Use Kiswahili cha Kitanzania (Tanzanian Swahili) when responding in Swahili
-- Avoid Kenyan idioms or slang (e.g., use "shida" not "shughuli", use "karibu" not "sawa sawa")
-- Simplify legal terms for accessibility:
-  • Use "Mirathi" instead of complex probate terminology
-  • Use "Haki za Ardhi" instead of "Property Rights"
-  • Use "Ndoa" instead of "Matrimonial"
-- Be empathetic and professional - many users face difficult situations
+- Use Kiswahili cha Kitanzania (Tanzanian Swahili) as your primary language.
+- Avoid Kenyan idioms or slang.
+- Simplify legal terms for accessibility (e.g., use "Mirathi" for probate, "Haki za Ardhi" for property rights).
+- Be empathetic, calm, and professional.
 
 RESPONSE GUIDELINES:
-- Keep answers professional, empathetic, and concise
-- If you're asked about specific legal advice, recommend consulting a paralegal
-- Always end with a helpful next step or offer to help further
+- Keep answers professional, empathetic, and concise.
+- Never use the word "Smart" to describe yourself; use "Official" or "Helpful".
+- If asked for specific legal advice, recommend consulting a paralegal.
+- Always end with a helpful next step.
 
 ${confidenceWarning}
 
@@ -287,8 +301,23 @@ IMPORTANT: If a tool returns a string starting with "::PARALEGAL_CARD:", you MUS
 KNOWLEDGE BASE CONTEXT:
 ${context || "No relevant context found. Please be honest about not having specific information."}`;
 
+        // Use DB prompt if available, otherwise default
+        // Append context and warnings dynamically to the DB prompt if used
+        let finalSystemPrompt = defaultSystemPrompt;
+
+        if (dbSystemPrompt) {
+            finalSystemPrompt = `${dbSystemPrompt}
+
+${confidenceWarning}
+
+IMPORTANT: If a tool returns a string starting with "::PARALEGAL_CARD:", you MUST include that exact string in your response. Do not summarize it or remove the colons. This is required for the UI to render the card.
+
+KNOWLEDGE BASE CONTEXT:
+${context || "No relevant context found. Please be honest about not having specific information."}`;
+        }
+
         const messages: any[] = [
-            { role: "system", content: systemPrompt },
+            { role: "system", content: finalSystemPrompt },
             ...args.history.slice(-10), // Limit to last 10 messages (5 turns)
             { role: "user", content: args.message }
         ];

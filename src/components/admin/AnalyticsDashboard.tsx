@@ -311,7 +311,7 @@ export default function AnalyticsDashboard() {
           ========================================== */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                 <SectionHeader
-                    title="SARA Intelligence"
+                    title="Saada Intelligence"
                     icon={Brain}
                     description="AI Performance & Cost Analytics"
                 />

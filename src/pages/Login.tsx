@@ -1,9 +1,16 @@
 
-import { SignIn } from "@clerk/clerk-react";
+import { SignIn, useAuth } from "@clerk/clerk-react";
+import { Navigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield } from "lucide-react";
 
 const Login = () => {
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (isLoaded && isSignedIn) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-primary/5 to-secondary-teal/5 p-4">
       <Card className="w-full max-w-md border-none shadow-none bg-transparent">
@@ -16,7 +23,7 @@ const Login = () => {
         <CardContent className="flex justify-center">
           <SignIn
             signUpUrl="/signup"
-            forceRedirectUrl="/admin" // Redirect to admin by default for now, or dashboard
+            forceRedirectUrl="/admin"
           />
         </CardContent>
       </Card>

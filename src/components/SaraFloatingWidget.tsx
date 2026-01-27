@@ -19,10 +19,10 @@ const SaraFloatingWidget = () => {
                     >
                         <div className="flex items-start gap-3">
                             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary shrink-0">
-                                <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover" />
+                                <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
                             </div>
                             <div>
-                                <h4 className="font-bold text-gray-900 text-sm">Hi, I'm SARA! 👋</h4>
+                                <h4 className="font-bold text-gray-900 text-sm">Karibu! I'm Saada. 👋</h4>
                                 <p className="text-xs text-gray-500 mt-1 leading-relaxed">
                                     I can help you understand Tanzanian laws and finding paralegals near you.
                                 </p>
@@ -30,7 +30,7 @@ const SaraFloatingWidget = () => {
                                     to="/sara"
                                     className="mt-3 inline-flex items-center justify-center w-full px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:bg-primary/90 transition-colors"
                                 >
-                                    Chat with SARA
+                                    Chat with Saada
                                 </Link>
                             </div>
                             <button
@@ -54,7 +54,7 @@ const SaraFloatingWidget = () => {
             >
                 <span className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></span>
                 <div className="relative w-14 h-14 bg-white rounded-full flex items-center justify-center border-2 border-primary/10 shadow-lg overflow-hidden">
-                    <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover" />
+                    <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
                 </div>
                 <span className="absolute top-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
             </motion.button>

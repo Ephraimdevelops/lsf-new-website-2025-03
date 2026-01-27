@@ -71,8 +71,8 @@ function pickAssistantText(data: any, language: "swahili" | "english"): string {
     text = text.trim().replace(/^"+|"+$/g, "").replace(/^`{3}[\s\S]*?\n|`{3}$/g, "");
   }
   return text || (language === "swahili"
-    ? "Karibu sana! Mimi ni SARA kutoka LSF. Nipo hapa kukusaidia kuelewa haki zako na kukuunganisha na msaada unaokufaa. Tuanzie—unahitaji nini leo?"
-    : "Welcome! I'm SARA from LSF. I'm here to help you understand your rights and connect you with suitable support. Let's start—what do you need today?");
+    ? "Karibu sana! Mimi ni Saada kutoka LSF. Nipo hapa kukusaidia kuelewa haki zako na kukuunganisha na msaada unaokufaa. Tuanzie—unahitaji nini leo?"
+    : "Welcome! I'm Saada from LSF. I'm here to help you understand your rights and connect you with suitable support. Let's start—what do you need today?");
 }
 
 // ==========================================
@@ -119,8 +119,8 @@ const DisclaimerModal: React.FC<DisclaimerModalProps> = ({ language, onAccept, o
             <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-gray-700 leading-relaxed">
               {language === "swahili"
-                ? "SARA ni msaidizi wa AI na SIO wakili. Majibu yake ni kwa habari tu na hayapaswi kuchukuliwa kama ushauri wa kisheria."
-                : "SARA is an AI assistant and NOT a lawyer. Her responses are for informational purposes only and should not be taken as legal advice."}
+                ? "Saada ni msaidizi wa AI na SIO wakili. Majibu yake ni kwa habari tu na hayapaswi kuchukuliwa kama ushauri wa kisheria."
+                : "Saada is an AI assistant and NOT a lawyer. Responses are for informational purposes only and should not be taken as legal advice."}
             </p>
           </div>
           <p className="text-sm text-gray-600 leading-relaxed">
@@ -135,8 +135,8 @@ const DisclaimerModal: React.FC<DisclaimerModalProps> = ({ language, onAccept, o
           <Scale className="w-5 h-5 text-[var(--brand)] flex-shrink-0 mt-0.5" />
           <p className="text-sm text-gray-700">
             {language === "swahili"
-              ? "Kwa kubofya 'Nakubali', ninakubali kwamba naelewa SARA ni AI na nitawasiliana na mtaalamu kwa ushauri wa kisheria."
-              : "By clicking 'I Agree', I acknowledge that I understand SARA is an AI and I will consult a professional for legal advice."}
+              ? "Kwa kubofya 'Nakubali', ninakubali kwamba naelewa Saada ni AI na nitawasiliana na mtaalamu kwa ushauri wa kisheria."
+              : "By clicking 'I Agree', I acknowledge that I understand Saada is an AI and I will consult a professional for legal advice."}
           </p>
         </div>
 
@@ -399,7 +399,7 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <MessageCircle className="w-6 h-6 text-[var(--brand)]" />
-            <span className="text-lg font-medium">Chat with SARA</span>
+            <span className="text-lg font-medium">Chat with Saada</span>
           </motion.button>
         )}
       </AnimatePresence>
@@ -424,8 +424,8 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
                 </h2>
                 <p className="text-gray-600 max-w-sm mb-6">
                   {language === "swahili"
-                    ? "SARA imezimwa kwa muda kwa ajili ya maboresho. Tafadhali jaribu tena baadaye au piga simu kituo cha msaada."
-                    : "SARA is currently offline for scheduled maintenance. Please try again later or contact our support hotline."}
+                    ? "Saada imezimwa kwa muda kwa ajili ya maboresho. Tafadhali jaribu tena baadaye au piga simu kituo cha msaada."
+                    : "Saada is currently offline for scheduled maintenance. Please try again later or contact our support hotline."}
                 </p>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -449,7 +449,7 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
 
             {/* Header with Clean Design */}
             <div className="bg-white text-gray-800 px-6 py-4 flex justify-between items-center rounded-t-2xl border-b border-gray-100">
-              <h2 className="font-semibold text-xl tracking-wide">Chat with SARA - LSF Assistant</h2>
+              <h2 className="font-semibold text-xl tracking-wide">Chat with Saada - LSF Assistant</h2>
               <div className="flex items-center gap-4">
                 <button onClick={() => setSoundEnabled(!soundEnabled)} className="hover:opacity-80 transition-opacity">
                   {soundEnabled ? <Volume2 className="w-5 h-5 text-gray-600" /> : <VolumeX className="w-5 h-5 text-gray-600" />}
@@ -474,8 +474,8 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
                   <WifiOff className="w-5 h-5" />
                   <span>
                     {language === "swahili"
-                      ? "Mtandao haupo - SARA hawezi kujibu"
-                      : "You are offline - SARA cannot respond"}
+                      ? "Mtandao haupo - Saada hawezi kujibu"
+                      : "You are offline - Saada cannot respond"}
                   </span>
                 </motion.div>
               )}
