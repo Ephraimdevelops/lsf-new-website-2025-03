@@ -43,14 +43,16 @@ const isConvexStory = (story: LegacyStory | ConvexStory): story is ConvexStory =
 // Normalize story to common format for rendering
 const normalizeStory = (story: LegacyStory | ConvexStory) => {
   if (isConvexStory(story)) {
+    // Strip HTML tags for preview text
+    const cleanText = story.story.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
     return {
       id: story._id,
       name: story.personName,
       location: story.location,
       image: story.imageUrl,
-      quote: story.story,
+      quote: cleanText,
       category: story.featured ? 'Featured' : 'Impact Story',
-      brief: story.story.substring(0, 150) + '...',
+      brief: cleanText.substring(0, 150) + '...',
       title: story.title,
     };
   }

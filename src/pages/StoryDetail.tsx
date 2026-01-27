@@ -115,7 +115,7 @@ const StoryDetail = () => {
                         <div className="bg-gradient-to-r from-primary/5 to-secondary-teal/5 border-l-4 border-primary p-8 my-12 rounded-r-xl">
                             <Quote className="h-10 w-10 text-primary/30 mb-4" />
                             <blockquote className="text-2xl italic text-neutral-800 leading-relaxed">
-                                "{story.quote || story.story.split('\n')[0] || story.story.substring(0, 200)}"
+                                "{story.quote || story.story.replace(/<[^>]*>/g, '').substring(0, 200)}..."
                             </blockquote>
                             <footer className="mt-6 font-bold text-primary text-lg">
                                 — {story.personName}, {story.location}
@@ -125,9 +125,10 @@ const StoryDetail = () => {
                         {/* Story Details */}
                         <div className="prose prose-lg max-w-none">
                             <Typography variant="h2" className="text-3xl font-bold mb-6">The Full Story</Typography>
-                            <Typography variant="body" className="text-neutral-700 text-lg leading-relaxed whitespace-pre-wrap">
-                                {story.story}
-                            </Typography>
+                            <div
+                                className="text-neutral-700 text-lg leading-relaxed [&_p]:mb-4 [&_span]:inline"
+                                dangerouslySetInnerHTML={{ __html: story.story }}
+                            />
                         </div>
 
                         {/* Share & CTA */}
