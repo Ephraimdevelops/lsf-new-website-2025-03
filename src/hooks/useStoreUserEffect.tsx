@@ -25,6 +25,8 @@ export function useStoreUserEffect() {
                     email: user.primaryEmailAddress?.emailAddress || "",
                     clerkId: user.id,
                     imageUrl: user.imageUrl,
+                    // valid roles: "admin" | "staff" | "paralegal" | "stakeholder" | "user"
+                    role: (user.unsafeMetadata?.role as string) || undefined,
                 });
                 console.log("✅ User synced to Convex:", user.id);
             } catch (error) {

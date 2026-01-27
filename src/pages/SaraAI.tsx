@@ -215,7 +215,7 @@ const SaraAIPage = () => {
                   Karibu {user?.firstName || ''}! 👋
                 </h2>
                 <p className="text-gray-600 mb-8 max-w-md mx-auto leading-relaxed">
-                  Naitwa <strong>Saada</strong> (Zamani SARA). Nimeboreshwa zaidi ili kukusaidia kuelewa sheria za Tanzania kwa lugha rahisi na kupata msaada wa kisheria.
+                  Naitwa Saada. Nimeboreshwa zaidi ili kukusaidia kuelewa sheria za Tanzania kwa lugha rahisi na kupata msaada wa kisheria.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">

@@ -71,7 +71,7 @@ function pickAssistantText(data: any, language: "swahili" | "english"): string {
     text = text.trim().replace(/^"+|"+$/g, "").replace(/^`{3}[\s\S]*?\n|`{3}$/g, "");
   }
   return text || (language === "swahili"
-    ? "Karibu sana! Mimi ni Saada kutoka LSF. Nipo hapa kukusaidia kuelewa haki zako na kukuunganisha na msaada unaokufaa. Tuanzie—unahitaji nini leo?"
+    ? "Naitwa Saada. Nimeboreshwa zaidi ili kukusaidia kuelewa sheria za Tanzania kwa lugha rahisi na kupata msaada wa kisheria."
     : "Welcome! I'm Saada from LSF. I'm here to help you understand your rights and connect you with suitable support. Let's start—what do you need today?");
 }
 
