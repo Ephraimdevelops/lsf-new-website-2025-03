@@ -14,6 +14,11 @@ import { Button } from '@/components/ui/button';
 const StoryDetail = () => {
     const { storyId } = useParams<{ storyId: string }>();
 
+    // Scroll to top when story changes
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [storyId]);
+
     // Fetch all stories for the related section
     const allStories = useQuery(api.stories.get) || [];
 
