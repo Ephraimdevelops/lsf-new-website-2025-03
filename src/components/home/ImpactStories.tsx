@@ -7,6 +7,12 @@ import { Button } from '@/components/ui/button';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 
+// Helper to strip HTML tags from content
+const stripHtml = (html: string): string => {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
+};
+
 const ImpactStories = () => {
     const stories = useQuery(api.stories.get) || [];
 
@@ -90,7 +96,7 @@ const ImpactStories = () => {
                                         {story.title}
                                     </h3>
                                     <p className="text-gray-600 text-sm line-clamp-2 mb-3">
-                                        {story.story}
+                                        {stripHtml(story.story)}
                                     </p>
                                     <span className="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
                                         Read Story
