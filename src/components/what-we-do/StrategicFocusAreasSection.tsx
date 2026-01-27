@@ -116,7 +116,7 @@ const StrategicFocusAreasSection = () => {
     const sliderRef = useRef<Slider>(null);
 
     return (
-      <section className={`py-20 ${bgClass}`}>
+      <section id={title === "Our Strategic Approaches" ? "strategic-approaches" : undefined} className={`py-20 ${bgClass}`}>
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
             <div className="max-w-3xl">

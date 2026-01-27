@@ -135,7 +135,7 @@ const Team = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {boardMembers.map((member) => (
-              <Link key={member.id} to={`/board/${member.id}`} className="group block">
+              <Link key={member.id} to={`/team/${member.id}`} className="group block">
                 <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-primary/30 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
                   {/* Image */}
                   <div className="relative h-80 overflow-hidden">

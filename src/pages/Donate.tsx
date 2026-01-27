@@ -77,14 +77,16 @@ const Donate = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-14 px-10 rounded-xl border-white/30 text-white hover:bg-white/10 text-lg"
-              >
-                <FileText className="mr-2 h-5 w-5" />
-                Download Impact Report
-              </Button>
+              <Link to="/publications">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-14 px-10 rounded-xl border-white/30 text-white hover:bg-white/10 text-lg"
+                >
+                  <FileText className="mr-2 h-5 w-5" />
+                  Download Impact Report
+                </Button>
+              </Link>
             </div>
           </div>
         </Container>
@@ -265,18 +267,21 @@ const Donate = () => {
               { title: "Impact Assessment", type: "PDF", icon: TrendingUp },
               { title: "Partnership Brochure", type: "PDF", icon: Handshake }
             ].map((resource, i) => (
-              <Card key={i} className="group hover:shadow-lg transition-shadow cursor-pointer">
-                <CardContent className="p-6 flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-                    <resource.icon className="h-6 w-6 text-primary group-hover:text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900">{resource.title}</h4>
-                    <p className="text-sm text-gray-500">{resource.type}</p>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-primary transition-colors" />
-                </CardContent>
-              </Card>
+
+              <Link key={i} to="/publications">
+                <Card className="group hover:shadow-lg transition-shadow cursor-pointer h-full">
+                  <CardContent className="p-6 flex items-center gap-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                      <resource.icon className="h-6 w-6 text-primary group-hover:text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-900">{resource.title}</h4>
+                      <p className="text-sm text-gray-500">{resource.type}</p>
+                    </div>
+                    <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-primary transition-colors" />
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </Container>

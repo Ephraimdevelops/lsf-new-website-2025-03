@@ -35,6 +35,7 @@ type Paralegal = {
 
 const LegalHelp = () => {
   const [searchDistrict, setSearchDistrict] = useState('');
+  const [searchTopic, setSearchTopic] = useState('');
   const [chatInput, setChatInput] = useState('');
   const [chatMessages, setChatMessages] = useState([
     { role: 'assistant', content: 'Habari! I\'m Sara, your AI legal assistant. How can I help you today?' }
@@ -55,14 +56,21 @@ const LegalHelp = () => {
 
   // Filter paralegals based on search
   const filteredParalegals = displayParalegals.filter(p => {
-    if (!searchDistrict.trim()) return true;
-    const searchLower = searchDistrict.toLowerCase();
-    return (
+    const searchLower = searchDistrict.toLowerCase().trim();
+    const topicLower = searchTopic.toLowerCase().trim();
+
+    // Filter by Region/District
+    const matchesLocation = !searchLower ||
       p.region.toLowerCase().includes(searchLower) ||
       p.district.toLowerCase().includes(searchLower) ||
       (p.ward && p.ward.toLowerCase().includes(searchLower)) ||
-      p.fullName.toLowerCase().includes(searchLower)
-    );
+      p.fullName.toLowerCase().includes(searchLower);
+
+    // Filter by Topic/Specialization
+    const matchesTopic = !topicLower ||
+      (p.specializations && p.specializations.some(s => s.toLowerCase().includes(topicLower)));
+
+    return matchesLocation && matchesTopic;
   });
 
   // Ref for scrolling to results
@@ -149,6 +157,8 @@ const LegalHelp = () => {
                   <Input
                     placeholder="Weka tatizo (mf. Ardhi, Mirathi)"
                     className="h-16 pl-14 text-lg bg-gray-50 border-2 border-gray-100 focus:border-primary rounded-xl text-gray-900 placeholder:text-gray-500"
+                    value={searchTopic}
+                    onChange={(e) => setSearchTopic(e.target.value)}
                   />
                 </div>
               </div>
@@ -172,7 +182,11 @@ const LegalHelp = () => {
               {['Ardhi (Land)', 'Mirathi (Inheritance)', 'Ndoa (Marriage)', 'Ajira (Labor)'].map((tag) => (
                 <button
                   key={tag}
-                  className="px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 text-sm font-bold hover:bg-primary hover:text-white transition-all"
+                  onClick={() => setSearchTopic(tag.split(' ')[0])} // Extract first word (Swahili) for search
+                  className={`px-3 py-1.5 rounded-full text-sm font-bold transition-all ${searchTopic === tag.split(' ')[0]
+                      ? 'bg-primary text-white scale-105 shadow-md'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
                 >
                   {tag}
                 </button>
@@ -299,7 +313,7 @@ const LegalHelp = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">No paralegals found</h3>
                 <p className="text-gray-500 mb-6">Try adjusting your search terms or location.</p>
-                <Button onClick={() => setSearchDistrict('')} variant="outline" className="rounded-xl">
+                <Button onClick={() => { setSearchDistrict(''); setSearchTopic(''); }} variant="outline" className="rounded-xl">
                   Clear Search Filters
                 </Button>
               </div>

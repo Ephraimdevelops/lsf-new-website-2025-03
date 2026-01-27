@@ -1,20 +1,52 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Mail, Send } from 'lucide-react';
+import { useMutation } from 'convex/react';
+import { api } from '../../../convex/_generated/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Container from '@/components/shared/Container';
+import { useToast } from '@/hooks/use-toast';
 
 const ModernCallToAction = () => {
     const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const subscribe = useMutation(api.newsletter.subscribe);
+    const { toast } = useToast();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (email) {
-            setSubmitted(true);
-            setEmail('');
-            setTimeout(() => setSubmitted(false), 3000);
+        if (!email || !email.includes('@')) return;
+
+        setLoading(true);
+        try {
+            const result = await subscribe({ email, source: 'home_cta' });
+            if (result.success) {
+                setSubmitted(true);
+                setEmail('');
+                toast({
+                    title: "Subscribed!",
+                    description: result.message,
+                    className: "bg-green-600 text-white border-none",
+                });
+                setTimeout(() => setSubmitted(false), 5000);
+            } else {
+                toast({
+                    title: "Notice",
+                    description: result.message,
+                    variant: "destructive",
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            toast({
+                title: "Error",
+                description: "Failed to subscribe. Please try again.",
+                variant: "destructive",
+            });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -99,7 +131,7 @@ const ModernCallToAction = () => {
                                     size="lg"
                                     className="bg-primary hover:bg-primary/90 text-white font-bold px-5 md:px-6 h-11 md:h-12 rounded-full text-sm md:text-base"
                                 >
-                                    {submitted ? 'Subscribed!' : 'Subscribe'}
+                                    {loading ? 'Joining...' : submitted ? 'Subscribed!' : 'Subscribe'}
                                     <Send className="ml-2 h-4 w-4" />
                                 </Button>
                             </form>
