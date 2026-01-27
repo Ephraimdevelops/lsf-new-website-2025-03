@@ -1,4 +1,5 @@
-import { ArrowRight, TrendingUp } from 'lucide-react';
+import { ArrowRight, TrendingUp, PlayCircle } from 'lucide-react';
+import { useState } from 'react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const ImpactPageHero = () => {
+    const [isVideoOpen, setIsVideoOpen] = useState(false);
     const images = [
         "/lovable-uploads/msaada kisheria lsf yazindua .webp",
         "/lovable-uploads/Danida-lsf-signing.jpg",
@@ -27,60 +29,96 @@ const ImpactPageHero = () => {
     };
 
     return (
-        <section className="relative bg-black h-[85vh] min-h-[550px] overflow-hidden group">
-            {/* Background Slider */}
-            <div className="absolute inset-0 z-0">
-                <Slider {...sliderSettings} className="h-full w-full [&_.slick-slider]:h-full [&_.slick-list]:h-full [&_.slick-track]:h-full [&_.slick-slide]:h-full [&_.slick-slide>div]:h-full">
-                    {images.map((img, idx) => (
-                        <div key={idx} className="h-full w-full relative">
-                            <div className="absolute inset-0 bg-black/40 z-10" />
-                            <img
-                                src={img}
-                                alt={`Impact slide ${idx + 1}`}
-                                className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-[10000ms] ease-linear"
-                            />
+        <>
+            <section className="relative bg-black h-[85vh] min-h-[550px] overflow-hidden group">
+                {/* Background Slider */}
+                <div className="absolute inset-0 z-0">
+                    <Slider {...sliderSettings} className="h-full w-full [&_.slick-slider]:h-full [&_.slick-list]:h-full [&_.slick-track]:h-full [&_.slick-slide]:h-full [&_.slick-slide>div]:h-full">
+                        {images.map((img, idx) => (
+                            <div key={idx} className="h-full w-full relative">
+                                <div className="absolute inset-0 bg-black/40 z-10" />
+                                <img
+                                    src={img}
+                                    alt={`Impact slide ${idx + 1}`}
+                                    className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-[10000ms] ease-linear"
+                                />
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
+
+                {/* Cinematic Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
+
+                {/* Content */}
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex flex-col justify-center">
+                    <div className="max-w-4xl space-y-6 animate-fade-in">
+                        {/* Badge */}
+                        <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 shadow-2xl backdrop-blur-md border border-white/10">
+                            <TrendingUp className="h-4 w-4" />
+                            <span className="font-bold text-sm uppercase tracking-widest">Measuring Success</span>
                         </div>
-                    ))}
-                </Slider>
-            </div>
 
-            {/* Cinematic Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
+                        <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
+                            Real Change, <span className="text-white">Real Impact</span>
+                        </Typography>
 
-            {/* Content */}
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex flex-col justify-center">
-                <div className="max-w-4xl space-y-6 animate-fade-in">
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 shadow-2xl backdrop-blur-md border border-white/10">
-                        <TrendingUp className="h-4 w-4" />
-                        <span className="font-bold text-sm uppercase tracking-widest">Measuring Success</span>
-                    </div>
+                        <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl leading-relaxed font-light drop-shadow-md border-l-4 border-primary pl-6">
+                            See how we are transforming lives and expanding access to justice across Tanzania through measurable, community-driven action.
+                        </Typography>
 
-                    <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
-                        Real Change, <span className="text-white">Real Impact</span>
-                    </Typography>
-
-                    <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl leading-relaxed font-light drop-shadow-md border-l-4 border-primary pl-6">
-                        See how we are transforming lives and expanding access to justice across Tanzania through measurable, community-driven action.
-                    </Typography>
-
-                    <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                        <Link to="#stats">
-                            <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-8 py-5 rounded-full text-base shadow-lg transition-all duration-300 hover:-translate-y-1">
-                                View Our Impact
-                                <ArrowRight className="ml-3 h-5 w-5" />
+                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                            <Link to="#stats">
+                                <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-8 py-5 rounded-full text-base shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                    View Our Impact
+                                    <ArrowRight className="ml-3 h-5 w-5" />
+                                </Button>
+                            </Link>
+                            <Link to="/publications">
+                                <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-8 py-5 rounded-full text-base transition-all duration-300 hover:-translate-y-1">
+                                    Download Reports
+                                </Button>
+                            </Link>
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                onClick={() => setIsVideoOpen(true)}
+                                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-8 py-5 rounded-full text-base flex items-center shadow-lg transition-all duration-300 hover:-translate-y-1"
+                            >
+                                <PlayCircle className="mr-3 h-6 w-6" />
+                                Watch Impact Video
                             </Button>
-                        </Link>
-                        <Link to="/publications">
-                            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-8 py-5 rounded-full text-base transition-all duration-300 hover:-translate-y-1">
-                                Download Reports
-                            </Button>
-                        </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            {/* Video Modal */}
+            {
+                isVideoOpen && (
+                    <div className="fixed inset-0 bg-black/95 backdrop-blur-xl flex items-center justify-center z-50 p-4 animate-in fade-in duration-300">
+                        <div className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                            <button
+                                onClick={() => setIsVideoOpen(false)}
+                                className="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-white/20 rounded-full text-white transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                            <iframe
+                                src="https://www.youtube.com/embed/x40sHV8NcFA?autoplay=1"
+                                title="Impact Video"
+                                className="w-full h-full"
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    </div>
+                )
+            }
+        </>
     );
 };
 
