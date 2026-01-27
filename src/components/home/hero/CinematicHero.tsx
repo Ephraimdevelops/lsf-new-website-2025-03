@@ -16,65 +16,59 @@ interface HeroSlide {
   category?: string;
 }
 
+const fallbackSlides: HeroSlide[] = [
+  {
+    id: 'fallback-1',
+    headline: 'Justice is not a privilege.',
+    subheadline: "It's a fundamental right for every Tanzanian.",
+    image_url: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
+    cta_text: 'Get Legal Help',
+    cta_link: '/legal-help',
+    category: 'Legal Empowerment'
+  },
+  {
+    id: 'fallback-2',
+    headline: 'Every district. Every community.',
+    subheadline: 'Legal aid that reaches the unreachable.',
+    image_url: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
+    cta_text: 'Our Programs',
+    cta_link: '/programs',
+    category: 'Community Impact'
+  },
+  {
+    id: 'fallback-3',
+    headline: 'Digital tools. Real solutions.',
+    subheadline: 'Technology that bridges the justice gap.',
+    image_url: '/lovable-uploads/7cdc0b2c-cc42-4f40-9196-2324a35f30a1.png',
+    cta_text: 'Download App',
+    cta_link: '/haki-yangu',
+    category: 'Digital Innovation'
+  }
+];
+
 const CinematicHero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [slides, setSlides] = useState<HeroSlide[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [slides, setSlides] = useState<HeroSlide[]>(fallbackSlides);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  // We don't need a loading state because we start with fallback content for instant paint
   const convexSlides = useQuery(api.hero.get);
 
-  // Fallback slides for when database is empty
-  const fallbackSlides: HeroSlide[] = [
-    {
-      id: 'fallback-1',
-      headline: 'Justice is not a privilege.',
-      subheadline: "It's a fundamental right for every Tanzanian.",
-      image_url: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
-      cta_text: 'Get Legal Help',
-      cta_link: '/legal-help',
-      category: 'Legal Empowerment'
-    },
-    {
-      id: 'fallback-2',
-      headline: 'Every district. Every community.',
-      subheadline: 'Legal aid that reaches the unreachable.',
-      image_url: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
-      cta_text: 'Our Programs',
-      cta_link: '/programs',
-      category: 'Community Impact'
-    },
-    {
-      id: 'fallback-3',
-      headline: 'Digital tools. Real solutions.',
-      subheadline: 'Technology that bridges the justice gap.',
-      image_url: '/lovable-uploads/7cdc0b2c-cc42-4f40-9196-2324a35f30a1.png',
-      cta_text: 'Download App',
-      cta_link: '/haki-yangu',
-      category: 'Digital Innovation'
-    }
-  ];
-
   useEffect(() => {
-    if (convexSlides !== undefined) {
-      if (convexSlides.length > 0) {
-        const mappedSlides = convexSlides
-          .filter(s => s.isActive)
-          .sort((a, b) => a.order - b.order)
-          .map(s => ({
-            id: s._id,
-            headline: s.title,
-            subheadline: s.subtitle || s.description,
-            image_url: s.imageUrl,
-            cta_text: s.ctaText,
-            cta_link: s.ctaLink,
-            category: s.category
-          }));
-        setSlides(mappedSlides);
-      } else {
-        setSlides(fallbackSlides);
-      }
-      setIsLoading(false);
+    if (convexSlides !== undefined && convexSlides.length > 0) {
+      const mappedSlides = convexSlides
+        .filter(s => s.isActive)
+        .sort((a, b) => a.order - b.order)
+        .map(s => ({
+          id: s._id,
+          headline: s.title,
+          subheadline: s.subtitle || s.description,
+          image_url: s.imageUrl,
+          cta_text: s.ctaText,
+          cta_link: s.ctaLink,
+          category: s.category
+        }));
+      setSlides(mappedSlides);
     }
   }, [convexSlides]);
 
@@ -108,20 +102,10 @@ const CinematicHero = () => {
     }, 300);
   };
 
-  if (isLoading) {
-    return (
-      <section className="relative h-screen flex items-center justify-center bg-primary">
-        <div className="flex flex-col items-center space-y-6">
-          <div className="relative">
-            <div className="animate-spin rounded-full h-16 w-16 border-4 border-white/20 border-t-white"></div>
-          </div>
-          <Typography variant="body" className="text-white font-medium text-lg">Loading...</Typography>
-        </div>
-      </section>
-    );
-  }
+  // Removed isLoading checks - we always show content now
 
   if (slides.length === 0) {
+    // Should generally not happen due to fallbacks, but fail-safe
     return (
       <section className="relative h-screen bg-primary flex items-center">
         <Container size="xl" className="text-center text-white">
@@ -144,6 +128,7 @@ const CinematicHero = () => {
               key={currentSlide}
               src={currentSlideData.image_url}
               alt={currentSlideData.headline}
+              fetchPriority="high" // Optimize LCP
               className="w-full h-full object-cover object-center animate-[kenBurns_20s_ease-in-out_infinite]"
               style={{
                 animation: 'kenBurns 20s ease-in-out infinite',
