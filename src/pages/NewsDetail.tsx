@@ -53,8 +53,30 @@ const NewsDetail = () => {
   if (isLoading) {
     return (
       <Layout>
-        <div className="flex items-center justify-center h-[50vh]">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        {/* Skeleton Hero */}
+        <div className="relative h-[60vh] bg-gray-200 animate-pulse">
+          <div className="container mx-auto px-4 h-full flex flex-col justify-center items-center">
+            <div className="h-8 bg-gray-300 rounded w-32 mb-6"></div>
+            <div className="h-16 bg-gray-300 rounded w-3/4 mb-8"></div>
+            <div className="h-4 bg-gray-300 rounded w-48"></div>
+          </div>
+        </div>
+
+        {/* Skeleton Content */}
+        <div className="py-20 bg-white">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <div className="space-y-4">
+              <div className="h-4 bg-gray-100 rounded w-full"></div>
+              <div className="h-4 bg-gray-100 rounded w-full"></div>
+              <div className="h-4 bg-gray-100 rounded w-5/6"></div>
+              <div className="h-4 bg-gray-100 rounded w-full"></div>
+            </div>
+            <div className="mt-12 space-y-4">
+              <div className="h-4 bg-gray-100 rounded w-full"></div>
+              <div className="h-4 bg-gray-100 rounded w-11/12"></div>
+              <div className="h-4 bg-gray-100 rounded w-full"></div>
+            </div>
+          </div>
         </div>
       </Layout>
     );
