@@ -55,18 +55,18 @@ const ModernPartnersSection = () => {
     const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 });
 
     const partners = [
+        { name: 'DANIDA', logo: '/lovable-uploads/Danish amabssador.png' },
+        { name: 'FCDO', logo: '/lovable-uploads/UKAid.png' },
         { name: 'European Union', logo: '/lovable-uploads/Funded by European Union.png' },
+        { name: 'World Bank', logo: '/lovable-uploads/lsf-10years-annivervasry.jpg' }, // Fallback to generic if no logo
+        { name: 'WINGS', logo: '/lovable-uploads/lsf-10years-annivervasry.jpg' },      // Fallback to generic if no logo
         { name: 'ENABEL', logo: '/lovable-uploads/Enabel.png' },
-        { name: 'North-South Cooperation', logo: '/lovable-uploads/Northsouth cooperation.png' },
-        { name: 'UK Aid', logo: '/lovable-uploads/UKAid.png' },
-        { name: 'Foreign Commonwealth Office', logo: '/lovable-uploads/foregign, commonwealth, office.png' },
-        { name: 'Danish Embassy', logo: '/lovable-uploads/Danish amabssador.png' },
     ];
 
     const stats = [
         { value: 31, prefix: '', suffix: '', label: 'Regions' },
-        { value: 50, prefix: '', suffix: '+', label: 'Partners' },
-        { value: 47, prefix: '$', suffix: 'M+', label: 'Grants Disbursed' },
+        { value: 6, prefix: '', suffix: '', label: 'Strategic Partners' },
+        { value: 52, prefix: '$ ', suffix: ' Million', label: 'Funds Managed' },
     ];
 
     return (
