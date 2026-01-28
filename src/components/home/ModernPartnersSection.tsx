@@ -96,12 +96,12 @@ const ModernPartnersSection = () => {
                     {partners.map((partner) => (
                         <div
                             key={partner.name}
-                            className="group flex items-center justify-center p-8 bg-white rounded-2xl border border-gray-100 hover:border-primary hover:shadow-xl transition-all duration-300 h-48"
+                            className="group flex items-center justify-center p-8 bg-white rounded-2xl border border-gray-100 hover:border-primary hover:shadow-xl transition-all duration-300"
                         >
                             <img
                                 src={partner.logo}
                                 alt={partner.name}
-                                className="h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                                className="h-28 md:h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
                             />
                         </div>
                     ))}
