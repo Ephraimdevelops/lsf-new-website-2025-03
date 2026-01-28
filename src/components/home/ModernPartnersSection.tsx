@@ -56,10 +56,10 @@ const ModernPartnersSection = () => {
 
     const partners = [
         { name: 'DANIDA', logo: '/lovable-uploads/Danish amabssador.png' },
-        { name: 'FCDO', logo: '/lovable-uploads/UKAid.png' },
+        { name: 'FCDO', logo: '/lovable-uploads/FCDO_logo.png' },
         { name: 'European Union', logo: '/lovable-uploads/Funded by European Union.png' },
-        { name: 'World Bank', logo: '/lovable-uploads/lsf-10years-annivervasry.jpg' }, // Fallback to generic if no logo
-        { name: 'WINGS', logo: '/lovable-uploads/lsf-10years-annivervasry.jpg' },      // Fallback to generic if no logo
+        { name: 'World Bank', logo: '/lovable-uploads/lsf-10years-annivervasry.jpg' },
+        { name: 'WINGS', logo: '/lovable-uploads/WINGS_logo.png' },
         { name: 'ENABEL', logo: '/lovable-uploads/Enabel.png' },
     ];
 
