@@ -58,7 +58,7 @@ const ModernPartnersSection = () => {
         { name: 'DANIDA', logo: '/lovable-uploads/Danish amabssador.png' },
         { name: 'FCDO', logo: '/lovable-uploads/FCDO_logo.png' },
         { name: 'European Union', logo: '/lovable-uploads/Funded by European Union.png' },
-        { name: 'World Bank', logo: '/lovable-uploads/lsf-10years-annivervasry.jpg' },
+        { name: 'World Bank', logo: '/lovable-uploads/WorldBank_logo.jpg' },
         { name: 'WINGS', logo: '/lovable-uploads/WINGS_logo.png' },
         { name: 'ENABEL', logo: '/lovable-uploads/Enabel.png' },
     ];
@@ -92,16 +92,16 @@ const ModernPartnersSection = () => {
                 </div>
 
                 {/* Partners Logo Grid */}
-                <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+                <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
                     {partners.map((partner) => (
                         <div
                             key={partner.name}
-                            className="group flex items-center justify-center p-5 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300"
+                            className="group flex items-center justify-center p-8 bg-white rounded-2xl border border-gray-100 hover:border-primary hover:shadow-xl transition-all duration-300 h-48"
                         >
                             <img
                                 src={partner.logo}
                                 alt={partner.name}
-                                className="h-14 w-auto object-contain"
+                                className="h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
                             />
                         </div>
                     ))}
