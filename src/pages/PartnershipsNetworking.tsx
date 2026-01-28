@@ -27,7 +27,7 @@ const PartnershipsNetworking = () => {
   const partnerTypes = [
     { icon: <Building className="h-6 w-6" />, title: "Government Institutions", description: "Collaborating with ministries, courts, and local government authorities to strengthen the justice system.", examples: ["Ministry of Constitutional and Legal Affairs", "Judiciary of Tanzania", "Regional Administration"], image: "/lovable-uploads/Danida-lsf-signing.jpg" },
     { icon: <Globe className="h-6 w-6" />, title: "Civil Society", description: "Working with NGOs, community organizations, and advocacy groups to amplify grassroots voices.", examples: ["Women's Rights Organizations", "Community Based Organizations", "Faith-Based Organizations"], image: "/lovable-uploads/wanawake tunaweza beenficiaries.jpg" },
-    { icon: <Handshake className="h-6 w-6" />, title: "Development Partners", description: "Engaging with international donors and development agencies to scale our impact.", examples: ["UN Women", "USAID", "European Union", "World Bank"], image: "/lovable-uploads/lsf-10years-annivervasry.jpg" }
+    { icon: <Handshake className="h-6 w-6" />, title: "Development Partners", description: "Engaging with international donors and development agencies to scale our impact.", examples: ["DANIDA", "FCDO", "European Union", "World Bank", "WINGS", "ENABEL"], image: "/lovable-uploads/lsf-10years-annivervasry.jpg" }
   ];
 
   const networks = [

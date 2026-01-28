@@ -5,7 +5,7 @@ const HomeImpactNumbers = () => {
     // Final approved stats list for continuous ticker
     const stats = [
         { value: '15+', label: 'Years of Impact', icon: Calendar },
-        { value: '$47M+', label: 'Funds Managed', icon: DollarSign },
+        { value: '$ 52 Million', label: 'Funds Managed', icon: DollarSign },
         { value: '40M+', label: 'People Reached', icon: Users },
         { value: '54,000+', label: 'Disputes Resolved', icon: Gavel },
         { value: '4,000+', label: 'Paralegals', icon: Scale },
