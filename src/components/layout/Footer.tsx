@@ -14,6 +14,7 @@ const Footer = () => {
     { name: 'Programs', href: '/programs' },
     { name: 'Our Impact', href: '/impact' },
     { name: 'Careers', href: '/opportunities' },
+    { name: 'LSF Connect', href: '/connect' },
   ];
 
   const resources = [

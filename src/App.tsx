@@ -74,6 +74,8 @@ const StakeholderDashboard = lazy(() => import("./pages/StakeholderDashboard"));
 const Signup = lazy(() => import("./pages/Signup"));
 const Login = lazy(() => import("./pages/Login"));
 const LSFChatbotFullPage = lazy(() => import("./components/shared/chatbot/LSFChatbotFullPage"));
+const Connect = lazy(() => import("./pages/Connect"));
+const LinksManager = lazy(() => import("./pages/admin/LinksManager"));
 const SaraTrain = lazy(() => import("./pages/SaraTrain"));
 
 // Loading component
@@ -151,6 +153,7 @@ function App() {
                           <Admin />
                         </ProtectedRoute>
                       } />
+                      <Route path="/admin/quick-links" element={<LinksManager />} />
                       <Route path="/dashboard/staff" element={
                         <ProtectedRoute allowedRoles={["staff"]}>
                           <StaffDashboard />
@@ -187,6 +190,7 @@ function App() {
                       <Route path="/paralegal-login" element={<ParalegalLogin />} />
                       <Route path="/paralegal-signup" element={<ParalegalSignupAuth />} />
                       <Route path="/lsfchatbot" element={<LSFChatbotFullPage />} />
+                      <Route path="/connect" element={<Connect />} />
                       {/* Catch all route for 404 pages */}
                       <Route path="*" element={<NotFound />} />
                     </Routes>

@@ -430,5 +430,25 @@ export default defineSchema({
   }).index("by_type", ["type"])
     .index("by_timestamp", ["timestamp"])
     .index("by_user", ["userId"]),
+
+  // ==========================================
+  // LSF CONNECT (Quick Links / Mini-CMS)
+  // ==========================================
+
+  quick_links: defineTable({
+    title: v.string(),
+    subtitle: v.optional(v.string()), // Detailed context
+    url: v.string(),
+    variant: v.union(v.literal('emergency'), v.literal('primary'), v.literal('secondary')), // Hierarchy
+    icon: v.optional(v.string()), // Lucide icon name (Restricted set in UI)
+    order: v.number(), // Sort order
+    isActive: v.boolean(), // Soft delete/hide
+    openInNewTab: v.boolean(), // UX preference
+    audience: v.optional(v.union(v.literal('public'), v.literal('paralegal'), v.literal('staff'))), // Future-proofing
+    clicks: v.number(), // Basic analytics
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_order", ["order"])
+    .index("by_active", ["isActive"]),
 });
 
