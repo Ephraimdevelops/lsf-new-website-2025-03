@@ -7,6 +7,7 @@ import LoadingState from '@/components/shared/LoadingState';
 import ErrorState from '@/components/shared/ErrorState';
 import CinematicHero from '@/components/shared/CinematicHero';
 import { Badge } from '@/components/ui/badge';
+import SEOHead from '@/components/shared/SEOHead';
 
 const Team = () => {
   const { teamMembers, boardMembers, loading, error } = useTeamMembers();
@@ -29,6 +30,11 @@ const Team = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Our Team"
+        description="Meet the dedicated LSF Secretariat and Board of Directors working tirelessly to advance access to justice."
+        canonicalUrl="https://lsftz.org/team"
+      />
       <CinematicHero
         title="Our Team"
         badge="Meet the Experts"

@@ -6,14 +6,19 @@ import AboutImpactNumbers from '@/components/about/AboutImpactNumbers';
 import GovernanceSection from '@/components/about/GovernanceSection';
 import AchievementsTimelineSection from '@/components/about/AchievementsTimelineSection';
 import ImpactMetricsSectionWrapper from './home/ImpactMetricsSectionWrapper';
-import ImpactInfographic from '@/components/home/ImpactInfographic';
 
 import StrategicTransparency from '@/components/about/StrategicTransparency';
 import AboutPartnersSection from '@/components/about/AboutPartnersSection';
+import SEOHead from '@/components/shared/SEOHead';
 
 const About = () => {
   return (
     <Layout>
+      <SEOHead
+        title="About Us"
+        description="From grant-maker to direct implementer: LSF's strategic evolution in driving legal empowerment and access to justice in Tanzania."
+        canonicalUrl="https://lsftz.org/about"
+      />
       <AboutHero />
       <MissionVisionSection />
       <AchievementsTimelineSection />

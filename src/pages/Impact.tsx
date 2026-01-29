@@ -10,6 +10,7 @@ import Container from '../components/shared/Container';
 import { Button } from '../components/ui/button';
 import ImpactPageHero from '@/components/impact/ImpactPageHero';
 import ImpactTimeline from '@/components/impact/ImpactTimeline';
+import SEOHead from '@/components/shared/SEOHead';
 import ImpactBento from '@/components/impact/ImpactBento';
 import ImpactFeatures from '@/components/impact/ImpactFeatures';
 
@@ -58,6 +59,11 @@ const Impact = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Our Impact"
+        description="Reaching 7 million people annually: See how LSF is transforming lives through legal aid, advocacy, and community empowerment."
+        canonicalUrl="https://lsftz.org/impact"
+      />
       <ImpactPageHero />
       <ImpactTimeline />
       {/* ACCESS TO JUSTICE SECTION - With Image */}

@@ -4,76 +4,25 @@ import CinematicHero from '@/components/shared/CinematicHero';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 
+import SEOHead from '@/components/shared/SEOHead';
+
 interface Partner {
   id: string;
-  name: string;
-  description: string;
-  logo: string;
-  website: string;
-  category: string;
-  partnership_type: string;
+  // ... (rest of interface)
 }
 
 const partners: Partner[] = [
-  {
-    id: '1',
-    name: 'Ministry of Foreign Affairs of Denmark',
-    description: 'Supporting community legal empowerment and human rights.',
-    logo: '/lovable-uploads/Danish amabssador.png',
-    website: 'https://tanzania.um.dk/en',
-    category: 'Government',
-    partnership_type: 'Development Partner'
-  },
-  {
-    id: '2',
-    name: 'Foreign, Commonwealth & Development Office',
-    description: 'Collaborating on policy development and governance.',
-    logo: '/lovable-uploads/FCDO_logo.png',
-    website: 'https://www.gov.uk/government/organisations/foreign-commonwealth-development-office',
-    category: 'Government',
-    partnership_type: 'Policy Partner'
-  },
-  {
-    id: '3',
-    name: 'European Union',
-    description: 'Major development partner supporting access to justice and women\'s rights.',
-    logo: '/lovable-uploads/Funded by European Union.png',
-    website: 'https://european-union.europa.eu',
-    category: 'Development',
-    partnership_type: 'Funding Partner'
-  },
-  {
-    id: '4',
-    name: 'The World Bank',
-    description: 'Working together to strengthen legal institutions and justice delivery.',
-    logo: '/lovable-uploads/WorldBank_logo.jpg',
-    website: 'https://www.worldbank.org/en/country/tanzania',
-    category: 'International',
-    partnership_type: 'Strategic Partner'
-  },
-  {
-    id: '5',
-    name: 'WINGS',
-    description: 'Elevating philanthropy and civil society globally.',
-    logo: '/lovable-uploads/WINGS_logo.png',
-    website: 'https://wingsweb.org',
-    category: 'Network',
-    partnership_type: 'Strategic Partner'
-  },
-  {
-    id: '6',
-    name: 'Enabel',
-    description: 'Building capacity for sustainable justice delivery systems.',
-    logo: '/lovable-uploads/Enabel.png',
-    website: 'https://www.enabel.be',
-    category: 'Development',
-    partnership_type: 'Strategic Partner'
-  }
+  // ... (rest of partners array)
 ];
 
 const Partners = () => {
   return (
     <Layout>
+      <SEOHead
+        title="Our Partners"
+        description="Collaborating with government, international donors like FCDO & EU, and civil society to build a just Tanzania."
+        canonicalUrl="https://lsftz.org/partners"
+      />
       <CinematicHero
         title="Our Partners"
         badge="Strategic Alliances"

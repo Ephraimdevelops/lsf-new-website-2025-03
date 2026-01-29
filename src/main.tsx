@@ -28,8 +28,12 @@ Sentry.init({
     environment: process.env.NODE_ENV,
 });
 
+import { HelmetProvider } from 'react-helmet-async';
+
 createRoot(document.getElementById("root")!).render(
-    <ConvexClientProvider>
-        <App />
-    </ConvexClientProvider>
+    <HelmetProvider>
+        <ConvexClientProvider>
+            <App />
+        </ConvexClientProvider>
+    </HelmetProvider>
 );
