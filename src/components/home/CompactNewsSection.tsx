@@ -142,12 +142,6 @@ const CompactNewsSection = () => {
                                             <Calendar className="h-3 w-3 mr-1" />
                                             {new Date(item.publishedDate).toLocaleDateString()}
                                         </span>
-                                        {item.readTime && (
-                                            <span className="flex items-center">
-                                                <Clock className="h-3 w-3 mr-1" />
-                                                {item.readTime}
-                                            </span>
-                                        )}
                                     </div>
 
                                     <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">

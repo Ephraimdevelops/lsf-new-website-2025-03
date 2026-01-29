@@ -108,84 +108,78 @@ const LegalHelp = () => {
   return (
     <Layout>
       {/* HERO - Simplified & Accessible (Brand Aligned) */}
-      <div className="relative min-h-[85vh] bg-primary flex flex-col items-center justify-center overflow-hidden py-20 pb-0">
-        {/* Brand Pattern Overlay */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <img src="/pattern-bg.png" alt="" className="w-full h-full object-cover" />
+      <div className="relative min-h-[85vh] bg-neutral-900 flex flex-col items-center justify-center overflow-hidden py-20 pb-0">
+        {/* Abstract Background Pattern (AGM Style) */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[url('/lovable-uploads/brand-pattern.png')] bg-cover bg-center mix-blend-overlay" />
         </div>
 
         {/* Gradient Overlay for Depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent pointer-events-none" />
 
         <Container className="relative z-10 w-full max-w-4xl px-4">
-          <div className="text-center mb-10">
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
+          <div className="text-center mb-12">
+            <Badge className="mb-6 bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20 px-4 py-1.5 text-sm font-bold tracking-widest uppercase">
+              Legal Assistance Portal
+            </Badge>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-tight">
               Pata Msaada wa Kisheria.
-              <span className="block text-secondary-orange mt-2">Haraka na Uhakika.</span>
+              <span className="block text-secondary-yellow mt-2">Haraka na Uhakika.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto font-medium">
+            <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto font-medium">
               Find verified paralegals in your district or chat with Sara AI for instant legal guidance.
             </p>
           </div>
 
-          {/* SEARCH COMPONENT - High Contrast & Simple */}
-          <div className="bg-white rounded-t-3xl p-4 md:p-6 shadow-2xl mx-auto relative z-20 translate-y-2">
-            <div className="flex flex-col md:flex-row gap-4">
+          {/* SEARCH COMPONENT - Transparent, Glassy & Simple */}
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-2 md:p-3 shadow-2xl mx-auto relative z-20 max-w-3xl">
+            <div className="flex flex-col md:flex-row gap-2">
               {/* Location Input */}
-              <div className="flex-1">
-                <label className="block text-gray-900 font-bold text-sm uppercase tracking-wide mb-2 pl-1">
-                  Unatafuta wapi? (Location)
-                </label>
-                <div className="relative">
-                  <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-primary" />
-                  <Input
-                    placeholder="Mkoa au Wilaya (Region/District)"
-                    className="h-16 pl-14 text-lg bg-gray-50 border-2 border-gray-100 focus:border-primary rounded-xl text-gray-900 placeholder:text-gray-500"
-                    value={searchDistrict}
-                    onChange={(e) => setSearchDistrict(e.target.value)}
-                  />
+              <div className="flex-1 relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-secondary-yellow transition-colors">
+                  <MapPin className="h-5 w-5" />
                 </div>
+                <Input
+                  placeholder="Mkoa / Wilaya (Location)"
+                  className="h-14 pl-12 bg-white/5 border-transparent focus:border-white/20 focus:bg-white/10 text-white placeholder:text-white/40 rounded-2xl text-lg transition-all"
+                  value={searchDistrict}
+                  onChange={(e) => setSearchDistrict(e.target.value)}
+                />
               </div>
 
               {/* Topic Input */}
-              <div className="flex-1">
-                <label className="block text-gray-900 font-bold text-sm uppercase tracking-wide mb-2 pl-1">
-                  Shida ni nini? (Issue)
-                </label>
-                <div className="relative">
-                  <Scale className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-primary" />
-                  <Input
-                    placeholder="Weka tatizo (mf. Ardhi, Mirathi)"
-                    className="h-16 pl-14 text-lg bg-gray-50 border-2 border-gray-100 focus:border-primary rounded-xl text-gray-900 placeholder:text-gray-500"
-                    value={searchTopic}
-                    onChange={(e) => setSearchTopic(e.target.value)}
-                  />
+              <div className="flex-1 relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-secondary-yellow transition-colors">
+                  <Scale className="h-5 w-5" />
                 </div>
+                <Input
+                  placeholder="Tatizo (Issue e.g. Ardhi)"
+                  className="h-14 pl-12 bg-white/5 border-transparent focus:border-white/20 focus:bg-white/10 text-white placeholder:text-white/40 rounded-2xl text-lg transition-all"
+                  value={searchTopic}
+                  onChange={(e) => setSearchTopic(e.target.value)}
+                />
               </div>
 
               {/* Search Button */}
-              <div className="md:pt-8 w-full md:w-auto">
-                <Button
-                  onClick={handleSearch}
-                  className="w-full md:w-auto h-16 px-10 text-xl font-bold rounded-xl bg-secondary-orange hover:bg-orange-600 text-white shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2"
-                >
-                  <Search className="h-6 w-6" />
-                  <span className="md:hidden">TAFUTA</span>
-                  <span className="hidden md:inline">TAFUTA</span>
-                </Button>
-              </div>
+              <Button
+                onClick={handleSearch}
+                className="h-14 px-8 text-lg font-bold rounded-2xl bg-secondary-yellow hover:bg-secondary-yellow/90 text-black shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+              >
+                <Search className="h-5 w-5" />
+                <span className="hidden md:inline">TAFUTA</span>
+              </Button>
             </div>
 
-            {/* Quick Tags - Simple Pills Inside Card for Connection */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-6 pt-4 border-t border-gray-100">
-              <span className="text-gray-500 font-medium text-sm">Common Topics:</span>
-              {['Ardhi (Land)', 'Mirathi (Inheritance)', 'Ndoa (Marriage)', 'Ajira (Labor)'].map((tag) => (
+            {/* Quick Tags - Subtle Glass Pills */}
+            <div className="hidden md:flex flex-wrap items-center justify-center gap-2 mt-3 px-2 pb-1">
+              <span className="text-white/40 font-medium text-xs uppercase tracking-wider mr-2">Common:</span>
+              {['Ardhi', 'Mirathi', 'Ndoa', 'Ajira'].map((tag) => (
                 <button
                   key={tag}
-                  onClick={() => setSearchTopic(tag.split(' ')[0])} // Extract first word (Swahili) for search
-                  className={`px-3 py-1.5 rounded-full text-sm font-bold transition-all ${searchTopic === tag.split(' ')[0]
-                      ? 'bg-primary text-white scale-105 shadow-md'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  onClick={() => setSearchTopic(tag)}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${searchTopic === tag
+                    ? 'bg-secondary-yellow/20 text-secondary-yellow border border-secondary-yellow/30'
+                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-transparent'
                     }`}
                 >
                   {tag}

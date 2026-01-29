@@ -44,10 +44,10 @@ const ClimateJustice = () => {
   ];
 
   const impactMetrics = [
-    { value: '35,000+', label: 'People Served' },
-    { value: '150+', label: 'Legal Cases Won' },
-    { value: '20+', label: 'Policy Changes' },
-    { value: '12', label: 'Regions Covered' }
+    { value: '23,000+', label: 'Trees Planted (2024)' },
+    { value: '30', label: 'Active COCOBA Groups' },
+    { value: '225', label: 'Grievance Cmte Leaders' },
+    { value: '3,000+', label: 'Marathon Runners (2024)' }
   ];
 
   return (

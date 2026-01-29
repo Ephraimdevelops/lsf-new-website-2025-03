@@ -17,57 +17,57 @@ interface Partner {
 const partners: Partner[] = [
   {
     id: '1',
-    name: 'European Union',
-    description: 'Major donor supporting legal empowerment programs across Tanzania.',
-    logo: '/lovable-uploads/Funded by European Union.png',
-    website: 'https://europa.eu',
-    category: 'International',
-    partnership_type: 'Major Donor'
-  },
-  {
-    id: '2',
-    name: 'ENABEL',
-    description: 'Development partner building capacity for sustainable justice systems.',
-    logo: '/lovable-uploads/Enabel.png',
-    website: 'https://enabel.be',
-    category: 'Development',
+    name: 'Ministry of Foreign Affairs of Denmark',
+    description: 'Supporting community legal empowerment and human rights.',
+    logo: '/lovable-uploads/Danish amabssador.png',
+    website: 'https://tanzania.um.dk/en',
+    category: 'Government',
     partnership_type: 'Development Partner'
   },
   {
-    id: '3',
-    name: 'UK Aid',
-    description: 'Strengthening legal aid infrastructure across regions.',
-    logo: '/lovable-uploads/UKAid.png',
-    website: 'https://gov.uk',
+    id: '2',
+    name: 'Foreign, Commonwealth & Development Office',
+    description: 'Collaborating on policy development and governance.',
+    logo: '/lovable-uploads/FCDO_logo.png',
+    website: 'https://www.gov.uk/government/organisations/foreign-commonwealth-development-office',
     category: 'Government',
+    partnership_type: 'Policy Partner'
+  },
+  {
+    id: '3',
+    name: 'European Union',
+    description: 'Major development partner supporting access to justice and women\'s rights.',
+    logo: '/lovable-uploads/Funded by European Union.png',
+    website: 'https://european-union.europa.eu',
+    category: 'Development',
     partnership_type: 'Funding Partner'
   },
   {
     id: '4',
-    name: 'Danish Embassy Tanzania',
-    description: 'Supporting community legal empowerment initiatives.',
-    logo: '/lovable-uploads/Danish amabssador.png',
-    website: '#',
-    category: 'Government',
-    partnership_type: 'Development Partner'
+    name: 'The World Bank',
+    description: 'Working together to strengthen legal institutions and justice delivery.',
+    logo: '/lovable-uploads/WorldBank_logo.jpg',
+    website: 'https://www.worldbank.org/en/country/tanzania',
+    category: 'International',
+    partnership_type: 'Strategic Partner'
   },
   {
     id: '5',
-    name: 'North-South Cooperation',
-    description: 'Advancing global justice cooperation and policy.',
-    logo: '/lovable-uploads/Northsouth cooperation.png',
-    website: '#',
-    category: 'International',
-    partnership_type: 'Policy Partner'
+    name: 'WINGS',
+    description: 'Elevating philanthropy and civil society globally.',
+    logo: '/lovable-uploads/WINGS_logo.png',
+    website: 'https://wingsweb.org',
+    category: 'Network',
+    partnership_type: 'Strategic Partner'
   },
   {
     id: '6',
-    name: 'Foreign Commonwealth Office',
-    description: 'Government partnership for policy development.',
-    logo: '/lovable-uploads/foregign, commonwealth, office.png',
-    website: '#',
-    category: 'Government',
-    partnership_type: 'Policy Partner'
+    name: 'Enabel',
+    description: 'Building capacity for sustainable justice delivery systems.',
+    logo: '/lovable-uploads/Enabel.png',
+    website: 'https://www.enabel.be',
+    category: 'Development',
+    partnership_type: 'Strategic Partner'
   }
 ];
 
@@ -76,8 +76,8 @@ const Partners = () => {
     <Layout>
       <CinematicHero
         title="Our Partners"
-        badge="Strategic Partnerships"
-        description="Together with our partners, we're building a more just and equitable Tanzania where everyone has access to legal protection."
+        badge="Strategic Alliances"
+        description="Collaborating with global leaders to build a just Tanzania."
         backgroundImage="/lovable-uploads/partners-hero-bg.png"
         brandPattern="/lovable-uploads/brand-pattern-magenta.png"
       />
@@ -85,43 +85,25 @@ const Partners = () => {
       {/* Partners Grid */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <span className="inline-block bg-secondary-teal/10 text-secondary-teal text-sm font-bold px-4 py-2 rounded-full mb-4 uppercase tracking-widest">
-              Our Network
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">
-              Funding & Development Partners
-            </h2>
-            <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
-              We are grateful to our partners who make our work possible.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
             {partners.map((partner) => (
-              <div key={partner.id} className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-neutral-100 hover:border-secondary-teal/30 hover:-translate-y-2">
-                {/* Logo */}
-                <div className="p-8 bg-neutral-50 flex items-center justify-center h-40">
+              <div key={partner.id} className="group flex flex-col items-center text-center">
+                {/* Logo - Large & Full Color */}
+                <div className="h-56 w-full flex items-center justify-center mb-8 p-8 bg-neutral-50 rounded-3xl group-hover:bg-white group-hover:shadow-xl transition-all duration-500 border border-transparent group-hover:border-neutral-100">
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all"
+                    className="h-full w-full object-contain transform group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-secondary-teal/10 text-secondary-teal text-xs font-bold px-3 py-1 rounded-full">
-                      {partner.partnership_type}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-secondary-teal transition-colors">
+                <div>
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-3 group-hover:text-primary transition-colors">
                     {partner.name}
                   </h3>
 
-                  <p className="text-neutral-600 text-sm leading-relaxed mb-4">
+                  <p className="text-neutral-500 text-base leading-relaxed mb-6 font-light max-w-sm mx-auto">
                     {partner.description}
                   </p>
 
@@ -129,10 +111,10 @@ const Partners = () => {
                     href={partner.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-secondary-teal font-bold text-sm hover:gap-2 transition-all"
+                    className="inline-flex items-center text-primary font-bold text-sm uppercase tracking-widest hover:gap-2 transition-all"
                   >
                     Visit Website
-                    <ExternalLink className="ml-1 h-4 w-4" />
+                    <ExternalLink className="ml-2 h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -159,5 +141,4 @@ const Partners = () => {
     </Layout>
   );
 };
-
 export default Partners;

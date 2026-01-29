@@ -63,7 +63,7 @@ const Footer = () => {
             </Link>
             <h2 className="text-3xl font-bold leading-tight mb-4">Empowering Justice for All.</h2>
             <p className="text-white/70 text-lg leading-relaxed">
-              We work everyday to ensure every Tanzanian, regardless of their status, has access to their rights and legal protection.
+              LSF is a direct implementer and non-profit organization promoting access to justice and legal empowerment across Tanzania.
             </p>
           </div>
 

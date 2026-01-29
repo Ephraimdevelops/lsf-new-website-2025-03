@@ -2,21 +2,24 @@ import { Link } from 'react-router-dom';
 import {
   Users, Globe, Scale, TrendingUp, Heart, Award, Smartphone,
   ArrowRight, CheckCircle2, BarChart3, Shield, Home, Baby,
-  Building, Vote, Wallet, Download, MessageSquare, Target
+  Building, Vote, Wallet, Download, MessageSquare, Target, Sparkles, Map
 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import Typography from '../components/shared/Typography';
 import Container from '../components/shared/Container';
 import { Button } from '../components/ui/button';
 import ImpactPageHero from '@/components/impact/ImpactPageHero';
+import ImpactTimeline from '@/components/impact/ImpactTimeline';
+import ImpactBento from '@/components/impact/ImpactBento';
+import ImpactFeatures from '@/components/impact/ImpactFeatures';
 
 const Impact = () => {
   // Headline Stats
   const headlineStats = [
-    { value: '6.5M+', label: 'Tanzanians Reached', description: 'With legal education and awareness since inception', icon: <Users className="h-7 w-7" /> },
-    { value: '4,000+', label: 'Paralegals Deployed', description: 'Actively serving across 168 Districts', icon: <Scale className="h-7 w-7" /> },
-    { value: '680,000+', label: 'Legal Aid Recipients', description: 'Indigent people received direct legal assistance', icon: <Shield className="h-7 w-7" /> },
-    { value: '100%', label: 'National Coverage', description: 'Of Tanzania\'s regions covered by paralegal units', icon: <Globe className="h-7 w-7" /> },
+    { value: '7,673,867', label: 'People Reached (2024)', description: 'With legal education (58% Women)', icon: <Users className="h-7 w-7" /> },
+    { value: '26,451', label: 'Direct Legal Aid (2024)', description: 'Marginalized individuals served', icon: <Scale className="h-7 w-7" /> },
+    { value: '1.65B', label: 'Assets Reclaimed (2024)', description: 'TZS (approx $600k) for women', icon: <Wallet className="h-7 w-7" /> },
+    { value: '6,825', label: 'GBV Cases Resolved', description: 'In 2024 (Exceeded target of 6,500)', icon: <Shield className="h-7 w-7" /> },
   ];
 
   // Access to Justice Stats
@@ -44,6 +47,7 @@ const Impact = () => {
     { value: '2,200+', label: 'Women Candidates', description: 'Successfully ran for local government seats', icon: <Vote className="h-6 w-6" /> },
     { value: '35%', label: 'Tribunal Representation', description: 'Women in Ward Tribunals (up from <15%)', icon: <Building className="h-6 w-6" /> },
     { value: '850+', label: 'Groups Registered', description: 'Women\'s groups formalized legally', icon: <Wallet className="h-6 w-6" /> },
+    { value: '87.3%', label: 'Decline in FGM', description: 'Reported in intervention areas', icon: <Shield className="h-6 w-6" /> },
   ];
 
   // Digital Stats
@@ -55,33 +59,7 @@ const Impact = () => {
   return (
     <Layout>
       <ImpactPageHero />
-
-      {/* HEADLINE STATS SECTION - Primary Color Focus */}
-      <section className="py-16 bg-primary relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: "url('/lovable-uploads/brand-pattern.png')",
-            backgroundSize: '200px',
-            backgroundRepeat: 'repeat',
-          }}
-        />
-        <Container className="relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {headlineStats.map((stat, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all group">
-                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform">
-                  {stat.icon}
-                </div>
-                <p className="text-4xl lg:text-5xl font-black text-white mb-2">{stat.value}</p>
-                <p className="text-white font-bold text-base mb-1">{stat.label}</p>
-                <p className="text-white/70 text-sm">{stat.description}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
+      <ImpactTimeline />
       {/* ACCESS TO JUSTICE SECTION - With Image */}
       <section className="py-20 bg-white relative overflow-hidden">
         <Container>
@@ -130,24 +108,52 @@ const Impact = () => {
             </div>
           </div>
 
-          {/* Case Types Breakdown */}
-          <div className="bg-gray-50 rounded-3xl p-8 md:p-10">
-            <Typography variant="h3" className="text-xl font-bold text-gray-900 mb-8">
-              Case Types Handled
+          {/* Case Types Breakdown - Redesigned */}
+          <div className="mt-16">
+            <Typography variant="h3" className="text-2xl md:text-3xl font-bold text-gray-900 mb-10 text-center">
+              Breakdown of <span className="text-primary">Cases Handled</span>
             </Typography>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {accessStats.caseTypes.map((caseType, index) => (
-                <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                  <div className={`w-14 h-14 ${caseType.color} rounded-xl flex items-center justify-center text-white font-black text-xl mb-4`}>
-                    {caseType.percent}%
+              {accessStats.caseTypes.map((caseType, index) => {
+                // Map icons based on type directly for simplicity
+                const getIcon = (type: string) => {
+                  if (type.includes('Family')) return <Heart className="h-6 w-6" />;
+                  if (type.includes('Land')) return <Map className="h-6 w-6" />;
+                  if (type.includes('Violence')) return <Shield className="h-6 w-6" />;
+                  return <Scale className="h-6 w-6" />;
+                };
+
+                return (
+                  <div key={index} className="bg-gray-50 rounded-3xl p-8 relative overflow-hidden group hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100">
+                    <div className={`absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity ${caseType.color.replace('bg-', 'text-')}`}>
+                      {getIcon(caseType.type)}
+                    </div>
+
+                    <div className="relative z-10">
+                      <div className="flex items-baseline gap-1 mb-2">
+                        <span className={`text-5xl font-black ${caseType.color.replace('bg-', 'text-')} opacity-90`}>
+                          {caseType.percent}
+                        </span>
+                        <span className="text-xl font-bold text-gray-400">%</span>
+                      </div>
+
+                      <h4 className="text-lg font-bold text-gray-900 mb-2 leading-tight">{caseType.type}</h4>
+                      <p className="text-gray-500 text-sm leading-relaxed mb-6 border-l-2 border-gray-200 pl-3">
+                        {caseType.description}
+                      </p>
+
+                      {/* Visual Bar */}
+                      <div className="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+                        <div
+                          className={`h-full ${caseType.color} transition-all duration-1000 ease-out group-hover:scale-x-110 origin-left`}
+                          style={{ width: `${caseType.percent}%` }}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <p className="font-bold text-gray-900 mb-2">{caseType.type}</p>
-                  <p className="text-gray-500 text-sm">{caseType.description}</p>
-                  <div className="mt-4 bg-gray-200 rounded-full h-2 overflow-hidden">
-                    <div className={`h-full ${caseType.color}`} style={{ width: `${caseType.percent}%` }}></div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </Container>
@@ -197,6 +203,8 @@ const Impact = () => {
           </div>
         </Container>
       </section>
+
+      <ImpactBento />
 
       {/* WANAWAKE TUNAWEZA SECTION */}
       <section className="py-20 bg-gray-50">

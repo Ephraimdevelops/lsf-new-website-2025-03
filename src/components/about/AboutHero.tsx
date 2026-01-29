@@ -69,7 +69,7 @@ const AboutHero = () => {
           </Typography>
 
           <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl leading-relaxed font-light drop-shadow-md border-l-4 border-primary pl-6">
-            For over 15 years, the Legal Services Facility has been at the forefront of strengthening legal empowerment across Tanzania, ensuring that every citizen has access to justice regardless of their economic status or social background.
+            Champtioning the <strong>Legal Aid Acts (2017/2018)</strong> and co-leading the <strong>Mama Samia Legal Aid Campaign</strong>. For over 15 years, LSF has been at the forefront of strengthening legal empowerment across Tanzania.
           </Typography>
 
           <div className="flex flex-col sm:flex-row gap-5 pt-4">

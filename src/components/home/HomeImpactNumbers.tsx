@@ -4,13 +4,13 @@ import Container from '@/components/shared/Container';
 const HomeImpactNumbers = () => {
     // Final approved stats list for continuous ticker
     const stats = [
+        { value: '7 Million+', label: 'People Reached Annually', icon: Users },
+        { value: '100,000+', label: 'Direct Assistance', icon: Handshake },
+        { value: '$ 600,000', label: 'Assets Secured for Women', icon: DollarSign },
+        { value: '6,825', label: 'GBV Cases Addressed', icon: Heart },
         { value: '15+', label: 'Years of Impact', icon: Calendar },
-        { value: '$ 52 Million', label: 'Funds Managed', icon: DollarSign },
-        { value: '40M+', label: 'People Reached', icon: Users },
         { value: '54,000+', label: 'Disputes Resolved', icon: Gavel },
         { value: '4,000+', label: 'Paralegals', icon: Scale },
-        { value: '200+', label: 'Partners Supported', icon: Handshake },
-        { value: '70%', label: 'Women Beneficiaries', icon: Heart },
         { value: '168', label: 'Districts', icon: MapPin },
         { value: '100%', label: 'Gov Compliance', icon: Shield },
         { value: '60%', label: 'Resolution Rate', icon: CheckCircle },

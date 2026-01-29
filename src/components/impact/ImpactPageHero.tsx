@@ -1,4 +1,4 @@
-import { ArrowRight, TrendingUp, PlayCircle } from 'lucide-react';
+import { ArrowRight, TrendingUp, PlayCircle, Users, Scale } from 'lucide-react';
 import { useState } from 'react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
@@ -30,7 +30,7 @@ const ImpactPageHero = () => {
 
     return (
         <>
-            <section className="relative bg-black h-[85vh] min-h-[550px] overflow-hidden group">
+            <section className="relative bg-black h-[90vh] min-h-[600px] overflow-hidden group">
                 {/* Background Slider */}
                 <div className="absolute inset-0 z-0">
                     <Slider {...sliderSettings} className="h-full w-full [&_.slick-slider]:h-full [&_.slick-list]:h-full [&_.slick-track]:h-full [&_.slick-slide]:h-full [&_.slick-slide>div]:h-full">
@@ -52,43 +52,82 @@ const ImpactPageHero = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent z-10 pointer-events-none" />
 
                 {/* Content */}
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex flex-col justify-center">
-                    <div className="max-w-4xl space-y-6 animate-fade-in">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex flex-col justify-center pb-20">
+                    <div className="max-w-5xl space-y-6 animate-fade-in">
                         {/* Badge */}
                         <div className="inline-flex items-center gap-3 bg-primary text-white rounded-full px-6 py-2 shadow-2xl backdrop-blur-md border border-white/10">
                             <TrendingUp className="h-4 w-4" />
-                            <span className="font-bold text-sm uppercase tracking-widest">Measuring Success</span>
+                            <span className="font-bold text-sm uppercase tracking-widest">The Legacy</span>
                         </div>
 
-                        <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight drop-shadow-2xl">
-                            Real Change, <span className="text-white">Real Impact</span>
+                        <Typography variant="h1" className="text-white text-4xl sm:text-5xl lg:text-7xl font-black leading-[0.9] tracking-tighter drop-shadow-2xl">
+                            A Decade of <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">Defining Justice.</span>
                         </Typography>
 
-                        <Typography variant="body" className="text-white/90 text-xl md:text-2xl max-w-2xl leading-relaxed font-light drop-shadow-md border-l-4 border-primary pl-6">
-                            See how we are transforming lives and expanding access to justice across Tanzania through measurable, community-driven action.
+                        <Typography variant="body" className="text-white/80 text-xl md:text-2xl max-w-3xl leading-relaxed font-light drop-shadow-md border-l-4 border-secondary-yellow pl-8 py-2">
+                            From a $52M Grant Fund to Tanzania's Direct Implementer. <br />
+                            <span className="text-white font-medium">We are rewriting the rules of legal empowerment.</span>
                         </Typography>
 
-                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <Link to="#stats">
-                                <Button size="lg" className="bg-primary hover:bg-primary-dark text-white font-bold px-8 py-5 rounded-full text-base shadow-lg transition-all duration-300 hover:-translate-y-1">
-                                    View Our Impact
-                                    <ArrowRight className="ml-3 h-5 w-5" />
-                                </Button>
-                            </Link>
-                            <Link to="/publications">
-                                <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-8 py-5 rounded-full text-base transition-all duration-300 hover:-translate-y-1">
-                                    Download Reports
-                                </Button>
-                            </Link>
+                        <div className="flex flex-col sm:flex-row gap-4 pt-8">
+                            <Button
+                                size="lg"
+                                onClick={() => document.getElementById('impact-timeline')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="bg-primary hover:bg-secondary-orange/90 text-white font-black px-10 py-7 text-lg rounded-full shadow-[0_0_30px_-5px_rgba(234,179,8,0.4)] transition-all duration-300 hover:scale-105"
+                            >
+                                Explore the Legacy
+                                <ArrowRight className="ml-3 h-6 w-6" />
+                            </Button>
+
                             <Button
                                 size="lg"
                                 variant="outline"
                                 onClick={() => setIsVideoOpen(true)}
-                                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-black font-bold px-8 py-5 rounded-full text-base flex items-center shadow-lg transition-all duration-300 hover:-translate-y-1"
+                                className="bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-black font-bold px-10 py-7 text-lg rounded-full flex items-center transition-all duration-300 hover:scale-105"
                             >
                                 <PlayCircle className="mr-3 h-6 w-6" />
-                                Watch Impact Video
+                                Watch Our Story
                             </Button>
+                        </div>
+                    </div>
+                </div>
+                {/* Sticky Stat Bar - Bottom of Hero - Stylized like Footer (Orange/Primary) */}
+                <div className="absolute bottom-0 left-0 right-0 z-30 bg-primary shadow-2xl border-t border-white/10 hidden lg:block">
+                    {/* Pattern Overlay matching footer */}
+                    <div className="absolute inset-0 pointer-events-none opacity-10">
+                        <div className="absolute inset-0 bg-[url('/pattern-bg.png')] bg-cover bg-center mix-blend-overlay" />
+                    </div>
+
+                    <div className="container mx-auto px-4 relative z-10">
+                        <div className="flex justify-between items-center py-8 text-white divide-x divide-white/10">
+                            <div className="flex-1 px-8 flex items-center gap-6">
+                                <div className="p-3 bg-white/20 rounded-full text-white">
+                                    <TrendingUp className="h-8 w-8" />
+                                </div>
+                                <div>
+                                    <p className="text-4xl font-black text-white">$52M USD</p>
+                                    <p className="text-sm uppercase tracking-widest text-white/80 font-bold">Invested in Justice</p>
+                                </div>
+                            </div>
+                            <div className="flex-1 px-8 flex items-center gap-6">
+                                <div className="p-3 bg-white/20 rounded-full text-white">
+                                    <Users className="h-8 w-8" />
+                                </div>
+                                <div>
+                                    <p className="text-4xl font-black text-white">200+ Partners</p>
+                                    <p className="text-sm uppercase tracking-widest text-white/80 font-bold">Across 168 Districts</p>
+                                </div>
+                            </div>
+                            <div className="flex-1 px-8 flex items-center gap-6">
+                                <div className="p-3 bg-white/20 rounded-full text-white">
+                                    <Scale className="h-8 w-8" />
+                                </div>
+                                <div>
+                                    <p className="text-4xl font-black text-white">2 Landmark Acts</p>
+                                    <p className="text-sm uppercase tracking-widest text-white/80 font-bold">Enacted (2017/18)</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
