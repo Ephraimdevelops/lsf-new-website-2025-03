@@ -39,17 +39,16 @@ const ModernAboutSection = () => {
 
                         {/* Border-left accent */}
                         <div className="border-l-4 border-primary pl-6 mb-8">
-                            <p className="font-medium text-gray-900 text-lg mb-3">
-                                We believe the law should protect everyone, everywhere.
+                            <p className="font-medium text-gray-900 text-lg mb-4">
+                                For over a decade, LSF served as the architect of Tanzania’s legal aid ecosystem. Today, we have evolved.
                             </p>
 
-                            <p className="text-gray-600 leading-relaxed mb-3">
-                                Since 2009, LSF has worked to bring justice closer to the people. We know that for many Tanzanians,
-                                the legal system feels far away, expensive, or too difficult to understand.
+                            <p className="text-gray-600 leading-relaxed mb-4">
+                                We are no longer just a grant-maker; we are a <span className="font-bold text-primary">Direct Implementer</span> driving action on the ground.
                             </p>
 
                             <p className="text-gray-600 leading-relaxed">
-                                We are bridging the gap between the law and the community through training local experts and using technology.
+                                By combining a legacy of $52M in investment with a new, agile operational model, we are directly bridging the gap between the law and the 7 million Tanzanians we reach annually.
                             </p>
                         </div>
 
