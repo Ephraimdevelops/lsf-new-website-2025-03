@@ -43,7 +43,7 @@ const StrategicTransparency = () => {
 
                         <Link to="/publications">
                             <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-8 py-6 text-lg transition-all shadow-lg hover:shadow-primary/30">
-                                Read the 2024 Annual Report
+                                WHAT WE DO
                                 <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>
                         </Link>
