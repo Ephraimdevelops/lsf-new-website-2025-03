@@ -4,7 +4,7 @@ import { DesignIcon } from '../design-system';
 
 const GovernanceSection = () => {
   return (
-    <section className="bg-white py-20 px-4 md:px-12 lg:px-24">
+    <section className="bg-white py-16 px-6 md:px-12 lg:px-24">
       {/* Header */}
       <div className="text-center mb-16">
         <div className="inline-flex items-center bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-secondary-orange/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-primary/20">

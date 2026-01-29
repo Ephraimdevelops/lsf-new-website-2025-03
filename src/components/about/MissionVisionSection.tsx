@@ -69,22 +69,7 @@ const MissionVisionSection = () => {
           </div>
         </div>
 
-        {/* Core Values - Left Aligned Header */}
-        <div className="mb-10">
-          <div className="inline-flex items-center gap-3 bg-secondary-orange text-white rounded-full px-6 py-2 mb-5">
-            <Heart className="h-4 w-4" />
-            <span className="font-bold text-sm uppercase tracking-widest">Our Values</span>
-          </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-            Principles That Guide Our Work
-          </h2>
-
-          <p className="text-gray-600 text-lg max-w-2xl border-l-4 border-secondary-orange pl-6">
-            Our values shape every decision we make and every partnership we forge,
-            ensuring our work creates meaningful and lasting impact.
-          </p>
-        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((value, index) => (

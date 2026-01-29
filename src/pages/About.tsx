@@ -10,6 +10,7 @@ import ImpactMetricsSectionWrapper from './home/ImpactMetricsSectionWrapper';
 import StrategicTransparency from '@/components/about/StrategicTransparency';
 import AboutPartnersSection from '@/components/about/AboutPartnersSection';
 import SEOHead from '@/components/shared/SEOHead';
+import ModernPartnersSection from '@/components/home/ModernPartnersSection';
 
 const About = () => {
   return (
@@ -20,12 +21,14 @@ const About = () => {
         canonicalUrl="https://lsftz.org/about"
       />
       <AboutHero />
-      <MissionVisionSection />
+      <AboutImpactNumbers />
       <AchievementsTimelineSection />
+      <MissionVisionSection />
       <StrategicTransparency />
       <GovernanceSection />
-      <AboutImpactNumbers />
-      <AboutPartnersSection />
+
+      {/* Modern Partners Section */}
+      <ModernPartnersSection />
     </Layout>
   );
 };
