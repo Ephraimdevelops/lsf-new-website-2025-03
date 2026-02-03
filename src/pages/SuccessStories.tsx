@@ -65,9 +65,10 @@ const SuccessStories = () => {
                 return (
                   <Card key={story.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300">
                     <div className="relative overflow-hidden">
-                      <img 
-                        src={story.image} 
+                      <img
+                        src={story.image}
                         alt={story.title}
+                        loading="lazy"
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute top-4 left-4">
@@ -81,16 +82,16 @@ const SuccessStories = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="p-6">
                       <Typography variant="h3" className="mb-3 group-hover:text-primary transition-colors">
                         {story.title}
                       </Typography>
-                      
+
                       <Typography variant="body" className="text-muted-foreground mb-4">
                         {story.summary}
                       </Typography>
-                      
+
                       <div className="space-y-2 mb-4">
                         <div className="flex justify-between items-center">
                           <span className="text-sm text-muted-foreground">Impact:</span>
@@ -101,7 +102,7 @@ const SuccessStories = () => {
                           <span className="text-sm font-medium">{story.location}</span>
                         </div>
                       </div>
-                      
+
                       <button className="flex items-center text-primary hover:text-primary/80 transition-colors group">
                         <span className="text-sm font-medium">Read Full Story</span>
                         <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />

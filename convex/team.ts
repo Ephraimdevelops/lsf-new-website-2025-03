@@ -14,10 +14,11 @@ export const get = query({
                 if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
                     const url = await ctx.storage.getUrl(member.image as any);
                     if (url) {
-                        return { ...member, image: url };
+                        // Return BOTH the resolved URL for display AND the original storageId for saving
+                        return { ...member, image: url, storageId: member.image };
                     }
                 }
-                return member;
+                return { ...member, storageId: undefined };
             })
         );
     },
@@ -34,10 +35,10 @@ export const getById = query({
         if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
             const url = await ctx.storage.getUrl(member.image as any);
             if (url) {
-                return { ...member, image: url };
+                return { ...member, image: url, storageId: member.image };
             }
         }
-        return member;
+        return { ...member, storageId: undefined };
     },
 });
 

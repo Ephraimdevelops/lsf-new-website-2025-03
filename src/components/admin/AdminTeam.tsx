@@ -21,6 +21,7 @@ interface TeamMember {
     position: string;
     bio: string;
     image: string;
+    storageId?: string; // Original storage ID for saving
     quote?: string;
     linkedin?: string;
     email?: string;
@@ -39,6 +40,7 @@ const AdminTeam = () => {
     // Image Upload State
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [originalStorageId, setOriginalStorageId] = useState<string | null>(null);
     const [submitting, setSubmitting] = useState(false);
 
     const teamMembers = useQuery(api.team.get) || [];
@@ -104,6 +106,9 @@ const AdminTeam = () => {
                 });
                 const { storageId } = await result.json();
                 imageUrl = storageId;
+            } else if (originalStorageId) {
+                // Use the original storage ID if no new image was uploaded
+                imageUrl = originalStorageId;
             }
 
             const payload = {
@@ -155,6 +160,7 @@ const AdminTeam = () => {
             order: member.order || 1
         });
         setImagePreview(member.image);
+        setOriginalStorageId(member.storageId || null); // Store original ID
         setImageFile(null);
         setIsDialogOpen(true);
     };
@@ -174,6 +180,7 @@ const AdminTeam = () => {
             order: teamMembers.length + 1
         });
         setImagePreview(null);
+        setOriginalStorageId(null); // Clear for new member
         setImageFile(null);
         setIsDialogOpen(true);
     };
