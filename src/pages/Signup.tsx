@@ -106,12 +106,12 @@ const Signup = () => {
                   card: "shadow-none p-0 border-none bg-transparent",
                   headerTitle: "hidden",
                   headerSubtitle: "hidden",
-                  socialButtonsBlockButton: "border border-gray-200 bg-white hover:bg-gray-50 text-gray-700",
-                  formButtonPrimary: "bg-primary hover:bg-primary/90 text-white",
+                  socialButtonsBlockButton: "border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 rounded-lg",
+                  formButtonPrimary: "bg-primary hover:bg-primary/90 text-white rounded-lg",
                   footerActionLink: "text-primary hover:text-primary/80 font-medium",
-                  formFieldInput: "border-gray-200 focus:border-primary focus:ring-primary/10 rounded-lg bg-gray-50/50",
-                  formFieldLabel: "text-gray-700 font-medium",
-                  developmentBadge: "hidden", // Hiding development badge for cleaner UI
+                  formFieldInput: "border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary/20 rounded-lg px-4 py-3",
+                  formFieldLabel: "text-gray-700 font-medium text-sm mb-1",
+                  footer: "hidden",
                 }
               }}
             />
