@@ -1,8 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, Phone } from 'lucide-react';
+import { ChevronDown, Phone, User, LogOut, LayoutDashboard, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { navigationItems } from './navigationData';
+import { useUser, useAuth, SignOutButton } from '@clerk/clerk-react';
+import { useQuery } from 'convex/react';
+import { api } from '../../../../convex/_generated/api';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 interface MobileNavigationProps {
   mobileMenuOpen: boolean;
@@ -18,6 +22,22 @@ const MobileNavigation = ({
   setLegalAidDialogOpen
 }: MobileNavigationProps) => {
   const location = useLocation();
+  const { isSignedIn, isLoaded } = useAuth();
+  const { user: clerkUser } = useUser();
+  const convexUser = useQuery(api.users.current);
+
+  const userName = convexUser?.name || clerkUser?.firstName || 'User';
+  const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  const userImage = convexUser?.imageUrl || clerkUser?.imageUrl;
+  const userRole = convexUser?.role || 'user';
+
+  const dashboardPath = {
+    admin: '/admin',
+    staff: '/dashboard/staff',
+    paralegal: '/dashboard/paralegal',
+    stakeholder: '/dashboard/stakeholder',
+    user: '/dashboard/user',
+  }[userRole] || '/dashboard/user';
 
   return (
     <div className={cn(
@@ -25,6 +45,56 @@ const MobileNavigation = ({
       mobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
     )}>
       <div className="container mx-auto px-4 py-4">
+        {/* Auth Section */}
+        {isLoaded && (
+          <div className="mb-4 p-4 bg-gray-50 rounded-xl">
+            {isSignedIn ? (
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-10 w-10 border-2 border-white shadow">
+                    <AvatarImage src={userImage} alt={userName} />
+                    <AvatarFallback className="bg-primary text-white font-semibold">
+                      {userInitials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-semibold text-gray-900">{userName}</p>
+                    <p className="text-xs text-gray-500 capitalize">{userRole}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <Link to={dashboardPath}>
+                    <Button variant="outline" size="sm" className="w-full">
+                      <LayoutDashboard className="h-4 w-4 mr-1" />
+                      Dashboard
+                    </Button>
+                  </Link>
+                  <Link to="/profile">
+                    <Button variant="outline" size="sm" className="w-full">
+                      <Settings className="h-4 w-4 mr-1" />
+                      Settings
+                    </Button>
+                  </Link>
+                </div>
+                <SignOutButton>
+                  <Button variant="ghost" size="sm" className="w-full text-red-600 hover:bg-red-50">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </SignOutButton>
+              </div>
+            ) : (
+              <Link to="/login" className="block">
+                <Button variant="outline" className="w-full justify-center">
+                  Sign In
+                </Button>
+              </Link>
+              /* Removed Get Started button as per user request */
+            )}
+          </div>
+        )}
+
+        {/* CTA Buttons */}
         <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg">
           <Link to="/legal-help" className="block mb-3">
             <Button

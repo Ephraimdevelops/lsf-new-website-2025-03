@@ -151,7 +151,7 @@ const AdminSaraAnalytics = () => {
                     <CardHeader>
                         <CardTitle>System Health</CardTitle>
                         <CardDescription>
-                            SARA is operating optimally. Knowledge base access is active.
+                            Saada is operating optimally. Knowledge base access is active.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>

@@ -25,7 +25,15 @@ export const get = query({
 export const getById = query({
     args: { id: v.id("success_stories") },
     handler: async (ctx, args) => {
-        return await ctx.db.get(args.id);
+        const item = await ctx.db.get(args.id);
+        if (!item) return null;
+
+        let imageUrl = item.imageUrl;
+        if (item.storageId) {
+            const url = await ctx.storage.getUrl(item.storageId);
+            if (url) imageUrl = url;
+        }
+        return { ...item, imageUrl };
     },
 });
 

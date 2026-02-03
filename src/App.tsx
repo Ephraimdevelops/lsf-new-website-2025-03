@@ -71,6 +71,8 @@ const ParalegalSignup = lazy(() => import("./pages/ParalegalSignup"));
 const ParalegalLogin = lazy(() => import("./pages/ParalegalLogin"));
 const ParalegalSignupAuth = lazy(() => import("./pages/ParalegalSignupAuth"));
 const StakeholderDashboard = lazy(() => import("./pages/StakeholderDashboard"));
+const UserDashboard = lazy(() => import("./pages/UserDashboard"));
+const ProfileSettings = lazy(() => import("./pages/ProfileSettings"));
 const Signup = lazy(() => import("./pages/Signup"));
 const Login = lazy(() => import("./pages/Login"));
 const LSFChatbotFullPage = lazy(() => import("./components/shared/chatbot/LSFChatbotFullPage"));
@@ -169,6 +171,12 @@ function App() {
                           <StakeholderDashboard />
                         </ProtectedRoute>
                       } />
+                      <Route path="/dashboard/user" element={
+                        <ProtectedRoute allowedRoles={["user"]}>
+                          <UserDashboard />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/profile" element={<ProfileSettings />} />
                       <Route path="/bookmarks" element={<Bookmarks />} />
                       <Route path="/become-a-paralegal" element={<ParalegalSignup />} />
                       <Route path="/whistleblower" element={<Whistleblower />} />

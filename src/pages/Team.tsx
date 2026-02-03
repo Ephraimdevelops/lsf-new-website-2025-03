@@ -154,11 +154,11 @@ const Team = () => {
               <Link key={member.id} to={`/team/${member.id}`} className="group block">
                 <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-primary/30 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
                   {/* Image */}
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative aspect-[3/4] overflow-hidden">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
 
@@ -235,11 +235,11 @@ const Team = () => {
               <Link key={member.id} to={`/team/${member.id}`} className="group block">
                 <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-primary/30 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
                   {/* Image */}
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative aspect-[3/4] overflow-hidden">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
 

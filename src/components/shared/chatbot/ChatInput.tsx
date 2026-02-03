@@ -11,13 +11,13 @@ interface ChatInputProps {
   isOnline: boolean;
 }
 
-const ChatInput = ({ 
-  inputMessage, 
-  setInputMessage, 
-  onSend, 
-  onKeyPress, 
-  isLoading, 
-  isOnline 
+const ChatInput = ({
+  inputMessage,
+  setInputMessage,
+  onSend,
+  onKeyPress,
+  isLoading,
+  isOnline
 }: ChatInputProps) => {
   return (
     <div className="p-4 border-t border-neutral-200">
@@ -40,7 +40,7 @@ const ChatInput = ({
       </div>
       {!isOnline && (
         <p className="text-xs text-red-500 mt-2 text-center">
-          SARA is currently offline. Please try again later.
+          Saada is currently offline. Please try again later.
         </p>
       )}
     </div>

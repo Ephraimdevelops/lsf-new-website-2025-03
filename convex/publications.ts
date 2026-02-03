@@ -97,10 +97,31 @@ export const getFeatured = query({
     args: {},
     handler: async (ctx) => {
         // We don't have a specific index for featured yet, so we'll filter in memory or add index later.
-        // Ideally add .index("by_featured", ["featured"]) to schema.
-        // For now, let's just filter.
         const all = await ctx.db.query("publications").order("desc").collect();
-        return all.filter(p => p.featured === true);
+        const results = all.filter(p => p.featured === true);
+
+        return await Promise.all(
+            results.map(async (item) => {
+                let coverImageUrl = item.coverImageUrl;
+                let pdfUrl = item.pdfUrl;
+
+                if (item.coverImageStorageId) {
+                    const url = await ctx.storage.getUrl(item.coverImageStorageId);
+                    if (url) coverImageUrl = url;
+                }
+
+                if (item.pdfUrl && !item.pdfUrl.startsWith('http')) {
+                    try {
+                        const url = await ctx.storage.getUrl(item.pdfUrl as Id<"_storage">);
+                        if (url) pdfUrl = url;
+                    } catch (e) {
+                        // ignore
+                    }
+                }
+
+                return { ...item, coverImageUrl, pdfUrl };
+            })
+        );
     },
 });
 

@@ -468,6 +468,21 @@ p,
   border-radius: 10px;
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, hsl(var(--primary-dark)), hsl(var(--secondary-teal-dark)));
+}
+
+/* Hide Clerk Development Badge */
+div.cl-internal-phfxlr,
+/* Common internal class for the dev badge footer */
+.cl-developmentBadge,
+footer.cl-internal-1dauvpw {
+  display: none !important;
+}
+
+/* More robust selector just in case */
+div[class*="cl-developmentBadge"],
+div[class*="cl-badge"] {
+  display: none !important;
 }

@@ -7,7 +7,7 @@ import { api } from "../../convex/_generated/api";
 import { Link } from 'react-router-dom';
 import {
   ArrowUp, Bot, RotateCcw, Home, Phone,
-  Scale, Users, Heart, Sparkles, BookOpen, ThumbsUp, ThumbsDown
+  Scale, Users, Heart, Sparkles, BookOpen, ThumbsUp, ThumbsDown, LogOut, Settings
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -192,11 +192,18 @@ const SaraAIPage = () => {
             </Link>
 
             <div className="ml-2">
-              <UserButton afterSignOutUrl="/sara" appearance={{
-                elements: {
-                  avatarBox: "w-9 h-9 border-2 border-white shadow-sm hover:scale-105 transition-transform"
-                }
-              }} />
+              {/* Custom Avatar using Convex data for consistency */}
+              <div className="relative group">
+                <button className="w-9 h-9 rounded-full overflow-hidden border-2 border-white shadow-sm hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-primary/50">
+                  {convexUser?.imageUrl || user?.imageUrl ? (
+                    <img src={convexUser?.imageUrl || user?.imageUrl} alt="Profile" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-primary flex items-center justify-center text-white text-sm font-bold">
+                      {user?.firstName?.[0] || 'U'}
+                    </div>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -246,7 +253,7 @@ const SaraAIPage = () => {
                     <div className={`flex items-start gap-3 max-w-[85%] ${msg.sender === 'user' ? 'flex-row-reverse' : ''}`}>
                       <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center overflow-hidden border ${msg.sender === 'user' ? 'border-primary/20 bg-gray-100' : 'border-transparent'}`}>
                         {msg.sender === 'user'
-                          ? user?.imageUrl ? <img src={user.imageUrl} alt="User" /> : <span className="text-xs font-bold">{user?.firstName?.[0]}</span>
+                          ? (convexUser?.imageUrl || user?.imageUrl) ? <img src={convexUser?.imageUrl || user?.imageUrl} alt="User" className="w-full h-full object-cover" /> : <span className="text-xs font-bold">{user?.firstName?.[0]}</span>
                           : <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
                         }
                       </div>

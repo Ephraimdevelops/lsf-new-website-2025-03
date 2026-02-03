@@ -69,7 +69,7 @@ const OpsDashboard = () => {
             <Card className={`border-l-4 ${systemStatus.isMaintenance ? 'border-l-red-500 bg-red-100' : 'border-l-gray-300'}`}>
                 <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-bold uppercase text-gray-500 flex items-center justify-between">
-                        SARA AI Status
+                        Saada AI Status
                         <Power className="h-4 w-4" />
                     </CardTitle>
                 </CardHeader>

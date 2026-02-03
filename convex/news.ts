@@ -86,18 +86,27 @@ export const getBySlugOrId = query({
 
         // Try as ID first
         const id = ctx.db.normalizeId("news", identifier);
+        let item;
+
         if (id) {
-            const item = await ctx.db.get(id);
-            if (item) return item;
+            item = await ctx.db.get(id);
+        } else {
+            // Try as slug
+            item = await ctx.db
+                .query("news")
+                .withIndex("by_slug", (q) => q.eq("slug", identifier))
+                .unique();
         }
 
-        // Try as slug
-        const item = await ctx.db
-            .query("news")
-            .withIndex("by_slug", (q) => q.eq("slug", identifier))
-            .unique();
+        if (!item) return null;
 
-        return item;
+        let imageUrl = item.image;
+        if (item.storageId) {
+            const url = await ctx.storage.getUrl(item.storageId);
+            if (url) imageUrl = url;
+        }
+
+        return { ...item, image: imageUrl };
     },
 });
 

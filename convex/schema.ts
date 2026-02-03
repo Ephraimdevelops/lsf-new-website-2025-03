@@ -9,6 +9,8 @@ export default defineSchema({
     role: v.union(v.literal("admin"), v.literal("staff"), v.literal("paralegal"), v.literal("stakeholder"), v.literal("user")),
     clerkId: v.string(),
     imageUrl: v.optional(v.string()),
+    imageStorageId: v.optional(v.string()), // For Convex Storage
+    bio: v.optional(v.string()), // User biography
     lastLogin: v.optional(v.number()),
     // GDPR: Soft delete support for audit trails
     isDeleted: v.optional(v.boolean()),

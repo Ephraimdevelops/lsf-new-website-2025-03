@@ -10,7 +10,8 @@ const approaches = [
     description: 'Strategic funding to empower local organizations and initiatives that advance access to justice at grassroots level.',
     link: '/what-we-do/grant-making',
     stats: '$12M+ distributed',
-    features: ['Capacity building support', 'Performance monitoring', 'Technical assistance']
+    features: ['Capacity building support', 'Performance monitoring', 'Technical assistance'],
+    image: '/lovable-uploads/economic-employment-group.jpg'
   },
   {
     icon: Users,
@@ -18,7 +19,8 @@ const approaches = [
     description: 'On-ground projects that directly serve communities through legal aid clinics, mobile services, and paralegal programs.',
     link: '/what-we-do/direct-implementation',
     stats: '60% ADR resolution rate',
-    features: ['Mobile legal clinics', 'Community paralegals', 'Legal aid services']
+    features: ['Mobile legal clinics', 'Community paralegals', 'Legal aid services'],
+    image: '/lovable-uploads/community-legal-aid-2.jpg'
   },
   {
     icon: Gavel,
@@ -26,7 +28,8 @@ const approaches = [
     description: 'Influencing legal frameworks and policies to create systemic change for improved access to justice.',
     link: '/what-we-do/advocacy-policy',
     stats: '15+ reforms influenced',
-    features: ['Policy development', 'Stakeholder engagement', 'Legislative advocacy']
+    features: ['Policy development', 'Stakeholder engagement', 'Legislative advocacy'],
+    image: '/lovable-uploads/plaque-award-women.jpg'
   },
   {
     icon: BookOpen,
@@ -34,7 +37,8 @@ const approaches = [
     description: 'Evidence-based research and knowledge management to inform best practices and policy recommendations.',
     link: '/what-we-do/learning-research',
     stats: '50+ studies published',
-    features: ['Impact assessments', 'Best practice documentation', 'Knowledge sharing']
+    features: ['Impact assessments', 'Best practice documentation', 'Knowledge sharing'],
+    image: '/lovable-uploads/women-legal-consultation-2.jpg'
   },
   {
     icon: Network,
@@ -42,7 +46,8 @@ const approaches = [
     description: 'Building strategic alliances and networks to amplify impact and create sustainable change ecosystems.',
     link: '/what-we-do/partnerships-networking',
     stats: '150+ active partnerships',
-    features: ['Network facilitation', 'Coalition building', 'Knowledge exchange']
+    features: ['Network facilitation', 'Coalition building', 'Knowledge exchange'],
+    image: '/lovable-uploads/police-office-meeting.jpg'
   }
 ];
 
@@ -66,10 +71,17 @@ const Approaches = () => {
               const IconComponent = approach.icon;
               return (
                 <Link key={index} to={approach.link} className="group">
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-0 bg-white/80 backdrop-blur-sm">
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-0 bg-white/80 backdrop-blur-sm overflow-hidden">
+                    <div className="h-48 overflow-hidden">
+                      <img
+                        src={(approach as any).image}
+                        alt={approach.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                     <CardHeader className="pb-4">
-                      <div className="w-16 h-16 bg-secondary-teal/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-secondary-teal/20 transition-colors">
-                        <IconComponent className="h-8 w-8 text-secondary-teal" />
+                      <div className="w-16 h-16 bg-secondary-teal text-white rounded-2xl flex items-center justify-center mb-4 group-hover:bg-secondary-teal/90 transition-colors -mt-12 shadow-lg relative z-10 border-4 border-white">
+                        <IconComponent className="h-8 w-8" />
                       </div>
                       <CardTitle className="text-xl font-medium text-neutral-900 group-hover:text-secondary-teal transition-colors">
                         {approach.title}

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import SearchDialog from "@/components/shared/SearchDialog";
 import NavigationDropdown from "./NavigationDropdown";
+import UserProfileButton from "./UserProfileButton";
 import { navigationItems } from "./navigationData";
 
 interface DesktopNavigationProps {
@@ -128,16 +129,8 @@ const DesktopNavigation = ({
           </Button>
         </Link>
 
-        {/* Contact Us */}
-        <Link to="/contact">
-          <Button
-            variant="outline"
-            size="sm"
-            className="rounded-lg px-4 border-2 border-primary/20 hover:border-primary/40"
-          >
-            Contact
-          </Button>
-        </Link>
+        {/* User Profile / Auth */}
+        <UserProfileButton />
       </div>
     </nav>
   );

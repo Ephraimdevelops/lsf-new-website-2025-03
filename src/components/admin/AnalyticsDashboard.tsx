@@ -307,7 +307,7 @@ export default function AnalyticsDashboard() {
             </div>
 
             {/* ==========================================
-          SECTION C: SARA INTELLIGENCE
+          SECTION C: SAADA INTELLIGENCE
           ========================================== */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                 <SectionHeader

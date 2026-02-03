@@ -2,10 +2,24 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
 // Get all team members
+// Get all team members
 export const get = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db.query("team_members").order("asc").collect();
+        const team = await ctx.db.query("team_members").order("asc").collect();
+
+        return await Promise.all(
+            team.map(async (member) => {
+                // If image looks like a storage ID (doesn't start with / or http), try to resolve it
+                if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
+                    const url = await ctx.storage.getUrl(member.image as any);
+                    if (url) {
+                        return { ...member, image: url };
+                    }
+                }
+                return member;
+            })
+        );
     },
 });
 
@@ -13,7 +27,17 @@ export const get = query({
 export const getById = query({
     args: { id: v.id("team_members") },
     handler: async (ctx, args) => {
-        return await ctx.db.get(args.id);
+        const member = await ctx.db.get(args.id);
+        if (!member) return null;
+
+        // If image looks like a storage ID (doesn't start with / or http), try to resolve it
+        if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
+            const url = await ctx.storage.getUrl(member.image as any);
+            if (url) {
+                return { ...member, image: url };
+            }
+        }
+        return member;
     },
 });
 

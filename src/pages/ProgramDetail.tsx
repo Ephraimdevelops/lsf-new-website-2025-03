@@ -14,7 +14,7 @@ const sautiYaMwanamke = {
   title: 'Amplifying Her Voice.',
   subtitle: 'From the village meeting to the high court, we ensure women are seen, heard, and protected.',
   heroDescription: 'In partnership with the European Union and Enabel, the Sauti ya Mwanamke initiative is Tanzania\'s largest grassroots movement for gender justice. We don\'t just advocate for rights; we build the infrastructure to enforce them. By mobilizing over 4,000 paralegals across 168 districts, we are dismantling the barriers of silence, poverty, and custom that have held women back for generations. This initiative also encompasses IMPAWLA (Improving Women\'s Access to Land Rights), addressing climate-related land disputes affecting women.',
-  heroImage: '/lovable-uploads/62202731-0156-45e1-9dea-8fe1ad1618aa.png',
+  heroImage: '/lovable-uploads/woman-group-meeting-shamba.jpg',
 
   // The Challenge Section
   challenge: {
@@ -88,7 +88,7 @@ const sautiYaMwanamke = {
     context: 'When Zuwena\'s husband passed away in the Simiyu Region, her in-laws claimed her three-acre maize farm was "clan property." They ordered her to leave the house she had built with her own hands. In the past, Zuwena would have become destitute.',
     intervention: 'Instead of leaving, Zuwena contacted an LSF-supported paralegal in her ward. The paralegal didn\'t just give advice; they convened a Ward Tribunal meeting and presented the Probate and Administration of Estates Act, proving Zuwena\'s right to inherit.',
     outcome: 'Today, Zuwena holds the legal title to her farm. She has used the land as collateral to start a poultry business and now serves as a "Balozi wa Haki" (Justice Ambassador), mentoring other widows in her village.',
-    image: '/lovable-uploads/07fc4d64-f9f2-40fb-83d5-6a1a52bbdb98.png',
+    image: '/lovable-uploads/certificate-award-women.jpg',
   },
 
   // Donors/Partners
@@ -179,7 +179,7 @@ const wanawakeTunaweza = {
     journey: 'Before Wanawake Tunaweza, the women of Longido had no access to credit without male permission. The VICOBA model changed everything—pooling savings to create an internal capital market.',
     shift: 'The Osiligi manufacturing group now produces reusable sanitary pads distributed to schools, closing the loop between economic production and social need.',
     result: 'Women who once lacked voice in Boma councils now run businesses, own capital assets, and mentor the next generation. The 11 sewing machines represent more than equipment—they are tools of liberation.',
-    image: '/lovable-uploads/3fa5911c-166b-4104-90f7-f6f1e1049c2f.png',
+    image: '/lovable-uploads/women-legal-consultation.jpg',
   },
   // Donors/Partners
   donors: [
@@ -193,7 +193,7 @@ const mamaSamiaLegalAid = {
   title: 'Justice for Every Tanzanian.',
   subtitle: 'A State-Civil Society Partnership Operationalizing the Legal Aid Act.',
   heroDescription: 'The Mama Samia Legal Aid Campaign (MSLAC) is Tanzania\'s largest coordinated effort to bring legal aid to every citizen. LSF serves as Vice-Chair of the National Campaign Committee alongside the Ministry of Constitutional and Legal Affairs. In 2023, LSF disbursed TZS 3.1 billion to 168 implementing partners, deploying 4,000+ paralegals as the campaign\'s primary frontline workforce.',
-  heroImage: '/lovable-uploads/mama%20samia%20legal%20aid%20campaingn.jpg',
+  heroImage: '/lovable-uploads/economic-employment-group.jpg',
 
   // The Challenge Section
   challenge: {
@@ -267,7 +267,7 @@ const mamaSamiaLegalAid = {
     context: 'The Mama Samia Legal Aid Campaign represents a new model of State-CSO partnership in Tanzania. Named after President Samia Suluhu Hassan, the campaign operationalizes the Legal Aid Act that LSF helped champion.',
     intervention: 'Rather than working in silos, LSF coordinates with MoCLA, the Judiciary, Tanzania Bar Association, and 168 grassroots organizations to deliver unified messaging and services.',
     outcome: 'The result is unprecedented reach: legal awareness campaigns in every region, mobile legal clinics in remote wards, and thousands of cases resolved through Alternative Dispute Resolution at community level.',
-    image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
+    image: '/lovable-uploads/police-office-meeting.jpg',
   },
 
   // Donors/Partners
@@ -283,7 +283,7 @@ const climateJustice = {
   title: 'Climate Justice.',
   subtitle: 'Building Resilience for Communities on the Frontlines.',
   heroDescription: 'LSF partners with the World Bank and Rufiji Water Basin Board to empower communities facing climate vulnerability. By integrating legal aid with environmental governance, we are ensuring that those least responsible for climate change—yet most affected—have the legal tools to protect their land, livelihoods, and future.',
-  heroImage: '/lovable-uploads/climate-justice-group.jpg', // Updated community image
+  heroImage: '/lovable-uploads/run-for-binti-bridge.jpg', // Updated community image
 
   // The Challenge Section
   challenge: {
@@ -357,7 +357,7 @@ const climateJustice = {
     context: 'The Rufiji River Basin is a lifeline for millions, but prolonged droughts turned water access into a flashpoint for conflict.',
     intervention: 'LSF supported the formation of Water User Associations and trained them on the Water Resources Management Act. We empowered women to take leadership roles in these traditionally male-dominated bodies.',
     outcome: 'Optimized water usage plans were developed by the communities themselves. Conflicts dropped significantly, and 23 kilometers of riverbank were reforested to prevent erosion.',
-    image: '/lovable-uploads/climate-justice-child.jpg',
+    image: '/lovable-uploads/run-for-binti-medals.jpg',
   },
 
   // Donors/Partners

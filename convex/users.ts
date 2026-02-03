@@ -39,6 +39,8 @@ export const getDashboardData = query({
                 email: user.email,
                 name: user.name,
                 role: user.role,
+                image: user.imageUrl,
+                bio: user.bio,
             },
             tasks
         };
@@ -61,12 +63,20 @@ export const syncUser = mutation({
             .first();
 
         if (existingUser) {
-            await ctx.db.patch(existingUser._id, {
-                name: args.name,
+            const patchData: any = {
                 email: args.email,
-                imageUrl: args.imageUrl,
                 lastLogin: Date.now(),
-            });
+            };
+            // Only update name if it's currently placeholder "User" or empty
+            if (existingUser.name === "User" || !existingUser.name) {
+                patchData.name = args.name;
+            }
+            // Only update imageUrl if no custom storage image is set
+            if (!existingUser.imageStorageId && args.imageUrl) {
+                patchData.imageUrl = args.imageUrl;
+            }
+
+            await ctx.db.patch(existingUser._id, patchData);
             return existingUser._id;
         }
 
@@ -118,4 +128,43 @@ export const makeAdmin = mutation({
         await ctx.db.patch(user._id, { role: "admin" });
         return { success: true, message: `User ${args.email} is now an admin!` };
     },
+});
+
+// Update user profile
+export const updateProfile = mutation({
+    args: {
+        name: v.string(),
+        bio: v.optional(v.string()),
+        imageStorageId: v.optional(v.string()),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) throw new Error("Unauthorized");
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .first();
+
+        if (!user) throw new Error("User not found");
+
+        const updateFields: any = {
+            name: args.name,
+            bio: args.bio,
+        };
+
+        // If a new image is uploaded, update storage ID and generate URL
+        if (args.imageStorageId) {
+            updateFields.imageStorageId = args.imageStorageId;
+            updateFields.imageUrl = await ctx.storage.getUrl(args.imageStorageId);
+        }
+
+        await ctx.db.patch(user._id, updateFields);
+        return { success: true };
+    },
+});
+
+// Generate upload URL for profile pictures
+export const generateUploadUrl = mutation(async (ctx) => {
+    return await ctx.storage.generateUploadUrl();
 });

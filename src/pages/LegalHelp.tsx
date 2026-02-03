@@ -317,7 +317,7 @@ const LegalHelp = () => {
         </Container>
       </section>
 
-      {/* 1. SARA AI */}
+      {/* 1. Saada AI */}
       <SaraAISection />
 
       {/* 2. HAKI YANGU APP */}

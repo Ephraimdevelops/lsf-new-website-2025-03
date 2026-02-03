@@ -34,7 +34,7 @@ const SaraTrain = () => {
             const postUrl = await generateUploadUrl();
 
             // 2. Upload File
-            setProgress("Uploading PDF to SARA's brain...");
+            setProgress("Uploading PDF to Saada's brain...");
             const result = await fetch(postUrl, {
                 method: "POST",
                 headers: { "Content-Type": file.type },
@@ -51,7 +51,7 @@ const SaraTrain = () => {
                 title: file.name,
             });
 
-            toast.success("Document successfully added to SARA's knowledge base!");
+            toast.success("Document successfully added to Saada's knowledge base!");
             setFile(null);
             setProgress("");
         } catch (error) {
@@ -72,7 +72,7 @@ const SaraTrain = () => {
                         <div className="relative">
                             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-full blur opacity-20"></div>
                             <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                                <img src="/sara-avatar-v2.png" alt="SARA" className="w-full h-full object-cover" />
+                                <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
                             </div>
                             <span className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-white rounded-full"></span>
                         </div>
@@ -195,14 +195,14 @@ const SystemInstructionsEditor = () => {
                 </div>
                 <div>
                     <h2 className="text-xl font-bold text-gray-900">System Instructions</h2>
-                    <p className="text-gray-500 text-sm">Define SARA's personality and rules.</p>
+                    <p className="text-gray-500 text-sm">Define Saada's personality and rules.</p>
                 </div>
             </div>
 
             <textarea
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                placeholder="You are SARA, a helpful legal assistant..."
+                placeholder="You are Saada, a helpful legal assistant..."
                 className="w-full h-64 p-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-mono text-sm leading-relaxed resize-y mb-4"
             />
 
@@ -253,7 +253,7 @@ const DocumentList = () => {
                 </div>
                 <div>
                     <h2 className="text-xl font-bold text-gray-900">Knowledge Base</h2>
-                    <p className="text-gray-500 text-sm">Manage documents SARA has been trained on.</p>
+                    <p className="text-gray-500 text-sm">Manage documents Saada has been trained on.</p>
                 </div>
             </div>
 

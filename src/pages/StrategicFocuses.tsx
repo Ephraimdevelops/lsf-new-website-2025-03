@@ -12,7 +12,8 @@ const corePillars = [
     title: 'Increasing Accessibility to Quality Legal Aid Services',
     description: 'Prioritizing the provision of accessible, affordable, quality legal aid services to marginalized populations, with a strong emphasis on women and girls.',
     link: '/focus-areas/accessible-legal-aid',
-    stats: '168 Districts Covered'
+    stats: '168 Districts Covered',
+    image: '/lovable-uploads/community-legal-aid-2.jpg'
   },
   {
     icon: Users,
@@ -20,7 +21,8 @@ const corePillars = [
     title: 'Promoting Legally Empowered Communities',
     description: 'Advancing community legal empowerment particularly for women, girls, and marginalized groups through legal education, awareness, and the strengthening of paralegal networks.',
     link: '/focus-areas/empowered-communities',
-    stats: '4,000+ Paralegals'
+    stats: '4,000+ Paralegals',
+    image: '/lovable-uploads/women-legal-consultation-2.jpg'
   },
   {
     icon: Globe,
@@ -28,7 +30,8 @@ const corePillars = [
     title: 'Enhancing a Conducive Environment for Sustainable Access to Justice',
     description: 'Supporting policy reform, legal frameworks, and advocacy initiatives that create enabling conditions for inclusive, sustainable, and equitable access to justice.',
     link: '/focus-areas/conducive-environment',
-    stats: 'Legal Aid Act 2017'
+    stats: 'Legal Aid Act 2017',
+    image: '/lovable-uploads/plaque-award-women.jpg'
   },
   {
     icon: Building2,
@@ -47,14 +50,16 @@ const emergingPriorities = [
     title: 'Climate Justice',
     description: 'Recognizing that climate change disproportionately affects women and marginalized communities, LSF is integrating climate justice into its programming. This includes legal empowerment on land rights, environmental governance, and climate-related disputes.',
     link: '/focus-areas/climate-justice',
-    color: 'from-emerald-500 to-teal-600'
+    color: 'from-emerald-500 to-teal-600',
+    image: '/lovable-uploads/run-for-binti-bridge.jpg'
   },
   {
     icon: Smartphone,
     title: 'Digital Transformation',
     description: 'Embracing innovation to modernize operations and expand reach. Efforts include the digitalization of legal aid service delivery, case tracking, training, and data systems to enhance accessibility and transparency.',
     link: '/focus-areas/digital-transformation',
-    color: 'from-blue-500 to-indigo-600'
+    color: 'from-blue-500 to-indigo-600',
+    image: '/lovable-uploads/run-for-binti-medals.jpg'
   }
 ];
 
@@ -103,10 +108,17 @@ const StrategicFocuses = () => {
               const IconComponent = pillar.icon;
               return (
                 <Link key={index} to={pillar.link} className="group">
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gray-50 hover:bg-white">
+                  <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gray-50 hover:bg-white overflow-hidden">
+                    <div className="h-48 overflow-hidden">
+                      <img
+                        src={(pillar as any).image || '/lovable-uploads/placeholder.svg'}
+                        alt={pillar.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                     <CardHeader className="pb-4">
                       <div className="flex items-start justify-between mb-4">
-                        <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform -mt-12 shadow-lg relative z-10 border-4 border-white">
                           <IconComponent className="h-8 w-8 text-white" />
                         </div>
                         <span className="text-5xl font-black text-gray-200 group-hover:text-primary/20 transition-colors">
