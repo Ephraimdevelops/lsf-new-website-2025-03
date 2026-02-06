@@ -41,7 +41,8 @@ const OpportunitiesPage = () => {
         title="Join Our Mission"
         badge="Careers"
         description="Explore open roles and help us expand access to justice across Tanzania. Your skills can help millions."
-        backgroundImage="/lovable-uploads/opportunities-hero-bg.png"
+        backgroundImage="/lovable-uploads/run for binti-lsf opening.jpg"
+        brandPattern="/lovable-uploads/brand-pattern.png"
       />
 
       {/* Opportunities Grid */}

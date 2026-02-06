@@ -53,7 +53,7 @@ export const create = mutation({
         linkedin: v.optional(v.string()),
         email: v.optional(v.string()),
         twitter: v.optional(v.string()),
-        type: v.union(v.literal("team"), v.literal("board")),
+        type: v.union(v.literal("team"), v.literal("board"), v.literal("agm")),
         order: v.optional(v.number()),
     },
     handler: async (ctx, args) => {
@@ -76,7 +76,7 @@ export const update = mutation({
         linkedin: v.optional(v.string()),
         email: v.optional(v.string()),
         twitter: v.optional(v.string()),
-        type: v.union(v.literal("team"), v.literal("board")),
+        type: v.union(v.literal("team"), v.literal("board"), v.literal("agm")),
         order: v.optional(v.number()),
     },
     handler: async (ctx, args) => {

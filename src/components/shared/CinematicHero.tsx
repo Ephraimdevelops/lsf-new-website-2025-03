@@ -27,7 +27,7 @@ const CinematicHero = ({
             ></div>
 
             {/* Cinematic Gradient Overlay - smooth dark fade */}
-            <div className="absolute inset-0 bg-black/50 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
+            <div className="absolute inset-0 bg-black/40 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
 
             {/* Content */}
             <div className="container relative z-10 px-4 text-center">
@@ -48,13 +48,13 @@ const CinematicHero = ({
                 )}
             </div>
 
-            {/* Brand Pattern at Bottom Border */}
+            {/* Brand Pattern at Bottom Border - Reduced Height */}
             {brandPattern && (
-                <div className="absolute bottom-0 left-0 right-0 h-16 md:h-20 lg:h-24 overflow-hidden z-20">
+                <div className="absolute bottom-[-1px] left-0 right-0 h-10 md:h-12 lg:h-14 overflow-hidden z-20 pointer-events-none">
                     <img
                         src={brandPattern}
                         alt=""
-                        className="w-full h-full object-cover object-top opacity-90"
+                        className="w-full h-full object-cover object-top opacity-100"
                         aria-hidden="true"
                     />
                 </div>

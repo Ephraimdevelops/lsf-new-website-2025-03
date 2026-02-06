@@ -56,7 +56,8 @@ const Publications = () => {
         title="Publications & Research"
         badge="Knowledge Base"
         description="Explore our comprehensive collection of reports, policy briefs, and resources driving justice reform across Tanzania."
-        backgroundImage="/lovable-uploads/publications-hero-bg.png"
+        backgroundImage="/lovable-uploads/LSf-enabel-un-signing.jpeg"
+        brandPattern="/lovable-uploads/brand-pattern.png"
       />
 
       {/* Search & Filters */}

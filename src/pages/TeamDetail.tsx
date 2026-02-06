@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { ArrowLeft, Mail, Linkedin, Twitter, Users, Crown, ArrowRight, Quote } from 'lucide-react';
+import { ArrowLeft, Mail, Linkedin, Twitter, Users, Crown, ArrowRight, Quote, Gavel } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
@@ -50,6 +50,7 @@ const TeamDetail = () => {
   }
 
   const isBoard = member.type === 'board';
+  const isAgm = member.type === 'agm';
 
   return (
     <Layout>
@@ -84,11 +85,13 @@ const TeamDetail = () => {
               {/* Type Badge */}
               <div className="mb-6">
                 <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${isBoard
-                  ? 'bg-secondary-orange/10 text-secondary-orange'
-                  : 'bg-primary/10 text-primary'
+                    ? 'bg-secondary-orange/10 text-secondary-orange'
+                    : isAgm
+                      ? 'bg-teal-500/10 text-teal-600'
+                      : 'bg-primary/10 text-primary'
                   }`}>
-                  {isBoard ? <Crown size={16} /> : <Users size={16} />}
-                  {isBoard ? 'Board of Directors' : 'Executive Team'}
+                  {isBoard ? <Crown size={16} /> : isAgm ? <Gavel size={16} /> : <Users size={16} />}
+                  {isBoard ? 'Board of Directors' : isAgm ? 'AGM Member' : 'Executive Team'}
                 </span>
               </div>
 
@@ -180,7 +183,7 @@ const TeamDetail = () => {
           <div className="container mx-auto px-6 pb-20">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-2xl font-medium text-neutral-900 mb-8 text-center">
-                More {isBoard ? 'Board Members' : 'Team Members'}
+                More {isBoard ? 'Board Members' : isAgm ? 'AGM Members' : 'Team Members'}
               </h2>
               <div className="grid md:grid-cols-3 gap-8">
                 {relatedMembers.map(person => (

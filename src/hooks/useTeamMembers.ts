@@ -10,13 +10,14 @@ interface TeamMember {
   linkedin?: string;
   email?: string;
   twitter?: string;
-  type: 'team' | 'board';
+  type: 'team' | 'board' | 'agm';
   order?: number;
 }
 
 interface UseTeamMembersResult {
   teamMembers: TeamMember[];
   boardMembers: TeamMember[];
+  agmMembers: TeamMember[];
   loading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
@@ -29,14 +30,17 @@ export function useTeamMembers(): UseTeamMembersResult {
 
   const teamMembers = allMembers.filter((m: TeamMember) => m.type === 'team');
   const boardMembers = allMembers.filter((m: TeamMember) => m.type === 'board');
+  const agmMembers = allMembers.filter((m: TeamMember) => m.type === 'agm');
 
   const loading = teamData === undefined;
 
   return {
     teamMembers,
     boardMembers,
+    agmMembers,
     loading,
     error: null,
     refetch: async () => { },
   };
 }
+

@@ -8,11 +8,55 @@ import SEOHead from '@/components/shared/SEOHead';
 
 interface Partner {
   id: string;
-  // ... (rest of interface)
+  name: string;
+  logo: string;
+  description: string;
+  website: string;
 }
 
 const partners: Partner[] = [
-  // ... (rest of partners array)
+  {
+    id: 'danida',
+    name: 'DANIDA',
+    logo: '/lovable-uploads/Danish amabssador.png',
+    description: 'The Danish International Development Agency, a key partner in promoting human rights and democracy.',
+    website: 'https://um.dk/en/danida'
+  },
+  {
+    id: 'fcdo',
+    name: 'FCDO',
+    logo: '/lovable-uploads/FCDO_logo.png',
+    description: 'Foreign, Commonwealth & Development Office (UK), supporting inclusive governance and social justice.',
+    website: 'https://www.gov.uk/government/organisations/foreign-commonwealth-development-office'
+  },
+  {
+    id: 'eu',
+    name: 'European Union',
+    logo: '/lovable-uploads/Funded by European Union.png',
+    description: 'Partnering with LSF to enhance legal aid and strengthen civil society organizations.',
+    website: 'https://ec.europa.eu/info/index_en'
+  },
+  {
+    id: 'world-bank',
+    name: 'The World Bank',
+    logo: '/lovable-uploads/WorldBank_logo.jpg',
+    description: 'Collaborating on initiatives that foster institutional development and access to justice.',
+    website: 'https://www.worldbank.org'
+  },
+  {
+    id: 'wings',
+    name: 'WINGS',
+    logo: '/lovable-uploads/WINGS_logo.png',
+    description: 'A global network of philanthropy support organizations, promoting social investment.',
+    website: 'https://www.wingsweb.org'
+  },
+  {
+    id: 'enabel',
+    name: 'ENABEL',
+    logo: '/lovable-uploads/Enabel.png',
+    description: 'The Belgian development agency, working together to improve legal services and community resilience.',
+    website: 'https://www.enabel.be'
+  }
 ];
 
 const Partners = () => {
@@ -27,7 +71,7 @@ const Partners = () => {
         title="Our Partners"
         badge="Strategic Alliances"
         description="Collaborating with global leaders to build a just Tanzania."
-        backgroundImage="/lovable-uploads/partners-hero-bg.png"
+        backgroundImage="/lovable-uploads/lsf from IGP sirro police award.jpg"
         brandPattern="/lovable-uploads/brand-pattern-magenta.png"
       />
 

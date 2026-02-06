@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Plus, Search, Edit, Trash, Linkedin, Mail, Twitter, Users, Crown, ArrowUpDown, Upload, X } from 'lucide-react';
+import { Plus, Search, Edit, Trash, Linkedin, Mail, Twitter, Users, Crown, ArrowUpDown, Upload, X, Gavel } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useForm } from 'react-hook-form';
 import { useQuery, useMutation } from "convex/react";
@@ -26,14 +26,14 @@ interface TeamMember {
     linkedin?: string;
     email?: string;
     twitter?: string;
-    type: "team" | "board";
+    type: "team" | "board" | "agm";
     order?: number;
 }
 
 const AdminTeam = () => {
     const { toast } = useToast();
     const [searchTerm, setSearchTerm] = useState('');
-    const [filterType, setFilterType] = useState<'all' | 'team' | 'board'>('all');
+    const [filterType, setFilterType] = useState<'all' | 'team' | 'board' | 'agm'>('all');
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
 
@@ -59,7 +59,7 @@ const AdminTeam = () => {
             linkedin: '',
             email: '',
             twitter: '',
-            type: 'team' as 'team' | 'board',
+            type: 'team' as 'team' | 'board' | 'agm',
             order: 1
         }
     });
@@ -76,12 +76,66 @@ const AdminTeam = () => {
 
     const teamCount = teamMembers.filter(m => m.type === 'team').length;
     const boardCount = teamMembers.filter(m => m.type === 'board').length;
+    const agmCount = teamMembers.filter(m => m.type === 'agm').length;
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Image compression utility for faster uploads
+    const compressImage = (file: File, maxWidth: number = 1200): Promise<File> => {
+        return new Promise((resolve) => {
+            if (!file.type.startsWith('image/') || file.type === 'image/gif') {
+                resolve(file);
+                return;
+            }
+
+            const img = new window.Image();
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            img.onload = () => {
+                let { width, height } = img;
+
+                if (width <= maxWidth) {
+                    resolve(file);
+                    return;
+                }
+
+                const ratio = maxWidth / width;
+                width = maxWidth;
+                height = Math.round(height * ratio);
+
+                canvas.width = width;
+                canvas.height = height;
+                ctx?.drawImage(img, 0, 0, width, height);
+
+                canvas.toBlob(
+                    (blob) => {
+                        if (blob) {
+                            const compressedFile = new File([blob], file.name, {
+                                type: file.type,
+                                lastModified: Date.now(),
+                            });
+                            console.log(`[OPTIMIZATION] Compressed ${file.name}: ${(file.size / 1024).toFixed(0)}KB → ${(blob.size / 1024).toFixed(0)}KB`);
+                            resolve(compressedFile);
+                        } else {
+                            resolve(file);
+                        }
+                    },
+                    file.type,
+                    0.8 // 80% quality for faster uploads
+                );
+            };
+
+            img.onerror = () => resolve(file);
+            img.src = URL.createObjectURL(file);
+        });
+    };
+
+    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            setImageFile(file);
-            setImagePreview(URL.createObjectURL(file));
+            // Compress image before storing
+            const compressedFile = await compressImage(file);
+            setImageFile(compressedFile);
+            setImagePreview(URL.createObjectURL(compressedFile));
         }
     };
 
@@ -120,7 +174,7 @@ const AdminTeam = () => {
                 linkedin: data.linkedin || undefined,
                 email: data.email || undefined,
                 twitter: data.twitter || undefined,
-                type: data.type as 'team' | 'board',
+                type: data.type as 'team' | 'board' | 'agm',
                 order: Number(data.order) || 1
             };
 
@@ -214,6 +268,10 @@ const AdminTeam = () => {
                         <Crown size={18} />
                         <span className="font-medium">{boardCount} Board</span>
                     </div>
+                    <div className="flex gap-2 items-center bg-teal-500/10 text-teal-600 px-4 py-2 rounded-lg">
+                        <Gavel size={18} />
+                        <span className="font-medium">{agmCount} AGM</span>
+                    </div>
                 </div>
             </div>
 
@@ -229,7 +287,7 @@ const AdminTeam = () => {
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
-                <Select value={filterType} onValueChange={(val: 'all' | 'team' | 'board') => setFilterType(val)}>
+                <Select value={filterType} onValueChange={(val: 'all' | 'team' | 'board' | 'agm') => setFilterType(val)}>
                     <SelectTrigger className="w-[150px]">
                         <SelectValue placeholder="Filter" />
                     </SelectTrigger>
@@ -237,6 +295,7 @@ const AdminTeam = () => {
                         <SelectItem value="all">All Members</SelectItem>
                         <SelectItem value="team">Staff Only</SelectItem>
                         <SelectItem value="board">Board Only</SelectItem>
+                        <SelectItem value="agm">AGM Only</SelectItem>
                     </SelectContent>
                 </Select>
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -369,6 +428,7 @@ const AdminTeam = () => {
                                                     <SelectContent>
                                                         <SelectItem value="team">Staff Member</SelectItem>
                                                         <SelectItem value="board">Board Member</SelectItem>
+                                                        <SelectItem value="agm">AGM Member</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                                 <FormMessage />
@@ -502,10 +562,12 @@ const AdminTeam = () => {
                                         <TableCell>
                                             <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ${member.type === 'board'
                                                 ? 'bg-secondary-orange/10 text-secondary-orange'
-                                                : 'bg-primary/10 text-primary'
+                                                : member.type === 'agm'
+                                                    ? 'bg-teal-500/10 text-teal-600'
+                                                    : 'bg-primary/10 text-primary'
                                                 }`}>
-                                                {member.type === 'board' ? <Crown size={12} /> : <Users size={12} />}
-                                                {member.type === 'board' ? 'Board' : 'Staff'}
+                                                {member.type === 'board' ? <Crown size={12} /> : member.type === 'agm' ? <Gavel size={12} /> : <Users size={12} />}
+                                                {member.type === 'board' ? 'Board' : member.type === 'agm' ? 'AGM' : 'Staff'}
                                             </span>
                                         </TableCell>
                                         <TableCell>
