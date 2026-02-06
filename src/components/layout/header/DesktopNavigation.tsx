@@ -21,7 +21,7 @@ const DesktopNavigation = ({
   const location = useLocation();
 
   return (
-    <nav className="hidden lg:flex items-center space-x-4">
+    <nav className="hidden lg:flex items-center space-x-1">
       {navigationItems.map((item) => {
         const isActive =
           location.pathname === item.href ||
@@ -32,7 +32,7 @@ const DesktopNavigation = ({
             {item.subItems.length > 0 ? (
               <button
                 className={cn(
-                  "relative flex items-center space-x-2 px-5 py-3 text-sm font-medium rounded-lg transition-all duration-300 hover:scale-105",
+                  "relative flex items-center space-x-1.5 px-3 py-3 text-sm font-medium rounded-lg transition-all duration-300 hover:scale-105",
                   isActive
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
@@ -72,7 +72,7 @@ const DesktopNavigation = ({
               <Link
                 to={item.href}
                 className={cn(
-                  "relative flex items-center space-x-2 px-5 py-3 text-sm font-medium rounded-lg transition-all duration-300 hover:scale-105",
+                  "relative flex items-center space-x-1.5 px-3 py-3 text-sm font-medium rounded-lg transition-all duration-300 hover:scale-105",
                   isActive
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
@@ -112,7 +112,7 @@ const DesktopNavigation = ({
       })}
 
       {/* Action buttons */}
-      <div className="flex items-center ml-6 space-x-3 border-l border-border pl-6">
+      <div className="flex items-center ml-4 space-x-3 border-l border-border pl-4">
         {/* search button */}
         <div className="transform hover:scale-110 transition-transform duration-300">
           <SearchDialog />

@@ -112,7 +112,7 @@ const Team = () => {
 
           {/* AGM Member Cards - Same style as Board Members but with teal */}
           {agmMembers.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {agmMembers.map((member) => (
                 <Link key={member.id} to={`/team/${member.id}`} className="group block">
                   <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-teal-500/30 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
@@ -194,7 +194,7 @@ const Team = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {boardMembers.map((member) => (
               <Link key={member.id} to={`/team/${member.id}`} className="group block">
                 <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-primary/30 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
@@ -275,7 +275,7 @@ const Team = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
               <Link key={member.id} to={`/team/${member.id}`} className="group block">
                 <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-primary/30 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">

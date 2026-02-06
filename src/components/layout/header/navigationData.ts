@@ -1,5 +1,11 @@
 export const navigationItems = [
   {
+    name: 'Home',
+    href: '/',
+    description: 'Return to homepage',
+    subItems: []
+  },
+  {
     name: 'About',
     href: '/about',
     description: 'Who we are and our mission',

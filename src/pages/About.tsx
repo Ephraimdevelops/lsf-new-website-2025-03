@@ -24,7 +24,7 @@ const About = () => {
       <AboutImpactNumbers />
       <AchievementsTimelineSection />
       <MissionVisionSection />
-      <StrategicTransparency />
+      {/* <StrategicTransparency /> - Removed per client feedback */}
       <GovernanceSection />
 
       {/* Modern Partners Section */}

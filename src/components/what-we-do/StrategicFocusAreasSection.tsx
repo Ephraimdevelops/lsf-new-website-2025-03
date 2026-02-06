@@ -7,79 +7,72 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 
 const StrategicFocusAreasSection = () => {
-  // All 6 Strategic Focus Areas (4 Core Pillars + 2 Emerging combined)
+  // 4 Strategic Focus Areas
   const focusAreas = [
     {
-      title: "Increasing Accessibility to Quality Legal Aid Services",
-      description: "Prioritizing accessible, affordable, quality legal aid services to marginalized populations, with emphasis on women and girls.",
+      title: "Access to Justice & Legal Empowerment",
+      description: "Expanding equitable, high-quality legal aid for all through a nationwide network of paralegals and digital innovation, strengthening an integrated legal aid system that brings justice closer to communities.",
       image: "/lovable-uploads/community-legal-aid-2.jpg",
-      link: "/focus-areas/accessible-legal-aid",
+      link: "/focus-areas/access-to-justice",
     },
     {
-      title: "Promoting Legally Empowered Communities",
-      description: "Advancing community legal empowerment through legal education, awareness, and strengthening paralegal networks.",
+      title: "Gender Equality & Women’s Leadership",
+      description: "Advancing gender justice by addressing structural barriers, focusing on land rights, GBV prevention, and amplifying women’s voices and leadership at all levels.",
       image: "/lovable-uploads/women-legal-consultation-2.jpg",
-      link: "/focus-areas/empowered-communities",
+      link: "/focus-areas/gender-equality",
     },
     {
-      title: "Enhancing a Conducive Environment for Access to Justice",
-      description: "Supporting policy reform, legal frameworks, and advocacy for inclusive, sustainable access to justice.",
-      image: "/lovable-uploads/plaque-award-women.jpg",
-      link: "/focus-areas/conducive-environment",
-    },
-    {
-      title: "Institutional Development and Sustainability",
-      description: "Strengthening organizational capacity and financial sustainability of LSF and the broader legal aid sector.",
-      image: "/lovable-uploads/award-ceremony.jpg",
-      link: "/focus-areas/institutional-development",
-    },
-    {
-      title: "Climate Justice",
-      description: "Integrating climate justice into programming, including land rights, environmental governance, and climate-related disputes.",
+      title: "Climate Justice & Community Resilience",
+      description: "Supporting communities—particularly women—to secure land tenure, environmental rights, and access to climate-responsive legal remedies.",
       image: "/lovable-uploads/run-for-binti-bridge.jpg",
       link: "/focus-areas/climate-justice",
       isNew: true,
     },
     {
-      title: "Digital Transformation",
-      description: "Modernizing operations through digitalization of legal aid service delivery, case tracking, and data systems.",
-      image: "/lovable-uploads/run-for-binti-medals.jpg",
-      link: "/focus-areas/digital-transformation",
-      isNew: true,
+      title: "Institutional Strengthening & Sustainability",
+      description: "Building a strong, accountable institution through good governance, financial sustainability, and digital transformation for long-term impact.",
+      image: "/lovable-uploads/award-ceremony.jpg",
+      link: "/focus-areas/institutional-sustainability",
     },
   ];
 
-  // Strategic Approaches
+  // 6 Strategic Approaches
   const approaches = [
     {
-      title: "Grant-Making",
-      description: "Funding 100+ organizations to deliver frontline legal aid across Tanzania.",
+      title: "Strategic Grant-Making",
+      description: "Mobilizing resources to support paralegal organizations and community-based actors through transparent, performance-based grant-making.",
       image: "/lovable-uploads/economic-employment-group.jpg",
       link: "/what-we-do/grant-making",
     },
     {
-      title: "Project Implementation",
-      description: "Designing and executing high-impact programs for grassroots justice delivery.",
+      title: "Direct Project Implementation",
+      description: "Directly implementing flagship initiatives in priority areas to drive innovation, rapid learning, and scalable models.",
       image: "/lovable-uploads/community-legal-aid.jpg",
       link: "/what-we-do/direct-implementation",
     },
     {
-      title: "Policy Advocacy",
-      description: "Pushing for justice-centered reforms and legislation like the Legal Aid Act 2017.",
+      title: "Capacity Building & Systems Strengthening",
+      description: "Investing in the institutional, technical, and digital capacity of paralegals, CSOs, and duty bearers to enhance service quality.",
       image: "/lovable-uploads/women-legal-consultation.jpg",
+      link: "/what-we-do/capacity-building",
+    },
+    {
+      title: "Advocacy & Policy Engagement",
+      description: "Engaging in evidence-based advocacy to influence laws and policies affecting access to justice, women’s rights, and climate justice.",
+      image: "/lovable-uploads/certificate-award-women.jpg",
       link: "/what-we-do/advocacy-policy",
     },
     {
-      title: "Research & Learning",
-      description: "Turning data into action to drive evidence-based systemic reform.",
-      image: "/lovable-uploads/certificate-award-women.jpg",
-      link: "/what-we-do/learning-research",
+      title: "Learning, Research, Monitoring & Evaluation",
+      description: "Integrating learning and accountability through robust research and adaptive management to inform policy and improve programming.",
+      image: "/lovable-uploads/police-office-meeting.jpg", // Consider a better image for research if available
+      link: "/what-we-do/lr-me",
     },
     {
-      title: "Partnerships & Networking",
-      description: "Scaling justice innovations with government, donors, and civil society partners.",
-      image: "/lovable-uploads/police-office-meeting.jpg",
-      link: "/what-we-do/partnerships-networking",
+      title: "Partnerships & Networks",
+      description: "Fostering collaboration with government, civil society, private sector, and development partners for collective impact.",
+      image: "/lovable-uploads/lsf from IGP sirro police award.jpg", // Using a partnership/award image
+      link: "/what-we-do/partnerships-networks",
     },
   ];
 
