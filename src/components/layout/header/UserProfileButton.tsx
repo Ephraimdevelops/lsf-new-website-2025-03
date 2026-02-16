@@ -44,7 +44,14 @@ const UserProfileButton = () => {
                         Sign In
                     </Button>
                 </Link>
-                {/* Removed Get Started button as per user request */}
+                <Link to="/login?screen=signup">
+                    <Button
+                        size="sm"
+                        className="text-sm font-medium bg-primary hover:bg-primary/90 text-white shadow-sm"
+                    >
+                        Sign Up
+                    </Button>
+                </Link>
             </div>
         );
     }

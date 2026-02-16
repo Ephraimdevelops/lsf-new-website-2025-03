@@ -84,12 +84,18 @@ const MobileNavigation = ({
                 </SignOutButton>
               </div>
             ) : (
-              <Link to="/login" className="block">
-                <Button variant="outline" className="w-full justify-center">
-                  Sign In
-                </Button>
-              </Link>
-              /* Removed Get Started button as per user request */
+              <div className="space-y-2">
+                <Link to="/login" className="block">
+                  <Button variant="outline" className="w-full justify-center">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/login?screen=signup" className="block">
+                  <Button className="w-full justify-center bg-primary hover:bg-primary/90 text-white">
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
             )}
           </div>
         )}
