@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => {
       },
       rollupOptions: {
         external: (id) => {
-          return id.includes('@rollup/rollup-linux-x64-gnu');
+          return id.includes('@rollup/rollup-linux-x64-gnu') || id === 'next/compat/router' || id === 'next/navigation';
         },
         output: {
           manualChunks: {
