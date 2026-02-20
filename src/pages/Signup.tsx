@@ -49,9 +49,9 @@ const Signup = () => {
         </Link>
 
         {/* Primary Auth Card */}
-        <div className="w-full bg-white rounded-[24px] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden flex flex-col">
-          <div className="p-8 sm:p-10 pb-6 text-center">
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight mb-2">
+        <div className="w-full bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-gray-900/5 p-8 sm:p-10 flex flex-col items-center">
+          <div className="text-center mb-8">
+            <h1 className="text-[26px] font-bold text-gray-900 tracking-tight mb-2">
               Create an account
             </h1>
             <p className="text-sm text-gray-500">
@@ -59,7 +59,7 @@ const Signup = () => {
             </p>
           </div>
 
-          <div className="px-8 sm:px-10 pb-10 w-full flex justify-center">
+          <div className="w-full">
             <SignUp
               routing="path"
               path="/signup"
@@ -67,23 +67,29 @@ const Signup = () => {
               forceRedirectUrl="/dashboard/user"
               appearance={{
                 elements: {
-                  rootBox: "w-full flex justify-center",
-                  card: "shadow-none border-none p-0 bg-transparent w-full m-0 max-w-none",
+                  rootBox: "w-full",
+                  card: "bg-transparent shadow-none border-none p-0 m-0 w-full",
                   header: "hidden", // We built our own header above
                   logoBox: "hidden",
                   footer: "hidden", // Hides the "Secured by Clerk" badge
-                  socialButtonsBlockButton: "border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 rounded-xl py-3 shadow-sm transition-all",
-                  socialButtonsBlockButtonText: "font-medium text-sm",
+                  main: "gap-6",
+                  socialButtonsBlockButton: "border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 rounded-2xl py-3.5 shadow-sm transition-all relative overflow-hidden",
+                  socialButtonsBlockButtonText: "font-medium text-sm z-10 relative",
+                  socialButtonsProviderIcon: "w-5 h-5",
+                  dividerRow: "my-6",
                   dividerLine: "bg-gray-100",
-                  dividerText: "text-gray-400 text-xs font-medium uppercase tracking-wider",
-                  formButtonPrimary: "bg-primary hover:bg-primary/90 text-white rounded-xl py-3 font-semibold shadow-sm transition-all",
-                  formFieldInput: "border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 rounded-xl px-4 py-3 w-full text-base transition-all bg-gray-50/50 hover:bg-white",
-                  formFieldLabel: "text-gray-700 font-medium text-sm mb-1.5",
-                  identityPreviewEditButton: "text-primary hover:text-primary/80",
-                  formFieldAction: "text-primary hover:text-primary/80 text-sm font-medium",
-                  form: "grid gap-4",
-                  alertText: "text-red-600 text-sm",
-                  alertText__danger: "text-red-600",
+                  dividerText: "text-gray-400 text-xs font-semibold uppercase tracking-wider bg-white px-3",
+                  formButtonPrimary: "bg-primary hover:bg-primary/90 text-white rounded-2xl py-3.5 font-semibold shadow-sm transition-all mt-2",
+                  formFieldInput: "border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 rounded-2xl px-4 py-3.5 w-full text-[15px] transition-all bg-gray-50/30 hover:bg-white outline-none",
+                  formFieldLabel: "text-gray-700 font-medium text-sm mb-2",
+                  identityPreviewEditButton: "text-primary hover:text-primary/80 transition-colors",
+                  formFieldAction: "text-primary hover:text-primary/80 text-sm font-medium transition-colors",
+                  form: "grid gap-5",
+                  alertText: "text-red-500 text-sm mt-1",
+                  alertText__danger: "text-red-500",
+                  formFieldInputShowPasswordButton: "text-gray-400 hover:text-gray-600",
+                  identityPreview: "border border-gray-200 rounded-2xl bg-gray-50/50 p-3",
+                  identityPreviewText: "text-gray-700 font-medium",
                 }
               }}
             />
@@ -91,33 +97,26 @@ const Signup = () => {
         </div>
 
         {/* Unified Footer Links Group */}
-        <div className="mt-8 space-y-4 w-full px-4">
-          {/* General Sign In Redirect */}
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Already have an account?{" "}
-              <Link to="/login" className="text-primary font-semibold hover:text-primary/80 transition-colors">
-                Sign in
-              </Link>
-            </p>
+        <div className="mt-8 text-center space-y-5 w-full px-4">
+          <p className="text-[15px] text-gray-600">
+            Already have an account?{" "}
+            <Link to="/login" className="text-primary font-semibold hover:text-primary/80 transition-colors">
+              Sign in
+            </Link>
+          </p>
+
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-12 h-px bg-gray-200"></div>
+            <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">Professional Access</span>
+            <div className="w-12 h-px bg-gray-200"></div>
           </div>
 
-          {/* Paralegal Specific Redirect */}
           <Link
             to="/paralegal-signup"
-            className="group flex items-center justify-between w-full p-4 rounded-2xl bg-white border border-gray-200 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
+            className="inline-flex items-center justify-center gap-2 text-[15px] text-gray-500 hover:text-primary font-medium transition-colors"
           >
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                Apply as a Paralegal
-              </span>
-              <span className="text-xs text-gray-500 mt-0.5">
-                Join our network of legal providers
-              </span>
-            </div>
-            <div className="h-8 w-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-              <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
-            </div>
+            <span>Apply as a Paralegal</span>
+            <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
 
