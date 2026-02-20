@@ -65,7 +65,7 @@ const Login = () => {
         <div className="hidden lg:block w-1/2 space-y-6">
           <Link to="/" className="inline-block">
             <img
-              src="/logo.svg"
+              src="/lsf-favicon.png"
               alt="LSF"
               className="h-12 w-auto"
             />
@@ -83,7 +83,7 @@ const Login = () => {
           <div className="text-center mb-8 lg:hidden">
             <Link to="/" className="inline-block mb-4">
               <img
-                src="/logo.svg"
+                src="/lsf-favicon.png"
                 alt="LSF"
                 className="h-10 w-auto"
               />
@@ -96,28 +96,8 @@ const Login = () => {
           </div>
           <SignIn
             signUpUrl="/signup"
-            appearance={{
-              elements: {
-                rootBox: "w-full",
-                card: "shadow-none border-none bg-transparent w-full",
-                headerTitle: "hidden",
-                headerSubtitle: "hidden",
-                socialButtonsBlockButton: "border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 rounded-lg py-3",
-                socialButtonsBlockButtonText: "font-medium",
-                dividerLine: "bg-gray-200",
-                dividerText: "text-gray-500",
-                formButtonPrimary: "bg-primary hover:bg-primary/90 text-white rounded-lg py-3 font-semibold",
-                footerActionLink: "text-primary hover:text-primary/80 font-medium",
-                formFieldInput: "border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg px-4 py-3 w-full",
-                formFieldLabel: "text-gray-700 font-medium text-sm mb-1.5",
-                formFieldInputShowPasswordButton: "text-gray-500 hover:text-gray-700",
-                identityPreviewText: "text-gray-600",
-                identityPreviewEditButton: "text-primary hover:text-primary/80",
-                formFieldAction: "text-primary hover:text-primary/80 text-sm font-medium",
-                footer: "hidden",
-                form: "space-y-4",
-              }
-            }}
+          // Reverting to default appearance to fix missing form issue
+          // appearance={{ ... }} 
           />
 
           <div className="w-full mt-6 pt-6 border-t border-gray-100">
