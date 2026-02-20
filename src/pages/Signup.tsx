@@ -2,9 +2,8 @@
 import { SignUp, useAuth } from "@clerk/clerk-react";
 import { useQuery } from "convex/react";
 import { Navigate, Link } from "react-router-dom";
-import { Card } from "@/components/ui/card";
-import { CheckCircle, ArrowLeft } from "lucide-react";
 import { api } from "../../convex/_generated/api";
+import { ChevronRight } from "lucide-react";
 
 const Signup = () => {
   const { isSignedIn, isLoaded } = useAuth();
@@ -12,19 +11,10 @@ const Signup = () => {
 
   // If already authenticated, redirect based on role
   if (isLoaded && isSignedIn && user !== undefined) {
-    if (user?.role === "admin") {
-      return <Navigate to="/admin" replace />;
-    }
-    if (user?.role === "paralegal") {
-      return <Navigate to="/dashboard/paralegal" replace />;
-    }
-    if (user?.role === "staff") {
-      return <Navigate to="/dashboard/staff" replace />;
-    }
-    if (user?.role === "stakeholder") {
-      return <Navigate to="/dashboard/stakeholder" replace />;
-    }
-    // Regular users go to their dashboard
+    if (user?.role === "admin") return <Navigate to="/admin" replace />;
+    if (user?.role === "paralegal") return <Navigate to="/dashboard/paralegal" replace />;
+    if (user?.role === "staff") return <Navigate to="/dashboard/staff" replace />;
+    if (user?.role === "stakeholder") return <Navigate to="/dashboard/stakeholder" replace />;
     return <Navigate to="/dashboard/user" replace />;
   }
 
@@ -34,91 +24,107 @@ const Signup = () => {
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-500">Creating your account...</p>
+          <p className="text-gray-500 font-medium">Preparing your dashboard...</p>
         </div>
       </div>
     );
   }
 
-  const benefits = [
-    { text: "Access legal resources" },
-    { text: "Save important content" },
-    { text: "Personalized dashboard" },
-  ];
-
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      {/* Background Pattern - Subtle */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)',
-          backgroundSize: '24px 24px'
-        }} />
-      </div>
+    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+      {/* Soft Ambient Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Branding & Benefits */}
-          <div className="hidden lg:block space-y-8">
-            <div>
-              <Link to="/" className="inline-block mb-6">
-                <img
-                  src="/lsf-favicon.png"
-                  alt="LSF"
-                  className="h-12 w-auto"
-                />
-              </Link>
-              <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-4">
-                Join the Community
-              </h1>
-              <p className="text-lg text-gray-600">
-                Create your free account to access resources and connect with our network.
-              </p>
-            </div>
+      <div className="relative z-10 w-full max-w-md flex flex-col items-center">
 
-            <div className="space-y-4">
-              {benefits.map((benefit, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 text-gray-700"
-                >
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                  </div>
-                  <span className="font-medium">{benefit.text}</span>
-                </div>
-              ))}
-            </div>
+        {/* Logo and Header */}
+        <Link to="/" className="mb-8 hover:opacity-90 transition-opacity">
+          <img
+            src="/lsf-favicon.png"
+            alt="LSF Logo"
+            className="h-16 w-auto drop-shadow-sm"
+          />
+        </Link>
+
+        {/* Primary Auth Card */}
+        <div className="w-full bg-white rounded-[24px] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden flex flex-col">
+          <div className="p-8 sm:p-10 pb-6 text-center">
+            <h1 className="text-2xl font-bold text-gray-900 tracking-tight mb-2">
+              Create an account
+            </h1>
+            <p className="text-sm text-gray-500">
+              Join the LSF community to get started
+            </p>
           </div>
 
-          {/* Right Side - Sign Up Form */}
-          <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-            <div className="text-center mb-6">
-              <h2 className="text-xl font-semibold text-gray-900">Create Account</h2>
-            </div>
-
+          <div className="px-8 sm:px-10 pb-10 w-full flex justify-center">
             <SignUp
               routing="path"
               path="/signup"
               signInUrl="/login"
               forceRedirectUrl="/dashboard/user"
-            // Reverting to default appearance to fix missing form issue
-            // appearance={{ ... }}
+              appearance={{
+                elements: {
+                  rootBox: "w-full flex justify-center",
+                  card: "shadow-none border-none p-0 bg-transparent w-full m-0 max-w-none",
+                  header: "hidden", // We built our own header above
+                  logoBox: "hidden",
+                  footer: "hidden", // Hides the "Secured by Clerk" badge
+                  socialButtonsBlockButton: "border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 rounded-xl py-3 shadow-sm transition-all",
+                  socialButtonsBlockButtonText: "font-medium text-sm",
+                  dividerLine: "bg-gray-100",
+                  dividerText: "text-gray-400 text-xs font-medium uppercase tracking-wider",
+                  formButtonPrimary: "bg-primary hover:bg-primary/90 text-white rounded-xl py-3 font-semibold shadow-sm transition-all",
+                  formFieldInput: "border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 rounded-xl px-4 py-3 w-full text-base transition-all bg-gray-50/50 hover:bg-white",
+                  formFieldLabel: "text-gray-700 font-medium text-sm mb-1.5",
+                  identityPreviewEditButton: "text-primary hover:text-primary/80",
+                  formFieldAction: "text-primary hover:text-primary/80 text-sm font-medium",
+                  form: "grid gap-4",
+                  alertText: "text-red-600 text-sm",
+                  alertText__danger: "text-red-600",
+                }
+              }}
             />
-
-            <div className="w-full mt-6 pt-6 border-t border-gray-100 text-center">
-              <p className="text-sm text-gray-600">
-                Already have an account?{" "}
-                <Link to="/login" className="text-primary font-semibold hover:underline">
-                  Sign in here
-                </Link>
-              </p>
-            </div>
           </div>
         </div>
+
+        {/* Unified Footer Links Group */}
+        <div className="mt-8 space-y-4 w-full px-4">
+          {/* General Sign In Redirect */}
+          <div className="text-center">
+            <p className="text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link to="/login" className="text-primary font-semibold hover:text-primary/80 transition-colors">
+                Sign in
+              </Link>
+            </p>
+          </div>
+
+          {/* Paralegal Specific Redirect */}
+          <Link
+            to="/paralegal-signup"
+            className="group flex items-center justify-between w-full p-4 rounded-2xl bg-white border border-gray-200 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
+          >
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                Apply as a Paralegal
+              </span>
+              <span className="text-xs text-gray-500 mt-0.5">
+                Join our network of legal providers
+              </span>
+            </div>
+            <div className="h-8 w-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+              <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
+            </div>
+          </Link>
+        </div>
+
       </div>
     </div>
   );
 };
 
 export default Signup;
+
