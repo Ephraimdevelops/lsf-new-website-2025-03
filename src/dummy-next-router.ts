@@ -2,3 +2,4 @@
 export const useRouter = () => null;
 export const usePathname = () => null;
 export const useParams = () => null;
+export const useSearchParams = () => new URLSearchParams();
