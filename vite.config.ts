@@ -35,6 +35,8 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
+        "next/compat/router": path.resolve(__dirname, "./src/dummy-next-router.ts"),
+        "next/navigation": path.resolve(__dirname, "./src/dummy-next-router.ts")
       },
     },
     optimizeDeps: {
