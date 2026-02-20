@@ -95,6 +95,8 @@ const Login = () => {
             <h2 className="text-xl font-semibold text-gray-900">Sign In to Dashboard</h2>
           </div>
           <SignIn
+            routing="path"
+            path="/login"
             signUpUrl="/signup"
           // Reverting to default appearance to fix missing form issue
           // appearance={{ ... }} 

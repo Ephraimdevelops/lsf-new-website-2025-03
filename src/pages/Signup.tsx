@@ -98,6 +98,8 @@ const Signup = () => {
             </div>
 
             <SignUp
+              routing="path"
+              path="/signup"
               signInUrl="/login"
               forceRedirectUrl="/dashboard/user"
             // Reverting to default appearance to fix missing form issue
