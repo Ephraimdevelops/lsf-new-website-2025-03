@@ -3,8 +3,18 @@ import { ConvexProviderWithClerk } from "convex/react-clerk";
 import { ConvexReactClient } from "convex/react";
 import { ReactNode } from "react";
 
-const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL as string;
-const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY as string;
+// Safely try multiple ways Vite might expose the env vars on Vercel
+const convexUrl =
+    import.meta.env.VITE_CONVEX_URL ||
+    import.meta.env.VITE_NEXT_PUBLIC_CONVEX_URL ||
+    process.env.NEXT_PUBLIC_CONVEX_URL ||
+    "";
+
+const publishableKey =
+    import.meta.env.VITE_CLERK_PUBLISHABLE_KEY ||
+    import.meta.env.VITE_NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+    "";
 
 // Prevent module-level crashes
 let convex: ConvexReactClient | null = null;
