@@ -62,7 +62,6 @@ export const ConvexClientProvider = ({ children }: { children: ReactNode }) => {
             publishableKey={publishableKey}
             appearance={{
                 layout: {
-                    showOptionalDevOrPreviewBanner: false,
                     unsafe_disableDevelopmentModeWarnings: true
                 }
             }}
