@@ -1,4 +1,5 @@
-import { SignIn } from "@clerk/clerk-react";
+import * as SignIn from "@clerk/elements/sign-in";
+import * as Clerk from "@clerk/elements/common";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Scale, Users, Shield, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -24,8 +25,12 @@ const ParalegalLogin = () => {
 
                 <Card className="border-none shadow-2xl bg-white/95 backdrop-blur">
                     <CardHeader className="text-center pb-2">
-                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 shadow-lg">
-                            <Scale className="h-8 w-8 text-white" />
+                        <div className="mx-auto mb-6 flex justify-center">
+                            <img
+                                src="/lovable-uploads/c7c6a992-0b2f-4131-b0db-6a75a7c2e391.png"
+                                alt="LSF Logo"
+                                className="h-16 md:h-20 w-auto drop-shadow-sm"
+                            />
                         </div>
                         <CardTitle className="text-2xl font-bold text-gray-900">Paralegal Portal</CardTitle>
                         <CardDescription className="text-gray-600">
@@ -33,21 +38,52 @@ const ParalegalLogin = () => {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex flex-col items-center">
-                        <SignIn
-                            signUpUrl="/paralegal-signup"
-                            forceRedirectUrl="/dashboard/paralegal"
-                            appearance={{
-                                elements: {
-                                    rootBox: "w-full",
-                                    card: "shadow-none p-0 border-none",
-                                    headerTitle: "hidden",
-                                    headerSubtitle: "hidden",
-                                    socialButtonsBlockButton: "border-gray-200 hover:bg-gray-50",
-                                    formButtonPrimary: "bg-primary hover:bg-primary/90",
-                                    footerActionLink: "text-primary hover:text-primary/80"
-                                }
-                            }}
-                        />
+                        <SignIn.Root>
+                            <SignIn.Step name="start" className="w-full flex flex-col gap-6 w-full max-w-[320px]">
+                                <div className="grid grid-cols-2 gap-3">
+                                    <Clerk.Connection name="google" className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-gray-200 hover:bg-gray-50 transition-all text-sm font-medium">
+                                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-4 h-4" alt="Google" />
+                                        Google
+                                    </Clerk.Connection>
+                                    <Clerk.Connection name="facebook" className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-gray-200 hover:bg-gray-50 transition-all text-sm font-medium">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" className="w-4 h-4" alt="Facebook" />
+                                        Facebook
+                                    </Clerk.Connection>
+                                </div>
+
+                                <div className="relative flex items-center justify-center">
+                                    <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200"></div></div>
+                                    <span className="relative bg-white px-4 text-xs tracking-widest text-gray-400 font-semibold uppercase">Or continue with email</span>
+                                </div>
+
+                                <Clerk.Field name="identifier" className="space-y-2">
+                                    <Clerk.Label className="text-sm font-medium text-gray-700 ml-1">Email address</Clerk.Label>
+                                    <Clerk.Input className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50/50 hover:bg-white" />
+                                    <Clerk.FieldError className="text-sm text-red-500 font-medium ml-1" />
+                                </Clerk.Field>
+                                <SignIn.Action submit className="w-full py-3 px-4 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-sm">
+                                    Continue
+                                </SignIn.Action>
+                            </SignIn.Step>
+
+                            <SignIn.Step name="verifications" className="w-full flex flex-col gap-6 max-w-[320px]">
+                                <SignIn.Strategy name="password">
+                                    <div className="space-y-6">
+                                        <Clerk.Field name="password" className="space-y-2">
+                                            <div className="flex justify-between items-center ml-1">
+                                                <Clerk.Label className="text-sm font-medium text-gray-700">Password</Clerk.Label>
+                                                <SignIn.Action navigate="start" className="text-xs font-medium text-primary cursor-pointer hover:underline">Change Email</SignIn.Action>
+                                            </div>
+                                            <Clerk.Input type="password" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50/50 hover:bg-white" />
+                                            <Clerk.FieldError className="text-sm text-red-500 font-medium ml-1" />
+                                        </Clerk.Field>
+                                        <SignIn.Action submit className="w-full py-3 px-4 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-sm">
+                                            Sign In
+                                        </SignIn.Action>
+                                    </div>
+                                </SignIn.Strategy>
+                            </SignIn.Step>
+                        </SignIn.Root>
 
                         {/* Additional Info */}
                         <div className="mt-6 pt-6 border-t border-gray-100 w-full">

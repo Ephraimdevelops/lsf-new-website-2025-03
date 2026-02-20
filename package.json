@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.57.0",
+    "@clerk/elements": "^0.24.10",
     "@fontsource/inter": "^5.2.6",
     "@fontsource/playfair-display": "^5.2.6",
     "@fontsource/ubuntu": "^5.2.6",
