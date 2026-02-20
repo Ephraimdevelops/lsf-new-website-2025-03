@@ -1,6 +1,4 @@
-import * as SignUp from "@clerk/elements/sign-up";
-import * as Clerk from "@clerk/elements/common";
-import { useUser } from "@clerk/clerk-react";
+import { SignUp } from "@clerk/clerk-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Scale, CheckCircle, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -28,7 +26,7 @@ const ParalegalSignupAuth = () => {
                         <CardHeader className="text-center pb-2">
                             <div className="mx-auto mb-6 flex justify-center">
                                 <img
-                                    src="/lovable-uploads/c7c6a992-0b2f-4131-b0db-6a75a7c2e391.png"
+                                    src="/lsf-favicon.png"
                                     alt="LSF Logo"
                                     className="h-16 md:h-20 w-auto drop-shadow-sm"
                                 />
@@ -38,7 +36,7 @@ const ParalegalSignupAuth = () => {
                                 Create your account to access the paralegal portal
                             </CardDescription>
                         </CardHeader>
-                        <CardContent className="flex flex-col items-center">
+                        <CardContent className="flex flex-col items-center pt-2">
                             {/* Benefits List */}
                             <div className="w-full mb-6 p-4 bg-green-50 rounded-xl border border-green-100">
                                 <p className="font-medium text-green-800 mb-3 text-sm">What you'll get:</p>
@@ -57,65 +55,32 @@ const ParalegalSignupAuth = () => {
                                 </ul>
                             </div>
 
-                            <SignUp.Root>
-                                <SignUp.Step name="start" className="w-full flex flex-col gap-6 w-full max-w-[320px]">
-                                    <div className="grid grid-cols-2 gap-3">
-                                        <Clerk.Connection name="google" className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-gray-200 hover:bg-gray-50 transition-all text-sm font-medium">
-                                            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-4 h-4" alt="Google" />
-                                            Google
-                                        </Clerk.Connection>
-                                        <Clerk.Connection name="facebook" className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-gray-200 hover:bg-gray-50 transition-all text-sm font-medium">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" className="w-4 h-4" alt="Facebook" />
-                                            Facebook
-                                        </Clerk.Connection>
-                                    </div>
+                            <SignUp
+                                path="/paralegal-signup"
+                                routing="path"
+                                signInUrl="/paralegal-login"
+                                unsafeMetadata={{ role: "paralegal" }}
+                                appearance={{
+                                    elements: {
+                                        rootBox: "w-full",
+                                        card: "shadow-none bg-transparent p-0 w-full",
+                                        header: "hidden", // We use our own CardHeader above for Paralegal
+                                        logoBox: "hidden",
+                                        footerAction: "hidden",
+                                        formButtonPrimary: "w-full py-3 px-4 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-sm mt-2",
+                                        formFieldInput: "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50/50 hover:bg-white text-sm shadow-none",
+                                        formFieldLabel: "text-sm font-medium text-gray-700 ml-1 mb-1.5",
+                                        socialButtonsBlockButton: "py-2.5 border border-gray-200 bg-white rounded-xl hover:bg-gray-50 text-gray-600 font-medium transition-all shadow-sm",
+                                        socialButtonsBlockButtonText: "font-medium text-sm text-gray-700",
+                                        dividerRow: "my-6",
+                                        dividerText: "text-xs tracking-widest text-gray-400 font-semibold uppercase",
+                                        identityPreview: "bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 mb-4",
+                                        formFieldAction: "text-primary hover:text-primary/80 font-medium text-xs",
+                                    }
+                                }}
+                            />
 
-                                    <div className="relative flex items-center justify-center">
-                                        <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200"></div></div>
-                                        <span className="relative bg-white px-4 text-xs tracking-widest text-gray-400 font-semibold uppercase">Or continue with email</span>
-                                    </div>
-
-                                    <Clerk.Field name="emailAddress" className="space-y-2">
-                                        <Clerk.Label className="text-sm font-medium text-gray-700 ml-1">Email address</Clerk.Label>
-                                        <Clerk.Input className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50/50 hover:bg-white" />
-                                        <Clerk.FieldError className="text-sm text-red-500 font-medium ml-1" />
-                                    </Clerk.Field>
-
-                                    <Clerk.Field name="password" className="space-y-2">
-                                        <Clerk.Label className="text-sm font-medium text-gray-700 ml-1">Password</Clerk.Label>
-                                        <Clerk.Input type="password" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50/50 hover:bg-white" />
-                                        <Clerk.FieldError className="text-sm text-red-500 font-medium ml-1" />
-                                    </Clerk.Field>
-
-                                    <input type="hidden" name="unsafe_metadata.role" value="paralegal" />
-
-                                    <SignUp.Action submit className="w-full py-3 px-4 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-sm">
-                                        Create Account
-                                    </SignUp.Action>
-
-                                    <div id="clerk-captcha" />
-                                </SignUp.Step>
-
-                                <SignUp.Step name="verifications" className="w-full flex flex-col gap-6 max-w-[320px]">
-                                    <SignUp.Strategy name="email_code">
-                                        <div className="space-y-6">
-                                            <div className="text-center space-y-2">
-                                                <p className="text-sm font-medium text-gray-700">Enter verification code sent to your email</p>
-                                            </div>
-                                            <Clerk.Field name="code" className="space-y-2">
-                                                <Clerk.Label className="text-sm font-medium text-gray-700 ml-1">Code</Clerk.Label>
-                                                <Clerk.Input className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50/50 hover:bg-white tracking-widest text-center" />
-                                                <Clerk.FieldError className="text-sm text-red-500 font-medium ml-1" />
-                                            </Clerk.Field>
-                                            <SignUp.Action submit className="w-full py-3 px-4 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-sm">
-                                                Verify
-                                            </SignUp.Action>
-                                        </div>
-                                    </SignUp.Strategy>
-                                </SignUp.Step>
-                            </SignUp.Root>
-
-                            <p className="text-center text-xs text-gray-500 mt-4">
+                            <p className="text-center text-xs text-gray-500 mt-6 pt-4 border-t border-gray-100 w-full">
                                 Already have an account?{" "}
                                 <Link to="/paralegal-login" className="text-primary hover:underline font-medium">
                                     Sign in here

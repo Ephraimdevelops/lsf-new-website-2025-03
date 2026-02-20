@@ -1,11 +1,10 @@
-import * as SignIn from "@clerk/elements/sign-in";
-import * as Clerk from "@clerk/elements/common";
+import { SignIn } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/clerk-react";
 import { useQuery, useMutation } from "convex/react";
 import { Navigate, Link } from "react-router-dom";
 import { api } from "../../convex/_generated/api";
 import { useEffect } from "react";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ArrowLeft } from "lucide-react";
 
 export default function Login() {
   const { isSignedIn, isLoaded } = useAuth();
@@ -41,152 +40,59 @@ export default function Login() {
       </div>
 
       <div className="w-full max-w-[440px] relative z-10 flex flex-col items-center">
-        {/* Cinematic Centered Logo */}
-        <Link to="/" className="mb-10 hover:opacity-80 transition-opacity">
-          <img
-            src="/lovable-uploads/c7c6a992-0b2f-4131-b0db-6a75a7c2e391.png"
-            alt="LSF Logo"
-            className="h-16 md:h-20 w-auto drop-shadow-sm"
-          />
+
+        <Link to="/" className="w-full flex items-center gap-2 text-gray-400 hover:text-gray-600 mb-6 transition-colors self-start ml-2">
+          <ArrowLeft className="h-4 w-4" />
+          <span className="text-sm font-medium">Back to Home</span>
         </Link>
-
-        {/* The True Custom Form Container */}
         <div className="w-full bg-white/80 backdrop-blur-xl rounded-[28px] shadow-[0_8px_40px_rgb(0,0,0,0.04)] border border-white p-8 sm:p-10 flex flex-col items-center">
+          <SignIn
+            path="/login"
+            routing="path"
+            signUpUrl="/signup"
+            appearance={{
+              layout: {
+                socialButtonsPlacement: "bottom",
+                logoImageUrl: "/lsf-favicon.png"
+              },
+              elements: {
+                rootBox: "w-full",
+                card: "shadow-none bg-transparent p-0 m-0 w-full max-w-none",
+                headerTitle: "text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mt-2",
+                headerSubtitle: "text-[15px] text-gray-500",
+                logoImage: "h-16 md:h-20 w-auto drop-shadow-sm mb-2",
+                footerAction: "hidden", // Hide clerk sign up link so we can use our custom one 
+                formButtonPrimary: "w-full py-4 px-4 bg-primary text-white rounded-2xl font-bold text-[15px] hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md mt-2",
+                formFieldInput: "w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-[15px] shadow-none",
+                formFieldLabelRow: "mb-2",
+                formFieldLabel: "text-sm font-semibold text-gray-700 ml-1",
+                socialButtonsBlockButton: "py-3 border border-gray-200 bg-white rounded-2xl hover:bg-gray-50 text-gray-600 font-semibold transition-all shadow-sm",
+                socialButtonsBlockButtonText: "font-semibold text-[14px] text-gray-700",
+                dividerRow: "my-8",
+                dividerText: "text-xs tracking-widest text-gray-400 font-semibold uppercase",
+                identityPreview: "bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 mb-4",
+                formFieldAction: "text-primary hover:text-primary/80 font-medium text-sm",
+                otpCodeFieldInput: "w-12 h-12 text-lg font-bold rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20",
+                alertText: "text-red-500 font-medium text-sm",
+                alertIcon: "text-red-500",
+                formContainer: "gap-4",
+              }
+            }}
+          />
 
-          <SignIn.Root>
-            {/* STEP 1: Email & Social */}
-            <SignIn.Step name="start" className="w-full flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-
-              <div className="text-center space-y-2">
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
-                  Welcome back
-                </h1>
-                <p className="text-[15px] text-gray-500">
-                  Sign in to access your dashboard
-                </p>
-              </div>
-
-              {/* Social Logins */}
-              <div className="grid grid-cols-2 gap-3">
-                <Clerk.Connection
-                  name="google"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all text-[14px] font-semibold text-gray-700 shadow-sm"
-                >
-                  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5" alt="Google" />
-                  Google
-                </Clerk.Connection>
-                <Clerk.Connection
-                  name="facebook"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all text-[14px] font-semibold text-gray-700 shadow-sm"
-                >
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" className="w-5 h-5" alt="Facebook" />
-                  Facebook
-                </Clerk.Connection>
-              </div>
-
-              <div className="flex items-center justify-center w-full relative">
-                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200"></div></div>
-                <span className="relative bg-white px-4 text-xs tracking-widest text-gray-400 font-semibold uppercase">Or continue with email</span>
-              </div>
-
-              {/* Email Form */}
-              <div className="flex flex-col gap-4">
-                <Clerk.Field name="identifier" className="flex flex-col gap-2">
-                  <Clerk.Label className="text-sm font-semibold text-gray-700 ml-1">Email address</Clerk.Label>
-                  <Clerk.Input className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-[15px]" type="email" placeholder="you@example.com" />
-                  <Clerk.FieldError className="text-sm text-red-500 font-medium ml-1" />
-                </Clerk.Field>
-
-                <SignIn.Action
-                  submit
-                  className="w-full py-4 px-4 bg-primary text-white rounded-2xl font-bold text-[15px] hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md mt-2"
-                >
-                  Continue
-                </SignIn.Action>
-              </div>
-            </SignIn.Step>
-
-            {/* STEP 2: Password */}
-            <SignIn.Step name="verifications" className="w-full animate-in fade-in slide-in-from-right-4 duration-500">
-              <SignIn.Strategy name="password">
-                <div className="w-full flex flex-col gap-8">
-
-                  <div className="text-center space-y-2">
-                    <SignIn.Action navigate="start" className="mb-4 inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors text-gray-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
-                    </SignIn.Action>
-                    <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
-                      Enter password
-                    </h1>
-                    <p className="text-[15px] text-gray-500">
-                      Welcome back! Please enter your password.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-4">
-                    <Clerk.Field name="password" className="flex flex-col gap-2">
-                      <div className="flex justify-between items-center ml-1">
-                        <Clerk.Label className="text-sm font-semibold text-gray-700">Password</Clerk.Label>
-                        {/* Using navigate instead of traditional links */}
-                        <button type="button" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                          Forgot password?
-                        </button>
-                      </div>
-                      <Clerk.Input className="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-[15px]" type="password" placeholder="••••••••" />
-                      <Clerk.FieldError className="text-sm text-red-500 font-medium ml-1" />
-                    </Clerk.Field>
-
-                    <SignIn.Action
-                      submit
-                      className="w-full py-4 px-4 bg-primary text-white rounded-2xl font-bold text-[15px] hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md mt-2"
-                    >
-                      Sign In
-                    </SignIn.Action>
-                  </div>
-                </div>
-              </SignIn.Strategy>
-
-              {/* Add support for forgot password resolution */}
-              <SignIn.Strategy name="reset_password_email_code">
-                <div className="w-full flex flex-col gap-6">
-                  <div className="text-center space-y-2">
-                    <h1 className="text-xl font-bold">Check your email</h1>
-                    <p className="text-sm text-gray-500">We sent a verification code to your email.</p>
-                  </div>
-                  <Clerk.Field name="code" className="flex flex-col gap-2">
-                    <Clerk.Label className="text-sm font-semibold text-gray-700 ml-1">Verification Code</Clerk.Label>
-                    <Clerk.Input className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:border-primary outline-none" type="text" />
-                    <Clerk.FieldError className="text-sm text-red-500" />
-                  </Clerk.Field>
-                  <SignIn.Action submit className="w-full py-4 px-4 bg-primary text-white rounded-2xl font-bold">Verify Code</SignIn.Action>
-                </div>
-              </SignIn.Strategy>
-            </SignIn.Step>
-          </SignIn.Root>
-        </div>
-
-        {/* Global Footer Links beneath the card for super-clean aesthetic */}
-        <div className="mt-8 text-center space-y-6 w-full">
-          <p className="text-[15px] text-gray-600 font-medium">
-            Don't have an account?{" "}
-            <Link to="/signup" className="text-primary font-bold hover:text-primary/80 transition-colors">
-              Sign up
+          {/* Custom Footer Links to blend perfectly with the Clerk box */}
+          <div className="mt-8 space-y-5 w-full">
+            <div className="text-center text-[15px] text-gray-600">
+              Don't have an account? <Link to="/signup" className="text-secondary-pink font-bold hover:underline transition-all">Sign up</Link>
+            </div>
+            <div className="relative flex items-center justify-center pt-2">
+              <div className="absolute inset-0 flex items-center pt-2"><div className="w-full border-t border-gray-200"></div></div>
+              <span className="relative bg-white/0 px-4 mt-2 text-[10px] tracking-[0.2em] text-gray-400 font-bold uppercase backdrop-blur-3xl">Professionals</span>
+            </div>
+            <Link to="/paralegal-login" className="flex items-center justify-center gap-2 text-sm text-gray-500 hover:text-primary transition-colors font-medium">
+              Paralegal Login Portal <ChevronRight className="h-4 w-4" />
             </Link>
-          </p>
-
-          <div className="flex items-center justify-center gap-3 opacity-60">
-            <div className="w-8 h-px bg-gray-400"></div>
-            <span className="text-[11px] text-gray-500 font-bold uppercase tracking-[0.15em]">Professionals</span>
-            <div className="w-8 h-px bg-gray-400"></div>
           </div>
-
-          <Link
-            to="/paralegal-login"
-            className="inline-flex items-center justify-center gap-2 text-[14px] text-gray-500 hover:text-primary font-semibold transition-colors"
-          >
-            <span>Paralegal Login Portal</span>
-            <ChevronRight className="w-4 h-4" />
-          </Link>
         </div>
 
       </div>
