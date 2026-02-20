@@ -58,7 +58,15 @@ export const ConvexClientProvider = ({ children }: { children: ReactNode }) => {
     }
 
     return (
-        <ClerkProvider publishableKey={publishableKey}>
+        <ClerkProvider
+            publishableKey={publishableKey}
+            appearance={{
+                layout: {
+                    showOptionalDevOrPreviewBanner: false,
+                    unsafe_disableDevelopmentModeWarnings: true
+                }
+            }}
+        >
             <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
                 {children}
             </ConvexProviderWithClerk>
