@@ -90,7 +90,7 @@ const NewsForm = ({ open, onClose, onCreated, editData }: NewsFormProps) => {
         excerpt: editData.excerpt || '',
         content: editData.content || '',
         category: editData.category || '',
-        date: editData.date?.split('T')[0] || new Date().toISOString().split('T')[0],
+        date: editData.date ? new Date(editData.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
         featured: editData.featured || false,
       });
       if (editData.image) {
