@@ -45,7 +45,7 @@ export default function Login() {
           <ArrowLeft className="h-4 w-4" />
           <span className="text-sm font-medium">Back to Home</span>
         </Link>
-        <div className="w-full bg-white/80 backdrop-blur-xl rounded-[28px] shadow-[0_8px_40px_rgb(0,0,0,0.04)] border border-white p-8 sm:p-10 flex flex-col items-center">
+        <div className="w-full flex flex-col items-center">
           <SignIn
             path="/login"
             routing="path"
@@ -53,7 +53,7 @@ export default function Login() {
             appearance={{
               layout: {
                 socialButtonsPlacement: "bottom",
-                logoImageUrl: "/lsf-favicon.png"
+                logoImageUrl: "/lovable-uploads/LSF Favicon.png"
               },
               elements: {
                 rootBox: "w-full",

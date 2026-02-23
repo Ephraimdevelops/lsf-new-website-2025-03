@@ -40,7 +40,7 @@ export default function Signup() {
         </Link>
 
         {/* The True Custom Form Container */}
-        <div className="w-full bg-white/80 backdrop-blur-xl rounded-[28px] shadow-[0_8px_40px_rgb(0,0,0,0.04)] border border-white p-8 sm:p-10 flex flex-col items-center">
+        <div className="w-full flex flex-col items-center">
 
           <SignUp
             path="/signup"
@@ -50,7 +50,7 @@ export default function Signup() {
             appearance={{
               layout: {
                 socialButtonsPlacement: "bottom",
-                logoImageUrl: "/lsf-favicon.png"
+                logoImageUrl: "/lovable-uploads/LSF Favicon.png"
               },
               elements: {
                 rootBox: "w-full",

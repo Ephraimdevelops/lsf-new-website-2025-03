@@ -5,7 +5,7 @@ const Logo = () => {
     <div className="flex-shrink-0">
       <Link to="/" className="flex items-center space-x-2 md:space-x-3 group">
         <img
-          src="/lsf-favicon.png"
+          src="/lovable-uploads/LSF Favicon.png"
           alt="LSF Logo"
           className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
         />

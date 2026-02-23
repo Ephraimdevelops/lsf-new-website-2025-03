@@ -22,11 +22,11 @@ const ParalegalLogin = () => {
                     <span>Back to Legal Help</span>
                 </Link>
 
-                <Card className="border-none shadow-2xl bg-white/95 backdrop-blur">
+                <Card className="border-none shadow-none bg-transparent">
                     <CardHeader className="text-center pb-0">
                         <div className="mx-auto mb-6 flex justify-center">
                             <img
-                                src="/lsf-favicon.png"
+                                src="/lovable-uploads/LSF Favicon.png"
                                 alt="LSF Logo"
                                 className="h-16 md:h-20 w-auto drop-shadow-sm"
                             />

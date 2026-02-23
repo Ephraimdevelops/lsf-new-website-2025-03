@@ -22,11 +22,11 @@ const ParalegalSignupAuth = () => {
                 </Link>
 
                 <div className="grid lg:grid-cols-1 gap-6">
-                    <Card className="border-none shadow-2xl bg-white/95 backdrop-blur">
+                    <Card className="border-none shadow-none bg-transparent">
                         <CardHeader className="text-center pb-2">
                             <div className="mx-auto mb-6 flex justify-center">
                                 <img
-                                    src="/lsf-favicon.png"
+                                    src="/lovable-uploads/LSF Favicon.png"
                                     alt="LSF Logo"
                                     className="h-16 md:h-20 w-auto drop-shadow-sm"
                                 />
