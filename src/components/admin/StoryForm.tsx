@@ -88,6 +88,34 @@ const StoryForm = ({ open, onClose, onSubmit, story, mode }: StoryFormProps) => 
         },
     });
 
+    React.useEffect(() => {
+        if (mode === 'edit' && story) {
+            form.reset({
+                title: story.title || '',
+                story: story.story || '',
+                quote: story.quote || '',
+                personName: story.personName || '',
+                location: story.location || 'Tanzania',
+                programId: story.programId || '',
+                featured: story.featured || false,
+                readTime: story.readTime || 5,
+            });
+        } else if (mode === 'create') {
+            form.reset({
+                title: '',
+                story: '',
+                quote: '',
+                personName: '',
+                location: 'Tanzania',
+                programId: '',
+                featured: false,
+                readTime: 5,
+            });
+            setImagePreview(null);
+            setSelectedImage(null);
+        }
+    }, [story, mode, form]);
+
     // Calculate read time from story content
     const calculateReadTime = (text: string): number => {
         const plainText = text.replace(/<[^>]*>/g, ' ');

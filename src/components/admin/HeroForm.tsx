@@ -87,12 +87,31 @@ const HeroForm = ({ open, onClose, onSubmit, hero, mode }: HeroFormProps) => {
         },
     });
 
-    // Update image preview when hero changes
+    // Reset form when hero or mode changes
     useEffect(() => {
-        if (hero?.image) {
-            setImagePreview(hero.image);
+        if (mode === 'edit' && hero) {
+            form.reset({
+                title: hero.title || '',
+                slug: hero.slug || '',
+                description: hero.description || '',
+                location: hero.location || 'Tanzania',
+                readTime: hero.readTime || 5,
+            });
+            if (hero.image) {
+                setImagePreview(hero.image);
+            }
+        } else if (mode === 'create') {
+            form.reset({
+                title: '',
+                slug: '',
+                description: '',
+                location: 'Tanzania',
+                readTime: 5,
+            });
+            setImagePreview(null);
+            setSelectedImage(null);
         }
-    }, [hero]);
+    }, [hero, mode, form]);
 
     // Generate slug from title
     const generateSlug = (title: string): string => {
