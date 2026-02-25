@@ -84,15 +84,20 @@ const MobileNavigation = ({
                 </SignOutButton>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <Link to="/login" className="block">
-                  <Button className="w-full justify-center bg-primary hover:bg-primary/90 text-white h-12 text-base font-semibold rounded-xl shadow-md">
-                    Join Our Portal
+                  <Button variant="outline" className="w-full justify-center h-12 text-base font-medium border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 flex items-center gap-2 group transition-all">
+                    <User className="h-5 w-5 text-gray-400 group-hover:text-primary transition-colors" />
+                    Portal Access
                   </Button>
                 </Link>
-                <p className="text-center text-xs text-gray-400">
-                  Secure access for all stakeholders
-                </p>
+                <div className="flex items-center justify-center gap-2 py-1">
+                  <div className="h-px w-8 bg-gray-100" />
+                  <p className="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-medium">
+                    Secure Authentication
+                  </p>
+                  <div className="h-px w-8 bg-gray-100" />
+                </div>
               </div>
             )}
           </div>

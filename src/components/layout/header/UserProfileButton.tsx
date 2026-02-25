@@ -36,10 +36,12 @@ const UserProfileButton = () => {
         return (
             <Link to="/login">
                 <Button
+                    variant="ghost"
                     size="sm"
-                    className="text-sm font-semibold bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all px-6 rounded-lg h-10"
+                    className="text-sm font-medium hover:text-primary flex items-center gap-2 px-3 group transition-all"
                 >
-                    Join Our Portal
+                    <User className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
+                    <span className="tracking-tight">Portal</span>
                 </Button>
             </Link>
         );

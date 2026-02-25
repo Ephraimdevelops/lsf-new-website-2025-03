@@ -12,10 +12,16 @@ export const get = query({
             team.map(async (member) => {
                 // If image looks like a storage ID (doesn't start with / or http), try to resolve it
                 if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
-                    const url = await ctx.storage.getUrl(member.image as any);
-                    if (url) {
-                        // Return BOTH the resolved URL for display AND the original storageId for saving
-                        return { ...member, image: url, storageId: member.image };
+                    try {
+                        const normalizedId = ctx.db.normalizeId("_storage", member.image as string);
+                        if (normalizedId) {
+                            const url = await ctx.storage.getUrl(normalizedId);
+                            if (url) {
+                                return { ...member, image: url, storageId: member.image };
+                            }
+                        }
+                    } catch (e) {
+                        // ignore broken storage Ids
                     }
                 }
                 return { ...member, storageId: undefined };
@@ -33,10 +39,15 @@ export const getById = query({
 
         // If image looks like a storage ID (doesn't start with / or http), try to resolve it
         if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
-            const url = await ctx.storage.getUrl(member.image as any);
-            if (url) {
-                return { ...member, image: url, storageId: member.image };
-            }
+            try {
+                const normalizedId = ctx.db.normalizeId("_storage", member.image as string);
+                if (normalizedId) {
+                    const url = await ctx.storage.getUrl(normalizedId);
+                    if (url) {
+                        return { ...member, image: url, storageId: member.image };
+                    }
+                }
+            } catch (e) { }
         }
         return { ...member, storageId: undefined };
     },
