@@ -30,6 +30,8 @@ export interface Publication extends BaseEntity {
   image: string;
   file: string;
   type: 'report' | 'policy-brief' | 'research' | 'guide' | 'newsletter' | 'annual-report';
+  pdfUrl?: string;
+  downloadUrl?: string; // Legacy
   featured?: boolean;
   downloadCount?: number;
   fileSize?: string;
@@ -162,4 +164,4 @@ export interface SearchFilters {
 }
 
 // Legacy compatibility - keeping for backward compatibility
-export interface NewsPost extends News {}
+export interface NewsPost extends News { }
