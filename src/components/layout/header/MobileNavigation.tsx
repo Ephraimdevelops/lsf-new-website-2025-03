@@ -84,17 +84,15 @@ const MobileNavigation = ({
                 </SignOutButton>
               </div>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <Link to="/login" className="block">
-                  <Button variant="outline" className="w-full justify-center">
-                    Sign In
+                  <Button className="w-full justify-center bg-primary hover:bg-primary/90 text-white h-12 text-base font-semibold rounded-xl shadow-md">
+                    Join Our Portal
                   </Button>
                 </Link>
-                <Link to="/login?screen=signup" className="block">
-                  <Button className="w-full justify-center bg-primary hover:bg-primary/90 text-white">
-                    Sign Up
-                  </Button>
-                </Link>
+                <p className="text-center text-xs text-gray-400">
+                  Secure access for all stakeholders
+                </p>
               </div>
             )}
           </div>

@@ -34,25 +34,14 @@ const UserProfileButton = () => {
     // Not signed in - show login/signup buttons
     if (!isSignedIn) {
         return (
-            <div className="flex items-center gap-2">
-                <Link to="/login">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-sm font-medium hover:text-primary"
-                    >
-                        Sign In
-                    </Button>
-                </Link>
-                <Link to="/login?screen=signup">
-                    <Button
-                        size="sm"
-                        className="text-sm font-medium bg-primary hover:bg-primary/90 text-white shadow-sm"
-                    >
-                        Sign Up
-                    </Button>
-                </Link>
-            </div>
+            <Link to="/login">
+                <Button
+                    size="sm"
+                    className="text-sm font-semibold bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all px-6 rounded-lg h-10"
+                >
+                    Join Our Portal
+                </Button>
+            </Link>
         );
     }
 
