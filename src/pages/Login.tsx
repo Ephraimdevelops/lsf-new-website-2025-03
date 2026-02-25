@@ -53,14 +53,14 @@ export default function Login() {
             appearance={{
               layout: {
                 socialButtonsPlacement: "bottom",
-                logoImageUrl: "/lovable-uploads/LSF Favicon.png"
+                logoImageUrl: "/uploads/oimages/lsf-logo.png"
               },
               elements: {
                 rootBox: "w-full",
-                card: "shadow-none bg-transparent p-0 m-0 w-full max-w-none",
+                card: "shadow-none border-none bg-transparent p-0 m-0 w-full max-w-none",
                 headerTitle: "text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mt-2",
                 headerSubtitle: "text-[15px] text-gray-500",
-                logoImage: "h-16 md:h-20 w-auto drop-shadow-sm mb-2",
+                logoImage: "h-20 md:h-24 w-auto drop-shadow-none mb-2",
                 footerAction: "hidden", // Hide clerk sign up link so we can use our custom one 
                 formButtonPrimary: "w-full py-4 px-4 bg-primary text-white rounded-2xl font-bold text-[15px] hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md mt-2",
                 formFieldInput: "w-full px-5 py-4 rounded-2xl border border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-[15px] shadow-none",

@@ -26,9 +26,9 @@ const ParalegalSignupAuth = () => {
                         <CardHeader className="text-center pb-2">
                             <div className="mx-auto mb-6 flex justify-center">
                                 <img
-                                    src="/lovable-uploads/LSF Favicon.png"
+                                    src="/uploads/oimages/lsf-logo.png"
                                     alt="LSF Logo"
-                                    className="h-16 md:h-20 w-auto drop-shadow-sm"
+                                    className="h-20 md:h-24 w-auto drop-shadow-none"
                                 />
                             </div>
                             <CardTitle className="text-2xl font-bold text-gray-900">Join as a Paralegal</CardTitle>
@@ -63,7 +63,7 @@ const ParalegalSignupAuth = () => {
                                 appearance={{
                                     elements: {
                                         rootBox: "w-full",
-                                        card: "shadow-none bg-transparent p-0 w-full",
+                                        card: "shadow-none border-none bg-transparent p-0 w-full",
                                         header: "hidden", // We use our own CardHeader above for Paralegal
                                         logoBox: "hidden",
                                         footerAction: "hidden",
