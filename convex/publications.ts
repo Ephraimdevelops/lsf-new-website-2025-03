@@ -37,20 +37,17 @@ export const get = query({
                 let pdfUrl = item.pdfUrl;
 
                 if (item.coverImageStorageId) {
-                    const url = await ctx.storage.getUrl(item.coverImageStorageId);
-                    if (url) coverImageUrl = url;
+                    try {
+                        const url = await ctx.storage.getUrl(item.coverImageStorageId as Id<"_storage">);
+                        if (url) coverImageUrl = url;
+                    } catch (e) { }
                 }
 
-                // Resolve PDF URL if it's a storage ID (heuristic: lacks http prefix and looks like ID)
-                // Or if we had a pdfStorageId field (which we don't officially in schema, but might have added)
-                // The form saves ID into 'pdfUrl'.
                 if (item.pdfUrl && !item.pdfUrl.startsWith('http')) {
                     try {
                         const url = await ctx.storage.getUrl(item.pdfUrl as Id<"_storage">);
                         if (url) pdfUrl = url;
-                    } catch (e) {
-                        // ignore invalid ID
-                    }
+                    } catch (e) { }
                 }
 
                 return { ...item, coverImageUrl, pdfUrl };
@@ -73,22 +70,23 @@ export const getById = query({
         let pdfUrl = item.pdfUrl;
 
         if (item.coverImageStorageId) {
-            const url = await ctx.storage.getUrl(item.coverImageStorageId);
-            if (url) coverImageUrl = url;
+            try {
+                const url = await ctx.storage.getUrl(item.coverImageStorageId as Id<"_storage">);
+                if (url) coverImageUrl = url;
+            } catch (e) { }
         }
 
         // Resolve PDF URL if it's a storage ID
         if (item.pdfStorageId) {
-            const url = await ctx.storage.getUrl(item.pdfStorageId);
-            if (url) pdfUrl = url;
+            try {
+                const url = await ctx.storage.getUrl(item.pdfStorageId as Id<"_storage">);
+                if (url) pdfUrl = url;
+            } catch (e) { }
         } else if (item.pdfUrl && !item.pdfUrl.startsWith('http')) {
             try {
-                // Legacy or direct ID usage fallback
                 const url = await ctx.storage.getUrl(item.pdfUrl as Id<"_storage">);
                 if (url) pdfUrl = url;
-            } catch (e) {
-                // ignore
-            }
+            } catch (e) { }
         }
 
         return { ...item, coverImageUrl, pdfUrl };
