@@ -21,7 +21,7 @@ const Publications = () => {
   const types = ['all', 'Report', 'Research', 'Guide', 'Policy', 'Brief', 'Annual Report'];
 
   const handleDownload = (publication: any) => {
-    window.open(publication.file || publication.fileUrl, '_blank');
+    window.open(publication.pdfUrl || publication.downloadUrl || publication.file || publication.fileUrl, '_blank');
   };
 
   const getTypeColor = (type: string) => {

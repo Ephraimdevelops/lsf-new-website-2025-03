@@ -8,6 +8,7 @@ export interface Publication {
   type: 'report' | 'policy-brief' | 'research' | 'guide' | 'newsletter';
   image: string;
   downloadUrl?: string;
+  pdfUrl?: string;
   featured?: boolean;
   seoTitle?: string;
   seoDescription?: string;
@@ -145,14 +146,14 @@ export const dataService = {
 
   // Search functionality
   searchPublications: (query: string): Publication[] => {
-    return publicationsData.filter(pub => 
+    return publicationsData.filter(pub =>
       pub.title.toLowerCase().includes(query.toLowerCase()) ||
       pub.excerpt.toLowerCase().includes(query.toLowerCase())
     );
   },
 
   searchNews: (query: string): NewsItem[] => {
-    return newsData.filter(news => 
+    return newsData.filter(news =>
       news.title.toLowerCase().includes(query.toLowerCase()) ||
       news.excerpt.toLowerCase().includes(query.toLowerCase())
     );

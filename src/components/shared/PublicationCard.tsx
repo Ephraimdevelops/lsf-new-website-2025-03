@@ -34,25 +34,31 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
             {new Date(publication.date).toLocaleDateString()}
           </span>
         </div>
-        
+
         <h3 className="font-bold text-lg mb-4 line-clamp-2 text-neutral-dark group-hover:text-secondary-teal transition-colors">
           {publication.title}
         </h3>
-        
+
         <p className="text-sm text-gray-600 mb-6 line-clamp-2 leading-relaxed">
           {publication.excerpt}
         </p>
-        
+
         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <Link 
-            to={`/publications/${publication.id}`} 
+          <Link
+            to={`/publications/${publication.id}`}
             className="text-secondary-teal text-sm font-semibold hover:underline flex items-center"
           >
             Read More
             <ArrowRight size={14} className="ml-2" />
           </Link>
           {publication.downloadUrl && (
-            <button className="text-gray-500 hover:text-secondary-teal transition-colors p-2 rounded-full hover:bg-secondary-teal/10">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                window.open(publication.pdfUrl || publication.downloadUrl, '_blank');
+              }}
+              className="text-gray-500 hover:text-secondary-teal transition-colors p-2 rounded-full hover:bg-secondary-teal/10"
+            >
               <Download size={16} />
             </button>
           )}
@@ -63,18 +69,17 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
 
   return (
     <Link to={`/publications/${publication.id}`} className="group block">
-      <div className={`bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100 hover:border-secondary-teal/30 transform hover:-translate-y-4 ${
-        variant === 'featured' ? 'md:flex' : ''
-      }`}>
+      <div className={`bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100 hover:border-secondary-teal/30 transform hover:-translate-y-4 ${variant === 'featured' ? 'md:flex' : ''
+        }`}>
         <div className={`${variant === 'featured' ? 'md:w-1/2' : ''} relative h-64 overflow-hidden`}>
-          <img 
-            src={publication.image} 
-            alt={publication.title} 
+          <img
+            src={publication.image}
+            alt={publication.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           {/* Updated gradient to use maroon instead of black */}
           <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
-          
+
           {/* Enhanced Type Badge */}
           <div className="absolute top-6 left-6">
             <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold shadow-xl border ${getTypeColor(publication.type)}`}>
@@ -91,39 +96,44 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
             </span>
           </div>
         </div>
-        
+
         <div className={`p-8 ${variant === 'featured' ? 'md:w-1/2 md:p-12' : ''}`}>
           <div className="flex items-center justify-between mb-6">
             <span className="text-sm text-gray-500 flex items-center bg-gray-50 px-4 py-2 rounded-full">
               <Calendar size={14} className="mr-2" />
-              {new Date(publication.date).toLocaleDateString('en-US', { 
-                year: 'numeric', 
+              {new Date(publication.date).toLocaleDateString('en-US', {
+                year: 'numeric',
                 month: 'long'
               })}
             </span>
           </div>
-          
-          <h3 className={`font-bold mb-6 group-hover:text-secondary-teal transition-colors duration-300 ${
-            variant === 'featured' ? 'text-3xl' : 'text-xl'
-          } line-clamp-2 leading-tight`}>
+
+          <h3 className={`font-bold mb-6 group-hover:text-secondary-teal transition-colors duration-300 ${variant === 'featured' ? 'text-3xl' : 'text-xl'
+            } line-clamp-2 leading-tight`}>
             {publication.title}
           </h3>
-          
+
           <p className="text-neutral-gray text-lg mb-8 line-clamp-3 leading-relaxed">
             {publication.excerpt}
           </p>
-          
+
           <div className="flex items-center justify-between pt-6 border-t border-gray-100">
             <span className="inline-flex items-center text-secondary-teal text-sm font-bold group-hover:underline uppercase tracking-wide">
               Read Full Publication
               <ArrowRight size={16} className="ml-3 transition-transform group-hover:translate-x-2" />
             </span>
-            
-            {publication.downloadUrl && (
-              <span className="inline-flex items-center bg-secondary-teal/10 hover:bg-secondary-teal hover:text-white text-secondary-teal px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 border-2 border-secondary-teal/20">
+
+            {(publication.downloadUrl || publication.pdfUrl) && (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open(publication.pdfUrl || publication.downloadUrl, '_blank');
+                }}
+                className="inline-flex items-center bg-secondary-teal/10 hover:bg-secondary-teal hover:text-white text-secondary-teal px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 border-2 border-secondary-teal/20"
+              >
                 <Download size={16} className="mr-2" />
                 Download PDF
-              </span>
+              </button>
             )}
           </div>
         </div>

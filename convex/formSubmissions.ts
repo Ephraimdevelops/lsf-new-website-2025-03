@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { api } from "./_generated/api";
 
 // ==========================================
 // RATE LIMITING & SECURITY HELPERS
@@ -82,6 +83,27 @@ export const submitContact = mutation({
             submittedAt: Date.now(),
             status: "new",
         });
+
+        // Send email notification to info@lsftz.org
+        try {
+            await ctx.scheduler.runAfter(0, api.resend.sendTransactionalEmail, {
+                to: "info@lsftz.org",
+                subject: `New Contact Submission: ${args.subject}`,
+                html: `
+                    <h2>New Contact Form Submission</h2>
+                    <p><strong>Name:</strong> ${args.name}</p>
+                    <p><strong>Email:</strong> ${args.email}</p>
+                    <p><strong>Phone:</strong> ${args.phone || "N/A"}</p>
+                    <p><strong>Category:</strong> ${args.category}</p>
+                    <p><strong>Message:</strong></p>
+                    <p>${args.message.replace(/\n/g, "<br>")}</p>
+                `,
+                replyTo: args.email
+            });
+        } catch (error) {
+            console.error("Failed to schedule email notification", error);
+        }
+
         return { success: true, id };
     },
 });
@@ -157,6 +179,28 @@ export const submitWhistleblowerReport = mutation({
             status: "new",
             priority: "medium",
         });
+
+        // Send email notification to info@lsftz.org
+        try {
+            await ctx.scheduler.runAfter(0, api.resend.sendTransactionalEmail, {
+                to: "info@lsftz.org",
+                subject: `New Whistleblower Report Submitted`,
+                html: `
+                    <h2>New Whistleblower Report</h2>
+                    <p><strong>Type:</strong> ${args.reportType}</p>
+                    <p><strong>Anonymous:</strong> ${args.isAnonymous ? "Yes" : "No"}</p>
+                    <p><strong>Contact Email:</strong> ${args.contactEmail || "Not provided"}</p>
+                    <p><strong>Contact Field:</strong> ${args.contactPhone || "Not provided"}</p>
+                    <p><strong>Description:</strong></p>
+                    <p>${args.description.replace(/\n/g, "<br>")}</p>
+                    <p>Please check the admin dashboard for full details and evidence attachments.</p>
+                `,
+                replyTo: args.contactEmail // Note: Resend expects a valid email format if we set it
+            });
+        } catch (error) {
+            console.error("Failed to schedule email notification", error);
+        }
+
         return { success: true, id };
     },
 });
@@ -272,6 +316,27 @@ export const submitParalegalApplication = mutation({
             submittedAt: Date.now(),
             status: "pending",
         });
+
+        // Send email notification to info@lsftz.org
+        try {
+            await ctx.scheduler.runAfter(0, api.resend.sendTransactionalEmail, {
+                to: "info@lsftz.org",
+                subject: `New Paralegal Application: ${args.fullName}`,
+                html: `
+                    <h2>New Paralegal Application</h2>
+                    <p><strong>Name:</strong> ${args.fullName}</p>
+                    <p><strong>Email:</strong> ${args.email}</p>
+                    <p><strong>Phone:</strong> ${args.phone}</p>
+                    <p><strong>Location:</strong> ${args.region}, ${args.district}${args.ward ? ', ' + args.ward : ''}</p>
+                    <p><strong>Education:</strong> ${args.education}</p>
+                    <p><strong>Experience:</strong> ${args.experience}</p>
+                    <p>Please review pending applications in the admin dashboard.</p>
+                `,
+                replyTo: args.email
+            });
+        } catch (error) {
+            console.error("Failed to schedule email notification", error);
+        }
 
         return { success: true, id };
     },
