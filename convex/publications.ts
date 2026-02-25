@@ -61,9 +61,12 @@ export const get = query({
 
 // Get single publication
 export const getById = query({
-    args: { id: v.id("publications") },
+    args: { id: v.string() },
     handler: async (ctx, args) => {
-        const item = await ctx.db.get(args.id);
+        const normalizedId = ctx.db.normalizeId("publications", args.id);
+        if (!normalizedId) return null;
+
+        const item = await ctx.db.get(normalizedId);
         if (!item) return null;
 
         let coverImageUrl = item.coverImageUrl;
@@ -213,13 +216,16 @@ export const remove = mutation({
 
 // Increment download count (Public - called on download click)
 export const incrementDownloadCount = mutation({
-    args: { id: v.id("publications") },
+    args: { id: v.string() },
     handler: async (ctx, args) => {
-        const publication = await ctx.db.get(args.id);
+        const normalizedId = ctx.db.normalizeId("publications", args.id);
+        if (!normalizedId) throw new Error("Invalid ID format");
+
+        const publication = await ctx.db.get(normalizedId);
         if (!publication) throw new Error("Publication not found");
 
         const currentCount = publication.downloadCount || 0;
-        await ctx.db.patch(args.id, {
+        await ctx.db.patch(normalizedId, {
             downloadCount: currentCount + 1,
         });
 

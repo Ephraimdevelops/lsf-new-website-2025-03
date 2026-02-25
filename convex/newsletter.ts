@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { api } from "./_generated/api";
 
 // ==========================================
 // NEWSLETTER SUBSCRIBERS
@@ -41,6 +42,22 @@ export const subscribe = mutation({
             openCount: 0,
             clickCount: 0,
         });
+
+        // Send notification email to admin
+        try {
+            await ctx.scheduler.runAfter(0, api.resend.sendTransactionalEmail, {
+                to: "info@lsftz.org",
+                subject: "New Newsletter Subscriber",
+                html: `
+                    <h2>New Newsletter Subscription</h2>
+                    <p><strong>Email:</strong> ${args.email}</p>
+                    <p><strong>Name:</strong> ${args.firstName || ""} ${args.lastName || ""}</p>
+                    <p><strong>Source:</strong> ${args.source || "website"}</p>
+                `
+            });
+        } catch (error) {
+            console.error("Failed to schedule newsletter notification", error);
+        }
 
         return { success: true, message: "Successfully subscribed!" };
     },

@@ -184,8 +184,8 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
       }
 
       if (selectedFile) {
-        if (selectedFile.size > 20 * 1024 * 1024) { // 20MB limit for PDFs
-          toast({ title: "File too large", description: "PDF must be less than 20MB", variant: "destructive" });
+        if (selectedFile.size > 100 * 1024 * 1024) { // 100MB limit for PDFs
+          toast({ title: "File too large", description: "PDF must be less than 100MB", variant: "destructive" });
           setSubmitting(false);
           return;
         }
@@ -408,7 +408,7 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
                   <label htmlFor="file-upload" className="cursor-pointer">
                     <Upload className="h-8 w-8 mx-auto mb-2 text-gray-400" />
                     <p className="text-sm text-gray-600 font-calibri">
-                      {selectedFile ? selectedFile.name : 'Click to upload PDF'}
+                      {selectedFile ? selectedFile.name : (mode === 'edit' && publication?.pdfUrl ? 'Replace existing PDF' : 'Click to upload PDF')}
                     </p>
                   </label>
                 </div>
@@ -425,9 +425,13 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
                     id="cover-upload"
                   />
                   <label htmlFor="cover-upload" className="cursor-pointer">
-                    <ImageIcon className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                    {mode === 'edit' && publication?.coverImageUrl && !selectedCoverImage ? (
+                      <img src={publication.coverImageUrl} alt="Cover preview" className="h-24 mx-auto mb-2 object-contain rounded" />
+                    ) : (
+                      <ImageIcon className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                    )}
                     <p className="text-sm text-gray-600 font-calibri">
-                      {selectedCoverImage ? selectedCoverImage.name : 'Click to upload Cover'}
+                      {selectedCoverImage ? selectedCoverImage.name : (mode === 'edit' && publication?.coverImageUrl ? 'Replace existing Cover' : 'Click to upload Cover')}
                     </p>
                   </label>
                 </div>
