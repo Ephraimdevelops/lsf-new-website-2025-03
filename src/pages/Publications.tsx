@@ -8,6 +8,7 @@ import { usePublications } from '@/hooks/usePublications';
 import LoadingState from '@/components/shared/LoadingState';
 import ErrorState from '@/components/shared/ErrorState';
 import CinematicHero from '@/components/shared/CinematicHero';
+import { forceDownload } from '@/utils/download';
 
 const Publications = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,8 +21,18 @@ const Publications = () => {
   // Common types: Report, Research, Guide, Brief.
   const types = ['all', 'Report', 'Research', 'Guide', 'Policy', 'Brief', 'Annual Report'];
 
-  const handleDownload = (publication: any) => {
-    window.open(publication.pdfUrl || publication.downloadUrl || publication.file || publication.fileUrl, '_blank');
+  const handleDownloadClick = async (publication: any) => {
+    const url = publication.pdfUrl || publication.downloadUrl || publication.file || publication.fileUrl;
+    if (url) {
+      await forceDownload(url, `${publication.title}.pdf`);
+    }
+  };
+
+  const handlePreview = (publication: any) => {
+    const url = publication.pdfUrl || publication.downloadUrl || publication.file || publication.fileUrl;
+    if (url) {
+      window.open(url, '_blank');
+    }
   };
 
   const getTypeColor = (type: string) => {
@@ -124,8 +135,7 @@ const Publications = () => {
                 {publications.map((publication) => (
                   <article key={publication.id} className="group flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-500 hover:-translate-y-1">
 
-                    {/* Image Header with Badge */}
-                    <div className="relative h-56 overflow-hidden bg-gray-50 flex-shrink-0">
+                    <Link to={`/publications/${publication.id}`} className="block relative h-56 overflow-hidden bg-gray-50 flex-shrink-0">
                       <img
                         src={publication.image || "/lovable-uploads/placeholder.svg"}
                         alt={publication.title}
@@ -138,46 +148,54 @@ const Publications = () => {
                           {publication.type}
                         </span>
                       </div>
-                    </div>
+                    </Link>
 
                     {/* Content Area */}
                     <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex items-center text-gray-500 text-xs font-medium mb-3">
-                        <Calendar className="h-3.5 w-3.5 mr-1.5" />
-                        {new Date(publication.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </div>
+                      <Link to={`/publications/${publication.id}`} className="block">
+                        <div className="flex items-center text-gray-500 text-xs font-medium mb-3">
+                          <Calendar className="h-3.5 w-3.5 mr-1.5" />
+                          {new Date(publication.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </div>
 
-                      <h3 className="text-[18px] font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors leading-snug line-clamp-2">
-                        {publication.title}
-                      </h3>
+                        <h3 className="text-[18px] font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors leading-snug line-clamp-2">
+                          {publication.title}
+                        </h3>
 
-                      <p className="text-gray-600 text-[14px] leading-relaxed mb-6 line-clamp-3 flex-grow">
-                        {publication.excerpt}
-                      </p>
+                        <p className="text-gray-600 text-[14px] leading-relaxed mb-6 line-clamp-3 flex-grow">
+                          {publication.excerpt}
+                        </p>
+                      </Link>
 
-                      <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-50">
+                      <div className="flex flex-col sm:flex-row items-center gap-3 mt-auto pt-4 border-t border-gray-50">
                         {publication.pdfUrl && (
                           <button
                             onClick={(e) => {
                               e.preventDefault();
-                              handleDownload(publication);
+                              e.stopPropagation();
+                              handleDownloadClick(publication);
                             }}
-                            className="flex-1 flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary text-primary hover:text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all"
+                            className="w-full flex-1 flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary text-primary hover:text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all"
                           >
                             <Download size={16} />
                             <span>Download PDF</span>
                           </button>
                         )}
-                        <Link to={`/publications/${publication.id}`} className="flex-1">
-                          <button className="w-full flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all">
-                            <Eye size={16} />
-                            <span>Read More</span>
-                          </button>
-                        </Link>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handlePreview(publication);
+                          }}
+                          className="w-full flex-1 flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all"
+                        >
+                          <Eye size={16} />
+                          <span>Preview</span>
+                        </button>
                       </div>
                     </div>
                   </article>

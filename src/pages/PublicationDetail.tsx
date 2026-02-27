@@ -11,6 +11,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Separator } from '../components/ui/separator';
 import { useVisitorId } from '../hooks/useVisitorId';
+import { forceDownload } from '@/utils/download';
 
 const PublicationDetail = () => {
   const { publicationId } = useParams<{ publicationId: string }>();
@@ -44,7 +45,7 @@ const PublicationDetail = () => {
     return () => { document.title = 'Legal Services Facility'; };
   }, [publication, publicationId, logEvent, visitorId]);
 
-  const trackDownload = () => {
+  const trackAndDownload = async () => {
     if (publication) {
       // Increment the old download counter (legacy)
       incrementDownload({ id: publication.id });
@@ -61,6 +62,10 @@ const PublicationDetail = () => {
           type: publication.type
         },
       });
+
+      if (publication.pdfUrl) {
+        await forceDownload(publication.pdfUrl, `${publication.title}.pdf`);
+      }
     }
   };
 
@@ -121,17 +126,16 @@ const PublicationDetail = () => {
               </div>
 
               <div className="flex flex-wrap gap-4 mb-8">
-                <a
-                  href={publication.pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={trackDownload}
+                <Button
+                  className="gap-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    trackAndDownload();
+                  }}
                 >
-                  <Button className="gap-2">
-                    <Download className="h-4 w-4" />
-                    Download Publication
-                  </Button>
-                </a>
+                  <Download className="h-4 w-4" />
+                  Download Publication
+                </Button>
 
                 <Button variant="outline" className="gap-2">
                   <Share2 className="h-4 w-4" />

@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Download, Calendar, FileText, Eye } from 'lucide-react';
 import { Publication } from '@/services/dataService';
+import { forceDownload } from '@/utils/download';
 
 interface PublicationCardProps {
   publication: Publication;
@@ -43,21 +44,28 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
           {publication.excerpt}
         </p>
 
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <Link
-            to={`/publications/${publication.id}`}
-            className="text-secondary-teal text-sm font-semibold hover:underline flex items-center"
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100 relative z-10">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const url = publication.pdfUrl || publication.downloadUrl;
+              if (url) window.open(url, '_blank');
+            }}
+            className="text-secondary-teal text-sm font-semibold hover:underline flex items-center bg-transparent border-none cursor-pointer"
           >
-            Read More
+            Preview
             <ArrowRight size={14} className="ml-2" />
-          </Link>
+          </button>
           {publication.downloadUrl && (
             <button
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
-                window.open(publication.pdfUrl || publication.downloadUrl, '_blank');
+                e.stopPropagation();
+                const url = publication.pdfUrl || publication.downloadUrl;
+                if (url) await forceDownload(url, `${publication.title}.pdf`);
               }}
-              className="text-gray-500 hover:text-secondary-teal transition-colors p-2 rounded-full hover:bg-secondary-teal/10"
+              className="text-gray-500 hover:text-secondary-teal transition-colors p-2 rounded-full hover:bg-secondary-teal/10 cursor-pointer"
             >
               <Download size={16} />
             </button>
@@ -117,19 +125,29 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
             {publication.excerpt}
           </p>
 
-          <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-            <span className="inline-flex items-center text-secondary-teal text-sm font-bold group-hover:underline uppercase tracking-wide">
-              Read Full Publication
+          <div className="flex items-center justify-between pt-6 border-t border-gray-100 relative z-10">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const url = publication.pdfUrl || publication.downloadUrl;
+                if (url) window.open(url, '_blank');
+              }}
+              className="inline-flex items-center text-secondary-teal text-sm font-bold group-hover:underline uppercase tracking-wide bg-transparent border-none cursor-pointer"
+            >
+              Preview
               <ArrowRight size={16} className="ml-3 transition-transform group-hover:translate-x-2" />
-            </span>
+            </button>
 
             {(publication.downloadUrl || publication.pdfUrl) && (
               <button
-                onClick={(e) => {
+                onClick={async (e) => {
                   e.preventDefault();
-                  window.open(publication.pdfUrl || publication.downloadUrl, '_blank');
+                  e.stopPropagation();
+                  const url = publication.pdfUrl || publication.downloadUrl;
+                  if (url) await forceDownload(url, `${publication.title}.pdf`);
                 }}
-                className="inline-flex items-center bg-secondary-teal/10 hover:bg-secondary-teal hover:text-white text-secondary-teal px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 border-2 border-secondary-teal/20"
+                className="inline-flex items-center bg-secondary-teal/10 hover:bg-secondary-teal hover:text-white text-secondary-teal px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 border-2 border-secondary-teal/20 cursor-pointer"
               >
                 <Download size={16} className="mr-2" />
                 Download PDF

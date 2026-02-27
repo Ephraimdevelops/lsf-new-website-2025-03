@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Calendar, Download, ExternalLink, Sparkles } from 'lucide-react';
 import Typography from '@/components/shared/Typography';
+import { forceDownload } from '@/utils/download';
 
 interface Publication {
   id: string;
@@ -34,7 +35,7 @@ const PublicationCard = ({ publication }: PublicationCardProps) => {
           </div>
         )}
         <div className="relative h-36 overflow-hidden">
-          <img 
+          <img
             src={publication.image}
             alt={publication.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -52,7 +53,7 @@ const PublicationCard = ({ publication }: PublicationCardProps) => {
         <div className="p-5 pb-4">
           <div className="flex items-center text-xs text-neutral-gray mb-2">
             <Calendar size={12} className="mr-2" />
-            {new Date(publication.date).toLocaleDateString('en-US', { 
+            {new Date(publication.date).toLocaleDateString('en-US', {
               month: 'short',
               day: 'numeric',
               year: 'numeric'
@@ -67,21 +68,30 @@ const PublicationCard = ({ publication }: PublicationCardProps) => {
           <div className="flex items-center justify-between pt-2 border-t border-gray-100">
             <span className="text-xs text-neutral-gray font-medium">{publication.fileSize}</span>
             <div className="flex items-center gap-2">
-              <Link 
-                to={`/publications/${publication.id}`}
-                className="inline-flex items-center text-secondary-teal hover:text-secondary-teal-dark transition-colors font-bold text-xs"
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (publication.downloadUrl) window.open(publication.downloadUrl, '_blank');
+                }}
+                className="inline-flex items-center text-secondary-teal hover:text-secondary-teal-dark transition-colors font-bold text-xs bg-transparent border-none cursor-pointer"
               >
-                <Typography variant="small" className="font-bold">View</Typography>
+                <Typography variant="small" className="font-bold">Preview</Typography>
                 <ExternalLink className="ml-1 h-3 w-3" />
-              </Link>
-              <a 
-                href={publication.downloadUrl}
-                className="bg-gradient-to-r from-secondary-teal to-secondary-teal/80 text-white px-3 py-2 rounded-full flex items-center hover:shadow-lg transition-all text-xs font-black shadow-md"
-                download
+              </button>
+              <button
+                onClick={async (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (publication.downloadUrl) {
+                    await forceDownload(publication.downloadUrl, `${publication.title}.pdf`);
+                  }
+                }}
+                className="bg-gradient-to-r from-secondary-teal to-secondary-teal/80 text-white px-3 py-2 rounded-full flex items-center hover:shadow-lg transition-all text-xs font-black shadow-md cursor-pointer"
               >
                 <Download size={12} className="mr-2" />
                 Download
-              </a>
+              </button>
             </div>
           </div>
         </div>
