@@ -39,7 +39,7 @@ const ProgramsHero = () => {
               <img
                 src={img}
                 alt={`Programs slide ${idx + 1}`}
-                className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-[10000ms] ease-linear"
+                className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-[10s] ease-linear"
               />
             </div>
           ))}
