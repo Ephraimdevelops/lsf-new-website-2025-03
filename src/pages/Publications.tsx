@@ -139,114 +139,92 @@ const Publications = () => {
         </div>
       </section>
 
-      {/* Publications Grid - Insta Card Style */}
-      <section className="py-16 bg-neutral-50 min-h-[50vh]">
-        <div className="container mx-auto px-4">
-          {publications.length === 0 ? (
-            <div className="text-center py-20 bg-white rounded-3xl border border-neutral-100 shadow-sm max-w-2xl mx-auto">
-              <BookOpen className="h-16 w-16 mx-auto text-neutral-300 mb-4" />
-              <h3 className="text-2xl font-bold text-neutral-900 mb-2">No Publications Found</h3>
-              <p className="text-neutral-500 mb-8">
-                {searchTerm || selectedType !== 'all'
-                  ? "We couldn't find any documents matching your current filters."
-                  : "Check back soon for new publications."
-                }
-              </p>
-              {(searchTerm || selectedType !== 'all') && (
-                <Button onClick={() => { setSearchTerm(''); setSelectedType('all'); }} className="rounded-full px-8">
-                  Clear All Filters
-                </Button>
-              )}
-            </div>
-          ) : (
-            <>
-              <div className="mb-8 flex items-center justify-between">
-                <p className="text-neutral-500 font-medium">
-                  Showing <span className="text-neutral-900 font-bold">{publications.length}</span> results
+      {/* Publications Horizontal List Area */}
+      <section className="py-16 bg-neutral-100 min-h-[50vh]">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="bg-white rounded-[2rem] p-6 md:p-10 shadow-sm border border-neutral-200">
+            {publications.length === 0 ? (
+              <div className="text-center py-20 max-w-2xl mx-auto">
+                <BookOpen className="h-16 w-16 mx-auto text-neutral-300 mb-4" />
+                <h3 className="text-2xl font-bold text-neutral-900 mb-2">No Publications Found</h3>
+                <p className="text-neutral-500 mb-8">
+                  {searchTerm || selectedType !== 'all'
+                    ? "We couldn't find any documents matching your current filters."
+                    : "Check back soon for new publications."
+                  }
                 </p>
+                {(searchTerm || selectedType !== 'all') && (
+                  <Button onClick={() => { setSearchTerm(''); setSelectedType('all'); }} className="rounded-full px-8">
+                    Clear All Filters
+                  </Button>
+                )}
               </div>
+            ) : (
+              <>
+                <div className="mb-6 flex items-center justify-between border-b border-neutral-100 pb-4">
+                  <p className="text-neutral-500 font-medium">
+                    Showing <span className="text-primary font-bold">{publications.length}</span> publications
+                  </p>
+                </div>
 
-              {/* Grid: Insta Format (Squareish, image prominent, minimal text below) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {publications.map((publication) => (
-                  <article key={publication.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-neutral-100 transition-all duration-300 flex flex-col">
+                {/* Grid: 2-Column Horizontal Layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                  {publications.map((publication) => (
+                    <article key={publication.id} className="group bg-white flex flex-col sm:flex-row items-start gap-5 sm:gap-6 p-4 sm:p-5 rounded-2xl border border-neutral-100 shadow-sm hover:shadow-md hover:border-neutral-200 transition-all duration-300">
 
-                    {/* Square Image Area */}
-                    <div className="relative aspect-square overflow-hidden bg-neutral-100">
-                      <img
-                        src={publication.image || "/lovable-uploads/placeholder.svg"}
-                        alt={publication.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      {/* Gradient overlay for badges */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-                      {/* Type Badge */}
-                      <div className="absolute top-3 left-3 z-10">
-                        <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm ${getTypeColor(publication.type || publication.category)}`}>
-                          {publication.type || publication.category || 'Document'}
-                        </span>
-                      </div>
-
-                      {/* Quick Actions overlay on hover */}
-                      <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex justify-center gap-3 z-20">
-                        <button
-                          onClick={(e) => { e.preventDefault(); handlePreview(publication); }}
-                          className="bg-white/90 backdrop-blur-sm text-neutral-900 p-3 rounded-full shadow-lg hover:bg-white transition-colors"
-                          title="Preview"
-                        >
-                          <Eye size={18} />
-                        </button>
-                        {(publication.pdfUrl || publication.downloadUrl) && (
-                          <button
-                            onClick={(e) => { e.preventDefault(); handleDownloadClick(publication); }}
-                            className="bg-primary/90 backdrop-blur-sm text-white p-3 rounded-full shadow-lg hover:bg-primary transition-colors"
-                            title="Download"
-                          >
-                            <Download size={18} />
-                          </button>
+                      {/* Document Cover (Portrait A4 Aspect Ratio) */}
+                      <div className="relative w-full sm:w-[140px] flex-shrink-0 aspect-[1/1.4] bg-neutral-50 rounded-lg overflow-hidden border border-neutral-200 flex items-center justify-center">
+                        {publication.image ? (
+                          <img
+                            src={publication.image}
+                            alt={publication.title}
+                            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                          />
+                        ) : (
+                          <BookOpen className="text-neutral-300 h-12 w-12" />
                         )}
-                      </div>
-                    </div>
-
-                    {/* Minimal Info Area */}
-                    <div className="p-5 flex flex-col flex-grow">
-                      <div className="flex items-center text-neutral-400 text-[11px] font-medium mb-2 uppercase tracking-wide">
-                        <Calendar className="h-3 w-3 mr-1.5" />
-                        {new Date(publication.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric'
-                        })}
+                        {/* Subtle inner shadow for paper look */}
+                        <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.05)] pointer-events-none" />
                       </div>
 
-                      <h3 className="text-base font-bold text-neutral-900 mb-2 leading-tight line-clamp-2 group-hover:text-primary transition-colors flex-grow">
-                        {publication.title}
-                      </h3>
+                      {/* Content Details */}
+                      <div className="flex flex-col flex-grow py-1 h-full w-full">
+                        <h3 className="text-lg md:text-[19px] font-bold text-primary leading-tight mb-2 line-clamp-3">
+                          {publication.title}
+                        </h3>
 
-                      {/* Explicit Action Buttons for Mobile Accessibility */}
-                      <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between gap-2 md:hidden">
-                        <button
-                          onClick={(e) => { e.preventDefault(); handlePreview(publication); }}
-                          className="text-xs font-bold text-neutral-500 hover:text-neutral-900"
-                        >
-                          PREVIEW
-                        </button>
-                        {(publication.pdfUrl || publication.downloadUrl) && (
+                        <p className="text-[13px] text-neutral-500 mb-5 font-medium flex items-center gap-1.5">
+                          Uploaded: {new Date(publication.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </p>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-wrap items-center gap-3 mt-auto pt-2">
+                          {(publication.pdfUrl || publication.downloadUrl) && (
+                            <button
+                              onClick={(e) => { e.preventDefault(); handleDownloadClick(publication); }}
+                              className="bg-secondary-yellow hover:bg-[#e5a600] text-neutral-900 border border-transparent hover:border-neutral-300 px-5 py-2 rounded-md font-bold text-sm shadow-sm transition-all focus:ring-2 focus:ring-secondary-yellow focus:ring-offset-2"
+                            >
+                              Download
+                            </button>
+                          )}
                           <button
-                            onClick={(e) => { e.preventDefault(); handleDownloadClick(publication); }}
-                            className="text-xs font-bold text-primary hover:text-primary-dark"
+                            onClick={(e) => { e.preventDefault(); handlePreview(publication); }}
+                            className="bg-neutral-50 hover:bg-neutral-100 text-neutral-700 border border-neutral-200 px-5 py-2 rounded-md font-bold text-sm transition-all focus:ring-2 focus:ring-neutral-200 focus:ring-offset-2"
                           >
-                            DOWNLOAD
+                            Preview
                           </button>
-                        )}
+                        </div>
                       </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </>
-          )}
+                    </article>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </section>
 
