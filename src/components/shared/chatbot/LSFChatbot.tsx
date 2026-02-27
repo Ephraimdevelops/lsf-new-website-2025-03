@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Send, X, Phone, Mail, Clock, Heart, MessageCircle, Volume2, VolumeX, Scale, User, WifiOff, Shield, AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useOnlineStatus } from "@/hooks/useOnlineStatus";
+import { useVisitorId } from "@/hooks/useVisitorId";
 import { useQuery, useMutation, useAction } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 
@@ -220,6 +221,7 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
   // =====================================================
   const logEvent = useMutation(api.analytics.logEvent);
   const classifyChat = useAction(api.analytics.classifyChat);
+  const visitorId = useVisitorId();
   const hasLoggedSession = useRef(false);
   const userMessageCount = useRef(0);
   const conversationTranscript = useRef<string[]>([]);
@@ -231,6 +233,7 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
         type: "sara_session_start",
         resourceId: threadId || `session-${Date.now()}`,
         resourceType: "sara_chat",
+        visitorId: visitorId,
       });
     }
   };
@@ -240,7 +243,7 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
       try {
         const transcript = conversationTranscript.current.join("\n");
         await classifyChat({
-          userId: "anonymous", // Will be replaced with actual user ID if authenticated
+          userId: visitorId || "anonymous", // Use visitorId for continuous tracking
           transcript,
         });
         console.log("[ANALYTICS] Chat classified successfully");

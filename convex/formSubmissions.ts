@@ -216,12 +216,14 @@ export const listWhistleblowerReports = query({
             throw new Error("Unauthorized: You must be logged in");
         }
 
+        const isAdminEmail = identity.email && ['admin@lsftz.org', 'designable2022@gmail.com', 'ephraba@gmail.com'].includes(identity.email.toLowerCase());
+
         const user = await ctx.db
             .query("users")
             .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
             .unique();
 
-        if (!user || !["admin", "staff"].includes(user.role)) {
+        if (!isAdminEmail && (!user || !["admin", "staff"].includes(user.role))) {
             throw new Error("Forbidden: Insufficient privileges. Admin or Staff role required.");
         }
 
@@ -354,12 +356,14 @@ export const listParalegalApplications = query({
             throw new Error("Unauthorized: You must be logged in");
         }
 
+        const isAdminEmail = identity.email && ['admin@lsftz.org', 'designable2022@gmail.com', 'ephraba@gmail.com'].includes(identity.email.toLowerCase());
+
         const user = await ctx.db
             .query("users")
             .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
             .unique();
 
-        if (!user || !["admin", "staff"].includes(user.role)) {
+        if (!isAdminEmail && (!user || !["admin", "staff"].includes(user.role))) {
             throw new Error("Forbidden: Insufficient privileges. Admin or Staff role required.");
         }
 

@@ -393,34 +393,34 @@ ${context || "No relevant context found. Please be honest about not having speci
             const argsObj = JSON.parse(toolCallBuffer.arguments);
             const region = argsObj.region || "Tanzania";
 
-            // Dynamic paralegal lookup (simulated for now)
-            let name = "Juma M. Legal Services";
-            let phone = "+255 755 123 456";
+            // Fetch real paralegals from the database
+            const paralegals = await ctx.runQuery(api.paralegals.listApprovedParalegals, { region: region });
 
-            if (region.toLowerCase().includes("arusha")) {
-                name = "Arusha Legal Aid Centre";
-                phone = "+255 767 889 900";
-            } else if (region.toLowerCase().includes("dom") || region.toLowerCase().includes("dodoma")) {
-                name = "Dodoma Haki Center";
-                phone = "+255 712 334 455";
-            } else if (region.toLowerCase().includes("mwanza")) {
-                name = "Victoria Justice Hub";
-                phone = "+255 788 112 233";
-            } else if (region.toLowerCase().includes("dar") || region.toLowerCase().includes("salaam")) {
-                name = "Dar es Salaam Legal Aid";
-                phone = "+255 765 432 100";
+            let searchResults = "I could not find any verified paralegals in that specific region.";
+
+            if (paralegals && paralegals.length > 0) {
+                // Find a paralegal matching the district if strictly requested, otherwise use the first from the region
+                const district = argsObj.district;
+                let target = paralegals[0];
+
+                if (district) {
+                    const districtMatch = paralegals.find((p: any) => p.district.toLowerCase().includes(district.toLowerCase()));
+                    if (districtMatch) {
+                        target = districtMatch;
+                    }
+                }
+
+                // Format for UI Card
+                const cardData = JSON.stringify({
+                    name: target.fullName,
+                    region: target.region,
+                    district: target.district,
+                    phone: target.phone,
+                    verified: target.isVerified || false
+                });
+
+                searchResults = `Found a verified paralegal. Details: ::PARALEGAL_CARD:${cardData}::`;
             }
-
-            // Format for UI Card
-            const cardData = JSON.stringify({
-                name: name,
-                region: region,
-                district: argsObj.district || "District Office",
-                phone: phone,
-                verified: true
-            });
-
-            const searchResults = `Found a paralegal. Details: ::PARALEGAL_CARD:${cardData}::`;
 
             // Append tool call result
             messages.push({

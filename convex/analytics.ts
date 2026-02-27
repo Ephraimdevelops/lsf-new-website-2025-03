@@ -31,18 +31,25 @@ export const logEvent = mutation({
         type: v.union(
             v.literal("page_view"),
             v.literal("news_view"),
+            v.literal("news_read"),
+            v.literal("news_click"),
             v.literal("publication_download"),
             v.literal("paralegal_page_view"),
             v.literal("paralegal_signup_start"),
             v.literal("paralegal_signup_complete"),
             v.literal("sara_session_start"),
             v.literal("chat_topic"),
+            v.literal("opportunity_view"),
+            v.literal("opportunity_apply_click"),
+            v.literal("story_view"),
+            v.literal("donation_click"),
             v.literal("click"),
             v.literal("search")
         ),
         resourceId: v.optional(v.string()),
         resourceType: v.optional(v.string()),
         meta: v.optional(v.any()),
+        visitorId: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
@@ -53,6 +60,7 @@ export const logEvent = mutation({
             resourceType: args.resourceType,
             meta: args.meta,
             userId: identity?.subject || "anonymous",
+            visitorId: args.visitorId,
             timestamp: Date.now(),
             sessionDate: new Date().toISOString().split('T')[0],
         });
@@ -614,8 +622,17 @@ export const getDashboardOverview = query({
         const [
             allPageViews,
             allDownloads,
-            allNewsViews,
-            allProgramViews,
+            allNewsViews, // Legacy views
+            allNewsReads,
+            allNewsClicks,
+            allOpportunityViews,
+            allOpportunityApplies,
+            allStoryViews,
+            allDonationClicks,
+            allProgramViews, // Actually Paralegal Page views (stage 1)
+            allParalegalStarts, // Stage 2
+            allParalegalCompletes, // Stage 3
+            allSaraSessions,
             totalNewsDocs,
             totalPubDocs,
             recentNews,
@@ -624,9 +641,18 @@ export const getDashboardOverview = query({
             ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "page_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
             ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "publication_download")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
             ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "news_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "news_read")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "news_click")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "opportunity_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "opportunity_apply_click")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "story_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "donation_click")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
 
             // Programs tracked via page reads (legacy or specific events)
             ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "paralegal_page_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "paralegal_signup_start")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "paralegal_signup_complete")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "sara_session_start")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
 
             // Document counts
             ctx.db.query("news").collect().then(res => res.length),
@@ -642,8 +668,32 @@ export const getDashboardOverview = query({
         const totalPageViews = allPageViews.length + allNewsViews.length + allProgramViews.length;
         const totalDownloads = allDownloads.length;
 
-        // Uniques (Mock for now, estimate 1 visitor per 3 views)
-        const totalVisitors = Math.ceil(totalPageViews / 3) || 1;
+        // Accurate Unique Visitors Calculation
+        const uniqueVisitors = new Set<string>();
+        [
+            ...allPageViews,
+            ...allDownloads,
+            ...allNewsViews,
+            ...allNewsReads,
+            ...allNewsClicks,
+            ...allOpportunityViews,
+            ...allOpportunityApplies,
+            ...allStoryViews,
+            ...allDonationClicks,
+            ...allProgramViews,
+            ...allParalegalStarts,
+            ...allParalegalCompletes,
+            ...allSaraSessions
+        ].forEach(event => {
+            // Count by visitorId if present, otherwise fallback to userId, otherwise fallback to a generic anonymous hash
+            if (event.visitorId) {
+                uniqueVisitors.add(`vid_${event.visitorId}`);
+            } else if (event.userId && event.userId !== "anonymous") {
+                uniqueVisitors.add(`uid_${event.userId}`);
+            }
+        });
+
+        const totalVisitors = uniqueVisitors.size || 1; // Minimum 1 to avoid divide by zero 
 
         // 5. Daily Stats
         const dailyMap = new Map<string, { visitors: number; pageViews: number; downloads: number }>();
@@ -670,7 +720,8 @@ export const getDashboardOverview = query({
         fillDaily(allPageViews, 'pageViews');
         fillDaily(allNewsViews, 'pageViews'); // Count news as page views too
         fillDaily(allDownloads, 'downloads');
-        // Heuristic for visitors
+        // Heuristic for visitors (approximating historical data since we didn't have visitorId before)
+        // If we have actual daily visitors we could compute it strictly, but let's leave the heuristic for the chart visually
         dailyMap.forEach(entry => {
             entry.visitors = Math.ceil(entry.pageViews / 3);
         });
@@ -756,7 +807,37 @@ export const getDashboardOverview = query({
                 news: totalNewsDocs,
                 publications: totalPubDocs
             },
-            recentActivity
+            recentActivity,
+
+            // New deep analytics metrics
+            detailedMetrics: {
+                news: {
+                    views: allNewsViews.length,
+                    reads: allNewsReads.length,
+                    clicks: allNewsClicks.length,
+                    conversionRate: allNewsViews.length > 0 ? Math.round((allNewsReads.length / allNewsViews.length) * 100) : 0,
+                },
+                opportunities: {
+                    views: allOpportunityViews.length,
+                    applies: allOpportunityApplies.length,
+                    conversionRate: allOpportunityViews.length > 0 ? Math.round((allOpportunityApplies.length / allOpportunityViews.length) * 100) : 0,
+                },
+                stories: {
+                    views: allStoryViews.length,
+                },
+                donations: {
+                    clicks: allDonationClicks.length,
+                },
+                paralegalFunnel: {
+                    stage1Views: allProgramViews.length,
+                    stage2Starts: allParalegalStarts.length,
+                    stage3Completes: allParalegalCompletes.length,
+                    overallConversion: allProgramViews.length > 0 ? Math.round((allParalegalCompletes.length / allProgramViews.length) * 100) : 0,
+                },
+                saadaAI: {
+                    sessions: allSaraSessions.length,
+                }
+            }
         };
     },
 });

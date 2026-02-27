@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar } from 'lucide-react';
 import { NewsItem } from '@/services/dataService';
 import Typography from './Typography';
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { useVisitorId } from '@/hooks/useVisitorId';
 
 interface NewsCardProps {
   news: NewsItem;
@@ -10,6 +13,19 @@ interface NewsCardProps {
 }
 
 const NewsCard = ({ news, variant = 'default' }: NewsCardProps) => {
+  const logEvent = useMutation(api.analytics.logEvent);
+  const visitorId = useVisitorId();
+
+  const handleNewsClick = () => {
+    logEvent({
+      type: "news_click",
+      resourceId: news.id,
+      resourceType: "news",
+      visitorId: visitorId,
+      meta: { title: news.title, category: news.category },
+    });
+  };
+
   if (variant === 'compact') {
     return (
       <div className="bg-white/95 backdrop-blur-sm border-2 border-gray-200 rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 hover:border-primary/30">
@@ -28,8 +44,9 @@ const NewsCard = ({ news, variant = 'default' }: NewsCardProps) => {
         <Typography variant="body" className="text-neutral-gray mb-6 line-clamp-3 leading-relaxed">
           {news.excerpt}
         </Typography>
-        <Link 
-          to={`/news/${news.id}`} 
+        <Link
+          to={`/news/${news.id}`}
+          onClick={handleNewsClick}
           className="inline-flex items-center text-primary font-semibold text-sm hover:underline group-hover:translate-x-1 transition-all uppercase tracking-wide"
         >
           Read More
@@ -40,15 +57,14 @@ const NewsCard = ({ news, variant = 'default' }: NewsCardProps) => {
   }
 
   return (
-    <Link to={`/news/${news.id}`} className="group block">
-      <div className={`bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100 hover:border-primary/30 hover:-translate-y-4 ${
-        variant === 'featured' ? 'md:flex' : ''
-      }`}>
+    <Link to={`/news/${news.id}`} onClick={handleNewsClick} className="group block">
+      <div className={`bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100 hover:border-primary/30 hover:-translate-y-4 ${variant === 'featured' ? 'md:flex' : ''
+        }`}>
         <div className={`${variant === 'featured' ? 'md:w-1/2' : ''} overflow-hidden`}>
           <div className="aspect-[16/10] overflow-hidden relative">
-            <img 
-              src={news.image} 
-              alt={news.title} 
+            <img
+              src={news.image}
+              alt={news.title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
             {/* Updated gradient to use maroon instead of black */}
@@ -65,11 +81,10 @@ const NewsCard = ({ news, variant = 'default' }: NewsCardProps) => {
               {new Date(news.date).toLocaleDateString()}
             </span>
           </div>
-          <Typography 
-            variant={variant === 'featured' ? 'h2' : 'h3'} 
-            className={`font-bold mb-6 group-hover:text-primary transition-colors ${
-              variant === 'featured' ? 'text-3xl lg:text-4xl' : 'text-xl'
-            }`}
+          <Typography
+            variant={variant === 'featured' ? 'h2' : 'h3'}
+            className={`font-bold mb-6 group-hover:text-primary transition-colors ${variant === 'featured' ? 'text-3xl lg:text-4xl' : 'text-xl'
+              }`}
           >
             {news.title}
           </Typography>

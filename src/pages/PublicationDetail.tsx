@@ -10,6 +10,7 @@ import Layout from '../components/layout/Layout';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Separator } from '../components/ui/separator';
+import { useVisitorId } from '../hooks/useVisitorId';
 
 const PublicationDetail = () => {
   const { publicationId } = useParams<{ publicationId: string }>();
@@ -22,6 +23,7 @@ const PublicationDetail = () => {
 
   const isLoading = publicationData === undefined;
   const error = publicationData === null; // If null returned, it means not found
+  const visitorId = useVisitorId();
 
   // =====================================================
   // ANALYTICS: Track PDF download on click & View on mount
@@ -33,13 +35,14 @@ const PublicationDetail = () => {
         type: "page_view",
         resourceId: publicationId,
         resourceType: "publication",
+        visitorId: visitorId,
         meta: {
           title: publication.title
         }
       });
     }
     return () => { document.title = 'Legal Services Facility'; };
-  }, [publication, publicationId, logEvent]);
+  }, [publication, publicationId, logEvent, visitorId]);
 
   const trackDownload = () => {
     if (publication) {
@@ -51,6 +54,7 @@ const PublicationDetail = () => {
         type: "publication_download",
         resourceId: publicationId,
         resourceType: "publication",
+        visitorId: visitorId,
         meta: {
           title: publication.title,
           category: publication.category,

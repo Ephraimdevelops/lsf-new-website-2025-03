@@ -8,8 +8,24 @@ import {
   MapPin, ArrowRight, Scale, Handshake, Phone, Quote
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { useVisitorId } from '@/hooks/useVisitorId';
 
 const Donate = () => {
+  const logEvent = useMutation(api.analytics.logEvent);
+  const visitorId = useVisitorId();
+
+  const handleDonateClick = (buttonName: string) => {
+    logEvent({
+      type: "donation_click",
+      resourceId: "donate_page",
+      resourceType: "donation",
+      visitorId: visitorId,
+      meta: { button: buttonName },
+    });
+  };
+
   const impactStats = [
     { value: "90,000+", label: "Cases Annually", icon: Users },
     { value: "168", label: "Districts Reached", icon: MapPin },
@@ -68,7 +84,7 @@ const Donate = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
+              <Link to="/contact" onClick={() => handleDonateClick("Start a Conversation")}>
                 <Button
                   size="lg"
                   className="h-14 px-10 rounded-xl bg-secondary-orange hover:bg-secondary-orange/90 text-lg"
@@ -228,7 +244,7 @@ const Donate = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link to="/contact">
+              <Link to="/contact" onClick={() => handleDonateClick("Contact Partnerships Team")}>
                 <Button
                   size="lg"
                   className="h-16 px-12 rounded-xl bg-secondary-orange hover:bg-secondary-orange/90 text-lg"

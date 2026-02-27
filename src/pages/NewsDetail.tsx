@@ -1,11 +1,12 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import { ArrowLeft, Calendar, Share2, MessageSquare, Bookmark, Facebook, Twitter, Linkedin, Mail, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import NotFound from './NotFound';
+import { useVisitorId } from '../hooks/useVisitorId';
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -16,6 +17,9 @@ const NewsDetail = () => {
   const newsItemData = useQuery(api.news.getBySlugOrId, { identifier: id || '' });
   const newsItem = newsItemData ? { ...newsItemData, id: newsItemData._id } : null;
   const logEvent = useMutation(api.analytics.logEvent);
+  const visitorId = useVisitorId();
+  const observerRef = useRef<HTMLDivElement>(null);
+  const hasTrackedRead = useRef(false);
 
   const isLoading = newsItemData === undefined;
 
@@ -41,13 +45,43 @@ const NewsDetail = () => {
         type: "news_view",
         resourceId: id,
         resourceType: "news",
+        visitorId: visitorId,
         meta: { title: newsItem.title, category: newsItem.category },
       });
     }
     return () => {
       document.title = 'Legal Services Facility'; // Reset on unmount
     };
-  }, [newsItem, id, logEvent]); // Only fire once when article loads
+  }, [newsItem, id, logEvent, visitorId]); // Only fire once when article loads
+
+  // =====================================================
+  // ANALYTICS: Track news article read on scroll to bottom
+  // =====================================================
+  useEffect(() => {
+    if (isLoading || !newsItem || hasTrackedRead.current || !observerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasTrackedRead.current) {
+          hasTrackedRead.current = true;
+          logEvent({
+            type: "news_read",
+            resourceId: id,
+            resourceType: "news",
+            visitorId: visitorId,
+            meta: { title: newsItem.title, category: newsItem.category },
+          });
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(observerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isLoading, newsItem, id, logEvent, visitorId]);
 
 
   if (isLoading) {
@@ -156,6 +190,9 @@ const NewsDetail = () => {
             <article className="prose prose-lg prose-neutral max-w-none">
               <div dangerouslySetInnerHTML={{ __html: newsItem.content }} />
             </article>
+
+            {/* Analytics marker for reading to the bottom */}
+            <div ref={observerRef} className="h-4 w-full" aria-hidden="true" />
 
             {/* Tags */}
             {newsItem.keywords && newsItem.keywords.length > 0 && (

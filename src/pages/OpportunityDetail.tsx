@@ -1,7 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
-import { useQuery } from "convex/react";
+import { useEffect } from 'react';
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
+import { useVisitorId } from '@/hooks/useVisitorId';
 import Layout from '../components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { MapPin, Clock, Briefcase, Calendar, ArrowLeft, ArrowRight, ExternalLink, Building2, Banknote, CheckCircle2 } from 'lucide-react';
@@ -12,7 +14,34 @@ const OpportunityDetail = () => {
   const opportunityData = useQuery(api.opportunities.getById, id ? { id: opportunityId } : "skip");
   const opportunity = opportunityData ? { ...opportunityData, id: opportunityData._id } : null;
 
+  const logEvent = useMutation(api.analytics.logEvent);
+  const visitorId = useVisitorId();
+
   const isLoading = opportunityData === undefined;
+
+  useEffect(() => {
+    if (opportunity) {
+      logEvent({
+        type: "opportunity_view",
+        resourceId: opportunity.id,
+        resourceType: "opportunity",
+        visitorId: visitorId,
+        meta: { title: opportunity.title, type: opportunity.type },
+      });
+    }
+  }, [opportunity, logEvent, visitorId]);
+
+  const handleApplyClick = () => {
+    if (opportunity) {
+      logEvent({
+        type: "opportunity_apply_click",
+        resourceId: opportunity.id,
+        resourceType: "opportunity",
+        visitorId: visitorId,
+        meta: { title: opportunity.title, type: opportunity.type },
+      });
+    }
+  };
 
   if (isLoading) {
     return (
@@ -219,14 +248,14 @@ const OpportunityDetail = () => {
                 {isOpen ? (
                   <div className="space-y-3">
                     {opportunity.applicationLink ? (
-                      <a href={opportunity.applicationLink} target="_blank" rel="noopener noreferrer" className="block">
+                      <a href={opportunity.applicationLink} onClick={handleApplyClick} target="_blank" rel="noopener noreferrer" className="block">
                         <Button className="w-full bg-primary hover:bg-primary/90 rounded-xl h-12 text-base font-medium group">
                           Apply Now
                           <ExternalLink size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </a>
                     ) : (
-                      <Link to="/contact">
+                      <Link to="/contact" onClick={handleApplyClick}>
                         <Button className="w-full bg-primary hover:bg-primary/90 rounded-xl h-12 text-base font-medium">
                           Apply Now
                         </Button>

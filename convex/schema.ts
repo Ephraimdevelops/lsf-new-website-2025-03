@@ -414,12 +414,18 @@ export default defineSchema({
     type: v.union(
       v.literal("page_view"),
       v.literal("news_view"),
+      v.literal("news_read"),
+      v.literal("news_click"),
       v.literal("publication_download"),
       v.literal("paralegal_page_view"),
       v.literal("paralegal_signup_start"),
       v.literal("paralegal_signup_complete"),
       v.literal("sara_session_start"),
       v.literal("chat_topic"),
+      v.literal("opportunity_view"),
+      v.literal("opportunity_apply_click"),
+      v.literal("story_view"),
+      v.literal("donation_click"),
       v.literal("click"),
       v.literal("search")
     ),
@@ -427,6 +433,7 @@ export default defineSchema({
     resourceType: v.optional(v.string()), // 'publication', 'news', 'program', etc.
     meta: v.optional(v.any()), // Additional context
     userId: v.string(), // Clerk ID or "anonymous"
+    visitorId: v.optional(v.string()), // Persistent anonymous UUID
     timestamp: v.number(),
     sessionDate: v.optional(v.string()), // YYYY-MM-DD for daily aggregation
   }).index("by_type", ["type"])

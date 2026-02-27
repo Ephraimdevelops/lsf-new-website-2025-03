@@ -9,6 +9,7 @@ import {
 import { Honeypot, useHoneypot } from '@/components/Honeypot';
 import { useFormPersistence } from '@/hooks/useFormPersistence';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { useVisitorId } from '@/hooks/useVisitorId';
 
 const ParalegalApplicationForm = () => {
     // 1. Network Status
@@ -45,7 +46,9 @@ const ParalegalApplicationForm = () => {
     // =====================================================
     // ANALYTICS: Track signup funnel
     // =====================================================
+    // =====================================================
     const logEvent = useMutation(api.analytics.logEvent);
+    const visitorId = useVisitorId();
     const hasLoggedStart = useRef(false);
 
     const trackSignupStart = () => {
@@ -55,6 +58,7 @@ const ParalegalApplicationForm = () => {
                 type: "paralegal_signup_start",
                 resourceId: "/paralegal-signup",
                 resourceType: "recruitment",
+                visitorId: visitorId,
             });
         }
     };
@@ -64,6 +68,7 @@ const ParalegalApplicationForm = () => {
             type: "paralegal_signup_complete",
             resourceId: "/paralegal-signup",
             resourceType: "recruitment",
+            visitorId: visitorId,
             meta: { region: formData.region, education: formData.education },
         });
     };

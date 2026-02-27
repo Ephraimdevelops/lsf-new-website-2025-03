@@ -138,6 +138,7 @@ const AdminAnalytics = () => {
           <TabsTrigger value="content">Content Performance</TabsTrigger>
           <TabsTrigger value="downloads">Downloads</TabsTrigger>
           <TabsTrigger value="pages">Top Pages</TabsTrigger>
+          <TabsTrigger value="deep">Deep Insights</TabsTrigger>
         </TabsList>
 
         <TabsContent value="traffic" className="space-y-6">
@@ -331,6 +332,160 @@ const AdminAnalytics = () => {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="deep" className="pt-4 space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            {/* News Deep Dive */}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-panton flex items-center gap-2">
+                  <FileText size={18} className="text-blue-500" />
+                  News Engagement
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Impressions (Views)</span>
+                    <span className="font-bold text-gray-900">{analytics.detailedMetrics?.news.views.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Full Reads</span>
+                    <span className="font-bold text-gray-900">{analytics.detailedMetrics?.news.reads.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Card Clicks</span>
+                    <span className="font-bold text-gray-900">{analytics.detailedMetrics?.news.clicks.toLocaleString()}</span>
+                  </div>
+                  <div className="pt-2 mt-2 border-t">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700">Read Conversion</span>
+                      <span className="font-bold text-blue-600">{analytics.detailedMetrics?.news.conversionRate}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                      <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${analytics.detailedMetrics?.news.conversionRate}%` }}></div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Opportunities Funnel */}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-panton flex items-center gap-2">
+                  <Activity size={18} className="text-green-500" />
+                  Opportunities
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Total Views</span>
+                    <span className="font-bold text-gray-900">{analytics.detailedMetrics?.opportunities.views.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">"Apply" Clicks</span>
+                    <span className="font-bold text-gray-900">{analytics.detailedMetrics?.opportunities.applies.toLocaleString()}</span>
+                  </div>
+                  <div className="pt-2 mt-2 border-t">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700">Apply Rate</span>
+                      <span className="font-bold text-green-600">{analytics.detailedMetrics?.opportunities.conversionRate}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                      <div className="bg-green-600 h-2 rounded-full" style={{ width: `${analytics.detailedMetrics?.opportunities.conversionRate}%` }}></div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Paralegal Funnel */}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-panton flex items-center gap-2">
+                  <Users size={18} className="text-orange-500" />
+                  Paralegal Recruitment
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Landing Page Views</span>
+                    <span className="font-bold text-gray-900">{analytics.detailedMetrics?.paralegalFunnel.stage1Views.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Started Application</span>
+                    <span className="font-bold text-gray-900">{analytics.detailedMetrics?.paralegalFunnel.stage2Starts.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-500">Submitted Application</span>
+                    <span className="font-bold text-gray-900">{analytics.detailedMetrics?.paralegalFunnel.stage3Completes.toLocaleString()}</span>
+                  </div>
+                  <div className="pt-2 mt-2 border-t">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-700">Conversion Rate</span>
+                      <span className="font-bold text-orange-600">{analytics.detailedMetrics?.paralegalFunnel.overallConversion}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                      <div className="bg-orange-500 h-2 rounded-full" style={{ width: `${analytics.detailedMetrics?.paralegalFunnel.overallConversion}%` }}></div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Stories & Donations */}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-panton flex items-center gap-2">
+                  <Globe size={18} className="text-purple-500" />
+                  Impact & Support
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-sm font-bold text-gray-700 mb-2">Success Stories</h4>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-500">Total Views</span>
+                      <span className="font-bold text-gray-900">{analytics.detailedMetrics?.stories.views.toLocaleString()}</span>
+                    </div>
+                  </div>
+                  <div className="pt-2 border-t">
+                    <h4 className="text-sm font-bold text-gray-700 mb-2 mt-2">Donations</h4>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-500">"Donate Now" Clicks</span>
+                      <span className="font-bold text-purple-600 text-lg">{analytics.detailedMetrics?.donations.clicks.toLocaleString()}</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Saada AI */}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-panton flex items-center gap-2">
+                  <Activity size={18} className="text-indigo-500" />
+                  Saada AI
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col items-center justify-center p-6 text-center">
+                  <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-2xl font-bold text-indigo-600">{analytics.detailedMetrics?.saadaAI.sessions}</span>
+                  </div>
+                  <h4 className="font-bold text-gray-900">Total AI Sessions</h4>
+                  <p className="text-sm text-gray-500 mt-2">Active chats initiated by visitors seeking legal assistance.</p>
+                </div>
+              </CardContent>
+            </Card>
+
+          </div>
         </TabsContent>
       </Tabs>
     </div>

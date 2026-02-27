@@ -10,9 +10,11 @@ import {
     Users, GraduationCap, Heart, Scale, Shield, Phone, Mail
 } from 'lucide-react';
 import ParalegalApplicationForm from '@/components/ParalegalApplicationForm';
+import { useVisitorId } from '@/hooks/useVisitorId';
 
 const ParalegalSignup = () => {
     const logEvent = useMutation(api.analytics.logEvent);
+    const visitorId = useVisitorId();
 
     // =====================================================
     // ANALYTICS: Track paralegal page view on mount
@@ -22,8 +24,9 @@ const ParalegalSignup = () => {
             type: "paralegal_page_view",
             resourceId: "/paralegal-signup",
             resourceType: "recruitment",
+            visitorId: visitorId,
         });
-    }, []); // Fire once on mount
+    }, [logEvent, visitorId]); // Fire once on mount
 
     const benefits = [
         { icon: GraduationCap, title: 'Free Training', desc: 'Comprehensive legal aid training program' },

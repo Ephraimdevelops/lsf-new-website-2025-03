@@ -9,6 +9,17 @@ import {
     BadgeCheck, Shield, TrendingUp, Filter
 } from 'lucide-react';
 import { Id } from '../../../convex/_generated/dataModel';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 type Paralegal = {
     _id: Id<"paralegal_applications">;
@@ -40,6 +51,33 @@ const AdminParalegals = () => {
 
     // Mutations
     const toggleVerified = useMutation(api.paralegals.toggleVerified);
+    const addParalegal = useMutation(api.paralegals.addParalegalManually);
+
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        region: '',
+        district: '',
+    });
+
+    const handleAddSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            setIsSubmitting(true);
+            await addParalegal(formData);
+            setIsAddModalOpen(false);
+            setFormData({ fullName: '', email: '', phone: '', region: '', district: '' });
+            toast.success("Paralegal added successfully");
+        } catch (error: any) {
+            console.error("Failed to add paralegal", error);
+            toast.error(error.message || "Failed to add paralegal");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const regions = [
         'Arusha', 'Dar es Salaam', 'Dodoma', 'Geita', 'Iringa', 'Kagera',
@@ -67,6 +105,79 @@ const AdminParalegals = () => {
                     <h1 className="text-3xl font-bold text-neutral-900">Paralegal Management</h1>
                     <p className="text-neutral-600 mt-1">Manage your network of community paralegals</p>
                 </div>
+                <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+                    <DialogTrigger asChild>
+                        <Button className="gap-2">
+                            <Users className="h-4 w-4" />
+                            Add Paralegal
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>Add Paralegal Manually</DialogTitle>
+                            <DialogDescription>
+                                Add a verified paralegal directly to the network.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <form onSubmit={handleAddSubmit} className="space-y-4 pt-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="fullName">Full Name</Label>
+                                <Input
+                                    id="fullName"
+                                    required
+                                    value={formData.fullName}
+                                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email</Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    required
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="phone">Phone</Label>
+                                <Input
+                                    id="phone"
+                                    required
+                                    value={formData.phone}
+                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                />
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="region">Region</Label>
+                                    <select
+                                        id="region"
+                                        required
+                                        value={formData.region}
+                                        onChange={(e) => setFormData({ ...formData, region: e.target.value })}
+                                        className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
+                                    >
+                                        <option value="">Select Region</option>
+                                        {regions.map(r => <option key={r} value={r}>{r}</option>)}
+                                    </select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="district">District</Label>
+                                    <Input
+                                        id="district"
+                                        required
+                                        value={formData.district}
+                                        onChange={(e) => setFormData({ ...formData, district: e.target.value })}
+                                    />
+                                </div>
+                            </div>
+                            <Button type="submit" className="w-full" disabled={isSubmitting}>
+                                {isSubmitting ? "Adding..." : "Add Paralegal"}
+                            </Button>
+                        </form>
+                    </DialogContent>
+                </Dialog>
             </div>
 
             {/* Stats Cards */}

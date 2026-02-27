@@ -164,3 +164,64 @@ export const getDashboardData = query({
         };
     },
 });
+
+// Admin ONLY: Add Paralegal Manually
+export const addParalegalManually = mutation({
+    args: {
+        fullName: v.string(),
+        email: v.string(),
+        phone: v.string(),
+        region: v.string(),
+        district: v.string(),
+        specializations: v.optional(v.array(v.string())),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Unauthorized");
+        }
+
+        const isAdminEmail = identity.email && ['admin@lsftz.org', 'designable2022@gmail.com', 'ephraba@gmail.com'].includes(identity.email.toLowerCase());
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+
+        if (!isAdminEmail && (!user || !["admin", "staff"].includes(user.role))) {
+            throw new Error("Forbidden: Insufficient privileges.");
+        }
+
+        // Check if an application for this email already exists
+        const existing = await ctx.db
+            .query("paralegal_applications")
+            .filter((q) => q.eq(q.field("email"), args.email.toLowerCase()))
+            .first();
+
+        if (existing) {
+            throw new Error("A paralegal with this email already exists.");
+        }
+
+        // Insert directly as approved
+        const id = await ctx.db.insert("paralegal_applications", {
+            fullName: args.fullName,
+            email: args.email.toLowerCase(),
+            phone: args.phone,
+            region: args.region,
+            district: args.district,
+            education: "Manual Entry",
+            experience: "Manual Entry",
+            motivation: "Added by Admin",
+            specializations: args.specializations || [],
+            isVerified: true, // Auto-verified since admin added them
+            status: "approved",
+            submittedAt: Date.now(),
+            approvedAt: Date.now(),
+            profileViews: 0,
+            hasJoinedHakiYangu: false,
+            onboardingCompleted: true,
+        });
+
+        return { success: true, id };
+    },
+});

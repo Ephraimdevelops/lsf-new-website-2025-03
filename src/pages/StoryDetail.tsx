@@ -1,7 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
+import { useVisitorId } from '@/hooks/useVisitorId';
 import { Id } from "../../convex/_generated/dataModel";
 import { ArrowLeft, Share2, MapPin, Heart, ArrowRight, Quote } from 'lucide-react';
 import Layout from '../components/layout/Layout';
@@ -19,6 +20,9 @@ const StoryDetail = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [storyId]);
 
+    const logEvent = useMutation(api.analytics.logEvent);
+    const visitorId = useVisitorId();
+
     // Fetch all stories for the related section
     const allStoriesQuery = useQuery(api.stories.get);
     const isLoading = allStoriesQuery === undefined;
@@ -27,13 +31,20 @@ const StoryDetail = () => {
     // Find the current story
     const story = allStories.find(s => s._id === storyId);
 
-    // SEO
+    // SEO and Analytics
     useEffect(() => {
         if (story) {
             document.title = `${story.title} | LSF Stories`;
+            logEvent({
+                type: "story_view",
+                resourceId: story._id,
+                resourceType: "story",
+                visitorId: visitorId,
+                meta: { title: story.title, person: story.personName },
+            });
         }
         return () => { document.title = 'Legal Services Facility'; };
-    }, [story]);
+    }, [story, logEvent, visitorId]);
 
     // Get related stories (excluding current)
     const relatedStories = allStories.filter(s => s._id !== storyId).slice(0, 3);
