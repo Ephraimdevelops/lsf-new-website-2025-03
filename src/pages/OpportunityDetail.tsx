@@ -7,6 +7,7 @@ import { useVisitorId } from '@/hooks/useVisitorId';
 import Layout from '../components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { MapPin, Clock, Briefcase, Calendar, ArrowLeft, ArrowRight, ExternalLink, Building2, Banknote, CheckCircle2 } from 'lucide-react';
+import SEOHead from '@/components/shared/SEOHead';
 
 const OpportunityDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -86,6 +87,13 @@ const OpportunityDetail = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title={opportunity.title}
+        description={opportunity.description}
+        image="/lsf-og-image.png"
+        type="article"
+        canonicalUrl={`https://lsftz.org/opportunities/${id}`}
+      />
       <div className="bg-gradient-to-b from-secondary-teal/5 to-white">
         {/* Hero Section */}
         <div className="container mx-auto px-6 pt-24 pb-12">

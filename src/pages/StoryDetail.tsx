@@ -11,6 +11,7 @@ import Container from '../components/shared/Container';
 import Typography from '../components/shared/Typography';
 import SuccessStoryCard from '../components/shared/SuccessStoryCard';
 import { Button } from '@/components/ui/button';
+import SEOHead from '@/components/shared/SEOHead';
 
 const StoryDetail = () => {
     const { storyId } = useParams<{ storyId: string }>();
@@ -89,6 +90,13 @@ const StoryDetail = () => {
 
     return (
         <Layout>
+            <SEOHead
+                title={story.title}
+                description={story.quote || story.story.replace(/<[^>]*>/g, '').substring(0, 160)}
+                image={story.imageUrl}
+                type="article"
+                canonicalUrl={`https://lsftz.org/stories/${storyId}`}
+            />
             {/* Cinematic Hero Section - 95vh with center alignment and fixed background */}
             <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden">
                 {/* Fixed background image for parallax effect */}

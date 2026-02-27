@@ -7,6 +7,7 @@ import { ArrowLeft, Calendar, Share2, MessageSquare, Bookmark, Facebook, Twitter
 import { Button } from '@/components/ui/button';
 import NotFound from './NotFound';
 import { useVisitorId } from '../hooks/useVisitorId';
+import SEOHead from '@/components/shared/SEOHead';
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -122,6 +123,14 @@ const NewsDetail = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title={newsItem.title}
+        description={newsItem.excerpt}
+        image={newsItem.image}
+        type="article"
+        canonicalUrl={`https://lsftz.org/news/${id}`}
+        keywords={newsItem.keywords?.join(', ')}
+      />
       {/* Cinematic Hero with Fixed Background */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
         {/* Fixed background - parallax effect */}

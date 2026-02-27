@@ -25,7 +25,7 @@ interface PublicationCardProps {
 const PublicationCard = ({ publication }: PublicationCardProps) => {
   return (
     <div className="relative group">
-      <article className="bg-white border-2 border-secondary-teal/10 rounded-3xl overflow-hidden hover:border-secondary-teal/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 p-0">
+      <article className="bg-white border-2 border-secondary-teal/10 rounded-3xl overflow-hidden hover:border-secondary-teal/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 p-0 shadow-sm relative">
         {publication.isNew && (
           <div className="absolute top-4 right-4 z-20">
             <div className="bg-gradient-to-r from-secondary-orange to-secondary-yellow text-white text-xs font-black px-3 py-2 rounded-full flex items-center shadow-lg">

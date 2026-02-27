@@ -1,5 +1,4 @@
 
-import { Link } from 'react-router-dom';
 import { ArrowRight, Download, Calendar, FileText, Eye } from 'lucide-react';
 import { Publication } from '@/services/dataService';
 import { forceDownload } from '@/utils/download';
@@ -76,7 +75,7 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
   }
 
   return (
-    <Link to={`/publications/${publication.id}`} className="group block">
+    <div className="group block">
       <div className={`bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100 hover:border-secondary-teal/30 transform hover:-translate-y-4 ${variant === 'featured' ? 'md:flex' : ''
         }`}>
         <div className={`${variant === 'featured' ? 'md:w-1/2' : ''} relative h-64 overflow-hidden`}>
@@ -85,10 +84,8 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
             alt={publication.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
-          {/* Updated gradient to use maroon instead of black */}
           <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
 
-          {/* Enhanced Type Badge */}
           <div className="absolute top-6 left-6">
             <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold shadow-xl border ${getTypeColor(publication.type)}`}>
               <FileText className="h-4 w-4 mr-2" />
@@ -96,7 +93,6 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
             </span>
           </div>
 
-          {/* View Count Badge */}
           <div className="absolute bottom-6 right-6">
             <span className="inline-flex items-center px-3 py-2 rounded-full text-sm font-medium bg-white/90 text-gray-700 shadow-lg">
               <Eye className="h-4 w-4 mr-2" />
@@ -156,7 +152,7 @@ const PublicationCard = ({ publication, variant = 'default' }: PublicationCardPr
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

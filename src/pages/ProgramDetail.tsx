@@ -7,6 +7,7 @@ import {
 import Layout from '../components/layout/Layout';
 import Typography from '../components/shared/Typography';
 import { Button } from '../components/ui/button';
+import SEOHead from '@/components/shared/SEOHead';
 
 // Gold Standard Sauti ya Mwanamke Content
 const sautiYaMwanamke = {
@@ -377,6 +378,13 @@ const ProgramDetail = () => {
 
     return (
       <Layout>
+        <SEOHead
+          title={program.title}
+          description={program.subtitle}
+          image={program.heroImage}
+          type="article"
+          canonicalUrl={`https://lsftz.org/programs/${id}`}
+        />
         {/* HERO SECTION */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           {/* Background */}
@@ -649,6 +657,13 @@ const ProgramDetail = () => {
 
     return (
       <Layout>
+        <SEOHead
+          title={program.title}
+          description={program.subtitle}
+          image={program.heroImage}
+          type="article"
+          canonicalUrl={`https://lsftz.org/programs/${id}`}
+        />
         {/* HERO SECTION - Government Partnership Theme */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: `url("${program.heroImage}")` }} />
@@ -888,6 +903,13 @@ const ProgramDetail = () => {
 
     return (
       <Layout>
+        <SEOHead
+          title={program.title}
+          description={program.subtitle}
+          image={program.heroImage}
+          type="article"
+          canonicalUrl={`https://lsftz.org/programs/${id}`}
+        />
         {/* HERO SECTION */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: `url("${program.heroImage}")` }} />
@@ -1169,6 +1191,13 @@ const ProgramDetail = () => {
 
     return (
       <Layout>
+        <SEOHead
+          title={program.title}
+          description={program.subtitle}
+          image={program.heroImage}
+          type="article"
+          canonicalUrl={`https://lsftz.org/programs/${id}`}
+        />
         {/* HERO SECTION - Bold Leadership Theme */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: `url(${program.heroImage})` }} />

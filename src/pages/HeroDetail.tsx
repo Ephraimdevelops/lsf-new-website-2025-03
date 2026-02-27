@@ -3,6 +3,7 @@ import { ArrowLeft, Share2, Calendar, MapPin, Heart, ArrowRight } from 'lucide-r
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
 import { Button } from '@/components/ui/button';
+import SEOHead from '@/components/shared/SEOHead';
 
 interface StoryData {
   id: string;
@@ -80,9 +81,9 @@ const successStories: StoryData[] = [
 
 const HeroDetail = () => {
   const { heroId } = useParams<{ heroId: string }>();
-  
+
   const story = successStories.find(s => s.id === heroId);
-  
+
   if (!story) {
     return (
       <Layout>
@@ -104,9 +105,16 @@ const HeroDetail = () => {
       </Layout>
     );
   }
-  
+
   return (
     <Layout>
+      <SEOHead
+        title={story.name}
+        description={story.summary}
+        image={story.image}
+        type="article"
+        canonicalUrl={`https://lsftz.org/heroes/${heroId}`}
+      />
       {/* Hero Section with Background */}
       <HeroSection
         icon={<Heart className="h-8 w-8" />}
@@ -115,7 +123,7 @@ const HeroDetail = () => {
         description={story.summary}
         backgroundImage="/lovable-uploads/background with mother umage .png"
       />
-      
+
       {/* Content Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
@@ -123,12 +131,12 @@ const HeroDetail = () => {
             <ArrowLeft size={16} className="mr-1" />
             Back to All Stories
           </Link>
-          
+
           <div className="mb-12">
             <h2 className="text-3xl font-bold mb-6 font-panton">Summary</h2>
             <p className="text-xl text-neutral-dark font-calibri leading-relaxed">{story.summary}</p>
           </div>
-          
+
           {/* Quote */}
           <div className="bg-gradient-to-r from-primary/5 to-secondary-teal/5 border-l-4 border-primary p-8 my-12 rounded-r-xl">
             <blockquote className="text-2xl italic font-calibri text-neutral-dark leading-relaxed">
@@ -136,39 +144,39 @@ const HeroDetail = () => {
               <footer className="mt-4 font-bold text-primary">— {story.name}</footer>
             </blockquote>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-12 mb-12">
             <div>
               <h2 className="text-3xl font-bold mb-6 font-panton">The Challenge</h2>
               <p className="text-lg text-neutral-dark font-calibri leading-relaxed">{story.challenge}</p>
             </div>
-            
+
             <div>
               <h2 className="text-3xl font-bold mb-6 font-panton">Our Solution</h2>
               <p className="text-lg text-neutral-dark font-calibri leading-relaxed">{story.solution}</p>
             </div>
           </div>
-          
+
           {/* Additional Images */}
           {story.relatedImages && story.relatedImages.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
               {story.relatedImages.map((img, index) => (
                 <div key={index} className="aspect-video rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src={img} 
-                    alt={`${story.name}'s story - image ${index+1}`} 
+                  <img
+                    src={img}
+                    alt={`${story.name}'s story - image ${index + 1}`}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               ))}
             </div>
           )}
-          
+
           <div className="mb-12">
             <h2 className="text-3xl font-bold mb-6 font-panton">Impact & Legacy</h2>
             <p className="text-lg text-neutral-dark font-calibri leading-relaxed">{story.impact}</p>
           </div>
-          
+
           {/* Social Share & CTA */}
           <div className="flex flex-col md:flex-row justify-between items-center bg-neutral-light rounded-xl p-8 my-12">
             <div>
@@ -194,7 +202,7 @@ const HeroDetail = () => {
               </Link>
             </div>
           </div>
-          
+
           {/* More Stories */}
           <div className="mt-16">
             <h2 className="text-3xl font-bold mb-8 text-center font-panton">More Inspiring Stories</h2>
@@ -205,9 +213,9 @@ const HeroDetail = () => {
                 .map(s => (
                   <Link key={s.id} to={`/heroes/${s.id}`} className="group">
                     <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-lg">
-                      <img 
-                        src={s.image} 
-                        alt={s.name} 
+                      <img
+                        src={s.image}
+                        alt={s.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent group-hover:from-black/80 transition-all duration-300"></div>
@@ -222,7 +230,7 @@ const HeroDetail = () => {
                   </Link>
                 ))}
             </div>
-            
+
             <div className="text-center mt-8">
               <Link to="/heroes">
                 <Button variant="outline" className="font-calibri text-lg px-8 py-6 h-auto">
@@ -232,7 +240,7 @@ const HeroDetail = () => {
               </Link>
             </div>
           </div>
-          
+
         </div>
       </div>
     </Layout>

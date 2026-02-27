@@ -8,6 +8,7 @@ import {
   CheckCircle, ArrowRight, Globe, Users, Building, Headphones
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SEOHead from '@/components/shared/SEOHead';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { Honeypot, useHoneypot } from '@/components/Honeypot';
@@ -18,9 +19,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const ContactPage = () => {
-  useEffect(() => {
-    document.title = 'Contact Us - Legal Services Facility';
-  }, []);
+  // SEO handled by SEOHead component below
+
 
   /* 
    * NEW: Security & Persistence Hooks 
@@ -116,6 +116,12 @@ const ContactPage = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Contact Us"
+        description="Get in touch with the Legal Services Facility (LSF). We are here to help with legal assistance, partnerships, and inquiries."
+        type="website"
+        canonicalUrl="https://lsftz.org/contact"
+      />
       {/* Hero Section - Unique Split Design with Brand Pattern */}
       <section className="relative bg-black min-h-[70vh] overflow-hidden">
         <div className="absolute inset-0 z-0">

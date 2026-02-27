@@ -6,6 +6,7 @@ interface SEOHeadProps {
     image?: string;
     type?: 'website' | 'article';
     canonicalUrl?: string;
+    keywords?: string;
 }
 
 const SEOHead = ({
@@ -14,6 +15,7 @@ const SEOHead = ({
     image = '/lsf-og-image.png',
     type = 'website',
     canonicalUrl,
+    keywords = 'Legal Services Facility, LSF Tanzania, Access to Justice, Legal Aid, Human Rights, Tanzania, Zanzibar',
 }: SEOHeadProps) => {
     const siteTitle = title === 'LSF - Legal Services Facility Tanzania' ? title : `${title} | LSF Tanzania`;
 
@@ -22,6 +24,7 @@ const SEOHead = ({
             {/* Standard Metadata */}
             <title>{siteTitle}</title>
             <meta name="description" content={description} />
+            <meta name="keywords" content={keywords} />
             <meta name="author" content="Legal Services Facility (LSF)" />
 
             {/* Open Graph / Facebook */}

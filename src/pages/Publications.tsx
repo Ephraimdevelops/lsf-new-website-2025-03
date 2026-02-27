@@ -135,7 +135,7 @@ const Publications = () => {
                 {publications.map((publication) => (
                   <article key={publication.id} className="group flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-500 hover:-translate-y-1">
 
-                    <Link to={`/publications/${publication.id}`} className="block relative h-56 overflow-hidden bg-gray-50 flex-shrink-0">
+                    <div className="relative h-56 overflow-hidden bg-gray-50 flex-shrink-0">
                       <img
                         src={publication.image || "/lovable-uploads/placeholder.svg"}
                         alt={publication.title}
@@ -148,11 +148,10 @@ const Publications = () => {
                           {publication.type}
                         </span>
                       </div>
-                    </Link>
+                    </div>
 
-                    {/* Content Area */}
                     <div className="p-6 flex flex-col flex-grow">
-                      <Link to={`/publications/${publication.id}`} className="block">
+                      <div className="block">
                         <div className="flex items-center text-gray-500 text-xs font-medium mb-3">
                           <Calendar className="h-3.5 w-3.5 mr-1.5" />
                           {new Date(publication.date).toLocaleDateString('en-US', {
@@ -169,7 +168,7 @@ const Publications = () => {
                         <p className="text-gray-600 text-[14px] leading-relaxed mb-6 line-clamp-3 flex-grow">
                           {publication.excerpt}
                         </p>
-                      </Link>
+                      </div>
 
                       <div className="flex flex-col sm:flex-row items-center gap-3 mt-auto pt-4 border-t border-gray-50">
                         {publication.pdfUrl && (

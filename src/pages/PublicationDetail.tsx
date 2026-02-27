@@ -12,6 +12,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Separator } from '../components/ui/separator';
 import { useVisitorId } from '../hooks/useVisitorId';
 import { forceDownload } from '@/utils/download';
+import SEOHead from '@/components/shared/SEOHead';
 
 const PublicationDetail = () => {
   const { publicationId } = useParams<{ publicationId: string }>();
@@ -91,6 +92,13 @@ const PublicationDetail = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title={publication.title}
+        description={publication.description}
+        image={publication.coverImageUrl}
+        type="article"
+        canonicalUrl={`https://lsftz.org/publications/${id}`}
+      />
       <div className="bg-neutral-light py-16 px-4">
         <div className="container mx-auto max-w-7xl">
           <Link to="/publications" className="inline-flex items-center text-primary hover:text-primary/80 mb-8">
