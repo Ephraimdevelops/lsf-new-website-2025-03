@@ -12,9 +12,11 @@ interface UsePublicationsResult {
 }
 
 export function usePublications(search?: string, category?: string): UsePublicationsResult {
+  const normalizedCategory = category && category !== 'all' ? category.toLowerCase() : undefined;
+
   const publicationsData = useQuery(api.publications.get, {
     search: search || undefined,
-    category: category === 'all' ? undefined : category
+    category: normalizedCategory
   });
   const featuredPublicationsData = useQuery(api.publications.getFeatured);
 
