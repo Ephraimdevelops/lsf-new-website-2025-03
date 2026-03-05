@@ -1,6 +1,6 @@
 
 import { useParams, Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
@@ -26,12 +26,14 @@ const PublicationDetail = () => {
   const isLoading = publicationData === undefined;
   const error = publicationData === null; // If null returned, it means not found
   const visitorId = useVisitorId();
+  const hasTrackedView = useRef(false);
 
   // =====================================================
   // ANALYTICS: Track PDF download on click & View on mount
   // =====================================================
   useEffect(() => {
-    if (publication) {
+    if (publication && visitorId && !hasTrackedView.current) {
+      hasTrackedView.current = true;
       document.title = `${publication.title} | LSF Publications`;
       logEvent({
         type: "page_view",
@@ -44,7 +46,8 @@ const PublicationDetail = () => {
       });
     }
     return () => { document.title = 'Legal Services Facility'; };
-  }, [publication, publicationId, logEvent, visitorId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [publication, publicationId, visitorId]);
 
   const trackAndDownload = async () => {
     if (publication) {

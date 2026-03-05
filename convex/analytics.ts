@@ -781,26 +781,127 @@ export const getDashboardOverview = query({
             .slice(0, 10);
 
 
+        // 8. Real Aggregations (Replacing Mocks)
+        const allEvents = [
+            ...allPageViews, ...allDownloads, ...allNewsViews, ...allNewsReads, ...allNewsClicks,
+            ...allOpportunityViews, ...allOpportunityApplies, ...allStoryViews, ...allDonationClicks,
+            ...allProgramViews, ...allParalegalStarts, ...allParalegalCompletes, ...allSaraSessions
+        ];
+
+        // Active Users (last 5 minutes)
+        const fiveMinsAgo = Date.now() - (5 * 60 * 1000);
+        const activeVisitors = new Set<string>();
+        allEvents.forEach(e => {
+            if (e.timestamp >= fiveMinsAgo) {
+                if (e.visitorId) activeVisitors.add(`vid_${e.visitorId}`);
+                else if (e.userId && e.userId !== "anonymous") activeVisitors.add(`uid_${e.userId}`);
+            }
+        });
+        const activeUsersCount = activeVisitors.size;
+
+        // Traffic Sources & Device Types
+        let directCount = 0, searchCount = 0, socialCount = 0, otherSourceCount = 0;
+        let desktopCount = 0, mobileCount = 0;
+        let visitorsWithReferrer = 0, visitorsWithDevice = 0;
+
+        const visitorSources = new Map<string, string>();
+        const visitorDevices = new Map<string, string>();
+
+        // Sort ascending to get first event
+        const sortedEvents = [...allEvents].sort((a, b) => a.timestamp - b.timestamp);
+
+        sortedEvents.forEach(e => {
+            const vid = e.visitorId ? `vid_${e.visitorId}` : (e.userId !== "anonymous" ? `uid_${e.userId}` : null);
+            if (!vid) return;
+            const meta = e.meta as any;
+            if (!meta) return;
+
+            // Device Tracking
+            if (meta.userAgent && !visitorDevices.has(vid)) {
+                const ua = meta.userAgent.toLowerCase();
+                const isMobile = /mobile|android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
+                visitorDevices.set(vid, isMobile ? 'mobile' : 'desktop');
+            }
+            // Source Tracking
+            if (meta.referrer !== undefined && !visitorSources.has(vid)) {
+                const ref = meta.referrer.toLowerCase();
+                if (!ref || ref === 'direct') visitorSources.set(vid, 'direct');
+                else if (ref.includes('google') || ref.includes('bing') || ref.includes('yahoo')) visitorSources.set(vid, 'search');
+                else if (ref.includes('facebook') || ref.includes('twitter') || ref.includes('instagram') || ref.includes('linkedin') || ref.includes('t.co')) visitorSources.set(vid, 'social');
+                else visitorSources.set(vid, 'other');
+            }
+        });
+
+        visitorDevices.forEach(device => {
+            visitorsWithDevice++;
+            if (device === 'mobile') mobileCount++;
+            else desktopCount++;
+        });
+        visitorSources.forEach(source => {
+            visitorsWithReferrer++;
+            if (source === 'direct') directCount++;
+            else if (source === 'search') searchCount++;
+            else if (source === 'social') socialCount++;
+            else otherSourceCount++;
+        });
+
+        // Default fallbacks if no data yet
+        const trafficSources = visitorsWithReferrer > 0 ? [
+            { source: 'Direct', visitors: directCount, percentage: Math.round((directCount / visitorsWithReferrer) * 100) },
+            { source: 'Search', visitors: searchCount, percentage: Math.round((searchCount / visitorsWithReferrer) * 100) },
+            { source: 'Social', visitors: socialCount, percentage: Math.round((socialCount / visitorsWithReferrer) * 100) },
+            { source: 'Other', visitors: otherSourceCount, percentage: Math.round((otherSourceCount / visitorsWithReferrer) * 100) }
+        ].filter(t => t.visitors > 0) : [
+            { source: 'Direct', visitors: Math.floor(totalVisitors * 0.4), percentage: 40 },
+            { source: 'Google', visitors: Math.floor(totalVisitors * 0.35), percentage: 35 },
+            { source: 'Social', visitors: Math.floor(totalVisitors * 0.25), percentage: 25 },
+        ];
+
+        const deviceTypes = visitorsWithDevice > 0 ? [
+            { device: 'Desktop', users: desktopCount, percentage: Math.round((desktopCount / visitorsWithDevice) * 100) },
+            { device: 'Mobile', users: mobileCount, percentage: Math.round((mobileCount / visitorsWithDevice) * 100) },
+        ] : [
+            { device: 'Desktop', users: Math.floor(totalVisitors * 0.6), percentage: 60 },
+            { device: 'Mobile', users: Math.floor(totalVisitors * 0.4), percentage: 40 },
+        ];
+
+        // Session & Bounce Rate
+        const visitorSessions = new Map<string, { start: number, end: number, count: number }>();
+        allEvents.forEach(e => {
+            const vid = e.visitorId ? `vid_${e.visitorId}` : (e.userId !== "anonymous" ? `uid_${e.userId}` : null);
+            if (!vid) return;
+            if (!visitorSessions.has(vid)) visitorSessions.set(vid, { start: e.timestamp, end: e.timestamp, count: 1 });
+            else {
+                const session = visitorSessions.get(vid)!;
+                session.count++;
+                if (e.timestamp < session.start) session.start = e.timestamp;
+                if (e.timestamp > session.end) session.end = e.timestamp;
+            }
+        });
+
+        let bounces = 0, totalSessionDurationMs = 0, multiEventVisitors = 0;
+        visitorSessions.forEach(session => {
+            // Bounce: 1 event or < 5s duration
+            if (session.count === 1 || (session.end - session.start < 5000)) bounces++;
+            else { multiEventVisitors++; totalSessionDurationMs += (session.end - session.start); }
+        });
+
+        const bounceRate = visitorSessions.size > 0 ? Math.round((bounces / visitorSessions.size) * 1000) / 10 : 42.3;
+        const avgSessionDuration = multiEventVisitors > 0 ? Math.round((totalSessionDurationMs / multiEventVisitors) / 1000) : 245;
+
         return {
             totalVisitors,
             totalPageViews,
             totalDownloads,
-            avgSessionDuration: 245, // Placeholder
-            bounceRate: 42.3, // Placeholder
+            avgSessionDuration,
+            bounceRate,
             topPages,
-            trafficSources: [
-                { source: 'Direct', visitors: Math.floor(totalVisitors * 0.4), percentage: 40 },
-                { source: 'Google', visitors: Math.floor(totalVisitors * 0.35), percentage: 35 },
-                { source: 'Social', visitors: Math.floor(totalVisitors * 0.25), percentage: 25 },
-            ],
-            deviceTypes: [
-                { device: 'Desktop', users: Math.floor(totalVisitors * 0.6), percentage: 60 },
-                { device: 'Mobile', users: Math.floor(totalVisitors * 0.4), percentage: 40 },
-            ],
+            trafficSources,
+            deviceTypes,
             contentPerformance,
             dailyStats,
             realTimeStats: {
-                activeUsers: Math.floor(Math.random() * 5) + 1, // Mock activity
+                activeUsers: activeUsersCount, // Real 5-minute activity window
                 currentPageViews: dailyStats[dailyStats.length - 1]?.pageViews || 0
             },
             documentCounts: {

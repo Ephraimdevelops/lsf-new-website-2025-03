@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useVisitorId } from '@/hooks/useVisitorId';
@@ -23,6 +23,7 @@ const StoryDetail = () => {
 
     const logEvent = useMutation(api.analytics.logEvent);
     const visitorId = useVisitorId();
+    const hasTrackedView = useRef(false);
 
     // Fetch all stories for the related section
     const allStoriesQuery = useQuery(api.stories.get);
@@ -34,7 +35,8 @@ const StoryDetail = () => {
 
     // SEO and Analytics
     useEffect(() => {
-        if (story) {
+        if (story && visitorId && !hasTrackedView.current) {
+            hasTrackedView.current = true;
             document.title = `${story.title} | LSF Stories`;
             logEvent({
                 type: "story_view",
@@ -45,7 +47,8 @@ const StoryDetail = () => {
             });
         }
         return () => { document.title = 'Legal Services Facility'; };
-    }, [story, logEvent, visitorId]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [story, visitorId]);
 
     // Get related stories (excluding current)
     const relatedStories = allStories.filter(s => s._id !== storyId).slice(0, 3);

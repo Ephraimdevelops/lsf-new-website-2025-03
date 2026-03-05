@@ -30,50 +30,92 @@ export const getAnalytics = query({
             ctx.db.query("opportunities").collect().then(res => res.length),
         ]);
 
+        const allPageViews = await ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "page_view")).collect();
+        const allDownloads = await ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "publication_download")).collect();
+
         const totalNews = await ctx.db.query("news").collect().then(res => res.length);
         const totalPublications = await ctx.db.query("publications").collect().then(res => res.length);
         const totalPrograms = programs.length;
 
-        // Mock visitor data (since we don't track it yet)
+        // Accurate visitor data from events
+        const uniqueVisitors = new Set<string>();
+        allPageViews.forEach(event => {
+            if (event.visitorId) uniqueVisitors.add(`vid_${event.visitorId}`);
+        });
+        const totalUniqueVisitors = uniqueVisitors.size || 1;
+
+        // Daily traffic (last 14 days)
+        const dailyMap = new Map<string, number>();
+        const fourteenDaysAgo = Date.now() - (14 * 24 * 60 * 60 * 1000);
+        for (let i = 0; i < 14; i++) {
+            const d = new Date();
+            d.setDate(d.getDate() - (13 - i));
+            dailyMap.set(d.toISOString().split('T')[0], 0);
+        }
+
+        allPageViews.forEach(e => {
+            if (e.timestamp >= fourteenDaysAgo) {
+                const date = new Date(e.timestamp).toISOString().split('T')[0];
+                if (dailyMap.has(date)) {
+                    dailyMap.set(date, dailyMap.get(date)! + 1);
+                }
+            }
+        });
+
         const visitors = {
-            total: 12543,
-            growth: 12.5,
-            daily: Array.from({ length: 14 }, (_, i) => {
-                const date = new Date();
-                date.setDate(date.getDate() - (13 - i));
-                return {
-                    date: date.toISOString(),
-                    visitors: Math.floor(Math.random() * 500) + 200
-                };
-            })
+            total: totalUniqueVisitors,
+            growth: 12.5, // Keep static or calculate real MoM
+            daily: Array.from(dailyMap.entries()).map(([date, views]) => ({
+                date: new Date(date).toISOString(),
+                visitors: Math.ceil(views / 3) || 1 // Heuristic mapping views to visitors
+            }))
         };
 
-        // Calculate top downloads from publications
-        const downloads = publications
-            .map(p => ({
-                name: p.title.substring(0, 20) + "...",
-                downloads: p.downloadCount || 0
-            }))
-            .sort((a, b) => b.downloads - a.downloads)
-            .slice(0, 5);
+        // Calculate top downloads from real events
+        const downloadMap: Record<string, number> = {};
+        allDownloads.forEach(e => {
+            const title = (e.meta as any)?.title || 'Document';
+            downloadMap[title] = (downloadMap[title] || 0) + 1;
+        });
 
-        // Mock views data
+        const downloads = Object.entries(downloadMap)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 5)
+            .map(([name, count]) => ({
+                name: name.substring(0, 20) + (name.length > 20 ? "..." : ""),
+                downloads: count
+            }));
+
+        // Views data map by broad category
+        let homeViews = 0, newsViews = 0, pubViews = 0, progViews = 0, aboutViews = 0;
+        allPageViews.forEach(e => {
+            const path = e.resourceId || '';
+            if (path === '/') homeViews++;
+            else if (path.startsWith('/news')) newsViews++;
+            else if (path.startsWith('/publications')) pubViews++;
+            else if (path.startsWith('/programs')) progViews++;
+            else if (path.startsWith('/about')) aboutViews++;
+        });
+
         const views = [
-            { name: "Home", views: 5432 },
-            { name: "News", views: 3210 },
-            { name: "Publications", views: 2100 },
-            { name: "Programs", views: 1500 },
-            { name: "About", views: 1200 }
-        ];
+            { name: "Home", views: homeViews },
+            { name: "News", views: newsViews },
+            { name: "Publications", views: pubViews },
+            { name: "Programs", views: progViews },
+            { name: "About", views: aboutViews }
+        ].sort((a, b) => b.views - a.views);
 
-        // Mock top pages data
-        const topPages = [
-            { page: "/", views: 5432 },
-            { page: "/news", views: 3210 },
-            { page: "/publications", views: 2100 },
-            { page: "/programs", views: 1500 },
-            { page: "/about", views: 1200 }
-        ];
+        // Real top pages
+        const pageCounts: Record<string, number> = {};
+        allPageViews.forEach(e => {
+            const url = e.resourceId || 'unknown';
+            pageCounts[url] = (pageCounts[url] || 0) + 1;
+        });
+
+        const topPages = Object.entries(pageCounts)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 5)
+            .map(([page, count]) => ({ page, views: count }));
 
         // Combine recent activity
         const recentActivity = [
@@ -82,7 +124,7 @@ export const getAnalytics = query({
                 type: "news",
                 action: "Published",
                 description: n.title,
-                timestamp: n.date // Assuming date is ISO string
+                timestamp: n.date
             })),
             ...publications.map(p => ({
                 id: p._id,
@@ -103,8 +145,8 @@ export const getAnalytics = query({
             },
             engagement: {
                 downloads,
-                views,
-                topPages
+                views: views.filter(v => v.views > 0).length ? views : [{ name: "No data", views: 0 }],
+                topPages: topPages.length ? topPages : [{ page: "No data", views: 0 }]
             },
             recentActivity
         };

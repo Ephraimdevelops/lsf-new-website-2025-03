@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { Id } from "./_generated/dataModel";
 
 // Get all team members
 // Get all team members
@@ -13,7 +14,7 @@ export const get = query({
                 // If image looks like a storage ID (doesn't start with / or http), try to resolve it
                 if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
                     try {
-                        const normalizedId = ctx.db.normalizeId("_storage", member.image as string);
+                        const normalizedId = ctx.db.normalizeId("_storage" as any, member.image as string) as Id<"_storage"> | null;
                         if (normalizedId) {
                             const url = await ctx.storage.getUrl(normalizedId);
                             if (url) {
@@ -40,7 +41,7 @@ export const getById = query({
         // If image looks like a storage ID (doesn't start with / or http), try to resolve it
         if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
             try {
-                const normalizedId = ctx.db.normalizeId("_storage", member.image as string);
+                const normalizedId = ctx.db.normalizeId("_storage" as any, member.image as string) as Id<"_storage"> | null;
                 if (normalizedId) {
                     const url = await ctx.storage.getUrl(normalizedId);
                     if (url) {

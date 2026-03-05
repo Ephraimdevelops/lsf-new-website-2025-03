@@ -19,6 +19,7 @@ const NewsDetail = () => {
   const newsItem = newsItemData ? { ...newsItemData, id: newsItemData._id } : null;
   const logEvent = useMutation(api.analytics.logEvent);
   const visitorId = useVisitorId();
+  const hasTrackedView = useRef(false);
   const observerRef = useRef<HTMLDivElement>(null);
   const hasTrackedRead = useRef(false);
 
@@ -32,13 +33,11 @@ const NewsDetail = () => {
     .map(item => ({ ...item, id: item._id }));
 
   // =====================================================
-  // ANALYTICS: Track news article view on mount
-  // =====================================================
-  // =====================================================
-  // ANALYTICS: Track news article view on mount
+  // ANALYTICS: Track news article view (fires once)
   // =====================================================
   useEffect(() => {
-    if (newsItem && id) {
+    if (newsItem && id && visitorId && !hasTrackedView.current) {
+      hasTrackedView.current = true;
       // SEO
       document.title = `${newsItem.title} | LSF News`;
 
@@ -53,7 +52,8 @@ const NewsDetail = () => {
     return () => {
       document.title = 'Legal Services Facility'; // Reset on unmount
     };
-  }, [newsItem, id, logEvent, visitorId]); // Only fire once when article loads
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newsItem, id, visitorId]); // Only fire once when article loads
 
   // =====================================================
   // ANALYTICS: Track news article read on scroll to bottom
@@ -82,7 +82,7 @@ const NewsDetail = () => {
     return () => {
       observer.disconnect();
     };
-  }, [isLoading, newsItem, id, logEvent, visitorId]);
+  }, [isLoading, newsItem, id, visitorId]);
 
 
   if (isLoading) {

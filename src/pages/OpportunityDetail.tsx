@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
@@ -17,11 +17,13 @@ const OpportunityDetail = () => {
 
   const logEvent = useMutation(api.analytics.logEvent);
   const visitorId = useVisitorId();
+  const hasTrackedView = useRef(false);
 
   const isLoading = opportunityData === undefined;
 
   useEffect(() => {
-    if (opportunity) {
+    if (opportunity && visitorId && !hasTrackedView.current) {
+      hasTrackedView.current = true;
       logEvent({
         type: "opportunity_view",
         resourceId: opportunity.id,
@@ -30,7 +32,8 @@ const OpportunityDetail = () => {
         meta: { title: opportunity.title, type: opportunity.type },
       });
     }
-  }, [opportunity, logEvent, visitorId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [opportunity, visitorId]);
 
   const handleApplyClick = () => {
     if (opportunity) {
