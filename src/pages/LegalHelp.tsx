@@ -215,29 +215,17 @@ const LegalHelp = () => {
             {filteredParalegals.length > 0 ? filteredParalegals.map((paralegal) => (
               <Card key={paralegal._id} className="group bg-white border-0 shadow-sm hover:shadow-2xl transition-all duration-300 rounded-3xl overflow-hidden ring-1 ring-gray-100">
                 <div className="p-6">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="relative">
-                      <div className="w-20 h-20 rounded-2xl bg-gray-100 overflow-hidden ring-4 ring-white shadow-lg">
-                        {paralegal.photoUrl ? (
-                          <img
-                            src={paralegal.photoUrl || "/lovable-uploads/placeholder.svg"}
-                            alt={paralegal.fullName}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-primary/5 text-primary text-2xl font-bold">
-                            {paralegal.fullName.charAt(0)}
-                          </div>
+                  <div className="flex items-start gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+                      <span className="text-lg font-bold text-primary">{paralegal.fullName.charAt(0)}</span>
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <h3 className="text-xl font-bold text-gray-900 line-clamp-1">{paralegal.fullName}</h3>
+                        {paralegal.isVerified && (
+                          <BadgeCheck className="h-5 w-5 text-blue-500 fill-blue-500/10 shrink-0" />
                         )}
                       </div>
-                      {paralegal.isVerified && (
-                        <div className="absolute -bottom-2 -right-2 bg-white p-1 rounded-full shadow-sm">
-                          <BadgeCheck className="h-5 w-5 text-blue-500 fill-blue-500/10" />
-                        </div>
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-1 line-clamp-1">{paralegal.fullName}</h3>
                       <div className="flex items-center gap-1.5 text-sm text-gray-500 mb-2">
                         <MapPin className="h-3.5 w-3.5 text-primary" />
                         {paralegal.ward ? `${paralegal.ward}, ` : ''}{paralegal.district}

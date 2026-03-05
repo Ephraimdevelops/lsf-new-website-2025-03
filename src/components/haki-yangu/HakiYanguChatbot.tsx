@@ -57,7 +57,7 @@ const HakiYanguChatbot = () => {
                             </div>
 
                             <a
-                                href="https://wa.me/255XXXXXXXXX"
+                                href="https://wa.me/255757338813"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="self-start"

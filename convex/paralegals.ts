@@ -225,3 +225,86 @@ export const addParalegalManually = mutation({
         return { success: true, id };
     },
 });
+
+// ==========================================
+// BULK CSV IMPORT
+// ==========================================
+export const importParalegalsBatch = mutation({
+    args: {
+        records: v.array(
+            v.object({
+                fullName: v.string(),
+                email: v.string(),
+                phone: v.string(),
+                region: v.string(),
+                district: v.string(),
+                bio: v.optional(v.string()),
+            })
+        ),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Unauthorized");
+        }
+
+        const isAdminEmail =
+            identity.email &&
+            ["admin@lsftz.org", "designable2022@gmail.com", "ephraba@gmail.com", "victoria.john@lsftz.org"].includes(
+                identity.email.toLowerCase()
+            );
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+
+        if (!isAdminEmail && (!user || !["admin", "staff"].includes(user.role))) {
+            throw new Error("Forbidden: Insufficient privileges.");
+        }
+
+        let imported = 0;
+        let duplicates = 0;
+        const errors: string[] = [];
+
+        for (const record of args.records) {
+            try {
+                // Skip if email already exists
+                const existing = await ctx.db
+                    .query("paralegal_applications")
+                    .filter((q) => q.eq(q.field("email"), record.email.toLowerCase()))
+                    .first();
+
+                if (existing) {
+                    duplicates++;
+                    continue;
+                }
+
+                await ctx.db.insert("paralegal_applications", {
+                    fullName: record.fullName.trim(),
+                    email: record.email.toLowerCase().trim(),
+                    phone: record.phone.trim(),
+                    region: record.region.trim(),
+                    district: record.district.trim(),
+                    bio: record.bio || undefined,
+                    education: "CSV Import",
+                    experience: "CSV Import",
+                    motivation: "Imported from CSV",
+                    isVerified: true,
+                    status: "approved",
+                    submittedAt: Date.now(),
+                    approvedAt: Date.now(),
+                    profileViews: 0,
+                    hasJoinedHakiYangu: false,
+                    onboardingCompleted: true,
+                });
+                imported++;
+            } catch (e: any) {
+                errors.push(`${record.fullName}: ${e.message}`);
+            }
+        }
+
+        return { imported, duplicates, errors };
+    },
+});
+

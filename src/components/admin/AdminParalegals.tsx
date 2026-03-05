@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Button } from '@/components/ui/button';
@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
     Users, MapPin, CheckCircle, XCircle, Eye, Search,
-    BadgeCheck, Shield, TrendingUp, Filter
+    BadgeCheck, Shield, TrendingUp, Filter, Upload
 } from 'lucide-react';
 import { Id } from '../../../convex/_generated/dataModel';
 import {
@@ -37,6 +37,140 @@ type Paralegal = {
     approvedAt?: number;
 };
 
+// ==========================================
+// CSV PARSING & DATA CLEANING UTILITIES
+// ==========================================
+
+function cleanPhone(raw: string): string {
+    if (!raw) return '';
+    // Take the first number if there are multiple separated by / or ,
+    let phone = raw.split(/[\/,]/).map(s => s.trim())[0] || '';
+    // Remove all spaces
+    phone = phone.replace(/\s+/g, '');
+    // Replace leading O (letter) with 0 (zero)
+    if (phone.startsWith('O') && phone.length > 9) {
+        phone = '0' + phone.slice(1);
+    }
+    // Normalize +255 to 0
+    if (phone.startsWith('+255')) {
+        phone = '0' + phone.slice(4);
+    } else if (phone.startsWith('255') && phone.length > 11) {
+        phone = '0' + phone.slice(3);
+    }
+    // Remove non-digit characters
+    phone = phone.replace(/[^\d]/g, '');
+    return phone;
+}
+
+function parseCSVLine(line: string): string[] {
+    const result: string[] = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        if (char === '"') {
+            if (inQuotes && i + 1 < line.length && line[i + 1] === '"') {
+                current += '"';
+                i++;
+            } else {
+                inQuotes = !inQuotes;
+            }
+        } else if (char === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    result.push(current.trim());
+    return result;
+}
+
+type CsvRecord = {
+    fullName: string;
+    email: string;
+    phone: string;
+    region: string;
+    district: string;
+    bio?: string;
+};
+
+function parseCSV(text: string): CsvRecord[] {
+    // Handle multiline fields by joining lines that are inside quotes
+    const rawLines = text.split('\n');
+    const lines: string[] = [];
+    let buffer = '';
+    let openQuotes = false;
+    for (const line of rawLines) {
+        const quoteCount = (line.match(/"/g) || []).length;
+        if (openQuotes) {
+            buffer += '\n' + line;
+            if (quoteCount % 2 === 1) {
+                openQuotes = false;
+                lines.push(buffer);
+                buffer = '';
+            }
+        } else {
+            if (quoteCount % 2 === 1) {
+                openQuotes = true;
+                buffer = line;
+            } else {
+                lines.push(line);
+            }
+        }
+    }
+    if (buffer) lines.push(buffer);
+
+    // Skip header row
+    const records: CsvRecord[] = [];
+    const seenKeys = new Set<string>();
+
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        const cols = parseCSVLine(line);
+        // CSV columns: Timestamp, JINA LAKO, Barua pepe, MKOA, WILAYA, TASISI, CHEO, UMRI, JINSIA, NAMBA YA SIMU, (blank)
+        const fullName = (cols[1] || '').replace(/^"|"$/g, '').trim();
+        let email = (cols[2] || '').replace(/^"|"$/g, '').trim().toLowerCase();
+        const region = (cols[3] || '').replace(/^"|"$/g, '').trim();
+        const district = (cols[4] || '').replace(/^"|"$/g, '').trim();
+        const organization = (cols[5] || '').replace(/^"|"$/g, '').trim();
+        const title = (cols[6] || '').replace(/^"|"$/g, '').trim();
+        const phone = cleanPhone((cols[9] || '').replace(/^"|"$/g, ''));
+
+        // Skip if no name
+        if (!fullName) continue;
+
+        // Skip if phone is too short (invalid)
+        if (phone.length < 9) continue;
+
+        // Generate placeholder email if missing
+        if (!email) {
+            email = `noemail_${phone}@csv-import.local`;
+        }
+
+        // Deduplicate by email
+        const dedupeKey = email;
+        if (seenKeys.has(dedupeKey)) continue;
+        seenKeys.add(dedupeKey);
+
+        // Build bio from org + title
+        const bioParts = [];
+        if (organization) bioParts.push(`Organization: ${organization}`);
+        if (title) bioParts.push(`Role: ${title}`);
+        const bio = bioParts.length > 0 ? bioParts.join(' | ') : undefined;
+
+        records.push({ fullName, email, phone, region, district, bio });
+    }
+
+    return records;
+}
+
+// ==========================================
+// COMPONENT
+// ==========================================
+
 const AdminParalegals = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [regionFilter, setRegionFilter] = useState('');
@@ -52,7 +186,9 @@ const AdminParalegals = () => {
     // Mutations
     const toggleVerified = useMutation(api.paralegals.toggleVerified);
     const addParalegal = useMutation(api.paralegals.addParalegalManually);
+    const importBatch = useMutation(api.paralegals.importParalegalsBatch);
 
+    // Manual Add state
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
@@ -62,6 +198,68 @@ const AdminParalegals = () => {
         region: '',
         district: '',
     });
+
+    // CSV Import state
+    const [isCsvModalOpen, setIsCsvModalOpen] = useState(false);
+    const [csvRecords, setCsvRecords] = useState<CsvRecord[]>([]);
+    const [csvFileName, setCsvFileName] = useState('');
+    const [isImporting, setIsImporting] = useState(false);
+    const [importProgress, setImportProgress] = useState('');
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleCsvFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setCsvFileName(file.name);
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const text = event.target?.result as string;
+            const records = parseCSV(text);
+            setCsvRecords(records);
+        };
+        reader.readAsText(file);
+    };
+
+    const handleCsvImport = async () => {
+        if (csvRecords.length === 0) return;
+
+        setIsImporting(true);
+        let totalImported = 0;
+        let totalDuplicates = 0;
+        const allErrors: string[] = [];
+
+        try {
+            // Send in batches of 50
+            const BATCH_SIZE = 50;
+            const totalBatches = Math.ceil(csvRecords.length / BATCH_SIZE);
+
+            for (let i = 0; i < csvRecords.length; i += BATCH_SIZE) {
+                const batch = csvRecords.slice(i, i + BATCH_SIZE);
+                const batchNum = Math.floor(i / BATCH_SIZE) + 1;
+                setImportProgress(`Importing batch ${batchNum}/${totalBatches}...`);
+
+                const result = await importBatch({ records: batch });
+                totalImported += result.imported;
+                totalDuplicates += result.duplicates;
+                allErrors.push(...result.errors);
+            }
+
+            toast.success(
+                `Import complete: ${totalImported} added, ${totalDuplicates} duplicates skipped` +
+                (allErrors.length > 0 ? `, ${allErrors.length} errors` : '')
+            );
+
+            setIsCsvModalOpen(false);
+            setCsvRecords([]);
+            setCsvFileName('');
+        } catch (error: any) {
+            toast.error(error.message || "Import failed");
+        } finally {
+            setIsImporting(false);
+            setImportProgress('');
+        }
+    };
 
     const handleAddSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -105,79 +303,143 @@ const AdminParalegals = () => {
                     <h1 className="text-3xl font-bold text-neutral-900">Paralegal Management</h1>
                     <p className="text-neutral-600 mt-1">Manage your network of community paralegals</p>
                 </div>
-                <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-                    <DialogTrigger asChild>
-                        <Button className="gap-2">
-                            <Users className="h-4 w-4" />
-                            Add Paralegal
-                        </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>Add Paralegal Manually</DialogTitle>
-                            <DialogDescription>
-                                Add a verified paralegal directly to the network.
-                            </DialogDescription>
-                        </DialogHeader>
-                        <form onSubmit={handleAddSubmit} className="space-y-4 pt-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="fullName">Full Name</Label>
-                                <Input
-                                    id="fullName"
-                                    required
-                                    value={formData.fullName}
-                                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="email">Email</Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    required
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="phone">Phone</Label>
-                                <Input
-                                    id="phone"
-                                    required
-                                    value={formData.phone}
-                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                />
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
+                <div className="flex gap-2">
+                    {/* CSV Import Button */}
+                    <Dialog open={isCsvModalOpen} onOpenChange={setIsCsvModalOpen}>
+                        <DialogTrigger asChild>
+                            <Button variant="outline" className="gap-2">
+                                <Upload className="h-4 w-4" />
+                                Import CSV
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-lg">
+                            <DialogHeader>
+                                <DialogTitle>Import Paralegals from CSV</DialogTitle>
+                                <DialogDescription>
+                                    Upload a CSV file to bulk-import paralegals. Duplicates by email will be skipped.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <div className="space-y-4 pt-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="region">Region</Label>
-                                    <select
-                                        id="region"
-                                        required
-                                        value={formData.region}
-                                        onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-                                        className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
-                                    >
-                                        <option value="">Select Region</option>
-                                        {regions.map(r => <option key={r} value={r}>{r}</option>)}
-                                    </select>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="district">District</Label>
-                                    <Input
-                                        id="district"
-                                        required
-                                        value={formData.district}
-                                        onChange={(e) => setFormData({ ...formData, district: e.target.value })}
+                                    <Label htmlFor="csvFile">CSV File</Label>
+                                    <input
+                                        ref={fileInputRef}
+                                        id="csvFile"
+                                        type="file"
+                                        accept=".csv"
+                                        onChange={handleCsvFileSelect}
+                                        className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
                                     />
                                 </div>
+
+                                {csvRecords.length > 0 && (
+                                    <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                                        <p className="font-semibold text-green-800">
+                                            ✅ {csvRecords.length} records ready to import
+                                        </p>
+                                        <p className="text-sm text-green-600 mt-1">
+                                            From: {csvFileName}
+                                        </p>
+                                        <div className="mt-3 text-xs text-green-700 space-y-1">
+                                            <p>• Duplicate emails will be skipped automatically</p>
+                                            <p>• Phone numbers cleaned & normalized</p>
+                                            <p>• All imported as verified & approved</p>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {importProgress && (
+                                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
+                                        <p className="text-sm text-blue-700 font-medium">{importProgress}</p>
+                                    </div>
+                                )}
+
+                                <Button
+                                    onClick={handleCsvImport}
+                                    disabled={csvRecords.length === 0 || isImporting}
+                                    className="w-full"
+                                >
+                                    {isImporting ? importProgress || "Importing..." : `Import ${csvRecords.length} Paralegals`}
+                                </Button>
                             </div>
-                            <Button type="submit" className="w-full" disabled={isSubmitting}>
-                                {isSubmitting ? "Adding..." : "Add Paralegal"}
+                        </DialogContent>
+                    </Dialog>
+
+                    {/* Add Paralegal Button */}
+                    <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+                        <DialogTrigger asChild>
+                            <Button className="gap-2">
+                                <Users className="h-4 w-4" />
+                                Add Paralegal
                             </Button>
-                        </form>
-                    </DialogContent>
-                </Dialog>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Add Paralegal Manually</DialogTitle>
+                                <DialogDescription>
+                                    Add a verified paralegal directly to the network.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <form onSubmit={handleAddSubmit} className="space-y-4 pt-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="fullName">Full Name</Label>
+                                    <Input
+                                        id="fullName"
+                                        required
+                                        value={formData.fullName}
+                                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="email">Email</Label>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="phone">Phone</Label>
+                                    <Input
+                                        id="phone"
+                                        required
+                                        value={formData.phone}
+                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="region">Region</Label>
+                                        <select
+                                            id="region"
+                                            required
+                                            value={formData.region}
+                                            onChange={(e) => setFormData({ ...formData, region: e.target.value })}
+                                            className="w-full flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
+                                        >
+                                            <option value="">Select Region</option>
+                                            {regions.map(r => <option key={r} value={r}>{r}</option>)}
+                                        </select>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="district">District</Label>
+                                        <Input
+                                            id="district"
+                                            required
+                                            value={formData.district}
+                                            onChange={(e) => setFormData({ ...formData, district: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+                                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                                    {isSubmitting ? "Adding..." : "Add Paralegal"}
+                                </Button>
+                            </form>
+                        </DialogContent>
+                    </Dialog>
+                </div>
             </div>
 
             {/* Stats Cards */}
