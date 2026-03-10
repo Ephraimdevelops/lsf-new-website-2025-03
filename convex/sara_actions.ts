@@ -4,8 +4,6 @@ import { v } from "convex/values";
 import { api, internal } from "./_generated/api";
 import OpenAI from "openai";
 
-
-
 // ==========================================
 // EMERGENCY SAFETY SYSTEM (CRITICAL)
 // ==========================================
@@ -96,19 +94,32 @@ export const ingestDocument = action({
         const arrayBuffer = await response.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
-        // 2. Parse PDF
+        // 2. Parse PDF using pdfjs-dist (Standard standard/V8 compatible)
         let text = "";
         try {
-            // Dynamic import
-            // @ts-ignore
-            const pdfModule = await import("pdf-parse/lib/pdf-parse.js");
-            const pdf = pdfModule.default || pdfModule;
+            // Dynamic import to avoid breaking the bundler
+            // @ts-expect-error - The types for pdfjs-dist don't cover this specific build path perfectly
+            const pdfjsLib = await import("pdfjs-dist/build/pdf.min.mjs");
 
-            const data: any = await pdf(buffer);
-            text = data.text;
+            // Required for Edge/Node environments where there's no native Worker
+            if (!pdfjsLib.GlobalWorkerOptions.workerSrc) {
+                pdfjsLib.GlobalWorkerOptions.workerSrc = "pdfjs-dist/build/pdf.worker.min.mjs";
+            }
+
+            const uint8Array = new Uint8Array(arrayBuffer);
+            const loadingTask = pdfjsLib.getDocument({ data: uint8Array });
+            const pdfDoc = await loadingTask.promise;
+
+            const numPages = pdfDoc.numPages;
+            for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+                const page = await pdfDoc.getPage(pageNum);
+                const textContent = await page.getTextContent();
+                const pageStrings = textContent.items.map((item: any) => item.str);
+                text += pageStrings.join(" ") + "\n";
+            }
         } catch (e) {
-            console.error("PDF Parse Error:", e);
-            throw new Error("Failed to parse PDF");
+            console.error("PDF Parse Error (PDF.js):", e);
+            throw new Error(`Failed to parse PDF: ${e instanceof Error ? e.message : 'Unknown PDF error'}`);
         }
 
         // 3. Create Document Record
