@@ -52,6 +52,21 @@ export const logEvent = mutation({
         visitorId: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        // 1. Deduplication Guard: Skip if same visitor logged same event in last 5s
+        if (args.visitorId && (args.type === "page_view" || args.type.includes("_view"))) {
+            const fiveSecsAgo = Date.now() - 5000;
+            const recent = await ctx.db.query("analytics_events")
+                .withIndex("by_type", q => q.eq("type", args.type))
+                .filter(q => q.and(
+                    q.eq(q.field("visitorId"), args.visitorId),
+                    q.eq(q.field("resourceId"), args.resourceId),
+                    q.gte(q.field("timestamp"), fiveSecsAgo)
+                ))
+                .first();
+
+            if (recent) return; // Skip duplicate
+        }
+
         const identity = await ctx.auth.getUserIdentity();
 
         await ctx.db.insert("analytics_events", {

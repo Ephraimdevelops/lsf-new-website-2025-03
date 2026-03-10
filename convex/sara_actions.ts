@@ -292,6 +292,7 @@ RESPONSE GUIDELINES:
 - Keep answers professional, empathetic, and concise.
 - Never use the word "Smart" to describe yourself; use "Official" or "Helpful".
 - If asked for specific legal advice, recommend consulting a paralegal.
+- If a user asks for a paralegal or legal assistance, ALWAYS proactively ask them for their Region and District FIRST if you don't already know it, so you can find one near them using the find_paralegals tool.
 - Always end with a helpful next step.
 
 ${confidenceWarning}
@@ -365,8 +366,9 @@ ${context || "No relevant context found. Please be honest about not having speci
 
             // Check for tool calls
             if (delta?.tool_calls) {
-                if (!toolCallBuffer) toolCallBuffer = { name: "", arguments: "" };
+                if (!toolCallBuffer) toolCallBuffer = { name: "", arguments: "", id: "" };
                 const tc = delta.tool_calls[0];
+                if (tc.id) toolCallBuffer.id = tc.id;
                 if (tc.function?.name) toolCallBuffer.name += tc.function.name;
                 if (tc.function?.arguments) toolCallBuffer.arguments += tc.function.arguments;
                 continue;
@@ -423,10 +425,12 @@ ${context || "No relevant context found. Please be honest about not having speci
             }
 
             // Append tool call result
+            const currentToolCallId = toolCallBuffer.id || "call_" + Date.now();
+
             messages.push({
                 role: "assistant",
                 tool_calls: [{
-                    id: "call_" + Date.now(),
+                    id: currentToolCallId,
                     type: "function",
                     function: {
                         name: toolCallBuffer.name,
@@ -436,7 +440,7 @@ ${context || "No relevant context found. Please be honest about not having speci
             });
             messages.push({
                 role: "tool",
-                tool_call_id: "call_" + Date.now(),
+                tool_call_id: currentToolCallId,
                 content: searchResults
             });
 

@@ -4,6 +4,7 @@ import { FileText, ArrowRight, Download, Calendar } from 'lucide-react';
 import { Heading, Text } from '../../design-system';
 import { Button } from '../../ui/button';
 import { uploadedDocuments } from './newsData';
+import { forceDownload } from '@/utils/download';
 
 const PublicationsSection = () => {
   return (
@@ -17,22 +18,22 @@ const PublicationsSection = () => {
             Recent research & reports
           </Text>
         </div>
-      
+
         <div className="space-y-8">
           {uploadedDocuments.map((doc, idx) => (
-            <article 
-              key={doc.id} 
+            <article
+              key={doc.id}
               className="group hover:opacity-95 transition-opacity duration-300"
             >
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-20 h-24 rounded-lg overflow-hidden bg-neutral-100">
-                  <img 
+                  <img
                     src={doc.image}
                     alt={doc.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                
+
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-xs text-neutral-500 font-medium uppercase tracking-wider">
@@ -44,19 +45,19 @@ const PublicationsSection = () => {
                       </span>
                     )}
                   </div>
-                  
+
                   <Heading variant="card" color="neutral" className="leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-300 mb-2">
                     {doc.title}
                   </Heading>
 
                   <div className="flex items-center text-sm text-neutral-500 mb-3">
                     <Calendar size={14} className="mr-2" />
-                    {new Date().toLocaleDateString('en-US', { 
-                      month: 'short', 
+                    {new Date().toLocaleDateString('en-US', {
+                      month: 'short',
                       year: 'numeric'
                     })}
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <Link
                       to={`/publications/${doc.id}`}
@@ -64,14 +65,16 @@ const PublicationsSection = () => {
                     >
                       Read More
                     </Link>
-                    <a 
-                      href={doc.downloadUrl} 
-                      download
-                      className="inline-flex items-center bg-secondary-teal hover:bg-secondary-teal/90 text-white px-3 py-2 rounded-lg text-xs font-semibold transition-colors duration-300"
+                    <button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        await forceDownload(doc.downloadUrl, `${doc.title}.pdf`);
+                      }}
+                      className="inline-flex items-center bg-secondary-teal hover:bg-secondary-teal/90 text-white px-3 py-2 rounded-lg text-xs font-semibold transition-colors duration-300 border-none cursor-pointer"
                     >
                       <Download size={12} className="mr-1" />
                       PDF
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

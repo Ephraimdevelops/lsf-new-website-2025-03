@@ -193,8 +193,8 @@ const PublicationForm = ({ open, onClose, onSubmit, publication, mode }: Publica
       }
 
       if (selectedCoverImage) {
-        if (selectedCoverImage.size > 2 * 1024 * 1024) { // 2MB limit for images
-          toast({ title: "File too large", description: "Cover image must be less than 2MB", variant: "destructive" });
+        if (selectedCoverImage.size > 20 * 1024 * 1024) { // 20MB limit for images
+          toast({ title: "File too large", description: "Cover image must be less than 20MB", variant: "destructive" });
           setSubmitting(false);
           return;
         }

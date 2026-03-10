@@ -5,8 +5,8 @@ import { mutation } from "./_generated/server";
 // MEDIA LIBRARY MUTATIONS (SECURED + OPTIMIZED)
 // ==========================================
 
-// Maximum file size: 5MB (increased from 2MB for modern camera files)
-const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
+// Maximum file size: 20MB (increased from 5MB for modern camera files and larger PDFs)
+const MAX_FILE_SIZE_BYTES = 20 * 1024 * 1024; // 20MB
 
 export const generateUploadUrl = mutation({
     args: {},
@@ -35,7 +35,7 @@ export const saveMedia = mutation({
         // =====================================================
         if (args.size > MAX_FILE_SIZE_BYTES) {
             console.log(`[SECURITY] File size rejected: ${args.size} bytes (max: ${MAX_FILE_SIZE_BYTES})`);
-            throw new Error(`File size exceeds 5MB limit. Your file is ${(args.size / (1024 * 1024)).toFixed(2)}MB.`);
+            throw new Error(`File size exceeds 20MB limit. Your file is ${(args.size / (1024 * 1024)).toFixed(2)}MB.`);
         }
 
         const url = await ctx.storage.getUrl(args.storageId);

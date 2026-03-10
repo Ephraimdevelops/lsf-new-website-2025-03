@@ -121,8 +121,8 @@ const NewsForm = ({ open, onClose, onCreated, editData }: NewsFormProps) => {
       let finalImage = editData?.image; // keep legacy url or old id
 
       if (imageFile) {
-        if (imageFile.size > 2 * 1024 * 1024) {
-          toast({ title: "File too large", description: "Image must be less than 2MB", variant: "destructive" });
+        if (imageFile.size > 20 * 1024 * 1024) {
+          toast({ title: "File too large", description: "Image must be less than 20MB", variant: "destructive" });
           setSubmitting(false);
           return;
         }

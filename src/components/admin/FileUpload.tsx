@@ -2,7 +2,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Upload, X, File, Image, Loader2 } from 'lucide-react';
+import { Upload, X, File as FileIcon, Image as ImageIcon, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface FileUploadProps {
@@ -80,7 +80,7 @@ const FileUpload = ({
   accept = "image/*,application/pdf,.doc,.docx",
   multiple = false,
   onUpload,
-  maxSize = 5, // Default to 5MB (upgraded from 2MB)
+  maxSize = 20, // Default to 20MB
   label = "Upload Files",
   description = "Select files to upload",
   enableCompression = true, // Compression on by default
@@ -212,9 +212,9 @@ const FileUpload = ({
 
   const getFileIcon = (file: File) => {
     if (file.type.startsWith('image/')) {
-      return <Image size={16} className="text-blue-500" />;
+      return <ImageIcon size={16} className="text-blue-500" />;
     }
-    return <File size={16} className="text-gray-500" />;
+    return <FileIcon size={16} className="text-gray-500" />;
   };
 
   const formatFileSize = (bytes: number) => {
