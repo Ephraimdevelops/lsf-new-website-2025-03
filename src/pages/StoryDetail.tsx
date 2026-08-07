@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useVisitorId } from '@/hooks/useVisitorId';
@@ -12,6 +12,7 @@ import Typography from '../components/shared/Typography';
 import SuccessStoryCard from '../components/shared/SuccessStoryCard';
 import { Button } from '@/components/ui/button';
 import SEOHead from '@/components/shared/SEOHead';
+import { sanitizeHtml } from '@/lib/sanitizeHtml';
 
 const StoryDetail = () => {
     const { storyId } = useParams<{ storyId: string }>();
@@ -32,6 +33,7 @@ const StoryDetail = () => {
 
     // Find the current story
     const story = allStories.find(s => s._id === storyId);
+    const sanitizedStory = useMemo(() => sanitizeHtml(story?.story), [story?.story]);
 
     // SEO and Analytics
     useEffect(() => {
@@ -171,7 +173,7 @@ const StoryDetail = () => {
                             <Typography variant="h2" className="text-3xl font-bold mb-6">The Full Story</Typography>
                             <div
                                 className="text-neutral-700 text-lg leading-relaxed [&_p]:mb-4 [&_span]:inline"
-                                dangerouslySetInnerHTML={{ __html: story.story }}
+                                dangerouslySetInnerHTML={{ __html: sanitizedStory }}
                             />
                         </div>
 

@@ -1,11 +1,22 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
+import { resolveImageUrl } from "./lib/mediaHelpers";
 
 // Get all programs
 export const get = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db.query("programs").collect();
+        const programs = await ctx.db.query("programs").collect();
+        return await Promise.all(
+            programs.map(async (program) => {
+                if (program.imageUrl) {
+                    const resolved = await resolveImageUrl(ctx, program.imageUrl);
+                    program.imageUrl = resolved ?? undefined;
+                }
+                return program;
+            })
+        );
     },
 });
 
@@ -13,10 +24,15 @@ export const get = query({
 export const getBySlug = query({
     args: { slug: v.string() },
     handler: async (ctx, args) => {
-        return await ctx.db
+        const program = await ctx.db
             .query("programs")
             .withIndex("by_slug", (q) => q.eq("slug", args.slug))
             .unique();
+        if (program && program.imageUrl) {
+            const resolved = await resolveImageUrl(ctx, program.imageUrl);
+            program.imageUrl = resolved ?? undefined;
+        }
+        return program;
     },
 });
 
@@ -24,7 +40,12 @@ export const getBySlug = query({
 export const getById = query({
     args: { id: v.id("programs") },
     handler: async (ctx, args) => {
-        return await ctx.db.get(args.id);
+        const program = await ctx.db.get(args.id);
+        if (program && program.imageUrl) {
+            const resolved = await resolveImageUrl(ctx, program.imageUrl);
+            program.imageUrl = resolved ?? undefined;
+        }
+        return program;
     },
 });
 
@@ -40,8 +61,7 @@ export const create = mutation({
         status: v.union(v.literal("active"), v.literal("completed")),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         return await ctx.db.insert("programs", args);
     },
@@ -60,8 +80,7 @@ export const update = mutation({
         status: v.union(v.literal("active"), v.literal("completed")),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
         await ctx.db.patch(id, fields);
@@ -72,15 +91,7 @@ export const update = mutation({
 export const remove = mutation({
     args: { id: v.id("programs") },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        // Admin check
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden: Admin access required");
+        await requireAnyRole(ctx, ["admin"]);
 
         // =====================================================
         // ORPHAN DATA CLEANUP

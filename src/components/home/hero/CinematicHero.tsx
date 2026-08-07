@@ -154,8 +154,7 @@ const CinematicHero = () => {
             </span>
           )}
 
-          {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight mb-8">
+          <h1 className="text-white text-4xl md:text-5xl lg:text-5xl font-black leading-[0.95] tracking-tight mb-6">
             {currentSlideData.headline}
           </h1>
 

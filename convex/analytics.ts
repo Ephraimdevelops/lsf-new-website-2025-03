@@ -499,6 +499,11 @@ export const classifyChat = action({
         transcript: v.string(),
     },
     handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity || identity.subject !== args.userId) {
+            throw new Error("Unauthorized");
+        }
+
         const openai = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
         });

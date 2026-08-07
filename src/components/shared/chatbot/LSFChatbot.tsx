@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useOnlineStatus } from "@/hooks/useOnlineStatus";
 import { useVisitorId } from "@/hooks/useVisitorId";
 import { useQuery, useMutation, useAction } from "convex/react";
+import type { FunctionReference } from "convex/server";
 import { api } from "../../../../convex/_generated/api";
 
 export const designTokens = {
@@ -37,6 +38,18 @@ type Message = {
   timestamp: Date;
 };
 
+type ChatbotPayload = Record<string, unknown> | string | null;
+type ChatbotProxyApi = {
+  chatbotProxy: {
+    sendMessage: FunctionReference<
+      "action",
+      "public",
+      { message: string; threadId?: string; language: "swahili" | "english" },
+      ChatbotPayload
+    >;
+  };
+};
+
 interface LSFPersonalAssistantProps {
   forceOpen?: boolean;
   fullPage?: boolean;
@@ -45,22 +58,22 @@ interface LSFPersonalAssistantProps {
   language?: "swahili" | "english";
 }
 
-function getWebhookUrl(env?: "test" | "production") {
-  // Auto-detect production mode if env is not explicitly set
-  const isProduction = env ? env === "production" : process.env.NODE_ENV === 'production';
-
-  return isProduction
-    ? "https://lsfsaraai.app.n8n.cloud/webhook/webhook"
-    : "https://lsfsaraai.app.n8n.cloud/webhook-test/webhook";
-}
-
-function pickAssistantText(data: any, language: "swahili" | "english"): string {
+function pickAssistantText(data: ChatbotPayload, language: "swahili" | "english"): string {
   if (!data) return "";
-  const candidates = [data.output, data.response, data.message, data.text, data.reply, typeof data === "string" ? data : null].filter(Boolean);
+  const record = typeof data === "string" ? null : data;
+  const candidates = [
+    record?.output,
+    record?.response,
+    record?.message,
+    record?.text,
+    record?.reply,
+    typeof data === "string" ? data : null,
+  ].filter(Boolean);
   let text = candidates[0] ?? "";
   if (typeof text === "object") {
     try {
-      if (text.message_content) return String(text.message_content);
+      const textRecord = text as Record<string, unknown>;
+      if (textRecord.message_content) return String(textRecord.message_content);
       text = JSON.stringify(text);
     } catch {
       text = language === "swahili"
@@ -172,7 +185,7 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
   initialThreadId = null,
   language = "swahili",
 }) => {
-  const webhookUrl = getWebhookUrl(env);
+  void env;
 
   // Use the proper online status hook
   const isOnline = useOnlineStatus();
@@ -221,6 +234,7 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
   // =====================================================
   const logEvent = useMutation(api.analytics.logEvent);
   const classifyChat = useAction(api.analytics.classifyChat);
+  const sendChatbotMessage = useAction((api as unknown as ChatbotProxyApi).chatbotProxy.sendMessage);
   const visitorId = useVisitorId();
   const hasLoggedSession = useRef(false);
   const userMessageCount = useRef(0);
@@ -317,19 +331,11 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
 
     setIsTyping(true);
     try {
-      const body: Record<string, any> = { message: messageText, timestamp: new Date().toISOString(), language };
-      if (threadId) body.threadId = threadId;
-
-      const res = await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+      const data = await sendChatbotMessage({
+        message: messageText,
+        threadId: threadId || undefined,
+        language,
       });
-
-      let data: any = null;
-      const ct = res.headers.get("content-type") || "";
-      if (ct.includes("application/json")) data = await res.json();
-      else data = { message: await res.text() };
 
       if (data.threadId && !threadId) setThreadId(String(data.threadId));
 

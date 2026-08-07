@@ -157,7 +157,11 @@ function App() {
                           <Admin />
                         </ProtectedRoute>
                       } />
-                      <Route path="/admin/quick-links" element={<LinksManager />} />
+                      <Route path="/admin/quick-links" element={
+                        <ProtectedRoute allowedRoles={["admin"]}>
+                          <LinksManager />
+                        </ProtectedRoute>
+                      } />
                       <Route path="/dashboard/staff" element={
                         <ProtectedRoute allowedRoles={["staff"]}>
                           <StaffDashboard />

@@ -1,11 +1,22 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
+import { resolveImageUrl } from "./lib/mediaHelpers";
 
 // Get all slides
 export const get = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db.query("hero_slides").withIndex("by_order").collect();
+        const slides = await ctx.db.query("hero_slides").withIndex("by_order").collect();
+        return await Promise.all(
+            slides.map(async (slide) => {
+                if (slide.imageUrl) {
+                    const resolved = await resolveImageUrl(ctx, slide.imageUrl);
+                    slide.imageUrl = resolved ?? undefined;
+                }
+                return slide;
+            })
+        );
     },
 });
 
@@ -26,8 +37,7 @@ export const update = mutation({
         isActive: v.boolean(),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
         await ctx.db.patch(id, fields);
@@ -50,8 +60,7 @@ export const create = mutation({
         isActive: v.boolean(),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         return await ctx.db.insert("hero_slides", args);
     },
@@ -61,8 +70,7 @@ export const create = mutation({
 export const remove = mutation({
     args: { id: v.id("hero_slides") },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin"]);
 
         await ctx.db.delete(args.id);
     },
@@ -72,6 +80,8 @@ export const remove = mutation({
 export const seed = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const existing = await ctx.db.query("hero_slides").collect();
         if (existing.length > 0) return;
 
@@ -121,6 +131,8 @@ export const seed = mutation({
 export const updateCategories = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const slides = await ctx.db.query("hero_slides").collect();
 
         const categoryMap: Record<number, string> = {

@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
 
 // ==========================================
 // SITE SETTINGS PERSISTENCE
@@ -51,16 +52,7 @@ export const updateSettings = mutation({
         }),
     },
     handler: async (ctx, args) => {
-        // Admin check
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-
-        if (user?.role !== "admin") throw new Error("Forbidden: Admin access required");
+        await requireAnyRole(ctx, ["admin"]);
 
         // Update each setting
         for (const [key, value] of Object.entries(args.settings)) {

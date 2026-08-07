@@ -1,6 +1,8 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { Id } from "./_generated/dataModel";
+import { requireAnyRole } from "./lib/auth";
+import { resolveImageUrl } from "./lib/mediaHelpers";
 
 // Get all team members
 // Get all team members
@@ -11,21 +13,15 @@ export const get = query({
 
         return await Promise.all(
             team.map(async (member) => {
-                // If image looks like a storage ID (doesn't start with / or http), try to resolve it
-                if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
-                    try {
-                        const normalizedId = ctx.db.normalizeId("_storage" as any, member.image as string) as Id<"_storage"> | null;
-                        if (normalizedId) {
-                            const url = await ctx.storage.getUrl(normalizedId);
-                            if (url) {
-                                return { ...member, image: url, storageId: member.image };
-                            }
-                        }
-                    } catch (e) {
-                        // ignore broken storage Ids
+                let storageId = undefined;
+                if (member.image) {
+                    const resolved = await resolveImageUrl(ctx, member.image);
+                    if (resolved && resolved !== member.image) {
+                        storageId = member.image; // Preserve original ID if it was resolved
                     }
+                    member.image = resolved ?? undefined;
                 }
-                return { ...member, storageId: undefined };
+                return { ...member, storageId };
             })
         );
     },
@@ -38,19 +34,15 @@ export const getById = query({
         const member = await ctx.db.get(args.id);
         if (!member) return null;
 
-        // If image looks like a storage ID (doesn't start with / or http), try to resolve it
-        if (member.image && !member.image.startsWith('/') && !member.image.startsWith('http')) {
-            try {
-                const normalizedId = ctx.db.normalizeId("_storage" as any, member.image as string) as Id<"_storage"> | null;
-                if (normalizedId) {
-                    const url = await ctx.storage.getUrl(normalizedId);
-                    if (url) {
-                        return { ...member, image: url, storageId: member.image };
-                    }
-                }
-            } catch (e) { }
+        let storageId = undefined;
+        if (member.image) {
+            const resolved = await resolveImageUrl(ctx, member.image);
+            if (resolved && resolved !== member.image) {
+                storageId = member.image; // Preserve original ID if it was resolved
+            }
+            member.image = resolved ?? undefined;
         }
-        return { ...member, storageId: undefined };
+        return { ...member, storageId };
     },
 });
 
@@ -69,8 +61,7 @@ export const create = mutation({
         order: v.optional(v.number()),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         return await ctx.db.insert("team_members", args);
     },
@@ -92,8 +83,7 @@ export const update = mutation({
         order: v.optional(v.number()),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
         await ctx.db.patch(id, fields);
@@ -104,8 +94,7 @@ export const update = mutation({
 export const remove = mutation({
     args: { id: v.id("team_members") },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin"]);
 
         await ctx.db.delete(args.id);
     },
@@ -115,6 +104,8 @@ export const remove = mutation({
 export const seed = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const existing = await ctx.db.query("team_members").collect();
         if (existing.length > 0) return;
 

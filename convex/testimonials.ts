@@ -1,11 +1,22 @@
 import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
+import { resolveImageUrl } from "./lib/mediaHelpers";
 
 // Get all testimonials
 export const get = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db.query("testimonials").collect();
+        const testimonials = await ctx.db.query("testimonials").collect();
+        return await Promise.all(
+            testimonials.map(async (testimonial) => {
+                if (testimonial.imageUrl) {
+                    const resolved = await resolveImageUrl(ctx, testimonial.imageUrl);
+                    testimonial.imageUrl = resolved ?? undefined;
+                }
+                return testimonial;
+            })
+        );
     },
 });
 
@@ -13,10 +24,19 @@ export const get = query({
 export const getFeatured = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db
+        const testimonials = await ctx.db
             .query("testimonials")
             .withIndex("by_featured", (q) => q.eq("featured", true))
             .collect();
+        return await Promise.all(
+            testimonials.map(async (testimonial) => {
+                if (testimonial.imageUrl) {
+                    const resolved = await resolveImageUrl(ctx, testimonial.imageUrl);
+                    testimonial.imageUrl = resolved ?? undefined;
+                }
+                return testimonial;
+            })
+        );
     },
 });
 
@@ -33,6 +53,8 @@ export const create = mutation({
         featured: v.boolean(),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         return await ctx.db.insert("testimonials", args);
     },
 });
@@ -51,6 +73,8 @@ export const update = mutation({
         featured: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const { id, ...rest } = args;
         await ctx.db.patch(id, rest);
     },
@@ -60,6 +84,8 @@ export const update = mutation({
 export const remove = mutation({
     args: { id: v.id("testimonials") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         await ctx.db.delete(args.id);
     },
 });
@@ -68,6 +94,8 @@ export const remove = mutation({
 export const seed = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const existing = await ctx.db.query("testimonials").collect();
         if (existing.length > 0) return;
 

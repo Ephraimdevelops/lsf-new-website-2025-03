@@ -4,6 +4,7 @@ import { ArrowRight, Calendar } from 'lucide-react';
 import { Heading, Text } from '../../design-system';
 import { useQuery } from 'convex/react';
 import { api } from '../../../../convex/_generated/api';
+import { sanitizeHtml } from '@/lib/sanitizeHtml';
 
 const NewsSection = () => {
   const featuredNews = useQuery(api.news.getFeatured);
@@ -72,7 +73,7 @@ const NewsSection = () => {
                     {featuredNews[0].title}
                   </Heading>
                   {/* Render HTML content safely or just strip tags for excerpt */}
-                  <div className="text-neutral-600 leading-relaxed mb-6 line-clamp-3" dangerouslySetInnerHTML={{ __html: featuredNews[0].excerpt }} />
+                  <div className="text-neutral-600 leading-relaxed mb-6 line-clamp-3" dangerouslySetInnerHTML={{ __html: sanitizeHtml(featuredNews[0].excerpt) }} />
 
                   <div className="inline-flex items-center text-primary font-semibold group-hover:underline transition-all duration-300">
                     Read the Story

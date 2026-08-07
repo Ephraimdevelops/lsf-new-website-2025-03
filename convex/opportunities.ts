@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
 
 // Get all opportunities
 export const get = query({
@@ -36,8 +37,7 @@ export const create = mutation({
         benefits: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         return await ctx.db.insert("opportunities", args);
     },
@@ -63,8 +63,7 @@ export const update = mutation({
         benefits: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
         await ctx.db.patch(id, fields);
@@ -75,8 +74,7 @@ export const update = mutation({
 export const remove = mutation({
     args: { id: v.id("opportunities") },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin"]);
 
         await ctx.db.delete(args.id);
     },

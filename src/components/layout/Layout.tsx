@@ -58,10 +58,12 @@ const Layout = ({ children }: LayoutProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname, location.search, visitorId]);
 
+  const isHomePage = location.pathname === '/';
+
   return (
     <div className="flex flex-col min-h-screen bg-white w-full">
       <Header />
-      <main className="flex-grow pt-24 w-full overflow-x-hidden">
+      <main className={`flex-grow w-full overflow-x-hidden ${!isHomePage ? 'pt-24' : ''}`}>
         {children}
       </main>
       <Footer />

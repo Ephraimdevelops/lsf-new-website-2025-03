@@ -138,7 +138,7 @@ const EnhancedSlidingHero = () => {
                 {/* Main Headline */}
                 <Typography
                   variant="h1"
-                  className={`text-white mb-6 text-4xl md:text-5xl lg:text-7xl font-bold leading-tight [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)] transition-all duration-1000 delay-500 ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  className={`text-white mb-6 text-4xl md:text-5xl lg:text-5xl font-bold leading-tight [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)] transition-all duration-1000 delay-500 ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                     }`}
                 >
                   {slide.headline}

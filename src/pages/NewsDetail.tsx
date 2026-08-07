@@ -1,5 +1,5 @@
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HeroSection from '../components/shared/HeroSection';
@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import NotFound from './NotFound';
 import { useVisitorId } from '../hooks/useVisitorId';
 import SEOHead from '@/components/shared/SEOHead';
+import { sanitizeHtml } from '@/lib/sanitizeHtml';
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -31,6 +32,7 @@ const NewsDetail = () => {
     .filter(item => item._id !== newsItemData?._id)
     .slice(0, 3)
     .map(item => ({ ...item, id: item._id }));
+  const sanitizedContent = useMemo(() => sanitizeHtml(newsItem?.content), [newsItem?.content]);
 
   // =====================================================
   // ANALYTICS: Track news article view (fires once)
@@ -197,7 +199,7 @@ const NewsDetail = () => {
           <div className="max-w-3xl mx-auto">
             {/* Article Body */}
             <article className="prose prose-lg prose-neutral max-w-none">
-              <div dangerouslySetInnerHTML={{ __html: newsItem.content }} />
+              <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
             </article>
 
             {/* Analytics marker for reading to the bottom */}

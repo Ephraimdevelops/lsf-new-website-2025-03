@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
 
 // Get all stats
 export const get = query({
@@ -13,6 +14,8 @@ export const get = query({
 export const seed = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const existing = await ctx.db.query("stats").collect();
         if (existing.length > 0) return;
 

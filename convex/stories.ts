@@ -1,5 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
+import { normalizeText, sanitizeRichHtml } from "./lib/security";
 
 // Get all stories
 // Get all stories
@@ -53,10 +55,13 @@ export const create = mutation({
         featured: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
-        return await ctx.db.insert("success_stories", args);
+        return await ctx.db.insert("success_stories", {
+            ...args,
+            title: normalizeText(args.title, "Title", 220),
+            story: sanitizeRichHtml(args.story),
+        });
     },
 });
 
@@ -75,6 +80,8 @@ export const createForMigration = mutation({
         featured: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         // Check for existing story by title to prevent duplicates
         const existing = await ctx.db
             .query("success_stories")
@@ -85,7 +92,11 @@ export const createForMigration = mutation({
             return existing._id;
         }
 
-        return await ctx.db.insert("success_stories", args);
+        return await ctx.db.insert("success_stories", {
+            ...args,
+            title: normalizeText(args.title, "Title", 220),
+            story: sanitizeRichHtml(args.story),
+        });
     },
 });
 
@@ -106,11 +117,14 @@ export const update = mutation({
         featured: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
-        await ctx.db.patch(id, fields);
+        await ctx.db.patch(id, {
+            ...fields,
+            title: normalizeText(fields.title, "Title", 220),
+            story: sanitizeRichHtml(fields.story),
+        });
     },
 });
 
@@ -118,8 +132,7 @@ export const update = mutation({
 export const remove = mutation({
     args: { id: v.id("success_stories") },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin"]);
 
         await ctx.db.delete(args.id);
     },
@@ -129,6 +142,8 @@ export const remove = mutation({
 export const seed = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const existing = await ctx.db.query("success_stories").collect();
         if (existing.length > 0) return;
 

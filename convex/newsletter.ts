@@ -1,6 +1,8 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { api } from "./_generated/api";
+import { internal } from "./_generated/api";
+import { requireAnyRole } from "./lib/auth";
+import { escapeHtml, normalizeEmail, normalizeOptionalText, sanitizeRichHtml } from "./lib/security";
 
 // ==========================================
 // NEWSLETTER SUBSCRIBERS
@@ -14,10 +16,15 @@ export const subscribe = mutation({
         source: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        const email = normalizeEmail(args.email);
+        const firstName = normalizeOptionalText(args.firstName, "First name", 80);
+        const lastName = normalizeOptionalText(args.lastName, "Last name", 80);
+        const source = normalizeOptionalText(args.source, "Source", 80);
+
         // Check if already subscribed
         const existing = await ctx.db
             .query("newsletter_subscribers")
-            .withIndex("by_email", (q) => q.eq("email", args.email.toLowerCase()))
+            .withIndex("by_email", (q) => q.eq("email", email))
             .first();
 
         if (existing) {
@@ -33,26 +40,26 @@ export const subscribe = mutation({
         }
 
         await ctx.db.insert("newsletter_subscribers", {
-            email: args.email.toLowerCase(),
-            firstName: args.firstName,
-            lastName: args.lastName,
+            email,
+            firstName,
+            lastName,
             subscribedAt: Date.now(),
             status: "active",
-            source: args.source || "website",
+            source: source || "website",
             openCount: 0,
             clickCount: 0,
         });
 
         // Send notification email to admin
         try {
-            await ctx.scheduler.runAfter(0, api.resend.sendTransactionalEmail, {
+            await ctx.scheduler.runAfter(0, internal.resend.sendTransactionalEmail, {
                 to: "info@lsftz.org",
                 subject: "New Newsletter Subscriber",
                 html: `
                     <h2>New Newsletter Subscription</h2>
-                    <p><strong>Email:</strong> ${args.email}</p>
-                    <p><strong>Name:</strong> ${args.firstName || ""} ${args.lastName || ""}</p>
-                    <p><strong>Source:</strong> ${args.source || "website"}</p>
+                    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+                    <p><strong>Name:</strong> ${escapeHtml(firstName || "")} ${escapeHtml(lastName || "")}</p>
+                    <p><strong>Source:</strong> ${escapeHtml(source || "website")}</p>
                 `
             });
         } catch (error) {
@@ -66,9 +73,10 @@ export const subscribe = mutation({
 export const unsubscribe = mutation({
     args: { email: v.string() },
     handler: async (ctx, args) => {
+        const email = normalizeEmail(args.email);
         const subscriber = await ctx.db
             .query("newsletter_subscribers")
-            .withIndex("by_email", (q) => q.eq("email", args.email.toLowerCase()))
+            .withIndex("by_email", (q) => q.eq("email", email))
             .first();
 
         if (subscriber) {
@@ -84,6 +92,8 @@ export const listSubscribers = query({
         status: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         if (args.status) {
             return await ctx.db
                 .query("newsletter_subscribers")
@@ -96,6 +106,8 @@ export const listSubscribers = query({
 
 export const getSubscriberStats = query({
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const all = await ctx.db.query("newsletter_subscribers").collect();
         const active = all.filter((s) => s.status === "active").length;
         const unsubscribed = all.filter((s) => s.status === "unsubscribed").length;
@@ -120,6 +132,8 @@ export const updateSubscriber = mutation({
         tags: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const { id, ...updates } = args;
         await ctx.db.patch(id, updates);
         return { success: true };
@@ -129,6 +143,8 @@ export const updateSubscriber = mutation({
 export const deleteSubscriber = mutation({
     args: { id: v.id("newsletter_subscribers") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         await ctx.db.delete(args.id);
         return { success: true };
     },
@@ -143,20 +159,25 @@ export const importSubscribers = mutation({
         })),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         let imported = 0;
         let skipped = 0;
 
         for (const sub of args.subscribers) {
+            const email = normalizeEmail(sub.email);
+            const firstName = normalizeOptionalText(sub.firstName, "First name", 80);
+            const lastName = normalizeOptionalText(sub.lastName, "Last name", 80);
             const existing = await ctx.db
                 .query("newsletter_subscribers")
-                .withIndex("by_email", (q) => q.eq("email", sub.email.toLowerCase()))
+                .withIndex("by_email", (q) => q.eq("email", email))
                 .first();
 
             if (!existing) {
                 await ctx.db.insert("newsletter_subscribers", {
-                    email: sub.email.toLowerCase(),
-                    firstName: sub.firstName,
-                    lastName: sub.lastName,
+                    email,
+                    firstName,
+                    lastName,
                     subscribedAt: Date.now(),
                     status: "active",
                     source: "import",
@@ -188,8 +209,11 @@ export const createCampaign = mutation({
         tags: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const id = await ctx.db.insert("newsletter_campaigns", {
             ...args,
+            content: sanitizeRichHtml(args.content),
             status: "draft",
             createdAt: Date.now(),
         });
@@ -211,8 +235,13 @@ export const updateCampaign = mutation({
         tags: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const { id, ...updates } = args;
-        await ctx.db.patch(id, updates);
+        await ctx.db.patch(id, {
+            ...updates,
+            ...(updates.content !== undefined && { content: sanitizeRichHtml(updates.content) }),
+        });
         return { success: true };
     },
 });
@@ -220,6 +249,8 @@ export const updateCampaign = mutation({
 export const deleteCampaign = mutation({
     args: { id: v.id("newsletter_campaigns") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         await ctx.db.delete(args.id);
         return { success: true };
     },
@@ -230,6 +261,8 @@ export const listCampaigns = query({
         status: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         if (args.status) {
             return await ctx.db
                 .query("newsletter_campaigns")
@@ -244,6 +277,8 @@ export const listCampaigns = query({
 export const getCampaign = query({
     args: { id: v.id("newsletter_campaigns") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         return await ctx.db.get(args.id);
     },
 });
@@ -251,6 +286,8 @@ export const getCampaign = query({
 export const sendCampaign = mutation({
     args: { id: v.id("newsletter_campaigns") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const campaign = await ctx.db.get(args.id);
         if (!campaign) throw new Error("Campaign not found");
 
@@ -302,8 +339,11 @@ export const createTemplate = mutation({
         category: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const id = await ctx.db.insert("newsletter_templates", {
             ...args,
+            content: sanitizeRichHtml(args.content),
             createdAt: Date.now(),
         });
         return id;
@@ -312,6 +352,8 @@ export const createTemplate = mutation({
 
 export const listTemplates = query({
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         return await ctx.db.query("newsletter_templates").collect();
     },
 });
@@ -319,6 +361,8 @@ export const listTemplates = query({
 export const deleteTemplate = mutation({
     args: { id: v.id("newsletter_templates") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         await ctx.db.delete(args.id);
         return { success: true };
     },

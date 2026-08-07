@@ -26,10 +26,8 @@ const SaraAIPage = () => {
   const convexUser = useQuery(api.users.current);
   const submitFeedback = useMutation(api.sara_chat.submitFeedback);
 
-  // Admin check: Convex role OR email bypass (for dev when Clerk session fails)
-  const ADMIN_EMAILS = ['designable2022@gmail.com', 'ephraba@gmail.com', 'admin@lsftz.org'];
-  const isAdmin = convexUser?.role === 'admin' ||
-    (user?.primaryEmailAddress?.emailAddress && ADMIN_EMAILS.includes(user.primaryEmailAddress.emailAddress));
+  // Admin check: server-side Convex role only
+  const isAdmin = convexUser?.role === 'admin';
 
   // Use history from DB, fallback to empty array
   // We can add a local "optimistic" message if needed, but let's try pure DB sync first for simplicity

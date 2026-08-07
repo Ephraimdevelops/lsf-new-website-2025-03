@@ -1,7 +1,8 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import type { Doc, Id } from "../../../convex/_generated/dataModel";
 import { ExternalLink, ArrowUp, ArrowDown, Edit, Plus, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,10 +16,9 @@ const EMOJIS = [
     "📞", "🌍", "📄", "💬", "🚨", "📅", "📍", "✉️", "📱", "📺",
     "🔗", "💡", "🤝", "⚖️", "🇹🇿", "📜", "📢", "❓", "🆘"
 ];
+const LINK_VARIANTS = ["primary", "secondary", "emergency"] as const;
 
 const LinksManager = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [pin, setPin] = useState("");
     const { toast } = useToast();
 
     // Data
@@ -30,7 +30,7 @@ const LinksManager = () => {
 
     // Form State
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [editingId, setEditingId] = useState<string | null>(null);
+    const [editingId, setEditingId] = useState<Id<"quick_links"> | null>(null);
     const [formData, setFormData] = useState({
         title: "",
         subtitle: "",
@@ -40,27 +40,6 @@ const LinksManager = () => {
         openInNewTab: true,
         audience: "public" as "public" | "paralegal" | "staff"
     });
-
-    // Client-side PIN check
-    const checkPin = () => {
-        const CORRECT_PIN = import.meta.env.VITE_ADMIN_PIN || "Lsf2026!";
-        if (pin === CORRECT_PIN) {
-            setIsAuthenticated(true);
-            localStorage.setItem("lsf_admin_auth", "true");
-        } else {
-            toast({
-                title: "Access Denied",
-                description: "Incorrect PIN.",
-                variant: "destructive"
-            });
-        }
-    };
-
-    useEffect(() => {
-        if (localStorage.getItem("lsf_admin_auth") === "true") {
-            setIsAuthenticated(true);
-        }
-    }, []);
 
     const handleSwap = async (index: number, direction: 'up' | 'down') => {
         if (!links) return;
@@ -76,7 +55,7 @@ const LinksManager = () => {
     const handleSubmit = async () => {
         try {
             if (editingId) {
-                await updateLink({ id: editingId as any, ...formData });
+                await updateLink({ id: editingId, ...formData });
                 toast({ title: "Updated", description: "Link updated successfully" });
             } else {
                 await createLink({ ...formData, isActive: true });
@@ -92,45 +71,20 @@ const LinksManager = () => {
         }
     };
 
-    const startEdit = (link: any) => {
+    const startEdit = (link: Doc<"quick_links">) => {
         setFormData({
             title: link.title,
             subtitle: link.subtitle || "",
             url: link.url,
-            variant: link.variant as any,
+            variant: link.variant,
             icon: link.icon || "🔗",
             openInNewTab: link.openInNewTab,
-            audience: link.audience as any || "public"
+            audience: link.audience || "public"
         });
         setEditingId(link._id);
         setIsDialogOpen(true);
     };
 
-    // 1. PIN Gate UI
-    if (!isAuthenticated) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-100">
-                <Card className="p-8 w-full max-w-md space-y-6">
-                    <div className="text-center">
-                        <h1 className="text-2xl font-bold">Quick Links Manager</h1>
-                        <p className="text-gray-500">Enter PIN to access</p>
-                    </div>
-                    <div className="flex gap-2">
-                        <Input
-                            type="password"
-                            placeholder="Enter PIN"
-                            value={pin}
-                            onChange={(e) => setPin(e.target.value)}
-                            onKeyDown={(e) => e.key === 'Enter' && checkPin()}
-                        />
-                        <Button onClick={checkPin}>Access</Button>
-                    </div>
-                </Card>
-            </div>
-        );
-    }
-
-    // 2. Dashboard UI
     return (
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="max-w-4xl mx-auto space-y-8">
@@ -179,10 +133,10 @@ const LinksManager = () => {
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium">Style Variant</label>
                                         <div className="grid grid-cols-3 gap-2">
-                                            {['primary', 'secondary', 'emergency'].map((v) => (
+                                            {LINK_VARIANTS.map((v) => (
                                                 <div
                                                     key={v}
-                                                    onClick={() => setFormData({ ...formData, variant: v as any })}
+                                                    onClick={() => setFormData({ ...formData, variant: v })}
                                                     className={`
                             cursor-pointer border-2 rounded-lg p-3 text-center capitalize transition-all
                             ${formData.variant === v ? 'border-primary bg-primary/5 text-primary font-bold' : 'border-gray-100 hover:border-gray-300'}

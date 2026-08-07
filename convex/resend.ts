@@ -1,7 +1,25 @@
 "use node";
 
-import { action } from "./_generated/server";
+import { action, internalAction } from "./_generated/server";
+import type { ActionCtx } from "./_generated/server";
 import { v } from "convex/values";
+import { internal } from "./_generated/api";
+import { sanitizeRichHtml } from "./lib/security";
+
+const adminRoles = ["admin", "staff"] as const;
+
+async function requireAdminOrStaffAction(ctx: ActionCtx) {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+
+    const role = await ctx.runQuery(internal.users.getRoleByClerkIdInternal, {
+        clerkId: identity.subject,
+    });
+
+    if (!role || !adminRoles.includes(role as (typeof adminRoles)[number])) {
+        throw new Error("Forbidden");
+    }
+}
 
 // ==========================================
 // RESEND EMAIL INTEGRATION
@@ -23,6 +41,8 @@ export const sendEmail = action({
         replyTo: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        await requireAdminOrStaffAction(ctx);
+
         const apiKey = process.env.RESEND_API_KEY;
 
         if (!apiKey) {
@@ -51,7 +71,7 @@ export const sendEmail = action({
                         from: sender,
                         to: batch,
                         subject: args.subject,
-                        html: args.html,
+                        html: sanitizeRichHtml(args.html),
                         reply_to: args.replyTo || "info@lsftz.org",
                     }),
                 });
@@ -99,7 +119,7 @@ export const sendEmail = action({
 /**
  * Send a single transactional email (for contact form replies, etc.)
  */
-export const sendTransactionalEmail = action({
+export const sendTransactionalEmail = internalAction({
     args: {
         to: v.string(),
         subject: v.string(),
@@ -124,7 +144,7 @@ export const sendTransactionalEmail = action({
                     from: "Legal Services Facility (LSF) <onboarding@resend.dev>",
                     to: [args.to],
                     subject: args.subject,
-                    html: args.html,
+                    html: sanitizeRichHtml(args.html),
                     reply_to: args.replyTo,
                 }),
             });

@@ -7,6 +7,7 @@ import {
     Link as LinkIcon, Image as ImageIcon, Code, Quote, Eye, Edit2
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { sanitizeHtml } from '@/lib/sanitizeHtml';
 
 interface RichTextEditorProps {
     value: string;
@@ -144,7 +145,7 @@ export const RichTextEditor = ({
             ) : (
                 <div
                     className={`p-4 prose prose-sm max-w-none dark:prose-invert overflow-y-auto ${minHeight}`}
-                    dangerouslySetInnerHTML={{ __html: value || '<p class="text-gray-400 italic">Nothing to preview</p>' }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(value || '<p class="text-gray-400 italic">Nothing to preview</p>') }}
                 />
             )}
 

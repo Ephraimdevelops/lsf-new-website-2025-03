@@ -1,10 +1,13 @@
 import { query } from "./_generated/server";
 import { v } from "convex/values";
+import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 
 // Debug: Get user by email
 export const getUserByEmail = query({
     args: { email: v.string() },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const user = await ctx.db
             .query("users")
             .filter((q) => q.eq(q.field("email"), args.email))
@@ -17,6 +20,8 @@ export const getUserByEmail = query({
 export const listAdmins = query({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const admins = await ctx.db
             .query("users")
             .filter((q) => q.eq(q.field("role"), "admin"))
@@ -30,10 +35,7 @@ export const listAdmins = query({
 export const checkCurrentSession = query({
     args: {},
     handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) {
-            return { error: "Not logged in (no identity)" };
-        }
+        const { identity } = await requireAuthenticatedUser(ctx);
 
         const user = await ctx.db
             .query("users")

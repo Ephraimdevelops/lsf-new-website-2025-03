@@ -1,22 +1,11 @@
 
-import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AdminDashboard from '../components/admin/AdminDashboard';
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useToast } from '@/hooks/use-toast';
-
-// Temporary admin emails for bypass (remove in production after fixing auth)
-const ADMIN_EMAILS = [
-  'designable2022@gmail.com',
-  'ephraba@gmail.com',
-  'admin@lsftz.org'
-];
-
-// Demo mode secret key - allows reviewers to access admin without authentication
-// Access via: /admin?demo=LSF2026
-const DEMO_KEY = 'LSF2026';
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -24,40 +13,19 @@ const Admin = () => {
   const { isLoaded, isSignedIn, signOut } = useAuth();
   const { user: clerkUser } = useUser();
   const convexUser = useQuery(api.users.current);
-  const [searchParams] = useSearchParams();
 
-  // Check for demo mode
-  const isDemoMode = searchParams.get('demo') === DEMO_KEY;
-  const [showDemoBanner, setShowDemoBanner] = useState(isDemoMode);
-
-  // Check admin access: try Convex first, fallback to email check, or demo mode
-  const isAdmin = isDemoMode || convexUser?.role === 'admin' ||
-    (clerkUser?.primaryEmailAddress?.emailAddress &&
-      ADMIN_EMAILS.includes(clerkUser.primaryEmailAddress.emailAddress));
+  // Admin access requires BOTH Clerk authentication AND server-side Convex role
+  const isAdmin = convexUser?.role === 'admin';
 
   useEffect(() => {
-    // Skip auth redirect in demo mode
-    if (isDemoMode) return;
-
     if (isLoaded && !isSignedIn) {
       navigate('/login');
     }
-  }, [isLoaded, isSignedIn, navigate, isDemoMode]);
+  }, [isLoaded, isSignedIn, navigate]);
 
   useEffect(() => {
-    // Skip access check in demo mode
-    if (isDemoMode) return;
-
-    // DEBUG: Remove after fixing
-    console.log('Admin.tsx DEBUG:', {
-      convexUser,
-      clerkEmail: clerkUser?.primaryEmailAddress?.emailAddress,
-      isAdmin,
-      isDemoMode
-    });
-
     if (isLoaded && isSignedIn && clerkUser) {
-      if (!isAdmin) {
+      if (convexUser !== undefined && !isAdmin) {
         toast({
           title: "Access Denied",
           description: "You do not have permission to access the admin panel.",
@@ -66,33 +34,7 @@ const Admin = () => {
         navigate('/');
       }
     }
-  }, [isLoaded, isSignedIn, convexUser, clerkUser, isAdmin, navigate, toast, isDemoMode]);
-
-  // Demo mode - show admin directly with banner
-  if (isDemoMode) {
-    return (
-      <div>
-        {/* Demo Mode Banner */}
-        {showDemoBanner && (
-          <div className="fixed top-0 left-0 right-0 bg-amber-500 text-white px-4 py-2 z-[100] flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold">🔍 DEMO MODE</span>
-              <span className="text-sm">This is a preview of the admin panel for review purposes. Changes will not be saved without authentication.</span>
-            </div>
-            <button
-              onClick={() => setShowDemoBanner(false)}
-              className="text-white hover:text-amber-100 font-bold px-2"
-            >
-              ✕
-            </button>
-          </div>
-        )}
-        <div className={showDemoBanner ? 'pt-10' : ''}>
-          <AdminDashboard onLogout={() => navigate('/')} />
-        </div>
-      </div>
-    );
-  }
+  }, [isLoaded, isSignedIn, convexUser, clerkUser, isAdmin, navigate, toast]);
 
   if (!isLoaded || (convexUser === undefined && !clerkUser)) {
     return (

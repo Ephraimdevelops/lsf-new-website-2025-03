@@ -10,12 +10,16 @@
 
 import type * as admin from "../admin.js";
 import type * as analytics from "../analytics.js";
+import type * as chatbotProxy from "../chatbotProxy.js";
 import type * as debug from "../debug.js";
 import type * as formSubmissions from "../formSubmissions.js";
 import type * as hero from "../hero.js";
 import type * as heros from "../heros.js";
 import type * as http from "../http.js";
 import type * as init from "../init.js";
+import type * as lib_auth from "../lib/auth.js";
+import type * as lib_mediaHelpers from "../lib/mediaHelpers.js";
+import type * as lib_security from "../lib/security.js";
 import type * as media from "../media.js";
 import type * as news from "../news.js";
 import type * as newsletter from "../newsletter.js";
@@ -48,12 +52,16 @@ import type {
 declare const fullApi: ApiFromModules<{
   admin: typeof admin;
   analytics: typeof analytics;
+  chatbotProxy: typeof chatbotProxy;
   debug: typeof debug;
   formSubmissions: typeof formSubmissions;
   hero: typeof hero;
   heros: typeof heros;
   http: typeof http;
   init: typeof init;
+  "lib/auth": typeof lib_auth;
+  "lib/mediaHelpers": typeof lib_mediaHelpers;
+  "lib/security": typeof lib_security;
   media: typeof media;
   news: typeof news;
   newsletter: typeof newsletter;

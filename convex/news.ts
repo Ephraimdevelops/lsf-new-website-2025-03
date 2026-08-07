@@ -1,5 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
+import { normalizeText, sanitizeRichHtml } from "./lib/security";
 
 // Get all news
 // Get all news with optional search and filter
@@ -127,16 +129,14 @@ export const create = mutation({
         keywords: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) {
-            throw new Error("Unauthorized");
-        }
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
-        // In a real app, check for "admin" role here
-        // const user = await ctx.db.query("users").withIndex("by_clerk_id", q => q.eq("clerkId", identity.subject)).unique();
-        // if (user?.role !== "admin") throw new Error("Unauthorized");
-
-        return await ctx.db.insert("news", args);
+        return await ctx.db.insert("news", {
+            ...args,
+            excerpt: sanitizeRichHtml(args.excerpt, 2000),
+            content: sanitizeRichHtml(args.content),
+            title: normalizeText(args.title, "Title", 220),
+        });
     },
 });
 
@@ -155,6 +155,8 @@ export const createForMigration = mutation({
         keywords: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         // Check for existing news by title
         const existing = await ctx.db
             .query("news")
@@ -165,7 +167,12 @@ export const createForMigration = mutation({
             return existing._id;
         }
 
-        return await ctx.db.insert("news", args);
+        return await ctx.db.insert("news", {
+            ...args,
+            excerpt: sanitizeRichHtml(args.excerpt, 2000),
+            content: sanitizeRichHtml(args.content),
+            title: normalizeText(args.title, "Title", 220),
+        });
     },
 });
 
@@ -187,11 +194,15 @@ export const update = mutation({
         keywords: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
-        await ctx.db.patch(id, fields);
+        await ctx.db.patch(id, {
+            ...fields,
+            excerpt: sanitizeRichHtml(fields.excerpt, 2000),
+            content: sanitizeRichHtml(fields.content),
+            title: normalizeText(fields.title, "Title", 220),
+        });
     },
 });
 
@@ -199,8 +210,7 @@ export const update = mutation({
 export const remove = mutation({
     args: { id: v.id("news") },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        await requireAnyRole(ctx, ["admin"]);
 
         await ctx.db.delete(args.id);
     },
@@ -210,6 +220,8 @@ export const remove = mutation({
 export const seed = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const existing = await ctx.db.query("news").collect();
         if (existing.length > 0) return;
 

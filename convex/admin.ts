@@ -1,19 +1,12 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
 
 // Get dashboard analytics
 export const getAnalytics = query({
     args: {},
     handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         // Parallelize queries for performance
         const [
@@ -157,15 +150,7 @@ export const getAnalytics = query({
 export const getUsers = query({
     args: {},
     handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         return await ctx.db.query("users").order("desc").collect();
     },
@@ -178,15 +163,7 @@ export const updateUserRole = mutation({
         role: v.union(v.literal("admin"), v.literal("staff"), v.literal("paralegal"), v.literal("stakeholder"), v.literal("user")),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         await ctx.db.patch(args.userId, { role: args.role });
     },

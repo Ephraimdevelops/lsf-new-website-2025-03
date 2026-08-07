@@ -1,5 +1,6 @@
 import { v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { internalQuery, mutation, query } from "./_generated/server";
+import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 
 // Get user dashboard data
 export const getDashboardData = query({
@@ -57,13 +58,23 @@ export const syncUser = mutation({
         role: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity || identity.subject !== args.clerkId) {
+            throw new Error("Unauthorized");
+        }
+
         const existingUser = await ctx.db
             .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", args.clerkId))
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
             .first();
 
         if (existingUser) {
-            const patchData: any = {
+            const patchData: {
+                email: string;
+                lastLogin: number;
+                name?: string;
+                imageUrl?: string;
+            } = {
                 email: args.email,
                 lastLogin: Date.now(),
             };
@@ -80,14 +91,13 @@ export const syncUser = mutation({
             return existingUser._id;
         }
 
-        const role = (args.role as "admin" | "staff" | "paralegal" | "stakeholder" | "user") || "user";
-
         return await ctx.db.insert("users", {
             name: args.name,
             email: args.email,
-            clerkId: args.clerkId,
+            clerkId: identity.subject,
             imageUrl: args.imageUrl,
-            role: role,
+            // Role grants are managed by an authorized platform workflow only.
+            role: "user",
             lastLogin: Date.now(),
         });
     },
@@ -110,12 +120,27 @@ export const getCurrentUser = query({
 // Alias for compatibility
 export const current = getCurrentUser;
 
+export const getRoleByClerkIdInternal = internalQuery({
+    args: { clerkId: v.string() },
+    handler: async (ctx, args) => {
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", args.clerkId))
+            .unique();
+
+        if (!user || user.isDeleted) return null;
+        return user.role;
+    },
+});
+
 // Make user admin by email (for initial admin setup)
 export const makeAdmin = mutation({
     args: {
         email: v.string(),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const user = await ctx.db
             .query("users")
             .filter((q) => q.eq(q.field("email"), args.email))
@@ -148,15 +173,22 @@ export const updateProfile = mutation({
 
         if (!user) throw new Error("User not found");
 
-        const updateFields: any = {
+        const updateFields: {
+            name: string;
+            bio?: string;
+            imageStorageId?: string;
+            imageUrl?: string;
+        } = {
             name: args.name,
             bio: args.bio,
         };
 
         // If a new image is uploaded, update storage ID and generate URL
         if (args.imageStorageId) {
+            const imageUrl = await ctx.storage.getUrl(args.imageStorageId);
+            if (!imageUrl) throw new Error("Uploaded image not found");
             updateFields.imageStorageId = args.imageStorageId;
-            updateFields.imageUrl = await ctx.storage.getUrl(args.imageStorageId);
+            updateFields.imageUrl = imageUrl;
         }
 
         await ctx.db.patch(user._id, updateFields);
@@ -166,5 +198,6 @@ export const updateProfile = mutation({
 
 // Generate upload URL for profile pictures
 export const generateUploadUrl = mutation(async (ctx) => {
+    await requireAuthenticatedUser(ctx);
     return await ctx.storage.generateUploadUrl();
 });

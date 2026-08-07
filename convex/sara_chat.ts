@@ -1,5 +1,6 @@
 import { query, mutation, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
+import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 
 // Query to get chat history for the current user
 export const getMessages = query({
@@ -104,9 +105,8 @@ export const updateMessage = internalMutation({
 export const clearHistory = mutation({
     args: {},
     handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        // TODO: Re-enable strict auth after fixing Clerk session issue  
-        const userId = identity?.subject || "anonymous_dev_user";
+        const { identity } = await requireAuthenticatedUser(ctx);
+        const userId = identity.subject;
 
         const messages = await ctx.db
             .query("sara_chats")
@@ -123,6 +123,8 @@ export const clearHistory = mutation({
 export const getAnalytics = query({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const allMessages = await ctx.db.query("sara_chats").collect();
         const allFeedback = await ctx.db.query("sara_feedback").collect();
 
@@ -171,8 +173,12 @@ export const submitFeedback = mutation({
         comment: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
+        const { identity } = await requireAuthenticatedUser(ctx);
+
+        const message = await ctx.db.get(args.messageId);
+        if (!message || message.userId !== identity.subject) {
+            throw new Error("Forbidden");
+        }
 
         // Update the message with feedback
         await ctx.db.patch(args.messageId, {
@@ -196,6 +202,8 @@ export const submitFeedback = mutation({
 export const getFeedbackList = query({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const feedback = await ctx.db
             .query("sara_feedback")
             .order("desc")

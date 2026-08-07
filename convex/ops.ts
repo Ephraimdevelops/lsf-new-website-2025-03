@@ -1,5 +1,5 @@
-import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
 
 // ==========================================
 // OPS DASHBOARD BACKEND
@@ -11,14 +11,7 @@ import { mutation, query } from "./_generated/server";
 // Simplified blended rate: $10.00 / 1M tokens ($0.01 / 1k tokens) as per sara_chat.ts
 export const getBudgetStatus = query({
     handler: async (ctx) => {
-        // Strict Admin Check
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         // Calculate usage
         const allMessages = await ctx.db.query("sara_chats").collect();
@@ -43,14 +36,7 @@ export const getBudgetStatus = query({
 // Logic: List PDFs not reviewed in > 365 days
 export const listStaleDocuments = query({
     handler: async (ctx) => {
-        // Strict Admin Check
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const now = Date.now();
         const oneYearAgo = now - (365 * 24 * 60 * 60 * 1000);
@@ -93,14 +79,7 @@ export const getSystemStatus = query({
 export const toggleSystemStatus = mutation({
     args: {},
     handler: async (ctx) => {
-        // Strict Admin Check
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const config = await ctx.db
             .query("sara_config")

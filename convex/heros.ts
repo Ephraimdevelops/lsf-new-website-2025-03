@@ -1,5 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+import { requireAnyRole } from "./lib/auth";
+import { resolveImageUrl } from "./lib/mediaHelpers";
 
 /**
  * Create a new hero story
@@ -15,6 +17,8 @@ export const create = mutation({
         readTime: v.optional(v.number()),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const heroId = await ctx.db.insert("heros", {
             title: args.title,
             slug: args.slug,
@@ -34,7 +38,16 @@ export const create = mutation({
 export const list = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db.query("heros").collect();
+        const heros = await ctx.db.query("heros").collect();
+        return await Promise.all(
+            heros.map(async (hero) => {
+                if (hero.image) {
+                    const resolved = await resolveImageUrl(ctx, hero.image);
+                    hero.image = resolved ?? undefined;
+                }
+                return hero;
+            })
+        );
     },
 });
 
@@ -44,7 +57,12 @@ export const list = query({
 export const getById = query({
     args: { id: v.id("heros") },
     handler: async (ctx, args) => {
-        return await ctx.db.get(args.id);
+        const hero = await ctx.db.get(args.id);
+        if (hero && hero.image) {
+            const resolved = await resolveImageUrl(ctx, hero.image);
+            hero.image = resolved ?? undefined;
+        }
+        return hero;
     },
 });
 
@@ -54,10 +72,15 @@ export const getById = query({
 export const getBySlug = query({
     args: { slug: v.string() },
     handler: async (ctx, args) => {
-        return await ctx.db
+        const hero = await ctx.db
             .query("heros")
             .withIndex("by_slug", (q) => q.eq("slug", args.slug))
             .first();
+        if (hero && hero.image) {
+            const resolved = await resolveImageUrl(ctx, hero.image);
+            hero.image = resolved ?? undefined;
+        }
+        return hero;
     },
 });
 
@@ -67,6 +90,8 @@ export const getBySlug = query({
 export const remove = mutation({
     args: { id: v.id("heros") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         await ctx.db.delete(args.id);
     },
 });
@@ -86,6 +111,8 @@ export const update = mutation({
         readTime: v.optional(v.number()),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const { id, ...updates } = args;
         const filteredUpdates = Object.fromEntries(
             Object.entries(updates).filter(([_, value]) => value !== undefined)

@@ -1,8 +1,10 @@
 "use node";
 import { action } from "./_generated/server";
+import type { ActionCtx } from "./_generated/server";
 import { v } from "convex/values";
 import { api, internal } from "./_generated/api";
 import OpenAI from "openai";
+import { normalizeText } from "./lib/security";
 
 // ==========================================
 // EMERGENCY SAFETY SYSTEM (CRITICAL)
@@ -61,6 +63,21 @@ const getOpenAI = () => {
     });
 };
 
+const MAX_SARA_DOCUMENT_BYTES = 15 * 1024 * 1024;
+
+async function requireAdminOrStaffAction(ctx: ActionCtx) {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
+
+    const role = await ctx.runQuery(internal.users.getRoleByClerkIdInternal, {
+        clerkId: identity.subject,
+    });
+
+    if (role !== "admin" && role !== "staff") {
+        throw new Error("Forbidden");
+    }
+}
+
 // ==========================================
 // TEXT CHUNKING FOR RAG
 // ==========================================
@@ -85,14 +102,24 @@ export const ingestDocument = action({
         title: v.string(),
     },
     handler: async (ctx, args): Promise<{ success: boolean; documentId: any }> => {
+        await requireAdminOrStaffAction(ctx);
+        const title = normalizeText(args.title, "Document title", 180);
+
         // 1. Get file from storage
         const fileUrl = await ctx.storage.getUrl(args.storageId);
         if (!fileUrl) throw new Error("File not found");
 
         // Fetch file content
         const response = await fetch(fileUrl);
+        const contentType = response.headers.get("content-type") || "";
+        if (!contentType.toLowerCase().includes("pdf")) {
+            throw new Error("Only PDF documents can be ingested into SARA");
+        }
+
         const arrayBuffer = await response.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
+        if (arrayBuffer.byteLength > MAX_SARA_DOCUMENT_BYTES) {
+            throw new Error("SARA documents must be 15MB or smaller");
+        }
 
         // 2. Parse PDF using pdfjs-dist (Standard standard/V8 compatible)
         let text = "";
@@ -124,7 +151,7 @@ export const ingestDocument = action({
 
         // 3. Create Document Record
         const documentId = await ctx.runMutation(internal.sara.createDocument, {
-            title: args.title,
+            title,
             storageId: args.storageId,
             text: text,
             type: "pdf",

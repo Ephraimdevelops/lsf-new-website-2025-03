@@ -1,5 +1,6 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
+import { requireAnyRole } from "./lib/auth";
 
 // Get public links (only active ones)
 export const getPublic = query({
@@ -19,6 +20,7 @@ export const getPublic = query({
 export const getAll = query({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
         const links = await ctx.db.query("quick_links").collect();
         // Sort by order
         return links.sort((a, b) => a.order - b.order);
@@ -38,6 +40,7 @@ export const create = mutation({
         audience: v.optional(v.union(v.literal("public"), v.literal("paralegal"), v.literal("staff"))),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
         // Get the current highest order to append to end
         const existing = await ctx.db.query("quick_links").collect();
         const maxOrder = existing.reduce((max, link) => Math.max(max, link.order), 0);
@@ -66,6 +69,7 @@ export const update = mutation({
         audience: v.optional(v.union(v.literal("public"), v.literal("paralegal"), v.literal("staff"))),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
         const { id, ...updates } = args;
         await ctx.db.patch(id, {
             ...updates,
@@ -81,6 +85,7 @@ export const swapOrder = mutation({
         id2: v.id("quick_links"),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
         const link1 = await ctx.db.get(args.id1);
         const link2 = await ctx.db.get(args.id2);
 
@@ -101,6 +106,7 @@ export const toggleStatus = mutation({
         isActive: v.boolean(),
     },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
         await ctx.db.patch(args.id, {
             isActive: args.isActive,
             updatedAt: Date.now(),

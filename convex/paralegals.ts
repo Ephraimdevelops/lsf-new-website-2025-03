@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 
 // ==========================================
 // PARALEGAL MANAGEMENT
@@ -42,6 +43,11 @@ export const getParalegal = query({
 export const getParalegalByEmail = query({
     args: { email: v.string() },
     handler: async (ctx, args) => {
+        const actor = await requireAuthenticatedUser(ctx);
+        const isStaff = ["admin", "staff"].includes(actor.user.role);
+        const isSelf = actor.identity.email?.toLowerCase() === args.email.toLowerCase();
+        if (!isStaff && !isSelf) throw new Error("Forbidden");
+
         return await ctx.db
             .query("paralegal_applications")
             .filter((q) => q.eq(q.field("email"), args.email.toLowerCase()))
@@ -66,6 +72,8 @@ export const incrementProfileViews = mutation({
 export const toggleVerified = mutation({
     args: { id: v.id("paralegal_applications") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const paralegal = await ctx.db.get(args.id);
         if (paralegal) {
             await ctx.db.patch(args.id, {
@@ -92,6 +100,14 @@ export const updateParalegalProfile = mutation({
         onboardingCompleted: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
+        const paralegal = await ctx.db.get(args.id);
+        if (!paralegal) throw new Error("Paralegal not found");
+
+        const actor = await requireAuthenticatedUser(ctx);
+        const isStaff = ["admin", "staff"].includes(actor.user.role);
+        const isSelf = actor.identity.email?.toLowerCase() === paralegal.email.toLowerCase();
+        if (!isStaff && !isSelf) throw new Error("Forbidden");
+
         const { id, ...updates } = args;
         await ctx.db.patch(id, updates);
         return { success: true };
@@ -102,6 +118,8 @@ export const updateParalegalProfile = mutation({
 export const deactivateParalegal = mutation({
     args: { id: v.id("paralegal_applications") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         await ctx.db.patch(args.id, {
             status: "deactivated" as "rejected", // Using rejected as deactivated
         });
@@ -112,6 +130,8 @@ export const deactivateParalegal = mutation({
 // Get paralegal stats for admin
 export const getParalegalStats = query({
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         const all = await ctx.db.query("paralegal_applications").collect();
         const approved = all.filter((p) => p.status === "approved");
 
@@ -134,6 +154,11 @@ export const getParalegalStats = query({
 export const getDashboardData = query({
     args: { email: v.string() },
     handler: async (ctx, args) => {
+        const actor = await requireAuthenticatedUser(ctx);
+        const isStaff = ["admin", "staff"].includes(actor.user.role);
+        const isSelf = actor.identity.email?.toLowerCase() === args.email.toLowerCase();
+        if (!isStaff && !isSelf) throw new Error("Forbidden");
+
         const paralegal = await ctx.db
             .query("paralegal_applications")
             .filter((q) => q.eq(q.field("email"), args.email.toLowerCase()))
@@ -176,21 +201,7 @@ export const addParalegalManually = mutation({
         specializations: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) {
-            throw new Error("Unauthorized");
-        }
-
-        const isAdminEmail = identity.email && ['admin@lsftz.org', 'designable2022@gmail.com', 'ephraba@gmail.com'].includes(identity.email.toLowerCase());
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-
-        if (!isAdminEmail && (!user || !["admin", "staff"].includes(user.role))) {
-            throw new Error("Forbidden: Insufficient privileges.");
-        }
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         // Check if an application for this email already exists
         const existing = await ctx.db
@@ -243,25 +254,7 @@ export const importParalegalsBatch = mutation({
         ),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) {
-            throw new Error("Unauthorized");
-        }
-
-        const isAdminEmail =
-            identity.email &&
-            ["admin@lsftz.org", "designable2022@gmail.com", "ephraba@gmail.com", "victoria.john@lsftz.org"].includes(
-                identity.email.toLowerCase()
-            );
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-
-        if (!isAdminEmail && (!user || !["admin", "staff"].includes(user.role))) {
-            throw new Error("Forbidden: Insufficient privileges.");
-        }
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         let imported = 0;
         let duplicates = 0;
@@ -307,4 +300,3 @@ export const importParalegalsBatch = mutation({
         return { imported, duplicates, errors };
     },
 });
-

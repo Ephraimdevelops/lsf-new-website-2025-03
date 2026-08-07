@@ -43,6 +43,7 @@ const AdminHeroSlides = () => {
   const updateSlide = useMutation(api.hero.update);
   const deleteSlide = useMutation(api.hero.remove);
   const generateUploadUrl = useMutation(api.media.generateUploadUrl);
+  const saveMedia = useMutation(api.media.saveMedia);
 
   const handleSave = async () => {
     if (!formData.title || !formData.description) {
@@ -136,24 +137,104 @@ const AdminHeroSlides = () => {
     setIsDialogOpen(false);
   };
 
+  // Image compression utility for faster uploads and optimized hero images
+  const compressImage = (file: File, maxWidth: number = 1920): Promise<File> => {
+    return new Promise((resolve) => {
+      // Don't compress SVGs, GIFs, or non-images
+      if (!file.type.startsWith('image/') || file.type === 'image/gif' || file.type === 'image/svg+xml') {
+        resolve(file);
+        return;
+      }
+
+      const img = new window.Image();
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      img.onload = () => {
+        let { width, height } = img;
+
+        // Only scale down if wider than maxWidth
+        if (width <= maxWidth) {
+          resolve(file);
+          return;
+        }
+
+        const ratio = maxWidth / width;
+        width = maxWidth;
+        height = Math.round(height * ratio);
+
+        canvas.width = width;
+        canvas.height = height;
+        ctx?.drawImage(img, 0, 0, width, height);
+
+        // For JPEGs and WebPs we can reduce quality, PNGs ignore quality parameter
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              const compressedFile = new File([blob], file.name, {
+                type: file.type,
+                lastModified: Date.now(),
+              });
+              console.log(`[OPTIMIZATION] Compressed ${file.name}: ${(file.size / 1024).toFixed(0)}KB → ${(blob.size / 1024).toFixed(0)}KB`);
+              resolve(compressedFile);
+            } else {
+              resolve(file);
+            }
+          },
+          file.type,
+          0.85 // 85% quality for hero images to retain visual fidelity
+        );
+      };
+
+      img.onerror = () => resolve(file);
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
+    const originalFile = event.target.files?.[0];
+    if (originalFile) {
+      // 1. Client-side validation
+      if (originalFile.size > 20 * 1024 * 1024) {
+        toast({ title: 'Error', description: 'File exceeds 20MB limit.', variant: 'destructive' });
+        return;
+      }
+
       try {
+        // 2. Client-side compression
+        const file = await compressImage(originalFile);
+
+        // 3. Generate upload URL
         const postUrl = await generateUploadUrl();
+        
+        // 4. Upload to Convex Storage
         const result = await fetch(postUrl, {
           method: "POST",
           headers: { "Content-Type": file.type },
           body: file,
         });
+        
+        if (!result.ok) {
+           throw new Error("Failed to upload to Convex Storage");
+        }
+        
         const { storageId } = await result.json();
-        // Assuming we store storageId as imageUrl for now. 
-        // Ideally we'd get a public URL or use a Convex helper to display it.
+        
+        // 5. Server-side validation via saveMedia
+        // This ensures the uploaded file is valid before we save the ID
+        await saveMedia({
+            storageId,
+            name: file.name,
+            type: file.type,
+            size: file.size,
+        });
+
+        // We save the raw storageId in the feature record as expected for now.
         setFormData((prev) => ({ ...prev, imageUrl: storageId }));
         toast({ title: 'Success', description: 'Image uploaded successfully.' });
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
-        toast({ title: 'Error', description: 'Failed to upload image.' });
+        toast({ title: 'Error', description: error.message || 'Failed to upload image.', variant: 'destructive' });
       }
     }
   };

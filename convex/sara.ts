@@ -1,8 +1,10 @@
-import { action, mutation, query, internalMutation, internalQuery } from "./_generated/server";
+import { mutation, query, internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
+import { requireAnyRole } from "./lib/auth";
 
 // Generate upload URL for PDF files
 export const generateUploadUrl = mutation(async (ctx) => {
+    await requireAnyRole(ctx, ["admin", "staff"]);
     return await ctx.storage.generateUploadUrl();
 });
 
@@ -68,6 +70,8 @@ export const getConfig = query({
 export const updateConfig = mutation({
     args: { key: v.string(), value: v.string() },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const existing = await ctx.db
             .query("sara_config")
             .withIndex("by_key", (q) => q.eq("key", args.key))
@@ -85,6 +89,8 @@ export const updateConfig = mutation({
 // List all uploaded documents
 export const getDocuments = query({
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+
         return await ctx.db.query("documents").order("desc").collect();
     },
 });
@@ -93,6 +99,8 @@ export const getDocuments = query({
 export const deleteDocument = mutation({
     args: { id: v.id("documents") },
     handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         const doc = await ctx.db.get(args.id);
         if (!doc) throw new Error("Document not found");
 
@@ -162,4 +170,3 @@ export const getAllChats = internalQuery({
         return await ctx.db.query("sara_chats").collect();
     },
 });
-

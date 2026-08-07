@@ -1,9 +1,12 @@
 import { mutation } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
 
 // Force clear all content and reseed with fresh data
 export const clearAllAndReseed = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         // Clear all existing stories
         const existingStories = await ctx.db.query("success_stories").collect();
         for (const story of existingStories) {
@@ -136,6 +139,8 @@ export const clearAllAndReseed = mutation({
 export const seedAllContent = mutation({
     args: {},
     handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+
         // ===== SUCCESS STORIES =====
         const existingStories = await ctx.db.query("success_stories").collect();
         if (existingStories.length === 0) {
