@@ -174,6 +174,7 @@ export default defineSchema({
     size: v.number(),
     uploadedBy: v.string(),
     uploadedAt: v.number(),
+    storageId: v.optional(v.string()), // Convex Storage ID
   }),
 
   // Testimonials
