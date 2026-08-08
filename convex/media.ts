@@ -28,7 +28,21 @@ export const saveMedia = mutation({
     },
     handler: async (ctx, args) => {
         const { identity } = await requireAnyRole(ctx, ["admin", "staff"]);
-        const file = assertAllowedUpload({ ...args, maxBytes: MAX_FILE_SIZE_BYTES });
+        const metadata = await ctx.db.system.get(args.storageId);
+        if (!metadata) {
+            throw new ConvexError("The uploaded file no longer exists. Please upload it again.");
+        }
+
+        const file = assertAllowedUpload({
+            name: args.name,
+            type: metadata.contentType || args.type,
+            size: metadata.size,
+            maxBytes: MAX_FILE_SIZE_BYTES,
+        });
+
+        if (metadata.contentType && metadata.contentType.toLowerCase() !== args.type.toLowerCase()) {
+            throw new ConvexError("Uploaded file type does not match the selected file.");
+        }
 
         const url = await ctx.storage.getUrl(args.storageId);
         if (!url) throw new ConvexError("Failed to resolve storage URL for uploaded file");
@@ -37,7 +51,7 @@ export const saveMedia = mutation({
             storageId: args.storageId,
             name: file.name,
             type: file.type,
-            size: args.size,
+            size: metadata.size,
             url,
             uploadedBy: identity.subject,
             uploadedAt: Date.now(),

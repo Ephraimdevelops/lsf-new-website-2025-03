@@ -19,7 +19,7 @@ export const get = query({
                     if (resolved && resolved !== member.image) {
                         storageId = member.image; // Preserve original ID if it was resolved
                     }
-                    member.image = resolved ?? undefined;
+                    member.image = resolved ?? "/lovable-uploads/placeholder.svg";
                 }
                 return { ...member, storageId };
             })
@@ -40,7 +40,7 @@ export const getById = query({
             if (resolved && resolved !== member.image) {
                 storageId = member.image; // Preserve original ID if it was resolved
             }
-            member.image = resolved ?? undefined;
+            member.image = resolved ?? "/lovable-uploads/placeholder.svg";
         }
         return { ...member, storageId };
     },

@@ -12,7 +12,7 @@ export const get = query({
             testimonials.map(async (testimonial) => {
                 if (testimonial.imageUrl) {
                     const resolved = await resolveImageUrl(ctx, testimonial.imageUrl);
-                    testimonial.imageUrl = resolved ?? undefined;
+                    testimonial.imageUrl = resolved ?? "/lovable-uploads/placeholder.svg";
                 }
                 return testimonial;
             })
@@ -32,7 +32,7 @@ export const getFeatured = query({
             testimonials.map(async (testimonial) => {
                 if (testimonial.imageUrl) {
                     const resolved = await resolveImageUrl(ctx, testimonial.imageUrl);
-                    testimonial.imageUrl = resolved ?? undefined;
+                    testimonial.imageUrl = resolved ?? "/lovable-uploads/placeholder.svg";
                 }
                 return testimonial;
             })

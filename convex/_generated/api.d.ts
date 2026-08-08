@@ -21,6 +21,7 @@ import type * as lib_auth from "../lib/auth.js";
 import type * as lib_mediaHelpers from "../lib/mediaHelpers.js";
 import type * as lib_security from "../lib/security.js";
 import type * as media from "../media.js";
+import type * as migrations from "../migrations.js";
 import type * as news from "../news.js";
 import type * as newsletter from "../newsletter.js";
 import type * as opportunities from "../opportunities.js";
@@ -63,6 +64,7 @@ declare const fullApi: ApiFromModules<{
   "lib/mediaHelpers": typeof lib_mediaHelpers;
   "lib/security": typeof lib_security;
   media: typeof media;
+  migrations: typeof migrations;
   news: typeof news;
   newsletter: typeof newsletter;
   opportunities: typeof opportunities;

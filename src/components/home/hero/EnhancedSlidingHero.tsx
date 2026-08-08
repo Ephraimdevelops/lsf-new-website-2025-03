@@ -8,6 +8,8 @@ import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { heroSlides } from './heroData'; // Fallback data
 
+const HERO_IMAGE_FALLBACK = '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png';
+
 interface HeroSlide {
   id: string;
   headline: string;
@@ -112,9 +114,13 @@ const EnhancedSlidingHero = () => {
             {/* Background Image */}
             <div className="absolute inset-0">
               <img
-                src={slide.image_url || '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png'}
+                src={slide.image_url || HERO_IMAGE_FALLBACK}
                 alt={slide.headline}
                 className="w-full h-full object-cover transition-all duration-3000 ease-out"
+                onError={(event) => {
+                  if (event.currentTarget.src.endsWith(HERO_IMAGE_FALLBACK)) return;
+                  event.currentTarget.src = HERO_IMAGE_FALLBACK;
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30"></div>
             </div>

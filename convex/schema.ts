@@ -174,7 +174,7 @@ export default defineSchema({
     size: v.number(),
     uploadedBy: v.string(),
     uploadedAt: v.number(),
-    storageId: v.optional(v.string()), // Convex Storage ID
+    storageId: v.optional(v.id("_storage")), // Convex Storage ID
   }),
 
   // Testimonials
@@ -461,4 +461,3 @@ export default defineSchema({
   }).index("by_order", ["order"])
     .index("by_active", ["isActive"]),
 });
-

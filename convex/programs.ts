@@ -12,7 +12,7 @@ export const get = query({
             programs.map(async (program) => {
                 if (program.imageUrl) {
                     const resolved = await resolveImageUrl(ctx, program.imageUrl);
-                    program.imageUrl = resolved ?? undefined;
+                    program.imageUrl = resolved ?? "/lovable-uploads/placeholder.svg";
                 }
                 return program;
             })
@@ -30,7 +30,7 @@ export const getBySlug = query({
             .unique();
         if (program && program.imageUrl) {
             const resolved = await resolveImageUrl(ctx, program.imageUrl);
-            program.imageUrl = resolved ?? undefined;
+            program.imageUrl = resolved ?? "/lovable-uploads/placeholder.svg";
         }
         return program;
     },
@@ -43,7 +43,7 @@ export const getById = query({
         const program = await ctx.db.get(args.id);
         if (program && program.imageUrl) {
             const resolved = await resolveImageUrl(ctx, program.imageUrl);
-            program.imageUrl = resolved ?? undefined;
+            program.imageUrl = resolved ?? "/lovable-uploads/placeholder.svg";
         }
         return program;
     },

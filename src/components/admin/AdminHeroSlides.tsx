@@ -222,19 +222,22 @@ const AdminHeroSlides = () => {
         
         // 5. Server-side validation via saveMedia
         // This ensures the uploaded file is valid before we save the ID
-        await saveMedia({
+        const imageUrl = await saveMedia({
             storageId,
             name: file.name,
             type: file.type,
             size: file.size,
         });
 
-        // We save the raw storageId in the feature record as expected for now.
-        setFormData((prev) => ({ ...prev, imageUrl: storageId }));
+        setFormData((prev) => ({ ...prev, imageUrl }));
         toast({ title: 'Success', description: 'Image uploaded successfully.' });
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error(error);
-        toast({ title: 'Error', description: error.message || 'Failed to upload image.', variant: 'destructive' });
+        toast({
+          title: 'Error',
+          description: error instanceof Error ? error.message : 'Failed to upload image.',
+          variant: 'destructive',
+        });
       }
     }
   };
