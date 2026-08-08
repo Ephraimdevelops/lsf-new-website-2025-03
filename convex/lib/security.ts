@@ -1,3 +1,5 @@
+import { ConvexError } from "convex/values";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function stripControlCharacters(value: string) {
@@ -21,9 +23,9 @@ export const allowedUploadMimeTypes = new Set([
 
 export function normalizeText(value: string, field: string, maxLength: number) {
   const normalized = stripControlCharacters(value).trim();
-  if (!normalized) throw new Error(`${field} is required`);
+  if (!normalized) throw new ConvexError(`${field} is required`);
   if (normalized.length > maxLength) {
-    throw new Error(`${field} must be ${maxLength} characters or fewer`);
+    throw new ConvexError(`${field} must be ${maxLength} characters or fewer`);
   }
   return normalized;
 }
@@ -37,14 +39,14 @@ export function normalizeOptionalText(
   const normalized = stripControlCharacters(value).trim();
   if (!normalized) return undefined;
   if (normalized.length > maxLength) {
-    throw new Error(`${field} must be ${maxLength} characters or fewer`);
+    throw new ConvexError(`${field} must be ${maxLength} characters or fewer`);
   }
   return normalized;
 }
 
 export function normalizeEmail(value: string, field = "Email") {
   const email = normalizeText(value, field, 254).toLowerCase();
-  if (!EMAIL_RE.test(email)) throw new Error(`${field} is invalid`);
+  if (!EMAIL_RE.test(email)) throw new ConvexError(`${field} is invalid`);
   return email;
 }
 
@@ -76,16 +78,16 @@ export function assertAllowedUpload(args: {
   const type = normalizeText(args.type, "File type", 120).toLowerCase();
 
   if (!Number.isFinite(args.size) || args.size <= 0) {
-    throw new Error("File size is invalid");
+    throw new ConvexError("File size is invalid");
   }
   if (args.size > args.maxBytes) {
-    throw new Error(`File size exceeds ${(args.maxBytes / (1024 * 1024)).toFixed(0)}MB limit`);
+    throw new ConvexError(`File size exceeds ${(args.maxBytes / (1024 * 1024)).toFixed(0)}MB limit`);
   }
   if (!allowedUploadMimeTypes.has(type)) {
-    throw new Error("File type is not allowed");
+    throw new ConvexError("File type is not allowed");
   }
   if (/\.(php|phtml|phar|cgi|pl|alfa|sh|html?|svg)$/i.test(name)) {
-    throw new Error("File extension is not allowed");
+    throw new ConvexError("File extension is not allowed");
   }
 
   return { name, type };

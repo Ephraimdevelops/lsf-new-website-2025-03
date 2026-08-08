@@ -1,4 +1,4 @@
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 import { mutation } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
 import { assertAllowedUpload } from "./lib/security";
@@ -21,7 +21,7 @@ export const generateUploadUrl = mutation({
 
 export const saveMedia = mutation({
     args: {
-        storageId: v.string(),
+        storageId: v.id("_storage"),
         name: v.string(),
         type: v.string(),
         size: v.number(),
@@ -31,12 +31,13 @@ export const saveMedia = mutation({
         const file = assertAllowedUpload({ ...args, maxBytes: MAX_FILE_SIZE_BYTES });
 
         const url = await ctx.storage.getUrl(args.storageId);
-        if (!url) throw new Error("Failed to get URL");
+        if (!url) throw new ConvexError("Failed to resolve storage URL for uploaded file");
 
         await ctx.db.insert("media_library", {
-            ...args,
+            storageId: args.storageId,
             name: file.name,
             type: file.type,
+            size: args.size,
             url,
             uploadedBy: identity.subject,
             uploadedAt: Date.now(),

@@ -1,5 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import type { MutationCtx } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
 
 // ==========================================
 // RATE LIMITING CONFIGURATION
@@ -13,7 +15,7 @@ const MAX_SUBMISSIONS_PER_WINDOW = 3; // 3 submissions per IP per hour
 // ==========================================
 
 async function checkRateLimit(
-    ctx: any,
+    ctx: MutationCtx,
     identifier: string
 ): Promise<{ allowed: boolean; remaining: number; resetAt: number }> {
     const now = Date.now();
@@ -21,7 +23,7 @@ async function checkRateLimit(
     // Query existing rate limit entry
     const existing = await ctx.db
         .query("rate_limits")
-        .withIndex("by_identifier", (q: any) => q.eq("identifier", identifier))
+        .withIndex("by_identifier", (q) => q.eq("identifier", identifier))
         .first();
 
     if (!existing) {
@@ -74,26 +76,6 @@ async function checkRateLimit(
 function validateHoneypot(honeypotValue: string | undefined): boolean {
     // If honeypot field is filled, it's a bot
     return !honeypotValue || honeypotValue.trim() === "";
-}
-
-// ==========================================
-// HELPER: Role-Based Access Control
-// ==========================================
-
-async function requireAdminOrStaff(ctx: any): Promise<void> {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) {
-        throw new Error("Unauthorized: You must be logged in");
-    }
-
-    const user = await ctx.db
-        .query("users")
-        .withIndex("by_clerk_id", (q: any) => q.eq("clerkId", identity.subject))
-        .unique();
-
-    if (!user || !["admin", "staff"].includes(user.role)) {
-        throw new Error("Forbidden: Insufficient privileges. Admin or Staff role required.");
-    }
 }
 
 // ==========================================
@@ -163,7 +145,7 @@ export const list = query({
     },
     handler: async (ctx, args) => {
         // SECURITY: Require admin or staff role
-        await requireAdminOrStaff(ctx);
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         if (args.status) {
             return await ctx.db
@@ -183,7 +165,7 @@ export const list = query({
 export const getById = query({
     args: { id: v.id("whistleblower_reports") },
     handler: async (ctx, args) => {
-        await requireAdminOrStaff(ctx);
+        await requireAnyRole(ctx, ["admin", "staff"]);
         return await ctx.db.get(args.id);
     },
 });
@@ -212,7 +194,7 @@ export const updateStatus = mutation({
         resolution: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
-        await requireAdminOrStaff(ctx);
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...updates } = args;
 
@@ -230,18 +212,7 @@ export const updateStatus = mutation({
 export const remove = mutation({
     args: { id: v.id("whistleblower_reports") },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-
-        // Only admin can delete (not staff)
-        if (!user || user.role !== "admin") {
-            throw new Error("Forbidden: Only administrators can delete reports.");
-        }
+        await requireAnyRole(ctx, ["admin"]);
 
         await ctx.db.delete(args.id);
         return { success: true };
@@ -251,7 +222,7 @@ export const remove = mutation({
 // PRIVATE: Get statistics (ADMIN/STAFF ONLY)
 export const getStats = query({
     handler: async (ctx) => {
-        await requireAdminOrStaff(ctx);
+        await requireAnyRole(ctx, ["admin", "staff"]);
 
         const all = await ctx.db.query("whistleblower_reports").collect();
 

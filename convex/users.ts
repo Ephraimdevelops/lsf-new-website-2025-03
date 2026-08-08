@@ -6,15 +6,7 @@ import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 export const getDashboardData = query({
     args: {},
     handler: async (ctx) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .first();
-
-        if (!user) throw new Error("User not found");
+        const { user } = await requireAuthenticatedUser(ctx);
 
         // Mock tasks for now as we don't have a tasks table
         const tasks = [

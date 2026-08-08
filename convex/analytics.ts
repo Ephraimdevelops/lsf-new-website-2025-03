@@ -2,6 +2,7 @@ import { v } from "convex/values";
 import { action, mutation, query, internalAction, internalMutation } from "./_generated/server";
 import { internal } from "./_generated/api";
 import OpenAI from "openai";
+import { requireAnyRole } from "./lib/auth";
 
 // ==========================================
 // MISSION CONTROL ANALYTICS ENGINE
@@ -134,14 +135,7 @@ export const logEvent = mutation({
 export const getKnowledgeStats = query({
     args: { days: v.optional(v.number()) },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const daysAgo = args.days || 30;
         const cutoff = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
@@ -205,14 +199,7 @@ export const getKnowledgeStats = query({
 export const getParalegalFunnel = query({
     args: { days: v.optional(v.number()) },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const daysAgo = args.days || 30;
         const cutoff = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
@@ -269,14 +256,7 @@ export const getParalegalFunnel = query({
 export const getCostMetrics = query({
     args: { days: v.optional(v.number()) },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const daysAgo = args.days || 30;
         const cutoff = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
@@ -335,14 +315,7 @@ export const getCostMetrics = query({
 export const getChatTopicStats = query({
     args: { days: v.optional(v.number()) },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const daysAgo = args.days || 30;
         const cutoff = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
@@ -392,14 +365,7 @@ export const getChatTopicStats = query({
 export const getDailyChats = query({
     args: { days: v.optional(v.number()) },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const daysAgo = args.days || 30;
         const cutoff = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
@@ -440,14 +406,7 @@ export const getDailyChats = query({
 export const getUserGrowth = query({
     args: { days: v.optional(v.number()) },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const daysAgo = args.days || 30;
         const cutoff = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
@@ -580,14 +539,7 @@ export const logClassification = internalMutation({
 export const getPageViewStats = query({
     args: { days: v.optional(v.number()) },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         const daysAgo = args.days || 30;
         const cutoff = Date.now() - (daysAgo * 24 * 60 * 60 * 1000);
@@ -624,15 +576,7 @@ export const getPageViewStats = query({
 export const getDashboardOverview = query({
     args: { days: v.optional(v.number()) },
     handler: async (ctx, args) => {
-        // 1. Auth Check
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .unique();
-        if (user?.role !== "admin") throw new Error("Forbidden");
+        await requireAnyRole(ctx, ["admin"]);
 
         // 2. Time Range
         const daysAgo = args.days || 30;
