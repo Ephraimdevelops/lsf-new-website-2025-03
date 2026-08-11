@@ -12,10 +12,10 @@ const Admin = () => {
   const { toast } = useToast();
   const { isLoaded, isSignedIn, signOut } = useAuth();
   const { user: clerkUser } = useUser();
-  const convexUser = useQuery(api.users.current);
+  const access = useQuery(api.users.currentAccess);
 
   // Admin access requires BOTH Clerk authentication AND server-side Convex role
-  const isAdmin = convexUser?.role === 'admin';
+  const isAdmin = access?.roles.includes('admin') ?? false;
 
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
@@ -25,7 +25,7 @@ const Admin = () => {
 
   useEffect(() => {
     if (isLoaded && isSignedIn && clerkUser) {
-      if (convexUser !== undefined && !isAdmin) {
+      if (access !== undefined && !isAdmin) {
         toast({
           title: "Access Denied",
           description: "You do not have permission to access the admin panel.",
@@ -34,9 +34,9 @@ const Admin = () => {
         navigate('/');
       }
     }
-  }, [isLoaded, isSignedIn, convexUser, clerkUser, isAdmin, navigate, toast]);
+  }, [isLoaded, isSignedIn, access, clerkUser, isAdmin, navigate, toast]);
 
-  if (!isLoaded || (convexUser === undefined && !clerkUser)) {
+  if (!isLoaded || (access === undefined && !clerkUser)) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">

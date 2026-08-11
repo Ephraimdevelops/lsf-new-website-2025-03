@@ -12,9 +12,9 @@ interface ProtectedRouteProps {
 
 export const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
     const { isLoaded, isSignedIn } = useAuth();
-    const user = useQuery(api.users.current);
+    const access = useQuery(api.users.currentAccess);
 
-    const isLoading = !isLoaded || (user === undefined && isSignedIn);
+    const isLoading = !isLoaded || (access === undefined && isSignedIn);
 
     if (isLoading) {
         return (
@@ -29,11 +29,11 @@ export const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) 
         return <Navigate to="/login" replace />;
     }
 
-    if (!user) {
+    if (!access) {
         return <Navigate to="/login" replace />;
     }
 
-    if (allowedRoles && !allowedRoles.includes(user.role)) {
+    if (allowedRoles && !allowedRoles.some((role) => access.roles.includes(role as typeof access.roles[number]))) {
         return <Navigate to="/" replace />;
     }
 

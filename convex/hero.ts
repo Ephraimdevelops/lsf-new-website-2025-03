@@ -12,7 +12,7 @@ export const get = query({
             slides.map(async (slide) => {
                 if (slide.imageUrl) {
                     const resolved = await resolveImageUrl(ctx, slide.imageUrl);
-                    slide.imageUrl = resolved ?? "/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png";
+                    slide.imageUrl = resolved ?? slide.imageUrl;
                 }
                 return slide;
             })

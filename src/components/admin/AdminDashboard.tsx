@@ -32,6 +32,7 @@ import AdminFormSubmissions from './AdminFormSubmissions';
 import AdminParalegals from './AdminParalegals';
 import AdminSaraAnalytics from './AdminSaraAnalytics';
 import AdminTeam from './AdminTeam';
+import { useNavigate } from 'react-router-dom';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -39,9 +40,11 @@ interface AdminDashboardProps {
 
 const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
   const [activeTab, setActiveTab] = useState('home');
+  const navigate = useNavigate();
 
   const menuItems = [
     { id: 'home', label: 'Dashboard', icon: Home },
+    { id: 'haki-yangu-ops', label: 'Haki Yangu Ops', icon: Scale },
     { id: 'hero-slides', label: 'Hero Slides', icon: Presentation },
     { id: 'news', label: 'News', icon: FileText },
     { id: 'stories', label: 'Success Stories', icon: Heart },
@@ -107,7 +110,7 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
                 return (
                   <li key={item.id}>
                     <button
-                      onClick={() => setActiveTab(item.id)}
+                      onClick={() => item.id === 'haki-yangu-ops' ? navigate('/dashboard/staff') : setActiveTab(item.id)}
                       className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-colors duration-200 ${activeTab === item.id
                         ? 'bg-primary text-white'
                         : 'text-gray-600 hover:bg-gray-100'

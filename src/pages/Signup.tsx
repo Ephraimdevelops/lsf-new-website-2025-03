@@ -7,17 +7,17 @@ import { ChevronRight, ArrowLeft } from "lucide-react";
 
 export default function Signup() {
   const { isSignedIn, isLoaded } = useAuth();
-  const user = useQuery(api.users.current);
+  const access = useQuery(api.users.currentAccess);
 
-  if (isLoaded && isSignedIn && user !== undefined) {
-    if (user?.role === "admin") return <Navigate to="/admin" replace />;
-    if (user?.role === "paralegal") return <Navigate to="/dashboard/paralegal" replace />;
-    if (user?.role === "staff") return <Navigate to="/dashboard/staff" replace />;
-    if (user?.role === "stakeholder") return <Navigate to="/dashboard/stakeholder" replace />;
+  if (isLoaded && isSignedIn && access !== undefined) {
+    if (access?.roles.includes("admin")) return <Navigate to="/admin" replace />;
+    if (access?.roles.some((role) => ["staff", "supervisor"].includes(role))) return <Navigate to="/dashboard/staff" replace />;
+    if (access?.roles.some((role) => ["paralegal", "provider_staff"].includes(role))) return <Navigate to="/dashboard/paralegal" replace />;
+    if (access?.roles.includes("stakeholder")) return <Navigate to="/dashboard/stakeholder" replace />;
     return <Navigate to="/dashboard/user" replace />;
   }
 
-  if (isLoaded && isSignedIn && user === undefined) {
+  if (isLoaded && isSignedIn && access === undefined) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#FDFDFD]">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>

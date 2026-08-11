@@ -4,6 +4,10 @@ import type { MutationCtx } from "./_generated/server";
 import { internal } from "./_generated/api";
 import { requireAnyRole } from "./lib/auth";
 import {
+    activateParalegalRoleForUser,
+    markParalegalProfileJoined,
+} from "./lib/paralegalAccess";
+import {
     escapeHtml,
     escapeHtmlWithLineBreaks,
     normalizeEmail,
@@ -408,13 +412,28 @@ export const reviewParalegalApplication = mutation({
         reviewedBy: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
-        await requireAnyRole(ctx, ["admin", "staff"]);
+        const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+        const application = await ctx.db.get(args.id);
+        if (!application) throw new Error("Paralegal application not found");
 
+        const now = Date.now();
         const { id, ...updates } = args;
         await ctx.db.patch(id, {
             ...updates,
-            reviewedAt: Date.now(),
+            isVerified: args.status === "approved" ? true : application.isVerified,
+            approvedAt: args.status === "approved" ? now : application.approvedAt,
+            reviewedAt: now,
         });
+        if (args.status === "approved") {
+            const matchingUser = await ctx.db
+                .query("users")
+                .withIndex("by_email", (q) => q.eq("email", application.email.toLowerCase()))
+                .first();
+            if (matchingUser) {
+                await activateParalegalRoleForUser(ctx, { userId: matchingUser._id, grantedBy: user._id, now });
+                await markParalegalProfileJoined(ctx, application._id, now);
+            }
+        }
         return { success: true };
     },
 });

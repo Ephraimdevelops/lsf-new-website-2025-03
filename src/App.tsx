@@ -163,12 +163,12 @@ function App() {
                         </ProtectedRoute>
                       } />
                       <Route path="/dashboard/staff" element={
-                        <ProtectedRoute allowedRoles={["staff"]}>
+                        <ProtectedRoute allowedRoles={["admin", "supervisor", "staff"]}>
                           <StaffDashboard />
                         </ProtectedRoute>
                       } />
                       <Route path="/dashboard/paralegal" element={
-                        <ProtectedRoute allowedRoles={["paralegal"]}>
+                        <ProtectedRoute allowedRoles={["paralegal", "provider_staff"]}>
                           <ParalegalDashboard />
                         </ProtectedRoute>
                       } />

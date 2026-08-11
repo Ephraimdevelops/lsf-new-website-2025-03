@@ -22,6 +22,10 @@ interface ParalegalProfileEditProps {
         bio?: string;
         photoUrl?: string;
         specializations?: string[];
+        availabilityStatus?: "accepting_cases" | "limited" | "paused" | "unavailable";
+        weeklyCapacity?: number;
+        workingHours?: string;
+        availabilityNotes?: string;
     };
 }
 
@@ -41,7 +45,11 @@ const ParalegalProfileEdit = ({ paralegal }: ParalegalProfileEditProps) => {
         ward: paralegal.ward || '',
         bio: paralegal.bio || '',
         photoUrl: paralegal.photoUrl || '',
-        specializations: paralegal.specializations?.join(', ') || ''
+        specializations: paralegal.specializations?.join(', ') || '',
+        availabilityStatus: paralegal.availabilityStatus || 'accepting_cases',
+        weeklyCapacity: String(paralegal.weeklyCapacity ?? 3),
+        workingHours: paralegal.workingHours || '',
+        availabilityNotes: paralegal.availabilityNotes || ''
     });
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +109,11 @@ const ParalegalProfileEdit = ({ paralegal }: ParalegalProfileEditProps) => {
                 ward: formData.ward,
                 bio: formData.bio,
                 photoUrl: formData.photoUrl,
-                specializations: formData.specializations.split(',').map(s => s.trim()).filter(Boolean)
+                specializations: formData.specializations.split(',').map(s => s.trim()).filter(Boolean),
+                availabilityStatus: formData.availabilityStatus as "accepting_cases" | "limited" | "paused" | "unavailable",
+                weeklyCapacity: Number.parseInt(formData.weeklyCapacity, 10) || 0,
+                workingHours: formData.workingHours,
+                availabilityNotes: formData.availabilityNotes
             });
 
             toast({ title: "Profile updated successfully" });
@@ -193,6 +205,52 @@ const ParalegalProfileEdit = ({ paralegal }: ParalegalProfileEditProps) => {
                             onChange={e => setFormData({ ...formData, specializations: e.target.value })}
                             placeholder="e.g. Land Law, Family Law, Gender Rights"
                         />
+                    </div>
+
+                    <div className="rounded-xl border bg-[#fbf7f8] p-4 space-y-4">
+                        <div>
+                            <Label>Availability for new Haki Yangu cases</Label>
+                            <select
+                                value={formData.availabilityStatus}
+                                onChange={e => setFormData({ ...formData, availabilityStatus: e.target.value })}
+                                className="mt-2 h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
+                            >
+                                <option value="accepting_cases">Accepting new cases</option>
+                                <option value="limited">Limited availability</option>
+                                <option value="paused">Temporarily paused</option>
+                                <option value="unavailable">Unavailable</option>
+                            </select>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <Label>Weekly case capacity</Label>
+                                <Input
+                                    type="number"
+                                    min={0}
+                                    max={50}
+                                    value={formData.weeklyCapacity}
+                                    onChange={e => setFormData({ ...formData, weeklyCapacity: e.target.value })}
+                                    placeholder="e.g. 3"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label>Working hours</Label>
+                                <Input
+                                    value={formData.workingHours}
+                                    onChange={e => setFormData({ ...formData, workingHours: e.target.value })}
+                                    placeholder="e.g. Mon-Fri, 9:00-16:00"
+                                />
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <Label>Availability notes for LSF staff</Label>
+                            <Textarea
+                                value={formData.availabilityNotes}
+                                onChange={e => setFormData({ ...formData, availabilityNotes: e.target.value })}
+                                placeholder="Add routing constraints, travel limits, or temporary notes for assignment decisions."
+                                rows={3}
+                            />
+                        </div>
                     </div>
 
                     <div className="space-y-2">

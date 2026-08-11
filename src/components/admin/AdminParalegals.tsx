@@ -180,6 +180,7 @@ const AdminParalegals = () => {
     const paralegals = useQuery(api.paralegals.listApprovedParalegals, {
         region: regionFilter || undefined,
         verifiedOnly: showVerifiedOnly || undefined,
+        includePrivate: true,
     }) as Paralegal[] | undefined;
     const stats = useQuery(api.paralegals.getParalegalStats);
 

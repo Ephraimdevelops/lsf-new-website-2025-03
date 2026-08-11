@@ -18,6 +18,341 @@ export default defineSchema({
   }).index("by_clerk_id", ["clerkId"])
     .index("by_email", ["email"]),
 
+  // Additive role assignments allow scoped and multiple roles while legacy users.role
+  // remains available during migration.
+  role_assignments: defineTable({
+    userId: v.id("users"),
+    role: v.union(
+      v.literal("admin"),
+      v.literal("staff"),
+      v.literal("supervisor"),
+      v.literal("content_editor"),
+      v.literal("paralegal"),
+      v.literal("provider_staff"),
+      v.literal("stakeholder"),
+      v.literal("donor"),
+      v.literal("user"),
+    ),
+    organizationId: v.optional(v.string()),
+    status: v.union(v.literal("active"), v.literal("suspended"), v.literal("revoked")),
+    grantedBy: v.id("users"),
+    grantedAt: v.number(),
+    revokedAt: v.optional(v.number()),
+  }).index("by_user", ["userId"])
+    .index("by_user_status", ["userId", "status"])
+    .index("by_role_status", ["role", "status"]),
+
+  consents: defineTable({
+    userId: v.id("users"),
+    type: v.union(
+      v.literal("privacy"),
+      v.literal("service"),
+      v.literal("referral"),
+      v.literal("ai"),
+      v.literal("communications"),
+    ),
+    version: v.string(),
+    granted: v.boolean(),
+    locale: v.union(v.literal("sw"), v.literal("en")),
+    recordedAt: v.number(),
+    withdrawnAt: v.optional(v.number()),
+  }).index("by_user_type", ["userId", "type"]),
+
+  legal_help_requests: defineTable({
+    publicId: v.string(),
+    ownerId: v.id("users"),
+    clientRequestId: v.string(),
+    status: v.union(
+      v.literal("draft"),
+      v.literal("submitted"),
+      v.literal("under_review"),
+      v.literal("waiting_for_information"),
+      v.literal("information_only"),
+      v.literal("referred"),
+      v.literal("converted_to_case"),
+      v.literal("withdrawn"),
+      v.literal("closed"),
+    ),
+    locale: v.union(v.literal("sw"), v.literal("en")),
+    description: v.optional(v.string()),
+    safeContactMethod: v.optional(v.union(
+      v.literal("in_app"),
+      v.literal("phone"),
+      v.literal("sms"),
+      v.literal("email"),
+      v.literal("none"),
+    )),
+    preferredLanguage: v.optional(v.union(
+      v.literal("sw"),
+      v.literal("en"),
+      v.literal("both"),
+      v.literal("other"),
+    )),
+    preferredLanguageOther: v.optional(v.string()),
+    region: v.optional(v.string()),
+    district: v.optional(v.string()),
+    occurredAt: v.optional(v.number()),
+    desiredHelp: v.optional(v.string()),
+    hasDocuments: v.optional(v.boolean()),
+    urgency: v.optional(v.union(
+      v.literal("standard"),
+      v.literal("urgent"),
+      v.literal("immediate_safety"),
+    )),
+    consentVersion: v.optional(v.string()),
+    version: v.number(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    submittedAt: v.optional(v.number()),
+  }).index("by_public_id", ["publicId"])
+    .index("by_owner", ["ownerId"])
+    .index("by_owner_client_request", ["ownerId", "clientRequestId"])
+    .index("by_status", ["status"]),
+
+  intake_answers: defineTable({
+    requestId: v.id("legal_help_requests"),
+    ownerId: v.id("users"),
+    questionKey: v.string(),
+    value: v.string(),
+    updatedAt: v.number(),
+  }).index("by_request", ["requestId"])
+    .index("by_request_question", ["requestId", "questionKey"]),
+
+  cases: defineTable({
+    publicId: v.string(),
+    sourceRequestId: v.id("legal_help_requests"),
+    beneficiaryId: v.id("users"),
+    status: v.union(
+      v.literal("under_review"),
+      v.literal("waiting_for_information"),
+      v.literal("assignment_pending"),
+      v.literal("assigned"),
+      v.literal("appointment_scheduled"),
+      v.literal("referred"),
+      v.literal("assistance_underway"),
+      v.literal("resolved"),
+      v.literal("closed_unresolved"),
+      v.literal("closed"),
+    ),
+    priority: v.union(
+      v.literal("standard"),
+      v.literal("urgent"),
+      v.literal("safeguarding"),
+    ),
+    summary: v.string(),
+    createdBy: v.id("users"),
+    version: v.number(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    closedAt: v.optional(v.number()),
+  }).index("by_public_id", ["publicId"])
+    .index("by_source_request", ["sourceRequestId"])
+    .index("by_beneficiary", ["beneficiaryId"])
+    .index("by_status", ["status"]),
+
+  case_participants: defineTable({
+    caseId: v.id("cases"),
+    userId: v.id("users"),
+    role: v.union(
+      v.literal("beneficiary"),
+      v.literal("paralegal"),
+      v.literal("case_officer"),
+      v.literal("supervisor"),
+      v.literal("provider_staff"),
+    ),
+    status: v.union(v.literal("active"), v.literal("inactive")),
+    addedBy: v.id("users"),
+    addedAt: v.number(),
+    removedAt: v.optional(v.number()),
+  }).index("by_case", ["caseId"])
+    .index("by_user", ["userId"])
+    .index("by_case_user", ["caseId", "userId"]),
+
+  case_assignments: defineTable({
+    caseId: v.id("cases"),
+    assigneeId: v.id("users"),
+    offeredBy: v.id("users"),
+    status: v.union(
+      v.literal("offered"),
+      v.literal("accepted"),
+      v.literal("declined"),
+      v.literal("expired"),
+      v.literal("ended"),
+    ),
+    reason: v.optional(v.string()),
+    availabilityStatus: v.optional(v.string()),
+    availabilityOverrideReason: v.optional(v.string()),
+    offeredAt: v.number(),
+    expiresAt: v.optional(v.number()),
+    respondedAt: v.optional(v.number()),
+    endedAt: v.optional(v.number()),
+  }).index("by_case", ["caseId"])
+    .index("by_assignee_status", ["assigneeId", "status"])
+    .index("by_status_expires", ["status", "expiresAt"]),
+
+  case_events: defineTable({
+    caseId: v.id("cases"),
+    type: v.string(),
+    actorId: v.id("users"),
+    audience: v.union(v.literal("beneficiary"), v.literal("workers"), v.literal("all")),
+    publicLabelKey: v.optional(v.string()),
+    metadata: v.optional(v.any()),
+    occurredAt: v.number(),
+  }).index("by_case", ["caseId"])
+    .index("by_case_time", ["caseId", "occurredAt"]),
+
+  case_conversations: defineTable({
+    caseId: v.id("cases"),
+    status: v.union(v.literal("active"), v.literal("closed")),
+    createdAt: v.number(),
+  }).index("by_case", ["caseId"]),
+
+  case_messages: defineTable({
+    conversationId: v.id("case_conversations"),
+    caseId: v.id("cases"),
+    senderId: v.id("users"),
+    clientMessageId: v.string(),
+    type: v.union(v.literal("text"), v.literal("system")),
+    body: v.string(),
+    createdAt: v.number(),
+  }).index("by_conversation_time", ["conversationId", "createdAt"])
+    .index("by_sender_client", ["senderId", "clientMessageId"]),
+
+  case_documents: defineTable({
+    caseId: v.id("cases"),
+    uploaderId: v.id("users"),
+    storageId: v.optional(v.id("_storage")),
+    clientDocumentId: v.string(),
+    name: v.string(),
+    type: v.string(),
+    size: v.number(),
+    category: v.union(
+      v.literal("evidence"),
+      v.literal("identity"),
+      v.literal("contract"),
+      v.literal("letter"),
+      v.literal("receipt"),
+      v.literal("other"),
+    ),
+    textContent: v.optional(v.string()),
+    source: v.optional(v.union(v.literal("upload"), v.literal("letter_builder"), v.literal("document_checker"))),
+    note: v.optional(v.string()),
+    status: v.union(v.literal("pending_review"), v.literal("accepted"), v.literal("rejected")),
+    reviewedBy: v.optional(v.id("users")),
+    reviewedAt: v.optional(v.number()),
+    reviewNotes: v.optional(v.string()),
+    createdAt: v.number(),
+  }).index("by_case", ["caseId"])
+    .index("by_case_status", ["caseId", "status"])
+    .index("by_uploader_client", ["uploaderId", "clientDocumentId"]),
+
+  case_appointments: defineTable({
+    caseId: v.id("cases"),
+    createdBy: v.id("users"),
+    startsAt: v.number(),
+    mode: v.union(v.literal("in_person"), v.literal("phone"), v.literal("remote")),
+    location: v.optional(v.string()),
+    status: v.union(v.literal("scheduled"), v.literal("completed"), v.literal("cancelled"), v.literal("missed")),
+    statusNote: v.optional(v.string()),
+    statusUpdatedBy: v.optional(v.id("users")),
+    statusUpdatedAt: v.optional(v.number()),
+    reminderSentAt: v.optional(v.number()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_case", ["caseId"])
+    .index("by_start", ["startsAt"])
+    .index("by_status_start", ["status", "startsAt"]),
+
+  case_outcomes: defineTable({
+    caseId: v.id("cases"),
+    recordedBy: v.id("users"),
+    outcomeCode: v.string(),
+    summary: v.string(),
+    beneficiaryAgrees: v.optional(v.boolean()),
+    recordedAt: v.number(),
+  }).index("by_case", ["caseId"]),
+
+  case_feedback: defineTable({
+    caseId: v.id("cases"),
+    beneficiaryId: v.id("users"),
+    rating: v.number(),
+    comment: v.optional(v.string()),
+    submittedAt: v.number(),
+  }).index("by_case", ["caseId"])
+    .index("by_beneficiary", ["beneficiaryId"]),
+
+  case_review_requests: defineTable({
+    caseId: v.id("cases"),
+    requestedBy: v.id("users"),
+    reason: v.union(
+      v.literal("reassignment"),
+      v.literal("service_concern"),
+      v.literal("safety_concern"),
+      v.literal("other"),
+    ),
+    note: v.optional(v.string()),
+    status: v.union(
+      v.literal("submitted"),
+      v.literal("under_review"),
+      v.literal("resolved"),
+      v.literal("declined"),
+    ),
+    resolutionNote: v.optional(v.string()),
+    resolvedBy: v.optional(v.id("users")),
+    resolvedAt: v.optional(v.number()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_case", ["caseId"])
+    .index("by_status", ["status"])
+    .index("by_requester", ["requestedBy"]),
+
+  notifications: defineTable({
+    userId: v.id("users"),
+    type: v.string(),
+    titleKey: v.string(),
+    bodyKey: v.string(),
+    resourceType: v.optional(v.string()),
+    resourceId: v.optional(v.string()),
+    readAt: v.optional(v.number()),
+    createdAt: v.number(),
+  }).index("by_user", ["userId"])
+    .index("by_user_created", ["userId", "createdAt"]),
+
+  notification_preferences: defineTable({
+    userId: v.id("users"),
+    cases: v.boolean(),
+    messages: v.boolean(),
+    appointments: v.boolean(),
+    documents: v.boolean(),
+    service: v.boolean(),
+    updatedAt: v.number(),
+  }).index("by_user", ["userId"]),
+
+  push_subscriptions: defineTable({
+    userId: v.id("users"),
+    token: v.string(),
+    platform: v.optional(v.string()),
+    projectId: v.optional(v.string()),
+    enabled: v.boolean(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    lastSeenAt: v.number(),
+  }).index("by_user", ["userId"])
+    .index("by_token", ["token"]),
+
+  push_delivery_attempts: defineTable({
+    notificationId: v.id("notifications"),
+    userId: v.id("users"),
+    token: v.string(),
+    status: v.union(v.literal("sent"), v.literal("failed"), v.literal("skipped"), v.literal("receipt_ok")),
+    provider: v.literal("expo"),
+    error: v.optional(v.string()),
+    ticketId: v.optional(v.string()),
+    createdAt: v.number(),
+  }).index("by_notification", ["notificationId"])
+    .index("by_user", ["userId"])
+    .index("by_ticket", ["ticketId"]),
+
   // Legacy Heros (success stories from old site)
   heros: defineTable({
     title: v.string(),
@@ -305,6 +640,15 @@ export default defineSchema({
     bio: v.optional(v.string()),
     photoUrl: v.optional(v.string()),
     specializations: v.optional(v.array(v.string())),
+    availabilityStatus: v.optional(v.union(
+      v.literal("accepting_cases"),
+      v.literal("limited"),
+      v.literal("paused"),
+      v.literal("unavailable"),
+    )),
+    weeklyCapacity: v.optional(v.number()),
+    workingHours: v.optional(v.string()),
+    availabilityNotes: v.optional(v.string()),
     hasJoinedHakiYangu: v.optional(v.boolean()),
     onboardingCompleted: v.optional(v.boolean()),
     approvedAt: v.optional(v.number()),

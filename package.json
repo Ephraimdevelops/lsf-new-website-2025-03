@@ -8,6 +8,7 @@
     "security:public-assets": "node scripts/check-public-assets.mjs",
     "security:convex": "node scripts/check-convex-security.mjs",
     "test:security": "npm run security:public-assets && npm run security:convex",
+    "test:haki-contracts": "node --experimental-strip-types --test scripts/haki-contracts.test.mjs",
     "prebuild": "npm run test:security",
     "build": "vite build",
     "build:dev": "vite build --mode development",

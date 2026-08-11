@@ -1,6 +1,10 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
+import {
+    activateParalegalRoleForUser,
+    markParalegalProfileJoined,
+} from "./lib/paralegalAccess";
 
 // ==========================================
 // PARALEGAL MANAGEMENT
@@ -11,8 +15,14 @@ export const listApprovedParalegals = query({
     args: {
         region: v.optional(v.string()),
         verifiedOnly: v.optional(v.boolean()),
+        includePrivate: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
+        const includePrivate = args.includePrivate === true;
+        if (includePrivate) {
+            await requireAnyRole(ctx, ["admin", "staff"]);
+        }
+
         let paralegals = await ctx.db
             .query("paralegal_applications")
             .withIndex("by_status", (q) => q.eq("status", "approved"))
@@ -27,7 +37,23 @@ export const listApprovedParalegals = query({
             paralegals = paralegals.filter((p) => p.isVerified === true);
         }
 
-        return paralegals;
+        if (includePrivate) return paralegals;
+
+        return paralegals.map((paralegal) => ({
+            _id: paralegal._id,
+            _creationTime: paralegal._creationTime,
+            fullName: paralegal.fullName,
+            phone: paralegal.phone,
+            region: paralegal.region,
+            district: paralegal.district,
+            ward: paralegal.ward,
+            bio: paralegal.bio,
+            photoUrl: paralegal.photoUrl,
+            specializations: paralegal.specializations ?? [],
+            isVerified: paralegal.isVerified === true,
+            languages: paralegal.languages ?? [],
+            availabilityStatus: paralegal.availabilityStatus ?? "accepting_cases",
+        }));
     },
 });
 
@@ -96,6 +122,15 @@ export const updateParalegalProfile = mutation({
         bio: v.optional(v.string()),
         photoUrl: v.optional(v.string()),
         specializations: v.optional(v.array(v.string())),
+        availabilityStatus: v.optional(v.union(
+            v.literal("accepting_cases"),
+            v.literal("limited"),
+            v.literal("paused"),
+            v.literal("unavailable"),
+        )),
+        weeklyCapacity: v.optional(v.number()),
+        workingHours: v.optional(v.string()),
+        availabilityNotes: v.optional(v.string()),
         hasJoinedHakiYangu: v.optional(v.boolean()),
         onboardingCompleted: v.optional(v.boolean()),
     },
@@ -109,6 +144,9 @@ export const updateParalegalProfile = mutation({
         if (!isStaff && !isSelf) throw new Error("Forbidden");
 
         const { id, ...updates } = args;
+        if (updates.weeklyCapacity !== undefined) {
+            updates.weeklyCapacity = Math.max(0, Math.min(50, Math.floor(updates.weeklyCapacity)));
+        }
         await ctx.db.patch(id, updates);
         return { success: true };
     },
@@ -201,7 +239,8 @@ export const addParalegalManually = mutation({
         specializations: v.optional(v.array(v.string())),
     },
     handler: async (ctx, args) => {
-        await requireAnyRole(ctx, ["admin", "staff"]);
+        const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+        const now = Date.now();
 
         // Check if an application for this email already exists
         const existing = await ctx.db
@@ -226,12 +265,21 @@ export const addParalegalManually = mutation({
             specializations: args.specializations || [],
             isVerified: true, // Auto-verified since admin added them
             status: "approved",
-            submittedAt: Date.now(),
-            approvedAt: Date.now(),
+            submittedAt: now,
+            approvedAt: now,
             profileViews: 0,
             hasJoinedHakiYangu: false,
             onboardingCompleted: true,
         });
+
+        const matchingUser = await ctx.db
+            .query("users")
+            .withIndex("by_email", (q) => q.eq("email", args.email.toLowerCase()))
+            .first();
+        if (matchingUser) {
+            await activateParalegalRoleForUser(ctx, { userId: matchingUser._id, grantedBy: user._id, now });
+            await markParalegalProfileJoined(ctx, id, now);
+        }
 
         return { success: true, id };
     },
@@ -254,7 +302,7 @@ export const importParalegalsBatch = mutation({
         ),
     },
     handler: async (ctx, args) => {
-        await requireAnyRole(ctx, ["admin", "staff"]);
+        const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
 
         let imported = 0;
         let duplicates = 0;
@@ -273,7 +321,8 @@ export const importParalegalsBatch = mutation({
                     continue;
                 }
 
-                await ctx.db.insert("paralegal_applications", {
+                const now = Date.now();
+                const id = await ctx.db.insert("paralegal_applications", {
                     fullName: record.fullName.trim(),
                     email: record.email.toLowerCase().trim(),
                     phone: record.phone.trim(),
@@ -285,12 +334,20 @@ export const importParalegalsBatch = mutation({
                     motivation: "Imported from CSV",
                     isVerified: true,
                     status: "approved",
-                    submittedAt: Date.now(),
-                    approvedAt: Date.now(),
+                    submittedAt: now,
+                    approvedAt: now,
                     profileViews: 0,
                     hasJoinedHakiYangu: false,
                     onboardingCompleted: true,
                 });
+                const matchingUser = await ctx.db
+                    .query("users")
+                    .withIndex("by_email", (q) => q.eq("email", record.email.toLowerCase().trim()))
+                    .first();
+                if (matchingUser) {
+                    await activateParalegalRoleForUser(ctx, { userId: matchingUser._id, grantedBy: user._id, now });
+                    await markParalegalProfileJoined(ctx, id, now);
+                }
                 imported++;
             } catch (e: any) {
                 errors.push(`${record.fullName}: ${e.message}`);

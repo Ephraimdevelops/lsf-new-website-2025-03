@@ -1,47 +1,1667 @@
-import { useQuery } from "convex/react";
+import { useAuth } from "@clerk/clerk-react";
+import type { FunctionReturnType } from "convex/server";
+import { useMutation, useQuery } from "convex/react";
+import {
+  AlertTriangle,
+  ArrowLeft,
+  BriefcaseBusiness,
+  CheckCircle2,
+  ChevronRight,
+  Clock3,
+  ExternalLink,
+  FileSearch,
+  FileText,
+  LogOut,
+  MapPin,
+  MessageSquareText,
+  ShieldCheck,
+  UserRoundCheck,
+} from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { api } from "../../convex/_generated/api";
+import type { Id } from "../../convex/_generated/dataModel";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+
+type TriageDetail = FunctionReturnType<typeof api.legalHelp.openForTriage>;
+type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments";
+
+const requestLabels = {
+  submitted: "New",
+  under_review: "Under review",
+  waiting_for_information: "Waiting for information",
+} as const;
+
+const caseLabels: Record<string, string> = {
+  under_review: "Under review",
+  waiting_for_information: "Waiting for information",
+  assignment_pending: "Assignment pending",
+  assigned: "Assigned",
+  appointment_scheduled: "Appointment scheduled",
+  referred: "Referred",
+  assistance_underway: "Assistance underway",
+  resolved: "Resolved",
+  closed_unresolved: "Closed unresolved",
+  closed: "Closed",
+};
+
+const nextStatuses: Record<string, string[]> = {
+  under_review: ["waiting_for_information", "referred", "closed_unresolved"],
+  waiting_for_information: ["under_review", "closed_unresolved"],
+  assignment_pending: ["referred", "closed_unresolved"],
+  assigned: [
+    "appointment_scheduled",
+    "assistance_underway",
+    "referred",
+    "closed_unresolved",
+  ],
+  appointment_scheduled: [
+    "assistance_underway",
+    "assigned",
+    "closed_unresolved",
+  ],
+  referred: ["assistance_underway", "closed_unresolved"],
+  assistance_underway: [
+    "appointment_scheduled",
+    "referred",
+    "resolved",
+    "closed_unresolved",
+  ],
+  resolved: ["closed"],
+  closed_unresolved: ["closed"],
+  closed: [],
+};
+
+function formatDate(timestamp?: number) {
+  if (!timestamp) return "Not provided";
+  return new Intl.DateTimeFormat("en-TZ", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(timestamp);
+}
+
+function errorMessage(error: unknown) {
+  return error instanceof Error
+    ? error.message
+    : "The operation could not be completed.";
+}
+
+function languageLabel(language?: string, otherLanguage?: string) {
+  if (language === "other" && otherLanguage?.trim()) return otherLanguage.trim();
+  const labels: Record<string, string> = {
+    sw: "Kiswahili",
+    en: "English",
+    both: "Kiswahili + English",
+    other: "Other",
+  };
+  return language ? labels[language] ?? language : "Not provided";
+}
+
+function eventTitle(event: { publicLabelKey?: string; type: string }) {
+  if (event.type === "appointment_requested") return "Appointment requested";
+  return (
+    event.publicLabelKey?.split(".").pop()?.replaceAll("_", " ") ??
+    event.type.replaceAll("_", " ")
+  );
+}
+
+function eventDetail(event: { type: string; metadata?: unknown }) {
+  if (
+    event.type !== "appointment_requested" ||
+    !event.metadata ||
+    typeof event.metadata !== "object"
+  ) {
+    return null;
+  }
+  const metadata = event.metadata as {
+    preferredMode?: string;
+    preferredTime?: string;
+    note?: string;
+  };
+  const detail = [
+    metadata.preferredMode
+      ? `Mode: ${metadata.preferredMode.replaceAll("_", " ")}`
+      : null,
+    metadata.preferredTime ? `Preferred time: ${metadata.preferredTime}` : null,
+    metadata.note ? `Note: ${metadata.note}` : null,
+  ].filter(Boolean);
+  return detail.length ? detail.join(" · ") : null;
+}
+
+function StatusPill({
+  value,
+  urgent = false,
+}: {
+  value: string;
+  urgent?: boolean;
+}) {
+  return (
+    <span
+      className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${urgent ? "bg-orange-100 text-orange-800" : "bg-primary/10 text-primary"}`}
+    >
+      {value}
+    </span>
+  );
+}
 
 const StaffDashboard = () => {
-  const data = useQuery(api.users.getDashboardData);
-  const loading = data === undefined;
-  const error = data === null; // In case of null return (though our query throws)
+  const { signOut } = useAuth();
+  const [tab, setTab] = useState<WorkspaceTab>("requests");
+  const [requestStatus, setRequestStatus] = useState<
+    "all" | "submitted" | "under_review" | "waiting_for_information"
+  >("all");
+  const [documentStatus, setDocumentStatus] = useState<
+    "pending_review" | "accepted" | "rejected"
+  >("pending_review");
+  const [reviewStatus, setReviewQueueStatus] = useState<
+    "submitted" | "under_review" | "resolved" | "declined"
+  >("submitted");
+  const [assignmentStatus, setAssignmentStatus] = useState<
+    "offered" | "accepted" | "declined" | "expired" | "ended"
+  >("offered");
+  const [detail, setDetail] = useState<TriageDetail | null>(null);
+  const [selectedCaseId, setSelectedCaseId] = useState<Id<"cases"> | null>(
+    null,
+  );
+  const [summary, setSummary] = useState("");
+  const [priority, setPriority] = useState<
+    "standard" | "urgent" | "safeguarding"
+  >("standard");
+  const [providerId, setProviderId] = useState("");
+  const [reassignmentProviderId, setReassignmentProviderId] = useState("");
+  const [assignmentOverrideReason, setAssignmentOverrideReason] = useState("");
+  const [reassignmentOverrideReason, setReassignmentOverrideReason] = useState("");
+  const [reviewNotesById, setReviewNotesById] = useState<Record<string, string>>({});
+  const [pending, setPending] = useState(false);
+  const [notice, setNotice] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Failed to load staff dashboard.</div>;
+  const requests = useQuery(
+    api.legalHelp.staffQueue,
+    requestStatus === "all" ? {} : { status: requestStatus },
+  );
+  const cases = useQuery(api.caseManagement.staffCaseQueue);
+  const providers = useQuery(api.caseManagement.serviceProviders);
+  const caseDetail = useQuery(
+    api.caseManagement.getCase,
+    selectedCaseId ? { caseId: selectedCaseId } : "skip",
+  );
+  const recommendations = useQuery(
+    api.caseManagement.providerRecommendations,
+    selectedCaseId ? { caseId: selectedCaseId } : "skip",
+  );
+  const documentQueue = useQuery(api.caseManagement.staffDocumentQueue, {
+    status: documentStatus,
+  });
+  const reviewQueue = useQuery(api.caseManagement.staffReviewRequests, {
+    status: reviewStatus,
+  });
+  const assignmentOffers = useQuery(api.caseManagement.staffAssignmentOffers, {
+    status: assignmentStatus,
+  });
+  const openForTriage = useMutation(api.legalHelp.openForTriage);
+  const setReviewStatus = useMutation(api.legalHelp.setReviewStatus);
+  const createCase = useMutation(api.caseManagement.createFromRequest);
+  const offerAssignment = useMutation(api.caseManagement.offerAssignment);
+  const reassignCase = useMutation(api.caseManagement.reassignCase);
+  const updateCaseStatus = useMutation(api.caseManagement.updateStatus);
+  const reviewDocument = useMutation(api.caseManagement.reviewDocument);
+  const expireStaleAssignmentOffersNow = useMutation(
+    api.caseManagement.expireStaleAssignmentOffersNow,
+  );
+  const resolveCaseReviewRequest = useMutation(
+    api.caseManagement.resolveCaseReviewRequest,
+  );
 
-  const { user, tasks } = data;
+  const selectedAssignmentProvider =
+    recommendations?.find((provider) => provider.id === providerId) ??
+    providers?.find((provider) => provider.id === providerId);
+  const selectedReassignmentProvider =
+    recommendations?.find((provider) => provider.id === reassignmentProviderId) ??
+    providers?.find((provider) => provider.id === reassignmentProviderId);
+
+  function requiresAvailabilityOverride(provider?: { availabilityStatus?: string }) {
+    return provider?.availabilityStatus === "paused" || provider?.availabilityStatus === "unavailable";
+  }
+
+  async function run(action: () => Promise<void>) {
+    setPending(true);
+    setNotice(null);
+    try {
+      await action();
+    } catch (error) {
+      setNotice({ type: "error", text: errorMessage(error) });
+    } finally {
+      setPending(false);
+    }
+  }
+
+  function selectRequest(request: NonNullable<typeof requests>[number]) {
+    void run(async () => {
+      const opened = await openForTriage({
+        requestId: request._id,
+        expectedVersion: request.version,
+      });
+      setDetail(opened);
+      setSummary(opened.request.description ?? "");
+      setPriority(
+        opened.request.urgency === "immediate_safety"
+          ? "safeguarding"
+          : opened.request.urgency === "urgent"
+            ? "urgent"
+            : "standard",
+      );
+    });
+  }
+
+  function changeReviewStatus(
+    status: "under_review" | "waiting_for_information",
+  ) {
+    if (!detail) return;
+    void run(async () => {
+      const result = await setReviewStatus({
+        requestId: detail.request._id,
+        expectedVersion: detail.request.version,
+        status,
+      });
+      setDetail({
+        ...detail,
+        request: {
+          ...detail.request,
+          status: result.status,
+          version: result.version,
+        },
+      });
+      setNotice({ type: "success", text: "Request status updated." });
+    });
+  }
+
+  function convertToCase() {
+    if (!detail || summary.trim().length < 10) {
+      setNotice({
+        type: "error",
+        text: "Add a concise case summary of at least 10 characters.",
+      });
+      return;
+    }
+    void run(async () => {
+      const result = await createCase({
+        requestId: detail.request._id,
+        summary: summary.trim(),
+        priority,
+      });
+      setSelectedCaseId(result.caseId);
+      setDetail(null);
+      setTab("cases");
+      setNotice({
+        type: "success",
+        text: `${result.publicId} is ready for assignment.`,
+      });
+    });
+  }
+
+  function assignProvider() {
+    if (!selectedCaseId || !providerId) return;
+    if (requiresAvailabilityOverride(selectedAssignmentProvider) && assignmentOverrideReason.trim().length < 10) {
+      setNotice({
+        type: "error",
+        text: "Add an override reason of at least 10 characters before assigning a paused or unavailable provider.",
+      });
+      return;
+    }
+    void run(async () => {
+      await offerAssignment({
+        caseId: selectedCaseId,
+        assigneeId: providerId as Id<"users">,
+        availabilityOverrideReason: assignmentOverrideReason.trim() || undefined,
+      });
+      setProviderId("");
+      setAssignmentOverrideReason("");
+      setNotice({
+        type: "success",
+        text: "Assignment offer sent to the service provider.",
+      });
+    });
+  }
+
+  function changeCaseStatus(status: string) {
+    if (!selectedCaseId || !caseDetail) return;
+    void run(async () => {
+      await updateCaseStatus({
+        caseId: selectedCaseId,
+        status: status as Parameters<typeof updateCaseStatus>[0]["status"],
+        expectedVersion: caseDetail.case.version,
+      });
+      setNotice({ type: "success", text: "Case timeline updated." });
+    });
+  }
+
+  function decideDocument(
+    documentId: Id<"case_documents">,
+    status: "accepted" | "rejected",
+  ) {
+    void run(async () => {
+      await reviewDocument({ documentId, status });
+      setNotice({ type: "success", text: `Document ${status}.` });
+    });
+  }
+
+  function decideReviewRequest(
+    reviewRequestId: Id<"case_review_requests">,
+    status: "under_review" | "resolved" | "declined",
+  ) {
+    void run(async () => {
+      const note = reviewNotesById[reviewRequestId]?.trim();
+      await resolveCaseReviewRequest({
+        reviewRequestId,
+        status,
+        resolutionNote: note || undefined,
+      });
+      setReviewNotesById((current) => ({ ...current, [reviewRequestId]: "" }));
+      setNotice({ type: "success", text: `Review request marked ${status.replaceAll("_", " ")}.` });
+    });
+  }
+
+  function reassignFromReview(
+    reviewRequestId: Id<"case_review_requests">,
+    caseId: Id<"cases">,
+    reason?: string,
+  ) {
+    if (!reassignmentProviderId) {
+      setNotice({ type: "error", text: "Select the replacement service provider." });
+      return;
+    }
+    if (requiresAvailabilityOverride(selectedReassignmentProvider) && reassignmentOverrideReason.trim().length < 10) {
+      setNotice({
+        type: "error",
+        text: "Add an override reason of at least 10 characters before reassigning to a paused or unavailable provider.",
+      });
+      return;
+    }
+    void run(async () => {
+      const note = reviewNotesById[reviewRequestId]?.trim();
+      await reassignCase({
+        caseId,
+        newAssigneeId: reassignmentProviderId as Id<"users">,
+        reviewRequestId,
+        reason,
+        resolutionNote: note || "Replacement provider offer sent after staff review.",
+        availabilityOverrideReason: reassignmentOverrideReason.trim() || undefined,
+      });
+      setReassignmentProviderId("");
+      setReassignmentOverrideReason("");
+      setReviewNotesById((current) => ({ ...current, [reviewRequestId]: "" }));
+      setNotice({
+        type: "success",
+        text: "Current assignment ended and replacement offer sent.",
+      });
+    });
+  }
+
+  function expireStaleOffersNow() {
+    void run(async () => {
+      const result = await expireStaleAssignmentOffersNow({ limit: 50 });
+      setNotice({
+        type: "success",
+        text: `${result.expiredCount} stale assignment offer${result.expiredCount === 1 ? "" : "s"} expired.`,
+      });
+    });
+  }
+
+  const newCount =
+    requests?.filter((request) => request.status === "submitted").length ?? 0;
+  const urgentCount =
+    requests?.filter(
+      (request) =>
+        request.urgency === "urgent" || request.urgency === "immediate_safety",
+    ).length ?? 0;
+  const activeCases =
+    cases?.filter(
+      (record) => !["closed", "closed_unresolved"].includes(record.status),
+    ).length ?? 0;
+  const pendingDocumentCount =
+    documentQueue?.filter((item) => item.document.status === "pending_review")
+      .length ?? 0;
+  const pendingReviewCount =
+    reviewQueue?.filter((item) => item.review.status === "submitted").length ??
+    0;
+  const openAssignmentOfferCount =
+    assignmentOffers?.filter((item) => item.assignment.status === "offered").length ??
+    0;
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Staff Dashboard</h1>
-      <p>Welcome, {user?.email}!</p>
-      <h2 className="text-xl font-semibold mt-6 mb-2">Your Tasks</h2>
-      {tasks.length === 0 ? (
-        <p>No tasks assigned.</p>
-      ) : (
-        <table className="min-w-full border mt-2">
-          <thead>
-            <tr>
-              <th className="border px-4 py-2">Title</th>
-              <th className="border px-4 py-2">Description</th>
-              <th className="border px-4 py-2">Status</th>
-              <th className="border px-4 py-2">Due Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tasks.map((task) => (
-              <tr key={task.id}>
-                <td className="border px-4 py-2">{task.title}</td>
-                <td className="border px-4 py-2">{task.description}</td>
-                <td className="border px-4 py-2">{task.status}</td>
-                <td className="border px-4 py-2">{task.dueDate}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+    <div className="min-h-screen bg-[#f7f4f2] text-neutral-900">
+      <header className="border-b border-black/5 bg-white">
+        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-4 py-4 sm:px-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary font-heading text-sm font-black text-white">
+              LSF
+            </div>
+            <div>
+              <p className="mb-0 font-heading text-base font-bold leading-tight">
+                Haki Yangu Operations
+              </p>
+              <p className="mb-0 text-xs text-neutral-500">
+                Legal assistance workspace
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/"
+              className="hidden rounded-lg px-3 py-2 text-sm font-semibold text-neutral-600 hover:bg-neutral-100 sm:block"
+            >
+              Public website
+            </Link>
+            <Button variant="outline" size="sm" onClick={() => signOut()}>
+              <LogOut className="mr-2 h-4 w-4" />
+              Sign out
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-[1500px] px-4 py-6 sm:px-8 sm:py-8">
+        <div className="mb-7 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+          <div>
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+              Human-supported justice
+            </p>
+            <h1 className="text-3xl sm:text-4xl">Triage and case operations</h1>
+            <p className="mb-0 max-w-2xl text-base text-neutral-600">
+              Review requests, establish accountable cases, and coordinate
+              verified assistance from one controlled workspace.
+            </p>
+          </div>
+          <div className="inline-flex w-fit rounded-xl border bg-white p-1 shadow-sm">
+            <button
+              onClick={() => setTab("requests")}
+              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "requests" ? "bg-primary text-white" : "text-neutral-600"}`}
+            >
+              Requests
+            </button>
+            <button
+              onClick={() => setTab("cases")}
+              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "cases" ? "bg-primary text-white" : "text-neutral-600"}`}
+            >
+              Cases
+            </button>
+            <button
+              onClick={() => setTab("documents")}
+              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "documents" ? "bg-primary text-white" : "text-neutral-600"}`}
+            >
+              Documents
+            </button>
+            <button
+              onClick={() => setTab("reviews")}
+              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "reviews" ? "bg-primary text-white" : "text-neutral-600"}`}
+            >
+              Reviews
+            </button>
+            <button
+              onClick={() => setTab("assignments")}
+              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "assignments" ? "bg-primary text-white" : "text-neutral-600"}`}
+            >
+              Assignments
+            </button>
+          </div>
+        </div>
+
+        <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
+          <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <FileSearch className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{newCount}</p>
+            <p className="mb-0 text-sm text-neutral-500">New requests</p>
+          </div>
+          <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-orange-100 text-orange-700">
+              <AlertTriangle className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{urgentCount}</p>
+            <p className="mb-0 text-sm text-neutral-500">
+              Urgent or safeguarding
+            </p>
+          </div>
+          <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-teal-100 text-teal-700">
+              <BriefcaseBusiness className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{activeCases}</p>
+            <p className="mb-0 text-sm text-neutral-500">
+              Active cases in scope
+            </p>
+          </div>
+          <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <FileText className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{pendingDocumentCount}</p>
+            <p className="mb-0 text-sm text-neutral-500">Documents to review</p>
+          </div>
+          <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <ShieldCheck className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{pendingReviewCount}</p>
+            <p className="mb-0 text-sm text-neutral-500">Case review requests</p>
+          </div>
+          <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-orange-100 text-orange-700">
+              <Clock3 className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{openAssignmentOfferCount}</p>
+            <p className="mb-0 text-sm text-neutral-500">Open assignment offers</p>
+          </div>
+        </section>
+
+        {notice && (
+          <div
+            role="status"
+            className={`mb-5 rounded-xl border px-4 py-3 text-sm font-semibold ${notice.type === "error" ? "border-red-200 bg-red-50 text-red-800" : "border-green-200 bg-green-50 text-green-800"}`}
+          >
+            {notice.text}
+          </div>
+        )}
+
+        {tab === "assignments" ? (
+          <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+            <div className="flex flex-col justify-between gap-3 border-b p-5 lg:flex-row lg:items-center">
+              <div>
+                <h2 className="text-xl">Assignment offer monitor</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Track provider offers, expiry windows, and stalled assignment
+                  handoffs.
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <select
+                  value={assignmentStatus}
+                  onChange={(event) =>
+                    setAssignmentStatus(event.target.value as typeof assignmentStatus)
+                  }
+                  className="h-11 rounded-xl border bg-white px-3 text-sm"
+                >
+                  <option value="offered">Offered</option>
+                  <option value="accepted">Accepted</option>
+                  <option value="declined">Declined</option>
+                  <option value="expired">Expired</option>
+                  <option value="ended">Ended</option>
+                </select>
+                <Button
+                  disabled={pending}
+                  variant="outline"
+                  onClick={expireStaleOffersNow}
+                >
+                  Expire stale offers now
+                </Button>
+              </div>
+            </div>
+            <div className="divide-y">
+              {assignmentOffers === undefined && (
+                <p className="p-5 text-sm text-neutral-500">
+                  Loading assignment offers...
+                </p>
+              )}
+              {assignmentOffers?.length === 0 && (
+                <div className="p-10 text-center">
+                  <UserRoundCheck className="mx-auto mb-3 h-9 w-9 text-primary/40" />
+                  <p className="mb-1 font-bold">No assignment offers in this status</p>
+                  <p className="mb-0 text-sm text-neutral-500">
+                    New provider offers and expired handoffs will appear here.
+                  </p>
+                </div>
+              )}
+              {assignmentOffers?.map((item) => {
+                const expiresAt = item.history.expiresAt;
+                const isStale = item.history.isOverdue;
+                return (
+                  <div
+                    key={item.assignment._id}
+                    className="grid gap-4 p-5 lg:grid-cols-[1fr_270px]"
+                  >
+                    <div>
+                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                        <h3 className="mb-0 text-lg">
+                          {item.case?.publicId ?? "Case unavailable"}
+                        </h3>
+                        <StatusPill
+                          value={item.assignment.status}
+                          urgent={isStale || item.assignment.status === "expired"}
+                        />
+                        {item.case && (
+                          <StatusPill
+                            value={item.case.status.replaceAll("_", " ")}
+                            urgent={item.case.priority !== "standard"}
+                          />
+                        )}
+                      </div>
+                      <p className="mb-2 text-sm text-neutral-600">
+                        Offered to {item.assignee?.name ?? "Unknown provider"} by{" "}
+                        {item.offeredBy?.name ?? "LSF staff"}
+                      </p>
+                      {item.case?.summary && (
+                        <p className="mb-0 line-clamp-2 max-w-4xl text-sm leading-6 text-neutral-600">
+                          {item.case.summary}
+                        </p>
+                      )}
+                      {item.assignment.reason && (
+                        <p className="mt-3 rounded-xl bg-[#f8f2f4] p-3 text-sm text-neutral-700">
+                          {item.assignment.reason}
+                        </p>
+                      )}
+                      <div className="mt-3 grid gap-2 text-xs text-neutral-600 sm:grid-cols-2">
+                        <div className="rounded-xl border bg-white p-3">
+                          <p className="mb-1 font-bold text-neutral-800">Availability at offer</p>
+                          <p className="mb-0 capitalize">
+                            {item.history.availabilityStatus.replaceAll("_", " ")}
+                          </p>
+                        </div>
+                        <div className="rounded-xl border bg-white p-3">
+                          <p className="mb-1 font-bold text-neutral-800">Response evidence</p>
+                          <p className="mb-0">
+                            {item.history.responseHours !== null
+                              ? `${item.history.responseHours} hours after offer`
+                              : `${item.history.offerAgeHours} hours open`}
+                          </p>
+                        </div>
+                      </div>
+                      {item.history.availabilityOverrideReason && (
+                        <p className="mt-3 rounded-xl border border-orange-200 bg-orange-50 p-3 text-sm text-orange-900">
+                          <span className="font-bold">Availability override:</span>{" "}
+                          {item.history.availabilityOverrideReason}
+                        </p>
+                      )}
+                    </div>
+                    <div className="rounded-xl border bg-[#fbf7f8] p-4 text-sm">
+                      <p className="mb-2 font-bold">Offer timing</p>
+                      <p className="mb-1 text-neutral-600">
+                        Offered: {formatDate(item.assignment.offeredAt)}
+                      </p>
+                      <p className={`mb-3 ${isStale ? "font-bold text-orange-700" : "text-neutral-600"}`}>
+                        Expires: {formatDate(expiresAt)}
+                      </p>
+                      {item.assignment.respondedAt && (
+                        <p className="mb-1 text-neutral-600">
+                          Responded: {formatDate(item.assignment.respondedAt)}
+                        </p>
+                      )}
+                      {item.assignment.endedAt && (
+                        <p className="mb-3 text-neutral-600">
+                          Ended: {formatDate(item.assignment.endedAt)}
+                        </p>
+                      )}
+                      {item.assignment.reason && (
+                        <p className="mb-3 rounded-lg bg-white p-2 text-xs text-neutral-700">
+                          <span className="font-bold">Reason:</span>{" "}
+                          {item.assignment.reason}
+                        </p>
+                      )}
+                      {item.case && (
+                        <Button
+                          variant="outline"
+                          className="w-full"
+                          onClick={() => {
+                            setSelectedCaseId(item.case!._id);
+                            setTab("cases");
+                          }}
+                        >
+                          Open case
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        ) : tab === "reviews" ? (
+          <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+            <div className="flex flex-col justify-between gap-3 border-b p-5 sm:flex-row sm:items-center">
+              <div>
+                <h2 className="text-xl">Case review and reassignment requests</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Review beneficiary concerns without exposing details directly
+                  to the assigned provider.
+                </p>
+              </div>
+              <select
+                value={reviewStatus}
+                onChange={(event) =>
+                  setReviewQueueStatus(event.target.value as typeof reviewStatus)
+                }
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="submitted">Submitted</option>
+                <option value="under_review">Under review</option>
+                <option value="resolved">Resolved</option>
+                <option value="declined">Declined</option>
+              </select>
+            </div>
+            <div className="divide-y">
+              {reviewQueue === undefined && (
+                <p className="p-5 text-sm text-neutral-500">
+                  Loading review requests...
+                </p>
+              )}
+              {reviewQueue?.length === 0 && (
+                <div className="p-10 text-center">
+                  <ShieldCheck className="mx-auto mb-3 h-9 w-9 text-primary/40" />
+                  <p className="mb-1 font-bold">No review requests in this queue</p>
+                  <p className="mb-0 text-sm text-neutral-500">
+                    Beneficiary concerns and reassignment requests will appear
+                    here.
+                  </p>
+                </div>
+              )}
+              {reviewQueue?.map((item) => (
+                <div
+                  key={item.review._id}
+                  className="grid gap-4 p-5 lg:grid-cols-[1fr_260px]"
+                >
+                  <div>
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <h3 className="mb-0 text-lg">
+                        {item.case?.publicId ?? "Case unavailable"}
+                      </h3>
+                      <StatusPill
+                        value={item.review.status.replaceAll("_", " ")}
+                        urgent={item.review.reason === "safety_concern"}
+                      />
+                      <StatusPill
+                        value={item.review.reason.replaceAll("_", " ")}
+                        urgent={item.review.reason === "safety_concern"}
+                      />
+                    </div>
+                    <p className="mb-2 text-sm text-neutral-600">
+                      Requested by {item.requester?.name ?? "Beneficiary"} on{" "}
+                      {formatDate(item.review.createdAt)}
+                    </p>
+                    {item.review.note && (
+                      <p className="mt-3 whitespace-pre-wrap rounded-xl bg-[#f8f2f4] p-3 text-sm text-neutral-700">
+                        {item.review.note}
+                      </p>
+                    )}
+                    {item.review.resolutionNote && (
+                      <p className="mt-3 whitespace-pre-wrap rounded-xl border p-3 text-sm text-neutral-700">
+                        Resolution: {item.review.resolutionNote}
+                      </p>
+                    )}
+                    {["submitted", "under_review"].includes(item.review.status) && (
+                      <div className="mt-3">
+                        <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
+                          Staff resolution note
+                        </label>
+                        <Textarea
+                          value={reviewNotesById[item.review._id] ?? ""}
+                          onChange={(event) =>
+                            setReviewNotesById((current) => ({
+                              ...current,
+                              [item.review._id]: event.target.value,
+                            }))
+                          }
+                          placeholder="Record what LSF reviewed, the decision, and the safe next step for the beneficiary."
+                          className="min-h-[92px]"
+                        />
+                        <p className="mb-0 mt-2 text-xs text-neutral-500">
+                          Keep this beneficiary-safe. Do not include internal
+                          disciplinary details or sensitive provider-side notes.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {item.case && (
+                      <Button
+                        variant="outline"
+                        onClick={() => {
+                          setSelectedCaseId(item.case!._id);
+                          setTab("cases");
+                        }}
+                      >
+                        Open case
+                      </Button>
+                    )}
+                    {item.case && ["submitted", "under_review"].includes(item.review.status) && (
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
+                          Replacement provider
+                        </label>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="mb-2 w-full"
+                          onClick={() => setSelectedCaseId(item.case!._id)}
+                        >
+                          Load matching evidence
+                        </Button>
+                        {selectedCaseId === item.case._id && recommendations && (
+                          <div className="mb-2 space-y-2">
+                            {recommendations.slice(0, 3).map((provider) => (
+                              <button
+                                type="button"
+                                key={provider.id}
+                                onClick={() => setReassignmentProviderId(provider.id)}
+                                className={`w-full rounded-lg border bg-white p-2 text-left text-xs hover:bg-[#fff8fa] ${reassignmentProviderId === provider.id ? "border-primary bg-primary/5" : "border-neutral-200"}`}
+                              >
+                                <div className="mb-1 flex items-center justify-between gap-2">
+                                  <span className="font-bold text-neutral-800">
+                                    {provider.name}
+                                  </span>
+                                  <span className="rounded-full bg-primary/10 px-2 py-0.5 font-bold text-primary">
+                                    Score {provider.score}
+                                  </span>
+                                </div>
+                                <p className="mb-1 capitalize text-neutral-500">
+                                  {provider.role.replaceAll("_", " ")}
+                                  {provider.district ? ` · ${provider.district}` : ""}
+                                  {provider.region ? `, ${provider.region}` : ""}
+                                  {` · ${provider.activeLoad} active case${provider.activeLoad === 1 ? "" : "s"}`}
+                                </p>
+                                <p className="mb-0 text-neutral-600">
+                                  {provider.reasons.slice(0, 3).join(" · ")}
+                                </p>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                        <select
+                          value={reassignmentProviderId}
+                          onChange={(event) =>
+                            setReassignmentProviderId(event.target.value)
+                          }
+                          className="mb-2 h-10 w-full rounded-lg border bg-white px-3 text-sm"
+                        >
+                          <option value="">Select provider</option>
+                          {providers?.map((provider) => (
+                            <option key={provider.id} value={provider.id}>
+                              {provider.name} ·{" "}
+                              {provider.role.replaceAll("_", " ")} ·{" "}
+                              {(provider.availabilityStatus ?? "accepting_cases").replaceAll("_", " ")}
+                            </option>
+                          ))}
+                        </select>
+                        {requiresAvailabilityOverride(selectedReassignmentProvider) && (
+                          <Textarea
+                            value={reassignmentOverrideReason}
+                            onChange={(event) => setReassignmentOverrideReason(event.target.value)}
+                            placeholder="Required: explain why staff is assigning a paused or unavailable provider."
+                            className="mb-2 min-h-[78px] bg-white text-sm"
+                          />
+                        )}
+                        <Button
+                          disabled={pending || !reassignmentProviderId}
+                          onClick={() =>
+                            reassignFromReview(
+                              item.review._id,
+                              item.case!._id,
+                              item.review.reason.replaceAll("_", " "),
+                            )
+                          }
+                          className="w-full"
+                        >
+                          Reassign and offer
+                        </Button>
+                      </div>
+                    )}
+                    {item.review.status === "submitted" && (
+                      <Button
+                        disabled={pending}
+                        onClick={() =>
+                          decideReviewRequest(item.review._id, "under_review")
+                        }
+                      >
+                        Mark under review
+                      </Button>
+                    )}
+                    {["submitted", "under_review"].includes(item.review.status) && (
+                      <>
+                        <Button
+                          disabled={pending}
+                          onClick={() =>
+                            decideReviewRequest(item.review._id, "resolved")
+                          }
+                        >
+                          Mark resolved
+                        </Button>
+                        <Button
+                          disabled={pending}
+                          variant="outline"
+                          onClick={() =>
+                            decideReviewRequest(item.review._id, "declined")
+                          }
+                        >
+                          Decline request
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : tab === "documents" ? (
+          <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+            <div className="flex flex-col justify-between gap-3 border-b p-5 sm:flex-row sm:items-center">
+              <div>
+                <h2 className="text-xl">Document review</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Review private case documents uploaded by beneficiaries and
+                  case workers.
+                </p>
+              </div>
+              <select
+                value={documentStatus}
+                onChange={(event) =>
+                  setDocumentStatus(event.target.value as typeof documentStatus)
+                }
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="pending_review">Pending review</option>
+                <option value="accepted">Accepted</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div className="divide-y">
+              {documentQueue === undefined && (
+                <p className="p-5 text-sm text-neutral-500">
+                  Loading documents...
+                </p>
+              )}
+              {documentQueue?.length === 0 && (
+                <div className="p-10 text-center">
+                  <FileText className="mx-auto mb-3 h-9 w-9 text-primary/40" />
+                  <p className="mb-1 font-bold">No documents in this queue</p>
+                  <p className="mb-0 text-sm text-neutral-500">
+                    Uploaded files will appear here after case access is
+                    created.
+                  </p>
+                </div>
+              )}
+              {documentQueue?.map((item) => (
+                <div
+                  key={item.document._id}
+                  className="grid gap-4 p-5 lg:grid-cols-[1fr_260px]"
+                >
+                  <div>
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <h3 className="mb-0 text-lg">{item.document.name}</h3>
+                      <StatusPill
+                        value={item.document.status.replaceAll("_", " ")}
+                        urgent={item.document.status === "pending_review"}
+                      />
+                    </div>
+                    <p className="mb-2 text-sm text-neutral-600">
+                      {item.case?.publicId ?? "Case unavailable"} ·{" "}
+                      {item.document.category.replaceAll("_", " ")} ·{" "}
+                      {(item.document.size / 1024 / 1024).toFixed(2)} MB
+                    </p>
+                    <p className="mb-0 text-sm text-neutral-500">
+                      Uploaded by {item.uploader?.name ?? "Unknown"} on{" "}
+                      {formatDate(item.document.createdAt)}
+                    </p>
+                    {item.document.note && (
+                      <p className="mt-3 rounded-xl bg-[#f8f2f4] p-3 text-sm text-neutral-700">
+                        {item.document.note}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex h-10 items-center justify-center rounded-lg border px-3 text-sm font-bold text-primary hover:bg-primary/5"
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Open document
+                      </a>
+                    )}
+                    {item.document.status === "pending_review" && (
+                      <>
+                        <Button
+                          disabled={pending}
+                          onClick={() =>
+                            decideDocument(item.document._id, "accepted")
+                          }
+                        >
+                          Accept document
+                        </Button>
+                        <Button
+                          disabled={pending}
+                          variant="outline"
+                          onClick={() =>
+                            decideDocument(item.document._id, "rejected")
+                          }
+                        >
+                          Reject document
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : tab === "requests" ? (
+          <section className="grid min-h-[600px] overflow-hidden rounded-2xl border bg-white shadow-sm lg:grid-cols-[390px_1fr]">
+            <div
+              className={`${detail ? "hidden lg:block" : "block"} border-r border-neutral-200`}
+            >
+              <div className="border-b p-4">
+                <label
+                  className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500"
+                  htmlFor="request-status"
+                >
+                  Queue
+                </label>
+                <select
+                  id="request-status"
+                  value={requestStatus}
+                  onChange={(event) =>
+                    setRequestStatus(event.target.value as typeof requestStatus)
+                  }
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                >
+                  <option value="all">Open requests</option>
+                  <option value="submitted">New</option>
+                  <option value="under_review">Under review</option>
+                  <option value="waiting_for_information">
+                    Waiting for information
+                  </option>
+                </select>
+              </div>
+              <div className="max-h-[680px] overflow-y-auto">
+                {requests === undefined && (
+                  <p className="p-5 text-sm text-neutral-500">
+                    Loading secure queue...
+                  </p>
+                )}
+                {requests?.length === 0 && (
+                  <div className="p-8 text-center">
+                    <CheckCircle2 className="mx-auto mb-3 h-8 w-8 text-teal-600" />
+                    <p className="mb-1 font-bold">Queue clear</p>
+                    <p className="mb-0 text-sm text-neutral-500">
+                      No requests match this filter.
+                    </p>
+                  </div>
+                )}
+                {requests?.map((request) => (
+                  <button
+                    key={request._id}
+                    onClick={() => selectRequest(request)}
+                    className="w-full border-b px-4 py-4 text-left hover:bg-[#fbf7f8] focus-visible:bg-[#fbf7f8]"
+                  >
+                    <div className="mb-2 flex items-center justify-between gap-2">
+                      <span className="font-heading text-sm font-bold">
+                        {request.publicId}
+                      </span>
+                      <StatusPill
+                        value={
+                          requestLabels[
+                            request.status as keyof typeof requestLabels
+                          ] ?? request.status
+                        }
+                        urgent={request.urgency === "immediate_safety"}
+                      />
+                    </div>
+                    <p className="mb-3 line-clamp-2 text-sm leading-5 text-neutral-600">
+                      {request.description || "No description provided"}
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-neutral-500">
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-3.5 w-3.5" />
+                        {request.district}, {request.region}
+                      </span>
+                      <ChevronRight className="h-4 w-4" />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div
+              className={`${detail ? "block" : "hidden lg:flex"} min-w-0 flex-col`}
+            >
+              {!detail ? (
+                <div className="m-auto max-w-sm p-8 text-center">
+                  <ShieldCheck className="mx-auto mb-4 h-12 w-12 text-primary/40" />
+                  <h2 className="mb-2 text-xl">Select a request</h2>
+                  <p className="mb-0 text-sm text-neutral-500">
+                    Opening a request is recorded in the audit trail. Only use
+                    information necessary to coordinate assistance.
+                  </p>
+                </div>
+              ) : (
+                <div className="p-4 sm:p-7">
+                  <button
+                    onClick={() => setDetail(null)}
+                    className="mb-5 flex items-center gap-2 text-sm font-bold text-primary lg:hidden"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    Back to queue
+                  </button>
+                  <div className="mb-6 flex flex-col justify-between gap-3 border-b pb-5 sm:flex-row sm:items-start">
+                    <div>
+                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                        <h2 className="text-2xl">{detail.request.publicId}</h2>
+                        <StatusPill
+                          value={
+                            requestLabels[
+                              detail.request
+                                .status as keyof typeof requestLabels
+                            ] ?? detail.request.status
+                          }
+                          urgent={detail.request.urgency === "immediate_safety"}
+                        />
+                      </div>
+                      <p className="mb-0 text-sm text-neutral-500">
+                        Submitted {formatDate(detail.request.submittedAt)}
+                      </p>
+                    </div>
+                    <select
+                      value={detail.request.status}
+                      disabled={pending}
+                      onChange={(event) =>
+                        changeReviewStatus(
+                          event.target.value as
+                            | "under_review"
+                            | "waiting_for_information",
+                        )
+                      }
+                      className="h-10 rounded-xl border bg-white px-3 text-sm"
+                    >
+                      <option value="under_review">Under review</option>
+                      <option value="waiting_for_information">
+                        Waiting for information
+                      </option>
+                    </select>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                    <Info
+                      label="Beneficiary"
+                      value={detail.beneficiary?.name ?? "Account unavailable"}
+                    />
+                    <Info
+                      label="Safe contact"
+                      value={(
+                        detail.request.safeContactMethod ?? "Not provided"
+                      ).replaceAll("_", " ")}
+                    />
+                    <Info
+                      label="Support language"
+                      value={languageLabel(detail.request.preferredLanguage, detail.request.preferredLanguageOther)}
+                    />
+                    <Info
+                      label="Location"
+                      value={`${detail.request.district ?? "-"}, ${detail.request.region ?? "-"}`}
+                    />
+                    <Info
+                      label="Urgency"
+                      value={(detail.request.urgency ?? "standard").replaceAll(
+                        "_",
+                        " ",
+                      )}
+                    />
+                  </div>
+                  <div className="mt-6 rounded-2xl bg-[#f8f2f4] p-5">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-primary">
+                      What happened
+                    </p>
+                    <p className="mb-0 whitespace-pre-wrap text-base leading-7">
+                      {detail.request.description}
+                    </p>
+                  </div>
+                  <div className="mt-5 grid gap-4 md:grid-cols-2">
+                    <Info
+                      label="Help requested"
+                      value={detail.request.desiredHelp ?? "Not provided"}
+                    />
+                    <Info
+                      label="Documents available"
+                      value={detail.request.hasDocuments ? "Yes" : "No"}
+                    />
+                  </div>
+                  {detail.answers.length > 0 && (
+                    <div className="mt-6">
+                      <h3 className="mb-3 text-lg">
+                        Additional intake answers
+                      </h3>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        {detail.answers.map((answer) => (
+                          <Info
+                            key={answer._id}
+                            label={answer.questionKey.replaceAll("_", " ")}
+                            value={answer.value}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div className="mt-7 border-t pt-6">
+                    <div className="mb-4">
+                      <h3 className="mb-1 text-lg">Create accountable case</h3>
+                      <p className="mb-0 text-sm text-neutral-500">
+                        Use a factual minimum-necessary summary. Do not copy
+                        unrelated sensitive details.
+                      </p>
+                    </div>
+                    <Textarea
+                      value={summary}
+                      onChange={(event) => setSummary(event.target.value)}
+                      maxLength={3000}
+                      className="min-h-28"
+                      aria-label="Case summary"
+                    />
+                    <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+                      <select
+                        value={priority}
+                        onChange={(event) =>
+                          setPriority(event.target.value as typeof priority)
+                        }
+                        className="h-11 rounded-xl border bg-white px-3 text-sm sm:w-52"
+                      >
+                        <option value="standard">Standard priority</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="safeguarding">Safeguarding</option>
+                      </select>
+                      <Button
+                        disabled={pending}
+                        onClick={convertToCase}
+                        className="sm:ml-auto"
+                      >
+                        {pending ? "Working..." : "Create case"}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        ) : (
+          <section className="grid min-h-[600px] overflow-hidden rounded-2xl border bg-white shadow-sm lg:grid-cols-[390px_1fr]">
+            <div
+              className={`${selectedCaseId ? "hidden lg:block" : "block"} border-r border-neutral-200`}
+            >
+              <div className="border-b p-5">
+                <h2 className="text-xl">Cases in your scope</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Ordered by latest activity
+                </p>
+              </div>
+              {cases?.map((record) => (
+                <button
+                  key={record._id}
+                  onClick={() => setSelectedCaseId(record._id)}
+                  className="w-full border-b p-4 text-left hover:bg-[#fbf7f8]"
+                >
+                  <div className="mb-2 flex items-center justify-between gap-2">
+                    <span className="font-heading text-sm font-bold">
+                      {record.publicId}
+                    </span>
+                    <StatusPill
+                      value={caseLabels[record.status]}
+                      urgent={record.priority !== "standard"}
+                    />
+                  </div>
+                  <p className="mb-2 line-clamp-2 text-sm text-neutral-600">
+                    {record.summary}
+                  </p>
+                  <p className="mb-0 text-xs text-neutral-400">
+                    Updated {formatDate(record.updatedAt)}
+                  </p>
+                </button>
+              ))}
+            </div>
+            <div
+              className={`${selectedCaseId ? "block" : "hidden lg:flex"} min-w-0 flex-col`}
+            >
+              {!selectedCaseId || !caseDetail ? (
+                <div className="m-auto p-8 text-center">
+                  <BriefcaseBusiness className="mx-auto mb-4 h-12 w-12 text-primary/40" />
+                  <h2 className="mb-2 text-xl">Select a case</h2>
+                  <p className="mb-0 text-sm text-neutral-500">
+                    Review its accountable timeline and coordinate the next
+                    action.
+                  </p>
+                </div>
+              ) : (
+                <div className="p-4 sm:p-7">
+                  <button
+                    onClick={() => setSelectedCaseId(null)}
+                    className="mb-5 flex items-center gap-2 text-sm font-bold text-primary lg:hidden"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    Back to cases
+                  </button>
+                  <div className="mb-6 flex flex-wrap items-start justify-between gap-3 border-b pb-5">
+                    <div>
+                      <div className="mb-2 flex items-center gap-2">
+                        <h2 className="text-2xl">{caseDetail.case.publicId}</h2>
+                        <StatusPill
+                          value={caseLabels[caseDetail.case.status]}
+                          urgent={caseDetail.case.priority !== "standard"}
+                        />
+                      </div>
+                      <p className="mb-0 text-sm text-neutral-500">
+                        Opened {formatDate(caseDetail.case.createdAt)}
+                      </p>
+                    </div>
+                    {nextStatuses[caseDetail.case.status]?.length > 0 && (
+                      <select
+                        defaultValue=""
+                        disabled={pending}
+                        onChange={(event) => {
+                          if (event.target.value)
+                            changeCaseStatus(event.target.value);
+                          event.currentTarget.value = "";
+                        }}
+                        className="h-10 rounded-xl border bg-white px-3 text-sm"
+                      >
+                        <option value="" disabled>
+                          Update status...
+                        </option>
+                        {nextStatuses[caseDetail.case.status].map((status) => (
+                          <option
+                            key={status}
+                            value={status}
+                            disabled={status === "closed" && !caseDetail.closureReadiness?.canClose}
+                          >
+                            {caseLabels[status]}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                  </div>
+                  <div className="rounded-2xl bg-[#f8f2f4] p-5">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-primary">
+                      Case summary
+                    </p>
+                    <p className="mb-0 whitespace-pre-wrap leading-7">
+                      {caseDetail.case.summary}
+                    </p>
+                  </div>
+                  {caseDetail.closureReadiness && (
+                    <div className={`mt-5 rounded-xl border p-4 ${caseDetail.closureReadiness.canClose ? "border-emerald-200 bg-emerald-50" : "border-orange-200 bg-orange-50"}`}>
+                      <h3 className="mb-3 flex items-center gap-2 text-base">
+                        <ShieldCheck className="h-5 w-5 text-primary" />
+                        Closure readiness
+                      </h3>
+                      <div className="grid gap-2 sm:grid-cols-2">
+                        <ClosureItem label="Outcome recorded" ready={caseDetail.closureReadiness.requirements.outcomeRecorded} />
+                        <ClosureItem label="Beneficiary-safe summary" ready={caseDetail.closureReadiness.requirements.beneficiarySafeSummary} />
+                        <ClosureItem label="Documents reviewed" ready={caseDetail.closureReadiness.requirements.documentsReviewed} detail={`${caseDetail.closureReadiness.pendingDocumentCount} pending`} />
+                        <ClosureItem label="Feedback requested" ready={caseDetail.closureReadiness.requirements.feedbackRequested} />
+                      </div>
+                      {!caseDetail.closureReadiness.canClose && (
+                        <p className="mb-0 mt-3 text-sm font-semibold text-orange-800">
+                          Final close is blocked until every closure requirement is complete.
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  {caseDetail.assignmentHistory.length > 0 && (
+                    <div className="mt-5 rounded-xl border bg-white p-4">
+                      <h3 className="mb-3 flex items-center gap-2 text-base">
+                        <UserRoundCheck className="h-5 w-5 text-primary" />
+                        Assignment history
+                      </h3>
+                      <div className="grid gap-3">
+                        {caseDetail.assignmentHistory.map((item) => (
+                          <div key={item.assignment._id} className="rounded-xl border bg-[#fbf7f8] p-3">
+                            <div className="mb-2 flex flex-wrap items-center gap-2">
+                              <span className="font-bold">{item.assigneeName}</span>
+                              <StatusPill value={item.assignment.status} urgent={item.history.isOverdue || item.assignment.status === "expired"} />
+                              <span className="rounded-full bg-white px-2 py-1 text-xs font-semibold capitalize text-neutral-600">
+                                {item.history.availabilityStatus.replaceAll("_", " ")}
+                              </span>
+                            </div>
+                            <p className="mb-1 text-sm text-neutral-600">
+                              Offered by {item.offeredByName} on {formatDate(item.assignment.offeredAt)}
+                            </p>
+                            <p className="mb-1 text-xs text-neutral-500">
+                              Expires {formatDate(item.history.expiresAt)} · {item.history.responseHours !== null ? `responded after ${item.history.responseHours}h` : `${item.history.offerAgeHours}h open`}
+                            </p>
+                            {item.assignment.reason && (
+                              <p className="mb-1 text-xs text-neutral-600">
+                                Reason: {item.assignment.reason}
+                              </p>
+                            )}
+                            {item.history.availabilityOverrideReason && (
+                              <p className="mb-0 rounded-lg border border-orange-200 bg-orange-50 p-2 text-xs text-orange-900">
+                                Override: {item.history.availabilityOverrideReason}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {caseDetail.appointments.length > 0 && (
+                    <div className="mt-5 rounded-xl border bg-white p-4">
+                      <h3 className="mb-3 flex items-center gap-2 text-base">
+                        <Clock3 className="h-5 w-5 text-primary" />
+                        Appointment lifecycle
+                      </h3>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        {caseDetail.appointments.map((appointment) => (
+                          <div key={appointment._id} className="rounded-xl border bg-[#fbf7f8] p-3">
+                            <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                              <p className="mb-0 font-bold">{formatDate(appointment.startsAt)}</p>
+                              <StatusPill value={appointment.status} urgent={appointment.status === "missed" || appointment.status === "cancelled"} />
+                            </div>
+                            <p className="mb-0 text-sm capitalize text-neutral-600">
+                              {appointment.mode.replaceAll("_", " ")}
+                              {appointment.location ? ` · ${appointment.location}` : ""}
+                            </p>
+                            {appointment.statusNote && (
+                              <p className="mb-0 mt-2 rounded-lg bg-white p-2 text-sm text-neutral-600">
+                                {appointment.statusNote}
+                              </p>
+                            )}
+                            {appointment.statusUpdatedAt && (
+                              <p className="mb-0 mt-2 text-xs text-neutral-500">
+                                Updated {formatDate(appointment.statusUpdatedAt)}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div className="mt-6 grid gap-6 xl:grid-cols-2">
+                    <div>
+                      <h3 className="mb-3 flex items-center gap-2 text-lg">
+                        <Clock3 className="h-5 w-5 text-primary" />
+                        Accountable timeline
+                      </h3>
+                      <div className="space-y-3">
+                        {caseDetail.events.map((event) => (
+                          <div
+                            key={event._id}
+                            className="relative rounded-xl border p-4 pl-11"
+                          >
+                            <div className="absolute left-4 top-4 flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
+                              <div className="h-2 w-2 rounded-full bg-primary" />
+                            </div>
+                            <p className="mb-1 text-sm font-bold">
+                              {eventTitle(event)}
+                            </p>
+                            {eventDetail(event) && (
+                              <p className="mb-1 text-sm text-neutral-600">
+                                {eventDetail(event)}
+                              </p>
+                            )}
+                            <p className="mb-0 text-xs text-neutral-500">
+                              {formatDate(event.occurredAt)}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="mb-3 flex items-center gap-2 text-lg">
+                        <UserRoundCheck className="h-5 w-5 text-primary" />
+                        Offer assignment
+                      </h3>
+                      <div className="rounded-xl border p-4">
+                        <p className="mb-4 text-sm text-neutral-600">
+                          Recommended providers are ranked by location, issue
+                          fit, verification, language fit, declared availability,
+                          and current accepted caseload. The provider must accept
+                          before receiving case access.
+                        </p>
+                        {recommendations && recommendations.length > 0 && (
+                          <div className="mb-4 space-y-2">
+                            {recommendations.slice(0, 3).map((provider) => (
+                              <button
+                                key={provider.id}
+                                onClick={() => setProviderId(provider.id)}
+                                className={`w-full rounded-xl border p-3 text-left hover:bg-[#fbf7f8] ${providerId === provider.id ? "border-primary bg-primary/5" : "border-neutral-200"}`}
+                              >
+                                <div className="mb-1 flex items-center justify-between gap-2">
+                                  <span className="font-bold">
+                                    {provider.name}
+                                  </span>
+                                  <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-bold text-primary">
+                                    {provider.score}
+                                  </span>
+                                </div>
+                                <p className="mb-1 text-xs capitalize text-neutral-500">
+                                  {provider.role.replaceAll("_", " ")}
+                                  {provider.district
+                                    ? ` · ${provider.district}`
+                                    : ""}
+                                  {provider.region
+                                    ? `, ${provider.region}`
+                                    : ""}
+                                </p>
+                                <div className="mb-2 flex flex-wrap gap-2 text-[11px] font-semibold">
+                                  <span className="rounded-full bg-[#f8f2f4] px-2 py-1 text-primary">
+                                    {(provider.availabilityStatus ?? "accepting_cases").replaceAll("_", " ")}
+                                  </span>
+                                  <span className="rounded-full bg-emerald-50 px-2 py-1 text-emerald-800">
+                                    {provider.remainingCapacity ?? 0}/{provider.weeklyCapacity ?? 0} slots
+                                  </span>
+                                  {provider.workingHours && (
+                                    <span className="rounded-full bg-neutral-100 px-2 py-1 text-neutral-700">
+                                      {provider.workingHours}
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="mb-0 text-xs text-neutral-600">
+                                  {provider.reasons.slice(0, 3).join(" · ")}
+                                </p>
+                                {provider.availabilityNotes && (
+                                  <p className="mb-0 mt-1 text-xs text-neutral-500">
+                                    Note: {provider.availabilityNotes}
+                                  </p>
+                                )}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                        <select
+                          value={providerId}
+                          onChange={(event) =>
+                            setProviderId(event.target.value)
+                          }
+                          className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                        >
+                          <option value="">Select service provider</option>
+                          {providers?.map((provider) => (
+                            <option key={provider.id} value={provider.id}>
+                              {provider.name} ·{" "}
+                              {provider.role.replaceAll("_", " ")} ·{" "}
+                              {(provider.availabilityStatus ?? "accepting_cases").replaceAll("_", " ")}
+                            </option>
+                          ))}
+                        </select>
+                        {requiresAvailabilityOverride(selectedAssignmentProvider) && (
+                          <Textarea
+                            value={assignmentOverrideReason}
+                            onChange={(event) => setAssignmentOverrideReason(event.target.value)}
+                            placeholder="Required: explain why staff is assigning a paused or unavailable provider."
+                            className="mt-3 min-h-[82px] text-sm"
+                          />
+                        )}
+                        <Button
+                          disabled={
+                            !providerId ||
+                            pending ||
+                            ![
+                              "under_review",
+                              "waiting_for_information",
+                            ].includes(caseDetail.case.status)
+                          }
+                          onClick={assignProvider}
+                          className="mt-3 w-full"
+                        >
+                          Send assignment offer
+                        </Button>
+                      </div>
+                      <div className="mt-5 rounded-xl border p-4">
+                        <h3 className="mb-2 flex items-center gap-2 text-base">
+                          <MessageSquareText className="h-5 w-5 text-primary" />
+                          Case communication
+                        </h3>
+                        <p className="mb-0 text-sm text-neutral-500">
+                          Messages remain case-scoped. Staff conversation
+                          controls will follow the participant and safeguarding
+                          workflow.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+      </main>
     </div>
   );
 };
 
-export default StaffDashboard; 
+function Info({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl border bg-white p-4">
+      <p className="mb-1 text-xs font-bold uppercase tracking-wider text-neutral-400">
+        {label}
+      </p>
+      <p className="mb-0 break-words text-sm font-semibold capitalize text-neutral-800">
+        {value}
+      </p>
+    </div>
+  );
+}
+
+function ClosureItem({
+  label,
+  ready,
+  detail,
+}: {
+  label: string;
+  ready: boolean;
+  detail?: string;
+}) {
+  return (
+    <div className="rounded-lg border bg-white/80 p-3">
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-sm font-bold text-neutral-800">{label}</span>
+        <StatusPill value={ready ? "Ready" : "Missing"} urgent={!ready} />
+      </div>
+      {detail && <p className="mb-0 mt-1 text-xs text-neutral-500">{detail}</p>}
+    </div>
+  );
+}
+
+export default StaffDashboard;

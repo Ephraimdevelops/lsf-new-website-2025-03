@@ -1,6 +1,8 @@
 import { v } from "convex/values";
-import { action, mutation, query, internalAction, internalMutation } from "./_generated/server";
+import { action, mutation, query, internalMutation } from "./_generated/server";
 import { internal } from "./_generated/api";
+import type { Doc, Id } from "./_generated/dataModel";
+import type { MutationCtx } from "./_generated/server";
 import OpenAI from "openai";
 import { requireAnyRole } from "./lib/auth";
 
@@ -26,6 +28,45 @@ import { requireAnyRole } from "./lib/auth";
 // ==========================================
 // CORE EVENT LOGGING
 // ==========================================
+
+type AnalyticsEvent = Doc<"analytics_events">;
+type AnalyticsMeta = Record<string, unknown>;
+
+function getStringMeta(meta: unknown, key: string) {
+    if (!meta || typeof meta !== "object" || Array.isArray(meta)) return undefined;
+    const value = (meta as AnalyticsMeta)[key];
+    return typeof value === "string" ? value : undefined;
+}
+
+async function incrementCounter(
+    ctx: MutationCtx,
+    table: "publications",
+    id: string,
+    field: "downloadCount" | "views",
+) {
+    const normalizedId = ctx.db.normalizeId(table, id);
+    if (!normalizedId) return;
+
+    const publication = await ctx.db.get(normalizedId as Id<"publications">);
+    if (!publication) return;
+    await ctx.db.patch(publication._id, {
+        [field]: (publication[field] ?? 0) + 1,
+    });
+}
+
+async function incrementNewsViews(
+    ctx: MutationCtx,
+    id: string,
+) {
+    const normalizedId = ctx.db.normalizeId("news", id);
+    if (!normalizedId) return;
+
+    const article = await ctx.db.get(normalizedId as Id<"news">);
+    if (!article) return;
+    await ctx.db.patch(article._id, {
+        views: (article.views ?? 0) + 1,
+    });
+}
 
 export const logEvent = mutation({
     args: {
@@ -84,43 +125,11 @@ export const logEvent = mutation({
         // Sync counters to documents for easier admin display
         if (args.resourceId) {
             if (args.type === "publication_download") {
-                // We trust the resourceId is valid if the client sent it correctly
-                // Use a try-catch-like approach by getting first
-                try {
-                    const pubId = args.resourceId as any; // Cast to Id
-                    const pub: any = await ctx.db.get(pubId);
-                    if (pub) {
-                        await ctx.db.patch(pubId, {
-                            downloadCount: (pub.downloadCount || 0) + 1
-                        });
-                    }
-                } catch (e) {
-                    // Ignore invalid IDs
-                }
+                await incrementCounter(ctx, "publications", args.resourceId, "downloadCount");
             } else if (args.type === "page_view" && args.resourceType === "publication") {
-                try {
-                    const pubId = args.resourceId as any;
-                    const pub: any = await ctx.db.get(pubId);
-                    if (pub) {
-                        await ctx.db.patch(pubId, {
-                            views: (pub.views || 0) + 1
-                        });
-                    }
-                } catch (e) {
-                    // Ignore invalid IDs
-                }
+                await incrementCounter(ctx, "publications", args.resourceId, "views");
             } else if (args.type === "news_view") {
-                try {
-                    const newsId = args.resourceId as any;
-                    const news: any = await ctx.db.get(newsId);
-                    if (news) {
-                        await ctx.db.patch(newsId, {
-                            views: (news.views || 0) + 1
-                        });
-                    }
-                } catch (e) {
-                    // Ignore invalid IDs
-                }
+                await incrementNewsViews(ctx, args.resourceId);
             }
         }
 
@@ -158,7 +167,7 @@ export const getKnowledgeStats = query({
         const pdfStats: Record<string, { count: number; title: string }> = {};
         for (const event of downloads) {
             const id = event.resourceId || "unknown";
-            const title = (event.meta as any)?.title || id;
+            const title = getStringMeta(event.meta, "title") || id;
             if (!pdfStats[id]) pdfStats[id] = { count: 0, title };
             pdfStats[id].count++;
         }
@@ -167,7 +176,7 @@ export const getKnowledgeStats = query({
         const newsStats: Record<string, { count: number; title: string }> = {};
         for (const event of newsViews) {
             const id = event.resourceId || "unknown";
-            const title = (event.meta as any)?.title || id;
+            const title = getStringMeta(event.meta, "title") || id;
             if (!newsStats[id]) newsStats[id] = { count: 0, title };
             newsStats[id].count++;
         }
@@ -337,7 +346,7 @@ export const getChatTopicStats = query({
         };
 
         for (const event of events) {
-            const topic = (event.meta as any)?.topic || event.resourceId || "Other";
+            const topic = getStringMeta(event.meta, "topic") || event.resourceId || "Other";
             if (topicStats[topic] !== undefined) {
                 topicStats[topic]++;
             } else {
@@ -670,7 +679,7 @@ export const getDashboardOverview = query({
         }
 
         // Fill data
-        const fillDaily = (events: any[], type: 'visitors' | 'pageViews' | 'downloads') => {
+        const fillDaily = (events: AnalyticsEvent[], type: 'visitors' | 'pageViews' | 'downloads') => {
             events.forEach(e => {
                 const date = new Date(e.timestamp).toISOString().split('T')[0];
                 if (dailyMap.has(date)) {
@@ -697,7 +706,7 @@ export const getDashboardOverview = query({
         // 6. Top Pages
         const pageCounts: Record<string, number> = {};
         allPageViews.forEach(e => {
-            const url = (e.meta as any)?.url || e.resourceId || 'unknown';
+            const url = getStringMeta(e.meta, "url") || e.resourceId || 'unknown';
             pageCounts[url] = (pageCounts[url] || 0) + 1;
         });
 
@@ -777,18 +786,18 @@ export const getDashboardOverview = query({
         sortedEvents.forEach(e => {
             const vid = e.visitorId ? `vid_${e.visitorId}` : (e.userId !== "anonymous" ? `uid_${e.userId}` : null);
             if (!vid) return;
-            const meta = e.meta as any;
-            if (!meta) return;
+            const userAgent = getStringMeta(e.meta, "userAgent");
+            const referrer = getStringMeta(e.meta, "referrer");
 
             // Device Tracking
-            if (meta.userAgent && !visitorDevices.has(vid)) {
-                const ua = meta.userAgent.toLowerCase();
+            if (userAgent && !visitorDevices.has(vid)) {
+                const ua = userAgent.toLowerCase();
                 const isMobile = /mobile|android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
                 visitorDevices.set(vid, isMobile ? 'mobile' : 'desktop');
             }
             // Source Tracking
-            if (meta.referrer !== undefined && !visitorSources.has(vid)) {
-                const ref = meta.referrer.toLowerCase();
+            if (referrer !== undefined && !visitorSources.has(vid)) {
+                const ref = referrer.toLowerCase();
                 if (!ref || ref === 'direct') visitorSources.set(vid, 'direct');
                 else if (ref.includes('google') || ref.includes('bing') || ref.includes('yahoo')) visitorSources.set(vid, 'search');
                 else if (ref.includes('facebook') || ref.includes('twitter') || ref.includes('instagram') || ref.includes('linkedin') || ref.includes('t.co')) visitorSources.set(vid, 'social');

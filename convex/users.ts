@@ -1,6 +1,11 @@
 import { v } from "convex/values";
 import { internalQuery, mutation, query } from "./_generated/server";
-import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
+import { getActiveRoles, requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
+import {
+    activateParalegalRoleForUser,
+    getApprovedParalegalProfileByEmail,
+    markParalegalProfileJoined,
+} from "./lib/paralegalAccess";
 
 // Get user dashboard data
 export const getDashboardData = query({
@@ -54,6 +59,8 @@ export const syncUser = mutation({
         if (!identity || identity.subject !== args.clerkId) {
             throw new Error("Unauthorized");
         }
+        const now = Date.now();
+        const approvedParalegalProfile = await getApprovedParalegalProfileByEmail(ctx, args.email);
 
         const existingUser = await ctx.db
             .query("users")
@@ -61,6 +68,9 @@ export const syncUser = mutation({
             .first();
 
         if (existingUser) {
+            if (existingUser.isDeleted) {
+                throw new Error("This Haki Yangu profile has been deactivated. Contact LSF support to restore access.");
+            }
             const patchData: {
                 email: string;
                 lastLogin: number;
@@ -68,7 +78,7 @@ export const syncUser = mutation({
                 imageUrl?: string;
             } = {
                 email: args.email,
-                lastLogin: Date.now(),
+                lastLogin: now,
             };
             // Only update name if it's currently placeholder "User" or empty
             if (existingUser.name === "User" || !existingUser.name) {
@@ -80,18 +90,26 @@ export const syncUser = mutation({
             }
 
             await ctx.db.patch(existingUser._id, patchData);
+            if (approvedParalegalProfile) {
+                await activateParalegalRoleForUser(ctx, { userId: existingUser._id, now });
+                await markParalegalProfileJoined(ctx, approvedParalegalProfile._id, now);
+            }
             return existingUser._id;
         }
 
-        return await ctx.db.insert("users", {
+        const userId = await ctx.db.insert("users", {
             name: args.name,
             email: args.email,
             clerkId: identity.subject,
             imageUrl: args.imageUrl,
             // Role grants are managed by an authorized platform workflow only.
-            role: "user",
-            lastLogin: Date.now(),
+            role: approvedParalegalProfile ? "paralegal" : "user",
+            lastLogin: now,
         });
+        if (approvedParalegalProfile) {
+            await markParalegalProfileJoined(ctx, approvedParalegalProfile._id, now);
+        }
+        return userId;
     },
 });
 
@@ -105,12 +123,27 @@ export const getCurrentUser = query({
         return await ctx.db
             .query("users")
             .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .filter((q) => q.neq(q.field("isDeleted"), true))
             .first();
     },
 });
 
 // Alias for compatibility
 export const current = getCurrentUser;
+
+export const currentAccess = query({
+    args: {},
+    handler: async (ctx) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) return null;
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
+            .unique();
+        if (!user || user.isDeleted) return null;
+        return { user, roles: await getActiveRoles(ctx, user._id) };
+    },
+});
 
 export const getRoleByClerkIdInternal = internalQuery({
     args: { clerkId: v.string() },
@@ -155,15 +188,7 @@ export const updateProfile = mutation({
         imageStorageId: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
-        const identity = await ctx.auth.getUserIdentity();
-        if (!identity) throw new Error("Unauthorized");
-
-        const user = await ctx.db
-            .query("users")
-            .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-            .first();
-
-        if (!user) throw new Error("User not found");
+        const { user } = await requireAuthenticatedUser(ctx);
 
         const updateFields: {
             name: string;
@@ -184,6 +209,32 @@ export const updateProfile = mutation({
         }
 
         await ctx.db.patch(user._id, updateFields);
+        return { success: true };
+    },
+});
+
+export const deactivateMyProfile = mutation({
+    args: {},
+    handler: async (ctx) => {
+        const { user } = await requireAuthenticatedUser(ctx);
+        const roles = await getActiveRoles(ctx, user._id);
+        if (roles.some((role) => ["admin", "staff", "supervisor"].includes(role))) {
+            throw new Error("Staff and admin accounts must be deactivated by another administrator.");
+        }
+
+        const now = Date.now();
+        const activeAssignments = await ctx.db
+            .query("role_assignments")
+            .withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active"))
+            .collect();
+        await Promise.all(activeAssignments.map((assignment) =>
+            ctx.db.patch(assignment._id, { status: "revoked", revokedAt: now }),
+        ));
+        await ctx.db.patch(user._id, {
+            isDeleted: true,
+            deletedAt: now,
+            lastLogin: now,
+        });
         return { success: true };
     },
 });
