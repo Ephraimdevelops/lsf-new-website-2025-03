@@ -5,6 +5,7 @@ import {
   AlertTriangle,
   ArrowLeft,
   BriefcaseBusiness,
+  Building2,
   CheckCircle2,
   ChevronRight,
   Clock3,
@@ -25,7 +26,59 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 type TriageDetail = FunctionReturnType<typeof api.legalHelp.openForTriage>;
-type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments";
+type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments" | "services";
+
+type ServiceFormState = {
+  name: string;
+  organizationName: string;
+  servicePointType: "paralegal" | "legal_aid_provider" | "government_office" | "local_government" | "labour_service" | "land_service" | "protection_service" | "cso" | "other";
+  classification: "public" | "community" | "government" | "private" | "restricted";
+  visibility: "public" | "restricted" | "confidential";
+  verificationStatus: "draft" | "verified" | "expired" | "inactive";
+  region: string;
+  district: string;
+  issueCategories: string;
+  serviceTypes: string;
+  phone: string;
+  openingHours: string;
+  currentIntakeState: "open" | "limited" | "closed" | "emergency_only";
+  capacity: string;
+  languages: string;
+  referralCapability: boolean;
+  walkIn: boolean;
+  appointmentRequired: boolean;
+  remoteSupport: boolean;
+  phoneSupport: boolean;
+  emergencyCapability: boolean;
+  privacyAvailable: boolean;
+  genderSensitive: boolean;
+};
+
+const initialServiceForm: ServiceFormState = {
+  name: "",
+  organizationName: "",
+  servicePointType: "paralegal",
+  classification: "community",
+  visibility: "public",
+  verificationStatus: "draft",
+  region: "Dar es Salaam",
+  district: "",
+  issueCategories: "employment, land, family",
+  serviceTypes: "legal_information, referral",
+  phone: "",
+  openingHours: "",
+  currentIntakeState: "open",
+  capacity: "10",
+  languages: "Swahili, English",
+  referralCapability: true,
+  walkIn: true,
+  appointmentRequired: false,
+  remoteSupport: true,
+  phoneSupport: true,
+  emergencyCapability: false,
+  privacyAvailable: true,
+  genderSensitive: true,
+};
 
 const requestLabels = {
   submitted: "New",
@@ -176,6 +229,7 @@ const StaffDashboard = () => {
   const [assignmentOverrideReason, setAssignmentOverrideReason] = useState("");
   const [reassignmentOverrideReason, setReassignmentOverrideReason] = useState("");
   const [reviewNotesById, setReviewNotesById] = useState<Record<string, string>>({});
+  const [serviceForm, setServiceForm] = useState<ServiceFormState>(initialServiceForm);
   const [pending, setPending] = useState(false);
   const [notice, setNotice] = useState<{
     type: "success" | "error";
@@ -205,6 +259,7 @@ const StaffDashboard = () => {
   const assignmentOffers = useQuery(api.caseManagement.staffAssignmentOffers, {
     status: assignmentStatus,
   });
+  const justiceServices = useQuery(api.justiceServices.staffListServices);
   const openForTriage = useMutation(api.legalHelp.openForTriage);
   const setReviewStatus = useMutation(api.legalHelp.setReviewStatus);
   const createCase = useMutation(api.caseManagement.createFromRequest);
@@ -218,6 +273,9 @@ const StaffDashboard = () => {
   const resolveCaseReviewRequest = useMutation(
     api.caseManagement.resolveCaseReviewRequest,
   );
+  const createJusticeService = useMutation(api.justiceServices.createService);
+  const updateJusticeService = useMutation(api.justiceServices.updateService);
+  const seedJusticeServices = useMutation(api.hakiYanguSeed.seedJusticeServices);
 
   const selectedAssignmentProvider =
     recommendations?.find((provider) => provider.id === providerId) ??
@@ -414,6 +472,97 @@ const StaffDashboard = () => {
     });
   }
 
+  function splitList(value: string) {
+    return value.split(",").map((item) => item.trim()).filter(Boolean);
+  }
+
+  function updateServiceForm(updates: Partial<ServiceFormState>) {
+    setServiceForm((current) => ({ ...current, ...updates }));
+  }
+
+  function createServicePoint() {
+    if (!serviceForm.name.trim() || !serviceForm.district.trim()) {
+      setNotice({ type: "error", text: "Add at least a service name and district." });
+      return;
+    }
+    if (serviceForm.servicePointType === "protection_service" && !serviceForm.privacyAvailable) {
+      setNotice({ type: "error", text: "Protection services must indicate privacy availability before publishing." });
+      return;
+    }
+    void run(async () => {
+      await createJusticeService({
+        name: serviceForm.name.trim(),
+        organizationName: serviceForm.organizationName.trim() || undefined,
+        servicePointType: serviceForm.servicePointType,
+        classification: serviceForm.classification,
+        visibility: serviceForm.visibility,
+        verificationStatus: serviceForm.verificationStatus,
+        verifyingAuthority: "LSF",
+        source: "Staff-entered service directory record",
+        lastVerifiedAt: serviceForm.verificationStatus === "verified" ? Date.now() : undefined,
+        nextReviewAt: serviceForm.verificationStatus === "verified" ? Date.now() + 1000 * 60 * 60 * 24 * 180 : undefined,
+        active: serviceForm.verificationStatus !== "inactive",
+        country: "Tanzania",
+        region: serviceForm.region.trim(),
+        district: serviceForm.district.trim(),
+        serviceCoverageRegions: splitList(serviceForm.region),
+        issueCategories: splitList(serviceForm.issueCategories),
+        serviceTypes: splitList(serviceForm.serviceTypes),
+        referralCapability: serviceForm.referralCapability,
+        openingHours: serviceForm.openingHours.trim() || undefined,
+        walkIn: serviceForm.walkIn,
+        appointmentRequired: serviceForm.appointmentRequired,
+        remoteSupport: serviceForm.remoteSupport,
+        phoneSupport: serviceForm.phoneSupport,
+        phone: serviceForm.phone.trim() || undefined,
+        currentIntakeState: serviceForm.currentIntakeState,
+        capacity: Number.isFinite(Number(serviceForm.capacity)) ? Number(serviceForm.capacity) : undefined,
+        emergencyCapability: serviceForm.emergencyCapability,
+        languages: splitList(serviceForm.languages),
+        privacyAvailable: serviceForm.privacyAvailable,
+        genderSensitive: serviceForm.genderSensitive,
+      });
+      setServiceForm(initialServiceForm);
+      setNotice({ type: "success", text: "Justice service point created." });
+    });
+  }
+
+  function setServiceVerified(id: Id<"justice_services">) {
+    void run(async () => {
+      await updateJusticeService({
+        id,
+        updates: {
+          verificationStatus: "verified",
+          active: true,
+          lastVerifiedAt: Date.now(),
+          nextReviewAt: Date.now() + 1000 * 60 * 60 * 24 * 180,
+        },
+      });
+      setNotice({ type: "success", text: "Service verified and active." });
+    });
+  }
+
+  function deactivateService(id: Id<"justice_services">) {
+    void run(async () => {
+      await updateJusticeService({
+        id,
+        updates: {
+          verificationStatus: "inactive",
+          active: false,
+          currentIntakeState: "closed",
+        },
+      });
+      setNotice({ type: "success", text: "Service deactivated." });
+    });
+  }
+
+  function seedServices() {
+    void run(async () => {
+      const result = await seedJusticeServices({});
+      setNotice({ type: "success", text: `Seeded ${result.total} justice services (${result.inserted} new, ${result.updated} updated).` });
+    });
+  }
+
   const newCount =
     requests?.filter((request) => request.status === "submitted").length ?? 0;
   const urgentCount =
@@ -434,6 +583,8 @@ const StaffDashboard = () => {
   const openAssignmentOfferCount =
     assignmentOffers?.filter((item) => item.assignment.status === "offered").length ??
     0;
+  const verifiedServiceCount =
+    justiceServices?.filter((service) => service.verificationStatus === "verified" && service.active).length ?? 0;
 
   return (
     <div className="min-h-screen bg-[#f7f4f2] text-neutral-900">
@@ -510,10 +661,16 @@ const StaffDashboard = () => {
             >
               Assignments
             </button>
+            <button
+              onClick={() => setTab("services")}
+              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "services" ? "bg-primary text-white" : "text-neutral-600"}`}
+            >
+              Services
+            </button>
           </div>
         </div>
 
-        <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
+        <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-7">
           <div className="rounded-2xl border bg-white p-4">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <FileSearch className="h-5 w-5" />
@@ -560,6 +717,13 @@ const StaffDashboard = () => {
             <p className="mb-1 text-2xl font-bold">{openAssignmentOfferCount}</p>
             <p className="mb-0 text-sm text-neutral-500">Open assignment offers</p>
           </div>
+          <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Building2 className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{verifiedServiceCount}</p>
+            <p className="mb-0 text-sm text-neutral-500">Verified services</p>
+          </div>
         </section>
 
         {notice && (
@@ -571,7 +735,221 @@ const StaffDashboard = () => {
           </div>
         )}
 
-        {tab === "assignments" ? (
+        {tab === "services" ? (
+          <section className="grid gap-5 xl:grid-cols-[420px_1fr]">
+            <div className="rounded-2xl border bg-white p-5 shadow-sm">
+              <div className="mb-5">
+                <h2 className="text-xl">Justice Service Management</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Add and verify service points for Haki Yangu matching. Public
+                  mobile discovery only shows active, verified, public records.
+                </p>
+              </div>
+              <div className="space-y-3">
+                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-500">
+                  Service name
+                </label>
+                <input
+                  value={serviceForm.name}
+                  onChange={(event) => updateServiceForm({ name: event.target.value })}
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                  placeholder="Kinondoni Community Paralegal Desk"
+                />
+                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-500">
+                  Organisation
+                </label>
+                <input
+                  value={serviceForm.organizationName}
+                  onChange={(event) => updateServiceForm({ organizationName: event.target.value })}
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                  placeholder="LSF Partner Network"
+                />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
+                      Type
+                    </label>
+                    <select
+                      value={serviceForm.servicePointType}
+                      onChange={(event) => updateServiceForm({ servicePointType: event.target.value as ServiceFormState["servicePointType"] })}
+                      className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                    >
+                      <option value="paralegal">Paralegal</option>
+                      <option value="legal_aid_provider">Legal aid provider</option>
+                      <option value="government_office">Government office</option>
+                      <option value="local_government">Local government</option>
+                      <option value="labour_service">Labour service</option>
+                      <option value="land_service">Land service</option>
+                      <option value="protection_service">Protection service</option>
+                      <option value="cso">CSO</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
+                      Verification
+                    </label>
+                    <select
+                      value={serviceForm.verificationStatus}
+                      onChange={(event) => updateServiceForm({ verificationStatus: event.target.value as ServiceFormState["verificationStatus"] })}
+                      className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                    >
+                      <option value="draft">Draft</option>
+                      <option value="verified">Verified</option>
+                      <option value="expired">Expired</option>
+                      <option value="inactive">Inactive</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <input
+                    value={serviceForm.region}
+                    onChange={(event) => updateServiceForm({ region: event.target.value })}
+                    className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                    placeholder="Region"
+                  />
+                  <input
+                    value={serviceForm.district}
+                    onChange={(event) => updateServiceForm({ district: event.target.value })}
+                    className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                    placeholder="District"
+                  />
+                </div>
+                <Textarea
+                  value={serviceForm.issueCategories}
+                  onChange={(event) => updateServiceForm({ issueCategories: event.target.value })}
+                  className="min-h-[72px]"
+                  placeholder="employment, land, family"
+                />
+                <Textarea
+                  value={serviceForm.serviceTypes}
+                  onChange={(event) => updateServiceForm({ serviceTypes: event.target.value })}
+                  className="min-h-[72px]"
+                  placeholder="legal_information, referral, appointment"
+                />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <input
+                    value={serviceForm.phone}
+                    onChange={(event) => updateServiceForm({ phone: event.target.value })}
+                    className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                    placeholder="+255..."
+                  />
+                  <input
+                    value={serviceForm.capacity}
+                    onChange={(event) => updateServiceForm({ capacity: event.target.value })}
+                    className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                    placeholder="Capacity"
+                  />
+                </div>
+                <input
+                  value={serviceForm.languages}
+                  onChange={(event) => updateServiceForm({ languages: event.target.value })}
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                  placeholder="Swahili, English"
+                />
+                <input
+                  value={serviceForm.openingHours}
+                  onChange={(event) => updateServiceForm({ openingHours: event.target.value })}
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                  placeholder="Mon - Fri, 9:00 AM - 5:00 PM"
+                />
+                <div className="grid gap-2 text-sm sm:grid-cols-2">
+                  {[
+                    ["Referral capable", "referralCapability"],
+                    ["Walk-in", "walkIn"],
+                    ["Appointment required", "appointmentRequired"],
+                    ["Remote support", "remoteSupport"],
+                    ["Phone support", "phoneSupport"],
+                    ["Emergency capable", "emergencyCapability"],
+                    ["Private space", "privacyAvailable"],
+                    ["Gender-sensitive", "genderSensitive"],
+                  ].map(([label, key]) => (
+                    <label key={key} className="flex items-center gap-2 rounded-xl border bg-[#fbf7f8] p-3 font-semibold text-neutral-700">
+                      <input
+                        type="checkbox"
+                        checked={Boolean(serviceForm[key as keyof ServiceFormState])}
+                        onChange={(event) => updateServiceForm({ [key]: event.target.checked } as Partial<ServiceFormState>)}
+                      />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <Button disabled={pending} onClick={createServicePoint}>
+                    Create service
+                  </Button>
+                  <Button disabled={pending} variant="outline" onClick={seedServices}>
+                    Seed QA services
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+              <div className="border-b p-5">
+                <h2 className="text-xl">Verified service ecosystem</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Review active services, visibility, verification and intake state.
+                  Confidential locations must not be made public.
+                </p>
+              </div>
+              <div className="divide-y">
+                {justiceServices === undefined && (
+                  <p className="p-5 text-sm text-neutral-500">Loading services...</p>
+                )}
+                {justiceServices?.length === 0 && (
+                  <div className="p-10 text-center">
+                    <Building2 className="mx-auto mb-3 h-9 w-9 text-primary/40" />
+                    <p className="mb-1 font-bold">No services yet</p>
+                    <p className="mb-0 text-sm text-neutral-500">
+                      Add a service manually or seed QA services for mobile testing.
+                    </p>
+                  </div>
+                )}
+                {justiceServices?.map((service) => (
+                  <div key={service._id} className="grid gap-4 p-5 lg:grid-cols-[1fr_220px]">
+                    <div>
+                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                        <h3 className="mb-0 text-lg">{service.name}</h3>
+                        <StatusPill value={service.verificationStatus} urgent={service.verificationStatus !== "verified"} />
+                        <StatusPill value={service.visibility} urgent={service.visibility !== "public"} />
+                        {!service.active && <StatusPill value="inactive" urgent />}
+                      </div>
+                      <p className="mb-2 text-sm text-neutral-600">
+                        {service.organizationName ?? "No organisation"} · {service.servicePointType.replaceAll("_", " ")} · {service.district}, {service.region}
+                      </p>
+                      <p className="mb-3 text-sm text-neutral-500">
+                        Intake: {service.currentIntakeState.replaceAll("_", " ")} · Capacity: {service.capacity ?? "not set"} · Languages: {service.languages.join(", ") || "not set"}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {service.issueCategories.slice(0, 6).map((category) => (
+                          <span key={category} className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
+                            {category}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      {service.verificationStatus !== "verified" && (
+                        <Button disabled={pending} onClick={() => setServiceVerified(service._id)}>
+                          Verify
+                        </Button>
+                      )}
+                      {service.active ? (
+                        <Button disabled={pending} variant="outline" onClick={() => deactivateService(service._id)}>
+                          Deactivate
+                        </Button>
+                      ) : null}
+                      <p className="mb-0 rounded-xl bg-[#fbf7f8] p-3 text-xs text-neutral-600">
+                        Public app can only show active, verified, public service records.
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : tab === "assignments" ? (
           <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
             <div className="flex flex-col justify-between gap-3 border-b p-5 lg:flex-row lg:items-center">
               <div>

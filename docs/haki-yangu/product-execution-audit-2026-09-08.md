@@ -22,6 +22,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Production demo fallback removal | Partial | Paralegal and appointment screens no longer pretend fake backend data is real. Document/case demo cleanup still needs a repo-wide pass. |
 | Backend directory seed | Done | `hakiYanguSeed.seedMobileDirectory` can seed verified mobile paralegal records through an admin/staff-authenticated mutation. |
 | Justice Service Directory foundation | New partial | `justice_services` and `matching_decisions` tables plus public/staff Convex functions now exist. |
+| Staff service management UI | New partial | Staff operations now includes a Services tab for creating, verifying, deactivating, reviewing, and seeding justice service records. |
 | Contract regression suite | Passing | `npm run test:haki-contracts` passes 27/27. |
 | Mobile typecheck | Passing | `cd mobile && npm run typecheck` passes. |
 | Root build/security | Passing | `npm run build` and `npm run test:security` pass. |
@@ -31,7 +32,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Product Capability | Current State | Honest Read |
 | --- | --- | --- |
 | Public website | Partial/strong visual | Main LSF website builds. CMS/admin media issue was previously investigated, but full content governance and donor/reporting workflows still need hardening. |
-| Admin/staff dashboard | Partial | Staff case workflow exists, but justice-service management, escalation queues, and reporting operations are not fully mature. |
+| Admin/staff dashboard | Partial | Staff case workflow and a first Justice Service Management UI exist, but escalation queues, referral operations, and reporting operations are not fully mature. |
 | Beneficiary mobile home | Visual/interactive | Stronger premium home direction exists, with paralegal-first flow and quick tools. Needs real device QA after auth config. |
 | Mobile sign-in/sign-up | Implemented, unverified on device | Code is wired to Clerk. Clerk Dashboard must enable Native Applications before runtime sign-in will work. |
 | Guest mode | Partial | Public routes work, but guest-to-account claim flow is not implemented yet. |
