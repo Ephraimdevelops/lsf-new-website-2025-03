@@ -44,6 +44,7 @@ function Navigation() {
         <Stack.Screen name="intake" />
         <Stack.Screen name="case/[id]" />
         <Stack.Screen name="safety" />
+        <Stack.Screen name="find-services" />
         <Stack.Screen name="paralegals" />
         <Stack.Screen name="paralegal-profile" />
         <Stack.Screen name="documents" />

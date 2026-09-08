@@ -21,6 +21,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Paralegal matching UX | Improved | Directory now shows “Why this may fit,” “For sensitive cases,” and “Let LSF match me.” |
 | Production demo fallback removal | Partial | Paralegal and appointment screens no longer pretend fake backend data is real. Document/case demo cleanup still needs a repo-wide pass. |
 | Backend directory seed | Done | `hakiYanguSeed.seedMobileDirectory` can seed verified mobile paralegal records through an admin/staff-authenticated mutation. |
+| Justice Service Directory foundation | New partial | `justice_services` and `matching_decisions` tables plus public/staff Convex functions now exist. |
 | Contract regression suite | Passing | `npm run test:haki-contracts` passes 27/27. |
 | Mobile typecheck | Passing | `cd mobile && npm run typecheck` passes. |
 | Root build/security | Passing | `npm run build` and `npm run test:security` pass. |
@@ -37,7 +38,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Intake/help request | Partial/connected | Intake draft and submission flow exist. Needs stronger mapping into service/referral/case lifecycle and guest claim. |
 | Case tracking | Partial/connected | Case timeline, messages, documents, appointments, feedback, review requests exist. Needs full staff/provider operational QA. |
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
-| Governed matching engine | Partial | Some assignment logic and availability rules exist. Needs explicit matching-decision records, reason codes, bias/fairness review, and staff override UX. |
+| Governed matching engine | Partial | Deterministic public service matching now records `matching_decisions`; still needs richer scoring, staff review UI, safeguarding restrictions, bias/fairness review, and pathway integration. |
 | Appointments | Partial/connected | Backend-backed my-appointments list exists. Booking request/confirmation lifecycle needs final UX and staff/provider scheduling workflow. |
 | Documents | Partial/connected | Upload, case docs, generated letters, and library exist. Needs stricter consent screens, retention policy, file review operations, and malware/content scanning plan. |
 | Document checker | Practical prototype | Pre-signing checklist and explicit attach-to-case consent exist. AI document analysis is not production governed yet. |
@@ -70,7 +71,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | --- | --- | --- |
 | Clerk Native Applications disabled | Real mobile login will throw `Native API is disabled`. | In Clerk Dashboard, enable Native Applications for the active instance. |
 | Live key was pasted in chat | Secret key exposure risk. | Rotate `CLERK_SECRET_KEY` in Clerk before production. Publishable key can remain public, secret key cannot. |
-| No verified seed data guarantee | Reduced | Run `npx convex run hakiYanguSeed:seedMobileDirectory` while signed in as admin/staff to populate verified QA records. Replace seed records with live verified provider data before production. |
+| No verified seed data guarantee | Reduced | Run `npx convex run hakiYanguSeed:seedMobileDirectory` and `npx convex run hakiYanguSeed:seedJusticeServices` while signed in as admin/staff to populate verified QA records. Replace seed records with live verified provider data before production. |
 | Saada mobile not fully governed | AI cannot be presented as production legal support without controls. | Route mobile assistant through Convex AI action with policy/risk/audit. |
 | No app-store build QA | Expo Go is not a production runtime and notifications are limited. | Create EAS development build, then TestFlight/internal Android build. |
 

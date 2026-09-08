@@ -10,7 +10,7 @@ import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
 
 const primaryActions = [
-  { key: "findParalegal", label: { sw: "Tafuta paralegal", en: "Find a paralegal" }, meta: { sw: "Ungana na waliothibitishwa karibu nawe.", en: "Connect with verified paralegals near you." }, icon: "people-outline", route: "/paralegals", accent: colors.burgundy, selected: true },
+  { key: "findHelp", label: { sw: "Tafuta msaada", en: "Find Help" }, meta: { sw: "Pata huduma sahihi au paralegal karibu nawe.", en: "Find the right legal or public service for your situation." }, icon: "compass-outline", route: "/find-services", accent: colors.burgundy, selected: true },
   { key: "askSaada", label: { sw: "Uliza Saada", en: "Ask Saada" }, meta: { sw: "Pata majibu wazi kutoka kwa msaidizi wa sheria.", en: "Get clear answers from our AI legal assistant." }, icon: "chatbubble-ellipses-outline", route: "/sara", accent: colors.burgundy, selected: false },
   { key: "requestHelp", label: { sw: "Omba msaada", en: "Request help" }, meta: { sw: "Wasilisha tatizo lako upate msaada sahihi.", en: "Submit your legal issue and get the right help." }, icon: "document-text-outline", route: "/intake", accent: colors.orange, selected: false },
   { key: "knowRights", label: { sw: "Jua haki zako", en: "Know your rights" }, meta: { sw: "Soma miongozo rahisi ya haki zako.", en: "Explore simple guides to understand your rights." }, icon: "shield-checkmark-outline", route: "/(tabs)/learn", accent: colors.orange, selected: false },
@@ -20,6 +20,7 @@ const quickTools = [
   { label: { sw: "Kagua hati", en: "Document check" }, icon: "scan-outline", route: "/document-checker" },
   { label: { sw: "Barua ya madai", en: "Demand letter" }, icon: "create-outline", route: "/letter-builder" },
   { label: { sw: "Nyaraka", en: "My documents" }, icon: "folder-open-outline", route: "/documents" },
+  { label: { sw: "Huduma", en: "Find a service" }, icon: "business-outline", route: "/find-services" },
   { label: { sw: "Miadi" , en: "My appointments" }, icon: "calendar-outline", route: "/appointments" },
   { label: { sw: "Jifunze", en: "Learn" }, icon: "book-outline", route: "/(tabs)/learn" },
 ] as const;
@@ -106,6 +107,10 @@ export default function HomeScreen() {
         </Pressable>
         <Pressable style={styles.quickTool} onPress={() => router.push("/appointments")}>
           <View style={styles.quickIcon}><Ionicons name="calendar-outline" size={22} color={colors.burgundy} /></View>
+          <Text style={styles.quickToolText}>{quickTools[4].label[locale]}</Text>
+        </Pressable>
+        <Pressable style={styles.quickTool} onPress={() => router.push("/find-services")}>
+          <View style={styles.quickIcon}><Ionicons name="business-outline" size={22} color={colors.burgundy} /></View>
           <Text style={styles.quickToolText}>{quickTools[3].label[locale]}</Text>
         </Pressable>
       </View>

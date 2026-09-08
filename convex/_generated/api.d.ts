@@ -20,6 +20,7 @@ import type * as hero from "../hero.js";
 import type * as heros from "../heros.js";
 import type * as http from "../http.js";
 import type * as init from "../init.js";
+import type * as justiceServices from "../justiceServices.js";
 import type * as legalHelp from "../legalHelp.js";
 import type * as lib_auth from "../lib/auth.js";
 import type * as lib_caseLifecycle from "../lib/caseLifecycle.js";
@@ -72,6 +73,7 @@ declare const fullApi: ApiFromModules<{
   heros: typeof heros;
   http: typeof http;
   init: typeof init;
+  justiceServices: typeof justiceServices;
   legalHelp: typeof legalHelp;
   "lib/auth": typeof lib_auth;
   "lib/caseLifecycle": typeof lib_caseLifecycle;

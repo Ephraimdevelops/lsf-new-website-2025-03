@@ -58,6 +58,107 @@ const mobileDirectorySeed = [
   },
 ];
 
+const justiceServiceSeed = [
+  {
+    name: "Kinondoni Community Paralegal Desk",
+    organizationName: "LSF Partner Network",
+    servicePointType: "paralegal" as const,
+    classification: "community" as const,
+    visibility: "public" as const,
+    verificationStatus: "verified" as const,
+    verifyingAuthority: "LSF",
+    source: "LSF verified provider list",
+    country: "Tanzania",
+    region: "Dar es Salaam",
+    district: "Kinondoni",
+    ward: "Mikocheni",
+    serviceCoverageRegions: ["Dar es Salaam"],
+    issueCategories: ["employment", "land", "family", "consumer"],
+    serviceTypes: ["legal_information", "document_support", "referral", "case_follow_up"],
+    jurisdiction: "Community legal aid and referral support",
+    referralCapability: true,
+    eligibility: "Community members seeking practical legal-information support.",
+    openingHours: "Mon - Sat, 8:00 AM - 6:00 PM",
+    walkIn: true,
+    appointmentRequired: false,
+    remoteSupport: true,
+    phoneSupport: true,
+    phone: "+255712345678",
+    currentIntakeState: "open" as const,
+    capacity: 12,
+    emergencyCapability: false,
+    languages: ["Swahili", "English"],
+    disabilityAccess: "Call ahead for accessibility arrangements.",
+    privacyAvailable: true,
+    genderSensitive: true,
+  },
+  {
+    name: "Ilala Labour Support Referral Point",
+    organizationName: "LSF Partner Network",
+    servicePointType: "labour_service" as const,
+    classification: "public" as const,
+    visibility: "public" as const,
+    verificationStatus: "verified" as const,
+    verifyingAuthority: "LSF",
+    source: "LSF verified service directory seed",
+    country: "Tanzania",
+    region: "Dar es Salaam",
+    district: "Ilala",
+    ward: "Kariakoo",
+    serviceCoverageRegions: ["Dar es Salaam"],
+    issueCategories: ["employment", "unpaid salary", "workplace dispute"],
+    serviceTypes: ["labour_guidance", "referral", "appointment"],
+    jurisdiction: "Employment and labour-related service navigation",
+    referralCapability: true,
+    eligibility: "Workers needing employment or unpaid wage support.",
+    openingHours: "Mon - Fri, 9:00 AM - 5:00 PM",
+    walkIn: false,
+    appointmentRequired: true,
+    remoteSupport: false,
+    phoneSupport: true,
+    phone: "+255713456789",
+    currentIntakeState: "limited" as const,
+    capacity: 8,
+    emergencyCapability: false,
+    languages: ["Swahili"],
+    privacyAvailable: true,
+    genderSensitive: false,
+  },
+  {
+    name: "Arusha Family and Protection Referral Desk",
+    organizationName: "LSF Partner Network",
+    servicePointType: "protection_service" as const,
+    classification: "restricted" as const,
+    visibility: "public" as const,
+    verificationStatus: "verified" as const,
+    verifyingAuthority: "LSF",
+    source: "LSF verified service directory seed",
+    country: "Tanzania",
+    region: "Arusha",
+    district: "Arusha DC",
+    ward: "Moshono",
+    serviceCoverageRegions: ["Arusha"],
+    issueCategories: ["family", "safety", "gbv", "child protection"],
+    serviceTypes: ["safeguarding_triage", "referral", "case_follow_up"],
+    jurisdiction: "Family and protection-sensitive referral support",
+    referralCapability: true,
+    eligibility: "People needing private family or safety-related support.",
+    openingHours: "Mon - Sat, 8:30 AM - 5:30 PM",
+    walkIn: false,
+    appointmentRequired: true,
+    remoteSupport: true,
+    phoneSupport: true,
+    phone: "+255714567890",
+    currentIntakeState: "open" as const,
+    capacity: 10,
+    emergencyCapability: true,
+    languages: ["Swahili", "English"],
+    disabilityAccess: "Contact first for safe accessibility planning.",
+    privacyAvailable: true,
+    genderSensitive: true,
+  },
+];
+
 export const seedMobileDirectory = mutation({
   args: {},
   handler: async (ctx) => {
@@ -100,6 +201,45 @@ export const seedMobileDirectory = mutation({
       inserted,
       updated,
       total: mobileDirectorySeed.length,
+    };
+  },
+});
+
+export const seedJusticeServices = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+    const now = Date.now();
+    let inserted = 0;
+    let updated = 0;
+
+    for (const item of justiceServiceSeed) {
+      const existing = (await ctx.db.query("justice_services").collect()).find(
+        (service) => service.name.toLowerCase() === item.name.toLowerCase() && service.district === item.district,
+      );
+      const record = {
+        ...item,
+        active: true,
+        lastVerifiedAt: now,
+        nextReviewAt: now + 1000 * 60 * 60 * 24 * 180,
+        createdBy: existing?.createdBy ?? user._id,
+        createdAt: existing?.createdAt ?? now,
+        updatedAt: now,
+      };
+      if (existing) {
+        await ctx.db.patch(existing._id, record);
+        updated += 1;
+      } else {
+        await ctx.db.insert("justice_services", record);
+        inserted += 1;
+      }
+    }
+
+    return {
+      success: true,
+      inserted,
+      updated,
+      total: justiceServiceSeed.length,
     };
   },
 });
