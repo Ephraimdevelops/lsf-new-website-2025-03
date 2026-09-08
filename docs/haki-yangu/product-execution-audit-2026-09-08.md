@@ -26,6 +26,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Referral graph foundation | New partial | `referrals` and `referral_events` tables now track consented case handoffs across verified justice services. |
 | Beneficiary referral visibility | New partial | Mobile case details now include a Referrals tab showing destination, status, shared information, reason, and referral events. |
 | Staff referral operations | New partial | Staff dashboard now includes a Referrals tab with queue filtering and status actions for notified, accepted, declined, scheduled, delivered, returned, escalated, and closed states. |
+| Staff referral creation | New partial | Staff can create a referral from a selected case by choosing a verified referral-capable service, recording reason, and listing minimum information shared. Signed consent artifact capture remains required. |
 | Contract regression suite | Passing | `npm run test:haki-contracts` passes 27/27. |
 | Mobile typecheck | Passing | `cd mobile && npm run typecheck` passes. |
 | Root build/security | Passing | `npm run build` and `npm run test:security` pass. |
@@ -43,7 +44,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Needs full staff/provider operational QA. |
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
 | Governed matching engine | Partial | Deterministic public service matching now records `matching_decisions`; referral records now capture downstream handoff state. Still needs richer scoring, staff review UI, safeguarding restrictions, bias/fairness review, and pathway integration. |
-| Referral graph | Partial | Case-to-service referral tables, event trail, beneficiary case visibility, and staff queue actions exist. Missing selected-case referral creation UI, destination/provider portal acceptance, consent proof UX, onward referral chaining UI, and partner SLA analytics. |
+| Referral graph | Partial | Case-to-service referral tables, event trail, beneficiary case visibility, selected-case staff referral creation, and staff queue actions exist. Missing destination/provider portal acceptance, signed consent proof UX, onward referral chaining UI, and partner SLA analytics. |
 | Appointments | Partial/connected | Backend-backed my-appointments list exists. Booking request/confirmation lifecycle needs final UX and staff/provider scheduling workflow. |
 | Documents | Partial/connected | Upload, case docs, generated letters, and library exist. Needs stricter consent screens, retention policy, file review operations, and malware/content scanning plan. |
 | Document checker | Practical prototype | Pre-signing checklist and explicit attach-to-case consent exist. AI document analysis is not production governed yet. |
@@ -62,7 +63,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 2. Enable Clerk Native Applications and test sign-in/sign-up on iPhone Expo Go or a development build.
 3. Seed development Convex with real-looking but non-sensitive LSF service providers, paralegals, legal clinics, guides, sample cases, and appointments.
 4. Build guest-to-account claim flow for intake drafts and document/letter attachments.
-5. Add selected-case referral creation UI with explicit beneficiary consent capture and staff override notes.
+5. Add signed referral consent proof UX and stronger consent records before handoff.
 6. Add destination/provider referral acceptance, decline, delivery, and onward-referral workspace.
 7. Add matching-decision review screens and safeguarding restrictions.
 8. Unify mobile Saada to the governed Convex AI backend.
@@ -88,9 +89,9 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Visual mobile presentation | 75% |
 | Real beneficiary mobile MVP | 50% |
 | Backend case-management foundation | 65% |
-| Website/admin integration | 68% |
+| Website/admin integration | 70% |
 | AI governance | 35% |
 | App-store readiness | 30% |
-| Donor-ready platform credibility | 58% |
+| Donor-ready platform credibility | 60% |
 
-Overall product completion: about 58%. This can be shown as an advanced working prototype plus real backend foundation, service directory, and early referral graph, not as a finished national-scale justice platform yet.
+Overall product completion: about 60%. This can be shown as an advanced working prototype plus real backend foundation, service directory, and early referral graph, not as a finished national-scale justice platform yet.

@@ -240,6 +240,9 @@ const StaffDashboard = () => {
   const [assignmentOverrideReason, setAssignmentOverrideReason] = useState("");
   const [reassignmentOverrideReason, setReassignmentOverrideReason] = useState("");
   const [reviewNotesById, setReviewNotesById] = useState<Record<string, string>>({});
+  const [referralServiceId, setReferralServiceId] = useState("");
+  const [referralReason, setReferralReason] = useState("");
+  const [referralInformationShared, setReferralInformationShared] = useState("case summary, safe contact preference, district, issue category");
   const [serviceForm, setServiceForm] = useState<ServiceFormState>(initialServiceForm);
   const [pending, setPending] = useState(false);
   const [notice, setNotice] = useState<{
@@ -290,6 +293,7 @@ const StaffDashboard = () => {
   const createJusticeService = useMutation(api.justiceServices.createService);
   const updateJusticeService = useMutation(api.justiceServices.updateService);
   const seedJusticeServices = useMutation(api.hakiYanguSeed.seedJusticeServices);
+  const createReferral = useMutation(api.referrals.createForCase);
   const updateReferralStatus = useMutation(api.referrals.updateStatus);
 
   const selectedAssignmentProvider =
@@ -298,6 +302,14 @@ const StaffDashboard = () => {
   const selectedReassignmentProvider =
     recommendations?.find((provider) => provider.id === reassignmentProviderId) ??
     providers?.find((provider) => provider.id === reassignmentProviderId);
+  const referralCapableServices =
+    justiceServices?.filter(
+      (service) =>
+        service.active &&
+        service.verificationStatus === "verified" &&
+        service.visibility !== "confidential" &&
+        service.referralCapability,
+    ) ?? [];
 
   function requiresAvailabilityOverride(provider?: { availabilityStatus?: string }) {
     return provider?.availabilityStatus === "paused" || provider?.availabilityStatus === "unavailable";
@@ -593,6 +605,36 @@ const StaffDashboard = () => {
       });
       setReferralStatus(status === "closed" ? "closed" : referralStatus);
       setNotice({ type: "success", text: `Referral marked ${status.replaceAll("_", " ")}.` });
+    });
+  }
+
+  function createCaseReferral() {
+    if (!selectedCaseId || !referralServiceId) {
+      setNotice({ type: "error", text: "Select a case and referral destination." });
+      return;
+    }
+    if (referralReason.trim().length < 12) {
+      setNotice({ type: "error", text: "Add a referral reason of at least 12 characters." });
+      return;
+    }
+    const informationShared = splitList(referralInformationShared);
+    if (informationShared.length === 0) {
+      setNotice({ type: "error", text: "Record what minimum-necessary information will be shared." });
+      return;
+    }
+    void run(async () => {
+      const result = await createReferral({
+        caseId: selectedCaseId,
+        destinationServiceId: referralServiceId as Id<"justice_services">,
+        reason: referralReason.trim(),
+        informationShared,
+      });
+      setReferralServiceId("");
+      setReferralReason("");
+      setReferralInformationShared("case summary, safe contact preference, district, issue category");
+      setReferralStatus("created");
+      setTab("referrals");
+      setNotice({ type: "success", text: `${result.publicId} created and visible in the referral queue.` });
     });
   }
 
@@ -2182,6 +2224,55 @@ const StaffDashboard = () => {
                           className="mt-3 w-full"
                         >
                           Send assignment offer
+                        </Button>
+                      </div>
+                      <div className="mt-5 rounded-xl border p-4">
+                        <h3 className="mb-2 flex items-center gap-2 text-base">
+                          <ChevronRight className="h-5 w-5 text-primary" />
+                          Create service referral
+                        </h3>
+                        <p className="mb-4 text-sm text-neutral-600">
+                          Use this when the beneficiary needs support beyond
+                          the current case team. Record the minimum information
+                          shared and only use verified, non-confidential
+                          destinations.
+                        </p>
+                        <select
+                          value={referralServiceId}
+                          onChange={(event) => setReferralServiceId(event.target.value)}
+                          className="mb-3 h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                        >
+                          <option value="">Select referral destination</option>
+                          {referralCapableServices.map((service) => (
+                            <option key={service._id} value={service._id}>
+                              {service.name} · {service.district}, {service.region} · {service.currentIntakeState.replaceAll("_", " ")}
+                            </option>
+                          ))}
+                        </select>
+                        <Textarea
+                          value={referralReason}
+                          onChange={(event) => setReferralReason(event.target.value)}
+                          placeholder="Why is this referral needed? Include only beneficiary-safe operational context."
+                          className="mb-3 min-h-[92px] text-sm"
+                        />
+                        <Textarea
+                          value={referralInformationShared}
+                          onChange={(event) => setReferralInformationShared(event.target.value)}
+                          placeholder="Comma-separated minimum information shared"
+                          className="mb-3 min-h-[78px] text-sm"
+                        />
+                        <div className="mb-3 rounded-xl border border-orange-200 bg-orange-50 p-3 text-xs text-orange-900">
+                          <span className="font-bold">Consent checkpoint:</span>{" "}
+                          this records that staff collected referral consent.
+                          A stronger signed consent artifact is still required
+                          before production.
+                        </div>
+                        <Button
+                          disabled={pending || !referralServiceId || referralReason.trim().length < 12}
+                          onClick={createCaseReferral}
+                          className="w-full"
+                        >
+                          Create referral
                         </Button>
                       </div>
                       <div className="mt-5 rounded-xl border p-4">
