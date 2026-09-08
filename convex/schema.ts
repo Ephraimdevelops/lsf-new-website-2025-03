@@ -450,6 +450,7 @@ export default defineSchema({
     requestId: v.optional(v.id("legal_help_requests")),
     sourceServiceId: v.optional(v.id("justice_services")),
     destinationServiceId: v.id("justice_services"),
+    destinationUserId: v.optional(v.id("users")),
     createdBy: v.id("users"),
     beneficiaryId: v.id("users"),
     reason: v.string(),
@@ -479,6 +480,7 @@ export default defineSchema({
   }).index("by_case", ["caseId"])
     .index("by_beneficiary", ["beneficiaryId"])
     .index("by_destination_status", ["destinationServiceId", "status"])
+    .index("by_destination_user_status", ["destinationUserId", "status"])
     .index("by_status", ["status"])
     .index("by_public_id", ["publicId"]),
 

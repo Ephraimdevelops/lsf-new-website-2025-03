@@ -171,6 +171,8 @@ const publicFunctions = new Map([
   ["quickLinks.update", "admin"],
   ["referrals.createForCase", "case-worker"],
   ["referrals.listForCase", "case-access"],
+  ["referrals.myDestinationQueue", "service-provider"],
+  ["referrals.respondAsDestination", "service-provider"],
   ["referrals.staffQueue", "staff"],
   ["referrals.updateStatus", "case-worker"],
   ["resend.sendEmail", "staff-action"],

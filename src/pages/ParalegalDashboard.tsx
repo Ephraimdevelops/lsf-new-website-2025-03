@@ -29,8 +29,9 @@ import { Textarea } from "@/components/ui/textarea";
 import ParalegalProfileEdit from "@/components/paralegal/ParalegalProfileEdit";
 
 type AssignmentInbox = FunctionReturnType<typeof api.caseManagement.assignmentInbox>;
-type ProviderTab = "inbox" | "cases";
+type ProviderTab = "inbox" | "cases" | "referrals";
 type CaseSubTab = "timeline" | "messages" | "documents" | "appointments" | "outcome";
+type DestinationReferralStatus = "accepted" | "declined" | "scheduled" | "service_delivered" | "returned" | "closed";
 
 const caseLabels: Record<string, string> = {
   under_review: "Under review",
@@ -137,6 +138,7 @@ const ParalegalDashboard = () => {
   const [appointmentMode, setAppointmentMode] = useState<"in_person" | "phone" | "remote">("phone");
   const [appointmentLocation, setAppointmentLocation] = useState("");
   const [appointmentStatusNotes, setAppointmentStatusNotes] = useState<Record<string, string>>({});
+  const [referralNotesById, setReferralNotesById] = useState<Record<string, string>>({});
   const [outcomeCode, setOutcomeCode] = useState(outcomeOptions[0].value);
   const [outcomeSummary, setOutcomeSummary] = useState("");
   const [pending, setPending] = useState(false);
@@ -145,6 +147,7 @@ const ParalegalDashboard = () => {
   const access = useQuery(api.users.currentAccess);
   const inbox = useQuery(api.caseManagement.assignmentInbox);
   const cases = useQuery(api.caseManagement.myCases);
+  const referralInbox = useQuery(api.referrals.myDestinationQueue, {});
   const caseDetail = useQuery(api.caseManagement.getCase, selectedCaseId ? { caseId: selectedCaseId } : "skip");
   const messages = useQuery(api.caseManagement.listMessages, selectedCaseId ? { caseId: selectedCaseId } : "skip");
   const documents = useQuery(api.caseManagement.listDocuments, selectedCaseId ? { caseId: selectedCaseId } : "skip");
@@ -160,6 +163,7 @@ const ParalegalDashboard = () => {
   const scheduleAppointment = useMutation(api.caseManagement.scheduleAppointment);
   const updateAppointmentStatus = useMutation(api.caseManagement.updateAppointmentStatus);
   const recordOutcome = useMutation(api.caseManagement.recordOutcome);
+  const respondToReferral = useMutation(api.referrals.respondAsDestination);
 
   useEffect(() => {
     if (!selectedCaseId && cases && cases.length > 0 && tab === "cases") {
@@ -285,8 +289,27 @@ const ParalegalDashboard = () => {
     });
   }
 
+  function updateReferral(
+    referralId: Id<"referrals">,
+    status: DestinationReferralStatus,
+  ) {
+    const note = referralNotesById[referralId]?.trim();
+    void run(async () => {
+      await respondToReferral({
+        referralId,
+        status,
+        note: note || undefined,
+        declineReason: status === "declined" ? note || "Destination declined the referral." : undefined,
+        finalDisposition: status === "closed" ? note || "Referral closed by destination provider." : undefined,
+      });
+      setReferralNotesById((current) => ({ ...current, [referralId]: "" }));
+      setNotice({ type: "success", text: `Referral marked ${status.replaceAll("_", " ")}.` });
+    });
+  }
+
   const paralegal = dashboardData && "paralegal" in dashboardData ? dashboardData.paralegal : null;
   const openAssignments = inbox?.filter((item) => item.case !== null).length ?? 0;
+  const openReferrals = referralInbox?.filter((item) => !["declined", "closed"].includes(item.referral.status)).length ?? 0;
   const activeCases = cases?.filter((record) => !["closed", "closed_unresolved"].includes(record.status)).length ?? 0;
   const appointments = caseDetail?.appointments ?? [];
   const pendingDocuments = documents?.filter((document) => document.status === "pending_review").length ?? 0;
@@ -343,12 +366,16 @@ const ParalegalDashboard = () => {
               <button onClick={() => setTab("cases")} className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "cases" ? "bg-primary text-white" : "text-neutral-600"}`}>
                 Cases
               </button>
+              <button onClick={() => setTab("referrals")} className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "referrals" ? "bg-primary text-white" : "text-neutral-600"}`}>
+                Referrals
+              </button>
             </div>
           </div>
         </div>
 
-        <section className="mb-6 grid gap-3 sm:grid-cols-4">
+        <section className="mb-6 grid gap-3 sm:grid-cols-5">
           <Metric icon={<Inbox className="h-5 w-5" />} value={openAssignments} label="Assignment offers" tone="primary" />
+          <Metric icon={<ChevronRight className="h-5 w-5" />} value={openReferrals} label="Referral inbox" tone="orange" />
           <Metric icon={<BriefcaseBusiness className="h-5 w-5" />} value={activeCases} label="Active cases" tone="teal" />
           <Metric icon={<FileText className="h-5 w-5" />} value={pendingDocuments} label="Documents to review" tone="primary" />
           <Metric icon={<CalendarClock className="h-5 w-5" />} value={appointments.length} label="Selected case appointments" tone="orange" />
@@ -360,7 +387,96 @@ const ParalegalDashboard = () => {
           </div>
         )}
 
-        {tab === "inbox" ? (
+        {tab === "referrals" ? (
+          <section className="rounded-2xl border bg-white shadow-sm">
+            <div className="border-b p-5">
+              <h2 className="text-xl">Referral inbox</h2>
+              <p className="mb-0 text-sm text-neutral-500">
+                Referrals assigned to your provider account. Accept, return,
+                schedule, deliver, or close only after you have real contact
+                evidence.
+              </p>
+            </div>
+            <div className="divide-y">
+              {referralInbox === undefined && <p className="p-5 text-sm text-neutral-500">Loading referral inbox...</p>}
+              {referralInbox?.length === 0 && (
+                <div className="p-10 text-center">
+                  <CheckCircle2 className="mx-auto mb-3 h-9 w-9 text-teal-600" />
+                  <p className="mb-1 font-bold">No referrals assigned to you</p>
+                  <p className="mb-0 text-sm text-neutral-500">LSF staff-assigned destination referrals will appear here.</p>
+                </div>
+              )}
+              {referralInbox?.map((item) => (
+                <div key={item.referral._id} className="grid gap-5 p-5 lg:grid-cols-[1fr_320px]">
+                  <div>
+                    <div className="mb-3 flex flex-wrap items-center gap-2">
+                      <h3 className="mb-0 text-lg">{item.referral.publicId}</h3>
+                      <StatusPill value={item.referral.status} urgent={["created", "returned", "escalated"].includes(item.referral.status)} />
+                      {item.case && <StatusPill value={item.case.status} urgent={item.case.priority !== "standard"} />}
+                    </div>
+                    <p className="mb-2 text-sm text-neutral-600">
+                      {item.case?.publicId ?? "Case unavailable"} · {item.destinationService?.name ?? "Destination service"}
+                    </p>
+                    <p className="mb-4 max-w-3xl whitespace-pre-wrap text-sm leading-6 text-neutral-700">{item.referral.reason}</p>
+                    <div className="mb-4 grid gap-2 text-xs text-neutral-600 sm:grid-cols-2">
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <p className="mb-1 font-bold text-neutral-800">Information shared</p>
+                        <p className="mb-0">{item.referral.informationShared.join(", ") || "Not recorded"}</p>
+                      </div>
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <p className="mb-1 font-bold text-neutral-800">Service point</p>
+                        <p className="mb-0">
+                          {item.destinationService
+                            ? `${item.destinationService.district}, ${item.destinationService.region}`
+                            : "Not available"}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      {item.events.slice(-3).map((event) => (
+                        <div key={event._id} className="rounded-lg border bg-white p-3 text-xs text-neutral-600">
+                          <p className="mb-1 font-bold capitalize text-neutral-800">{event.type.replaceAll("_", " ")}</p>
+                          <p className="mb-0">{formatDate(event.occurredAt)}{event.note ? ` · ${event.note}` : ""}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="rounded-xl border bg-[#fbf7f8] p-4">
+                    <p className="mb-3 text-sm font-bold">Destination response</p>
+                    <Textarea
+                      value={referralNotesById[item.referral._id] ?? ""}
+                      onChange={(event) => setReferralNotesById((current) => ({ ...current, [item.referral._id]: event.target.value }))}
+                      maxLength={1200}
+                      placeholder="Add evidence note, appointment note, decline reason, or closure summary."
+                      className="mb-3 min-h-24 bg-white"
+                    />
+                    <div className="grid gap-2">
+                      {["created", "destination_notified"].includes(item.referral.status) && (
+                        <>
+                          <Button disabled={pending} onClick={() => updateReferral(item.referral._id, "accepted")}>Accept referral</Button>
+                          <Button disabled={pending} variant="outline" onClick={() => updateReferral(item.referral._id, "declined")}>Decline referral</Button>
+                          <Button disabled={pending} variant="outline" onClick={() => updateReferral(item.referral._id, "returned")}>Return to LSF</Button>
+                        </>
+                      )}
+                      {item.referral.status === "accepted" && (
+                        <>
+                          <Button disabled={pending} onClick={() => updateReferral(item.referral._id, "scheduled")}>Mark scheduled</Button>
+                          <Button disabled={pending} variant="outline" onClick={() => updateReferral(item.referral._id, "service_delivered")}>Service delivered</Button>
+                        </>
+                      )}
+                      {item.referral.status === "scheduled" && (
+                        <Button disabled={pending} onClick={() => updateReferral(item.referral._id, "service_delivered")}>Service delivered</Button>
+                      )}
+                      {["accepted", "scheduled", "service_delivered", "returned"].includes(item.referral.status) && (
+                        <Button disabled={pending} variant="outline" onClick={() => updateReferral(item.referral._id, "closed")}>Close referral</Button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : tab === "inbox" ? (
           <section className="rounded-2xl border bg-white shadow-sm">
             <div className="border-b p-5">
               <h2 className="text-xl">Assignment inbox</h2>

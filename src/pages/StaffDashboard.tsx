@@ -241,6 +241,7 @@ const StaffDashboard = () => {
   const [reassignmentOverrideReason, setReassignmentOverrideReason] = useState("");
   const [reviewNotesById, setReviewNotesById] = useState<Record<string, string>>({});
   const [referralServiceId, setReferralServiceId] = useState("");
+  const [referralDestinationUserId, setReferralDestinationUserId] = useState("");
   const [referralReason, setReferralReason] = useState("");
   const [referralInformationShared, setReferralInformationShared] = useState("case summary, safe contact preference, district, issue category");
   const [serviceForm, setServiceForm] = useState<ServiceFormState>(initialServiceForm);
@@ -626,10 +627,12 @@ const StaffDashboard = () => {
       const result = await createReferral({
         caseId: selectedCaseId,
         destinationServiceId: referralServiceId as Id<"justice_services">,
+        destinationUserId: referralDestinationUserId ? referralDestinationUserId as Id<"users"> : undefined,
         reason: referralReason.trim(),
         informationShared,
       });
       setReferralServiceId("");
+      setReferralDestinationUserId("");
       setReferralReason("");
       setReferralInformationShared("case summary, safe contact preference, district, issue category");
       setReferralStatus("created");
@@ -2246,6 +2249,18 @@ const StaffDashboard = () => {
                           {referralCapableServices.map((service) => (
                             <option key={service._id} value={service._id}>
                               {service.name} · {service.district}, {service.region} · {service.currentIntakeState.replaceAll("_", " ")}
+                            </option>
+                          ))}
+                        </select>
+                        <select
+                          value={referralDestinationUserId}
+                          onChange={(event) => setReferralDestinationUserId(event.target.value)}
+                          className="mb-3 h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                        >
+                          <option value="">Assign receiving provider account</option>
+                          {providers?.map((provider) => (
+                            <option key={provider.id} value={provider.id}>
+                              {provider.name} · {provider.role.replaceAll("_", " ")} · {(provider.availabilityStatus ?? "accepting_cases").replaceAll("_", " ")}
                             </option>
                           ))}
                         </select>

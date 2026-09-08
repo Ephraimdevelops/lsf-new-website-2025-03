@@ -539,3 +539,37 @@ test("mobile prototype review mode exposes mock screen navigation without weaken
   assert.match(prototype, /Appointments/);
   assert.match(phaseNote, /does not replace real device QA/i);
 });
+
+test("referral graph connects staff creation, provider response, and beneficiary visibility", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const referrals = readFileSync(new URL("../convex/referrals.ts", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+  const staffDashboard = readFileSync(new URL("../src/pages/StaffDashboard.tsx", import.meta.url), "utf8");
+  const providerDashboard = readFileSync(new URL("../src/pages/ParalegalDashboard.tsx", import.meta.url), "utf8");
+  const mobileCase = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
+
+  assert.match(schema, /referrals:\s*defineTable/);
+  assert.match(schema, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
+  assert.match(schema, /by_destination_user_status/);
+  assert.match(schema, /referral_events:\s*defineTable/);
+  assert.match(referrals, /createForCase/);
+  assert.match(referrals, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
+  assert.match(referrals, /getActiveRoles\(ctx,\s*destinationUser\._id\)/);
+  assert.match(referrals, /myDestinationQueue/);
+  assert.match(referrals, /respondAsDestination/);
+  assert.match(referrals, /requireAnyRole\(ctx,\s*\["paralegal",\s*"provider_staff"\]\)/);
+  assert.match(referrals, /referral\.destinationUserId !== user\._id/);
+  assert.match(security, /\["referrals\.myDestinationQueue",\s*"service-provider"\]/);
+  assert.match(security, /\["referrals\.respondAsDestination",\s*"service-provider"\]/);
+  assert.match(staffDashboard, /Create service referral/);
+  assert.match(staffDashboard, /destinationUserId:\s*referralDestinationUserId/);
+  assert.match(staffDashboard, /minimum information/);
+  assert.match(providerDashboard, /Referral inbox/);
+  assert.match(providerDashboard, /api\.referrals\.myDestinationQueue/);
+  assert.match(providerDashboard, /api\.referrals\.respondAsDestination/);
+  assert.match(providerDashboard, /Accept referral/);
+  assert.match(providerDashboard, /Return to LSF/);
+  assert.match(mobileCase, /Referrals/);
+  assert.match(mobileCase, /api\.referrals\.listForCase/);
+  assert.match(mobileCase, /Information shared/);
+});
