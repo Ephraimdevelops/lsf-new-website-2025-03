@@ -11,7 +11,7 @@ import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
 
-const DRAFT_KEY = "haki-yangu.demand-letter-draft";
+const DRAFT_KEY = "haki_yangu_demand_letter_draft";
 
 function today(locale: "sw" | "en") {
   return new Date().toLocaleDateString(locale === "sw" ? "sw-TZ" : "en-TZ", {

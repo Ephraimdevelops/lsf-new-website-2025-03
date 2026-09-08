@@ -2,7 +2,7 @@ import * as SecureStore from "expo-secure-store";
 import { useEffect, useState } from "react";
 import type { Id } from "../../convex/_generated/dataModel";
 
-const STORAGE_KEY = "haki-yangu.pending-actions";
+const STORAGE_KEY = "haki_yangu_pending_actions";
 const MAX_PENDING_ACTIONS = 25;
 
 type PendingActionBase = {

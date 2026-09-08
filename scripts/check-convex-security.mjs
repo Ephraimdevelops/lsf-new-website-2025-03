@@ -78,6 +78,7 @@ const publicFunctions = new Map([
   ["heros.list", "public-read"],
   ["heros.remove", "admin"],
   ["heros.update", "staff"],
+  ["hakiYanguSeed.seedMobileDirectory", "staff"],
   ["media.generateUploadUrl", "staff"],
   ["media.saveMedia", "staff"],
   ["legalHelp.saveDraft", "authenticated"],

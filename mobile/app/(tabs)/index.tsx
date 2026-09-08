@@ -11,15 +11,16 @@ import { colors, radius, spacing, type } from "../../src/theme";
 
 const primaryActions = [
   { key: "findParalegal", label: { sw: "Tafuta paralegal", en: "Find a paralegal" }, meta: { sw: "Ungana na waliothibitishwa karibu nawe.", en: "Connect with verified paralegals near you." }, icon: "people-outline", route: "/paralegals", accent: colors.burgundy, selected: true },
-  { key: "askHaki", label: { sw: "Uliza Haki", en: "Ask Haki" }, meta: { sw: "Pata majibu wazi kutoka kwa msaidizi wa sheria.", en: "Get clear answers from our AI legal assistant." }, icon: "chatbubble-ellipses-outline", route: "/sara", accent: colors.burgundy, selected: false },
+  { key: "askSaada", label: { sw: "Uliza Saada", en: "Ask Saada" }, meta: { sw: "Pata majibu wazi kutoka kwa msaidizi wa sheria.", en: "Get clear answers from our AI legal assistant." }, icon: "chatbubble-ellipses-outline", route: "/sara", accent: colors.burgundy, selected: false },
   { key: "requestHelp", label: { sw: "Omba msaada", en: "Request help" }, meta: { sw: "Wasilisha tatizo lako upate msaada sahihi.", en: "Submit your legal issue and get the right help." }, icon: "document-text-outline", route: "/intake", accent: colors.orange, selected: false },
   { key: "knowRights", label: { sw: "Jua haki zako", en: "Know your rights" }, meta: { sw: "Soma miongozo rahisi ya haki zako.", en: "Explore simple guides to understand your rights." }, icon: "shield-checkmark-outline", route: "/(tabs)/learn", accent: colors.orange, selected: false },
 ] as const;
 
 const quickTools = [
-  { label: { sw: "Kagua hati", en: "Check document" }, icon: "scan-outline", route: "/document-checker" },
+  { label: { sw: "Kagua hati", en: "Document check" }, icon: "scan-outline", route: "/document-checker" },
+  { label: { sw: "Barua ya madai", en: "Demand letter" }, icon: "create-outline", route: "/letter-builder" },
   { label: { sw: "Nyaraka", en: "My documents" }, icon: "folder-open-outline", route: "/documents" },
-  { label: { sw: "Usalama", en: "Safety" }, icon: "shield-checkmark-outline", route: "/safety" },
+  { label: { sw: "Miadi" , en: "My appointments" }, icon: "calendar-outline", route: "/appointments" },
   { label: { sw: "Jifunze", en: "Learn" }, icon: "book-outline", route: "/(tabs)/learn" },
 ] as const;
 
@@ -91,14 +92,22 @@ export default function HomeScreen() {
 
       <Text style={styles.sectionTitle}>{locale === "sw" ? "Zana za haraka" : "Quick tools"}</Text>
       <View style={styles.quickGrid}>
-        {quickTools.map((tool) => (
-          <Pressable key={tool.route} style={styles.quickTool} onPress={() => router.push(tool.route)}>
-            <View style={styles.quickIcon}>
-              <Ionicons name={tool.icon} size={22} color={colors.burgundy} />
-            </View>
-            <Text style={styles.quickToolText}>{tool.label[locale]}</Text>
-          </Pressable>
-        ))}
+        <Pressable style={styles.quickTool} onPress={() => router.push("/document-checker")}>
+          <View style={styles.quickIcon}><Ionicons name="scan-outline" size={22} color={colors.burgundy} /></View>
+          <Text style={styles.quickToolText}>{quickTools[0].label[locale]}</Text>
+        </Pressable>
+        <Pressable style={styles.quickTool} onPress={() => router.push("/letter-builder")}>
+          <View style={styles.quickIcon}><Ionicons name="create-outline" size={22} color={colors.burgundy} /></View>
+          <Text style={styles.quickToolText}>{quickTools[1].label[locale]}</Text>
+        </Pressable>
+        <Pressable style={styles.quickTool} onPress={() => router.push("/documents")}>
+          <View style={styles.quickIcon}><Ionicons name="folder-open-outline" size={22} color={colors.burgundy} /></View>
+          <Text style={styles.quickToolText}>{quickTools[2].label[locale]}</Text>
+        </Pressable>
+        <Pressable style={styles.quickTool} onPress={() => router.push("/appointments")}>
+          <View style={styles.quickIcon}><Ionicons name="calendar-outline" size={22} color={colors.burgundy} /></View>
+          <Text style={styles.quickToolText}>{quickTools[3].label[locale]}</Text>
+        </Pressable>
       </View>
     </Screen>
   );

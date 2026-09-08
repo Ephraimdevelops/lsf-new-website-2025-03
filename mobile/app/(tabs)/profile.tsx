@@ -2,6 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Screen } from "../../src/components/Screen";
+import { useAuth, useUser } from "../../src/auth";
 import { useLanguage } from "../../src/i18n";
 import { resources } from "../../src/resources";
 import { useSavedResources } from "../../src/useSavedResources";
@@ -9,8 +10,12 @@ import { colors, radius, spacing, type } from "../../src/theme";
 
 export default function ProfileScreen() {
   const { locale, setLocale, t } = useLanguage();
+  const { isSignedIn, signOut } = useAuth();
+  const { user } = useUser();
   const { savedIds } = useSavedResources();
-  const initials = "AS";
+  const displayName = user?.fullName ?? user?.firstName ?? (locale === "sw" ? "Mgeni" : "Guest");
+  const contact = user?.primaryEmailAddress?.emailAddress ?? (locale === "sw" ? "Hujaingia" : "Not signed in");
+  const initials = displayName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase() || "HY";
   const savedResources = savedIds.map((id) => resources.find((resource) => resource.id === id)).filter((resource) => resource !== undefined);
 
   return (
@@ -19,9 +24,9 @@ export default function ProfileScreen() {
       <View style={styles.identity}>
         <View style={styles.avatar}><Text style={styles.initials}>{initials}</Text></View>
         <View style={styles.identityCopy}>
-          <Text style={styles.name}>{locale === "sw" ? "Asha Said" : "Asha Said"}</Text>
-          <Text style={styles.email}>+255 710 XXX XXX</Text>
-          <Text style={styles.badge}>{locale === "sw" ? "Hali: Muonekano wa mawasilisho" : "Status: presentation mode"}</Text>
+          <Text style={styles.name}>{displayName}</Text>
+          <Text style={styles.email}>{contact}</Text>
+          <Text style={styles.badge}>{isSignedIn ? (locale === "sw" ? "Akaunti salama imewashwa" : "Secure account active") : (locale === "sw" ? "Mgeni: rasilimali za umma pekee" : "Guest: public resources only")}</Text>
         </View>
       </View>
       <View style={styles.card}>
@@ -51,9 +56,9 @@ export default function ProfileScreen() {
           </Pressable>
         )) : <Text style={styles.emptySaved}>{locale === "sw" ? "Bado hujahifadhi mwongozo. Fungua Learn kisha hifadhi mwongozo." : "No saved guides yet. Open Learn and save a guide."}</Text>}
       </View>
-      <Pressable accessibilityRole="button" onPress={() => router.push("/sign-in")} style={styles.secureButton}>
-        <Ionicons name="lock-closed-outline" size={18} color={colors.burgundy} />
-        <Text style={styles.secureText}>{locale === "sw" ? "Washa akaunti salama baadaye" : "Enable secure account later"}</Text>
+      <Pressable accessibilityRole="button" onPress={() => isSignedIn ? void signOut() : router.push("/sign-in")} style={styles.secureButton}>
+        <Ionicons name={isSignedIn ? "log-out-outline" : "lock-closed-outline"} size={18} color={colors.burgundy} />
+        <Text style={styles.secureText}>{isSignedIn ? (locale === "sw" ? "Ondoka kwenye akaunti" : "Sign out") : (locale === "sw" ? "Ingia kwenye akaunti salama" : "Sign in to secure account")}</Text>
       </Pressable>
     </Screen>
   );

@@ -1,6 +1,9 @@
 import { useFonts } from "expo-font";
-import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
+import { ConvexReactClient } from "convex/react";
+import { ConvexProviderWithClerk } from "convex/react-clerk";
 import { Stack } from "expo-router";
+import * as SecureStore from "expo-secure-store";
 import { useMemo } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -9,6 +12,25 @@ import { IntakeDraftProvider } from "../src/intake/IntakeDraftContext";
 import { LanguageProvider, useLanguage } from "../src/i18n";
 import { PrototypeApp } from "../src/prototype/PrototypeApp";
 import { colors, spacing, type } from "../src/theme";
+
+const tokenCache = {
+  async getToken(key: string) {
+    try {
+      return await SecureStore.getItemAsync(key);
+    } catch {
+      return null;
+    }
+  },
+  async saveToken(key: string, value: string) {
+    try {
+      await SecureStore.setItemAsync(key, value, {
+        keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+      });
+    } catch {
+      // Auth can still recover by requiring the user to sign in again.
+    }
+  },
+};
 
 function Navigation() {
   const { locale } = useLanguage();
@@ -23,6 +45,7 @@ function Navigation() {
         <Stack.Screen name="case/[id]" />
         <Stack.Screen name="safety" />
         <Stack.Screen name="paralegals" />
+        <Stack.Screen name="paralegal-profile" />
         <Stack.Screen name="documents" />
         <Stack.Screen name="appointments" />
         <Stack.Screen name="resource/[id]" />
@@ -92,11 +115,13 @@ function Providers() {
   }
 
   return (
-    <ConvexProvider client={convex}>
-      <LanguageProvider>
-        <Navigation />
-      </LanguageProvider>
-    </ConvexProvider>
+    <ClerkProvider publishableKey={appConfig.clerkPublishableKey} tokenCache={tokenCache}>
+      <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+        <LanguageProvider>
+          <Navigation />
+        </LanguageProvider>
+      </ConvexProviderWithClerk>
+    </ClerkProvider>
   );
 }
 

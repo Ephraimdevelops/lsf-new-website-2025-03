@@ -30,7 +30,7 @@ const screens: Array<{ key: ScreenKey; label: string; group: string; done: strin
   { key: "onboarding", label: "Onboarding", group: "Start", done: "visual" },
   { key: "home", label: "Home dashboard", group: "Core", done: "connected" },
   { key: "intake", label: "Guided intake", group: "Core", done: "connected" },
-  { key: "sara", label: "Ask Haki", group: "Assistant", done: "concept" },
+  { key: "sara", label: "Saada assistant", group: "Assistant", done: "concept" },
   { key: "learn", label: "Know your rights", group: "Learning", done: "local" },
   { key: "resource", label: "Guide detail", group: "Learning", done: "local" },
   { key: "paralegals", label: "Find paralegal", group: "Support", done: "connected" },
@@ -45,6 +45,8 @@ const screens: Array<{ key: ScreenKey; label: string; group: string; done: strin
   { key: "safety", label: "Safety plan", group: "Safety", done: "local" },
   { key: "profile", label: "Profile", group: "Account", done: "connected" },
 ];
+
+const legacyAssistantContractName = "SARA assistant";
 
 export function PrototypeApp() {
   const { locale, setLocale } = useLanguage();
@@ -207,7 +209,7 @@ function Onboarding({ onNavigate }: { onNavigate: (screen: ScreenKey) => void })
 function Home({ locale, onNavigate }: { locale: "sw" | "en"; onNavigate: (screen: ScreenKey) => void }) {
   return <PhoneChrome><Header title={locale === "sw" ? "Habari, Asha" : "Hello, Asha"} /><HeroCard onNavigate={onNavigate} /><Text style={styles.sectionTitle}>Start here</Text><View style={styles.premiumGrid}>{[
     ["Find paralegal", "paralegals", "people-outline"],
-    ["Ask Haki", "sara", "chatbubble-ellipses-outline"],
+    ["Ask Saada", "sara", "chatbubble-ellipses-outline"],
     ["Book support", "appointments", "calendar-outline"],
     ["Request help", "intake", "document-text-outline"],
   ].map(([label, key, icon], index) => <PremiumAction key={key} label={label} icon={icon as keyof typeof Ionicons.glyphMap} featured={index === 0} onPress={() => onNavigate(key as ScreenKey)} />)}</View><Text style={styles.sectionTitle}>Quick tools</Text><View style={styles.quickTools}>{[

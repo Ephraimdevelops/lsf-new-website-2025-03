@@ -1,7 +1,7 @@
 import * as SecureStore from "expo-secure-store";
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "haki-yangu.saved-resources";
+const STORAGE_KEY = "haki_yangu_saved_resources";
 
 export function useSavedResources() {
   const [savedIds, setSavedIds] = useState<string[]>([]);

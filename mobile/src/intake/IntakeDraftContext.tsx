@@ -32,7 +32,7 @@ function newDraft(locale: Locale): IntakeDraft {
   };
 }
 
-const STORAGE_KEY = "haki-yangu.intake-draft";
+const STORAGE_KEY = "haki_yangu_intake_draft";
 
 type IntakeContextValue = {
   draft: IntakeDraft;

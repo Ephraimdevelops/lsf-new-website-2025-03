@@ -50,7 +50,18 @@ export default function AppointmentsScreen() {
         <BookingOption icon="call-outline" title={locale === "sw" ? "Ushauri kwa simu" : "Phone consultation"} meta={locale === "sw" ? "Zungumza na paralegal" : "Talk to a paralegal"} />
       </View>
 
-      {isSignedIn && appointments?.length ? (
+      {!isSignedIn ? (
+        <View style={styles.empty}>
+          <Ionicons name="lock-closed-outline" size={38} color={colors.burgundy} />
+          <Text style={styles.emptyTitle}>{locale === "sw" ? "Ingia kuona miadi yako" : "Sign in to view appointments"}</Text>
+          <Text style={styles.emptyText}>
+            {locale === "sw"
+              ? "Miadi inahusishwa na ombi, kesi, au mtoa huduma. Akaunti inalinda taarifa hizo."
+              : "Appointments are linked to a request, case, or service provider. Your account protects those details."}
+          </Text>
+          <Button label={locale === "sw" ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
+        </View>
+      ) : appointments?.length ? (
         <>
           <View style={styles.summaryCard}>
             <View style={styles.summaryIcon}><Ionicons name="calendar-outline" size={22} color={colors.burgundy} /></View>
@@ -86,31 +97,18 @@ export default function AppointmentsScreen() {
           <Button label={locale === "sw" ? "Omba miadi mpya" : "Request new appointment"} onPress={() => router.push("/intake")} />
         </>
       ) : (
-        <View style={styles.confirmationCard}>
-          <View style={styles.confirmIcon}><Ionicons name="checkmark" size={30} color={colors.surface} /></View>
-          <Text style={styles.confirmTitle}>{locale === "sw" ? "Miadi imepangwa" : "Appointment confirmed"}</Text>
-          <Text style={styles.confirmBody}>{locale === "sw" ? "Ushauri na Rehema Mwanga umehifadhiwa kwa mawasilisho." : "Consultation with Rehema Mwanga is ready for the presentation flow."}</Text>
-          <View style={styles.detailPanel}>
-            <DetailRow icon="person-outline" label={locale === "sw" ? "Paralegal" : "Paralegal"} value="Rehema Mwanga" />
-            <DetailRow icon="calendar-outline" label={locale === "sw" ? "Tarehe" : "Date"} value="Thu, 15 May 2025" />
-            <DetailRow icon="time-outline" label={locale === "sw" ? "Muda" : "Time"} value="10:30 AM (30 min)" />
-            <DetailRow icon="call-outline" label={locale === "sw" ? "Aina" : "Type"} value={locale === "sw" ? "Ushauri kwa simu" : "Phone consultation"} />
-            <DetailRow icon="pricetag-outline" label="Reference" value="HY-20250524-1123" />
-          </View>
-          <Button label={locale === "sw" ? "Angalia maombi yangu" : "View My Cases"} onPress={() => router.push("/(tabs)/cases")} />
+        <View style={styles.empty}>
+          <Ionicons name="calendar-outline" size={38} color={colors.burgundy} />
+          <Text style={styles.emptyTitle}>{locale === "sw" ? "Hakuna miadi bado" : "No appointments yet"}</Text>
+          <Text style={styles.emptyText}>
+            {locale === "sw"
+              ? "Omba msaada au fungua kesi kisha LSF itapanga miadi inayofaa."
+              : "Start a request or open a case, then LSF can schedule the right appointment."}
+          </Text>
+          <Button label={locale === "sw" ? "Anza ombi" : "Start request"} onPress={() => router.push("/intake")} />
         </View>
       )}
     </Screen>
-  );
-}
-
-function DetailRow({ icon, label, value }: { icon: keyof typeof Ionicons.glyphMap; label: string; value: string }) {
-  return (
-    <View style={styles.detailRow}>
-      <Ionicons name={icon} size={17} color={colors.burgundy} />
-      <Text style={styles.detailLabel}>{label}</Text>
-      <Text style={styles.detailValue}>{value}</Text>
-    </View>
   );
 }
 
@@ -140,7 +138,8 @@ const styles = StyleSheet.create({
   bookingIcon: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
   bookingCopy: { flex: 1 },
   bookingOptionTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 14 },
-  empty: { alignItems: "center", gap: spacing.lg, marginTop: 100 },
+  empty: { alignItems: "center", gap: spacing.lg, marginTop: 80, borderRadius: radius.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, padding: spacing.xl },
+  emptyTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 20, textAlign: "center" },
   emptyText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21, textAlign: "center" },
   summaryCard: { flexDirection: "row", alignItems: "center", gap: spacing.md, borderRadius: radius.md, backgroundColor: colors.softPink, padding: spacing.lg, marginBottom: spacing.lg },
   summaryIcon: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
@@ -157,12 +156,4 @@ const styles = StyleSheet.create({
   meta: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19, textTransform: "capitalize" },
   caseRef: { fontFamily: type.medium, color: colors.burgundy, fontSize: 12 },
   note: { borderRadius: radius.sm, backgroundColor: "#FBF7F8", padding: spacing.sm, fontFamily: type.regular, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
-  confirmationCard: { marginTop: spacing.lg, borderRadius: radius.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, padding: spacing.lg, gap: spacing.md, alignItems: "center" },
-  confirmIcon: { width: 62, height: 62, borderRadius: 31, alignItems: "center", justifyContent: "center", backgroundColor: colors.burgundy },
-  confirmTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 21, letterSpacing: -0.4 },
-  confirmBody: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20, textAlign: "center" },
-  detailPanel: { alignSelf: "stretch", borderRadius: radius.md, backgroundColor: "#FBF7F8", padding: spacing.md, gap: spacing.sm },
-  detailRow: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
-  detailLabel: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12 },
-  detailValue: { flex: 1.2, fontFamily: type.bold, color: colors.charcoal, fontSize: 12, textAlign: "right" },
 });

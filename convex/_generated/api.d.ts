@@ -15,6 +15,7 @@ import type * as chatbotProxy from "../chatbotProxy.js";
 import type * as crons from "../crons.js";
 import type * as debug from "../debug.js";
 import type * as formSubmissions from "../formSubmissions.js";
+import type * as hakiYanguSeed from "../hakiYanguSeed.js";
 import type * as hero from "../hero.js";
 import type * as heros from "../heros.js";
 import type * as http from "../http.js";
@@ -66,6 +67,7 @@ declare const fullApi: ApiFromModules<{
   crons: typeof crons;
   debug: typeof debug;
   formSubmissions: typeof formSubmissions;
+  hakiYanguSeed: typeof hakiYanguSeed;
   hero: typeof hero;
   heros: typeof heros;
   http: typeof http;

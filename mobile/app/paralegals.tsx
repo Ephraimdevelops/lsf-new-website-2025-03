@@ -9,55 +9,13 @@ import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
 
-const presentationParalegals = [
-  {
-    _id: "demo-rehema",
-    fullName: "Rehema Mwanga",
-    region: "Dar es Salaam",
-    district: "Kinondoni",
-    ward: "Mikocheni",
-    phone: "+255712345678",
-    isVerified: true,
-    availabilityStatus: "accepting_cases",
-    bio: "Helps individuals and families resolve employment, land, and family issues through clear guidance and practical support.",
-    specializations: ["Employment", "Land", "Family"],
-    languages: ["Swahili", "English"],
-  },
-  {
-    _id: "demo-juma",
-    fullName: "Juma Khatibu",
-    region: "Dar es Salaam",
-    district: "Ilala",
-    ward: "Kariakoo",
-    phone: "+255713456789",
-    isVerified: true,
-    availabilityStatus: "limited",
-    bio: "Supports workers, consumers, and tenants with documentation, referrals, and follow-up steps.",
-    specializations: ["Employment", "Consumer", "Tenancy"],
-    languages: ["Swahili"],
-  },
-  {
-    _id: "demo-asha",
-    fullName: "Asha Mohamed",
-    region: "Arusha",
-    district: "Arusha DC",
-    ward: "Moshono",
-    phone: "+255714567890",
-    isVerified: true,
-    availabilityStatus: "accepting_cases",
-    bio: "Focused on family, land, and GBV-sensitive referrals with privacy-first support.",
-    specializations: ["Family", "Land", "Safety"],
-    languages: ["Swahili", "English"],
-  },
-];
-
 export default function ParalegalsScreen() {
   const { locale } = useLanguage();
   const [region, setRegion] = useState("");
   const [viewMode, setViewMode] = useState<"list" | "map">("list");
   const liveParalegals = useQuery(api.paralegals.listApprovedParalegals, { verifiedOnly: true });
   const incrementProfileViews = useMutation(api.paralegals.incrementProfileViews);
-  const paralegals = liveParalegals?.length ? liveParalegals : presentationParalegals;
+  const paralegals = liveParalegals ?? [];
 
   const filtered = useMemo(() => {
     const needle = region.trim().toLowerCase();
@@ -75,9 +33,7 @@ export default function ParalegalsScreen() {
   }
 
   function openProfile(item: (typeof paralegals)[number]) {
-    if (!String(item._id).startsWith("demo-")) {
-      void incrementProfileViews({ id: item._id as Parameters<typeof incrementProfileViews>[0]["id"] });
-    }
+    void incrementProfileViews({ id: item._id as Parameters<typeof incrementProfileViews>[0]["id"] });
     router.push({
       pathname: "/paralegal-profile",
       params: {
@@ -160,9 +116,16 @@ export default function ParalegalsScreen() {
               ? "Tuma ombi salama. LSF itaangalia eneo, aina ya tatizo, usalama, na upatikanaji kabla ya kumpa mtu kesi yako."
               : "Submit a safe request. LSF reviews location, issue type, safety, and availability before assigning support."}
           </Text>
+          <Text style={styles.matchSubhead}>{locale === "sw" ? "Kwa nini anaweza kufaa" : "Why this may fit"}</Text>
+          <View style={styles.matchReasons}>
+            <Text style={styles.reasonPill}>{locale === "sw" ? "Eneo" : "Location"}</Text>
+            <Text style={styles.reasonPill}>{locale === "sw" ? "Aina ya tatizo" : "Issue type"}</Text>
+            <Text style={styles.reasonPill}>{locale === "sw" ? "Kwa kesi nyeti" : "For sensitive cases"}</Text>
+          </View>
         </View>
         <Ionicons name="arrow-forward" size={20} color={colors.burgundy} />
       </Pressable>
+      <Button label={locale === "sw" ? "LSF inichagulie msaidizi" : "Let LSF match me"} onPress={() => router.push("/intake")} />
 
       {filtered?.length && viewMode === "list" ? (
         filtered.map((item) => {
@@ -272,6 +235,9 @@ const styles = StyleSheet.create({
   matchCopy: { flex: 1, gap: 3 },
   matchTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 15 },
   matchText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 18 },
+  matchSubhead: { fontFamily: type.bold, color: colors.burgundy, fontSize: 12, marginTop: spacing.xs },
+  matchReasons: { flexDirection: "row", flexWrap: "wrap", gap: spacing.xs, marginTop: spacing.xs },
+  reasonPill: { overflow: "hidden", borderRadius: radius.pill, backgroundColor: colors.surface, borderWidth: 1, borderColor: "#E8B8CC", paddingHorizontal: spacing.sm, paddingVertical: 4, fontFamily: type.bold, color: colors.burgundy, fontSize: 10 },
   loading: { paddingVertical: 80 },
   card: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.md, gap: spacing.md },
   cardTop: { flexDirection: "row", alignItems: "center", gap: spacing.md },
