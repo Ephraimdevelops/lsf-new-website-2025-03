@@ -14,7 +14,7 @@ import { enqueuePendingAction, markPendingActionFailed, removePendingAction, sho
 import { colors, radius, spacing, type } from "../../src/theme";
 import { useSensitiveScreenProtection } from "../../src/useSensitiveScreenProtection";
 
-type CaseTab = "timeline" | "messages" | "documents" | "appointments" | "feedback";
+type CaseTab = "timeline" | "messages" | "documents" | "appointments" | "referrals" | "feedback";
 type DocumentCategory = "evidence" | "identity" | "contract" | "letter" | "receipt" | "other";
 type AppointmentMode = "in_person" | "phone" | "remote";
 type ReviewReason = "reassignment" | "service_concern" | "safety_concern" | "other";
@@ -40,6 +40,14 @@ const eventLabels: Record<string, { sw: string; en: string }> = {
   case_resolved: { sw: "Matokeo yamerekodiwa", en: "An outcome was recorded" },
   feedback_requested: { sw: "LSF imeomba maoni yako", en: "LSF requested your feedback" },
   feedback_received: { sw: "Maoni yako yamepokelewa", en: "Your feedback was received" },
+  referral_created: { sw: "Rufaa imeundwa", en: "A referral was created" },
+  referral_accepted: { sw: "Rufaa imekubaliwa", en: "The referral was accepted" },
+  referral_declined: { sw: "Rufaa imekataliwa", en: "The referral was declined" },
+  referral_scheduled: { sw: "Huduma ya rufaa imepangwa", en: "The referral service was scheduled" },
+  referral_service_delivered: { sw: "Huduma ya rufaa imetolewa", en: "The referral service was delivered" },
+  referral_closed: { sw: "Rufaa imefungwa", en: "The referral was closed" },
+  referral_returned: { sw: "Rufaa imerudishwa kwa LSF", en: "The referral was returned to LSF" },
+  referral_escalated: { sw: "Rufaa imepandishwa kwa hatua ya juu", en: "The referral was escalated" },
 };
 
 const appointmentStatusLabels: Record<string, { sw: string; en: string }> = {
@@ -145,6 +153,7 @@ export default function CaseDetailScreen() {
   const details = useQuery(api.caseManagement.getCase, { caseId });
   const messages = useQuery(api.caseManagement.listMessages, { caseId });
   const documents = useQuery(api.caseManagement.listDocuments, { caseId });
+  const referrals = useQuery(api.referrals.listForCase, { caseId });
   const sendMessage = useMutation(api.caseManagement.sendMessage);
   const submitFeedback = useMutation(api.caseManagement.submitFeedback);
   const generateDocumentUploadUrl = useMutation(api.caseManagement.generateDocumentUploadUrl);
@@ -474,6 +483,7 @@ export default function CaseDetailScreen() {
         <CaseTabButton label={locale === "sw" ? "Ujumbe" : "Messages"} icon="chatbubble-outline" active={tab === "messages"} onPress={() => setTab("messages")} />
         <CaseTabButton label={locale === "sw" ? "Nyaraka" : "Docs"} icon="document-text-outline" active={tab === "documents"} onPress={() => setTab("documents")} />
         <CaseTabButton label={locale === "sw" ? "Miadi" : "Appointments"} icon="calendar-outline" active={tab === "appointments"} onPress={() => setTab("appointments")} />
+        <CaseTabButton label={locale === "sw" ? "Rufaa" : "Referrals"} icon="swap-horizontal-outline" active={tab === "referrals"} onPress={() => setTab("referrals")} />
         <CaseTabButton label={locale === "sw" ? "Maoni" : "Feedback"} icon="checkmark-done-outline" active={tab === "feedback"} onPress={() => setTab("feedback")} />
       </View>
 
@@ -630,6 +640,63 @@ export default function CaseDetailScreen() {
               <Text style={styles.emptyText}>{locale === "sw" ? "Bado hakuna miadi iliyopangwa." : "No appointment has been scheduled yet."}</Text>
             </View>
           )}
+        </View>
+      ) : null}
+
+      {tab === "referrals" ? (
+        <View style={styles.referrals}>
+          {referrals === undefined ? <ActivityIndicator color={colors.burgundy} /> : null}
+          {referrals?.length ? referrals.map((referral) => (
+            <View key={referral._id} style={styles.referralCard}>
+              <View style={styles.row}>
+                <Text style={styles.referralId}>{referral.publicId}</Text>
+                <Text style={styles.referralStatus}>{referral.status.replaceAll("_", " ")}</Text>
+              </View>
+              <Text style={styles.referralTitle}>{referral.destinationService?.name ?? (locale === "sw" ? "Huduma ya rufaa" : "Referral service")}</Text>
+              <View style={styles.metaRow}>
+                <Ionicons name="location-outline" size={17} color={colors.burgundy} />
+                <Text style={styles.metaText}>
+                  {[referral.destinationService?.district, referral.destinationService?.region].filter(Boolean).join(", ") || (locale === "sw" ? "Eneo halijawekwa" : "Location not listed")}
+                </Text>
+              </View>
+              <View style={styles.referralSection}>
+                <Text style={styles.sectionKicker}>{locale === "sw" ? "Sababu" : "Reason"}</Text>
+                <Text style={styles.referralText}>{referral.reason}</Text>
+              </View>
+              <View style={styles.referralSection}>
+                <Text style={styles.sectionKicker}>{locale === "sw" ? "Taarifa zilizoshirikiwa" : "Information shared"}</Text>
+                {referral.informationShared.map((item) => (
+                  <View key={item} style={styles.sharedItem}>
+                    <Ionicons name="checkmark-circle-outline" size={15} color={colors.success} />
+                    <Text style={styles.sharedText}>{item}</Text>
+                  </View>
+                ))}
+              </View>
+              <View style={styles.referralEvents}>
+                {referral.events.map((event) => (
+                  <View key={event._id} style={styles.referralEvent}>
+                    <View style={styles.referralEventDot} />
+                    <View style={styles.referralEventCopy}>
+                      <Text style={styles.referralEventTitle}>
+                        {eventLabels[event.type]?.[locale] || (locale === "sw" ? "Taarifa ya rufaa" : "Referral update")}
+                      </Text>
+                      <Text style={styles.eventDate}>{formatDate(event.occurredAt, locale)}</Text>
+                      {event.note ? <Text style={styles.referralText}>{event.note}</Text> : null}
+                    </View>
+                  </View>
+                ))}
+              </View>
+            </View>
+          )) : referrals ? (
+            <View style={styles.emptyPanel}>
+              <Ionicons name="swap-horizontal-outline" size={38} color={colors.burgundy} />
+              <Text style={styles.emptyText}>
+                {locale === "sw"
+                  ? "Bado hakuna rufaa kwenye kesi hii. Ikiwa huduma nyingine inahitajika, timu ya LSF itaiongeza hapa."
+                  : "No referrals are attached to this case yet. If another service is needed, the LSF team will add it here."}
+              </Text>
+            </View>
+          ) : null}
         </View>
       ) : null}
 
@@ -815,6 +882,20 @@ const styles = StyleSheet.create({
   send: { width: 46, height: 46, borderRadius: 23, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
   disabledSend: { opacity: 0.5 },
   appointments: { marginTop: spacing.xl, gap: spacing.md },
+  referrals: { marginTop: spacing.xl, gap: spacing.md },
+  referralCard: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },
+  referralId: { fontFamily: type.bold, color: colors.burgundy, fontSize: 12 },
+  referralStatus: { fontFamily: type.medium, color: colors.success, backgroundColor: "#E7F4ED", borderRadius: radius.pill, paddingHorizontal: 9, paddingVertical: 5, fontSize: 11, textTransform: "capitalize" },
+  referralTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 18 },
+  referralSection: { gap: spacing.xs },
+  referralText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20 },
+  sharedItem: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
+  sharedText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
+  referralEvents: { borderTopWidth: 1, borderTopColor: colors.line, paddingTop: spacing.md, gap: spacing.md },
+  referralEvent: { flexDirection: "row", gap: spacing.sm },
+  referralEventDot: { width: 9, height: 9, borderRadius: 5, backgroundColor: colors.burgundy, marginTop: 5 },
+  referralEventCopy: { flex: 1 },
+  referralEventTitle: { fontFamily: type.medium, color: colors.charcoal, fontSize: 13, lineHeight: 18 },
   requestPanel: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },
   modeRow: { flexDirection: "row", gap: spacing.sm },
   modeChip: { flex: 1, minHeight: 44, borderRadius: radius.sm, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.background, alignItems: "center", justifyContent: "center", flexDirection: "row", gap: spacing.xs, paddingHorizontal: spacing.sm },

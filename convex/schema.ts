@@ -444,6 +444,57 @@ export default defineSchema({
     .index("by_case", ["caseId"])
     .index("by_created", ["createdAt"]),
 
+  referrals: defineTable({
+    publicId: v.string(),
+    caseId: v.id("cases"),
+    requestId: v.optional(v.id("legal_help_requests")),
+    sourceServiceId: v.optional(v.id("justice_services")),
+    destinationServiceId: v.id("justice_services"),
+    createdBy: v.id("users"),
+    beneficiaryId: v.id("users"),
+    reason: v.string(),
+    informationShared: v.array(v.string()),
+    consentId: v.optional(v.id("consents")),
+    consentCollectedAt: v.number(),
+    status: v.union(
+      v.literal("draft"),
+      v.literal("consent_collected"),
+      v.literal("created"),
+      v.literal("destination_notified"),
+      v.literal("accepted"),
+      v.literal("declined"),
+      v.literal("scheduled"),
+      v.literal("service_delivered"),
+      v.literal("referred_onward"),
+      v.literal("closed"),
+      v.literal("returned"),
+      v.literal("escalated"),
+    ),
+    declineReason: v.optional(v.string()),
+    onwardReferralId: v.optional(v.id("referrals")),
+    finalDisposition: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    closedAt: v.optional(v.number()),
+  }).index("by_case", ["caseId"])
+    .index("by_beneficiary", ["beneficiaryId"])
+    .index("by_destination_status", ["destinationServiceId", "status"])
+    .index("by_status", ["status"])
+    .index("by_public_id", ["publicId"]),
+
+  referral_events: defineTable({
+    referralId: v.id("referrals"),
+    caseId: v.id("cases"),
+    actorId: v.id("users"),
+    type: v.string(),
+    publicLabelKey: v.optional(v.string()),
+    note: v.optional(v.string()),
+    metadata: v.optional(v.any()),
+    occurredAt: v.number(),
+  }).index("by_referral", ["referralId"])
+    .index("by_case", ["caseId"])
+    .index("by_referral_time", ["referralId", "occurredAt"]),
+
   // Legacy Heros (success stories from old site)
   heros: defineTable({
     title: v.string(),

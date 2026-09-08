@@ -26,7 +26,17 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 type TriageDetail = FunctionReturnType<typeof api.legalHelp.openForTriage>;
-type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments" | "services";
+type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments" | "referrals" | "services";
+type ReferralQueueStatus =
+  | "created"
+  | "destination_notified"
+  | "accepted"
+  | "declined"
+  | "scheduled"
+  | "service_delivered"
+  | "returned"
+  | "escalated"
+  | "closed";
 
 type ServiceFormState = {
   name: string;
@@ -216,6 +226,7 @@ const StaffDashboard = () => {
   const [assignmentStatus, setAssignmentStatus] = useState<
     "offered" | "accepted" | "declined" | "expired" | "ended"
   >("offered");
+  const [referralStatus, setReferralStatus] = useState<ReferralQueueStatus>("created");
   const [detail, setDetail] = useState<TriageDetail | null>(null);
   const [selectedCaseId, setSelectedCaseId] = useState<Id<"cases"> | null>(
     null,
@@ -259,6 +270,9 @@ const StaffDashboard = () => {
   const assignmentOffers = useQuery(api.caseManagement.staffAssignmentOffers, {
     status: assignmentStatus,
   });
+  const referralQueue = useQuery(api.referrals.staffQueue, {
+    status: referralStatus,
+  });
   const justiceServices = useQuery(api.justiceServices.staffListServices);
   const openForTriage = useMutation(api.legalHelp.openForTriage);
   const setReviewStatus = useMutation(api.legalHelp.setReviewStatus);
@@ -276,6 +290,7 @@ const StaffDashboard = () => {
   const createJusticeService = useMutation(api.justiceServices.createService);
   const updateJusticeService = useMutation(api.justiceServices.updateService);
   const seedJusticeServices = useMutation(api.hakiYanguSeed.seedJusticeServices);
+  const updateReferralStatus = useMutation(api.referrals.updateStatus);
 
   const selectedAssignmentProvider =
     recommendations?.find((provider) => provider.id === providerId) ??
@@ -563,6 +578,24 @@ const StaffDashboard = () => {
     });
   }
 
+  function moveReferral(
+    referralId: Id<"referrals">,
+    status: ReferralQueueStatus,
+    note?: string,
+  ) {
+    void run(async () => {
+      await updateReferralStatus({
+        referralId,
+        status,
+        note,
+        declineReason: status === "declined" ? note || "Destination cannot accept this referral." : undefined,
+        finalDisposition: status === "closed" ? note || "Referral closed by LSF operations." : undefined,
+      });
+      setReferralStatus(status === "closed" ? "closed" : referralStatus);
+      setNotice({ type: "success", text: `Referral marked ${status.replaceAll("_", " ")}.` });
+    });
+  }
+
   const newCount =
     requests?.filter((request) => request.status === "submitted").length ?? 0;
   const urgentCount =
@@ -583,6 +616,8 @@ const StaffDashboard = () => {
   const openAssignmentOfferCount =
     assignmentOffers?.filter((item) => item.assignment.status === "offered").length ??
     0;
+  const activeReferralCount =
+    referralQueue?.filter((item) => !["closed", "declined"].includes(item.referral.status)).length ?? 0;
   const verifiedServiceCount =
     justiceServices?.filter((service) => service.verificationStatus === "verified" && service.active).length ?? 0;
 
@@ -662,6 +697,12 @@ const StaffDashboard = () => {
               Assignments
             </button>
             <button
+              onClick={() => setTab("referrals")}
+              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "referrals" ? "bg-primary text-white" : "text-neutral-600"}`}
+            >
+              Referrals
+            </button>
+            <button
               onClick={() => setTab("services")}
               className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "services" ? "bg-primary text-white" : "text-neutral-600"}`}
             >
@@ -670,7 +711,7 @@ const StaffDashboard = () => {
           </div>
         </div>
 
-        <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-7">
+        <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-8">
           <div className="rounded-2xl border bg-white p-4">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <FileSearch className="h-5 w-5" />
@@ -718,6 +759,13 @@ const StaffDashboard = () => {
             <p className="mb-0 text-sm text-neutral-500">Open assignment offers</p>
           </div>
           <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-teal-100 text-teal-700">
+              <ChevronRight className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{activeReferralCount}</p>
+            <p className="mb-0 text-sm text-neutral-500">Referrals in selected queue</p>
+          </div>
+          <div className="rounded-2xl border bg-white p-4">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <Building2 className="h-5 w-5" />
             </div>
@@ -735,7 +783,157 @@ const StaffDashboard = () => {
           </div>
         )}
 
-        {tab === "services" ? (
+        {tab === "referrals" ? (
+          <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+            <div className="flex flex-col justify-between gap-3 border-b p-5 lg:flex-row lg:items-center">
+              <div>
+                <h2 className="text-xl">Referral coordination</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Track cross-service handoffs after consent. This is the start
+                  of the referral graph: where the case moved, what was shared,
+                  and whether the destination accepted responsibility.
+                </p>
+              </div>
+              <select
+                value={referralStatus}
+                onChange={(event) => setReferralStatus(event.target.value as ReferralQueueStatus)}
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="created">Created</option>
+                <option value="destination_notified">Destination notified</option>
+                <option value="accepted">Accepted</option>
+                <option value="declined">Declined</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="service_delivered">Service delivered</option>
+                <option value="returned">Returned</option>
+                <option value="escalated">Escalated</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+            <div className="divide-y">
+              {referralQueue === undefined && (
+                <p className="p-5 text-sm text-neutral-500">Loading referrals...</p>
+              )}
+              {referralQueue?.length === 0 && (
+                <div className="p-10 text-center">
+                  <ChevronRight className="mx-auto mb-3 h-9 w-9 text-primary/40" />
+                  <p className="mb-1 font-bold">No referrals in this queue</p>
+                  <p className="mb-0 text-sm text-neutral-500">
+                    Referrals created from cases will appear here with their
+                    destination service and beneficiary-safe status trail.
+                  </p>
+                </div>
+              )}
+              {referralQueue?.map((item) => (
+                <div key={item.referral._id} className="grid gap-4 p-5 lg:grid-cols-[1fr_270px]">
+                  <div>
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <h3 className="mb-0 text-lg">
+                        {item.referral.publicId}
+                      </h3>
+                      <StatusPill value={item.referral.status.replaceAll("_", " ")} urgent={["created", "returned", "escalated"].includes(item.referral.status)} />
+                      {item.case && (
+                        <StatusPill value={item.case.status.replaceAll("_", " ")} urgent={item.case.priority !== "standard"} />
+                      )}
+                    </div>
+                    <p className="mb-2 text-sm text-neutral-600">
+                      {item.case?.publicId ?? "Case unavailable"} ·{" "}
+                      {item.destinationService?.name ?? "Destination service unavailable"}
+                    </p>
+                    <p className="mb-3 max-w-4xl whitespace-pre-wrap text-sm leading-6 text-neutral-700">
+                      {item.referral.reason}
+                    </p>
+                    <div className="grid gap-2 text-xs text-neutral-600 sm:grid-cols-2">
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <p className="mb-1 font-bold text-neutral-800">Destination</p>
+                        <p className="mb-0">
+                          {item.destinationService
+                            ? `${item.destinationService.district}, ${item.destinationService.region}`
+                            : "Not available"}
+                        </p>
+                      </div>
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <p className="mb-1 font-bold text-neutral-800">Information shared</p>
+                        <p className="mb-0">
+                          {item.referral.informationShared.join(", ") || "Not recorded"}
+                        </p>
+                      </div>
+                    </div>
+                    {item.referral.declineReason && (
+                      <p className="mt-3 rounded-xl border border-orange-200 bg-orange-50 p-3 text-sm text-orange-900">
+                        <span className="font-bold">Decline reason:</span>{" "}
+                        {item.referral.declineReason}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <p className="mb-0 rounded-xl bg-[#fbf7f8] p-3 text-xs text-neutral-600">
+                      Created {formatDate(item.referral.createdAt)}. Update only
+                      when there is evidence from the destination service.
+                    </p>
+                    {item.case && (
+                      <Button
+                        variant="outline"
+                        onClick={() => {
+                          setSelectedCaseId(item.case!._id);
+                          setTab("cases");
+                        }}
+                      >
+                        Open case
+                      </Button>
+                    )}
+                    {item.referral.status === "created" && (
+                      <>
+                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "destination_notified", "Destination service notified by LSF.")}>
+                          Mark notified
+                        </Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "accepted", "Destination accepted the referral.")}>
+                          Mark accepted
+                        </Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "declined", "Destination cannot accept this referral.")}>
+                          Mark declined
+                        </Button>
+                      </>
+                    )}
+                    {item.referral.status === "destination_notified" && (
+                      <>
+                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "accepted", "Destination accepted the referral.")}>
+                          Mark accepted
+                        </Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "returned", "Destination returned the referral for LSF follow-up.")}>
+                          Mark returned
+                        </Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "declined", "Destination cannot accept this referral.")}>
+                          Mark declined
+                        </Button>
+                      </>
+                    )}
+                    {item.referral.status === "accepted" && (
+                      <>
+                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "scheduled", "Destination scheduled support with the beneficiary.")}>
+                          Mark scheduled
+                        </Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "service_delivered", "Destination delivered the referred service.")}>
+                          Service delivered
+                        </Button>
+                      </>
+                    )}
+                    {item.referral.status === "scheduled" && (
+                      <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "service_delivered", "Destination delivered the referred service.")}>
+                        Service delivered
+                      </Button>
+                    )}
+                    {["accepted", "scheduled", "service_delivered", "returned", "escalated"].includes(item.referral.status) && (
+                      <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "closed", "Referral closed by LSF operations.")}>
+                        Close referral
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : tab === "services" ? (
           <section className="grid gap-5 xl:grid-cols-[420px_1fr]">
             <div className="rounded-2xl border bg-white p-5 shadow-sm">
               <div className="mb-5">

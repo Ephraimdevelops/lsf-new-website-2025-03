@@ -40,6 +40,7 @@ import type * as paralegals from "../paralegals.js";
 import type * as programs from "../programs.js";
 import type * as publications from "../publications.js";
 import type * as quickLinks from "../quickLinks.js";
+import type * as referrals from "../referrals.js";
 import type * as resend from "../resend.js";
 import type * as sara from "../sara.js";
 import type * as sara_actions from "../sara_actions.js";
@@ -93,6 +94,7 @@ declare const fullApi: ApiFromModules<{
   programs: typeof programs;
   publications: typeof publications;
   quickLinks: typeof quickLinks;
+  referrals: typeof referrals;
   resend: typeof resend;
   sara: typeof sara;
   sara_actions: typeof sara_actions;

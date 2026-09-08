@@ -23,6 +23,9 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Backend directory seed | Done | `hakiYanguSeed.seedMobileDirectory` can seed verified mobile paralegal records through an admin/staff-authenticated mutation. |
 | Justice Service Directory foundation | New partial | `justice_services` and `matching_decisions` tables plus public/staff Convex functions now exist. |
 | Staff service management UI | New partial | Staff operations now includes a Services tab for creating, verifying, deactivating, reviewing, and seeding justice service records. |
+| Referral graph foundation | New partial | `referrals` and `referral_events` tables now track consented case handoffs across verified justice services. |
+| Beneficiary referral visibility | New partial | Mobile case details now include a Referrals tab showing destination, status, shared information, reason, and referral events. |
+| Staff referral operations | New partial | Staff dashboard now includes a Referrals tab with queue filtering and status actions for notified, accepted, declined, scheduled, delivered, returned, escalated, and closed states. |
 | Contract regression suite | Passing | `npm run test:haki-contracts` passes 27/27. |
 | Mobile typecheck | Passing | `cd mobile && npm run typecheck` passes. |
 | Root build/security | Passing | `npm run build` and `npm run test:security` pass. |
@@ -32,14 +35,15 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Product Capability | Current State | Honest Read |
 | --- | --- | --- |
 | Public website | Partial/strong visual | Main LSF website builds. CMS/admin media issue was previously investigated, but full content governance and donor/reporting workflows still need hardening. |
-| Admin/staff dashboard | Partial | Staff case workflow and a first Justice Service Management UI exist, but escalation queues, referral operations, and reporting operations are not fully mature. |
+| Admin/staff dashboard | Partial | Staff case workflow, Justice Service Management, assignment monitor, reviews, documents, and a first referral operations queue exist. Escalation, reporting, and mature workload operations remain incomplete. |
 | Beneficiary mobile home | Visual/interactive | Stronger premium home direction exists, with paralegal-first flow and quick tools. Needs real device QA after auth config. |
 | Mobile sign-in/sign-up | Implemented, unverified on device | Code is wired to Clerk. Clerk Dashboard must enable Native Applications before runtime sign-in will work. |
 | Guest mode | Partial | Public routes work, but guest-to-account claim flow is not implemented yet. |
 | Intake/help request | Partial/connected | Intake draft and submission flow exist. Needs stronger mapping into service/referral/case lifecycle and guest claim. |
-| Case tracking | Partial/connected | Case timeline, messages, documents, appointments, feedback, review requests exist. Needs full staff/provider operational QA. |
+| Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Needs full staff/provider operational QA. |
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
-| Governed matching engine | Partial | Deterministic public service matching now records `matching_decisions`; still needs richer scoring, staff review UI, safeguarding restrictions, bias/fairness review, and pathway integration. |
+| Governed matching engine | Partial | Deterministic public service matching now records `matching_decisions`; referral records now capture downstream handoff state. Still needs richer scoring, staff review UI, safeguarding restrictions, bias/fairness review, and pathway integration. |
+| Referral graph | Partial | Case-to-service referral tables, event trail, beneficiary case visibility, and staff queue actions exist. Missing selected-case referral creation UI, destination/provider portal acceptance, consent proof UX, onward referral chaining UI, and partner SLA analytics. |
 | Appointments | Partial/connected | Backend-backed my-appointments list exists. Booking request/confirmation lifecycle needs final UX and staff/provider scheduling workflow. |
 | Documents | Partial/connected | Upload, case docs, generated letters, and library exist. Needs stricter consent screens, retention policy, file review operations, and malware/content scanning plan. |
 | Document checker | Practical prototype | Pre-signing checklist and explicit attach-to-case consent exist. AI document analysis is not production governed yet. |
@@ -58,13 +62,14 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 2. Enable Clerk Native Applications and test sign-in/sign-up on iPhone Expo Go or a development build.
 3. Seed development Convex with real-looking but non-sensitive LSF service providers, paralegals, legal clinics, guides, sample cases, and appointments.
 4. Build guest-to-account claim flow for intake drafts and document/letter attachments.
-5. Complete Justice Service Directory schema and staff management UI.
-6. Add matching-decision records and staff override screens.
-7. Unify mobile Saada to the governed Convex AI backend.
-8. Add AI risk assessment records, consent gates, escalation, and audit events.
-9. Complete appointment booking from paralegal/service profile through request, confirmation, reschedule, cancel, complete/no-show.
-10. Complete donor-safe reporting dashboard and monthly snapshot generation.
-11. Run full mobile device QA, accessibility QA, low-bandwidth QA, and safeguarding review.
+5. Add selected-case referral creation UI with explicit beneficiary consent capture and staff override notes.
+6. Add destination/provider referral acceptance, decline, delivery, and onward-referral workspace.
+7. Add matching-decision review screens and safeguarding restrictions.
+8. Unify mobile Saada to the governed Convex AI backend.
+9. Add AI risk assessment records, consent gates, escalation, and audit events.
+10. Complete appointment booking from paralegal/service profile through request, confirmation, reschedule, cancel, complete/no-show.
+11. Complete donor-safe reporting dashboard and monthly snapshot generation.
+12. Run full mobile device QA, accessibility QA, low-bandwidth QA, and safeguarding review.
 
 ## Immediate Blockers
 
@@ -83,9 +88,9 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Visual mobile presentation | 75% |
 | Real beneficiary mobile MVP | 50% |
 | Backend case-management foundation | 65% |
-| Website/admin integration | 65% |
+| Website/admin integration | 68% |
 | AI governance | 35% |
 | App-store readiness | 30% |
-| Donor-ready platform credibility | 55% |
+| Donor-ready platform credibility | 58% |
 
-Overall product completion: about 55%. This can be shown as an advanced working prototype plus real backend foundation, not as a finished national-scale justice platform yet.
+Overall product completion: about 58%. This can be shown as an advanced working prototype plus real backend foundation, service directory, and early referral graph, not as a finished national-scale justice platform yet.

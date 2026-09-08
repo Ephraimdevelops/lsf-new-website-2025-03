@@ -1,0 +1,228 @@
+import { ConvexError, v } from "convex/values";
+import { mutation, query } from "./_generated/server";
+import { requireAnyRole } from "./lib/auth";
+import { assertCaseTransition, requireCaseAccess, requireCaseWorker, writeAudit } from "./lib/hakiYangu";
+import { createNotification } from "./lib/notifications";
+
+const referralStatus = v.union(
+  v.literal("draft"),
+  v.literal("consent_collected"),
+  v.literal("created"),
+  v.literal("destination_notified"),
+  v.literal("accepted"),
+  v.literal("declined"),
+  v.literal("scheduled"),
+  v.literal("service_delivered"),
+  v.literal("referred_onward"),
+  v.literal("closed"),
+  v.literal("returned"),
+  v.literal("escalated"),
+);
+
+const allowedTransitions: Record<string, string[]> = {
+  draft: ["consent_collected"],
+  consent_collected: ["created"],
+  created: ["destination_notified", "accepted", "declined", "escalated"],
+  destination_notified: ["accepted", "declined", "returned", "escalated"],
+  accepted: ["scheduled", "service_delivered", "referred_onward", "closed", "escalated"],
+  declined: ["returned", "closed"],
+  scheduled: ["service_delivered", "referred_onward", "closed", "escalated"],
+  service_delivered: ["closed", "referred_onward"],
+  referred_onward: ["closed"],
+  returned: ["created", "closed", "escalated"],
+  escalated: ["accepted", "returned", "closed"],
+  closed: [],
+};
+
+function publicReference(prefix: string, id: string, now: number) {
+  const date = new Date(now).toISOString().slice(0, 10).replaceAll("-", "");
+  return `${prefix}-${date}-${id.slice(-6).toUpperCase()}`;
+}
+
+function normalize(value: string, label: string, max: number) {
+  const trimmed = value.trim();
+  if (!trimmed) throw new ConvexError(`${label} is required.`);
+  return trimmed.slice(0, max);
+}
+
+async function addReferralEvent(
+  ctx: Parameters<typeof writeAudit>[0],
+  args: {
+    referralId: Parameters<typeof ctx.db.get<"referrals">>[0];
+    caseId: Parameters<typeof ctx.db.get<"cases">>[0];
+    actorId: Parameters<typeof ctx.db.get<"users">>[0];
+    type: string;
+    publicLabelKey?: string;
+    note?: string;
+    metadata?: Record<string, unknown>;
+  },
+) {
+  await ctx.db.insert("referral_events", {
+    ...args,
+    occurredAt: Date.now(),
+  });
+}
+
+export const listForCase = query({
+  args: { caseId: v.id("cases") },
+  handler: async (ctx, args) => {
+    await requireCaseAccess(ctx, args.caseId);
+    const referrals = await ctx.db
+      .query("referrals")
+      .withIndex("by_case", (q) => q.eq("caseId", args.caseId))
+      .collect();
+    return await Promise.all(referrals.map(async (referral) => ({
+      ...referral,
+      destinationService: await ctx.db.get(referral.destinationServiceId),
+      sourceService: referral.sourceServiceId ? await ctx.db.get(referral.sourceServiceId) : null,
+      events: await ctx.db
+        .query("referral_events")
+        .withIndex("by_referral_time", (q) => q.eq("referralId", referral._id))
+        .collect(),
+    })));
+  },
+});
+
+export const staffQueue = query({
+  args: { status: v.optional(referralStatus) },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const records = args.status
+      ? await ctx.db.query("referrals").withIndex("by_status", (q) => q.eq("status", args.status!)).collect()
+      : await ctx.db.query("referrals").order("desc").take(100);
+    return await Promise.all(records.map(async (referral) => ({
+      referral,
+      case: await ctx.db.get(referral.caseId),
+      beneficiary: await ctx.db.get(referral.beneficiaryId),
+      destinationService: await ctx.db.get(referral.destinationServiceId),
+    })));
+  },
+});
+
+export const createForCase = mutation({
+  args: {
+    caseId: v.id("cases"),
+    requestId: v.optional(v.id("legal_help_requests")),
+    sourceServiceId: v.optional(v.id("justice_services")),
+    destinationServiceId: v.id("justice_services"),
+    reason: v.string(),
+    informationShared: v.array(v.string()),
+    consentId: v.optional(v.id("consents")),
+  },
+  handler: async (ctx, args) => {
+    const { user, caseRecord } = await requireCaseWorker(ctx, args.caseId);
+    const destination = await ctx.db.get(args.destinationServiceId);
+    if (!destination || !destination.active || destination.verificationStatus !== "verified") {
+      throw new ConvexError("Referral destination must be an active verified service.");
+    }
+    if (destination.visibility === "confidential") {
+      throw new ConvexError("Confidential services require a safeguarding-specific referral workflow.");
+    }
+    if (!destination.referralCapability) {
+      throw new ConvexError("Destination is not configured to receive referrals.");
+    }
+    const now = Date.now();
+    const referralId = await ctx.db.insert("referrals", {
+      publicId: "pending",
+      caseId: args.caseId,
+      requestId: args.requestId,
+      sourceServiceId: args.sourceServiceId,
+      destinationServiceId: args.destinationServiceId,
+      createdBy: user._id,
+      beneficiaryId: caseRecord.beneficiaryId,
+      reason: normalize(args.reason, "Referral reason", 2000),
+      informationShared: args.informationShared.map((item) => normalize(item, "Information shared", 160)),
+      consentId: args.consentId,
+      consentCollectedAt: now,
+      status: "created",
+      createdAt: now,
+      updatedAt: now,
+    });
+    const publicId = publicReference("HYR", referralId, now);
+    await ctx.db.patch(referralId, { publicId });
+    if (["under_review", "assignment_pending", "assigned", "assistance_underway"].includes(caseRecord.status)) {
+      assertCaseTransition(caseRecord.status, "referred");
+      await ctx.db.patch(caseRecord._id, {
+        status: "referred",
+        version: caseRecord.version + 1,
+        updatedAt: now,
+      });
+    }
+    await addReferralEvent(ctx, {
+      referralId,
+      caseId: args.caseId,
+      actorId: user._id,
+      type: "referral_created",
+      publicLabelKey: "case.timeline.referralCreated",
+      metadata: { destinationServiceId: args.destinationServiceId, informationShared: args.informationShared },
+    });
+    await ctx.db.insert("case_events", {
+      caseId: args.caseId,
+      actorId: user._id,
+      type: "referral_created",
+      audience: "all",
+      publicLabelKey: "case.timeline.referralCreated",
+      metadata: { referralId, destinationServiceId: args.destinationServiceId },
+      occurredAt: now,
+    });
+    await createNotification(ctx, {
+      userId: caseRecord.beneficiaryId,
+      type: "referral.created",
+      titleKey: "notifications.update.title",
+      bodyKey: "notifications.referralCreated.body",
+      resourceType: "referral",
+      resourceId: referralId,
+    });
+    await writeAudit(ctx, user._id, "referral.created", "referral", referralId, {
+      caseId: args.caseId,
+      destinationServiceId: args.destinationServiceId,
+      changedFieldNames: ["status", "informationShared", "consentCollectedAt"],
+    });
+    return { referralId, publicId };
+  },
+});
+
+export const updateStatus = mutation({
+  args: {
+    referralId: v.id("referrals"),
+    status: referralStatus,
+    note: v.optional(v.string()),
+    declineReason: v.optional(v.string()),
+    finalDisposition: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const referral = await ctx.db.get(args.referralId);
+    if (!referral) throw new ConvexError("Referral not found.");
+    const { user } = await requireCaseWorker(ctx, referral.caseId);
+    if (!allowedTransitions[referral.status]?.includes(args.status)) {
+      throw new ConvexError(`Referral cannot move from ${referral.status} to ${args.status}.`);
+    }
+    if (args.status === "declined" && !args.declineReason?.trim()) {
+      throw new ConvexError("Decline reason is required.");
+    }
+    const now = Date.now();
+    await ctx.db.patch(referral._id, {
+      status: args.status,
+      declineReason: args.declineReason?.trim(),
+      finalDisposition: args.finalDisposition?.trim(),
+      updatedAt: now,
+      closedAt: args.status === "closed" ? now : referral.closedAt,
+    });
+    await addReferralEvent(ctx, {
+      referralId: referral._id,
+      caseId: referral.caseId,
+      actorId: user._id,
+      type: `referral_${args.status}`,
+      publicLabelKey: `case.timeline.referral.${args.status}`,
+      note: args.note?.trim(),
+      metadata: { from: referral.status, to: args.status },
+    });
+    await writeAudit(ctx, user._id, "referral.status_changed", "referral", referral._id, {
+      caseId: referral.caseId,
+      changedFieldNames: ["status"],
+      from: referral.status,
+      to: args.status,
+    });
+    return { referralId: referral._id, status: args.status };
+  },
+});
