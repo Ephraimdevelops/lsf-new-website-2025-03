@@ -557,8 +557,12 @@ test("mobile Saada uses governed Convex AI with risk events and consent", () => 
   assert.match(schema, /emergency_keyword/);
   assert.match(schema, /low_confidence/);
   assert.match(schema, /tool_routing/);
+  assert.match(schema, /dispositionStatus:\s*v\.optional\(v\.union/);
+  assert.match(schema, /by_disposition/);
   assert.match(sara, /recordRiskEvent/);
+  assert.match(sara, /dispositionStatus:\s*"open"/);
   assert.match(saraChat, /getRiskEvents/);
+  assert.match(saraChat, /resolveRiskEvent/);
   assert.match(saraActions, /source:\s*v\.optional\(v\.union/);
   assert.match(saraActions, /internal\.sara\.recordRiskEvent/);
   assert.match(saraActions, /eventType:\s*"emergency_keyword"/);
@@ -566,6 +570,7 @@ test("mobile Saada uses governed Convex AI with risk events and consent", () => 
   assert.match(saraActions, /eventType:\s*"policy_block"/);
   assert.match(saraActions, /eventType:\s*"tool_routing"/);
   assert.match(security, /\["sara_chat\.getRiskEvents",\s*"staff"\]/);
+  assert.match(security, /\["sara_chat\.resolveRiskEvent",\s*"staff"\]/);
   assert.match(mobileSara, /useAction\(api\.sara_actions\.ask\)/);
   assert.match(mobileSara, /useMutation\(api\.sara_chat\.sendMessage\)/);
   assert.match(mobileSara, /source:\s*"mobile"/);
@@ -573,8 +578,12 @@ test("mobile Saada uses governed Convex AI with risk events and consent", () => 
   assert.doesNotMatch(mobileSara, /buildDemoReply/);
   assert.match(adminAnalytics, /Saada Governance Events/);
   assert.match(adminAnalytics, /api\.sara_chat\.getRiskEvents/);
+  assert.match(adminAnalytics, /api\.sara_chat\.resolveRiskEvent/);
+  assert.match(adminAnalytics, /Case follow-up/);
+  assert.match(adminAnalytics, /False positive/);
   assert.match(webSara, /source:\s*"web"/);
   assert.match(phaseNote, /no longer generates local demo answers/i);
+  assert.match(phaseNote, /disposition events/i);
 });
 
 test("referral graph connects staff creation, provider response, and beneficiary visibility", () => {

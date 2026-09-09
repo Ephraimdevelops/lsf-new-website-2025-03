@@ -21,6 +21,7 @@ The Saada backend now records governance events in `saada_risk_events`:
 - normal response
 
 Admin/staff users can review the latest events in the Saada AI analytics panel.
+They can also disposition events as reviewed, escalated, case follow-up, or false positive with a staff note.
 
 ## Honest Limits
 
@@ -28,7 +29,7 @@ This is an important governance bridge, not full AI readiness. Still required:
 
 - case-linked Saada sessions
 - human handoff workflow from risky AI sessions
-- staff disposition workflow for AI risk events
+- full case management conversion from AI risk events into assigned safeguarding tasks
 - more robust legal-content evaluation
 - production model/cost monitoring
 - mobile real-device QA with Clerk Native Applications enabled

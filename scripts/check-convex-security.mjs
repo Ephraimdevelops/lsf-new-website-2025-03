@@ -198,6 +198,7 @@ const publicFunctions = new Map([
   ["sara_chat.getFeedbackList", "staff"],
   ["sara_chat.getMessages", "authenticated-or-empty"],
   ["sara_chat.getRiskEvents", "staff"],
+  ["sara_chat.resolveRiskEvent", "staff"],
   ["sara_chat.sendMessage", "authenticated"],
   ["sara_chat.submitFeedback", "authenticated-self"],
   ["seedContent.clearAllAndReseed", "admin"],

@@ -1,5 +1,7 @@
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
+import { useState } from "react";
 import { api } from "../../../convex/_generated/api";
+import type { Id } from "../../../convex/_generated/dataModel";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
 import { Bot, Users, MessageSquare, Zap, Clock, Activity, ThumbsUp, DollarSign, ShieldAlert } from "lucide-react";
@@ -7,8 +9,23 @@ import { Bot, Users, MessageSquare, Zap, Clock, Activity, ThumbsUp, DollarSign, 
 import OpsDashboard from './OpsDashboard';
 
 const AdminSaraAnalytics = () => {
+    const [riskDisposition, setRiskDisposition] = useState<"open" | "reviewed" | "escalated" | "case_follow_up" | "false_positive">("open");
+    const [riskNotes, setRiskNotes] = useState<Record<string, string>>({});
     const analytics = useQuery(api.sara_chat.getAnalytics);
-    const riskEvents = useQuery(api.sara_chat.getRiskEvents);
+    const riskEvents = useQuery(api.sara_chat.getRiskEvents, { dispositionStatus: riskDisposition });
+    const resolveRiskEvent = useMutation(api.sara_chat.resolveRiskEvent);
+
+    async function markRiskEvent(
+        eventId: Id<"saada_risk_events">,
+        dispositionStatus: "reviewed" | "escalated" | "case_follow_up" | "false_positive",
+    ) {
+        await resolveRiskEvent({
+            eventId,
+            dispositionStatus,
+            reviewNote: riskNotes[eventId]?.trim() || undefined,
+        });
+        setRiskDisposition(dispositionStatus);
+    }
 
     if (!analytics) {
         return (
@@ -114,13 +131,28 @@ const AdminSaraAnalytics = () => {
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <ShieldAlert className="h-5 w-5 text-primary" />
-                        Saada Governance Events
-                    </CardTitle>
-                    <CardDescription>
-                        Latest policy blocks, emergency keyword bypasses, low-confidence retrievals, and tool-routing events.
-                    </CardDescription>
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div>
+                            <CardTitle className="flex items-center gap-2">
+                                <ShieldAlert className="h-5 w-5 text-primary" />
+                                Saada Governance Events
+                            </CardTitle>
+                            <CardDescription>
+                                Latest policy blocks, emergency keyword bypasses, low-confidence retrievals, and tool-routing events.
+                            </CardDescription>
+                        </div>
+                        <select
+                            value={riskDisposition}
+                            onChange={(event) => setRiskDisposition(event.target.value as typeof riskDisposition)}
+                            className="h-10 rounded-xl border bg-white px-3 text-sm font-medium"
+                        >
+                            <option value="open">Open</option>
+                            <option value="reviewed">Reviewed</option>
+                            <option value="escalated">Escalated</option>
+                            <option value="case_follow_up">Case follow-up</option>
+                            <option value="false_positive">False positive</option>
+                        </select>
+                    </div>
                 </CardHeader>
                 <CardContent>
                     {riskEvents === undefined ? (
@@ -135,7 +167,9 @@ const AdminSaraAnalytics = () => {
                                         <th className="px-4 py-3">Event</th>
                                         <th className="px-4 py-3">Source</th>
                                         <th className="px-4 py-3">Preview</th>
+                                        <th className="px-4 py-3">Disposition</th>
                                         <th className="px-4 py-3">Time</th>
+                                        <th className="px-4 py-3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y">
@@ -146,8 +180,41 @@ const AdminSaraAnalytics = () => {
                                             </td>
                                             <td className="px-4 py-3 text-gray-600">{event.source}</td>
                                             <td className="max-w-md px-4 py-3 text-gray-600">{event.messagePreview}</td>
+                                            <td className="px-4 py-3 text-gray-600">
+                                                {(event.dispositionStatus ?? "open").replaceAll("_", " ")}
+                                                {event.reviewNote ? (
+                                                    <p className="mt-1 text-xs text-gray-500">{event.reviewNote}</p>
+                                                ) : null}
+                                            </td>
                                             <td className="px-4 py-3 text-gray-500">
                                                 {new Date(event.createdAt).toLocaleString()}
+                                            </td>
+                                            <td className="min-w-[240px] px-4 py-3">
+                                                <textarea
+                                                    value={riskNotes[event._id] ?? ""}
+                                                    onChange={(inputEvent) =>
+                                                        setRiskNotes((current) => ({
+                                                            ...current,
+                                                            [event._id]: inputEvent.target.value,
+                                                        }))
+                                                    }
+                                                    placeholder="Staff note"
+                                                    className="mb-2 min-h-16 w-full rounded-lg border px-3 py-2 text-xs"
+                                                />
+                                                <div className="flex flex-wrap gap-2">
+                                                    <button className="rounded-full border px-3 py-1 text-xs font-bold text-gray-700" onClick={() => void markRiskEvent(event._id, "reviewed")}>
+                                                        Reviewed
+                                                    </button>
+                                                    <button className="rounded-full border border-primary/30 px-3 py-1 text-xs font-bold text-primary" onClick={() => void markRiskEvent(event._id, "escalated")}>
+                                                        Escalate
+                                                    </button>
+                                                    <button className="rounded-full border px-3 py-1 text-xs font-bold text-gray-700" onClick={() => void markRiskEvent(event._id, "case_follow_up")}>
+                                                        Case follow-up
+                                                    </button>
+                                                    <button className="rounded-full border px-3 py-1 text-xs font-bold text-gray-500" onClick={() => void markRiskEvent(event._id, "false_positive")}>
+                                                        False positive
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}

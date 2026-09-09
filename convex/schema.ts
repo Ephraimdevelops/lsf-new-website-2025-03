@@ -936,9 +936,20 @@ export default defineSchema({
     source: v.union(v.literal("web"), v.literal("mobile"), v.literal("unknown")),
     messagePreview: v.string(),
     metadata: v.optional(v.any()),
+    dispositionStatus: v.optional(v.union(
+      v.literal("open"),
+      v.literal("reviewed"),
+      v.literal("escalated"),
+      v.literal("case_follow_up"),
+      v.literal("false_positive"),
+    )),
+    reviewedBy: v.optional(v.id("users")),
+    reviewedAt: v.optional(v.number()),
+    reviewNote: v.optional(v.string()),
     createdAt: v.number(),
   }).index("by_user", ["userId"])
     .index("by_event_type", ["eventType"])
+    .index("by_disposition", ["dispositionStatus"])
     .index("by_created", ["createdAt"]),
 
   // SARA Configuration (System Prompt, etc.)

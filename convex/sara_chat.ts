@@ -166,10 +166,49 @@ export const getAnalytics = query({
 });
 
 export const getRiskEvents = query({
-    args: {},
-    handler: async (ctx) => {
+    args: {
+        dispositionStatus: v.optional(v.union(
+            v.literal("open"),
+            v.literal("reviewed"),
+            v.literal("escalated"),
+            v.literal("case_follow_up"),
+            v.literal("false_positive"),
+        )),
+    },
+    handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin", "staff"]);
-        return await ctx.db.query("saada_risk_events").withIndex("by_created").order("desc").take(50);
+        const events = args.dispositionStatus
+            ? await ctx.db
+                .query("saada_risk_events")
+                .withIndex("by_disposition", (q) => q.eq("dispositionStatus", args.dispositionStatus))
+                .collect()
+            : await ctx.db.query("saada_risk_events").withIndex("by_created").collect();
+        return events.sort((a, b) => b.createdAt - a.createdAt).slice(0, 50);
+    },
+});
+
+export const resolveRiskEvent = mutation({
+    args: {
+        eventId: v.id("saada_risk_events"),
+        dispositionStatus: v.union(
+            v.literal("reviewed"),
+            v.literal("escalated"),
+            v.literal("case_follow_up"),
+            v.literal("false_positive"),
+        ),
+        reviewNote: v.optional(v.string()),
+    },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+        const event = await ctx.db.get(args.eventId);
+        if (!event) throw new Error("Saada risk event not found.");
+        await ctx.db.patch(args.eventId, {
+            dispositionStatus: args.dispositionStatus,
+            reviewedBy: user._id,
+            reviewedAt: Date.now(),
+            reviewNote: args.reviewNote?.trim(),
+        });
+        return { success: true };
     },
 });
 

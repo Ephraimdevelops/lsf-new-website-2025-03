@@ -162,6 +162,7 @@ export const recordRiskEvent = internalMutation({
             source: args.source,
             messagePreview: args.messagePreview.slice(0, 240),
             metadata: args.metadata,
+            dispositionStatus: "open",
             createdAt: Date.now(),
         });
     },
