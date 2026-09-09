@@ -199,6 +199,7 @@ export const ask = action({
             role: v.union(v.literal("user"), v.literal("assistant")),
             content: v.string(),
         })),
+        source: v.optional(v.union(v.literal("web"), v.literal("mobile"), v.literal("unknown"))),
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
@@ -206,6 +207,8 @@ export const ask = action({
             throw new Error("Unauthenticated call to Sara AI Action");
         }
         const userId = identity.subject;
+        const source = args.source ?? "unknown";
+        const messagePreview = args.message.slice(0, 240);
 
         // =====================================================
         // SECURITY GATE 1: Kill Switch Check
@@ -213,6 +216,13 @@ export const ask = action({
         const systemConfig = await ctx.runQuery(internal.sara.getConfigInternal, { key: "system_status" });
         if (systemConfig === "maintenance") {
             console.log("[SARA SECURITY] Kill Switch active - blocking request");
+            await ctx.runMutation(internal.sara.recordRiskEvent, {
+                userId,
+                eventType: "policy_block",
+                source,
+                messagePreview,
+                metadata: { reason: "maintenance" },
+            });
             throw new Error("SARA is temporarily unavailable for maintenance. Please try again later.");
         }
 
@@ -225,6 +235,13 @@ export const ask = action({
 
         if (budgetTokenCount >= BUDGET_LIMIT_TOKENS) {
             console.log("[SARA SECURITY] Budget cap reached - blocking request");
+            await ctx.runMutation(internal.sara.recordRiskEvent, {
+                userId,
+                eventType: "policy_block",
+                source,
+                messagePreview,
+                metadata: { reason: "budget_limit", budgetTokenCount },
+            });
             throw new Error("SARA has reached its monthly usage limit. Please contact the administrator.");
         }
 
@@ -234,6 +251,13 @@ export const ask = action({
         // =====================================================
         if (checkEmergencyKeywords(args.message)) {
             console.log("[SARA SAFETY] Emergency keyword detected, bypassing LLM");
+            await ctx.runMutation(internal.sara.recordRiskEvent, {
+                userId,
+                eventType: "emergency_keyword",
+                source,
+                messagePreview,
+                metadata: { bypassedLlm: true },
+            });
 
             // Create and immediately complete the bot message
             const botMessageId = await ctx.runMutation(internal.sara_chat.createBotMessage, {
@@ -281,6 +305,13 @@ export const ask = action({
         let confidenceWarning = "";
 
         if (highConfidenceResults.length === 0 && results.length > 0) {
+            await ctx.runMutation(internal.sara.recordRiskEvent, {
+                userId,
+                eventType: "low_confidence",
+                source,
+                messagePreview,
+                metadata: { resultCount: results.length },
+            });
             // Low confidence - warn SARA to be honest
             confidenceWarning = `
 ⚠️ IMPORTANT: The knowledge base returned LOW CONFIDENCE results for this query.
@@ -430,6 +461,13 @@ ${context || "No relevant context found. Please be honest about not having speci
 
         // 5. Handle Tool Execution (if any)
         if (toolCallBuffer) {
+            await ctx.runMutation(internal.sara.recordRiskEvent, {
+                userId,
+                eventType: "tool_routing",
+                source,
+                messagePreview,
+                metadata: { toolName: toolCallBuffer.name },
+            });
             const argsObj = JSON.parse(toolCallBuffer.arguments);
             const region = argsObj.region || "Tanzania";
 
@@ -515,6 +553,18 @@ ${context || "No relevant context found. Please be honest about not having speci
             isDone: true,
             tokens: totalTokens,
             toolCalls: toolCallBuffer ? [toolCallBuffer.name] : undefined,
+        });
+
+        await ctx.runMutation(internal.sara.recordRiskEvent, {
+            userId,
+            eventType: "normal_response",
+            source,
+            messagePreview,
+            metadata: {
+                tokens: totalTokens,
+                toolUsed: toolCallBuffer ? toolCallBuffer.name : null,
+                highConfidenceResultCount: highConfidenceResults.length,
+            },
         });
 
         return fullContent;

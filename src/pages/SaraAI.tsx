@@ -79,7 +79,8 @@ const SaraAIPage = () => {
         history: messages.slice(-10).map(m => ({
           role: m.sender,
           content: m.text
-        }))
+        })),
+        source: "web",
       });
 
     } catch (error) {

@@ -1,7 +1,10 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAuth } from "@clerk/clerk-expo";
+import { useAction, useMutation } from "convex/react";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Linking, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { api } from "../../convex/_generated/api";
 import { QuickExit } from "../src/components/QuickExit";
 import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
@@ -113,67 +116,88 @@ function ParalegalRecommendation({ card, locale }: { card: ParalegalCard; locale
 export default function SaraScreen() {
   useSensitiveScreenProtection("sara");
   const { locale } = useLanguage();
+  const { isSignedIn } = useAuth();
+  const askSaada = useAction(api.sara_actions.ask);
+  const saveUserMessage = useMutation(api.sara_chat.sendMessage);
+  const clearRemoteHistory = useMutation(api.sara_chat.clearHistory);
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
+  const [consentAccepted, setConsentAccepted] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "intro",
       role: "assistant" as const,
       content:
         locale === "sw"
-          ? "Karibu. Naweza kukusaidia kuelewa haki zako, kuchagua hatua zinazofuata, au kukuunganisha na paralegal aliyethibitishwa."
-          : "Welcome. I can help you understand your rights, choose next steps, or connect you with a verified paralegal.",
+          ? "Karibu. Mimi ni Saada kutoka LSF. Naweza kukusaidia kuelewa haki zako kwa lugha rahisi, lakini si mbadala wa wakili au huduma ya dharura."
+          : "Welcome. I am Saada from LSF. I can help you understand your rights in plain language, but I am not a lawyer or an emergency service.",
     },
   ]);
 
   function clearHistory() {
+    if (isSignedIn) {
+      void clearRemoteHistory().catch(() => undefined);
+    }
     setMessages([
       {
         id: "intro-reset",
         role: "assistant",
         content:
           locale === "sw"
-            ? "Historia imefutwa kwa simu hii. Uliza swali fupi kuhusu ajira, ardhi, familia, usalama, au haki za walaji."
-            : "History is cleared on this device. Ask a short question about employment, land, family, safety, or consumer rights.",
+            ? "Historia imefutwa. Uliza swali fupi kuhusu ajira, ardhi, familia, usalama, au haki za walaji."
+            : "History is cleared. Ask a short question about employment, land, family, safety, or consumer rights.",
       },
     ]);
   }
 
-  function buildDemoReply(body: string) {
-    const lower = body.toLowerCase();
-    if (lower.includes("paralegal") || lower.includes("msaada") || lower.includes("help")) {
+  function safeFailureReply(message: unknown) {
+    const detail = message instanceof Error ? message.message : String(message ?? "");
+    if (/unauth|logged in|jwt|clerk|forbidden/i.test(detail)) {
       return locale === "sw"
-        ? "Hatua salama ni kuchagua paralegal aliye karibu nawe au kutuma ombi kwa LSF ili wakupangie mtu sahihi. ::PARALEGAL_CARD:{\"name\":\"Rehema Mwanga\",\"region\":\"Dar es Salaam\",\"district\":\"Kinondoni\",\"phone\":\"+255712345678\",\"verified\":true}::"
-        : "The safest next step is to choose a nearby paralegal or submit a request so LSF can match you properly. ::PARALEGAL_CARD:{\"name\":\"Rehema Mwanga\",\"region\":\"Dar es Salaam\",\"district\":\"Kinondoni\",\"phone\":\"+255712345678\",\"verified\":true}::";
+        ? "Ili Saada itumie mfumo salama wa LSF, tafadhali ingia kwanza. Unaweza bado kutumia sehemu za kujifunza na kutuma ombi la msaada."
+        : "To use Saada through the secure LSF system, please sign in first. You can still use learning resources and start a help request.";
     }
-    if (lower.includes("salary") || lower.includes("mshahara") || lower.includes("paid")) {
+    if (/maintenance|monthly usage|OPENAI_API_KEY|limit/i.test(detail)) {
       return locale === "sw"
-        ? "Kama hujalipwa mshahara, hifadhi ushahidi: mkataba, ujumbe, mahudhurio, na kiasi unachodai. Kisha andika ombi rasmi au anza ombi ili LSF ikupangie msaada."
-        : "If you have not been paid, keep evidence: contract, messages, attendance records, and the amount owed. Then write a formal request or start a help request so LSF can match support.";
-    }
-    if (lower.includes("land") || lower.includes("ardhi")) {
-      return locale === "sw"
-        ? "Kwa suala la ardhi, hifadhi hati, risiti, picha, majina ya mashahidi, na eneo kamili. Usisaini nyaraka mpya kabla ya kushauriana na paralegal."
-        : "For a land issue, keep documents, receipts, photos, witness names, and exact location. Do not sign new papers before speaking with a paralegal.";
+        ? "Saada haipatikani kikamilifu sasa. Kwa usalama, tumia kitufe cha kuomba msaada au tafuta paralegal aliyethibitishwa."
+        : "Saada is not fully available right now. For safety, use request help or find a verified paralegal.";
     }
     return locale === "sw"
-      ? "Naweza kukupa maelezo ya jumla na hatua salama. Kwa uamuzi wa mwisho au hatari ya haraka, zungumza na paralegal au huduma rasmi ya dharura."
-      : "I can give general information and safe next steps. For final decisions or immediate danger, speak with a paralegal or official emergency service.";
+      ? "Saada haikuweza kujibu sasa. Usitumie jibu la AI kwa dharura; tafuta msaada rasmi au anza ombi kwa LSF."
+      : "Saada could not answer right now. Do not rely on AI in an emergency; contact official help or start an LSF request.";
   }
 
   async function send(text = input) {
     const body = text.trim();
     if (!body || pending) return;
+    if (!consentAccepted) {
+      setError(locale === "sw" ? "Kubali masharti mafupi ya Saada kwanza." : "Accept the brief Saada guidance terms first.");
+      return;
+    }
     setPending(true);
     setError("");
     setInput("");
+    const history = messages.slice(-10).map((message) => ({
+      role: message.role,
+      content: message.content,
+    }));
     setMessages((current) => [...current, { id: `user-${Date.now()}`, role: "user", content: body }]);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 250));
-      setMessages((current) => [...current, { id: `assistant-${Date.now()}`, role: "assistant", content: buildDemoReply(body) }]);
+      if (!isSignedIn) {
+        throw new Error("Unauthenticated mobile Saada request");
+      }
+      await saveUserMessage({ content: body });
+      const response = await askSaada({
+        message: body,
+        history,
+        source: "mobile",
+      });
+      setMessages((current) => [...current, { id: `assistant-${Date.now()}`, role: "assistant", content: response || safeFailureReply("") }]);
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : locale === "sw" ? "Haki haikujibu." : "Haki did not respond.");
+      const reply = safeFailureReply(caught);
+      setMessages((current) => [...current, { id: `assistant-safe-${Date.now()}`, role: "assistant", content: reply }]);
+      setError(locale === "sw" ? "Saada haikujibu kikamilifu. Tumia njia salama hapo juu." : "Saada could not complete the response. Use the safe next step above.");
     } finally {
       setPending(false);
     }
@@ -185,7 +209,7 @@ export default function SaraScreen() {
         <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Go back"} onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={26} color={colors.burgundy} />
         </Pressable>
-        <Text style={styles.headerTitle}>{locale === "sw" ? "Uliza Haki" : "Ask Haki"}</Text>
+        <Text style={styles.headerTitle}>{locale === "sw" ? "Uliza Saada" : "Ask Saada"}</Text>
         <View style={styles.headerActions}>
           <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Futa historia" : "Clear history"} onPress={clearHistory}>
             <Ionicons name="trash-outline" size={22} color={colors.burgundy} />
@@ -196,13 +220,41 @@ export default function SaraScreen() {
 
       <View style={styles.hero}>
         <View style={styles.avatar}><Ionicons name="sparkles-outline" size={28} color={colors.surface} /></View>
-        <Text style={styles.title}>{locale === "sw" ? "Uliza Haki" : "Ask Haki"}</Text>
+        <Text style={styles.title}>{locale === "sw" ? "Uliza Saada" : "Ask Saada"}</Text>
         <Text style={styles.body}>
           {locale === "sw"
             ? "Pata maelezo rahisi ya haki zako, hatua zinazofuata, na njia salama ya kuunganishwa na msaada."
             : "Get simple rights guidance, next steps, and a safe path to verified support."}
         </Text>
       </View>
+
+      <Pressable
+        accessibilityRole="checkbox"
+        accessibilityState={{ checked: consentAccepted }}
+        style={[styles.consentCard, consentAccepted && styles.consentCardAccepted]}
+        onPress={() => setConsentAccepted((current) => !current)}
+      >
+        <Ionicons
+          name={consentAccepted ? "checkmark-circle" : "ellipse-outline"}
+          size={22}
+          color={consentAccepted ? colors.teal : colors.burgundy}
+        />
+        <Text style={styles.consentText}>
+          {locale === "sw"
+            ? "Ninaelewa Saada hutoa taarifa za jumla tu. Kwa hatari ya haraka au ushauri rasmi, niwasiliane na paralegal, wakili, au huduma ya dharura."
+            : "I understand Saada gives general information only. For immediate danger or formal advice, I should contact a paralegal, lawyer, or emergency service."}
+        </Text>
+      </Pressable>
+
+      {!isSignedIn ? (
+        <Pressable style={styles.signInNotice} onPress={() => router.push("/sign-in")}>
+          <Ionicons name="lock-closed-outline" size={18} color={colors.burgundy} />
+          <Text style={styles.signInNoticeText}>
+            {locale === "sw" ? "Ingia ili Saada itumie mfumo salama wa LSF." : "Sign in so Saada can use the secure LSF backend."}
+          </Text>
+          <Ionicons name="chevron-forward" size={18} color={colors.burgundy} />
+        </Pressable>
+      ) : null}
 
       <View style={styles.promptRow}>
         {quickPrompts[locale].map((prompt) => (
@@ -229,7 +281,7 @@ export default function SaraScreen() {
           onChangeText={setInput}
           multiline
           maxLength={1200}
-          placeholder={locale === "sw" ? "Andika swali lako..." : "Write your question..."}
+          placeholder={locale === "sw" ? "Andika swali lako kwa Saada..." : "Ask Saada your question..."}
           placeholderTextColor={colors.inkMuted}
           style={styles.input}
         />
@@ -250,6 +302,11 @@ const styles = StyleSheet.create({
   title: { fontFamily: type.bold, color: colors.surface, fontSize: 28 },
   body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21, textAlign: "center" },
   locked: { marginTop: spacing.xxl, alignItems: "center", gap: spacing.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.xl },
+  consentCard: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm, marginTop: spacing.md, borderRadius: radius.md, borderWidth: 1, borderColor: "#E8B8CC", backgroundColor: "#FFF7FA", padding: spacing.md },
+  consentCardAccepted: { borderColor: colors.teal, backgroundColor: colors.tealSoft },
+  consentText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
+  signInNotice: { flexDirection: "row", alignItems: "center", gap: spacing.sm, marginTop: spacing.md, borderRadius: radius.md, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, padding: spacing.md },
+  signInNoticeText: { flex: 1, fontFamily: type.bold, color: colors.burgundy, fontSize: 12, lineHeight: 17 },
   promptRow: { marginTop: spacing.xl, gap: spacing.sm },
   prompt: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.md },
   promptText: { fontFamily: type.medium, color: colors.charcoal, fontSize: 13, lineHeight: 19 },

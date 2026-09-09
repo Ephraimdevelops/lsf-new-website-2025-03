@@ -55,8 +55,8 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Documents | Partial/connected | Upload, case docs, generated letters, and library exist. Needs stricter consent screens, retention policy, file review operations, and malware/content scanning plan. |
 | Document checker | Practical prototype | Pre-signing checklist and explicit attach-to-case consent exist. AI document analysis is not production governed yet. |
 | Demand-letter builder | Good MVP | Offline draft/save/share/attach exists. Needs more templates, Swahili legal copy review, export-to-PDF, and human-review prompts. |
-| Saada AI | Partial | Web Convex action exists with RAG and guardrails. Mobile assistant is not fully unified to governed backend tooling yet. Public name must stay Saada. |
-| AI agentic tools | Not ready | No production-safe tool execution loop with user confirmation, policy gate, audit trail, and rollback. |
+| Saada AI | Partial/improved | Web and mobile now call the governed Convex action with source labels. The action has kill-switch, budget cap, emergency keyword bypass, RAG confidence warning, paralegal lookup tooling, and risk-event logging. Still needs case-linked sessions, staff disposition workflow, legal-content evals, and production model monitoring. |
+| AI agentic tools | Early governance | Saada now records policy/risk events and paralegal-tool routing. Full production-safe tool execution with user confirmation, policy gate, audit disposition, and rollback is not ready. |
 | Safeguarding/GBV | Partial | Safety plan/emergency concepts exist. Needs restricted safeguarding workspace, critical escalation flow, safe language, and partner protocols. |
 | Offline/low-data | Partial | Pending queue exists for selected case actions. Needs broader offline read cache, sync status, duplicate prevention across more flows, and field testing. |
 | Notifications | Partial | Safe notification translation and push delivery records exist. Expo Go warns about notification limits; production needs development build/EAS build QA. |
@@ -71,8 +71,8 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 4. Build guest-to-account claim flow for intake drafts and document/letter attachments.
 5. Add final retention purge/export policy after LSF legal approval.
 6. Add donor-safe reporting snapshots and exports.
-7. Unify mobile Saada to the governed Convex AI backend.
-8. Add AI risk assessment records, consent gates, escalation, and audit events.
+7. Add case-linked Saada sessions and staff disposition workflow for AI risk events.
+8. Add legal-content evaluation sets, safer answer templates, and human-escalation routing for risky AI sessions.
 9. Complete appointment booking from paralegal/service profile through request, confirmation, reschedule, cancel, complete/no-show.
 10. Add beneficiary-facing matching review states so restricted recommendations explain safe next steps without exposing unsafe destinations.
 11. Complete donor-safe reporting dashboard and monthly snapshot generation.
@@ -85,7 +85,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Clerk Native Applications disabled | Real mobile login will throw `Native API is disabled`. | In Clerk Dashboard, enable Native Applications for the active instance. |
 | Live key was pasted in chat | Secret key exposure risk. | Rotate `CLERK_SECRET_KEY` in Clerk before production. Publishable key can remain public, secret key cannot. |
 | No verified seed data guarantee | Reduced | Run `npx convex run hakiYanguSeed:seedMobileDirectory` and `npx convex run hakiYanguSeed:seedJusticeServices` while signed in as admin/staff to populate verified QA records. Replace seed records with live verified provider data before production. |
-| Saada mobile not fully governed | AI cannot be presented as production legal support without controls. | Route mobile assistant through Convex AI action with policy/risk/audit. |
+| Saada mobile not fully governed | Reduced | Mobile now routes through the governed Convex AI action and records risk events, but case-linked AI sessions, staff disposition, and legal-content evals remain required. |
 | No app-store build QA | Expo Go is not a production runtime and notifications are limited. | Create EAS development build, then TestFlight/internal Android build. |
 
 ## Completion Estimate
@@ -96,8 +96,8 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Real beneficiary mobile MVP | 50% |
 | Backend case-management foundation | 75% |
 | Website/admin integration | 78% |
-| AI governance | 35% |
+| AI governance | 43% |
 | App-store readiness | 30% |
-| Donor-ready platform credibility | 70% |
+| Donor-ready platform credibility | 71% |
 
-Overall product completion: about 70%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, and early partner SLA analytics, not as a finished national-scale justice platform yet.
+Overall product completion: about 71%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, and early partner SLA analytics, not as a finished national-scale justice platform yet.

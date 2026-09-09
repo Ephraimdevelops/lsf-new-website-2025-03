@@ -165,6 +165,14 @@ export const getAnalytics = query({
     }
 });
 
+export const getRiskEvents = query({
+    args: {},
+    handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+        return await ctx.db.query("saada_risk_events").withIndex("by_created").order("desc").take(50);
+    },
+});
+
 // Submit feedback on a message
 export const submitFeedback = mutation({
     args: {

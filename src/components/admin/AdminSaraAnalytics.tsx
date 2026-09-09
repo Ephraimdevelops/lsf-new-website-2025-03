@@ -2,12 +2,13 @@ import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
-import { Bot, Users, MessageSquare, Zap, Clock, Activity, ThumbsUp, ThumbsDown, DollarSign } from "lucide-react";
+import { Bot, Users, MessageSquare, Zap, Clock, Activity, ThumbsUp, DollarSign, ShieldAlert } from "lucide-react";
 
 import OpsDashboard from './OpsDashboard';
 
 const AdminSaraAnalytics = () => {
     const analytics = useQuery(api.sara_chat.getAnalytics);
+    const riskEvents = useQuery(api.sara_chat.getRiskEvents);
 
     if (!analytics) {
         return (
@@ -110,6 +111,52 @@ const AdminSaraAnalytics = () => {
                     </CardContent>
                 </Card>
             </div>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <ShieldAlert className="h-5 w-5 text-primary" />
+                        Saada Governance Events
+                    </CardTitle>
+                    <CardDescription>
+                        Latest policy blocks, emergency keyword bypasses, low-confidence retrievals, and tool-routing events.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    {riskEvents === undefined ? (
+                        <p className="text-sm text-muted-foreground">Loading risk events...</p>
+                    ) : riskEvents.length === 0 ? (
+                        <p className="text-sm text-muted-foreground">No governance events recorded yet.</p>
+                    ) : (
+                        <div className="overflow-hidden rounded-xl border">
+                            <table className="w-full text-left text-sm">
+                                <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+                                    <tr>
+                                        <th className="px-4 py-3">Event</th>
+                                        <th className="px-4 py-3">Source</th>
+                                        <th className="px-4 py-3">Preview</th>
+                                        <th className="px-4 py-3">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y">
+                                    {riskEvents.map((event) => (
+                                        <tr key={event._id}>
+                                            <td className="px-4 py-3 font-semibold text-gray-900">
+                                                {event.eventType.replaceAll("_", " ")}
+                                            </td>
+                                            <td className="px-4 py-3 text-gray-600">{event.source}</td>
+                                            <td className="max-w-md px-4 py-3 text-gray-600">{event.messagePreview}</td>
+                                            <td className="px-4 py-3 text-gray-500">
+                                                {new Date(event.createdAt).toLocaleString()}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </CardContent>
+            </Card>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                 {/* Tool Usage Chart */}

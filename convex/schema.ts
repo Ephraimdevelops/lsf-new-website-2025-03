@@ -923,6 +923,24 @@ export default defineSchema({
   }).index("by_rating", ["rating"])
     .index("by_timestamp", ["timestamp"]),
 
+  // Saada AI risk events for safety, governance, and donor audit review.
+  saada_risk_events: defineTable({
+    userId: v.string(),
+    eventType: v.union(
+      v.literal("emergency_keyword"),
+      v.literal("low_confidence"),
+      v.literal("tool_routing"),
+      v.literal("policy_block"),
+      v.literal("normal_response"),
+    ),
+    source: v.union(v.literal("web"), v.literal("mobile"), v.literal("unknown")),
+    messagePreview: v.string(),
+    metadata: v.optional(v.any()),
+    createdAt: v.number(),
+  }).index("by_user", ["userId"])
+    .index("by_event_type", ["eventType"])
+    .index("by_created", ["createdAt"]),
+
   // SARA Configuration (System Prompt, etc.)
   sara_config: defineTable({
     key: v.string(), // e.g. 'system_prompt'

@@ -541,6 +541,42 @@ test("mobile prototype review mode exposes mock screen navigation without weaken
   assert.match(phaseNote, /does not replace real device QA/i);
 });
 
+test("mobile Saada uses governed Convex AI with risk events and consent", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const saraActions = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
+  const sara = readFileSync(new URL("../convex/sara.ts", import.meta.url), "utf8");
+  const saraChat = readFileSync(new URL("../convex/sara_chat.ts", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+  const mobileSara = readFileSync(new URL("../mobile/app/sara.tsx", import.meta.url), "utf8");
+  const adminAnalytics = readFileSync(new URL("../src/components/admin/AdminSaraAnalytics.tsx", import.meta.url), "utf8");
+  const webSara = readFileSync(new URL("../src/pages/SaraAI.tsx", import.meta.url), "utf8");
+  const phaseNote = readFileSync(new URL("../docs/platform-review/72-mobile-saada-governance.md", import.meta.url), "utf8");
+
+  assert.match(schema, /saada_risk_events:\s*defineTable/);
+  assert.match(schema, /eventType:\s*v\.union\(/);
+  assert.match(schema, /emergency_keyword/);
+  assert.match(schema, /low_confidence/);
+  assert.match(schema, /tool_routing/);
+  assert.match(sara, /recordRiskEvent/);
+  assert.match(saraChat, /getRiskEvents/);
+  assert.match(saraActions, /source:\s*v\.optional\(v\.union/);
+  assert.match(saraActions, /internal\.sara\.recordRiskEvent/);
+  assert.match(saraActions, /eventType:\s*"emergency_keyword"/);
+  assert.match(saraActions, /eventType:\s*"low_confidence"/);
+  assert.match(saraActions, /eventType:\s*"policy_block"/);
+  assert.match(saraActions, /eventType:\s*"tool_routing"/);
+  assert.match(security, /\["sara_chat\.getRiskEvents",\s*"staff"\]/);
+  assert.match(mobileSara, /useAction\(api\.sara_actions\.ask\)/);
+  assert.match(mobileSara, /useMutation\(api\.sara_chat\.sendMessage\)/);
+  assert.match(mobileSara, /source:\s*"mobile"/);
+  assert.match(mobileSara, /consentAccepted/);
+  assert.doesNotMatch(mobileSara, /buildDemoReply/);
+  assert.match(adminAnalytics, /Saada Governance Events/);
+  assert.match(adminAnalytics, /api\.sara_chat\.getRiskEvents/);
+  assert.match(webSara, /source:\s*"web"/);
+  assert.match(phaseNote, /no longer generates local demo answers/i);
+});
+
 test("referral graph connects staff creation, provider response, and beneficiary visibility", () => {
   const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
   const referrals = readFileSync(new URL("../convex/referrals.ts", import.meta.url), "utf8");

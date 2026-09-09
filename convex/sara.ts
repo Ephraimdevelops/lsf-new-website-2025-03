@@ -141,6 +141,32 @@ export const getChunks = internalQuery({
     },
 });
 
+export const recordRiskEvent = internalMutation({
+    args: {
+        userId: v.string(),
+        eventType: v.union(
+            v.literal("emergency_keyword"),
+            v.literal("low_confidence"),
+            v.literal("tool_routing"),
+            v.literal("policy_block"),
+            v.literal("normal_response"),
+        ),
+        source: v.union(v.literal("web"), v.literal("mobile"), v.literal("unknown")),
+        messagePreview: v.string(),
+        metadata: v.optional(v.any()),
+    },
+    handler: async (ctx, args) => {
+        await ctx.db.insert("saada_risk_events", {
+            userId: args.userId,
+            eventType: args.eventType,
+            source: args.source,
+            messagePreview: args.messagePreview.slice(0, 240),
+            metadata: args.metadata,
+            createdAt: Date.now(),
+        });
+    },
+});
+
 // ==========================================
 // INTERNAL QUERIES FOR SECURITY GATES
 // ==========================================
