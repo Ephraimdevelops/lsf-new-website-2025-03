@@ -139,6 +139,10 @@ const ParalegalDashboard = () => {
   const [appointmentLocation, setAppointmentLocation] = useState("");
   const [appointmentStatusNotes, setAppointmentStatusNotes] = useState<Record<string, string>>({});
   const [referralNotesById, setReferralNotesById] = useState<Record<string, string>>({});
+  const [onwardServiceByReferralId, setOnwardServiceByReferralId] = useState<Record<string, string>>({});
+  const [onwardReasonByReferralId, setOnwardReasonByReferralId] = useState<Record<string, string>>({});
+  const [onwardInfoByReferralId, setOnwardInfoByReferralId] = useState<Record<string, string>>({});
+  const [onwardConsentByReferralId, setOnwardConsentByReferralId] = useState<Record<string, string>>({});
   const [outcomeCode, setOutcomeCode] = useState(outcomeOptions[0].value);
   const [outcomeSummary, setOutcomeSummary] = useState("");
   const [pending, setPending] = useState(false);
@@ -148,6 +152,7 @@ const ParalegalDashboard = () => {
   const inbox = useQuery(api.caseManagement.assignmentInbox);
   const cases = useQuery(api.caseManagement.myCases);
   const referralInbox = useQuery(api.referrals.myDestinationQueue, {});
+  const publicServices = useQuery(api.justiceServices.listPublicServices, {});
   const caseDetail = useQuery(api.caseManagement.getCase, selectedCaseId ? { caseId: selectedCaseId } : "skip");
   const messages = useQuery(api.caseManagement.listMessages, selectedCaseId ? { caseId: selectedCaseId } : "skip");
   const documents = useQuery(api.caseManagement.listDocuments, selectedCaseId ? { caseId: selectedCaseId } : "skip");
@@ -164,6 +169,7 @@ const ParalegalDashboard = () => {
   const updateAppointmentStatus = useMutation(api.caseManagement.updateAppointmentStatus);
   const recordOutcome = useMutation(api.caseManagement.recordOutcome);
   const respondToReferral = useMutation(api.referrals.respondAsDestination);
+  const createOnwardReferral = useMutation(api.referrals.createOnwardReferral);
 
   useEffect(() => {
     if (!selectedCaseId && cases && cases.length > 0 && tab === "cases") {
@@ -307,6 +313,41 @@ const ParalegalDashboard = () => {
     });
   }
 
+  function createOnward(item: NonNullable<typeof referralInbox>[number]) {
+    const destinationServiceId = onwardServiceByReferralId[item.referral._id];
+    const reason = onwardReasonByReferralId[item.referral._id]?.trim();
+    const informationShared = (onwardInfoByReferralId[item.referral._id] || "case summary, referral reason, safe contact preference")
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean);
+    const consentStatement = onwardConsentByReferralId[item.referral._id]?.trim()
+      || "I consent for this provider to refer me onward and share the minimum information listed here so the next service can help.";
+    if (!destinationServiceId || !reason || reason.length < 12) {
+      setNotice({ type: "error", text: "Choose the next service and add an onward referral reason of at least 12 characters." });
+      return;
+    }
+    if (informationShared.length === 0) {
+      setNotice({ type: "error", text: "Record the minimum information shared for the onward referral." });
+      return;
+    }
+    void run(async () => {
+      const result = await createOnwardReferral({
+        parentReferralId: item.referral._id,
+        destinationServiceId: destinationServiceId as Id<"justice_services">,
+        reason,
+        informationShared,
+        consentMethod: "documented_verbal",
+        consentStatement,
+        consentEvidenceNote: `Onward referral consent recorded by ${userName} from provider workspace.`,
+      });
+      setOnwardServiceByReferralId((current) => ({ ...current, [item.referral._id]: "" }));
+      setOnwardReasonByReferralId((current) => ({ ...current, [item.referral._id]: "" }));
+      setOnwardInfoByReferralId((current) => ({ ...current, [item.referral._id]: "" }));
+      setOnwardConsentByReferralId((current) => ({ ...current, [item.referral._id]: "" }));
+      setNotice({ type: "success", text: `${result.publicId} created as an onward referral.` });
+    });
+  }
+
   const paralegal = dashboardData && "paralegal" in dashboardData ? dashboardData.paralegal : null;
   const openAssignments = inbox?.filter((item) => item.case !== null).length ?? 0;
   const openReferrals = referralInbox?.filter((item) => !["declined", "closed"].includes(item.referral.status)).length ?? 0;
@@ -435,6 +476,12 @@ const ParalegalDashboard = () => {
                             : "Not available"}
                         </p>
                       </div>
+                      {item.onwardReferral && (
+                        <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                          <p className="mb-1 font-bold text-neutral-800">Onward referral</p>
+                          <p className="mb-0">{item.onwardReferral.publicId}</p>
+                        </div>
+                      )}
                     </div>
                     <div className="space-y-2">
                       {item.events.slice(-3).map((event) => (
@@ -473,6 +520,44 @@ const ParalegalDashboard = () => {
                       )}
                       {["accepted", "scheduled", "service_delivered", "returned"].includes(item.referral.status) && (
                         <Button disabled={pending} variant="outline" onClick={() => updateReferral(item.referral._id, "closed")}>Close referral</Button>
+                      )}
+                      {["accepted", "scheduled", "service_delivered"].includes(item.referral.status) && !item.onwardReferral && (
+                        <div className="mt-3 rounded-xl border border-primary/15 bg-white p-3">
+                          <p className="mb-2 text-sm font-bold">Refer onward</p>
+                          <select
+                            value={onwardServiceByReferralId[item.referral._id] ?? ""}
+                            onChange={(event) => setOnwardServiceByReferralId((current) => ({ ...current, [item.referral._id]: event.target.value }))}
+                            className="mb-2 h-10 w-full rounded-lg border bg-white px-3 text-sm"
+                          >
+                            <option value="">Choose next service...</option>
+                            {publicServices?.filter((service) => service._id !== item.referral.destinationServiceId && service.referralCapability).map((service) => (
+                              <option key={String(service._id)} value={String(service._id)}>
+                                {service.name} · {service.district}
+                              </option>
+                            ))}
+                          </select>
+                          <Textarea
+                            value={onwardReasonByReferralId[item.referral._id] ?? ""}
+                            onChange={(event) => setOnwardReasonByReferralId((current) => ({ ...current, [item.referral._id]: event.target.value }))}
+                            placeholder="Why does this beneficiary need onward referral?"
+                            className="mb-2 min-h-20 bg-white text-sm"
+                          />
+                          <Textarea
+                            value={onwardInfoByReferralId[item.referral._id] ?? ""}
+                            onChange={(event) => setOnwardInfoByReferralId((current) => ({ ...current, [item.referral._id]: event.target.value }))}
+                            placeholder="Comma-separated minimum information shared"
+                            className="mb-2 min-h-16 bg-white text-sm"
+                          />
+                          <Textarea
+                            value={onwardConsentByReferralId[item.referral._id] ?? ""}
+                            onChange={(event) => setOnwardConsentByReferralId((current) => ({ ...current, [item.referral._id]: event.target.value }))}
+                            placeholder="Consent statement. Leave blank for the standard onward-consent statement."
+                            className="mb-2 min-h-16 bg-white text-sm"
+                          />
+                          <Button disabled={pending || publicServices === undefined} variant="outline" onClick={() => createOnward(item)} className="w-full">
+                            Create onward referral
+                          </Button>
+                        </div>
                       )}
                     </div>
                   </div>

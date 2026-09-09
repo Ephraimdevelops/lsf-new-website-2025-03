@@ -117,6 +117,8 @@ export const listForCase = query({
       destinationService: await ctx.db.get(referral.destinationServiceId),
       destinationUser: referral.destinationUserId ? await ctx.db.get(referral.destinationUserId) : null,
       sourceService: referral.sourceServiceId ? await ctx.db.get(referral.sourceServiceId) : null,
+      parentReferral: referral.parentReferralId ? await ctx.db.get(referral.parentReferralId) : null,
+      onwardReferral: referral.onwardReferralId ? await ctx.db.get(referral.onwardReferralId) : null,
       consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
       events: await ctx.db
         .query("referral_events")
@@ -141,6 +143,8 @@ export const staffQueue = query({
         beneficiary: await ctx.db.get(referral.beneficiaryId),
         destinationService: await ctx.db.get(referral.destinationServiceId),
         destinationUser: referral.destinationUserId ? await ctx.db.get(referral.destinationUserId) : null,
+        parentReferral: referral.parentReferralId ? await ctx.db.get(referral.parentReferralId) : null,
+        onwardReferral: referral.onwardReferralId ? await ctx.db.get(referral.onwardReferralId) : null,
         consent,
         consentEvidenceUrl: consent?.evidenceStorageId ? await ctx.storage.getUrl(consent.evidenceStorageId) : null,
       };
@@ -189,6 +193,7 @@ export const myDestinationQueue = query({
       referral,
       case: await ctx.db.get(referral.caseId),
       destinationService: await ctx.db.get(referral.destinationServiceId),
+      onwardReferral: referral.onwardReferralId ? await ctx.db.get(referral.onwardReferralId) : null,
       consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
       events: await ctx.db
         .query("referral_events")
@@ -360,6 +365,7 @@ export const createForCase = mutation({
       sourceServiceId: args.sourceServiceId,
       destinationServiceId: args.destinationServiceId,
       destinationUserId: args.destinationUserId,
+      parentReferralId: undefined,
       createdBy: user._id,
       beneficiaryId: caseRecord.beneficiaryId,
       reason: normalize(args.reason, "Referral reason", 2000),
@@ -424,6 +430,159 @@ export const createForCase = mutation({
       changedFieldNames: ["status", "informationShared", "consentCollectedAt", "consentId"],
     });
     return { referralId, publicId, consentId: consentRecordId };
+  },
+});
+
+export const createOnwardReferral = mutation({
+  args: {
+    parentReferralId: v.id("referrals"),
+    destinationServiceId: v.id("justice_services"),
+    destinationUserId: v.optional(v.id("users")),
+    reason: v.string(),
+    informationShared: v.array(v.string()),
+    consentMethod: v.optional(consentMethod),
+    consentStatement: v.optional(v.string()),
+    consentEvidenceNote: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const actor = await requireAnyRole(ctx, ["admin", "staff", "supervisor", "paralegal", "provider_staff"]);
+    const roles = new Set([actor.user.role, ...actor.assignments.map((assignment) => assignment.role)]);
+    const isStaff = roles.has("admin") || roles.has("staff") || roles.has("supervisor");
+    const parent = await ctx.db.get(args.parentReferralId);
+    if (!parent) throw new ConvexError("Parent referral not found.");
+    if (!isStaff && parent.destinationUserId !== actor.user._id) {
+      throw new ConvexError("Only the assigned destination provider can create an onward referral.");
+    }
+    if (!["accepted", "scheduled", "service_delivered"].includes(parent.status)) {
+      throw new ConvexError("Only accepted, scheduled, or delivered referrals can be referred onward.");
+    }
+    if (parent.onwardReferralId) {
+      throw new ConvexError("This referral already has an onward referral.");
+    }
+    const destination = await ctx.db.get(args.destinationServiceId);
+    if (!destination || !destination.active || destination.verificationStatus !== "verified") {
+      throw new ConvexError("Onward destination must be an active verified service.");
+    }
+    if (destination.visibility === "confidential") {
+      throw new ConvexError("Confidential services require a safeguarding-specific referral workflow.");
+    }
+    if (!destination.referralCapability) {
+      throw new ConvexError("Destination is not configured to receive referrals.");
+    }
+    if (args.destinationUserId) {
+      const destinationUser = await ctx.db.get(args.destinationUserId);
+      if (!destinationUser || destinationUser.isDeleted) {
+        throw new ConvexError("Destination provider account is unavailable.");
+      }
+      const destinationRoles = await getActiveRoles(ctx, destinationUser._id);
+      if (!destinationRoles.includes("paralegal") && !destinationRoles.includes("provider_staff")) {
+        throw new ConvexError("Destination user must be an active provider or paralegal.");
+      }
+    }
+    const caseRecord = await ctx.db.get(parent.caseId);
+    if (!caseRecord) throw new ConvexError("Linked case not found.");
+    const sourceRequest = await ctx.db.get(caseRecord.sourceRequestId);
+    const now = Date.now();
+    const normalizedInformationShared = args.informationShared.map((item) => normalize(item, "Information shared", 160));
+    const consentRecordId = await ctx.db.insert("consents", {
+      userId: parent.beneficiaryId,
+      type: "referral",
+      version: "2026-09-referral-onward-consent-v1",
+      granted: true,
+      locale: sourceRequest?.locale ?? "en",
+      method: args.consentMethod ?? "documented_verbal",
+      statement: normalize(
+        args.consentStatement ?? "Beneficiary consented to onward referral and minimum necessary information sharing.",
+        "Consent statement",
+        1200,
+      ),
+      evidenceNote: args.consentEvidenceNote?.trim().slice(0, 1200),
+      informationShared: normalizedInformationShared,
+      relatedCaseId: parent.caseId,
+      destinationServiceId: args.destinationServiceId,
+      recordedBy: actor.user._id,
+      recordedAt: now,
+      retentionStatus: "active",
+      reviewStatus: "accepted",
+    });
+    const referralId = await ctx.db.insert("referrals", {
+      publicId: "pending",
+      caseId: parent.caseId,
+      requestId: parent.requestId,
+      sourceServiceId: parent.destinationServiceId,
+      destinationServiceId: args.destinationServiceId,
+      destinationUserId: args.destinationUserId,
+      parentReferralId: parent._id,
+      createdBy: actor.user._id,
+      beneficiaryId: parent.beneficiaryId,
+      reason: normalize(args.reason, "Onward referral reason", 2000),
+      informationShared: normalizedInformationShared,
+      consentId: consentRecordId,
+      consentCollectedAt: now,
+      status: "created",
+      createdAt: now,
+      updatedAt: now,
+    });
+    const publicId = publicReference("HYR", referralId, now);
+    await ctx.db.patch(consentRecordId, { relatedReferralId: referralId });
+    await ctx.db.patch(referralId, { publicId });
+    await ctx.db.patch(parent._id, {
+      status: "referred_onward",
+      onwardReferralId: referralId,
+      updatedAt: now,
+    });
+    await addReferralEvent(ctx, {
+      referralId: parent._id,
+      caseId: parent.caseId,
+      actorId: actor.user._id,
+      type: "referral_referred_onward",
+      publicLabelKey: "case.timeline.referral.referred_onward",
+      note: args.reason.trim().slice(0, 1200),
+      metadata: { onwardReferralId: referralId, destinationServiceId: args.destinationServiceId },
+    });
+    await addReferralEvent(ctx, {
+      referralId,
+      caseId: parent.caseId,
+      actorId: actor.user._id,
+      type: "referral_created",
+      publicLabelKey: "case.timeline.referralCreated",
+      metadata: { parentReferralId: parent._id, sourceServiceId: parent.destinationServiceId, destinationServiceId: args.destinationServiceId, consentId: consentRecordId },
+    });
+    await ctx.db.insert("case_events", {
+      caseId: parent.caseId,
+      actorId: actor.user._id,
+      type: "referral_referred_onward",
+      audience: "all",
+      publicLabelKey: "case.timeline.referral.referred_onward",
+      metadata: { parentReferralId: parent._id, onwardReferralId: referralId, destinationServiceId: args.destinationServiceId, consentId: consentRecordId },
+      occurredAt: now,
+    });
+    await createNotification(ctx, {
+      userId: parent.beneficiaryId,
+      type: "referral.updated",
+      titleKey: "notifications.update.title",
+      bodyKey: "notifications.referralCreated.body",
+      resourceType: "referral",
+      resourceId: referralId,
+    });
+    if (args.destinationUserId) {
+      await createNotification(ctx, {
+        userId: args.destinationUserId,
+        type: "referral.created",
+        titleKey: "notifications.update.title",
+        bodyKey: "notifications.referralCreated.body",
+        resourceType: "referral",
+        resourceId: referralId,
+      });
+    }
+    await writeAudit(ctx, actor.user._id, "referral.referred_onward", "referral", parent._id, {
+      caseId: parent.caseId,
+      changedFieldNames: ["status", "onwardReferralId"],
+      from: parent.status,
+      to: "referred_onward",
+      onwardReferralId: referralId,
+    });
+    return { referralId, publicId, parentReferralId: parent._id, consentId: consentRecordId };
   },
 });
 

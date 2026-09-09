@@ -170,6 +170,7 @@ const publicFunctions = new Map([
   ["quickLinks.trackClick", "public-counter"],
   ["quickLinks.update", "admin"],
   ["referrals.createForCase", "case-worker"],
+  ["referrals.createOnwardReferral", "case-worker-or-assigned-provider"],
   ["referrals.generateConsentUploadUrl", "case-worker"],
   ["referrals.listForCase", "case-access"],
   ["referrals.myDestinationQueue", "service-provider"],
@@ -245,6 +246,10 @@ const gatePatterns = {
   "staff-action": [/requireAdminOrStaffAction\(ctx\)/],
   "case-access": [/requireCaseAccess\(ctx,/],
   "case-worker": [/requireCaseWorker\(ctx,/],
+  "case-worker-or-assigned-provider": [
+    /requireAnyRole\(ctx,\s*\["admin",\s*"staff",\s*"supervisor",\s*"paralegal",\s*"provider_staff"\]\)/,
+    /parent\.destinationUserId !== actor\.user\._id/,
+  ],
   "service-provider": [/requireAnyRole\(ctx,\s*\["paralegal",\s*"provider_staff"\]\)/],
 };
 

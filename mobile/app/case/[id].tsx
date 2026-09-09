@@ -45,6 +45,7 @@ const eventLabels: Record<string, { sw: string; en: string }> = {
   referral_declined: { sw: "Rufaa imekataliwa", en: "The referral was declined" },
   referral_scheduled: { sw: "Huduma ya rufaa imepangwa", en: "The referral service was scheduled" },
   referral_service_delivered: { sw: "Huduma ya rufaa imetolewa", en: "The referral service was delivered" },
+  referral_referred_onward: { sw: "Rufaa imeelekezwa huduma nyingine", en: "The referral was sent onward" },
   referral_closed: { sw: "Rufaa imefungwa", en: "The referral was closed" },
   referral_returned: { sw: "Rufaa imerudishwa kwa LSF", en: "The referral was returned to LSF" },
   referral_escalated: { sw: "Rufaa imepandishwa kwa hatua ya juu", en: "The referral was escalated" },
@@ -653,6 +654,26 @@ export default function CaseDetailScreen() {
                 <Text style={styles.referralStatus}>{referral.status.replaceAll("_", " ")}</Text>
               </View>
               <Text style={styles.referralTitle}>{referral.destinationService?.name ?? (locale === "sw" ? "Huduma ya rufaa" : "Referral service")}</Text>
+              {referral.parentReferral ? (
+                <View style={styles.chainPanel}>
+                  <Ionicons name="git-branch-outline" size={16} color={colors.burgundy} />
+                  <Text style={styles.chainText}>
+                    {locale === "sw"
+                      ? `Imeundwa kutoka rufaa ${referral.parentReferral.publicId}`
+                      : `Created from referral ${referral.parentReferral.publicId}`}
+                  </Text>
+                </View>
+              ) : null}
+              {referral.onwardReferral ? (
+                <View style={styles.chainPanel}>
+                  <Ionicons name="git-branch-outline" size={16} color={colors.burgundy} />
+                  <Text style={styles.chainText}>
+                    {locale === "sw"
+                      ? `Imeendelea kwenda rufaa ${referral.onwardReferral.publicId}`
+                      : `Continued to referral ${referral.onwardReferral.publicId}`}
+                  </Text>
+                </View>
+              ) : null}
               <View style={styles.metaRow}>
                 <Ionicons name="location-outline" size={17} color={colors.burgundy} />
                 <Text style={styles.metaText}>
@@ -895,6 +916,8 @@ const styles = StyleSheet.create({
   referralId: { fontFamily: type.bold, color: colors.burgundy, fontSize: 12 },
   referralStatus: { fontFamily: type.medium, color: colors.success, backgroundColor: "#E7F4ED", borderRadius: radius.pill, paddingHorizontal: 9, paddingVertical: 5, fontSize: 11, textTransform: "capitalize" },
   referralTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 18 },
+  chainPanel: { flexDirection: "row", alignItems: "center", gap: spacing.sm, borderRadius: radius.sm, borderWidth: 1, borderColor: colors.line, backgroundColor: "#FBF7F8", padding: spacing.sm },
+  chainText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
   referralSection: { gap: spacing.xs },
   referralText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20 },
   sharedItem: { flexDirection: "row", alignItems: "center", gap: spacing.sm },

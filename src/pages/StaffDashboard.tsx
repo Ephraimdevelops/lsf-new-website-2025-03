@@ -964,9 +964,21 @@ const StaffDashboard = () => {
                         <p className="mb-0">
                           {item.destinationService
                             ? `${item.destinationService.district}, ${item.destinationService.region}`
-                            : "Not available"}
+                          : "Not available"}
                         </p>
                       </div>
+                      {item.parentReferral && (
+                        <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                          <p className="mb-1 font-bold text-neutral-800">Parent referral</p>
+                          <p className="mb-0">{item.parentReferral.publicId}</p>
+                        </div>
+                      )}
+                      {item.onwardReferral && (
+                        <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                          <p className="mb-1 font-bold text-neutral-800">Onward referral</p>
+                          <p className="mb-0">{item.onwardReferral.publicId}</p>
+                        </div>
+                      )}
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
                         <p className="mb-1 font-bold text-neutral-800">Information shared</p>
                         <p className="mb-0">

@@ -29,6 +29,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Staff referral creation | New partial | Staff can create a referral from a selected case by choosing a verified referral-capable service, recording reason, and listing minimum information shared. Signed consent artifact capture remains required. |
 | Provider referral inbox | New partial | Provider/paralegal dashboard now includes a referral inbox for destination-assigned referrals with accept, decline, return, schedule, deliver, and close actions. |
 | Referral consent evidence | Improved partial | Referral creation now records consent method, statement, evidence note, destination service, staff recorder, minimum shared information, optional signed evidence file metadata, retention date/status, a staff evidence review queue, and an hourly retention-expiry flag. Final purge/export legal policy remains required. |
+| Onward referral chaining | New partial | Assigned providers can create an onward referral from accepted/scheduled/delivered referrals, with a child referral, parent referral status update, consent record, audit event, notifications, staff visibility, and beneficiary mobile chain labels. |
 | Contract regression suite | Passing | `npm run test:haki-contracts` passes 28/28. |
 | Mobile typecheck | Passing | `cd mobile && npm run typecheck` passes. |
 | Root build/security | Passing | `npm run build` and `npm run test:security` pass. |
@@ -46,7 +47,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Needs full staff/provider operational QA. |
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
 | Governed matching engine | Partial | Deterministic public service matching now records `matching_decisions`; referral records now capture downstream handoff state. Still needs richer scoring, staff review UI, safeguarding restrictions, bias/fairness review, and pathway integration. |
-| Referral graph | Partial | Case-to-service referral tables, optional destination provider assignment, event trail, beneficiary case visibility, selected-case staff referral creation, staff queue actions, provider referral response UI, and consent evidence records with signed-file upload, staff review, and retention-expiry flagging exist. Missing final retention purge/export policy, onward referral chaining UI, partner SLA analytics, and deeper destination organization account modeling. |
+| Referral graph | Partial | Case-to-service referral tables, optional destination provider assignment, event trail, beneficiary case visibility, selected-case staff referral creation, staff queue actions, provider referral response UI, consent evidence records with signed-file upload/review/retention flagging, and onward referral chaining now exist. Missing final retention purge/export policy, partner SLA analytics, and deeper destination organization account modeling. |
 | Appointments | Partial/connected | Backend-backed my-appointments list exists. Booking request/confirmation lifecycle needs final UX and staff/provider scheduling workflow. |
 | Documents | Partial/connected | Upload, case docs, generated letters, and library exist. Needs stricter consent screens, retention policy, file review operations, and malware/content scanning plan. |
 | Document checker | Practical prototype | Pre-signing checklist and explicit attach-to-case consent exist. AI document analysis is not production governed yet. |
@@ -66,7 +67,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 3. Seed development Convex with real-looking but non-sensitive LSF service providers, paralegals, legal clinics, guides, sample cases, and appointments.
 4. Build guest-to-account claim flow for intake drafts and document/letter attachments.
 5. Add final retention purge/export policy after LSF legal approval.
-6. Add onward-referral chaining UI and destination organization account modeling.
+6. Add destination organization account modeling.
 7. Add matching-decision review screens and safeguarding restrictions.
 8. Unify mobile Saada to the governed Convex AI backend.
 9. Add AI risk assessment records, consent gates, escalation, and audit events.
@@ -90,10 +91,10 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | --- | --- |
 | Visual mobile presentation | 75% |
 | Real beneficiary mobile MVP | 50% |
-| Backend case-management foundation | 72% |
-| Website/admin integration | 74% |
+| Backend case-management foundation | 74% |
+| Website/admin integration | 75% |
 | AI governance | 35% |
 | App-store readiness | 30% |
-| Donor-ready platform credibility | 66% |
+| Donor-ready platform credibility | 67% |
 
-Overall product completion: about 66%. This can be shown as an advanced working prototype plus real backend foundation, service directory, and early referral graph with staff/provider handoff workflow and signed-file consent evidence support, not as a finished national-scale justice platform yet.
+Overall product completion: about 67%. This can be shown as an advanced working prototype plus real backend foundation, service directory, referral graph with staff/provider handoff, signed-file consent evidence support, and onward referral chaining, not as a finished national-scale justice platform yet.
