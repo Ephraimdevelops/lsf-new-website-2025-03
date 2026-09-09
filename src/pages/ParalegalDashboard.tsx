@@ -166,6 +166,7 @@ const ParalegalDashboard = () => {
   const sendCaseMessage = useMutation(api.caseManagement.sendMessage);
   const reviewDocument = useMutation(api.caseManagement.reviewDocument);
   const scheduleAppointment = useMutation(api.caseManagement.scheduleAppointment);
+  const scheduleAppointmentFromRequest = useMutation(api.caseManagement.scheduleAppointmentFromRequest);
   const updateAppointmentStatus = useMutation(api.caseManagement.updateAppointmentStatus);
   const recordOutcome = useMutation(api.caseManagement.recordOutcome);
   const respondToReferral = useMutation(api.referrals.respondAsDestination);
@@ -261,6 +262,30 @@ const ParalegalDashboard = () => {
     });
   }
 
+  function scheduleFromRequest(requestEventId: Id<"case_events">) {
+    if (!selectedCaseId || !appointmentDate) {
+      setNotice({ type: "error", text: "Choose a future appointment date and time before confirming this request." });
+      return;
+    }
+    const startsAt = new Date(appointmentDate).getTime();
+    if (!Number.isFinite(startsAt) || startsAt <= Date.now()) {
+      setNotice({ type: "error", text: "Appointment must be in the future." });
+      return;
+    }
+    void run(async () => {
+      await scheduleAppointmentFromRequest({
+        caseId: selectedCaseId,
+        requestEventId,
+        startsAt,
+        mode: appointmentMode,
+        location: appointmentLocation.trim() || undefined,
+      });
+      setAppointmentDate("");
+      setAppointmentLocation("");
+      setNotice({ type: "success", text: "Requested appointment confirmed and beneficiary notified." });
+    });
+  }
+
   function changeAppointmentStatus(
     appointmentId: Id<"case_appointments">,
     status: "completed" | "cancelled" | "missed",
@@ -353,6 +378,12 @@ const ParalegalDashboard = () => {
   const openReferrals = referralInbox?.filter((item) => !["declined", "closed"].includes(item.referral.status)).length ?? 0;
   const activeCases = cases?.filter((record) => !["closed", "closed_unresolved"].includes(record.status)).length ?? 0;
   const appointments = caseDetail?.appointments ?? [];
+  const appointmentRequests =
+    caseDetail?.events.filter((event) => {
+      if (event.type !== "appointment_requested") return false;
+      const metadata = event.metadata;
+      return !metadata || typeof metadata !== "object" || !("scheduledAppointmentId" in metadata);
+    }) ?? [];
   const pendingDocuments = documents?.filter((document) => document.status === "pending_review").length ?? 0;
   const userName = paralegal?.fullName ?? access?.user.name ?? user?.fullName ?? "Service provider";
   const roleLabel = access?.roles.includes("provider_staff") ? "Provider staff" : "Community paralegal";
@@ -824,6 +855,25 @@ const ParalegalDashboard = () => {
                   {caseTab === "appointments" && (
                     <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
                       <div className="space-y-3">
+                        {appointmentRequests.length > 0 && (
+                          <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+                            <h3 className="mb-2 text-base">Appointment requests</h3>
+                            <p className="mb-3 text-sm text-neutral-600">
+                              Beneficiary-requested appointments waiting for a confirmed date and time.
+                            </p>
+                            <div className="grid gap-2">
+                              {appointmentRequests.map((event) => (
+                                <div key={event._id} className="rounded-xl border bg-white p-3">
+                                  <p className="mb-1 text-sm font-bold">{eventDetail(event) ?? "Appointment requested"}</p>
+                                  <p className="mb-2 text-xs text-neutral-500">Requested {formatDate(event.occurredAt)}</p>
+                                  <Button disabled={pending} size="sm" onClick={() => scheduleFromRequest(event._id)}>
+                                    Schedule selected time from request
+                                  </Button>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         {appointments.length === 0 && <p className="rounded-xl border p-5 text-sm text-neutral-500">No appointments scheduled for this case.</p>}
                         {appointments.map((appointment) => (
                           <div key={appointment._id} className="rounded-xl border p-4">

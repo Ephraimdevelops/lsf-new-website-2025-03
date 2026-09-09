@@ -207,6 +207,7 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   const caseManagement = readFileSync(new URL("../convex/caseManagement.ts", import.meta.url), "utf8");
   const crons = readFileSync(new URL("../convex/crons.ts", import.meta.url), "utf8");
   const notifications = readFileSync(new URL("../convex/notifications.ts", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
   const staffDashboard = readFileSync(new URL("../src/pages/StaffDashboard.tsx", import.meta.url), "utf8");
   const providerDashboard = readFileSync(new URL("../src/pages/ParalegalDashboard.tsx", import.meta.url), "utf8");
   const mobileCase = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
@@ -216,6 +217,7 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   const mobileNotifications = readFileSync(new URL("../mobile/app/notifications.tsx", import.meta.url), "utf8");
   const phaseNote = readFileSync(new URL("../docs/platform-review/63-appointment-lifecycle-quality.md", import.meta.url), "utf8");
   const bookingBridgeNote = readFileSync(new URL("../docs/platform-review/73-mobile-appointment-booking-bridge.md", import.meta.url), "utf8");
+  const requestConfirmationNote = readFileSync(new URL("../docs/platform-review/74-appointment-request-confirmation.md", import.meta.url), "utf8");
 
   assert.match(schema, /statusNote:\s*v\.optional\(v\.string\(\)\)/);
   assert.match(schema, /statusUpdatedBy:\s*v\.optional\(v\.id\("users"\)\)/);
@@ -223,7 +225,12 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   assert.match(schema, /reminderSentAt:\s*v\.optional\(v\.number\(\)\)/);
   assert.match(schema, /by_status_start/);
   assert.match(caseManagement, /updateAppointmentStatus/);
+  assert.match(caseManagement, /scheduleAppointmentFromRequest/);
+  assert.match(caseManagement, /sourceRequestEventId/);
+  assert.match(caseManagement, /scheduledAppointmentId/);
+  assert.match(caseManagement, /appointment\.created_from_request/);
   assert.match(caseManagement, /Only scheduled appointments can be updated/);
+  assert.match(security, /\["caseManagement\.scheduleAppointmentFromRequest",\s*"case-worker"\]/);
   assert.match(caseManagement, /type:\s*`appointment_\$\{args\.status\}`/);
   assert.match(caseManagement, /type:\s*"appointment\.changed"/);
   assert.match(caseManagement, /writeAudit\(ctx,\s*user\._id,\s*`appointment\.\$\{args\.status\}`/);
@@ -235,9 +242,13 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   assert.match(notifications, /"appointment\.changed"/);
   assert.match(notifications, /"appointment\.reminder"/);
   assert.match(providerDashboard, /changeAppointmentStatus/);
+  assert.match(providerDashboard, /scheduleAppointmentFromRequest/);
+  assert.match(providerDashboard, /Schedule selected time from request/);
   assert.match(providerDashboard, /Complete/);
   assert.match(providerDashboard, /No-show/);
   assert.match(staffDashboard, /Appointment lifecycle/);
+  assert.match(staffDashboard, /Appointment requests awaiting confirmation/);
+  assert.match(staffDashboard, /scheduleRequestedAppointment/);
   assert.match(staffDashboard, /statusUpdatedAt/);
   assert.match(mobileCase, /appointment_completed/);
   assert.match(mobileCase, /appointmentStatusLabels/);
@@ -254,6 +265,7 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   assert.match(phaseNote, /Provider\/staff appointment completion/i);
   assert.match(phaseNote, /within 24 hours/i);
   assert.match(bookingBridgeNote, /real `caseManagement\.requestAppointment` mutation/);
+  assert.match(requestConfirmationNote, /scheduleAppointmentFromRequest/);
 });
 
 test("deactivated Haki Yangu profiles are not silently restored", () => {

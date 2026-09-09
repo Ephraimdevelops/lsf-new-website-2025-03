@@ -276,6 +276,9 @@ const StaffDashboard = () => {
   const [assignmentOverrideReason, setAssignmentOverrideReason] = useState("");
   const [reassignmentOverrideReason, setReassignmentOverrideReason] = useState("");
   const [reviewNotesById, setReviewNotesById] = useState<Record<string, string>>({});
+  const [appointmentDate, setAppointmentDate] = useState("");
+  const [appointmentMode, setAppointmentMode] = useState<"in_person" | "phone" | "remote">("phone");
+  const [appointmentLocation, setAppointmentLocation] = useState("");
   const [referralServiceId, setReferralServiceId] = useState("");
   const [referralDestinationUserId, setReferralDestinationUserId] = useState("");
   const [referralReason, setReferralReason] = useState("");
@@ -334,6 +337,7 @@ const StaffDashboard = () => {
   const reassignCase = useMutation(api.caseManagement.reassignCase);
   const updateCaseStatus = useMutation(api.caseManagement.updateStatus);
   const reviewDocument = useMutation(api.caseManagement.reviewDocument);
+  const scheduleAppointmentFromRequest = useMutation(api.caseManagement.scheduleAppointmentFromRequest);
   const expireStaleAssignmentOffersNow = useMutation(
     api.caseManagement.expireStaleAssignmentOffersNow,
   );
@@ -722,6 +726,30 @@ const StaffDashboard = () => {
     });
   }
 
+  function scheduleRequestedAppointment(requestEventId: Id<"case_events">) {
+    if (!selectedCaseId || !appointmentDate) {
+      setNotice({ type: "error", text: "Choose a future appointment date and time before confirming this request." });
+      return;
+    }
+    const startsAt = new Date(appointmentDate).getTime();
+    if (!Number.isFinite(startsAt) || startsAt <= Date.now()) {
+      setNotice({ type: "error", text: "Appointment must be in the future." });
+      return;
+    }
+    void run(async () => {
+      await scheduleAppointmentFromRequest({
+        caseId: selectedCaseId,
+        requestEventId,
+        startsAt,
+        mode: appointmentMode,
+        location: appointmentLocation.trim() || undefined,
+      });
+      setAppointmentDate("");
+      setAppointmentLocation("");
+      setNotice({ type: "success", text: "Appointment request confirmed and beneficiary notified." });
+    });
+  }
+
   function createCaseReferral() {
     if (!selectedCaseId || !referralServiceId) {
       setNotice({ type: "error", text: "Select a case and referral destination." });
@@ -830,6 +858,12 @@ const StaffDashboard = () => {
     referralQueue?.filter((item) => !["closed", "declined"].includes(item.referral.status)).length ?? 0;
   const verifiedServiceCount =
     justiceServices?.filter((service) => service.verificationStatus === "verified" && service.active).length ?? 0;
+  const appointmentRequests =
+    caseDetail?.events.filter((event) => {
+      if (event.type !== "appointment_requested") return false;
+      const metadata = event.metadata;
+      return !metadata || typeof metadata !== "object" || !("scheduledAppointmentId" in metadata);
+    }) ?? [];
 
   return (
     <div className="min-h-screen bg-[#f7f4f2] text-neutral-900">
@@ -2734,6 +2768,52 @@ const StaffDashboard = () => {
                                 Override: {item.history.availabilityOverrideReason}
                               </p>
                             )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {appointmentRequests.length > 0 && (
+                    <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-4">
+                      <h3 className="mb-2 flex items-center gap-2 text-base">
+                        <Clock3 className="h-5 w-5 text-primary" />
+                        Appointment requests awaiting confirmation
+                      </h3>
+                      <p className="mb-3 text-sm text-neutral-600">
+                        Choose a final date/time and confirm directly from the beneficiary request.
+                      </p>
+                      <div className="mb-3 grid gap-3 md:grid-cols-3">
+                        <input
+                          type="datetime-local"
+                          value={appointmentDate}
+                          onChange={(event) => setAppointmentDate(event.target.value)}
+                          className="h-11 rounded-xl border bg-white px-3 text-sm"
+                        />
+                        <select
+                          value={appointmentMode}
+                          onChange={(event) => setAppointmentMode(event.target.value as typeof appointmentMode)}
+                          className="h-11 rounded-xl border bg-white px-3 text-sm"
+                        >
+                          <option value="phone">Phone</option>
+                          <option value="remote">Remote</option>
+                          <option value="in_person">In person</option>
+                        </select>
+                        <input
+                          value={appointmentLocation}
+                          onChange={(event) => setAppointmentLocation(event.target.value)}
+                          maxLength={300}
+                          placeholder="Location or call note"
+                          className="h-11 rounded-xl border bg-white px-3 text-sm"
+                        />
+                      </div>
+                      <div className="grid gap-3 lg:grid-cols-2">
+                        {appointmentRequests.map((event) => (
+                          <div key={event._id} className="rounded-xl border bg-white p-3">
+                            <p className="mb-1 text-sm font-bold">{eventDetail(event) ?? "Appointment requested"}</p>
+                            <p className="mb-3 text-xs text-neutral-500">Requested {formatDate(event.occurredAt)}</p>
+                            <Button disabled={pending} size="sm" onClick={() => scheduleRequestedAppointment(event._id)}>
+                              Confirm selected slot
+                            </Button>
                           </div>
                         ))}
                       </div>

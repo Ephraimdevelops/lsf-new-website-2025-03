@@ -1377,6 +1377,95 @@ export const scheduleAppointment = mutation({
   },
 });
 
+export const scheduleAppointmentFromRequest = mutation({
+  args: {
+    caseId: v.id("cases"),
+    requestEventId: v.id("case_events"),
+    startsAt: v.number(),
+    mode: v.union(v.literal("in_person"), v.literal("phone"), v.literal("remote")),
+    location: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const { user, caseRecord } = await requireCaseWorker(ctx, args.caseId);
+    const requestEvent = await ctx.db.get(args.requestEventId);
+    if (!requestEvent || requestEvent.caseId !== args.caseId || requestEvent.type !== "appointment_requested") {
+      throw new ConvexError({ code: "NOT_FOUND", message: "Appointment request event not found" });
+    }
+    if (["resolved", "closed_unresolved", "closed"].includes(caseRecord.status)) {
+      throw new ConvexError({ code: "CONFLICT", message: "Closed cases cannot receive appointments" });
+    }
+    if (args.startsAt <= Date.now()) throw new ConvexError({ code: "VALIDATION", message: "Appointment must be in the future" });
+
+    const requestMetadata = requestEvent.metadata && typeof requestEvent.metadata === "object"
+      ? requestEvent.metadata as Record<string, unknown>
+      : {};
+    if (requestMetadata.scheduledAppointmentId) {
+      throw new ConvexError({ code: "CONFLICT", message: "This appointment request is already scheduled" });
+    }
+
+    const now = Date.now();
+    const appointmentId = await ctx.db.insert("case_appointments", {
+      caseId: args.caseId,
+      createdBy: user._id,
+      startsAt: args.startsAt,
+      mode: args.mode,
+      location: normalizeOptionalText(args.location, "Location", 300),
+      status: "scheduled",
+      statusNote: normalizeOptionalText(
+        [
+          requestMetadata.preferredMode ? `Requested mode: ${requestMetadata.preferredMode}` : "",
+          requestMetadata.preferredTime ? `Preferred time: ${requestMetadata.preferredTime}` : "",
+          requestMetadata.note ? `Beneficiary note: ${requestMetadata.note}` : "",
+        ].filter(Boolean).join("\n"),
+        "Appointment request context",
+        800,
+      ),
+      createdAt: now,
+      updatedAt: now,
+    });
+
+    await ctx.db.patch(requestEvent._id, {
+      metadata: {
+        ...requestMetadata,
+        scheduledAppointmentId: appointmentId,
+        scheduledAt: now,
+        scheduledBy: user._id,
+      },
+    });
+
+    if (["assigned", "assistance_underway"].includes(caseRecord.status)) {
+      assertCaseTransition(caseRecord.status, "appointment_scheduled");
+      await ctx.db.patch(caseRecord._id, {
+        status: "appointment_scheduled",
+        version: caseRecord.version + 1,
+        updatedAt: now,
+      });
+    }
+    await addEvent(ctx, {
+      caseId: args.caseId,
+      actorId: user._id,
+      type: "appointment_created",
+      audience: "all",
+      publicLabelKey: "case.timeline.appointmentScheduled",
+      metadata: { appointmentId, startsAt: args.startsAt, sourceRequestEventId: args.requestEventId },
+    });
+    await createNotification(ctx, {
+      userId: caseRecord.beneficiaryId,
+      type: "appointment.created",
+      titleKey: "notifications.update.title",
+      bodyKey: "notifications.appointmentCreated.body",
+      resourceType: "case_appointment",
+      resourceId: appointmentId,
+    });
+    await writeAudit(ctx, user._id, "appointment.created_from_request", "case_appointment", appointmentId, {
+      caseId: args.caseId,
+      requestEventId: args.requestEventId,
+      changedFieldNames: ["case_appointments", "case_events.metadata"],
+    });
+    return appointmentId;
+  },
+});
+
 export const updateAppointmentStatus = mutation({
   args: {
     appointmentId: v.id("case_appointments"),

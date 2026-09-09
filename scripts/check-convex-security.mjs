@@ -44,6 +44,7 @@ const publicFunctions = new Map([
   ["caseManagement.reviewDocument", "case-worker"],
   ["caseManagement.sendMessage", "case-access"],
   ["caseManagement.scheduleAppointment", "case-worker"],
+  ["caseManagement.scheduleAppointmentFromRequest", "case-worker"],
   ["caseManagement.updateAppointmentStatus", "case-worker"],
   ["caseManagement.myAppointments", "authenticated"],
   ["caseManagement.requestAppointment", "case-access"],
