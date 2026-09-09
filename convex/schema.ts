@@ -69,6 +69,9 @@ export default defineSchema({
     evidenceFileSize: v.optional(v.number()),
     retentionUntil: v.optional(v.number()),
     reviewStatus: v.optional(v.union(v.literal("pending_review"), v.literal("accepted"), v.literal("rejected"))),
+    reviewedBy: v.optional(v.id("users")),
+    reviewedAt: v.optional(v.number()),
+    reviewNotes: v.optional(v.string()),
     informationShared: v.optional(v.array(v.string())),
     relatedCaseId: v.optional(v.id("cases")),
     relatedReferralId: v.optional(v.id("referrals")),
@@ -76,7 +79,8 @@ export default defineSchema({
     recordedBy: v.optional(v.id("users")),
     recordedAt: v.number(),
     withdrawnAt: v.optional(v.number()),
-  }).index("by_user_type", ["userId", "type"]),
+  }).index("by_user_type", ["userId", "type"])
+    .index("by_type_review", ["type", "reviewStatus"]),
 
   legal_help_requests: defineTable({
     publicId: v.string(),

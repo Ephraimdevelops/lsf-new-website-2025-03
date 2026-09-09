@@ -174,6 +174,8 @@ const publicFunctions = new Map([
   ["referrals.listForCase", "case-access"],
   ["referrals.myDestinationQueue", "service-provider"],
   ["referrals.respondAsDestination", "service-provider"],
+  ["referrals.reviewConsentEvidence", "staff"],
+  ["referrals.staffConsentEvidenceQueue", "staff"],
   ["referrals.staffQueue", "staff"],
   ["referrals.updateStatus", "case-worker"],
   ["resend.sendEmail", "staff-action"],

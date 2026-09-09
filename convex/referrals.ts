@@ -27,6 +27,12 @@ const consentMethod = v.union(
   v.literal("signed_document"),
 );
 
+const consentReviewStatus = v.union(
+  v.literal("pending_review"),
+  v.literal("accepted"),
+  v.literal("rejected"),
+);
+
 const allowedTransitions: Record<string, string[]> = {
   draft: ["consent_collected"],
   consent_collected: ["created"],
@@ -141,6 +147,31 @@ export const staffQueue = query({
   },
 });
 
+export const staffConsentEvidenceQueue = query({
+  args: { status: v.optional(consentReviewStatus) },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const status = args.status ?? "pending_review";
+    const consents = await ctx.db
+      .query("consents")
+      .withIndex("by_type_review", (q) => q.eq("type", "referral").eq("reviewStatus", status))
+      .order("desc")
+      .take(100);
+    return await Promise.all(consents.map(async (consent) => {
+      const referral = consent.relatedReferralId ? await ctx.db.get(consent.relatedReferralId) : null;
+      return {
+        consent,
+        referral,
+        case: consent.relatedCaseId ? await ctx.db.get(consent.relatedCaseId) : null,
+        beneficiary: await ctx.db.get(consent.userId),
+        destinationService: consent.destinationServiceId ? await ctx.db.get(consent.destinationServiceId) : null,
+        recordedBy: consent.recordedBy ? await ctx.db.get(consent.recordedBy) : null,
+        url: consent.evidenceStorageId ? await ctx.storage.getUrl(consent.evidenceStorageId) : null,
+      };
+    }));
+  },
+});
+
 export const myDestinationQueue = query({
   args: { status: v.optional(referralStatus) },
   handler: async (ctx, args) => {
@@ -163,6 +194,52 @@ export const myDestinationQueue = query({
         .withIndex("by_referral_time", (q) => q.eq("referralId", referral._id))
         .collect(),
     })));
+  },
+});
+
+export const reviewConsentEvidence = mutation({
+  args: {
+    consentId: v.id("consents"),
+    status: consentReviewStatus,
+    reviewNotes: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const { user } = await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const consent = await ctx.db.get(args.consentId);
+    if (!consent || consent.type !== "referral") {
+      throw new ConvexError("Referral consent evidence not found.");
+    }
+    if (!consent.evidenceStorageId) {
+      throw new ConvexError("Only uploaded consent evidence can be reviewed here.");
+    }
+    if (args.status === "pending_review") {
+      throw new ConvexError("Choose accepted or rejected.");
+    }
+    const now = Date.now();
+    await ctx.db.patch(consent._id, {
+      reviewStatus: args.status,
+      reviewedBy: user._id,
+      reviewedAt: now,
+      reviewNotes: args.reviewNotes?.trim().slice(0, 1000),
+    });
+    await writeAudit(ctx, user._id, "referral.consent_evidence_reviewed", "consent", consent._id, {
+      caseId: consent.relatedCaseId,
+      referralId: consent.relatedReferralId,
+      changedFieldNames: ["reviewStatus", "reviewNotes"],
+      from: consent.reviewStatus,
+      to: args.status,
+    });
+    if (consent.relatedReferralId && consent.relatedCaseId) {
+      await addReferralEvent(ctx, {
+        referralId: consent.relatedReferralId,
+        caseId: consent.relatedCaseId,
+        actorId: user._id,
+        type: `consent_evidence_${args.status}`,
+        publicLabelKey: "case.timeline.consentEvidenceReviewed",
+        metadata: { consentId: consent._id, reviewStatus: args.status },
+      });
+    }
+    return { status: args.status };
   },
 });
 

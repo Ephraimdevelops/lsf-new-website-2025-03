@@ -555,13 +555,18 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(schema, /evidenceStorageId:\s*v\.optional\(v\.id\("_storage"\)\)/);
   assert.match(schema, /retentionUntil:\s*v\.optional\(v\.number\(\)\)/);
   assert.match(schema, /reviewStatus:\s*v\.optional\(v\.union\(/);
+  assert.match(schema, /reviewedBy:\s*v\.optional\(v\.id\("users"\)\)/);
+  assert.match(schema, /by_type_review/);
   assert.match(schema, /relatedReferralId:\s*v\.optional\(v\.id\("referrals"\)\)/);
   assert.match(schema, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
   assert.match(schema, /by_destination_user_status/);
   assert.match(schema, /referral_events:\s*defineTable/);
   assert.match(referrals, /createForCase/);
   assert.match(referrals, /generateConsentUploadUrl/);
+  assert.match(referrals, /staffConsentEvidenceQueue/);
+  assert.match(referrals, /reviewConsentEvidence/);
   assert.match(referrals, /ctx\.storage\.generateUploadUrl\(\)/);
+  assert.match(referrals, /ctx\.storage\.getUrl\(consent\.evidenceStorageId\)/);
   assert.match(referrals, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
   assert.match(referrals, /consentMethod:\s*v\.optional\(consentMethod\)/);
   assert.match(referrals, /consentEvidenceStorageId:\s*v\.optional\(v\.id\("_storage"\)\)/);
@@ -577,6 +582,8 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(security, /\["referrals\.myDestinationQueue",\s*"service-provider"\]/);
   assert.match(security, /\["referrals\.respondAsDestination",\s*"service-provider"\]/);
   assert.match(security, /\["referrals\.generateConsentUploadUrl",\s*"case-worker"\]/);
+  assert.match(security, /\["referrals\.staffConsentEvidenceQueue",\s*"staff"\]/);
+  assert.match(security, /\["referrals\.reviewConsentEvidence",\s*"staff"\]/);
   assert.match(staffDashboard, /Create service referral/);
   assert.match(staffDashboard, /destinationUserId:\s*referralDestinationUserId/);
   assert.match(staffDashboard, /minimum information/);
@@ -585,6 +592,8 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(staffDashboard, /generateReferralConsentUploadUrl/);
   assert.match(staffDashboard, /type="file"/);
   assert.match(staffDashboard, /Open consent file/);
+  assert.match(staffDashboard, /Referral consent evidence/);
+  assert.match(staffDashboard, /Accept consent evidence/);
   assert.match(providerDashboard, /Referral inbox/);
   assert.match(providerDashboard, /api\.referrals\.myDestinationQueue/);
   assert.match(providerDashboard, /api\.referrals\.respondAsDestination/);

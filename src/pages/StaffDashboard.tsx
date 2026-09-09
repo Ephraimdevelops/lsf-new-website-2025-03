@@ -220,6 +220,9 @@ const StaffDashboard = () => {
   const [documentStatus, setDocumentStatus] = useState<
     "pending_review" | "accepted" | "rejected"
   >("pending_review");
+  const [consentEvidenceStatus, setConsentEvidenceStatus] = useState<
+    "pending_review" | "accepted" | "rejected"
+  >("pending_review");
   const [reviewStatus, setReviewQueueStatus] = useState<
     "submitted" | "under_review" | "resolved" | "declined"
   >("submitted");
@@ -272,6 +275,9 @@ const StaffDashboard = () => {
   const documentQueue = useQuery(api.caseManagement.staffDocumentQueue, {
     status: documentStatus,
   });
+  const consentEvidenceQueue = useQuery(api.referrals.staffConsentEvidenceQueue, {
+    status: consentEvidenceStatus,
+  });
   const reviewQueue = useQuery(api.caseManagement.staffReviewRequests, {
     status: reviewStatus,
   });
@@ -300,6 +306,7 @@ const StaffDashboard = () => {
   const seedJusticeServices = useMutation(api.hakiYanguSeed.seedJusticeServices);
   const createReferral = useMutation(api.referrals.createForCase);
   const generateReferralConsentUploadUrl = useMutation(api.referrals.generateConsentUploadUrl);
+  const reviewConsentEvidence = useMutation(api.referrals.reviewConsentEvidence);
   const updateReferralStatus = useMutation(api.referrals.updateStatus);
 
   const selectedAssignmentProvider =
@@ -440,6 +447,16 @@ const StaffDashboard = () => {
     void run(async () => {
       await reviewDocument({ documentId, status });
       setNotice({ type: "success", text: `Document ${status}.` });
+    });
+  }
+
+  function decideConsentEvidence(
+    consentId: Id<"consents">,
+    status: "accepted" | "rejected",
+  ) {
+    void run(async () => {
+      await reviewConsentEvidence({ consentId, status });
+      setNotice({ type: "success", text: `Consent evidence ${status}.` });
     });
   }
 
@@ -1652,7 +1669,8 @@ const StaffDashboard = () => {
             </div>
           </section>
         ) : tab === "documents" ? (
-          <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+          <>
+          <section className="mb-6 overflow-hidden rounded-2xl border bg-white shadow-sm">
             <div className="flex flex-col justify-between gap-3 border-b p-5 sm:flex-row sm:items-center">
               <div>
                 <h2 className="text-xl">Document review</h2>
@@ -1755,6 +1773,120 @@ const StaffDashboard = () => {
               ))}
             </div>
           </section>
+          <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+            <div className="flex flex-col justify-between gap-3 border-b p-5 sm:flex-row sm:items-center">
+              <div>
+                <h2 className="text-xl">Referral consent evidence</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Review signed consent files attached to service referrals before they become accepted audit evidence.
+                </p>
+              </div>
+              <select
+                value={consentEvidenceStatus}
+                onChange={(event) =>
+                  setConsentEvidenceStatus(event.target.value as typeof consentEvidenceStatus)
+                }
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="pending_review">Pending review</option>
+                <option value="accepted">Accepted</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div className="divide-y">
+              {consentEvidenceQueue === undefined && (
+                <p className="p-5 text-sm text-neutral-500">
+                  Loading consent evidence...
+                </p>
+              )}
+              {consentEvidenceQueue?.length === 0 && (
+                <div className="p-10 text-center">
+                  <ShieldCheck className="mx-auto mb-3 h-9 w-9 text-primary/40" />
+                  <p className="mb-1 font-bold">No consent evidence in this queue</p>
+                  <p className="mb-0 text-sm text-neutral-500">
+                    Signed referral consent files appear here after staff create referrals.
+                  </p>
+                </div>
+              )}
+              {consentEvidenceQueue?.map((item) => (
+                <div
+                  key={item.consent._id}
+                  className="grid gap-4 p-5 lg:grid-cols-[1fr_260px]"
+                >
+                  <div>
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <h3 className="mb-0 text-lg">
+                        {item.consent.evidenceFileName ?? "Signed consent evidence"}
+                      </h3>
+                      <StatusPill
+                        value={(item.consent.reviewStatus ?? "pending_review").replaceAll("_", " ")}
+                        urgent={(item.consent.reviewStatus ?? "pending_review") === "pending_review"}
+                      />
+                    </div>
+                    <p className="mb-2 text-sm text-neutral-600">
+                      {item.referral?.publicId ?? "Referral pending link"} ·{" "}
+                      {item.case?.publicId ?? "Case unavailable"} ·{" "}
+                      {item.destinationService?.name ?? "Destination unavailable"}
+                    </p>
+                    <p className="mb-2 text-sm text-neutral-500">
+                      Recorded by {item.recordedBy?.name ?? "Unknown"} for{" "}
+                      {item.beneficiary?.name ?? "Unknown beneficiary"} on{" "}
+                      {formatDate(item.consent.recordedAt)}
+                    </p>
+                    <p className="mb-0 text-sm text-neutral-700">
+                      {item.consent.statement}
+                    </p>
+                    {item.consent.evidenceNote && (
+                      <p className="mt-3 rounded-xl bg-[#f8f2f4] p-3 text-sm text-neutral-700">
+                        {item.consent.evidenceNote}
+                      </p>
+                    )}
+                    {item.consent.reviewNotes && (
+                      <p className="mt-3 rounded-xl border bg-white p-3 text-sm text-neutral-700">
+                        <span className="font-bold">Review note:</span>{" "}
+                        {item.consent.reviewNotes}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex h-10 items-center justify-center rounded-lg border px-3 text-sm font-bold text-primary hover:bg-primary/5"
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Open consent file
+                      </a>
+                    )}
+                    {(item.consent.reviewStatus ?? "pending_review") === "pending_review" && (
+                      <>
+                        <Button
+                          disabled={pending}
+                          onClick={() =>
+                            decideConsentEvidence(item.consent._id, "accepted")
+                          }
+                        >
+                          Accept consent evidence
+                        </Button>
+                        <Button
+                          disabled={pending}
+                          variant="outline"
+                          onClick={() =>
+                            decideConsentEvidence(item.consent._id, "rejected")
+                          }
+                        >
+                          Reject consent evidence
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+          </>
         ) : tab === "requests" ? (
           <section className="grid min-h-[600px] overflow-hidden rounded-2xl border bg-white shadow-sm lg:grid-cols-[390px_1fr]">
             <div
