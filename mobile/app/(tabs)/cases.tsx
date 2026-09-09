@@ -14,38 +14,44 @@ export default function CasesScreen() {
   const { isSignedIn } = useAuth();
   const { locale, t } = useLanguage();
   const cases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
-  const demoCases = [
-    {
-      id: "demo-unpaid-salary",
-      publicId: "HY-2025-000123",
-      status: locale === "sw" ? "Inakaguliwa" : "Under review",
-      summary: locale === "sw" ? "Ombi la mshahara ambao haujalipwa. LSF inapitia maelezo yako." : "Unpaid salary request. LSF is reviewing your details.",
-      updated: locale === "sw" ? "Leo, 10:30 AM" : "Today, 10:30 AM",
-    },
-    {
-      id: "demo-land",
-      publicId: "HY-2025-000245",
-      status: locale === "sw" ? "Amepewa paralegal" : "Assigned",
-      summary: locale === "sw" ? "Mgogoro wa mpaka wa ardhi. Paralegal Rehema amepangiwa kufuatilia." : "Land boundary dispute. Paralegal Rehema has been assigned for follow-up.",
-      updated: locale === "sw" ? "Jana, 2:15 PM" : "Yesterday, 2:15 PM",
-    },
-  ];
   return (
     <Screen>
       <Text style={styles.title}>{t("cases")}</Text>
-      {isSignedIn && cases?.length ? cases.map((item) => (
-        <Pressable key={item._id} style={styles.card} onPress={() => router.push({ pathname: "/case/[id]", params: { id: item._id } })}>
-          <View style={styles.row}><Text style={styles.caseId}>{item.publicId}</Text><Text style={styles.status}>{caseStatusLabels[locale][item.status]}</Text></View>
-          <Text style={styles.summary} numberOfLines={2}>{item.summary}</Text>
-          <Text style={styles.updated}>{new Date(item.updatedAt).toLocaleDateString(locale === "sw" ? "sw-TZ" : "en-TZ")}</Text>
-        </Pressable>
-      )) : demoCases.map((item) => (
-        <Pressable key={item.id} style={styles.card} onPress={() => router.push("/appointments")}>
-          <View style={styles.row}><Text style={styles.caseId}>{item.publicId}</Text><Text style={styles.status}>{item.status}</Text></View>
-          <Text style={styles.summary} numberOfLines={2}>{item.summary}</Text>
-          <Text style={styles.updated}>{item.updated}</Text>
-        </Pressable>
-      ))}
+      {!isSignedIn ? (
+        <View style={styles.empty}>
+          <Ionicons name="lock-closed-outline" size={34} color={colors.burgundy} />
+          <Text style={styles.emptyTitle}>{locale === "sw" ? "Ingia kuona kesi zako" : "Sign in to view your cases"}</Text>
+          <Text style={styles.body}>
+            {locale === "sw"
+              ? "Kesi, ujumbe, miadi na nyaraka huonekana baada ya kuingia kwenye akaunti salama."
+              : "Cases, messages, appointments, and documents appear only after secure sign-in."}
+          </Text>
+          <Button label={locale === "sw" ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
+        </View>
+      ) : cases === undefined ? (
+        <View style={styles.empty}>
+          <Ionicons name="hourglass-outline" size={32} color={colors.burgundy} />
+          <Text style={styles.body}>{locale === "sw" ? "Tunapakua kesi zako..." : "Loading your cases..."}</Text>
+        </View>
+      ) : cases.length ? (
+        cases.map((item) => (
+          <Pressable key={item._id} style={styles.card} onPress={() => router.push({ pathname: "/case/[id]", params: { id: item._id } })}>
+            <View style={styles.row}><Text style={styles.caseId}>{item.publicId}</Text><Text style={styles.status}>{caseStatusLabels[locale][item.status]}</Text></View>
+            <Text style={styles.summary} numberOfLines={2}>{item.summary}</Text>
+            <Text style={styles.updated}>{new Date(item.updatedAt).toLocaleDateString(locale === "sw" ? "sw-TZ" : "en-TZ")}</Text>
+          </Pressable>
+        ))
+      ) : (
+        <View style={styles.empty}>
+          <Ionicons name="folder-open-outline" size={34} color={colors.burgundy} />
+          <Text style={styles.emptyTitle}>{locale === "sw" ? "Hakuna kesi bado" : "No cases yet"}</Text>
+          <Text style={styles.body}>
+            {locale === "sw"
+              ? "Ombi lako likikubaliwa na LSF, kesi yako itaonekana hapa na hatua zinazofuata."
+              : "When LSF accepts your request, your case and next steps will appear here."}
+          </Text>
+        </View>
+      )}
       <View style={styles.nextCard}>
         <Ionicons name="git-branch-outline" size={24} color={colors.burgundy} />
         <View style={styles.nextCopy}>
@@ -61,6 +67,7 @@ export default function CasesScreen() {
 const styles = StyleSheet.create({
   title: { fontFamily: type.bold, color: colors.charcoal, fontSize: 30, marginTop: spacing.lg, marginBottom: spacing.xl },
   empty: { marginTop: 80, alignItems: "center", gap: spacing.lg },
+  emptyTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 18, textAlign: "center" },
   body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 15, lineHeight: 22, textAlign: "center" },
   card: { backgroundColor: colors.surface, borderRadius: radius.md, padding: spacing.lg, borderWidth: 1, borderColor: colors.line, marginBottom: spacing.md, gap: spacing.sm },
   row: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: spacing.sm },

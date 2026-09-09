@@ -565,6 +565,23 @@ test("mobile prototype review mode exposes mock screen navigation without weaken
   assert.match(phaseNote, /does not replace real device QA/i);
 });
 
+test("production mobile private surfaces do not show demo backend records", () => {
+  const rootLayout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
+  const cases = readFileSync(new URL("../mobile/app/(tabs)/cases.tsx", import.meta.url), "utf8");
+  const documents = readFileSync(new URL("../mobile/app/documents.tsx", import.meta.url), "utf8");
+  const notifications = readFileSync(new URL("../mobile/app/notifications.tsx", import.meta.url), "utf8");
+  const audit = readFileSync(new URL("../docs/haki-yangu/product-execution-audit-2026-09-08.md", import.meta.url), "utf8");
+
+  assert.match(rootLayout, /isValidSecureStoreKey/);
+  assert.match(rootLayout, /\^\[A-Za-z0-9\._-\]\+\$/);
+  for (const source of [cases, documents, notifications]) {
+    assert.doesNotMatch(source, /demo[A-Z]|demo-|mock/i);
+    assert.match(source, /router\.push\("\/sign-in"\)/);
+    assert.match(source, /No .* yet|Hakuna .* bado|Sign in to view|Ingia kuona/i);
+  }
+  assert.match(audit, /Private mobile demo fallback removal/);
+});
+
 test("mobile Saada uses governed Convex AI with risk events and consent", () => {
   const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
   const saraActions = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");

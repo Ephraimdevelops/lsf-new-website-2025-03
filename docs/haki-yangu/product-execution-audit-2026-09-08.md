@@ -1,6 +1,6 @@
 # Haki Yangu Product Execution Audit
 
-Date: 2026-09-08  
+Date: 2026-09-09
 Owner: Legal Services Facility  
 Scope: website, admin/staff operations, Convex backend, Expo mobile app, Saada AI, justice-service workflows
 
@@ -17,9 +17,9 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Convex auth bridge added | Done | `mobile/app/_layout.tsx` uses `ConvexProviderWithClerk`. |
 | Secure token cache | Done | Clerk token cache uses `expo-secure-store` with device-only keychain access. |
 | Real sign-in/sign-up UI | Partial | Email/password sign-in and email-code sign-up are implemented. Account recovery/MFA remain dependent on Clerk Native Applications configuration. |
-| SecureStore key crash | Done | Local keys were normalized to `haki_yangu_*` format. |
+| SecureStore key crash | Done | Local keys were normalized to `haki_yangu_*` format and Clerk token-cache keys are rejected unless they match SecureStore's allowed key pattern. |
 | Paralegal matching UX | Improved | Directory now shows “Why this may fit,” “For sensitive cases,” and “Let LSF match me.” |
-| Production demo fallback removal | Partial | Paralegal and appointment screens no longer pretend fake backend data is real. Document/case demo cleanup still needs a repo-wide pass. |
+| Private mobile demo fallback removal | Improved | Cases, documents, notifications, paralegal discovery, and appointments no longer pretend fake backend records are real in production app flows. Explicit prototype review mode remains separate. |
 | Backend directory seed | Done | `hakiYanguSeed.seedMobileDirectory` can seed verified mobile paralegal records through an admin/staff-authenticated mutation. |
 | Justice Service Directory foundation | New partial | `justice_services` and `matching_decisions` tables plus public/staff Convex functions now exist. |
 | Staff service management UI | New partial | Staff operations now includes a Services tab for creating, verifying, deactivating, reviewing, and seeding justice service records. |
@@ -47,9 +47,9 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Admin/staff dashboard | Partial | Staff case workflow, Justice Service Management, assignment monitor, reviews, documents, and a first referral operations queue exist. Escalation, reporting, and mature workload operations remain incomplete. |
 | Beneficiary mobile home | Visual/interactive | Stronger premium home direction exists, with paralegal-first flow and quick tools. Needs real device QA after auth config. |
 | Mobile sign-in/sign-up | Implemented, unverified on device | Code is wired to Clerk. Clerk Dashboard must enable Native Applications before runtime sign-in will work. |
-| Guest mode | Partial | Public routes work, but guest-to-account claim flow is not implemented yet. |
+| Guest mode | Partial/improved | Public routes work and private screens now ask for secure sign-in instead of showing fake records. Guest-to-account claim flow is not implemented yet. |
 | Intake/help request | Partial/connected | Intake draft and submission flow exist. Needs stronger mapping into service/referral/case lifecycle and guest claim. |
-| Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Needs full staff/provider operational QA. |
+| Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Private mobile case/document/notification screens now show real account state only. Needs full staff/provider operational QA. |
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
 | Governed matching engine | Partial/improved | Deterministic public service matching now records `matching_decisions`, safety-critical routing is restricted, and staff can review/approve/escalate/restrict recommendations. Still needs richer scoring, bias/fairness review, beneficiary-facing outcome states, and deeper pathway integration. |
 | Referral graph | Partial | Case-to-service referral tables, optional destination provider assignment, event trail, beneficiary case visibility, selected-case staff referral creation, staff queue actions, provider referral response UI, consent evidence records with signed-file upload/review/retention flagging, onward referral chaining, organization-linked service points, and partner SLA performance analytics now exist. Missing final retention purge/export policy and donor-safe reporting snapshots. |
@@ -95,11 +95,11 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Dimension | Current Completion |
 | --- | --- |
 | Visual mobile presentation | 75% |
-| Real beneficiary mobile MVP | 53% |
+| Real beneficiary mobile MVP | 54% |
 | Backend case-management foundation | 75% |
 | Website/admin integration | 79% |
 | AI governance | 46% |
 | App-store readiness | 30% |
-| Donor-ready platform credibility | 74% |
+| Donor-ready platform credibility | 75% |
 
-Overall product completion: about 74%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging and basic staff disposition, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, mobile case-linked appointment requests, staff/provider request confirmation, and early partner SLA analytics, not as a finished national-scale justice platform yet.
+Overall product completion: about 75%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging and basic staff disposition, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, mobile case-linked appointment requests, staff/provider request confirmation, production private-screen demo fallback removal, and early partner SLA analytics, not as a finished national-scale justice platform yet.

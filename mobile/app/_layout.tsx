@@ -15,6 +15,7 @@ import { colors, spacing, type } from "../src/theme";
 
 const tokenCache = {
   async getToken(key: string) {
+    if (!isValidSecureStoreKey(key)) return null;
     try {
       return await SecureStore.getItemAsync(key);
     } catch {
@@ -22,6 +23,7 @@ const tokenCache = {
     }
   },
   async saveToken(key: string, value: string) {
+    if (!isValidSecureStoreKey(key)) return;
     try {
       await SecureStore.setItemAsync(key, value, {
         keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
@@ -31,6 +33,10 @@ const tokenCache = {
     }
   },
 };
+
+function isValidSecureStoreKey(key: string) {
+  return /^[A-Za-z0-9._-]+$/.test(key);
+}
 
 function Navigation() {
   const { locale } = useLanguage();

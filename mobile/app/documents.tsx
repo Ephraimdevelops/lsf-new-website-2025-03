@@ -28,11 +28,6 @@ export default function DocumentsScreen() {
   const { isSignedIn } = useAuth();
   const { locale } = useLanguage();
   const documents = useQuery(api.caseManagement.myDocuments, isSignedIn ? {} : "skip");
-  const demoDocuments = [
-    { id: "demo-contract", name: "Employment Contract.pdf", status: "pending_review", category: "contract", meta: "Case HY-2025-000123" },
-    { id: "demo-demand", name: "Salary Demand Letter", status: "accepted", category: "letter", meta: "Draft saved locally" },
-    { id: "demo-land", name: "Land Agreement Photo", status: "pending_review", category: "evidence", meta: "Case HY-2025-000245" },
-  ];
 
   return (
     <Screen>
@@ -46,7 +41,23 @@ export default function DocumentsScreen() {
         </Pressable>
       </View>
 
-      {isSignedIn && documents?.length ? (
+      {!isSignedIn ? (
+        <View style={styles.empty}>
+          <Ionicons name="lock-closed-outline" size={34} color={colors.burgundy} />
+          <Text style={styles.emptyTitle}>{locale === "sw" ? "Ingia kuona nyaraka zako" : "Sign in to view your documents"}</Text>
+          <Text style={styles.emptyText}>
+            {locale === "sw"
+              ? "Nyaraka na ushahidi huhifadhiwa kwenye akaunti yako salama, si kama data ya mfano."
+              : "Documents and evidence are stored in your secure account, not shown as demo records."}
+          </Text>
+          <Button label={locale === "sw" ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
+        </View>
+      ) : documents === undefined ? (
+        <View style={styles.empty}>
+          <Ionicons name="hourglass-outline" size={32} color={colors.burgundy} />
+          <Text style={styles.emptyText}>{locale === "sw" ? "Tunapakua nyaraka zako..." : "Loading your documents..."}</Text>
+        </View>
+      ) : documents.length ? (
         <>
           <View style={styles.summaryCard}>
             <Text style={styles.summaryTitle}>{documents.length}</Text>
@@ -81,27 +92,20 @@ export default function DocumentsScreen() {
           ))}
         </>
       ) : (
-        <>
+        <View style={styles.empty}>
+          <Ionicons name="document-text-outline" size={34} color={colors.burgundy} />
+          <Text style={styles.emptyTitle}>{locale === "sw" ? "Hakuna nyaraka bado" : "No documents yet"}</Text>
+          <Text style={styles.emptyText}>
+            {locale === "sw"
+              ? "Nyaraka utakazohifadhi au kushirikisha kwenye kesi zitaonekana hapa."
+              : "Documents you save or share with a case will appear here."}
+          </Text>
           <View style={styles.summaryCard}>
-            <Text style={styles.summaryTitle}>{demoDocuments.length}</Text>
-            <Text style={styles.summaryText}>{locale === "sw" ? "nyaraka za mfano kwenye flow" : "documents ready in the flow"}</Text>
+            <Text style={styles.summaryTitle}>0</Text>
+            <Text style={styles.summaryText}>{locale === "sw" ? "nyaraka kwenye kesi zako" : "documents across your cases"}</Text>
           </View>
-          {demoDocuments.map((document) => (
-            <Pressable key={document.id} style={styles.card} onPress={() => router.push("/document-checker")}>
-              <View style={styles.icon}><Ionicons name="document-text-outline" size={22} color={colors.burgundy} /></View>
-              <View style={styles.copy}>
-                <View style={styles.row}>
-                  <Text style={styles.name} numberOfLines={2}>{document.name}</Text>
-                  <Text style={[styles.status, document.status === "accepted" ? styles.accepted : null]}>
-                    {statusLabels[document.status]?.[locale] ?? document.status}
-                  </Text>
-                </View>
-                <Text style={styles.meta}>{categoryLabels[document.category]?.[locale] ?? document.category} · {document.meta}</Text>
-              </View>
-            </Pressable>
-          ))}
           <Button label={locale === "sw" ? "Kagua hati kabla ya kusaini" : "Check a document before signing"} onPress={() => router.push("/document-checker")} />
-        </>
+        </View>
       )}
     </Screen>
   );
@@ -111,6 +115,7 @@ const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: spacing.md, marginBottom: spacing.xl },
   headerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
   empty: { alignItems: "center", gap: spacing.lg, marginTop: 100 },
+  emptyTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 18, textAlign: "center" },
   emptyText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21, textAlign: "center" },
   summaryCard: { flexDirection: "row", alignItems: "baseline", gap: spacing.sm, borderRadius: radius.md, backgroundColor: colors.softPink, padding: spacing.lg, marginBottom: spacing.lg },
   summaryTitle: { fontFamily: type.bold, color: colors.burgundy, fontSize: 30 },
