@@ -22,6 +22,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Paralegal matching UX | Improved | Directory now shows “Why this may fit,” “For sensitive cases,” and “Let LSF match me.” |
 | Private mobile demo fallback removal | Improved | Cases, documents, notifications, paralegal discovery, and appointments no longer pretend fake backend records are real in production app flows. Explicit prototype review mode remains separate. |
 | Backend directory seed | Done | `hakiYanguSeed.seedMobileDirectory` can seed verified mobile paralegal records through an admin/staff-authenticated mutation. |
+| Mobile QA matter seed | New partial | `hakiYanguSeed.seedMyMobileQaMatter` can create real request, case, message, document, appointment, and notification records for the signed-in beneficiary when the development/staging environment explicitly enables `HAKI_ALLOW_MOBILE_QA_SEED=true`. |
 | Justice Service Directory foundation | New partial | `justice_services` and `matching_decisions` tables plus public/staff Convex functions now exist. |
 | Staff service management UI | New partial | Staff operations now includes a Services tab for creating, verifying, deactivating, reviewing, and seeding justice service records. |
 | Destination organization modeling | New partial | Staff can create partner organizations with verification status, referral agreement status, focal contact, SLA, safeguarding readiness, data-sharing version, and link service points to those organizations. |
@@ -49,7 +50,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Beneficiary mobile home | Visual/interactive | Stronger premium home direction exists, with paralegal-first flow and quick tools. Needs real device QA after auth config. |
 | Mobile sign-in/sign-up | Implemented, unverified on device | Code is wired to Clerk and now bootstraps the matching Convex user profile. Clerk Dashboard must enable Native Applications before runtime sign-in will work. |
 | Guest mode | Partial/improved | Public routes work and private screens now ask for secure sign-in instead of showing fake records. Guest-to-account claim flow is not implemented yet. |
-| Intake/help request | Partial/connected | Intake draft and submission flow exist. Needs stronger mapping into service/referral/case lifecycle and guest claim. |
+| Intake/help request | Partial/connected | Intake draft and submission flow exist. A guarded QA seed can create a real connected sample matter for a signed-in beneficiary. Needs stronger mapping into service/referral/case lifecycle and guest claim. |
 | Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Private mobile case/document/notification screens now show real account state only. Needs full staff/provider operational QA. |
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
 | Governed matching engine | Partial/improved | Deterministic public service matching now records `matching_decisions`, safety-critical routing is restricted, and staff can review/approve/escalate/restrict recommendations. Still needs richer scoring, bias/fairness review, beneficiary-facing outcome states, and deeper pathway integration. |
@@ -87,7 +88,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | --- | --- | --- |
 | Clerk Native Applications disabled | Real mobile login will throw `Native API is disabled`. | In Clerk Dashboard, enable Native Applications for the active instance. |
 | Live key was pasted in chat | Secret key exposure risk. | Rotate `CLERK_SECRET_KEY` in Clerk before production. Publishable key can remain public, secret key cannot. |
-| No verified seed data guarantee | Reduced | Run `npx convex run hakiYanguSeed:seedMobileDirectory` and `npx convex run hakiYanguSeed:seedJusticeServices` while signed in as admin/staff to populate verified QA records. Replace seed records with live verified provider data before production. |
+| No verified seed data guarantee | Reduced | Run `npx convex run hakiYanguSeed:seedMobileDirectory` and `npx convex run hakiYanguSeed:seedJusticeServices` as admin/staff for directory QA. Enable `HAKI_ALLOW_MOBILE_QA_SEED=true` only in development/staging before creating a signed-in beneficiary QA matter. Replace seed records with live verified provider data before production. |
 | Saada mobile not fully governed | Reduced | Mobile now routes through the governed Convex AI action and records risk events; staff can disposition those events. Case-linked AI sessions, AI-to-case follow-up, and legal-content evals remain required. |
 | No app-store build QA | Expo Go is not a production runtime and notifications are limited. | Create EAS development build, then TestFlight/internal Android build. |
 
@@ -96,11 +97,11 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Dimension | Current Completion |
 | --- | --- |
 | Visual mobile presentation | 75% |
-| Real beneficiary mobile MVP | 55% |
+| Real beneficiary mobile MVP | 56% |
 | Backend case-management foundation | 75% |
 | Website/admin integration | 79% |
 | AI governance | 46% |
 | App-store readiness | 30% |
 | Donor-ready platform credibility | 75% |
 
-Overall product completion: about 75%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging and basic staff disposition, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, mobile case-linked appointment requests, staff/provider request confirmation, mobile Clerk-to-Convex identity bootstrap, production private-screen demo fallback removal, and early partner SLA analytics, not as a finished national-scale justice platform yet.
+Overall product completion: about 75%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging and basic staff disposition, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, mobile case-linked appointment requests, staff/provider request confirmation, mobile Clerk-to-Convex identity bootstrap, production private-screen demo fallback removal, guarded mobile QA matter seeding, and early partner SLA analytics, not as a finished national-scale justice platform yet.

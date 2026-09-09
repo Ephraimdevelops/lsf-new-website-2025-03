@@ -27,6 +27,15 @@ The app may reuse the parent development Convex URL. It will only reuse the pare
 
 The Clerk development instance must expose a JWT template named `convex` and enable the selected email/password verification methods.
 
+## Development and staging seed data
+
+Presentation data must be real Convex data, not hardcoded private records in the production mobile app.
+
+- Staff/admin can seed verified directory records with `hakiYanguSeed.seedMobileDirectory` and `hakiYanguSeed.seedJusticeServices`.
+- A signed-in beneficiary can receive a synthetic QA request/case/document/appointment/notification through `hakiYanguSeed.seedMyMobileQaMatter`.
+- `seedMyMobileQaMatter` is disabled unless the Convex environment variable `HAKI_ALLOW_MOBILE_QA_SEED` is exactly `true`.
+- Do not enable `HAKI_ALLOW_MOBILE_QA_SEED` in production.
+
 ## Commands
 
 ```bash

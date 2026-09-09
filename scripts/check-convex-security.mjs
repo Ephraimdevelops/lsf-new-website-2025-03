@@ -81,6 +81,7 @@ const publicFunctions = new Map([
   ["heros.update", "staff"],
   ["hakiYanguSeed.seedMobileDirectory", "staff"],
   ["hakiYanguSeed.seedJusticeServices", "staff"],
+  ["hakiYanguSeed.seedMyMobileQaMatter", "authenticated"],
   ["justiceServices.createOrganization", "staff"],
   ["justiceServices.createService", "staff"],
   ["justiceServices.listPublicServices", "public-read"],

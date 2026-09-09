@@ -589,6 +589,23 @@ test("production mobile private surfaces do not show demo backend records", () =
   assert.match(audit, /Private mobile demo fallback removal/);
 });
 
+test("mobile QA seed creates real records only behind an explicit environment guard", () => {
+  const seed = readFileSync(new URL("../convex/hakiYanguSeed.ts", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+  const note = readFileSync(new URL("../docs/platform-review/77-mobile-qa-seed-matter.md", import.meta.url), "utf8");
+  const audit = readFileSync(new URL("../docs/haki-yangu/product-execution-audit-2026-09-08.md", import.meta.url), "utf8");
+
+  assert.match(seed, /seedMyMobileQaMatter/);
+  assert.match(seed, /HAKI_ALLOW_MOBILE_QA_SEED/);
+  assert.match(seed, /requireAuthenticatedUser/);
+  assert.match(seed, /legal_help_requests/);
+  assert.match(seed, /case_appointments/);
+  assert.match(seed, /notifications/);
+  assert.match(security, /\["hakiYanguSeed\.seedMyMobileQaMatter",\s*"authenticated"\]/);
+  assert.match(note, /real Convex records/);
+  assert.match(audit, /Mobile QA matter seed/);
+});
+
 test("mobile Saada uses governed Convex AI with risk events and consent", () => {
   const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
   const saraActions = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
