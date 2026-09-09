@@ -991,6 +991,11 @@ const StaffDashboard = () => {
                             Review: {item.consent.reviewStatus.replaceAll("_", " ")}
                           </p>
                         )}
+                        {item.consent?.retentionStatus && (
+                          <p className="mb-0 mt-1 text-neutral-500 capitalize">
+                            Retention: {item.consent.retentionStatus}
+                          </p>
+                        )}
                         {item.consentEvidenceUrl && (
                           <a
                             className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-primary underline"
@@ -1847,6 +1852,10 @@ const StaffDashboard = () => {
                         {item.consent.reviewNotes}
                       </p>
                     )}
+                    <p className="mt-3 text-xs text-neutral-500">
+                      Retention: {(item.consent.retentionStatus ?? "active").replaceAll("_", " ")}
+                      {item.consent.retentionUntil ? ` until ${formatDate(item.consent.retentionUntil)}` : ""}
+                    </p>
                   </div>
                   <div className="flex flex-col gap-2">
                     {item.url && (

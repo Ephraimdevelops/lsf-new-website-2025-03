@@ -17,4 +17,11 @@ crons.hourly(
   { limit: 100 },
 );
 
+crons.hourly(
+  "flag expired Haki Yangu consent evidence",
+  { minuteUTC: 27 },
+  internal.referrals.expireConsentEvidenceRetention,
+  { limit: 100 },
+);
+
 export default crons;

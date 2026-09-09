@@ -374,6 +374,7 @@ test("mobile demand-letter builder provides an offline practical document tool",
   const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
   const caseManagement = readFileSync(new URL("../convex/caseManagement.ts", import.meta.url), "utf8");
   const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+  const crons = readFileSync(new URL("../convex/crons.ts", import.meta.url), "utf8");
   const layout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
   const home = readFileSync(new URL("../mobile/app/(tabs)/index.tsx", import.meta.url), "utf8");
   const resourceDetail = readFileSync(new URL("../mobile/app/resource/[id].tsx", import.meta.url), "utf8");
@@ -544,6 +545,7 @@ test("referral graph connects staff creation, provider response, and beneficiary
   const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
   const referrals = readFileSync(new URL("../convex/referrals.ts", import.meta.url), "utf8");
   const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+  const crons = readFileSync(new URL("../convex/crons.ts", import.meta.url), "utf8");
   const staffDashboard = readFileSync(new URL("../src/pages/StaffDashboard.tsx", import.meta.url), "utf8");
   const providerDashboard = readFileSync(new URL("../src/pages/ParalegalDashboard.tsx", import.meta.url), "utf8");
   const mobileCase = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
@@ -554,9 +556,11 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(schema, /evidenceNote:\s*v\.optional\(v\.string\(\)\)/);
   assert.match(schema, /evidenceStorageId:\s*v\.optional\(v\.id\("_storage"\)\)/);
   assert.match(schema, /retentionUntil:\s*v\.optional\(v\.number\(\)\)/);
+  assert.match(schema, /retentionStatus:\s*v\.optional\(v\.union\(/);
   assert.match(schema, /reviewStatus:\s*v\.optional\(v\.union\(/);
   assert.match(schema, /reviewedBy:\s*v\.optional\(v\.id\("users"\)\)/);
   assert.match(schema, /by_type_review/);
+  assert.match(schema, /by_type_retention/);
   assert.match(schema, /relatedReferralId:\s*v\.optional\(v\.id\("referrals"\)\)/);
   assert.match(schema, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
   assert.match(schema, /by_destination_user_status/);
@@ -565,6 +569,7 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(referrals, /generateConsentUploadUrl/);
   assert.match(referrals, /staffConsentEvidenceQueue/);
   assert.match(referrals, /reviewConsentEvidence/);
+  assert.match(referrals, /expireConsentEvidenceRetention/);
   assert.match(referrals, /ctx\.storage\.generateUploadUrl\(\)/);
   assert.match(referrals, /ctx\.storage\.getUrl\(consent\.evidenceStorageId\)/);
   assert.match(referrals, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
@@ -572,6 +577,8 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(referrals, /consentEvidenceStorageId:\s*v\.optional\(v\.id\("_storage"\)\)/);
   assert.match(referrals, /signed_document/);
   assert.match(referrals, /retentionUntil/);
+  assert.match(referrals, /retentionStatus:\s*"active"/);
+  assert.match(referrals, /retentionStatus:\s*"expired"/);
   assert.match(referrals, /ctx\.db\.insert\("consents"/);
   assert.match(referrals, /relatedReferralId:\s*referralId/);
   assert.match(referrals, /getActiveRoles\(ctx,\s*destinationUser\._id\)/);
@@ -584,6 +591,8 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(security, /\["referrals\.generateConsentUploadUrl",\s*"case-worker"\]/);
   assert.match(security, /\["referrals\.staffConsentEvidenceQueue",\s*"staff"\]/);
   assert.match(security, /\["referrals\.reviewConsentEvidence",\s*"staff"\]/);
+  assert.match(crons, /flag expired Haki Yangu consent evidence/);
+  assert.match(crons, /internal\.referrals\.expireConsentEvidenceRetention/);
   assert.match(staffDashboard, /Create service referral/);
   assert.match(staffDashboard, /destinationUserId:\s*referralDestinationUserId/);
   assert.match(staffDashboard, /minimum information/);
@@ -594,6 +603,7 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(staffDashboard, /Open consent file/);
   assert.match(staffDashboard, /Referral consent evidence/);
   assert.match(staffDashboard, /Accept consent evidence/);
+  assert.match(staffDashboard, /Retention:/);
   assert.match(providerDashboard, /Referral inbox/);
   assert.match(providerDashboard, /api\.referrals\.myDestinationQueue/);
   assert.match(providerDashboard, /api\.referrals\.respondAsDestination/);

@@ -1,5 +1,5 @@
 import { ConvexError, v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { internalMutation, mutation, query } from "./_generated/server";
 import { getActiveRoles, requireAnyRole } from "./lib/auth";
 import { assertCaseTransition, requireCaseAccess, requireCaseWorker, writeAudit } from "./lib/hakiYangu";
 import { createNotification } from "./lib/notifications";
@@ -60,6 +60,7 @@ const destinationOpenStatuses = [
 
 const CONSENT_EVIDENCE_RETENTION_YEARS = 7;
 const MAX_CONSENT_EVIDENCE_BYTES = 10 * 1024 * 1024;
+const CONSENT_RETENTION_BATCH_LIMIT = 100;
 
 function publicReference(prefix: string, id: string, now: number) {
   const date = new Date(now).toISOString().slice(0, 10).replaceAll("-", "");
@@ -243,6 +244,33 @@ export const reviewConsentEvidence = mutation({
   },
 });
 
+export const expireConsentEvidenceRetention = internalMutation({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const now = Date.now();
+    const limit = Math.min(Math.max(Math.trunc(args.limit ?? CONSENT_RETENTION_BATCH_LIMIT), 1), 250);
+    const consents = await ctx.db
+      .query("consents")
+      .withIndex("by_type_retention", (q) => q.eq("type", "referral").eq("retentionStatus", "active").lte("retentionUntil", now))
+      .take(limit);
+    for (const consent of consents) {
+      await ctx.db.patch(consent._id, {
+        retentionStatus: "expired",
+      });
+      if (consent.recordedBy) {
+        await writeAudit(ctx, consent.recordedBy, "referral.consent_evidence_retention_expired", "consent", consent._id, {
+          caseId: consent.relatedCaseId,
+          referralId: consent.relatedReferralId,
+          changedFieldNames: ["retentionStatus"],
+          from: "active",
+          to: "expired",
+        });
+      }
+    }
+    return { expiredCount: consents.length };
+  },
+});
+
 export const createForCase = mutation({
   args: {
     caseId: v.id("cases"),
@@ -317,6 +345,7 @@ export const createForCase = mutation({
       evidenceFileType: args.consentEvidenceFileType?.trim().slice(0, 120),
       evidenceFileSize: args.consentEvidenceFileSize,
       retentionUntil: now + CONSENT_EVIDENCE_RETENTION_YEARS * 365 * 24 * 60 * 60 * 1000,
+      retentionStatus: "active",
       reviewStatus: args.consentEvidenceStorageId ? "pending_review" : "accepted",
       informationShared: normalizedInformationShared,
       relatedCaseId: args.caseId,
