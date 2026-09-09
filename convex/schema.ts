@@ -492,11 +492,23 @@ export default defineSchema({
     recommendedServiceIds: v.array(v.id("justice_services")),
     explanation: v.array(v.string()),
     safetyFlags: v.array(v.string()),
+    reviewStatus: v.optional(v.union(
+      v.literal("pending_review"),
+      v.literal("approved"),
+      v.literal("needs_changes"),
+      v.literal("escalated"),
+      v.literal("restricted"),
+    )),
+    reviewedBy: v.optional(v.id("users")),
+    reviewedAt: v.optional(v.number()),
+    reviewNote: v.optional(v.string()),
+    restrictionReason: v.optional(v.string()),
     modelAssisted: v.boolean(),
     createdAt: v.number(),
   }).index("by_requester", ["requesterId"])
     .index("by_request", ["requestId"])
     .index("by_case", ["caseId"])
+    .index("by_review_status", ["reviewStatus"])
     .index("by_created", ["createdAt"]),
 
   referrals: defineTable({

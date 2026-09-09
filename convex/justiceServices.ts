@@ -45,6 +45,13 @@ const organizationType = v.union(
 );
 const organizationVerificationStatus = v.union(v.literal("draft"), v.literal("verified"), v.literal("suspended"), v.literal("inactive"));
 const referralAgreementStatus = v.union(v.literal("none"), v.literal("draft"), v.literal("active"), v.literal("expired"), v.literal("suspended"));
+const matchingReviewStatus = v.union(
+  v.literal("pending_review"),
+  v.literal("approved"),
+  v.literal("needs_changes"),
+  v.literal("escalated"),
+  v.literal("restricted"),
+);
 
 const organizationInput = {
   name: v.string(),
@@ -526,8 +533,9 @@ export const matchServices = mutation({
     const district = normalize(args.district);
     const isCritical = args.urgency === "immediate_safety";
     const safetyFlags = isCritical ? ["immediate_safety_review_required"] : [];
+    const isRestricted = isCritical;
 
-    const ranked = services
+    const ranked = isRestricted ? [] : services
       .filter((service) => service.verificationStatus === "verified")
       .map((service) => {
         const reasons: string[] = [];
@@ -567,7 +575,9 @@ export const matchServices = mutation({
       .sort((a, b) => b.score - a.score)
       .slice(0, 5);
 
-    const explanation = ranked.flatMap((item) => item.reasons.slice(0, 2));
+    const explanation = isRestricted
+      ? ["Immediate safety requests require LSF safeguarding review before service recommendations are shown."]
+      : ranked.flatMap((item) => item.reasons.slice(0, 2));
     const decisionId = await ctx.db.insert("matching_decisions", {
       requesterId: user?._id,
       requestId: args.requestId,
@@ -581,6 +591,10 @@ export const matchServices = mutation({
       recommendedServiceIds: ranked.map((item) => item.service._id),
       explanation,
       safetyFlags,
+      reviewStatus: isRestricted ? "restricted" : "pending_review",
+      restrictionReason: isRestricted
+        ? "Immediate safety requests require safeguarding review before service recommendations are shown."
+        : undefined,
       modelAssisted: false,
       createdAt: Date.now(),
     });
@@ -588,6 +602,10 @@ export const matchServices = mutation({
     return {
       decisionId,
       safetyFlags,
+      reviewStatus: isRestricted ? "restricted" : "pending_review",
+      restrictionReason: isRestricted
+        ? "Immediate safety requests require safeguarding review before service recommendations are shown."
+        : undefined,
       recommendations: ranked.map((item) => ({
         service: publicServiceProjection(item.service),
         score: item.score,
@@ -599,5 +617,93 @@ export const matchServices = mutation({
         ],
       })),
     };
+  },
+});
+
+export const staffMatchingDecisionQueue = query({
+  args: {
+    status: v.optional(matchingReviewStatus),
+  },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const decisions = args.status
+      ? await ctx.db
+          .query("matching_decisions")
+          .withIndex("by_review_status", (q) => q.eq("reviewStatus", args.status))
+          .collect()
+      : await ctx.db.query("matching_decisions").withIndex("by_created").collect();
+
+    const recent = decisions.sort((a, b) => b.createdAt - a.createdAt).slice(0, 100);
+    return await Promise.all(
+      recent.map(async (decision) => {
+        const [requester, request, caseRecord] = await Promise.all([
+          decision.requesterId ? ctx.db.get(decision.requesterId) : null,
+          decision.requestId ? ctx.db.get(decision.requestId) : null,
+          decision.caseId ? ctx.db.get(decision.caseId) : null,
+        ]);
+        const recommendedServices = await Promise.all(
+          decision.recommendedServiceIds.map(async (serviceId) => {
+            const service = await ctx.db.get(serviceId);
+            if (!service) return null;
+            return {
+              _id: service._id,
+              name: service.name,
+              organizationName: service.organizationName,
+              servicePointType: service.servicePointType,
+              region: service.region,
+              district: service.district,
+              currentIntakeState: service.currentIntakeState,
+              referralCapability: service.referralCapability,
+              emergencyCapability: service.emergencyCapability,
+            };
+          }),
+        );
+        return {
+          decision,
+          requester: requester
+            ? { name: requester.name, email: requester.email }
+            : null,
+          request: request
+            ? {
+                _id: request._id,
+                publicId: request.publicId,
+                status: request.status,
+                urgency: request.urgency,
+              }
+            : null,
+          case: caseRecord
+            ? {
+                _id: caseRecord._id,
+                publicId: caseRecord.publicId,
+                status: caseRecord.status,
+                priority: caseRecord.priority,
+              }
+            : null,
+          recommendedServices: recommendedServices.filter((service) => service !== null),
+        };
+      }),
+    );
+  },
+});
+
+export const reviewMatchingDecision = mutation({
+  args: {
+    decisionId: v.id("matching_decisions"),
+    status: matchingReviewStatus,
+    reviewNote: v.optional(v.string()),
+    restrictionReason: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const { user } = await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const decision = await ctx.db.get(args.decisionId);
+    if (!decision) throw new ConvexError("Matching decision not found.");
+    await ctx.db.patch(args.decisionId, {
+      reviewStatus: args.status,
+      reviewedBy: user._id,
+      reviewedAt: Date.now(),
+      reviewNote: args.reviewNote?.trim(),
+      restrictionReason: args.restrictionReason?.trim(),
+    });
+    return { success: true };
   },
 });

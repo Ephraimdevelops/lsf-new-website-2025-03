@@ -25,6 +25,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Staff service management UI | New partial | Staff operations now includes a Services tab for creating, verifying, deactivating, reviewing, and seeding justice service records. |
 | Destination organization modeling | New partial | Staff can create partner organizations with verification status, referral agreement status, focal contact, SLA, safeguarding readiness, data-sharing version, and link service points to those organizations. |
 | Partner SLA analytics | New partial | Staff Services now shows partner referral performance for the last 30 days, including response rate, SLA compliance, overdue open referrals, average response hours, delivery count, closure count, onward referrals, and linked service names. |
+| Matching governance | New partial | `matching_decisions` now carry review status, reviewer, notes, and restriction reason. Staff dashboard includes a Matching review queue with approve, needs-changes, escalation, and restriction actions. Immediate-safety matches are restricted from returning ordinary public recommendations until safeguarding review. |
 | Referral graph foundation | New partial | `referrals` and `referral_events` tables now track consented case handoffs across verified justice services. |
 | Beneficiary referral visibility | New partial | Mobile case details now include a Referrals tab showing destination, status, shared information, reason, and referral events. |
 | Staff referral operations | New partial | Staff dashboard now includes a Referrals tab with queue filtering and status actions for notified, accepted, declined, scheduled, delivered, returned, escalated, and closed states. |
@@ -48,7 +49,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Intake/help request | Partial/connected | Intake draft and submission flow exist. Needs stronger mapping into service/referral/case lifecycle and guest claim. |
 | Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Needs full staff/provider operational QA. |
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
-| Governed matching engine | Partial | Deterministic public service matching now records `matching_decisions`; referral records now capture downstream handoff state. Still needs richer scoring, staff review UI, safeguarding restrictions, bias/fairness review, and pathway integration. |
+| Governed matching engine | Partial/improved | Deterministic public service matching now records `matching_decisions`, safety-critical routing is restricted, and staff can review/approve/escalate/restrict recommendations. Still needs richer scoring, bias/fairness review, beneficiary-facing outcome states, and deeper pathway integration. |
 | Referral graph | Partial | Case-to-service referral tables, optional destination provider assignment, event trail, beneficiary case visibility, selected-case staff referral creation, staff queue actions, provider referral response UI, consent evidence records with signed-file upload/review/retention flagging, onward referral chaining, organization-linked service points, and partner SLA performance analytics now exist. Missing final retention purge/export policy and donor-safe reporting snapshots. |
 | Appointments | Partial/connected | Backend-backed my-appointments list exists. Booking request/confirmation lifecycle needs final UX and staff/provider scheduling workflow. |
 | Documents | Partial/connected | Upload, case docs, generated letters, and library exist. Needs stricter consent screens, retention policy, file review operations, and malware/content scanning plan. |
@@ -70,10 +71,10 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 4. Build guest-to-account claim flow for intake drafts and document/letter attachments.
 5. Add final retention purge/export policy after LSF legal approval.
 6. Add donor-safe reporting snapshots and exports.
-7. Add matching-decision review screens and safeguarding restrictions.
-8. Unify mobile Saada to the governed Convex AI backend.
-9. Add AI risk assessment records, consent gates, escalation, and audit events.
-10. Complete appointment booking from paralegal/service profile through request, confirmation, reschedule, cancel, complete/no-show.
+7. Unify mobile Saada to the governed Convex AI backend.
+8. Add AI risk assessment records, consent gates, escalation, and audit events.
+9. Complete appointment booking from paralegal/service profile through request, confirmation, reschedule, cancel, complete/no-show.
+10. Add beneficiary-facing matching review states so restricted recommendations explain safe next steps without exposing unsafe destinations.
 11. Complete donor-safe reporting dashboard and monthly snapshot generation.
 12. Run full mobile device QA, accessibility QA, low-bandwidth QA, and safeguarding review.
 
@@ -94,9 +95,9 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Visual mobile presentation | 75% |
 | Real beneficiary mobile MVP | 50% |
 | Backend case-management foundation | 75% |
-| Website/admin integration | 77% |
+| Website/admin integration | 78% |
 | AI governance | 35% |
 | App-store readiness | 30% |
-| Donor-ready platform credibility | 69% |
+| Donor-ready platform credibility | 70% |
 
-Overall product completion: about 69%. This can be shown as an advanced working prototype plus real backend foundation, service directory, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, and early partner SLA analytics, not as a finished national-scale justice platform yet.
+Overall product completion: about 70%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, and early partner SLA analytics, not as a finished national-scale justice platform yet.

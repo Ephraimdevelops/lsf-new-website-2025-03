@@ -26,7 +26,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 type TriageDetail = FunctionReturnType<typeof api.legalHelp.openForTriage>;
-type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments" | "referrals" | "services";
+type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments" | "matching" | "referrals" | "services";
 type ReferralQueueStatus =
   | "created"
   | "destination_notified"
@@ -37,6 +37,7 @@ type ReferralQueueStatus =
   | "returned"
   | "escalated"
   | "closed";
+type MatchingReviewStatus = "pending_review" | "approved" | "needs_changes" | "escalated" | "restricted";
 
 type ServiceFormState = {
   name: string;
@@ -259,6 +260,8 @@ const StaffDashboard = () => {
   const [assignmentStatus, setAssignmentStatus] = useState<
     "offered" | "accepted" | "declined" | "expired" | "ended"
   >("offered");
+  const [matchingReviewStatus, setMatchingReviewStatus] =
+    useState<MatchingReviewStatus>("pending_review");
   const [referralStatus, setReferralStatus] = useState<ReferralQueueStatus>("created");
   const [detail, setDetail] = useState<TriageDetail | null>(null);
   const [selectedCaseId, setSelectedCaseId] = useState<Id<"cases"> | null>(
@@ -318,6 +321,9 @@ const StaffDashboard = () => {
   const referralQueue = useQuery(api.referrals.staffQueue, {
     status: referralStatus,
   });
+  const matchingDecisionQueue = useQuery(api.justiceServices.staffMatchingDecisionQueue, {
+    status: matchingReviewStatus,
+  });
   const justiceOrganizations = useQuery(api.justiceServices.staffListOrganizations);
   const justiceServices = useQuery(api.justiceServices.staffListServices);
   const partnerPerformance = useQuery(api.justiceServices.staffPartnerPerformance, { days: 30 });
@@ -342,6 +348,7 @@ const StaffDashboard = () => {
   const generateReferralConsentUploadUrl = useMutation(api.referrals.generateConsentUploadUrl);
   const reviewConsentEvidence = useMutation(api.referrals.reviewConsentEvidence);
   const updateReferralStatus = useMutation(api.referrals.updateStatus);
+  const reviewMatchingDecision = useMutation(api.justiceServices.reviewMatchingDecision);
 
   const selectedAssignmentProvider =
     recommendations?.find((provider) => provider.id === providerId) ??
@@ -695,6 +702,26 @@ const StaffDashboard = () => {
     });
   }
 
+  function reviewMatchDecision(
+    decisionId: Id<"matching_decisions">,
+    status: MatchingReviewStatus,
+  ) {
+    void run(async () => {
+      const note = reviewNotesById[decisionId]?.trim();
+      await reviewMatchingDecision({
+        decisionId,
+        status,
+        reviewNote: note || undefined,
+        restrictionReason:
+          status === "restricted"
+            ? note || "Restricted by LSF pending safeguarding review."
+            : undefined,
+      });
+      setMatchingReviewStatus(status);
+      setNotice({ type: "success", text: `Matching decision marked ${status.replaceAll("_", " ")}.` });
+    });
+  }
+
   function createCaseReferral() {
     if (!selectedCaseId || !referralServiceId) {
       setNotice({ type: "error", text: "Select a case and referral destination." });
@@ -795,6 +822,10 @@ const StaffDashboard = () => {
   const openAssignmentOfferCount =
     assignmentOffers?.filter((item) => item.assignment.status === "offered").length ??
     0;
+  const matchingDecisionCount =
+    matchingDecisionQueue?.filter((item) =>
+      ["pending_review", "restricted", "escalated"].includes(item.decision.reviewStatus ?? "pending_review"),
+    ).length ?? 0;
   const activeReferralCount =
     referralQueue?.filter((item) => !["closed", "declined"].includes(item.referral.status)).length ?? 0;
   const verifiedServiceCount =
@@ -876,6 +907,12 @@ const StaffDashboard = () => {
               Assignments
             </button>
             <button
+              onClick={() => setTab("matching")}
+              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "matching" ? "bg-primary text-white" : "text-neutral-600"}`}
+            >
+              Matching
+            </button>
+            <button
               onClick={() => setTab("referrals")}
               className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "referrals" ? "bg-primary text-white" : "text-neutral-600"}`}
             >
@@ -936,6 +973,13 @@ const StaffDashboard = () => {
             </div>
             <p className="mb-1 text-2xl font-bold">{openAssignmentOfferCount}</p>
             <p className="mb-0 text-sm text-neutral-500">Open assignment offers</p>
+          </div>
+          <div className="rounded-2xl border bg-white p-4">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <UserRoundCheck className="h-5 w-5" />
+            </div>
+            <p className="mb-1 text-2xl font-bold">{matchingDecisionCount}</p>
+            <p className="mb-0 text-sm text-neutral-500">Matching reviews</p>
           </div>
           <div className="rounded-2xl border bg-white p-4">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-teal-100 text-teal-700">
@@ -1154,6 +1198,144 @@ const StaffDashboard = () => {
                         Close referral
                       </Button>
                     )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : tab === "matching" ? (
+          <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+            <div className="flex flex-col justify-between gap-3 border-b p-5 lg:flex-row lg:items-center">
+              <div>
+                <h2 className="text-xl">Matching decision review</h2>
+                <p className="mb-0 max-w-3xl text-sm text-neutral-500">
+                  Review Haki Yangu service matches before they become operational evidence.
+                  Immediate-safety matches are restricted until LSF safeguarding staff approves
+                  the route.
+                </p>
+              </div>
+              <select
+                value={matchingReviewStatus}
+                onChange={(event) => setMatchingReviewStatus(event.target.value as MatchingReviewStatus)}
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="pending_review">Pending review</option>
+                <option value="restricted">Restricted</option>
+                <option value="escalated">Escalated</option>
+                <option value="needs_changes">Needs changes</option>
+                <option value="approved">Approved</option>
+              </select>
+            </div>
+            <div className="divide-y">
+              {matchingDecisionQueue === undefined && (
+                <p className="p-5 text-sm text-neutral-500">Loading matching decisions...</p>
+              )}
+              {matchingDecisionQueue?.length === 0 && (
+                <div className="p-10 text-center">
+                  <UserRoundCheck className="mx-auto mb-3 h-9 w-9 text-primary/40" />
+                  <p className="mb-1 font-bold">No matching decisions in this queue</p>
+                  <p className="mb-0 text-sm text-neutral-500">
+                    Service directory and app matching decisions will appear here for staff governance.
+                  </p>
+                </div>
+              )}
+              {matchingDecisionQueue?.map((item) => (
+                <div key={item.decision._id} className="grid gap-4 p-5 xl:grid-cols-[1fr_300px]">
+                  <div>
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <h3 className="mb-0 text-lg">
+                        {item.decision.issueCategory || item.decision.ordinaryProblem || "Uncategorized match"}
+                      </h3>
+                      <StatusPill value={(item.decision.reviewStatus ?? "pending_review").replaceAll("_", " ")} urgent={["restricted", "escalated"].includes(item.decision.reviewStatus ?? "")} />
+                      {item.decision.urgency && (
+                        <StatusPill value={item.decision.urgency.replaceAll("_", " ")} urgent={item.decision.urgency === "immediate_safety"} />
+                      )}
+                    </div>
+                    <p className="mb-3 text-sm text-neutral-600">
+                      Source: {item.decision.source} · {item.decision.region || "region unknown"}
+                      {item.decision.district ? `, ${item.decision.district}` : ""} · Created {formatDate(item.decision.createdAt)}
+                    </p>
+                    <div className="grid gap-3 lg:grid-cols-2">
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <p className="mb-1 font-bold text-neutral-800">Linked record</p>
+                        <p className="mb-0 text-sm text-neutral-600">
+                          {item.request?.publicId ?? item.case?.publicId ?? "No request or case linked"}
+                        </p>
+                        {item.requester && (
+                          <p className="mb-0 mt-1 text-xs text-neutral-500">
+                            {item.requester.name || item.requester.email || "Requester recorded"}
+                          </p>
+                        )}
+                      </div>
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <p className="mb-1 font-bold text-neutral-800">Safety controls</p>
+                        <p className="mb-0 text-sm text-neutral-600">
+                          {item.decision.safetyFlags.length > 0 ? item.decision.safetyFlags.join(", ") : "No safety flags"}
+                        </p>
+                        {item.decision.restrictionReason && (
+                          <p className="mb-0 mt-1 text-xs text-primary">{item.decision.restrictionReason}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="mt-3 rounded-xl border bg-white p-3">
+                      <p className="mb-2 font-bold text-neutral-800">Why this match happened</p>
+                      <div className="flex flex-wrap gap-2">
+                        {item.decision.explanation.length > 0 ? item.decision.explanation.map((reason) => (
+                          <span key={reason} className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                            {reason}
+                          </span>
+                        )) : (
+                          <span className="text-sm text-neutral-500">No explanation recorded.</span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="mt-3 rounded-xl border bg-white p-3">
+                      <p className="mb-2 font-bold text-neutral-800">Recommended services</p>
+                      {item.recommendedServices.length === 0 ? (
+                        <p className="mb-0 text-sm text-neutral-500">
+                          No service recommendations are shown. This is expected for restricted safeguarding matches.
+                        </p>
+                      ) : (
+                        <div className="grid gap-2 md:grid-cols-2">
+                          {item.recommendedServices.map((service) => (
+                            <div key={service._id} className="rounded-xl border bg-[#fbf7f8] p-3">
+                              <p className="mb-1 font-bold text-neutral-800">{service.name}</p>
+                              <p className="mb-1 text-xs text-neutral-600">
+                                {service.organizationName || "Organization not linked"} · {service.district}, {service.region}
+                              </p>
+                              <p className="mb-0 text-xs text-neutral-500">
+                                Intake: {service.currentIntakeState.replaceAll("_", " ")} · Referral: {service.referralCapability ? "yes" : "no"} · Emergency: {service.emergencyCapability ? "yes" : "no"}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <Textarea
+                      value={reviewNotesById[item.decision._id] ?? ""}
+                      onChange={(event) =>
+                        setReviewNotesById((previous) => ({
+                          ...previous,
+                          [item.decision._id]: event.target.value,
+                        }))
+                      }
+                      placeholder="Staff review note, safety reason, or route correction"
+                      rows={5}
+                    />
+                    <Button disabled={pending} onClick={() => reviewMatchDecision(item.decision._id, "approved")}>
+                      Approve match
+                    </Button>
+                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "needs_changes")}>
+                      Needs changes
+                    </Button>
+                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "escalated")}>
+                      Escalate to safeguarding lead
+                    </Button>
+                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "restricted")}>
+                      Restrict recommendations
+                    </Button>
                   </div>
                 </div>
               ))}
