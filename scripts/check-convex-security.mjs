@@ -170,6 +170,7 @@ const publicFunctions = new Map([
   ["quickLinks.trackClick", "public-counter"],
   ["quickLinks.update", "admin"],
   ["referrals.createForCase", "case-worker"],
+  ["referrals.generateConsentUploadUrl", "case-worker"],
   ["referrals.listForCase", "case-access"],
   ["referrals.myDestinationQueue", "service-provider"],
   ["referrals.respondAsDestination", "service-provider"],

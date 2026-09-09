@@ -52,6 +52,9 @@ const destinationOpenStatuses = [
   "escalated",
 ] as const;
 
+const CONSENT_EVIDENCE_RETENTION_YEARS = 7;
+const MAX_CONSENT_EVIDENCE_BYTES = 10 * 1024 * 1024;
+
 function publicReference(prefix: string, id: string, now: number) {
   const date = new Date(now).toISOString().slice(0, 10).replaceAll("-", "");
   return `${prefix}-${date}-${id.slice(-6).toUpperCase()}`;
@@ -80,6 +83,19 @@ async function addReferralEvent(
     occurredAt: Date.now(),
   });
 }
+
+export const generateConsentUploadUrl = mutation({
+  args: { caseId: v.id("cases") },
+  handler: async (ctx, args) => {
+    const { user } = await requireCaseWorker(ctx, args.caseId);
+    const uploadUrl = await ctx.storage.generateUploadUrl();
+    await writeAudit(ctx, user._id, "referral.consent_upload_url_generated", "case", args.caseId, {
+      caseId: args.caseId,
+      changedFieldNames: ["consentEvidenceStorageId"],
+    });
+    return uploadUrl;
+  },
+});
 
 export const listForCase = query({
   args: { caseId: v.id("cases") },
@@ -110,14 +126,18 @@ export const staffQueue = query({
     const records = args.status
       ? await ctx.db.query("referrals").withIndex("by_status", (q) => q.eq("status", args.status!)).collect()
       : await ctx.db.query("referrals").order("desc").take(100);
-    return await Promise.all(records.map(async (referral) => ({
-      referral,
-      case: await ctx.db.get(referral.caseId),
-      beneficiary: await ctx.db.get(referral.beneficiaryId),
-      destinationService: await ctx.db.get(referral.destinationServiceId),
-      destinationUser: referral.destinationUserId ? await ctx.db.get(referral.destinationUserId) : null,
-      consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
-    })));
+    return await Promise.all(records.map(async (referral) => {
+      const consent = referral.consentId ? await ctx.db.get(referral.consentId) : null;
+      return {
+        referral,
+        case: await ctx.db.get(referral.caseId),
+        beneficiary: await ctx.db.get(referral.beneficiaryId),
+        destinationService: await ctx.db.get(referral.destinationServiceId),
+        destinationUser: referral.destinationUserId ? await ctx.db.get(referral.destinationUserId) : null,
+        consent,
+        consentEvidenceUrl: consent?.evidenceStorageId ? await ctx.storage.getUrl(consent.evidenceStorageId) : null,
+      };
+    }));
   },
 });
 
@@ -159,6 +179,10 @@ export const createForCase = mutation({
     consentMethod: v.optional(consentMethod),
     consentStatement: v.optional(v.string()),
     consentEvidenceNote: v.optional(v.string()),
+    consentEvidenceStorageId: v.optional(v.id("_storage")),
+    consentEvidenceFileName: v.optional(v.string()),
+    consentEvidenceFileType: v.optional(v.string()),
+    consentEvidenceFileSize: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const { user, caseRecord } = await requireCaseWorker(ctx, args.caseId);
@@ -185,19 +209,38 @@ export const createForCase = mutation({
     const now = Date.now();
     const sourceRequest = await ctx.db.get(caseRecord.sourceRequestId);
     const normalizedInformationShared = args.informationShared.map((item) => normalize(item, "Information shared", 160));
+    const selectedConsentMethod = args.consentMethod ?? "documented_verbal";
+    if (args.consentEvidenceFileSize && args.consentEvidenceFileSize > MAX_CONSENT_EVIDENCE_BYTES) {
+      throw new ConvexError("Consent evidence file must be 10MB or smaller.");
+    }
+    if (selectedConsentMethod === "signed_document" && !args.consentEvidenceStorageId) {
+      throw new ConvexError("Signed document consent requires an uploaded evidence file.");
+    }
+    if (args.consentEvidenceStorageId) {
+      const storedFile = await ctx.db.system.get(args.consentEvidenceStorageId);
+      if (!storedFile) {
+        throw new ConvexError("Uploaded consent evidence file was not found.");
+      }
+    }
     const consentRecordId = args.consentId ?? await ctx.db.insert("consents", {
       userId: caseRecord.beneficiaryId,
       type: "referral",
       version: "2026-09-referral-consent-v1",
       granted: true,
       locale: sourceRequest?.locale ?? "en",
-      method: args.consentMethod ?? "documented_verbal",
+      method: selectedConsentMethod,
       statement: normalize(
         args.consentStatement ?? "Beneficiary consented to share minimum necessary information for this referral.",
         "Consent statement",
         1200,
       ),
       evidenceNote: args.consentEvidenceNote?.trim().slice(0, 1200),
+      evidenceStorageId: args.consentEvidenceStorageId,
+      evidenceFileName: args.consentEvidenceFileName?.trim().slice(0, 180),
+      evidenceFileType: args.consentEvidenceFileType?.trim().slice(0, 120),
+      evidenceFileSize: args.consentEvidenceFileSize,
+      retentionUntil: now + CONSENT_EVIDENCE_RETENTION_YEARS * 365 * 24 * 60 * 60 * 1000,
+      reviewStatus: args.consentEvidenceStorageId ? "pending_review" : "accepted",
       informationShared: normalizedInformationShared,
       relatedCaseId: args.caseId,
       destinationServiceId: args.destinationServiceId,

@@ -247,6 +247,7 @@ const StaffDashboard = () => {
   const [referralConsentMethod, setReferralConsentMethod] = useState<"documented_verbal" | "written" | "sms" | "email" | "signed_document">("documented_verbal");
   const [referralConsentStatement, setReferralConsentStatement] = useState("I consent for LSF to share the minimum information listed here with this referral destination so they can provide legal support.");
   const [referralConsentEvidenceNote, setReferralConsentEvidenceNote] = useState("");
+  const [referralConsentFile, setReferralConsentFile] = useState<File | null>(null);
   const [serviceForm, setServiceForm] = useState<ServiceFormState>(initialServiceForm);
   const [pending, setPending] = useState(false);
   const [notice, setNotice] = useState<{
@@ -298,6 +299,7 @@ const StaffDashboard = () => {
   const updateJusticeService = useMutation(api.justiceServices.updateService);
   const seedJusticeServices = useMutation(api.hakiYanguSeed.seedJusticeServices);
   const createReferral = useMutation(api.referrals.createForCase);
+  const generateReferralConsentUploadUrl = useMutation(api.referrals.generateConsentUploadUrl);
   const updateReferralStatus = useMutation(api.referrals.updateStatus);
 
   const selectedAssignmentProvider =
@@ -630,7 +632,40 @@ const StaffDashboard = () => {
       setNotice({ type: "error", text: "Record the beneficiary consent statement before creating the referral." });
       return;
     }
+    if (referralConsentMethod === "signed_document" && !referralConsentFile) {
+      setNotice({ type: "error", text: "Attach the signed consent file before creating this referral." });
+      return;
+    }
     void run(async () => {
+      let consentUpload:
+        | {
+            storageId: Id<"_storage">;
+            fileName: string;
+            fileType: string;
+            fileSize: number;
+          }
+        | null = null;
+      if (referralConsentFile) {
+        if (referralConsentFile.size > 10 * 1024 * 1024) {
+          throw new Error("Consent evidence file must be 10MB or smaller.");
+        }
+        const uploadUrl = await generateReferralConsentUploadUrl({ caseId: selectedCaseId });
+        const uploadResult = await fetch(uploadUrl, {
+          method: "POST",
+          headers: { "Content-Type": referralConsentFile.type || "application/octet-stream" },
+          body: referralConsentFile,
+        });
+        if (!uploadResult.ok) {
+          throw new Error("Could not upload signed consent evidence.");
+        }
+        const { storageId } = await uploadResult.json() as { storageId: Id<"_storage"> };
+        consentUpload = {
+          storageId,
+          fileName: referralConsentFile.name,
+          fileType: referralConsentFile.type || "application/octet-stream",
+          fileSize: referralConsentFile.size,
+        };
+      }
       const result = await createReferral({
         caseId: selectedCaseId,
         destinationServiceId: referralServiceId as Id<"justice_services">,
@@ -640,6 +675,10 @@ const StaffDashboard = () => {
         consentMethod: referralConsentMethod,
         consentStatement: referralConsentStatement.trim(),
         consentEvidenceNote: referralConsentEvidenceNote.trim() || undefined,
+        consentEvidenceStorageId: consentUpload?.storageId,
+        consentEvidenceFileName: consentUpload?.fileName,
+        consentEvidenceFileType: consentUpload?.fileType,
+        consentEvidenceFileSize: consentUpload?.fileSize,
       });
       setReferralServiceId("");
       setReferralDestinationUserId("");
@@ -648,6 +687,7 @@ const StaffDashboard = () => {
       setReferralConsentMethod("documented_verbal");
       setReferralConsentStatement("I consent for LSF to share the minimum information listed here with this referral destination so they can provide legal support.");
       setReferralConsentEvidenceNote("");
+      setReferralConsentFile(null);
       setReferralStatus("created");
       setTab("referrals");
       setNotice({ type: "success", text: `${result.publicId} created and visible in the referral queue.` });
@@ -923,6 +963,27 @@ const StaffDashboard = () => {
                         </p>
                         {item.consent?.evidenceNote && (
                           <p className="mb-0 mt-1 text-neutral-500">{item.consent.evidenceNote}</p>
+                        )}
+                        {item.consent?.evidenceFileName && (
+                          <p className="mb-0 mt-1 text-neutral-500">
+                            File: {item.consent.evidenceFileName}
+                          </p>
+                        )}
+                        {item.consent?.reviewStatus && (
+                          <p className="mb-0 mt-1 text-neutral-500 capitalize">
+                            Review: {item.consent.reviewStatus.replaceAll("_", " ")}
+                          </p>
+                        )}
+                        {item.consentEvidenceUrl && (
+                          <a
+                            className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-primary underline"
+                            href={item.consentEvidenceUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Open consent file
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
                         )}
                       </div>
                     </div>
@@ -2323,8 +2384,25 @@ const StaffDashboard = () => {
                             value={referralConsentEvidenceNote}
                             onChange={(event) => setReferralConsentEvidenceNote(event.target.value)}
                             placeholder="Evidence note: who collected it, when, channel used, and where supporting proof is stored."
-                            className="min-h-[76px] bg-white text-sm"
+                            className="mb-3 min-h-[76px] bg-white text-sm"
                           />
+                          <label className="block rounded-lg border border-dashed border-orange-300 bg-white p-3 text-xs text-orange-900">
+                            <span className="mb-1 block font-bold">Signed consent file</span>
+                            <span className="mb-2 block text-neutral-600">
+                              Required when method is signed document. PDF, JPG, or PNG up to 10MB.
+                            </span>
+                            <input
+                              type="file"
+                              accept=".pdf,image/jpeg,image/png"
+                              onChange={(event) => setReferralConsentFile(event.target.files?.[0] ?? null)}
+                              className="block w-full text-xs"
+                            />
+                            {referralConsentFile && (
+                              <span className="mt-2 block text-neutral-600">
+                                Selected: {referralConsentFile.name}
+                              </span>
+                            )}
+                          </label>
                         </div>
                         <Button
                           disabled={pending || !referralServiceId || referralReason.trim().length < 12 || referralConsentStatement.trim().length < 20}

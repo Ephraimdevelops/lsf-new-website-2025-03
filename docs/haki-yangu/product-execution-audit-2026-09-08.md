@@ -28,8 +28,8 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Staff referral operations | New partial | Staff dashboard now includes a Referrals tab with queue filtering and status actions for notified, accepted, declined, scheduled, delivered, returned, escalated, and closed states. |
 | Staff referral creation | New partial | Staff can create a referral from a selected case by choosing a verified referral-capable service, recording reason, and listing minimum information shared. Signed consent artifact capture remains required. |
 | Provider referral inbox | New partial | Provider/paralegal dashboard now includes a referral inbox for destination-assigned referrals with accept, decline, return, schedule, deliver, and close actions. |
-| Referral consent evidence | New partial | Referral creation now records consent method, statement, evidence note, destination service, staff recorder, and minimum shared information in a linked consent record. Signed-file upload/retention workflow remains required. |
-| Contract regression suite | Passing | `npm run test:haki-contracts` passes 27/27. |
+| Referral consent evidence | Improved partial | Referral creation now records consent method, statement, evidence note, destination service, staff recorder, minimum shared information, and optional signed evidence file metadata with retention/review status. Full consent evidence review queue and retention automation remain required. |
+| Contract regression suite | Passing | `npm run test:haki-contracts` passes 28/28. |
 | Mobile typecheck | Passing | `cd mobile && npm run typecheck` passes. |
 | Root build/security | Passing | `npm run build` and `npm run test:security` pass. |
 
@@ -46,7 +46,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Needs full staff/provider operational QA. |
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
 | Governed matching engine | Partial | Deterministic public service matching now records `matching_decisions`; referral records now capture downstream handoff state. Still needs richer scoring, staff review UI, safeguarding restrictions, bias/fairness review, and pathway integration. |
-| Referral graph | Partial | Case-to-service referral tables, optional destination provider assignment, event trail, beneficiary case visibility, selected-case staff referral creation, staff queue actions, provider referral response UI, and consent evidence records exist. Missing signed-file consent artifact workflow, onward referral chaining UI, partner SLA analytics, and deeper destination organization account modeling. |
+| Referral graph | Partial | Case-to-service referral tables, optional destination provider assignment, event trail, beneficiary case visibility, selected-case staff referral creation, staff queue actions, provider referral response UI, and consent evidence records with signed-file upload support exist. Missing dedicated consent review queue, onward referral chaining UI, partner SLA analytics, and deeper destination organization account modeling. |
 | Appointments | Partial/connected | Backend-backed my-appointments list exists. Booking request/confirmation lifecycle needs final UX and staff/provider scheduling workflow. |
 | Documents | Partial/connected | Upload, case docs, generated letters, and library exist. Needs stricter consent screens, retention policy, file review operations, and malware/content scanning plan. |
 | Document checker | Practical prototype | Pre-signing checklist and explicit attach-to-case consent exist. AI document analysis is not production governed yet. |
@@ -65,7 +65,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 2. Enable Clerk Native Applications and test sign-in/sign-up on iPhone Expo Go or a development build.
 3. Seed development Convex with real-looking but non-sensitive LSF service providers, paralegals, legal clinics, guides, sample cases, and appointments.
 4. Build guest-to-account claim flow for intake drafts and document/letter attachments.
-5. Add signed-file referral consent upload, retention, and review workflow.
+5. Add dedicated consent evidence review queue and retention automation.
 6. Add onward-referral chaining UI and destination organization account modeling.
 7. Add matching-decision review screens and safeguarding restrictions.
 8. Unify mobile Saada to the governed Convex AI backend.
@@ -90,10 +90,10 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | --- | --- |
 | Visual mobile presentation | 75% |
 | Real beneficiary mobile MVP | 50% |
-| Backend case-management foundation | 70% |
-| Website/admin integration | 73% |
+| Backend case-management foundation | 72% |
+| Website/admin integration | 74% |
 | AI governance | 35% |
 | App-store readiness | 30% |
-| Donor-ready platform credibility | 64% |
+| Donor-ready platform credibility | 66% |
 
-Overall product completion: about 64%. This can be shown as an advanced working prototype plus real backend foundation, service directory, and early referral graph with staff/provider handoff workflow and recorded consent evidence, not as a finished national-scale justice platform yet.
+Overall product completion: about 66%. This can be shown as an advanced working prototype plus real backend foundation, service directory, and early referral graph with staff/provider handoff workflow and signed-file consent evidence support, not as a finished national-scale justice platform yet.
