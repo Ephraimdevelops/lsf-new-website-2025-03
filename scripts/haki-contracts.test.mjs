@@ -516,6 +516,8 @@ test("mobile release documentation identifies required environment and device QA
   const envCheck = readFileSync(new URL("../mobile/scripts/check-env.mjs", import.meta.url), "utf8");
   const mobileConfig = readFileSync(new URL("../mobile/src/config.ts", import.meta.url), "utf8");
   const rootLayout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
+  const mobileUserSync = readFileSync(new URL("../mobile/src/useStoreUserEffect.ts", import.meta.url), "utf8");
+  const userSyncNote = readFileSync(new URL("../docs/platform-review/76-mobile-identity-bootstrap.md", import.meta.url), "utf8");
 
   assert.match(readme, /EXPO_PUBLIC_CONVEX_URL/);
   assert.match(readme, /EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY/);
@@ -539,6 +541,11 @@ test("mobile release documentation identifies required environment and device QA
   assert.match(rootLayout, /ConfigurationRequired/);
   assert.match(rootLayout, /Missing required/);
   assert.match(rootLayout, /npm run env:check/);
+  assert.match(rootLayout, /useStoreUserEffect/);
+  assert.match(mobileUserSync, /api\.users\.syncUser/);
+  assert.match(mobileUserSync, /lastSyncedClerkId/);
+  assert.match(mobileUserSync, /primaryEmailAddress/);
+  assert.match(userSyncNote, /Clerk-to-Convex identity bootstrap/);
 });
 
 test("mobile prototype review mode exposes mock screen navigation without weakening production auth", () => {

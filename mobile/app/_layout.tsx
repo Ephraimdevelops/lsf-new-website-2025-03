@@ -12,6 +12,7 @@ import { IntakeDraftProvider } from "../src/intake/IntakeDraftContext";
 import { LanguageProvider, useLanguage } from "../src/i18n";
 import { PrototypeApp } from "../src/prototype/PrototypeApp";
 import { colors, spacing, type } from "../src/theme";
+import { useStoreUserEffect } from "../src/useStoreUserEffect";
 
 const tokenCache = {
   async getToken(key: string) {
@@ -40,6 +41,8 @@ function isValidSecureStoreKey(key: string) {
 
 function Navigation() {
   const { locale } = useLanguage();
+  useStoreUserEffect();
+
   return (
     <IntakeDraftProvider initialLocale={locale}>
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>

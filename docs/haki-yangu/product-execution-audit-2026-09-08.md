@@ -15,6 +15,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Mobile auth facade removed | Done | `mobile/src/auth.ts` now re-exports Clerk Expo hooks instead of fake signed-out hooks. |
 | Clerk provider added | Done | `mobile/app/_layout.tsx` wraps production app with `ClerkProvider`. |
 | Convex auth bridge added | Done | `mobile/app/_layout.tsx` uses `ConvexProviderWithClerk`. |
+| Mobile identity bootstrap | New partial | Mobile now syncs a signed-in Clerk user into Convex through `users.syncUser`, preventing authenticated mobile sessions from missing required server-side user records. Device QA remains required. |
 | Secure token cache | Done | Clerk token cache uses `expo-secure-store` with device-only keychain access. |
 | Real sign-in/sign-up UI | Partial | Email/password sign-in and email-code sign-up are implemented. Account recovery/MFA remain dependent on Clerk Native Applications configuration. |
 | SecureStore key crash | Done | Local keys were normalized to `haki_yangu_*` format and Clerk token-cache keys are rejected unless they match SecureStore's allowed key pattern. |
@@ -46,7 +47,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Public website | Partial/strong visual | Main LSF website builds. CMS/admin media issue was previously investigated, but full content governance and donor/reporting workflows still need hardening. |
 | Admin/staff dashboard | Partial | Staff case workflow, Justice Service Management, assignment monitor, reviews, documents, and a first referral operations queue exist. Escalation, reporting, and mature workload operations remain incomplete. |
 | Beneficiary mobile home | Visual/interactive | Stronger premium home direction exists, with paralegal-first flow and quick tools. Needs real device QA after auth config. |
-| Mobile sign-in/sign-up | Implemented, unverified on device | Code is wired to Clerk. Clerk Dashboard must enable Native Applications before runtime sign-in will work. |
+| Mobile sign-in/sign-up | Implemented, unverified on device | Code is wired to Clerk and now bootstraps the matching Convex user profile. Clerk Dashboard must enable Native Applications before runtime sign-in will work. |
 | Guest mode | Partial/improved | Public routes work and private screens now ask for secure sign-in instead of showing fake records. Guest-to-account claim flow is not implemented yet. |
 | Intake/help request | Partial/connected | Intake draft and submission flow exist. Needs stronger mapping into service/referral/case lifecycle and guest claim. |
 | Case tracking | Partial/connected | Case timeline, messages, documents, appointments, referrals, feedback, review requests exist. Private mobile case/document/notification screens now show real account state only. Needs full staff/provider operational QA. |
@@ -95,11 +96,11 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Dimension | Current Completion |
 | --- | --- |
 | Visual mobile presentation | 75% |
-| Real beneficiary mobile MVP | 54% |
+| Real beneficiary mobile MVP | 55% |
 | Backend case-management foundation | 75% |
 | Website/admin integration | 79% |
 | AI governance | 46% |
 | App-store readiness | 30% |
 | Donor-ready platform credibility | 75% |
 
-Overall product completion: about 75%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging and basic staff disposition, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, mobile case-linked appointment requests, staff/provider request confirmation, production private-screen demo fallback removal, and early partner SLA analytics, not as a finished national-scale justice platform yet.
+Overall product completion: about 75%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging and basic staff disposition, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, mobile case-linked appointment requests, staff/provider request confirmation, mobile Clerk-to-Convex identity bootstrap, production private-screen demo fallback removal, and early partner SLA analytics, not as a finished national-scale justice platform yet.
