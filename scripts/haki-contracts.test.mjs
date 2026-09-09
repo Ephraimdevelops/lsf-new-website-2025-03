@@ -210,8 +210,12 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   const staffDashboard = readFileSync(new URL("../src/pages/StaffDashboard.tsx", import.meta.url), "utf8");
   const providerDashboard = readFileSync(new URL("../src/pages/ParalegalDashboard.tsx", import.meta.url), "utf8");
   const mobileCase = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
+  const mobileAppointments = readFileSync(new URL("../mobile/app/appointments.tsx", import.meta.url), "utf8");
+  const mobileParalegals = readFileSync(new URL("../mobile/app/paralegals.tsx", import.meta.url), "utf8");
+  const mobileParalegalProfile = readFileSync(new URL("../mobile/app/paralegal-profile.tsx", import.meta.url), "utf8");
   const mobileNotifications = readFileSync(new URL("../mobile/app/notifications.tsx", import.meta.url), "utf8");
   const phaseNote = readFileSync(new URL("../docs/platform-review/63-appointment-lifecycle-quality.md", import.meta.url), "utf8");
+  const bookingBridgeNote = readFileSync(new URL("../docs/platform-review/73-mobile-appointment-booking-bridge.md", import.meta.url), "utf8");
 
   assert.match(schema, /statusNote:\s*v\.optional\(v\.string\(\)\)/);
   assert.match(schema, /statusUpdatedBy:\s*v\.optional\(v\.id\("users"\)\)/);
@@ -238,10 +242,18 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   assert.match(mobileCase, /appointment_completed/);
   assert.match(mobileCase, /appointmentStatusLabels/);
   assert.match(mobileCase, /appointment\.statusNote/);
+  assert.match(mobileAppointments, /api\.caseManagement\.requestAppointment/);
+  assert.match(mobileAppointments, /api\.caseManagement\.myCases/);
+  assert.match(mobileAppointments, /providerName/);
+  assert.match(mobileAppointments, /Choose case/);
+  assert.match(mobileAppointments, /Send appointment request/);
+  assert.match(mobileParalegals, /providerName:\s*item\.fullName/);
+  assert.match(mobileParalegalProfile, /providerName:\s*name/);
   assert.match(mobileNotifications, /"appointment\.changed"/);
   assert.match(mobileNotifications, /"appointment\.reminder"/);
   assert.match(phaseNote, /Provider\/staff appointment completion/i);
   assert.match(phaseNote, /within 24 hours/i);
+  assert.match(bookingBridgeNote, /real `caseManagement\.requestAppointment` mutation/);
 });
 
 test("deactivated Haki Yangu profiles are not silently restored", () => {

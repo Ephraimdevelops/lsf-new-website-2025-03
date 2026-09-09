@@ -71,7 +71,19 @@ export default function ParalegalProfileScreen() {
           <Ionicons name="chatbubble-outline" size={18} color={colors.burgundy} />
           <Text style={styles.secondaryText}>{locale === "sw" ? "Ujumbe" : "Message"}</Text>
         </Pressable>
-        <Pressable style={styles.primaryAction} onPress={() => router.push("/appointments")}>
+        <Pressable
+          style={styles.primaryAction}
+          onPress={() =>
+            router.push({
+              pathname: "/appointments",
+              params: {
+                providerName: name,
+                providerDistrict: `${district}, ${region}`,
+                providerPhone: params.phone ?? "",
+              },
+            })
+          }
+        >
           <Ionicons name="calendar-outline" size={18} color={colors.surface} />
           <Text style={styles.primaryText}>{locale === "sw" ? "Weka miadi" : "Book support"}</Text>
         </Pressable>

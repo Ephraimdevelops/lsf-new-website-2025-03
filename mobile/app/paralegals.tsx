@@ -172,7 +172,19 @@ export default function ParalegalsScreen() {
                 <Ionicons name="chatbubble-outline" size={18} color={colors.burgundy} />
                 <Text style={styles.secondaryText}>{locale === "sw" ? "Ujumbe" : "Message"}</Text>
               </Pressable>
-              <Pressable style={styles.primaryAction} onPress={() => router.push("/appointments")}>
+              <Pressable
+                style={styles.primaryAction}
+                onPress={() =>
+                  router.push({
+                    pathname: "/appointments",
+                    params: {
+                      providerName: item.fullName,
+                      providerDistrict: `${item.district}, ${item.region}`,
+                      providerPhone: item.phone ?? "",
+                    },
+                  })
+                }
+              >
                 <Text style={styles.primaryText}>{locale === "sw" ? "Weka miadi" : "Book support"}</Text>
                 <Ionicons name="arrow-forward" size={18} color={colors.surface} />
               </Pressable>

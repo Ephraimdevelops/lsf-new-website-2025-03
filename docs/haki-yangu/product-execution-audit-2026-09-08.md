@@ -33,7 +33,8 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Provider referral inbox | New partial | Provider/paralegal dashboard now includes a referral inbox for destination-assigned referrals with accept, decline, return, schedule, deliver, and close actions. |
 | Referral consent evidence | Improved partial | Referral creation now records consent method, statement, evidence note, destination service, staff recorder, minimum shared information, optional signed evidence file metadata, retention date/status, a staff evidence review queue, and an hourly retention-expiry flag. Final purge/export legal policy remains required. |
 | Onward referral chaining | New partial | Assigned providers can create an onward referral from accepted/scheduled/delivered referrals, with a child referral, parent referral status update, consent record, audit event, notifications, staff visibility, and beneficiary mobile chain labels. |
-| Contract regression suite | Passing | `npm run test:haki-contracts` passes 28/28. |
+| Mobile appointment booking bridge | New partial | Signed-in mobile users can choose an open case, select phone/remote/in-person support, add preferred time and note, and submit a real appointment request. Paralegal list/profile booking buttons pass provider context into that request. |
+| Contract regression suite | Passing | `npm run test:haki-contracts` passes 29/29. |
 | Mobile typecheck | Passing | `cd mobile && npm run typecheck` passes. |
 | Root build/security | Passing | `npm run build` and `npm run test:security` pass. |
 
@@ -51,7 +52,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Paralegal discovery | Partial/connected | Public approved provider listing exists with safer projection and matching language. Needs seeded real providers, service coverage, capability scoring, and map support. |
 | Governed matching engine | Partial/improved | Deterministic public service matching now records `matching_decisions`, safety-critical routing is restricted, and staff can review/approve/escalate/restrict recommendations. Still needs richer scoring, bias/fairness review, beneficiary-facing outcome states, and deeper pathway integration. |
 | Referral graph | Partial | Case-to-service referral tables, optional destination provider assignment, event trail, beneficiary case visibility, selected-case staff referral creation, staff queue actions, provider referral response UI, consent evidence records with signed-file upload/review/retention flagging, onward referral chaining, organization-linked service points, and partner SLA performance analytics now exist. Missing final retention purge/export policy and donor-safe reporting snapshots. |
-| Appointments | Partial/connected | Backend-backed my-appointments list exists. Booking request/confirmation lifecycle needs final UX and staff/provider scheduling workflow. |
+| Appointments | Partial/connected | Backend-backed my-appointments list exists, case details can request appointments, and standalone mobile booking now submits real case-linked appointment requests with provider context. Needs true availability slots, staff confirmation UX, reschedule/cancel request flow, and production reminder QA. |
 | Documents | Partial/connected | Upload, case docs, generated letters, and library exist. Needs stricter consent screens, retention policy, file review operations, and malware/content scanning plan. |
 | Document checker | Practical prototype | Pre-signing checklist and explicit attach-to-case consent exist. AI document analysis is not production governed yet. |
 | Demand-letter builder | Good MVP | Offline draft/save/share/attach exists. Needs more templates, Swahili legal copy review, export-to-PDF, and human-review prompts. |
@@ -73,7 +74,7 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 6. Add donor-safe reporting snapshots and exports.
 7. Add case-linked Saada sessions and convert selected AI risk events into case/safeguarding follow-up tasks.
 8. Add legal-content evaluation sets, safer answer templates, and human-escalation routing for risky AI sessions.
-9. Complete appointment booking from paralegal/service profile through request, confirmation, reschedule, cancel, complete/no-show.
+9. Complete appointment confirmation from staff/provider requested state through scheduled appointment, reschedule, cancel, complete/no-show.
 10. Add beneficiary-facing matching review states so restricted recommendations explain safe next steps without exposing unsafe destinations.
 11. Complete donor-safe reporting dashboard and monthly snapshot generation.
 12. Run full mobile device QA, accessibility QA, low-bandwidth QA, and safeguarding review.
@@ -93,11 +94,11 @@ The platform is past a visual prototype, but it is not yet a finished market-rea
 | Dimension | Current Completion |
 | --- | --- |
 | Visual mobile presentation | 75% |
-| Real beneficiary mobile MVP | 50% |
+| Real beneficiary mobile MVP | 52% |
 | Backend case-management foundation | 75% |
 | Website/admin integration | 78% |
 | AI governance | 46% |
 | App-store readiness | 30% |
-| Donor-ready platform credibility | 72% |
+| Donor-ready platform credibility | 73% |
 
-Overall product completion: about 72%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging and basic staff disposition, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, and early partner SLA analytics, not as a finished national-scale justice platform yet.
+Overall product completion: about 73%. This can be shown as an advanced working prototype plus real backend foundation, service directory, governed matching review, governed mobile/web Saada action routing with risk-event logging and basic staff disposition, organization-linked referral graph with staff/provider handoff, signed-file consent evidence support, onward referral chaining, mobile case-linked appointment requests, and early partner SLA analytics, not as a finished national-scale justice platform yet.
