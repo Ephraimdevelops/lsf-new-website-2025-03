@@ -549,11 +549,18 @@ test("referral graph connects staff creation, provider response, and beneficiary
   const mobileCase = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
 
   assert.match(schema, /referrals:\s*defineTable/);
+  assert.match(schema, /method:\s*v\.optional\(v\.union\(/);
+  assert.match(schema, /statement:\s*v\.optional\(v\.string\(\)\)/);
+  assert.match(schema, /evidenceNote:\s*v\.optional\(v\.string\(\)\)/);
+  assert.match(schema, /relatedReferralId:\s*v\.optional\(v\.id\("referrals"\)\)/);
   assert.match(schema, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
   assert.match(schema, /by_destination_user_status/);
   assert.match(schema, /referral_events:\s*defineTable/);
   assert.match(referrals, /createForCase/);
   assert.match(referrals, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
+  assert.match(referrals, /consentMethod:\s*v\.optional\(consentMethod\)/);
+  assert.match(referrals, /ctx\.db\.insert\("consents"/);
+  assert.match(referrals, /relatedReferralId:\s*referralId/);
   assert.match(referrals, /getActiveRoles\(ctx,\s*destinationUser\._id\)/);
   assert.match(referrals, /myDestinationQueue/);
   assert.match(referrals, /respondAsDestination/);
@@ -564,12 +571,16 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(staffDashboard, /Create service referral/);
   assert.match(staffDashboard, /destinationUserId:\s*referralDestinationUserId/);
   assert.match(staffDashboard, /minimum information/);
+  assert.match(staffDashboard, /Consent proof/);
+  assert.match(staffDashboard, /referralConsentStatement/);
   assert.match(providerDashboard, /Referral inbox/);
   assert.match(providerDashboard, /api\.referrals\.myDestinationQueue/);
   assert.match(providerDashboard, /api\.referrals\.respondAsDestination/);
   assert.match(providerDashboard, /Accept referral/);
   assert.match(providerDashboard, /Return to LSF/);
+  assert.match(providerDashboard, /Consent proof/);
   assert.match(mobileCase, /Referrals/);
   assert.match(mobileCase, /api\.referrals\.listForCase/);
   assert.match(mobileCase, /Information shared/);
+  assert.match(mobileCase, /Consent recorded/);
 });

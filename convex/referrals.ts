@@ -19,6 +19,14 @@ const referralStatus = v.union(
   v.literal("escalated"),
 );
 
+const consentMethod = v.union(
+  v.literal("documented_verbal"),
+  v.literal("written"),
+  v.literal("sms"),
+  v.literal("email"),
+  v.literal("signed_document"),
+);
+
 const allowedTransitions: Record<string, string[]> = {
   draft: ["consent_collected"],
   consent_collected: ["created"],
@@ -86,6 +94,7 @@ export const listForCase = query({
       destinationService: await ctx.db.get(referral.destinationServiceId),
       destinationUser: referral.destinationUserId ? await ctx.db.get(referral.destinationUserId) : null,
       sourceService: referral.sourceServiceId ? await ctx.db.get(referral.sourceServiceId) : null,
+      consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
       events: await ctx.db
         .query("referral_events")
         .withIndex("by_referral_time", (q) => q.eq("referralId", referral._id))
@@ -107,6 +116,7 @@ export const staffQueue = query({
       beneficiary: await ctx.db.get(referral.beneficiaryId),
       destinationService: await ctx.db.get(referral.destinationServiceId),
       destinationUser: referral.destinationUserId ? await ctx.db.get(referral.destinationUserId) : null,
+      consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
     })));
   },
 });
@@ -127,6 +137,7 @@ export const myDestinationQueue = query({
       referral,
       case: await ctx.db.get(referral.caseId),
       destinationService: await ctx.db.get(referral.destinationServiceId),
+      consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
       events: await ctx.db
         .query("referral_events")
         .withIndex("by_referral_time", (q) => q.eq("referralId", referral._id))
@@ -145,6 +156,9 @@ export const createForCase = mutation({
     reason: v.string(),
     informationShared: v.array(v.string()),
     consentId: v.optional(v.id("consents")),
+    consentMethod: v.optional(consentMethod),
+    consentStatement: v.optional(v.string()),
+    consentEvidenceNote: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const { user, caseRecord } = await requireCaseWorker(ctx, args.caseId);
@@ -169,6 +183,27 @@ export const createForCase = mutation({
       }
     }
     const now = Date.now();
+    const sourceRequest = await ctx.db.get(caseRecord.sourceRequestId);
+    const normalizedInformationShared = args.informationShared.map((item) => normalize(item, "Information shared", 160));
+    const consentRecordId = args.consentId ?? await ctx.db.insert("consents", {
+      userId: caseRecord.beneficiaryId,
+      type: "referral",
+      version: "2026-09-referral-consent-v1",
+      granted: true,
+      locale: sourceRequest?.locale ?? "en",
+      method: args.consentMethod ?? "documented_verbal",
+      statement: normalize(
+        args.consentStatement ?? "Beneficiary consented to share minimum necessary information for this referral.",
+        "Consent statement",
+        1200,
+      ),
+      evidenceNote: args.consentEvidenceNote?.trim().slice(0, 1200),
+      informationShared: normalizedInformationShared,
+      relatedCaseId: args.caseId,
+      destinationServiceId: args.destinationServiceId,
+      recordedBy: user._id,
+      recordedAt: now,
+    });
     const referralId = await ctx.db.insert("referrals", {
       publicId: "pending",
       caseId: args.caseId,
@@ -179,14 +214,15 @@ export const createForCase = mutation({
       createdBy: user._id,
       beneficiaryId: caseRecord.beneficiaryId,
       reason: normalize(args.reason, "Referral reason", 2000),
-      informationShared: args.informationShared.map((item) => normalize(item, "Information shared", 160)),
-      consentId: args.consentId,
+      informationShared: normalizedInformationShared,
+      consentId: consentRecordId,
       consentCollectedAt: now,
       status: "created",
       createdAt: now,
       updatedAt: now,
     });
     const publicId = publicReference("HYR", referralId, now);
+    await ctx.db.patch(consentRecordId, { relatedReferralId: referralId });
     await ctx.db.patch(referralId, { publicId });
     if (["under_review", "assignment_pending", "assigned", "assistance_underway"].includes(caseRecord.status)) {
       assertCaseTransition(caseRecord.status, "referred");
@@ -202,7 +238,7 @@ export const createForCase = mutation({
       actorId: user._id,
       type: "referral_created",
       publicLabelKey: "case.timeline.referralCreated",
-      metadata: { destinationServiceId: args.destinationServiceId, destinationUserId: args.destinationUserId, informationShared: args.informationShared },
+      metadata: { destinationServiceId: args.destinationServiceId, destinationUserId: args.destinationUserId, consentId: consentRecordId, informationShared: normalizedInformationShared },
     });
     await ctx.db.insert("case_events", {
       caseId: args.caseId,
@@ -210,7 +246,7 @@ export const createForCase = mutation({
       type: "referral_created",
       audience: "all",
       publicLabelKey: "case.timeline.referralCreated",
-      metadata: { referralId, destinationServiceId: args.destinationServiceId, destinationUserId: args.destinationUserId },
+      metadata: { referralId, destinationServiceId: args.destinationServiceId, destinationUserId: args.destinationUserId, consentId: consentRecordId },
       occurredAt: now,
     });
     await createNotification(ctx, {
@@ -235,9 +271,10 @@ export const createForCase = mutation({
       caseId: args.caseId,
       destinationServiceId: args.destinationServiceId,
       destinationUserId: args.destinationUserId,
-      changedFieldNames: ["status", "informationShared", "consentCollectedAt"],
+      consentId: consentRecordId,
+      changedFieldNames: ["status", "informationShared", "consentCollectedAt", "consentId"],
     });
-    return { referralId, publicId };
+    return { referralId, publicId, consentId: consentRecordId };
   },
 });
 

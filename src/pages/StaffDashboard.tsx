@@ -244,6 +244,9 @@ const StaffDashboard = () => {
   const [referralDestinationUserId, setReferralDestinationUserId] = useState("");
   const [referralReason, setReferralReason] = useState("");
   const [referralInformationShared, setReferralInformationShared] = useState("case summary, safe contact preference, district, issue category");
+  const [referralConsentMethod, setReferralConsentMethod] = useState<"documented_verbal" | "written" | "sms" | "email" | "signed_document">("documented_verbal");
+  const [referralConsentStatement, setReferralConsentStatement] = useState("I consent for LSF to share the minimum information listed here with this referral destination so they can provide legal support.");
+  const [referralConsentEvidenceNote, setReferralConsentEvidenceNote] = useState("");
   const [serviceForm, setServiceForm] = useState<ServiceFormState>(initialServiceForm);
   const [pending, setPending] = useState(false);
   const [notice, setNotice] = useState<{
@@ -623,6 +626,10 @@ const StaffDashboard = () => {
       setNotice({ type: "error", text: "Record what minimum-necessary information will be shared." });
       return;
     }
+    if (referralConsentStatement.trim().length < 20) {
+      setNotice({ type: "error", text: "Record the beneficiary consent statement before creating the referral." });
+      return;
+    }
     void run(async () => {
       const result = await createReferral({
         caseId: selectedCaseId,
@@ -630,11 +637,17 @@ const StaffDashboard = () => {
         destinationUserId: referralDestinationUserId ? referralDestinationUserId as Id<"users"> : undefined,
         reason: referralReason.trim(),
         informationShared,
+        consentMethod: referralConsentMethod,
+        consentStatement: referralConsentStatement.trim(),
+        consentEvidenceNote: referralConsentEvidenceNote.trim() || undefined,
       });
       setReferralServiceId("");
       setReferralDestinationUserId("");
       setReferralReason("");
       setReferralInformationShared("case summary, safe contact preference, district, issue category");
+      setReferralConsentMethod("documented_verbal");
+      setReferralConsentStatement("I consent for LSF to share the minimum information listed here with this referral destination so they can provide legal support.");
+      setReferralConsentEvidenceNote("");
       setReferralStatus("created");
       setTab("referrals");
       setNotice({ type: "success", text: `${result.publicId} created and visible in the referral queue.` });
@@ -902,6 +915,15 @@ const StaffDashboard = () => {
                         <p className="mb-0">
                           {item.referral.informationShared.join(", ") || "Not recorded"}
                         </p>
+                      </div>
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <p className="mb-1 font-bold text-neutral-800">Consent proof</p>
+                        <p className="mb-0 capitalize">
+                          {item.consent?.method?.replaceAll("_", " ") ?? "Not recorded"}
+                        </p>
+                        {item.consent?.evidenceNote && (
+                          <p className="mb-0 mt-1 text-neutral-500">{item.consent.evidenceNote}</p>
+                        )}
                       </div>
                     </div>
                     {item.referral.declineReason && (
@@ -2276,14 +2298,36 @@ const StaffDashboard = () => {
                           placeholder="Comma-separated minimum information shared"
                           className="mb-3 min-h-[78px] text-sm"
                         />
-                        <div className="mb-3 rounded-xl border border-orange-200 bg-orange-50 p-3 text-xs text-orange-900">
-                          <span className="font-bold">Consent checkpoint:</span>{" "}
-                          this records that staff collected referral consent.
-                          A stronger signed consent artifact is still required
-                          before production.
+                        <div className="mb-3 rounded-xl border border-orange-200 bg-orange-50 p-3">
+                          <p className="mb-2 text-xs font-bold uppercase tracking-wider text-orange-900">
+                            Consent proof
+                          </p>
+                          <select
+                            value={referralConsentMethod}
+                            onChange={(event) => setReferralConsentMethod(event.target.value as typeof referralConsentMethod)}
+                            className="mb-3 h-10 w-full rounded-lg border bg-white px-3 text-sm"
+                          >
+                            <option value="documented_verbal">Documented verbal consent</option>
+                            <option value="written">Written consent</option>
+                            <option value="sms">SMS consent</option>
+                            <option value="email">Email consent</option>
+                            <option value="signed_document">Signed document</option>
+                          </select>
+                          <Textarea
+                            value={referralConsentStatement}
+                            onChange={(event) => setReferralConsentStatement(event.target.value)}
+                            placeholder="Exact consent statement confirmed with the beneficiary"
+                            className="mb-3 min-h-[86px] bg-white text-sm"
+                          />
+                          <Textarea
+                            value={referralConsentEvidenceNote}
+                            onChange={(event) => setReferralConsentEvidenceNote(event.target.value)}
+                            placeholder="Evidence note: who collected it, when, channel used, and where supporting proof is stored."
+                            className="min-h-[76px] bg-white text-sm"
+                          />
                         </div>
                         <Button
-                          disabled={pending || !referralServiceId || referralReason.trim().length < 12}
+                          disabled={pending || !referralServiceId || referralReason.trim().length < 12 || referralConsentStatement.trim().length < 20}
                           onClick={createCaseReferral}
                           className="w-full"
                         >

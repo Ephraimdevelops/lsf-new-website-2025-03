@@ -424,6 +424,10 @@ const ParalegalDashboard = () => {
                         <p className="mb-0">{item.referral.informationShared.join(", ") || "Not recorded"}</p>
                       </div>
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
+                        <p className="mb-1 font-bold text-neutral-800">Consent proof</p>
+                        <p className="mb-0 capitalize">{item.consent?.method?.replaceAll("_", " ") ?? "Not recorded"}</p>
+                      </div>
+                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
                         <p className="mb-1 font-bold text-neutral-800">Service point</p>
                         <p className="mb-0">
                           {item.destinationService

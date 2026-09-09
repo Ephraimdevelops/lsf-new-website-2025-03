@@ -672,6 +672,14 @@ export default function CaseDetailScreen() {
                   </View>
                 ))}
               </View>
+              <View style={styles.consentPanel}>
+                <Ionicons name="shield-checkmark-outline" size={18} color={colors.burgundy} />
+                <Text style={styles.consentText}>
+                  {locale === "sw"
+                    ? `Ridhaa imerekodiwa: ${referral.consent?.method?.replaceAll("_", " ") ?? "haijaonyeshwa"}`
+                    : `Consent recorded: ${referral.consent?.method?.replaceAll("_", " ") ?? "not shown"}`}
+                </Text>
+              </View>
               <View style={styles.referralEvents}>
                 {referral.events.map((event) => (
                   <View key={event._id} style={styles.referralEvent}>
@@ -891,6 +899,8 @@ const styles = StyleSheet.create({
   referralText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20 },
   sharedItem: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
   sharedText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
+  consentPanel: { flexDirection: "row", alignItems: "center", gap: spacing.sm, borderRadius: radius.sm, backgroundColor: colors.softPink, padding: spacing.md },
+  consentText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 12, lineHeight: 18, textTransform: "capitalize" },
   referralEvents: { borderTopWidth: 1, borderTopColor: colors.line, paddingTop: spacing.md, gap: spacing.md },
   referralEvent: { flexDirection: "row", gap: spacing.sm },
   referralEventDot: { width: 9, height: 9, borderRadius: 5, backgroundColor: colors.burgundy, marginTop: 5 },
