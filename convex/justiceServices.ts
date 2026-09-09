@@ -186,6 +186,124 @@ export const staffListOrganizations = query({
   },
 });
 
+export const staffPartnerPerformance = query({
+  args: {
+    days: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const days = Math.min(Math.max(Math.trunc(args.days ?? 30), 1), 365);
+    const now = Date.now();
+    const cutoff = now - days * 24 * 60 * 60 * 1000;
+    const referrals = await ctx.db
+      .query("referrals")
+      .filter((q) => q.gte(q.field("createdAt"), cutoff))
+      .collect();
+    const organizations = await ctx.db.query("justice_service_organizations").collect();
+    const organizationMap = new Map(organizations.map((organization) => [organization._id, organization]));
+    const buckets = new Map<string, {
+      organizationId: string;
+      organizationName: string;
+      referralAgreementStatus: string;
+      verificationStatus: string;
+      slaHours: number;
+      safeguardingReady: boolean;
+      totalReferrals: number;
+      respondedCount: number;
+      withinSlaCount: number;
+      overdueOpenCount: number;
+      deliveredCount: number;
+      closedCount: number;
+      onwardCount: number;
+      totalResponseHours: number;
+      serviceNames: Set<string>;
+    }>();
+
+    for (const referral of referrals) {
+      const service = await ctx.db.get(referral.destinationServiceId);
+      const organization = service?.organizationId ? organizationMap.get(service.organizationId) : undefined;
+      const organizationId = organization?._id ?? service?.organizationName ?? service?.name ?? "unlinked";
+      const organizationName = organization?.name ?? service?.organizationName ?? "Unlinked service points";
+      const slaHours = organization?.slaHours ?? 72;
+      const bucketKey = String(organizationId);
+      if (!buckets.has(bucketKey)) {
+        buckets.set(bucketKey, {
+          organizationId: bucketKey,
+          organizationName,
+          referralAgreementStatus: organization?.referralAgreementStatus ?? "none",
+          verificationStatus: organization?.verificationStatus ?? "draft",
+          slaHours,
+          safeguardingReady: organization?.safeguardingReady ?? false,
+          totalReferrals: 0,
+          respondedCount: 0,
+          withinSlaCount: 0,
+          overdueOpenCount: 0,
+          deliveredCount: 0,
+          closedCount: 0,
+          onwardCount: 0,
+          totalResponseHours: 0,
+          serviceNames: new Set(),
+        });
+      }
+      const bucket = buckets.get(bucketKey)!;
+      bucket.totalReferrals += 1;
+      if (service?.name) bucket.serviceNames.add(service.name);
+      if (referral.status === "service_delivered") bucket.deliveredCount += 1;
+      if (referral.status === "closed") bucket.closedCount += 1;
+      if (referral.status === "referred_onward" || referral.onwardReferralId) bucket.onwardCount += 1;
+
+      const events = await ctx.db
+        .query("referral_events")
+        .withIndex("by_referral_time", (q) => q.eq("referralId", referral._id))
+        .collect();
+      const firstResponse = events
+        .filter((event) => ["referral_accepted", "referral_declined", "referral_returned", "referral_scheduled", "referral_service_delivered"].includes(event.type))
+        .sort((a, b) => a.occurredAt - b.occurredAt)[0];
+      if (firstResponse) {
+        const responseHours = Math.max(0, (firstResponse.occurredAt - referral.createdAt) / (60 * 60 * 1000));
+        bucket.respondedCount += 1;
+        bucket.totalResponseHours += responseHours;
+        if (responseHours <= slaHours) bucket.withinSlaCount += 1;
+      } else if (["created", "destination_notified"].includes(referral.status) && now - referral.createdAt > slaHours * 60 * 60 * 1000) {
+        bucket.overdueOpenCount += 1;
+      }
+    }
+
+    const rows = [...buckets.values()].map((bucket) => ({
+      organizationId: bucket.organizationId,
+      organizationName: bucket.organizationName,
+      referralAgreementStatus: bucket.referralAgreementStatus,
+      verificationStatus: bucket.verificationStatus,
+      slaHours: bucket.slaHours,
+      safeguardingReady: bucket.safeguardingReady,
+      totalReferrals: bucket.totalReferrals,
+      respondedCount: bucket.respondedCount,
+      responseRate: bucket.totalReferrals ? Math.round((bucket.respondedCount / bucket.totalReferrals) * 100) : 0,
+      withinSlaCount: bucket.withinSlaCount,
+      slaComplianceRate: bucket.respondedCount ? Math.round((bucket.withinSlaCount / bucket.respondedCount) * 100) : 0,
+      overdueOpenCount: bucket.overdueOpenCount,
+      deliveredCount: bucket.deliveredCount,
+      closedCount: bucket.closedCount,
+      onwardCount: bucket.onwardCount,
+      averageResponseHours: bucket.respondedCount ? Math.round((bucket.totalResponseHours / bucket.respondedCount) * 10) / 10 : null,
+      serviceNames: [...bucket.serviceNames].slice(0, 5),
+    })).sort((a, b) => b.overdueOpenCount - a.overdueOpenCount || a.slaComplianceRate - b.slaComplianceRate || b.totalReferrals - a.totalReferrals);
+
+    return {
+      periodDays: days,
+      generatedAt: now,
+      totals: {
+        referrals: rows.reduce((sum, row) => sum + row.totalReferrals, 0),
+        responded: rows.reduce((sum, row) => sum + row.respondedCount, 0),
+        overdueOpen: rows.reduce((sum, row) => sum + row.overdueOpenCount, 0),
+        delivered: rows.reduce((sum, row) => sum + row.deliveredCount, 0),
+        onward: rows.reduce((sum, row) => sum + row.onwardCount, 0),
+      },
+      partners: rows,
+    };
+  },
+});
+
 export const listPublicServices = query({
   args: {
     region: v.optional(v.string()),

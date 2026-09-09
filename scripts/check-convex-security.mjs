@@ -84,6 +84,7 @@ const publicFunctions = new Map([
   ["justiceServices.createService", "staff"],
   ["justiceServices.listPublicServices", "public-read"],
   ["justiceServices.matchServices", "public-counter"],
+  ["justiceServices.staffPartnerPerformance", "staff"],
   ["justiceServices.staffListOrganizations", "staff"],
   ["justiceServices.staffListServices", "staff"],
   ["justiceServices.updateOrganization", "staff"],

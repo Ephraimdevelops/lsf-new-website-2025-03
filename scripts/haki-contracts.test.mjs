@@ -601,6 +601,10 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(referrals, /requireAnyRole\(ctx,\s*\["paralegal",\s*"provider_staff"\]\)/);
   assert.match(referrals, /referral\.destinationUserId !== user\._id/);
   assert.match(justiceServices, /staffListOrganizations/);
+  assert.match(justiceServices, /staffPartnerPerformance/);
+  assert.match(justiceServices, /slaComplianceRate/);
+  assert.match(justiceServices, /overdueOpenCount/);
+  assert.match(justiceServices, /averageResponseHours/);
   assert.match(justiceServices, /createOrganization/);
   assert.match(justiceServices, /updateOrganization/);
   assert.match(justiceServices, /Only verified organizations can have an active referral agreement/);
@@ -615,6 +619,8 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(staffDashboard, /Create service referral/);
   assert.match(staffDashboard, /Partner organization/);
   assert.match(staffDashboard, /Organization accountability/);
+  assert.match(staffDashboard, /Partner referral performance/);
+  assert.match(staffDashboard, /staffPartnerPerformance/);
   assert.match(staffDashboard, /createJusticeOrganization/);
   assert.match(staffDashboard, /destinationUserId:\s*referralDestinationUserId/);
   assert.match(staffDashboard, /minimum information/);

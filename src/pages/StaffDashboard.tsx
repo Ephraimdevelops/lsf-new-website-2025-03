@@ -320,6 +320,7 @@ const StaffDashboard = () => {
   });
   const justiceOrganizations = useQuery(api.justiceServices.staffListOrganizations);
   const justiceServices = useQuery(api.justiceServices.staffListServices);
+  const partnerPerformance = useQuery(api.justiceServices.staffPartnerPerformance, { days: 30 });
   const openForTriage = useMutation(api.legalHelp.openForTriage);
   const setReviewStatus = useMutation(api.legalHelp.setReviewStatus);
   const createCase = useMutation(api.caseManagement.createFromRequest);
@@ -1455,6 +1456,51 @@ const StaffDashboard = () => {
                   {justiceOrganizations?.length === 0 && (
                     <p className="mb-0 text-sm text-neutral-500">No organizations created yet.</p>
                   )}
+                </div>
+              </div>
+              <div className="border-b p-5">
+                <div className="mb-4 flex flex-col justify-between gap-2 lg:flex-row lg:items-end">
+                  <div>
+                    <h3 className="mb-1 text-base">Partner referral performance</h3>
+                    <p className="mb-0 text-sm text-neutral-500">
+                      Last 30 days: SLA compliance, first response speed, overdue open referrals, delivery and onward referrals.
+                    </p>
+                  </div>
+                  {partnerPerformance && (
+                    <div className="grid gap-2 text-xs text-neutral-600 sm:grid-cols-5">
+                      <span className="rounded-full bg-primary/10 px-3 py-1 font-bold text-primary">{partnerPerformance.totals.referrals} referrals</span>
+                      <span className="rounded-full bg-primary/10 px-3 py-1 font-bold text-primary">{partnerPerformance.totals.responded} responded</span>
+                      <span className="rounded-full bg-orange-100 px-3 py-1 font-bold text-orange-800">{partnerPerformance.totals.overdueOpen} overdue</span>
+                      <span className="rounded-full bg-teal-100 px-3 py-1 font-bold text-teal-800">{partnerPerformance.totals.delivered} delivered</span>
+                      <span className="rounded-full bg-[#f8eaf0] px-3 py-1 font-bold text-primary">{partnerPerformance.totals.onward} onward</span>
+                    </div>
+                  )}
+                </div>
+                {partnerPerformance === undefined && (
+                  <p className="mb-0 text-sm text-neutral-500">Loading partner performance...</p>
+                )}
+                {partnerPerformance?.partners.length === 0 && (
+                  <p className="mb-0 text-sm text-neutral-500">No referral performance data for this period yet.</p>
+                )}
+                <div className="grid gap-3 xl:grid-cols-2">
+                  {partnerPerformance?.partners.slice(0, 8).map((partner) => (
+                    <div key={partner.organizationId} className="rounded-xl border bg-[#fbfafa] p-4">
+                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                        <p className="mb-0 font-bold">{partner.organizationName}</p>
+                        <StatusPill value={`${partner.slaComplianceRate}% SLA`} urgent={partner.slaComplianceRate < 80 && partner.respondedCount > 0} />
+                        {partner.overdueOpenCount > 0 && <StatusPill value={`${partner.overdueOpenCount} overdue`} urgent />}
+                      </div>
+                      <p className="mb-2 text-sm text-neutral-600">
+                        Response: {partner.responseRate}% · Avg response: {partner.averageResponseHours ?? "n/a"}h · SLA: {partner.slaHours}h
+                      </p>
+                      <p className="mb-2 text-xs text-neutral-500">
+                        Delivered: {partner.deliveredCount} · Closed: {partner.closedCount} · Onward: {partner.onwardCount}
+                      </p>
+                      <p className="mb-0 text-xs text-neutral-500">
+                        Services: {partner.serviceNames.join(", ") || "No linked service names"}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="divide-y">
