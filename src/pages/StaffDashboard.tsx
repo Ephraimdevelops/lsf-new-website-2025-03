@@ -40,6 +40,7 @@ type ReferralQueueStatus =
 
 type ServiceFormState = {
   name: string;
+  organizationId: string;
   organizationName: string;
   servicePointType: "paralegal" | "legal_aid_provider" | "government_office" | "local_government" | "labour_service" | "land_service" | "protection_service" | "cso" | "other";
   classification: "public" | "community" | "government" | "private" | "restricted";
@@ -64,8 +65,23 @@ type ServiceFormState = {
   genderSensitive: boolean;
 };
 
+type OrganizationFormState = {
+  name: string;
+  organizationType: "lsf" | "legal_aid_provider" | "government" | "cso" | "community_paralegal_network" | "private_provider" | "donor_partner" | "other";
+  verificationStatus: "draft" | "verified" | "suspended" | "inactive";
+  referralAgreementStatus: "none" | "draft" | "active" | "expired" | "suspended";
+  focalPersonName: string;
+  focalPersonEmail: string;
+  focalPersonPhone: string;
+  slaHours: string;
+  safeguardingReady: boolean;
+  dataSharingAgreementVersion: string;
+  notes: string;
+};
+
 const initialServiceForm: ServiceFormState = {
   name: "",
+  organizationId: "",
   organizationName: "",
   servicePointType: "paralegal",
   classification: "community",
@@ -88,6 +104,20 @@ const initialServiceForm: ServiceFormState = {
   emergencyCapability: false,
   privacyAvailable: true,
   genderSensitive: true,
+};
+
+const initialOrganizationForm: OrganizationFormState = {
+  name: "",
+  organizationType: "legal_aid_provider",
+  verificationStatus: "draft",
+  referralAgreementStatus: "none",
+  focalPersonName: "",
+  focalPersonEmail: "",
+  focalPersonPhone: "",
+  slaHours: "48",
+  safeguardingReady: false,
+  dataSharingAgreementVersion: "",
+  notes: "",
 };
 
 const requestLabels = {
@@ -252,6 +282,7 @@ const StaffDashboard = () => {
   const [referralConsentEvidenceNote, setReferralConsentEvidenceNote] = useState("");
   const [referralConsentFile, setReferralConsentFile] = useState<File | null>(null);
   const [serviceForm, setServiceForm] = useState<ServiceFormState>(initialServiceForm);
+  const [organizationForm, setOrganizationForm] = useState<OrganizationFormState>(initialOrganizationForm);
   const [pending, setPending] = useState(false);
   const [notice, setNotice] = useState<{
     type: "success" | "error";
@@ -287,6 +318,7 @@ const StaffDashboard = () => {
   const referralQueue = useQuery(api.referrals.staffQueue, {
     status: referralStatus,
   });
+  const justiceOrganizations = useQuery(api.justiceServices.staffListOrganizations);
   const justiceServices = useQuery(api.justiceServices.staffListServices);
   const openForTriage = useMutation(api.legalHelp.openForTriage);
   const setReviewStatus = useMutation(api.legalHelp.setReviewStatus);
@@ -301,6 +333,7 @@ const StaffDashboard = () => {
   const resolveCaseReviewRequest = useMutation(
     api.caseManagement.resolveCaseReviewRequest,
   );
+  const createJusticeOrganization = useMutation(api.justiceServices.createOrganization);
   const createJusticeService = useMutation(api.justiceServices.createService);
   const updateJusticeService = useMutation(api.justiceServices.updateService);
   const seedJusticeServices = useMutation(api.hakiYanguSeed.seedJusticeServices);
@@ -530,6 +563,35 @@ const StaffDashboard = () => {
     setServiceForm((current) => ({ ...current, ...updates }));
   }
 
+  function updateOrganizationForm(updates: Partial<OrganizationFormState>) {
+    setOrganizationForm((current) => ({ ...current, ...updates }));
+  }
+
+  function createOrganization() {
+    if (!organizationForm.name.trim()) {
+      setNotice({ type: "error", text: "Add an organization name." });
+      return;
+    }
+    void run(async () => {
+      const result = await createJusticeOrganization({
+        name: organizationForm.name.trim(),
+        organizationType: organizationForm.organizationType,
+        verificationStatus: organizationForm.verificationStatus,
+        referralAgreementStatus: organizationForm.referralAgreementStatus,
+        focalPersonName: organizationForm.focalPersonName.trim() || undefined,
+        focalPersonEmail: organizationForm.focalPersonEmail.trim() || undefined,
+        focalPersonPhone: organizationForm.focalPersonPhone.trim() || undefined,
+        slaHours: Number.isFinite(Number(organizationForm.slaHours)) ? Number(organizationForm.slaHours) : undefined,
+        safeguardingReady: organizationForm.safeguardingReady,
+        dataSharingAgreementVersion: organizationForm.dataSharingAgreementVersion.trim() || undefined,
+        notes: organizationForm.notes.trim() || undefined,
+      });
+      setOrganizationForm(initialOrganizationForm);
+      setServiceForm((current) => ({ ...current, organizationId: result.id, organizationName: "" }));
+      setNotice({ type: "success", text: "Justice service organization created and selected for the service form." });
+    });
+  }
+
   function createServicePoint() {
     if (!serviceForm.name.trim() || !serviceForm.district.trim()) {
       setNotice({ type: "error", text: "Add at least a service name and district." });
@@ -542,6 +604,7 @@ const StaffDashboard = () => {
     void run(async () => {
       await createJusticeService({
         name: serviceForm.name.trim(),
+        organizationId: serviceForm.organizationId ? serviceForm.organizationId as Id<"justice_service_organizations"> : undefined,
         organizationName: serviceForm.organizationName.trim() || undefined,
         servicePointType: serviceForm.servicePointType,
         classification: serviceForm.classification,
@@ -1099,6 +1162,111 @@ const StaffDashboard = () => {
           <section className="grid gap-5 xl:grid-cols-[420px_1fr]">
             <div className="rounded-2xl border bg-white p-5 shadow-sm">
               <div className="mb-5">
+                <h2 className="text-xl">Partner organization</h2>
+                <p className="mb-0 text-sm text-neutral-500">
+                  Create accountable organizations before linking their service points.
+                </p>
+              </div>
+              <div className="space-y-3">
+                <input
+                  value={organizationForm.name}
+                  onChange={(event) => updateOrganizationForm({ name: event.target.value })}
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                  placeholder="Organization name"
+                />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <select
+                    value={organizationForm.organizationType}
+                    onChange={(event) => updateOrganizationForm({ organizationType: event.target.value as OrganizationFormState["organizationType"] })}
+                    className="h-11 rounded-xl border bg-white px-3 text-sm"
+                  >
+                    <option value="legal_aid_provider">Legal aid provider</option>
+                    <option value="government">Government</option>
+                    <option value="cso">CSO</option>
+                    <option value="community_paralegal_network">Paralegal network</option>
+                    <option value="private_provider">Private provider</option>
+                    <option value="donor_partner">Donor partner</option>
+                    <option value="lsf">LSF</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <select
+                    value={organizationForm.verificationStatus}
+                    onChange={(event) => updateOrganizationForm({ verificationStatus: event.target.value as OrganizationFormState["verificationStatus"] })}
+                    className="h-11 rounded-xl border bg-white px-3 text-sm"
+                  >
+                    <option value="draft">Draft</option>
+                    <option value="verified">Verified</option>
+                    <option value="suspended">Suspended</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <select
+                    value={organizationForm.referralAgreementStatus}
+                    onChange={(event) => updateOrganizationForm({ referralAgreementStatus: event.target.value as OrganizationFormState["referralAgreementStatus"] })}
+                    className="h-11 rounded-xl border bg-white px-3 text-sm"
+                  >
+                    <option value="none">No referral agreement</option>
+                    <option value="draft">Draft agreement</option>
+                    <option value="active">Active agreement</option>
+                    <option value="expired">Expired agreement</option>
+                    <option value="suspended">Suspended agreement</option>
+                  </select>
+                  <input
+                    value={organizationForm.slaHours}
+                    onChange={(event) => updateOrganizationForm({ slaHours: event.target.value })}
+                    className="h-11 rounded-xl border bg-white px-3 text-sm"
+                    placeholder="SLA hours"
+                  />
+                </div>
+                <input
+                  value={organizationForm.focalPersonName}
+                  onChange={(event) => updateOrganizationForm({ focalPersonName: event.target.value })}
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                  placeholder="Focal person"
+                />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <input
+                    value={organizationForm.focalPersonEmail}
+                    onChange={(event) => updateOrganizationForm({ focalPersonEmail: event.target.value })}
+                    className="h-11 rounded-xl border bg-white px-3 text-sm"
+                    placeholder="Focal email"
+                  />
+                  <input
+                    value={organizationForm.focalPersonPhone}
+                    onChange={(event) => updateOrganizationForm({ focalPersonPhone: event.target.value })}
+                    className="h-11 rounded-xl border bg-white px-3 text-sm"
+                    placeholder="Focal phone"
+                  />
+                </div>
+                <input
+                  value={organizationForm.dataSharingAgreementVersion}
+                  onChange={(event) => updateOrganizationForm({ dataSharingAgreementVersion: event.target.value })}
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                  placeholder="Data sharing agreement version"
+                />
+                <label className="flex items-center gap-2 rounded-xl border bg-[#fbf7f8] p-3 text-sm font-semibold text-neutral-700">
+                  <input
+                    type="checkbox"
+                    checked={organizationForm.safeguardingReady}
+                    onChange={(event) => updateOrganizationForm({ safeguardingReady: event.target.checked })}
+                  />
+                  Safeguarding ready
+                </label>
+                <Textarea
+                  value={organizationForm.notes}
+                  onChange={(event) => updateOrganizationForm({ notes: event.target.value })}
+                  className="min-h-[72px]"
+                  placeholder="Operational notes, coverage limits, escalation contacts..."
+                />
+                <Button disabled={pending} onClick={createOrganization} className="w-full">
+                  Create organization
+                </Button>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border bg-white p-5 shadow-sm">
+              <div className="mb-5">
                 <h2 className="text-xl">Justice Service Management</h2>
                 <p className="mb-0 text-sm text-neutral-500">
                   Add and verify service points for Haki Yangu matching. Public
@@ -1118,11 +1286,24 @@ const StaffDashboard = () => {
                 <label className="block text-xs font-bold uppercase tracking-wider text-neutral-500">
                   Organisation
                 </label>
+                <select
+                  value={serviceForm.organizationId}
+                  onChange={(event) => updateServiceForm({ organizationId: event.target.value, organizationName: "" })}
+                  className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
+                >
+                  <option value="">No linked organization</option>
+                  {justiceOrganizations?.map((organization) => (
+                    <option key={organization._id} value={organization._id}>
+                      {organization.name} · {organization.verificationStatus}
+                    </option>
+                  ))}
+                </select>
                 <input
                   value={serviceForm.organizationName}
                   onChange={(event) => updateServiceForm({ organizationName: event.target.value })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                  placeholder="LSF Partner Network"
+                  placeholder="Fallback organization name if not linked"
+                  disabled={Boolean(serviceForm.organizationId)}
                 />
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div>
@@ -1245,13 +1426,36 @@ const StaffDashboard = () => {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+            <div className="overflow-hidden rounded-2xl border bg-white shadow-sm xl:col-span-2">
               <div className="border-b p-5">
                 <h2 className="text-xl">Verified service ecosystem</h2>
                 <p className="mb-0 text-sm text-neutral-500">
                   Review active services, visibility, verification and intake state.
                   Confidential locations must not be made public.
                 </p>
+              </div>
+              <div className="border-b bg-[#fbf7f8] p-5">
+                <h3 className="mb-3 text-base">Organization accountability</h3>
+                <div className="grid gap-3 lg:grid-cols-2">
+                  {justiceOrganizations?.slice(0, 6).map((organization) => (
+                    <div key={organization._id} className="rounded-xl border bg-white p-4">
+                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                        <p className="mb-0 font-bold">{organization.name}</p>
+                        <StatusPill value={organization.verificationStatus} urgent={organization.verificationStatus !== "verified"} />
+                        <StatusPill value={organization.referralAgreementStatus.replaceAll("_", " ")} urgent={organization.referralAgreementStatus !== "active"} />
+                      </div>
+                      <p className="mb-1 text-sm capitalize text-neutral-600">
+                        {organization.organizationType.replaceAll("_", " ")} · {organization.focalPersonName ?? "No focal person"}
+                      </p>
+                      <p className="mb-0 text-xs text-neutral-500">
+                        SLA: {organization.slaHours ? `${organization.slaHours}h` : "not set"} · Services: {organization.serviceCount} · Referral capable: {organization.activeReferralServiceCount}
+                      </p>
+                    </div>
+                  ))}
+                  {justiceOrganizations?.length === 0 && (
+                    <p className="mb-0 text-sm text-neutral-500">No organizations created yet.</p>
+                  )}
+                </div>
               </div>
               <div className="divide-y">
                 {justiceServices === undefined && (
@@ -1278,6 +1482,11 @@ const StaffDashboard = () => {
                       <p className="mb-2 text-sm text-neutral-600">
                         {service.organizationName ?? "No organisation"} · {service.servicePointType.replaceAll("_", " ")} · {service.district}, {service.region}
                       </p>
+                      {service.organization && (
+                        <p className="mb-2 text-sm text-neutral-500">
+                          Owner status: {service.organization.verificationStatus} · Agreement: {service.organization.referralAgreementStatus} · SLA: {service.organization.slaHours ? `${service.organization.slaHours}h` : "not set"}
+                        </p>
+                      )}
                       <p className="mb-3 text-sm text-neutral-500">
                         Intake: {service.currentIntakeState.replaceAll("_", " ")} · Capacity: {service.capacity ?? "not set"} · Languages: {service.languages.join(", ") || "not set"}
                       </p>

@@ -33,8 +33,36 @@ const verificationStatus = v.union(v.literal("draft"), v.literal("verified"), v.
 const intakeState = v.union(v.literal("open"), v.literal("limited"), v.literal("closed"), v.literal("emergency_only"));
 const urgency = v.union(v.literal("standard"), v.literal("urgent"), v.literal("immediate_safety"));
 
+const organizationType = v.union(
+  v.literal("lsf"),
+  v.literal("legal_aid_provider"),
+  v.literal("government"),
+  v.literal("cso"),
+  v.literal("community_paralegal_network"),
+  v.literal("private_provider"),
+  v.literal("donor_partner"),
+  v.literal("other"),
+);
+const organizationVerificationStatus = v.union(v.literal("draft"), v.literal("verified"), v.literal("suspended"), v.literal("inactive"));
+const referralAgreementStatus = v.union(v.literal("none"), v.literal("draft"), v.literal("active"), v.literal("expired"), v.literal("suspended"));
+
+const organizationInput = {
+  name: v.string(),
+  organizationType,
+  verificationStatus: organizationVerificationStatus,
+  referralAgreementStatus,
+  focalPersonName: v.optional(v.string()),
+  focalPersonEmail: v.optional(v.string()),
+  focalPersonPhone: v.optional(v.string()),
+  slaHours: v.optional(v.number()),
+  safeguardingReady: v.boolean(),
+  dataSharingAgreementVersion: v.optional(v.string()),
+  notes: v.optional(v.string()),
+};
+
 const serviceInput = {
   name: v.string(),
+  organizationId: v.optional(v.id("justice_service_organizations")),
   organizationName: v.optional(v.string()),
   servicePointType,
   classification,
@@ -139,6 +167,25 @@ function publicServiceProjection(service: {
   };
 }
 
+export const staffListOrganizations = query({
+  args: {},
+  handler: async (ctx) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const organizations = await ctx.db.query("justice_service_organizations").collect();
+    return await Promise.all(organizations.map(async (organization) => {
+      const services = await ctx.db
+        .query("justice_services")
+        .withIndex("by_organization", (q) => q.eq("organizationId", organization._id))
+        .collect();
+      return {
+        ...organization,
+        serviceCount: services.length,
+        activeReferralServiceCount: services.filter((service) => service.active && service.referralCapability).length,
+      };
+    }));
+  },
+});
+
 export const listPublicServices = query({
   args: {
     region: v.optional(v.string()),
@@ -171,7 +218,76 @@ export const staffListServices = query({
   args: {},
   handler: async (ctx) => {
     await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
-    return await ctx.db.query("justice_services").collect();
+    const services = await ctx.db.query("justice_services").collect();
+    return await Promise.all(services.map(async (service) => ({
+      ...service,
+      organization: service.organizationId ? await ctx.db.get(service.organizationId) : null,
+    })));
+  },
+});
+
+export const createOrganization = mutation({
+  args: organizationInput,
+  handler: async (ctx, args) => {
+    const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+    const name = args.name.trim();
+    if (name.length < 2) throw new ConvexError("Organization name is required.");
+    if (args.referralAgreementStatus === "active" && args.verificationStatus !== "verified") {
+      throw new ConvexError("Only verified organizations can have an active referral agreement.");
+    }
+    if (args.slaHours !== undefined && (args.slaHours < 1 || args.slaHours > 720)) {
+      throw new ConvexError("SLA hours must be between 1 and 720.");
+    }
+    const now = Date.now();
+    const id = await ctx.db.insert("justice_service_organizations", {
+      ...args,
+      name,
+      focalPersonName: args.focalPersonName?.trim() || undefined,
+      focalPersonEmail: args.focalPersonEmail?.trim().toLowerCase() || undefined,
+      focalPersonPhone: args.focalPersonPhone?.trim() || undefined,
+      dataSharingAgreementVersion: args.dataSharingAgreementVersion?.trim() || undefined,
+      notes: args.notes?.trim() || undefined,
+      createdBy: user._id,
+      createdAt: now,
+      updatedAt: now,
+    });
+    return { id };
+  },
+});
+
+export const updateOrganization = mutation({
+  args: {
+    id: v.id("justice_service_organizations"),
+    updates: v.object({
+      name: v.optional(v.string()),
+      organizationType: v.optional(organizationType),
+      verificationStatus: v.optional(organizationVerificationStatus),
+      referralAgreementStatus: v.optional(referralAgreementStatus),
+      focalPersonName: v.optional(v.string()),
+      focalPersonEmail: v.optional(v.string()),
+      focalPersonPhone: v.optional(v.string()),
+      slaHours: v.optional(v.number()),
+      safeguardingReady: v.optional(v.boolean()),
+      dataSharingAgreementVersion: v.optional(v.string()),
+      notes: v.optional(v.string()),
+    }),
+  },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff"]);
+    const existing = await ctx.db.get(args.id);
+    if (!existing) throw new ConvexError("Organization not found.");
+    const nextVerification = args.updates.verificationStatus ?? existing.verificationStatus;
+    const nextAgreement = args.updates.referralAgreementStatus ?? existing.referralAgreementStatus;
+    if (nextAgreement === "active" && nextVerification !== "verified") {
+      throw new ConvexError("Only verified organizations can have an active referral agreement.");
+    }
+    await ctx.db.patch(args.id, {
+      ...args.updates,
+      name: args.updates.name?.trim(),
+      focalPersonEmail: args.updates.focalPersonEmail?.trim().toLowerCase(),
+      updatedAt: Date.now(),
+    });
+    return { success: true };
   },
 });
 
@@ -182,9 +298,15 @@ export const createService = mutation({
     if (args.servicePointType === "safe_house" && args.visibility === "public") {
       throw new ConvexError("Safe-house services cannot be public.");
     }
+    const organization = args.organizationId ? await ctx.db.get(args.organizationId) : null;
+    if (args.organizationId && !organization) throw new ConvexError("Linked organization not found.");
+    if (organization && organization.verificationStatus !== "verified" && args.verificationStatus === "verified") {
+      throw new ConvexError("A verified service must be linked to a verified organization.");
+    }
     const now = Date.now();
     return await ctx.db.insert("justice_services", {
       ...args,
+      organizationName: organization?.name ?? args.organizationName,
       createdBy: user._id,
       createdAt: now,
       updatedAt: now,
@@ -197,6 +319,7 @@ export const updateService = mutation({
     id: v.id("justice_services"),
     updates: v.object({
       name: v.optional(v.string()),
+      organizationId: v.optional(v.id("justice_service_organizations")),
       organizationName: v.optional(v.string()),
       servicePointType: v.optional(servicePointType),
       classification: v.optional(classification),
@@ -246,7 +369,16 @@ export const updateService = mutation({
     if (nextType === "safe_house" && nextVisibility === "public") {
       throw new ConvexError("Safe-house services cannot be public.");
     }
-    await ctx.db.patch(args.id, { ...args.updates, updatedAt: Date.now() });
+    const organization = args.updates.organizationId ? await ctx.db.get(args.updates.organizationId) : null;
+    if (args.updates.organizationId && !organization) throw new ConvexError("Linked organization not found.");
+    if (organization && organization.verificationStatus !== "verified" && (args.updates.verificationStatus ?? existing.verificationStatus) === "verified") {
+      throw new ConvexError("A verified service must be linked to a verified organization.");
+    }
+    await ctx.db.patch(args.id, {
+      ...args.updates,
+      organizationName: organization?.name ?? args.updates.organizationName,
+      updatedAt: Date.now(),
+    });
     return { success: true };
   },
 });
@@ -351,4 +483,3 @@ export const matchServices = mutation({
     };
   },
 });
-

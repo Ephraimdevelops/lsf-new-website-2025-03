@@ -544,6 +544,7 @@ test("mobile prototype review mode exposes mock screen navigation without weaken
 test("referral graph connects staff creation, provider response, and beneficiary visibility", () => {
   const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
   const referrals = readFileSync(new URL("../convex/referrals.ts", import.meta.url), "utf8");
+  const justiceServices = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
   const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
   const crons = readFileSync(new URL("../convex/crons.ts", import.meta.url), "utf8");
   const staffDashboard = readFileSync(new URL("../src/pages/StaffDashboard.tsx", import.meta.url), "utf8");
@@ -551,6 +552,11 @@ test("referral graph connects staff creation, provider response, and beneficiary
   const mobileCase = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
 
   assert.match(schema, /referrals:\s*defineTable/);
+  assert.match(schema, /justice_service_organizations:\s*defineTable/);
+  assert.match(schema, /referralAgreementStatus/);
+  assert.match(schema, /safeguardingReady:\s*v\.boolean\(\)/);
+  assert.match(schema, /organizationId:\s*v\.optional\(v\.id\("justice_service_organizations"\)\)/);
+  assert.match(schema, /by_organization/);
   assert.match(schema, /method:\s*v\.optional\(v\.union\(/);
   assert.match(schema, /statement:\s*v\.optional\(v\.string\(\)\)/);
   assert.match(schema, /evidenceNote:\s*v\.optional\(v\.string\(\)\)/);
@@ -594,6 +600,10 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(referrals, /respondAsDestination/);
   assert.match(referrals, /requireAnyRole\(ctx,\s*\["paralegal",\s*"provider_staff"\]\)/);
   assert.match(referrals, /referral\.destinationUserId !== user\._id/);
+  assert.match(justiceServices, /staffListOrganizations/);
+  assert.match(justiceServices, /createOrganization/);
+  assert.match(justiceServices, /updateOrganization/);
+  assert.match(justiceServices, /Only verified organizations can have an active referral agreement/);
   assert.match(security, /\["referrals\.myDestinationQueue",\s*"service-provider"\]/);
   assert.match(security, /\["referrals\.respondAsDestination",\s*"service-provider"\]/);
   assert.match(security, /\["referrals\.createOnwardReferral",\s*"case-worker-or-assigned-provider"\]/);
@@ -603,6 +613,9 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(crons, /flag expired Haki Yangu consent evidence/);
   assert.match(crons, /internal\.referrals\.expireConsentEvidenceRetention/);
   assert.match(staffDashboard, /Create service referral/);
+  assert.match(staffDashboard, /Partner organization/);
+  assert.match(staffDashboard, /Organization accountability/);
+  assert.match(staffDashboard, /createJusticeOrganization/);
   assert.match(staffDashboard, /destinationUserId:\s*referralDestinationUserId/);
   assert.match(staffDashboard, /minimum information/);
   assert.match(staffDashboard, /Consent proof/);

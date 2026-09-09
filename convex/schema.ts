@@ -379,8 +379,36 @@ export default defineSchema({
     .index("by_user", ["userId"])
     .index("by_ticket", ["ticketId"]),
 
+  justice_service_organizations: defineTable({
+    name: v.string(),
+    organizationType: v.union(
+      v.literal("lsf"),
+      v.literal("legal_aid_provider"),
+      v.literal("government"),
+      v.literal("cso"),
+      v.literal("community_paralegal_network"),
+      v.literal("private_provider"),
+      v.literal("donor_partner"),
+      v.literal("other"),
+    ),
+    verificationStatus: v.union(v.literal("draft"), v.literal("verified"), v.literal("suspended"), v.literal("inactive")),
+    referralAgreementStatus: v.union(v.literal("none"), v.literal("draft"), v.literal("active"), v.literal("expired"), v.literal("suspended")),
+    focalPersonName: v.optional(v.string()),
+    focalPersonEmail: v.optional(v.string()),
+    focalPersonPhone: v.optional(v.string()),
+    slaHours: v.optional(v.number()),
+    safeguardingReady: v.boolean(),
+    dataSharingAgreementVersion: v.optional(v.string()),
+    notes: v.optional(v.string()),
+    createdBy: v.id("users"),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_status", ["verificationStatus"])
+    .index("by_referral_agreement", ["referralAgreementStatus"]),
+
   justice_services: defineTable({
     name: v.string(),
+    organizationId: v.optional(v.id("justice_service_organizations")),
     organizationName: v.optional(v.string()),
     servicePointType: v.union(
       v.literal("paralegal"),
@@ -445,6 +473,7 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_active_visibility", ["active", "visibility"])
+    .index("by_organization", ["organizationId"])
     .index("by_verification", ["verificationStatus"])
     .index("by_region", ["region"])
     .index("by_district", ["district"])
