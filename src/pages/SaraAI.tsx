@@ -7,7 +7,8 @@ import { api } from "../../convex/_generated/api";
 import { Link } from 'react-router-dom';
 import {
   ArrowUp, Bot, RotateCcw, Home, Phone,
-  Scale, Users, Heart, Sparkles, BookOpen, ThumbsUp, ThumbsDown, LogOut, Settings
+  Scale, Users, Heart, Sparkles, BookOpen, ThumbsUp, ThumbsDown, LogOut, Settings,
+  CheckCircle2, Circle, AlertTriangle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -16,6 +17,21 @@ type Message = {
   text: string;
   sender: 'user' | 'assistant';
   timestamp: Date;
+};
+
+const activityCopy: Record<string, string> = {
+  intent_detected: "Situation received",
+  risk_check_started: "Checking safety and policy",
+  risk_check_completed: "Safety check completed",
+  knowledge_search_started: "Reviewing approved legal guidance",
+  knowledge_search_completed: "Approved guidance reviewed",
+  service_search_started: "Looking for verified services",
+  service_search_completed: "Verified services checked",
+  tool_execution_started: "Running an approved Saada tool",
+  tool_execution_completed: "Approved tool completed",
+  human_review_requested: "Human review recommended",
+  completed: "Response completed",
+  failed: "Saada could not complete this request",
 };
 
 const SaraAIPage = () => {
@@ -40,6 +56,8 @@ const SaraAIPage = () => {
 
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [activeRequestId, setActiveRequestId] = useState<string | undefined>();
+  const activityEvents = useQuery(api.sara_chat.getActivityEvents, activeRequestId ? { requestId: activeRequestId, limit: 20 } : "skip");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -67,6 +85,8 @@ const SaraAIPage = () => {
 
     setInputText('');
     setIsTyping(true);
+    const requestId = crypto.randomUUID();
+    setActiveRequestId(requestId);
 
     try {
       // 1. Instantly save user message to DB
@@ -81,6 +101,7 @@ const SaraAIPage = () => {
           content: m.text
         })),
         source: "web",
+        clientRequestId: requestId,
       });
 
     } catch (error) {
@@ -360,11 +381,24 @@ const SaraAIPage = () => {
                     <div className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center overflow-hidden border-transparent">
                       <img src="/sara-avatar-v2.png" alt="Saada" className="w-full h-full object-cover" />
                     </div>
-                    <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
-                      <div className="flex gap-1.5">
-                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
-                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
-                        <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
+                    <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm min-w-[260px]">
+                      <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-primary">
+                        <Sparkles className="h-3.5 w-3.5" />
+                        Saada activity
+                      </div>
+                      <div className="space-y-2">
+                        {(activityEvents?.length ? activityEvents : [{ _id: "local-start", type: "intent_detected", status: "started", summary: "Starting request" } as any]).map((event: any) => (
+                          <div key={event._id} className="flex items-start gap-2 text-sm text-gray-600">
+                            {event.status === "completed" ? (
+                              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                            ) : event.status === "failed" ? (
+                              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
+                            ) : (
+                              <Circle className="mt-1 h-3 w-3 shrink-0 animate-pulse fill-primary/30 text-primary" />
+                            )}
+                            <span>{event.summary || activityCopy[event.type] || "Working on your request"}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </motion.div>

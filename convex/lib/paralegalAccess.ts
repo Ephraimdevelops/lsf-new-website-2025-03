@@ -6,9 +6,9 @@ export async function getApprovedParalegalProfileByEmail(ctx: MutationCtx, email
   const profile = await ctx.db
     .query("paralegal_applications")
     .withIndex("by_email", (q) => q.eq("email", normalizedEmail))
-    .first();
+    .collect();
 
-  return profile?.status === "approved" ? profile : null;
+  return profile.find((candidate) => candidate.status === "approved") ?? null;
 }
 
 export async function markParalegalProfileJoined(

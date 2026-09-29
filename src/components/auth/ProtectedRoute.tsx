@@ -29,9 +29,7 @@ export const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) 
         return <Navigate to="/login" replace />;
     }
 
-    if (!access) {
-        return <Navigate to="/login" replace />;
-    }
+    if (!access) return <Navigate to="/join" replace />;
 
     if (allowedRoles && !allowedRoles.some((role) => access.roles.includes(role as typeof access.roles[number]))) {
         return <Navigate to="/" replace />;

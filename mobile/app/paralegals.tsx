@@ -12,7 +12,6 @@ import { colors, radius, spacing, type } from "../src/theme";
 export default function ParalegalsScreen() {
   const { locale } = useLanguage();
   const [region, setRegion] = useState("");
-  const [viewMode, setViewMode] = useState<"list" | "map">("list");
   const liveParalegals = useQuery(api.paralegals.listApprovedParalegals, { verifiedOnly: true });
   const incrementProfileViews = useMutation(api.paralegals.incrementProfileViews);
   const paralegals = liveParalegals ?? [];
@@ -32,6 +31,11 @@ export default function ParalegalsScreen() {
     await Linking.openURL(`tel:${phone.replace(/\s+/g, "")}`);
   }
 
+  async function message(phone?: string) {
+    if (!phone) return;
+    await Linking.openURL(`sms:${phone.replace(/\s+/g, "")}`);
+  }
+
   function openProfile(item: (typeof paralegals)[number]) {
     void incrementProfileViews({ id: item._id as Parameters<typeof incrementProfileViews>[0]["id"] });
     router.push({
@@ -42,6 +46,10 @@ export default function ParalegalsScreen() {
         region: item.region,
         phone: item.phone ?? "",
         specialties: (item.specializations ?? []).join(","),
+        languages: (item.languages ?? []).join(","),
+        bio: item.bio ?? "",
+        availability: item.availabilityStatus ?? "accepting_cases",
+        verified: item.isVerified ? "true" : "false",
       },
     });
   }
@@ -88,22 +96,16 @@ export default function ParalegalsScreen() {
           </Pressable>
         ) : null}
       </View>
-      <View style={styles.filterRow}>
-        <Pressable style={styles.filterChip}><Ionicons name="location-outline" size={15} color={colors.burgundy} /><Text style={styles.filterText}>{locale === "sw" ? "Mikoa yote" : "All Regions"}</Text><Ionicons name="chevron-down" size={14} color={colors.inkMuted} /></Pressable>
-        <Pressable style={styles.filterChip}><Ionicons name="briefcase-outline" size={15} color={colors.burgundy} /><Text style={styles.filterText}>{locale === "sw" ? "Masuala yote" : "All Issues"}</Text><Ionicons name="chevron-down" size={14} color={colors.inkMuted} /></Pressable>
-      </View>
-      <View style={styles.segment}>
-        <Pressable style={[styles.segmentOption, viewMode === "list" && styles.segmentOptionActive]} onPress={() => setViewMode("list")}>
-          <Text style={[styles.segmentText, viewMode === "list" && styles.segmentTextActive]}>{locale === "sw" ? "Orodha" : "List"}</Text>
-        </Pressable>
-        <Pressable style={[styles.segmentOption, viewMode === "map" && styles.segmentOptionActive]} onPress={() => setViewMode("map")}>
-          <Text style={[styles.segmentText, viewMode === "map" && styles.segmentTextActive]}>{locale === "sw" ? "Ramani" : "Map"}</Text>
-        </Pressable>
+      <View style={styles.filterSummary}>
+        <Ionicons name="options-outline" size={18} color={colors.burgundy} />
+        <Text style={styles.filterSummaryText}>
+          {region.trim()
+            ? (locale === "sw" ? `Imechujwa kwa: ${region.trim()}` : `Filtered by: ${region.trim()}`)
+            : (locale === "sw" ? "Tafuta kwa mkoa, wilaya, kata, au aina ya msaada." : "Search by region, district, ward, or support area.")}
+        </Text>
       </View>
       <Text style={styles.sectionTitle}>{locale === "sw" ? "Paralegal waliothibitishwa" : "Verified Paralegals"}</Text>
       <Text style={styles.sectionBody}>{locale === "sw" ? "Wataalamu waliokaguliwa tayari kusaidia." : "Trusted professionals ready to help."}</Text>
-
-      {viewMode === "map" ? <View style={styles.mapState}><Ionicons name="map-outline" size={34} color={colors.burgundy} /><Text style={styles.mapTitle}>{locale === "sw" ? "Mwonekano wa ramani" : "Map view"}</Text><Text style={styles.mapText}>{locale === "sw" ? "Kwa sasa tumia orodha kuona walio karibu nawe kwa haraka." : "Use the list for the fastest nearby support review right now."}</Text></View> : null}
 
       <Pressable style={styles.matchCard} onPress={() => router.push("/intake")}>
         <View style={styles.matchIcon}>
@@ -127,7 +129,13 @@ export default function ParalegalsScreen() {
       </Pressable>
       <Button label={locale === "sw" ? "LSF inichagulie msaidizi" : "Let LSF match me"} onPress={() => router.push("/intake")} />
 
-      {filtered?.length && viewMode === "list" ? (
+      {liveParalegals === undefined ? (
+        <View style={styles.empty}>
+          <Ionicons name="hourglass-outline" size={36} color={colors.burgundy} />
+          <Text style={styles.emptyTitle}>{locale === "sw" ? "Tunapakua mtandao wa LSF" : "Loading the LSF network"}</Text>
+          <Text style={styles.emptyText}>{locale === "sw" ? "Tafadhali subiri kidogo." : "Please wait a moment."}</Text>
+        </View>
+      ) : filtered?.length ? (
         filtered.map((item) => {
           const signals = getMatchSignals(item);
           return (
@@ -157,7 +165,6 @@ export default function ParalegalsScreen() {
                 <Text key={tag} style={styles.chip}>{tag}</Text>
               ))}
             </View>
-            <Text style={styles.rating}>{item.isVerified ? "4.8 ★" : "4.6 ★"}</Text>
             <View style={styles.signalPanel}>
               {signals.slice(0, 2).map((signal) => (
                 <View key={signal} style={styles.signalRow}>
@@ -169,6 +176,10 @@ export default function ParalegalsScreen() {
 
             <View style={styles.actions}>
               <Pressable style={styles.secondaryAction} onPress={() => void call(item.phone)}>
+                <Ionicons name="call-outline" size={18} color={colors.burgundy} />
+                <Text style={styles.secondaryText}>{locale === "sw" ? "Piga simu" : "Call"}</Text>
+              </Pressable>
+              <Pressable style={styles.secondaryAction} onPress={() => void message(item.phone)}>
                 <Ionicons name="chatbubble-outline" size={18} color={colors.burgundy} />
                 <Text style={styles.secondaryText}>{locale === "sw" ? "Ujumbe" : "Message"}</Text>
               </Pressable>
@@ -225,56 +236,46 @@ function availabilityLabel(status: string | undefined, locale: "sw" | "en") {
 
 const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: spacing.md },
-  headerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
+  headerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   headerAction: { width: 34, height: 34, borderRadius: 17, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, alignItems: "center", justifyContent: "center" },
   searchBox: { flexDirection: "row", alignItems: "center", gap: spacing.sm, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, paddingHorizontal: spacing.md, minHeight: 50, marginTop: spacing.xl },
   searchInput: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 14 },
-  filterRow: { flexDirection: "row", gap: spacing.sm, marginTop: spacing.md },
-  filterChip: { flex: 1, minHeight: 42, borderRadius: radius.pill, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, paddingHorizontal: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.xs },
-  filterText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 12 },
-  segment: { flexDirection: "row", alignSelf: "flex-start", backgroundColor: colors.softPink, borderRadius: radius.pill, padding: 4, marginTop: spacing.md },
-  segmentOption: { minWidth: 74, minHeight: 34, borderRadius: radius.pill, alignItems: "center", justifyContent: "center", paddingHorizontal: spacing.md },
-  segmentOptionActive: { backgroundColor: colors.burgundy },
-  segmentText: { fontFamily: type.bold, color: colors.inkMuted, fontSize: 12 },
-  segmentTextActive: { color: colors.surface },
-  sectionTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 21, marginTop: spacing.lg },
+  filterSummary: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm, marginTop: spacing.md, borderRadius: radius.md, backgroundColor: colors.tealSoft, padding: spacing.md },
+  filterSummaryText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 19 },
+  sectionTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 21, marginTop: spacing.lg },
   sectionBody: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19, marginTop: spacing.xs },
-  mapState: { marginTop: spacing.lg, borderRadius: radius.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, padding: spacing.xl, alignItems: "center", gap: spacing.sm },
-  mapTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
-  mapText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19, textAlign: "center" },
   matchCard: { flexDirection: "row", alignItems: "center", gap: spacing.md, marginTop: spacing.md, borderRadius: radius.lg, borderWidth: 1, borderColor: "#E8B8CC", backgroundColor: "#FFF7FA", padding: spacing.lg },
   matchIcon: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: colors.burgundy },
   matchCopy: { flex: 1, gap: 3 },
-  matchTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 15 },
-  matchText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 18 },
-  matchSubhead: { fontFamily: type.bold, color: colors.burgundy, fontSize: 12, marginTop: spacing.xs },
+  matchTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 15 },
+  matchText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 18 },
+  matchSubhead: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13, marginTop: spacing.xs },
   matchReasons: { flexDirection: "row", flexWrap: "wrap", gap: spacing.xs, marginTop: spacing.xs },
-  reasonPill: { overflow: "hidden", borderRadius: radius.pill, backgroundColor: colors.surface, borderWidth: 1, borderColor: "#E8B8CC", paddingHorizontal: spacing.sm, paddingVertical: 4, fontFamily: type.bold, color: colors.burgundy, fontSize: 10 },
+  reasonPill: { overflow: "hidden", borderRadius: radius.pill, backgroundColor: colors.surface, borderWidth: 1, borderColor: "#E8B8CC", paddingHorizontal: spacing.sm, paddingVertical: 4, fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
   loading: { paddingVertical: 80 },
   card: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.md, gap: spacing.md },
   cardTop: { flexDirection: "row", alignItems: "center", gap: spacing.md },
   avatar: { width: 48, height: 48, borderRadius: 24, alignItems: "center", justifyContent: "center", backgroundColor: colors.burgundy },
-  avatarText: { fontFamily: type.bold, color: colors.surface, fontSize: 18 },
+  avatarText: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 18 },
   cardTitleArea: { flex: 1 },
   nameRow: { flexDirection: "row", alignItems: "center", gap: spacing.xs },
-  name: { flex: 1, fontFamily: type.bold, color: colors.charcoal, fontSize: 16 },
-  location: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, marginTop: 2 },
-  availabilityPill: { alignSelf: "flex-start", overflow: "hidden", borderRadius: radius.pill, paddingHorizontal: spacing.md, paddingVertical: spacing.xs, fontFamily: type.bold, fontSize: 11 },
+  name: { flex: 1, fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 16 },
+  location: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, marginTop: 2 },
+  availabilityPill: { alignSelf: "flex-start", overflow: "hidden", borderRadius: radius.pill, paddingHorizontal: spacing.md, paddingVertical: spacing.xs, fontFamily: type.bold, fontWeight: "700", fontSize: 13 },
   availabilityOpen: { backgroundColor: colors.tealSoft, color: colors.teal },
   availabilityPaused: { backgroundColor: colors.peach, color: colors.burgundy },
   bio: { fontFamily: type.regular, color: colors.charcoal, fontSize: 13, lineHeight: 20 },
   chips: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
-  chip: { fontFamily: type.medium, color: colors.burgundy, backgroundColor: colors.softPink, borderRadius: radius.pill, paddingHorizontal: spacing.md, paddingVertical: spacing.xs, fontSize: 11 },
-  rating: { fontFamily: type.bold, color: colors.charcoal, fontSize: 13 },
+  chip: { fontFamily: type.medium, fontWeight: "500", color: colors.burgundy, backgroundColor: colors.softPink, borderRadius: radius.pill, paddingHorizontal: spacing.md, paddingVertical: spacing.xs, fontSize: 13 },
   signalPanel: { gap: spacing.xs, borderRadius: radius.sm, backgroundColor: "#F7FBFB", padding: spacing.md },
   signalRow: { flexDirection: "row", alignItems: "center", gap: spacing.xs },
-  signalText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 17 },
-  actions: { flexDirection: "row", gap: spacing.sm },
+  signalText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19 },
+  actions: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
   secondaryAction: { flex: 1, minHeight: 44, borderRadius: radius.pill, borderWidth: 1, borderColor: colors.line, alignItems: "center", justifyContent: "center", flexDirection: "row", gap: spacing.xs, backgroundColor: colors.surface },
-  secondaryText: { fontFamily: type.bold, color: colors.burgundy, fontSize: 13 },
+  secondaryText: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
   primaryAction: { flex: 1.4, minHeight: 44, borderRadius: radius.pill, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center", flexDirection: "row", gap: spacing.xs },
-  primaryText: { fontFamily: type.bold, color: colors.surface, fontSize: 13 },
+  primaryText: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 13 },
   empty: { marginTop: spacing.xxl, alignItems: "center", gap: spacing.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.xl },
-  emptyTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
+  emptyTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   emptyText: { fontFamily: type.regular, color: colors.inkMuted, textAlign: "center", lineHeight: 21 },
 });

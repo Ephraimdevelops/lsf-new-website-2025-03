@@ -23,7 +23,6 @@ module.exports = ({ config }) => {
     extra: {
       ...config.extra,
       convexUrl: process.env.EXPO_PUBLIC_CONVEX_URL || sharedDevelopmentEnv.VITE_CONVEX_URL || "",
-      prototypeMode: process.env.EXPO_PUBLIC_PROTOTYPE_MODE === "1",
       clerkPublishableKey:
         process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY ||
         (sharedClerkKey.startsWith("pk_test_") ? sharedClerkKey : "") ||

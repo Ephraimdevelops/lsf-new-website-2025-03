@@ -6,7 +6,7 @@ export default defineSchema({
   users: defineTable({
     name: v.string(),
     email: v.string(),
-    role: v.union(v.literal("admin"), v.literal("staff"), v.literal("paralegal"), v.literal("stakeholder"), v.literal("user")),
+    role: v.union(v.literal("admin"), v.literal("staff"), v.literal("safeguarding_officer"), v.literal("paralegal"), v.literal("stakeholder"), v.literal("user")),
     clerkId: v.string(),
     imageUrl: v.optional(v.string()),
     imageStorageId: v.optional(v.string()), // For Convex Storage
@@ -20,11 +20,26 @@ export default defineSchema({
 
   // Additive role assignments allow scoped and multiple roles while legacy users.role
   // remains available during migration.
+  access_requests: defineTable({
+    userId: v.id("users"),
+    requestedRole: v.union(v.literal("staff"), v.literal("content_editor"), v.literal("provider_staff"), v.literal("stakeholder"), v.literal("donor")),
+    organizationName: v.string(),
+    statement: v.string(),
+    status: v.union(v.literal("pending"), v.literal("approved"), v.literal("rejected")),
+    submittedAt: v.number(),
+    reviewedAt: v.optional(v.number()),
+    reviewedBy: v.optional(v.id("users")),
+    decisionNote: v.optional(v.string()),
+    organizationId: v.optional(v.id("justice_service_organizations")),
+  }).index("by_user_status", ["userId", "status"])
+    .index("by_status_submitted", ["status", "submittedAt"]),
+
   role_assignments: defineTable({
     userId: v.id("users"),
     role: v.union(
       v.literal("admin"),
       v.literal("staff"),
+      v.literal("safeguarding_officer"),
       v.literal("supervisor"),
       v.literal("content_editor"),
       v.literal("paralegal"),
@@ -60,6 +75,7 @@ export default defineSchema({
       v.literal("sms"),
       v.literal("email"),
       v.literal("signed_document"),
+      v.literal("in_app"),
     )),
     statement: v.optional(v.string()),
     evidenceNote: v.optional(v.string()),
@@ -101,6 +117,8 @@ export default defineSchema({
     ),
     locale: v.union(v.literal("sw"), v.literal("en")),
     description: v.optional(v.string()),
+    issueCategory: v.optional(v.union(v.literal("employment"), v.literal("land"), v.literal("family"), v.literal("safety"), v.literal("consumer"), v.literal("other"))),
+    sourceServiceId: v.optional(v.id("justice_services")),
     safeContactMethod: v.optional(v.union(
       v.literal("in_app"),
       v.literal("phone"),
@@ -118,6 +136,7 @@ export default defineSchema({
     region: v.optional(v.string()),
     district: v.optional(v.string()),
     occurredAt: v.optional(v.number()),
+    involvedParties: v.optional(v.string()),
     desiredHelp: v.optional(v.string()),
     hasDocuments: v.optional(v.boolean()),
     urgency: v.optional(v.union(
@@ -143,6 +162,18 @@ export default defineSchema({
     updatedAt: v.number(),
   }).index("by_request", ["requestId"])
     .index("by_request_question", ["requestId", "questionKey"]),
+
+  request_attachments: defineTable({
+    requestId: v.id("legal_help_requests"),
+    ownerId: v.id("users"),
+    storageId: v.id("_storage"),
+    name: v.string(),
+    type: v.string(),
+    size: v.number(),
+    note: v.optional(v.string()),
+    createdAt: v.number(),
+  }).index("by_request", ["requestId"])
+    .index("by_owner", ["ownerId"]),
 
   cases: defineTable({
     publicId: v.string(),
@@ -216,6 +247,31 @@ export default defineSchema({
     .index("by_assignee_status", ["assigneeId", "status"])
     .index("by_status_expires", ["status", "expiresAt"]),
 
+  case_tasks: defineTable({
+    caseId: v.id("cases"),
+    assigneeId: v.id("users"),
+    createdBy: v.id("users"),
+    title: v.string(),
+    note: v.optional(v.string()),
+    status: v.union(v.literal("open"), v.literal("done"), v.literal("cancelled")),
+    dueAt: v.optional(v.number()),
+    createdAt: v.number(),
+    completedAt: v.optional(v.number()),
+  }).index("by_assignee_status", ["assigneeId", "status"])
+    .index("by_case", ["caseId"]),
+
+  paralegal_support_requests: defineTable({
+    userId: v.id("users"),
+    type: v.union(v.literal("supervisor"), v.literal("peer_support"), v.literal("wellbeing"), v.literal("challenging_case"), v.literal("payment")),
+    note: v.string(),
+    status: v.union(v.literal("submitted"), v.literal("in_review"), v.literal("responded"), v.literal("closed")),
+    responseNote: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    respondedAt: v.optional(v.number()),
+  }).index("by_user_status", ["userId", "status"])
+    .index("by_status", ["status"]),
+
   case_events: defineTable({
     caseId: v.id("cases"),
     type: v.string(),
@@ -238,8 +294,11 @@ export default defineSchema({
     caseId: v.id("cases"),
     senderId: v.id("users"),
     clientMessageId: v.string(),
-    type: v.union(v.literal("text"), v.literal("system")),
+    type: v.union(v.literal("text"), v.literal("voice"), v.literal("system")),
     body: v.string(),
+    storageId: v.optional(v.id("_storage")),
+    mimeType: v.optional(v.string()),
+    durationMs: v.optional(v.number()),
     createdAt: v.number(),
   }).index("by_conversation_time", ["conversationId", "createdAt"])
     .index("by_sender_client", ["senderId", "clientMessageId"]),
@@ -479,6 +538,26 @@ export default defineSchema({
     .index("by_district", ["district"])
     .index("by_type", ["servicePointType"]),
 
+  saved_justice_services: defineTable({
+    userId: v.id("users"),
+    serviceId: v.id("justice_services"),
+    savedAt: v.number(),
+  }).index("by_user", ["userId"])
+    .index("by_user_service", ["userId", "serviceId"]),
+
+  justice_service_visits: defineTable({
+    userId: v.id("users"),
+    serviceId: v.id("justice_services"),
+    plannedFor: v.number(),
+    channel: v.union(v.literal("in_person"), v.literal("phone"), v.literal("remote")),
+    status: v.union(v.literal("planned"), v.literal("completed"), v.literal("cancelled")),
+    outcome: v.optional(v.union(v.literal("helpful"), v.literal("partly_helpful"), v.literal("not_helpful"))),
+    note: v.optional(v.string()),
+    createdAt: v.number(),
+    checkedInAt: v.optional(v.number()),
+  }).index("by_user", ["userId"])
+    .index("by_user_service", ["userId", "serviceId"]),
+
   matching_decisions: defineTable({
     requesterId: v.optional(v.id("users")),
     requestId: v.optional(v.id("legal_help_requests")),
@@ -511,6 +590,37 @@ export default defineSchema({
     .index("by_review_status", ["reviewStatus"])
     .index("by_created", ["createdAt"]),
 
+  metric_definitions: defineTable({
+    key: v.string(),
+    version: v.string(),
+    label: v.string(),
+    ownerRole: v.string(),
+    formula: v.string(),
+    sourceTables: v.array(v.string()),
+    suppressionThreshold: v.number(),
+    status: v.union(v.literal("draft"), v.literal("approved"), v.literal("retired")),
+    approvedBy: v.optional(v.id("users")),
+    approvedAt: v.optional(v.number()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_key_version", ["key", "version"])
+    .index("by_status", ["status"]),
+
+  metric_snapshots: defineTable({
+    periodStart: v.number(),
+    periodEnd: v.number(),
+    generatedBy: v.id("users"),
+    generatedAt: v.number(),
+    approvalStatus: v.union(v.literal("draft"), v.literal("approved"), v.literal("rejected")),
+    approvedBy: v.optional(v.id("users")),
+    approvedAt: v.optional(v.number()),
+    definitionVersion: v.string(),
+    values: v.any(),
+    qualityFlags: v.array(v.string()),
+    publicSummary: v.string(),
+  }).index("by_period", ["periodStart", "periodEnd"])
+    .index("by_status_generated", ["approvalStatus", "generatedAt"]),
+
   referrals: defineTable({
     publicId: v.string(),
     caseId: v.id("cases"),
@@ -524,9 +634,10 @@ export default defineSchema({
     reason: v.string(),
     informationShared: v.array(v.string()),
     consentId: v.optional(v.id("consents")),
-    consentCollectedAt: v.number(),
+    consentCollectedAt: v.optional(v.number()),
     status: v.union(
       v.literal("draft"),
+      v.literal("awaiting_beneficiary_consent"),
       v.literal("consent_collected"),
       v.literal("created"),
       v.literal("destination_notified"),
@@ -621,6 +732,19 @@ export default defineSchema({
       searchField: "title",
       filterFields: ["category"],
     }),
+
+  // Mobile practical guides are governed separately from website publications.
+  legal_guides: defineTable({
+    titleSw: v.string(), titleEn: v.string(),
+    summarySw: v.string(), summaryEn: v.string(),
+    stepsSw: v.array(v.string()), stepsEn: v.array(v.string()),
+    category: v.string(), jurisdiction: v.union(v.literal("tanzania_mainland"), v.literal("zanzibar"), v.literal("national")),
+    sourceTitle: v.string(), sourceUrl: v.string(), publisher: v.string(),
+    reviewDueAt: v.number(), version: v.number(),
+    status: v.union(v.literal("pending"), v.literal("approved"), v.literal("rejected"), v.literal("retired")),
+    submittedBy: v.id("users"), submittedAt: v.number(),
+    reviewedBy: v.optional(v.id("users")), reviewedAt: v.optional(v.number()), reviewNote: v.optional(v.string()),
+  }).index("by_status", ["status"]).index("by_submitted_by", ["submittedBy"]),
 
   // Opportunities (Jobs, Grants, Tenders)
   opportunities: defineTable({
@@ -842,6 +966,9 @@ export default defineSchema({
     languages: v.optional(v.array(v.string())),
     resumeUrl: v.optional(v.string()),
     idDocumentUrl: v.optional(v.string()),
+    resumeStorageId: v.optional(v.id("_storage")),
+    idDocumentStorageId: v.optional(v.id("_storage")),
+    certificateStorageId: v.optional(v.id("_storage")),
     submittedAt: v.number(),
     status: v.union(v.literal("pending"), v.literal("under_review"), v.literal("approved"), v.literal("rejected")),
     reviewNotes: v.optional(v.string()),
@@ -864,6 +991,9 @@ export default defineSchema({
     availabilityNotes: v.optional(v.string()),
     hasJoinedHakiYangu: v.optional(v.boolean()),
     onboardingCompleted: v.optional(v.boolean()),
+    ethicsAcceptedAt: v.optional(v.number()),
+    codeOfConductAcceptedAt: v.optional(v.number()),
+    safeguardingTrainingCompletedAt: v.optional(v.number()),
     approvedAt: v.optional(v.number()),
   }).index("by_status", ["status"])
     .index("by_region", ["region"])
@@ -880,10 +1010,22 @@ export default defineSchema({
     storageId: v.id("_storage"), // PDF file in Convex storage
     type: v.string(), // 'pdf', 'text', 'url'
     sourceUrl: v.optional(v.string()), // URL if applicable
+    publisher: v.optional(v.string()),
+    jurisdiction: v.optional(v.union(v.literal("tanzania_mainland"), v.literal("zanzibar"), v.literal("national"), v.literal("other"))),
+    language: v.optional(v.union(v.literal("sw"), v.literal("en"), v.literal("bilingual"), v.literal("other"))),
+    contentCategory: v.optional(v.string()),
+    versionLabel: v.optional(v.string()),
+    effectiveDate: v.optional(v.string()),
+    reviewDueAt: v.optional(v.number()),
     metadata: v.optional(v.any()), // PDF metadata
     uploadedAt: v.number(),
     processedAt: v.optional(v.number()),
     lastReviewedAt: v.optional(v.number()), // For content freshness alerts
+    approvalStatus: v.optional(v.union(v.literal("pending"), v.literal("approved"), v.literal("rejected"))),
+    uploadedByClerkId: v.optional(v.string()),
+    reviewedBy: v.optional(v.id("users")),
+    reviewNote: v.optional(v.string()),
+    approvedAt: v.optional(v.number()),
   }),
 
   // Embeddings (Chunks)
@@ -952,11 +1094,61 @@ export default defineSchema({
     .index("by_disposition", ["dispositionStatus"])
     .index("by_created", ["createdAt"]),
 
+  saada_activity_events: defineTable({
+    userId: v.string(),
+    requestId: v.string(),
+    source: v.union(v.literal("web"), v.literal("mobile"), v.literal("unknown")),
+    type: v.union(
+      v.literal("intent_detected"),
+      v.literal("risk_check_started"),
+      v.literal("risk_check_completed"),
+      v.literal("knowledge_search_started"),
+      v.literal("knowledge_search_completed"),
+      v.literal("pathway_lookup_started"),
+      v.literal("pathway_lookup_completed"),
+      v.literal("service_search_started"),
+      v.literal("service_search_completed"),
+      v.literal("matching_started"),
+      v.literal("matching_completed"),
+      v.literal("document_analysis_started"),
+      v.literal("document_analysis_completed"),
+      v.literal("draft_started"),
+      v.literal("draft_completed"),
+      v.literal("confirmation_required"),
+      v.literal("tool_execution_started"),
+      v.literal("tool_execution_completed"),
+      v.literal("human_review_requested"),
+      v.literal("waiting_external_response"),
+      v.literal("completed"),
+      v.literal("failed"),
+    ),
+    status: v.union(v.literal("started"), v.literal("completed"), v.literal("failed"), v.literal("waiting")),
+    labelKey: v.string(),
+    summary: v.optional(v.string()),
+    metadata: v.optional(v.any()),
+    createdAt: v.number(),
+  }).index("by_user_request_time", ["userId", "requestId", "createdAt"])
+    .index("by_user_time", ["userId", "createdAt"])
+    .index("by_type_time", ["type", "createdAt"]),
+
   // SARA Configuration (System Prompt, etc.)
   sara_config: defineTable({
     key: v.string(), // e.g. 'system_prompt'
     value: v.string(),
   }).index("by_key", ["key"]),
+
+  saada_prompt_versions: defineTable({
+    prompt: v.string(),
+    version: v.number(),
+    changeNote: v.string(),
+    status: v.union(v.literal("pending"), v.literal("approved"), v.literal("rejected"), v.literal("retired")),
+    submittedBy: v.id("users"),
+    submittedAt: v.number(),
+    reviewedBy: v.optional(v.id("users")),
+    reviewedAt: v.optional(v.number()),
+    reviewNote: v.optional(v.string()),
+  }).index("by_status", ["status"])
+    .index("by_version", ["version"]),
 
   // ==========================================
   // RATE LIMITING (Anti-Spam Protection)

@@ -59,8 +59,12 @@ export const syncUser = mutation({
         if (!identity || identity.subject !== args.clerkId) {
             throw new Error("Unauthorized");
         }
+        // The client-provided email cannot be used to grant a paralegal role.
+        // Clerk supplies the email bound to the authenticated identity.
+        const authenticatedEmail = identity.email?.trim().toLowerCase();
+        if (!authenticatedEmail) throw new Error("A verified account email is required.");
         const now = Date.now();
-        const approvedParalegalProfile = await getApprovedParalegalProfileByEmail(ctx, args.email);
+        const approvedParalegalProfile = await getApprovedParalegalProfileByEmail(ctx, authenticatedEmail);
 
         const existingUser = await ctx.db
             .query("users")
@@ -77,7 +81,7 @@ export const syncUser = mutation({
                 name?: string;
                 imageUrl?: string;
             } = {
-                email: args.email,
+                email: authenticatedEmail,
                 lastLogin: now,
             };
             // Only update name if it's currently placeholder "User" or empty
@@ -99,7 +103,7 @@ export const syncUser = mutation({
 
         const userId = await ctx.db.insert("users", {
             name: args.name,
-            email: args.email,
+            email: authenticatedEmail,
             clerkId: identity.subject,
             imageUrl: args.imageUrl,
             // Role grants are managed by an authorized platform workflow only.

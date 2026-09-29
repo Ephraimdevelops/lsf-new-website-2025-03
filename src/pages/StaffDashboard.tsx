@@ -28,6 +28,7 @@ import { Textarea } from "@/components/ui/textarea";
 type TriageDetail = FunctionReturnType<typeof api.legalHelp.openForTriage>;
 type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments" | "matching" | "referrals" | "services";
 type ReferralQueueStatus =
+  | "awaiting_beneficiary_consent"
   | "created"
   | "destination_notified"
   | "accepted"
@@ -43,7 +44,22 @@ type ServiceFormState = {
   name: string;
   organizationId: string;
   organizationName: string;
-  servicePointType: "paralegal" | "legal_aid_provider" | "government_office" | "local_government" | "labour_service" | "land_service" | "protection_service" | "cso" | "other";
+  servicePointType:
+    | "paralegal"
+    | "legal_aid_provider"
+    | "partner_organisation"
+    | "government_office"
+    | "local_government"
+    | "police_gender_children_desk"
+    | "social_welfare"
+    | "court_or_tribunal"
+    | "labour_service"
+    | "land_service"
+    | "mediation"
+    | "cso"
+    | "protection_service"
+    | "safe_house"
+    | "other";
   classification: "public" | "community" | "government" | "private" | "restricted";
   visibility: "public" | "restricted" | "confidential";
   verificationStatus: "draft" | "verified" | "expired" | "inactive";
@@ -262,7 +278,7 @@ const StaffDashboard = () => {
   >("offered");
   const [matchingReviewStatus, setMatchingReviewStatus] =
     useState<MatchingReviewStatus>("pending_review");
-  const [referralStatus, setReferralStatus] = useState<ReferralQueueStatus>("created");
+  const [referralStatus, setReferralStatus] = useState<ReferralQueueStatus>("awaiting_beneficiary_consent");
   const [detail, setDetail] = useState<TriageDetail | null>(null);
   const [selectedCaseId, setSelectedCaseId] = useState<Id<"cases"> | null>(
     null,
@@ -365,7 +381,7 @@ const StaffDashboard = () => {
       (service) =>
         service.active &&
         service.verificationStatus === "verified" &&
-        service.visibility !== "confidential" &&
+        service.visibility === "public" &&
         service.referralCapability,
     ) ?? [];
 
@@ -572,7 +588,14 @@ const StaffDashboard = () => {
   }
 
   function updateServiceForm(updates: Partial<ServiceFormState>) {
-    setServiceForm((current) => ({ ...current, ...updates }));
+    setServiceForm((current) => {
+      const next = { ...current, ...updates };
+      if (updates.servicePointType === "safe_house" && next.visibility === "public") {
+        next.visibility = "restricted";
+        next.classification = "restricted";
+      }
+      return next;
+    });
   }
 
   function updateOrganizationForm(updates: Partial<OrganizationFormState>) {
@@ -611,6 +634,10 @@ const StaffDashboard = () => {
     }
     if (serviceForm.servicePointType === "protection_service" && !serviceForm.privacyAvailable) {
       setNotice({ type: "error", text: "Protection services must indicate privacy availability before publishing." });
+      return;
+    }
+    if (serviceForm.servicePointType === "safe_house" && serviceForm.visibility === "public") {
+      setNotice({ type: "error", text: "Safe houses must be saved as restricted or confidential entries." });
       return;
     }
     void run(async () => {
@@ -824,9 +851,9 @@ const StaffDashboard = () => {
       setReferralConsentStatement("I consent for LSF to share the minimum information listed here with this referral destination so they can provide legal support.");
       setReferralConsentEvidenceNote("");
       setReferralConsentFile(null);
-      setReferralStatus("created");
+      setReferralStatus("awaiting_beneficiary_consent");
       setTab("referrals");
-      setNotice({ type: "success", text: `${result.publicId} created and visible in the referral queue.` });
+      setNotice({ type: "success", text: `${result.publicId} proposed. The beneficiary must review and approve before the provider is notified.` });
     });
   }
 
@@ -889,7 +916,7 @@ const StaffDashboard = () => {
             >
               Public website
             </Link>
-            <Button variant="outline" size="sm" onClick={() => signOut()}>
+            <Button variant="outline" size="sm" onClick={() => signOut({ redirectUrl: '/' })}>
               <LogOut className="mr-2 h-4 w-4" />
               Sign out
             </Button>
@@ -1046,8 +1073,7 @@ const StaffDashboard = () => {
               <div>
                 <h2 className="text-xl">Referral coordination</h2>
                 <p className="mb-0 text-sm text-neutral-500">
-                  Track cross-service handoffs after consent. This is the start
-                  of the referral graph: where the case moved, what was shared,
+                  Propose a handoff, wait for beneficiary consent, then track where the case moved, what was shared,
                   and whether the destination accepted responsibility.
                 </p>
               </div>
@@ -1056,6 +1082,7 @@ const StaffDashboard = () => {
                 onChange={(event) => setReferralStatus(event.target.value as ReferralQueueStatus)}
                 className="h-11 rounded-xl border bg-white px-3 text-sm"
               >
+                <option value="awaiting_beneficiary_consent">Awaiting beneficiary consent</option>
                 <option value="created">Created</option>
                 <option value="destination_notified">Destination notified</option>
                 <option value="accepted">Accepted</option>
@@ -1122,15 +1149,15 @@ const StaffDashboard = () => {
                         </div>
                       )}
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                        <p className="mb-1 font-bold text-neutral-800">Information shared</p>
+                        <p className="mb-1 font-bold text-neutral-800">{item.referral.status === "awaiting_beneficiary_consent" ? "Information proposed for sharing" : "Information shared"}</p>
                         <p className="mb-0">
                           {item.referral.informationShared.join(", ") || "Not recorded"}
                         </p>
                       </div>
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                        <p className="mb-1 font-bold text-neutral-800">Consent proof</p>
+                        <p className="mb-1 font-bold text-neutral-800">Consent status</p>
                         <p className="mb-0 capitalize">
-                          {item.consent?.method?.replaceAll("_", " ") ?? "Not recorded"}
+                          {item.consent?.granted ? item.consent.method?.replaceAll("_", " ") ?? "Recorded" : "Awaiting beneficiary decision"}
                         </p>
                         {item.consent?.evidenceNote && (
                           <p className="mb-0 mt-1 text-neutral-500">{item.consent.evidenceNote}</p>
@@ -1534,11 +1561,17 @@ const StaffDashboard = () => {
                     >
                       <option value="paralegal">Paralegal</option>
                       <option value="legal_aid_provider">Legal aid provider</option>
+                      <option value="partner_organisation">Partner organisation</option>
                       <option value="government_office">Government office</option>
                       <option value="local_government">Local government</option>
+                      <option value="police_gender_children_desk">Police gender / children desk</option>
+                      <option value="social_welfare">Social welfare office</option>
+                      <option value="court_or_tribunal">Court or tribunal</option>
                       <option value="labour_service">Labour service</option>
                       <option value="land_service">Land service</option>
+                      <option value="mediation">Mediation service</option>
                       <option value="protection_service">Protection service</option>
+                      <option value="safe_house">Safe house / shelter</option>
                       <option value="cso">CSO</option>
                       <option value="other">Other</option>
                     </select>
@@ -2550,8 +2583,24 @@ const StaffDashboard = () => {
                   </div>
                   <div className="mt-5 grid gap-4 md:grid-cols-2">
                     <Info
+                      label="Issue selected"
+                      value={detail.request.issueCategory?.replaceAll("_", " ") ?? "Not selected"}
+                    />
+                    <Info
+                      label="Find Help service"
+                      value={detail.sourceService ? `${detail.sourceService.name} · ${detail.sourceService.district}, ${detail.sourceService.region}${!detail.sourceService.active || detail.sourceService.verificationStatus !== "verified" ? " (verify before referral)" : ""}` : "None selected"}
+                    />
+                    <Info
                       label="Help requested"
                       value={detail.request.desiredHelp ?? "Not provided"}
+                    />
+                    <Info
+                      label="When it happened"
+                      value={detail.request.occurredAt ? formatDate(detail.request.occurredAt) : "Not provided"}
+                    />
+                    <Info
+                      label="People or organisations involved"
+                      value={detail.request.involvedParties ?? "Not provided"}
                     />
                     <Info
                       label="Documents available"
@@ -2990,8 +3039,7 @@ const StaffDashboard = () => {
                         <p className="mb-4 text-sm text-neutral-600">
                           Use this when the beneficiary needs support beyond
                           the current case team. Record the minimum information
-                          shared and only use verified, non-confidential
-                          destinations.
+                          proposed for sharing. Only verified public destinations are available. The provider will not be notified until the beneficiary approves.
                         </p>
                         <select
                           value={referralServiceId}
@@ -3031,7 +3079,7 @@ const StaffDashboard = () => {
                         />
                         <div className="mb-3 rounded-xl border border-orange-200 bg-orange-50 p-3">
                           <p className="mb-2 text-xs font-bold uppercase tracking-wider text-orange-900">
-                            Consent proof
+                            Prior consent contact (for audit; does not replace in-app approval)
                           </p>
                           <select
                             value={referralConsentMethod}
@@ -3047,7 +3095,7 @@ const StaffDashboard = () => {
                           <Textarea
                             value={referralConsentStatement}
                             onChange={(event) => setReferralConsentStatement(event.target.value)}
-                            placeholder="Exact consent statement confirmed with the beneficiary"
+                            placeholder="Describe the consent discussion; the beneficiary will make the final decision in the app"
                             className="mb-3 min-h-[86px] bg-white text-sm"
                           />
                           <Textarea
@@ -3079,7 +3127,7 @@ const StaffDashboard = () => {
                           onClick={createCaseReferral}
                           className="w-full"
                         >
-                          Create referral
+                          Propose referral for beneficiary approval
                         </Button>
                       </div>
                       <div className="mt-5 rounded-xl border p-4">

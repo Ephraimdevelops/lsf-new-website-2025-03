@@ -162,6 +162,9 @@ const justiceServiceSeed = [
 export const seedMobileDirectory = mutation({
   args: {},
   handler: async (ctx) => {
+    if (process.env.HAKI_ALLOW_MOBILE_QA_SEED !== "true") {
+      throw new Error("Mobile QA seed is disabled. Enable it only in development or staging.");
+    }
     const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
     const now = Date.now();
     let inserted = 0;
@@ -208,6 +211,9 @@ export const seedMobileDirectory = mutation({
 export const seedJusticeServices = mutation({
   args: {},
   handler: async (ctx) => {
+    if (process.env.HAKI_ALLOW_MOBILE_QA_SEED !== "true") {
+      throw new Error("Justice service QA seed is disabled. Enable it only in development or staging.");
+    }
     const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
     const now = Date.now();
     let inserted = 0;

@@ -36,6 +36,12 @@ const pushCopy: Record<string, { title: string; body: string }> = {
   "feedback.requested": { title: "Haki Yangu feedback", body: "Tell us about the support you received." },
   "case.review_requested": { title: "Haki Yangu review", body: "A case review request needs attention." },
   "case.review_closed": { title: "Haki Yangu update", body: "There is an update on your review request." },
+  "referral.consent_requested": { title: "Haki Yangu update", body: "A case decision needs your review in the app." },
+  "referral.updated": { title: "Haki Yangu update", body: "There is an update on a referral." },
+  "referral.created": { title: "Haki Yangu update", body: "A referral is progressing." },
+  "access.revoked": { title: "Haki Yangu access", body: "Your paralegal access has been revoked. Contact LSF support if you need help." },
+  "paralegal.support_requested": { title: "Paralegal support request", body: "A paralegal has requested support. Open the LSF support queue to review it." },
+  "paralegal.support_updated": { title: "Paralegal support update", body: "LSF updated your support request. Open Haki Yangu to see the latest status." },
 };
 
 const receiptTicketValidator = v.object({

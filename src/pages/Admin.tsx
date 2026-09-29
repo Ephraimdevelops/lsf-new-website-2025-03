@@ -51,7 +51,7 @@ const Admin = () => {
     return null;
   }
 
-  return <AdminDashboard onLogout={() => signOut()} />;
+  return <AdminDashboard onLogout={() => signOut({ redirectUrl: '/' })} />;
 };
 
 export default Admin;

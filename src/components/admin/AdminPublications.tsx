@@ -78,7 +78,7 @@ const AdminPublications = () => {
   const [editingPublication, setEditingPublication] = useState<Publication | undefined>();
   const [formMode, setFormMode] = useState<'create' | 'edit'>('create');
 
-  const publications = useQuery(api.publications.get) || [];
+  const publications = useQuery(api.publications.get, {}) || [];
   const deletePublication = useMutation(api.publications.remove);
 
   // Get unique values for filters

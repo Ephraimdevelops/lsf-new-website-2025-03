@@ -369,7 +369,7 @@ const ParalegalDashboard = () => {
       setOnwardReasonByReferralId((current) => ({ ...current, [item.referral._id]: "" }));
       setOnwardInfoByReferralId((current) => ({ ...current, [item.referral._id]: "" }));
       setOnwardConsentByReferralId((current) => ({ ...current, [item.referral._id]: "" }));
-      setNotice({ type: "success", text: `${result.publicId} created as an onward referral.` });
+      setNotice({ type: "success", text: `${result.publicId} proposed. The beneficiary must approve before the next provider sees it.` });
     });
   }
 
@@ -403,7 +403,7 @@ const ParalegalDashboard = () => {
             <Link to="/" className="hidden rounded-lg px-3 py-2 text-sm font-semibold text-neutral-600 hover:bg-neutral-100 sm:block">
               Public website
             </Link>
-            <Button variant="outline" size="sm" onClick={() => signOut()}>
+            <Button variant="outline" size="sm" onClick={() => signOut({ redirectUrl: '/' })}>
               <LogOut className="mr-2 h-4 w-4" />
               Sign out
             </Button>
@@ -586,7 +586,7 @@ const ParalegalDashboard = () => {
                             className="mb-2 min-h-16 bg-white text-sm"
                           />
                           <Button disabled={pending || publicServices === undefined} variant="outline" onClick={() => createOnward(item)} className="w-full">
-                            Create onward referral
+                            Propose onward referral for beneficiary approval
                           </Button>
                         </div>
                       )}

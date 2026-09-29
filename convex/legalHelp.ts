@@ -24,6 +24,7 @@ const urgencyValidator = v.union(
   v.literal("urgent"),
   v.literal("immediate_safety"),
 );
+const issueCategoryValidator = v.union(v.literal("employment"), v.literal("land"), v.literal("family"), v.literal("safety"), v.literal("consumer"), v.literal("other"));
 
 function publicReference(prefix: string, id: string, now: number) {
   const date = new Date(now).toISOString().slice(0, 10).replaceAll("-", "");
@@ -36,18 +37,27 @@ export const saveDraft = mutation({
     expectedVersion: v.optional(v.number()),
     locale: localeValidator,
     description: v.optional(v.string()),
+    issueCategory: v.optional(issueCategoryValidator),
+    sourceServiceId: v.optional(v.id("justice_services")),
     safeContactMethod: v.optional(safeContactValidator),
     preferredLanguage: v.optional(preferredLanguageValidator),
     preferredLanguageOther: v.optional(v.string()),
     region: v.optional(v.string()),
     district: v.optional(v.string()),
     occurredAt: v.optional(v.number()),
+    involvedParties: v.optional(v.string()),
     desiredHelp: v.optional(v.string()),
     hasDocuments: v.optional(v.boolean()),
     urgency: v.optional(urgencyValidator),
   },
   handler: async (ctx, args) => {
     const { user } = await requireAuthenticatedUser(ctx);
+    if (args.sourceServiceId) {
+      const source = await ctx.db.get(args.sourceServiceId);
+      if (!source || !source.active || source.visibility !== "public" || source.verificationStatus !== "verified") {
+        throw new ConvexError({ code: "VALIDATION", message: "The selected service is no longer available. Review Find Help before submitting." });
+      }
+    }
     const clientRequestId = normalizeText(args.clientRequestId, "Client request ID", 100);
     const now = Date.now();
     const existing = await ctx.db
@@ -60,12 +70,15 @@ export const saveDraft = mutation({
     const normalized = {
       locale: args.locale,
       description: normalizeOptionalText(args.description, "Description", 5000),
+      issueCategory: args.issueCategory,
+      sourceServiceId: args.sourceServiceId,
       safeContactMethod: args.safeContactMethod,
       preferredLanguage: args.preferredLanguage,
       preferredLanguageOther: normalizeOptionalText(args.preferredLanguageOther, "Other language", 80),
       region: normalizeOptionalText(args.region, "Region", 100),
       district: normalizeOptionalText(args.district, "District", 100),
       occurredAt: args.occurredAt,
+      involvedParties: normalizeOptionalText(args.involvedParties, "People or organisations involved", 1000),
       desiredHelp: normalizeOptionalText(args.desiredHelp, "Desired help", 1000),
       hasDocuments: args.hasDocuments,
       urgency: args.urgency,
@@ -134,6 +147,39 @@ export const saveAnswer = mutation({
       value,
       updatedAt: Date.now(),
     });
+  },
+});
+
+export const generateAttachmentUploadUrl = mutation({
+  args: {},
+  handler: async (ctx) => {
+    await requireAuthenticatedUser(ctx);
+    return await ctx.storage.generateUploadUrl();
+  },
+});
+
+export const attachToDraft = mutation({
+  args: {
+    requestId: v.id("legal_help_requests"),
+    storageId: v.id("_storage"),
+    name: v.string(),
+    type: v.string(),
+    size: v.number(),
+    note: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const request = await ctx.db.get(args.requestId);
+    if (!request || request.ownerId !== user._id) throw new ConvexError({ code: "FORBIDDEN", message: "Request access denied" });
+    if (request.status !== "draft") throw new ConvexError({ code: "CONFLICT", message: "Submitted requests cannot be changed" });
+    if (args.size <= 0 || args.size > 10 * 1024 * 1024) throw new ConvexError({ code: "VALIDATION", message: "File must be smaller than 10 MB" });
+    const attachmentId = await ctx.db.insert("request_attachments", {
+      requestId: request._id, ownerId: user._id, storageId: args.storageId,
+      name: normalizeText(args.name, "File name", 180), type: normalizeText(args.type, "File type", 120),
+      size: args.size, note: normalizeOptionalText(args.note, "File note", 500), createdAt: Date.now(),
+    });
+    await ctx.db.patch(request._id, { hasDocuments: true, updatedAt: Date.now(), version: request.version + 1 });
+    return { attachmentId };
   },
 });
 
@@ -207,6 +253,41 @@ export const myRequests = query({
   },
 });
 
+export const getMyRequest = query({
+  args: { requestId: v.id("legal_help_requests") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const request = await ctx.db.get(args.requestId);
+    if (!request || request.ownerId !== user._id) return null;
+    const source = request.sourceServiceId ? await ctx.db.get(request.sourceServiceId) : null;
+    return {
+      request,
+      sourceService: source && source.active && source.visibility === "public" && source.verificationStatus === "verified" && source.servicePointType !== "safe_house"
+        ? { _id: source._id, name: source.name, region: source.region, district: source.district }
+        : null,
+    };
+  },
+});
+
+export const withdrawMyRequest = mutation({
+  args: { requestId: v.id("legal_help_requests") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const request = await ctx.db.get(args.requestId);
+    if (!request) throw new ConvexError({ code: "NOT_FOUND", message: "Request not found" });
+    if (request.ownerId !== user._id) throw new ConvexError({ code: "FORBIDDEN", message: "Request access denied" });
+    if (!["submitted", "under_review", "waiting_for_information"].includes(request.status)) {
+      throw new ConvexError({ code: "CONFLICT", message: "This request can no longer be withdrawn" });
+    }
+    const now = Date.now();
+    await ctx.db.patch(request._id, { status: "withdrawn", version: request.version + 1, updatedAt: now });
+    await writeAudit(ctx, user._id, "help_request.withdrawn", "legal_help_request", request._id, {
+      changedFieldNames: ["status"], from: request.status, to: "withdrawn",
+    });
+    return { status: "withdrawn" as const };
+  },
+});
+
 export const getDraft = query({
   args: { clientRequestId: v.string() },
   handler: async (ctx, args) => {
@@ -274,6 +355,7 @@ export const openForTriage = mutation({
       .withIndex("by_request", (q) => q.eq("requestId", request._id))
       .collect();
     const beneficiary = await ctx.db.get(request.ownerId);
+    const sourceService = request.sourceServiceId ? await ctx.db.get(request.sourceServiceId) : null;
     await writeAudit(ctx, user._id, "help_request.viewed_for_triage", "legal_help_request", request._id, {
       changedFieldNames: request.status === "submitted" ? ["status"] : [],
     });
@@ -284,6 +366,7 @@ export const openForTriage = mutation({
         version: nextVersion,
       },
       answers,
+      sourceService: sourceService ? { name: sourceService.name, district: sourceService.district, region: sourceService.region, verificationStatus: sourceService.verificationStatus, active: sourceService.active } : null,
       beneficiary: beneficiary ? { name: beneficiary.name, email: beneficiary.email } : null,
     };
   },

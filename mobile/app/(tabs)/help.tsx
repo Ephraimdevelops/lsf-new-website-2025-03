@@ -1,68 +1,54 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useQuery } from "convex/react";
 import { router } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useAuth } from "../../src/auth";
+import { api } from "../../src/backend/api";
+import { AppHeader } from "../../src/components/AppHeader";
+import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
 
-const issueCards = [
-  { key: "employment", title: { sw: "Ajira", en: "Employment" }, body: { sw: "Haki za kazi, kufukuzwa, au mishahara.", en: "Workplace rights, unfair dismissal, or pay issues." }, icon: "briefcase-outline" },
-  { key: "land", title: { sw: "Ardhi", en: "Land" }, body: { sw: "Umiliki, mipaka, au kufukuzwa.", en: "Land ownership, boundaries, or eviction." }, icon: "document-outline" },
-  { key: "family", title: { sw: "Familia", en: "Family" }, body: { sw: "Talaka, urithi, watoto, au msaada.", en: "Divorce, inheritance, child custody, or support." }, icon: "people-outline" },
-  { key: "safety", title: { sw: "Usalama", en: "Safety" }, body: { sw: "Vitisho, GBV, au ulinzi wa haraka.", en: "Threats, GBV, or immediate safety concerns." }, icon: "shield-checkmark-outline" },
-  { key: "consumer", title: { sw: "Mlaji", en: "Consumer" }, body: { sw: "Bidhaa mbovu, huduma duni, au marejesho.", en: "Defective products, poor services, or refunds." }, icon: "bag-handle-outline" },
-  { key: "custom", title: { sw: "Tuambie kilichotokea", en: "Tell us what happened" }, body: { sw: "Eleza tatizo lako kwa maneno yako mwenyewe.", en: "Describe your issue in your own words." }, icon: "create-outline" },
-] as const;
-
-export default function HelpScreen() {
+export default function MessagesScreen() {
+  const { isSignedIn } = useAuth();
   const { locale } = useLanguage();
+  const conversations = useQuery(api.caseManagement.myConversations, isSignedIn ? {} : "skip");
 
   return (
     <Screen>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>{locale === "sw" ? "Omba msaada" : "Request help"}</Text>
+      <AppHeader title={locale === "sw" ? "Ujumbe" : "Messages"} eyebrow={locale === "sw" ? "MAWASILIANO SALAMA" : "SECURE CONVERSATIONS"} initial="M" onBell={() => router.push("/notifications")} />
+      <View style={styles.hero}>
+        <View style={styles.heroIcon}><Ionicons name="chatbubbles-outline" size={28} color={colors.surface} /></View>
+        <View style={styles.heroCopy}><Text style={styles.heroTitle}>{locale === "sw" ? "Endelea kuwasiliana." : "Stay connected."}</Text><Text style={styles.heroBody}>{locale === "sw" ? "Ujumbe, nyaraka na sauti hubaki ndani ya kesi husika." : "Messages, documents, and voice notes stay inside the right case."}</Text></View>
       </View>
-      <View style={styles.progressTrack}>
-        <View style={[styles.progressDot, styles.progressDotActive]} />
-        <View style={styles.progressLine} />
-        <View style={styles.progressDot} />
-        <View style={styles.progressLine} />
-        <View style={styles.progressDot} />
-      </View>
-      <Text style={styles.title}>{locale === "sw" ? "Ni msaada gani unahitaji?" : "What kind of help do you need?"}</Text>
-      <Text style={styles.body}>{locale === "sw" ? "Chagua aina ya tatizo linalofanana zaidi na hali yako." : "Choose a category that best describes your issue."}</Text>
 
-      <View style={styles.cardList}>
-        {issueCards.map((item) => (
-          <Pressable key={item.key} style={styles.issueCard} onPress={() => router.push("/intake")}>
-            <View style={styles.issueIcon}>
-              <Ionicons name={item.icon} size={23} color={item.key === "consumer" ? colors.orange : colors.burgundy} />
-            </View>
-            <View style={styles.issueCopy}>
-              <Text style={styles.issueTitle}>{item.title[locale]}</Text>
-              <Text style={styles.issueBody}>{item.body[locale]}</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color={colors.burgundy} />
-          </Pressable>
-        ))}
-      </View>
+      {!isSignedIn ? <View style={styles.empty}><Ionicons name="lock-closed-outline" size={34} color={colors.burgundy} /><Text style={styles.emptyTitle}>{locale === "sw" ? "Ingia kuona ujumbe wako" : "Sign in to view messages"}</Text><Text style={styles.emptyBody}>{locale === "sw" ? "Mazungumzo ya kesi yanalindwa na akaunti yako." : "Case conversations are protected by your account."}</Text><Button label={locale === "sw" ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} /></View>
+      : conversations === undefined ? <View style={styles.empty}><Ionicons name="hourglass-outline" size={30} color={colors.burgundy} /><Text style={styles.emptyBody}>{locale === "sw" ? "Tunapakua mazungumzo..." : "Loading conversations..."}</Text></View>
+      : conversations.length ? <View style={styles.list}>{conversations.map((conversation) => <Pressable key={String(conversation.caseId)} style={({ pressed }) => [styles.conversation, pressed && styles.pressed]} onPress={() => router.push({ pathname: "/case/[id]", params: { id: conversation.caseId, section: "messages" } })}>
+          <View style={styles.avatar}><Ionicons name={conversation.lastMessage?.type === "voice" ? "mic" : "person"} size={22} color={colors.burgundy} /></View>
+          <View style={styles.copy}><View style={styles.row}><Text style={styles.caseRef}>{conversation.publicId}</Text><Text style={styles.time}>{formatRelative(conversation.updatedAt, locale)}</Text></View><Text style={styles.caseSummary} numberOfLines={1}>{conversation.summary}</Text><Text style={styles.preview} numberOfLines={2}>{conversation.lastMessage ? `${conversation.lastMessage.sentByCurrentUser ? (locale === "sw" ? "Wewe: " : "You: ") : `${conversation.lastMessage.senderName}: `}${conversation.lastMessage.type === "voice" ? (locale === "sw" ? "Ujumbe wa sauti" : "Voice note") : conversation.lastMessage.body}` : (locale === "sw" ? "Fungua kesi kuanza mazungumzo salama." : "Open the case to start a secure conversation.")}</Text></View>
+          <Ionicons name="chevron-forward" size={19} color={colors.inkMuted} />
+        </Pressable>)}</View>
+      : <View style={styles.empty}><Ionicons name="chatbubble-ellipses-outline" size={36} color={colors.burgundy} /><Text style={styles.emptyTitle}>{locale === "sw" ? "Hakuna mazungumzo bado" : "No conversations yet"}</Text><Text style={styles.emptyBody}>{locale === "sw" ? "Ukishaunganishwa na mtoa msaada, mazungumzo yako yataonekana hapa." : "After you are matched with support, your conversation will appear here."}</Text><Button label={locale === "sw" ? "Omba msaada" : "Request help"} onPress={() => router.push("/intake")} /></View>}
     </Screen>
   );
 }
 
+function formatRelative(timestamp: number, locale: "sw" | "en") {
+  const elapsed = Date.now() - timestamp;
+  if (elapsed < 60_000) return locale === "sw" ? "sasa" : "now";
+  if (elapsed < 3_600_000) return `${Math.floor(elapsed / 60_000)}m`;
+  if (elapsed < 86_400_000) return `${Math.floor(elapsed / 3_600_000)}h`;
+  return new Date(timestamp).toLocaleDateString(locale === "sw" ? "sw-TZ" : "en-TZ", { day: "numeric", month: "short" });
+}
+
 const styles = StyleSheet.create({
-  header: { alignItems: "center", paddingTop: spacing.md, marginBottom: spacing.lg },
-  headerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 22, letterSpacing: -0.4 },
-  progressTrack: { flexDirection: "row", alignItems: "center", alignSelf: "center", width: 170, marginBottom: spacing.xl },
-  progressDot: { width: 10, height: 10, borderRadius: 5, backgroundColor: "#DDD4D8" },
-  progressDotActive: { backgroundColor: colors.burgundy },
-  progressLine: { flex: 1, height: 2, backgroundColor: "#DDD4D8", marginHorizontal: spacing.xs },
-  title: { fontFamily: type.bold, color: colors.charcoal, fontSize: 27, lineHeight: 32, letterSpacing: -0.6 },
-  body: { marginTop: spacing.sm, fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21 },
-  cardList: { marginTop: spacing.xl, gap: spacing.md },
-  issueCard: { minHeight: 88, borderRadius: 20, backgroundColor: colors.surface, borderWidth: 1, borderColor: "#F0E3E7", padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md },
-  issueIcon: { width: 48, height: 48, borderRadius: 24, backgroundColor: "#FAEFF3", alignItems: "center", justifyContent: "center" },
-  issueCopy: { flex: 1, gap: 3 },
-  issueTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 15 },
-  issueBody: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 18 },
+  hero: { flexDirection: "row", alignItems: "center", gap: spacing.md, borderRadius: radius.xl, backgroundColor: colors.burgundy, padding: spacing.lg, marginBottom: spacing.lg },
+  heroIcon: { width: 52, height: 52, borderRadius: 18, backgroundColor: "rgba(255,255,255,0.16)", alignItems: "center", justifyContent: "center" },
+  heroCopy: { flex: 1 }, heroTitle: { fontFamily: type.bold, color: colors.surface, fontSize: 22 }, heroBody: { marginTop: 3, fontFamily: type.regular, color: "#F7DCE5", fontSize: 13, lineHeight: 19 },
+  list: { gap: spacing.sm },
+  conversation: { minHeight: 96, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md },
+  pressed: { opacity: 0.72 }, avatar: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.burgundySoft, alignItems: "center", justifyContent: "center" }, copy: { flex: 1 }, row: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: spacing.sm }, caseRef: { flex: 1, fontFamily: type.bold, color: colors.ink, fontSize: 14 }, time: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 11 }, caseSummary: { marginTop: 2, fontFamily: type.medium, color: colors.inkMuted, fontSize: 12 }, preview: { marginTop: 5, fontFamily: type.regular, color: colors.ink, fontSize: 13, lineHeight: 18 },
+  empty: { marginTop: spacing.xl, alignItems: "center", gap: spacing.md, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, padding: spacing.xl }, emptyTitle: { fontFamily: type.bold, color: colors.ink, fontSize: 19, textAlign: "center" }, emptyBody: { maxWidth: 300, fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21, textAlign: "center" },
 });

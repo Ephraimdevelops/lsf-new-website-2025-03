@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { useMutation } from "convex/react";
+import { useConvexAuth, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 
 /**
@@ -9,11 +9,12 @@ import { api } from "../../convex/_generated/api";
  */
 export function useStoreUserEffect() {
     const { user, isLoaded } = useUser();
+    const { isAuthenticated } = useConvexAuth();
     const storeUser = useMutation(api.users.syncUser);
 
     useEffect(() => {
         // Wait for Clerk to load
-        if (!isLoaded) return;
+        if (!isLoaded || !isAuthenticated) return;
 
         // No user authenticated
         if (!user) return;
@@ -26,12 +27,11 @@ export function useStoreUserEffect() {
                     clerkId: user.id,
                     imageUrl: user.imageUrl,
                 });
-                console.log("User synced to Convex:", user.id);
             } catch (error) {
                 console.error("Failed to sync user to Convex:", error);
             }
         };
 
         syncUserToConvex();
-    }, [user, isLoaded, storeUser]);
+    }, [user, isLoaded, isAuthenticated, storeUser]);
 }

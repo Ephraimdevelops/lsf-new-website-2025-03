@@ -99,7 +99,7 @@ export const useHeroSlides = () => {
 
 // Hook for Publications
 export const usePublications = (category?: string) => {
-  const publicationsData = useQuery(api.publications.get);
+  const publicationsData = useQuery(api.publications.get, {});
   const createMutation = useMutation(api.publications.create);
   const updateMutation = useMutation(api.publications.update);
   const deleteMutation = useMutation(api.publications.remove);
@@ -153,7 +153,7 @@ export const usePublications = (category?: string) => {
 
 // Hook for News
 export const useNews = (category?: string) => {
-  const newsData = useQuery(api.news.get);
+  const newsData = useQuery(api.news.get, {});
   const createMutation = useMutation(api.news.create);
   const updateMutation = useMutation(api.news.update);
   const deleteMutation = useMutation(api.news.remove);

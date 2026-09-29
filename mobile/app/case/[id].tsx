@@ -1,9 +1,10 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as DocumentPicker from "expo-document-picker";
+import { RecordingPresets, requestRecordingPermissionsAsync, setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus, useAudioRecorder, useAudioRecorderState } from "expo-audio";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
-import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Alert, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import type { Id } from "../../../convex/_generated/dataModel";
 import { api } from "../../src/backend/api";
 import { caseStatusLabels } from "../../src/caseLabels";
@@ -14,7 +15,8 @@ import { enqueuePendingAction, markPendingActionFailed, removePendingAction, sho
 import { colors, radius, spacing, type } from "../../src/theme";
 import { useSensitiveScreenProtection } from "../../src/useSensitiveScreenProtection";
 
-type CaseTab = "timeline" | "messages" | "documents" | "appointments" | "referrals" | "feedback";
+type CaseTab = "timeline" | "messages" | "documents" | "appointments" | "referrals" | "tasks" | "feedback";
+const caseTabs: CaseTab[] = ["timeline", "messages", "documents", "appointments", "referrals", "tasks", "feedback"];
 type DocumentCategory = "evidence" | "identity" | "contract" | "letter" | "receipt" | "other";
 type AppointmentMode = "in_person" | "phone" | "remote";
 type ReviewReason = "reassignment" | "service_concern" | "safety_concern" | "other";
@@ -41,6 +43,10 @@ const eventLabels: Record<string, { sw: string; en: string }> = {
   feedback_requested: { sw: "LSF imeomba maoni yako", en: "LSF requested your feedback" },
   feedback_received: { sw: "Maoni yako yamepokelewa", en: "Your feedback was received" },
   referral_created: { sw: "Rufaa imeundwa", en: "A referral was created" },
+  referral_consent_requested: { sw: "Uamuzi wako kuhusu rufaa unahitajika", en: "Your referral decision is needed" },
+  referral_onward_consent_requested: { sw: "Rufaa nyingine inahitaji uamuzi wako", en: "An onward referral needs your decision" },
+  referral_consent_approved: { sw: "Umeidhinisha rufaa", en: "You approved the referral" },
+  referral_consent_declined: { sw: "Umekataa rufaa", en: "You declined the referral" },
   referral_accepted: { sw: "Rufaa imekubaliwa", en: "The referral was accepted" },
   referral_declined: { sw: "Rufaa imekataliwa", en: "The referral was declined" },
   referral_scheduled: { sw: "Huduma ya rufaa imepangwa", en: "The referral service was scheduled" },
@@ -148,38 +154,63 @@ function closureCopy(status: keyof typeof caseStatusLabels.en, hasFeedback: bool
 
 export default function CaseDetailScreen() {
   useSensitiveScreenProtection("case-detail");
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, section } = useLocalSearchParams<{ id: string; section?: CaseTab }>();
   const caseId = id as Id<"cases">;
   const { locale } = useLanguage();
   const details = useQuery(api.caseManagement.getCase, { caseId });
   const messages = useQuery(api.caseManagement.listMessages, { caseId });
   const documents = useQuery(api.caseManagement.listDocuments, { caseId });
   const referrals = useQuery(api.referrals.listForCase, { caseId });
+  const updateReferralStatus = useMutation(api.referrals.updateStatus);
   const sendMessage = useMutation(api.caseManagement.sendMessage);
+  const sendVoiceMessage = useMutation(api.caseManagement.sendVoiceMessage);
+  const generateVoiceMessageUploadUrl = useMutation(api.caseManagement.generateVoiceMessageUploadUrl);
   const submitFeedback = useMutation(api.caseManagement.submitFeedback);
   const generateDocumentUploadUrl = useMutation(api.caseManagement.generateDocumentUploadUrl);
   const addDocument = useMutation(api.caseManagement.addDocument);
+  const reviewDocumentMutation = useMutation(api.caseManagement.reviewDocument);
   const requestAppointmentMutation = useMutation(api.caseManagement.requestAppointment);
+  const scheduleAppointmentMutation = useMutation(api.caseManagement.scheduleAppointment);
   const requestCaseReviewMutation = useMutation(api.caseManagement.requestCaseReview);
+  const recordOutcomeMutation = useMutation(api.caseManagement.recordOutcome);
+  const completeTask = useMutation(api.caseManagement.completeTask);
+  const createTaskMutation = useMutation(api.caseManagement.createTask);
   const [message, setMessage] = useState("");
   const [feedbackComment, setFeedbackComment] = useState("");
+  const [outcomeCode, setOutcomeCode] = useState("advice_given");
+  const [outcomeSummary, setOutcomeSummary] = useState("");
+  const [taskTitle, setTaskTitle] = useState("");
+  const [taskNote, setTaskNote] = useState("");
   const [documentNote, setDocumentNote] = useState("");
   const [documentCategory, setDocumentCategory] = useState<DocumentCategory>("evidence");
   const [appointmentMode, setAppointmentMode] = useState<AppointmentMode>("phone");
   const [appointmentPreferredTime, setAppointmentPreferredTime] = useState("");
   const [appointmentNote, setAppointmentNote] = useState("");
+  const [appointmentStart, setAppointmentStart] = useState("");
+  const [appointmentLocation, setAppointmentLocation] = useState("");
   const [reviewReason, setReviewReason] = useState<ReviewReason>("reassignment");
   const [reviewNote, setReviewNote] = useState("");
   const [rating, setRating] = useState(5);
   const [sending, setSending] = useState(false);
+  const [sendingVoice, setSendingVoice] = useState(false);
   const [uploadingDocument, setUploadingDocument] = useState(false);
   const [requestingAppointment, setRequestingAppointment] = useState(false);
+  const [schedulingAppointment, setSchedulingAppointment] = useState(false);
   const [requestingReview, setRequestingReview] = useState(false);
   const [feedbackSending, setFeedbackSending] = useState(false);
+  const [recordingOutcome, setRecordingOutcome] = useState(false);
+  const [creatingTask, setCreatingTask] = useState(false);
+  const [reviewingDocumentId, setReviewingDocumentId] = useState<string | null>(null);
+  const [updatingReferralId, setUpdatingReferralId] = useState<string | null>(null);
   const [syncingPending, setSyncingPending] = useState(false);
   const [error, setError] = useState("");
-  const [tab, setTab] = useState<CaseTab>("timeline");
+  const [tab, setTab] = useState<CaseTab>(section && caseTabs.includes(section) ? section : "timeline");
+  useEffect(() => {
+    if (section && caseTabs.includes(section)) setTab(section);
+  }, [section]);
   const pendingActions = usePendingActions();
+  const voiceRecorder = useAudioRecorder(RecordingPresets.LOW_QUALITY);
+  const voiceState = useAudioRecorderState(voiceRecorder, 250);
 
   if (details === undefined) return <View style={styles.loading}><ActivityIndicator color={colors.burgundy} /></View>;
 
@@ -193,6 +224,45 @@ export default function CaseDetailScreen() {
     [...details.appointments].sort((a, b) => b.startsAt - a.startsAt)[0];
   const openReviewRequest = details.reviewRequests.find((request) => request.status === "submitted" || request.status === "under_review");
   const casePendingActions = pendingActions.actions.filter((action) => action.caseId === caseId);
+
+  async function reviewDocument(documentId: Id<"case_documents">, status: "accepted" | "rejected") {
+    setReviewingDocumentId(documentId); setError("");
+    try { await reviewDocumentMutation({ documentId, status, reviewNotes: status === "accepted" ? (locale === "sw" ? "Nyaraka imepitiwa na kukubaliwa." : "Document reviewed and accepted.") : (locale === "sw" ? "Tafadhali wasiliana na mnufaika kuhusu marekebisho." : "Please follow up with the beneficiary about corrections.") }); }
+    catch (caught) { setError(caught instanceof Error ? caught.message : (locale === "sw" ? "Mapitio hayajahifadhiwa." : "Review could not be saved.")); }
+    finally { setReviewingDocumentId(null); }
+  }
+
+  async function scheduleAppointment() {
+    const startsAt = Date.parse(appointmentStart);
+    if (!Number.isFinite(startsAt)) { setError(locale === "sw" ? "Weka tarehe na muda sahihi, mfano 2026-10-15 10:00." : "Enter a valid date and time, for example 2026-10-15 10:00."); return; }
+    setSchedulingAppointment(true); setError("");
+    try { await scheduleAppointmentMutation({ caseId, startsAt, mode: appointmentMode, location: appointmentLocation.trim() || undefined }); setAppointmentStart(""); setAppointmentLocation(""); }
+    catch (caught) { setError(caught instanceof Error ? caught.message : (locale === "sw" ? "Miadi haikupangwa." : "Appointment could not be scheduled.")); }
+    finally { setSchedulingAppointment(false); }
+  }
+
+  async function recordOutcome() {
+    if (outcomeSummary.trim().length < 10) { setError(locale === "sw" ? "Andika muhtasari wa matokeo kwa ufupi." : "Write an outcome summary of at least 10 characters."); return; }
+    setRecordingOutcome(true); setError("");
+    try { await recordOutcomeMutation({ caseId, outcomeCode, summary: outcomeSummary.trim() }); setOutcomeSummary(""); }
+    catch (caught) { setError(caught instanceof Error ? caught.message : (locale === "sw" ? "Matokeo hayajahifadhiwa." : "Outcome could not be saved.")); }
+    finally { setRecordingOutcome(false); }
+  }
+
+  async function createTask() {
+    if (!taskTitle.trim()) return;
+    setCreatingTask(true); setError("");
+    try { await createTaskMutation({ caseId, title: taskTitle.trim(), note: taskNote.trim() || undefined }); setTaskTitle(""); setTaskNote(""); }
+    catch (caught) { setError(caught instanceof Error ? caught.message : (locale === "sw" ? "Kazi haikuweza kuongezwa." : "Task could not be added.")); }
+    finally { setCreatingTask(false); }
+  }
+
+  async function setReferralStatus(referralId: Id<"referrals">, status: "accepted" | "scheduled" | "service_delivered" | "returned" | "closed") {
+    setUpdatingReferralId(referralId); setError("");
+    try { await updateReferralStatus({ referralId, status, note: locale === "sw" ? "Hali imesasishwa kutoka workspace ya huduma." : "Status updated from the service workspace." }); }
+    catch (caught) { setError(caught instanceof Error ? caught.message : (locale === "sw" ? "Hali ya rufaa haijahifadhiwa." : "Referral status could not be saved.")); }
+    finally { setUpdatingReferralId(null); }
+  }
 
   function queuedNotice() {
     return locale === "sw"
@@ -275,6 +345,33 @@ export default function CaseDetailScreen() {
     } finally {
       setSending(false);
     }
+  }
+
+  async function toggleVoiceRecording() {
+    setError("");
+    if (!voiceState.isRecording) {
+      const permission = await requestRecordingPermissionsAsync();
+      if (!permission.granted) { setError(locale === "sw" ? "Ruhusa ya kipaza sauti inahitajika kutuma ujumbe wa sauti." : "Microphone permission is required for voice notes."); return; }
+      await setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true });
+      await voiceRecorder.prepareToRecordAsync();
+      voiceRecorder.record({ forDuration: 120 });
+      return;
+    }
+    const durationMs = voiceState.durationMillis;
+    await voiceRecorder.stop();
+    const uri = voiceRecorder.uri;
+    if (!uri || durationMs < 500) { setError(locale === "sw" ? "Ujumbe wa sauti ni mfupi sana." : "Voice note is too short."); return; }
+    setSendingVoice(true);
+    try {
+      const uploadUrl = await generateVoiceMessageUploadUrl({ caseId });
+      const blob = await (await fetch(uri)).blob();
+      const mimeType = blob.type || (uri.endsWith(".webm") ? "audio/webm" : "audio/mp4");
+      const upload = await fetch(uploadUrl, { method: "POST", headers: { "Content-Type": mimeType }, body: blob });
+      if (!upload.ok) throw new Error(locale === "sw" ? "Sauti haijapakiwa." : "Voice note upload failed.");
+      const { storageId } = await upload.json();
+      await sendVoiceMessage({ caseId, clientMessageId: `voice-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, storageId, mimeType, durationMs });
+    } catch (voiceError) { setError(voiceError instanceof Error ? voiceError.message : (locale === "sw" ? "Sauti haikutumwa." : "Voice note was not sent.")); }
+    finally { setSendingVoice(false); await setAudioModeAsync({ allowsRecording: false }); }
   }
 
   async function submit() {
@@ -485,6 +582,7 @@ export default function CaseDetailScreen() {
         <CaseTabButton label={locale === "sw" ? "Nyaraka" : "Docs"} icon="document-text-outline" active={tab === "documents"} onPress={() => setTab("documents")} />
         <CaseTabButton label={locale === "sw" ? "Miadi" : "Appointments"} icon="calendar-outline" active={tab === "appointments"} onPress={() => setTab("appointments")} />
         <CaseTabButton label={locale === "sw" ? "Rufaa" : "Referrals"} icon="swap-horizontal-outline" active={tab === "referrals"} onPress={() => setTab("referrals")} />
+        {details.closureReadiness ? <CaseTabButton label={locale === "sw" ? "Kazi" : "Tasks"} icon="checkbox-outline" active={tab === "tasks"} onPress={() => setTab("tasks")} /> : null}
         <CaseTabButton label={locale === "sw" ? "Maoni" : "Feedback"} icon="checkmark-done-outline" active={tab === "feedback"} onPress={() => setTab("feedback")} />
       </View>
 
@@ -505,15 +603,24 @@ export default function CaseDetailScreen() {
         </View>
       ) : null}
 
+      {tab === "tasks" && details.closureReadiness ? (
+        <View style={styles.documents}>
+          <Text style={styles.sectionKicker}>{locale === "sw" ? "Kazi zinazohusiana na kesi" : "Case work"}</Text>
+          <View style={styles.requestPanel}><TextInput value={taskTitle} onChangeText={setTaskTitle} placeholder={locale === "sw" ? "Ongeza kazi, mfano: Mpigie mnufaika Jumatatu" : "Add a task, for example: Call beneficiary on Monday"} placeholderTextColor={colors.inkMuted} style={styles.singleInput} /><TextInput value={taskNote} onChangeText={setTaskNote} placeholder={locale === "sw" ? "Maelezo ya kazi (si lazima)" : "Task note (optional)"} placeholderTextColor={colors.inkMuted} style={styles.singleInput} /><Button label={creatingTask ? (locale === "sw" ? "Inaongeza..." : "Adding...") : (locale === "sw" ? "Ongeza kazi" : "Add task")} loading={creatingTask} disabled={creatingTask || !taskTitle.trim()} onPress={() => void createTask()} /></View>
+          {details.tasks.length ? details.tasks.map((task) => <View key={task._id} style={styles.documentCard}><View style={styles.documentIcon}><Ionicons name={task.status === "done" ? "checkmark-circle-outline" : "checkbox-outline"} size={23} color={task.status === "done" ? colors.teal : colors.burgundy} /></View><View style={styles.documentCopy}><Text style={styles.documentName}>{task.title}</Text><Text style={styles.documentMeta}>{task.status.replaceAll("_", " ")}{task.dueAt ? ` · ${formatDate(task.dueAt, locale)}` : ""}</Text>{task.note ? <Text style={styles.documentTextPreview}>{task.note}</Text> : null}</View>{task.status === "open" ? <Pressable accessibilityRole="button" style={styles.smallAction} onPress={() => Alert.alert(locale === "sw" ? "Thibitisha kukamilika" : "Confirm completion", locale === "sw" ? `Je, umekamilisha “${task.title}”?` : `Have you completed “${task.title}”?`, [{ text: locale === "sw" ? "Ghairi" : "Cancel", style: "cancel" }, { text: locale === "sw" ? "Ndiyo" : "Yes", onPress: () => void completeTask({ taskId: task._id }) }])}><Text style={styles.smallActionText}>{locale === "sw" ? "Maliza" : "Done"}</Text></Pressable> : null}</View>) : <View style={styles.emptyPanel}><Text style={styles.emptyText}>{locale === "sw" ? "Hakuna kazi zilizoandikwa kwenye kesi hii." : "No tasks have been added to this case yet."}</Text></View>}
+        </View>
+      ) : null}
+
       {tab === "messages" ? (
         <View style={styles.messageArea}>
           {messages?.length ? messages.map((item) => (
             <View key={item._id} style={styles.messageBubble}>
-              <Text style={styles.messageText}>{item.body}</Text>
+              {item.type === "voice" && item.audioUrl ? <VoiceNote url={item.audioUrl} durationMs={item.durationMs ?? 0} sw={locale === "sw"} /> : <Text style={styles.messageText}>{item.body}</Text>}
               <Text style={styles.messageTime}>{new Date(item.createdAt).toLocaleTimeString(locale === "sw" ? "sw-TZ" : "en-TZ", { hour: "2-digit", minute: "2-digit" })}</Text>
             </View>
           )) : <Text style={styles.emptyText}>{locale === "sw" ? "Bado hakuna ujumbe. Mazungumzo haya yanahusiana na kesi hii tu." : "No messages yet. This conversation is limited to this case."}</Text>}
           <View style={styles.composer}>
+            <Pressable accessibilityRole="button" accessibilityLabel={voiceState.isRecording ? (locale === "sw" ? "Simamisha na tuma sauti" : "Stop and send voice note") : (locale === "sw" ? "Rekodi ujumbe wa sauti" : "Record voice note")} disabled={sendingVoice} onPress={() => void toggleVoiceRecording()} style={[styles.voiceButton, voiceState.isRecording && styles.voiceRecording]}><Ionicons name={voiceState.isRecording ? "stop" : "mic-outline"} size={21} color={voiceState.isRecording ? colors.surface : colors.burgundy} /></Pressable>
             <TextInput value={message} onChangeText={setMessage} multiline placeholder={locale === "sw" ? "Andika ujumbe..." : "Write a message..."} placeholderTextColor={colors.inkMuted} style={styles.messageInput} />
             <Pressable disabled={sending || !message.trim()} onPress={() => void send()} style={[styles.send, (sending || !message.trim()) && styles.disabledSend]}>
               <Ionicons name="arrow-up" size={21} color={colors.surface} />
@@ -558,6 +665,7 @@ export default function CaseDetailScreen() {
                 <Text style={styles.documentMeta}>{document.category.replaceAll("_", " ")} · {document.textContent ? (locale === "sw" ? "rasimu ya maandishi" : "text draft") : `${(document.size / 1024 / 1024).toFixed(2)} MB`}</Text>
                 <Text style={[styles.documentStatus, document.status === "rejected" && styles.rejectedText]}>{document.status.replaceAll("_", " ")}</Text>
                 {document.textContent ? <Text style={styles.documentTextPreview} numberOfLines={4}>{document.textContent}</Text> : null}
+                {details.closureReadiness && document.status === "pending_review" ? <View style={styles.documents}><Button label={locale === "sw" ? "Kubali" : "Accept"} variant="secondary" loading={reviewingDocumentId === document._id} disabled={Boolean(reviewingDocumentId)} onPress={() => void reviewDocument(document._id, "accepted")} /><Button label={locale === "sw" ? "Kataa" : "Reject"} variant="quiet" disabled={Boolean(reviewingDocumentId)} onPress={() => void reviewDocument(document._id, "rejected")} /></View> : null}
               </View>
             </View>
           )) : documents ? (
@@ -571,6 +679,7 @@ export default function CaseDetailScreen() {
 
       {tab === "appointments" ? (
         <View style={styles.appointments}>
+          {details.closureReadiness ? <View style={styles.requestPanel}><Text style={styles.sectionKicker}>{locale === "sw" ? "Panga miadi ya mnufaika" : "Schedule beneficiary appointment"}</Text><Text style={styles.uploadHelp}>{locale === "sw" ? "Tumia tarehe ya baadaye kwa muundo unaoeleweka." : "Use a future date and time in a clear format."}</Text><TextInput value={appointmentStart} onChangeText={setAppointmentStart} placeholder="2026-10-15 10:00" placeholderTextColor={colors.inkMuted} style={styles.singleInput} /><TextInput value={appointmentLocation} onChangeText={setAppointmentLocation} placeholder={locale === "sw" ? "Eneo au kiungo cha mkutano (si lazima)" : "Location or meeting link (optional)"} placeholderTextColor={colors.inkMuted} style={styles.singleInput} /><Button label={schedulingAppointment ? (locale === "sw" ? "Inapanga..." : "Scheduling...") : (locale === "sw" ? "Panga miadi" : "Schedule appointment")} loading={schedulingAppointment} disabled={schedulingAppointment} onPress={() => void scheduleAppointment()} /></View> : null}
           {!isResolved ? (
             <View style={styles.requestPanel}>
               <Text style={styles.sectionKicker}>{locale === "sw" ? "Omba miadi" : "Request appointment"}</Text>
@@ -685,7 +794,7 @@ export default function CaseDetailScreen() {
                 <Text style={styles.referralText}>{referral.reason}</Text>
               </View>
               <View style={styles.referralSection}>
-                <Text style={styles.sectionKicker}>{locale === "sw" ? "Taarifa zilizoshirikiwa" : "Information shared"}</Text>
+                <Text style={styles.sectionKicker}>{referral.status === "awaiting_beneficiary_consent" ? (locale === "sw" ? "Taarifa zitakazoshirikiwa ukikubali" : "Information shared only if you agree") : (locale === "sw" ? "Taarifa za rufaa" : "Referral information")}</Text>
                 {referral.informationShared.map((item) => (
                   <View key={item} style={styles.sharedItem}>
                     <Ionicons name="checkmark-circle-outline" size={15} color={colors.success} />
@@ -696,11 +805,19 @@ export default function CaseDetailScreen() {
               <View style={styles.consentPanel}>
                 <Ionicons name="shield-checkmark-outline" size={18} color={colors.burgundy} />
                 <Text style={styles.consentText}>
-                  {locale === "sw"
-                    ? `Ridhaa imerekodiwa: ${referral.consent?.method?.replaceAll("_", " ") ?? "haijaonyeshwa"}`
-                    : `Consent recorded: ${referral.consent?.method?.replaceAll("_", " ") ?? "not shown"}`}
+                  {referral.status === "awaiting_beneficiary_consent"
+                    ? (locale === "sw" ? "Rufaa inasubiri uamuzi wako. Bado haijashirikiwa." : "Waiting for your decision. This referral has not been shared.")
+                    : referral.consent?.granted
+                      ? (locale === "sw" ? `Ridhaa imerekodiwa: ${referral.consent.method?.replaceAll("_", " ") ?? "haijaonyeshwa"}` : `Consent recorded: ${referral.consent.method?.replaceAll("_", " ") ?? "not shown"}`)
+                      : (locale === "sw" ? "Rufaa haikukubaliwa." : "Referral consent was declined.")}
                 </Text>
               </View>
+              {referral.status === "awaiting_beneficiary_consent" ? <View style={styles.referralSection}>
+                <Text style={styles.sectionKicker}>{locale === "sw" ? "Uamuzi wako unahitajika" : "Your decision is needed"}</Text>
+                <Text style={styles.referralText}>{locale === "sw" ? "Kagua huduma iliyotajwa na taarifa zote hapo juu. Hakuna taarifa itakayotumwa kwa mtoa huduma mpaka ukubali. Unaweza kukataa na LSF itatafuta njia nyingine." : "Review the named service and every item above. Nothing will be sent to the provider until you agree. You may decline and LSF can find another option."}</Text>
+              </View> : null}
+              <Button label={referral.status === "awaiting_beneficiary_consent" ? (locale === "sw" ? "Kagua na amua kuhusu rufaa" : "Review and decide on referral") : (locale === "sw" ? "Angalia maendeleo ya rufaa" : "View referral progress")} variant={referral.status === "awaiting_beneficiary_consent" ? "primary" : "secondary"} onPress={() => router.push({ pathname: "/referral/[id]", params: { id: referral._id, caseId } })} />
+              {details.closureReadiness && referral.status !== "awaiting_beneficiary_consent" && !["closed", "declined", "returned"].includes(referral.status) ? <View style={styles.referralSection}><Text style={styles.sectionKicker}>{locale === "sw" ? "Sasisha kazi ya rufaa" : "Update referral work"}</Text><View style={styles.documents}><Button label={locale === "sw" ? "Kubali" : "Accept"} variant="secondary" disabled={Boolean(updatingReferralId)} loading={updatingReferralId === referral._id} onPress={() => void setReferralStatus(referral._id, "accepted")} /><Button label={locale === "sw" ? "Panga" : "Schedule"} variant="secondary" disabled={Boolean(updatingReferralId)} onPress={() => void setReferralStatus(referral._id, "scheduled")} /><Button label={locale === "sw" ? "Huduma imetolewa" : "Delivered"} variant="secondary" disabled={Boolean(updatingReferralId)} onPress={() => void setReferralStatus(referral._id, "service_delivered")} /><Button label={locale === "sw" ? "Funga" : "Close"} variant="quiet" disabled={Boolean(updatingReferralId)} onPress={() => void setReferralStatus(referral._id, "closed")} /></View></View> : null}
               <View style={styles.referralEvents}>
                 {referral.events.map((event) => (
                   <View key={event._id} style={styles.referralEvent}>
@@ -731,6 +848,9 @@ export default function CaseDetailScreen() {
 
       {tab === "feedback" ? (
         <View style={styles.feedbackPanel}>
+          <Button label={locale === "sw" ? "Angalia matokeo na toa maoni" : "View outcome and give feedback"} variant="secondary" onPress={() => router.push({ pathname: "/case-outcome/[id]", params: { id: caseId } })} />
+          <Button label={locale === "sw" ? "Nahitaji msaada zaidi au mapitio" : "I need more help or a review"} variant="quiet" onPress={() => router.push({ pathname: "/case-review/[id]", params: { id: caseId } })} />
+          {details.closureReadiness && !details.outcome && !isClosureState ? <View style={styles.feedbackForm}><Text style={styles.sectionKicker}>{locale === "sw" ? "Rekodi matokeo ya kesi" : "Record case outcome"}</Text><View style={styles.categoryRow}>{Object.keys(outcomeLabels).map((code) => <Pressable key={code} onPress={() => setOutcomeCode(code)} style={[styles.categoryChip, outcomeCode === code && styles.categoryChipActive]}><Text style={[styles.categoryText, outcomeCode === code && styles.categoryTextActive]}>{outcomeLabels[code][locale]}</Text></Pressable>)}</View><TextInput value={outcomeSummary} onChangeText={setOutcomeSummary} multiline maxLength={3000} placeholder={locale === "sw" ? "Eleza msaada uliotolewa na hatua inayofuata..." : "Describe the support provided and next step..."} placeholderTextColor={colors.inkMuted} style={styles.feedbackInput} /><Button label={recordingOutcome ? (locale === "sw" ? "Inahifadhi..." : "Saving...") : (locale === "sw" ? "Hifadhi matokeo" : "Save outcome")} loading={recordingOutcome} disabled={recordingOutcome} onPress={() => void recordOutcome()} /></View> : null}
           {details.outcome ? (
             <View style={styles.outcomeCard}>
               <Text style={styles.sectionKicker}>{locale === "sw" ? "Matokeo ya kesi" : "Case outcome"}</Text>
@@ -838,6 +958,12 @@ export default function CaseDetailScreen() {
   );
 }
 
+function VoiceNote({ url, durationMs, sw }: { url: string; durationMs: number; sw: boolean }) {
+  const player = useAudioPlayer(url);
+  const playing = useAudioPlayerStatus(player).playing;
+  return <Pressable accessibilityRole="button" accessibilityLabel={playing ? (sw ? "Sitisha ujumbe wa sauti" : "Pause voice note") : (sw ? "Cheza ujumbe wa sauti" : "Play voice note")} onPress={() => playing ? player.pause() : player.play()} style={styles.voiceNote}><Ionicons name={playing ? "pause" : "play"} size={18} color={colors.surface} /><View style={styles.voiceTrack}><View style={styles.voiceTrackFill} /></View><Text style={styles.voiceDuration}>{Math.max(1, Math.round(durationMs / 1000))}s</Text></Pressable>;
+}
+
 function CaseTabButton({ label, icon, active, onPress }: { label: string; icon: keyof typeof Ionicons.glyphMap; active: boolean; onPress: () => void }) {
   return (
     <Pressable accessibilityRole="button" onPress={onPress} style={[styles.tab, active && styles.activeTab]}>
@@ -850,30 +976,30 @@ function CaseTabButton({ label, icon, active, onPress }: { label: string; icon: 
 const styles = StyleSheet.create({
   loading: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.background },
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  headerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
+  headerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   summaryCard: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md, marginTop: spacing.xl },
   row: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: spacing.md },
-  caseId: { fontFamily: type.bold, color: colors.charcoal, fontSize: 15 },
-  status: { fontFamily: type.medium, color: colors.success, backgroundColor: "#E7F4ED", paddingVertical: 5, paddingHorizontal: 9, borderRadius: radius.pill, fontSize: 11, maxWidth: 150, textAlign: "center" },
+  caseId: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 15 },
+  status: { fontFamily: type.medium, fontWeight: "500", color: colors.success, backgroundColor: "#E7F4ED", paddingVertical: 5, paddingHorizontal: 9, borderRadius: radius.pill, fontSize: 13, maxWidth: 150, textAlign: "center" },
   summary: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21 },
   nextStep: { flexDirection: "row", gap: spacing.sm, backgroundColor: colors.softPink, borderRadius: radius.sm, padding: spacing.md },
-  nextStepText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 13, lineHeight: 19 },
+  nextStepText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 19 },
   appointmentBanner: { marginTop: spacing.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md },
   closureBanner: { marginTop: spacing.lg, backgroundColor: colors.softPink, borderWidth: 1, borderColor: "#F0D5DF", borderRadius: radius.md, padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md },
   iconChip: { width: 38, height: 38, borderRadius: 19, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
   bannerCopy: { flex: 1 },
-  bannerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 13 },
-  bannerText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, marginTop: 2, textTransform: "capitalize" },
-  error: { fontFamily: type.medium, color: colors.danger, backgroundColor: "#FDECEC", borderRadius: radius.sm, padding: spacing.md, marginTop: spacing.md },
+  bannerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 13 },
+  bannerText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, marginTop: 2, textTransform: "capitalize" },
+  error: { fontFamily: type.medium, fontWeight: "500", color: colors.danger, backgroundColor: "#FDECEC", borderRadius: radius.sm, padding: spacing.md, marginTop: spacing.md },
   pendingCard: { marginTop: spacing.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },
-  pendingTitle: { flex: 1, fontFamily: type.bold, color: colors.charcoal, fontSize: 14 },
-  pendingCount: { fontFamily: type.bold, color: colors.burgundy, backgroundColor: colors.softPink, borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: 3 },
+  pendingTitle: { flex: 1, fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14 },
+  pendingCount: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, backgroundColor: colors.softPink, borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: 3 },
   pendingRow: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
-  pendingText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 18 },
+  pendingText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 18 },
   tabs: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm, marginTop: spacing.xl },
   tab: { minWidth: "47%", flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: spacing.xs, borderWidth: 1, borderColor: colors.line, borderRadius: radius.pill, paddingVertical: spacing.sm, paddingHorizontal: spacing.md, backgroundColor: colors.surface },
   activeTab: { borderColor: colors.burgundy, backgroundColor: colors.softPink },
-  tabText: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 12 },
+  tabText: { fontFamily: type.medium, fontWeight: "500", color: colors.inkMuted, fontSize: 13 },
   activeTabText: { color: colors.burgundy },
   timeline: { marginTop: spacing.xl },
   event: { flexDirection: "row", minHeight: 86 },
@@ -882,12 +1008,12 @@ const styles = StyleSheet.create({
   currentDot: { backgroundColor: colors.burgundy },
   line: { width: 2, flex: 1, backgroundColor: colors.line },
   eventBody: { flex: 1, paddingLeft: spacing.md, paddingBottom: spacing.xl },
-  eventTitle: { fontFamily: type.medium, color: colors.charcoal, fontSize: 14, lineHeight: 20 },
-  eventDate: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 11, marginTop: spacing.xs },
+  eventTitle: { fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 14, lineHeight: 20 },
+  eventDate: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, marginTop: spacing.xs },
   messageArea: { marginTop: spacing.xl, gap: spacing.md },
   messageBubble: { alignSelf: "flex-start", maxWidth: "92%", backgroundColor: colors.surface, borderRadius: radius.md, padding: spacing.md, borderWidth: 1, borderColor: colors.line },
   messageText: { fontFamily: type.regular, color: colors.charcoal, fontSize: 14, lineHeight: 20 },
-  messageTime: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 10, marginTop: spacing.xs, textAlign: "right" },
+  messageTime: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, marginTop: spacing.xs, textAlign: "right" },
   emptyText: { fontFamily: type.regular, color: colors.inkMuted, textAlign: "center", lineHeight: 21 },
   documents: { marginTop: spacing.xl, gap: spacing.md },
   uploadPanel: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },
@@ -895,55 +1021,63 @@ const styles = StyleSheet.create({
   categoryRow: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
   categoryChip: { borderWidth: 1, borderColor: colors.line, borderRadius: radius.pill, paddingHorizontal: spacing.md, paddingVertical: spacing.sm, backgroundColor: colors.background },
   categoryChipActive: { borderColor: colors.burgundy, backgroundColor: colors.softPink },
-  categoryText: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 12 },
+  categoryText: { fontFamily: type.medium, fontWeight: "500", color: colors.inkMuted, fontSize: 13 },
   categoryTextActive: { color: colors.burgundy },
   documentNote: { minHeight: 78, borderRadius: radius.md, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.background, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, fontFamily: type.regular, color: colors.charcoal, textAlignVertical: "top" },
   documentCard: { flexDirection: "row", gap: spacing.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg },
   documentIcon: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
   documentCopy: { flex: 1, gap: 3 },
-  documentName: { fontFamily: type.bold, color: colors.charcoal, fontSize: 14 },
-  documentMeta: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, textTransform: "capitalize" },
-  documentStatus: { fontFamily: type.medium, color: colors.success, fontSize: 12, textTransform: "capitalize" },
-  documentTextPreview: { marginTop: spacing.xs, borderRadius: radius.sm, backgroundColor: "#FBF7F8", padding: spacing.sm, fontFamily: type.regular, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
+  smallAction: { alignSelf: "center", minHeight: 38, paddingHorizontal: spacing.md, borderRadius: radius.pill, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
+  smallActionText: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 12 },
+  documentName: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14 },
+  documentMeta: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, textTransform: "capitalize" },
+  documentStatus: { fontFamily: type.medium, fontWeight: "500", color: colors.success, fontSize: 13, textTransform: "capitalize" },
+  documentTextPreview: { marginTop: spacing.xs, borderRadius: radius.sm, backgroundColor: "#FBF7F8", padding: spacing.sm, fontFamily: type.regular, color: colors.charcoal, fontSize: 13, lineHeight: 18 },
   rejectedText: { color: colors.danger },
   composer: { flexDirection: "row", alignItems: "flex-end", gap: spacing.sm, marginTop: spacing.lg },
+  voiceButton: { width: 46, height: 46, borderRadius: 23, borderWidth: 1, borderColor: colors.burgundy, alignItems: "center", justifyContent: "center", backgroundColor: colors.surface },
+  voiceRecording: { backgroundColor: colors.burgundy },
+  voiceNote: { minHeight: 48, borderRadius: radius.pill, backgroundColor: colors.burgundy, paddingHorizontal: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.sm },
+  voiceTrack: { flex: 1, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,.35)", overflow: "hidden" },
+  voiceTrackFill: { width: "45%", height: "100%", backgroundColor: colors.surface },
+  voiceDuration: { color: colors.surface, fontFamily: type.bold, fontSize: 12 },
   messageInput: { flex: 1, minHeight: 48, maxHeight: 120, borderRadius: radius.md, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, fontFamily: type.regular, color: colors.charcoal },
   send: { width: 46, height: 46, borderRadius: 23, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
   disabledSend: { opacity: 0.5 },
   appointments: { marginTop: spacing.xl, gap: spacing.md },
   referrals: { marginTop: spacing.xl, gap: spacing.md },
   referralCard: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },
-  referralId: { fontFamily: type.bold, color: colors.burgundy, fontSize: 12 },
-  referralStatus: { fontFamily: type.medium, color: colors.success, backgroundColor: "#E7F4ED", borderRadius: radius.pill, paddingHorizontal: 9, paddingVertical: 5, fontSize: 11, textTransform: "capitalize" },
-  referralTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 18 },
+  referralId: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
+  referralStatus: { fontFamily: type.medium, fontWeight: "500", color: colors.success, backgroundColor: "#E7F4ED", borderRadius: radius.pill, paddingHorizontal: 9, paddingVertical: 5, fontSize: 13, textTransform: "capitalize" },
+  referralTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 18 },
   chainPanel: { flexDirection: "row", alignItems: "center", gap: spacing.sm, borderRadius: radius.sm, borderWidth: 1, borderColor: colors.line, backgroundColor: "#FBF7F8", padding: spacing.sm },
-  chainText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
+  chainText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 18 },
   referralSection: { gap: spacing.xs },
   referralText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20 },
   sharedItem: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
-  sharedText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
+  sharedText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 13, lineHeight: 18 },
   consentPanel: { flexDirection: "row", alignItems: "center", gap: spacing.sm, borderRadius: radius.sm, backgroundColor: colors.softPink, padding: spacing.md },
-  consentText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 12, lineHeight: 18, textTransform: "capitalize" },
+  consentText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 18, textTransform: "capitalize" },
   referralEvents: { borderTopWidth: 1, borderTopColor: colors.line, paddingTop: spacing.md, gap: spacing.md },
   referralEvent: { flexDirection: "row", gap: spacing.sm },
   referralEventDot: { width: 9, height: 9, borderRadius: 5, backgroundColor: colors.burgundy, marginTop: 5 },
   referralEventCopy: { flex: 1 },
-  referralEventTitle: { fontFamily: type.medium, color: colors.charcoal, fontSize: 13, lineHeight: 18 },
+  referralEventTitle: { fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 18 },
   requestPanel: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },
   modeRow: { flexDirection: "row", gap: spacing.sm },
   modeChip: { flex: 1, minHeight: 44, borderRadius: radius.sm, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.background, alignItems: "center", justifyContent: "center", flexDirection: "row", gap: spacing.xs, paddingHorizontal: spacing.sm },
   modeChipActive: { borderColor: colors.burgundy, backgroundColor: colors.softPink },
-  modeText: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 11 },
+  modeText: { fontFamily: type.medium, fontWeight: "500", color: colors.inkMuted, fontSize: 13 },
   modeTextActive: { color: colors.burgundy },
   singleInput: { minHeight: 48, borderRadius: radius.md, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.background, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, fontFamily: type.regular, color: colors.charcoal },
   appointmentNote: { minHeight: 92, borderRadius: radius.md, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.background, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, fontFamily: type.regular, color: colors.charcoal, textAlignVertical: "top" },
   appointmentCard: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },
-  appointmentTitle: { flex: 1, fontFamily: type.bold, color: colors.charcoal, fontSize: 14, lineHeight: 20 },
-  appointmentStatus: { fontFamily: type.medium, color: colors.success, backgroundColor: "#E7F4ED", borderRadius: radius.pill, paddingHorizontal: 9, paddingVertical: 5, fontSize: 11, textTransform: "capitalize" },
+  appointmentTitle: { flex: 1, fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14, lineHeight: 20 },
+  appointmentStatus: { fontFamily: type.medium, fontWeight: "500", color: colors.success, backgroundColor: "#E7F4ED", borderRadius: radius.pill, paddingHorizontal: 9, paddingVertical: 5, fontSize: 13, textTransform: "capitalize" },
   appointmentStatusComplete: { color: colors.burgundy, backgroundColor: colors.softPink },
   appointmentStatusWarning: { color: colors.danger, backgroundColor: "#FDECEC" },
   appointmentNoteCard: { flexDirection: "row", gap: spacing.sm, borderRadius: radius.sm, backgroundColor: colors.softPink, padding: spacing.md },
-  appointmentNoteText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 12, lineHeight: 18 },
+  appointmentNoteText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 13, lineHeight: 18 },
   metaRow: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
   metaText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19, textTransform: "capitalize" },
   emptyPanel: { alignItems: "center", gap: spacing.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.xl, marginTop: spacing.xl },
@@ -952,15 +1086,15 @@ const styles = StyleSheet.create({
   reviewNote: { minHeight: 96, borderRadius: radius.md, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.background, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, fontFamily: type.regular, color: colors.charcoal, textAlignVertical: "top" },
   reviewStatusCard: { flexDirection: "row", gap: spacing.md, alignItems: "center", borderRadius: radius.md, backgroundColor: colors.softPink, padding: spacing.md },
   reviewStatusCopy: { flex: 1 },
-  reviewStatusTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 14 },
-  reviewStatusText: { marginTop: 3, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, textTransform: "capitalize" },
+  reviewStatusTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14 },
+  reviewStatusText: { marginTop: 3, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, textTransform: "capitalize" },
   outcomeCard: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.sm },
-  sectionKicker: { fontFamily: type.bold, color: colors.burgundy, fontSize: 11, textTransform: "uppercase", letterSpacing: 0 },
-  outcomeTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 18 },
+  sectionKicker: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13, textTransform: "uppercase", letterSpacing: 0 },
+  outcomeTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 18 },
   outcomeSummary: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21 },
-  outcomeMeta: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 11 },
+  outcomeMeta: { fontFamily: type.medium, fontWeight: "500", color: colors.inkMuted, fontSize: 13 },
   thanksCard: { alignItems: "center", gap: spacing.sm, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.xl },
-  thanksTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 16, textAlign: "center" },
+  thanksTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 16, textAlign: "center" },
   submittedRating: { flexDirection: "row", gap: spacing.xs },
   feedbackQuote: { width: "100%", fontFamily: type.regular, color: colors.charcoal, fontSize: 14, lineHeight: 21, backgroundColor: colors.background, borderRadius: radius.md, padding: spacing.md },
   feedbackForm: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },

@@ -24,20 +24,19 @@ const EMERGENCY_KEYWORDS = [
 
 const EMERGENCY_RESPONSE = `🚨 **Msaada wa Dharura / Emergency Support**
 
-Nasikia unayopitia wakati mgumu. Msaada upo. Wewe si peke yako.
+Ikiwa uko katika hatari ya sasa, nenda mahali salama ukiweza na tumia huduma rasmi ya dharura.
+If you are in immediate danger, move to a safe place if you can and use an official emergency service.
 
 **Piga simu SASA / Call NOW:**
 ━━━━━━━━━━━━━━━━━━━━━━
 📞 **Police Emergency:** **112** (Tanzania)
-📞 **Gender Desk (GBV):** **116** (Women & Children)
-📞 **Mental Health:** **+255 22 215 0302** (Muhimbili)
-📞 **LHRC Hotline:** **+255 22 266 2755**
+📞 **116:** **Gender and Children Desk / Child Helpline**
 ━━━━━━━━━━━━━━━━━━━━━━
 
-**You are not alone. Kumbuka: Huko sawa.**
+Namba hizi zimechapishwa na Serikali ya Tanzania. Upatikanaji unaweza kutegemea mtandao na eneo.
+These numbers are published by the Government of Tanzania. Availability may depend on network and location.
 
-*Tafadhali wasiliana na mtaalamu haraka iwezekanavyo.*
-*Please contact a professional as soon as possible.*
+**Chanzo / Source:** Tanzania Government contact portal and TCRA national numbering information.
 
 ---
 *Ujumbe huu umetumwa moja kwa moja bila kutumia AI kwa usalama wako.*
@@ -64,6 +63,30 @@ const getOpenAI = () => {
 };
 
 const MAX_SARA_DOCUMENT_BYTES = 15 * 1024 * 1024;
+type SaadaActivityType =
+    | "intent_detected"
+    | "risk_check_started"
+    | "risk_check_completed"
+    | "knowledge_search_started"
+    | "knowledge_search_completed"
+    | "pathway_lookup_started"
+    | "pathway_lookup_completed"
+    | "service_search_started"
+    | "service_search_completed"
+    | "matching_started"
+    | "matching_completed"
+    | "document_analysis_started"
+    | "document_analysis_completed"
+    | "draft_started"
+    | "draft_completed"
+    | "confirmation_required"
+    | "tool_execution_started"
+    | "tool_execution_completed"
+    | "human_review_requested"
+    | "waiting_external_response"
+    | "completed"
+    | "failed";
+type SaadaActivityStatus = "started" | "completed" | "failed" | "waiting";
 
 async function requireAdminOrStaffAction(ctx: ActionCtx) {
     const identity = await ctx.auth.getUserIdentity();
@@ -100,10 +123,25 @@ export const ingestDocument = action({
     args: {
         storageId: v.id("_storage"),
         title: v.string(),
+        sourceUrl: v.optional(v.string()),
+        publisher: v.string(),
+        jurisdiction: v.union(v.literal("tanzania_mainland"), v.literal("zanzibar"), v.literal("national"), v.literal("other")),
+        language: v.union(v.literal("sw"), v.literal("en"), v.literal("bilingual"), v.literal("other")),
+        contentCategory: v.string(),
+        versionLabel: v.string(),
+        effectiveDate: v.optional(v.string()),
+        reviewDueAt: v.number(),
     },
     handler: async (ctx, args): Promise<{ success: boolean; documentId: any }> => {
         await requireAdminOrStaffAction(ctx);
+        const uploader = await ctx.auth.getUserIdentity();
+        if (!uploader) throw new Error("Unauthorized");
         const title = normalizeText(args.title, "Document title", 180);
+        if (!Number.isFinite(args.reviewDueAt) || args.reviewDueAt <= Date.now()) throw new Error("Review due date must be in the future.");
+        if (args.sourceUrl) {
+            try { const url = new URL(args.sourceUrl); if (!['https:', 'http:'].includes(url.protocol)) throw new Error(); }
+            catch { throw new Error("Source URL must be a valid HTTP(S) address."); }
+        }
 
         // 1. Get file from storage
         const fileUrl = await ctx.storage.getUrl(args.storageId);
@@ -124,8 +162,7 @@ export const ingestDocument = action({
         // 2. Parse PDF using pdfjs-dist (Standard standard/V8 compatible)
         let text = "";
         try {
-            // Dynamic import to avoid breaking the bundler
-            // @ts-expect-error - The types for pdfjs-dist don't cover this specific build path perfectly
+            // Dynamic import to avoid breaking the bundler.
             const pdfjsLib = await import("pdfjs-dist/build/pdf.min.mjs");
 
             // Required for Edge/Node environments where there's no native Worker
@@ -155,6 +192,15 @@ export const ingestDocument = action({
             storageId: args.storageId,
             text: text,
             type: "pdf",
+            uploadedByClerkId: uploader.subject,
+            sourceUrl: args.sourceUrl?.trim() || undefined,
+            publisher: normalizeText(args.publisher, "Publisher", 180),
+            jurisdiction: args.jurisdiction,
+            language: args.language,
+            contentCategory: normalizeText(args.contentCategory, "Content category", 100),
+            versionLabel: normalizeText(args.versionLabel, "Version", 80),
+            effectiveDate: args.effectiveDate?.trim() || undefined,
+            reviewDueAt: args.reviewDueAt,
         });
 
         // 4. Chunk Text
@@ -184,6 +230,7 @@ export const ingestDocument = action({
             });
         }
 
+        await ctx.runMutation(internal.sara.markDocumentProcessed, { id: documentId });
         return { success: true, documentId };
     },
 });
@@ -200,6 +247,7 @@ export const ask = action({
             content: v.string(),
         })),
         source: v.optional(v.union(v.literal("web"), v.literal("mobile"), v.literal("unknown"))),
+        clientRequestId: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
@@ -208,11 +256,30 @@ export const ask = action({
         }
         const userId = identity.subject;
         const source = args.source ?? "unknown";
+        const requestId = args.clientRequestId?.trim().slice(0, 120) || `${source}-${Date.now()}`;
         const messagePreview = args.message.slice(0, 240);
+        const activity = async (
+            type: SaadaActivityType,
+            status: SaadaActivityStatus,
+            labelKey: string,
+            summary?: string,
+            metadata?: Record<string, unknown>,
+        ) => ctx.runMutation(internal.sara.recordActivityEvent, {
+            userId,
+            requestId,
+            source,
+            type,
+            status,
+            labelKey,
+            summary,
+            metadata,
+        });
 
         // =====================================================
         // SECURITY GATE 1: Kill Switch Check
         // =====================================================
+        await activity("intent_detected", "completed", "saada.activity.intent_detected", "Question received");
+        await activity("risk_check_started", "started", "saada.activity.risk_check_started", "Checking safety and system policy");
         const systemConfig = await ctx.runQuery(internal.sara.getConfigInternal, { key: "system_status" });
         if (systemConfig === "maintenance") {
             console.log("[SARA SECURITY] Kill Switch active - blocking request");
@@ -223,6 +290,7 @@ export const ask = action({
                 messagePreview,
                 metadata: { reason: "maintenance" },
             });
+            await activity("failed", "failed", "saada.activity.failed", "Saada is temporarily unavailable", { reason: "maintenance" });
             throw new Error("SARA is temporarily unavailable for maintenance. Please try again later.");
         }
 
@@ -242,6 +310,7 @@ export const ask = action({
                 messagePreview,
                 metadata: { reason: "budget_limit", budgetTokenCount },
             });
+            await activity("failed", "failed", "saada.activity.failed", "Monthly usage limit reached", { reason: "budget_limit" });
             throw new Error("SARA has reached its monthly usage limit. Please contact the administrator.");
         }
 
@@ -258,6 +327,8 @@ export const ask = action({
                 messagePreview,
                 metadata: { bypassedLlm: true },
             });
+            await activity("risk_check_completed", "completed", "saada.activity.risk_check_completed", "Safety concern detected", { emergency: true });
+            await activity("human_review_requested", "waiting", "saada.activity.human_review_requested", "Human support is recommended");
 
             // Create and immediately complete the bot message
             const botMessageId = await ctx.runMutation(internal.sara_chat.createBotMessage, {
@@ -270,9 +341,11 @@ export const ask = action({
                 isDone: true,
                 toolCalls: ["EMERGENCY_SAFETY_TRIGGER"],
             });
+            await activity("completed", "completed", "saada.activity.completed", "Emergency guidance returned", { bypassedLlm: true });
 
             return EMERGENCY_RESPONSE;
         }
+        await activity("risk_check_completed", "completed", "saada.activity.risk_check_completed", "Safety gate completed");
 
         const openai = getOpenAI();
 
@@ -282,16 +355,22 @@ export const ask = action({
         });
 
         // 2. Embed Query & RAG
+        await activity("knowledge_search_started", "started", "saada.activity.knowledge_search_started", "Searching approved knowledge");
         const embeddingResponse = await openai.embeddings.create({
             model: "text-embedding-3-small",
             input: args.message,
         });
         const embedding = embeddingResponse.data[0].embedding;
 
-        const results = await ctx.vectorSearch("embeddings", "by_embedding", {
+        const vectorResults = await ctx.vectorSearch("embeddings", "by_embedding", {
             vector: embedding,
-            limit: 5,
+            limit: 20,
         });
+        const approvedIds = new Set(await ctx.runQuery(internal.sara.getApprovedChunkIds, {
+            ids: vectorResults.map((result) => result._id),
+        }));
+        const results = vectorResults.filter((result) => approvedIds.has(result._id)).slice(0, 5);
+        await activity("knowledge_search_completed", "completed", "saada.activity.knowledge_search_completed", `${results.length} knowledge matches checked`, { resultCount: results.length });
 
         // =====================================================
         // HALLUCINATION GUARD: Check confidence scores
@@ -312,6 +391,7 @@ export const ask = action({
                 messagePreview,
                 metadata: { resultCount: results.length },
             });
+            await activity("human_review_requested", "waiting", "saada.activity.human_review_requested", "Low confidence legal guidance needs caution", { resultCount: results.length });
             // Low confidence - warn SARA to be honest
             confidenceWarning = `
 ⚠️ IMPORTANT: The knowledge base returned LOW CONFIDENCE results for this query.
@@ -323,20 +403,20 @@ DO NOT make up legal information. It is SAFER to say "I don't know" than to gues
             const chunks = await ctx.runQuery(internal.sara.getChunks, {
                 ids: results.map(r => r._id)
             });
-            context = chunks.map(chunk => chunk?.text || "").join("\n\n");
+            context = chunks.map(chunk => `[SOURCE: ${chunk?.sourceTitle ?? "Approved LSF source"}; PUBLISHER: ${chunk?.publisher ?? "LSF-approved publisher"}; VERSION: ${chunk?.versionLabel ?? "reviewed edition"}; EFFECTIVE: ${chunk?.effectiveDate ?? "not stated"}; URL: ${chunk?.sourceUrl ?? "stored source PDF"}]\n${chunk?.text || ""}`).join("\n\n");
         } else if (highConfidenceResults.length > 0) {
             // High confidence - use filtered results
             const chunks = await ctx.runQuery(internal.sara.getChunks, {
                 ids: highConfidenceResults.map(r => r._id)
             });
-            context = chunks.map(chunk => chunk?.text || "").join("\n\n");
+            context = chunks.map(chunk => `[SOURCE: ${chunk?.sourceTitle ?? "Approved LSF source"}; PUBLISHER: ${chunk?.publisher ?? "LSF-approved publisher"}; VERSION: ${chunk?.versionLabel ?? "reviewed edition"}; EFFECTIVE: ${chunk?.effectiveDate ?? "not stated"}; URL: ${chunk?.sourceUrl ?? "stored source PDF"}]\n${chunk?.text || ""}`).join("\n\n");
         }
 
         // =====================================================
         // SYSTEM PROMPT: Tanzanian Swahili Cultural Tuning
         // =====================================================
         // Fetch dynamic system prompt from DB (Admin Config)
-        const dbSystemPrompt = await ctx.runQuery(internal.sara.getConfigInternal, { key: "system_prompt" });
+        const approvedPrompt = await ctx.runQuery(internal.sara.getApprovedPromptInternal, {});
 
         const defaultSystemPrompt = `You are Saada, the official legal assistant for LSF (Legal Services Facility) Tanzania.
 
@@ -363,6 +443,7 @@ RESPONSE GUIDELINES:
 - If asked for specific legal advice, recommend consulting a paralegal.
 - If a user asks for a paralegal or legal assistance, ALWAYS proactively ask them for their Region and District FIRST if you don't already know it, so you can find one near them using the find_paralegals tool.
 - Always end with a helpful next step.
+- When approved knowledge is used, name the source in a short "Chanzo" or "Source" line. Never invent a source or citation.
 
 ${confidenceWarning}
 
@@ -371,12 +452,11 @@ IMPORTANT: If a tool returns a string starting with "::PARALEGAL_CARD:", you MUS
 KNOWLEDGE BASE CONTEXT:
 ${context || "No relevant context found. Please be honest about not having specific information."}`;
 
-        // Use DB prompt if available, otherwise default
-        // Append context and warnings dynamically to the DB prompt if used
+        // Only an independently approved prompt version may replace the default.
         let finalSystemPrompt = defaultSystemPrompt;
 
-        if (dbSystemPrompt) {
-            finalSystemPrompt = `${dbSystemPrompt}
+        if (approvedPrompt?.prompt) {
+            finalSystemPrompt = `${approvedPrompt.prompt}
 
 ${confidenceWarning}
 
@@ -406,6 +486,22 @@ ${context || "No relevant context found. Please be honest about not having speci
                             district: { type: "string", description: "District within the region" }
                         },
                         required: ["region"],
+                    },
+                },
+            },
+            {
+                type: "function",
+                function: {
+                    name: "find_services",
+                    description: "Search the verified public Haki Yangu service directory by legal issue and Tanzanian location. Never returns confidential safe-house locations.",
+                    parameters: {
+                        type: "object",
+                        properties: {
+                            issueCategory: { type: "string", enum: ["employment", "land", "family", "safety", "consumer", "other"] },
+                            region: { type: "string", description: "Tanzanian region" },
+                            district: { type: "string", description: "District within the region" },
+                        },
+                        required: ["issueCategory"],
                     },
                 },
             },
@@ -468,15 +564,27 @@ ${context || "No relevant context found. Please be honest about not having speci
                 messagePreview,
                 metadata: { toolName: toolCallBuffer.name },
             });
+            await activity("tool_execution_started", "started", "saada.activity.tool_execution_started", `Running ${toolCallBuffer.name}`, { toolName: toolCallBuffer.name });
             const argsObj = JSON.parse(toolCallBuffer.arguments);
             const region = argsObj.region || "Tanzania";
 
-            // Fetch real paralegals from the database
-            const paralegals = await ctx.runQuery(api.paralegals.listApprovedParalegals, { region: region });
+            await activity("service_search_started", "started", "saada.activity.service_search_started", "Looking for verified public support", { region, toolName: toolCallBuffer.name });
+            let searchResults = "I could not find a verified public service for those details. Use Find Help or submit a reviewed request to LSF.";
 
-            let searchResults = "I could not find any verified paralegals in that specific region.";
-
-            if (paralegals && paralegals.length > 0) {
+            if (toolCallBuffer.name === "find_services") {
+                const services = await ctx.runQuery(api.justiceServices.listPublicServices, {
+                    issueCategory: argsObj.issueCategory,
+                    region: argsObj.region,
+                    district: argsObj.district,
+                });
+                await activity("service_search_completed", "completed", "saada.activity.service_search_completed", `${services.length} verified public services checked`, { region, resultCount: services.length });
+                if (services.length) {
+                    searchResults = `Verified public directory results:\n${services.slice(0, 3).map((service: any) => `- ${service.name} — ${service.district}, ${service.region}; intake: ${service.currentIntakeState}; access: ${[service.phoneSupport && "phone", service.walkIn && "walk-in", service.remoteSupport && "remote"].filter(Boolean).join(", ") || "confirm with service"}`).join("\n")}\nTell the user these are directory records, advise them to open Find Help for current details, and do not claim a referral was sent.`;
+                }
+            } else {
+                const paralegals = await ctx.runQuery(api.paralegals.listApprovedParalegals, { region: region });
+                await activity("service_search_completed", "completed", "saada.activity.service_search_completed", `${paralegals.length} verified paralegal records checked`, { region, resultCount: paralegals.length });
+                if (paralegals && paralegals.length > 0) {
                 // Find a paralegal matching the district if strictly requested, otherwise use the first from the region
                 const district = argsObj.district;
                 let target = paralegals[0];
@@ -498,7 +606,9 @@ ${context || "No relevant context found. Please be honest about not having speci
                 });
 
                 searchResults = `Found a verified paralegal. Details: ::PARALEGAL_CARD:${cardData}::`;
+                }
             }
+            await activity("tool_execution_completed", "completed", "saada.activity.tool_execution_completed", `${toolCallBuffer.name} completed`, { toolName: toolCallBuffer.name });
 
             // Append tool call result
             const currentToolCallId = toolCallBuffer.id || "call_" + Date.now();
@@ -565,6 +675,11 @@ ${context || "No relevant context found. Please be honest about not having speci
                 toolUsed: toolCallBuffer ? toolCallBuffer.name : null,
                 highConfidenceResultCount: highConfidenceResults.length,
             },
+        });
+        await activity("completed", "completed", "saada.activity.completed", "Saada response completed", {
+            tokens: totalTokens,
+            toolUsed: toolCallBuffer ? toolCallBuffer.name : null,
+            highConfidenceResultCount: highConfidenceResults.length,
         });
 
         return fullContent;

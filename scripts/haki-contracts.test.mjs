@@ -50,6 +50,7 @@ test("approved paralegal profiles activate assignable user access", () => {
   const users = readFileSync(new URL("../convex/users.ts", import.meta.url), "utf8");
   const formSubmissions = readFileSync(new URL("../convex/formSubmissions.ts", import.meta.url), "utf8");
   const paralegals = readFileSync(new URL("../convex/paralegals.ts", import.meta.url), "utf8");
+  const notifications = readFileSync(new URL("../convex/notifications.ts", import.meta.url), "utf8");
   const caseManagement = readFileSync(new URL("../convex/caseManagement.ts", import.meta.url), "utf8");
 
   assert.match(users, /getApprovedParalegalProfileByEmail/);
@@ -107,6 +108,41 @@ test("intake captures preferred support language for staff routing and matching"
   assert.match(caseManagement, /language fit:/);
   assert.match(caseManagement, /profile\?\.languages/);
   assert.match(caseManagement, /preferredLanguageOther/);
+});
+
+test("beneficiary intake persists complete triage context into staff review", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const legalHelp = readFileSync(new URL("../convex/legalHelp.ts", import.meta.url), "utf8");
+  const intakeDraft = readFileSync(new URL("../mobile/src/intake/IntakeDraftContext.tsx", import.meta.url), "utf8");
+  const mobileIntake = readFileSync(new URL("../mobile/app/intake.tsx", import.meta.url), "utf8");
+  const staffDashboard = readFileSync(new URL("../src/pages/StaffDashboard.tsx", import.meta.url), "utf8");
+
+  assert.match(schema, /occurredAt:\s*v\.optional\(v\.number\(\)\)/);
+  assert.match(schema, /involvedParties:\s*v\.optional\(v\.string\(\)\)/);
+  assert.match(legalHelp, /involvedParties:\s*normalizeOptionalText\(args\.involvedParties/);
+  assert.match(intakeDraft, /occurredOn:\s*string/);
+  assert.match(intakeDraft, /involvedParties:\s*string/);
+  assert.match(mobileIntake, /const TOTAL_STEPS = 8/);
+  assert.match(mobileIntake, /Boolean\(draft\.issueCategory\)/);
+  assert.match(mobileIntake, /occurredAt:\s*draft\.occurredOn/);
+  assert.match(mobileIntake, /involvedParties:\s*draft\.involvedParties/);
+  assert.match(staffDashboard, /People or organisations involved/);
+  assert.match(staffDashboard, /detail\.request\.involvedParties/);
+});
+
+test("submitted requests have an owner-scoped progress and withdrawal journey", () => {
+  const legalHelp = readFileSync(new URL("../convex/legalHelp.ts", import.meta.url), "utf8");
+  const cases = readFileSync(new URL("../mobile/app/(tabs)/cases.tsx", import.meta.url), "utf8");
+  const requestDetail = readFileSync(new URL("../mobile/app/request/[id].tsx", import.meta.url), "utf8");
+
+  assert.match(legalHelp, /export const getMyRequest = query/);
+  assert.match(legalHelp, /request\.ownerId !== user\._id/);
+  assert.match(legalHelp, /export const withdrawMyRequest = mutation/);
+  assert.match(legalHelp, /help_request\.withdrawn/);
+  assert.match(cases, /pathname: "\/request\/\[id\]"/);
+  assert.match(requestDetail, /Request progress/);
+  assert.match(requestDetail, /withdrawMyRequest/);
+  assert.match(requestDetail, /More information needed/);
 });
 
 test("provider availability informs assignment fit without exposing staff notes publicly", () => {
@@ -193,7 +229,7 @@ test("case detail exposes assignment history to workers without beneficiary leak
   assert.match(caseManagement, /assigneeName/);
   assert.match(caseManagement, /offeredByName/);
   assert.match(caseManagement, /availabilityOverrideReason/);
-  assert.match(caseManagement, /return \{ case: access\.caseRecord, events: visibleEvents, appointments, outcome, feedback, reviewRequests, assignmentHistory, closureReadiness \}/);
+  assert.match(caseManagement, /return \{ case: access\.caseRecord, events: visibleEvents, appointments, outcome, feedback, reviewRequests, assignmentHistory, closureReadiness, tasks \}/);
   assert.match(staffDashboard, /Assignment history/);
   assert.match(staffDashboard, /caseDetail\.assignmentHistory\.map/);
   assert.match(staffDashboard, /Override:/);
@@ -412,8 +448,7 @@ test("mobile demand-letter builder provides an offline practical document tool",
   assert.match(caseManagement, /case_document\.generated_letter/);
   assert.match(security, /\["caseManagement\.addGeneratedLetterDocument",\s*"case-access"\]/);
   assert.match(layout, /letter-builder/);
-  assert.match(home, /Demand letter/);
-  assert.match(home, /router\.push\("\/letter-builder"\)/);
+  assert.match(home, /route: "\/letter-builder"/);
   assert.match(resourceDetail, /resource\.id === "demand-letter"/);
   assert.match(resourceDetail, /Build a demand letter/);
   assert.match(letterBuilder, /Share\.share/);
@@ -439,8 +474,7 @@ test("mobile document checker gives pre-signing guidance without silent upload",
   const phaseNote = readFileSync(new URL("../docs/platform-review/65-mobile-document-checker.md", import.meta.url), "utf8");
 
   assert.match(layout, /document-checker/);
-  assert.match(home, /Document check/);
-  assert.match(home, /router\.push\("\/document-checker"\)/);
+  assert.match(home, /route: "\/document-checker"/);
   assert.match(documentChecker, /expo-document-picker/);
   assert.match(documentChecker, /copyToCacheDirectory:\s*false/);
   assert.match(documentChecker, /The document is not uploaded unless you start a help request/);
@@ -462,6 +496,7 @@ test("mobile my-documents library is backed by scoped case documents", () => {
   const home = readFileSync(new URL("../mobile/app/(tabs)/index.tsx", import.meta.url), "utf8");
   const profile = readFileSync(new URL("../mobile/app/(tabs)/profile.tsx", import.meta.url), "utf8");
   const documents = readFileSync(new URL("../mobile/app/documents.tsx", import.meta.url), "utf8");
+  const documentDetail = readFileSync(new URL("../mobile/app/document/[id].tsx", import.meta.url), "utf8");
   const phaseNote = readFileSync(new URL("../docs/platform-review/66-mobile-my-documents-library.md", import.meta.url), "utf8");
 
   assert.match(caseManagement, /myDocuments/);
@@ -472,10 +507,13 @@ test("mobile my-documents library is backed by scoped case documents", () => {
   assert.match(caseManagement, /ctx\.storage\.getUrl\(document\.storageId\)/);
   assert.match(security, /\["caseManagement\.myDocuments",\s*"authenticated"\]/);
   assert.match(layout, /documents/);
-  assert.match(home, /My documents/);
+  assert.match(home, /route: "\/documents"/);
   assert.match(profile, /My documents/);
   assert.match(documents, /api\.caseManagement\.myDocuments/);
-  assert.match(documents, /Linking\.openURL/);
+  assert.match(documents, /pathname: "\/document\/\[id\]"/);
+  assert.match(documentDetail, /api\.caseManagement\.myDocuments/);
+  assert.match(documentDetail, /Linking\.openURL/);
+  assert.match(documentDetail, /pathname: "\/case\/\[id\]"/);
   assert.match(documents, /document\.textContent/);
   assert.match(documents, /reviewNotes/);
   assert.match(phaseNote, /cross-case document library/i);
@@ -488,6 +526,7 @@ test("mobile my-appointments list is backed by scoped case appointments", () => 
   const home = readFileSync(new URL("../mobile/app/(tabs)/index.tsx", import.meta.url), "utf8");
   const profile = readFileSync(new URL("../mobile/app/(tabs)/profile.tsx", import.meta.url), "utf8");
   const appointments = readFileSync(new URL("../mobile/app/appointments.tsx", import.meta.url), "utf8");
+  const appointmentDetail = readFileSync(new URL("../mobile/app/appointment/[id].tsx", import.meta.url), "utf8");
   const phaseNote = readFileSync(new URL("../docs/platform-review/67-mobile-my-appointments-list.md", import.meta.url), "utf8");
 
   assert.match(caseManagement, /myAppointments/);
@@ -498,12 +537,13 @@ test("mobile my-appointments list is backed by scoped case appointments", () => 
   assert.match(caseManagement, /a\.status === "scheduled"/);
   assert.match(security, /\["caseManagement\.myAppointments",\s*"authenticated"\]/);
   assert.match(layout, /appointments/);
-  assert.match(home, /My appointments/);
   assert.match(profile, /My appointments/);
   assert.match(appointments, /api\.caseManagement\.myAppointments/);
   assert.match(appointments, /upcomingCount/);
   assert.match(appointments, /statusNote/);
-  assert.match(appointments, /router\.push\(\{ pathname: "\/case\/\[id\]"/);
+  assert.match(appointments, /pathname: "\/appointment\/\[id\]"/);
+  assert.match(appointmentDetail, /api\.caseManagement\.myAppointments/);
+  assert.match(appointmentDetail, /pathname: "\/case\/\[id\]"/);
   assert.match(phaseNote, /standalone appointment list/i);
 });
 
@@ -548,28 +588,107 @@ test("mobile release documentation identifies required environment and device QA
   assert.match(userSyncNote, /Clerk-to-Convex identity bootstrap/);
 });
 
-test("mobile prototype review mode exposes mock screen navigation without weakening production auth", () => {
+test("mobile account recovery and role scope are visible without client-side privilege grants", () => {
+  const signIn = readFileSync(new URL("../mobile/app/sign-in.tsx", import.meta.url), "utf8");
+  const profile = readFileSync(new URL("../mobile/app/(tabs)/profile.tsx", import.meta.url), "utf8");
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const auth = readFileSync(new URL("../convex/lib/auth.ts", import.meta.url), "utf8");
+  const roleMatrix = readFileSync(new URL("../docs/haki-yangu/user-role-access-matrix-2026-09-09.md", import.meta.url), "utf8");
+
+  assert.match(signIn, /reset_password_email_code/);
+  assert.match(signIn, /Recover account/);
+  assert.match(signIn, /Set new password/);
+  assert.match(profile, /api\.users\.currentAccess/);
+  assert.match(profile, /Guest access/);
+  assert.match(profile, /Beneficiary access/);
+  assert.match(profile, /Provider access/);
+  assert.match(profile, /Operations access/);
+  assert.match(profile, /Safeguarding access/);
+  assert.match(profile, /Reporting access/);
+  assert.doesNotMatch(profile, /makeAdmin|role:\s*"admin"|role_assignments/);
+  assert.match(schema, /v\.literal\("safeguarding_officer"\)/);
+  assert.match(auth, /"safeguarding_officer"/);
+  assert.match(roleMatrix, /11 practical user types/);
+});
+
+test("safeguarding officer is an enforced restricted operations role", () => {
+  const app = readFileSync(new URL("../src/App.tsx", import.meta.url), "utf8");
+  const caseManagement = readFileSync(new URL("../convex/caseManagement.ts", import.meta.url), "utf8");
+  const justiceServices = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+  const roleMatrix = readFileSync(new URL("../docs/haki-yangu/user-role-access-matrix-2026-09-09.md", import.meta.url), "utf8");
+
+  assert.match(app, /"safeguarding_officer"/);
+  assert.match(caseManagement, /operationalReviewRoles/);
+  assert.match(caseManagement, /q\.eq\("role",\s*"safeguarding_officer"\)/);
+  assert.match(caseManagement, /review\.reason === "safety_concern" \|\| row\.case\?\.priority === "safeguarding"/);
+  assert.match(caseManagement, /Safeguarding officers can resolve safety-sensitive reviews only/);
+  assert.match(justiceServices, /matchingReviewRoles/);
+  assert.match(justiceServices, /decision\.urgency === "immediate_safety"/);
+  assert.match(justiceServices, /Safeguarding officers can review safety-sensitive matching decisions only/);
+  assert.match(security, /operationalReviewRoles/);
+  assert.match(security, /matchingReviewRoles/);
+  assert.match(roleMatrix, /LSF safeguarding officer/);
+});
+
+test("donor and stakeholder reporting uses approved aggregate snapshots", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const reporting = readFileSync(new URL("../convex/reporting.ts", import.meta.url), "utf8");
+  const stakeholderDashboard = readFileSync(new URL("../src/pages/StakeholderDashboard.tsx", import.meta.url), "utf8");
+  const app = readFileSync(new URL("../src/App.tsx", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+  const roleMatrix = readFileSync(new URL("../docs/haki-yangu/user-role-access-matrix-2026-09-09.md", import.meta.url), "utf8");
+
+  assert.match(schema, /metric_definitions:\s*defineTable/);
+  assert.match(schema, /metric_snapshots:\s*defineTable/);
+  assert.match(schema, /suppressionThreshold:\s*v\.number\(\)/);
+  assert.match(schema, /qualityFlags:\s*v\.array\(v\.string\(\)\)/);
+  assert.match(reporting, /generateDonorSafeSnapshot/);
+  assert.match(reporting, /approveSnapshot/);
+  assert.match(reporting, /listSnapshots/);
+  assert.match(reporting, /suppressSmallCell/);
+  assert.match(reporting, /Aggregate Haki Yangu service snapshot/);
+  assert.match(reporting, /ctx\.db\.query\("referral_events"\)/);
+  assert.match(reporting, /getActiveRoles\(ctx,\s*actor\.user\._id\)/);
+  assert.match(reporting, /externalReportingOnly\s*\?\s*"approved"/);
+  assert.match(security, /\["reporting\.generateDonorSafeSnapshot",\s*"staff"\]/);
+  assert.match(security, /\["reporting\.approveSnapshot",\s*"admin-or-supervisor"\]/);
+  assert.match(security, /\["reporting\.listSnapshots",\s*"aggregate-reporting"\]/);
+  assert.match(app, /allowedRoles=\{\["stakeholder",\s*"donor"\]\}/);
+  assert.match(stakeholderDashboard, /api\.reporting\.listSnapshots/);
+  assert.match(stakeholderDashboard, /Donor-safe reporting/);
+  assert.match(stakeholderDashboard, /Approved aggregate metrics only/);
+  assert.doesNotMatch(stakeholderDashboard, /Mock projects|Community Outreach Program|Legal Aid Clinic Expansion/);
+  assert.match(roleMatrix, /donor-safe reporting snapshots/);
+});
+
+test("beneficiary web dashboard is connected to scoped private Haki Yangu records", () => {
+  const userDashboard = readFileSync(new URL("../src/pages/UserDashboard.tsx", import.meta.url), "utf8");
+
+  assert.match(userDashboard, /api\.users\.currentAccess/);
+  assert.match(userDashboard, /api\.legalHelp\.myRequests/);
+  assert.match(userDashboard, /api\.caseManagement\.myCases/);
+  assert.match(userDashboard, /api\.caseManagement\.myAppointments/);
+  assert.match(userDashboard, /api\.caseManagement\.myDocuments/);
+  assert.match(userDashboard, /My Haki Yangu workspace/);
+  assert.match(userDashboard, /Current legal-help status/);
+  assert.match(userDashboard, /Privacy-first access/);
+  assert.match(userDashboard, /roles\.includes\("safeguarding_officer"\)/);
+  assert.doesNotMatch(userDashboard, /Recent Activity Placeholder|No recent activity yet|Community Member Dashboard/);
+});
+
+test("mobile always launches the connected application without a prototype switch", () => {
   const appConfig = readFileSync(new URL("../mobile/app.config.js", import.meta.url), "utf8");
   const mobileConfig = readFileSync(new URL("../mobile/src/config.ts", import.meta.url), "utf8");
   const packageJson = readFileSync(new URL("../mobile/package.json", import.meta.url), "utf8");
   const rootLayout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
-  const prototype = readFileSync(new URL("../mobile/src/prototype/PrototypeApp.tsx", import.meta.url), "utf8");
-  const phaseNote = readFileSync(new URL("../docs/platform-review/68-mobile-prototype-review-mode.md", import.meta.url), "utf8");
 
-  assert.match(appConfig, /EXPO_PUBLIC_PROTOTYPE_MODE/);
-  assert.match(mobileConfig, /prototypeMode/);
-  assert.match(packageJson, /"prototype":\s*"EXPO_PUBLIC_PROTOTYPE_MODE=1 expo start --web"/);
-  assert.match(rootLayout, /appConfig\.prototypeMode/);
-  assert.match(rootLayout, /<PrototypeApp \/>/);
+  assert.doesNotMatch(appConfig, /EXPO_PUBLIC_PROTOTYPE_MODE/);
+  assert.doesNotMatch(mobileConfig, /prototypeMode/);
+  assert.doesNotMatch(packageJson, /"prototype(?:\:ios|\:android)?"/);
+  assert.doesNotMatch(rootLayout, /PrototypeApp|prototypeMode/);
   assert.match(rootLayout, /requiredConfigReady/);
-  assert.match(prototype, /Prototype review mode/);
-  assert.match(prototype, /Splash/);
-  assert.match(prototype, /Guided intake/);
-  assert.match(prototype, /SARA assistant/);
-  assert.match(prototype, /Document checker/);
-  assert.match(prototype, /Letter builder/);
-  assert.match(prototype, /Appointments/);
-  assert.match(phaseNote, /does not replace real device QA/i);
+  assert.match(rootLayout, /<Navigation \/>/);
 });
 
 test("production mobile private surfaces do not show demo backend records", () => {
@@ -649,6 +768,48 @@ test("mobile Saada uses governed Convex AI with risk events and consent", () => 
   assert.match(webSara, /source:\s*"web"/);
   assert.match(phaseNote, /no longer generates local demo answers/i);
   assert.match(phaseNote, /disposition events/i);
+});
+
+test("Saada restores governed history and only exposes verified public directory routes", () => {
+  const mobileSaada = readFileSync(new URL("../mobile/app/sara.tsx", import.meta.url), "utf8");
+  const actions = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
+  const services = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
+
+  assert.match(mobileSaada, /api\.sara_chat\.getMessages/);
+  assert.match(mobileSaada, /historyHydrated/);
+  assert.match(actions, /name: "find_services"/);
+  assert.match(actions, /api\.justiceServices\.listPublicServices/);
+  assert.match(actions, /do not claim a referral was sent/);
+  assert.match(actions, /Police Emergency:\*\* \*\*112/);
+  assert.match(actions, /Gender and Children Desk \/ Child Helpline/);
+  assert.doesNotMatch(actions, /\+255 22 215 0302/);
+  assert.doesNotMatch(actions, /\+255 22 266 2755/);
+  assert.match(services, /service\.servicePointType !== "safe_house"/);
+});
+
+test("Saada exposes real backend activity events instead of a generic spinner", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const sara = readFileSync(new URL("../convex/sara.ts", import.meta.url), "utf8");
+  const saraActions = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
+  const saraChat = readFileSync(new URL("../convex/sara_chat.ts", import.meta.url), "utf8");
+  const mobileSara = readFileSync(new URL("../mobile/app/sara.tsx", import.meta.url), "utf8");
+  const webSara = readFileSync(new URL("../src/pages/SaraAI.tsx", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+
+  assert.match(schema, /saada_activity_events:\s*defineTable/);
+  assert.match(schema, /knowledge_search_started/);
+  assert.match(schema, /tool_execution_completed/);
+  assert.match(sara, /recordActivityEvent/);
+  assert.match(saraChat, /getActivityEvents/);
+  assert.match(saraActions, /clientRequestId/);
+  assert.match(saraActions, /knowledge_search_started/);
+  assert.match(saraActions, /service_search_completed/);
+  assert.match(saraActions, /human_review_requested/);
+  assert.match(webSara, /Saada activity/);
+  assert.match(webSara, /api\.sara_chat\.getActivityEvents/);
+  assert.match(mobileSara, /Saada activity/);
+  assert.match(mobileSara, /api\.sara_chat\.getActivityEvents/);
+  assert.match(security, /\["sara_chat\.getActivityEvents",\s*"authenticated-self"\]/);
 });
 
 test("referral graph connects staff creation, provider response, and beneficiary visibility", () => {
@@ -747,7 +908,9 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(staffDashboard, /createJusticeOrganization/);
   assert.match(staffDashboard, /destinationUserId:\s*referralDestinationUserId/);
   assert.match(staffDashboard, /minimum information/);
-  assert.match(staffDashboard, /Consent proof/);
+  assert.match(staffDashboard, /Awaiting beneficiary decision/);
+  assert.match(referrals, /awaiting_beneficiary_consent/);
+  assert.match(referrals, /decideBeneficiaryConsent/);
   assert.match(staffDashboard, /referralConsentStatement/);
   assert.match(staffDashboard, /generateReferralConsentUploadUrl/);
   assert.match(staffDashboard, /type="file"/);
@@ -761,7 +924,7 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(providerDashboard, /api\.referrals\.createOnwardReferral/);
   assert.match(providerDashboard, /Accept referral/);
   assert.match(providerDashboard, /Return to LSF/);
-  assert.match(providerDashboard, /Create onward referral/);
+  assert.match(providerDashboard, /Propose onward referral for beneficiary approval/);
   assert.match(providerDashboard, /Consent proof/);
   assert.match(mobileCase, /Referrals/);
   assert.match(mobileCase, /api\.referrals\.listForCase/);
@@ -769,4 +932,382 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(mobileCase, /Continued to referral/);
   assert.match(mobileCase, /Information shared/);
   assert.match(mobileCase, /Consent recorded/);
+});
+
+test("paralegal mobile case workspace connects worker tasks and document review", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const caseManagement = readFileSync(new URL("../convex/caseManagement.ts", import.meta.url), "utf8");
+  const mobileCase = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
+  const mobileWorkspace = readFileSync(new URL("../mobile/app/workspace.tsx", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+
+  assert.match(schema, /case_tasks:\s*defineTable/);
+  assert.match(schema, /by_assignee_status/);
+  assert.match(schema, /by_case/);
+  assert.match(caseManagement, /export const myTasks/);
+  assert.match(caseManagement, /export const createTask/);
+  assert.match(caseManagement, /export const completeTask/);
+  assert.match(caseManagement, /export const listTasksForCase/);
+  assert.match(caseManagement, /type:\s*"task_created"/);
+  assert.match(caseManagement, /type:\s*"task_completed"/);
+  assert.match(caseManagement, /task\.assigneeId !== user\._id/);
+  assert.match(caseManagement, /export const reviewDocument/);
+  assert.match(caseManagement, /case_document\.reviewed/);
+  assert.match(mobileCase, /CaseTab = .*tasks/);
+  assert.match(mobileCase, /details\.tasks/);
+  assert.match(mobileCase, /const completeTask = useMutation\(api\.caseManagement\.completeTask\)/);
+  assert.match(mobileCase, /api\.caseManagement\.createTask/);
+  assert.match(mobileCase, /Add task/);
+  assert.match(mobileCase, /api\.caseManagement\.reviewDocument/);
+  assert.match(mobileCase, /Document reviewed and accepted/);
+  assert.match(mobileWorkspace, /api\.caseManagement\.myTasks/);
+  assert.match(mobileWorkspace, /api\.caseManagement\.completeTask/);
+  assert.match(security, /\["caseManagement\.myTasks",\s*"service-provider"\]/);
+  assert.match(security, /\["caseManagement\.createTask",\s*"case-worker"\]/);
+  assert.match(security, /\["caseManagement\.completeTask",\s*"authenticated-self"\]/);
+  assert.match(security, /\["caseManagement\.listTasksForCase",\s*"case-worker"\]/);
+  assert.match(security, /\["caseManagement\.reviewDocument",\s*"case-worker"\]/);
+});
+
+test("paralegal mobile case workspace connects appointments, referrals, and outcomes", () => {
+  const caseManagement = readFileSync(new URL("../convex/caseManagement.ts", import.meta.url), "utf8");
+  const referrals = readFileSync(new URL("../convex/referrals.ts", import.meta.url), "utf8");
+  const mobileCase = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+
+  assert.match(caseManagement, /export const scheduleAppointment/);
+  assert.match(caseManagement, /Appointment must be in the future/);
+  assert.match(caseManagement, /export const recordOutcome/);
+  assert.match(caseManagement, /assertCaseTransition\(caseRecord\.status, "resolved"\)/);
+  assert.match(referrals, /export const updateStatus/);
+  assert.match(mobileCase, /api\.caseManagement\.scheduleAppointment/);
+  assert.match(mobileCase, /Schedule beneficiary appointment/);
+  assert.match(mobileCase, /api\.referrals\.updateStatus/);
+  assert.match(mobileCase, /locale === "sw" \? "Kubali" : "Accept"/);
+  assert.match(mobileCase, /api\.caseManagement\.recordOutcome/);
+  assert.match(mobileCase, /Record case outcome/);
+  assert.match(mobileCase, /details\.closureReadiness/);
+  assert.match(security, /\["caseManagement\.scheduleAppointment",\s*"case-worker"\]/);
+  assert.match(security, /\["caseManagement\.recordOutcome",\s*"case-worker"\]/);
+  assert.match(security, /\["referrals\.updateStatus",\s*"case-worker"\]/);
+});
+
+test("paralegal deactivation revokes active access and records a notification and audit event", () => {
+  const paralegals = readFileSync(new URL("../convex/paralegals.ts", import.meta.url), "utf8");
+  const notifications = readFileSync(new URL("../convex/notifications.ts", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+
+  assert.match(paralegals, /export const deactivateParalegal/);
+  assert.match(paralegals, /status:\s*"rejected"/);
+  assert.match(paralegals, /availabilityStatus:\s*"unavailable"/);
+  assert.match(paralegals, /assignment\.role === "paralegal"/);
+  assert.match(paralegals, /status:\s*"revoked"/);
+  assert.match(paralegals, /matchingUser\.role === "paralegal"/);
+  assert.match(paralegals, /role:\s*"user"/);
+  assert.match(paralegals, /type:\s*"access\.revoked"/);
+  assert.match(paralegals, /paralegal\.access_revoked/);
+  assert.match(notifications, /"access\.revoked"/);
+  assert.match(security, /\["paralegals\.deactivateParalegal",\s*"staff"\]/);
+});
+
+test("provider mobile organisation screen uses scoped governed service data", () => {
+  const justiceServices = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
+  const mobileOrganisation = readFileSync(new URL("../mobile/app/my-organisation.tsx", import.meta.url), "utf8");
+  const mobileWorkspace = readFileSync(new URL("../mobile/app/workspace.tsx", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+
+  assert.match(justiceServices, /export const myOrganization/);
+  assert.match(justiceServices, /withIndex\("by_user_status"/);
+  assert.match(justiceServices, /\["paralegal", "provider_staff"\]/);
+  assert.match(justiceServices, /withIndex\("by_organization"/);
+  assert.match(justiceServices, /verificationStatus: organization\.verificationStatus/);
+  assert.match(justiceServices, /referralAgreementStatus: organization\.referralAgreementStatus/);
+  assert.match(justiceServices, /services: services\.map/);
+  assert.match(mobileOrganisation, /api\.justiceServices\.myOrganization/);
+  assert.match(mobileOrganisation, /No organisation linked/);
+  assert.match(mobileOrganisation, /Linked services/);
+  assert.match(mobileOrganisation, /Only LSF can verify/);
+  assert.match(mobileOrganisation, /router\.push\(\{ pathname: "\/service\/\[id\]"/);
+  assert.match(mobileWorkspace, /router\.push\("\/my-organisation"\)/);
+  assert.match(security, /\["justiceServices\.myOrganization",\s*"service-provider"\]/);
+});
+
+test("paralegal mobile performance is computed from assigned cases and beneficiary feedback", () => {
+  const paralegals = readFileSync(new URL("../convex/paralegals.ts", import.meta.url), "utf8");
+  const mobilePerformance = readFileSync(new URL("../mobile/app/paralegal-performance.tsx", import.meta.url), "utf8");
+  const mobileWorkspace = readFileSync(new URL("../mobile/app/workspace.tsx", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+
+  assert.match(paralegals, /export const getMyPerformance/);
+  assert.match(paralegals, /by_assignee_status/);
+  assert.match(paralegals, /case_outcomes/);
+  assert.match(paralegals, /case_feedback/);
+  assert.match(paralegals, /averageRating/);
+  assert.match(mobilePerformance, /api\.paralegals\.getMyPerformance/);
+  assert.match(mobilePerformance, /Cases handled/);
+  assert.match(mobilePerformance, /beneficiary feedback responses included/);
+  assert.match(mobilePerformance, /router\.push\("\/support"\)/);
+  assert.match(mobileWorkspace, /router\.push\("\/paralegal-performance"\)/);
+  assert.match(security, /\["paralegals\.getMyPerformance",\s*"service-provider"\]/);
+});
+
+test("paralegal support and wellbeing requests are persisted and staff-scoped", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const paralegals = readFileSync(new URL("../convex/paralegals.ts", import.meta.url), "utf8");
+  const notifications = readFileSync(new URL("../convex/notifications.ts", import.meta.url), "utf8");
+  const mobileSupport = readFileSync(new URL("../mobile/app/paralegal-support.tsx", import.meta.url), "utf8");
+  const mobileWorkspace = readFileSync(new URL("../mobile/app/workspace.tsx", import.meta.url), "utf8");
+  const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
+
+  assert.match(schema, /paralegal_support_requests:\s*defineTable/);
+  assert.match(schema, /wellbeing/);
+  assert.match(schema, /challenging_case/);
+  assert.match(schema, /by_user_status/);
+  assert.match(schema, /by_status/);
+  assert.match(paralegals, /export const mySupportRequests/);
+  assert.match(paralegals, /export const requestSupport/);
+  assert.match(paralegals, /export const staffSupportQueue/);
+  assert.match(paralegals, /export const respondToSupportRequest/);
+  assert.match(paralegals, /paralegal\.support_requested/);
+  assert.match(paralegals, /notifications\.paralegalSupportRequested\.body/);
+  assert.match(paralegals, /role.*staff/);
+  assert.match(paralegals, /role.*supervisor/);
+  assert.match(paralegals, /role.*admin/);
+  assert.match(notifications, /paralegal\.support_requested/);
+  assert.match(notifications, /paralegal\.support_updated/);
+  assert.match(mobileSupport, /api\.paralegals\.mySupportRequests/);
+  assert.match(mobileSupport, /api\.paralegals\.requestSupport/);
+  assert.match(mobileSupport, /wellbeing/);
+  assert.match(mobileSupport, /challenging_case/);
+  assert.match(mobileSupport, /Send to LSF/);
+  assert.match(mobileWorkspace, /router\.push\("\/paralegal-support"\)/);
+  assert.match(mobileWorkspace, /api\.paralegals\.staffSupportQueue/);
+  assert.match(mobileWorkspace, /api\.paralegals\.respondToSupportRequest/);
+  assert.match(security, /\["paralegals\.mySupportRequests",\s*"service-provider"\]/);
+  assert.match(security, /\["paralegals\.requestSupport",\s*"service-provider"\]/);
+  assert.match(security, /\["paralegals\.staffSupportQueue",\s*"staff"\]/);
+  assert.match(security, /\["paralegals\.respondToSupportRequest",\s*"staff"\]/);
+});
+
+test("case referral list projects private operational data before returning to clients", () => {
+  const referrals = readFileSync(new URL("../convex/referrals.ts", import.meta.url), "utf8");
+  const listForCase = referrals.slice(referrals.indexOf("export const listForCase"), referrals.indexOf("export const staffQueue"));
+
+  assert.match(listForCase, /publicServiceProjection/);
+  assert.match(listForCase, /workerServiceProjection/);
+  assert.match(listForCase, /canSeeOperationalDetails/);
+  assert.match(listForCase, /destinationUser:\s*canSeeOperationalDetails/);
+  assert.doesNotMatch(listForCase, /\.\.\.referral/);
+  assert.doesNotMatch(listForCase, /evidenceStorageId/);
+  assert.doesNotMatch(listForCase, /destinationService:\s*await ctx\.db\.get/);
+  assert.doesNotMatch(listForCase, /destinationUser:\s*referral\.destinationUserId \? await ctx\.db\.get/);
+  assert.doesNotMatch(listForCase, /consent:\s*referral\.consentId \? await ctx\.db\.get/);
+});
+
+test("Saada knowledge and prompt changes require provenance and independent approval", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const sara = readFileSync(new URL("../convex/sara.ts", import.meta.url), "utf8");
+  const actions = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
+  const admin = readFileSync(new URL("../src/pages/SaraTrain.tsx", import.meta.url), "utf8");
+  const mobile = readFileSync(new URL("../mobile/app/sara.tsx", import.meta.url), "utf8");
+
+  assert.match(schema, /saada_prompt_versions:\s*defineTable/);
+  assert.match(schema, /publisher: v\.optional/);
+  assert.match(schema, /reviewDueAt: v\.optional/);
+  assert.match(sara, /A different administrator must review this prompt/);
+  assert.match(sara, /Complete source provenance and review metadata before approval/);
+  assert.match(actions, /getApprovedPromptInternal/);
+  assert.doesNotMatch(actions, /getConfigInternal, \{ key: "system_prompt" \}/);
+  assert.match(actions, /PUBLISHER:/);
+  assert.match(admin, /Submit for approval/);
+  assert.match(admin, /Review due/);
+  assert.match(mobile, /api\.sara_chat\.submitFeedback/);
+  assert.match(mobile, /Was this helpful/);
+});
+
+test("paralegal readiness requires verified profile, availability, ethics and safeguarding", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const paralegals = readFileSync(new URL("../convex/paralegals.ts", import.meta.url), "utf8");
+  const onboarding = readFileSync(new URL("../mobile/app/paralegal-onboarding.tsx", import.meta.url), "utf8");
+
+  assert.match(schema, /ethicsAcceptedAt/);
+  assert.match(schema, /codeOfConductAcceptedAt/);
+  assert.match(schema, /safeguardingTrainingCompletedAt/);
+  assert.match(paralegals, /export const completeMyOnboarding/);
+  assert.match(paralegals, /LSF approval and verification are required/);
+  assert.match(paralegals, /Complete your public profile first/);
+  assert.match(paralegals, /Set your availability and working hours first/);
+  assert.match(paralegals, /Use the governed onboarding completion flow/);
+  assert.match(onboarding, /api\.paralegals\.completeMyOnboarding/);
+  assert.match(onboarding, /accessibilityRole="checkbox"/);
+});
+
+test("mobile paralegal applications securely collect reviewable identity and credential files", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const forms = readFileSync(new URL("../convex/formSubmissions.ts", import.meta.url), "utf8");
+  const join = readFileSync(new URL("../mobile/app/join.tsx", import.meta.url), "utf8");
+
+  assert.match(schema, /idDocumentStorageId/);
+  assert.match(schema, /certificateStorageId/);
+  assert.match(forms, /generateParalegalDocumentUploadUrl/);
+  assert.match(forms, /requireAuthenticatedUser/);
+  assert.match(forms, /Application email must match the signed-in account/);
+  assert.match(forms, /Identity evidence is required before approval/);
+  assert.match(forms, /Paralegal credential evidence is required before approval/);
+  assert.match(forms, /identityDocumentUrl/);
+  assert.match(forms, /certificateDocumentUrl/);
+  assert.match(join, /DocumentPicker\.getDocumentAsync/);
+  assert.match(join, /idDocumentStorageId: identityDocument\.id/);
+  assert.match(join, /certificateStorageId: certificateDocument\.id/);
+});
+
+test("mobile LSF operations connects intake triage, case creation, matching and restricted safeguarding", () => {
+  const operations = readFileSync(new URL("../mobile/app/operations.tsx", import.meta.url), "utf8");
+  const matching = readFileSync(new URL("../mobile/app/case-matching/[id].tsx", import.meta.url), "utf8");
+  const safeguarding = readFileSync(new URL("../mobile/app/safeguarding.tsx", import.meta.url), "utf8");
+  const safeguardingReview = readFileSync(new URL("../mobile/app/safeguarding-review/[id].tsx", import.meta.url), "utf8");
+  const workspace = readFileSync(new URL("../mobile/app/workspace.tsx", import.meta.url), "utf8");
+  const layout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
+
+  assert.match(operations, /api\.legalHelp\.staffQueue/);
+  assert.match(operations, /api\.legalHelp\.openForTriage/);
+  assert.match(operations, /api\.caseManagement\.createFromRequest/);
+  assert.match(operations, /\/case-matching\/\[id\]/);
+  assert.match(matching, /api\.caseManagement\.providerRecommendations/);
+  assert.match(matching, /api\.caseManagement\.offerAssignment/);
+  assert.match(safeguarding, /useSensitiveScreenProtection\("safeguarding"\)/);
+  assert.match(safeguarding, /api\.caseManagement\.staffReviewRequests/);
+  assert.match(safeguarding, /status: "under_review"/);
+  assert.match(safeguardingReview, /api\.caseManagement\.resolveCaseReviewRequest/);
+  assert.match(workspace, /router\.push\("\/operations"\)/);
+  assert.match(workspace, /router\.push\("\/safeguarding"\)/);
+  assert.match(layout, /name="operations"/);
+  assert.match(layout, /name="safeguarding"/);
+});
+
+test("mobile governance connects access, paralegal approval and Saada risk review", () => {
+  const governance = readFileSync(new URL("../mobile/app/governance.tsx", import.meta.url), "utf8");
+  const saadaRisk = readFileSync(new URL("../mobile/app/saada-risk/[id].tsx", import.meta.url), "utf8");
+  const accessReview = readFileSync(new URL("../mobile/app/access-request/[id].tsx", import.meta.url), "utf8");
+  const paralegalReview = readFileSync(new URL("../mobile/app/paralegal-application/[id].tsx", import.meta.url), "utf8");
+  const workspace = readFileSync(new URL("../mobile/app/workspace.tsx", import.meta.url), "utf8");
+  assert.match(governance, /useSensitiveScreenProtection\("governance"\)/);
+  assert.match(governance, /api\.accessRequests\.adminQueue/);
+  assert.match(accessReview, /api\.accessRequests\.decide/);
+  assert.match(governance, /api\.formSubmissions\.listParalegalApplications/);
+  assert.match(paralegalReview, /api\.formSubmissions\.reviewParalegalApplication/);
+  assert.match(accessReview, /api\.justiceServices\.staffListOrganizations/);
+  assert.match(governance, /api\.sara_chat\.getRiskEvents/);
+  assert.match(governance, /\/saada-risk\/\[id\]/);
+  assert.match(saadaRisk, /api\.sara_chat\.resolveRiskEvent/);
+  assert.match(governance, /roles\.includes\("admin"\)/);
+  assert.match(workspace, /router\.push\("\/governance"\)/);
+});
+
+test("mobile Saada source review opens provenance and uses independent approval", () => {
+  const library = readFileSync(new URL("../mobile/app/saada-governance.tsx", import.meta.url), "utf8");
+  const detail = readFileSync(new URL("../mobile/app/saada-source/[id].tsx", import.meta.url), "utf8");
+  const backend = readFileSync(new URL("../convex/sara.ts", import.meta.url), "utf8");
+  assert.match(library, /\/saada-source\/\[id\]/);
+  assert.match(detail, /api\.sara\.getDocuments/);
+  assert.match(detail, /api\.sara\.reviewDocument/);
+  assert.match(detail, /sourcePdfUrl/);
+  assert.match(backend, /A different administrator must review this source/);
+});
+
+test("mobile Saada policy review opens full instructions before independent approval", () => {
+  const governance = readFileSync(new URL("../mobile/app/saada-governance.tsx", import.meta.url), "utf8");
+  const detail = readFileSync(new URL("../mobile/app/saada-policy/[id].tsx", import.meta.url), "utf8");
+  assert.match(governance, /\/saada-policy\/\[id\]/);
+  assert.match(detail, /version\.prompt/);
+  assert.match(detail, /api\.sara\.reviewPromptVersion/);
+  assert.match(detail, /ownSubmission/);
+});
+
+test("Find Help comparison reads current verified public service records", () => {
+  const search = readFileSync(new URL("../mobile/app/find-services.tsx", import.meta.url), "utf8");
+  const comparison = readFileSync(new URL("../mobile/app/compare-services.tsx", import.meta.url), "utf8");
+  assert.match(search, /\/compare-services/);
+  assert.match(comparison, /api\.justiceServices\.listPublicServices/);
+  assert.match(comparison, /\/service\/\[id\]/);
+});
+
+test("mobile service directory governance requires provenance and audits status changes", () => {
+  const directory = readFileSync(new URL("../mobile/app/directory-management.tsx", import.meta.url), "utf8");
+  const backend = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
+  const layout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
+  assert.match(directory, /api\.justiceServices\.staffListOrganizations/);
+  assert.match(directory, /api\.justiceServices\.staffListServices/);
+  assert.match(directory, /api\.justiceServices\.updateOrganization/);
+  assert.match(directory, /api\.justiceServices\.updateService/);
+  assert.match(directory, /servicePointType === "safe_house"/);
+  assert.match(backend, /Verified services require source, verifying authority/);
+  assert.match(backend, /directory\.organization_updated/);
+  assert.match(backend, /directory\.service_updated/);
+  assert.match(layout, /name="directory-management"/);
+});
+
+test("Find Help continues through planned visits, check-in and escalation", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const backend = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
+  const visit = readFileSync(new URL("../mobile/app/service-visit.tsx", import.meta.url), "utf8");
+  const detail = readFileSync(new URL("../mobile/app/service/[id].tsx", import.meta.url), "utf8");
+  assert.match(schema, /justice_service_visits: defineTable/);
+  assert.match(backend, /export const planServiceVisit/);
+  assert.match(backend, /export const checkInServiceVisit/);
+  assert.match(backend, /Check in after the planned service time/);
+  assert.match(visit, /api\.justiceServices\.myServiceVisits/);
+  assert.match(visit, /Request more help from LSF/);
+  assert.match(detail, /pathname: "\/service-visit"/);
+});
+
+test("mobile governance exposes a restricted content-safe platform audit trail", () => {
+  const admin = readFileSync(new URL("../convex/admin.ts", import.meta.url), "utf8");
+  const screen = readFileSync(new URL("../mobile/app/audit-log.tsx", import.meta.url), "utf8");
+  assert.match(admin, /export const listPlatformAudit/);
+  assert.match(admin, /requireAnyRole\(ctx, \["admin", "supervisor"\]\)/);
+  assert.match(admin, /changedFieldNames/);
+  assert.doesNotMatch(admin, /listPlatformAudit[\s\S]{0,1200}metadata: row\.metadata/);
+  assert.match(screen, /useSensitiveScreenProtection\("platform-audit-log"\)/);
+  assert.match(screen, /api\.admin\.listPlatformAudit/);
+});
+
+test("local Expo web browses as guest with a production Clerk key and keeps sign-in disabled", () => {
+  const config = readFileSync(new URL("../mobile/src/config.ts", import.meta.url), "utf8");
+  const checker = readFileSync(new URL("../mobile/scripts/check-env.mjs", import.meta.url), "utf8");
+  const layout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
+  assert.match(config, /Platform\.OS === "web"/);
+  assert.match(config, /pk_live_/);
+  assert.match(config, /Guest browsing works on local Expo web/);
+  assert.match(config, /export const clerkReady = configDiagnostics\.clerkPublishableKey\.ready/);
+  assert.match(layout, /if \(!clerkReady\) \{[\s\S]*?<ConvexProvider client=\{convex\}>/);
+  assert.match(checker, /pk_live_ cannot authenticate on localhost Expo web/);
+});
+
+test("mobile donor reporting uses suppressed snapshots and independent approval", () => {
+  const backend = readFileSync(new URL("../convex/reporting.ts", import.meta.url), "utf8");
+  const screen = readFileSync(new URL("../mobile/app/reporting.tsx", import.meta.url), "utf8");
+  assert.match(backend, /Donor-safe reports require independent approval/);
+  assert.match(backend, /A different administrator or supervisor must approve/);
+  assert.match(backend, /reporting\.snapshot_generated/);
+  assert.match(backend, /reporting\.snapshot_approved/);
+  assert.match(screen, /api\.reporting\.generateDonorSafeSnapshot/);
+  assert.match(screen, /api\.reporting\.approveSnapshot/);
+  assert.match(screen, /Share\.share/);
+  assert.match(screen, /Small cells are suppressed/);
+});
+
+test("case chat supports governed two-minute voice notes", () => {
+  const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
+  const backend = readFileSync(new URL("../convex/caseManagement.ts", import.meta.url), "utf8");
+  const mobile = readFileSync(new URL("../mobile/app/case/[id].tsx", import.meta.url), "utf8");
+  assert.match(schema, /v\.literal\("voice"\)/);
+  assert.match(backend, /generateVoiceMessageUploadUrl/);
+  assert.match(backend, /export const sendVoiceMessage/);
+  assert.match(backend, /durationMs > 120_000/);
+  assert.match(backend, /mimeType\.startsWith\("audio\/"\)/);
+  assert.match(mobile, /useAudioRecorder\(RecordingPresets\.LOW_QUALITY\)/);
+  assert.match(mobile, /requestRecordingPermissionsAsync/);
+  assert.match(mobile, /api\.caseManagement\.sendVoiceMessage/);
+  assert.match(mobile, /function VoiceNote/);
 });

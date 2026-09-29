@@ -1,236 +1,301 @@
-import { useUser, useAuth } from '@clerk/clerk-react';
-import { useQuery } from 'convex/react';
-import { Navigate, Link } from 'react-router-dom';
-import { api } from '../../convex/_generated/api';
-import Layout from '../components/layout/Layout';
-import Container from '@/components/shared/Container';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import type React from "react";
+import { useAuth, useUser } from "@clerk/clerk-react";
+import { useQuery } from "convex/react";
+import { Navigate, Link } from "react-router-dom";
 import {
-    Scale, MessageCircle, BookOpen, FileText, Heart,
-    Settings, ChevronRight, Sparkles, Users, Phone,
-    BookMarked, Clock, ArrowRight, LogOut
-} from 'lucide-react';
+  AlertCircle,
+  ArrowRight,
+  BookOpen,
+  CalendarDays,
+  FileText,
+  LogOut,
+  MessageCircle,
+  Scale,
+  Settings,
+  ShieldCheck,
+} from "lucide-react";
+import { api } from "../../convex/_generated/api";
+import Layout from "../components/layout/Layout";
+import Container from "@/components/shared/Container";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+function formatDate(value?: number) {
+  if (!value) return "Not scheduled";
+  return new Date(value).toLocaleDateString("en-TZ", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+function humanStatus(value?: string) {
+  return value ? value.replaceAll("_", " ") : "pending";
+}
+
+function latestTimestamp(record: { updatedAt?: number; createdAt?: number; submittedAt?: number }) {
+  return record.updatedAt ?? record.submittedAt ?? record.createdAt ?? 0;
+}
 
 const UserDashboard = () => {
-    const { isSignedIn, isLoaded, signOut } = useAuth();
-    const { user: clerkUser } = useUser();
-    const convexUser = useQuery(api.users.current);
+  const { isSignedIn, isLoaded, signOut } = useAuth();
+  const { user: clerkUser } = useUser();
+  const access = useQuery(api.users.currentAccess);
+  const requests = useQuery(api.legalHelp.myRequests, isSignedIn ? {} : "skip");
+  const cases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
+  const appointments = useQuery(api.caseManagement.myAppointments, isSignedIn ? {} : "skip");
+  const documents = useQuery(api.caseManagement.myDocuments, isSignedIn ? {} : "skip");
 
-    // Auth guards
-    if (!isLoaded) {
-        return (
-            <div className="flex items-center justify-center min-h-screen">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+  if (!isLoaded) {
+    return <div className="flex min-h-screen items-center justify-center text-sm text-neutral-500">Verifying access...</div>;
+  }
+
+  if (!isSignedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const roles = access?.roles ?? [];
+  if (roles.includes("admin")) return <Navigate to="/admin" replace />;
+  if (roles.includes("paralegal") || roles.includes("provider_staff")) return <Navigate to="/dashboard/paralegal" replace />;
+  if (roles.includes("staff") || roles.includes("supervisor") || roles.includes("safeguarding_officer")) return <Navigate to="/dashboard/staff" replace />;
+  if (roles.includes("stakeholder") || roles.includes("donor")) return <Navigate to="/dashboard/stakeholder" replace />;
+
+  const userName = access?.user?.name || clerkUser?.firstName || "User";
+  const userInitials = userName.split(" ").map((part) => part[0]).join("").toUpperCase().slice(0, 2);
+  const userImage = access?.user?.imageUrl || clerkUser?.imageUrl;
+  const activeCases = cases?.filter((record) => !["closed", "closed_unresolved", "resolved"].includes(record.status)).length ?? 0;
+  const submittedRequests = requests?.filter((record) => record.status !== "draft").length ?? 0;
+  const upcomingAppointments = appointments?.filter((record) => record.status === "scheduled" && record.startsAt >= Date.now()) ?? [];
+  const latestCase = cases?.[0];
+  const latestRequest = requests?.filter((record) => record.status !== "draft")[0];
+  const recentItems = [
+    ...(cases ?? []).slice(0, 3).map((record) => ({
+      key: `case-${record._id}`,
+      title: record.publicId,
+      subtitle: record.summary,
+      status: record.status,
+      when: latestTimestamp(record),
+    })),
+    ...(requests ?? []).filter((record) => record.status !== "draft").slice(0, 3).map((record) => ({
+      key: `request-${record._id}`,
+      title: record.publicId,
+      subtitle: `${record.region ?? "Tanzania"}${record.district ? ` · ${record.district}` : ""}`,
+      status: record.status,
+      when: latestTimestamp(record),
+    })),
+  ].sort((a, b) => b.when - a.when).slice(0, 5);
+
+  const loadingPrivateData = [requests, cases, appointments, documents].some((value) => value === undefined);
+
+  return (
+    <Layout>
+      <section className="border-b bg-white py-8">
+        <Container>
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-4">
+              <Avatar className="h-16 w-16 border border-neutral-200">
+                <AvatarImage src={userImage} alt={userName} />
+                <AvatarFallback className="bg-primary/10 text-xl font-bold text-primary">{userInitials}</AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="mb-1 text-sm font-bold uppercase tracking-wide text-primary">My Haki Yangu workspace</p>
+                <h1 className="mb-1 text-2xl font-bold text-neutral-900">{userName}</h1>
+                <p className="mb-0 text-sm text-neutral-500">Cases, requests, appointments, and documents from your secure account.</p>
+              </div>
             </div>
-        );
-    }
 
-    if (!isSignedIn) {
-        return <Navigate to="/login" replace />;
-    }
+            <div className="flex flex-wrap items-center gap-3">
+              <Link to="/profile">
+                <Button variant="outline" size="sm">
+                  <Settings className="mr-2 h-4 w-4" />
+                  Settings
+                </Button>
+              </Link>
+              <Button variant="outline" size="sm" className="border-red-100 text-red-600 hover:bg-red-50 hover:text-red-700" onClick={() => signOut({ redirectUrl: '/' })}>
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign Out
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
 
-    // Redirect other roles to their dashboards
-    if (convexUser) {
-        if (convexUser.role === "admin") return <Navigate to="/admin" replace />;
-        if (convexUser.role === "paralegal") return <Navigate to="/dashboard/paralegal" replace />;
-        if (convexUser.role === "staff") return <Navigate to="/dashboard/staff" replace />;
-        if (convexUser.role === "stakeholder") return <Navigate to="/dashboard/stakeholder" replace />;
-    }
+      <section className="bg-neutral-50 py-8">
+        <Container>
+          <div className="mb-6 grid gap-4 md:grid-cols-4">
+            <MetricCard title="Active cases" value={activeCases} description="Cases still in progress" icon={<Scale className="h-5 w-5" />} />
+            <MetricCard title="Submitted requests" value={submittedRequests} description="Requests sent to LSF" icon={<MessageCircle className="h-5 w-5" />} />
+            <MetricCard title="Upcoming appointments" value={upcomingAppointments.length} description="Scheduled meetings" icon={<CalendarDays className="h-5 w-5" />} />
+            <MetricCard title="Case documents" value={documents?.length ?? 0} description="Documents in your cases" icon={<FileText className="h-5 w-5" />} />
+          </div>
 
-    const userName = convexUser?.name || clerkUser?.firstName || 'User';
-    const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-    const userImage = convexUser?.imageUrl || clerkUser?.imageUrl;
-
-    const quickActions = [
-        {
-            icon: MessageCircle,
-            title: 'Talk to Saada',
-            description: 'Get AI legal guidance',
-            href: '/sara',
-            bgColor: 'bg-purple-50',
-        },
-        {
-            icon: Scale,
-            title: 'Get Legal Help',
-            description: 'Find resources near you',
-            href: '/legal-help',
-            bgColor: 'bg-blue-50',
-        },
-        {
-            icon: Users,
-            title: 'Find a Paralegal',
-            description: 'Connect with experts',
-            href: '/legal-help#paralegals',
-            bgColor: 'bg-teal-50',
-        },
-        {
-            icon: Phone,
-            title: 'Contact Us',
-            description: 'Reach out to LSF',
-            href: '/contact',
-            bgColor: 'bg-orange-50',
-        },
-    ];
-
-    const resources = [
-        { icon: FileText, title: 'Publications', description: 'Reports & research', href: '/publications' },
-        { icon: BookOpen, title: 'Resources', description: 'Legal guides', href: '/resources' },
-        { icon: Heart, title: 'Success Stories', description: 'Impact stories', href: '/success-stories' },
-        { icon: BookMarked, title: 'Bookmarks', description: 'Saved items', href: '/bookmarks' },
-    ];
-
-    return (
-        <Layout>
-            {/* Simple Header */}
-            <section className="bg-white border-b border-gray-200 py-8">
-                <Container>
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="flex items-center gap-4">
-                            <Avatar className="h-16 w-16 border border-gray-200">
-                                <AvatarImage src={userImage} alt={userName} />
-                                <AvatarFallback className="bg-primary/10 text-primary text-xl font-bold">
-                                    {userInitials}
-                                </AvatarFallback>
-                            </Avatar>
-                            <div>
-                                <h1 className="text-2xl font-bold text-gray-900">{userName}</h1>
-                                <p className="text-gray-500 text-sm">Community Member Dashboard</p>
-                            </div>
+          <div className="grid gap-6 lg:grid-cols-3">
+            <div className="space-y-6 lg:col-span-2">
+              <Card className="border-neutral-100 shadow-sm">
+                <CardHeader className="border-b border-neutral-100">
+                  <CardTitle className="text-base">Current legal-help status</CardTitle>
+                </CardHeader>
+                <CardContent className="p-5">
+                  {loadingPrivateData ? (
+                    <p className="text-sm text-neutral-500">Loading your protected records...</p>
+                  ) : latestCase ? (
+                    <div className="rounded-2xl border border-primary/10 bg-primary/5 p-5">
+                      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <p className="mb-1 text-xs font-bold uppercase tracking-wide text-primary">Latest case</p>
+                          <h2 className="mb-0 text-xl font-bold text-neutral-900">{latestCase.publicId}</h2>
                         </div>
+                        <span className="rounded-full bg-white px-3 py-1 text-xs font-bold capitalize text-primary shadow-sm">
+                          {humanStatus(latestCase.status)}
+                        </span>
+                      </div>
+                      <p className="mb-4 text-sm leading-6 text-neutral-700">{latestCase.summary}</p>
+                      <Link className="mb-4 inline-block font-semibold text-primary underline" to={`/dashboard/user/cases/${latestCase._id}`}>Open case workspace</Link>
+                      <nav aria-label="My cases" className="mb-4 flex flex-wrap gap-3">{cases?.filter(item => item._id !== latestCase._id).map(item => <Link className="text-sm text-primary underline" key={item._id} to={`/dashboard/user/cases/${item._id}`}>{item.publicId}</Link>)}</nav>
+                      <div className="grid gap-3 text-sm md:grid-cols-3">
+                        <Info label="Priority" value={humanStatus(latestCase.priority)} />
+                        <Info label="Updated" value={formatDate(latestCase.updatedAt)} />
+                        <Info label="Documents" value={`${documents?.filter((doc) => doc.caseId === latestCase._id).length ?? 0}`} />
+                      </div>
+                    </div>
+                  ) : latestRequest ? (
+                    <div className="rounded-2xl border border-blue-100 bg-blue-50 p-5">
+                      <p className="mb-1 text-xs font-bold uppercase tracking-wide text-blue-700">Latest request</p>
+                      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                        <h2 className="mb-0 text-xl font-bold text-neutral-900">{latestRequest.publicId}</h2>
+                        <span className="rounded-full bg-white px-3 py-1 text-xs font-bold capitalize text-blue-700 shadow-sm">
+                          {humanStatus(latestRequest.status)}
+                        </span>
+                      </div>
+                      <p className="mb-0 text-sm text-neutral-700">LSF will review the request and create a case when it is accepted for support.</p>
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl border border-dashed border-neutral-200 bg-white p-6">
+                      <AlertCircle className="mb-3 h-6 w-6 text-primary" />
+                      <h2 className="mb-2 text-lg font-bold text-neutral-900">No private case yet</h2>
+                      <p className="mb-4 text-sm leading-6 text-neutral-600">
+                        Start a legal-help request when you are ready. Your private records will appear here after sign-in.
+                      </p>
+                      <Link to="/legal-help">
+                        <Button>
+                          Start legal-help request
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
 
+              <Card className="border-neutral-100 shadow-sm">
+                <CardHeader className="border-b border-neutral-100">
+                  <CardTitle className="text-base">Recent account activity</CardTitle>
+                </CardHeader>
+                <CardContent className="divide-y divide-neutral-100 p-0">
+                  {loadingPrivateData ? (
+                    <p className="p-5 text-sm text-neutral-500">Loading activity...</p>
+                  ) : recentItems.length ? (
+                    recentItems.map((item) => (
+                      <div key={item.key} className="flex flex-col gap-2 p-5 md:flex-row md:items-center md:justify-between">
+                        <div>
+                          <p className="mb-1 font-bold text-neutral-900">{item.title}</p>
+                          <p className="mb-0 text-sm text-neutral-500">{item.subtitle}</p>
+                        </div>
                         <div className="flex items-center gap-3">
-                            <Link to="/profile">
-                                <Button variant="outline" size="sm" className="bg-white hover:bg-gray-50">
-                                    <Settings className="h-4 w-4 mr-2" />
-                                    Settings
-                                </Button>
-                            </Link>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="bg-white hover:bg-gray-50 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-100"
-                                onClick={() => signOut()}
-                            >
-                                <LogOut className="h-4 w-4 mr-2" />
-                                Sign Out
-                            </Button>
+                          <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-bold capitalize text-neutral-700">{humanStatus(item.status)}</span>
+                          <span className="text-xs text-neutral-400">{formatDate(item.when)}</span>
                         </div>
-                    </div>
-                </Container>
-            </section>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="p-5 text-sm text-neutral-500">No case or request activity yet.</p>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
 
-            {/* Main Dashboard Content */}
-            <section className="py-8 bg-gray-50/50">
-                <Container>
-                    {/* Quick Actions Grid */}
-                    <div className="mb-8">
-                        <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {quickActions.map((action, index) => (
-                                <Link key={index} to={action.href}>
-                                    <Card className="h-full border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer bg-white">
-                                        <CardContent className="p-4 flex items-center gap-4">
-                                            <div className={`w-10 h-10 rounded-lg ${action.bgColor} flex items-center justify-center flex-shrink-0`}>
-                                                <action.icon className="h-5 w-5 text-gray-700" />
-                                            </div>
-                                            <div>
-                                                <h3 className="font-medium text-gray-900 text-sm">
-                                                    {action.title}
-                                                </h3>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
+            <div className="space-y-6">
+              <Card className="border-primary/10 bg-white shadow-sm">
+                <CardContent className="p-5">
+                  <ShieldCheck className="mb-3 h-6 w-6 text-primary" />
+                  <h3 className="mb-2 font-bold text-neutral-900">Privacy-first access</h3>
+                  <p className="mb-0 text-sm leading-6 text-neutral-600">
+                    This web dashboard reads only records linked to your account. Case details, documents, and appointment records stay scoped by Convex access rules.
+                  </p>
+                </CardContent>
+              </Card>
 
-                    {/* Two Column Layout */}
-                    <div className="grid lg:grid-cols-3 gap-6">
-                        {/* Main Content - Resources */}
-                        <div className="lg:col-span-2 space-y-6">
-                            <Card className="border border-gray-100 shadow-sm bg-white">
-                                <CardHeader className="pb-3 border-b border-gray-50">
-                                    <CardTitle className="text-base font-semibold text-gray-900">
-                                        Explore Resources
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="pt-4">
-                                    <div className="grid sm:grid-cols-2 gap-3">
-                                        {resources.map((resource, index) => (
-                                            <Link key={index} to={resource.href}>
-                                                <div className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 hover:border-primary/30 hover:bg-primary/5 transition-all group">
-                                                    <div className="w-8 h-8 rounded-md bg-gray-50 flex items-center justify-center group-hover:bg-white">
-                                                        <resource.icon className="h-4 w-4 text-gray-500 group-hover:text-primary" />
-                                                    </div>
-                                                    <span className="font-medium text-gray-700 text-sm group-hover:text-primary">{resource.title}</span>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                            </Card>
+              <Card className="border-neutral-100 bg-white shadow-sm">
+                <CardHeader className="border-b border-neutral-100">
+                  <CardTitle className="text-base">Next actions</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 p-5">
+                  <ActionLink to="/legal-help" icon={<Scale className="h-4 w-4" />} title="Request legal help" />
+                  <ActionLink to="/sara" icon={<MessageCircle className="h-4 w-4" />} title="Ask Saada for guidance" />
+                  <ActionLink to="/resources" icon={<BookOpen className="h-4 w-4" />} title="Read legal guides" />
+                  <ActionLink to="/contact" icon={<MessageCircle className="h-4 w-4" />} title="Contact LSF" />
+                </CardContent>
+              </Card>
 
-                            {/* Recent Activity Placeholder */}
-                            <Card className="border border-gray-100 shadow-sm bg-white">
-                                <CardHeader className="pb-3 border-b border-gray-50">
-                                    <CardTitle className="text-base font-semibold text-gray-900">
-                                        Recent Activity
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="text-center py-6 text-gray-500">
-                                        <p className="text-sm">No recent activity yet</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
-
-                        {/* Sidebar */}
-                        <div className="space-y-6">
-                            {/* Become a Paralegal CTA */}
-                            <Card className="border border-secondary-orange/20 shadow-sm bg-orange-50/50">
-                                <CardContent className="p-5">
-                                    <h3 className="font-semibold text-gray-900 mb-1">Become a Paralegal</h3>
-                                    <p className="text-xs text-gray-600 mb-3">
-                                        Join our network of community paralegals.
-                                    </p>
-                                    <Link to="/become-a-paralegal">
-                                        <Button className="w-full bg-secondary-orange hover:bg-secondary-orange/90 h-8 text-sm">
-                                            Apply Now
-                                        </Button>
-                                    </Link>
-                                </CardContent>
-                            </Card>
-
-                            {/* Help Card */}
-                            <Card className="border border-gray-100 shadow-sm bg-white">
-                                <CardContent className="p-5">
-                                    <h3 className="font-semibold text-gray-900 mb-3">Need Help?</h3>
-                                    <div className="space-y-2">
-                                        <Link to="/faq" className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary transition-colors">
-                                            <BookOpen className="h-4 w-4 text-gray-400" />
-                                            FAQ
-                                        </Link>
-                                        <Link to="/contact" className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary transition-colors">
-                                            <Phone className="h-4 w-4 text-gray-400" />
-                                            Contact Support
-                                        </Link>
-                                        <Link to="/sara" className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary transition-colors">
-                                            <MessageCircle className="h-4 w-4 text-gray-400" />
-                                            Chat with Saada
-                                        </Link>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
-                    </div>
-                </Container>
-            </section>
-        </Layout>
-    );
+              <Card className="border-neutral-100 bg-white shadow-sm">
+                <CardHeader className="border-b border-neutral-100">
+                  <CardTitle className="text-base">Upcoming appointments</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 p-5">
+                  {loadingPrivateData ? (
+                    <p className="text-sm text-neutral-500">Loading appointments...</p>
+                  ) : upcomingAppointments.length ? (
+                    upcomingAppointments.slice(0, 3).map((appointment) => (
+                      <div key={appointment._id} className="rounded-xl border border-neutral-100 p-3">
+                        <p className="mb-1 text-sm font-bold text-neutral-900">{formatDate(appointment.startsAt)}</p>
+                        <p className="mb-0 text-xs capitalize text-neutral-500">
+                          {appointment.mode.replaceAll("_", " ")} · {appointment.location ?? "Location to be confirmed"}
+                        </p>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-sm text-neutral-500">No upcoming appointments.</p>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </Layout>
+  );
 };
+
+function MetricCard({ title, value, description, icon }: { title: string; value: number; description: string; icon: React.ReactNode }) {
+  return (
+    <Card className="border-neutral-100 bg-white shadow-sm">
+      <CardContent className="p-5">
+        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">{icon}</div>
+        <p className="mb-1 text-2xl font-bold text-neutral-900">{value.toLocaleString()}</p>
+        <p className="mb-1 text-sm font-bold text-neutral-800">{title}</p>
+        <p className="mb-0 text-xs text-neutral-500">{description}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+function Info({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl bg-white p-3">
+      <p className="mb-1 text-xs font-bold uppercase tracking-wide text-neutral-400">{label}</p>
+      <p className="mb-0 font-bold capitalize text-neutral-900">{value}</p>
+    </div>
+  );
+}
+
+function ActionLink({ to, icon, title }: { to: string; icon: React.ReactNode; title: string }) {
+  return (
+    <Link to={to} className="flex items-center justify-between rounded-xl border border-neutral-100 px-3 py-3 text-sm font-bold text-neutral-700 transition hover:border-primary/30 hover:bg-primary/5 hover:text-primary">
+      <span className="flex items-center gap-2">{icon}{title}</span>
+      <ArrowRight className="h-4 w-4" />
+    </Link>
+  );
+}
 
 export default UserDashboard;

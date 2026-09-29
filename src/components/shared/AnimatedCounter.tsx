@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 interface AnimatedCounterProps {
@@ -19,8 +19,7 @@ const AnimatedCounter = ({
 }: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const countRef = useRef<HTMLSpanElement>(null);
-  const isVisible = useIntersectionObserver(countRef, { threshold: 0.3 });
+  const [countRef, isVisible] = useIntersectionObserver<HTMLSpanElement>({ threshold: 0.3 });
 
   useEffect(() => {
     if (isVisible && !hasStarted) {

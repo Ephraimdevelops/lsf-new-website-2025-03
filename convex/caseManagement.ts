@@ -66,6 +66,7 @@ const ASSIGNMENT_OFFER_EXPIRY_MS = 48 * 60 * 60 * 1000;
 const ASSIGNMENT_EXPIRY_BATCH_LIMIT = 50;
 const APPOINTMENT_REMINDER_WINDOW_MS = 24 * 60 * 60 * 1000;
 const APPOINTMENT_REMINDER_BATCH_LIMIT = 100;
+const operationalReviewRoles = ["admin", "staff", "supervisor", "safeguarding_officer"] as const;
 
 function publicReference(prefix: string, id: string, now: number) {
   const date = new Date(now).toISOString().slice(0, 10).replaceAll("-", "");
@@ -141,6 +142,26 @@ export const createFromRequest = mutation({
       addedAt: now,
     });
     await ctx.db.insert("case_conversations", { caseId, status: "active", createdAt: now });
+    const requestAttachments = await ctx.db
+      .query("request_attachments")
+      .withIndex("by_request", (q) => q.eq("requestId", request._id))
+      .collect();
+    for (const attachment of requestAttachments) {
+      await ctx.db.insert("case_documents", {
+        caseId,
+        uploaderId: request.ownerId,
+        storageId: attachment.storageId,
+        clientDocumentId: `request-${attachment._id}`,
+        name: attachment.name,
+        type: attachment.type,
+        size: attachment.size,
+        category: "evidence",
+        source: "upload",
+        note: attachment.note,
+        status: "pending_review",
+        createdAt: now,
+      });
+    }
     await addEvent(ctx, {
       caseId,
       actorId: user._id,
@@ -187,6 +208,57 @@ export const myCases = query({
     const merged = new Map(owned.map((record) => [record._id, record]));
     for (const record of participantCases) if (record) merged.set(record._id, record);
     return [...merged.values()].sort((a, b) => b.updatedAt - a.updatedAt);
+  },
+});
+
+export const myConversations = query({
+  args: {},
+  handler: async (ctx) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const owned = await ctx.db
+      .query("cases")
+      .withIndex("by_beneficiary", (q) => q.eq("beneficiaryId", user._id))
+      .collect();
+    const participantLinks = await ctx.db
+      .query("case_participants")
+      .withIndex("by_user", (q) => q.eq("userId", user._id))
+      .filter((q) => q.eq(q.field("status"), "active"))
+      .collect();
+    const participantCases = await Promise.all(participantLinks.map((link) => ctx.db.get(link.caseId)));
+    const records = new Map(owned.map((record) => [record._id, record]));
+    for (const record of participantCases) if (record) records.set(record._id, record);
+
+    const conversations = await Promise.all([...records.values()].map(async (record) => {
+      const conversation = await ctx.db
+        .query("case_conversations")
+        .withIndex("by_case", (q) => q.eq("caseId", record._id))
+        .unique();
+      const lastMessage = conversation
+        ? await ctx.db
+            .query("case_messages")
+            .withIndex("by_conversation_time", (q) => q.eq("conversationId", conversation._id))
+            .order("desc")
+            .first()
+        : null;
+      const sender = lastMessage ? await ctx.db.get(lastMessage.senderId) : null;
+      return {
+        caseId: record._id,
+        publicId: record.publicId,
+        summary: record.summary,
+        status: record.status,
+        updatedAt: lastMessage?.createdAt ?? record.updatedAt,
+        lastMessage: lastMessage
+          ? {
+              body: lastMessage.type === "voice" ? "Voice note" : lastMessage.body,
+              type: lastMessage.type,
+              createdAt: lastMessage.createdAt,
+              sentByCurrentUser: lastMessage.senderId === user._id,
+              senderName: sender?.name ?? "Haki Yangu team",
+            }
+          : null,
+      };
+    }));
+    return conversations.sort((a, b) => b.updatedAt - a.updatedAt);
   },
 });
 
@@ -258,17 +330,19 @@ async function notifySupervisors(
   ctx: Parameters<typeof writeAudit>[0],
   args: { type: string; resourceType: string; resourceId: string },
 ) {
-  const [legacyAdmins, legacyStaff, activeAdminRoles, activeSupervisorRoles] = await Promise.all([
+  const [legacyAdmins, legacyStaff, activeAdminRoles, activeSupervisorRoles, activeSafeguardingRoles] = await Promise.all([
     ctx.db.query("users").filter((q) => q.eq(q.field("role"), "admin")).collect(),
     ctx.db.query("users").filter((q) => q.eq(q.field("role"), "staff")).collect(),
     ctx.db.query("role_assignments").withIndex("by_role_status", (q) => q.eq("role", "admin").eq("status", "active")).collect(),
     ctx.db.query("role_assignments").withIndex("by_role_status", (q) => q.eq("role", "supervisor").eq("status", "active")).collect(),
+    ctx.db.query("role_assignments").withIndex("by_role_status", (q) => q.eq("role", "safeguarding_officer").eq("status", "active")).collect(),
   ]);
   const userIds = new Set([
     ...legacyAdmins.filter((user) => !user.isDeleted).map((user) => user._id),
     ...legacyStaff.filter((user) => !user.isDeleted).map((user) => user._id),
     ...activeAdminRoles.map((role) => role.userId),
     ...activeSupervisorRoles.map((role) => role.userId),
+    ...activeSafeguardingRoles.map((role) => role.userId),
   ]);
   for (const userId of userIds) {
     await createNotification(ctx, {
@@ -622,7 +696,8 @@ export const getCase = query({
         };
       }));
     const closureReadiness = isBeneficiary ? null : await getClosureReadiness(ctx, args.caseId);
-    return { case: access.caseRecord, events: visibleEvents, appointments, outcome, feedback, reviewRequests, assignmentHistory, closureReadiness };
+    const tasks = isBeneficiary ? [] : await ctx.db.query("case_tasks").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).order("desc").collect();
+    return { case: access.caseRecord, events: visibleEvents, appointments, outcome, feedback, reviewRequests, assignmentHistory, closureReadiness, tasks };
   },
 });
 
@@ -847,6 +922,50 @@ export const assignmentInbox = query({
   },
 });
 
+export const myTasks = query({
+  args: { status: v.optional(v.union(v.literal("open"), v.literal("done"), v.literal("cancelled"))) },
+  handler: async (ctx, args) => {
+    const { user } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+    const tasks = args.status
+      ? await ctx.db.query("case_tasks").withIndex("by_assignee_status", (q) => q.eq("assigneeId", user._id).eq("status", args.status!)).collect()
+      : await ctx.db.query("case_tasks").withIndex("by_assignee_status", (q) => q.eq("assigneeId", user._id).eq("status", "open")).collect();
+    return await Promise.all(tasks.sort((a, b) => (a.dueAt ?? Number.MAX_SAFE_INTEGER) - (b.dueAt ?? Number.MAX_SAFE_INTEGER)).map(async (task) => ({ task, case: await ctx.db.get(task.caseId) })));
+  },
+});
+
+export const createTask = mutation({
+  args: { caseId: v.id("cases"), title: v.string(), note: v.optional(v.string()), dueAt: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const access = await requireCaseWorker(ctx, args.caseId);
+    const roles = await getActorRoleSet(ctx, access.user._id);
+    if (!["paralegal", "provider_staff", "admin", "supervisor"].some((role) => roles.has(role as never))) throw new ConvexError({ code: "FORBIDDEN", message: "Only case workers can create tasks" });
+    const taskId = await ctx.db.insert("case_tasks", { caseId: args.caseId, assigneeId: access.user._id, createdBy: access.user._id, title: normalizeText(args.title, "Task", 180), note: normalizeOptionalText(args.note, "Task note", 500), status: "open", dueAt: args.dueAt, createdAt: Date.now() });
+    await addEvent(ctx, { caseId: args.caseId, actorId: access.user._id, type: "task_created", audience: "workers", publicLabelKey: "case.timeline.taskCreated", metadata: { taskId } });
+    return taskId;
+  },
+});
+
+export const completeTask = mutation({
+  args: { taskId: v.id("case_tasks") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const task = await ctx.db.get(args.taskId);
+    if (!task || task.assigneeId !== user._id) throw new ConvexError({ code: "FORBIDDEN", message: "Task access denied" });
+    if (task.status === "done") return { status: task.status };
+    await ctx.db.patch(task._id, { status: "done", completedAt: Date.now() });
+    await addEvent(ctx, { caseId: task.caseId, actorId: user._id, type: "task_completed", audience: "workers", publicLabelKey: "case.timeline.taskCompleted", metadata: { taskId: task._id } });
+    return { status: "done" as const };
+  },
+});
+
+export const listTasksForCase = query({
+  args: { caseId: v.id("cases") },
+  handler: async (ctx, args) => {
+    await requireCaseWorker(ctx, args.caseId);
+    return await ctx.db.query("case_tasks").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).order("desc").collect();
+  },
+});
+
 export const respondToAssignment = mutation({
   args: {
     assignmentId: v.id("case_assignments"),
@@ -1041,11 +1160,23 @@ export const listMessages = query({
       .withIndex("by_case", (q) => q.eq("caseId", args.caseId))
       .unique();
     if (!conversation) return [];
-    return await ctx.db
+    const messages = await ctx.db
       .query("case_messages")
       .withIndex("by_conversation_time", (q) => q.eq("conversationId", conversation._id))
       .order("asc")
       .take(200);
+    return await Promise.all(messages.map(async (message) => ({
+      ...message,
+      audioUrl: message.type === "voice" && message.storageId ? await ctx.storage.getUrl(message.storageId) : null,
+    })));
+  },
+});
+
+export const generateVoiceMessageUploadUrl = mutation({
+  args: { caseId: v.id("cases") },
+  handler: async (ctx, args) => {
+    await requireCaseAccess(ctx, args.caseId);
+    return await ctx.storage.generateUploadUrl();
   },
 });
 
@@ -1323,6 +1454,38 @@ export const sendMessage = mutation({
       });
     }
     await writeAudit(ctx, user._id, "message.sent", "case_message", messageId, { caseId: caseRecord._id });
+    return messageId;
+  },
+});
+
+export const sendVoiceMessage = mutation({
+  args: {
+    caseId: v.id("cases"),
+    clientMessageId: v.string(),
+    storageId: v.id("_storage"),
+    mimeType: v.string(),
+    durationMs: v.number(),
+  },
+  handler: async (ctx, args) => {
+    const { user, caseRecord } = await requireCaseAccess(ctx, args.caseId);
+    const clientMessageId = normalizeText(args.clientMessageId, "Client message ID", 100);
+    const existing = await ctx.db.query("case_messages").withIndex("by_sender_client", (q) => q.eq("senderId", user._id).eq("clientMessageId", clientMessageId)).unique();
+    if (existing) return existing._id;
+    if (args.durationMs < 500 || args.durationMs > 120_000) throw new ConvexError({ code: "VALIDATION", message: "Voice notes must be between 1 second and 2 minutes" });
+    const metadata = await ctx.db.system.get(args.storageId);
+    if (!metadata) throw new ConvexError({ code: "NOT_FOUND", message: "Uploaded voice note not found" });
+    const mimeType = (metadata.contentType || args.mimeType).toLowerCase();
+    if (!mimeType.startsWith("audio/") || metadata.size > 8 * 1024 * 1024) throw new ConvexError({ code: "VALIDATION", message: "Voice note must be audio and no larger than 8MB" });
+    const conversation = await ctx.db.query("case_conversations").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).unique();
+    if (!conversation || conversation.status !== "active") throw new ConvexError({ code: "CONFLICT", message: "Case conversation is unavailable" });
+    const now = Date.now();
+    const messageId = await ctx.db.insert("case_messages", { conversationId: conversation._id, caseId: args.caseId, senderId: user._id, clientMessageId, type: "voice", body: "Voice note", storageId: args.storageId, mimeType, durationMs: Math.trunc(args.durationMs), createdAt: now });
+    const participants = await ctx.db.query("case_participants").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).filter((q) => q.eq(q.field("status"), "active")).collect();
+    for (const participant of participants) {
+      if (participant.userId === user._id) continue;
+      await createNotification(ctx, { userId: participant.userId, type: "message.received", titleKey: "notifications.update.title", bodyKey: "notifications.messageReceived.body", resourceType: "case", resourceId: caseRecord._id });
+    }
+    await writeAudit(ctx, user._id, "message.voice_sent", "case_message", messageId, { caseId: caseRecord._id, durationMs: Math.trunc(args.durationMs) });
     return messageId;
   },
 });
@@ -1796,23 +1959,32 @@ export const requestCaseReview = mutation({
 export const staffReviewRequests = query({
   args: { status: v.optional(reviewRequestStatusValidator) },
   handler: async (ctx, args) => {
-    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const actor = await requireAnyRole(ctx, operationalReviewRoles);
+    const actorRoles = await getActorRoleSet(ctx, actor.user._id);
+    const safeguardingOnly = actorRoles.has("safeguarding_officer") &&
+      !["admin", "staff", "supervisor"].some((role) => actorRoles.has(role));
     const status = args.status ?? "submitted";
     const reviews = await ctx.db
       .query("case_review_requests")
       .withIndex("by_status", (q) => q.eq("status", status))
       .order("desc")
       .take(100);
-    return await Promise.all(reviews.map(async (review) => ({
-      review,
-      case: await ctx.db.get(review.caseId),
-      requester: await ctx.db.get(review.requestedBy),
-      participants: await ctx.db
-        .query("case_participants")
-        .withIndex("by_case", (q) => q.eq("caseId", review.caseId))
-        .filter((q) => q.eq(q.field("status"), "active"))
-        .collect(),
-    })));
+    const rows = await Promise.all(reviews.map(async (review) => {
+      const caseRecord = await ctx.db.get(review.caseId);
+      return {
+        review,
+        case: caseRecord,
+        requester: await ctx.db.get(review.requestedBy),
+        participants: await ctx.db
+          .query("case_participants")
+          .withIndex("by_case", (q) => q.eq("caseId", review.caseId))
+          .filter((q) => q.eq(q.field("status"), "active"))
+          .collect(),
+      };
+    }));
+    return safeguardingOnly
+      ? rows.filter((row) => row.review.reason === "safety_concern" || row.case?.priority === "safeguarding")
+      : rows;
   },
 });
 
@@ -1823,9 +1995,16 @@ export const resolveCaseReviewRequest = mutation({
     resolutionNote: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const { user } = await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const { user } = await requireAnyRole(ctx, operationalReviewRoles);
     const review = await ctx.db.get(args.reviewRequestId);
     if (!review) throw new ConvexError({ code: "NOT_FOUND", message: "Review request not found" });
+    const actorRoles = await getActorRoleSet(ctx, user._id);
+    const caseRecord = await ctx.db.get(review.caseId);
+    const safeguardingOnly = actorRoles.has("safeguarding_officer") &&
+      !["admin", "staff", "supervisor"].some((role) => actorRoles.has(role));
+    if (safeguardingOnly && review.reason !== "safety_concern" && caseRecord?.priority !== "safeguarding") {
+      throw new ConvexError({ code: "FORBIDDEN", message: "Safeguarding officers can resolve safety-sensitive reviews only" });
+    }
     if (["resolved", "declined"].includes(review.status)) {
       return { status: review.status };
     }

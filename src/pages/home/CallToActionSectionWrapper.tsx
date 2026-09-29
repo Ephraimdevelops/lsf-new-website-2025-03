@@ -1,5 +1,5 @@
 
-import CallToActionSection from '@/components/home/CallToActionSection';
+import CallToActionSection from '@/components/home/ModernCallToAction';
 
 const CallToActionSectionWrapper = () => {
   return <CallToActionSection />;

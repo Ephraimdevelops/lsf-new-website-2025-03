@@ -28,7 +28,7 @@ const AdminNews = () => {
   const [openForm, setOpenForm] = useState(false);
   const [editingNews, setEditingNews] = useState<NewsItem | null>(null);
 
-  const newsItems = useQuery(api.news.get) || [];
+  const newsItems = useQuery(api.news.get, {}) || [];
   const deleteNews = useMutation(api.news.remove);
 
   const filteredNews = newsItems.filter(item =>

@@ -16,12 +16,14 @@ import {
     User, Settings, LogOut, LayoutDashboard, Shield, Scale,
     Users, ChevronDown, Sparkles
 } from 'lucide-react';
+import { dashboardPath } from '@/components/auth/dashboardPath';
 import { cn } from '@/lib/utils';
 
 const UserProfileButton = () => {
     const { isSignedIn, isLoaded } = useAuth();
     const { user: clerkUser } = useUser();
     const convexUser = useQuery(api.users.current);
+    const access = useQuery(api.users.currentAccess);
     const navigate = useNavigate();
 
     // Loading state
@@ -41,7 +43,7 @@ const UserProfileButton = () => {
                     className="text-sm font-medium hover:text-primary flex items-center gap-2 px-3 group transition-all"
                 >
                     <User className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
-                    <span className="tracking-tight">Portal</span>
+                    <span className="tracking-tight">Log in</span>
                 </Button>
             </Link>
         );
@@ -95,6 +97,7 @@ const UserProfileButton = () => {
             <DropdownMenuTrigger asChild>
                 <Button
                     variant="ghost"
+                    aria-label="Open account menu"
                     className="relative h-10 w-10 rounded-full p-0 hover:bg-gray-100/80 transition-all group"
                 >
                     <Avatar className="h-9 w-9 border border-gray-200 shadow-sm group-hover:shadow-md transition-shadow">
@@ -139,7 +142,7 @@ const UserProfileButton = () => {
                 {/* Dashboard Link */}
                 <DropdownMenuItem
                     className="p-3 cursor-pointer rounded-lg hover:bg-primary/5 focus:bg-primary/5"
-                    onClick={() => navigate(currentRole.dashboardPath)}
+                    onClick={() => navigate(dashboardPath(access?.roles))}
                 >
                     <LayoutDashboard className="mr-3 h-4 w-4 text-primary" />
                     <span className="font-medium">My Dashboard</span>
@@ -157,7 +160,7 @@ const UserProfileButton = () => {
                 <DropdownMenuSeparator className="my-2" />
 
                 {/* Sign Out */}
-                <SignOutButton>
+                <SignOutButton redirectUrl="/">
                     <DropdownMenuItem className="p-3 cursor-pointer rounded-lg hover:bg-red-50 focus:bg-red-50 text-red-600">
                         <LogOut className="mr-3 h-4 w-4" />
                         <span className="font-medium">Sign Out</span>

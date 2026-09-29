@@ -1,7 +1,7 @@
 import Layout from '@/components/layout/Layout';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
-import { Accessibility, Eye, Ear, MousePointer, Keyboard } from 'lucide-react';
+import { Accessibility as AccessibilityIcon, Eye, Ear, MousePointer, Keyboard } from 'lucide-react';
 
 const Accessibility = () => {
   return (
@@ -12,7 +12,7 @@ const Accessibility = () => {
             {/* Header */}
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-4 bg-primary/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-primary/20">
-                <Accessibility className="h-6 w-6 text-primary" />
+                <AccessibilityIcon className="h-6 w-6 text-primary" />
                 <Typography variant="overline" className="text-primary font-bold text-lg tracking-wider">
                   Accessibility Statement
                 </Typography>

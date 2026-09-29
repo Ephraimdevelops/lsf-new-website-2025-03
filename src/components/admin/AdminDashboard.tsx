@@ -15,7 +15,8 @@ import {
   Mail,
   MessageSquare,
   Scale,
-  Bot
+  Bot,
+  ShieldCheck
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import OpsDashboard from './OpsDashboard';
@@ -32,6 +33,8 @@ import AdminFormSubmissions from './AdminFormSubmissions';
 import AdminParalegals from './AdminParalegals';
 import AdminSaraAnalytics from './AdminSaraAnalytics';
 import AdminTeam from './AdminTeam';
+import AdminAccess from './AdminAccess';
+import AdminPlatform from './AdminPlatform';
 import { useNavigate } from 'react-router-dom';
 
 interface AdminDashboardProps {
@@ -44,7 +47,9 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
 
   const menuItems = [
     { id: 'home', label: 'Dashboard', icon: Home },
+    { id: 'platform', label: 'Haki Yangu Platform', icon: ShieldCheck },
     { id: 'haki-yangu-ops', label: 'Haki Yangu Ops', icon: Scale },
+    { id: 'access', label: 'Users & Access', icon: Users },
     { id: 'hero-slides', label: 'Hero Slides', icon: Presentation },
     { id: 'news', label: 'News', icon: FileText },
     { id: 'stories', label: 'Success Stories', icon: Heart },
@@ -63,6 +68,10 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
     switch (activeTab) {
       case 'home':
         return <AdminHome />;
+      case 'access':
+        return <AdminAccess />;
+      case 'platform':
+        return <AdminPlatform openTab={setActiveTab} navigate={navigate} />;
       case 'hero-slides':
         return <AdminHeroSlides />;
       case 'news':
@@ -103,7 +112,7 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6">
+          <nav className="min-h-0 flex-1 overflow-y-auto px-4 py-6">
             <ul className="space-y-2">
               {menuItems.map((item) => {
                 const IconComponent = item.icon;

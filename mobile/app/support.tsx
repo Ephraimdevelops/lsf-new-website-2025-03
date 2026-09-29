@@ -7,7 +7,7 @@ import { colors, radius, spacing, type } from "../src/theme";
 
 const supportActions = [
   { key: "request", icon: "document-text-outline", route: "/intake", sw: "Omba msaada", en: "Request help", swHelp: "Tuma maelezo ya tatizo lako kwa LSF.", enHelp: "Send your issue details to LSF." },
-  { key: "sara", icon: "sparkles-outline", route: "/sara", sw: "Uliza Haki", en: "Ask Haki", swHelp: "Pata taarifa rahisi na hatua zinazofuata.", enHelp: "Get simple information and next steps." },
+  { key: "sara", icon: "sparkles-outline", route: "/sara", sw: "Uliza Saada", en: "Ask Saada", swHelp: "Pata taarifa rahisi na hatua zinazofuata.", enHelp: "Get simple information and next steps." },
   { key: "safety", icon: "warning-outline", route: "/safety", sw: "Mpango wa usalama", en: "Safety plan", swHelp: "Anza hapa kama hali ni nyeti au hatari.", enHelp: "Start here if the situation is sensitive or unsafe." },
   { key: "learn", icon: "book-outline", route: "/(tabs)/learn", sw: "Soma miongozo", en: "Read guides", swHelp: "Elewa haki zako kwa lugha rahisi.", enHelp: "Understand your rights in plain language." },
 ] as const;
@@ -45,14 +45,14 @@ export default function SupportScreen() {
 
 const styles = StyleSheet.create({
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  headerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
+  headerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   headerSpacer: { width: 26 },
-  title: { marginTop: spacing.xl, fontFamily: type.bold, color: colors.charcoal, fontSize: 30, lineHeight: 36 },
+  title: { marginTop: spacing.xl, fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 30, lineHeight: 36 },
   body: { marginTop: spacing.sm, fontFamily: type.regular, color: colors.inkMuted, fontSize: 15, lineHeight: 23 },
   list: { marginTop: spacing.xl, gap: spacing.md },
   card: { flexDirection: "row", alignItems: "center", gap: spacing.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg },
   iconChip: { width: 46, height: 46, borderRadius: 23, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
   copy: { flex: 1 },
-  cardTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 15 },
-  cardBody: { marginTop: 3, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 18 },
+  cardTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 15 },
+  cardBody: { marginTop: 3, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 18 },
 });

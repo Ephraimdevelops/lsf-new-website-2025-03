@@ -14,6 +14,7 @@ const SaraTrain = () => {
     const [file, setFile] = useState<File | null>(null);
     const [isUploading, setIsUploading] = useState(false);
     const [progress, setProgress] = useState("");
+    const [source, setSource] = useState({ publisher: "", sourceUrl: "", jurisdiction: "national", language: "bilingual", contentCategory: "Law / legal guidance", versionLabel: "", effectiveDate: "", reviewDate: "" });
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -49,9 +50,17 @@ const SaraTrain = () => {
             await ingestDocument({
                 storageId,
                 title: file.name,
+                publisher: source.publisher,
+                sourceUrl: source.sourceUrl || undefined,
+                jurisdiction: source.jurisdiction as "national",
+                language: source.language as "bilingual",
+                contentCategory: source.contentCategory,
+                versionLabel: source.versionLabel,
+                effectiveDate: source.effectiveDate || undefined,
+                reviewDueAt: new Date(`${source.reviewDate}T12:00:00`).getTime(),
             });
 
-            toast.success("Document successfully added to Saada's knowledge base!");
+            toast.success("Source uploaded. It will stay out of Saada answers until a different administrator approves it.");
             setFile(null);
             setProgress("");
         } catch (error) {
@@ -88,13 +97,21 @@ const SaraTrain = () => {
                     <div className="bg-yellow-50 p-4 rounded-lg flex gap-3 text-sm text-yellow-800">
                         <AlertCircle className="h-5 w-5 shrink-0" />
                         <p>
-                            <strong>Note:</strong> Uploaded documents are immediately processed.
-                            Text is extracted, chunked, and embedded into Saada's vector database.
-                            She will use this knowledge to answer future questions.
+                            <strong>Review gate:</strong> Uploaded PDFs are parsed and indexed for review. Saada cannot use them in public answers until a different administrator approves the source.
                         </p>
                     </div>
                     {/* Upload Section */}
                     <div className="mb-12">
+                        <div className="grid gap-3 sm:grid-cols-2 mb-5">
+                            <input value={source.publisher} onChange={(e) => setSource({ ...source, publisher: e.target.value })} placeholder="Official publisher / authority *" className="rounded-lg border px-3 py-2" />
+                            <input value={source.sourceUrl} onChange={(e) => setSource({ ...source, sourceUrl: e.target.value })} placeholder="Official source URL (recommended)" className="rounded-lg border px-3 py-2" />
+                            <select value={source.jurisdiction} onChange={(e) => setSource({ ...source, jurisdiction: e.target.value })} className="rounded-lg border px-3 py-2"><option value="national">National</option><option value="tanzania_mainland">Tanzania Mainland</option><option value="zanzibar">Zanzibar</option><option value="other">Other</option></select>
+                            <select value={source.language} onChange={(e) => setSource({ ...source, language: e.target.value })} className="rounded-lg border px-3 py-2"><option value="bilingual">Kiswahili & English</option><option value="sw">Kiswahili</option><option value="en">English</option><option value="other">Other</option></select>
+                            <input value={source.contentCategory} onChange={(e) => setSource({ ...source, contentCategory: e.target.value })} placeholder="Category *" className="rounded-lg border px-3 py-2" />
+                            <input value={source.versionLabel} onChange={(e) => setSource({ ...source, versionLabel: e.target.value })} placeholder="Edition / version / gazette reference *" className="rounded-lg border px-3 py-2" />
+                            <label className="text-sm text-gray-600">Effective date<input type="date" value={source.effectiveDate} onChange={(e) => setSource({ ...source, effectiveDate: e.target.value })} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
+                            <label className="text-sm text-gray-600">Review due *<input type="date" value={source.reviewDate} onChange={(e) => setSource({ ...source, reviewDate: e.target.value })} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
+                        </div>
                         <div className={`border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-300 ${isUploading ? 'border-primary/50 bg-primary/5' : 'border-gray-200 hover:border-primary hover:bg-gray-50 hover:shadow-lg'}`}>
                             <input
                                 type="file"
@@ -126,6 +143,7 @@ const SaraTrain = () => {
                             <div className="mt-6 flex justify-center">
                                 <Button
                                     onClick={handleUpload}
+                                    disabled={!source.publisher.trim() || !source.versionLabel.trim() || !source.reviewDate}
                                     size="lg"
                                     className="bg-primary hover:bg-primary/90 text-white px-8"
                                 >
@@ -161,12 +179,15 @@ const SaraTrain = () => {
 // Sub-component for System Instructions
 const SystemInstructionsEditor = () => {
     const [prompt, setPrompt] = useState("");
+    const [changeNote, setChangeNote] = useState("");
+    const [reviewNotes, setReviewNotes] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState(false);
 
     // @ts-ignore
-    const currentPrompt = useQuery(api.sara.getConfig, { key: "system_prompt" });
-    // @ts-ignore
-    const updateConfig = useMutation(api.sara.updateConfig);
+    const versions = useQuery(api.sara.listPromptVersions);
+    const submitPrompt = useMutation(api.sara.submitPromptVersion);
+    const reviewPrompt = useMutation(api.sara.reviewPromptVersion);
+    const currentPrompt = versions?.find((item) => item.status === "approved")?.prompt ?? "";
 
     // Load initial prompt
     useEffect(() => {
@@ -178,8 +199,8 @@ const SystemInstructionsEditor = () => {
     const handleSave = async () => {
         setLoading(true);
         try {
-            await updateConfig({ key: "system_prompt", value: prompt });
-            toast.success("Instructions updated successfully!");
+            await submitPrompt({ prompt, changeNote });
+            toast.success("Prompt submitted for independent approval."); setChangeNote("");
         } catch (error) {
             toast.error("Failed to update instructions.");
         } finally {
@@ -195,7 +216,7 @@ const SystemInstructionsEditor = () => {
                 </div>
                 <div>
                     <h2 className="text-xl font-bold text-gray-900">System Instructions</h2>
-                    <p className="text-gray-500 text-sm">Define Saada's personality and rules.</p>
+                    <p className="text-gray-500 text-sm">Submit versioned instructions. A different administrator must approve them before use.</p>
                 </div>
             </div>
 
@@ -205,11 +226,12 @@ const SystemInstructionsEditor = () => {
                 placeholder="You are Saada, a helpful legal assistant..."
                 className="w-full h-64 p-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-mono text-sm leading-relaxed resize-y mb-4"
             />
+            <input value={changeNote} onChange={(e) => setChangeNote(e.target.value)} placeholder="Why this prompt is changing (10+ characters)" className="mb-4 w-full rounded-lg border px-3 py-2" />
 
             <div className="flex justify-end">
                 <button
                     onClick={handleSave}
-                    disabled={loading || prompt === currentPrompt}
+                    disabled={loading || prompt.length < 100 || changeNote.trim().length < 10}
                     className="flex items-center gap-2 bg-gray-900 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {loading ? (
@@ -217,9 +239,10 @@ const SystemInstructionsEditor = () => {
                     ) : (
                         <Save className="w-4 h-4" />
                     )}
-                    Save Instructions
+                    Submit for approval
                 </button>
             </div>
+            <div className="mt-6 space-y-3">{versions?.map((version) => <div key={version._id} className="rounded-xl border p-4 text-sm"><div className="flex justify-between"><strong>Version {version.version}</strong><span>{version.status}</span></div><p className="mt-1 text-gray-600">{version.changeNote}</p>{version.status === "pending" && <div className="mt-3 flex gap-2"><input value={reviewNotes[version._id] ?? ""} onChange={(e) => setReviewNotes({ ...reviewNotes, [version._id]: e.target.value })} placeholder="Independent review reason" className="flex-1 rounded-lg border px-3 py-2" /><Button variant="outline" disabled={(reviewNotes[version._id]?.trim().length ?? 0) < 10} onClick={() => void reviewPrompt({ id: version._id, decision: "approved", reviewNote: reviewNotes[version._id] })}>Approve</Button><Button variant="outline" disabled={(reviewNotes[version._id]?.trim().length ?? 0) < 10} onClick={() => void reviewPrompt({ id: version._id, decision: "rejected", reviewNote: reviewNotes[version._id] })}>Reject</Button></div>}</div>)}</div>
         </div>
     );
 };
@@ -227,6 +250,19 @@ const SystemInstructionsEditor = () => {
 const DocumentList = () => {
     const documents = useQuery(api.sara.getDocuments);
     const deleteDocument = useMutation(api.sara.deleteDocument);
+    const reviewDocument = useMutation(api.sara.reviewDocument);
+    const [reviewNotes, setReviewNotes] = useState<Record<string, string>>({});
+    const [reviewingId, setReviewingId] = useState<string | null>(null);
+
+    const handleReview = async (id: any, decision: "approved" | "rejected") => {
+        setReviewingId(id);
+        try {
+            await reviewDocument({ id, decision, note: reviewNotes[id] || "" });
+            toast.success(decision === "approved" ? "Source approved for Saada." : "Source rejected and excluded from Saada.");
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Review failed.");
+        } finally { setReviewingId(null); }
+    };
     const [deletingId, setDeletingId] = useState<string | null>(null);
 
     const handleDelete = async (id: any, title: string) => {
@@ -253,7 +289,7 @@ const DocumentList = () => {
                 </div>
                 <div>
                     <h2 className="text-xl font-bold text-gray-900">Knowledge Base</h2>
-                    <p className="text-gray-500 text-sm">Manage documents Saada has been trained on.</p>
+                    <p className="text-gray-500 text-sm">Review source PDFs and control which documents Saada can use.</p>
                 </div>
             </div>
 
@@ -264,7 +300,7 @@ const DocumentList = () => {
             ) : (
                 <div className="space-y-3">
                     {documents.map((doc: any) => (
-                        <div key={doc._id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100 group hover:border-blue-100 transition-all">
+                        <div key={doc._id} className="p-4 bg-gray-50 rounded-xl border border-gray-100 group hover:border-blue-100 transition-all">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm text-gray-400">
                                     <FileText className="w-5 h-5" />
@@ -276,9 +312,15 @@ const DocumentList = () => {
                                     </p>
                                 </div>
                             </div>
+                            <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                                <span className={`rounded-full px-3 py-1 font-bold ${doc.approvalStatus === "approved" ? "bg-green-100 text-green-800" : doc.approvalStatus === "rejected" ? "bg-red-100 text-red-800" : "bg-amber-100 text-amber-800"}`}>{doc.approvalStatus ?? "Needs legacy review"}</span>
+                                {doc.sourcePdfUrl && <a href={doc.sourcePdfUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary underline">Open source PDF for review</a>}
+                            </div>
+                            {doc.approvalStatus !== "approved" && <div className="mt-3 flex flex-wrap gap-2"><input aria-label={`Review reason for ${doc.title}`} value={reviewNotes[doc._id] ?? ""} onChange={(event) => setReviewNotes((current) => ({ ...current, [doc._id]: event.target.value }))} placeholder="Record review reason (10+ characters)" className="min-w-64 flex-1 rounded-lg border border-gray-200 px-3 py-2 text-sm" /><Button variant="outline" disabled={reviewingId === doc._id || (reviewNotes[doc._id]?.trim().length ?? 0) < 10} onClick={() => void handleReview(doc._id, "approved")}>Approve</Button><Button variant="outline" disabled={reviewingId === doc._id || (reviewNotes[doc._id]?.trim().length ?? 0) < 10} onClick={() => void handleReview(doc._id, "rejected")}>Reject</Button></div>}
                             <Button
                                 variant="ghost"
                                 size="icon"
+                                aria-label={`Delete ${doc.title}`}
                                 onClick={() => handleDelete(doc._id, doc.title)}
                                 disabled={deletingId === doc._id}
                                 className="text-gray-400 hover:text-red-500 hover:bg-red-50"

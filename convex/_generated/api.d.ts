@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as accessRequests from "../accessRequests.js";
 import type * as admin from "../admin.js";
 import type * as analytics from "../analytics.js";
 import type * as caseManagement from "../caseManagement.js";
@@ -41,6 +42,7 @@ import type * as programs from "../programs.js";
 import type * as publications from "../publications.js";
 import type * as quickLinks from "../quickLinks.js";
 import type * as referrals from "../referrals.js";
+import type * as reporting from "../reporting.js";
 import type * as resend from "../resend.js";
 import type * as sara from "../sara.js";
 import type * as sara_actions from "../sara_actions.js";
@@ -62,6 +64,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  accessRequests: typeof accessRequests;
   admin: typeof admin;
   analytics: typeof analytics;
   caseManagement: typeof caseManagement;
@@ -95,6 +98,7 @@ declare const fullApi: ApiFromModules<{
   publications: typeof publications;
   quickLinks: typeof quickLinks;
   referrals: typeof referrals;
+  reporting: typeof reporting;
   resend: typeof resend;
   sara: typeof sara;
   sara_actions: typeof sara_actions;

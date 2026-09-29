@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "researchedOn": "2026-09-09",
+  "status": "research_staging_not_published",
+  "note": "Source-observed facts and original draft guidance. No entry constitutes partner accreditation, legal approval, confirmed availability or a backend import. Null means unknown.",
+  "sources": {
+    "cma-faq": "https://cma.go.tz/faqs",
+    "legal-aid": "https://oagmis.oag.go.tz/portal/acts/revised/126/download",
+    "constitutions": "https://oagmis.oag.go.tz/public",
+    "privacy": "https://www.pdpc.go.tz/media/media/THE_PERSONAL_DATA_PROTECTION_ACT.pdf",
+    "safe-home-guideline": "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+    "tawla": "https://www.tawla.or.tz/",
+    "tawla-contact": "https://www.tawla.or.tz/contact-us/",
+    "lhrc": "https://legalaid.humanrights.or.tz/en/contact",
+    "wlac": "https://wlac.or.tz/contact-feedback.php",
+    "wildaf": "https://wildaftanzania.or.tz/legal-aid-clinic/",
+    "wotesawa": "https://www.wotesawa.or.tz/about-us",
+    "kiwohede": "https://kiwohede.or.tz/kiota-uk-2/",
+    "rita": "https://rita.go.tz/erita.php"
+  },
+  "offices": [
+    {"id":"tawla-arusha","name":"TAWLA Arusha","phone":"+255762973419","email":"officearusha@tawla.or.tz","address":"St. James Street, Kaloleni Furniture Collections Building, fourth floor, room 402","sources":["tawla","tawla-contact"],"status":"public_source_observed","capacity":null},
+    {"id":"tawla-dodoma","name":"TAWLA Dodoma","phone":"+255719481794","email":"officedodoma@tawla.or.tz","address":"Ilazo East, Plot 25 Block C","sources":["tawla","tawla-contact"],"status":"public_source_observed","capacity":null},
+    {"id":"tawla-mbeya","name":"TAWLA Mbeya","phone":"+255652392999","email":"officembeya@tawla.or.tz","address":"Sae, Plot 67 Block X","sources":["tawla","tawla-contact"],"status":"public_source_observed","capacity":null},
+    {"id":"tawla-mwanza","name":"TAWLA Mwanza","phone":null,"email":"officemwanza@tawla.or.tz","sources":["tawla","tawla-contact"],"status":"conflicting_phone","observations":["Homepage: +255688103222","Contact page: +255756330323"],"capacity":null},
+    {"id":"tawla-tanga","name":"TAWLA Tanga","phone":null,"email":"officetanga@tawla.or.tz","sources":["tawla","tawla-contact"],"status":"country_code_and_address_conflict","observations":["Published phone starts +225; do not silently change to +255","Homepage and contact page give different street numbers"],"capacity":null},
+    {"id":"tawla-hq","name":"TAWLA head office","phone":"0800751010","email":"info@tawla.or.tz","address":null,"sources":["tawla","tawla-contact"],"status":"address_conflict_phone_source_observed","capacity":null},
+    {"id":"lhrc-kinondoni","name":"LHRC Kinondoni Legal Aid Clinic","phone":"+255717143784","email":"lhrckinondoni@humanrights.or.tz","address":"Isere Street, House 660, Kinondoni, Dar es Salaam","sources":["lhrc"],"status":"public_source_observed","capacity":null},
+    {"id":"lhrc-arusha","name":"LHRC Arusha Legal Aid Clinic","phone":null,"email":"lhrcarusha@humanrights.or.tz","sources":["lhrc"],"status":"multiple_phone_and_address_variants","observations":["Page body: +255782277569","Footer: +255626281245 and +255626281244"],"capacity":null},
+    {"id":"lhrc-dodoma","name":"LHRC Dodoma Legal Aid Clinic","phone":null,"email":"lhrcdodoma@humanrights.or.tz","address":"Chimuli Street, Plot 20, Area D, Dodoma","sources":["lhrc"],"status":"multiple_phone_variants","observations":["Page body: +255262350050","Footer: +255678933155 and +255655444828"],"capacity":null},
+    {"id":"wlac","name":"Women's Legal Aid Centre","phone":"+255222664051","email":"wlac@wlac.or.tz","sources":["wlac"],"status":"public_source_observed","openingHours":"Monday–Friday 08:00–17:00; weekend closed, as published","capacity":null},
+    {"id":"wildaf","name":"WiLDAF legal aid clinic","phone":"0800780070","sources":["wildaf"],"status":"public_source_observed","capacity":null},
+    {"id":"wotesawa","name":"WoteSawa public referral contact","phone":"0800710066","email":"info@wotesawa.or.tz","sources":["wotesawa"],"status":"public_source_observed","shelterLocation":null,"admissionConfirmed":false,"capacity":null},
+    {"id":"kiwohede","name":"KIWOHEDE shelter programme lead","phone":null,"sources":["kiwohede"],"status":"programme_source_identified_contact_not_acquired","shelterLocation":null,"admissionConfirmed":false,"capacity":null}
+  ],
+  "faqDrafts": [
+    {"id":"dismissal","questionSw":"Nimeachishwa kazi. Nianzie wapi?","answerSw":"CMA inaeleza matumizi ya fomu CMA F.1 na muda wa siku 30 kwa mgogoro wa kuachishwa kazi. Muda ukipita, inaeleza maombi ya kusikilizwa nje ya muda. Wasiliana na CMA au mtoa msaada wa kisheria haraka ili kuthibitisha muda unaohusu hali yako.","sources":["cma-faq"],"jurisdiction":"Mainland; confirm applicability","status":"draft_legal_review_required"},
+    {"id":"other-labour","questionSw":"Nina mgogoro mwingine wa kazi; kuna muda wa kuwasilisha?","answerSw":"FAQ ya CMA inaeleza siku 60 kwa migogoro mingine ya kazi na utaratibu wa kuomba kusikilizwa nje ya muda. Aina ya mgogoro na tarehe husika zinahitaji kuthibitishwa kabla ya kuhesabu siku ya mwisho.","sources":["cma-faq"],"jurisdiction":"Mainland; confirm applicability","status":"draft_legal_review_required"},
+    {"id":"cma-service","questionSw":"Kujaza fomu ya CMA kunatosha?","answerSw":"CMA inaeleza kwamba nakala inapaswa kukabidhiwa upande mwingine na uthibitisho wa kukabidhi kuambatanishwa. Hakiki njia inayokubalika sasa na CMA.","sources":["cma-faq"],"status":"draft_legal_review_required"},
+    {"id":"legal-aid-territory","questionSw":"Sheria ya Msaada wa Kisheria inatumika Tanzania nzima?","answerSw":"Kifungu cha 2 cha Sheria ya Msaada wa Kisheria, Sura ya 21, Toleo la 2023, kinaeleza Tanzania Bara. Kwa Zanzibar, Saada lazima itafute sheria na utaratibu unaotumika huko.","sources":["legal-aid"],"locator":"section 2, PDF page 4","status":"draft_legal_review_required"},
+    {"id":"rita-online","questionSw":"Naweza kuomba cheti cha kuzaliwa mtandaoni?","answerSw":"RITA inaorodhesha maombi ya cheti cha kuzaliwa kupitia huduma za eRITA. Fuata kiungo rasmi na hakiki nyaraka na ada zinazohitajika kwa ombi lako.","sources":["rita"],"status":"draft_editorial_review_required"},
+    {"id":"shelter","questionSw":"Ninaweza kupata sehemu salama ya kukaa?","answerSw":"Tunaweza kukusaidia kuwasiliana na shirika la ulinzi kupitia mawasiliano yake ya umma. Nafasi na utaratibu wa kupokelewa lazima vithibitishwe kabla ya safari. Usitumie anwani iliyopatikana mtandaoni kama uthibitisho wa kupokelewa.","sources":["wotesawa","kiwohede"],"status":"original_draft_safeguarding_review_required"}
+  ]
+}

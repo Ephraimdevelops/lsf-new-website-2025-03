@@ -98,6 +98,15 @@ export const getAnalytics = query({
             { name: "About", views: aboutViews }
         ].sort((a, b) => b.views - a.views);
 
+        const countPath = (startsWith: string) => allPageViews.filter((event) => (event.resourceId || "").startsWith(startsWith)).length;
+        const newsReads = countPath("/news/");
+        const newsViewsTotal = countPath("/news");
+        const publicationViewsTotal = countPath("/publications");
+        const opportunityViewsTotal = countPath("/opportunities");
+        const paralegalViews = countPath("/paralegals") + countPath("/haki-yangu");
+        const saadaSessions = allPageViews.filter((event) => ["/sara", "/sara-ai"].includes(event.resourceId || "")).length;
+        const percentage = (part: number, total: number) => total ? Math.round((part / total) * 100) : 0;
+
         // Real top pages
         const pageCounts: Record<string, number> = {};
         allPageViews.forEach(e => {
@@ -141,6 +150,34 @@ export const getAnalytics = query({
                 views: views.filter(v => v.views > 0).length ? views : [{ name: "No data", views: 0 }],
                 topPages: topPages.length ? topPages : [{ page: "No data", views: 0 }]
             },
+            detailedMetrics: {
+                news: {
+                    views: newsViewsTotal,
+                    reads: newsReads,
+                    clicks: newsViewsTotal,
+                    conversionRate: percentage(newsReads, newsViewsTotal),
+                },
+                opportunities: {
+                    views: opportunityViewsTotal,
+                    applies: 0,
+                    conversionRate: 0,
+                },
+                paralegalFunnel: {
+                    stage1Views: paralegalViews,
+                    stage2Starts: 0,
+                    stage3Completes: 0,
+                    overallConversion: 0,
+                },
+                stories: {
+                    views: countPath("/success-stories"),
+                },
+                donations: {
+                    clicks: 0,
+                },
+                saadaAI: {
+                    sessions: saadaSessions,
+                },
+            },
             recentActivity
         };
     },
@@ -156,15 +193,92 @@ export const getUsers = query({
     },
 });
 
-// Update user role
+export const getUsersWithAccess = query({
+    args: {},
+    handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+        const users = await ctx.db.query("users").order("desc").take(300);
+        return await Promise.all(users.map(async (user) => {
+            const assignments = await ctx.db.query("role_assignments")
+                .withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active"))
+                .collect();
+            return { _id: user._id, name: user.name, email: user.email, role: user.role,
+                roles: [...new Set([user.role, ...assignments.map((item) => item.role)])],
+                hasAssignments: assignments.some((item) => item.role !== "user"), isDeleted: user.isDeleted ?? false };
+        }));
+    },
+});
+
+// Role changes are limited to an authenticated administrator and written to the audit trail.
+// Admin and safeguarding grants need a separate multi-review workflow.
 export const updateUserRole = mutation({
     args: {
         userId: v.id("users"),
-        role: v.union(v.literal("admin"), v.literal("staff"), v.literal("paralegal"), v.literal("stakeholder"), v.literal("user")),
+        role: v.literal("user"),
     },
     handler: async (ctx, args) => {
-        await requireAnyRole(ctx, ["admin"]);
-
+        const { user: actor } = await requireAnyRole(ctx, ["admin"]);
+        if (actor._id === args.userId) throw new Error("You cannot change your own role.");
+        const target = await ctx.db.get(args.userId);
+        if (!target || target.isDeleted) throw new Error("User is not available.");
+        const activeAssignments = await ctx.db.query("role_assignments")
+            .withIndex("by_user_status", (q) => q.eq("userId", args.userId).eq("status", "active"))
+            .collect();
+        if (activeAssignments.some((item) => item.role !== "user")) {
+            throw new Error("Assigned professional roles require a supervised change process.");
+        }
+        if (target.role === "admin" || target.role === "safeguarding_officer" || target.role === "paralegal") {
+            throw new Error("Sensitive roles require a separate supervised review.");
+        }
+        if (target.role === args.role) return { success: true };
+        const previousRole = target.role;
         await ctx.db.patch(args.userId, { role: args.role });
+        await ctx.db.insert("audit_logs", {
+            action: "user.role_changed",
+            entityType: "user",
+            entityId: args.userId,
+            userId: actor._id,
+            timestamp: Date.now(),
+            metadata: { previousRole, newRole: args.role },
+        });
+        return { success: true };
+    },
+});
+
+export const listRoleAudit = query({
+    args: {},
+    handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+        return await ctx.db.query("audit_logs")
+            .withIndex("by_action", (q) => q.eq("action", "user.role_changed"))
+            .order("desc").take(50);
+    },
+});
+
+export const listPlatformAudit = query({
+    args: { actionPrefix: v.optional(v.string()), limit: v.optional(v.number()) },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "supervisor"]);
+        const limit = Math.min(Math.max(Math.trunc(args.limit ?? 100), 1), 250);
+        const prefix = args.actionPrefix?.trim().toLowerCase();
+        const rows = await ctx.db.query("audit_logs").order("desc").take(prefix ? 1000 : limit);
+        const filtered = prefix ? rows.filter((row) => row.action.toLowerCase().startsWith(prefix)).slice(0, limit) : rows;
+        return await Promise.all(filtered.map(async (row) => {
+            const actorId = row.userId ? ctx.db.normalizeId("users", row.userId) : null;
+            const actor = actorId ? await ctx.db.get(actorId) : null;
+            const metadata = row.metadata as { changedFieldNames?: unknown } | undefined;
+            const changedFieldNames = Array.isArray(metadata?.changedFieldNames)
+                ? metadata.changedFieldNames.filter((item: unknown): item is string => typeof item === "string").slice(0, 20)
+                : [];
+            return {
+                _id: row._id,
+                action: row.action,
+                entityType: row.entityType,
+                entityId: row.entityId,
+                timestamp: row.timestamp,
+                actor: actor ? { name: actor.name, email: actor.email } : null,
+                changedFieldNames,
+            };
+        }));
     },
 });

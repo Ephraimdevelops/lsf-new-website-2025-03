@@ -1,5 +1,5 @@
 
-import ImpactMetricsSection from '@/components/home/ImpactMetricsSection';
+import ImpactMetricsSection from '@/components/home/HomeImpactNumbers';
 
 const ImpactMetricsSectionWrapper = () => {
   return <ImpactMetricsSection />;

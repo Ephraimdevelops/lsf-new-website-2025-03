@@ -68,17 +68,17 @@ export default function NotificationSettingsScreen() {
 
 const styles = StyleSheet.create({
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  headerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
+  headerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   headerSpacer: { width: 26 },
   hero: { marginTop: spacing.xl, flexDirection: "row", gap: spacing.md, backgroundColor: colors.softPink, borderRadius: radius.md, padding: spacing.lg },
   heroCopy: { flex: 1 },
-  title: { fontFamily: type.bold, color: colors.charcoal, fontSize: 20, lineHeight: 26 },
+  title: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 20, lineHeight: 26 },
   body: { marginTop: spacing.xs, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19 },
   card: { marginTop: spacing.xl, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, overflow: "hidden" },
   row: { minHeight: 78, flexDirection: "row", alignItems: "center", gap: spacing.md, padding: spacing.lg },
   iconChip: { width: 42, height: 42, borderRadius: 21, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
   copy: { flex: 1 },
-  rowTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 14 },
-  rowHelp: { marginTop: 3, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 17 },
+  rowTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14 },
+  rowHelp: { marginTop: 3, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19 },
   divider: { height: 1, backgroundColor: colors.line, marginLeft: 70 },
 });

@@ -7,7 +7,16 @@ export function Screen({ children, scroll = true, style }: { children: ReactNode
   const content = <View style={[styles.content, style]}>{children}</View>;
   return (
     <SafeAreaView edges={["top"]} style={styles.safeArea}>
-      {scroll ? <ScrollView contentContainerStyle={styles.scroll}>{content}</ScrollView> : content}
+      {scroll ? (
+        <ScrollView
+          contentContainerStyle={styles.scroll}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="interactive"
+          automaticallyAdjustKeyboardInsets
+        >
+          {content}
+        </ScrollView>
+      ) : content}
     </SafeAreaView>
   );
 }
@@ -17,4 +26,3 @@ const styles = StyleSheet.create({
   scroll: { flexGrow: 1 },
   content: { flex: 1, paddingHorizontal: spacing.xl, paddingBottom: 112 },
 });
-

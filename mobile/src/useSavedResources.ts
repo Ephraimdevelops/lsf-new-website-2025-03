@@ -1,4 +1,4 @@
-import * as SecureStore from "expo-secure-store";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "haki_yangu_saved_resources";
@@ -8,7 +8,7 @@ export function useSavedResources() {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    SecureStore.getItemAsync(STORAGE_KEY)
+    AsyncStorage.getItem(STORAGE_KEY)
       .then((value) => {
         if (!value) return;
         const parsed = JSON.parse(value) as unknown;
@@ -16,14 +16,17 @@ export function useSavedResources() {
           setSavedIds(parsed);
         }
       })
+      .catch(() => {})
       .finally(() => setHydrated(true));
   }, []);
 
   async function persist(nextIds: string[]) {
     setSavedIds(nextIds);
-    await SecureStore.setItemAsync(STORAGE_KEY, JSON.stringify(nextIds), {
-      keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
-    });
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(nextIds));
+    } catch {
+      // Keep the selection for this session when device storage is unavailable.
+    }
   }
 
   async function toggleSaved(id: string) {

@@ -4,6 +4,7 @@ import { ConvexError } from "convex/values";
 export const platformRoles = [
   "admin",
   "staff",
+  "safeguarding_officer",
   "supervisor",
   "content_editor",
   "paralegal",

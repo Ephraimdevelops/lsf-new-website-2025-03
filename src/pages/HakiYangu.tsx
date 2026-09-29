@@ -44,7 +44,7 @@ const HakiYangu = () => {
               <span className="text-secondary-teal">of Justice.</span>
             </Typography>
 
-            <Typography variant="bodyLarge" className="text-xl lg:text-2xl text-white/90 mb-10 max-w-2xl leading-relaxed">
+            <Typography variant="body" className="text-xl lg:text-2xl text-white/90 mb-10 max-w-2xl leading-relaxed">
               We are closing the justice gap by putting a paralegal in every pocket. Haki Yangu is Tanzania's first comprehensive digital legal aid platform.
             </Typography>
 
@@ -75,7 +75,7 @@ const HakiYangu = () => {
           <Container>
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <Typography variant="label" className="text-primary mb-4 block">The Challenge</Typography>
+                <Typography variant="overline" className="text-primary mb-4 block">The Challenge</Typography>
                 <Typography variant="h2" className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
                   Justice Delayed is Justice Denied.
                 </Typography>
@@ -121,7 +121,7 @@ const HakiYangu = () => {
         <div className="bg-gray-50 py-10">
           <Container>
             <div className="text-center mb-10">
-              <Typography variant="label" className="text-primary mb-2 block">The Solution</Typography>
+              <Typography variant="overline" className="text-primary mb-2 block">The Solution</Typography>
               <Typography variant="h2" className="text-4xl font-bold">A Multi-Channel Approach</Typography>
             </div>
           </Container>
@@ -174,7 +174,7 @@ const HakiYangu = () => {
             <div className="bg-gray-50 rounded-3xl p-8 lg:p-12 border border-gray-100 shadow-sm">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="order-2 lg:order-1">
-                  <Typography variant="label" className="text-primary mb-4 block">Case Study</Typography>
+                  <Typography variant="overline" className="text-primary mb-4 block">Case Study</Typography>
                   <h3 className="text-3xl font-bold mb-6">"I was afraid to speak, until I could do it silently."</h3>
                   <div className="space-y-6 text-gray-600">
                     <p>

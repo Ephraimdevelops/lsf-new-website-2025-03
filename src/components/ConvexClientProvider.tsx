@@ -60,6 +60,8 @@ export const ConvexClientProvider = ({ children }: { children: ReactNode }) => {
     return (
         <ClerkProvider
             publishableKey={publishableKey}
+            signInUrl="/login"
+            signUpUrl="/signup"
             appearance={{
                 layout: {
                     unsafe_disableDevelopmentModeWarnings: true

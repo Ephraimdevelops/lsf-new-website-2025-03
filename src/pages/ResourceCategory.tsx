@@ -27,8 +27,8 @@ const ResourceCategory = ({
   const [activeTab, setActiveTab] = useState('all');
 
   // Fetch news and publications from Convex, filtered by category
-  const allNews = useQuery(api.news.get) || [];
-  const allPublications = useQuery(api.publications.get) || [];
+  const allNews = useQuery(api.news.get, {}) || [];
+  const allPublications = useQuery(api.publications.get, {}) || [];
 
   // Filter by category (case-insensitive match)
   const categoryLower = category.toLowerCase();

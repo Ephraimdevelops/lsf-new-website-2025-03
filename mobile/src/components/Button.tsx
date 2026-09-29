@@ -34,15 +34,14 @@ const styles = StyleSheet.create({
     minHeight: 52,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: radius.sm,
+    borderRadius: 18,
     paddingHorizontal: spacing.xl,
   },
   primary: { backgroundColor: colors.burgundy },
   secondary: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.burgundy },
   quiet: { backgroundColor: colors.softPink },
-  label: { color: colors.surface, fontFamily: type.bold, fontSize: 16 },
+  label: { color: colors.surface, fontFamily: type.bold, fontWeight: "700", fontSize: 16 },
   altLabel: { color: colors.burgundy },
   pressed: { opacity: 0.84 },
   disabled: { opacity: 0.48 },
 });
-

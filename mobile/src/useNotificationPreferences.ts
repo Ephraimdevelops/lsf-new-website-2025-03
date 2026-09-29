@@ -22,7 +22,7 @@ export function notificationCategory(type: string): NotificationCategory {
   if (type.startsWith("message.")) return "messages";
   if (type.startsWith("appointment.")) return "appointments";
   if (type.startsWith("document.")) return "documents";
-  if (type.startsWith("case.") || type.startsWith("assignment.") || type.startsWith("request.")) return "cases";
+  if (type.startsWith("case.") || type.startsWith("assignment.") || type.startsWith("request.") || type.startsWith("referral.")) return "cases";
   return "service";
 }
 

@@ -23,7 +23,7 @@ EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_<development-instance>
 EXPO_PUBLIC_EAS_PROJECT_ID=<eas-project-id-for-push-tokens>
 ```
 
-The app may reuse the parent development Convex URL. It will only reuse the parent Clerk key when that key begins with `pk_test_`; production Clerk keys are deliberately rejected during local development.
+The app can browse public screens with only `EXPO_PUBLIC_CONVEX_URL`. Clerk is required for sign-in, personal records, submissions, and staff actions. The app may reuse the parent development Convex URL. It only reuses the parent Clerk key when that key begins with `pk_test_`; a production key on local Expo web opens public guest screens but cannot sign in there. A correctly configured production native build can still use its production Clerk key.
 
 The Clerk development instance must expose a JWT template named `convex` and enable the selected email/password verification methods.
 
@@ -41,19 +41,18 @@ Presentation data must be real Convex data, not hardcoded private records in the
 ```bash
 npm install
 npm run env:check
-npm run prototype
 npm run typecheck
 npm run ios
 npm run android
 npm run web
 ```
 
-`npm run prototype` starts a web-based prototype review mode with mock data and screen navigation. It is for design review only and does not bypass production Clerk/Convex requirements.
 
 ## Current connected slice
 
 - language selection and onboarding
 - secure email signup, verification and sign-in
+- email-code account recovery and new password setup
 - shared Clerk-to-Convex identity bootstrap
 - beneficiary home and stable five-tab navigation
 - progressive legal-help intake with consent and safety states
@@ -72,11 +71,10 @@ npm run web
 - profile, privacy/security, support, and about screens
 - SARA mobile assistant with structured paralegal recommendation cards
 - paralegal finder
-- prototype review mode for walking through implemented mobile screens without live auth
 
 ## Deliberately incomplete
 
-- phone authentication and account recovery UX
+- phone authentication
 - governed legal knowledge publishing
 - SARA source/citation display
 - verified emergency/hotline contacts

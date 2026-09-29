@@ -29,5 +29,5 @@ const styles = StyleSheet.create({
     backgroundColor: colors.burgundy,
     paddingHorizontal: spacing.md,
   },
-  text: { fontFamily: type.bold, color: colors.surface, fontSize: 12 },
+  text: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 13 },
 });

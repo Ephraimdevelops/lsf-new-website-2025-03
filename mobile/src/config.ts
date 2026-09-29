@@ -1,10 +1,10 @@
 import Constants from "expo-constants";
+import { Platform } from "react-native";
 
 type AppExtra = {
   convexUrl?: string;
   clerkPublishableKey?: string;
   easProjectId?: string;
-  prototypeMode?: boolean;
 };
 
 const extra = (Constants.expoConfig?.extra ?? {}) as AppExtra;
@@ -13,11 +13,11 @@ export const appConfig = {
   convexUrl: extra.convexUrl ?? "",
   clerkPublishableKey: extra.clerkPublishableKey ?? "",
   easProjectId: extra.easProjectId ?? Constants.easConfig?.projectId ?? "",
-  prototypeMode: extra.prototypeMode === true,
 };
 
 const isValidConvexUrl = /^https:\/\/.+\.convex\.cloud$/.test(appConfig.convexUrl);
 const isValidClerkPublishableKey = /^pk_(test|live)_/.test(appConfig.clerkPublishableKey);
+const isUnsupportedLocalWebClerkKey = __DEV__ && Platform.OS === "web" && appConfig.clerkPublishableKey.startsWith("pk_live_");
 
 export const configDiagnostics = {
   convexUrl: {
@@ -28,9 +28,11 @@ export const configDiagnostics = {
   },
   clerkPublishableKey: {
     name: "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY",
-    ready: isValidClerkPublishableKey,
-    required: true,
-    help: "Use the publishable Clerk key for the matching Clerk instance.",
+    ready: isValidClerkPublishableKey && !isUnsupportedLocalWebClerkKey,
+    required: false,
+    help: isUnsupportedLocalWebClerkKey
+      ? "Guest browsing works on local Expo web. Sign-in requires the matching Clerk development key (pk_test_)."
+      : "Optional for browsing; sign-in requires the matching Clerk publishable key.",
   },
   easProjectId: {
     name: "EXPO_PUBLIC_EAS_PROJECT_ID",
@@ -41,8 +43,10 @@ export const configDiagnostics = {
 };
 
 export const requiredConfigReady =
-  configDiagnostics.convexUrl.ready && configDiagnostics.clerkPublishableKey.ready;
+  configDiagnostics.convexUrl.ready;
+
+export const clerkReady = configDiagnostics.clerkPublishableKey.ready;
 
 export const missingRequiredConfig = Object.values(configDiagnostics).filter(
-  (item) => item.required && !item.ready,
+  (item) => item.name === "EXPO_PUBLIC_CONVEX_URL" && !item.ready,
 );

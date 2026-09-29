@@ -46,14 +46,14 @@ export default function AboutScreen() {
 
 const styles = StyleSheet.create({
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  headerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
+  headerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   headerSpacer: { width: 26 },
   hero: { marginTop: spacing.xl, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.lg, padding: spacing.xl, gap: spacing.md },
-  title: { fontFamily: type.bold, color: colors.burgundy, fontSize: 36, lineHeight: 42 },
-  tagline: { fontFamily: type.medium, color: colors.charcoal, fontSize: 16, lineHeight: 23 },
+  title: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 36, lineHeight: 42 },
+  tagline: { fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 16, lineHeight: 23 },
   card: { marginTop: spacing.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.sm },
-  cardTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
+  cardTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 22 },
   footer: { marginTop: spacing.xl, marginBottom: spacing.xl, gap: spacing.xs },
-  footerText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, textAlign: "center" },
+  footerText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, textAlign: "center" },
 });

@@ -29,6 +29,8 @@ interface ParalegalProfileEditProps {
     };
 }
 
+type AvailabilityStatus = NonNullable<ParalegalProfileEditProps["paralegal"]["availabilityStatus"]>;
+
 const ParalegalProfileEdit = ({ paralegal }: ParalegalProfileEditProps) => {
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -212,7 +214,7 @@ const ParalegalProfileEdit = ({ paralegal }: ParalegalProfileEditProps) => {
                             <Label>Availability for new Haki Yangu cases</Label>
                             <select
                                 value={formData.availabilityStatus}
-                                onChange={e => setFormData({ ...formData, availabilityStatus: e.target.value })}
+                                onChange={e => setFormData({ ...formData, availabilityStatus: e.target.value as AvailabilityStatus })}
                                 className="mt-2 h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
                             >
                                 <option value="accepting_cases">Accepting new cases</option>

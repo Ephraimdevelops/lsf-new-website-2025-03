@@ -2,7 +2,7 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import type { MutationCtx } from "./_generated/server";
 import { internal } from "./_generated/api";
-import { requireAnyRole } from "./lib/auth";
+import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 import {
     activateParalegalRoleForUser,
     markParalegalProfileJoined,
@@ -286,6 +286,11 @@ export const updateWhistleblowerReport = mutation({
 // PARALEGAL APPLICATIONS
 // ==========================================
 
+export const generateParalegalDocumentUploadUrl = mutation({ args: {}, handler: async (ctx) => {
+    await requireAuthenticatedUser(ctx);
+    return await ctx.storage.generateUploadUrl();
+} });
+
 export const submitParalegalApplication = mutation({
     args: {
         fullName: v.string(),
@@ -300,11 +305,15 @@ export const submitParalegalApplication = mutation({
         languages: v.optional(v.array(v.string())),
         resumeUrl: v.optional(v.string()),
         idDocumentUrl: v.optional(v.string()),
+        resumeStorageId: v.optional(v.id("_storage")),
+        idDocumentStorageId: v.optional(v.id("_storage")),
+        certificateStorageId: v.optional(v.id("_storage")),
         // Security fields
         clientIdentifier: v.optional(v.string()),
         roleTitle: v.optional(v.string()), // Honeypot
     },
     handler: async (ctx, args) => {
+        const authenticated = await requireAuthenticatedUser(ctx);
         // 1. Honeypot Check
         if (!validateHoneypot(args.roleTitle)) {
             console.log("[SECURITY] Paralegal app honeypot triggered");
@@ -320,6 +329,7 @@ export const submitParalegalApplication = mutation({
 
         const fullName = normalizeText(args.fullName, "Full name", 160);
         const email = normalizeEmail(args.email);
+        if (authenticated.identity.email?.toLowerCase() !== email) throw new Error("Application email must match the signed-in account.");
         const phone = normalizeText(args.phone, "Phone", 40);
         const region = normalizeText(args.region, "Region", 80);
         const district = normalizeText(args.district, "District", 80);
@@ -330,15 +340,21 @@ export const submitParalegalApplication = mutation({
         const languages = args.languages?.map((language) => normalizeText(language, "Language", 80));
         const resumeUrl = normalizeOptionalText(args.resumeUrl, "Resume URL", 1000);
         const idDocumentUrl = normalizeOptionalText(args.idDocumentUrl, "ID document URL", 1000);
+        for (const storageId of [args.resumeStorageId, args.idDocumentStorageId, args.certificateStorageId].filter(Boolean)) {
+            const metadata = await ctx.db.system.get(storageId!);
+            if (!metadata || metadata.size > 10 * 1024 * 1024) throw new Error("Application files must exist and be 10MB or smaller.");
+            const type = metadata.contentType?.toLowerCase() ?? "";
+            if (!type.includes("pdf") && !type.includes("image")) throw new Error("Application files must be PDF or image documents.");
+        }
 
         // Check for duplicate applications
         const existing = await ctx.db
             .query("paralegal_applications")
-            .filter((q) => q.eq(q.field("email"), email))
-            .first();
+            .withIndex("by_email", (q) => q.eq("email", email))
+            .collect();
 
-        if (existing && existing.status === "pending") {
-            return { success: false, message: "An application with this email is already pending." };
+        if (existing.some((application) => application.status !== "rejected")) {
+            return { success: false, message: "An application for this email already exists. Contact LSF if you need to update it." };
         }
 
         const id = await ctx.db.insert("paralegal_applications", {
@@ -354,6 +370,9 @@ export const submitParalegalApplication = mutation({
             languages,
             resumeUrl,
             idDocumentUrl,
+            resumeStorageId: args.resumeStorageId,
+            idDocumentStorageId: args.idDocumentStorageId,
+            certificateStorageId: args.certificateStorageId,
             submittedAt: Date.now(),
             status: "pending",
         });
@@ -400,7 +419,11 @@ export const listParalegalApplications = query({
             results = results.filter((app) => app.region === args.region);
         }
 
-        return results;
+        return await Promise.all(results.map(async (application) => ({ ...application,
+            resumeDocumentUrl: application.resumeStorageId ? await ctx.storage.getUrl(application.resumeStorageId) : application.resumeUrl,
+            identityDocumentUrl: application.idDocumentStorageId ? await ctx.storage.getUrl(application.idDocumentStorageId) : application.idDocumentUrl,
+            certificateDocumentUrl: application.certificateStorageId ? await ctx.storage.getUrl(application.certificateStorageId) : undefined,
+        })));
     },
 });
 
@@ -409,17 +432,24 @@ export const reviewParalegalApplication = mutation({
         id: v.id("paralegal_applications"),
         status: v.union(v.literal("pending"), v.literal("under_review"), v.literal("approved"), v.literal("rejected")),
         reviewNotes: v.optional(v.string()),
-        reviewedBy: v.optional(v.string()),
+        reviewedBy: v.optional(v.string()), // Accepted for older clients, never trusted.
     },
     handler: async (ctx, args) => {
         const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+        if (args.status === "approved") await requireAnyRole(ctx, ["admin"]);
         const application = await ctx.db.get(args.id);
         if (!application) throw new Error("Paralegal application not found");
-
+        if (args.status === "approved" && !(application.idDocumentStorageId || application.idDocumentUrl)) throw new Error("Identity evidence is required before approval.");
+        if (args.status === "approved" && !application.certificateStorageId) throw new Error("Paralegal credential evidence is required before approval.");
+        if (["approved", "rejected"].includes(application.status) && application.status !== args.status) {
+            throw new Error("Final decisions require a separate supervised change process.");
+        }
+        if (args.status === application.status) return { success: true };
         const now = Date.now();
-        const { id, ...updates } = args;
-        await ctx.db.patch(id, {
-            ...updates,
+        await ctx.db.patch(args.id, {
+            status: args.status,
+            reviewNotes: args.reviewNotes?.trim(),
+            reviewedBy: user._id,
             isVerified: args.status === "approved" ? true : application.isVerified,
             approvedAt: args.status === "approved" ? now : application.approvedAt,
             reviewedAt: now,
@@ -429,11 +459,19 @@ export const reviewParalegalApplication = mutation({
                 .query("users")
                 .withIndex("by_email", (q) => q.eq("email", application.email.toLowerCase()))
                 .first();
-            if (matchingUser) {
+            if (matchingUser && !matchingUser.isDeleted) {
                 await activateParalegalRoleForUser(ctx, { userId: matchingUser._id, grantedBy: user._id, now });
                 await markParalegalProfileJoined(ctx, application._id, now);
             }
         }
+        await ctx.db.insert("audit_logs", {
+            action: "paralegal.application_reviewed",
+            entityType: "paralegal_application",
+            entityId: args.id,
+            userId: user._id,
+            timestamp: now,
+            metadata: { previousStatus: application.status, status: args.status },
+        });
         return { success: true };
     },
 });

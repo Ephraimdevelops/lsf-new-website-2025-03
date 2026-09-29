@@ -17,6 +17,7 @@ import Index from "./pages/Index";
 
 // Lazy load all other routes with retry logic for ChunkLoadErrors
 const About = lazyWithRetry(() => import("./pages/About"));
+const BeneficiaryCase = lazyWithRetry(() => import("./pages/BeneficiaryCase"));
 const WhatWeDo = lazyWithRetry(() => import("./pages/WhatWeDo"));
 const Programs = lazyWithRetry(() => import("./pages/Programs"));
 const Contact = lazyWithRetry(() => import("./pages/Contact"));
@@ -77,6 +78,7 @@ const UserDashboard = lazyWithRetry(() => import("./pages/UserDashboard"));
 const ProfileSettings = lazyWithRetry(() => import("./pages/ProfileSettings"));
 const Signup = lazyWithRetry(() => import("./pages/Signup"));
 const Login = lazyWithRetry(() => import("./pages/Login"));
+const Join = lazyWithRetry(() => import("./pages/Join"));
 const LSFChatbotFullPage = lazyWithRetry(() => import("./components/shared/chatbot/LSFChatbotFullPage"));
 const Connect = lazyWithRetry(() => import("./pages/Connect"));
 const LinksManager = lazyWithRetry(() => import("./pages/admin/LinksManager"));
@@ -163,7 +165,7 @@ function App() {
                         </ProtectedRoute>
                       } />
                       <Route path="/dashboard/staff" element={
-                        <ProtectedRoute allowedRoles={["admin", "supervisor", "staff"]}>
+                        <ProtectedRoute allowedRoles={["admin", "supervisor", "staff", "safeguarding_officer"]}>
                           <StaffDashboard />
                         </ProtectedRoute>
                       } />
@@ -173,10 +175,11 @@ function App() {
                         </ProtectedRoute>
                       } />
                       <Route path="/dashboard/stakeholder" element={
-                        <ProtectedRoute allowedRoles={["stakeholder"]}>
+                        <ProtectedRoute allowedRoles={["stakeholder", "donor"]}>
                           <StakeholderDashboard />
                         </ProtectedRoute>
                       } />
+                      <Route path="/dashboard/user/cases/:id" element={<ProtectedRoute allowedRoles={["user"]}><BeneficiaryCase /></ProtectedRoute>} />
                       <Route path="/dashboard/user" element={
                         <ProtectedRoute allowedRoles={["user"]}>
                           <UserDashboard />
@@ -200,6 +203,7 @@ function App() {
                       <Route path="/cookies" element={<Cookies />} />
                       <Route path="/accessibility" element={<Accessibility />} />
                       <Route path="/signup/*" element={<Signup />} />
+                      <Route path="/join" element={<ProtectedRoute><Join /></ProtectedRoute>} />
                       <Route path="/login/*" element={<Login />} />
                       <Route path="/paralegal-login/*" element={<ParalegalLogin />} />
                       <Route path="/paralegal-signup/*" element={<ParalegalSignupAuth />} />

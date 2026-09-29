@@ -6,8 +6,12 @@ export type IntakeDraft = {
   clientRequestId: string;
   locale: Locale;
   description: string;
+  issueCategory?: "employment" | "land" | "family" | "safety" | "consumer" | "other";
+  sourceServiceId?: string;
   region: string;
   district: string;
+  occurredOn: string;
+  involvedParties: string;
   desiredHelp: string;
   safeContactMethod: "in_app" | "phone" | "sms" | "email" | "none";
   preferredLanguage: "sw" | "en" | "both" | "other";
@@ -21,8 +25,12 @@ function newDraft(locale: Locale): IntakeDraft {
     clientRequestId: `mobile-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
     locale,
     description: "",
+    issueCategory: undefined,
+    sourceServiceId: undefined,
     region: "",
     district: "",
+    occurredOn: "",
+    involvedParties: "",
     desiredHelp: "",
     safeContactMethod: "in_app",
     preferredLanguage: locale,

@@ -7,10 +7,10 @@ interface UseIntersectionObserverOptions {
 }
 
 // Hook that returns a ref and visibility state
-export function useIntersectionObserver(
+export function useIntersectionObserver<T extends Element = HTMLElement>(
   options: UseIntersectionObserverOptions = {}
-): [RefObject<Element>, boolean] {
-  const ref = useRef<Element>(null);
+): [RefObject<T>, boolean] {
+  const ref = useRef<T>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
@@ -41,8 +41,8 @@ export function useIntersectionObserver(
 export function useIntersectionObserverCallback(
   callback: (isVisible: boolean) => void,
   options: UseIntersectionObserverOptions = {}
-): RefObject<Element> {
-  const ref = useRef<Element>(null);
+): RefObject<HTMLElement> {
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const element = ref.current;

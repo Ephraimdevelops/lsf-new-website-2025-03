@@ -9,7 +9,7 @@
   - onboarding
   - home dashboard
   - guided intake
-  - SARA assistant
+  - Saada assistant
   - know-your-rights library
   - resource detail
   - paralegal finder

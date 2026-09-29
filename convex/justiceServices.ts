@@ -1,6 +1,7 @@
 import { ConvexError, v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { requireAnyRole } from "./lib/auth";
+import type { Id } from "./_generated/dataModel";
+import { getActiveRoles, requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 
 const servicePointType = v.union(
   v.literal("paralegal"),
@@ -52,6 +53,7 @@ const matchingReviewStatus = v.union(
   v.literal("escalated"),
   v.literal("restricted"),
 );
+const matchingReviewRoles = ["admin", "staff", "supervisor", "safeguarding_officer"] as const;
 
 const organizationInput = {
   name: v.string(),
@@ -114,6 +116,18 @@ function normalize(value?: string) {
   return (value ?? "").trim().toLowerCase();
 }
 
+function isCurrentPublicService(service: {
+  active: boolean;
+  visibility: string;
+  verificationStatus: string;
+  servicePointType: string;
+  nextReviewAt?: number;
+}) {
+  return service.active && service.visibility === "public" && service.verificationStatus === "verified"
+    && service.servicePointType !== "safe_house"
+    && (service.nextReviewAt === undefined || service.nextReviewAt >= Date.now());
+}
+
 function publicServiceProjection(service: {
   _id: unknown;
   name: string;
@@ -121,9 +135,13 @@ function publicServiceProjection(service: {
   servicePointType: string;
   classification: string;
   verificationStatus: string;
+  lastVerifiedAt?: number;
   region: string;
   district: string;
   ward?: string;
+  physicalLocation?: string;
+  latitude?: number;
+  longitude?: number;
   serviceCoverageRegions: string[];
   issueCategories: string[];
   serviceTypes: string[];
@@ -150,9 +168,13 @@ function publicServiceProjection(service: {
     servicePointType: service.servicePointType,
     classification: service.classification,
     verificationStatus: service.verificationStatus,
+    lastVerifiedAt: service.lastVerifiedAt,
     region: service.region,
     district: service.district,
     ward: service.ward,
+    physicalLocation: service.physicalLocation,
+    latitude: service.latitude,
+    longitude: service.longitude,
     serviceCoverageRegions: service.serviceCoverageRegions,
     issueCategories: service.issueCategories,
     serviceTypes: service.serviceTypes,
@@ -190,6 +212,53 @@ export const staffListOrganizations = query({
         activeReferralServiceCount: services.filter((service) => service.active && service.referralCapability).length,
       };
     }));
+  },
+});
+
+export const myOrganization = query({
+  args: {},
+  handler: async (ctx) => {
+    const { user } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+    const assignments = await ctx.db
+      .query("role_assignments")
+      .withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active"))
+      .collect();
+    const organizationId = assignments.find((assignment) =>
+      ["paralegal", "provider_staff"].includes(assignment.role) && assignment.organizationId,
+    )?.organizationId;
+    if (!organizationId) return null;
+    const organization = await ctx.db.get(organizationId as Id<"justice_service_organizations">);
+    if (!organization) return null;
+    const services = await ctx.db
+      .query("justice_services")
+      .withIndex("by_organization", (q) => q.eq("organizationId", organization._id))
+      .collect();
+    return {
+      organization: {
+        _id: organization._id,
+        name: organization.name,
+        organizationType: organization.organizationType,
+        verificationStatus: organization.verificationStatus,
+        referralAgreementStatus: organization.referralAgreementStatus,
+        safeguardingReady: organization.safeguardingReady,
+        slaHours: organization.slaHours,
+        focalPersonName: organization.focalPersonName,
+        focalPersonPhone: organization.focalPersonPhone,
+      },
+      services: services.map((service) => ({
+        _id: service._id,
+        name: service.name,
+        servicePointType: service.servicePointType,
+        verificationStatus: service.verificationStatus,
+        active: service.active,
+        region: service.region,
+        district: service.district,
+        currentIntakeState: service.currentIntakeState,
+        referralCapability: service.referralCapability,
+        openingHours: service.openingHours,
+        phone: service.phone,
+      })),
+    };
   },
 });
 
@@ -317,6 +386,7 @@ export const listPublicServices = query({
     district: v.optional(v.string()),
     issueCategory: v.optional(v.string()),
     serviceType: v.optional(v.string()),
+    search: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const services = await ctx.db
@@ -328,14 +398,115 @@ export const listPublicServices = query({
     const district = normalize(args.district);
     const issueCategory = normalize(args.issueCategory);
     const serviceType = normalize(args.serviceType);
+    const search = normalize(args.search);
 
     return services
-      .filter((service) => service.verificationStatus === "verified")
+      .filter(isCurrentPublicService)
+      .filter((service) => !search || [service.name, service.organizationName, service.region, service.district, service.ward, service.physicalLocation, ...service.issueCategories, ...service.serviceTypes].some((item) => normalize(item).includes(search)))
       .filter((service) => !region || service.region.toLowerCase().includes(region) || service.serviceCoverageRegions.some((item) => item.toLowerCase().includes(region)))
       .filter((service) => !district || service.district.toLowerCase().includes(district))
       .filter((service) => !issueCategory || service.issueCategories.some((item) => item.toLowerCase().includes(issueCategory)))
       .filter((service) => !serviceType || service.serviceTypes.some((item) => item.toLowerCase().includes(serviceType)))
       .map(publicServiceProjection);
+  },
+});
+
+export const getPublicService = query({
+  args: { id: v.id("justice_services") },
+  handler: async (ctx, args) => {
+    const service = await ctx.db.get(args.id);
+    if (!service || !isCurrentPublicService(service)) return null;
+    return publicServiceProjection(service);
+  },
+});
+
+export const mySavedServices = query({
+  args: {},
+  handler: async (ctx) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const saved = await ctx.db.query("saved_justice_services")
+      .withIndex("by_user", (q) => q.eq("userId", user._id)).order("desc").take(100);
+    const services = await Promise.all(saved.map(async (item) => {
+      const service = await ctx.db.get(item.serviceId);
+      return service && isCurrentPublicService(service)
+        ? { savedAt: item.savedAt, service: publicServiceProjection(service) } : null;
+    }));
+    return services.filter((item) => item !== null);
+  },
+});
+
+export const toggleSavedService = mutation({
+  args: { serviceId: v.id("justice_services"), saved: v.boolean() },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const existing = await ctx.db.query("saved_justice_services")
+      .withIndex("by_user_service", (q) => q.eq("userId", user._id).eq("serviceId", args.serviceId)).unique();
+    if (!args.saved) {
+      if (existing) await ctx.db.delete(existing._id);
+      return { saved: false };
+    }
+    const service = await ctx.db.get(args.serviceId);
+    if (!service || !isCurrentPublicService(service)) {
+      throw new ConvexError("This service is no longer available to save.");
+    }
+    if (!existing) await ctx.db.insert("saved_justice_services", { userId: user._id, serviceId: args.serviceId, savedAt: Date.now() });
+    return { saved: true };
+  },
+});
+
+export const myServiceVisits = query({
+  args: {},
+  handler: async (ctx) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const visits = await ctx.db.query("justice_service_visits").withIndex("by_user", (q) => q.eq("userId", user._id)).order("desc").take(100);
+    return await Promise.all(visits.map(async (visit) => {
+      const service = await ctx.db.get(visit.serviceId);
+      return { visit, service: service ? { _id: service._id, name: service.name, district: service.district, region: service.region } : null };
+    }));
+  },
+});
+
+export const planServiceVisit = mutation({
+  args: { serviceId: v.id("justice_services"), plannedFor: v.number(), channel: v.union(v.literal("in_person"), v.literal("phone"), v.literal("remote")) },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const service = await ctx.db.get(args.serviceId);
+    if (!service || !isCurrentPublicService(service)) throw new ConvexError("This public service is not available for visit planning.");
+    if (args.plannedFor < Date.now() - 60_000) throw new ConvexError("Choose a future date and time.");
+    if (args.channel === "in_person" && !service.walkIn && service.appointmentRequired) throw new ConvexError("Contact this service to confirm an appointment before planning an in-person visit.");
+    if (args.channel === "phone" && !service.phoneSupport) throw new ConvexError("Phone support is not listed for this service.");
+    if (args.channel === "remote" && !service.remoteSupport) throw new ConvexError("Remote support is not listed for this service.");
+    const id = await ctx.db.insert("justice_service_visits", { userId: user._id, serviceId: service._id, plannedFor: args.plannedFor, channel: args.channel, status: "planned", createdAt: Date.now() });
+    await ctx.db.insert("audit_logs", { action: "directory.visit_planned", entityType: "justice_service_visit", entityId: id, userId: user._id, timestamp: Date.now(), metadata: { serviceId: service._id, channel: args.channel } });
+    return { id };
+  },
+});
+
+export const checkInServiceVisit = mutation({
+  args: { visitId: v.id("justice_service_visits"), outcome: v.union(v.literal("helpful"), v.literal("partly_helpful"), v.literal("not_helpful")), note: v.optional(v.string()) },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const visit = await ctx.db.get(args.visitId);
+    if (!visit || visit.userId !== user._id) throw new ConvexError("Visit not found.");
+    if (visit.status !== "planned") throw new ConvexError("This visit has already been updated.");
+    if (Date.now() < visit.plannedFor - 30 * 60 * 1000) throw new ConvexError("Check in after the planned service time.");
+    const note = args.note?.trim();
+    if (note && note.length > 1000) throw new ConvexError("Check-in note is too long.");
+    await ctx.db.patch(visit._id, { status: "completed", outcome: args.outcome, note: note || undefined, checkedInAt: Date.now() });
+    await ctx.db.insert("audit_logs", { action: "directory.visit_checked_in", entityType: "justice_service_visit", entityId: visit._id, userId: user._id, timestamp: Date.now(), metadata: { serviceId: visit.serviceId, outcome: args.outcome } });
+    return { success: true };
+  },
+});
+
+export const cancelServiceVisit = mutation({
+  args: { visitId: v.id("justice_service_visits") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const visit = await ctx.db.get(args.visitId);
+    if (!visit || visit.userId !== user._id) throw new ConvexError("Visit not found.");
+    if (visit.status !== "planned") throw new ConvexError("Only planned visits can be cancelled.");
+    await ctx.db.patch(visit._id, { status: "cancelled" });
+    return { success: true };
   },
 });
 
@@ -376,6 +547,7 @@ export const createOrganization = mutation({
       createdAt: now,
       updatedAt: now,
     });
+    await ctx.db.insert("audit_logs", { action: "directory.organization_created", entityType: "justice_service_organization", entityId: id, userId: user._id, timestamp: now, metadata: { verificationStatus: args.verificationStatus, referralAgreementStatus: args.referralAgreementStatus } });
     return { id };
   },
 });
@@ -398,7 +570,7 @@ export const updateOrganization = mutation({
     }),
   },
   handler: async (ctx, args) => {
-    await requireAnyRole(ctx, ["admin", "staff"]);
+    const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new ConvexError("Organization not found.");
     const nextVerification = args.updates.verificationStatus ?? existing.verificationStatus;
@@ -408,10 +580,11 @@ export const updateOrganization = mutation({
     }
     await ctx.db.patch(args.id, {
       ...args.updates,
-      name: args.updates.name?.trim(),
-      focalPersonEmail: args.updates.focalPersonEmail?.trim().toLowerCase(),
+      ...(args.updates.name !== undefined ? { name: args.updates.name.trim() } : {}),
+      ...(args.updates.focalPersonEmail !== undefined ? { focalPersonEmail: args.updates.focalPersonEmail.trim().toLowerCase() } : {}),
       updatedAt: Date.now(),
     });
+    await ctx.db.insert("audit_logs", { action: "directory.organization_updated", entityType: "justice_service_organization", entityId: args.id, userId: user._id, timestamp: Date.now(), metadata: { changedFieldNames: Object.keys(args.updates), previousVerificationStatus: existing.verificationStatus, nextVerificationStatus: nextVerification } });
     return { success: true };
   },
 });
@@ -428,14 +601,19 @@ export const createService = mutation({
     if (organization && organization.verificationStatus !== "verified" && args.verificationStatus === "verified") {
       throw new ConvexError("A verified service must be linked to a verified organization.");
     }
+    if (args.verificationStatus === "verified" && (!args.source?.trim() || !args.verifyingAuthority?.trim() || !args.lastVerifiedAt || !args.nextReviewAt)) {
+      throw new ConvexError("Verified services require source, verifying authority, verification date, and next review date.");
+    }
     const now = Date.now();
-    return await ctx.db.insert("justice_services", {
+    const id = await ctx.db.insert("justice_services", {
       ...args,
       organizationName: organization?.name ?? args.organizationName,
       createdBy: user._id,
       createdAt: now,
       updatedAt: now,
     });
+    await ctx.db.insert("audit_logs", { action: "directory.service_created", entityType: "justice_service", entityId: id, userId: user._id, timestamp: now, metadata: { verificationStatus: args.verificationStatus, visibility: args.visibility, servicePointType: args.servicePointType } });
+    return id;
   },
 });
 
@@ -486,7 +664,7 @@ export const updateService = mutation({
     }),
   },
   handler: async (ctx, args) => {
-    await requireAnyRole(ctx, ["admin", "staff"]);
+    const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new ConvexError("Service not found.");
     const nextType = args.updates.servicePointType ?? existing.servicePointType;
@@ -499,11 +677,20 @@ export const updateService = mutation({
     if (organization && organization.verificationStatus !== "verified" && (args.updates.verificationStatus ?? existing.verificationStatus) === "verified") {
       throw new ConvexError("A verified service must be linked to a verified organization.");
     }
+    const nextVerification = args.updates.verificationStatus ?? existing.verificationStatus;
+    const source = args.updates.source ?? existing.source;
+    const verifyingAuthority = args.updates.verifyingAuthority ?? existing.verifyingAuthority;
+    const lastVerifiedAt = args.updates.lastVerifiedAt ?? existing.lastVerifiedAt;
+    const nextReviewAt = args.updates.nextReviewAt ?? existing.nextReviewAt;
+    if (nextVerification === "verified" && (!source?.trim() || !verifyingAuthority?.trim() || !lastVerifiedAt || !nextReviewAt || nextReviewAt <= lastVerifiedAt)) {
+      throw new ConvexError("Verified services require source, verifying authority, and a valid future review date.");
+    }
     await ctx.db.patch(args.id, {
       ...args.updates,
-      organizationName: organization?.name ?? args.updates.organizationName,
+      ...(organization ? { organizationName: organization.name } : args.updates.organizationName !== undefined ? { organizationName: args.updates.organizationName } : {}),
       updatedAt: Date.now(),
     });
+    await ctx.db.insert("audit_logs", { action: "directory.service_updated", entityType: "justice_service", entityId: args.id, userId: user._id, timestamp: Date.now(), metadata: { changedFieldNames: Object.keys(args.updates), previousVerificationStatus: existing.verificationStatus, nextVerificationStatus: nextVerification, previousActive: existing.active, nextActive: args.updates.active ?? existing.active } });
     return { success: true };
   },
 });
@@ -536,7 +723,11 @@ export const matchServices = mutation({
     const isRestricted = isCritical;
 
     const ranked = isRestricted ? [] : services
-      .filter((service) => service.verificationStatus === "verified")
+      .filter(isCurrentPublicService)
+      .filter((service) => !issueCategory || service.issueCategories.some((item) => item.toLowerCase().includes(issueCategory) || issueCategory.includes(item.toLowerCase())))
+      .filter((service) => !region || service.region.toLowerCase().includes(region) || service.serviceCoverageRegions.some((item) => item.toLowerCase().includes(region)))
+      .filter((service) => !district || service.district.toLowerCase().includes(district) || service.remoteSupport)
+      .filter((service) => service.currentIntakeState !== "closed")
       .map((service) => {
         const reasons: string[] = [];
         let score = 0;
@@ -625,7 +816,10 @@ export const staffMatchingDecisionQueue = query({
     status: v.optional(matchingReviewStatus),
   },
   handler: async (ctx, args) => {
-    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const actor = await requireAnyRole(ctx, matchingReviewRoles);
+    const actorRoles = await getActiveRoles(ctx, actor.user._id);
+    const safeguardingOnly = actorRoles.includes("safeguarding_officer") &&
+      !actorRoles.some((role) => ["admin", "staff", "supervisor"].includes(role));
     const decisions = args.status
       ? await ctx.db
           .query("matching_decisions")
@@ -633,7 +827,10 @@ export const staffMatchingDecisionQueue = query({
           .collect()
       : await ctx.db.query("matching_decisions").withIndex("by_created").collect();
 
-    const recent = decisions.sort((a, b) => b.createdAt - a.createdAt).slice(0, 100);
+    const scopedDecisions = safeguardingOnly
+      ? decisions.filter((decision) => decision.urgency === "immediate_safety" || decision.reviewStatus === "restricted" || decision.reviewStatus === "escalated")
+      : decisions;
+    const recent = scopedDecisions.sort((a, b) => b.createdAt - a.createdAt).slice(0, 100);
     return await Promise.all(
       recent.map(async (decision) => {
         const [requester, request, caseRecord] = await Promise.all([
@@ -694,15 +891,39 @@ export const reviewMatchingDecision = mutation({
     restrictionReason: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const { user } = await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const { user } = await requireAnyRole(ctx, matchingReviewRoles);
     const decision = await ctx.db.get(args.decisionId);
     if (!decision) throw new ConvexError("Matching decision not found.");
+    if (args.status === "pending_review") throw new ConvexError("A review decision must choose a final review state.");
+    const reviewNote = args.reviewNote?.trim();
+    if (!reviewNote || reviewNote.length < 10 || reviewNote.length > 2000) {
+      throw new ConvexError("Record a review reason between 10 and 2000 characters.");
+    }
+    const restrictionReason = args.restrictionReason?.trim();
+    if (args.status === "restricted" && (!restrictionReason || restrictionReason.length < 10)) {
+      throw new ConvexError("Restricted matches require a documented reason.");
+    }
+    const actorRoles = await getActiveRoles(ctx, user._id);
+    const safeguardingOnly = actorRoles.includes("safeguarding_officer") &&
+      !actorRoles.some((role) => ["admin", "staff", "supervisor"].includes(role));
+    if (safeguardingOnly && decision.urgency !== "immediate_safety" && decision.reviewStatus !== "restricted" && decision.reviewStatus !== "escalated") {
+      throw new ConvexError("Safeguarding officers can review safety-sensitive matching decisions only.");
+    }
+    const now = Date.now();
     await ctx.db.patch(args.decisionId, {
       reviewStatus: args.status,
       reviewedBy: user._id,
-      reviewedAt: Date.now(),
-      reviewNote: args.reviewNote?.trim(),
-      restrictionReason: args.restrictionReason?.trim(),
+      reviewedAt: now,
+      reviewNote,
+      restrictionReason: args.status === "restricted" ? restrictionReason : undefined,
+    });
+    await ctx.db.insert("audit_logs", {
+      action: "directory.matching_decision_reviewed",
+      entityType: "matching_decision",
+      entityId: args.decisionId,
+      userId: user._id,
+      timestamp: now,
+      metadata: { previousStatus: decision.reviewStatus ?? "pending_review", nextStatus: args.status, changedFieldNames: ["reviewStatus", "reviewedBy", "reviewedAt", "reviewNote", "restrictionReason"] },
     });
     return { success: true };
   },

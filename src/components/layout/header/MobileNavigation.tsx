@@ -1,3 +1,4 @@
+import { dashboardPath as getDashboardPath } from '@/components/auth/dashboardPath';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Phone, User, LogOut, LayoutDashboard, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -25,19 +26,14 @@ const MobileNavigation = ({
   const { isSignedIn, isLoaded } = useAuth();
   const { user: clerkUser } = useUser();
   const convexUser = useQuery(api.users.current);
+  const access = useQuery(api.users.currentAccess);
 
   const userName = convexUser?.name || clerkUser?.firstName || 'User';
   const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   const userImage = convexUser?.imageUrl || clerkUser?.imageUrl;
   const userRole = convexUser?.role || 'user';
 
-  const dashboardPath = {
-    admin: '/admin',
-    staff: '/dashboard/staff',
-    paralegal: '/dashboard/paralegal',
-    stakeholder: '/dashboard/stakeholder',
-    user: '/dashboard/user',
-  }[userRole] || '/dashboard/user';
+  const dashboardPath = getDashboardPath(access?.roles);
 
   return (
     <div className={cn(
@@ -76,7 +72,7 @@ const MobileNavigation = ({
                     </Button>
                   </Link>
                 </div>
-                <SignOutButton>
+                <SignOutButton redirectUrl="/">
                   <Button variant="ghost" size="sm" className="w-full text-red-600 hover:bg-red-50">
                     <LogOut className="h-4 w-4 mr-2" />
                     Sign Out
@@ -88,9 +84,10 @@ const MobileNavigation = ({
                 <Link to="/login" className="block">
                   <Button variant="outline" className="w-full justify-center h-12 text-base font-medium border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 flex items-center gap-2 group transition-all">
                     <User className="h-5 w-5 text-gray-400 group-hover:text-primary transition-colors" />
-                    Portal Access
+                    Log in
                   </Button>
                 </Link>
+                <Link to="/signup" className="block text-center text-sm font-semibold text-primary hover:underline">Create an account</Link>
                 <div className="flex items-center justify-center gap-2 py-1">
                   <div className="h-px w-8 bg-gray-100" />
                   <p className="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-medium">

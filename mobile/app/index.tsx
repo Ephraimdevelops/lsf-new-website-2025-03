@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
   bodyShape: { marginTop: -18, width: 120, height: 92, borderRadius: 28, backgroundColor: "#F4D8C8" },
   logoBadge: { position: "absolute", top: 58, left: spacing.xxl, width: 104, height: 58, borderRadius: 18, backgroundColor: "rgba(138,21,56,0.34)", alignItems: "center", justifyContent: "center" },
   copy: { gap: spacing.md, marginBottom: spacing.xl },
-  eyebrow: { fontFamily: type.bold, color: colors.peach, fontSize: 12, letterSpacing: 0, textTransform: "uppercase" },
-  title: { fontFamily: type.bold, color: colors.surface, fontSize: 42, lineHeight: 44 },
+  eyebrow: { fontFamily: type.bold, fontWeight: "700", color: colors.peach, fontSize: 13, letterSpacing: 0, textTransform: "uppercase" },
+  title: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 42, lineHeight: 44 },
   body: { maxWidth: 320, fontFamily: type.regular, color: colors.surface, fontSize: 15, lineHeight: 23 },
   tags: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm, marginBottom: spacing.lg },
   tag: { flexDirection: "row", alignItems: "center", gap: spacing.xs, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.14)", borderWidth: 1, borderColor: "rgba(255,255,255,0.24)", paddingHorizontal: spacing.md, paddingVertical: spacing.sm },
-  tagText: { fontFamily: type.bold, color: colors.surface, fontSize: 11 },
+  tagText: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 13 },
 });

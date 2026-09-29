@@ -62,14 +62,14 @@ export default function PrivacySecurityScreen() {
 
 const styles = StyleSheet.create({
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  headerTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 17 },
+  headerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   headerSpacer: { width: 26 },
   hero: { marginTop: spacing.xl, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.lg, padding: spacing.xl, gap: spacing.md },
-  title: { fontFamily: type.bold, color: colors.charcoal, fontSize: 28, lineHeight: 34 },
+  title: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 28, lineHeight: 34 },
   body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21 },
   card: { marginTop: spacing.xl, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md },
   row: { flexDirection: "row", alignItems: "flex-start", gap: spacing.md },
-  rowText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 13, lineHeight: 20 },
+  rowText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 20 },
   warningCard: { marginTop: spacing.xl, flexDirection: "row", gap: spacing.md, backgroundColor: colors.softPink, borderRadius: radius.md, padding: spacing.lg },
   warningText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 13, lineHeight: 20 },
 });

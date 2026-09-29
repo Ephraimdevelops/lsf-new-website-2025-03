@@ -37,8 +37,8 @@ const checks = [
   {
     name: "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY",
     ok: /^pk_(test|live)_/.test(values.clerkPublishableKey),
-    required: true,
-    help: "Set a Clerk publishable key for the matching Clerk instance.",
+    required: false,
+    help: "Optional for browsing; required for sign-in, personal requests and staff work.",
   },
   {
     name: "EXPO_PUBLIC_EAS_PROJECT_ID",
@@ -47,6 +47,10 @@ const checks = [
     help: "Required for Expo push token project scoping and release builds.",
   },
 ];
+
+if (values.clerkPublishableKey.startsWith("pk_live_")) {
+  console.warn("WARNING: pk_live_ cannot authenticate on localhost Expo web. Use the matching pk_test_ key for local web QA; keep the live key in release/EAS environment configuration.");
+}
 
 let failed = false;
 for (const check of checks) {
@@ -61,4 +65,4 @@ if (failed) {
   process.exit(1);
 }
 
-console.log("Mobile environment is ready for local QR/device testing.");
+console.log(values.clerkPublishableKey ? "Mobile environment is ready for sign-in testing." : "Mobile environment is ready for public browsing; sign-in is unavailable until Clerk is configured.");

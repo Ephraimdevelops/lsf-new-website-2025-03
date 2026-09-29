@@ -25,6 +25,28 @@ export const getMessages = query({
     },
 });
 
+export const getActivityEvents = query({
+    args: {
+        requestId: v.optional(v.string()),
+        limit: v.optional(v.number()),
+    },
+    handler: async (ctx, args) => {
+        const { identity } = await requireAuthenticatedUser(ctx);
+        const limit = Math.min(Math.max(Math.trunc(args.limit ?? 20), 1), 50);
+        const events = args.requestId
+            ? await ctx.db
+                .query("saada_activity_events")
+                .withIndex("by_user_request_time", (q) => q.eq("userId", identity.subject).eq("requestId", args.requestId!))
+                .collect()
+            : await ctx.db
+                .query("saada_activity_events")
+                .withIndex("by_user_time", (q) => q.eq("userId", identity.subject))
+                .order("desc")
+                .take(limit);
+        return events.sort((a, b) => a.createdAt - b.createdAt).slice(-limit);
+    },
+});
+
 // Internal mutation to save messages (called by the Action)
 export const saveMessage = internalMutation({
     args: {

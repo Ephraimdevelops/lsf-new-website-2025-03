@@ -26,6 +26,9 @@ const labels: Record<string, { sw: string; en: string }> = {
   "feedback.requested": { sw: "Tuambie kuhusu msaada uliopokea.", en: "Tell us about the support you received." },
   "case.review_requested": { sw: "Ombi la kupitia kesi linahitaji kushughulikiwa.", en: "A case review request needs attention." },
   "case.review_closed": { sw: "Kuna taarifa mpya kuhusu ombi lako la kupitia kesi.", en: "There is an update on your review request." },
+  "referral.consent_requested": { sw: "Rufaa inahitaji uamuzi wako. Kagua huduma na taarifa zitakazoshirikiwa.", en: "A referral needs your decision. Review the service and information to be shared." },
+  "referral.updated": { sw: "Kuna taarifa mpya kuhusu rufaa yako.", en: "There is an update on your referral." },
+  "referral.created": { sw: "Rufaa imeidhinishwa na inaendelea.", en: "A referral was approved and is progressing." },
 };
 
 export default function NotificationsScreen() {
@@ -101,16 +104,16 @@ export default function NotificationsScreen() {
 
 const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingTop: spacing.md, marginBottom: spacing.xl },
-  title: { fontFamily: type.bold, color: colors.charcoal, fontSize: 19 },
-  markAll: { fontFamily: type.medium, color: colors.burgundy, textAlign: "right", fontSize: 13, marginBottom: spacing.md },
+  title: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 19 },
+  markAll: { fontFamily: type.medium, fontWeight: "500", color: colors.burgundy, textAlign: "right", fontSize: 13, marginBottom: spacing.md },
   card: { flexDirection: "row", gap: spacing.md, alignItems: "center", borderRadius: radius.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, padding: spacing.md, marginBottom: spacing.sm },
   unread: { backgroundColor: colors.softPink, borderColor: "#E1C8D4" },
   icon: { width: 40, height: 40, borderRadius: 20, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
   copy: { flex: 1, gap: spacing.xs },
-  message: { fontFamily: type.medium, color: colors.charcoal, fontSize: 14, lineHeight: 19 },
-  date: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 11 },
+  message: { fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 14, lineHeight: 19 },
+  date: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13 },
   dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.burgundy },
   empty: { alignItems: "center", gap: spacing.lg, marginTop: 100 },
-  emptyTitle: { fontFamily: type.bold, color: colors.charcoal, fontSize: 18, textAlign: "center" },
+  emptyTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 18, textAlign: "center" },
   emptyText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21, textAlign: "center" },
 });

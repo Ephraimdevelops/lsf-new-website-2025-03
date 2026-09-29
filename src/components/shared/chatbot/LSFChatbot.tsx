@@ -69,7 +69,7 @@ function pickAssistantText(data: ChatbotPayload, language: "swahili" | "english"
     record?.reply,
     typeof data === "string" ? data : null,
   ].filter(Boolean);
-  let text = candidates[0] ?? "";
+  let text: unknown = candidates[0] ?? "";
   if (typeof text === "object") {
     try {
       const textRecord = text as Record<string, unknown>;
@@ -84,7 +84,7 @@ function pickAssistantText(data: ChatbotPayload, language: "swahili" | "english"
   if (typeof text === "string") {
     text = text.trim().replace(/^"+|"+$/g, "").replace(/^`{3}[\s\S]*?\n|`{3}$/g, "");
   }
-  return text || (language === "swahili"
+  return (typeof text === "string" && text ? text : null) || (language === "swahili"
     ? "Naitwa Saada. Nimeboreshwa zaidi ili kukusaidia kuelewa sheria za Tanzania kwa lugha rahisi na kupata msaada wa kisheria."
     : "Welcome! I'm Saada from LSF. I'm here to help you understand your rights and connect you with suitable support. Let's start—what do you need today?");
 }
@@ -337,7 +337,7 @@ const LSFPersonalAssistant: React.FC<LSFPersonalAssistantProps> = ({
         language,
       });
 
-      if (data.threadId && !threadId) setThreadId(String(data.threadId));
+      if (data && typeof data !== "string" && data.threadId && !threadId) setThreadId(String(data.threadId));
 
       const assistantMsg: Message = { id: `a-${Date.now()}`, text: pickAssistantText(data, language), sender: "assistant", timestamp: new Date() };
       setMessages(prev => [...prev, assistantMsg]);

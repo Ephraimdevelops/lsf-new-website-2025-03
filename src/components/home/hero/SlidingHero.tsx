@@ -29,7 +29,7 @@ const defaultSlides: HeroSlide[] = [
     id: '2',
     title: 'LSF Gender Justice Campaign Launches in Njombe',
     subtitle: 'Building Local Capacity',
-    description: 'We've launched a nationwide initiative supporting women and girls to access legal support, claim land rights, and challenge discrimination. Join us in advancing gender equality through grassroots justice.',
+    description: "We've launched a nationwide initiative supporting women and girls to access legal support, claim land rights, and challenge discrimination. Join us in advancing gender equality through grassroots justice.",
     image: '/lovable-uploads/mama samia legal aid campaingn.jpg',
     ctaText: 'Learn More',
     ctaLink: '/News'
