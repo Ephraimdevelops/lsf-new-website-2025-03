@@ -11,7 +11,7 @@ import {
 import { regions } from './heroData';
 
 const LegalAidWidget = () => {
-  const [selectedRegion, setSelectedRegion] = useState<string>("All Regions");
+  const [selectedRegion, setSelectedRegion] = useState<string>("LSF office contact");
   const [hotlineNumber, setHotlineNumber] = useState(regions[0].phone);
 
   // Update hotline number when region changes
@@ -30,14 +30,14 @@ const LegalAidWidget = () => {
             <Scale className="h-10 w-10 text-white" />
           </div>
           <div>
-            <h3 className="text-primary text-3xl font-bold font-heading">Get Free Legal Aid</h3>
-            <p className="text-neutral-600 text-lg">Available in all 168 districts</p>
+            <h3 className="text-primary text-3xl font-bold font-heading">Find Legal Support</h3>
+            <p className="text-neutral-600 text-lg">Explore services or contact LSF</p>
           </div>
         </div>
         
         <div className="mb-8">
           <label htmlFor="region-select" className="block text-base font-medium mb-3 text-neutral-dark">
-            Select Your Region
+            Contact point
           </label>
           <Select
             value={selectedRegion}
@@ -59,7 +59,7 @@ const LegalAidWidget = () => {
         <div className="flex items-center gap-4 mb-8 p-6 bg-gradient-to-r from-primary/10 via-secondary-teal/10 to-primary/10 rounded-2xl border border-primary/20 shadow-inner">
           <Phone className="h-10 w-10 text-primary flex-shrink-0" />
           <div>
-            <p className="font-medium text-neutral-dark">24/7 Legal Helpline</p>
+            <p className="font-medium text-neutral-dark">LSF office contact — confirm availability</p>
             <a href={`tel:${hotlineNumber.replace(/\s/g, '')}`} className="text-2xl font-bold text-primary hover:text-primary-dark transition-colors">
               {hotlineNumber}
             </a>
@@ -75,19 +75,19 @@ const LegalAidWidget = () => {
             Call Now
           </a>
           <a 
-            href="https://play.google.com/store/apps/details?id=com.hakiyangu.app" 
+            href="/haki-yangu"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-gradient-to-r from-secondary-teal to-secondary-teal/80 text-white hover:from-secondary-teal/90 hover:to-secondary-teal px-6 py-4 rounded-xl text-center font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             <Download className="h-5 w-5" />
-            Get App
+            Haki Yangu
           </a>
         </div>
         
         <div className="mt-6 pt-6 border-t border-gray-200">
           <p className="text-sm text-gray-600 text-center">
-            Free legal consultation • Available in Swahili & English • Confidential support
+            Contact the office to confirm available support and opening hours.
           </p>
         </div>
       </div>

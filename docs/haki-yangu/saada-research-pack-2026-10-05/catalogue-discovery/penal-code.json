@@ -1,0 +1,2160 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Penal Code",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "This Revised Edition of the <em>Penal</em> <em>Code</em>, Chapter 16, has been revised up  to  and  including  15th  June,  2022  and  is  printed  under  the  authority  of section 4 of the Laws Revision Act, Chapter 4."
+              ],
+              "dc.title": [
+                "THE <em>PENAL</em> <em>CODE</em> [CAP. 16 R.E. 2022]"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3f8b4ac2-aaeb-427a-b653-7f61ae207d08",
+                "uuid": "3f8b4ac2-aaeb-427a-b653-7f61ae207d08",
+                "name": "THE PENAL CODE [CAP. 16 R.E. 2022]",
+                "handle": "123456789/308",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "ATTORNEY GENERAL, ELIEZER MBUKI FELESHI,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-05T06:12:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-05T06:12:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-06-22",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "Nothing in this Code shall affect-\r\n(a)  the  liability, trial or punishment  of  a  person  for an offence against  the common law  or against any other law in force in Mainland Tanzania other than this Code;",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Revised Edition of the Penal Code, Chapter 16, has been revised up  to  and  including  15th  June,  2022  and  is  printed  under  the  authority  of section 4 of the Laws Revision Act, Chapter 4.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Penal Code",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/308",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "PRINTED BY THE GOVERNMENT PRESS, DODOMA-TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CAP. 16 R.E. 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "[PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PENAL CODE [CAP. 16 R.E. 2022]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:31.266Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.title": [
+                "THE <em>PENAL</em> <em>CODE</em>"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "07e7e457-1fee-45ff-8a2d-5b57b33a6f07",
+                "uuid": "07e7e457-1fee-45ff-8a2d-5b57b33a6f07",
+                "name": "THE PENAL CODE",
+                "handle": "123456789/1964",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Office of the attorney General, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-22T08:00:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-22T08:00:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 16  THE PENAL CODE  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1964",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 16  THE PENAL CODE  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PENAL CODE",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CHAPTER 16  THE PENAL CODE  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-11-25T08:30:35.714693Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.title": [
+                "The <em>Penal</em> <em>Code</em> (CAP. 16 R.E. 2019)"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "db817889-5237-434c-9f78-7136b88ad320",
+                "uuid": "db817889-5237-434c-9f78-7136b88ad320",
+                "name": "The Penal Code (CAP. 16 R.E. 2019)",
+                "handle": "123456789/221",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 16",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-03T07:09:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-03T07:09:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to establish a code of criminal law.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/221",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 16",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP. 16 R.E. 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Penal Code (CAP. 16 R.E. 2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:16.998Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "This Act may be cited as the <em>Penal</em> <em>Code</em>, and hereinafter is referred to as “this <em>Code</em>”."
+              ],
+              "dc.title": [
+                "THE <em>PENAL</em> <em>CODE</em>, CHAPTER 16, R.E 2023"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "c545f591-bf5d-482f-ac11-bbdad280726e",
+                "uuid": "c545f591-bf5d-482f-ac11-bbdad280726e",
+                "name": "THE PENAL CODE, CHAPTER 16, R.E 2023",
+                "handle": "123456789/1985",
+                "metadata": {
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-23T06:40:47Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-23T06:40:47Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-01-02",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Act may be cited as the Penal Code, and hereinafter is referred to as “this Code”.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1985",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 16",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PENAL CODE, CHAPTER 16, R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:11:26.085692Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "7dafee69-1725-4eeb-a4dd-ed41323c2116",
+                "uuid": "7dafee69-1725-4eeb-a4dd-ed41323c2116",
+                "name": "THE CORPORAL PUNISHMENT ACT,CHAPTER 17, R.E 2023",
+                "handle": "123456789/1986",
+                "metadata": {
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-23T06:44:50Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-23T06:44:50Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-01-02",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Act may be cited as the Corporal Punishment Act.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1986",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 17",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CORPORAL PUNISHMENT ACT,CHAPTER 17, R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:10:33.434241Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7dafee69-1725-4eeb-a4dd-ed41323c2116"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "7253a8e4-d4e7-49a8-a825-d9f87394b2e5",
+                "uuid": "7253a8e4-d4e7-49a8-a825-d9f87394b2e5",
+                "name": "THE CORPORAL PUNISHMENT ACT, CHAPTER 17",
+                "handle": "123456789/1954",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KILANGI, ADELARDUS L.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-22T06:43:55Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-22T06:43:55Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019-11-30",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Edition of the Law of the Corporal Punishment Act, Chapter 17, has been revised up to and including 30th  November, 2019 and is printed under the authority of section 4 of the Laws Revision Act, Chapter 4.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1954",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 17",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CORPORAL PUNISHMENT ACT, CHAPTER 17",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-07-22T06:45:38.846Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7253a8e4-d4e7-49a8-a825-d9f87394b2e5"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "379563e7-622e-419d-92fa-24ebbce25d29",
+                "uuid": "379563e7-622e-419d-92fa-24ebbce25d29",
+                "name": "The Corporal Punishment Act (CAP. 17 R.E. 2019)",
+                "handle": "123456789/222",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 17",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-03T07:10:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-03T07:10:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to regulate the infliction of corporal punishment.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/222",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 17",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP. 17 R.E. 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Corporal Punishment Act (CAP. 17 R.E. 2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:10.209Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/379563e7-622e-419d-92fa-24ebbce25d29"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "9bacb439-8a26-4f64-8efc-29b8f5696137",
+                "uuid": "9bacb439-8a26-4f64-8efc-29b8f5696137",
+                "name": "THE CORPORAL PUNISHMENT ACT",
+                "handle": "123456789/1965",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Office of the attorney General, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-22T08:11:20Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-22T08:11:20Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 17  THE CORPORAL PUNISHMENT ACT  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1965",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 17  THE CORPORAL PUNISHMENT ACT  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CORPORAL PUNISHMENT ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CHAPTER 17  THE CORPORAL PUNISHMENT ACT  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-07-22T08:15:52.872Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9bacb439-8a26-4f64-8efc-29b8f5696137"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "It all started with charges of rape levelled against him, contrary to section 130 (1) (2) (b) and 131 (1) of the <em>Penal</em> <em>Code</em>, Cap. 16 Revised Laws. The facts, as particularized in the charge sheet, are that on 4th September 2020, at Ruvu Jitengeni area, within the District of Same in Kilimanjaro region, had carnal knowledge of one MZA, whose name is censored to protect her dignity. "
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a",
+                "uuid": "8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a",
+                "name": "JUMA IDDI YOHANA VS REPUBLIC 2025 TZCA 6 (20 JANUARY 2025)",
+                "handle": "123456789/1673",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "FIKIRINI, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-12T06:38:33Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-12T06:38:33Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-01-20",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This is a second appeal after the appellant, Juma Idd Yohana, unsuccessfully appealed to the High Court in Criminal Appeal No. 48 of 2021. It all started with charges of rape levelled against him, contrary to section 130 (1) (2) (b) and 131 (1) of the Penal Code, Cap. 16 Revised Laws. The facts, as particularized in the charge sheet, are that on 4th September 2020, at Ruvu Jitengeni area, within the District of Same in Kilimanjaro region, had carnal knowledge of one MZA, whose name is censored to protect her dignity. She will thus be referred as MZA or PW1",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1673",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CRIMINAL APPEAL NO. 148 OF 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "JUMA IDDI YOHANA VS REPUBLIC 2025 TZCA 6 (20 JANUARY 2025)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-13T00:00:46.200Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8e69db16-0d5b-47fb-a7d0-6d45bed0bd7a"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "It all started with charges of rape levelled against him, contrary to section 130 (1) (2) (b) and 131 (1) of the <em>Penal</em> <em>Code</em>, Cap. 16 Revised Laws. The facts, as particularized in the charge sheet, are that on 4th September 2020, at Ruvu Jitengeni area, within the District of Same in Kilimanjaro region, had carnal knowledge of one MZA, whose name is censored to protect her dignity. "
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "625a7ec7-261d-4560-8be2-c62f545a4f1b",
+                "uuid": "625a7ec7-261d-4560-8be2-c62f545a4f1b",
+                "name": "JUMA IDDI YOHANA VS REPUBLIC 2025 TZCA 5 (20 JANUARY 2025)",
+                "handle": "123456789/1672",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "FIKIRINI, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-12T06:35:05Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-12T06:35:05Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-01-20",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This is a second appeal after the appellant, Juma Idd Yohana, unsuccessfully appealed to the High Court in Criminal Appeal No. 48 of 2021. It all started with charges of rape levelled against him, contrary to section 130 (1) (2) (b) and 131 (1) of the Penal Code, Cap. 16 Revised Laws. The facts, as particularized in the charge sheet, are that on 4th September 2020, at Ruvu Jitengeni area, within the District of Same in Kilimanjaro region, had carnal knowledge of one MZA, whose name is censored to protect her dignity. She will thus be referred as MZA or PW1",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1672",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CRIMINAL APPEAL NO. 148 OF 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "JUMA IDDI YOHANA VS REPUBLIC 2025 TZCA 5 (20 JANUARY 2025)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-13T00:00:36.662Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/625a7ec7-261d-4560-8be2-c62f545a4f1b"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "The appellant was charged with rape in the District Court of Ileje at Itumba in Criminal Case No. 8 of 2021 contrary to sections 130 (1), (2) (e), and c/s 131 (1) of the <em>Penal</em> <em>Code</em>, Cap 16 (the <em>Penal</em> <em>Code</em>)"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "55c9f546-bc20-4b47-aefd-39f8420061a4",
+                "uuid": "55c9f546-bc20-4b47-aefd-39f8420061a4",
+                "name": "PILI ARON MWABEZA VS REPUBLIC (CIVIL APPEAL NO. 538 OF 2021) [2024] TZCA 1214 (10 DECEMBER 2024)",
+                "handle": "123456789/1503",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Kairo, J.A., Mwandambo, J.A., Issa, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2024-12-19T06:44:20Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2024-12-19T06:44:20Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-12-10",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This appeal is against the judgement of the High Court at Mbeya in Criminal Appeal No. 59 of 2021. The appellant was charged with rape in the District Court of Ileje at Itumba in Criminal Case No. 8 of 2021 contrary to sections 130 (1), (2) (e), and c/s 131 (1) of the Penal Code, Cap 16 (the Penal Code)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://elibrary.osg.go.tz/handle/123456789/1503",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "Civil Appeal No. 538 of 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "PILI ARON MWABEZA VS REPUBLIC (CIVIL APPEAL NO. 538 OF 2021) [2024] TZCA 1214 (10 DECEMBER 2024)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2024-12-20T00:00:29.556Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/55c9f546-bc20-4b47-aefd-39f8420061a4"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "This second appeal originates from the judgment of the District Court of Moshi at Moshi (the trial court) in which the appellant was \r\nconvicted with unnatural offence contrary to section 154 (1) of the <em>Penal</em> <em>Code</em>. He was sentenced to thirty (30) years imprisonment. His appeal to the High Court of Tanzania at Moshi (the first appellate court) was dismissed, hence, the present appeal"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "b85de141-71e2-4907-bf20-22af9927fb29",
+                "uuid": "b85de141-71e2-4907-bf20-22af9927fb29",
+                "name": "EMMANUEL SO SAMU MDIO VS REPUBLIC 2025 TZCA 4 (20 JANUARY 2025)",
+                "handle": "123456789/1669",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "FIKIRINI, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-12T06:24:32Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-12T06:24:32Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-01-20",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This second appeal originates from the judgment of the District Court of Moshi at Moshi (the trial court) in which the appellant was \r\nconvicted with unnatural offence contrary to section 154 (1) of the Penal Code. He was sentenced to thirty (30) years imprisonment. His appeal to the High Court of Tanzania at Moshi (the first appellate court) was dismissed, hence, the present appeal",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1669",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CRIMINAL APPEAL NO. 31 OF 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "EMMANUEL SO SAMU MDIO VS REPUBLIC 2025 TZCA 4 (20 JANUARY 2025)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-13T00:00:48.277Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b85de141-71e2-4907-bf20-22af9927fb29"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 14,
+        "totalElements": 157
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%20Code&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%20Code&page=13&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%20Code&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Penal%20Code&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Penal%20Code&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 72,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 11,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 9,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "Office of the attorney General, OAG",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.author=Office%20of%20the%20attorney%20General,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "ATTORNEY GENERAL, ELIEZER MBUKI FELESHI,",
+              "count": 5,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.author=ATTORNEY%20GENERAL,%20ELIEZER%20MBUKI%20FELESHI,,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Penal%20Code&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Penal%20Code&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 20",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.subject=CHAPTER%2020,equals"
+                }
+              }
+            },
+            {
+              "label": "MOSHI.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.subject=MOSHI.,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 1",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.subject=CHAPTER%201,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 17",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.subject=CHAPTER%2017,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Penal%20Code&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 33,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 124,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Penal%20Code&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 157,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Penal%20Code"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Penal%20Code&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 157,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Penal%2520Code&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,43 +1,31 @@
 import { v } from "convex/values";
-import { query, mutation } from "./_generated/server";
+import { query, mutation, internalMutation } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
-import { resolveImageUrl } from "./lib/mediaHelpers";
+import { isConvexStorageId } from "./lib/mediaHelpers";
+import type { Id } from "./_generated/dataModel";
 
-// Get all testimonials
+async function assertUploadedImage(ctx: { db: { system: { get: (id: Id<"_storage">) => Promise<{ contentType?: string; size: number } | null> } } }, id: Id<"_storage">) {
+    const metadata = await ctx.db.system.get(id);
+    if (!metadata || !["image/jpeg", "image/png", "image/webp"].includes(metadata.contentType || "") || metadata.size > 20 * 1024 * 1024) {
+        throw new Error("The testimonial image is missing or unsupported. Upload a JPG, PNG, or WebP image under 20 MB.");
+    }
+}
+
+async function withImage<T extends { imageUrl: string; imageStorageId?: Id<"_storage"> }>(ctx: { storage: { getUrl: (id: Id<"_storage">) => Promise<string | null> } }, testimonial: T) {
+    const storageId = testimonial.imageStorageId || (isConvexStorageId(testimonial.imageUrl) ? testimonial.imageUrl as Id<"_storage"> : null);
+    const imageUrl = storageId ? await ctx.storage.getUrl(storageId).catch(() => null) : null;
+    return { ...testimonial, imageUrl: imageUrl ?? "", imageStatus: imageUrl ? "ready" as const : "missing" as const };
+}
+
+// Public reads resolve the durable storage ID on every request.
 export const get = query({
     args: {},
-    handler: async (ctx) => {
-        const testimonials = await ctx.db.query("testimonials").collect();
-        return await Promise.all(
-            testimonials.map(async (testimonial) => {
-                if (testimonial.imageUrl) {
-                    const resolved = await resolveImageUrl(ctx, testimonial.imageUrl);
-                    testimonial.imageUrl = resolved ?? "/lovable-uploads/placeholder.svg";
-                }
-                return testimonial;
-            })
-        );
-    },
+    handler: async (ctx) => Promise.all((await ctx.db.query("testimonials").collect()).map(item => withImage(ctx, item))),
 });
 
-// Get featured testimonials
 export const getFeatured = query({
     args: {},
-    handler: async (ctx) => {
-        const testimonials = await ctx.db
-            .query("testimonials")
-            .withIndex("by_featured", (q) => q.eq("featured", true))
-            .collect();
-        return await Promise.all(
-            testimonials.map(async (testimonial) => {
-                if (testimonial.imageUrl) {
-                    const resolved = await resolveImageUrl(ctx, testimonial.imageUrl);
-                    testimonial.imageUrl = resolved ?? "/lovable-uploads/placeholder.svg";
-                }
-                return testimonial;
-            })
-        );
-    },
+    handler: async (ctx) => Promise.all((await ctx.db.query("testimonials").withIndex("by_featured", q => q.eq("featured", true)).collect()).map(item => withImage(ctx, item))),
 });
 
 // Create a testimonial
@@ -47,7 +35,7 @@ export const create = mutation({
         role: v.string(),
         location: v.string(),
         content: v.string(),
-        imageUrl: v.string(),
+        imageStorageId: v.id("_storage"),
         rating: v.number(),
         category: v.string(),
         featured: v.boolean(),
@@ -55,7 +43,8 @@ export const create = mutation({
     handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin", "staff"]);
 
-        return await ctx.db.insert("testimonials", args);
+        await assertUploadedImage(ctx, args.imageStorageId);
+        return await ctx.db.insert("testimonials", { ...args, imageUrl: "" });
     },
 });
 
@@ -68,6 +57,7 @@ export const update = mutation({
         location: v.optional(v.string()),
         content: v.optional(v.string()),
         imageUrl: v.optional(v.string()),
+        imageStorageId: v.optional(v.id("_storage")),
         rating: v.optional(v.number()),
         category: v.optional(v.string()),
         featured: v.optional(v.boolean()),
@@ -76,7 +66,9 @@ export const update = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...rest } = args;
-        await ctx.db.patch(id, rest);
+        if (rest.imageStorageId) await assertUploadedImage(ctx, rest.imageStorageId);
+        if (rest.imageUrl && !rest.imageStorageId) throw new Error("Upload a new testimonial image instead of entering an image URL.");
+        await ctx.db.patch(id, rest.imageStorageId ? { ...rest, imageUrl: "" } : rest);
     },
 });
 
@@ -90,80 +82,26 @@ export const remove = mutation({
     },
 });
 
-// Seed initial testimonials
+// Retained for older admin clients. Never recreate sample people or dead image paths.
 export const seed = mutation({
     args: {},
     handler: async (ctx) => {
         await requireAnyRole(ctx, ["admin"]);
+        return { created: 0, message: "Sample testimonials are disabled. Add verified testimonials through the admin editor." };
+    },
+});
 
-        const existing = await ctx.db.query("testimonials").collect();
-        if (existing.length > 0) return;
-
-        const testimonials = [
-            {
-                name: 'Sarah Mwalimu',
-                role: 'Teacher',
-                location: 'Dar es Salaam',
-                content: 'Haki Yangu helped me understand my land rights when my family was facing eviction. The paralegal connected me with was so knowledgeable and supportive. I got the help I needed within hours.',
-                imageUrl: '/lovable-uploads/testimonial-1.jpg',
-                rating: 5,
-                category: 'Land Rights',
-                featured: true
-            },
-            {
-                name: 'Juma Kimaro',
-                role: 'Farmer',
-                location: 'Arusha',
-                content: 'As someone living in a remote village, I never thought I could access legal help. This app changed everything. Now I can get legal advice right from my phone, even without internet.',
-                imageUrl: '/lovable-uploads/testimonial-2.jpg',
-                rating: 5,
-                category: 'Rural Access',
-                featured: true
-            },
-            {
-                name: 'Grace Mwamba',
-                role: 'Small Business Owner',
-                location: 'Mwanza',
-                content: 'The document templates saved me thousands of shillings. I was able to create proper contracts for my business without hiring expensive lawyers. The app is a game-changer!',
-                imageUrl: '/lovable-uploads/testimonial-3.jpg',
-                rating: 5,
-                category: 'Business Law',
-                featured: true
-            },
-            {
-                name: 'Ahmed Hassan',
-                role: 'Student',
-                location: 'Zanzibar',
-                content: 'The educational videos helped me understand my rights as a tenant. When my landlord tried to increase rent unfairly, I knew exactly what to do. Knowledge is power!',
-                imageUrl: '/lovable-uploads/testimonial-4.jpg',
-                rating: 5,
-                category: 'Tenant Rights',
-                featured: true
-            },
-            {
-                name: 'Mary Kisanga',
-                role: 'Community Leader',
-                location: 'Dodoma',
-                content: 'Our entire village now uses Haki Yangu. We\'ve resolved so many disputes that used to divide our community. It\'s bringing peace and understanding to our people.',
-                imageUrl: '/lovable-uploads/testimonial-5.jpg',
-                rating: 5,
-                category: 'Community Harmony',
-                featured: true
-            },
-            {
-                name: 'Peter Mwangi',
-                role: 'Driver',
-                location: 'Kilimanjaro',
-                content: 'When I had an accident and the insurance company was giving me trouble, Haki Yangu connected me with a legal expert who helped me get fair compensation.',
-                imageUrl: '/lovable-uploads/testimonial-6.jpg',
-                rating: 5,
-                category: 'Insurance Justice',
-                featured: true
+// One-time, idempotent cleanup of seed paths whose files were never bundled.
+export const clearBrokenSeedImageReferences = internalMutation({
+    args: {},
+    handler: async (ctx) => {
+        let cleared = 0;
+        for (const item of await ctx.db.query("testimonials").collect()) {
+            if (!item.imageStorageId && /^\/lovable-uploads\/testimonial-[1-6]\.jpg$/i.test(item.imageUrl)) {
+                await ctx.db.patch(item._id, { imageUrl: "" });
+                cleared++;
             }
-        ];
-
-        for (const testimonial of testimonials) {
-            await ctx.db.insert("testimonials", testimonial);
         }
+        return { cleared };
     },
 });

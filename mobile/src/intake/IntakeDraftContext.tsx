@@ -1,6 +1,8 @@
 import * as SecureStore from "expo-secure-store";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 import type { Locale } from "../i18n";
+import { useAuth } from "../auth";
+import { decodeDraft, draftStorageKey, transferGuestDraft } from "./draftStorage";
 
 export type IntakeDraft = {
   clientRequestId: string;
@@ -40,33 +42,61 @@ function newDraft(locale: Locale): IntakeDraft {
   };
 }
 
-const STORAGE_KEY = "haki_yangu_intake_draft";
-
 type IntakeContextValue = {
   draft: IntakeDraft;
   hasSavedDraft: boolean;
+  hasGuestDraft: boolean;
   updateDraft: (updates: Partial<IntakeDraft>) => void;
   resetDraft: (locale: Locale) => void;
   saveDraftForLater: () => Promise<void>;
   restoreSavedDraft: () => Promise<boolean>;
+  restoreGuestDraft: () => Promise<boolean>;
   clearSavedDraft: () => Promise<void>;
 };
 
 const IntakeContext = createContext<IntakeContextValue | null>(null);
 
 export function IntakeDraftProvider({ children, initialLocale }: { children: ReactNode; initialLocale: Locale }) {
+  const { isLoaded, userId } = useAuth();
+  const owner = isLoaded ? userId ?? null : undefined;
+  return <ScopedIntakeDraftProvider key={owner === undefined ? "loading" : owner === null ? "guest" : `user:${owner}`} owner={owner} initialLocale={initialLocale}>{children}</ScopedIntakeDraftProvider>;
+}
+
+function ScopedIntakeDraftProvider({ children, initialLocale, owner }: { children: ReactNode; initialLocale: Locale; owner: string | null | undefined }) {
+  const storageKey = owner === undefined ? null : draftStorageKey(owner);
+  const guestKey = draftStorageKey(null);
   const [draft, setDraft] = useState(() => newDraft(initialLocale));
   const [hasSavedDraft, setHasSavedDraft] = useState(false);
+  const [hasGuestDraft, setHasGuestDraft] = useState(false);
 
   useEffect(() => {
-    SecureStore.getItemAsync(STORAGE_KEY)
-      .then((value) => setHasSavedDraft(Boolean(value)))
-      .catch(() => setHasSavedDraft(false));
-  }, []);
+    let active = true;
+    if (!storageKey) return;
+    SecureStore.getItemAsync(storageKey)
+      .then(value => { if (active) setHasSavedDraft(Boolean(value)); })
+      .catch(() => { if (active) setHasSavedDraft(false); });
+    if (owner) SecureStore.getItemAsync(guestKey)
+      .then(value => { if (active) setHasGuestDraft(Boolean(value)); })
+      .catch(() => { if (active) setHasGuestDraft(false); });
+    return () => { active = false; };
+  }, [storageKey, guestKey, owner]);
+
+  function requireKey() {
+    if (!storageKey) throw new Error("Wait for account loading before saving a draft.");
+    return storageKey;
+  }
 
   async function clearSavedDraft() {
-    await SecureStore.deleteItemAsync(STORAGE_KEY);
+    await SecureStore.deleteItemAsync(requireKey());
     setHasSavedDraft(false);
+  }
+
+  async function restore(key: string) {
+    const value = await SecureStore.getItemAsync(key);
+    if (!value) return false;
+    const parsed = decodeDraft(value);
+    setDraft({ ...newDraft(initialLocale), ...parsed });
+    return true;
   }
 
   return (
@@ -74,23 +104,34 @@ export function IntakeDraftProvider({ children, initialLocale }: { children: Rea
       value={{
         draft,
         hasSavedDraft,
+        hasGuestDraft,
         updateDraft: (updates) => setDraft((current) => ({ ...current, ...updates })),
         resetDraft: (locale) => setDraft(newDraft(locale)),
         saveDraftForLater: async () => {
-          await SecureStore.setItemAsync(STORAGE_KEY, JSON.stringify(draft), {
+          await SecureStore.setItemAsync(requireKey(), JSON.stringify(draft), {
             keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
           });
           setHasSavedDraft(true);
         },
         restoreSavedDraft: async () => {
-          const value = await SecureStore.getItemAsync(STORAGE_KEY);
-          if (!value) {
-            setHasSavedDraft(false);
-            return false;
-          }
-          const parsed = JSON.parse(value) as IntakeDraft;
-          setDraft({ ...newDraft(parsed.locale ?? initialLocale), ...parsed });
+          const restored = await restore(requireKey());
+          setHasSavedDraft(restored);
+          return restored;
+        },
+        restoreGuestDraft: async () => {
+          if (!owner) return false;
+          const transferred = await transferGuestDraft(owner, newDraft(initialLocale).clientRequestId, {
+            read: key => SecureStore.getItemAsync(key),
+            write: async (key, value) => {
+              await SecureStore.setItemAsync(key, value, { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY });
+              setHasSavedDraft(true);
+            },
+            remove: key => SecureStore.deleteItemAsync(key),
+          });
+          if (!transferred) { setHasGuestDraft(false); return false; }
           setHasSavedDraft(true);
+          setHasGuestDraft(false);
+          setDraft(transferred);
           return true;
         },
         clearSavedDraft,

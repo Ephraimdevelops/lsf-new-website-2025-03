@@ -1,0 +1,115 @@
+{
+  "status": "candidate_relationships_not_certified_current",
+  "relations": [
+    {
+      "amendingOrLaterSourceId": "ZNZ-KADHIS-2024",
+      "principalSourceId": null,
+      "principalTitle": "Kadhi’s Court Act9/2017",
+      "locator": "PDF p4 section1; p21 section44",
+      "observedVersion": "Act8/2023; assent1February2024; Gazette23February2024",
+      "reviewAction": "Appointed commencement notice missing. Repeal and pending-proceeding savings must be reviewed;2021 rules not presumed current.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "ZNZ-CRIMINAL-AMENDMENT-2021",
+      "principalSourceId": "ZNZ-CRIMINAL-PROCEDURE",
+      "principalTitle": "Criminal Procedure Act7/2018",
+      "locator": "PDF p4 sections3–5",
+      "observedVersion": "Act1/2021",
+      "reviewAction": "Amends interpretation and replaces section151 bail provisions. Principal Act alone is unsafe for current bail advice; later amendments search remains open.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "FCC-AMENDMENT-2024",
+      "principalSourceId": "CONSUMER-FAIR-COMPETITION",
+      "principalTitle": "Fair Competition Act",
+      "locator": "Cover and operative amendments",
+      "observedVersion": "2024",
+      "reviewAction": "Compare all amendments with FCC-CURRENT-ACT; do not apply amendment twice to consolidated text.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "EMPLOYMENT-AMENDMENTS-2025",
+      "principalSourceId": "BASE-ELRA",
+      "principalTitle": "Labour laws",
+      "locator": "Whole instrument",
+      "observedVersion": "Act4/2025",
+      "reviewAction": "Track each amended Act and commencement provision separately.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "ESTATES-PRIMARY-AMENDMENT-2025",
+      "principalSourceId": null,
+      "principalTitle": "Primary Courts Administration of Estates Rules GN49/1971",
+      "locator": "PDF p2 rule3; prescribed schedules",
+      "observedVersion": "GN428/2025",
+      "reviewAction": "New FOMU MIRATHI-1 and related requirements; principal1971 copy still missing. Do not reuse old FormI without amendment review.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "LAND-TRIBUNAL-2023",
+      "principalSourceId": "LAND-TRIBUNAL-PRINCIPAL",
+      "principalTitle": "District Land and Housing Tribunal Regulations GN174/2003",
+      "locator": "Original and amendment instruments",
+      "observedVersion": "GN171/2023",
+      "reviewAction": "Reconcile amended procedures/forms/fees and later instruments. Original heading2003 and citation2002 need preservation.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "LEGAL-AID-SUPPLEMENT-2025",
+      "principalSourceId": "BASE-LEGAL-AID",
+      "principalTitle": "Legal Aid Act chapter21",
+      "locator": "Edition cover and section annotations",
+      "observedVersion": "Supplement through31July2025",
+      "reviewAction": "Later consolidated candidate; inspect incorporation of Act11/2023 and search subsequent changes.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "PROC-APPEAL-AMENDMENT-2024",
+      "principalSourceId": "PROC-APPEAL-PRINCIPAL",
+      "principalTitle": "Court of Appeal Rules",
+      "locator": "GN188/2024",
+      "observedVersion": "2024",
+      "reviewAction": "Read with principal2009 rules, previous amendments and later amendments; not a replacement full ruleset.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "AMENDMENTS-MISC-2-2025",
+      "principalSourceId": "RIGHTS-ENFORCEMENT",
+      "principalTitle": "Basic Rights and Duties Enforcement Act",
+      "locator": "PDF pp5–6 PartIII",
+      "observedVersion": "Act2/2025",
+      "reviewAction": "Identify effects on rights litigation before approving constitutional pathway.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "AMENDMENTS-LEGAL-SECTOR-2023",
+      "principalSourceId": null,
+      "principalTitle": "Multiple justice-sector Acts",
+      "locator": "PartsIII–VI,XII,XIV,XV,XIX,XX",
+      "observedVersion": "Act11/2023",
+      "reviewAction": "Appellate jurisdiction, arbitration, CHRAGG, criminal procedure, land disputes, legal aid, magistrates courts, Penal Code and probate need individual incorporation review.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "WCF-REGULATIONS-VERSION",
+      "principalSourceId": "WCF-REGULATIONS-2016",
+      "principalTitle": "Workers Compensation Regulations GN185/2016",
+      "locator": "Repository edition notes and rule2",
+      "observedVersion": "Version cutoff unverified",
+      "reviewAction": "Different repository files display different validity periods; acquire2021 and later amendments. Scope includes a conditional Zanzibar branch; do not route by island alone.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    }
+  ]
+}

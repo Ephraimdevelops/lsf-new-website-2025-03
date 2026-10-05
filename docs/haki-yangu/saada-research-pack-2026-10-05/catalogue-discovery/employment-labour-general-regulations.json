@@ -1,0 +1,2209 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Employment Labour General Regulations",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These <em>Regulations</em> may be cited as the <em>Employment</em> and <em>Labour</em> Relations (<em>General</em>) <em>Regulations</em>, 2017."
+              ],
+              "dc.title": [
+                "THE <em>EMPLOYMENT</em> AND <em>LABOUR</em> RELATIONS (<em>GENERAL</em>) <em>REGULATIONS</em>, GN NO. 47 OF 2017"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "4bef80c9-6b3e-4913-83ca-03ba5bb7c892",
+                "uuid": "4bef80c9-6b3e-4913-83ca-03ba5bb7c892",
+                "name": "THE EMPLOYMENT AND LABOUR RELATIONS (GENERAL) REGULATIONS, GN NO. 47 OF 2017",
+                "handle": "123456789/330",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER OF STATE, JENISTA J. MHAGAMA PRIME MINISTER OFFICE, LABOUR, YOUTH, EMPLOYMENT AND PERSONS WITH DISABILITY.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T11:35:28Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T11:35:28Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2017-02-24",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "No person shall employ or cause to be employed a child under the age of fourteen.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Regulations may be cited as the Employment and Labour Relations (General) Regulations, 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/330",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "THE EMPLOYMENT AND LABOUR RELATIONS  ACT (CAP.  366) GN 47",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE EMPLOYMENT AND LABOUR RELATIONS (GENERAL) REGULATIONS, GN NO. 47 OF 2017",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE EMPLOYMENT AND LABOUR RELATIONS ACT, (CAP 366)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:00.212Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "acfc12db-a499-4e03-bb4f-88b3eb9d5902",
+                "uuid": "acfc12db-a499-4e03-bb4f-88b3eb9d5902",
+                "name": "THE LABOUR INSTITUTIONS (GENERAL) REGULATIONS, GN NO. 45 OF 2017",
+                "handle": "123456789/329",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER OF STATE, JENISTA J. MHAGAMA PRIME MINISTER OFFICE, LABOUR, YOUTH, EMPLOYMENT AND PERSONS WITH DISABILITY.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T11:21:28Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T11:21:28Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2017-02-24",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "The Chairman of the Council to be appointed by the Minister shall possess the following qualifications, Academic qualifications of at least a master's degree in a relevant field,  working experience and general abilities and capacities in the relevant field and in managing national consultative bodies.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Regulations may be cited as the Labour Institutions (General) Regulations, 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/329",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 45 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS (GENERAL) REGULATIONS, GN NO. 45 OF 2017",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS ACT, 2004",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:05:11.307Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "d7b1da35-767b-49cb-80f1-5370c2599020",
+                "uuid": "d7b1da35-767b-49cb-80f1-5370c2599020",
+                "name": "THE NON-CITIZENS (EMPLOYMENT REGULATION) ACT, CHAPTER 436. R.E 2023",
+                "handle": "123456789/2436",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-22T10:47:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-22T10:47:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to regulate and realign the legal regime for employment and engagement in other occupations by non-citizens in Mainland Tanzania and to provide for related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2436",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 436",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE NON-CITIZENS (EMPLOYMENT REGULATION) ACT, CHAPTER 436. R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:03:31.551178Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d7b1da35-767b-49cb-80f1-5370c2599020"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "a7330ead-5a37-4f01-9e1e-59a3f67bcf3a",
+                "uuid": "a7330ead-5a37-4f01-9e1e-59a3f67bcf3a",
+                "name": "THE NON-CITIZENS (EMPLOYMENT REGULATION) ACT, CHAPTER 436",
+                "handle": "123456789/4923",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "HAMZA S. JOHARI",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-09-04T08:06:44Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-10-28",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Annual Supplement Revised Edition incorporates all amendments made to the Non-Citizens (Employment Regulation) Act, Chapter 436 up to and including 31st July, 2025 and is printed under the authority of section 4 of the Laws Revision Act, Chapter 4.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4923",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 436",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE NON-CITIZENS (EMPLOYMENT REGULATION) ACT, CHAPTER 436",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-09-04T08:16:07.714066Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a7330ead-5a37-4f01-9e1e-59a3f67bcf3a"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "e24c1752-942a-43a6-8fb3-2bfe2e9dfebc",
+                "uuid": "e24c1752-942a-43a6-8fb3-2bfe2e9dfebc",
+                "name": "THE LABOUR INSTITUTIONS ACT, CHAPTER 300 R.E. 2023",
+                "handle": "123456789/2335",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-11T09:13:17Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-11T09:13:17Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the establishment of Labour Institutions, to provide for their functions, powers and duties, and to provide for other matters related to them.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 300 THE LABOUR INSTITUTIONS ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2335",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 300",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS ACT, CHAPTER 300 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:11:38.854851Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "54c40342-69d2-4770-8c0f-fd82309d4e08",
+                "uuid": "54c40342-69d2-4770-8c0f-fd82309d4e08",
+                "name": "GODFREY NDERINGO VS STANBIC BANK TANZANIA LIMITED 2025 TZCA 106 (27 FEBRUARY 2025)",
+                "handle": "123456789/1697",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWANDAMBO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-13T06:58:19Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-13T06:58:19Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-02-27",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "From 2014, Stanbic Bank Tanzania Limited and Godfrey Nderingo were employer and employee respectively until September, 2018 when that relationship was severed by termination. The appellant challenged that termination before the Commission for Mediation and Arbitration (the CMA) claiming unfairness of it for which he prayed several reliefs, namely; compensation for unfair termination and for loss of reputation. Having found that the termination was not only unfair but also influenced by unproven allegations of bribery, the CMA awarded the appellant 12 months' salaries on account of unfair termination and TZS 300,000,000.00 compensation for loss of reputation. It aiso awarded the appellant severance allowance payable upon termination of employment under section 42 of the Employment And Labour Relations Act (the ELRA)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1697",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 55 OF 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "GODFREY NDERINGO VS STANBIC BANK TANZANIA LIMITED 2025 TZCA 106 (27 FEBRUARY 2025)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-14T00:00:38.711Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54c40342-69d2-4770-8c0f-fd82309d4e08"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "41aa0dec-67c9-4b9b-bcba-f734284945aa",
+                "uuid": "41aa0dec-67c9-4b9b-bcba-f734284945aa",
+                "name": "The Labour Institution Act (CAP. 300 R.E. 2019)",
+                "handle": "123456789/247",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 300",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-03T11:51:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-03T11:51:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the establishment of Labour Institutions, to provide for their functions, powers and duties, and to provide for other matters related to them.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/247",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 300",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP. 300 R.E. 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Labour Institution Act (CAP. 300 R.E. 2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:34.110Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+                "uuid": "fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+                "name": "THE EMPLOYMENT AND LABOUR RELATIONS ACT, CHAPTER 366 R.E. 2023",
+                "handle": "123456789/2398",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-18T06:33:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-18T06:33:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to make provisions for core labour rights, to establish basic employment standards, to provide a framework for collective bargaining, to provide for the prevention and settlement of disputes, and to provide for related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 366  THE EMPLOYMENT AND LABOUR RELATIONS ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2398",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 366",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE EMPLOYMENT AND LABOUR RELATIONS ACT, CHAPTER 366 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE EMPLOYMENT AND LABOUR RELATIONS ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:03:59.042490Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3a76cfa3-2fd8-4cbb-a88a-f2461274a522",
+                "uuid": "3a76cfa3-2fd8-4cbb-a88a-f2461274a522",
+                "name": "CHAMA CHA KUTETEA HAKI NA MASLAHI YA WALIMU TANZANIA (CHAKA MWATA) VS REGISTRAR OF ORGANIZATIONS ATTORNEY GENERAL (CIVIL APPEAL NO 170 OF 2023) 2025 TZCA 112 (27 FEBRUARY 2025)",
+                "handle": "123456789/1683",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KOROSSO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-12T07:14:29Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-12T07:14:29Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-02-27",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The appeal is against the decision of the High Court Labour Division sitting at Mbeya that determined an application for cancellation of the appellant's registration as a Trade Union, lodged by the respondents. The main reason for the said prayer was the allegation of failure to comply with the requirements for registration under section 55(l)(a),(b), (2)(a), (3)(a) and (b) of the Employment and LabourRelations Act, Cap 366 (ELRA), rule 24(2) of the Labour Court Rules, 2007, GN No. 106 of 2007, section 95 of Civil Procedure Code, Cap 33 (CPC) and section 6(a), 8(l)(f) and 17(l)(a) of the Office of Attorney General (Discharge of Duties) Act, Cap 268.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1683",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 170 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "CHAMA CHA KUTETEA HAKI NA MASLAHI YA WALIMU TANZANIA (CHAKA MWATA) VS REGISTRAR OF ORGANIZATIONS ATTORNEY GENERAL (CIVIL APPEAL NO 170 OF 2023) 2025 TZCA 112 (27 FEBRUARY 2025)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-13T00:00:28.541Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "8bfb67a3-8d93-40df-aee0-8bebd7eedcd2",
+                "uuid": "8bfb67a3-8d93-40df-aee0-8bebd7eedcd2",
+                "name": "THE NATIONAL EMPLOYMENT  PROMOTION SERVICE ACT, CHAPTER 243. R.E 2023",
+                "handle": "123456789/2273",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-07T08:37:17Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-07T08:37:17Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for establishment of the National Employment Promotion Service and for other related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2273",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 243",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE NATIONAL EMPLOYMENT  PROMOTION SERVICE ACT, CHAPTER 243. R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:10:46.639040Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8bfb67a3-8d93-40df-aee0-8bebd7eedcd2"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "54d2f88a-2e9e-4b2f-b280-32f98c43be59",
+                "uuid": "54d2f88a-2e9e-4b2f-b280-32f98c43be59",
+                "name": "THE ACCIDENTS AND OCCUPATIONAL DISEASES (NOTIFICATION) ACT, CHAPTER 330 R.E 2023",
+                "handle": "123456789/2358",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-15T10:41:06Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-15T10:41:06Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the notification of accidents and occupational diseases",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 330 THE ACCIDENTS AND OCCUPATIONAL DISEASES (NOTIFICATION) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2358",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 330",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE ACCIDENTS AND OCCUPATIONAL DISEASES (NOTIFICATION) ACT, CHAPTER 330 R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CHAPTER 330 THE ACCIDENTS AND OCCUPATIONAL DISEASES (NOTIFICATION) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:01:43.233862Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b",
+                "uuid": "bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b",
+                "name": "THE ACCIDENTS AND OCCUPATIONAL  DISEASES (NOTIFICATION) ACT, CHAPTER 330 R.E. 2023",
+                "handle": "123456789/2413",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-18T08:12:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-18T08:12:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the notification of accidents and occupational diseases.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 330  THE ACCIDENTS AND OCCUPATIONAL  DISEASES (NOTIFICATION) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2413",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 330",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE ACCIDENTS AND OCCUPATIONAL  DISEASES (NOTIFICATION) ACT, CHAPTER 330 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE ACCIDENTS AND OCCUPATIONAL  DISEASES (NOTIFICATION) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-11-24T09:15:56.723574Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 13,
+        "totalElements": 149
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%20Labour%20General%20Regulations&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%20Labour%20General%20Regulations&page=12&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%20Labour%20General%20Regulations&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Employment%20Labour%20General%20Regulations&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Employment%20Labour%20General%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 58,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 11,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 8,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "JAMHURI YA MUUNGANO WA TANZANIA",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.author=JAMHURI%20YA%20MUUNGANO%20WA%20TANZANIA,equals"
+                }
+              }
+            },
+            {
+              "label": "Office of the attorney General, OAG",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.author=Office%20of%20the%20attorney%20General,%20OAG,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Employment%20Labour%20General%20Regulations&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Employment%20Labour%20General%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 12,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "DAR ES SALAAM.",
+              "count": 5,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.subject=DAR%20ES%20SALAAM.,equals"
+                }
+              }
+            },
+            {
+              "label": "2022",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.subject=2022,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 115",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.subject=CHAPTER%20115,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 13",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.subject=CHAPTER%2013,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Employment%20Labour%20General%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "1960 - 1979",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.dateIssued=%5B1960%20TO%201979%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2000 - 2019",
+              "count": 34,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 113,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Employment%20Labour%20General%20Regulations&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 149,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Employment%20Labour%20General%20Regulations"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Employment%20Labour%20General%20Regulations&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 149,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Employment%2520Labour%2520General%2520Regulations&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

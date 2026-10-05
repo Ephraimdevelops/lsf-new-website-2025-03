@@ -17,6 +17,8 @@ import {
 import { api } from "../../convex/_generated/api";
 import Layout from "../components/layout/Layout";
 import Container from "@/components/shared/Container";
+import { dashboardPath } from "@/components/auth/dashboardPath";
+import { ProviderInviteInbox } from "@/components/auth/ProviderInvitations";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -46,6 +48,7 @@ const UserDashboard = () => {
   const cases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
   const appointments = useQuery(api.caseManagement.myAppointments, isSignedIn ? {} : "skip");
   const documents = useQuery(api.caseManagement.myDocuments, isSignedIn ? {} : "skip");
+  const savedServices = useQuery(api.justiceServices.mySavedServices, isSignedIn ? {} : "skip");
 
   if (!isLoaded) {
     return <div className="flex min-h-screen items-center justify-center text-sm text-neutral-500">Verifying access...</div>;
@@ -56,10 +59,8 @@ const UserDashboard = () => {
   }
 
   const roles = access?.roles ?? [];
-  if (roles.includes("admin")) return <Navigate to="/admin" replace />;
-  if (roles.includes("paralegal") || roles.includes("provider_staff")) return <Navigate to="/dashboard/paralegal" replace />;
-  if (roles.includes("staff") || roles.includes("supervisor") || roles.includes("safeguarding_officer")) return <Navigate to="/dashboard/staff" replace />;
-  if (roles.includes("stakeholder") || roles.includes("donor")) return <Navigate to="/dashboard/stakeholder" replace />;
+  const destination = dashboardPath(roles);
+  if (access && destination !== "/dashboard/user") return <Navigate to={destination} replace />;
 
   const userName = access?.user?.name || clerkUser?.firstName || "User";
   const userInitials = userName.split(" ").map((part) => part[0]).join("").toUpperCase().slice(0, 2);
@@ -92,6 +93,7 @@ const UserDashboard = () => {
     <Layout>
       <section className="border-b bg-white py-8">
         <Container>
+          <ProviderInviteInbox hideWhenEmpty />
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-4">
               <Avatar className="h-16 w-16 border border-neutral-200">
@@ -129,6 +131,13 @@ const UserDashboard = () => {
             <MetricCard title="Upcoming appointments" value={upcomingAppointments.length} description="Scheduled meetings" icon={<CalendarDays className="h-5 w-5" />} />
             <MetricCard title="Case documents" value={documents?.length ?? 0} description="Documents in your cases" icon={<FileText className="h-5 w-5" />} />
           </div>
+          <nav aria-label="My Haki Yangu" className="mb-6 flex flex-wrap gap-3 rounded-3xl border border-[#EFDFE3] bg-white p-4">
+            <Link to="/request-help"><Button>Request help</Button></Link>
+            <Link to="/find-help"><Button variant="outline">Find help</Button></Link>
+            <Link to="/dashboard/user/saved-help"><Button variant="outline">Saved help {savedServices ? `(${savedServices.length})` : ''}</Button></Link>
+            <Link to="/dashboard/user/documents"><Button variant="outline">My documents {documents ? `(${documents.length})` : ''}</Button></Link>
+            <Link to="/sara"><Button variant="outline">Ask Saada</Button></Link>
+          </nav>
 
           <div className="grid gap-6 lg:grid-cols-3">
             <div className="space-y-6 lg:col-span-2">
@@ -169,6 +178,7 @@ const UserDashboard = () => {
                         </span>
                       </div>
                       <p className="mb-0 text-sm text-neutral-700">LSF will review the request and create a case when it is accepted for support.</p>
+                      <Link className="mt-3 inline-block font-semibold text-primary underline" to={`/dashboard/user/requests/${latestRequest._id}`}>View request progress</Link>
                     </div>
                   ) : (
                     <div className="rounded-2xl border border-dashed border-neutral-200 bg-white p-6">
@@ -177,7 +187,7 @@ const UserDashboard = () => {
                       <p className="mb-4 text-sm leading-6 text-neutral-600">
                         Start a legal-help request when you are ready. Your private records will appear here after sign-in.
                       </p>
-                      <Link to="/legal-help">
+                      <Link to="/request-help">
                         <Button>
                           Start legal-help request
                           <ArrowRight className="ml-2 h-4 w-4" />
@@ -199,7 +209,7 @@ const UserDashboard = () => {
                     recentItems.map((item) => (
                       <div key={item.key} className="flex flex-col gap-2 p-5 md:flex-row md:items-center md:justify-between">
                         <div>
-                          <p className="mb-1 font-bold text-neutral-900">{item.title}</p>
+                          <p className="mb-1 font-bold text-neutral-900">{item.key.startsWith('request-') ? <Link className="text-primary underline" to={`/dashboard/user/requests/${item.key.slice(8)}`}>{item.title}</Link> : <Link className="text-primary underline" to={`/dashboard/user/cases/${item.key.slice(5)}`}>{item.title}</Link>}</p>
                           <p className="mb-0 text-sm text-neutral-500">{item.subtitle}</p>
                         </div>
                         <div className="flex items-center gap-3">
@@ -231,9 +241,12 @@ const UserDashboard = () => {
                   <CardTitle className="text-base">Next actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 p-5">
-                  <ActionLink to="/legal-help" icon={<Scale className="h-4 w-4" />} title="Request legal help" />
+                  <ActionLink to="/request-help" icon={<Scale className="h-4 w-4" />} title="Request legal help" />
+                  <ActionLink to="/find-help" icon={<Scale className="h-4 w-4" />} title="Find nearby help" />
+                  <ActionLink to="/dashboard/user/saved-help" icon={<BookOpen className="h-4 w-4" />} title="Saved help and visit plans" />
+                  <ActionLink to="/dashboard/user/documents" icon={<FileText className="h-4 w-4" />} title="My case documents" />
                   <ActionLink to="/sara" icon={<MessageCircle className="h-4 w-4" />} title="Ask Saada for guidance" />
-                  <ActionLink to="/resources" icon={<BookOpen className="h-4 w-4" />} title="Read legal guides" />
+                  <ActionLink to="/know-your-rights" icon={<BookOpen className="h-4 w-4" />} title="Know your rights" />
                   <ActionLink to="/contact" icon={<MessageCircle className="h-4 w-4" />} title="Contact LSF" />
                 </CardContent>
               </Card>

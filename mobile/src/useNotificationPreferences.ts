@@ -1,14 +1,12 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "./auth";
 import { useMutation, useQuery } from "convex/react";
-import { useEffect, useState } from "react";
 import { api } from "./backend/api";
+import * as Notifications from "expo-notifications";
+import { Platform } from "react-native";
+import { appConfig } from "./config";
 
 export type NotificationCategory = "cases" | "messages" | "appointments" | "documents" | "service";
-
 export type NotificationPreferences = Record<NotificationCategory, boolean>;
-
-const STORAGE_KEY = "haki-yangu:notification-preferences";
 
 export const defaultNotificationPreferences: NotificationPreferences = {
   cases: true,
@@ -18,54 +16,54 @@ export const defaultNotificationPreferences: NotificationPreferences = {
   service: true,
 };
 
-export function notificationCategory(type: string): NotificationCategory {
-  if (type.startsWith("message.")) return "messages";
-  if (type.startsWith("appointment.")) return "appointments";
-  if (type.startsWith("document.")) return "documents";
-  if (type.startsWith("case.") || type.startsWith("assignment.") || type.startsWith("request.") || type.startsWith("referral.")) return "cases";
-  return "service";
-}
-
 export function useNotificationPreferences() {
   const { isSignedIn } = useAuth();
   const remotePreferences = useQuery(api.notifications.getPreferences, isSignedIn ? {} : "skip");
   const updateRemotePreferences = useMutation(api.notifications.updatePreferences);
-  const [preferences, setPreferences] = useState<NotificationPreferences>(defaultNotificationPreferences);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    AsyncStorage.getItem(STORAGE_KEY)
-      .then((value) => {
-        if (!value) return;
-        const parsed = JSON.parse(value) as Partial<NotificationPreferences>;
-        setPreferences({ ...defaultNotificationPreferences, ...parsed });
-      })
-      .finally(() => setHydrated(true));
-  }, []);
-
-  useEffect(() => {
-    if (!remotePreferences) return;
-    setPreferences({
-      cases: remotePreferences.cases,
-      messages: remotePreferences.messages,
-      appointments: remotePreferences.appointments,
-      documents: remotePreferences.documents,
-      service: remotePreferences.service,
-    });
-  }, [remotePreferences]);
+  const setRemotePushEnabled = useMutation(api.notifications.setPushEnabled);
+  const registerPushToken = useMutation(api.notifications.registerPushToken);
+  const preferences: NotificationPreferences = remotePreferences ? {
+    cases: remotePreferences.cases,
+    messages: remotePreferences.messages,
+    appointments: remotePreferences.appointments,
+    documents: remotePreferences.documents,
+    service: remotePreferences.service,
+  } : defaultNotificationPreferences;
 
   async function updatePreference(category: NotificationCategory, enabled: boolean) {
-    const next = { ...preferences, [category]: enabled };
-    setPreferences(next);
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-    if (isSignedIn) {
-      await updateRemotePreferences({ preferences: next });
+    if (!isSignedIn || !remotePreferences) throw new Error("Sign in and wait for your settings to load.");
+    await updateRemotePreferences({ preferences: { ...preferences, [category]: enabled } });
+  }
+
+  async function updatePushEnabled(enabled: boolean) {
+    if (!isSignedIn || !remotePreferences) throw new Error("Sign in and wait for your settings to load.");
+    if (!enabled) {
+      await setRemotePushEnabled({ enabled: false });
+      return;
+    }
+    if (Platform.OS === "web" || !appConfig.easProjectId) throw new Error("Push is unavailable in this build.");
+    if (Platform.OS === "android") await Notifications.setNotificationChannelAsync("case-updates", {
+      name: "Haki Yangu updates",
+      importance: Notifications.AndroidImportance.DEFAULT,
+    });
+    const current = await Notifications.getPermissionsAsync();
+    const permission = current.granted ? current : await Notifications.requestPermissionsAsync();
+    if (!permission.granted) throw new Error("Device notification permission was not granted.");
+    const token = await Notifications.getExpoPushTokenAsync({ projectId: appConfig.easProjectId });
+    await setRemotePushEnabled({ enabled: true });
+    try {
+      await registerPushToken({ token: token.data, platform: Platform.OS, projectId: appConfig.easProjectId, enabled: true });
+    } catch (error) {
+      await setRemotePushEnabled({ enabled: false });
+      throw error;
     }
   }
 
   return {
-    hydrated,
+    hydrated: !isSignedIn || remotePreferences !== undefined,
     preferences,
+    pushEnabled: remotePreferences?.pushEnabled === true,
     updatePreference,
+    updatePushEnabled,
   };
 }

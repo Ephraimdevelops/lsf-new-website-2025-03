@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-05T08:52:53.304Z",
+  "directory": {
+    "activeReferralAgreements": 0,
+    "activeVerifiedPublicServices": 0,
+    "organisations": 0,
+    "services": 0,
+    "verifiedOrganisations": 0
+  },
+  "legalSources": {
+    "approved": 0,
+    "approvedPromptVersions": 0,
+    "approvedReadyReviewCurrent": 0,
+    "failedIndexing": 0,
+    "pending": 0,
+    "retrievableChunks": 0,
+    "total": 7
+  },
+  "paralegals": {
+    "applications": 1,
+    "approvedApplications": 0,
+    "note": "Application counts are not a count of role-active, trained, available providers",
+    "verifiedApprovedApplications": 0
+  },
+  "scope": "Configured deployment aggregate inventory; does not certify legal currency, operational capacity or successful account journeys"
+}

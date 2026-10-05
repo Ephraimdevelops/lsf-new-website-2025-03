@@ -1,4 +1,5 @@
 import { v } from "convex/values";
+import { paginationOptsValidator } from "convex/server";
 import { mutation, query } from "./_generated/server";
 import type { MutationCtx } from "./_generated/server";
 import { internal } from "./_generated/api";
@@ -353,11 +354,13 @@ export const submitParalegalApplication = mutation({
             .withIndex("by_email", (q) => q.eq("email", email))
             .collect();
 
-        if (existing.some((application) => application.status !== "rejected")) {
+        const invitation = existing.find((application) => application.status === "pending" && Boolean(application.intakeOrigin));
+        if (existing.some((application) => application.status !== "rejected" && application._id !== invitation?._id)) {
             return { success: false, message: "An application for this email already exists. Contact LSF if you need to update it." };
         }
+        if (invitation && (!args.idDocumentStorageId || !args.certificateStorageId)) throw new Error("Upload identity and paralegal credential evidence to complete the LSF invitation.");
 
-        const id = await ctx.db.insert("paralegal_applications", {
+        const applicationData = {
             fullName,
             email,
             phone,
@@ -375,7 +378,13 @@ export const submitParalegalApplication = mutation({
             certificateStorageId: args.certificateStorageId,
             submittedAt: Date.now(),
             status: "pending",
-        });
+            intakeOrigin: undefined,
+        } as const;
+        const id = invitation ? invitation._id : await ctx.db.insert("paralegal_applications", applicationData);
+        if (invitation) {
+            await ctx.db.patch(invitation._id, applicationData);
+            await ctx.db.insert("audit_logs", { action: "paralegal.invitation_completed", entityType: "paralegal_application", entityId: invitation._id, userId: authenticated.user._id, timestamp: Date.now() });
+        }
 
         // Send email notification to info@lsftz.org
         try {
@@ -427,6 +436,64 @@ export const listParalegalApplications = query({
     },
 });
 
+// Mobile review lists receive only the fields needed to select a record.
+// Identity files and application narrative stay on the protected detail query.
+export const paralegalReviewQueue = query({
+    args: {},
+    handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+        const [pending, underReview] = await Promise.all([
+            ctx.db.query("paralegal_applications").withIndex("by_status", (q) => q.eq("status", "pending")).collect(),
+            ctx.db.query("paralegal_applications").withIndex("by_status", (q) => q.eq("status", "under_review")).collect(),
+        ]);
+        return [...pending, ...underReview]
+            .sort((a, b) => a.submittedAt - b.submittedAt)
+            .map((application) => ({
+                _id: application._id,
+                fullName: application.fullName,
+                region: application.region,
+                district: application.district,
+                status: application.status,
+                intakeOrigin: application.intakeOrigin,
+                submittedAt: application.submittedAt,
+            }));
+    },
+});
+
+export const paralegalReviewQueuePage = query({
+    args: { status: v.union(v.literal("pending"), v.literal("under_review")), paginationOpts: paginationOptsValidator },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+        const page = await ctx.db.query("paralegal_applications")
+            .withIndex("by_status", (q) => q.eq("status", args.status))
+            .order("asc").paginate(args.paginationOpts);
+        return { ...page, page: page.page.map((application) => ({
+            _id: application._id,
+            fullName: application.fullName,
+            region: application.region,
+            district: application.district,
+            status: application.status,
+            intakeOrigin: application.intakeOrigin,
+            submittedAt: application.submittedAt,
+        })) };
+    },
+});
+
+export const paralegalApplicationForReview = query({
+    args: { id: v.id("paralegal_applications") },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+        const application = await ctx.db.get(args.id);
+        if (!application) return null;
+        return {
+            ...application,
+            resumeDocumentUrl: application.resumeStorageId ? await ctx.storage.getUrl(application.resumeStorageId) : application.resumeUrl,
+            identityDocumentUrl: application.idDocumentStorageId ? await ctx.storage.getUrl(application.idDocumentStorageId) : application.idDocumentUrl,
+            certificateDocumentUrl: application.certificateStorageId ? await ctx.storage.getUrl(application.certificateStorageId) : undefined,
+        };
+    },
+});
+
 export const reviewParalegalApplication = mutation({
     args: {
         id: v.id("paralegal_applications"),
@@ -439,12 +506,18 @@ export const reviewParalegalApplication = mutation({
         if (args.status === "approved") await requireAnyRole(ctx, ["admin"]);
         const application = await ctx.db.get(args.id);
         if (!application) throw new Error("Paralegal application not found");
+        if (user.email?.toLowerCase() === application.email.toLowerCase()) throw new Error("You cannot review your own paralegal application.");
+        if (args.status === application.status) return { success: true };
+        if (args.status === "pending") throw new Error("An application cannot return to pending after review begins.");
+        if (args.status === "under_review" && application.status !== "pending") throw new Error("Only pending applications can enter review.");
+        if (args.status === "under_review" && application.intakeOrigin) throw new Error("The applicant must complete the invitation and upload credentials before review can begin.");
+        if ((args.status === "approved" || args.status === "rejected") && (args.reviewNotes?.trim().length ?? 0) < 10) throw new Error("Record a decision reason of at least 10 characters.");
+        if ((args.status === "approved" || args.status === "rejected") && application.status !== "under_review") throw new Error("Start review before making a final decision.");
         if (args.status === "approved" && !(application.idDocumentStorageId || application.idDocumentUrl)) throw new Error("Identity evidence is required before approval.");
         if (args.status === "approved" && !application.certificateStorageId) throw new Error("Paralegal credential evidence is required before approval.");
         if (["approved", "rejected"].includes(application.status) && application.status !== args.status) {
             throw new Error("Final decisions require a separate supervised change process.");
         }
-        if (args.status === application.status) return { success: true };
         const now = Date.now();
         await ctx.db.patch(args.id, {
             status: args.status,

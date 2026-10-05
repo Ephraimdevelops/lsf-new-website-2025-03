@@ -1,0 +1,2292 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "District Land Housing Tribunal Regulations",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "6c234aa9-77fe-4470-8135-bfa728127452",
+                "uuid": "6c234aa9-77fe-4470-8135-bfa728127452",
+                "name": "The Land Disputes Courts Act (CAP. 216 R.E. 2019)",
+                "handle": "123456789/244",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 216",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-03T11:49:54Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-03T11:49:54Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for establishment of Land dispute settlement machinery and for matters incidental thereto.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/244",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 216",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Land Disputes Courts Act (CAP. 216 R.E. 2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:02:02.450Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c234aa9-77fe-4470-8135-bfa728127452"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "6c03af8e-4b24-4074-b47f-26622af8f337",
+                "uuid": "6c03af8e-4b24-4074-b47f-26622af8f337",
+                "name": "CHAPTER 216 THE LAND DISPUTES COURTS ACT",
+                "handle": "123456789/2306",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-07T09:57:56Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-07T09:57:56Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for establishment of Land dispute settlement machinery and for matters incidental thereto.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 216 THE LAND DISPUTES COURTS ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2306",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 216",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "CHAPTER 216 THE LAND DISPUTES COURTS ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CHAPTER 216 THE LAND DISPUTES COURTS ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:10:13.278097Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6c03af8e-4b24-4074-b47f-26622af8f337"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "cf78e212-72f7-4c22-b90a-97c45c8f18a7",
+                "uuid": "cf78e212-72f7-4c22-b90a-97c45c8f18a7",
+                "name": "THE REGULATION OF LAND TENURE  (ESTABLISHED VILLAGES) ACT, CHAPTER 267  R.E. 2023",
+                "handle": "123456789/2287",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-07T09:02:44Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-07T09:02:44Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to regulate land tenure in villages established pursuant to Operation Vijiji, to provide for the settlement of land disputes and for related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 267 THE REGULATION OF LAND TENURE  (ESTABLISHED VILLAGES) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2287",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 267",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE REGULATION OF LAND TENURE  (ESTABLISHED VILLAGES) ACT, CHAPTER 267  R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE REGULATION OF LAND TENURE  (ESTABLISHED VILLAGES) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:11:32.690728Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cf78e212-72f7-4c22-b90a-97c45c8f18a7"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "6baee5dd-b3b7-4d19-adf8-f62b0819de99",
+                "uuid": "6baee5dd-b3b7-4d19-adf8-f62b0819de99",
+                "name": "The Local Government Authorities(Rating) Act (CAP.289 R.E.2019)",
+                "handle": "123456789/211",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 289",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-02T12:37:32Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-02T12:37:32Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to enable urban, district and township authorities to impose and collect rates.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/211",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 289",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP.289 R.E.2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Local Government Authorities(Rating) Act (CAP.289 R.E.2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:02:00.742Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6baee5dd-b3b7-4d19-adf8-f62b0819de99"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "69d31093-7170-43bb-b753-1ea96edd13c2",
+                "uuid": "69d31093-7170-43bb-b753-1ea96edd13c2",
+                "name": "THE LOCAL GOVERNMENT  AUTHORITIES (RATING) ACT, CHAPTER 289 R.E. 2023",
+                "handle": "123456789/2324",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-11T08:21:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-11T08:21:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to enable urban, district and township authorities to impose and collect rates.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 289  THE LOCAL GOVERNMENT  AUTHORITIES (RATING) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2324",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 289",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LOCAL GOVERNMENT  AUTHORITIES (RATING) ACT, CHAPTER 289 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LOCAL GOVERNMENT  AUTHORITIES (RATING) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:10:11.688010Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/69d31093-7170-43bb-b753-1ea96edd13c2"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "d1c4f548-d6df-4542-a088-c5c461d7ae18",
+                "uuid": "d1c4f548-d6df-4542-a088-c5c461d7ae18",
+                "name": "THE URBAN PLANNING ACT, CHAPTER 355 R.E. 2023",
+                "handle": "123456789/2387",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-18T05:50:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-18T05:50:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the orderly and sustainable development of land in urban areas, to preserve and improve amenities; to provide for the grant of consent to develop land and powers of control over the use of land and to provide for other related matters",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 355 THE URBAN PLANNING ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2387",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 355",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE URBAN PLANNING ACT, CHAPTER 355 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE URBAN PLANNING ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:03:29.376038Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d1c4f548-d6df-4542-a088-c5c461d7ae18"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "087307a8-a7fc-448d-bb95-b5988b2edce5",
+                "uuid": "087307a8-a7fc-448d-bb95-b5988b2edce5",
+                "name": "THE CUSTOMARY LEASEHOLDS  (ENFRANCHISEMENT) ACT, CHAPTER 377 R.E 2023",
+                "handle": "123456789/2409",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-18T07:56:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-18T07:56:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to make provision for the enfranchisement of certain lands held under customary land tenure, to provide for the grant of such lands to the tenants and for related matters. 2. The provisions of this Act shall apply to the Kagera Region of and to such other areas of Mainland Tanzania as the Minister may, by notice published in the Gazette, declare to be areas to which the Act shall apply",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 377  THE CUSTOMARY LEASEHOLDS  (ENFRANCHISEMENT) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2409",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 377",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CUSTOMARY LEASEHOLDS  (ENFRANCHISEMENT) ACT, CHAPTER 377 R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CUSTOMARY LEASEHOLDS  (ENFRANCHISEMENT) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:00:43.892738Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/087307a8-a7fc-448d-bb95-b5988b2edce5"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "2c34ff4b-33f0-459f-9671-05724fa85b7b",
+                "uuid": "2c34ff4b-33f0-459f-9671-05724fa85b7b",
+                "name": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (NO. 3), ACT NO. 5 OF 2021.",
+                "handle": "123456789/857",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, NENELWA J. MWIHAMBI",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-11-18T06:40:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-11-18T06:40:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-10-11",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The written laws specified in various Parts of this Act are amended in the manner specified in their respective Parts.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Written Laws (Miscellaneous Amendments) (No. 3) Act, 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 - 0331X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/857",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": "Supplement No.;5",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 5 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (NO. 3), ACT NO. 5 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 5 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:59:38.759Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c34ff4b-33f0-459f-9671-05724fa85b7b"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4",
+                "uuid": "cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4",
+                "name": "THE LAND USE PLANNING ACT, CHAPTER 116 R.E. 2023.",
+                "handle": "123456789/2154",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-30T07:00:36Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-30T07:00:36Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for procedures for the preparation, administration and enforcement of land use plans; to repeal the National Land Use Planning Commission Act and to provide for related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 116 THE LAND USE PLANNING ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2154",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 116",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LAND USE PLANNING ACT, CHAPTER 116 R.E. 2023.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LAND USE PLANNING ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:11:32.124663Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cdd0f9eb-2b33-461e-9307-d7c4a72ad6e4"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "dcc9cf74-3c67-437b-a6d0-e9f616aab7a2",
+                "uuid": "dcc9cf74-3c67-437b-a6d0-e9f616aab7a2",
+                "name": "BI-ANNUAL REPORT 1st JANUARY - 30th JUNE 2022",
+                "handle": "123456789/584",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "THE OFFICE OF THE SOLICITOR GENERAL",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-10-18T12:53:37Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-10-18T12:53:37Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-01-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The Report highlights activities that were carried out including cases that the OSG\r\nhas handled or participated both locally and internationally from 1st Jan 2022 to 30\r\nJune2022. The report also identifies major achievements, challenges, methods used\r\nto mitigate the challenges and recommendations to assist the office in effectively\r\nattaining its entrusted mandates.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/584",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE OFFICE OF THE SOLICITOR GENERAL",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BI-ANNUAL REPORT 1st JANUARY - 30th JUNE 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Technical Report",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:20.722Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcc9cf74-3c67-437b-a6d0-e9f616aab7a2"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "48bb85dc-0658-4398-a8a9-80d8e396c89e",
+                "uuid": "48bb85dc-0658-4398-a8a9-80d8e396c89e",
+                "name": "OFFICE OF THE SOLICITOR GENERAL BI-ANNUAL REPORT (1st JULY – 31st DECEMBER 2021)",
+                "handle": "123456789/179",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE SOLICITOR GENERAL",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-05-05T12:09:45Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-05-05T12:09:45Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-12-31",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost:8080/xmlui/handle/123456789/179",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "OFFICE OF THE SOLICITOR GENERAL",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "OFFICE OF THE SOLICITOR GENERAL BI-ANNUAL REPORT (1st JULY – 31st DECEMBER 2021)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:52.913Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48bb85dc-0658-4398-a8a9-80d8e396c89e"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "2620fc9a-b24f-4c32-9234-d8f3b409b27f",
+                "uuid": "2620fc9a-b24f-4c32-9234-d8f3b409b27f",
+                "name": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (No.4) ACT, ACT NO. 13 OF 2017.",
+                "handle": "123456789/905",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, STEPHEN KAGAIGAI.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-12-02T10:25:12Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-12-02T10:25:12Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2017-12-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The Written Laws specified in various Parts of this Act are amended in the manner specified in their respective Parts.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Written Laws (Miscellaneous Amendments) (No.4) Act, 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 – 035X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/905",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 13 OF 2017",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (No.4) ACT, ACT NO. 13 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 13 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:59:26.228Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 4,
+        "totalElements": 44
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%20Land%20Housing%20Tribunal%20Regulations&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%20Land%20Housing%20Tribunal%20Regulations&page=3&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%20Land%20Housing%20Tribunal%20Regulations&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=District%20Land%20Housing%20Tribunal%20Regulations&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=District%20Land%20Housing%20Tribunal%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 12,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "GALEBA. J.A",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.author=GALEBA.%20J.A,equals"
+                }
+              }
+            },
+            {
+              "label": "MASHAKA, J.A",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.author=MASHAKA,%20J.A,equals"
+                }
+              }
+            },
+            {
+              "label": "MUGASHA. J.A",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.author=MUGASHA.%20J.A,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=District%20Land%20Housing%20Tribunal%20Regulations&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=District%20Land%20Housing%20Tribunal%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 1",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.subject=CHAPTER%201,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 114",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.subject=CHAPTER%20114,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 118",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.subject=CHAPTER%20118,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 216",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.subject=CHAPTER%20216,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=District%20Land%20Housing%20Tribunal%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "1960 - 1979",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.dateIssued=%5B1960%20TO%201979%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2000 - 2019",
+              "count": 12,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 30,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=District%20Land%20Housing%20Tribunal%20Regulations&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 44,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=District%20Land%20Housing%20Tribunal%20Regulations"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=District%20Land%20Housing%20Tribunal%20Regulations&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 44,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=District%2520Land%2520Housing%2520Tribunal%2520Regulations&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

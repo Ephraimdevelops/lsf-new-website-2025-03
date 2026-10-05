@@ -1,0 +1,19 @@
+{
+  "checkedOn": "2026-10-05",
+  "status": "passed",
+  "checks": [
+    "34 bilingual drafts and7 provider source references resolve",
+    "All candidates remain unapproved and ineligible",
+    "Every deduplicated upload candidate PDF hash matches",
+    "NBS ZIP and attribute file hashes match",
+    "4344 geography row IDs unique; original codes preserved"
+  ],
+  "notValidated": [
+    "Legal correctness/currency",
+    "Translation accuracy",
+    "Provider contacts or availability",
+    "Current geographical boundaries",
+    "Spatial topology and coordinates",
+    "Live app retrieval/integrations"
+  ]
+}

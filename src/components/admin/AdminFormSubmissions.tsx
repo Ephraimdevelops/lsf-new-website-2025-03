@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Button } from '@/components/ui/button';
@@ -66,7 +67,6 @@ const AdminFormSubmissions = () => {
     // Mutations
     const updateContactStatus = useMutation(api.formSubmissions.updateContactStatus);
     const updateWhistleblower = useMutation(api.formSubmissions.updateWhistleblowerReport);
-    const reviewParalegal = useMutation(api.formSubmissions.reviewParalegalApplication);
     const deleteContact = useMutation(api.formSubmissions.deleteContact);
 
     const handleContactStatusChange = async (id: Id<"contact_submissions">, status: "new" | "read" | "replied" | "archived") => {
@@ -75,10 +75,6 @@ const AdminFormSubmissions = () => {
 
     const handleWhistleblowerStatusChange = async (id: Id<"whistleblower_reports">, status: "new" | "investigating" | "resolved" | "dismissed") => {
         await updateWhistleblower({ id, status });
-    };
-
-    const handleParalegalReview = async (id: Id<"paralegal_applications">, status: "pending" | "under_review" | "approved" | "rejected") => {
-        await reviewParalegal({ id, status });
     };
 
     const getStatusBadge = (status: string) => {
@@ -366,25 +362,7 @@ const AdminFormSubmissions = () => {
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div className="flex gap-2">
-                                                {app.status === 'pending' && (
-                                                    <Button size="sm" variant="outline" onClick={() => handleParalegalReview(app._id, 'under_review')}>
-                                                        Start Review
-                                                    </Button>
-                                                )}
-                                                {app.status === 'under_review' && (
-                                                    <>
-                                                        <Button size="sm" onClick={() => handleParalegalReview(app._id, 'approved')}>
-                                                            <CheckCircle className="h-4 w-4 mr-1" />
-                                                            Approve
-                                                        </Button>
-                                                        <Button size="sm" variant="destructive" onClick={() => handleParalegalReview(app._id, 'rejected')}>
-                                                            <XCircle className="h-4 w-4 mr-1" />
-                                                            Reject
-                                                        </Button>
-                                                    </>
-                                                )}
-                                            </div>
+                                            <Link to={`/dashboard/paralegal-reviews/${app._id}`} className="rounded-lg bg-[#8a1538] px-4 py-2 text-sm font-bold text-white">Review application</Link>
                                         </div>
                                     </div>
                                 ))}

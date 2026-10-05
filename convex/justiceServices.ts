@@ -1,7 +1,12 @@
 import { ConvexError, v } from "convex/values";
+import { paginationOptsValidator } from "convex/server";
+import { hasCurrentServiceReview, isServiceReviewOverdue, referralStatusAfterOrganisationChange, requireActiveReferralReadiness, requireDirectoryDecisionReason, requireDraftOrganisation, requireDraftService, requireIndependentDirectoryReviewer, requireLinkedCorrectionUpdate } from "./lib/directoryLifecycle";
 import { mutation, query } from "./_generated/server";
-import type { Id } from "./_generated/dataModel";
+import type { Doc, Id } from "./_generated/dataModel";
 import { getActiveRoles, requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
+import { requireCaseAccess } from "./lib/hakiYangu";
+import { acceptsMatchingIntake, requireMatchingLinkAccess, requireMatchingSource } from "./lib/matchingAccess";
+import { publicHelpResourcesForIssue } from "./lib/publicHelpResources";
 
 const servicePointType = v.union(
   v.literal("paralegal"),
@@ -125,7 +130,7 @@ function isCurrentPublicService(service: {
 }) {
   return service.active && service.visibility === "public" && service.verificationStatus === "verified"
     && service.servicePointType !== "safe_house"
-    && (service.nextReviewAt === undefined || service.nextReviewAt >= Date.now());
+    && hasCurrentServiceReview(service.nextReviewAt, Date.now());
 }
 
 function publicServiceProjection(service: {
@@ -215,17 +220,88 @@ export const staffListOrganizations = query({
   },
 });
 
-export const myOrganization = query({
+export const staffOrganizationsPage = query({
+  args: { status: v.optional(organizationVerificationStatus), paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const records = args.status
+      ? ctx.db.query("justice_service_organizations").withIndex("by_status", (q) => q.eq("verificationStatus", args.status!))
+      : ctx.db.query("justice_service_organizations");
+    const page = await records.order("desc").paginate(args.paginationOpts);
+    return { ...page, page: page.page.map((item) => ({
+      _id: item._id, name: item.name, organizationType: item.organizationType,
+      verificationStatus: item.verificationStatus, referralAgreementStatus: item.referralAgreementStatus,
+      safeguardingReady: item.safeguardingReady,
+    })) };
+  },
+});
+
+function staffOrganizationListItem(item: Doc<"justice_service_organizations">) {
+  return {
+    _id: item._id, name: item.name, organizationType: item.organizationType,
+    verificationStatus: item.verificationStatus, referralAgreementStatus: item.referralAgreementStatus,
+    safeguardingReady: item.safeguardingReady,
+  };
+}
+
+export const staffSearchOrganizations = query({
+  args: { search: v.string() },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const search = args.search.trim().slice(0, 120);
+    if (search.length < 2) return [];
+    const records = await ctx.db.query("justice_service_organizations")
+      .withSearchIndex("search_name", (q) => q.search("name", search)).take(100);
+    return records.map(staffOrganizationListItem);
+  },
+});
+
+export const staffGetOrganization = query({
+  args: { id: v.id("justice_service_organizations") },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const organization = await ctx.db.get(args.id);
+    if (!organization) return null;
+    const services = await ctx.db.query("justice_services")
+      .withIndex("by_organization", (q) => q.eq("organizationId", args.id)).collect();
+    return {
+      ...organization,
+      serviceCount: services.length,
+      activeReferralServiceCount: services.filter((service) => service.active && service.referralCapability).length,
+      services: services.map((service) => ({
+        _id: service._id,
+        name: service.name,
+        district: service.district,
+        region: service.region,
+        verificationStatus: service.verificationStatus,
+        visibility: service.visibility,
+      })),
+    };
+  },
+});
+
+export const myOrganizations = query({
   args: {},
   handler: async (ctx) => {
-    const { user } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
-    const assignments = await ctx.db
-      .query("role_assignments")
-      .withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active"))
-      .collect();
-    const organizationId = assignments.find((assignment) =>
+    const { assignments } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+    const ids = [...new Set(assignments.filter((item) => ["paralegal", "provider_staff"].includes(item.role) && item.organizationId).map((item) => String(item.organizationId)))];
+    const records = await Promise.all(ids.map((id) => ctx.db.get(id as Id<"justice_service_organizations">)));
+    return records.filter((item): item is NonNullable<typeof item> => item !== null).map((item) => ({
+      _id: item._id, name: item.name, verificationStatus: item.verificationStatus,
+      roles: [...new Set(assignments.filter((assignment) => assignment.organizationId === item._id).map((assignment) => assignment.role))],
+    }));
+  },
+});
+
+export const myOrganization = query({
+  args: { organizationId: v.optional(v.id("justice_service_organizations")) },
+  handler: async (ctx, args) => {
+    const { assignments } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+    const authorizedIds = assignments.filter((assignment) =>
       ["paralegal", "provider_staff"].includes(assignment.role) && assignment.organizationId,
-    )?.organizationId;
+    ).map((assignment) => assignment.organizationId);
+    const organizationId = args.organizationId ?? authorizedIds[0];
+    if (organizationId && !authorizedIds.some((id) => id === organizationId)) throw new ConvexError("This organisation is outside your approved access.");
     if (!organizationId) return null;
     const organization = await ctx.db.get(organizationId as Id<"justice_service_organizations">);
     if (!organization) return null;
@@ -254,11 +330,114 @@ export const myOrganization = query({
         region: service.region,
         district: service.district,
         currentIntakeState: service.currentIntakeState,
+        capacity: service.capacity,
         referralCapability: service.referralCapability,
         openingHours: service.openingHours,
         phone: service.phone,
       })),
     };
+  },
+});
+
+export const myOrganizationMembers = query({
+  args: { organizationId: v.id("justice_service_organizations") },
+  handler: async (ctx, args) => {
+    const { user, assignments } = await requireAnyRole(ctx, ["provider_staff"]);
+    const organizationId = args.organizationId;
+    if (!assignments.some((assignment) => assignment.role === "provider_staff" && assignment.organizationId === organizationId)) throw new ConvexError("This organisation is outside your approved access.");
+    const members = await ctx.db.query("role_assignments")
+      .withIndex("by_organization", (q) => q.eq("organizationId", organizationId)).collect();
+    return await Promise.all(members.filter((item) => ["paralegal", "provider_staff"].includes(item.role)).map(async (item) => {
+      const person = await ctx.db.get(item.userId);
+      return { id: item._id, name: person?.name || (person?._id === user._id ? "You" : "Member"), role: item.role, status: item.status };
+    }));
+  },
+});
+
+export const updateOwnIntake = mutation({
+  args: { serviceId: v.id("justice_services"), state: intakeState, capacity: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const { user, assignments } = await requireAnyRole(ctx, ["provider_staff"]);
+    const service = await ctx.db.get(args.serviceId);
+    if (!service?.organizationId || !assignments.some((item) => item.role === "provider_staff" && item.organizationId === service.organizationId)) throw new ConvexError("This service is outside your organisation.");
+    const organization = await ctx.db.get(service.organizationId);
+    if (organization?.verificationStatus !== "verified" || service.verificationStatus !== "verified" || !service.active) throw new ConvexError("This service is not active and verified. Ask LSF to review the record before updating intake.");
+    if (args.capacity !== undefined && (!Number.isInteger(args.capacity) || args.capacity < 0 || args.capacity > 100000)) throw new ConvexError("Capacity must be a whole number between 0 and 100000.");
+    if ((args.capacity ?? service.capacity) === 0 && args.state !== "closed") throw new ConvexError("Select closed when no places are available.");
+    const now = Date.now();
+    await ctx.db.patch(service._id, { currentIntakeState: args.state, ...(args.capacity !== undefined ? { capacity: args.capacity } : {}), updatedAt: now });
+    await ctx.db.insert("audit_logs", { action: "directory.provider_intake_updated", entityType: "justice_service", entityId: service._id, userId: user._id, timestamp: now, metadata: { previousState: service.currentIntakeState, nextState: args.state, previousCapacity: service.capacity, nextCapacity: args.capacity } });
+    return { success: true };
+  },
+});
+
+export const submitServiceCorrection = mutation({
+  args: { serviceId: v.id("justice_services"), reason: v.string(), proposedDetails: v.string() },
+  handler: async (ctx, args) => {
+    const { user, assignments } = await requireAnyRole(ctx, ["provider_staff"]);
+    const service = await ctx.db.get(args.serviceId);
+    if (!service?.organizationId || !assignments.some((item) => item.role === "provider_staff" && item.organizationId === service.organizationId)) throw new ConvexError("This service is outside your organisation.");
+    const reason = args.reason.trim(); const proposedDetails = args.proposedDetails.trim();
+    if (reason.length < 10 || reason.length > 1000 || proposedDetails.length < 10 || proposedDetails.length > 2000) throw new ConvexError("Explain the correction and proposed details (10–2000 characters).");
+    const now = Date.now();
+    const id = await ctx.db.insert("directory_correction_requests", { serviceId: service._id, organizationId: service.organizationId, requestedBy: user._id, reason, proposedDetails, status: "pending", submittedAt: now });
+    await ctx.db.insert("audit_logs", { action: "directory.correction_requested", entityType: "justice_service", entityId: service._id, userId: user._id, timestamp: now, metadata: { correctionRequestId: id } });
+    return { id };
+  },
+});
+
+export const listDirectoryCorrections = query({
+  args: { status: v.optional(v.union(v.literal("pending"), v.literal("applied"), v.literal("rejected"))) },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const requests = await ctx.db.query("directory_correction_requests").withIndex("by_status", (q) => q.eq("status", args.status ?? "pending")).order("desc").take(100);
+    return await Promise.all(requests.map(async (request) => {
+      const service = await ctx.db.get(request.serviceId);
+      const actor = await ctx.db.get(request.requestedBy);
+      return { ...request, serviceName: service?.name ?? "—", requestedByName: actor?.name ?? actor?.email ?? "—" };
+    }));
+  },
+});
+
+export const listDirectoryCorrectionsPage = query({
+  args: { paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const result = await ctx.db.query("directory_correction_requests")
+      .withIndex("by_status", (q) => q.eq("status", "pending"))
+      .order("desc").paginate(args.paginationOpts);
+    return { ...result, page: await Promise.all(result.page.map(async (request) => {
+      const [service, actor] = await Promise.all([ctx.db.get(request.serviceId), ctx.db.get(request.requestedBy)]);
+      return { ...request, serviceName: service?.name ?? "—", requestedByName: actor?.name ?? actor?.email ?? "—" };
+    })) };
+  },
+});
+
+export const getDirectoryCorrectionForReview = query({
+  args: { id: v.id("directory_correction_requests") },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const request = await ctx.db.get(args.id);
+    if (!request) return null;
+    const [service, actor] = await Promise.all([ctx.db.get(request.serviceId), ctx.db.get(request.requestedBy)]);
+    return { ...request, serviceName: service?.name ?? "—", requestedByName: actor?.name ?? actor?.email ?? "—" };
+  },
+});
+
+export const reviewDirectoryCorrection = mutation({
+  args: { id: v.id("directory_correction_requests"), decision: v.union(v.literal("applied"), v.literal("rejected")), note: v.string() },
+  handler: async (ctx, args) => {
+    const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+    const request = await ctx.db.get(args.id);
+    if (!request || request.status !== "pending") throw new ConvexError("Pending correction not found.");
+    const service = await ctx.db.get(request.serviceId);
+    if (args.decision === "applied") requireLinkedCorrectionUpdate(request.submittedAt, request.linkedServiceUpdateAt, service?.updatedAt);
+    const note = args.note.trim();
+    if (note.length < 10 || note.length > 1000) throw new ConvexError("Record a review reason of 10–1000 characters.");
+    const now = Date.now();
+    await ctx.db.patch(request._id, { status: args.decision, reviewNote: note, reviewedBy: user._id, reviewedAt: now });
+    await ctx.db.insert("audit_logs", { action: `directory.correction_${args.decision}`, entityType: "justice_service", entityId: request.serviceId, userId: user._id, timestamp: now, metadata: { correctionRequestId: request._id, note, serviceUpdatedAt: service?.updatedAt } });
+    return { success: true };
   },
 });
 
@@ -380,6 +559,12 @@ export const staffPartnerPerformance = query({
   },
 });
 
+// External publisher pages contain no platform provider identity or referral capability.
+export const listPublicInformationResources = query({
+  args: { issueCategory: v.optional(v.string()) },
+  handler: async (_ctx, args) => publicHelpResourcesForIssue(args.issueCategory),
+});
+
 export const listPublicServices = query({
   args: {
     region: v.optional(v.string()),
@@ -461,7 +646,7 @@ export const myServiceVisits = query({
     const visits = await ctx.db.query("justice_service_visits").withIndex("by_user", (q) => q.eq("userId", user._id)).order("desc").take(100);
     return await Promise.all(visits.map(async (visit) => {
       const service = await ctx.db.get(visit.serviceId);
-      return { visit, service: service ? { _id: service._id, name: service.name, district: service.district, region: service.region } : null };
+      return { visit, service: service && isCurrentPublicService(service) ? { _id: service._id, name: service.name, district: service.district, region: service.region } : null };
     }));
   },
 });
@@ -472,6 +657,7 @@ export const planServiceVisit = mutation({
     const { user } = await requireAuthenticatedUser(ctx);
     const service = await ctx.db.get(args.serviceId);
     if (!service || !isCurrentPublicService(service)) throw new ConvexError("This public service is not available for visit planning.");
+    if (service.currentIntakeState === "closed") throw new ConvexError("This service is not currently accepting visitors or calls. Find another service or ask LSF for help.");
     if (args.plannedFor < Date.now() - 60_000) throw new ConvexError("Choose a future date and time.");
     if (args.channel === "in_person" && !service.walkIn && service.appointmentRequired) throw new ConvexError("Contact this service to confirm an appointment before planning an in-person visit.");
     if (args.channel === "phone" && !service.phoneSupport) throw new ConvexError("Phone support is not listed for this service.");
@@ -522,15 +708,60 @@ export const staffListServices = query({
   },
 });
 
+function staffServiceListItem(service: Doc<"justice_services">) {
+  return {
+    _id: service._id, name: service.name, organizationName: service.organizationName,
+    district: service.district, region: service.region, servicePointType: service.servicePointType,
+    currentIntakeState: service.currentIntakeState, verificationStatus: service.verificationStatus,
+    visibility: service.visibility, active: service.active, referralCapability: service.referralCapability,
+    source: service.source, verifyingAuthority: service.verifyingAuthority,
+  };
+}
+
+export const staffServicesPage = query({
+  args: { status: v.optional(verificationStatus), paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const records = args.status
+      ? ctx.db.query("justice_services").withIndex("by_verification", (q) => q.eq("verificationStatus", args.status!))
+      : ctx.db.query("justice_services");
+    const page = await records.order("desc").paginate(args.paginationOpts);
+    return { ...page, page: page.page.map(staffServiceListItem) };
+  },
+});
+
+export const staffSearchServices = query({
+  args: { search: v.string() },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const search = args.search.trim().slice(0, 120);
+    if (search.length < 2) return [];
+    const [names, regions, districts] = await Promise.all([
+      ctx.db.query("justice_services").withSearchIndex("search_name", (q) => q.search("name", search)).take(40),
+      ctx.db.query("justice_services").withSearchIndex("search_region", (q) => q.search("region", search)).take(40),
+      ctx.db.query("justice_services").withSearchIndex("search_district", (q) => q.search("district", search)).take(40),
+    ]);
+    return [...new Map([...names, ...regions, ...districts].map((item) => [item._id, item])).values()].slice(0, 100).map(staffServiceListItem);
+  },
+});
+
+export const staffGetService = query({
+  args: { id: v.id("justice_services") },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const service = await ctx.db.get(args.id);
+    if (!service) return null;
+    return { ...service, organization: service.organizationId ? await ctx.db.get(service.organizationId) : null };
+  },
+});
+
 export const createOrganization = mutation({
   args: organizationInput,
   handler: async (ctx, args) => {
     const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
     const name = args.name.trim();
     if (name.length < 2) throw new ConvexError("Organization name is required.");
-    if (args.referralAgreementStatus === "active" && args.verificationStatus !== "verified") {
-      throw new ConvexError("Only verified organizations can have an active referral agreement.");
-    }
+    requireDraftOrganisation(args.verificationStatus, args.referralAgreementStatus);
     if (args.slaHours !== undefined && (args.slaHours < 1 || args.slaHours > 720)) {
       throw new ConvexError("SLA hours must be between 1 and 720.");
     }
@@ -573,18 +804,50 @@ export const updateOrganization = mutation({
     const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new ConvexError("Organization not found.");
-    const nextVerification = args.updates.verificationStatus ?? existing.verificationStatus;
-    const nextAgreement = args.updates.referralAgreementStatus ?? existing.referralAgreementStatus;
-    if (nextAgreement === "active" && nextVerification !== "verified") {
-      throw new ConvexError("Only verified organizations can have an active referral agreement.");
+    if (args.updates.slaHours !== undefined && (!Number.isInteger(args.updates.slaHours) || args.updates.slaHours < 1 || args.updates.slaHours > 720)) {
+      throw new ConvexError("SLA hours must be between 1 and 720.");
     }
+    const identityChanged = (args.updates.name !== undefined && args.updates.name.trim() !== existing.name)
+      || (args.updates.organizationType !== undefined && args.updates.organizationType !== existing.organizationType);
+    const needsReverification = identityChanged && existing.verificationStatus === "verified";
+    const proposedUpdates = needsReverification
+      ? { ...args.updates, verificationStatus: "draft" as const, referralAgreementStatus: "suspended" as const }
+      : args.updates;
+    const nextVerification = proposedUpdates.verificationStatus ?? existing.verificationStatus;
+    const nextAgreement = referralStatusAfterOrganisationChange(nextVerification, existing.referralAgreementStatus, proposedUpdates.referralAgreementStatus);
+    const safeUpdates = nextAgreement !== existing.referralAgreementStatus
+      ? { ...proposedUpdates, referralAgreementStatus: nextAgreement as Doc<"justice_service_organizations">["referralAgreementStatus"] }
+      : proposedUpdates;
+    const governanceChanged = args.updates.referralAgreementStatus !== undefined && args.updates.referralAgreementStatus !== existing.referralAgreementStatus
+      || args.updates.safeguardingReady !== undefined && args.updates.safeguardingReady !== existing.safeguardingReady
+      || args.updates.dataSharingAgreementVersion !== undefined && args.updates.dataSharingAgreementVersion !== existing.dataSharingAgreementVersion
+      || args.updates.slaHours !== undefined && args.updates.slaHours !== existing.slaHours;
+    if (governanceChanged) requireDirectoryDecisionReason(args.updates.notes);
+    if (nextVerification === "verified" && existing.verificationStatus !== "verified") {
+      requireIndependentDirectoryReviewer(user._id, existing.createdBy, existing.lastMaterialEditedBy);
+      requireDirectoryDecisionReason(args.updates.notes);
+    }
+    if (["suspended", "inactive"].includes(args.updates.verificationStatus ?? "") && args.updates.verificationStatus !== existing.verificationStatus) {
+      requireDirectoryDecisionReason(args.updates.notes);
+    }
+    if (nextAgreement === "active") requireActiveReferralReadiness(nextVerification, safeUpdates.safeguardingReady ?? existing.safeguardingReady, safeUpdates.dataSharingAgreementVersion ?? existing.dataSharingAgreementVersion);
     await ctx.db.patch(args.id, {
-      ...args.updates,
+      ...safeUpdates,
       ...(args.updates.name !== undefined ? { name: args.updates.name.trim() } : {}),
       ...(args.updates.focalPersonEmail !== undefined ? { focalPersonEmail: args.updates.focalPersonEmail.trim().toLowerCase() } : {}),
+      ...(identityChanged ? { lastMaterialEditedBy: user._id } : {}),
+      ...(nextVerification === "verified" && existing.verificationStatus !== "verified" ? { verifiedBy: user._id } : {}),
       updatedAt: Date.now(),
     });
-    await ctx.db.insert("audit_logs", { action: "directory.organization_updated", entityType: "justice_service_organization", entityId: args.id, userId: user._id, timestamp: Date.now(), metadata: { changedFieldNames: Object.keys(args.updates), previousVerificationStatus: existing.verificationStatus, nextVerificationStatus: nextVerification } });
+    if (needsReverification || (existing.verificationStatus === "verified" && nextVerification !== "verified")) {
+      const linked = await ctx.db.query("justice_services").withIndex("by_organization", (q) => q.eq("organizationId", args.id)).collect();
+      for (const service of linked) {
+        if (service.verificationStatus === "verified" || service.active) {
+          await ctx.db.patch(service._id, { verificationStatus: "expired", active: false, updatedAt: Date.now() });
+        }
+      }
+    }
+    await ctx.db.insert("audit_logs", { action: "directory.organization_updated", entityType: "justice_service_organization", entityId: args.id, userId: user._id, timestamp: Date.now(), metadata: { changedFieldNames: Object.keys(safeUpdates), previousVerificationStatus: existing.verificationStatus, nextVerificationStatus: nextVerification, decisionNote: args.updates.notes?.trim() } });
     return { success: true };
   },
 });
@@ -593,17 +856,14 @@ export const createService = mutation({
   args: serviceInput,
   handler: async (ctx, args) => {
     const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+    requireDraftService(args.verificationStatus, args.active);
+    if (args.capacity !== undefined && (!Number.isInteger(args.capacity) || args.capacity < 0 || args.capacity > 100000)) throw new ConvexError("Capacity must be a whole number between 0 and 100000.");
+    if (args.capacity === 0 && args.currentIntakeState !== "closed") throw new ConvexError("Select closed when no places are available.");
     if (args.servicePointType === "safe_house" && args.visibility === "public") {
       throw new ConvexError("Safe-house services cannot be public.");
     }
     const organization = args.organizationId ? await ctx.db.get(args.organizationId) : null;
     if (args.organizationId && !organization) throw new ConvexError("Linked organization not found.");
-    if (organization && organization.verificationStatus !== "verified" && args.verificationStatus === "verified") {
-      throw new ConvexError("A verified service must be linked to a verified organization.");
-    }
-    if (args.verificationStatus === "verified" && (!args.source?.trim() || !args.verifyingAuthority?.trim() || !args.lastVerifiedAt || !args.nextReviewAt)) {
-      throw new ConvexError("Verified services require source, verifying authority, verification date, and next review date.");
-    }
     const now = Date.now();
     const id = await ctx.db.insert("justice_services", {
       ...args,
@@ -620,6 +880,9 @@ export const createService = mutation({
 export const updateService = mutation({
   args: {
     id: v.id("justice_services"),
+    decisionReason: v.optional(v.string()),
+    correctionRequestId: v.optional(v.id("directory_correction_requests")),
+    correctionLinkNote: v.optional(v.string()),
     updates: v.object({
       name: v.optional(v.string()),
       organizationId: v.optional(v.id("justice_service_organizations")),
@@ -667,30 +930,59 @@ export const updateService = mutation({
     const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new ConvexError("Service not found.");
-    const nextType = args.updates.servicePointType ?? existing.servicePointType;
-    const nextVisibility = args.updates.visibility ?? existing.visibility;
+    const correction = args.correctionRequestId ? await ctx.db.get(args.correctionRequestId) : null;
+    if (args.correctionRequestId && (!correction || correction.status !== "pending" || correction.serviceId !== args.id)) throw new ConvexError("Pending correction does not belong to this service.");
+    const correctionLinkNote = args.correctionLinkNote?.trim() ?? "";
+    if (correction && (correctionLinkNote.length < 10 || correctionLinkNote.length > 1000)) throw new ConvexError("Describe how this edit addresses the correction in 10–1000 characters.");
+    if (correction && !Object.entries(args.updates).some(([key, value]) => value !== undefined && JSON.stringify(value) !== JSON.stringify(existing[key as keyof typeof existing]))) throw new ConvexError("Change at least one service detail before linking this correction.");
+    const publicFields = ["name", "organizationId", "organizationName", "servicePointType", "classification", "visibility", "country", "region", "district", "council", "ward", "villageOrMtaa", "latitude", "longitude", "physicalLocation", "serviceCoverageRegions", "issueCategories", "serviceTypes", "jurisdiction", "referralCapability", "eligibility", "openingHours", "walkIn", "appointmentRequired", "remoteSupport", "phoneSupport", "phone", "emergencyCapability", "languages", "disabilityAccess", "privacyAvailable", "genderSensitive"] as const;
+    const materialChange = publicFields.some((key) => args.updates[key] !== undefined && JSON.stringify(args.updates[key]) !== JSON.stringify(existing[key]));
+    const needsReverification = materialChange && existing.verificationStatus === "verified";
+    const safeUpdates = needsReverification ? { ...args.updates, verificationStatus: "expired" as const, active: false } : args.updates;
+    if (safeUpdates.capacity !== undefined && (!Number.isInteger(safeUpdates.capacity) || safeUpdates.capacity < 0 || safeUpdates.capacity > 100000)) throw new ConvexError("Capacity must be a whole number between 0 and 100000.");
+    if ((safeUpdates.capacity ?? existing.capacity) === 0 && (safeUpdates.currentIntakeState ?? existing.currentIntakeState) !== "closed" && (safeUpdates.capacity !== undefined || safeUpdates.currentIntakeState !== undefined)) throw new ConvexError("Select closed when no places are available.");
+    const nextType = safeUpdates.servicePointType ?? existing.servicePointType;
+    const nextVisibility = safeUpdates.visibility ?? existing.visibility;
     if (nextType === "safe_house" && nextVisibility === "public") {
       throw new ConvexError("Safe-house services cannot be public.");
     }
-    const organization = args.updates.organizationId ? await ctx.db.get(args.updates.organizationId) : null;
-    if (args.updates.organizationId && !organization) throw new ConvexError("Linked organization not found.");
-    if (organization && organization.verificationStatus !== "verified" && (args.updates.verificationStatus ?? existing.verificationStatus) === "verified") {
+    const linkedOrganizationId = safeUpdates.organizationId ?? existing.organizationId;
+    const organization = linkedOrganizationId ? await ctx.db.get(linkedOrganizationId) : null;
+    if (linkedOrganizationId && !organization) throw new ConvexError("Linked organization not found.");
+    if (organization && organization.verificationStatus !== "verified" && (safeUpdates.verificationStatus ?? existing.verificationStatus) === "verified") {
       throw new ConvexError("A verified service must be linked to a verified organization.");
     }
-    const nextVerification = args.updates.verificationStatus ?? existing.verificationStatus;
-    const source = args.updates.source ?? existing.source;
-    const verifyingAuthority = args.updates.verifyingAuthority ?? existing.verifyingAuthority;
-    const lastVerifiedAt = args.updates.lastVerifiedAt ?? existing.lastVerifiedAt;
-    const nextReviewAt = args.updates.nextReviewAt ?? existing.nextReviewAt;
-    if (nextVerification === "verified" && (!source?.trim() || !verifyingAuthority?.trim() || !lastVerifiedAt || !nextReviewAt || nextReviewAt <= lastVerifiedAt)) {
-      throw new ConvexError("Verified services require source, verifying authority, and a valid future review date.");
+    const nextVerification = safeUpdates.verificationStatus ?? existing.verificationStatus;
+    const activates = safeUpdates.active === true && !existing.active;
+    const overdue = isServiceReviewOverdue(existing.verificationStatus, existing.nextReviewAt, Date.now());
+    const renews = overdue && safeUpdates.verificationStatus === "verified";
+    const verifies = nextVerification === "verified" && existing.verificationStatus !== "verified" || renews;
+    const deactivates = args.updates.active === false && existing.active;
+    const retires = safeUpdates.verificationStatus === "inactive" && existing.verificationStatus !== "inactive";
+    const intakeChanges = safeUpdates.currentIntakeState !== undefined && safeUpdates.currentIntakeState !== existing.currentIntakeState;
+    if (verifies || activates || deactivates || retires || intakeChanges) {
+      requireDirectoryDecisionReason(args.decisionReason);
     }
+    if (renews && (!safeUpdates.lastVerifiedAt || !safeUpdates.nextReviewAt)) throw new ConvexError("Renewal requires a new verification date and future review date.");
+    if (verifies) requireIndependentDirectoryReviewer(user._id, existing.createdBy, existing.lastMaterialEditedBy);
+    if (activates && nextVerification !== "verified") throw new ConvexError("Only a verified service can be activated.");
+    const source = safeUpdates.source ?? existing.source;
+    const verifyingAuthority = safeUpdates.verifyingAuthority ?? existing.verifyingAuthority;
+    const lastVerifiedAt = safeUpdates.lastVerifiedAt ?? existing.lastVerifiedAt;
+    const nextReviewAt = safeUpdates.nextReviewAt ?? existing.nextReviewAt;
+    if (nextVerification === "verified" && (!source?.trim() || !verifyingAuthority?.trim() || !lastVerifiedAt || !nextReviewAt || nextReviewAt <= lastVerifiedAt || nextReviewAt <= Date.now())) {
+      throw new ConvexError("Verified services require source, verifying authority, and a future review date.");
+    }
+    const changedAt = Date.now();
     await ctx.db.patch(args.id, {
-      ...args.updates,
-      ...(organization ? { organizationName: organization.name } : args.updates.organizationName !== undefined ? { organizationName: args.updates.organizationName } : {}),
-      updatedAt: Date.now(),
+      ...safeUpdates,
+      ...(organization ? { organizationName: organization.name } : safeUpdates.organizationName !== undefined ? { organizationName: safeUpdates.organizationName } : {}),
+      ...(materialChange ? { lastMaterialEditedBy: user._id } : {}),
+      ...(verifies ? { verifiedBy: user._id } : {}),
+      updatedAt: changedAt,
     });
-    await ctx.db.insert("audit_logs", { action: "directory.service_updated", entityType: "justice_service", entityId: args.id, userId: user._id, timestamp: Date.now(), metadata: { changedFieldNames: Object.keys(args.updates), previousVerificationStatus: existing.verificationStatus, nextVerificationStatus: nextVerification, previousActive: existing.active, nextActive: args.updates.active ?? existing.active } });
+    if (correction) await ctx.db.patch(correction._id, { linkedServiceUpdateAt: changedAt, linkedServiceUpdateBy: user._id, linkedServiceUpdateNote: correctionLinkNote });
+    await ctx.db.insert("audit_logs", { action: "directory.service_updated", entityType: "justice_service", entityId: args.id, userId: user._id, timestamp: changedAt, metadata: { changedFieldNames: Object.keys(safeUpdates), previousVerificationStatus: existing.verificationStatus, nextVerificationStatus: nextVerification, previousActive: existing.active, nextActive: safeUpdates.active ?? existing.active, decisionReason: args.decisionReason?.trim(), correctionRequestId: correction?._id } });
     return { success: true };
   },
 });
@@ -708,17 +1000,44 @@ export const matchServices = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    const user = identity
+    const account = identity
       ? await ctx.db.query("users").withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject)).unique()
       : null;
+    const user = account && !account.isDeleted ? account : null;
+    const roles = user ? await getActiveRoles(ctx, user._id) : [];
+    const isStaff = roles.some((role) => role === "admin" || role === "staff" || role === "supervisor");
+    const source = args.source ?? "directory";
+    requireMatchingSource(source, isStaff);
+    const request = args.requestId ? await ctx.db.get(args.requestId) : null;
+    if (args.requestId && !request) throw new ConvexError("Request not found.");
+    const caseRecord = args.caseId ? await ctx.db.get(args.caseId) : null;
+    if (args.caseId && !caseRecord) throw new ConvexError("Case not found.");
+    if (args.caseId) await requireCaseAccess(ctx, args.caseId);
+    requireMatchingLinkAccess({
+      actorId: user?._id,
+      requestOwnerId: request?.ownerId,
+      caseBeneficiaryId: caseRecord?.beneficiaryId,
+      caseSourceRequestId: caseRecord?.sourceRequestId,
+      requestId: args.requestId,
+      isStaff,
+      canAccessCase: Boolean(caseRecord),
+    });
     const services = await ctx.db
       .query("justice_services")
       .withIndex("by_active_visibility", (q) => q.eq("active", true).eq("visibility", "public"))
       .collect();
-    const issueCategory = normalize(args.issueCategory ?? args.ordinaryProblem);
-    const region = normalize(args.region);
-    const district = normalize(args.district);
-    const isCritical = args.urgency === "immediate_safety";
+    const linkedRequest = request ?? (caseRecord?.sourceRequestId ? await ctx.db.get(caseRecord.sourceRequestId) : null);
+    if (caseRecord?.sourceRequestId && !linkedRequest) throw new ConvexError("The case's source request is unavailable for matching.");
+    const matchContext = linkedRequest ? {
+      issueCategory: linkedRequest.issueCategory,
+      region: linkedRequest.region,
+      district: linkedRequest.district,
+      urgency: linkedRequest.urgency,
+    } : args;
+    const issueCategory = normalize(matchContext.issueCategory ?? (linkedRequest ? undefined : args.ordinaryProblem));
+    const region = normalize(matchContext.region);
+    const district = normalize(matchContext.district);
+    const isCritical = matchContext.urgency === "immediate_safety";
     const safetyFlags = isCritical ? ["immediate_safety_review_required"] : [];
     const isRestricted = isCritical;
 
@@ -727,7 +1046,7 @@ export const matchServices = mutation({
       .filter((service) => !issueCategory || service.issueCategories.some((item) => item.toLowerCase().includes(issueCategory) || issueCategory.includes(item.toLowerCase())))
       .filter((service) => !region || service.region.toLowerCase().includes(region) || service.serviceCoverageRegions.some((item) => item.toLowerCase().includes(region)))
       .filter((service) => !district || service.district.toLowerCase().includes(district) || service.remoteSupport)
-      .filter((service) => service.currentIntakeState !== "closed")
+      .filter((service) => acceptsMatchingIntake(service.currentIntakeState, matchContext.urgency, service.capacity))
       .map((service) => {
         const reasons: string[] = [];
         let score = 0;
@@ -769,16 +1088,16 @@ export const matchServices = mutation({
     const explanation = isRestricted
       ? ["Immediate safety requests require LSF safeguarding review before service recommendations are shown."]
       : ranked.flatMap((item) => item.reasons.slice(0, 2));
-    const decisionId = await ctx.db.insert("matching_decisions", {
+    const decisionId = args.requestId || args.caseId || source === "staff" ? await ctx.db.insert("matching_decisions", {
       requesterId: user?._id,
       requestId: args.requestId,
       caseId: args.caseId,
-      source: args.source ?? "directory",
-      issueCategory: args.issueCategory,
-      ordinaryProblem: args.ordinaryProblem,
-      region: args.region,
-      district: args.district,
-      urgency: args.urgency,
+      source,
+      issueCategory: matchContext.issueCategory,
+      ordinaryProblem: linkedRequest ? undefined : args.ordinaryProblem,
+      region: matchContext.region,
+      district: matchContext.district,
+      urgency: matchContext.urgency,
       recommendedServiceIds: ranked.map((item) => item.service._id),
       explanation,
       safetyFlags,
@@ -788,7 +1107,7 @@ export const matchServices = mutation({
         : undefined,
       modelAssisted: false,
       createdAt: Date.now(),
-    });
+    }) : null;
 
     return {
       decisionId,

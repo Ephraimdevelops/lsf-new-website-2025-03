@@ -1,0 +1,3224 @@
+[PDF PAGE 1]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+1 
+ 
+ 
+GOVERNMENT NOTICE NO. 185 published on 27/5/2016 
+THE WORKERS’ COMPENSATION REGULATIONS, 2016 
+ARRANGEMENT OF REGULATIONS 
+ 
+ 
+ 
+Regulations         Title 
+  PART 1 
+1. Title 
+2. Application 
+3. Interpretation 
+ 
+PART II 
+APPOINTMENT AND TERMINATION OF DIRECTOR GENERAL,  
+CHAIRMAN AND OTHER MEMBERS OF THE BOARD 
+ 
+4. Nomination Committee 
+5. Functions of the Nomination Committee 
+6. Appointment of Director General and Chairman 
+7. Disqualification of Director General 
+8. Appointment and termination of Members of the Board 
+ 
+PART III 
+EMPLOYER’S REGISTRATION AND ASSESSMENT OF TARIFFS 
+ 
+9. Registration of employer 
+10. Particulars of  business 
+11. Employer’s assessment 
+12. Assessment of employer’s degree of risk exposure 
+13. Payment of  tariff 
+14. Employer’s return of earnings 
+ 
+PART IV 
+OCCUPATIONAL ACCIDENT, OCCUPATIONAL DISEASE OR DEATH 
+NOTIFICATION PROCEDURES AND PROVISION OF HEALTH CARE 
+ 
+15.   Notification of accident by employee or employer 
+
+[PDF PAGE 2]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+2 
+ 
+ 
+16.   Notification of occupational disease by employee or employer 
+17. Notification of death 
+18. Care and treatment pending compensation 
+ 
+PART V 
+SUBMISSION AND REVIEW OF CLAIM FOR COMPENSATION 
+ 
+19. Claim for compensation 
+20. Receipt of claim by Director General 
+21. Submission of medical report 
+22. Formal hearing by Director General 
+23. Assessors in formal hearing 
+24. Powers of Director General in respect of witnesses 
+25. Non appearance of parties 
+26. Criteria for consideration of claims 
+27. Findings and decision of Director General 
+28. Review of decision by Director General 
+29. Appeals to the Minister and application for revision 
+30. Records in relation to claims 
+ 
+PART VI 
+BENEFITS PAYABLE BY THE FUND 
+ 
+ 
+31. Benefits 
+32. Beneficiaries 
+ 
+PART VII 
+DETERMINATION AND PAYMENT OF COMPENSATION 
+ 
+33. Determination of compensation 
+34. Payment of compensation 
+35. Provision of medical aid and rehabilitation 
+36. Compensation for temporary total or partial disablement 
+37. Consideration of claim for temporary total or partial disablement 
+38. Compensation for permanent disablement 
+39. Mode of payment 
+40. Funeral grants, constant attendant care grants, medical costs, conveyance 
+costs and rehabilitation benefits 
+
+[PDF PAGE 3]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+3 
+ 
+ 
+41. Compensation to the dependants 
+42. Employer’s duty on payment of compensation 
+43. Medical examination for a pensioner 
+ 
+PART VIII 
+ACCREDITATION OF HEALTH CARE PROVIDERS 
+ 
+44. Power to grant accreditation 
+45. Health care providers 
+46. Condition for accreditation 
+47. Powers of Director General in relation to health care providers 
+48. Choice of health care provider by Employee 
+49. Quality assurance 
+ 
+PART IX 
+GENERAL PROVISIONS 
+ 
+50. Appointment of an actuary 
+51. Cessation of payment of pension 
+52. Disposal of unclaimed money 
+53. Employees’ rights 
+54. Compensation for apprentice 
+55. Compensation for the excepted employees 
+56. Fees, allowance and other payments 
+57. Powers to make investigations or inspections 
+58. Register of accidents 
+59. Duty to keep records 
+60. Penalties 
+61. Revocation of GN. No. 106 of 2011 
+ 
+________ 
+ 
+SCHEDULES 
+________ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 4]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+4 
+ 
+ 
+THE WORKERS COMPENSATION ACT 
+(CAP. 263)  
+__________ 
+ 
+(Made under section 94) 
+_________ 
+ 
+THE WORKERS' COMPENSATION REGULATIONS, 2016 
+PART I 
+PRELIMINARY PROVISIONS 
+ 
+Title  1.    These Regulati ons may be cited as the Workers  
+Compensation Regulations, 2016 and shall come into operation on the 
+date of publication. 
+  
+Application  2.-(1) These Regulations shall apply to the Fund, employers 
+and employees in Mainland Tanzania.  
+   (2)  Notwithstanding the provisions of sub regulation (1) and 
+subject to section 24 (3) of the Act, these Regulations shall apply to 
+employees working in Tanzania Zanzibar whose employers are 
+operating their business mainly in Mainland Tanzania. 
+  
+Interpreta-
+tion 
+ 3.  In these Regulations, unless the context otherwise requires- 
+Cap. 263  “Act” means the Workers Compensation Act; 
+ “accreditation” means a process whereby the qualification and 
+capabilities of health care providers are verified for the 
+purposes of conferring upon the privilege of participation in 
+the Fund; 
+ “annual earnings” means  the annual amount which is paid by an 
+employer to his employees during tenancy of their 
+employment contracts and include basic salaries and other 
+fixed allowances which are paid on monthly basis along with 
+basic salaries and subject to sections 58, 73(1)(a), 73(5) and 
+
+[PDF PAGE 5]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+5 
+ 
+ 
+73(6); 
+ “assessor” means a pe rson with special technical skills appointed by 
+the Director General  from within or outside the Fund, 
+permanently or for a specific purpose, to assist the Director 
+General in the performance of his duties; 
+  “apprentice” means a person who works for an em ployer for 
+the purpose of learning within a specific time; 
+ “authorized person” means an employee of the Fund or any other 
+person with required skills appointed by the Director General 
+to investigate any matter that he deems necessary for the 
+performance of his functions; 
+  “chairman” means the Chairman of the Board of Trustees 
+appointed in accordance with the First Schedule of the Act; 
+ “competent authority” means a person, officer, office or body with the 
+power under any relevant written law to do, dec ide or 
+determine any matter as may be prescribed; 
+ “employee” means- 
+ (a) any person, including an apprentice but excluding an 
+independent contractor, who works for another person or 
+for the state and who receives, or is entitled to receive, 
+any remuneration; and 
+ (b) any other person who in any manner assists in carrying on 
+or conducting the business of employer and who receives, 
+or is entitled to receive, any remuneration: 
+  Provided th at the following persons are ex empted from the 
+definition of “employee” in  line with the provisions of section 1(2) 
+and section 94(1) (h) and (2) of the Act, until such time that the 
+Minister has issued specific regulations for them upon being advised 
+by the Board- 
+ (a) a person who is employed or works for an employer in the 
+informal sector; 
+ (b) a person who is employed or works for an employer in the 
+formal sector for less than thirty consecutive days 
+including weekends and public holidays; 
+ (c) any person who is a member of armed forces or of any 
+visiting force lawfully present in Mainland Tanzania; 
+ (d) any person who is employed or works for the Tanzania 
+Intelligence and Security Service; 
+
+[PDF PAGE 6]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+6 
+ 
+ 
+ (e) an apprentice who is not paid salary or allowance by the 
+employer; 
+ (f) any class of person whom the Minister may declare not to 
+be an employee for the purposes of these Regulations; 
+ “employer” means any person, including the Government and an 
+executive agency, who employs an employee;  
+ “formal sector” means a sector which include employers and 
+employees who have entered into a contract of employment or 
+apprenticeship or any other contract contemplated in the 
+definition of “an employee”; 
+ 
+ “Fund” means the Workers Compensation Fund established under 
+section 5 of  the Act; 
+ “health care provider” means  any person, i nstitution or agency that 
+provides curative health services; 
+ “informal sector” means the sector which include workers who work 
+informally and who do not have employment contract or any 
+other contract contemplated in the definition of “an 
+employee”; 
+ “medical advisory panel” means a body of Medical Practitioners 
+composed by the Director General under section 10 of the 
+Act; 
+ “nomination committee” means a committee established by the  
+Minister under regulation 4; 
+ “notice” means notice which is either in writing or verbal; 
+ “occupational accident” means an unexpected occurrence arising out 
+of or in connection with work which may result into an 
+employee’s injury or death; 
+ “occupational disease” means a disease set out in the Third Schedule 
+to the Act or any other disease that has arisen out of and in the 
+course of the employee’s employment; 
+  “occupational injury” means an injury sustained by an employee as a 
+result of an occupational accident or occupational disease; 
+ "party" means any person who is a party to any proceedings under the 
+Act, and includes a person appearing for a party; 
+ “person" means any word or expression descriptive of a person and  
+includes a public body, company, or association or body of 
+persons, corporate or unincorporated; 
+
+[PDF PAGE 7]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+7 
+ 
+ 
+ "representative" means the executor or other person lawfully 
+appointed to take charge of the estate of a deceased employee, 
+or any person specially appointed by the Director General to 
+make an application on behalf of the deceased employee’s 
+dependants for compensation and in other respects to act as 
+the representative of such employee for the purposes of these 
+Regulations; 
+ “revenue” means income of the Fund and includes contributions from 
+employers, investment income , penalties imposed under the 
+Act, funds from any lawful sources and any othe r income 
+which is legally acquired by the Fund  during a specific period 
+of time; 
+ “risk exposure” means a potential for an occurrence of accident or 
+occupational disease that might occur in the course of 
+employment; 
+ “sign” includes the making by a perso n of a mark, attested by two 
+competent witnesses testifying that such mark was made by 
+such person in their presence, and "signature" includes a mark 
+so made; 
+ “tariff” means the sum of money equal to percentage of annual 
+earnings of employees paid to the  Fund as per requirement of 
+these Regulations; 
+ "total disablement" in relation to an employee, means temporary or 
+permanent inability to perform the work for which he was 
+employed or inability to perform any other suitable work as a 
+result of an accident  or occupational disease in respect of 
+which compensation is payable; 
+  “workers compensation” means  financial support system established 
+under the law to provide income protection, medical care and 
+rehabilitation to employees for illness, injury, or death arising 
+out of and in the course of their employment. 
+  
+PART II 
+APPOINTMENT AND TERMINATION OF DIRECTOR GENERAL, 
+CHAIRMAN AND OTHER MEMBERS OF THE BOARD 
+ 
+Nomination 
+Committee 
+ 4.-(1) Subject to section 6(2) of the Act, t here shall be a 
+Committee to be known as the Nomination Committee. 
+  (2)  The Nomination Committee shall be comprised of- 
+
+[PDF PAGE 8]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+8 
+ 
+ 
+ (a) the Permanent Secretary of the  Ministry responsible 
+for Labour  who shall be the Chairman of the 
+Committee; 
+ (b) the Permanent Secretary of the Ministry responsible 
+for Finance; 
+ (c) the Permanent Secretary of the Ministry responsible 
+for Health; 
+ (d) the Permanent Secretary of the Ministry resp onsible 
+for Local Government Authorities;  
+ (e) the Permanent Secretary of the Ministry responsible 
+for Public Service; 
+ (f) two experts in Social Security or insurance matters 
+appointed by the Minister; 
+ (g) an expert in labour relations matters appointed by the 
+Minister. 
+  (3) The Nomination Committee shall appoint one person from 
+amongst themselves to be the secretary. 
+            (4) The Nomination Committee shall appoint , as deemed 
+suitable, a secretariat composing of not more than three (3) persons of 
+relevant competency and experience to facilitate smooth running of its 
+functions. 
+             (5) The Nomination Committee shall work on ad-hoc basis 
+depending on the need for nomination. 
+  (6)  The Fund shall pay all such allowances, fees and any 
+other expenses incurred for the purpose of the Nomination Committee 
+and subject to the approval of the Minister. 
+  
+Functions of 
+the 
+Nomination 
+Committee 
+ 5.-(1) The functions of the Nomination Committee shall be to 
+invite applications, scrutinize and shortlist perso ns who apply for 
+appointments as a Director General or Chairman. 
+  (2)  The Nomination Committee shall take necessary actions 
+to identify the best candidates for the post. 
+  (3)  The Nomination Committee shall submit to the Minister- 
+ (a) three names of persons to be forwarded to the President by 
+the Minister to be considered for appointment as Director 
+General; 
+ (b) three names of persons to be forwarded to the President by 
+the Minister to be considered for appointment as 
+Chairman. 
+
+[PDF PAGE 9]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+9 
+ 
+ 
+  (4)  The Nomination Commi ttee shall regulate its own 
+proceedings and other matters in relation thereto. 
+  
+Appointmen
+t of Director 
+General and 
+Chairman 
+ 6.-(1) Subject to the provisions of regulations 4 and 5, there 
+shall be a Director General and Chairman appointed by the Presid ent 
+in accordance with section 6(1) and  paragraph 1(1)(a)  of the F irst 
+Schedule of the Act respectively. 
+  (2) The Minister may designate any officer serving in the 
+managerial position in the Fund to act as a Director General during the 
+occurrence of any of the following- 
+ (a) resignation by the Director General; 
+(b) incapacity of the Director General by reason of health or 
+mental problem to perform his functions; 
+(c) appointment to another post; 
+(d) termination by reason of inability to perform his 
+functions; 
+(e) death; or 
+(f) any other reason that may render the post of a Director 
+General vacant. 
+  
+Disqualificat
+ion of  
+Director 
+General  
+  7.-(1) A person shall be disqualified for an appointment as a 
+Director General, if he-    
+ (a) is convicted and sentenced to imprisonment for any 
+criminal offence; 
+ (b) is adjudged bankrupt; 
+ (c) has applied for the benefit of any law for the relief of 
+bankrupt or insolvent debtors;  
+ (d) compounds with his creditors or makes an assignment of 
+his remuneration for their benefit; or 
+ (e) proved to be physical ly or mentally unfit to perform his 
+work.  
+  (2) Notwithstanding  the provisions of  sub regulation (1), no 
+act of commission or omission by the Direct General done or omitted 
+to be done in good faith for the purpose or in pursuance of these 
+Regulations sha ll be invalid by reason only of any defect in his 
+appointment. 
+  
+
+[PDF PAGE 10]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+10 
+ 
+ 
+Appointmen
+t and 
+termination 
+of Members 
+of the Board 
+ 8.-(1) The Minister shall appoint members of the Board of 
+Trustees, other than the Director General and Chairman, as provided 
+for in the First Schedule of the Act. 
+ (2) Termination of me mbers of the Board of Trustees shall 
+follow procedures to vacate office as provided for in the First 
+Schedule of the Act. 
+  
+PART III 
+EMPLOYER’S REGISTRATION AND ASSESSMENT OF TARIFFS 
+  
+Registration 
+of employer 
+ 9.-(1) Every employer shall, within thirty calendar days 
+from the date of recruitment of the first employee, submit his 
+particulars of registration to the Director General in Form WCR -1 as 
+prescribed in First Schedule to these Regulations. 
+ 
+ 
+ (2) Notwith standing the provision of sub regulation (1), 
+existing employers and new employers up to 30 th June 2016, shall be 
+required to submit their particulars for registration to the Director 
+General in the form set out in Form WCR -1 within such time as m ay 
+be determined by the Director General. 
+  (3) The particulars of reg istration referred to under sub 
+regulation (1) shall be submitted either electronically, manually or in 
+any other form as may be determined by the Director General. 
+             (4) The Director General shall within the period not exceeding 
+six months from the date of receipt of the particulars submitted by the 
+employer, under sub regulation (1) and (2), verify such particulars and 
+issue a certificate of registration. 
+  (5)  The certificate of registration issued under sub regulation 
+(4), shall be displayed at a conspicuous place in the workplace so that 
+it can easily be seen. 
+             (6) Where the information and particulars submitted under 
+sub regulations (1) and (2) are incorre ct or insufficient, the Director 
+General may require the employer to submit within fourteen calendar 
+days, the information or particulars needed for completion of 
+registration. 
+          (7) Particulars of registration to be availed during employers’ 
+registration shall also include individual records of each employee for 
+a particular employer as may be determined by the Director General. 
+  
+
+[PDF PAGE 11]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+11 
+ 
+ 
+Particulars 
+of business 
+ 10.-(1) Every employer  shall, within fourteen working days 
+from the date of receipt of the c ertificate of registration, furnish the 
+Director General the particulars of his business in the manner 
+prescribed in Form WCR-2.  
+  (2) For the purpose of enabling the Director General to do  a 
+correct assessment under sub regulation (1), an employer shall, during 
+the submission of business particulars, be required to submit a separate 
+report showing itemized particulars of annual earnings for every 
+employee. 
+  (3) Notwithstanding the requirements under this regulation and 
+regulation 9(1), the employer may  submit to the Director General the 
+particulars of registration and particulars of business at the same time. 
+  
+Tariff 
+determina-
+tion  
+ 11.-(1) The Director General, shall, with the opinion of an 
+actuary, assess employers , or categories of employers , for tariff 
+determination within any time and in such manner as he may 
+determine. 
+  (2)  In determining  the tariff to be paid by the employer, the 
+Director General shall take into consideration-   
+ (a) the annual earnings of the employees; 
+ (b) the degree of risk exposure of the employer; and  
+ (c) such other objective basis as he may consider suitable. 
+  
+Assessment 
+of employer’s 
+degree of risk 
+exposure 
+ 12. -(1) The Director General shall, in assessing an employer’s 
+degree of risk exposure, consider the following- 
+ (a) compliance with National Occupational Safety and 
+Health legislations; 
+(b) National Occupational Safety and Health Standards; 
+ (c) nature of industry;  
+ (d) records of accidents and occupational diseases;  
+ (e) geographical and environmental factors; and 
+ (f) any other factors that he may deem necessary to consider. 
+   (2) Notwithstanding the requirement of sub regulation (1), in 
+the absence or deficiency of National Occupational Safety and Health 
+standards, the Direc tor General may, in assessing risk for exposure, 
+consider relevant International Occupational Safety and Health 
+Standards as he deems appropriate. 
+ 
+
+[PDF PAGE 12]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+12 
+ 
+ 
+  (3) The Director General shall, from time to time, issue 
+guidelines including specific applicable standards for conducting risk 
+assessment. 
+  
+Payment of 
+tariff 
+ 13.-(1) Tariff determined under regulation 11 shall be paid on 
+monthly basis.   
+  (2) Every new tariff as determined under regulation 11 shall be 
+applicable from the first day of July following its determination and 
+shall prevail for at least twelve months thereafter until it is amended by 
+the next assessment of tariff under regulation 11. 
+  (3)  The payment of tariff relating to a particular month shall 
+be made within a period of one month after the end of the month to 
+which the tariff relates. 
+  (4) The tariff shall be paid through a bank account, an agent, a 
+financial institution, other means of payment regulated by the Bank of 
+Tanzania or any other means as the Director General may consider 
+suitable. 
+  (5) Notwithstanding the requirement of this regulation, an 
+employer may opt to pay annual tariff-  
+ (a) once at the beginning of every financial year; 
+ (b) semiannually at the beginning of every six months; or 
+ (c) on quarterly basis at the beginning of every quarter of 
+financial year. 
+  (6) The payment prescribed in sub regulation (5) shall, prior to 
+its  execution, be communicated to the Director General in writing. 
+  (7) Subject to section 75 (2) of the Act, where a tariff is not 
+paid within the period prescribed under this regulation, an employer 
+shall be liable to pay a sum not exceeding ten percentum of the unpaid 
+amount as an interest following the date from which the payment 
+should have been made and the amount of the interest shall be 
+recovered as debt owing to the Fund by the employer. 
+  
+Employer’s 
+return of 
+earnings 
+       14.-(1) An employer shall, not later than the 31 st day of March of 
+each calendar year, furnish to the Director General return of earnings 
+in a Form WCR-3 as set out the First Schedule to these Regulations.  
+  (2) An employer who commences business after the last day of 
+February of a particular year shall, within seven working days after the 
+commencement of the business, furnish to the Director General with 
+
+[PDF PAGE 13]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+13 
+ 
+ 
+his particulars of business in the manner prescribed in Form WCR-2. 
+  (3) In furnishing returns of earnings to the Director General as 
+provided under sub regulation (1) and (2), the employer shall submit 
+an itemized particular report of the annual earnings for every employee 
+as provided for under regulation 10(2). 
+  
+PART IV 
+OCCUPATIONAL ACCIDENT, OCCUPATIONAL DISEASE OR DEATH 
+NOTIFICATION PROCEDURE AND PROVISION OF HEALTH CARE 
+  
+Notification 
+of accident 
+by 
+employee or 
+employer  
+ 15 . -(1) Subject to section 33(1) of the Act, an employee or 
+any other person on behalf of an e mployee shall within two working 
+days after an occurrence of the accident notify the employer of such 
+occurrence either orally, in writing or electronically in the manner 
+prescribed in Form WCN-1.  
+  (2) Notwithstanding the provision of sub regulation (1) , an 
+employee or any other person on behalf of an employee, may notify 
+the Director General within seven working days after an occurrence of 
+accident either orally, in writing or electronically  in the manner 
+prescribed Form WCN-1.  
+  (3) The employer shal l, within seven working days after 
+receipt of the notification under sub regulation (1), acknowledge the 
+receipt of such notification.  
+  (4) Subject to section 34(1) of the Act,  employer shall, within 
+seven working days from the date of receipt of notifi cation under sub 
+regulation (1), notify the Director General in the manner prescribed in 
+Form WCN-1 as set out in the First Schedule to these Regulations. 
+  
+Notification 
+of 
+occupation-
+nal disease 
+by 
+employee or 
+employer 
+ 16.-(1) Subject to section 35 (1)  of the Act, an employee or a 
+trade union on behalf of an employee shall, within fourteen working 
+days after occurrence of an occupational disease, notify the employer 
+of such occurrence in the manner prescribed in Form WCN-1 as set out 
+in the First Schedule to these Regulation. 
+  (2)  Subject to section 35(3) of the Act , the notification of an 
+occurrence of occupational disease by an employer to the Director 
+General shall be made within seven working days after receipt of such 
+notice from an employee or trade union or any other person on behalf 
+of the employee in the manner prescribed in  Form WCN-1 of the First 
+
+[PDF PAGE 14]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+14 
+ 
+ 
+Schedule to these Regulation.. 
+  (3)  Notwithstanding the provision of sub regulation (1), an 
+employee or a trade union or any other person on beh alf of an 
+employee, may notify the Director General, in a prescribed Form 
+WCN-1, within twenty one working days after an occurrence of 
+occupational disease. 
+  (4) Subject to section 40( 3) of the Act, and for the purpose of 
+this regulation, date of “occurrence of an occupational disease” means 
+a date when a medical practitioner diagnosed the disease for the first 
+time and notified the employee or any other person on behalf of an 
+employee of the diagnosis. 
+  
+Notification 
+of death 
+ 17.-(1) The procedure for  notifying the employer or the 
+Director General on an occurrence of death arising out of an accident 
+or an occupational disease shall be made in accordance with 
+regulations 15 and 16. 
+  (2) Notwithstanding the provisions of sub regulation (1), 
+notification of death to the employer or Director General shall be made 
+within twelve months from the date of occurrence of such death.  
+  
+Care and 
+treatment 
+pending 
+compensa-
+tion. 
+ 18.-(1) An employer shall be responsible for the provision of 
+health care and treatment to an employee who has sustained injuries as 
+a result of accident or an employee who has acquired occupational 
+diseases pending submission and determination of the claim for 
+compensation by the Director General in the manner prescribed under 
+Part V of these Regulations. 
+  (2)  Notwithstanding the provisions of sub regulation (1), 
+where there is an arrangement by an employer for the provision of 
+health care and treatment to an employee, such arrangement shall be 
+used to cover the expenses to be incurre d pending submission of the 
+claim for compensation to the Director General. 
+  
+PART V 
+SUBMISSION AND REVIEW OF CLAIM FOR COMPENSATION 
+  
+Claim for 
+compensa-
+tion 
+ 19.-(1) Subject to section 39(3) of the Act, an employee or any 
+other person on behalf of an  employee, shall, within twelve months 
+from the date of occurrence of an accident, an occupational disease or 
+death, submit a claim for compensation to the employer and furnish a 
+
+[PDF PAGE 15]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+15 
+ 
+ 
+copy of such claim to the Director General as prescribed in Form 
+WCC-1.  
+  (2) An employer shall, within seven working days after receipt 
+of a claim under sub regulation (1), submit such claim to the Director 
+General in a manner prescribed in Form WCC -1 of the First Schedule 
+to these Regulation. 
+  (3) A claim for compensation sub mitted to the employer or 
+Director General shall be supported by relevant documents as provided 
+for under regulation 20(6) or as may be required by the employer or 
+the Director General.  
+  
+Receipt of a 
+claim by 
+Director 
+General 
+ 20.-(1) The Director Gene ral shall, upon receipt of the 
+information and particulars of the claim for compensation submitted 
+under regulation 19, inquire the correctness of the information and 
+particulars submitted.  
+ (2) Where the information and particulars submitted under sub 
+regulation (1) are correct and sufficient, the Director General shall 
+proceed with determination of such claim in line with Fund’s 
+procedures. 
+  (3)  Where the information and particulars submitted under sub 
+regulation (1) are incorrect or insufficient, t he Director General may, 
+within five working days after becoming aware of the incorrectness or 
+inconsistency, request the employer or employee or any other person 
+on behalf of an employee as the case may be, to furnish the 
+information or particulars that he deems necessary for re-consideration 
+of the claim submitted. 
+  (4)  The information or particulars requested under sub 
+regulation (3) shall be submitted to the Director General in Form 
+WCC-1 as prescribed in the First Schedule to these Regulations within 
+thirty calendar days from the date of receipt of such request.  
+  (5)  Where information or particulars referred to under sub 
+regulation (4) are submitted, and the Director General finds the 
+information or particulars to be correct or sufficient, he sha ll proceed 
+to determine the claim submitted and give his decision within thirty 
+working days from date of receipt of such information or particulars. 
+  (6) For t he purpose of  this regulation information and 
+particulars’ includes a fitness to work medical examination report, 
+medical report, Police investigation report, an occupational accident or 
+disease investigation report, a fire and rescue report, employer’s report 
+
+[PDF PAGE 16]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+16 
+ 
+ 
+in support of the claim and any other information or particular as the 
+Director General may require.  
+  (7)  Notwithstanding the requirements of regulations 19, an 
+employee, employer or any person on behalf of an employee shall not 
+submit a claim for compensation to the Director General if an inquest 
+is to be held or where criminal case has b een instituted or is likely to 
+be instituted in connection with the occurrence of an accident, 
+occupational disease or death, until such inquest or criminal case is 
+concluded. 
+  (8) The Director General may suspend the determination of 
+any claim submitted under regulation 19 if he finds out in any manner 
+that the matter in question is a subject of an inquest or criminal case 
+which instituted or likely to be instituted in connection with the same 
+accident, occupational disease or death. 
+  
+Submission 
+of medical 
+report 
+ 21.-(1) The Medical Practitioner shall within fourteen calendar 
+days after examining for the first time an employee injured in an 
+accident or after diagnosing an occupational disease in an employee, 
+submit an initial medical report to the emp loyer and the Fund as 
+prescribed in Form WCC-2A.   
+  (2)  In submitting a claim for compensation under regulation 
+19(1), an employee or any other person on behalf of an employee, shall 
+among other things, attach a final report of the Medical Practitioner 
+filled as prescribed in Form WCC-2B. 
+  (3) Where an employee at the time of an occurrence of an 
+occupational disease was not in the service of the employer, the 
+medical report shall be provided in the manner referred to under sub 
+regulations (1) and (2). 
+  (4)  Notwithstanding the requirements of this regulation, where 
+the Director General requires a further medical report regarding an 
+employee, the Medical Practitioner shall, within fourteen calendar days 
+upon receipt of such request, furnish the require d report in a manner 
+requested by the Director General. 
+  
+Formal 
+hearing by 
+Director 
+General 
+ 22.-(1) Where the Director General receives a claim which in 
+his opinion, requires a formal hearing to be held to determine such 
+claim, the Director General shall fix a date, time and place for holding 
+such hearing. 
+ 
+
+[PDF PAGE 17]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+17 
+ 
+ 
+   (2)  The Director General shall thereupon issue a notice in the 
+prescribed form containing information as set out in Form WCC -3A to 
+be sent to the parties in order to attend such hearing. 
+  (3)  Every party to the hearing shall appear in person or may 
+be represented by- 
+ (a) a legal practitioner;  
+ (b) a member of his family;  
+ (c) Employer’s Organization or Trade Union; 
+ (d) officers mentioned under section 42(3) of the Act who are- 
+Act No. 5 of 
+2003 
+(i) the chief inspector and all inspectors appointed in 
+accordance with section 5 of the Occupational 
+Health and Safety Act; and 
+ 
+Cap. 300 
+(ii) the Labour Commissioner, Deputy Labour 
+Commissioner and Labour Officers appointed in 
+accordance with section 43 and 44 of the  Labour 
+Institutions Act; or 
+ (e) any other person with a level of the Director General. 
+  
+Assessors in 
+formal 
+hearing 
+ 23.-(1)  The Director General may, before holding a formal 
+hearing, appoint as assessors, two persons with technical skills on the 
+matter in question, to act in an advisory capacity in a formal hearing so 
+as to assist him in determining such matter. 
+  (2)  A person shall not be appointed as an assessor under this 
+regulation or, if appointed, no person shall sit as an assessor if,- 
+ (a) he is an employee of, or associated in any pecuniary 
+manner with, the employer of the employee concerned; 
+ (b) he has, in connection with the injury or death out of which 
+the formal hearing arises, given professional assistance or 
+advice in regard to the accident o r question in dispute to 
+any party to the inquiry or to any person who may become 
+liable for the payment of compensation under these 
+Regulations to such employee. 
+  (3) An assessor appointed under sub regulation (1), shall cross 
+examine any witness who te stifies in such hearing, and shall, before 
+concluding the hearing, give his opinion. 
+  (4)  The Director General shall consider the opinion given by 
+the assessor under sub regulation (3), but such opinion shall not bind 
+the findings of the Director General. 
+
+[PDF PAGE 18]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+18 
+ 
+ 
+   
+Powers of 
+Director 
+General in 
+respect of 
+witnesses 
+ 24.-(1)  The Director General may, when he thinks necessary 
+or at the request of any interested party to the hearing , issue summons 
+to any person who may be able to give material information 
+concerning the subject of any investigation or formal inquiry held by 
+that person under these Regulations or whom he suspects or believes 
+has in his possession or custody or under his control, any book, 
+document or any other evidence which has any bearing on th e 
+investigation or formal inquiry, to appear before him at a time and 
+place specified in such summons, to be interrogated, cross examined or 
+to produce such book, document and the Director General may retain 
+for further examination any book or document so produced. 
+  (2)  A summons issued under sub regulation (1) shall be in the 
+form set out in Form WCC -3B of the First Schedule and signed by the 
+Director General. 
+  (3)  Subject to section 44 of the Act, the Director General may 
+call and administer an oath  to any person who is summoned as a 
+witness under sub regulation (1). 
+  (4)  Subject to sub-regulation (3), the Director General and any 
+assessor may cross -examine such person or require such person to 
+produce any relevant book, document or any other evid ence which is 
+in his possession or under his control. 
+  (5)  Where a person who has been duly summoned under sub 
+regulation (1), fails without sufficient cause to attend the hearing at the 
+time and place specified in the summons, such person shall be guilty of 
+an offence. 
+  (6)  If any person, havi ng been duly summoned under sub 
+regulation (1), or any person cal led under the provisions of sub 
+regulation (3), fails to-  
+ (a) remain in attendance until excused by the Director General 
+from further attendance or  refuses to be sworn as a 
+witness; or  
+ (b) answer fully and satisfactorily to the best of his knowledge 
+and belief, all lawfully questions put to him; or  
+ (c) produce any book, document or any other evidence in his 
+possession or custody or under his control wh en lawfully 
+required to do so,  
+shall be guilty of an offence. 
+ 
+
+[PDF PAGE 19]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+19 
+ 
+ 
+  (7)  In connection with the cross -examination of any person 
+by, or the production of any book, document or other evidence before 
+the Director General, the law relating to privilege, as appl icable to a 
+witness summoned to give evidence or produce any book, document or 
+any other evidence before a court of law, shall apply. 
+  (8)  Any witness who gives false testimony concerning any 
+matter which is material to any question pending in any inves tigation 
+or formal inquiry or intended to be raised in the investigation or 
+inquiry shall be guilty of an offence.  
+  (9)  The formal hearing shall be conducted in public unless the 
+Director General decides otherwise. 
+  
+Non 
+appearance 
+of parties 
+ 25. Where any party to the formal hearing fails to appear at the 
+time and place fixed for such hearing, the Director General may in his 
+discretion - 
+ (a) proceed with the hearing and determine the matters in 
+dispute and make an order; or  
+  (b) postpone or adjourn  the hearing and cause a notice to be 
+sent to the parties notifying them of the postponement or adjournment 
+and of the time and place he had fixed for the holding or continuing of 
+the formal hearing: 
+  Provided that, where the Director General has determi ned the 
+matter in dispute under paragraph (a), in the absence of the parties, he 
+may set aside the order and re -open the formal hearing on good cause 
+shown within twenty one working days from the date on which the 
+order was made or may make such further orders as he deems fit. 
+  
+Criteria for 
+considera-
+tion of 
+claims 
+ 26.-(1) The Director General shall, when determining claim s 
+for compensation, consider the following issues- 
+ (a) whether the accident, occupational disease or death 
+occurred in the  actual discharge of the employee’s duties; 
+ (b) whether the employee sustained injuries or died as a result 
+of an accident or occupational disease; 
+ (c) whether there was a serious or wilful misconduct on the 
+part of the employee;  
+ (d) whether the employee has been disabled as a result of 
+occurrence of an accident or occupational disease where 
+death has not occurred;  
+
+[PDF PAGE 20]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+20 
+ 
+ 
+ (e) whether the accident is specifically attributable to the 
+nature of the employee’s duty unless proved otherwise; 
+ (f) whether the employee has a written  contract of 
+employment with the employer; 
+(g) whether the employer has notified the Director General of 
+any change in part iculars, including particulars for new 
+employees or terminated employee s, as required under 
+Section 71(3) of the Act., 
+(h) whether employees’ annual ea rnings were incorporated in 
+the employer’s return of earnings submitted to the Director 
+General for tariff assessment in accordanc e with 
+regulations 11(2) and 14(3);  
+(i) whether past due employees’ contribution s were remitted 
+by the employer; and 
+(j) whether employer of an  employee referred to under 
+regulation 2 (2) has paid the necessary contributions to the 
+Fund. 
+  (2) Notwithstanding the provision of sub regulation (1), claims 
+of compensation submitted in accordance with  the accidents or 
+diseases contracted o utside or within Tanzania shall be considered 
+upon- 
+ (a) issuance of a work permit by a foreign country;  
+(b) approval of the employer to attend such work;  
+(c) issuance of a Medical Practitioner’s report; or 
+(d) proof of any other issue that may be required by the 
+Director General in relation to the claim. 
+  
+Findings 
+and decision 
+of Director 
+General on 
+formal 
+hearing 
+ 27.-(1) The findings of the Director General shall be 
+pronounced immediately or within five working days after the 
+conclusion of the hearing. 
+ (2) The Director General shall give his decision to conclude a 
+formal hearing within thirty working days after its commencement. 
+  (3) Where the Director General fails to conclude the hearing 
+within the prescribed time , he shall extend hea ring for further thirty 
+working days. 
+  (4) The Director General, shall, after the conclusion of the 
+formal hearing, within seven days, serve the parties with a copy of his 
+decision or order in a form set out in Form WCC -4 of the First 
+Schedule to these Regulations. 
+
+[PDF PAGE 21]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+21 
+ 
+ 
+  (5)  Notwithstanding the requirements under sub regulation (2) 
+and regulation 20(2) and (5), where the Director General fails to 
+conclude any claim submitted for compensation, he shall notify a 
+person who submitted a  claim the gives reasons for his failure to do 
+so. 
+  
+Review of 
+decision by 
+Director 
+General 
+ 28.-(1) The Director General may, is he finds there is a reason 
+to review the decision made by him upon a claim submitted for 
+compensation, he may review such decision on the grounds set out 
+under section 79 of the Act. 
+  (2) An employee, employer or any person on behalf of an 
+employee who is not satisfied with a decision of Director General, 
+may, within twenty one  working days from the date of receipt of such 
+decision, apply for review to the Director General  in the manner 
+prescribed in Form WCC-5 of the First Schedule to these Regulations. 
+  (3) An application for review under sub regulation (2) shall be 
+made on the grounds specified under section 79 of the Act. 
+  (4) The review by the Director General shall be conducted and 
+concluded within thirty calendar days from the date of receipt of the 
+application by an aggrieved party.   
+  
+Appeals to 
+the Minister 
+and 
+application 
+for revision 
+ 29.-(1) Any person aggrieved by the decision of the Director 
+General may appeal to the Minister against such decision within thirty 
+working days from the date of receipt of such decision in the manner 
+prescribed in Form WCC-6. 
+  (2) The Minister’s decision should be made within thirty 
+working days from the date of receipt of the appeal, upon failure of 
+which the aggrieved party may file the matter to the Labour Court. 
+  (3)  A person aggrieved by a decision of the Minister, may 
+within sixty working days make an application for revision to the 
+Labour Court in accordance with the Labour Court Rules. 
+   
+Records in 
+relation to 
+claims 
+ 30.-(1) The Director General shall keep or cause to be kept 
+records in relation to any claim submitted for compensation.  
+  (2) An employee, employer or any other person on behalf of 
+an employee may, at any time obtain copies of records referred under 
+sub regulation (1), upon payment of a prescribed fee to be fixed by the 
+Director General. 
+
+[PDF PAGE 22]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+22 
+ 
+ 
+PART VI  
+BENEFITS PAYABLE BY THE FUND 
+  
+Benefits   31.-(1) The Fund shall compensate an employee who sustain s 
+injuries as a result of an accident or an occupational disease or 
+dependants of an employee who dies as a result of such accident or 
+occupational disease. 
+  (2) Subject to Part VI and VII of the Act, compensation 
+benefits provided by the Fund shall be- 
+ (a) provision of medical aid; 
+(b) payment for temporary disablement; 
+ (c) payment for permanent disablement; 
+ (d) payment for the dependants of the deceased; 
+ (e) payment for constant attendant care grants; 
+(f) payment for funeral grants; or 
+ (g) payment for rehabilitation. 
+  (3) Notwithstanding the provisions of sub regulation s (1) and 
+(2), compensation benefits shall exclude cases where- 
+ (a) there is serious or willful misconduct of the 
+employee except for those circumstances 
+described under section 19 (2) of the Act; 
+ (b) there i s an intentional act of the employee to 
+commit an accident which should be proved by 
+the employer; 
+ (c) the benefits are sought as a result of natural catastrophes; 
+ (d) the benefits are sought as a result of terrorist attacks; and 
+ (e) the employee is under the effect of drugs or alcohol. 
+  (4) The payment for rehabilitation benefits shall start at such 
+time that the Minister has issued specific regulations for them upon 
+being advised by the Board. 
+ (5) Notwithstanding the provisions of sub regulation (2), 
+payment of temporary disablement and permanent disablement shall be 
+reduced by the amount of salary and allowances, if any, paid by the 
+employer to his employee after disablement. 
+ 
+Beneficia-
+ries   32. (1) The benefits listed under regulation 31 shall be 
+provided to the following- 
+ (a) an employee; or 
+(b) in case of dependant- 
+
+[PDF PAGE 23]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+23 
+ 
+ 
+ (i) a spouse  who, at the time of the death of the 
+employee, was married to the employee 
+according to the law of marriage; 
+ (ii) if there is no spouse referred to in item (i), a 
+person with whom the emp loyee was at the time 
+of employee’s death living as a husband and wife; 
+ (iii) a child of the employee or of the employee’s 
+spouse, under the age of eighteen years;   
+ (iv) a child over eighteen years of the employee or the 
+employee’s spouse, and a parent or any pe rson 
+who the Director General believes was acting in 
+the place of a parent, a brother, a sister, a half 
+brother or half sister, a grandparent or grandchild 
+of the employee; or 
+ (v) any other person who at the time of the death of 
+the employee was wholly or pa rtly financially 
+dependent on the employee. 
+  (2) For the purpose of this regulation ‘beneficiary’ means an 
+employee or dependant of an employee as provided  for under sub 
+regulation (1). 
+  
+PART VII 
+DETERMINATION AND PAYMENT OF COMPENSATION 
+  
+Determinati
+on of 
+compensa-
+tion 
+ 33.  The determination of compensation shall be in the manner 
+provided under Parts VI and VII of the Act, where the Director 
+General has, in the manner provided for under Part V of these 
+Regulations, accepted a claim for compensatio n submitted by an 
+employer, employee or any other person on behalf of the employee. 
+  
+ 
+Payment of 
+compensa-
+tion 
+ 34. (1) The payment of benefits referred to under Part VI of 
+these Regulations shall be as shown under regulations 35, 36, 38, 40 
+and 41. 
+ 
+ 
+                  (2) Notwithstanding the p rovisions of sub regulation (1) , 
+payment for compensations of claims in relation to conveyance, 
+medical aid and rehabilitation shall be done in accordance with the 
+guidelines issued from time to time by the Director General.  
+  
+
+[PDF PAGE 24]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+24 
+ 
+ 
+Provision of 
+medical aid 
+and 
+rehabilita-
+tion 
+ 35.-(1) The provision of medical aid and rehabilitation to an 
+employee who sustains injuries arising out of an accident or 
+occupational disease, shall, in accordance with the requirement under 
+regulation 18(1) and (2), be a responsibility of an employer or through 
+the facilitation of the employer, of any other arrangement that provides 
+the same benefit.   
+ (2) Notwithstanding the provisions of sub regulation (1), for 
+the purpose of ensuring con sistency and control of provision of 
+medical aid or rehabilitation, the Fund shall accredit health care 
+providers who shall provide medical aid to employees except with the 
+leave of the Director General, where medical aid or rehabilitation may 
+be provided by any other health care provider.  
+ 
+  (3) Where an employee, employer or any person on behalf of 
+an employee incurs medical expenses in providing medical aid or 
+rehabilitation services to an employee injured as a result of an accident 
+or occupational disease, such employee, employer or any other person 
+on behalf of an employee, shall submit a claim to the Director General 
+for the refund of the costs incurred. 
+             (4) The refund referred under sub regulation (3) shall be 
+effected only when it is proved that- 
+ (a) the services received are in line with the services provided 
+by the Fund; 
+ (b) the services could not be provided through the accredited 
+Health Care Providers; and 
+ (c) the procedures for the provision of services under the 
+circumstances were adhered to. 
+  
+Compensa-
+tion for 
+temporary 
+total or 
+partial 
+disablement 
+ 36.-(1) Subject to section 46(1) and the Fourth Schedule of the 
+Act, the compensation for temporary total or partial disablement shall 
+be calculated on the basis of the percentage of dis ablement as 
+appropriately determined after occurrence of an accident or 
+occupational disease. 
+  (2) The compensation for temporary total disablement shall be 
+calculated on the basis of seventy percent of an employee’s monthly 
+earning at the time of occurr ence of an accident or occupational 
+disease subject to a minimum of shillings. 275,702.83 per month and a 
+maximum amount of shillings 3,685,852.69 per month.  
+ 
+
+[PDF PAGE 25]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+25 
+ 
+ 
+  (3) The compensation for temporary partial disablement shall 
+be calculated on the portion of the amount u nder sub regulation (2) 
+subject to a maximum amount of shillings 3,685,852.69 per month.  
+  
+Considera-
+tion of 
+claim for 
+temporary 
+total or 
+partial 
+disablement 
+ 37.-(1) An employee, employer or any other person on behalf 
+of an employee shall n ot submit a claim for compensation for 
+temporary total or partial disablement if such disablement lasts for a 
+period not exceeding three days. 
+           (2) An employee shall be considered to be temporarily, totally or 
+partially disabled for a period not  exceeding twenty four months  and 
+where the disablement continues, the Director General may treat the 
+disablement to be permanent disablement when the extended time 
+elapses as provided under section 46(9) of the Act.  
+   
+Compensa-
+tion for 
+permanent 
+disablement 
+ 38.-(1) The compensation for permanent disablement shall be 
+calculated in accordance with provision of regulation 36(1) and in 
+manner set out in the Fourth Schedule of the Act. 
+ (2) The compensation to an employee who has sustained a 
+permanent disablement of one hundred percent shall be calculated on 
+the basis of seventy percent of such employee’s monthly earning at the 
+time of an occurrence of an accident or occupational disease, subject to 
+a minimum of shillings 275,702.83 per month and a maximu m amount 
+of shillings 3,685,852.69 per month. 
+  (3) The compensation to an employee who has been less than 
+one hundred percent permanently disabled shall be calculated on the 
+portion of the amount under sub regulation (2) subject to  a maximum 
+amount of shillings 3,685,852.69 per month. 
+  
+Mode of 
+payment 
+ 39.-(1) Payments of compensation for temporary total or 
+partial disablement shall be effected on monthly basis or at such other 
+intervals as the Director General may determine  but not exceeding a 
+period of one month. 
+  (2) The Director General may, upon receipt of a request from 
+an employee, an employer or any other person on behalf of an 
+employee, pay such compensation in a manner as he may determine. 
+ 
+
+[PDF PAGE 26]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+26 
+ 
+ 
+  (3) Subject to regulation 51, an employee who ha s suffered 
+one hundred percent permanent disablement shall be paid 
+compensation as provided for under regulation  38 and section 48(4) of 
+the Act, and such payment shall lapse at the end of the month in which 
+such employee dies.   
+  
+Funeral 
+grants, 
+constant 
+attendant  
+care grants, 
+medical 
+costs, 
+conveyance 
+costs and 
+rehabilita-
+tion benefits  
+ 40.-(1) Funeral grants, constant attendant care grants, 
+reasonable medical costs, reasonable conveyance costs and 
+rehabilitation benefits shall be determined by the D irector General 
+through guidelines issued from time to time or other means as 
+considers suitable by him from time to time. 
+            (2)  Notwithstanding the provisions of sub regulation (1), 
+guidelines for rehabilitation benefits may be issued only af ter the 
+Minister has issued specific Regulations to cover them as per 
+provisions of Regulation 31 (4). 
+ 
+Compensa-
+tion for 
+dependants 
+ 41.-(1)  Where an employee dies as a result of injuries arising 
+out of accident or occupational disease, his dependants, if any, shall be 
+paid compensation as follows, where-  
+ (a) the employee leaves a spouse or person who lived with the 
+employee as husband and wife without being legally 
+married at the time of his death- 
+ (i) a lump sum based on twice the monthly 
+pension provided  under section 48(4)(a) of 
+the Act, subject to a minimum of shillings 
+551,405.66 and maximum of shillings 
+7,371,705.38; or 
+ (ii) a monthly pension based on the forty percent 
+of the monthly pension provided for under 
+section 48(4)(a) of the Act, subject to a 
+minimum of shillings. 110,281.13 per month 
+and maximum of shillings 1,474,341.08 per 
+month: 
+  Provided that payment for spouses referred to under this 
+.regulation shall be effected upon issuance, for the case of spouses 
+who were legally married, a certified  copy of marriage certificate and 
+for the case of spouses who were not legally married but lived as a 
+husband and wife, a proof from relevant Government authorities 
+proving that the spouses lived together under one roof for a period of 
+
+[PDF PAGE 27]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+27 
+ 
+ 
+not less than two ye ars and that they acquired a reputation of the 
+husband and wife or any other proof as may be required by the 
+Director General. 
+ (b) the employee leaves a child who is under the age of 
+eighteen years or over the age of eighteen years but is 
+unable to earn inco me owing to physical or mental 
+disability as a dependant:  
+ (i) a monthly pension based on twenty 
+percent of the monthly pension as stated 
+under section 48(4)(a) of the Act, 
+provided that the Director General 
+approves such payment to be effected to 
+the latter  subject to a minimum of 
+shillings 55,140.57 per month and 
+maximum of shillings 737,170.54 per 
+month; 
+ (ii) where an employee at the time of death 
+leaves no person referred to under sub 
+regulation (1)(a) or such person later dies, 
+determination of compensation  under sub 
+regulation (1)(b)(i) shall take into 
+consideration the requirements of section 
+52(c) of the Act. 
+ (c) the employee leaves no spouse or child as a dependant but 
+leaves as a dependant a person referred under section 
+52(1)(d) of the Act, compensation- 
+ 
+ 
+(i) not exceeding forty percent of the monthly 
+pension as provided under section 
+48(4)(a) of the Act, shall be paid for the 
+dependant who wholly depended upon the 
+deceased subject to a minimum of 
+shillings 110,281.13 per month and 
+maximum of shillings 1,474,341.08 per 
+month; 
+ (ii) for the dependants who partially depended 
+upon the deceased, shall be paid a lump 
+sum amount equal to the percentage of 
+dependency to be determined by the 
+Director General as a portion of twice the 
+
+[PDF PAGE 28]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+28 
+ 
+ 
+employee’s monthly pension that woul d 
+have been payable to the employee had 
+the employee been totally permanently 
+disabled but subject to a maximum of 
+shillings. 7,371,705.38. 
+  (2) A dependant of an employee shall be entitled to 
+compensation if the employee had not received any payment for  
+compensation until his death. 
+  (3)  Notwithstanding the provision of sub regulation (2), the 
+dependant of the deceased shall not be entitled to payment of 
+compensation if such employee received compensation provided for 
+under section 48(4) (a) and (b) of the Act prior to his death. 
+ 
+ 
+Employer’s 
+duty on 
+payment of 
+compensa-
+tion 
+ 42.-(1) In effecting payment of compensation to an employee 
+or any person on behalf of an employee, the Director General shall 
+furnish a report of such payment at such times and  in a manner to be 
+determined by the Director General to the employer so as to enable the 
+latter be aware of the payment effected to his employees or dependants 
+of his employees. 
+              (2) The employer shall from time to time, inform the Director 
+General on any information regarding an employee or dependant of an 
+employee that may enable the Fund to suspend or discontinue payment 
+or provision of the benefits listed under regulation 31(2) to such 
+employee or dependant of an employee. 
+             (3) The information referred to under sub regulation (2) shall 
+include a report of death of an employee or dependant of an employee, 
+cessation of employment of an employee, transfer of an employee or 
+any other information that may be useful to the Fund with  regard to 
+payment of compensation. 
+ 
+ 
+Medical 
+examination 
+for a 
+pensioner 
+ 43.-(1) The Fund shall, from time to time, require an employee 
+who receives pension as a result of disablement arising out of accident 
+or occupational disease to do a medical exam ination through an 
+arrangement determined by it so as to ascertain the progress of the 
+employee with regard to the degree of disablement. 
+    (2) The result of examination referred under sub regulation (1) 
+may lead to an increase, reduction, suspension or  cessation of the 
+payment of pension.  
+  
+
+[PDF PAGE 29]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+29 
+ 
+ 
+PART VIII  
+ACCREDITATION OF HEALTH CARE PROVIDERS 
+  
+Power to 
+grant 
+accredita-
+tion 
+ 44.-(1) Subject to section 14 (c) of the Act, the Board shall 
+have powers to grant accreditation to health care providers. 
+  (2)  In accrediting health care providers, the Board shall take 
+into account the categories of such providers as established by the 
+Ministry responsible for Health. 
+  (3) Notwithstanding the provisions of this regulation, the 
+Board may commission a third pa rty service provider to enter into 
+arrangement with the health care provider to cover medical aid 
+expenses for employees who sustain injuries or occupational disease in 
+accordance with the terms and conditions to be agreed between the 
+Fund and the service provider.  
+  
+Health care 
+providers 
+ 45. Subject to regulation 44, there shall be accredited health 
+care providers include the- 
+ (a) medical centers; 
+ (b) hospitals;  
+ (c) health centers; 
+ (d) dispensaries; 
+ (e) pharmacies; 
+ (f) essential drug medical stores; and 
+ (g) specialized firms such as physiotherapy and 
+rehabilitation centers. 
+  
+Condition 
+for 
+accredita-
+tion 
+ 46.-(1)  The general requirements and conditions for 
+accreditation of the health care provider shall include- 
+ (a) registration by competent authority required by l aw 
+including a valid operational license from the Ministry 
+responsible for health in case of hospitals, health centers, 
+dispensaries and other health facilities under the 
+Ministry’s supervision; 
+No. 6 of 
+1977 
+ 
+(b) for private health care providers, compliance  with the 
+provisions of the Private Hospital (Regulation) Act and its 
+subsidiary legislations; 
+
+[PDF PAGE 30]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+30 
+ 
+ 
+ (c) the acceptance of the information system requirements and 
+regular transfer of information including but not limited to, 
+reporting mechanisms established by the  Fund and 
+maintenance of accurate records of all patients, services 
+rendered and health outcomes resulting from those 
+services and health expenditures on patient care; 
+ (d) acceptance of accreditation fees as shall be determined by 
+the Director General and approved by the Board from time 
+to time; and  
+ (e) acceptance of the terms and conditions of payment by the 
+health care providers which shall be determined by the 
+Board from time to time. 
+  (2)  Notwithstanding the requirements of sub regulation (1), 
+the Director General shall, upon approval by the Board, determine the 
+procedures, guidelines, terms and conditions of accreditation of health 
+care providers for the Fund. 
+  
+Powers of 
+Director 
+General in 
+relation to 
+health care 
+providers 
+ 47. For the purpose of ma naging accredited health care 
+providers, the Director General shall, with the approval of the Board- 
+(a) register all accredited health care providers; 
+(b) inspect health care providers for compliance in accordance 
+with the agreed terms and conditions; 
+ (c) accept or decline the application for accreditation by a health 
+care provider; and 
+ (d) revoke, re -accredit, suspend or re -instate a health care 
+provider. 
+  
+Choice of 
+health care 
+provider by 
+employee 
+ 48.-(1) The employee shall have a  right to receive health 
+services from any accredited health care provider. 
+ (2) Notwithstanding the provision of sub regulation (1), the 
+employee is required to abide the health care provision referral 
+protocols and procedures to be determined by the Director General 
+from time to time. 
+ 
+Quality 
+assurance  
+ 49. The Fund shall develop and implement a performance 
+monitoring system for the purpose of ensuring provision of quality 
+services by an accredited health care provider.  
+ 
+ 
+
+[PDF PAGE 31]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+31 
+ 
+ 
+PART IX 
+GENERAL PROVISIONS 
+ 
+Appointmen
+t of an 
+actuary 
+ 50. The Board shall at an interval of three years or at any 
+other interval as the Authority may direct, appoint an actuary in 
+accordance with the Public Procurement procedures to carry out the 
+valuation of the Fund.  
+ 
+Cessation of 
+payment of 
+pension 
+ 51.-(1) Payment of pension under these Regulations to an 
+employee who sustained injuries as a result of an accident or 
+occupational disease shall cease when the employee resumes work 
+with full pay or qualifies for payment of an old age or invalidity 
+pension upon reaching retirement age or death whichever comes 
+first. 
+ 
+           (2) Where an employee resumes work with less monthly 
+earning or qualifies for an old age or invalidity pension which is less 
+than what is provided by the Fund, the Fund shall pay the difference 
+to the employee subject to the maximum amount of co mpensation 
+payable under these Regulations. 
+  
+Disposal of 
+unclaimed 
+money 
+ 52.-(1) Where any money payable under the Act to any 
+person other than the Director General are not claimed b y the person 
+entitled thereto within two months after being effected, the Director 
+General shall issue a four months’ notice in a manner to be 
+determined by the Director General inviting such person to collect 
+the money so unclaimed within the prescribed time.  
+  (2) Where no person appears to collect the money within the 
+time stipulated in sub regulation (1), the money so unclaimed shall 
+be treated as other income of the Fund. 
+  
+Employees’ 
+rights 
+ 53. An employer or trade union shall be required to disp lay 
+at a conspicuous place employees’ rights provided in the Second 
+Schedule of these Regulations.  
+  
+Compensati
+on for                   
+apprentice 
+ 54.-(1) The payment for compensation shall be effected to 
+an apprentice who is paid salary or allowance b y the employer from 
+which contributions are remitted to the Fund. 
+
+[PDF PAGE 32]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+32 
+ 
+ 
+  (2) Notwithstanding the provisions of sub regulation (1), 
+claim of compensation by an apprentice shall be determined in 
+accordance with regulation 26(1). 
+ 
+Compensati
+on for the 
+excepted 
+employees 
+ 55. Employers of the excepted employees shall be required 
+to have insurance arrangement in place to provide protection to 
+employees in case of contingencies involving occupational 
+accidents, diseases and deaths. 
+ 
+Fees, 
+allowance 
+and other 
+payments  
+ 56. The Director General, shall, from time to time and with 
+the approval of the Board, determine fees, allowances and other 
+payments of a medical practitioner, an authorized person, an 
+assessor, a witness or any person who renders services to the Fund. 
+ 
+ 
+Powers to 
+make 
+investigatio
+ns or 
+inspections 
+ 57.-(1) The Director General may, in writing, authorize any 
+competent person either generally or specifically to investigate any 
+matter falling within his purview and to report to him upon any such 
+matter, and any person so authorized shall have the power to require 
+and take affidavits or declarations as to any matter to which the 
+investigation or report relates, or to take any other declarations 
+required under these Regulations, and in all cases to administer oaths 
+and attest declarations. 
+  (2)  Upon the production of the writt en authority referred to 
+in sub regulation (1), such person may, with a prior notice, and at all 
+reasonable times, enter upon any land, works, premises or other 
+place, and may qu estion any employer or other person and inspect 
+any part of the land, works, premises or other place or any books or 
+documents which may contain information required for the purposes 
+of these Regulations and take copies of or extracts from such books 
+or documents. 
+  (3)  Any person who obstructs any person authorized under 
+sub regulation (1) in the lawful exercise of his functions under this 
+regulation or who makes or subscribes to any statement, knowing it 
+is false, or who refuses to answer any questions or produce any 
+document, shall be guilty of an offence. 
+  (4)  The Director General may, upon consultation with the 
+Board, exercise any powers mentioned in this regulation, and 
+whenever the Director General is exercising such powers, all the 
+provisions of this regulation shall apply. 
+
+[PDF PAGE 33]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+33 
+ 
+ 
+Register of 
+accidents 
+ 58.  Every employer shall be required to keep a register of 
+accidents, occupational diseases or death as stipulated in guidelines 
+issued from time to time by the Director General.  
+ 
+Duty to 
+keep 
+records 
+ 59. The Director General shall keep all records of the Fund 
+in accordance with the applicable laws and guidelines in relation to 
+records management.  
+ 
+ 
+Penalties 
+ 
+ 
+ 
+ 60.  Any person who is convicted of an offence where no 
+penalties have been provided under these Regulations, shall, on 
+conviction be liable for a fine not exceeding five hundred thousand 
+shillings or to imprisonment for term not exceeding six months or 
+both. 
+ 
+Revocation 
+of GN. No. 
+106 of 2011 
+ 61. The Workers Compensation (Appointment of  Director 
+General) Regulations, 2011 is hereby revoked. 
+ 
+
+[PDF PAGE 34]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+34 
+ 
+ 
+___________ 
+ 
+S C H E D U L E 
+__________ 
+                                                             
+  FIRST SCHEDULE 
+_________ 
+ 
+FORMS 
+_________ 
+ 
+(Made under regulation 3) 
+_________ 
+WCR-1 
+THE WORKERS COMPENSATION FUND 
+REGISTRATION OF EMPLOYER 
+_______ 
+ 
+(Made under regulation 9 (1)) 
+________ 
+ 
+(Complete this form in block letters and mark (√) appropriately) 
+(Note: Information in this form should be provided separately when an employer has 
+more than one business.) 
+ 
+1. Identification  
+Name of  employer ……………………..……………………………………....... 
+Contact Address …………………......... Street/village ……………………......... 
+District……...………….Region……………………Country……….…………... 
+Plot no………………......... Block no ……………...……………………………. 
+Tel ……………..……….. Fax……..…………… Cellphone ………………….. 
+E-mail ……………………………………………………………………………. 
+Date of commencement of operation ………...………………………………….. 
+Date of closure of operation (if applicable) .……………………........................... 
+  
+2. Category of employer (Mark ( √ ) where appropriate) 
+S/No Category of Employers Status 
+1.  Public   
+2.  Private   
+ 
+3. Nature of business (e.g. manufacturing, construction) 
+…..………………………………………………………………………………... 
+……………………………………………………………………………………  
+
+[PDF PAGE 35]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+35 
+ 
+ 
+4.  Categories of employees 
+S/No. Category of Employees 
+based on the Contract of 
+Employment 
+Female  Male  Total 
+1.  Permanent (Unspecified 
+period of time)  
+  
+ 
+ 
+2.  Temporary (Specified period 
+of time) 
+  
+ 
+ 
+3.  Specific task   
+ 
+ 
+                                       (Attach a list of names of all employees) 
+ 
+5. I,…………………………………………………, declare that what I have stated 
+herein above is true to the best of my knowledge. 
+ 
+Name…………………………………………….., 
+Designation……………………………………..,  
+Signature……………………………………….., 
+Date…………………………………………….., 
+ 
+Official Stamp of the employer    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 36]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+36 
+ 
+ 
+ 
+WCR-2 
+ 
+EMPLOYER’S PARTICULARS OF BUSINESS 
+__________ 
+ 
+(Made under regulation 10(1)) 
+__________ 
+ 
+ 
+1. Name of employer ……………………………............................................................... 
+2. WCF Reg. No. …………………………………………………………………………... 
+3. Names and addresses of  shareholders/partners (provide relevant attachments)  
+4. Name (s) and addresses including physical addresses of branches of the same business 
+operated by the employer and number of employees of each branch (provide relevant 
+attachments) 
+5. Categories of employees 
+ 
+ 
+ 
+S/No. Category of Employees based on 
+the Contract of Employment 
+Number of Employees Total 
+Male Female  
+1.  Permanent (Unspecified period of 
+time)  
+   
+2.   Temporary (Specified period of 
+time) 
+   
+3.  Specific task    
+ 
+ 
+6. Particulars of each category of employees shall be provided as an attachment as shown 
+in the example below 
+S/No. Particulars of Employees 
+ Name Birth 
+date 
+Sex Job title Annual earnings 
+(amounts)  
+A.  Permanent employees 
+(Unspecified period of time) 
+    
+1.  John Chacha 12/9/1
+978 
+M  Electrical 
+engineer  
+24,000,000 
+B.  Temporary employees  
+(Specified period of time) 
+    
+2.  Irene George  18/4/1
+979 
+F Assessor  36,000,000 
+C.  Specific Task employees     
+3.  Magafu Manyama 23/12/
+1987 
+M  Steel Fixer  8,000,000 
+7. Total annual earnings of all employees …………………..……………………… 
+
+[PDF PAGE 37]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+37 
+ 
+ 
+8.  Mention medical service insurer (s) and mandatory or voluntary social security scheme 
+(s) currently in place. 
+S/No. Provider/insurer  Service provided  
+1.    
+2.    
+     
+ 
+       
+9. Mention major activity (ies) of your business 
+……………………………………………..………………………………………………
+………………………… 
+………………………………………………………………………………………………
+………………………… 
+ 
+ 
+10. Registration with competent Authorities required by law (Provide certified Copy of 
+registration) 
+ 
+S/No. Competent Authority Registration 
+Number 
+1.  Tanzania Revenue Authority (TRA)  
+2.  Occupational Safety and Health Authority (OSHA)  
+3.  BRELA  
+4.  Contractors’ Registration Board (CRB)  
+5.  Fire and Rescue   
+6.  SUMATRA   
+7.  Other   
+ 
+ 
+DECLARATION 
+I …………………………………………………………………… declare that what I have stated 
+herein above is true to the best of my knowledge. 
+ 
+Name…………………………………………….., 
+Designation……………………………………..,.  
+Signature………………………………………..,.  
+Date……………………………………………..., 
+ 
+Official Stamp of the employer    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 38]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+38 
+ 
+ 
+WCR-3 
+EMPLOYER’S RETURN OF EARNINGS  
+___________ 
+ 
+(Made under regulation 14(1)) 
+__________ 
+ 
+1. Name of employer ………………….…………………………………………….................. 
+ 
+2. WCF Reg. No ………………….....…………………………………………………………. 
+ 
+ 
+3. Period/ year covered (e.g. 2016/2017)...…………………………………………………….. 
+ 
+4. Name (s) and addresses including physical addresses of branches of the same business 
+operated by the employer and number of employees of each branch (provide relevant 
+attachments) 
+ 
+5. Category of employees 
+ 
+S/No
+. 
+Category of 
+Employees based 
+on the Contract of 
+Employment 
+Number of Employees Total 
+Male Female  
+Previous 
+year 
+Current 
+year 
+Previou
+s year 
+Curre
+nt 
+year 
+Previo
+us 
+year 
+Curre
+nt 
+year 
+1.  Permanent 
+(Unspecified period 
+of time)  
+      
+2.   Temporary 
+(Specified period of 
+time) 
+      
+3.  Specific task       
+ 
+6. Particulars of each employee for different categories of employees may be provided as an 
+attachment as shown in the example below 
+S/No. Employee particulars 
+ Name  Age  Sex  Job title  Annual earnings 
+(amounts) 
+A.  Permanent 
+employees 
+(Unspecified period 
+of time) 
+    
+4.  John Chacha 26 M  Electrical 
+engineer  
+24,000,000 
+B.  Temporary 
+employees (Specified 
+period of time) 
+    
+
+[PDF PAGE 39]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+39 
+ 
+ 
+5.  Irene George  23 F Assessor  36,000,000 
+C.  Specific Task 
+employees 
+    
+6.  Magafu Manyama 25 M  Steel Fixer  8,000,000 
+ 
+ 
+ Note:    
+a) Annual Earnings means the annual amount which is paid by an employer for his 
+employees during their employment period. This include basic salaries and other 
+fixed allowances which are paid on monthly basis along with basic salaries. 
+b) For any change with respect to employee’s earnings or employment provide 
+separate information as an attachment. 
+ 
+ 
+DECLARATION 
+ 
+I,…………………………………………………………,declare that what I have stated herein 
+above is true to the best of my knowledge. 
+ 
+Name…………………………………………….., 
+Designation……………………………………..,  
+Signature……………………………………….., 
+Date…………………………………………….., 
+ 
+ 
+Official Stamp of the employer    
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 40]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+40 
+ 
+ 
+ 
+WCN-1 
+NOTIFICATION FORM FOR OCCUPATIONAL ACCIDENTS, DISEASES OR DEATHS 
+(Made under regulations 15, 16 and 17) 
+(To be completed by an employee, employer or any person on behalf of an employee in 
+triplicate) 
+ 
+A. TYPE OF NOTIFICATION (mark (√ ) appropriately) 
+ 
+Occupational accident   Occupational disease  Death  
+ 
+B. EMPLOYER’S PARTICULARS 
+Name of Employer …………………………………………………………………....... 
+WCF Reg. No …………………………………………………………………………… 
+Contact 
+Address………………………….........Street/village…………………………................... 
+District……...…………….Region……………………Country…………………………... 
+Tel ………………………..Fax………………….………Cell phone……….…………….. 
+E-mail ...……………………………………………………………………………………. 
+ 
+C. EMPLOYEE’S PARTICULARS 
+Name of employee …………...………………………………………………………… 
+Employee’s Code No. …………National ID …………... Employees’ ID …………… 
+Job Title ………………………...Section/Department………………………………..… 
+Date of birth…………Sex………… Marital Status…….………No. of Children……..…. 
+District ……...……………. Region …………….. Nationality…………………….…  
+Street/village …………………..Plot No……………… Block No………………...…… 
+Tel…………………...Fax…………….……….. Cell phone………………………...……. 
+E-mail………………………… Next of Kin ……………………………..……………….. 
+ 
+D. PARTICULARS  OF OCCUPATIONAL ACCIDENT  
+Date of accident…………Time of accident……………Place of accident ………….……. 
+Date of reporting occurrence of an accident to the employer …………………………….. 
+Activity/duty performed at the time of accident ……………………………………..……. 
+Describe in brief how accident occurred ………………………………………………….. 
+……………………………………………………………………………………………… 
+Witness (s):- 
+1. Name………………………Cell Phone ……………………………………….. 
+2. Name………………………Cell Phone ………………………………………. 
+3. Name……………………… Cell Phone ………………………………………. 
+Supervisor’s name 
+………………….…………………....Section/Department……………………………… 
+ 
+E. PARTICULARS OF OCCUPATIONAL DISEASE  
+Date of diagnosis…………..Occupational disease diagnosed ………………………...….. 
+Date of reporting disease to employer …..………………………………………………… 
+Name of the Health Care Provider where the diagnosis was established………………….. 
+
+[PDF PAGE 41]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+41 
+ 
+ 
+Name and address of Medical Practitioner who diagnosed the disease …………………. 
+……………………………………………………………………………………………… 
+……………………………………………………………………………………………… 
+……………………………………………………………………………………………… 
+ 
+F. PARTICULARS OF DEATH (mark (√ ) appropriately) 
+ 
+Name of employee’s 
+representative……..………………………………………………...……………………… 
+Contact and physical address of employee’s representative ………………….…………… 
+……………………………………………………………………………………………… 
+Date of death …………………..  Place of death ……………………......………………... 
+Cause of death- occupational accident (  ) or occupational disease (   ).  
+Date of reporting to the employer …………………………………………...…………….. 
+Medical Practitioner (name and contact address) ……………………………...………….. 
+……………………………………………………………………………………………… 
+……………………………………………………………………………………………… 
+……………………………………………………………………………………………… 
+……………………………………………………………………………………………… 
+ 
+ DECLARATION 
+I, ………………………………… ……………………………., declare that what I have 
+stated herein above is true to the best of my  knowledge and if it is proved that there is 
+forgery or fraud in relation to the information provided, legal action should be taken 
+against me. 
+ 
+Name…………………………………………….., 
+Signature………………………………………..,.. 
+Date……………………………………………… 
+ 
+ 
+Employer’s Acknowledgement of receipt of notification  
+Date of receipt 
+of notification 
+by employer  
+Notified by; 
+(Name, 
+designation) 
+Received by  
+(Name, designation, signature and official stamp)  
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+I, ……………………………………………declare that the information provided herein 
+above is true to the best of my knowledge. 
+  
+ 
+ 
+
+[PDF PAGE 42]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+42 
+ 
+ 
+ 
+WCC-1 
+   COMPENSATION CLAIM FORM 
+___________ 
+ 
+ (Regulation 19(1)) 
+__________ 
+ 
+(This Form may be filled by an employee, employer or any person on behalf of an employee) 
+A. NATURE OF CLAIM (Mark ( √ ) appropriately) 
+ 
+Occupational accident   Occupational disease  Death  
+ 
+B. EMPLOYEE’S PARTICULARS  
+ 
+Name of employee …………...………………………………………………………… 
+Employee’s Code No. …………….…… National ID …….…………………………... 
+Employees’ ID …………… 
+Job Title ……………… Section/Department …………Monthly earning ……………. 
+Date of birth…………Sex………… Marital Status ………No. of Children ………….…. 
+District……...………. Region ………………..Nationality…………………………….…  
+Street/village …………………..Plot No……………………… Block No………...…… 
+Tel……………………………...Fax…………………….……….. Cell 
+phone………...……. 
+E-mail………………… Next of Kin…………………………………..……………….. 
+ 
+C. PARTICULAR OF THE DECEASED’S REPRESENTATIVE (IN CASE OF 
+DEATH) 
+ 
+Name  …………………………………….Contact Address................................................ 
+National ID ……………………...Relationship with deceased …………………………… 
+Date of birth…………Sex………… Marital Status……..……No. of Children ……..…. 
+District……...…………. Region ……….………….. Nationality…………………….…  
+Street/village ……………..Plot No…………… Block No……………………...…… 
+Tel………………...Fax…………….……….. Cell phone………………………...……. 
+E-mail…………………… ……….…………………………..……………………………. 
+Date and time of death of the deceased employee ……………………………………… 
+(Attach certified copy of death certificate) 
+Place of death ……………………………… 
+Cause of death (Mark (√) appropriately): Accident (       ) or occupational disease (       ) 
+ 
+Name of Medical Practitioner who attended the deceased employee ……….…...……… 
+ 
+D. EMPLOYER’S  PARTICULARS 
+ 
+Name of Employer …………..………………………………………………………....... 
+WCF Reg. No ……………………………………………………………………………… 
+
+[PDF PAGE 43]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+43 
+ 
+ 
+Contact Address ………......... Street/village …………………………................... 
+District……...……………….Region……………………………Country………………... 
+Tel ………………………..Fax………………………Cell phone……..………………….. 
+E-mail………………………………………………………………………………………. 
+ 
+E. PARTICULARS OF OCCUPATIONAL ACCIDENT OR DISEASE  
+i. Date of notification of an occupational accident or disease to the 
+employer……………………. 
+ii. Injuries sustained as a result of an occupational accident or 
+disease………………………………………………………………….................... 
+………………………………………………………………………………………
+…………………………….…………………………………………………………
+…………………………………………………………….…………………………
+……………………………………………………… 
+iii. How did you know that you have an occupational disease? (Mark (√) 
+appropriately) 
+ 
+Statutory medical 
+examination 
+ Follow up for the 
+illness  
+ Other  
+ If other, explain       
+…………………………………………………………………………………………….. 
+……………………………………………………………………………………………… 
+……………………………………………………………………………………………… 
+ 
+F. EMPLOYMENT HISTORY (to be completed in case of occupational disease) 
+i. Current employer 
+S/No
+. 
+Job title 
+(Start with 
+current title) 
+Section/Departme
+nt 
+Activity 
+performed 
+Duration 
+  From To 
+1.       
+2.       
+3.       
+4.       
+5.       
+ (Attach relevant documents) 
+ 
+ii. Previous employer (s) if any 
+S/No. Job title Employer Section Activity 
+performed 
+Duration 
+From To 
+1.        
+2.        
+3.         
+4.        
+5.        
+ (Attach relevant documents) 
+ 
+
+[PDF PAGE 44]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+44 
+ 
+ 
+ 
+G. PAYMENT OF MEDICAL EXPENSES (Mark ( √ ) appropriately) 
+ 
+Employer  Employee   Insurance   Other  
+    
+ 
+If medical expenses were paid by an Insurance 
+i. Name of the insurer 
+…………………………………………………………………………………. 
+ii. Go to section J. 
+ 
+H. INITIAL MEDICAL CARE PARTICULARS  
+i. First date of treatment after occurrence of an occupational accident or disease ……  
+ii. For occupational accident, provide the name of first Health Care Provider where the 
+employee was attended …………………………………………………………… 
+iii. Name of the Health Care Provider where an occupational disease was established  
+………………………………………………………………………………………… 
+iv. Health services received at the first Health Care Provider  
+Health 
+service 
+Hospitaliz
+ation 
+Treated as 
+out Patient 
+Medical 
+investigation 
+Specialized 
+clinic 
+consultation 
+Surgery  Referral 
+ Yes  No  Yes  No  Yes  No  Yes  No  Yes  No  Yes  No  
+Mark (√) 
+appropri
+ately 
+            
+Cost 
+incurred  
+      
+   
+Total cost incurred ……………………………………………………………………………… 
+Name, address and contact of the Medical Practitioner: ……………………………………....... 
+…………………………………………………………………………………………………… 
+…………………………………………………………………………………………………… 
+ 
+I. REFERRAL PARTICULARS 
+i. First referral Health Care Provider ………………………………………………. 
+ 
+Health 
+service 
+Hospitaliz
+ation 
+Treated as 
+out Patient 
+Medical 
+investigation 
+Specialized 
+clinic 
+consultation 
+Surgery  Referral 
+ Yes  No  Yes  No  Yes  No  Yes  No  Yes  No  Yes  No  
+Mark (√) 
+appropri
+ately 
+            
+Cost 
+incurred  
+      
+   
+Total cost incurred ……………………………………………………………………………… 
+ 
+
+[PDF PAGE 45]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+45 
+ 
+ 
+Name, address and contact of the Medical Practitioner: 
+…………………………………………………………………………………………………
+…………………………………………………………………………………………………
+…………………………………………………………………………………………………
+…………………………………………………….. 
+ii. Second referral Health Care Provider 
+………………………………………………………………... 
+ 
+Health 
+service 
+Hospitalizati
+on 
+Treated as out 
+Patient 
+Medical 
+investigation 
+Specialized 
+clinic 
+consultation 
+Surgery  Referral 
+ Yes  No  Yes  No  Yes  No  Yes  No  Yes  No  Yes  No  
+Mark (√) 
+appropriat
+ely 
+            
+Cost 
+incurred  
+      
+   
+Total cost incurred …………………………………………………………………………… 
+ 
+Name, address and contact of the Medical Practitioner 
+……………………………………………………………………………………………………
+…………………………………………………………………………………………………… 
+For any further referral please explain ………………………………………………………….. 
+……………………………………………………………………………………………………
+………………………………………………………………………………………………… 
+ 
+J. CURRENT STATE OF  EMPLOYEE  
+ 
+1. Health state  Completely 
+recovered 
+Attending 
+hospital/ 
+specialized 
+clinic 
+Permanent 
+loss of body 
+part or 
+function (s). 
+Resumed 
+work 
+Mark (√) 
+appropriately  
+    
+2. Disability  Hospitalization Day off (ED) Light Duties Bed 
+ridden 
+No. of days      
+ 
+For ongoing medical follow up: 
+1. Name and address of the Health Care Provider 
+………………………………………………………………………………………………
+……………………………………………………………………………………………… 
+2. Name, address and contact of the Medical Practitioner 
+………………………………………………………………………………………………
+……………………………………………………………………………………………… 
+ 
+K. Have you ever been paid any compensation in relation to the same occupational 
+injury? Yes/No 
+
+[PDF PAGE 46]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+46 
+ 
+ 
+i. If yes, which type of compensation were you paid ……………………………. 
+ii. Who paid such compensation (e.g. WCF)……………………………………… 
+iii. When was compensation paid ………………………………………………… 
+(Attach relevant documents) 
+ 
+ 
+EMPLOYEE’S DECLARATION 
+(May be filled by any person on behalf of an employee) 
+ 
+ 
+I, ,…………………………………………………………………., declare that what I have stated 
+herein above is true to the best of my knowledge. 
+Name…………………………………………….., 
+Signature……………………………………….., 
+Date…………………………………………….., 
+ 
+EMPLOYER’S VERIFICATION 
+I, ………………………………………………………………………………., verify that what is 
+stated from item A to item K is true to the best of my knowledge. 
+ 
+Name…………………………………………….., 
+Signature……………………………………….., 
+Date…………………………………………….., 
+NOTE: Employer must submit an accident or occupational investigation report. 
+ 
+ 
+For Workers Compensation Fund use only 
+ 
+Received by:- 
+Name of officer Designation Date Signature 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 47]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+47 
+ 
+ 
+ 
+WCC-2A 
+INITIAL MEDICAL REPORT  
+___________ 
+ 
+(Made under regulation 21(1)) 
+___________ 
+ 
+(This Form shall be filled by Medical Practitioner in triplicate) 
+ 
+A. TYPE OF MEDICAL REPORT 
+Occupational Accident   Occupational Disease   
+ 
+B. EMPLOYEE’S CONSENT 
+I, ………………………………………………………………., willfully agree my 
+medical information contained herein to be used in determining my claim for 
+compensation.  
+ 
+Name ……………………………Date ………………………Signature ……………. 
+ 
+C. EMPLOYEE’S PARTICULARS 
+Name of employee………………………… Job title…………………………………… 
+Date of birth……………Employee’s Code No. ……………Employee’s ID No………. 
+ 
+D. PARTICULARS OF OCCUPATIONAL ACCIDENT OR DISEASE  
+i. Date of first examination of employee in case of accident ………………………………. 
+ii. Nature of injuries ..………………………………………………………………………… 
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+……………………………………………………………………………………………… 
+iii. Occupational disease diagnosed ……………………………………...…………………… 
+iv. Date of diagnosis ……………..……………………………………………………………. 
+v. Health Care Provider in which an employee was first examined or an occupational 
+disease was established. 
+ Name of Health Care Provider ………………….……………………….……………….. 
+Contact Address ………...…………………Region/District …….…………….………... 
+ 
+E. MEDICAL PRACTITIONER’S ASSESSMENT 
+i. Condition of an employee at the time of first examination after occurrence of 
+an accident or establishment of an occupational disease 
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+…………………………………………………………………………………… 
+
+[PDF PAGE 48]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+48 
+ 
+ 
+  
+ii. Current condition of an employee 
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+…………………………………………...…….………………………………… 
+    
+   Name of Medical Practitioner……………… Designation ……………………... 
+Address………………………………... Cell phone……………..…………...… 
+E-mail…………………..Signature………............Date ………….…………… 
+ 
+ 
+ 
+
+[PDF PAGE 49]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+49 
+ 
+ 
+WCC-2B 
+   MEDICAL PRACTITIONER’S REPORT  
+ ___________                                                   
+ 
+(Made under regulation 21(2)) 
+___________ 
+ 
+(This Form shall be filled by Medical Practitioner) 
+ 
+A. TYPE OF MEDICAL REPORT 
+Occupational 
+Accident  
+ Occupational 
+Disease  
+ Death   
+ 
+B. EMPLOYEE’S CONSENT 
+I, ………………………………………………………………., willfully agree my 
+medical information contained herein to be used in determining my claim for 
+compensation.  
+Name …………………………Date ………………….. Signature …………………….. 
+ 
+C. EMPLOYEE’S REPRESENTATIVE CONSENT (IN CASE OF DEATH) 
+I, ………………………………………………………………., willfully agree that the 
+medical information of the late  ……………………..……………………………. 
+contained herein to be used in determining a claim for compensation.  
+Name ………………………. Relationship with the deceased …………………………. 
+Signature ………….… Date ……………………………………………………………... 
+ 
+D. PARTICULARS OF A HEALTH CARE PROVIDER 
+Name of Health Care Provider…………………..……………………………………... 
+Contact address………………...………………………………………………………… 
+Tel …………Fax………………….WCF Accreditation No (if available) ……….……. 
+ 
+E. EMPLOYEE’S PARTICULARS  
+Name of employee …………..……………………………................................................. 
+Employee’s Code No. …………National ID No …………. Employee’s ID No ………… 
+Date of birth ……………Sex…………………Marital status…………………………... 
+ Contact Address……………...  Street/village ………………….. District ……………… 
+  Region……………………………………..……………………………………………….. 
+  Name of Employer…………………………………………………………………………. 
+ 
+F. INITIAL CONSULTATION PARTICULARS 
+i. Date of consultation ……………………………………………………………. 
+ii. General Conditional of the employee at the first consultation ………………… 
+……………………………………………………………………………………
+…………………………………………………………………………………… 
+iii. For the case of accident-professional description of the injury (nature, pattern, 
+structures involved, severity) 
+
+[PDF PAGE 50]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+50 
+ 
+ 
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………… 
+iv. For the case of occupational disease - professional description of the initial 
+symptoms and signs presented by the employee 
+……………………………………………………………………………………
+……………………………………………………………………………………
+…………………………………………………………………………………… 
+v. Summary of medical history of any medical condition pre-existed at the time of 
+occurrence of an accident or occupational 
+disease……………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+………………………………………………….................................................... 
+ 
+G. DETAILS OF SERVICES RENDERED 
+(a) Hospitalization (fill appropriately) 
+S/No Reasons for hospitalization Number of days 
+1.  Critical care   
+2.  Observation   
+3.  Surgery   
+4.  Requirement of investigation procedure   
+5.  Other   
+ 
+(b) Medical Investigation (s) 
+S/No. Investigation Reason (s) of Investigation (mark √ where appropriate) 
+  Diagnosis Severity 
+assessment 
+Prognosis Surgery Impairment 
+assessment 
+1.        
+2.        
+3.        
+4.        
+5.        
+6.        
+ 
+(c) Medical Follow Up 
+S/No. Clinic attended Medical Practitioner (name and 
+qualification) 
+No. of days 
+1.  General outpatient    
+2.  Medical specialist    
+3.   Orthopedic and traumatology    
+4.  General surgical   
+5.  Pulmonary   
+6.  Ophthalmology   
+
+[PDF PAGE 51]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+51 
+ 
+ 
+7.  Ear, Nose and throat (ENT)   
+8.  Other   
+ 
+(d)     Surgery 
+Date of 
+surgery 
+Type Reason (s ) Anaesthesia Surgeon’s 
+name and 
+qualification 
+     
+ 
+(e) Current state of employee (patient) ( Mark (√) in the appropriate box) 
+Fully 
+recovered 
+(Immediately 
+resumed 
+duties)  
+Partially 
+recovered  
+(Needs time 
+to recuperate 
+and resume 
+duties)  
+ 
+Go to table 
+(i) below 
+Need 
+medical 
+follow up 
+(Outcome 
+not yet fully 
+decided) 
+Recovered with 
+permanent loss of 
+body part/function 
+(Specify part (s) and 
+function (s) lost) 
+ 
+Go to table (ii) 
+below 
+Referred 
+(Reasons 
+of referral 
+and 
+expected 
+benefits)  
+ 
+Go to (iii) 
+below 
+Death 
+(Cause 
+of death) 
+      
+ 
+(i) Partially recovered- where partially recovered please fill the table below 
+Management Reason(s) No. of days 
+Complete day 
+off  
+  
+Light duties    
+ 
+(ii)               For permanent loss of body part (s) or function (s), complete table 
+below 
+Body part or 
+function(s) lost 
+Manner of loss Functions 
+impaired 
+Impact of 
+impairment 
+Rehabilitation 
+recommended 
+Example: Distal 
+third of left 
+lower limb 
+Amputation 
+after severe 
+injury  
+Cannot walk 
+freely unless 
+supported  
+Footballer lower 
+limb lost- can no 
+longer play 
+football 
+Artificial left 
+lower limb 
+     
+ 
+(iii) Referral Particulars: 
+Date of 
+referral 
+Referred 
+to 
+Reason (s) for referral  
+(mark (√) were appropriate) 
+Expected benefits 
+  Investigation  Expertise  Patient 
+demand 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+
+[PDF PAGE 52]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+52 
+ 
+ 
+H. FINAL DIAGNOSIS 
+i. What is the final 
+diagnosis……………………………………………………………………....... 
+…………………………………………………………………………………… 
+…………………………………………………………………………………… 
+............................................................................................................................... 
+ii. Supporting findings 
+………………………………………….……………………………………… 
+…………………………………………………………………………………… 
+…………………………………………………………………………………… 
+…………………………………………………………………………………… 
+…………………………………………………………………………………… 
+iii. Why is it of occupational? 
+……………………………………………………………………………………
+…………………………………………………………………………………… 
+ 
+iv. Medical Practitioner’s opinions and recommendations 
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+……………………………………………………………………………………
+………………………………………………………………………… 
+v. For death caused by occupational accident or disease 
+Date of death 
+…………………………………………………………………………………… 
+Professional description as to the cause of death: 
+…………………………………………………………………………………… 
+…………………………………………………………………………………… 
+…………………………………………………………………………………… 
+…………………………………………………………………………………… 
+ 
+DECLARATION 
+I, ………………………………………………………………., declare that what 
+I have stated herein above is true to the best of my knowledge. 
+Name………………..………………… Designation …………...……………….. 
+Date…………………………………………….., 
+Signature ……..................……………………… 
+
+[PDF PAGE 53]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+53 
+ 
+ 
+WCC-3A 
+   
+NOTICE TO ATTEND HEARING 
+(Made under regulation 22(2)) 
+1. Name and Address of the party ……………………………………………………………. 
+2. Claim number ……………………………………………………………………………… 
+3. Summary of the matter/claim 
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+…………………………………………………………....…………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+……………………….……………………………………………………………………
+………………………    
+4. Date………………….. time……………………….…. of commencement of the hearing. 
+5. Place of the hearing ……………………………………………………………… 
+ 
+……………………………………………….. 
+Director General’s Signature and Official Stamp 
+Date……………………….. 
+Copy to be served upon: 
+1. …………………………………….. 
+2. …………………………………….. 
+3. ……………………………………. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 54]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+54 
+ 
+ 
+WCC-3B 
+  SUMMONS OF WITNESS    
+  
+(Made under regulation 24(1))        
+                                   
+1. Name and Address of the witness ………..……………………………………… 
+2. Claim Number …………………………………………………………………… 
+3. Summary of the matter/claim 
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+……………………....………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………….………….. 
+4. Date………………….., time……………………….…of the hearing. 
+5. Place of the hearing…………………………………………………………… 
+ 
+…………………………………………… 
+Director General’s signature and Official Stamp 
+ 
+Date………………………..   
+Note: Failure to attend this hearing is an offence 
+
+[PDF PAGE 55]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+55 
+ 
+ 
+WCC-4 
+  DECISION AFTER FORMAL HEARING   
+__________ 
+ 
+(Made under regulation 27(4)) 
+____________ 
+ 
+1. Name and address of party ………………………………………………………. 
+2. Claim Number …………………………………………………………………… 
+3. Summary of the findings 
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………… 
+4. Decision of the Director General 
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+…………………………………………………… 
+5. This decision is made this day…………of …………20…….. 
+ 
+………………………………………… 
+Director General’s signature and Official Stamp 
+  Note: A party aggrieved by decision of Director General may apply for review to Director 
+General or appeal to the Minister 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 56]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+56 
+ 
+ 
+WCC-5  
+ APPLICATION FOR REVIEW   
+(Made under regulation 28)         
+                                   
+1. Name and address of the applicant ……………………………………………………… 
+2. Claim Number …………………………………………………………………………… 
+3. Date of decision …………………………………………………………………………. 
+4. Reasons for applications of review 
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+…………………………………………………………………………………………… 
+ 
+………………………… 
+Signature of the applicant 
+Date……………………..  
+ 
+ 
+
+[PDF PAGE 57]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+57 
+ 
+ 
+WCC-6    
+APPEAL TO THE MINISTER   
+__________ 
+ 
+(Made under regulation 29)  
+___________ 
+ 
+(Appeal against the Director General’s decision)                                       
+ 
+1. Name and address of the Appellant …………………...…………………………………... 
+2. Claim Number …………………………………………………...………………………… 
+3. Summary of the decision aggrieved with (attach copy of such decision) 
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+……………………………………………………………………………………………… 
+4. Reasons for appeal to the Minister 
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+………………………………………………………………………………………………
+…………………………………………  
+……………………… 
+Signature of appellant 
+ 
+Date…………………  
+  
+ 
+
+[PDF PAGE 58]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+58 
+ 
+ 
+_________ 
+ 
+SECOND SCHEDULE 
+__________ 
+ 
+EMPLOYEES’ RIGHTS 
+________ 
+ 
+(Made under regulation 53) 
+________ 
+ 
+No. EMPLOYEES 
+RIGHTS 
+CLARIFICATIONS 
+  1.  Right to adequate and 
+equitable 
+compensation  
+(sections 19 (1), 22 
+(1) and (2) and  29) 
+ Employee who suffers disablement resulted from an accident or 
+who contracts diseases which arises out of and in the course of 
+employment is entitled to an adequate and equitable 
+compensation. 
+Whereby the accident or disease leads to the death of an 
+employee, his/her dependant(s) is or are entitled to 
+compensation. 
+  2. Right to 
+rehabilitation  
+(sections 3(b) and 69) 
+Where an employee s uffers accident or contracts occupational 
+diseases, with the consent of the employee, the Director General 
+may provide clinical, vocational and social rehabilitation in 
+order to assist in restoring the employee’s health, independence 
+and participation in t he society to the maximum extent 
+practicable. 
+ 3. Right to medical aid 
+( sections 19(3) and 
+62 (1)) 
+Whereby in case an employee suffers diseases or injury arising 
+out of and in the course of employment, the employee will be 
+entitled to receive medical aid  from the Director General for the 
+period of not more than two years from the date of an accident 
+or of diagnosis and notification of an occupational disease 
+contracting diseases.  
+ 4. Right to claim 
+compensation to the 
+Director General  
+(section 39(1) and 
+40(1)) 
+An Employee or his/her representative shall have the right to 
+lodge claim for compensation within twelve months after the 
+date of accident, diagnosis of the Occupational disease or date of 
+death to the Director General.  
+5. Right to be 
+transferred for 
+medical services   
+(sections 61(1) and 
+(2)) 
+Where an employee sustains injuries resulting out of accident or 
+occupational disease, the injured employee shall have the right 
+to be transferred from the scene of accident to the hospital or to 
+the medical practitioner and from the medical practitioner to the 
+employee’s residence. 
+ 6. Display of employees 
+rights 
+(sections 77 and 78) 
+An Employer or trade union shall display employees’ rights and 
+procedures to be followed in order to claim compensation unde r 
+this Act at a conspicuous place so as to be easily read or seen. 
+
+[PDF PAGE 59]
+Workers’ Compensation Regulations 
+GN. No. 185 (contd.) 
+ 
+59 
+ 
+ 
+7. Right to information 
+ (section 91) 
+An employee or a dependant of the deceased is entitled, at his 
+own cost and with the approval of the Director General, to get a 
+copy of any document r elating to the accident, injury or 
+occupational diseases and claim for compensation involving the 
+employee or dependant of the employee as the case may be.  
+8.  Right to sue the 
+Board of Trustees of  
+the Workers 
+Compensation Fund  
+(section 12 (2) (a)) 
+An employee has the right to sue for any breach of statutory 
+duty or any grievances directly or indirectly caused by the Board 
+of Trustees. 
+9. Right to appeal  
+(section 80 (1) and 
+(2)) 
+An employee who is aggrieved by the decision of the Director 
+General may,  within thirty working days from the date of 
+receiving the decision, appeal to the Minister. 
+An employee aggrieved by the decision of the Minister, may 
+make an application for revision to the Labour Court in 
+accordance with the Labour Court Rules. 
+10. Right to be given 
+reasons for appeal 
+decision  
+(section 88) 
+An employee has a right to be given reasons of the decision 
+reached by the Director General or authorized person.  
+11. Right to sue the 
+employer for any civil 
+liability.  
+(section 30(1) and (2)) 
+An employee or a dependant of the deceased has a right to sue 
+the employer for any civil liability in respect of an occupational 
+injury or disease resulting in the disablement or death of an 
+employee if the injury or disease was caused by negligence, 
+breach of statutory duty or any other wrongful act or omission of 
+the employer, or any person for whose act or omission the 
+employer is responsible, or of any other person. 
+ 
+ 
+ 
+ 
+Dar es Salaam,                HON. JENISTA J. MHAGAMA,                    
+    24th May, 2016                        Minister of State, Prime Minister’s  Office,  
+                                                     Policy,Parliamentary Affairs, Labour, Youth,  
+                                                            Employment and Persons with Disability 
+ 

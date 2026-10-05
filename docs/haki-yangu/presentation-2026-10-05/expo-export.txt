@@ -1,0 +1,80 @@
+env: load .env.local
+env: export EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY EXPO_PUBLIC_CONVEX_URL EXPO_PUBLIC_EAS_PROJECT_ID
+Starting Metro Bundler
+
+| (node:10956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:10956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web Bundled 1552ms node_modules/expo-router/entry.js (1344 modules)
+iOS Bundled 8422ms node_modules/expo-router/entry.js (1633 modules)
+Android Bundled 14463ms node_modules/expo-router/entry.js (1821 modules)
+
+› Assets (76):
+assets/home-find-help.e43c98fcd83e5ebb717c4b9cb7e99ac2.jpg (220KB)
+assets/home-find-help.jpg (220KB)
+assets/home-hero.383cb223264f905e2366c68ae6a4f482.jpg (238KB)
+assets/home-hero.jpg (238KB)
+assets/home-request-help.4f46cda28e96f7046709cb9315a47e91.jpg (198KB)
+assets/home-request-help.jpg (198KB)
+assets/lsf-logo-white.959b72e11d3ef155f7c943f616764d3a.png (51KB)
+assets/lsf-logo-white.png (51KB)
+assets/lsf-official.51cfbc86775e52721a0ecfaa5b5ee0fc.png (51KB)
+assets/lsf-official.png (51KB)
+assets/saada-paralegal.9a2e5c861b485bc3762692efaef6407d.png (2.2MB)
+assets/saada-paralegal.png (2.2MB)
+node_modules/@expo-google-fonts/material-symbols/400Regular/MaterialSymbols_400Regular.ttf (967KB)
+node_modules/@expo-google-fonts/noto-sans/400Regular/NotoSans_400Regular.f46b08cc90d994b34b647ae24c46d504.ttf (629KB)
+node_modules/@expo-google-fonts/noto-sans/400Regular/NotoSans_400Regular.ttf (629KB)
+node_modules/@expo-google-fonts/noto-sans/500Medium/NotoSans_500Medium.a1311858ffd88b69aa5eadafd8f5c164.ttf (631KB)
+node_modules/@expo-google-fonts/noto-sans/500Medium/NotoSans_500Medium.ttf (631KB)
+node_modules/@expo-google-fonts/noto-sans/600SemiBold/NotoSans_600SemiBold.f5a1e1476234ba356911d9b4e287e30d.ttf (631KB)
+node_modules/@expo-google-fonts/noto-sans/600SemiBold/NotoSans_600SemiBold.ttf (631KB)
+node_modules/@expo-google-fonts/noto-sans/700Bold/NotoSans_700Bold.28c191ce33ca36e0f75106491846de68.ttf (631KB)
+node_modules/@expo-google-fonts/noto-sans/700Bold/NotoSans_700Bold.ttf (631KB)
+node_modules/@expo-google-fonts/source-serif-4/600SemiBold/SourceSerif4_600SemiBold.1b5c381585358327b750038bd53fa6d2.ttf (330KB)
+node_modules/@expo-google-fonts/source-serif-4/600SemiBold/SourceSerif4_600SemiBold.ttf (330KB)
+node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.b4eb097d35f44ed943676fd56f6bdc51.ttf (390KB)
+node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf (390KB)
+node_modules/expo-router/assets/arrow_down.017bc6ba3fc25503e5eb5e53826d48a8.png (9.5KB)
+node_modules/expo-router/assets/arrow_down.png (9.5KB)
+node_modules/expo-router/assets/arrow_right.xml (307B)
+node_modules/expo-router/assets/checkmark.xml (312B)
+node_modules/expo-router/assets/error.d1ea1496f9057eb392d5bbf3732a61b7.png (469B)
+node_modules/expo-router/assets/error.png (469B)
+node_modules/expo-router/assets/file.19eeb73b9593a38f8e9f418337fc7d10.png (138B)
+node_modules/expo-router/assets/file.png (138B)
+node_modules/expo-router/assets/forward.d8b800c443b8972542883e0b9de2bdc6.png (188B)
+node_modules/expo-router/assets/forward.png (188B)
+node_modules/expo-router/assets/pkg.ab19f4cbc543357183a20571f68380a3.png (364B)
+node_modules/expo-router/assets/pkg.png (364B)
+node_modules/expo-router/assets/react-navigation/elements/back-icon-mask.0a328cd9c1afd0afe8e3b1ec5165b1b4.png (653B)
+node_modules/expo-router/assets/react-navigation/elements/back-icon-mask.png (653B)
+node_modules/expo-router/assets/react-navigation/elements/back-icon.35ba0eaec5a4f5ed12ca16fabeae451d.png (207B)
+node_modules/expo-router/assets/react-navigation/elements/back-icon.png (8 variations | 359B)
+node_modules/expo-router/assets/react-navigation/elements/clear-icon.c94f6478e7ae0cdd9f15de1fcb9e5e55.png (4 variations | 425B)
+node_modules/expo-router/assets/react-navigation/elements/clear-icon.png (4 variations | 425B)
+node_modules/expo-router/assets/react-navigation/elements/close-icon.808e1b1b9b53114ec2838071a7e6daa7.png (4 variations | 235B)
+node_modules/expo-router/assets/react-navigation/elements/close-icon.png (4 variations | 235B)
+node_modules/expo-router/assets/react-navigation/elements/search-icon.286d67d3f74808a60a78d3ebf1a5fb57.png (928B)
+node_modules/expo-router/assets/react-navigation/elements/search-icon.png (7 variations | 592B)
+node_modules/expo-router/assets/sitemap.412dd9275b6b48ad28f5e3d81bb1f626.png (465B)
+node_modules/expo-router/assets/sitemap.png (465B)
+node_modules/expo-router/assets/unmatched.20e71bdf79e3a97bf55fd9e164041578.png (4.8KB)
+node_modules/expo-router/assets/unmatched.png (4.8KB)
+
+› web bundles (1):
+_expo/static/js/web/entry-b5356d2cc234217914c1f630bf3f25fc.js (3.1MB)
+
+› ios bundles (1):
+_expo/static/js/ios/entry-76c4a1f0a20a8af0239ebb8cacd5ca22.hbc (5.9MB)
+
+› android bundles (1):
+_expo/static/js/android/entry-d6cd86f55648ac33013a0c8f4719c353.hbc (6.1MB)
+
+› Files (3):
+favicon.ico (15KB)
+index.html (1.2KB)
+metadata.json (4.9KB)
+
+Exported: /tmp/haki-presentation-export-2026-10-05

@@ -1,6 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { router } from "expo-router";
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { api } from "../src/backend/api";
 import { useAuth } from "../src/auth";
@@ -17,6 +18,9 @@ export default function ParalegalLearningScreen() {
   const access = useQuery(api.users.currentAccess, isSignedIn ? {} : "skip");
   const guides = useQuery(api.publications.listPublicLegalGuides, {});
   const approved = access?.roles.some((role) => role === "paralegal" || role === "provider_staff") ?? false;
+  const modules = useQuery(api.paralegalTraining.listPublished, access?.roles.some((role) => ["paralegal", "staff", "admin"].includes(role)) ? {} : "skip");
+  const acknowledge = useMutation(api.paralegalTraining.acknowledge);
+  const [openModule, setOpenModule] = useState<string | null>(null); const [error, setError] = useState(""); const [busy, setBusy] = useState(false);
 
   return <Screen>
     <AppHeader back title={locale === "sw" ? "Kituo cha kujifunza" : "Learning hub"} eyebrow="HAKI YANGU · PARALEGAL" />
@@ -33,6 +37,11 @@ export default function ParalegalLearningScreen() {
       <Step icon="people-outline" number="03" title={locale === "sw" ? "Omba usimamizi" : "Ask for supervision"} body={locale === "sw" ? "Usikisie jibu kwa suala la hatari au nje ya utaalamu wako." : "Escalate risky matters or questions beyond your expertise."} onPress={() => router.push("/paralegal-support")} />
     </View>
 
+    <SectionHeading title={locale === "sw" ? "Mafunzo yaliyoidhinishwa" : "Approved training"} />
+    {modules === undefined && access?.roles.some((role) => ["paralegal", "staff", "admin"].includes(role)) ? <Surface><Text style={styles.body}>{locale === "sw" ? "Inapakia mafunzo..." : "Loading training..."}</Text></Surface> : null}
+    {modules?.length === 0 ? <Surface tone="orange"><Text style={styles.cardTitle}>{locale === "sw" ? "Hakuna mafunzo ya LSF yaliyochapishwa bado." : "LSF has not published training yet."}</Text><Text style={styles.body}>{locale === "sw" ? "Omba msimamizi aandae na akague moduli zinazohitajika." : "Ask your supervisor to prepare and approve required modules."}</Text></Surface> : null}
+    {modules?.map((module) => <Surface key={module._id} tone={module.completedAt ? "teal" : module.required ? "orange" : "white"}><Text style={styles.cardTitle}>{locale === "sw" ? module.titleSw : module.titleEn}</Text><Text style={styles.source}>{module.required ? (locale === "sw" ? "Lazima" : "Required") : (locale === "sw" ? "Hiari" : "Optional")} · v{module.version} · {module.topic}</Text><Text style={styles.body}>{module.completedAt ? (locale === "sw" ? `Ulipitia na kuthibitisha ${new Date(module.completedAt).toLocaleDateString("sw-TZ")}` : `Reviewed and acknowledged ${new Date(module.completedAt).toLocaleDateString("en-TZ")}`) : (locale === "sw" ? "Bado hujathibitisha kupitia maudhui." : "Content review has not been acknowledged.")}</Text><Button label={openModule === module._id ? (locale === "sw" ? "Ficha maudhui" : "Hide content") : (locale === "sw" ? "Soma moduli" : "Read module")} variant="secondary" onPress={() => setOpenModule(openModule === module._id ? null : module._id)} />{openModule === module._id ? <><Text style={styles.body}>{locale === "sw" ? module.contentSw : module.contentEn}</Text><Text style={styles.source}>{module.sourceTitle} · {module.sourceUrl}</Text><Text style={styles.body}>{locale === "sw" ? "Hii ni uthibitisho wa kujisomea, si cheti cha mtihani." : "This records self-study acknowledgement, not an exam certificate."}</Text>{access?.roles.includes("paralegal") && !module.completedAt ? <Button label={locale === "sw" ? "Nimesoma na kuelewa" : "I reviewed and understood"} disabled={busy} onPress={async () => { setBusy(true); setError(""); try { await acknowledge({ id: module._id }); } catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); } finally { setBusy(false); } }} /> : null}</> : null}</Surface>)}
+    {error ? <Text accessibilityRole="alert" style={styles.accessNote}>{error}</Text> : null}
     <SectionHeading title={locale === "sw" ? "Miongozo iliyopitishwa na LSF" : "LSF-approved guides"} />
     {guides === undefined ? <Surface><Text style={styles.body}>{locale === "sw" ? "Tunapakia miongozo..." : "Loading guides..."}</Text></Surface> : guides.length === 0 ?
       <Surface tone="orange"><Ionicons name="document-text-outline" size={26} color={colors.burgundy} /><Text style={styles.cardTitle}>{locale === "sw" ? "Hakuna mwongozo ulioidhinishwa bado" : "No approved guides yet"}</Text><Text style={styles.body}>{locale === "sw" ? "LSF bado haijachapisha nyenzo za kisheria zilizopitiwa. Ikiwa unashughulikia kesi, omba mwongozo wa msimamizi." : "LSF has not published reviewed legal material yet. Request supervisor guidance for a case rather than relying on unverified material."}</Text><Button label={locale === "sw" ? "Omba mwongozo" : "Request guidance"} variant="secondary" onPress={() => router.push("/paralegal-support")} /></Surface> :

@@ -309,7 +309,7 @@ export const useTestimonials = () => {
   const seedTestimonials = async () => {
     try {
       await seedMutation();
-      toast({ title: 'Success', description: 'Testimonials seeded successfully' });
+      toast({ title: 'Sample seeding disabled', description: 'Add verified testimonials and upload their images in the admin editor.' });
     } catch (err) {
       toast({ title: 'Error', description: 'Failed to seed testimonials', variant: 'destructive' });
       throw err;

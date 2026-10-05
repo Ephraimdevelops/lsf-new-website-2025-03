@@ -1,10 +1,13 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
-import { Pressable, StyleSheet, Switch, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Switch, Text, View } from "react-native";
+import { useState } from "react";
 import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
 import { type NotificationCategory, useNotificationPreferences } from "../src/useNotificationPreferences";
 import { colors, radius, spacing, type } from "../src/theme";
+import { appConfig } from "../src/config";
+import { useAuth } from "../src/auth";
 
 const categories: Array<{ key: NotificationCategory; icon: keyof typeof Ionicons.glyphMap; sw: string; en: string; swHelp: string; enHelp: string }> = [
   { key: "cases", icon: "briefcase-outline", sw: "Kesi na maombi", en: "Cases and requests", swHelp: "Hatua, hali, na mabadiliko ya kesi.", enHelp: "Case steps, status, and assignment changes." },
@@ -16,7 +19,24 @@ const categories: Array<{ key: NotificationCategory; icon: keyof typeof Ionicons
 
 export default function NotificationSettingsScreen() {
   const { locale } = useLanguage();
-  const { preferences, updatePreference } = useNotificationPreferences();
+  const { isSignedIn } = useAuth();
+  const { hydrated, preferences, pushEnabled, updatePreference, updatePushEnabled } = useNotificationPreferences();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const pushAvailable = Platform.OS !== "web" && Boolean(appConfig.easProjectId);
+
+  async function changePush(enabled: boolean) {
+    setBusy(true);
+    setError("");
+    try { await updatePushEnabled(enabled); }
+    catch (caught) {
+      const denied = caught instanceof Error && caught.message.includes("permission");
+      setError(denied
+        ? (locale === "sw" ? "Ruhusa ya arifa haijatolewa kwenye kifaa. Unaweza kuibadilisha kwenye mipangilio ya kifaa." : "Device notification permission was not granted. You can change it in device settings.")
+        : (locale === "sw" ? "Imeshindikana kuwasha arifa. Jaribu tena ukiwa na mtandao." : "Could not enable alerts. Reconnect and try again."));
+    }
+    finally { setBusy(false); }
+  }
 
   return (
     <Screen>
@@ -34,12 +54,28 @@ export default function NotificationSettingsScreen() {
           <Text style={styles.title}>{locale === "sw" ? "Chagua arifa muhimu" : "Choose what matters"}</Text>
           <Text style={styles.body}>
             {locale === "sw"
-              ? "Mipangilio hii inadhibiti arifa zinazoonekana ndani ya app hii. Arifa muhimu za usalama zinaweza kuendelea kuonekana."
-              : "These settings control what appears inside this app. Critical safety notices may still appear."}
+              ? "Taarifa zote zitaendelea kuonekana ndani ya app. Chagua hapa kama unataka arifa nje ya app kwenye kifaa hiki."
+              : "All updates remain in your private inbox. Choose here whether this device may receive alerts outside the app."}
           </Text>
         </View>
       </View>
+      {!isSignedIn ? <Text style={[styles.rowHelp, { marginTop: spacing.md }]}>{locale === "sw" ? "Ingia ili kuhifadhi mipangilio ya arifa kwenye akaunti yako." : "Sign in to save notification settings to your account."}</Text> : null}
 
+      <View style={styles.card}>
+        <View style={styles.row}>
+          <View style={styles.iconChip}><Ionicons name="phone-portrait-outline" size={21} color={colors.burgundy} /></View>
+          <View style={styles.copy}>
+            <Text style={styles.rowTitle}>{locale === "sw" ? "Arifa nje ya app" : "Alerts outside the app"}</Text>
+            <Text style={styles.rowHelp}>{!pushAvailable
+              ? (locale === "sw" ? "Hazipatikani kwenye toleo hili la app." : "Unavailable in this app build.")
+              : (locale === "sw" ? "Ukiziwasha, kifaa kitaomba ruhusa. Maombi ya msaada yenye mawasiliano salama ya ndani ya app hayatatumwa nje." : "Turning this on requests device permission. Requests marked in-app-only or do-not-contact will not trigger external alerts.")}</Text>
+          </View>
+          <Switch accessibilityLabel={locale === "sw" ? "Arifa nje ya app" : "Alerts outside the app"} value={pushEnabled} disabled={!isSignedIn || !hydrated || !pushAvailable || busy} onValueChange={(value) => void changePush(value)} trackColor={{ false: "#D8D8D8", true: "#E8B8CC" }} thumbColor={pushEnabled ? colors.burgundy : colors.surface} />
+        </View>
+      </View>
+      {error ? <Text accessibilityRole="alert" style={styles.rowHelp}>{error}</Text> : null}
+
+      <Text style={[styles.rowHelp, { marginTop: spacing.lg }]}>{locale === "sw" ? "Aina za arifa za nje ya app. Kuzima aina hakufuti taarifa kwenye kikasha chako." : "External alert categories. Turning one off does not remove updates from your inbox."}</Text>
       <View style={styles.card}>
         {categories.map((category, index) => (
           <View key={category.key}>
@@ -53,7 +89,8 @@ export default function NotificationSettingsScreen() {
               </View>
               <Switch
                 value={preferences[category.key]}
-                onValueChange={(value) => void updatePreference(category.key, value)}
+                disabled={!isSignedIn || !hydrated || busy}
+                onValueChange={(value) => void updatePreference(category.key, value).catch(() => setError(locale === "sw" ? "Imeshindikana kuhifadhi mpangilio." : "Could not save this setting."))}
                 trackColor={{ false: "#D8D8D8", true: "#E8B8CC" }}
                 thumbColor={preferences[category.key] ? colors.burgundy : colors.surface}
               />

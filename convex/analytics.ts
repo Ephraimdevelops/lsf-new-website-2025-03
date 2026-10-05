@@ -94,6 +94,12 @@ export const logEvent = mutation({
         visitorId: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
+        // Public callers may be stale or malicious. Never retain URL queries,
+        // referrers, user agents, search text, or arbitrary metadata here.
+        const safeMeta = args.type === "page_view" ? {
+            sourceClass: ["direct", "search", "social", "other"].includes(getStringMeta(args.meta, "sourceClass") || "") ? getStringMeta(args.meta, "sourceClass") : undefined,
+            deviceClass: ["mobile", "desktop"].includes(getStringMeta(args.meta, "deviceClass") || "") ? getStringMeta(args.meta, "deviceClass") : undefined,
+        } : args.type === "search" ? undefined : args.meta;
         // 1. Deduplication Guard: Skip if same visitor logged same event in last 5s
         if (args.visitorId && (args.type === "page_view" || args.type.includes("_view"))) {
             const fiveSecsAgo = Date.now() - 5000;
@@ -115,7 +121,7 @@ export const logEvent = mutation({
             type: args.type,
             resourceId: args.resourceId,
             resourceType: args.resourceType,
-            meta: args.meta,
+            meta: safeMeta,
             userId: identity?.subject || "anonymous",
             visitorId: args.visitorId,
             timestamp: Date.now(),
@@ -638,7 +644,7 @@ export const getDashboardOverview = query({
 
 
         // 4. Calculate Key Metrics
-        const totalPageViews = allPageViews.length + allNewsViews.length + allProgramViews.length;
+        const totalPageViews = allPageViews.length;
         const totalDownloads = allDownloads.length;
 
         // Accurate Unique Visitors Calculation
@@ -666,7 +672,7 @@ export const getDashboardOverview = query({
             }
         });
 
-        const totalVisitors = uniqueVisitors.size || 1; // Minimum 1 to avoid divide by zero 
+        const totalVisitors = uniqueVisitors.size;
 
         // 5. Daily Stats
         const dailyMap = new Map<string, { visitors: number; pageViews: number; downloads: number }>();
@@ -691,12 +697,18 @@ export const getDashboardOverview = query({
         };
 
         fillDaily(allPageViews, 'pageViews');
-        fillDaily(allNewsViews, 'pageViews'); // Count news as page views too
         fillDaily(allDownloads, 'downloads');
-        // Heuristic for visitors (approximating historical data since we didn't have visitorId before)
-        // If we have actual daily visitors we could compute it strictly, but let's leave the heuristic for the chart visually
-        dailyMap.forEach(entry => {
-            entry.visitors = Math.ceil(entry.pageViews / 3);
+        const dailyVisitors = new Map<string, Set<string>>();
+        allPageViews.forEach(event => {
+            const id = event.visitorId || (event.userId !== "anonymous" ? event.userId : undefined);
+            if (!id) return;
+            const date = new Date(event.timestamp).toISOString().split('T')[0];
+            if (!dailyVisitors.has(date)) dailyVisitors.set(date, new Set());
+            dailyVisitors.get(date)!.add(id);
+        });
+        dailyVisitors.forEach((ids, date) => {
+            const entry = dailyMap.get(date);
+            if (entry) entry.visitors = ids.size;
         });
 
         const dailyStats = Array.from(dailyMap.entries())
@@ -706,14 +718,14 @@ export const getDashboardOverview = query({
         // 6. Top Pages
         const pageCounts: Record<string, number> = {};
         allPageViews.forEach(e => {
-            const url = getStringMeta(e.meta, "url") || e.resourceId || 'unknown';
+            const url = e.resourceId || 'unknown';
             pageCounts[url] = (pageCounts[url] || 0) + 1;
         });
 
         const topPages = Object.entries(pageCounts)
             .sort(([, a], [, b]) => b - a)
             .slice(0, 5)
-            .map(([page, views]) => ({ page, views, change: 0 })); // Change is 0 for now
+            .map(([page, views]) => ({ page, views }));
 
         // 7. Content Performance
         // Merge news and downloads info
@@ -787,16 +799,22 @@ export const getDashboardOverview = query({
             const vid = e.visitorId ? `vid_${e.visitorId}` : (e.userId !== "anonymous" ? `uid_${e.userId}` : null);
             if (!vid) return;
             const userAgent = getStringMeta(e.meta, "userAgent");
+            const deviceClass = getStringMeta(e.meta, "deviceClass");
             const referrer = getStringMeta(e.meta, "referrer");
+            const sourceClass = getStringMeta(e.meta, "sourceClass");
 
             // Device Tracking
-            if (userAgent && !visitorDevices.has(vid)) {
+            if (deviceClass && ["mobile", "desktop"].includes(deviceClass) && !visitorDevices.has(vid)) {
+                visitorDevices.set(vid, deviceClass);
+            } else if (userAgent && !visitorDevices.has(vid)) {
                 const ua = userAgent.toLowerCase();
                 const isMobile = /mobile|android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
                 visitorDevices.set(vid, isMobile ? 'mobile' : 'desktop');
             }
             // Source Tracking
-            if (referrer !== undefined && !visitorSources.has(vid)) {
+            if (sourceClass && ["direct", "search", "social", "other"].includes(sourceClass) && !visitorSources.has(vid)) {
+                visitorSources.set(vid, sourceClass);
+            } else if (referrer !== undefined && !visitorSources.has(vid)) {
                 const ref = referrer.toLowerCase();
                 if (!ref || ref === 'direct') visitorSources.set(vid, 'direct');
                 else if (ref.includes('google') || ref.includes('bing') || ref.includes('yahoo')) visitorSources.set(vid, 'search');
@@ -818,49 +836,22 @@ export const getDashboardOverview = query({
             else otherSourceCount++;
         });
 
-        // Default fallbacks if no data yet
         const trafficSources = visitorsWithReferrer > 0 ? [
             { source: 'Direct', visitors: directCount, percentage: Math.round((directCount / visitorsWithReferrer) * 100) },
             { source: 'Search', visitors: searchCount, percentage: Math.round((searchCount / visitorsWithReferrer) * 100) },
             { source: 'Social', visitors: socialCount, percentage: Math.round((socialCount / visitorsWithReferrer) * 100) },
             { source: 'Other', visitors: otherSourceCount, percentage: Math.round((otherSourceCount / visitorsWithReferrer) * 100) }
-        ].filter(t => t.visitors > 0) : [
-            { source: 'Direct', visitors: Math.floor(totalVisitors * 0.4), percentage: 40 },
-            { source: 'Google', visitors: Math.floor(totalVisitors * 0.35), percentage: 35 },
-            { source: 'Social', visitors: Math.floor(totalVisitors * 0.25), percentage: 25 },
-        ];
+        ].filter(t => t.visitors > 0) : [];
 
         const deviceTypes = visitorsWithDevice > 0 ? [
             { device: 'Desktop', users: desktopCount, percentage: Math.round((desktopCount / visitorsWithDevice) * 100) },
             { device: 'Mobile', users: mobileCount, percentage: Math.round((mobileCount / visitorsWithDevice) * 100) },
-        ] : [
-            { device: 'Desktop', users: Math.floor(totalVisitors * 0.6), percentage: 60 },
-            { device: 'Mobile', users: Math.floor(totalVisitors * 0.4), percentage: 40 },
-        ];
+        ] : [];
 
-        // Session & Bounce Rate
-        const visitorSessions = new Map<string, { start: number, end: number, count: number }>();
-        allEvents.forEach(e => {
-            const vid = e.visitorId ? `vid_${e.visitorId}` : (e.userId !== "anonymous" ? `uid_${e.userId}` : null);
-            if (!vid) return;
-            if (!visitorSessions.has(vid)) visitorSessions.set(vid, { start: e.timestamp, end: e.timestamp, count: 1 });
-            else {
-                const session = visitorSessions.get(vid)!;
-                session.count++;
-                if (e.timestamp < session.start) session.start = e.timestamp;
-                if (e.timestamp > session.end) session.end = e.timestamp;
-            }
-        });
-
-        let bounces = 0, totalSessionDurationMs = 0, multiEventVisitors = 0;
-        visitorSessions.forEach(session => {
-            // Bounce: 1 event or < 5s duration
-            if (session.count === 1 || (session.end - session.start < 5000)) bounces++;
-            else { multiEventVisitors++; totalSessionDurationMs += (session.end - session.start); }
-        });
-
-        const bounceRate = visitorSessions.size > 0 ? Math.round((bounces / visitorSessions.size) * 1000) / 10 : 42.3;
-        const avgSessionDuration = multiEventVisitors > 0 ? Math.round((totalSessionDurationMs / multiEventVisitors) / 1000) : 245;
+        // The existing events have no session boundary or end signal. Do not infer
+        // duration or bounce rate from a visitor's entire history.
+        const bounceRate = null;
+        const avgSessionDuration = null;
 
         return {
             totalVisitors,
@@ -875,7 +866,7 @@ export const getDashboardOverview = query({
             dailyStats,
             realTimeStats: {
                 activeUsers: activeUsersCount, // Real 5-minute activity window
-                currentPageViews: dailyStats[dailyStats.length - 1]?.pageViews || 0
+                currentPageViews: allPageViews.filter(event => event.timestamp >= Date.now() - 60 * 60 * 1000).length
             },
             documentCounts: {
                 news: totalNewsDocs,

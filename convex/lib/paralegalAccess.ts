@@ -1,4 +1,5 @@
 import type { Id } from "../_generated/dataModel";
+import type { Doc } from "../_generated/dataModel";
 import type { MutationCtx } from "../_generated/server";
 
 export async function getApprovedParalegalProfileByEmail(ctx: MutationCtx, email: string) {
@@ -8,7 +9,14 @@ export async function getApprovedParalegalProfileByEmail(ctx: MutationCtx, email
     .withIndex("by_email", (q) => q.eq("email", normalizedEmail))
     .collect();
 
-  return profile.find((candidate) => candidate.status === "approved") ?? null;
+  return profile.find((candidate) => candidate.status === "approved" && candidate.isVerified === true && Boolean(candidate.reviewedBy) && Boolean(candidate.idDocumentStorageId || candidate.idDocumentUrl) && Boolean(candidate.certificateStorageId)) ?? null;
+}
+
+export function isParalegalReady(profile: Doc<"paralegal_applications"> | null | undefined) {
+  return Boolean(profile?.status === "approved" && profile.isVerified && profile.reviewedBy
+    && (profile.idDocumentStorageId || profile.idDocumentUrl) && profile.certificateStorageId
+    && profile.onboardingCompleted && profile.ethicsAcceptedAt && profile.codeOfConductAcceptedAt
+    && profile.safeguardingTrainingCompletedAt);
 }
 
 export async function markParalegalProfileJoined(
@@ -20,8 +28,6 @@ export async function markParalegalProfileJoined(
   if (!profile) return;
   await ctx.db.patch(profileId, {
     hasJoinedHakiYangu: true,
-    onboardingCompleted: true,
-    isVerified: true,
     approvedAt: profile.approvedAt ?? now,
   });
 }

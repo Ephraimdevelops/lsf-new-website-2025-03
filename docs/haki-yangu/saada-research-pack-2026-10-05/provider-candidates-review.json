@@ -1,0 +1,222 @@
+{
+  "status": "public_discovery_only_not_live_directory",
+  "candidates": [
+    {
+      "id": "PROVIDER-LHRC-KINONDONI",
+      "organisation": "LHRC",
+      "officeDraft": "Kinondoni",
+      "sourceIds": [
+        "SERVICES-LHRC"
+      ],
+      "sourceUrl": "https://legalaid.humanrights.or.tz/en/contact",
+      "phonesObserved": [
+        "+255717143784",
+        "+255683169400"
+      ],
+      "emailObserved": "lhrckinondoni@humanrights.or.tz",
+      "addressObserved": "Isere Street House660",
+      "observedOn": "2026-10-05",
+      "caution": "Multiple numbers; provider confirmation required.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-LHRC-ARUSHA",
+      "organisation": "LHRC",
+      "officeDraft": "Arusha",
+      "sourceIds": [
+        "SERVICES-LHRC"
+      ],
+      "sourceUrl": "https://legalaid.humanrights.or.tz/en/contact",
+      "phonesObserved": [
+        "+255782277569",
+        "+255626281245",
+        "+255626281244"
+      ],
+      "emailObserved": "lhrcarusha@humanrights.or.tz",
+      "addressObserved": "Sakina kwa Idd / Olerian Street / Olosiva Area",
+      "observedOn": "2026-10-05",
+      "caution": "Different phone/address variants within page; do not silently choose one.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-LHRC-DODOMA",
+      "organisation": "LHRC",
+      "officeDraft": "Dodoma",
+      "sourceIds": [
+        "SERVICES-LHRC"
+      ],
+      "sourceUrl": "https://legalaid.humanrights.or.tz/en/contact",
+      "phonesObserved": [
+        "+255262350050",
+        "+255678933155",
+        "+255655444828"
+      ],
+      "emailObserved": "lhrcdodoma@humanrights.or.tz",
+      "addressObserved": "Chimuli Street Plot20 AreaD",
+      "observedOn": "2026-10-05",
+      "caution": "Different contact numbers in main and footer clinic sections.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-TAWLA",
+      "organisation": "TAWLA",
+      "officeDraft": "Multiple offices",
+      "sourceIds": [
+        "SERVICES-TAWLA-CONTACT",
+        "SERVICES-TAWLA"
+      ],
+      "sourceUrl": "https://www.tawla.or.tz/contact-us/",
+      "phonesObserved": [
+        "0800110017",
+        "0800751010",
+        "+255712343717"
+      ],
+      "emailObserved": null,
+      "addressObserved": "Dar es Salaam and regional offices",
+      "observedOn": "2026-10-05",
+      "caution": "Service page names five regions while contact page also names Mbeya; head-office address variants and Tanga +225 prefix require confirmation. Hotlines are public service-page candidates.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-WLAC",
+      "organisation": "WLAC",
+      "officeDraft": "Dar es Salaam",
+      "sourceIds": [
+        "SERVICES-WLAC"
+      ],
+      "sourceUrl": "https://www.wlac.or.tz/?lang=en",
+      "phonesObserved": [
+        "+255222664051"
+      ],
+      "emailObserved": "wlac@wlac.or.tz",
+      "addressObserved": null,
+      "observedOn": "2026-10-05",
+      "caution": "Opening hours and programme claims need confirmation; testimonials are not proof of case acceptance or shelter availability.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-ZLSC",
+      "organisation": "ZLSC",
+      "officeDraft": "Zanzibar",
+      "sourceIds": [
+        "SERVICES-ZLSC"
+      ],
+      "sourceUrl": "https://zlsc.or.tz/get-in-touch/",
+      "phonesObserved": [
+        "+255654416250"
+      ],
+      "emailObserved": "info@zlsc.or.tz",
+      "addressObserved": "House33 Karume Road Kijangwani",
+      "observedOn": "2026-10-05",
+      "caution": "Public free-legal-aid statement; exact scope, current hours, Pemba office and registration require confirmation.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-TLS",
+      "organisation": "TLS",
+      "officeDraft": "Dar es Salaam / chapter offices",
+      "sourceIds": [
+        "SERVICES-TLS"
+      ],
+      "sourceUrl": "https://tls.or.tz/legal-aid",
+      "phonesObserved": [],
+      "emailObserved": null,
+      "addressObserved": "Wakili House",
+      "observedOn": "2026-10-05",
+      "caution": "Public legal-aid unit and chapter service description; obtain chapter-specific verified contacts, fees and capacity.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false,
+      "evidenceCaution": "Saved static HTML contains only the title; full service description was observed in web search. Require rendered-page capture or provider confirmation."
+    }
+  ]
+}

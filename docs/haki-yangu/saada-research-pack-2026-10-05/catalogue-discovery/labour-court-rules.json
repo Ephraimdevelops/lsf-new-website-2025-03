@@ -1,0 +1,2355 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Labour Court Rules",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These <em>Rules</em> may be cited as the <em>Labour</em> <em>Court</em> <em>Rules</em>, 2007. Unless the context otherwise requires, any expression in these <em>Rules</em> that is defined in the <em>Labour</em> Institution Act, 2004 and the Employment and <em>Labour</em> Relations Act, 2004, has the same meaning as in those Acts."
+              ],
+              "dc.title": [
+                "<em>LABOUR</em> <em>COURT</em> <em>RULES</em>, GN NO. 106 OF 2007"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "985d8e8f-39a7-42cf-8c0b-bca299bd2f4d",
+                "uuid": "985d8e8f-39a7-42cf-8c0b-bca299bd2f4d",
+                "name": "LABOUR COURT RULES, GN NO. 106 OF 2007",
+                "handle": "123456789/328",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHIEF JUSTICE, BARNABAS A. SAMATTA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T10:44:51Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T10:44:51Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2007-05-18",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "The Labour Court shall be a court of record, law, equity, and mediation and shall keep its judgments, rulings, orders, decrees or deeds of settlement given, evidence given, objections made to any evidence received or tendered, on the spot inspection and any matter recorded as a result of that inspection and report and proceedings generally.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Rules may be cited as the Labour Court Rules, 2007. Unless the context otherwise requires, any expression in these Rules that is defined in the Labour Institution Act, 2004 and the Employment and Labour Relations Act, 2004, has the same meaning as in those Acts.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/328",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 106 OF 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "LABOUR COURT RULES, GN NO. 106 OF 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS ACT, 2004",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:04:03.292Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "cb138664-ac0d-4623-bad8-23232faa9eae",
+                "uuid": "cb138664-ac0d-4623-bad8-23232faa9eae",
+                "name": "BHARYA ENGINEERING AND CONTRACTING CO. LTD VS. LABOUR COMMISSIONER AND ANOTHER. CIVIL APPLICATION NO. 398/18 OF 2022.",
+                "handle": "123456789/1203",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "FIKIRINI. J.A.:",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-04T08:49:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-04T08:49:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-07-14",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "BHARYA ENGINEERING AND CONTRACTING CO. LTD VS. LABOUR COMMISSIONER AND ANOTHER\r\nCOURT OF APPEAL OF TANZANIA\r\nAT DAR ES SALAAM\r\n[FIKIRINI, JA.], \r\nCIVIL APPLICATION NO. 398/18 OF 2022\r\n(From the Decision of the High Court of Tanzania (Labour Division) at \r\nDar es salaam (Maghimbi, J.) dated the 27th day of May, 2022\r\nin Labour Appeal No. 1 of 2022)\r\n\r\nCivil Practice and procedure-stay of execution-stay of execution in the Court of Appeal-conditions to be met to warrant ex-parte stay of execution.\r\n\r\n\r\nBy notice of motion under Rule 11 (3), 11 (4), (4) (A), 11 (5) (a) and (b), 11 (6), 11 (7) (a), (b), (c), and (d) and Rule 48 (1) of the Tanzania Court of Appeal, Rules 2009 (the Rules), the applicant, Bharya Engineering and Contracting Co. Ltd, is seeking for stay of execution ex-parte pending hearing inter parties. The application is supported by an affidavit sworn by Sarbjit Singh Bharya dated 30th June, 2022. Brief background culminating in the present application is that the applicant objected to the Labour Officer's Compliance Order with reference number DAR/U. 10/4/2021/01, commonly known as application for condonation, dated 16th February, 2022. The application was declined, which compelled the Labour Commissioner to enforce the order by instituting Labour Execution No. 224 of 2021 vide a decision through a letter with reference number BC. 101/210/01/104 dated 4th March, 2022. The applicant then lodged an appeal before the High Court (Labour Division) registered as Labour Appeal No. 1 of 2022, to prevent the execution from proceeding. On 27th May, 2022, the High Court dismissed the appeal. The Applicant was aggrieved by that decision and lodged a notice of intention to appeal to this Court. The execution proceedings, which were halted to pave way for the determination of the Labour Appeal No. 1 of 2022, was thus revived hence the present application. \r\n\r\nHeld\r\nFor an application for stay of execution to be granted\r\n\r\n1.\tThe Applicant must Lodge Notice of Appeal within time\r\n2.\tApplication must be lodged within 14 days from the date when the notice of execution was served upon the Applicant\r\n3.\tCopy of the impugned decree and judgment must be attached in the application\r\n4.\tThe Applicant must as well show willingness to furnish security for the due performance of the decree sought to be stayed.\r\n\r\n\r\n\r\n\r\nEx-parte stay of execution granted\r\n\r\nStatutory Provisions referred to:\r\n\r\n1.\tCourt of Appeal Rules, 2009 as amended rule 11(3),(4), (4 A), (5) (a), (b) (6), (7) (a), (b), (c), and (d) \r\n\r\nNo Case referred to:\r\n\r\nMr. Michael Mwambeta Counsel for the Applicant",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held\r\nFor an application for stay of execution to be granted\r\n1.The Applicant must Lodge Notice of Appeal within time\r\n2.Application must be lodged within 14 days from the date when the notice of execution was served upon the Applicant\r\n3.Copy of the impugned decree and judgment must be attached in the application\r\n4.The Applicant must as well show willingness to furnish security for the due performance of the decree sought to be stayed.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1203",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BHARYA ENGINEERING AND CONTRACTING CO. LTD VS. LABOUR COMMISSIONER AND ANOTHER. CIVIL APPLICATION NO. 398/18 OF 2022.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 398/18 OF 2022.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:07:20.756Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cb138664-ac0d-4623-bad8-23232faa9eae"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "40f42e51-0543-4dbb-b32f-a00dce0a7f36",
+                "uuid": "40f42e51-0543-4dbb-b32f-a00dce0a7f36",
+                "name": "SERENGETI BREWERIES LIMITED VS. JOSEPH MAIGE MASHAURI. CIVIL APPLICATION NO. 271/05 OF 2019",
+                "handle": "123456789/1204",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "JUMA, KITUSI. J.A. And MAKUNGU, J.A. CJ„",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-04T09:03:22Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-04T09:03:22Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-09-22",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "SERENGETI BREWERIES LIMITED vs. JOSEPH MAIGE MASHAURI\r\nCOURT OF APPEAL OF TANZANIA AT MOSHI (Juma, CJ, Kitusi and Makungu, JJ. A)                                                                                                       \r\nCIVIL APPLICATION NO. 271/05 OF 2019\r\n(Application from the Ruling and drawn Order of the High Court of Tanzania, (Labour Division) at Moshi, Mipawa, J., dated 15th day of July, 2016 in Labour Revision No. 13 of 2015)\r\nCourt of Appeal Rules – Notice of motion – Application for Stay of Execution – Conditions – Whether the Rules specified the conditions for the Court to issue an order for stay of execution.\r\nThis is an application for Stay of Execution from the Ruling and drawn Order of the High Court of Tanzania, (Labour Division) at Moshi, for payment of decretal sum. The Applicant filed the application prayed the Court to issue a stay of execution pending hearing of appeal, and contended that if the intended execution proceeded and the respondent paid the decretal sum, he may not have the wherewithal to refund the money should the applicant win the appeal, thereby resulting in a substantial loss to the latter. The applicant submitted that rule 11(5) of the Rules specified two conditions for the Court to issue an order for stay of execution; one, that substantial loss may result to the party applying for stay of execution unless the order is made and two, security has been given by the applicant for the due performance of such decree. At the hearing of the application, the respondent did not enter appearance and did not file an affidavit in reply to contest the application. Hence the averments in the applicant’s affidavit supporting the notice of motion have gone uncontested. So, the issue for determination in Court was whether the application has merit. \r\nHeld: (i) Conceivably, once the deposited funds are released to the respondent, they may not be easily recoverable from the respondent who is an individual with no known assets in the event that the applicant succeeds in its intended appeal. Given these circumstances, the Court satisfied that the application has merit and granted it.   \r\n(ii) Court ordered the stay of the intended execution of the order of the High Court of Tanzania, Labour Division at Moshi (Mipawa, J.) dated 15th July, 2016 in Revision No.13 of 2015 pending hearing of the intended appeal.  \r\nApplication allowed.\r\nStatutory provisions referred to: \r\n•\tThe Court of Appeal Rules, 2009 under rules 11 (5), 63(2).\r\nMr. Ally Hamza, for the Applicant. \r\n\r\n\r\nRULING OF THE COURT\r\n22nd day of September, 2022.\r\n                 At the hearing of this application for stay of execution, Mr Ally Hamza, learned advocate, represented the applicant whereas the respondent though duly served with the notice of hearing through TUICO Office on 9/9/2022, did not enter appearance thus, the hearing of the application proceeded in his absence under rule 63(2) of the Tanzania Court of Appeal Rules, 2009 as amended (the Rules). \r\n               Submitting in support of the application, Mr. Hamza commenced his submission by fully adopting the contents of the notice of motion, the two supporting affidavits one sworn by Mr. Nuhu Mkumbukwa, an advocate acting for the applicant and the other sworn by Mr. Gwandumi Mwangombe, the Legal Manager of the applicant and the applicant's written submission. He then briefly submitted that rule 11(5) of the Rules specified two conditions for the Court to issue an order for stay of execution; one, that substantial loss may result to the party applying for stay of execution unless the order is made and two, security has been given by the applicant for the due performance of such decree. \r\n           Mr. Hamza relying on the contents of the notice of motion and the accompanying affidavits, urged the Court to issue a stay of execution pending hearing of the appeal. He contended that if the intended execution proceeded and the respondent paid the decretal sum, he may not have the wherewithal to refund the money should the applicant win the appeal, thereby resulting in a substantial loss to the latter. He also contended that the applicant has already deposited the decretal sum in the High Court's bank account maintained by the Bank of Tanzania to cover for payment of the decretal sum in case the intended appeal fails. He prayed the application be granted. \r\n             On the other hand, the respondent did not file an affidavit in reply to contest the application. Hence the averments in the applicant's affidavits supporting the notice of motion have gone uncontested. \r\n             We have examined the notice of motion and taken account of the founding affidavits and all its annextures in the light of the submissions made by Mr. Hamza. It is noteworthy from attached copy of the summons in respect of the application for execution that the respondent moved the High Court, Labour Division at Moshi for the payment of the decretal sum. Conceivably, once the deposited funds are released to the respondent, they may not be easily recoverable from the respondent who is an individual with no known assets in the event that the applicant succeeds in its intended appeal. Given these circumstances, we are satisfied that the application has merit and we grant it.\r\n           Thus, we order stay of the intended execution of the order of the High Court of Tanzania, Labour Division at Moshi (Mipawa, J.) dated 15th July, 2016 in Revision No. 13 of 2015 pending hearing of the intended appeal. We make no order as to costs since this is a labour matter. \r\n\r\n          It is so ordered. \r\n         DATED at MOSHI this 22nd day of September, 2022.\r\nH. JUMA\r\nCHIEF JUSTICE\r\n\r\n\r\nP. KITUSI\r\nJUSTICE OF APPEAL\r\nO. O. MAKUNGU\r\nJUSTICE OF APPEAL",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held: (i) Conceivably, once the deposited funds are released to the respondent, they may not be easily recoverable from the respondent who is an individual with no known assets in the event that the applicant succeeds in its intended appeal. Given these circumstances, the Court satisfied that the application has merit and granted it.   \r\n(ii) Court ordered the stay of the intended execution of the order of the High Court of Tanzania, Labour Division at Moshi (Mipawa, J.) dated 15th July, 2016 in Revision No.13 of 2015 pending hearing of the intended appeal.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1204",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, MOSHI.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "MOSHI.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "SERENGETI BREWERIES LIMITED VS. JOSEPH MAIGE MASHAURI. CIVIL APPLICATION NO. 271/05 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 271/05 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:33.153Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/40f42e51-0543-4dbb-b32f-a00dce0a7f36"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "The appeal is against the decision of the High <em>Court</em> <em>Labour</em> Division sitting at Mbeya that determined an application for cancellation of the appellant's registration as a Trade Union, lodged by the respondents. The main reason for the said prayer was the allegation of failure to comply with the requirements for registration under section 55(l)(a),(b), (2)(a), (3)(a) and (b) of the Employment and <em>Labour</em>Relations Act, Cap 366 (ELRA), <em>rule</em> 24(2) of the <em>Labour</em> <em>Court</em> <em>Rules</em>, 2007, GN No. 106 of 2007, section 95 of Civil Procedure Code, Cap 33 (CPC) and section 6(a), 8(l)(f) and 17(l)(a) of the Office of Attorney General (Discharge of Duties) Act, Cap 268."
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3a76cfa3-2fd8-4cbb-a88a-f2461274a522",
+                "uuid": "3a76cfa3-2fd8-4cbb-a88a-f2461274a522",
+                "name": "CHAMA CHA KUTETEA HAKI NA MASLAHI YA WALIMU TANZANIA (CHAKA MWATA) VS REGISTRAR OF ORGANIZATIONS ATTORNEY GENERAL (CIVIL APPEAL NO 170 OF 2023) 2025 TZCA 112 (27 FEBRUARY 2025)",
+                "handle": "123456789/1683",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KOROSSO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-12T07:14:29Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-12T07:14:29Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-02-27",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The appeal is against the decision of the High Court Labour Division sitting at Mbeya that determined an application for cancellation of the appellant's registration as a Trade Union, lodged by the respondents. The main reason for the said prayer was the allegation of failure to comply with the requirements for registration under section 55(l)(a),(b), (2)(a), (3)(a) and (b) of the Employment and LabourRelations Act, Cap 366 (ELRA), rule 24(2) of the Labour Court Rules, 2007, GN No. 106 of 2007, section 95 of Civil Procedure Code, Cap 33 (CPC) and section 6(a), 8(l)(f) and 17(l)(a) of the Office of Attorney General (Discharge of Duties) Act, Cap 268.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1683",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 170 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "CHAMA CHA KUTETEA HAKI NA MASLAHI YA WALIMU TANZANIA (CHAKA MWATA) VS REGISTRAR OF ORGANIZATIONS ATTORNEY GENERAL (CIVIL APPEAL NO 170 OF 2023) 2025 TZCA 112 (27 FEBRUARY 2025)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-13T00:00:28.541Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3a76cfa3-2fd8-4cbb-a88a-f2461274a522"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "The appeal is against the decision of the High <em>Court</em> <em>Labour</em> Division sitting at Mbeya that determined an application for cancellation of the appellant's registration as a Trade Union, lodged by the respondents. The main reason for the said prayer was the allegation of failure to comply with the requirements for registration under section 55(l)(a),(b), (2)(a), (3)(a) and (b) of the Employment and <em>Labour</em> Relations Act, Cap 366 (ELRA), <em>rule</em> 24(2) of the <em>Labour</em> <em>Court</em> <em>Rules</em>,"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "bce9bedd-f20e-428e-a6b9-4dbc271c2b06",
+                "uuid": "bce9bedd-f20e-428e-a6b9-4dbc271c2b06",
+                "name": "BURHAN SAID MLAVI (As Legal Representative of ZUHURA ABDALLAH (Deceased) VERSUS DMI ST. JOSEPH UNIVERSITY OF TANZANIA, ARUSHA CAMPUS, CIVIL APPEAL NO. 170 OF 2023.",
+                "handle": "123456789/3486",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KOROSSO. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-03-19T06:43:04Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-11-11",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The appeal is against the decision of the High Court Labour Division sitting at Mbeya that determined an application for cancellation of the appellant's registration as a Trade Union, lodged by the respondents. The main reason for the said prayer was the allegation of failure to comply with the requirements for registration under section 55(l)(a),(b), (2)(a), (3)(a) and (b) of the Employment and Labour Relations Act, Cap 366 (ELRA), rule 24(2) of the Labour Court Rules,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/3486",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 170 OF 2023",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BURHAN SAID MLAVI (As Legal Representative of ZUHURA ABDALLAH (Deceased) VERSUS DMI ST. JOSEPH UNIVERSITY OF TANZANIA, ARUSHA CAMPUS, CIVIL APPEAL NO. 170 OF 2023.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-03-19T06:46:01.498586Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bce9bedd-f20e-428e-a6b9-4dbc271c2b06"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "d56e825f-2b71-4e22-95a2-e22d18525052",
+                "uuid": "d56e825f-2b71-4e22-95a2-e22d18525052",
+                "name": "BAYPORT FINANCIAL SERVICES (T) LIMITED VERSUS CRESENCE MWANDELE",
+                "handle": "123456789/114",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA. J.A.. NDIKA. J.A., and KWARIKO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-03-30T09:29:56Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-03-30T09:29:56Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-11-25",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This matter originates from the Commission for Mediation and Arbitration Mbeya (hereinafter \"the CM A\"). The respondent, Cresence Mwandele was employed by the appellant in the position of Regional Manager Mbeya.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "Bayport Financial Services (T) Limited Versus Cresence Mwandele (2020)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost:8080/xmlui/handle/123456789/114",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "other",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": ";CIVIL APPEAL NO. 19 OF 2017",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "MBEYA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "Misconduct of Arbitrator",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "Aboud, J",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    },
+                    {
+                      "value": "12th day of May, 2015",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 3
+                    },
+                    {
+                      "value": "Labour Revision No. 33 of 2013",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 4
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BAYPORT FINANCIAL SERVICES (T) LIMITED VERSUS CRESENCE MWANDELE",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Other",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:00.157Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "e755942e-67a5-4b39-b0f4-e6ef1146f232",
+                "uuid": "e755942e-67a5-4b39-b0f4-e6ef1146f232",
+                "name": "PATROBERT D. ISHENGOMA vs KAHAMA MINING CORPORATION LTD [BARRICK (TANZANIA) BULYANHULU] 2. MINISTER FOR LABOUR, EMPLOYMENT AND YOUTH DEVELOPMENT 3. THE ATTORNEY GENERAL",
+                "handle": "123456789/129",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "LUANDA, J. A., MKUYE, J. A. And MWAMBEGELE, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-04-04T12:09:42Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-04-04T12:09:42Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2017-06-02",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This is a ruling in respect of an oral application made by Mr. Cornelius Kariwa, learned counsel for the 1st respondent who sought an adjournment of the hearing of the application for revision lodged by the applicant, one Patrobert D. Ishengoma. Briefly, the historical background giving rise to the application for an adjournment is this",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "LUANDA, J. A., MKUYE, J. A. And MWAMBEGELE, J.A. (2017)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.govdoc": [
+                    {
+                      "value": "NO. 172 OF 2016",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost:8080/xmlui/handle/123456789/129",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": ";CIVIL APPLICATION NO. 172 OF 2016",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ADJOURNMENT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "DAR ES SALAAM",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "Application for Revision of the ruling of the High Court of Tanzania at Dar es Salaam.)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    },
+                    {
+                      "value": "Mihayo, J.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 3
+                    },
+                    {
+                      "value": "19 November, 2009",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 4
+                    },
+                    {
+                      "value": "Misc. Civil Cause no. 97 of 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 5
+                    },
+                    {
+                      "value": "RULLINF OF THE COURT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 6
+                    },
+                    {
+                      "value": "lUANDA, J.A.:",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 7
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "PATROBERT D. ISHENGOMA vs KAHAMA MINING CORPORATION LTD [BARRICK (TANZANIA) BULYANHULU] 2. MINISTER FOR LABOUR, EMPLOYMENT AND YOUTH DEVELOPMENT 3. THE ATTORNEY GENERAL",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Other",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:56.859Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e755942e-67a5-4b39-b0f4-e6ef1146f232"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00",
+                "uuid": "5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00",
+                "name": "SNV NETHERLANDS DEVELOPMENT ORGANIZATION TANZANIA VS. ANNE FIDELIS CIVIL APPEAL NO. 198 OF 2019.",
+                "handle": "123456789/1086",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MUGASHA, KEREFU, J.A. And KIHWELO. J.A. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-04-28T06:42:26Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-04-28T06:42:26Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-07-13",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "SNV NETHERLANDS DEVELOPMENT ORGANIZATION TANZANIA VS. ANNE FIDELIS\r\nCOURT OF APPEAL OF TANZANIA AT MWANZA [MUGASHA, KEREFU, KIHWELO, JJ.A.] CIVIL APPEAL NO. 198 OF 2019.\r\n\r\n(From the Decision of the High Court of Tanzania, Labour Division at \r\nMwanza (Rumanyika. J.) dated the 14th day of May, 2019\r\nin Labour Revision No. 60 of 2018)\r\n\r\nCivil Practice and procedure-hearing of the case-testimonies of witnesses received without oath or affirmation-whether the omission to do so vitiates proceedings\r\n\r\n\r\nThe appellant, SNV Netherlands Development Organization Tanzania, appealed against the decision of the High Court of Tanzania, Labour Division (Rumanyika, J, as he then was) dated 14th May, 2019 in Labour Revision No. 60 of 2018 challenging the award issued by the Commission for Mediation and Arbitration of Mwanza (the CMA) on 31st July, 2018 in favour of Anne Fidelis, the respondent herein, in Labour Dispute No. CMA/MZ/NYAM/ARB/138/2017 (the Labour dispute). When the appeal was called for hearing, the Court wanted to satisfy itself on the propriety or otherwise of the proceedings before the CMA taking into account that testimonies of all witnesses for both parties were received without oath or affirmation contrary to the mandatory provisions of the law. As such, the Court invited the counsel for the parties to address it on that issue.\r\n\r\nHeld\r\n\r\n(i). \tIt is mandatory for every witness who is competent to take oath or affirmation before the reception of his or her evidence in the trial court including the CMA. If such evidence is received without oath or affirmation, it amounts to no evidence in law and thus it becomes invalid and vitiates the proceedings as it prejudices the parties' case.\r\n\r\nAppeal allowed\r\nStatutory Provisions referred to:\r\n1.\tLabour Institutions (Mediation and Arbitration Guidelines) Rules, GN No. 67 of 2007 Rule 19(2) (a) and 25 (1)\r\n2.\tThe Oaths and Statutory Declarations Act, Cap. 34 R.E 2019 Sections 2 and 4\r\n3.\tThe National Defence Act, No 24 of 1966\r\n4.\tThe Appellate Jurisdiction Act, Cap. 141 R.E 2019\r\n\r\nCases referred to:\r\n1.\t Hamisi Chuma @ Hando Mhoja and Another v. Republic, Criminal Appeal No. 371 of 2015\r\n2.\t  Catholic University of Health and Allied Science (CUHAS) v. Epiphania Mkunde Athanase, Civil Appeal No. 257 of 2020\r\nMr. Innocent Michael for the appellant\r\nMr. Joseph Kinango, learned Advocate for the Respondent",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "It is mandatory for every witness who is competent to take oath or affirmation before the reception of his or her evidence in the trial court including the CMA. If such evidence is received without oath or affirmation, it amounts to no evidence in law and thus it becomes invalid and vitiates the proceedings as it prejudices the parties' case.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1086",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, MWANZA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "MWANZA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "SNV NETHERLANDS DEVELOPMENT ORGANIZATION TANZANIA VS. ANNE FIDELIS CIVIL APPEAL NO. 198 OF 2019.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO. 198 OF 2019.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:24.572Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5ca3d00c-ef2d-48b2-9b62-5b6cc9f46b00"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "f1de90ce-8352-4f79-a0f8-224e7941a844",
+                "uuid": "f1de90ce-8352-4f79-a0f8-224e7941a844",
+                "name": "BHARYA ENGINEERING AND CONTRACTING CO. LTD VERUS  LABOUR COMMISSIONER. CIVIL APPLICATION NO. 398/18 OF 2022",
+                "handle": "123456789/2527",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "FIKIRINI. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-10-07T08:38:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-05-27",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Brief background culminating in the present application is that the applicant objected to the Labour Officer's Compliance Order with reference number DAR/U. 10/4/2021/01, commonly known as application for condonation, dated 16th February, 2022. The application was declined, which compelled the Labour Commissioner to enforce the order by instituting Labour Execution No. 224 of 2021 vide a decision through a letter with reference number BC. 101/210/01/104 dated 4th March, 2022.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/2527",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 398/18 OF 2022",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BHARYA ENGINEERING AND CONTRACTING CO. LTD VERUS  LABOUR COMMISSIONER. CIVIL APPLICATION NO. 398/18 OF 2022",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:03:50.080365Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f1de90ce-8352-4f79-a0f8-224e7941a844"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "b0051b49-fafd-40dd-9251-130eadc3e0ea",
+                "uuid": "b0051b49-fafd-40dd-9251-130eadc3e0ea",
+                "name": "DEOGRATIAS KABADO V.S VOCATIONAL EDUCATION AND TRAINING AUTHORITY.",
+                "handle": "123456789/586",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "JUSTICE  OF  APPEAL, FIKIRINI, J.A.:",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MWARIJA, SEHEL, J.A J.A.,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-10-19T16:15:17Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-10-19T16:15:17Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-09-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This appeal is against the judgment and decree of the High Court of Tanzania (Labour Division) at Dar es Salaam (the Labour Court) in Revision No, 103 of 2016. The decision confirmed the award of the Commission for Mediation and Arbitration (CMA) in Labour Dispute No. CMA/DSM/TEM/202/2014 dated 19th February, 2016.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/586",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "CIVIL APPEAL NO. 22 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "DEOGRATIAS KABADO V.S VOCATIONAL EDUCATION AND TRAINING AUTHORITY.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO. 22 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:05:22.375Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b0051b49-fafd-40dd-9251-130eadc3e0ea"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "The applicant, Airtel Tanzania Pic, is, through a notice of motion made under <em>rules</em> 4 (2) (a) and (b), 11 (3), 11 (4), 11 (4A), 11 (5) (a) and (b), 11 (6), 11 (7) (a)-(d) and 48 (1) of the Tanzania <em>Court</em> of Appeal <em>Rules</em>, (the <em>Rules</em>), moving this <em>Court</em> to grant a stay of execution of the Award of the Commission for Mediation and Arbitration (CMA) and Decree of the High <em>Court</em> of Tanzania (<em>Labour</em> Division) in Revision Application No. 21385 of 2024"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "dc9bc213-02e3-4cca-a1fc-c1aad9606d61",
+                "uuid": "dc9bc213-02e3-4cca-a1fc-c1aad9606d61",
+                "name": "AIRTEL TANZANIA PLC VS TEDDY CHAMSHAMA 2025 TZCA 157 (27 FEBRUARY 2025)",
+                "handle": "123456789/1677",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NANGELA, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-12T06:57:09Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-12T06:57:09Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-02-27",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The applicant, Airtel Tanzania Pic, is, through a notice of motion made under rules 4 (2) (a) and (b), 11 (3), 11 (4), 11 (4A), 11 (5) (a) and (b), 11 (6), 11 (7) (a)-(d) and 48 (1) of the Tanzania Court of Appeal Rules, (the Rules), moving this Court to grant a stay of execution of the Award of the Commission for Mediation and Arbitration (CMA) and Decree of the High Court of Tanzania (Labour Division) in Revision Application No. 21385 of 2024",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1677",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 191 OF 2025",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "AIRTEL TANZANIA PLC VS TEDDY CHAMSHAMA 2025 TZCA 157 (27 FEBRUARY 2025)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-13T00:00:51.475Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dc9bc213-02e3-4cca-a1fc-c1aad9606d61"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "ac1eb54b-9504-48de-9f9a-3d7a799230e4",
+                "uuid": "ac1eb54b-9504-48de-9f9a-3d7a799230e4",
+                "name": "PETER JACOB WEROMA & 11 OTHERS v. AKO GROUP LIMITED, CIVIL APPEAL NO. 172 OF 2021",
+                "handle": "123456789/1741",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MKUYE, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MWANDAMBO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "MAIGE, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-21T08:01:40Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-21T08:01:40Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-04-24",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This is an appeal before the Court of Appeal challenging the decision of the High Court of Tanzania in Labour Revision No. 16 of 2019, delivered on 24th April. The High Court dismissed the appellants' application for revision of the Commission for Mediation and Arbitration (CMA) decision, which had dismissed their labour dispute against the respondent.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1741",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 172 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "PETER JACOB WEROMA & 11 OTHERS v. AKO GROUP LIMITED, CIVIL APPEAL NO. 172 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-06-16T07:06:05.458Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 19,
+        "totalElements": 226
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%20Court%20Rules&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%20Court%20Rules&page=18&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%20Court%20Rules&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Labour%20Court%20Rules&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Labour%20Court%20Rules&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 44,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 8,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "JAMHURI YA MUUNGANO WA TANZANIA",
+              "count": 7,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.author=JAMHURI%20YA%20MUUNGANO%20WA%20TANZANIA,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "Office of the attorney General, OAG",
+              "count": 5,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.author=Office%20of%20the%20attorney%20General,%20OAG,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Labour%20Court%20Rules&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Labour%20Court%20Rules&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "DAR ES SALAAM.",
+              "count": 24,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.subject=DAR%20ES%20SALAAM.,equals"
+                }
+              }
+            },
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 14,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "DAR ES SALAAM",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.subject=DAR%20ES%20SALAAM,equals"
+                }
+              }
+            },
+            {
+              "label": "MWANZA.",
+              "count": 8,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.subject=MWANZA.,equals"
+                }
+              }
+            },
+            {
+              "label": "MBEYA.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.subject=MBEYA.,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Labour%20Court%20Rules&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 66,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 160,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Labour%20Court%20Rules&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 226,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Labour%20Court%20Rules"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Labour%20Court%20Rules&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 226,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Labour%2520Court%2520Rules&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

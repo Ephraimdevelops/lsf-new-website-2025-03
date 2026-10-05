@@ -12,6 +12,9 @@ const AdminSaraAnalytics = () => {
     const [riskDisposition, setRiskDisposition] = useState<"open" | "reviewed" | "escalated" | "case_follow_up" | "false_positive">("open");
     const [riskNotes, setRiskNotes] = useState<Record<string, string>>({});
     const analytics = useQuery(api.sara_chat.getAnalytics);
+    const sources = useQuery(api.sara.getDocuments);
+    const publicServices = useQuery(api.justiceServices.listPublicServices, {});
+    const readyParalegals = useQuery(api.paralegals.listApprovedParalegals, { verifiedOnly: true });
     const riskEvents = useQuery(api.sara_chat.getRiskEvents, { dispositionStatus: riskDisposition });
     const resolveRiskEvent = useMutation(api.sara_chat.resolveRiskEvent);
 
@@ -46,6 +49,13 @@ const AdminSaraAnalytics = () => {
     const satisfactionRate = analytics.feedback?.total > 0
         ? Math.round((analytics.feedback.positive / analytics.feedback.total) * 100)
         : 0;
+    const approvedSources = sources?.filter((source) =>
+        source.approvalStatus === "approved" &&
+        source.indexingStatus === "ready" &&
+        typeof source.reviewDueAt === "number" &&
+        source.reviewDueAt > Date.now()
+    ).length;
+    const inventoryLoading = sources === undefined || publicServices === undefined || readyParalegals === undefined;
 
     return (
         <div className="space-y-8 animate-fade-in">
@@ -54,9 +64,9 @@ const AdminSaraAnalytics = () => {
                     <h2 className="text-3xl font-bold tracking-tight text-gray-900">Saada AI Overview</h2>
                     <p className="text-muted-foreground mt-1">Real-time performance metrics for the legal assistant.</p>
                 </div>
-                <div className="flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium border border-green-100">
-                    <Activity className="h-4 w-4 animate-pulse" />
-                    System Healthy
+                <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border ${inventoryLoading ? "bg-gray-50 text-gray-700 border-gray-200" : approvedSources === 0 ? "bg-amber-50 text-amber-800 border-amber-200" : "bg-blue-50 text-blue-800 border-blue-200"}`}>
+                    <Activity className="h-4 w-4" />
+                    {inventoryLoading ? "Checking readiness" : approvedSources === 0 ? "Legal sources need approval" : `${approvedSources} current approved sources`}
                 </div>
             </div>
 
@@ -77,12 +87,12 @@ const AdminSaraAnalytics = () => {
                 </Card>
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Active Users</CardTitle>
+                        <CardTitle className="text-sm font-medium">People who used Saada</CardTitle>
                         <Users className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{analytics.activeUsers}</div>
-                        <p className="text-xs text-muted-foreground">Unique conversations</p>
+                        <p className="text-xs text-muted-foreground">Lifetime distinct user IDs</p>
                     </CardContent>
                 </Card>
                 <Card>
@@ -92,7 +102,7 @@ const AdminSaraAnalytics = () => {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{analytics.last24h}</div>
-                        <p className="text-xs text-muted-foreground">Messages today</p>
+                        <p className="text-xs text-muted-foreground">Messages in the last 24 hours</p>
                     </CardContent>
                 </Card>
                 <Card>
@@ -101,7 +111,7 @@ const AdminSaraAnalytics = () => {
                         <ThumbsUp className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{satisfactionRate}%</div>
+                        <div className="text-2xl font-bold">{analytics.feedback?.total > 0 ? `${satisfactionRate}%` : "—"}</div>
                         <p className="text-xs text-muted-foreground">
                             {analytics.feedback?.positive || 0} 👍 / {analytics.feedback?.negative || 0} 👎
                         </p>
@@ -109,7 +119,7 @@ const AdminSaraAnalytics = () => {
                 </Card>
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">API Cost</CardTitle>
+                        <CardTitle className="text-sm font-medium">Estimated API Cost</CardTitle>
                         <DollarSign className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -260,40 +270,45 @@ const AdminSaraAnalytics = () => {
                     </CardContent>
                 </Card>
 
-                {/* Distribution (Placeholder for now, can be role distribution) */}
                 <Card className="col-span-3">
                     <CardHeader>
-                        <CardTitle>System Health</CardTitle>
+                        <CardTitle>Knowledge and service inventory</CardTitle>
                         <CardDescription>
-                            Saada is operating optimally. Knowledge base access is active.
+                            Live eligible records. This is an inventory check, not a model uptime or legal quality test.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
-                            <div className="flex items-center justify-between p-4 border rounded-lg bg-gray-50">
+                            <div className="flex items-center justify-between gap-3 p-4 border rounded-lg bg-gray-50">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">
                                         <Bot className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <p className="font-medium text-sm text-gray-900">AI Model Status</p>
-                                        <p className="text-xs text-gray-500">GPT-4o Online</p>
+                                        <p className="font-medium text-sm text-gray-900">Current approved legal sources</p>
+                                        <p className="text-xs text-gray-500">Approved, indexed and within review date; latest 100 source records checked</p>
                                     </div>
                                 </div>
-                                <div className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse" />
+                                <strong className="text-lg tabular-nums">{approvedSources ?? "—"}</strong>
                             </div>
-
-                            <div className="flex items-center justify-between p-4 border rounded-lg bg-gray-50">
+                            <div className="flex items-center justify-between gap-3 p-4 border rounded-lg bg-gray-50">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
                                         <Users className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <p className="font-medium text-sm text-gray-900">Paralegal Database</p>
-                                        <p className="text-xs text-gray-500">Connected & Indexed</p>
+                                        <p className="font-medium text-sm text-gray-900">Ready verified paralegals</p>
+                                        <p className="text-xs text-gray-500">Approved public profiles meeting readiness rules</p>
                                     </div>
                                 </div>
-                                <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
+                                <strong className="text-lg tabular-nums">{readyParalegals?.length ?? "—"}</strong>
+                            </div>
+                            <div className="flex items-center justify-between gap-3 p-4 border rounded-lg bg-gray-50">
+                                <div>
+                                    <p className="font-medium text-sm text-gray-900">Verified public services</p>
+                                    <p className="text-xs text-gray-500">Currently eligible for Find Help</p>
+                                </div>
+                                <strong className="text-lg tabular-nums">{publicServices?.length ?? "—"}</strong>
                             </div>
                         </div>
                     </CardContent>

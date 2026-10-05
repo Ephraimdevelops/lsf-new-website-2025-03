@@ -1,122 +1,185 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useQuery } from "convex/react";
 import { router } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { File, Paths } from "expo-file-system";
+import * as ImagePicker from "expo-image-picker";
+import { useEffect, useState } from "react";
+import { Alert, Image, ImageBackground, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { api } from "../../src/backend/api";
+import { caseStatusLabels } from "../../src/caseLabels";
 import { Screen } from "../../src/components/Screen";
 import { AppHeader } from "../../src/components/AppHeader";
 import { useAuth, useUser } from "../../src/auth";
 import { useLanguage } from "../../src/i18n";
-import { resources } from "../../src/resources";
 import { useSavedResources } from "../../src/useSavedResources";
-import { colors, radius, spacing, type } from "../../src/theme";
+import { colors, spacing, type } from "../../src/theme";
+import { useAccountSync } from "../../src/useStoreUserEffect";
+import { useSafeSignOut } from "../../src/useSafeSignOut";
 
 export default function ProfileScreen() {
   const { locale, setLocale, t } = useLanguage();
-  const { isSignedIn, signOut } = useAuth();
+  const [coverUri, setCoverUri] = useState<string | null>(null);
+  const [coverRevision, setCoverRevision] = useState(0);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [showAllWorkspaces, setShowAllWorkspaces] = useState(false);
+  const [showMoreSettings, setShowMoreSettings] = useState(false);
+  const { isSignedIn } = useAuth();
+  const safeSignOut = useSafeSignOut();
+  const [signOutError, setSignOutError] = useState(false);
   const { user } = useUser();
-  const access = useQuery(api.users.currentAccess);
-  const savedServices = useQuery(api.justiceServices.mySavedServices, isSignedIn ? {} : "skip");
+  const { status: accountStatus, ready: accountReady, retry: retryAccountSync } = useAccountSync();
+  const access = useQuery(api.users.currentAccess, isSignedIn && accountReady ? {} : "skip");
+  const savedServices = useQuery(api.justiceServices.mySavedServices, isSignedIn && accountReady ? {} : "skip");
+  const cases = useQuery(api.caseManagement.myCases, isSignedIn && accountReady ? {} : "skip");
+  const requests = useQuery(api.legalHelp.myRequests, isSignedIn && accountReady ? {} : "skip");
   const { savedIds } = useSavedResources();
-  const displayName = user?.fullName ?? user?.firstName ?? (locale === "sw" ? "Mgeni" : "Guest");
-  const contact = user?.primaryEmailAddress?.emailAddress ?? (locale === "sw" ? "Hujaingia" : "Not signed in");
+  const displayName = access?.user.name ?? user?.fullName ?? user?.firstName ?? (locale === "sw" ? "Mgeni" : "Guest");
+  const contact = user?.primaryEmailAddress?.emailAddress ?? user?.primaryPhoneNumber?.phoneNumber ?? (isSignedIn ? (locale === "sw" ? "Akaunti inaendelea" : "Account active") : (locale === "sw" ? "Hujaingia" : "Not signed in"));
   const initials = displayName.split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase() || "HY";
-  const savedResources = savedIds.map((id) => resources.find((resource) => resource.id === id)).filter((resource) => resource !== undefined);
+  const savedCount = savedIds.length + (savedServices?.length ?? 0);
   const roles = isSignedIn && access?.roles?.length ? access.roles : [];
   const roleCopy = getRoleCopy(roles, locale);
-  const workspaces: Array<{ label: string; route: "/workspace" | "/operations" | "/safeguarding" | "/governance" | "/reporting" | "/saada-governance"; icon: React.ComponentProps<typeof Ionicons>["name"] }> = [];
+  const coverKey = `haki_profile_cover_${user?.id ?? "guest"}`;
+  const activeCase = cases?.find((item) => !["closed", "closed_unresolved"].includes(item.status));
+  const activeRequest = requests?.find((item) => !["converted_to_case", "withdrawn", "closed"].includes(item.status));
+  const workspaces: Array<{ label: string; route: "/workspace" | "/operations" | "/safeguarding" | "/governance" | "/reporting" | "/saada-governance" | "/editorial-workspace"; icon: React.ComponentProps<typeof Ionicons>["name"] }> = [];
   if (roles.some((role) => ["paralegal", "provider_staff"].includes(role))) workspaces.push({ label: locale === "sw" ? "Kazi zangu za msaada" : "My provider workspace", route: "/workspace", icon: "briefcase-outline" });
   if (roles.some((role) => ["admin", "staff", "supervisor"].includes(role))) workspaces.push({ label: locale === "sw" ? "Foleni ya uendeshaji" : "Operations queue", route: "/operations", icon: "file-tray-full-outline" });
   if (roles.some((role) => ["admin", "supervisor", "safeguarding_officer"].includes(role))) workspaces.push({ label: locale === "sw" ? "Foleni ya ulinzi" : "Safeguarding queue", route: "/safeguarding", icon: "shield-checkmark-outline" });
-  if (roles.some((role) => ["admin", "supervisor"].includes(role))) workspaces.push({ label: locale === "sw" ? "Utawala wa jukwaa" : "Platform governance", route: "/governance", icon: "settings-outline" });
+  if (roles.some((role) => ["admin", "staff", "supervisor"].includes(role))) workspaces.push({ label: locale === "sw" ? "Utawala wa jukwaa" : "Platform governance", route: "/governance", icon: "settings-outline" });
   if (roles.some((role) => ["admin", "staff"].includes(role))) workspaces.push({ label: locale === "sw" ? "Maarifa na sera za Saada" : "Saada knowledge & policy", route: "/saada-governance", icon: "library-outline" });
+  if (roles.some((role) => ["admin", "content_editor"].includes(role))) workspaces.push({ label: locale === "sw" ? "Uhariri wa miongozo" : "Guide editorial", route: "/editorial-workspace", icon: "book-outline" });
   if (roles.some((role) => ["admin", "staff", "supervisor", "stakeholder", "donor"].includes(role))) workspaces.push({ label: locale === "sw" ? "Taarifa za athari" : "Impact reporting", route: "/reporting", icon: "bar-chart-outline" });
 
+  useEffect(() => {
+    setCoverUri(null);
+    void AsyncStorage.getItem(coverKey).then((value) => setCoverUri(value)).catch(() => {});
+  }, [coverKey]);
+
+  async function pickImage(kind: "cover" | "avatar") {
+    if (kind === "avatar" && !user) return router.push("/sign-in");
+    try {
+      const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (!permission.granted) {
+        Alert.alert(locale === "sw" ? "Ruhusa inahitajika" : "Permission needed", locale === "sw" ? "Ruhusu picha ili kuchagua taswira." : "Allow photo access to choose an image.");
+        return;
+      }
+      const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ["images"], allowsEditing: true, aspect: kind === "avatar" ? [1, 1] : [3, 1], quality: 0.8, base64: kind === "avatar" });
+      if (result.canceled) return;
+      const asset = result.assets[0];
+      if (kind === "avatar") {
+        if (!asset.base64 || !user) throw new Error("Missing image data");
+        setUploadingAvatar(true);
+        await user.setProfileImage({ file: `data:${asset.mimeType ?? "image/jpeg"};base64,${asset.base64}` });
+        await user.reload();
+      } else {
+        const uri = Platform.OS === "web" ? asset.uri : new File(Paths.document, `${coverKey.replace(/[^a-zA-Z0-9_-]/g, "")}.jpg`).uri;
+        if (Platform.OS !== "web") await new File(asset.uri).copy(new File(uri), { overwrite: true });
+        await AsyncStorage.setItem(coverKey, uri);
+        setCoverUri(uri);
+        setCoverRevision(Date.now());
+      }
+    } catch {
+      Alert.alert(locale === "sw" ? "Picha haijahifadhiwa" : "Image not saved", locale === "sw" ? "Jaribu tena baada ya muda mfupi." : "Please try again shortly.");
+    } finally {
+      setUploadingAvatar(false);
+    }
+  }
+
+  const highlight = workspaces.length ? {
+    icon: "briefcase-outline" as const,
+    title: roleCopy.title,
+    body: roleCopy.body,
+    action: workspaces[0].label,
+    onPress: () => router.push(workspaces[0].route),
+  } : activeCase ? {
+    icon: "folder-open-outline" as const,
+    title: locale === "sw" ? "Kesi yako inaendelea" : "Your case is in progress",
+    body: `${activeCase.publicId} · ${caseStatusLabels[locale][activeCase.status]}`,
+    action: locale === "sw" ? "Angalia kesi" : "View case",
+    onPress: () => router.push({ pathname: "/case/[id]", params: { id: activeCase._id } }),
+  } : activeRequest ? {
+    icon: "document-text-outline" as const,
+    title: locale === "sw" ? "Ombi lako linaendelea" : "Your request is in progress",
+    body: `${activeRequest.publicId} · ${locale === "sw" ? "Angalia hatua inayofuata" : "See the next step"}`,
+    action: locale === "sw" ? "Angalia ombi" : "View request",
+    onPress: () => router.push({ pathname: "/request/[id]", params: { id: activeRequest._id } }),
+  } : isSignedIn ? {
+    icon: "compass-outline" as const,
+    title: locale === "sw" ? "Anza na unachohitaji" : "Start with what you need",
+    body: locale === "sw" ? "Omba msaada au tafuta huduma iliyo karibu nawe." : "Request help or find a service near you.",
+    action: locale === "sw" ? "Omba msaada" : "Request help",
+    onPress: () => router.push("/intake"),
+  } : {
+    icon: "compass-outline" as const,
+    title: locale === "sw" ? "Msaada unaanzia hapa" : "Help starts here",
+    body: locale === "sw" ? "Tafuta huduma na soma miongozo bila kuingia." : "Find services and read guidance without signing in.",
+    action: locale === "sw" ? "Tafuta huduma" : "Find services",
+    onPress: () => router.push("/find-services"),
+  };
+
   return (
-    <Screen>
-      <AppHeader title={t("profile")} eyebrow={locale === "sw" ? "AKAUNTI NA MIPANGILIO" : "ACCOUNT & SETTINGS"} avatarUrl={user?.imageUrl} initial={initials} />
+    <Screen style={styles.screen}>
+      <AppHeader title={t("profile")} showAvatar={false} />
       <View style={styles.identity}>
-        <View style={styles.avatar}><Text style={styles.initials}>{initials}</Text></View>
-        <View style={styles.identityCopy}>
+        <ImageBackground key={coverRevision} source={coverUri ? { uri: coverUri } : require("../../assets/home-find-help.jpg")} style={styles.cover} imageStyle={styles.coverImage}>
+          <View style={styles.coverShade} />
+          <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Badili picha ya mandharinyuma" : "Change cover photo"} onPress={() => void pickImage("cover")} style={styles.coverEdit}><Ionicons name="camera-outline" size={16} color={colors.surface} /><Text style={styles.coverEditText}>{locale === "sw" ? "Badili" : "Change"}</Text></Pressable>
+        </ImageBackground>
+        <View style={styles.identityBody}>
+          <View style={styles.avatarWrap}>
+            {user?.imageUrl ? <Image source={{ uri: user.imageUrl }} style={styles.avatarImage} /> : <View style={styles.avatar}><Text style={styles.initials}>{initials}</Text></View>}
+            {isSignedIn ? <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Badili picha ya wasifu" : "Change profile photo"} disabled={uploadingAvatar} onPress={() => void pickImage("avatar")} style={styles.avatarEdit}><Ionicons name="camera" size={15} color={colors.surface} /></Pressable> : null}
+          </View>
           <Text style={styles.name}>{displayName}</Text>
           <Text style={styles.email}>{contact}</Text>
-          <Text style={styles.badge}>{isSignedIn ? (locale === "sw" ? "Akaunti salama imewashwa" : "Secure account active") : (locale === "sw" ? "Mgeni: rasilimali za umma pekee" : "Guest: public resources only")}</Text>
+          <View style={styles.roleLine}><Ionicons name={isSignedIn ? "shield-checkmark-outline" : "person-outline"} size={16} color={colors.teal} /><Text style={styles.roleText}>{roleCopy.title}</Text></View>
+          {isSignedIn ? <Pressable accessibilityRole="button" style={styles.editLink} onPress={() => router.push("/join")}><Text style={styles.editText}>{locale === "sw" ? "Angalia wasifu na majukumu" : "View profile and roles"}</Text><Ionicons name="arrow-forward" size={16} color={colors.burgundy} /></Pressable> : <Pressable accessibilityRole="button" style={styles.editLink} onPress={() => router.push("/sign-in")}><Text style={styles.editText}>{locale === "sw" ? "Ingia ili kulinda taarifa zako" : "Sign in to protect your information"}</Text><Ionicons name="arrow-forward" size={16} color={colors.burgundy} /></Pressable>}
         </View>
       </View>
-      <View style={styles.scopeCard}>
-        <View style={styles.scopeHeader}>
-          <View style={styles.scopeIcon}><Ionicons name="key-outline" size={20} color={colors.burgundy} /></View>
-          <View style={styles.identityCopy}>
-            <Text style={styles.scopeTitle}>{roleCopy.title}</Text>
-            <Text style={styles.scopeBody}>{roleCopy.body}</Text>
-          </View>
-        </View>
-        <View style={styles.roleChips}>
-          {(roles.length ? roles : ["guest"]).map((role) => (
-            <Text key={role} style={styles.roleChip}>{roleLabel(role, locale)}</Text>
-          ))}
-        </View>
-      </View>
+      {isSignedIn && accountStatus === "error" ? <View style={styles.scopeCard}>
+        <Text style={styles.scopeTitle}>{locale === "sw" ? "Akaunti haijaunganishwa" : "Account connection failed"}</Text>
+        <Text style={styles.scopeBody}>{locale === "sw" ? "Angalia mtandao kisha ujaribu tena. Ikiwa akaunti imezuiwa, wasiliana na LSF." : "Check your connection and try again. Contact LSF if your account was deactivated."}</Text>
+        <Pressable accessibilityRole="button" onPress={retryAccountSync}><Text style={styles.scopeTitle}>{locale === "sw" ? "Jaribu tena" : "Retry connection"}</Text></Pressable>
+      </View> : null}
+      <View style={styles.highlight}><View style={styles.highlightIcon}><Ionicons name={highlight.icon} size={21} color={colors.teal} /></View><View style={styles.highlightCopy}><Text style={styles.highlightTitle}>{highlight.title}</Text><Text style={styles.highlightBody}>{highlight.body}</Text><Pressable accessibilityRole="button" onPress={highlight.onPress} style={styles.highlightAction}><Text style={styles.highlightActionText}>{highlight.action}</Text><Ionicons name="arrow-forward" size={16} color={colors.burgundy} /></Pressable></View></View>
+      {roles.length > 1 ? <Text style={styles.rolesSummary}>{roles.map((role) => roleLabel(role, locale)).join(" · ")}</Text> : null}
       {workspaces.length > 0 ? <>
-        <Text style={styles.sectionTitle}>{locale === "sw" ? "Sehemu yako ya kazi" : "Your work areas"}</Text>
-        <View style={styles.savedCard}>
-          {workspaces.map((item) => <Pressable key={item.route} style={styles.row} onPress={() => router.push(item.route)}><Ionicons name={item.icon} size={22} color={colors.burgundy} /><Text style={styles.rowText}>{item.label}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>)}
+        <Text style={styles.sectionTitle}>{locale === "sw" ? "Sehemu za kazi" : "Workspaces"}</Text>
+        <View style={styles.menuGroup}>
+          {workspaces.slice(0, showAllWorkspaces ? undefined : 3).map((item) => <ProfileRow key={item.route} icon={item.icon} label={item.label} onPress={() => router.push(item.route)} />)}
+          {workspaces.length > 3 ? <ProfileRow icon={showAllWorkspaces ? "chevron-up-outline" : "grid-outline"} label={showAllWorkspaces ? (locale === "sw" ? "Onyesha chache" : "Show fewer") : (locale === "sw" ? "Sehemu nyingine za kazi" : "More work areas")} onPress={() => setShowAllWorkspaces(!showAllWorkspaces)} /> : null}
         </View>
       </> : null}
-      {isSignedIn && <Pressable style={styles.row} onPress={() => router.push("/join")}><Ionicons name="people-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Jukumu langu na maombi" : "My role and applications"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>}
-      <View style={styles.card}>
-        {__DEV__ ? <Pressable style={styles.row} onPress={() => router.push("/review")}><Ionicons name="grid-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Hakiki skrini za akaunti" : "Preview account screens"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable> : null}
-        <View style={styles.divider} />
-        <Pressable style={styles.row} onPress={() => router.push("/(tabs)/cases")}><Ionicons name="briefcase-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Kesi na maombi yangu" : "My cases and requests"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
-        <View style={styles.divider} />
-        <Pressable style={styles.row} onPress={() => void setLocale(locale === "sw" ? "en" : "sw")}><Ionicons name="language-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Lugha: Kiswahili" : "Language: English"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
-        <View style={styles.divider} />
-        <Pressable style={styles.row} onPress={() => router.push("/offline")}><Ionicons name="cloud-offline-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Nje ya mtandao" : "Offline mode"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
-        <View style={styles.divider} />
-        <Pressable style={styles.row} onPress={() => router.push("/documents")}><Ionicons name="document-text-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Nyaraka zangu" : "My documents"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
-        <View style={styles.divider} />
-        <Pressable style={styles.row} onPress={() => router.push("/appointments")}><Ionicons name="calendar-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Miadi yangu" : "My appointments"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
-        <View style={styles.divider} />
-        <Pressable style={styles.row} onPress={() => router.push("/privacy-security")}><Ionicons name="shield-checkmark-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Faragha na usalama" : "Privacy and security"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
-        <View style={styles.divider} />
-        <Pressable style={styles.row} onPress={() => router.push("/support")}><Ionicons name="help-circle-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Msaada" : "Help and support"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
-        <View style={styles.divider} />
-        <Pressable style={styles.row} onPress={() => router.push("/about")}><Ionicons name="information-circle-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Kuhusu Haki Yangu" : "About Haki Yangu"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
+      <Text style={styles.sectionTitle}>{locale === "sw" ? "Akaunti yangu" : "My account"}</Text>
+      <View style={styles.menuGroup}>
+        {isSignedIn ? <ProfileRow icon="briefcase-outline" label={locale === "sw" ? "Kesi na maombi yangu" : "My cases and requests"} onPress={() => router.push("/(tabs)/cases")} /> : null}
+        <ProfileRow icon="bookmark-outline" label={locale === "sw" ? "Vilivyohifadhiwa" : "Saved items"} detail={savedCount ? `${savedCount}` : undefined} onPress={() => router.push("/(tabs)/learn?view=saved")} />
+        {isSignedIn ? <ProfileRow icon="document-text-outline" label={locale === "sw" ? "Nyaraka zangu" : "My documents"} onPress={() => router.push("/documents")} /> : null}
+        {isSignedIn ? <ProfileRow icon="calendar-outline" label={locale === "sw" ? "Miadi yangu" : "My appointments"} onPress={() => router.push("/appointments")} /> : null}
+        {!isSignedIn ? <ProfileRow icon="book-outline" label={locale === "sw" ? "Jua haki zako" : "Know your rights"} onPress={() => router.push("/(tabs)/learn?view=all")} /> : null}
       </View>
-      <Text style={styles.sectionTitle}>{locale === "sw" ? "Miongozo uliyohifadhi" : "Saved guides"}</Text>
-      <View style={styles.savedCard}>
-        {savedResources.length ? savedResources.map((resource) => (
-          <Pressable key={resource.id} style={styles.savedRow} onPress={() => router.push({ pathname: "/resource/[id]", params: { id: resource.id } })}>
-            <Ionicons name={resource.icon} size={22} color={colors.burgundy} />
-            <Text style={styles.rowText}>{resource.title[locale]}</Text>
-            <Ionicons name="chevron-forward" size={18} color={colors.inkMuted} />
-          </Pressable>
-        )) : <Text style={styles.emptySaved}>{locale === "sw" ? "Bado hujahifadhi mwongozo. Fungua Learn kisha hifadhi mwongozo." : "No saved guides yet. Open Learn and save a guide."}</Text>}
+      <Text style={styles.sectionTitle}>{locale === "sw" ? "Mipangilio na msaada" : "Settings and support"}</Text>
+      <View style={styles.menuGroup}>
+        <ProfileRow icon="language-outline" label={locale === "sw" ? "Lugha" : "Language"} detail={locale === "sw" ? "Kiswahili" : "English"} onPress={() => void setLocale(locale === "sw" ? "en" : "sw")} />
+        <ProfileRow icon="shield-checkmark-outline" label={locale === "sw" ? "Faragha na usalama" : "Privacy and security"} onPress={() => router.push("/privacy-security")} />
+        <ProfileRow icon="help-circle-outline" label={locale === "sw" ? "Msaada" : "Help and support"} onPress={() => router.push("/support")} />
+        {showMoreSettings ? <><ProfileRow icon="cloud-offline-outline" label={locale === "sw" ? "Nje ya mtandao" : "Offline access"} onPress={() => router.push("/offline")} /><ProfileRow icon="information-circle-outline" label={locale === "sw" ? "Kuhusu Haki Yangu" : "About Haki Yangu"} onPress={() => router.push("/about")} /></> : null}
+        <ProfileRow icon={showMoreSettings ? "chevron-up-outline" : "ellipsis-horizontal"} label={showMoreSettings ? (locale === "sw" ? "Onyesha chache" : "Show fewer") : (locale === "sw" ? "Mipangilio zaidi" : "More settings")} onPress={() => setShowMoreSettings(!showMoreSettings)} />
       </View>
-      {isSignedIn ? <><Text style={styles.sectionTitle}>{locale === "sw" ? "Huduma ulizohifadhi" : "Saved services"}</Text><View style={styles.savedCard}>
-        <Pressable style={styles.savedRow} onPress={() => router.push("/saved-services")}><Ionicons name="bookmark-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{locale === "sw" ? "Angalia msaada uliohifadhi na mipango" : "View saved help and plans"}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>
-        {savedServices?.length ? savedServices.map(({ service }) => <Pressable key={String(service._id)} style={styles.savedRow} onPress={() => router.push({ pathname: "/service/[id]", params: { id: String(service._id) } })}><Ionicons name="business-outline" size={22} color={colors.burgundy} /><Text style={styles.rowText}>{service.name} · {service.district}</Text><Ionicons name="chevron-forward" size={18} color={colors.inkMuted} /></Pressable>) : <Text style={styles.emptySaved}>{locale === "sw" ? "Bado hujahifadhi huduma. Tafuta huduma kisha uihifadhi." : "No saved services yet. Find a service and save it here."}</Text>}
-      </View></> : null}
-      <Text style={styles.sectionTitle}>{locale === "sw" ? "Zana za haraka" : "Quick tools"}</Text>
-      <View style={styles.toolGrid}>
-        <Tool icon="document-text-outline" label={locale === "sw" ? "Kagua hati" : "Check document"} onPress={() => router.push("/document-checker")} />
-        <Tool icon="folder-outline" label={locale === "sw" ? "Nyaraka zangu" : "My documents"} onPress={() => router.push("/documents")} />
-        <Tool icon="clipboard-outline" label={locale === "sw" ? "Muundo wa barua" : "Letter template"} onPress={() => router.push("/letter-builder")} />
-        <Tool icon="shield-checkmark-outline" label={locale === "sw" ? "Vidokezo vya usalama" : "Safety tips"} onPress={() => router.push("/safety")} />
-      </View>
-      <Pressable accessibilityRole="button" onPress={() => isSignedIn ? void signOut() : router.push("/sign-in")} style={styles.secureButton}>
-        <Ionicons name={isSignedIn ? "log-out-outline" : "lock-closed-outline"} size={18} color={colors.burgundy} />
-        <Text style={styles.secureText}>{isSignedIn ? (locale === "sw" ? "Ondoka kwenye akaunti" : "Sign out") : (locale === "sw" ? "Ingia kwenye akaunti salama" : "Sign in to secure account")}</Text>
-      </Pressable>
+      {isSignedIn ? <Pressable accessibilityRole="button" onPress={() => void safeSignOut().catch(() => setSignOutError(true))} style={styles.secureButton}><Ionicons name="log-out-outline" size={18} color={colors.burgundy} /><Text style={styles.secureText}>{locale === "sw" ? "Ondoka kwenye akaunti" : "Sign out"}</Text></Pressable> : null}
+      {signOutError ? <Text accessibilityRole="alert" style={styles.secureText}>{locale === "sw" ? "Hatukuweza kuzima arifa za kifaa hiki. Unganisha mtandao na ujaribu tena." : "We could not disable this device's alerts. Reconnect and retry signing out."}</Text> : null}
     </Screen>
   );
 }
 
-function Tool({ icon, label, onPress }: { icon: React.ComponentProps<typeof Ionicons>["name"]; label: string; onPress: () => void }) {
-  return <Pressable accessibilityRole="button" onPress={onPress} style={styles.tool}>
-    <View style={styles.toolIcon}><Ionicons name={icon} size={21} color={colors.burgundy} /></View>
-    <Text style={styles.toolLabel}>{label}</Text>
-    <Ionicons name="chevron-forward" size={16} color={colors.inkMuted} />
+function ProfileRow({ icon, label, detail, onPress }: { icon: React.ComponentProps<typeof Ionicons>["name"]; label: string; detail?: string; onPress: () => void }) {
+  return <Pressable accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
+    <Ionicons name={icon} size={20} color={colors.burgundy} />
+    <Text style={styles.rowText}>{label}</Text>
+    {detail ? <Text style={styles.rowDetail}>{detail}</Text> : null}
+    <Ionicons name="chevron-forward" size={17} color={colors.inkMuted} />
   </Pressable>;
 }
 
@@ -169,33 +232,42 @@ function getRoleCopy(roles: string[], locale: "sw" | "en") {
 }
 
 const styles = StyleSheet.create({
-  title: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 30, marginTop: spacing.lg, marginBottom: spacing.xl },
-  identity: { flexDirection: "row", gap: spacing.md, alignItems: "center", marginBottom: spacing.lg, borderRadius: radius.xl, backgroundColor: colors.burgundy, padding: spacing.xl },
-  avatar: { width: 64, height: 64, borderRadius: 22, backgroundColor: "rgba(255,255,255,0.18)", alignItems: "center", justifyContent: "center" },
-  initials: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 21 },
-  identityCopy: { flex: 1, gap: 3 },
-  name: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 18 },
-  email: { fontFamily: type.regular, color: "#F6DDE6", fontSize: 13, marginTop: spacing.xs },
-  badge: { alignSelf: "flex-start", overflow: "hidden", marginTop: spacing.xs, borderRadius: radius.pill, backgroundColor: colors.surface, paddingHorizontal: spacing.sm, paddingVertical: 4, fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
-  scopeCard: { backgroundColor: colors.tealSoft, borderRadius: radius.lg, borderWidth: 0, padding: spacing.lg, gap: spacing.md, marginBottom: spacing.xl },
-  scopeHeader: { flexDirection: "row", alignItems: "flex-start", gap: spacing.md },
-  scopeIcon: { width: 42, height: 42, borderRadius: 21, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
-  scopeTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 15 },
+  screen: { backgroundColor: colors.surface },
+  identity: { marginBottom: spacing.md },
+  cover: { height: 116, overflow: "hidden", borderRadius: 8, alignItems: "flex-end", justifyContent: "flex-end" },
+  coverImage: { borderRadius: 8 },
+  coverShade: { ...StyleSheet.absoluteFill, backgroundColor: "rgba(12,48,51,0.13)" },
+  coverEdit: { minHeight: 32, flexDirection: "row", alignItems: "center", gap: 5, margin: spacing.sm, paddingHorizontal: spacing.sm, borderRadius: 16, backgroundColor: "rgba(20,25,27,0.65)" },
+  coverEditText: { fontFamily: type.medium, color: colors.surface, fontSize: 12 },
+  identityBody: { paddingHorizontal: 4 },
+  avatarWrap: { width: 78, height: 78, marginTop: -38 },
+  avatar: { width: 78, height: 78, borderRadius: 39, borderWidth: 3, borderColor: colors.surface, backgroundColor: colors.burgundySoft, alignItems: "center", justifyContent: "center" },
+  avatarImage: { width: 78, height: 78, borderRadius: 39, borderWidth: 3, borderColor: colors.surface, backgroundColor: colors.burgundySoft },
+  avatarEdit: { position: "absolute", right: -3, bottom: 0, width: 28, height: 28, borderRadius: 14, backgroundColor: colors.burgundy, borderWidth: 2, borderColor: colors.surface, alignItems: "center", justifyContent: "center" },
+  initials: { fontFamily: type.semibold, color: colors.burgundy, fontSize: 25 },
+  name: { fontFamily: type.semibold, color: colors.ink, fontSize: 22, lineHeight: 28, marginTop: spacing.sm },
+  email: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, marginTop: 2 },
+  roleLine: { flexDirection: "row", alignItems: "center", gap: 6, marginTop: spacing.sm },
+  roleText: { fontFamily: type.medium, color: colors.teal, fontSize: 13 },
+  editLink: { alignSelf: "flex-start", minHeight: 40, flexDirection: "row", alignItems: "center", gap: 8, marginTop: spacing.sm },
+  editText: { fontFamily: type.medium, color: colors.burgundy, fontSize: 13 },
+  highlight: { flexDirection: "row", alignItems: "flex-start", gap: spacing.md, backgroundColor: colors.tealSoft, borderRadius: 8, padding: spacing.lg, marginBottom: spacing.xl },
+  highlightIcon: { width: 34, height: 34, alignItems: "center", justifyContent: "center" },
+  highlightCopy: { flex: 1, gap: 4 },
+  highlightTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 15 },
+  highlightBody: { fontFamily: type.regular, color: colors.charcoal, fontSize: 13, lineHeight: 19 },
+  highlightAction: { alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 6, minHeight: 32, marginTop: 2 },
+  highlightActionText: { fontFamily: type.semibold, color: colors.burgundy, fontSize: 13 },
+  rolesSummary: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 19, marginBottom: spacing.lg },
+  scopeCard: { backgroundColor: colors.orangeSoft, borderRadius: 8, padding: spacing.lg, gap: spacing.sm, marginBottom: spacing.xl },
+  scopeTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 15 },
   scopeBody: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19 },
-  roleChips: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
-  roleChip: { overflow: "hidden", borderRadius: radius.pill, backgroundColor: colors.tealSoft, paddingHorizontal: spacing.sm, paddingVertical: 5, fontFamily: type.bold, fontWeight: "700", color: colors.teal, fontSize: 13 },
-  card: { backgroundColor: colors.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, marginBottom: spacing.xl, overflow: "hidden" },
-  row: { minHeight: 58, flexDirection: "row", alignItems: "center", gap: spacing.md, paddingHorizontal: spacing.lg },
-  rowText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 14 },
-  divider: { height: 1, backgroundColor: colors.line, marginLeft: 54 },
-  sectionTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17, marginBottom: spacing.md },
-  savedCard: { backgroundColor: colors.surface, borderRadius: radius.md, borderWidth: 1, borderColor: colors.line, marginBottom: spacing.xl, overflow: "hidden" },
-  toolGrid: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm, marginBottom: spacing.lg },
-  tool: { width: "48.5%", minHeight: 66, flexDirection: "row", alignItems: "center", gap: spacing.sm, padding: spacing.md, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, backgroundColor: colors.surface },
-  toolIcon: { width: 34, height: 34, alignItems: "center", justifyContent: "center", borderRadius: 12, backgroundColor: colors.softPink },
-  toolLabel: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 12 },
-  savedRow: { minHeight: 58, flexDirection: "row", alignItems: "center", gap: spacing.md, paddingHorizontal: spacing.lg, borderBottomWidth: 1, borderBottomColor: colors.line },
-  emptySaved: { fontFamily: type.regular, color: colors.inkMuted, textAlign: "center", padding: spacing.lg },
-  secureButton: { marginTop: spacing.md, marginBottom: spacing.xl, minHeight: 48, borderRadius: radius.pill, borderWidth: 1, borderColor: "#E8B8CC", backgroundColor: "#FFF7FA", alignItems: "center", justifyContent: "center", flexDirection: "row", gap: spacing.sm },
-  secureText: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
+  sectionTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 16, marginBottom: spacing.sm, marginTop: spacing.sm },
+  menuGroup: { backgroundColor: "#F6F6F6", borderRadius: 8, paddingVertical: 5, marginBottom: spacing.xl },
+  row: { minHeight: 56, flexDirection: "row", alignItems: "center", gap: spacing.md, paddingHorizontal: spacing.lg },
+  rowPressed: { backgroundColor: "#EBE9EA" },
+  rowText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 15 },
+  rowDetail: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12 },
+  secureButton: { alignSelf: "flex-start", marginTop: spacing.sm, marginBottom: spacing.xl, minHeight: 48, flexDirection: "row", alignItems: "center", gap: spacing.sm },
+  secureText: { fontFamily: type.medium, color: colors.burgundy, fontSize: 14 },
 });

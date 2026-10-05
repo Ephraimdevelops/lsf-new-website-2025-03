@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   Users,
-  TrendingUp,
   Download,
   Eye,
   Calendar,
@@ -36,6 +35,8 @@ const EnhancedAnalyticsDashboard = () => {
   const metrics = useQuery(api.analytics.getDashboardOverview, {
     days: parseInt(timeRange)
   });
+  const journey = useQuery(api.journeyAnalytics.overview, { days: parseInt(timeRange) });
+  const partnerPerformance = useQuery(api.justiceServices.staffPartnerPerformance, { days: parseInt(timeRange) });
 
   const isLoading = metrics === undefined;
 
@@ -72,7 +73,7 @@ const EnhancedAnalyticsDashboard = () => {
           <div className="flex items-center gap-2">
             <Activity className="h-5 w-5 text-green-500" />
             <span className="text-sm text-gray-600">
-              {metrics.realTimeStats.activeUsers} users active now
+              {metrics.realTimeStats.activeUsers} distinct visitors with an event in the last 5 minutes
             </span>
           </div>
         </div>
@@ -101,22 +102,78 @@ const EnhancedAnalyticsDashboard = () => {
         </div>
       </div>
 
+      <Card>
+        <CardHeader>
+          <CardTitle>Haki Yangu help journey</CardTitle>
+          <p className="text-sm text-gray-600">Public click counts are approximate and can be inflated by repeated or automated calls. Submitted requests, visit check-ins and referral transitions come from backend records; these figures are not a conversion rate or a count of unique people.</p>
+        </CardHeader>
+        <CardContent>
+          {journey === undefined ? <p role="status">Loading journey counts…</p> : (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {(['web', 'mobile'] as const).map((surface) => <div key={surface} className="rounded-xl border p-4">
+                <h3 className="font-semibold capitalize">{surface}</h3>
+                <p className="mt-2 text-sm">Find Help searches: <strong>{journey.interactions[surface].find_help_search}</strong></p>
+                <p className="text-sm">No-result searches: <strong>{journey.interactions[surface].find_help_no_results}</strong></p>
+                <p className="text-sm">Request reviews opened: <strong>{journey.interactions[surface].request_review}</strong></p>
+                <p className="text-sm">Call actions opened: <strong>{journey.interactions[surface].service_call_open}</strong></p>
+                <p className="text-sm">Directions opened: <strong>{journey.interactions[surface].service_directions_open}</strong></p>
+              </div>)}
+              <div className="rounded-xl border p-4 sm:col-span-2 lg:col-span-2">
+                <h3 className="font-semibold">Requests submitted</h3>
+                <p className="mt-2 text-2xl font-bold">{journey.submittedRequests}</p>
+                <p className="text-sm text-gray-600">All platforms combined; counted from submitted help requests, including those since triaged or closed.</p>
+              </div>
+              <div className="rounded-xl border p-4 sm:col-span-2 lg:col-span-2">
+                <h3 className="font-semibold">LSF triage</h3>
+                <p className="mt-2 text-sm">Waiting to start: <strong>{journey.triage.awaitingStart}</strong></p>
+                <p className="text-sm">Waiting over 24 hours: <strong>{journey.triage.awaitingOver24Hours}</strong></p>
+                <p className="text-sm">Average time to first review: <strong>{journey.triage.averageHoursToStart === null ? 'Unavailable' : `${journey.triage.averageHoursToStart} hours`}</strong></p>
+                <p className="mt-2 text-xs text-gray-600">Waiting counts include all still-submitted requests, even older than the selected period. Average covers {journey.triage.startedWithTimestamp} requests submitted in the period with a recorded first-review timestamp. Older reviews may lack one.</p>
+              </div>
+              <div className="rounded-xl border p-4 sm:col-span-2 lg:col-span-2">
+                <h3 className="font-semibold">Find Help follow-up</h3>
+                <p className="mt-2 text-sm">Personal visit or call plans saved: <strong>{journey.personalVisitPlans}</strong></p>
+                <p className="text-sm">Completed check-ins: <strong>{journey.visitCheckIns.total}</strong></p>
+                <p className="text-sm">Self-reported helpful / partly helpful / not helpful: <strong>{journey.visitCheckIns.helpful} / {journey.visitCheckIns.partlyHelpful} / {journey.visitCheckIns.notHelpful}</strong></p>
+                <p className="mt-2 text-xs text-gray-600">A personal plan is not a provider-confirmed appointment. A check-in is the beneficiary’s report, not independently verified service delivery.</p>
+              </div>
+              <div className="rounded-xl border p-4 sm:col-span-2 lg:col-span-4">
+                <h3 className="font-semibold">Referral decisions and provider responses</h3>
+                <div className="mt-2 grid gap-1 text-sm sm:grid-cols-2 lg:grid-cols-4">
+                  <p>Consent requested: <strong>{journey.referrals.referral_consent_requested}</strong></p>
+                  <p>Beneficiary approved: <strong>{journey.referrals.referral_consent_approved}</strong></p>
+                  <p>Beneficiary declined: <strong>{journey.referrals.referral_consent_declined}</strong></p>
+                  <p>Provider accepted: <strong>{journey.referrals.referral_accepted}</strong></p>
+                  <p>Provider declined: <strong>{journey.referrals.referral_declined}</strong></p>
+                  <p>Returned: <strong>{journey.referrals.referral_returned}</strong></p>
+                  <p>Service delivered recorded: <strong>{journey.referrals.referral_service_delivered}</strong></p>
+                </div>
+                <p className="mt-2 text-xs text-gray-600">Distinct referrals with each recorded event in this period. A referral can appear in several stages; this is not a conversion funnel or independently verified outcome.</p>
+              </div>
+              <div className="rounded-xl border p-4 sm:col-span-2 lg:col-span-4">
+                <h3 className="font-semibold">Provider response timeliness</h3>
+                {partnerPerformance === undefined ? <p role="status" className="mt-2 text-sm">Loading response measures…</p> : <>
+                  <p className="mt-2 text-sm">Responded: <strong>{partnerPerformance.totals.responded}</strong> · Open beyond provider response target: <strong>{partnerPerformance.totals.overdueOpen}</strong></p>
+                  <p className="mt-2 text-xs text-gray-600">Each provider uses its configured response target, or 72 hours when none is set. The first recorded provider response determines timeliness; a response does not establish service delivery.</p>
+                </>}
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* Key Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 mb-1">Total Visitors</p>
+                <p className="text-sm text-gray-600 mb-1">Identified Visitors</p>
                 <p className="text-2xl font-bold">{metrics.totalVisitors.toLocaleString()}</p>
               </div>
               <Users className="h-8 w-8 text-blue-500" />
             </div>
-            <div className="mt-4 flex items-center text-sm">
-              <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-              <span className="text-green-500">+12.5%</span>
-              <span className="text-gray-500 ml-1">vs last period</span>
-            </div>
+            <p className="mt-4 text-sm text-gray-500">Browsers with a recorded visitor ID</p>
           </CardContent>
         </Card>
 
@@ -129,11 +186,7 @@ const EnhancedAnalyticsDashboard = () => {
               </div>
               <Eye className="h-8 w-8 text-green-500" />
             </div>
-            <div className="mt-4 flex items-center text-sm">
-              <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-              <span className="text-green-500">+8.3%</span>
-              <span className="text-gray-500 ml-1">vs last period</span>
-            </div>
+            <p className="mt-4 text-sm text-gray-500">Recorded website page views</p>
           </CardContent>
         </Card>
 
@@ -141,16 +194,12 @@ const EnhancedAnalyticsDashboard = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 mb-1">Downloads</p>
+                <p className="text-sm text-gray-600 mb-1">PDF download requests</p>
                 <p className="text-2xl font-bold">{metrics.totalDownloads.toLocaleString()}</p>
               </div>
               <Download className="h-8 w-8 text-purple-500" />
             </div>
-            <div className="mt-4 flex items-center text-sm">
-              <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-              <span className="text-green-500">+15.7%</span>
-              <span className="text-gray-500 ml-1">vs last period</span>
-            </div>
+            <p className="mt-4 text-sm text-gray-500">Requests, not confirmed file delivery</p>
           </CardContent>
         </Card>
 
@@ -158,13 +207,13 @@ const EnhancedAnalyticsDashboard = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 mb-1">Avg. Session</p>
-                <p className="text-2xl font-bold">{metrics.avgSessionDuration}s</p>
+                <p className="text-sm text-gray-600 mb-1">Session measures</p>
+                <p className="text-2xl font-bold">Unavailable</p>
               </div>
               <Calendar className="h-8 w-8 text-orange-500" />
             </div>
             <div className="mt-4 flex items-center text-sm">
-              <span className="text-gray-500">Bounce rate: {metrics.bounceRate}%</span>
+              <span className="text-gray-500">Session boundaries are not recorded</span>
             </div>
           </CardContent>
         </Card>
@@ -218,9 +267,6 @@ const EnhancedAnalyticsDashboard = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-gray-600">{page.views.toLocaleString()}</span>
-                        <Badge variant={page.change >= 0 ? 'default' : 'destructive'} className="text-xs">
-                          {page.change >= 0 ? '+' : ''}{page.change}%
-                        </Badge>
                       </div>
                     </div>
                   ))}
@@ -325,7 +371,7 @@ const EnhancedAnalyticsDashboard = () => {
                 <div className="text-4xl font-bold text-green-500 mb-2">
                   {metrics.realTimeStats.activeUsers}
                 </div>
-                <p className="text-gray-600">Users currently on site</p>
+                <p className="text-gray-600">Distinct visitors with an event in the last 5 minutes</p>
               </CardContent>
             </Card>
 

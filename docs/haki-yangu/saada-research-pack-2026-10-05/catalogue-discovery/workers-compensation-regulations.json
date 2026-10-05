@@ -1,0 +1,2325 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Workers Compensation Regulations",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "An Act to provide for <em>compensation</em> to employees for disablement or death caused by or resulting from injuries or diseases sustained or contracted in the course of employment; to establish the Fund for administration and <em>regulation</em> of <em>workers</em> <em>compensation</em> and to provide for related matters"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "448821b2-8216-4f44-8145-9e35789aaa8e",
+                "uuid": "448821b2-8216-4f44-8145-9e35789aaa8e",
+                "name": "THE WORKERS COMPENSATION ACT, CHAPTER 263 R.E. 2023",
+                "handle": "123456789/2281",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-07T08:48:53Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-07T08:48:53Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for compensation to employees for disablement or death caused by or resulting from injuries or diseases sustained or contracted in the course of employment; to establish the Fund for administration and regulation of workers compensation and to provide for related matters",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 263 THE WORKERS COMPENSATION ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2281",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 263",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE WORKERS COMPENSATION ACT, CHAPTER 263 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE WORKERS COMPENSATION ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:01:32.372195Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/448821b2-8216-4f44-8145-9e35789aaa8e"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "48c060d0-8f2e-4bfe-9540-b37b80bb1ba1",
+                "uuid": "48c060d0-8f2e-4bfe-9540-b37b80bb1ba1",
+                "name": "THE PEOPLES MILITIA ACT, CHAPTER 111 R.E. 2023.",
+                "handle": "123456789/2117",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-29T08:29:58Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-29T08:29:58Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for payment of compensation to members of Peoples Militia in case of death or injury and to confer such members with powers of arrest in connection with criminal offences.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 111 THE PEOPLES MILITIA ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2117",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 111",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PEOPLES MILITIA ACT, CHAPTER 111 R.E. 2023.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE PEOPLES MILITIA ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:09:40.663599Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48c060d0-8f2e-4bfe-9540-b37b80bb1ba1"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "9d84d8f7-5359-4e54-9994-be799cd7bdd2",
+                "uuid": "9d84d8f7-5359-4e54-9994-be799cd7bdd2",
+                "name": "THE LABOUR LAWS (AMENDMENTS) ACT NO. 4 OF 2025",
+                "handle": "123456789/1732",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "LEONARD, BARAKA ILDEPHONCE",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-20T06:25:05Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-20T06:25:05Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-03-14",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Act may be cited as the Labour Laws (Amendments) Act, 2025",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1732",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "NO. 4 OF  2025",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LABOUR LAWS (AMENDMENTS) ACT NO. 4 OF 2025",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-21T00:00:48.805Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9d84d8f7-5359-4e54-9994-be799cd7bdd2"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "f085d8f0-411a-4e07-9b68-b9775b5736cc",
+                "uuid": "f085d8f0-411a-4e07-9b68-b9775b5736cc",
+                "name": "SINYOMA COMPANY LIMITED VS. BULYANHULU GOLD MINE LIMITED CIVIL APPEAL NO. 172 OF 2017.",
+                "handle": "123456789/1087",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA, KEREFU, J.A. AND KENTE, J.A. J.A.,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-04-28T06:46:36Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-04-28T06:46:36Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-06-27",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "SINYOMA COMPANY LIMITED V. BULYANHULU GOLD MINE LIMITED\r\nIN THE COURT OF APPEAL OF TANZANIA – DAR ES SALAAM\r\nMWARIJA. J.A. KEREFU. J.A. and KENTE, J.A. 18th February & 29th June, 2022\r\nCIVIL APPEAL NO. 172 OF 2017\r\n          \r\n     (An Appeal from the judgement of the High Court of Tanzania (Commercial Division) at Dar es Salaam in Commercial Case No.102 of 2014 dated 24th February,2016 by Hon. Songoro, J)\r\nFacts\r\nThis appeal arises from, the facts that, the Appellant (Buyer) instituted a suit against the Respondent (seller) following a dispute emanating over a contract termed as “Purchase and Transport of Scrap Materials Sales Agreement. Among terms and conditions were clause 24 and 25 which required the Appellant to obtain insurance premiums for inte alia workers compensation, employers liability, public liability as well as motor vehicles and equipment insurance premiums which were to be paid in USD currency. Business commenced on 6/12/2012 where the Appellant bought 28000 kgs of scrap materials worth TZS 7,150,000,  a day later the Appellant received a letter from the Respondent that the contract is terminated since the Appellant has failed to comply with conditions setout in clauses 24 and 25 of the contract. The appellant was dissatisfied with the termination hence instituted a suit. The trial court found that the termination was fair and just. The High Court ordered payment of special damages to the tune of TZS 87,866,000 and USD 400 for expenses incurred by the Appellant also general damages to the tune of TZS 150,000,000/=, interest on the decretal sum and costs of the suit. However, the Appellant was still aggrieved for the court to hold that the Respondent was justified first, to terminate the contract and secondly that some claims by the Appellant were not proved, hence raised 12 grounds of appeal in this court. \r\n\r\nFor the Appellant: Mr. Mpaya Kamara\r\nFor the Respondent: Mr. Faustine Malongo & Ms. Caroline  Kivuyo \r\n\r\nLegal Issue\r\niii.\tWhether termination by immediate effect is premature?\r\nHeld\r\niii)\tTermination of contract must be preceded by 14 days’ notice within which the appellant remedy the breach or offer adequate compensation to save the contract from being terminated.\r\n\r\nCivil Practise & Procedure – Contract-Termination for breach- whether requirement of notice is mandatory?\r\n\r\nStatutory Provisions referred:\r\nRule 106(1) & (7) The Tanzania Court of Appeal Rules, 2009 as amended\r\nCase Law:\r\nAnna Moises Chisano vs. Republic, Criminal Appeal No. 273 of 2019 (unreported)\r\nHatari Masharubu@ Babu Ayubu vs. Republic, Criminal Appeal No.590 of 2017 (unreported)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Termination of contract must be preceded by 14 days’ notice within which the appellant remedies the breach or offer adequate compensation to save the contract from being terminated.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1087",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "SINYOMA COMPANY LIMITED VS. BULYANHULU GOLD MINE LIMITED CIVIL APPEAL NO. 172 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO. 172 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:09:35.921Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f085d8f0-411a-4e07-9b68-b9775b5736cc"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "5d375dbe-e063-42bc-9835-f57fe2af984d",
+                "uuid": "5d375dbe-e063-42bc-9835-f57fe2af984d",
+                "name": "THE LAWS REVISION (MISCELLANEOUS AMENDMENTS) ACT, NO. 3 OF 2023",
+                "handle": "123456789/1583",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWIHAMBI, NENELWA J.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-11T06:49:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-11T06:49:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-07-05",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Act may be cited as the Laws Revision (Miscellaneous Amendments) Act, 2023.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1583",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "NO. 3 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LAWS REVISION (MISCELLANEOUS AMENDMENTS) ACT, NO. 3 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-12T00:00:42.378Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5d375dbe-e063-42bc-9835-f57fe2af984d"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "d5232cfc-3fc1-4fa7-b160-f40696f2f727",
+                "uuid": "d5232cfc-3fc1-4fa7-b160-f40696f2f727",
+                "name": "THE LAWS REVISION (MISCELLANEOUS AMENDMENTS) BILL, SUPP. NO. 4 OF 2023",
+                "handle": "123456789/1342",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NDUMBARO, DAMAS",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2024-01-16T12:54:49Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2024-01-16T12:54:49Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-05-12",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to amend certain laws with a view to address various shortcomings realised in those laws in the course of laws revision exercise.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Laws Revision (Miscellaneous Amendments) Act, 2023. see sec. 1",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 - 034X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://elibrary.osg.go.tz/handle/123456789/1342",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "The Government Printer, Dodoma",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": "BILL SUPPLEMENT;4",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "BILL SUPPLEMENT NO. 4 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LAWS REVISION (MISCELLANEOUS AMENDMENTS) BILL, SUPP. NO. 4 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "BILL SUPP. NO. 4 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2024-06-28T08:39:24.955Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d5232cfc-3fc1-4fa7-b160-f40696f2f727"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "7516ce31-dfd7-4fde-bcf7-6af89654b461",
+                "uuid": "7516ce31-dfd7-4fde-bcf7-6af89654b461",
+                "name": "THE LAWS REVISION (MISCELLANEOUS AMENDMENTS) ACT NO. 3 OF 2023",
+                "handle": "123456789/1327",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NENELWA J. MWIHAMBI, CLERK OF THE NATIONAL ASSEMBLY,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-11-08T07:57:28Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-11-08T07:57:28Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-07-14",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "ACT NO. 3 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Act to amend certain laws with a view to address various shortcomings realised in those laws in the course of laws revision exercise.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 - 034X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1327",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER, DODOMA TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 3 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LAWS REVISION (MISCELLANEOUS AMENDMENTS) ACT NO. 3 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2024-06-28T08:39:05.254Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7516ce31-dfd7-4fde-bcf7-6af89654b461"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "54d2f88a-2e9e-4b2f-b280-32f98c43be59",
+                "uuid": "54d2f88a-2e9e-4b2f-b280-32f98c43be59",
+                "name": "THE ACCIDENTS AND OCCUPATIONAL DISEASES (NOTIFICATION) ACT, CHAPTER 330 R.E 2023",
+                "handle": "123456789/2358",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-15T10:41:06Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-15T10:41:06Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the notification of accidents and occupational diseases",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 330 THE ACCIDENTS AND OCCUPATIONAL DISEASES (NOTIFICATION) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2358",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 330",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE ACCIDENTS AND OCCUPATIONAL DISEASES (NOTIFICATION) ACT, CHAPTER 330 R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CHAPTER 330 THE ACCIDENTS AND OCCUPATIONAL DISEASES (NOTIFICATION) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:01:43.233862Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/54d2f88a-2e9e-4b2f-b280-32f98c43be59"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b",
+                "uuid": "bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b",
+                "name": "THE ACCIDENTS AND OCCUPATIONAL  DISEASES (NOTIFICATION) ACT, CHAPTER 330 R.E. 2023",
+                "handle": "123456789/2413",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-18T08:12:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-18T08:12:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the notification of accidents and occupational diseases.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 330  THE ACCIDENTS AND OCCUPATIONAL  DISEASES (NOTIFICATION) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2413",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 330",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE ACCIDENTS AND OCCUPATIONAL  DISEASES (NOTIFICATION) ACT, CHAPTER 330 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE ACCIDENTS AND OCCUPATIONAL  DISEASES (NOTIFICATION) ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-11-24T09:15:56.723574Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bc0c3ad3-4b05-4ba7-b15e-b3f2cc6bed0b"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "acfc12db-a499-4e03-bb4f-88b3eb9d5902",
+                "uuid": "acfc12db-a499-4e03-bb4f-88b3eb9d5902",
+                "name": "THE LABOUR INSTITUTIONS (GENERAL) REGULATIONS, GN NO. 45 OF 2017",
+                "handle": "123456789/329",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER OF STATE, JENISTA J. MHAGAMA PRIME MINISTER OFFICE, LABOUR, YOUTH, EMPLOYMENT AND PERSONS WITH DISABILITY.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T11:21:28Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T11:21:28Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2017-02-24",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "The Chairman of the Council to be appointed by the Minister shall possess the following qualifications, Academic qualifications of at least a master's degree in a relevant field,  working experience and general abilities and capacities in the relevant field and in managing national consultative bodies.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Regulations may be cited as the Labour Institutions (General) Regulations, 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/329",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 45 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS (GENERAL) REGULATIONS, GN NO. 45 OF 2017",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS ACT, 2004",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:05:11.307Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "2620fc9a-b24f-4c32-9234-d8f3b409b27f",
+                "uuid": "2620fc9a-b24f-4c32-9234-d8f3b409b27f",
+                "name": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (No.4) ACT, ACT NO. 13 OF 2017.",
+                "handle": "123456789/905",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, STEPHEN KAGAIGAI.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-12-02T10:25:12Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-12-02T10:25:12Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2017-12-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The Written Laws specified in various Parts of this Act are amended in the manner specified in their respective Parts.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Written Laws (Miscellaneous Amendments) (No.4) Act, 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 – 035X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/905",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 13 OF 2017",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (No.4) ACT, ACT NO. 13 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 13 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:59:26.228Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2620fc9a-b24f-4c32-9234-d8f3b409b27f"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "26cbe504-c031-4280-8446-aace6a54ea63",
+                "uuid": "26cbe504-c031-4280-8446-aace6a54ea63",
+                "name": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (NO. 4),  ACT NO. 6 OF 2021.",
+                "handle": "123456789/858",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, NENELWA J. MWIHAMBI",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-11-18T06:41:04Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-11-18T06:41:04Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-10-11",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The written laws specified in various Parts of this Act are amended in the manner specified in their respective Parts.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Written Laws (Miscellaneous Amendments) (No. 4) Act, 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 - 0331X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/858",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": "Supplement No.;6",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 6 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (NO. 4),  ACT NO. 6 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 6 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:59:27.121Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/26cbe504-c031-4280-8446-aace6a54ea63"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 4,
+        "totalElements": 42
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%20Compensation%20Regulations&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%20Compensation%20Regulations&page=3&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%20Compensation%20Regulations&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Workers%20Compensation%20Regulations&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Workers%20Compensation%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 14,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "JAMHURI YA MUUNGANO WA TANZANIA",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.author=JAMHURI%20YA%20MUUNGANO%20WA%20TANZANIA,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 298",
+              "count": 1,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.author=CHAPTER%20298,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 366",
+              "count": 1,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.author=CHAPTER%20366,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Workers%20Compensation%20Regulations&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Workers%20Compensation%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "CHAPTER 366",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.subject=CHAPTER%20366,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 298",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.subject=CHAPTER%20298,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 330",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.subject=CHAPTER%20330,equals"
+                }
+              }
+            },
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "TOLEO NA. 35",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.subject=TOLEO%20NA.%2035,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Workers%20Compensation%20Regulations&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 14,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 28,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Workers%20Compensation%20Regulations&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 42,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Workers%20Compensation%20Regulations"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Workers%20Compensation%20Regulations&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 42,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Workers%2520Compensation%2520Regulations&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

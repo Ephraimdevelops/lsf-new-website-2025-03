@@ -1,5 +1,5 @@
 import { useAuth } from "./auth";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import * as Notifications from "expo-notifications";
 import { useEffect } from "react";
 import { Platform } from "react-native";
@@ -8,15 +8,18 @@ import { appConfig } from "./config";
 
 export function usePushNotificationRegistration(enabled: boolean) {
   const { isSignedIn } = useAuth();
+  const preferences = useQuery(api.notifications.getPreferences, enabled && isSignedIn ? {} : "skip");
   const registerPushToken = useMutation(api.notifications.registerPushToken);
+  const setPushEnabled = useMutation(api.notifications.setPushEnabled);
 
   useEffect(() => {
-    if (!enabled || !isSignedIn || !appConfig.easProjectId) return;
+    if (!enabled || !isSignedIn || !preferences || !appConfig.easProjectId || Platform.OS === "web") return;
     let cancelled = false;
 
     async function register() {
       try {
-        if (Platform.OS === "android") {
+        const pushEnabled = preferences?.pushEnabled === true;
+        if (pushEnabled && Platform.OS === "android") {
           await Notifications.setNotificationChannelAsync("case-updates", {
             name: "Case updates",
             importance: Notifications.AndroidImportance.DEFAULT,
@@ -24,10 +27,11 @@ export function usePushNotificationRegistration(enabled: boolean) {
         }
 
         const current = await Notifications.getPermissionsAsync();
-        const finalStatus = current.granted
-          ? current.status
-          : (await Notifications.requestPermissionsAsync()).status;
-        if (finalStatus !== "granted" || cancelled) return;
+        if (!current.granted) {
+          if (pushEnabled) await setPushEnabled({ enabled: false });
+          return;
+        }
+        if (cancelled) return;
 
         const token = await Notifications.getExpoPushTokenAsync({
           projectId: appConfig.easProjectId,
@@ -37,6 +41,7 @@ export function usePushNotificationRegistration(enabled: boolean) {
           token: token.data,
           platform: Platform.OS,
           projectId: appConfig.easProjectId,
+          enabled: pushEnabled,
         });
       } catch (error) {
         console.warn("Push notification registration failed", error);
@@ -47,5 +52,5 @@ export function usePushNotificationRegistration(enabled: boolean) {
     return () => {
       cancelled = true;
     };
-  }, [enabled, isSignedIn, registerPushToken]);
+  }, [enabled, isSignedIn, preferences?.pushEnabled, registerPushToken, setPushEnabled]);
 }

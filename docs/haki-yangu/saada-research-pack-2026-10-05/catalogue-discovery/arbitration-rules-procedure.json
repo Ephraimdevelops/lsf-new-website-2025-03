@@ -1,0 +1,2300 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Arbitration Rules Procedure",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These Regulations may be cited as the <em>Arbitration</em> (<em>Rules</em> of <em>Procedure</em>) Regulations, 2021"
+              ],
+              "dc.title": [
+                "THE <em>ARBITRATION</em> (<em>RULES</em> OF <em>PROCEDURE</em>) REGULATIONS,  GN NO 146 OF 2021"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "c2f1e5d5-7015-40c5-a1fd-c31e4158de98",
+                "uuid": "c2f1e5d5-7015-40c5-a1fd-c31e4158de98",
+                "name": "THE ARBITRATION (RULES OF PROCEDURE) REGULATIONS,  GN NO 146 OF 2021",
+                "handle": "123456789/334",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T12:28:43Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T12:28:43Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-01-29",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "Where an arbitration agreement provides for arbitration under these Regulations, these Regulations shall be deemed to form part of the arbitration agreement and a dispute arising thereof shall be settled in accordance with these Regulations, as in effect on the date of the commencement of the arbitration, unless the parties have otherwise agreed.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Regulations may be cited as the Arbitration (Rules of Procedure) Regulations, 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/334",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 146 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE ARBITRATION (RULES OF PROCEDURE) REGULATIONS,  GN NO 146 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE ARBITRATION ACT, CAP 15)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:06:46.449Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These Regulations may be cited as the <em>Arbitration</em> (<em>Rules</em> of <em>Procedure</em>) Regulations, 2021."
+              ],
+              "dc.title": [
+                "THE <em>ARBITRATION</em> (<em>RULES</em> OF <em>PROCEDURE</em>) REGULATIONS, 2021"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "f32a5e40-8142-46f9-b424-ea1d162bd003",
+                "uuid": "f32a5e40-8142-46f9-b424-ea1d162bd003",
+                "name": "THE ARBITRATION (RULES OF PROCEDURE) REGULATIONS, 2021",
+                "handle": "123456789/1547",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NCHEMBA, MWIGULU L.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-05T06:49:57Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-05T06:49:57Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-01-29",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Regulations may be cited as the Arbitration (Rules of Procedure) Regulations, 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1547",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GOVERNMENT NOTICE NO. 146",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE ARBITRATION (RULES OF PROCEDURE) REGULATIONS, 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-05T08:52:36.846Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f32a5e40-8142-46f9-b424-ea1d162bd003"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "b72de29b-73a2-48ee-be00-dd8d1813da3f",
+                "uuid": "b72de29b-73a2-48ee-be00-dd8d1813da3f",
+                "name": "JOVET TANZANIA LIMITED V.S BAVARIA N.V CIVIL APPLICATION NO. 207 OF 2018",
+                "handle": "123456789/1146",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA, KOROSSO. J.A.. And LEVIRA. J.A. J.A.,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-02T07:27:27Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-02T07:27:27Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019-08-06",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "JOVET TANZANIA LIMITED VS. BAVARIAN N.V COURT OF APPEAL OF TANZANIA\r\nAT DAR ES SALAAM (Mwambegele, Fikirini and Makungu JJ. A)\r\nCIVIL APPEAL NO. 207 OF 2018.\r\n\r\n(Appeal from the Ruling of the High Court of Tanzania (Commercial Division) in Misc. Civil Cause No. 183 of 2018 by Philip J)\r\nCivil Procedure and Practice- Appeal- Whether the Court of Appeal can determine an issue not decided in trial or lower Court?\r\nCivil Procedure and Practice- Arbitration – What amount to taking proceedings in Court of law for the purpose of waiving right to go to arbitration proceedings?\r\nContract- Arbitration clause- whether arbitration clause of resolve dispute without involving Courts in Tanzania amounts to ousting jurisdiction of the Court?\r\nFacts; \r\nThis appeal has its origin in the decision of the Commercial Division of the High Court in Miscellaneous Commercial Cause No. 183 of 2018 in which they granted the respondent's application for stay of proceedings in Commercial Case No. 94 of 2018 pending arbitration. In their agreement, the parties agreed to resolve their dispute in Amsterdam, the Netherlands by the Netherlands Arbitration Institute (Nederlands Arbitrage Instituut) by way of arbitration. The language of the dispute resolution was chosen to be English.\r\n\r\nThe dispute arose after the respondent issued the appellant with a termination notice under the pretext that the latter did not achieve the minimum volume of stock and was not making due payments timely. The appellant was aggrieved by the notice and sought recourse in the Commercial Division of the High Court by instituting Commercial Case No. 94 of 2018 seeking, inter alia, a declaration that the appellant's failure to achieve the minimum volumes sale, was justifiable and thus the Termination Notice was null and void and an order that the respondent specifically performs the terms and conditions of the Agreement. \r\n\r\nUpon being served with the Chamber Summons and affidavit in respect of Miscellaneous Commercial Application No. 171 of 2018, the respondent filed a counter affidavit and a preliminary objection. As already stated above, the High Court decided in favour of the respondent by the dispute to refer to arbitration within ninety (90) days.\r\n\r\nHeld;\r\n1.\tThe Court reinstated the principle enunciated in the case of Elisa Mosses\r\nMsaki v. Yesaya Ngateu Matee [1990] T.L.R. 90 in which it was held \"This Court will only look into matters which came up in the lower Court and decided; not on which were not raised nor decided by neither the trial Court nor the High Court on appeal\".\r\n\r\n2.\tThe Court borrowed the holding of the Supreme Court of India in the case of  Rashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006 where it was held among others \"... taking any other steps in the proceedings must be confined to taking steps in the proceedings for resolution of the substantial dispute in the suit Appearing and contesting the interlocutory applications by seeking either vacation thereof or modification thereof cannot be said to be displaying an unambiguous intention to acquiesce in the suit and to waive the benefit of the arbitration agreement\" \r\n\r\n3.\tThe parties to the agreement having been agreed that disputes arising out of the Agreement would be resolved by a certain forum, they did not mean to oust the jurisdiction of the courts in Tanzania.\r\n\r\nAppeal dismissed with costs.\r\nCase laws referred to;\r\n1.\tElisa Mosses Msaki v. Yesaya Ngateu Matee [1990] T.L.R. 90\r\n2.\tRashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "1.\tThe Court reinstated the principle enunciated in the case of Elisa Mosses\r\nMsaki v. Yesaya Ngateu Matee [1990] T.L.R. 90 in which it was held \"This Court will only look into matters which came up in the lower Court and decided; not on which were not raised nor decided by neither the trial Court nor the High Court on appeal\".\r\n\r\n2.\tThe Court borrowed the holding of the Supreme Court of India in the case of  Rashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006 where it was held among others \"... taking any other steps in the proceedings must be confined to taking steps in the proceedings for resolution of the substantial dispute in the suit Appearing and contesting the interlocutory applications by seeking either vacation thereof or modification thereof cannot be said to be displaying an unambiguous intention to acquiesce in the suit and to waive the benefit of the arbitration agreement\" \r\n\r\n3.\tThe parties to the agreement having been agreed that disputes arising out of the Agreement would be resolved by a certain forum, they did not mean to oust the jurisdiction of the courts in Tanzania.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1146",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "JOVET TANZANIA LIMITED V.S BAVARIA N.V CIVIL APPLICATION NO. 207 OF 2018",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 207 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:05:48.800Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/b72de29b-73a2-48ee-be00-dd8d1813da3f"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "882f5da4-0ebd-4d47-a890-f1b0b082355f",
+                "uuid": "882f5da4-0ebd-4d47-a890-f1b0b082355f",
+                "name": "JOVET TANZANIA LIMITED V.S BAVARIA N.V CIVIL APPLICATION NO. 207 OF 2018",
+                "handle": "123456789/1045",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA, KOROSSO, J.A. AND LEVIRA, J.A J.A.,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-04-21T07:34:42Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-04-21T07:34:42Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019-08-06",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "JOVET TANZANIA LIMITED VS. BAVARIAN N.V COURT OF APPEAL OF TANZANIA\r\nAT DAR ES SALAAM (Mwambegele, Fikirini and Makungu JJ. A)\r\nCIVIL APPEAL NO. 207 OF 2018\r\n\r\n(Appeal from the Ruling of the High Court of Tanzania (Commercial Division) in Misc. Civil Cause No. 183 of 2018 by Philip J)\r\nCivil Procedure and Practice- Appeal- Whether the Court of Appeal can determine an issue not decided in trial or lower Court?\r\nCivil Procedure and Practice- Arbitration – What amount to taking proceedings in Court of law for the purpose of waiving right to go to arbitration proceedings?\r\nContract- Arbitration clause- whether arbitration clause of resolve dispute without involving Courts in Tanzania amounts to ousting jurisdiction of the Court?\r\nFacts; \r\nThis appeal has its origin in the decision of the Commercial Division of the High Court in Miscellaneous Commercial Cause No. 183 of 2018 in which they granted the respondent's application for stay of proceedings in Commercial Case No. 94 of 2018 pending arbitration. In their agreement, the parties agreed to resolve their dispute in Amsterdam, the Netherlands by the Netherlands Arbitration Institute (Nederlands Arbitrage Instituut) by way of arbitration. The language of the dispute resolution was chosen to be English.\r\n\r\nThe dispute arose after the respondent issued the appellant with a termination notice under the pretext that the latter did not achieve the minimum volume of stock and was not making due payments timely. The appellant was aggrieved by the notice and sought recourse in the Commercial Division of the High Court by instituting Commercial Case No. 94 of 2018 seeking, inter alia, a declaration that the appellant's failure to achieve the minimum volumes sale, was justifiable and thus the Termination Notice was null and void and an order that the respondent specifically performs the terms and conditions of the Agreement. \r\n\r\nUpon being served with the Chamber Summons and affidavit in respect of Miscellaneous Commercial Application No. 171 of 2018, the respondent filed a counter affidavit and a preliminary objection. As already stated above, the High Court decided in favour of the respondent by the dispute to refer to arbitration within ninety (90) days.\r\n\r\nHeld;\r\n\r\n1.\tThe Court reinstated the principle enunciated in the case of Elisa Mosses\r\nMsaki v. Yesaya Ngateu Matee [1990] T.L.R. 90 in which it was held \"This Court will only look into matters which came up in the lower Court and decided; not on which were not raised nor decided by neither the trial Court nor the High Court on appeal\".\r\n\r\n2.\tThe Court borrowed the holding of the Supreme Court of India in the case of  Rashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006 where it was held among others \"... taking any other steps in the proceedings must be confined to taking steps in the proceedings for resolution of the substantial dispute in the suit Appearing and contesting the interlocutory applications by seeking either vacation thereof or modification thereof cannot be said to be displaying an unambiguous intention to acquiesce in the suit and to waive the benefit of the arbitration agreement\" \r\n\r\n3.\tThe parties to the agreement having been agreed that disputes arising out of the Agreement would be resolved by a certain forum, they did not mean to oust the jurisdiction of the courts in Tanzania.\r\n\r\nAppeal dismissed with costs.\r\nCase laws referred to;\r\n1.\tElisa Mosses Msaki v. Yesaya Ngateu Matee [1990] T.L.R. 90\r\n2.\tRashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "1.\tThe Court reinstated the principle enunciated in the case of Elisa Mosses\r\nMsaki v. Yesaya Ngateu Matee [1990] T.L.R. 90 in which it was held \"This Court will only look into matters which came up in the lower Court and decided; not on which were not raised nor decided by neither the trial Court nor the High Court on appeal\".\r\n2.\tThe Court borrowed the holding of the Supreme Court of India in the case of  Rashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006 where it was held among others \"... taking any other steps in the proceedings must be confined to taking steps in the proceedings for resolution of the substantial dispute in the suit Appearing and contesting the interlocutory applications by seeking either vacation thereof or modification thereof cannot be said to be displaying an unambiguous intention to acquiesce in the suit and to waive the benefit of the arbitration agreement\" \r\n3.\tThe parties to the agreement having been agreed that disputes arising out of the Agreement would be resolved by a certain forum, they did not mean to oust the jurisdiction of the courts in Tanzania.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1045",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "JOVET TANZANIA LIMITED V.S BAVARIA N.V CIVIL APPLICATION NO. 207 OF 2018",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 207 OF 2018",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-11-17T13:14:52.226Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/882f5da4-0ebd-4d47-a890-f1b0b082355f"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "905b5375-c117-4db0-9fdd-10d744ae1325",
+                "uuid": "905b5375-c117-4db0-9fdd-10d744ae1325",
+                "name": "JOVET TANZANIA LIMITED VS. BAVARIA N. V. CIVIL APPLICATION NO. 207 OF 2018.",
+                "handle": "123456789/1098",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA, KOROSSO. J.A.. And LEVIRA. J.A. J.A..",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-04-28T07:14:05Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-04-28T07:14:05Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019-08-06",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "JOVET TANZANIA LIMITED VS. BAVARIAN N.V COURT OF APPEAL OF TANZANIA\r\nAT DAR ES SALAAM (Mwambegele, Fikirini and Makungu JJ. A) CIVIL APPEAL NO. 207 OF 2018\r\n\r\n(Appeal from the Ruling of the High Court of Tanzania (Commercial Division) in Misc. Civil Cause No. 183 of 2018 by Philip J)\r\nCivil Procedure and Practice- Appeal- Whether the Court of Appeal can determine an issue not decided in trial or lower Court?\r\nCivil Procedure and Practice- Arbitration – What amount to taking proceedings in Court of law for the purpose of waiving right to go to arbitration proceedings?\r\nContract- Arbitration clause- whether arbitration clause of resolve dispute without involving Courts in Tanzania amounts to ousting jurisdiction of the Court?\r\nFacts; \r\nThis appeal has its origin in the decision of the Commercial Division of the High Court in Miscellaneous Commercial Cause No. 183 of 2018 in which they granted the respondent's application for stay of proceedings in Commercial Case No. 94 of 2018 pending arbitration. In their agreement, the parties agreed to resolve their dispute in Amsterdam, the Netherlands by the Netherlands Arbitration Institute (Nederlands Arbitrage Instituut) by way of arbitration. The language of the dispute resolution was chosen to be English.\r\n\r\nThe dispute arose after the respondent issued the appellant with a termination notice under the pretext that the latter did not achieve the minimum volume of stock and was not making due payments timely. The appellant was aggrieved by the notice and sought recourse in the Commercial Division of the High Court by instituting Commercial Case No. 94 of 2018 seeking, inter alia, a declaration that the appellant's failure to achieve the minimum volumes sale, was justifiable and thus the Termination Notice was null and void and an order that the respondent specifically performs the terms and conditions of the Agreement. \r\n\r\nUpon being served with the Chamber Summons and affidavit in respect of Miscellaneous Commercial Application No. 171 of 2018, the respondent filed a counter affidavit and a preliminary objection. As already stated above, the High Court decided in favour of the respondent by the dispute to refer to arbitration within ninety (90) days.\r\n\r\nHeld;\r\n1.\tThe Court reinstated the principle enunciated in the case of Elisa Mosses\r\nMsaki v. Yesaya Ngateu Matee [1990] T.L.R. 90 in which it was held \"This Court will only look into matters which came up in the lower Court and decided; not on which were not raised nor decided by neither the trial Court nor the High Court on appeal\".\r\n\r\n2.\tThe Court borrowed the holding of the Supreme Court of India in the case of  Rashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006 where it was held among others \"... taking any other steps in the proceedings must be confined to taking steps in the proceedings for resolution of the substantial dispute in the suit Appearing and contesting the interlocutory applications by seeking either vacation thereof or modification thereof cannot be said to be displaying an unambiguous intention to acquiesce in the suit and to waive the benefit of the arbitration agreement\" \r\n\r\n3.\tThe parties to the agreement having been agreed that disputes arising out of the Agreement would be resolved by a certain forum, they did not mean to oust the jurisdiction of the courts in Tanzania.\r\n\r\nAppeal dismissed with costs.\r\nCase laws referred to;\r\n1.Elisa Mosses Msaki v. Yesaya Ngateu Matee [1990] T.L.R. 90\r\n2.Rashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held;\r\n1.The Court reinstated the principle enunciated in the case of Elisa Mosses\r\nMsaki v. Yesaya Ngateu Matee [1990] T.L.R. 90 in which it was held \"This Court will only look into matters which came up in the lower Court and decided; not on which were not raised nor decided by neither the trial Court nor the High Court on appeal\".\r\n2.The Court borrowed the holding of the Supreme Court of India in the case of  Rashtriya Ispat Nigam Limited and Another v. M/S Verma Transport Company, Appeal (Civil) 3420 of 2006 where it was held among others \"... taking any other steps in the proceedings must be confined to taking steps in the proceedings for resolution of the substantial dispute in the suit Appearing and contesting the interlocutory applications by seeking either vacation thereof or modification thereof cannot be said to be displaying an unambiguous intention to acquiesce in the suit and to waive the benefit of the arbitration agreement\" \r\n3.The parties to the agreement having been agreed that disputes arising out of the Agreement would be resolved by a certain forum, they did not mean to oust the jurisdiction of the courts in Tanzania",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1098",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "JOVET TANZANIA LIMITED VS. BAVARIA N. V. CIVIL APPLICATION NO. 207 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 207 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:03:34.572Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/905b5375-c117-4db0-9fdd-10d744ae1325"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "740d718c-c36d-4813-8f39-7af0af9d3625",
+                "uuid": "740d718c-c36d-4813-8f39-7af0af9d3625",
+                "name": "THE ARBITRATION ACT, 2020",
+                "handle": "123456789/1546",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KAGAIGAI, STEPHEN",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-05T06:45:08Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-05T06:45:08Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-02-21",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Act may be cited as the Arbitration Act, 2020 and shall come into operation on such date as the Minister may, by notice published in the Gazette, appoint.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1546",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "act 2020 Arbitration",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE ARBITRATION ACT, 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-05T08:52:21.434Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/740d718c-c36d-4813-8f39-7af0af9d3625"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "a3f4583f-3b49-4534-bfed-d094242e32a4",
+                "uuid": "a3f4583f-3b49-4534-bfed-d094242e32a4",
+                "name": "THE ARBITRATION ACT NO. 2 OF 2020.",
+                "handle": "123456789/864",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, STEPHEN KAGAIGAI.",
+                      "language": "",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-11-18T07:12:39Z",
+                      "language": "",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-11-18T07:12:39Z",
+                      "language": "",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-02-21",
+                      "language": "",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for conduct relating to domestic arbitration, international arbitration, and enforcement of foreign arbitral awards, repeal of the Arbitration Act, and to provide for\r\nmatters relating to or incidental.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Arbitration Act, 2020.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "085 - 0331X",
+                      "language": "",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/864",
+                      "language": "",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": "Supplement No.;1",
+                      "language": "",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 2 OF 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE ARBITRATION ACT NO. 2 OF 2020.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 2 OF 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:04:43.789Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3f4583f-3b49-4534-bfed-d094242e32a4"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "f24eba6f-428d-4a22-891d-d3681ae2892e",
+                "uuid": "f24eba6f-428d-4a22-891d-d3681ae2892e",
+                "name": "The Arbitration Act CAP. 15 R.E. 2020",
+                "handle": "123456789/193",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 15",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-01T10:46:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-01T10:46:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for conduct relating to domestic arbitration, international arbitration and enforcement of foreign arbitral awards, repeal of the Arbitration Act and to provide for matters relating to or incidental thereto.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/193",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 15",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP. 15 R.E.2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Arbitration Act CAP. 15 R.E. 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:09:46.399Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f24eba6f-428d-4a22-891d-d3681ae2892e"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "01e3a3af-2d5b-4297-a9ea-082ac2f9ab65",
+                "uuid": "01e3a3af-2d5b-4297-a9ea-082ac2f9ab65",
+                "name": "BAYPORT FINANCIAL SERVICES (T) LIMITED VS CATHERINE F. MWITA (CIVIL APPEAL NO. 381 OF 2022) [2024] TZCA 1229 (10 DECEMBER 2024)",
+                "handle": "123456789/1564",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Mkuye, J.A., Mgeyekwa, J.A., Ngwembe, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-06T12:25:20Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-06T12:25:20Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-12-10",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This appeal emanates from the ruling and order of the High Court of Tanzania (Labour Division) dated 29/3/2022 (Hon. Miyambina, 1) in Labour Revision No. 05 of 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1564",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "Civil Appeal No. 381 of 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BAYPORT FINANCIAL SERVICES (T) LIMITED VS CATHERINE F. MWITA (CIVIL APPEAL NO. 381 OF 2022) [2024] TZCA 1229 (10 DECEMBER 2024)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-07T00:00:13.337Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/01e3a3af-2d5b-4297-a9ea-082ac2f9ab65"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "7891dbf2-3f92-4a0e-8595-7c8f638b35de",
+                "uuid": "7891dbf2-3f92-4a0e-8595-7c8f638b35de",
+                "name": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, 2021",
+                "handle": "123456789/481",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-26T09:03:22Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-26T09:03:22Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-01-29",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "“Code” means the Code of Conduct and Practice for Reconciliators, Negotiators,  Mediators  and  Arbitrators to which the First Schedule to these Regulations relate;",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "In these Regulations, unless the context otherwise requires- Act means the Civil Procedure Code:",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "These Regulations may be cited as the Code of Conduct for Reconciliators, Negotiators, Mediators and Arbitrators,Regulations 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/481",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. 148 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE ACT, (CAP.33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:02:39.056Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "8f730530-de98-4b66-822d-7be687a84464",
+                "uuid": "8f730530-de98-4b66-822d-7be687a84464",
+                "name": "ALNOOR SHARIFF JAMAL VS. BAHADUR EBRAHIM SHAMJI.",
+                "handle": "123456789/848",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "JUSTICE  OF  APPEAL., KILEO,  J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MSOFFE, KIMARO, J.A. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-11-17T10:41:32Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-11-17T10:41:32Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2007-11-22",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The petition in the High Court was argued by way of written submissions after which a decision was made. For the sake of clarity, we find it appropriate to reproduce at length part of the decision of the High Court.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/848",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "CIVIL APPEAL NO 25 OF 2006.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ALNOOR SHARIFF JAMAL VS. BAHADUR EBRAHIM SHAMJI.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO 25 OF 2006.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:03:33.323Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8f730530-de98-4b66-822d-7be687a84464"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "fdb4e69e-1ff3-4e3c-b659-9110182900fa",
+                "uuid": "fdb4e69e-1ff3-4e3c-b659-9110182900fa",
+                "name": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, GN NO. 148  OF 2021",
+                "handle": "123456789/336",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T12:52:51Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T12:52:51Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-01-29",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "There is established a Code of Conduct and Practice for Reconciliators, Negotiators, Mediators and Arbitrators. The provisions of the First Schedule to these Regulations shall constitute a Code of Conduct and Practice for all accredited reconciliators, negotiators, mediators and arbitrators.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Regulations may be cited as the Code of Conduct for Reconciliators, Negotiators, Mediators and Arbitrators, Regulations 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/336",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 148 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, GN NO. 148  OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE (CAP 33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:10:18.586Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 14,
+        "totalElements": 159
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%20Rules%20Procedure&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%20Rules%20Procedure&page=13&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%20Rules%20Procedure&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Arbitration%20Rules%20Procedure&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Arbitration%20Rules%20Procedure&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 30,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.author=MINISTER%20FOR%20CONSTITUTIONAL%20AND%20LEGAL%20AFFAIRS.,%20MWIGULU%20L.%20NCHEMBA,equals"
+                }
+              }
+            },
+            {
+              "label": "OFFICE OF THE SOLICITOR GENERAL",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.author=OFFICE%20OF%20THE%20SOLICITOR%20GENERAL,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, STEPHEN KAGAIGAI.",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20STEPHEN%20KAGAIGAI.,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Arbitration%20Rules%20Procedure&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Arbitration%20Rules%20Procedure&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "DAR ES SALAAM.",
+              "count": 17,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.subject=DAR%20ES%20SALAAM.,equals"
+                }
+              }
+            },
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "DAR ES SALAAM",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.subject=DAR%20ES%20SALAAM,equals"
+                }
+              }
+            },
+            {
+              "label": "MWANZA.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.subject=MWANZA.,equals"
+                }
+              }
+            },
+            {
+              "label": "SHINYANGA.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.subject=SHINYANGA.,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Arbitration%20Rules%20Procedure&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 47,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 112,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Arbitration%20Rules%20Procedure&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 159,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Arbitration%20Rules%20Procedure"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Arbitration%20Rules%20Procedure&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 159,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Arbitration%2520Rules%2520Procedure&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

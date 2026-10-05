@@ -1,0 +1,3955 @@
+[PDF PAGE 1]
+1
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+TANGAZO LA SERIKALI NA. 344 la tarehe 27/07/2018
+THE FAIR COMPETITION ACT
+(CAP. 285)
+_ _ ___ _ __ _ _
+RULES
+_ _ ___ _ __ _ _
+THE COMPETITION RULES, 2018
+PART I
+PRELIMINARY PROVISIONS
+1. Citation.
+2. Interpretation.
+PART II
+ADMINISTRA TION
+3. Address of the Commission.
+4. Business hours of the Commission.
+PART III
+DELIVERY OF DOCUMENTS
+5. Delivery of documents.
+6. Issuing of ducuments.
+7. Filing of documents.
+8. Form of applications.
+9. Form of Notices issued by the Commissions.
+ISSN  0856–034X
+Supplement No. 28 27 th July, 2018
+SUBSIDIARY  LEGISLATION
+to the Gazette of the United Republic of Tanzania No. 30 Vol. 99 dated 27th July, 2018
+Printed by the Government Printer, Dar es Salaam by order of Government
+
+[PDF PAGE 2]
+2
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+PART IV
+HANDLING OF COMPLAINTS
+(a) Investigation of Complaint
+10. Initiating of a complaint.
+11. Conduct of investigation.
+12. Establishment of a case.
+13. Request for information.
+14. Search warrant.
+15. Powers to enter and search.
+16.  Conduct of entry and seach.
+(b) Procedure for hearing
+17. Commission to adopt inquisitorial hearing procedure.
+18. Submission of the case to the Commission.
+19. Issuance of provisional findings.
+20. Reply to provisional findings.
+21. Pre-hearing conference.
+22. Oral representation.
+23. Determination of oral and written representation.
+24. Decision of the Commission.
+25. Contents of decision.
+26. Amendments to final decision.
+27. Implementation of decision.
+28. Imposition of fines.
+29. Payment of fines.
+30. Adjustments to the amount of fine.
+31. Transfer of order.
+32. Annual turnover.
+PART V
+MERGER PROCEDURES
+33. Merger notification requirements.
+34. Information and documents to be provided.
+35. Review of notification.
+36. Merger review period and extentions.
+37. Commencement of Initial Period.
+
+[PDF PAGE 3]
+3
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+38. Preliminary investigation (first stage investigation).
+39. Decision as to whether merger is likely to harm competition.
+40. Feedback to parties.
+41. Further examination of the merger (second stage investigation).
+42. Assessment of report.
+43. Request for additional information.
+44. Questions of jurisdiction.
+45. Abandonment.
+46. Notifying parties on revocation of decision.
+47. Breach of merger approval conditions or obligations.
+48. Revocation of approved merger.
+49. Right to be heard.
+PART VI
+EXEMPTION OF AGREEMENTS
+50. Procedures relating to exemption applications.
+51. Procedures concerning practices that are not prohibited.
+52. Procedures related to revoking exemption certificates.
+PART VII
+PUBLICA TIONS
+53. Publication of decision.
+54. Public Register.
+55. Information Department.
+56. Internet website.
+PART VIII
+OTHER INVESTIGA TIONS, STUDIES AND INQUIRIES
+57. Investigations, studies and inquiries.
+58. Initiation of the study.
+59. Initiation by the Minister.
+60. Initiation by a regulatory body.
+61. Public inquiry for collection of data views.
+62. Report from the collected data.
+63. Evaluating effects on competition.
+64. Final Report.
+
+[PDF PAGE 4]
+4
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+PART IX
+GENERAL PROVISIONS
+65. Review of agreements
+66. Appeals to Tribunal.
+67. Limitation of time.
+68. Fees.
+69. Accounts and financial audit.
+70. Guidance notes.
+71. Revocation.
+_______
+FIRST SCHEDULE
+_______
+FORMS
+Forms for Complaints and Exemptions
+Form No.:
+FCC. 1 - Complaint.
+FCC. 2 - Comfidentiality Claim.
+FCC. 3 - Application for Exemption.
+FCC. 4 - Request for Further Particulars.
+FCC. 5 - Notice of Refusal t Grant Exemption.
+FCC. 6 - Notice of Revocation of Exemption.
+FCC. 7 - Summons.
+Forms for Merger:
+FCC. 8 - Merger Notification.
+FCC. 9 - Notice of Abandoned Merger.
+FCC. 10 - Notice of Intention to Participate.
+FCC. 11 - Notice of Complete Filing.
+FCC. 12 - Notice of Incomplete Filing.
+FCC. 13 - Request for Additional Merger Information.
+FCC. 14 - Extension Certificate.
+FCC. 15 - Notice of Prohibition of Merger.
+FCC. 16 - Notice of Apparent Breach of Merger.
+FCC. 17 - Notice of revocation of Merger Decision.
+
+[PDF PAGE 5]
+5
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+Certificates for approval
+FCC. 18 - Merger Clearance Certificate
+FCC. 19 - Exemption Certificate
+______
+SECOND SCHEDULE
+______
+Guidance on the Fair Competition Act.
+
+[PDF PAGE 6]
+6
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(Made under Section 99)
+_ _ ___ _ __ _ _
+THE COMPETITION RULES, 2018
+PART I
+PRELIMINARY PROVISIONS
+1. These Rules may be cited as the Competition Rules, 2018.
+2. In these Rules, unless the context otherwise requires:-
+“Act” means the Fair Competition Act;
+“Apparent breach” means a breach of the conditions issued by the
+Commission to the Respondent or any other person;
+“acquiring firm” means a firm:-
+(a) that, as a result in any transaction done in circumstances set out
+in a merger as defined under section 2 of the Act, would acquire
+or establish direct or indirect control over the whole or part of
+the business of another firm;
+(b) that has direct or indirect control over the whole or part of the
+business of a firm contemplated in paragraph (a);
+“Chairman” includes the Deputy Chairman of the Commission;
+“Commissioner” means a member of the Commission appointed under
+section 63 of the Act;
+“complaint” means either:-
+(a) a complaint initiated by the Commission under section 69(1); or
+(b) a complaint that has been submitted to the Commission under
+section 69(2) of the Act;
+“comfidential information” means trade, business or industrial infirmation
+that belongs to a person which has a particular economic value an is
+not generally available to or known by others;
+          THE FAIR COMPETITION ACT
+            (CAP. 285)
+              _ _ _ _ _ _ _ _ _ _
+           RULES
+               _ _ _ _ _ _ _ _ _ _
+Citation
+Interpre-
+tation
+Cap 285
+
+[PDF PAGE 7]
+7
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+“final findinds” means final findings of the Commission issued to the
+Respondents in regard to the matter under investigation;
+“formal complainant” means any person who requests for formal
+complainant status, and whose interests are, or are likely to be materially
+effected by the subject matter of the complaint;
+“party to a merger” means an acquiring firm, or target firm;
+“private collection agency” means a person, company, partnership or
+other entity that is apponted by the Commission among those registered
+by the High Court for collecting debts;
+“privileged information” means information that contains request for
+advice to, and advice from, external counsel qualified to practice if
+made for that purpose, and in the interests, of the firm’s rights of
+defences;
+“privileged report” means report privileged for the Commission and which
+shal not be shared to a third party;
+“provisional findings” means preliminary findings of the Commission
+supported by evidence of the alleged offence issued to the Respondents
+requiring response within a specified period;
+“target firm” means a firm:-
+(a) the whole or part of whose business would be directly or indirectly
+controlled by an acquiring firm as a result of a transaction in any
+circumstances set out in a merger as defined under section 2 of
+the Act;
+(b) that, as a result of a transaction in any circumstances set out in
+amerger as defined under section 2 of the Act, would directly or
+indirectly transfer direct or indirect control of the whole or part
+of, its business to an acquiring firm; or
+(c) the whole or part of whose business is directly or indirectly
+controlled by a firm contemplated in (a) or (b);
+“third party” means a person who is not a main party to a matter before
+the Commission but who, in the opinion of the Commission has a
+sufficient interest in the matter and includes a consumer, a consumer
+organisation or a competitor or any other authority;
+“turnover: means explicitly to the amounts accrued from the sale of goods
+or services or both;
+“Statement of a Case” means a statement of a case comprising of
+preliminary facts and the suspected breach of the provisions of the
+Act issued by the Commission to the Respondents.
+
+[PDF PAGE 8]
+8
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+PART II
+ADMINISTRA TION
+3. All communications to the Commission, or to a member of the staff
+of the Commission, shall be addressed to:-
+(a) The Fair Competition Commission,
+P. O. Box 7883,
+Dar es Salaam, Tanzania;
+(b) Transmitted by electronic mail to info@competition.or.tz.; and
+(c) Fax: +255 22 2461567.
+4.-(1) The Office of the Commission shall be open to the public every
+day from Monday to Friday, other than a public holiday.
+2. The Office hours shall be 08:00 hrs to 16:00 hrs.
+PART III
+DELIVERY OF DOCUMENTS
+5.-(1) Delivery or transmission of documents and inveitations from
+the Commission to the addresses may be effected in any of the following
+ways:-
+(a) delivery by hand against receipt;
+(b) registered letter with acknowledgement of receipt;
+(c) fax with a request for acknowledgement of receipt; or
+(d) electonic mail with a request for acknowledgement of receipt.
+(2) Where the document is delivered or transmitted outside of the
+office hours of the Commission as prescribed under sub-rule (2) of rule
+4, the document shall be deemed to have been delivered on the next
+working day.
+(3) Any document that is delivered by fax must include a cover page,
+and a ducument that is transmitted by electronic mail shall be accompanied
+by a cover massage, in either case setting out:-
+(a) the name, address, and telephone number of the sender,
+(b) the name of the person to whon it is addressed, and the name of
+that persons, represantative, if it is being sent to the representative
+of a person;
+Address
+of the
+Commis-
+sion
+Business
+hours of
+the
+Commis-
+sion
+Delivery
+of
+docu-
+ments
+
+[PDF PAGE 9]
+9
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(c) the date and time of transmission;
+(d) the total number of pages sent, including the cover page; and
+(e) the name and telephone number of the person to contact if the
+transmission appears to be incomplete or otherwise unsuccessful.
+6. Where the Act or these Rules require the Commission th issue a
+document, the document shall be deemed to have been issued by the
+Commission when it has been signed, and served on any person to whon
+it is addressed.
+7.-(1) The Commission may assign distinctive case numbers to each:-
+(a) complaint;
+(b) application; and
+(c) merger notification.
+(2) The Commission shall ensure that every document susequently
+filed in respect of the same proceeding in marked with the assigned case
+number.
+(3) The Commission may reject a documents under sub-rule (2) if it is
+not properly marked with the assigned case number.
+(4) A person who files any document under the Act or these Rules
+shall provide to the Commission that person’s:-
+(a) legal name;
+(b) address for service;
+(c) telephone number;
+(d) email address and fax number if any; and
+(e) if the person is not an individual, the name of the individual
+authorized to deal with the Commission on behalf of the person
+filing the document.
+(5) The language of the Commission shall be English or Kishwahili,
+but all orders or decisions of the Commission shall be in Engllish language.
+(6) For purposes of Parts IV , V , and VI of these Rules, all submissions
+of documents to the Commission, shall be made in both hard and electronic
+copies.
+Issuing of
+docu-
+ments
+Filing of
+docu-
+ments
+
+[PDF PAGE 10]
+10
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(7) Notwithstanding the submission of both hard and electronic copies,
+the submission of a hard copy shall take precedence over the electronic
+copy.
+8. Every applocation made under these Rules shall be in presesribed
+form as set out in the First Schedule to these Rules.
+9.-(1) Whenever the Commission os required to issue a notice to a
+party under any provision of the Act, or under these Rules, the document
+shall be in the form set out in the First Schedule to these Rules.
+(2) Where the Commission is required, either under the Act or these
+Rules, to publish a notice in the Gazette that notice shall contain:-
+(a) the name of any person directly affected by the notice;
+(b) the file number assigned by the Commission to the relevant matter;
+(c) the provision of the Act or Rules under which the notice is required;
+(d) a brief and concise description of the nature of the relevant matter;
+(e) where the notice invites submissions, the last date on which
+submission may be received;
+(f) where the notice reports a decision:-
+(i) a brief and concise description of the nature of relevant
+decision;
+(ii) a statement indicating whether reasons for the decision have
+been published, and if so, how a copy of those reasons may
+be obtained; and
+(iii) a statement of any right of review of, or appeal from that
+decision, including the period during which a review or appeal
+may be lodged; and
+(g) name, address and contact numbers of the person in the
+Commision responsible for publishing the notice.
+PART IV
+HANDLING OF COMPALINTS
+(a) Investigation of a Complaint
+10.-(1) Subject to the provisions of the Act, a complaint may be initiated
+by:-
+(a) any person submitting information concerning an alleged prohibited
+practice to the Commission, in any manner or form; or
+Form of
+ap p l i c a-
+tion
+Form of
+Notices
+issued by
+the
+Commi-
+ssion
+Initiation
+of a
+complaint
+
+[PDF PAGE 11]
+11
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(b) any person submitting a complaint against an alleged prohibited
+practice to the Commission on the prescribed form FCC. 1; or
+(c) the Commission on its own initiative;
+(d) The Commission shal be deemed to have acted upon a complaint
+from the first time when it requested information in writing from
+the respondent(s).
+(2) Complaints initiated under subrules (1)(a) and (b) shall be deemed
+to be complaints initiated by the Commission.
+(3) The Department responsible for investigation shall, within three
+years from the time the complaint was initiated under sub rule (1)
+investigate the complaint with a view to establishing whether there ia a
+case to answer.
+(4) Where the case to answer has not been established by the
+Department responsible for Investigation as stipulated under sub rule (3),
+the Department shall, within three months before the expiry of three
+years, request the Commission for an extension of a period not exceeding
+further three years.
+(5) Notwithstanding sub rules (1) and (3), a complaint shall not be
+entertained where:-
+(a) the case does not fall under the Act;
+(b) it has no material effect on competition;
+(c) it is not worth devoting resources to investigate; or
+(d) the same in whole or in part is before any court, tribunal, arbitration,
+judicial or quasi-judicial body or quari-judicial body.
+(5) Without prejudice to sub-rule (3), the Director-General shall decide
+whether the complaint os to be entertained by the Commission or not.
+(6) Where the complaint is not entertained pursuant to a decision made
+under sub-ruel (5), the Director General shall inform the complainant the
+reasons for the decision not to entertain the complaint.
+(7) Where the complainant is aggrieved by the decision made under
+sub-rule (5), he may refer the matter to the Commission for determination.
+
+[PDF PAGE 12]
+12
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(8) Where the complainant fails to make submissions within the time
+set by the Commission the complaint shall be deemed to have been
+withdrawn.
+(9) The Commission may publish a notice disclosing an alleged
+prohibited prractice as set out in the complaint and invite any person who
+believes that the alleged practice has affected or is affecting a material
+interest of that person to file a submission in respect of that matter.
+(10) Any person who supplies information, makes submission, comments
+or subsequently submits further information to the Commission in the
+course of the same proceedings shall be required to clearly identify any
+material which he considers to be confidential on Form FCC.2.
+11.-(1)In conducting investigation, the Department responsible for
+investigation shall collect relevant facts:-
+(a) that will enable a preliminary assessment of the relevant markets;
+(b) on the nature of competition in those markets; and
+(c) on the possibe role or behaviour of a person who is the subject of
+investigation.
+(2) For the purpose of collecting and assessing the relevant facts
+regarding a complaint, the Department responsible for investigation may:-
+(a) request and obtain economic data in writing from the main parties
+through a questionnaire or in any other form; and
+(b) request and obtain economic and other relevant data in writing
+from third parties.
+(3) Subject to sub-rules (1) and (2), the Department responsible for
+investigation may discuss with main parties and third parties on whether
+the behaviour that is complained against is harmful to competition.
+12.-(1) Where the Department responsible for investigation is of the
+opinion that there us a case ti answer; the Department responsible
+responsible for investigation shall refer the matter to the relevant Director
+responsible for investigation.
+(2) Where the Director responsible for investigation is of the opinion
+that the behaviour in question harms or is likely to harm competitions, he
+Co nduct
+of investi-
+gation
+Establish-
+ment of a
+case
+
+[PDF PAGE 13]
+13
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+shall cause the Department responsible for the investigation to prepare
+statement of a case and serve the same to the concerned parties.
+(3) Subject to sub-rules (1) and (2), the main parties shall be provided
+with a statement of the case setting out the facts of the case and the
+relevant provisions of the law alleged to have been contravened.
+(4) Where it appears that the relevant behaviou does not harm or is
+not likely to harm competition, the parties involved shall be informed with
+reasons that the Commission shall not be taking any further action.
+13.-(1) The Commission may, with or without summons, require a
+person to provide all necessary information.
+(2) Where a request under sub-rule (1) is made, the Commission shall
+in making such request:-
+(a) state the legal basis and the purpose of the request;
+(b) specify the information required;
+(c) fix the time within which it is to be provided;
+(d) in the case where a request is made without a summons, specify
+the prescribed penalty for the supply of incorrect or misleading
+information; and
+(e) in the case where a request is made with a summons, specify
+the prescribed panalty for the supply of incorrect or misleading
+information and for not complying with the summons.
+(3) In the case of legal person or association having no legal personally,
+their representatives shall supply the information requested on behalf of
+the legal person or the association concerned.
+(4) A person questioned by an officer conducting an investigation shall
+answer each question to the best of his knowledge.
+(5) The Commission may also specify the time and place at which any
+document is to be produced.
+14.-(1) For the purpose of section 71(5) of the Act, the Chairman an in
+his absence, the Registrar of the Tribunal shall issue a search warrant
+which shall specifically identity the premises that may be entered and
+searched.
+R eq u es t
+for infor-
+mation
+Search
+warrant
+
+[PDF PAGE 14]
+14
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(2) A warrant issued under sub-rule (1) shall remain valid until one of
+the following events occur:-
+(a) the warrant is executed;
+(b) the warrant is cancelled by the person who issued it or, in that
+person’s absence, by a person with similar authority;
+(c) the purpose for issuing it has lapsed; or
+(d) the warrant has expired
+(3) Immediately before execution of a warrant, the officer executing
+the warrant shall produce his identity card and explain to the person
+named in the warrant the authority by which the warrant is being executed.
+15.-(1) A person who is authorised to enter and search premised may:-
+(a) enter upon or into premises;
+(b) search the premises;
+(c) search any person on the premises if he has reasonable grounds
+for believing that the person has in his personal possession a
+document that is relevant to the investigation.
+(d) axamine any document found in the premises that is relevant to
+the investigation;
+(e) request information about any document from the owner of, or
+person in control of the premises or from any person who has
+control of the article or ducument, or from any other person who
+may have the information and record the information;
+(f) take extracts from, or make copies of, any book or document
+that is on or in the premises thatt is relevant to the investigation;
+(g) use any computer system on the premises, or require assistance
+of any person on the premises to use that computer system, to:-
+(i) search any data contained in or available to that computer
+system;
+(ii) reproduce any record from that data; and
+(iii) seize any output from that computer for examination and
+copying;
+(h) attach and, if necessary, remove from the premises for
+examination and safekeeping, anything that is relevant to the
+investigation; and
+(i) seal any business premises and books or records for the period
+an to extent necessary for the investigation.
+Powers to
+enter and
+search
+
+[PDF PAGE 15]
+15
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+16.-(1) A person who enters and seaches any premises shall observe
+the right to dignity and privacy of the person who is the subject of search.
+(2) During the search, only a female officer or police officer shall
+search a femal person, and only a male officer or police officer shall
+search a male person.
+(3) A conduct of entry and search shall be witnessed by a justice of
+peace, or two adult persons who reside around the area where search is
+conducted unless the circumstances are such that:-
+(a) there is no time to secure their services; or
+(b) securing their service will defeat the purpose.
+(4) A police officer who is authorised to enter and search the premises
+or who is assisting an officer who is authorised to enter and search the
+premises may overcome any resistance to the entry and search by using
+such force as is reasonably required including breaking doors or windows
+of the premises.
+(5) Fo the purposes of sub-rule (4) a police officer shall audibly demand
+entry and shall announce the purpose of the entry.
+(6) The Commission shall not use as evidence any document collected
+during search which contains privileged information.
+(b) Procedure for hearing
+17.-(1) The Commission shal adopt inquisitorial procedure in conducting
+the hearings.
+(2) Subject to sub-rule (1), the inquisitorial procedure shall be considered
+as part of the investigation process.
+(3) Fo the purpose of sub-rule (2) the Commission shall provide a
+forum for presentation of any additional information or analysis with a
+view to facilitate investigation.
+(4) The Commission shall, in conducting a hearing, not be bound by
+the formal rules of evedence.
+Co nduct
+of entry
+and search
+Cap. 20
+Commis-
+sion to
+adopt in-
+quisitorial
+h e a r i n g
+procedure
+
+[PDF PAGE 16]
+16
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+18. Where it is decides that the case is to be submitted to the
+Commission, the Department responsible for investigation shall present
+the report of the case setting out:-
+(a) the economoc and legal arguments;
+(b) the findings as proposed by the officers;
+(c) the options for conditions, if any; and
+(d) proposed remidial action that may be implemented through
+compliance orders or agreements, compensatory orders or fines.
+19.-(1) The Commission shall, when sitting to review the case
+presented to it by the Department responsible for investigation, first
+consider the report referred under rule 18.
+(2) For the purpose of sub-rule (1), the Commission shall be dully
+constituted when presided by at least three assigned members as provided
+for under section 73(4) and (5) of the Act.
+(3) The Commission shall, where it takes the view that an infringement
+has been committed or is likely to be committed, make provisional findings
+and issue such findings with reasons thereof to the respondent requiring
+the respondent to make written representation within a specified period.
+(4) The provisional findings specified under sub-rule (3) shall set out:-
+(a) the facts, legal and economic assessment that constitutes a finding
+of an infringement;
+(b) any action and reasons which the Commission proposes to take,
+including imposition of a financial penalty or issuance of directives
+to refrain from the continuity of an infringement.
+(5) The respondents may apply for settlement discussions in the manner
+prescribed under rule 21.
+(6) The Commission shall publish the issuing of provisional findings on
+the Commission’s  website and widely circulating Newspapers.
+20.(1) A recipient of the provisional findings shall have the right to
+make a response in writing.
+Su bmi s-
+sion of the
+case to the
+Commis-
+sion
+Issuance
+of provi
+sional
+findings
+Reply to
+provi
+sional
+findings
+
+[PDF PAGE 17]
+17
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(2) The Commission shall not be under any obligation to take into
+account any written submissions received by it after the expiry of the
+time-limit set in rule 19(3).
+(3) A recipient of the provisional findings may, in the written submissions
+provide all facts known to them which are relevant to their defence against
+the findings raised by the Commission.
+(4) For the purpose of sub-rule (3), the recipient shall:-
+(a) provide an original version of the written submissions as well as
+an electronic copy thereof, or in the absence of an electronic
+copy, two print out copies of such sumission together with
+attachment if any; and
+(b) attach a non-confidential version of the representation which
+shall state why the information should be treated as confidential;
+except that:-
+(i) blanket or unsubstantiated confidentiality claim shall noti be
+admitted; and
+(ii) the non-confidential version shall be submitted together with
+the original response, and in any case not later than twenty
+one days from the date of submission of the original response.
+(5) Without prejudice to sub-rule 4(b)(ii), the Commission reserves the
+right to provide the recipient of provisional findings an opportunity to
+make a confidentiality representation.
+(6) Formal complainants and third parties who may be able to materially
+assist the assessment of the case shall have a right to submit written
+representations in the manner prescribed under the Rules.
+(7) Disclosure of non-confidential version of the preliminary findings
+shall be sufficient to enable third parties to provide the Commission with
+informed comments and this will not include any annexed documents.
+(8)Written representation by a formal complainant or third party shall
+be submitted to the Commission not later than twenty one days from the
+date on which the provisional findings were received by the formal
+complainant or the third party.
+(9) The non-confidential version of the written representations that
+have been submitted by a formal Complainant or third party shall be
+disclosed to the provisional findings recipient to allow them an opportunity
+to comment.
+
+[PDF PAGE 18]
+18
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+21.-(1) A party may apply for settlement under rule 19(6) after issuance
+of provisional findings and but not after issuance of final findings on a
+matter by the Commission.
+(2) When a recipient fo Provisional Findings has applied for settlement
+under Rule 19(6) and this rule, the following procedure shall be taken into
+account:-
+(a) the Applicant shall submit his request to the Commission either
+orally or in writing inducating his interest to engage the
+Commission in a settlement discussion regarding the matter under
+investigation;
+(b) the Commission shall make a determination on the application
+for suttlement made under sub rule 2(1) of this rule;
+(c) the determination by the Commission under sub rule 2(ii) shall be
+final;
+(d) where the Commission rejects the request for settlement, the
+matter shall proceed as stipulated undeer these Rules;
+(e) where the Commission grants the request for settlement, it shall
+order the applicant to file a written settlement plan.
+(3) Where the Applicant submits a settlement plan to the Commission
+under sub-rule (2); the Commission shall Consider its adequacy and
+appropriateness.
+(4) The Commission may either:-
+(a) Accept as it is or give some broad and specific directives to the
+Director General and cause the latter to constitute a Technical
+Team to scrutinise the settlement plan and submit a report to the
+Commission within 30 days. The Technical Team may request
+for extension of time to the Commission;
+(b) Reject the settlement plan and order the Applicant to resubmit a
+fresh settlement plan addrissing specific issues as provided in
+the Order;
+(c) Where the Commission rejects, the resubmitted settlement plan
+under subrule 2(b) of this rule; the settlement proceedings shall
+be deemed to have failed and the Commission shall proceed
+with the matter under Rule 22 of these Rules.
+(5) The Technical Team may engage with the Applicant, call for
+additional documents and or any other information as it shall deem
+appropriate.
+Pre-hear-
+ing con
+ference
+
+[PDF PAGE 19]
+19
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(a) Any admissions made during a failed settlement duscussions
+involving more than one respondent will not be disclosed to neither
+the other Respondents involved either in the settlement discussions
+or to those being investigated nor eill the admission be used in
+proceedings of the matter after the failed settlement discussions;
+(b) If settlement discussions are wholly or substantially successful
+the Technical Team shall cause a report to be filed with the
+Commission evidencing the Applicant’s agreement to terms of
+settlement;
+(c) In case a settlement process fails, in the course of settlement
+discussions the Technical Team shall cause a report to be filed
+with the Commission giving reasons for the failure.
+(6) Upon receipt of the report from the Technical Team under sub rule
+2 of this rule, the Commission may either:-
+(a) accept the proposed settlement terms; or
+(b) vary part of the contents of the settlement terms and cause an
+agreement to be drawn and signed thus adopt a settlement
+decision puruant to Section 58(8) of the Act; or
+(c) reject the proposed settlement terms and order the matter to
+proceed with the matter as provided under Rule 22 of these
+Rules.
+(7) Where during settlement descussions, an Applicant provides the
+Commission with new evidence or information relevant to infringent of
+the Act, such new evidence or information will be retained by the
+Commission and may be used for investigation purposes as provided in
+the Act and these Rules.
+22.-(1) A recipient of provisional findings shall, during oral
+representation, and upon application not later than fourteen days (14)
+after the prescribed date of submission of written representation, have a
+right to make oral representations on matters in the provisional findings.
+(2) An applicant under sub-rule (1) shall:-
+(a) confirm to the Commission the requirement of having the
+opportunity to develop arguments at an oral representation if the
+provisional findings do not reflect the contents of the applicants
+settlement submissions;
+Oral
+representa
+tion
+
+[PDF PAGE 20]
+20
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(b) within seven days (7) from submission of written submission,
+give an indication in advance of the matters the applicant proposes
+to focus on in the oral representation.
+(3) A recipient of provisional findings may be represented by a legal or
+other advisors to assist in presenting the oral representations.
+Provided that the Commission may set limits of the number of persons
+that may attend meetings on behalf of the respondent.
+(4) Oral representations shall be used by the recipient of provisional
+findings as an opportunity to highlight issues of particular importance to
+their case, which have been set out in the written submissions.
+(5) Formal complainants and other interested third parties shall, for
+the purpose of protecting the confidentiality of the firm’s business, not
+attend the respondent’s oral representations meeting.
+(6) As a general rule, any matter raised during oral representation
+stage shall be limited to matters already submitted to the Commission in
+accordance with sub-rule (2)(b).
+(7) At the end of presentation of oral representations, the Commission
+may ask general questions or questions for clarification which shall be in
+writing.
+(8) Response to questions in sub-rule (7) shall be obtained in writing
+after the meeting.
+(9) A transcript of the oral representations meeting shall be provided
+to the respondent for the purpose of confirming its accuracy and
+identification of any confidential information.
+(10) The Commission shall not accept blanket or any unsubstantiated
+confidentiality claims.
+23.-(1) The Commission shall consider all written and oral
+representations to appraise the case as set out in the provisional findings
+and to assess whether the conclusions reached in the provisional findings
+continue to be supported by the evidence and facts.
+(2) Any new evidence obtained during determination shall, where it
+supports the provisional findings, and which is intended to be relied upon
+in establishing the Commission of an infringement, be communicated to
+Determi-
+nation of
+oral and
+written
+represen
+tation
+
+[PDF PAGE 21]
+21
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+the provisional findings recipient and the Commission shall afford the
+recipient an opportunity to respond to the new evidence.
+(3) The Commission shall, where it makes a finding that the new
+evidence indicates new allegation of infringement or materially changes
+the nature of infringement occasioned in the provisional finding, issue
+supplementary provisional finding setting out the new set of facts on
+which it proposes to rely to establish an infringement.
+(4) The procedure for representation, settlement and determination of
+a provisional finding shall apply mutatis mutandis to supplementary
+provisional findings, except that the time frame for responding to the
+supplementary provisional findings shall be fourteen days.
+(5) The Commission shall after considering the provisional or
+supplementary provisional findings, make a final finding which will form
+the basis of the Commission’s decision.
+24.-(1) Decision of the Commission shall be made in a duly constituted
+meeting of the Commission through a majority of votes of the members
+present and, in the event of an equality of votes, the presiding member
+shall have a deliberative and a casting vote.
+(2) The Commission shall make a decision whether there has been, or
+is likely to be, a breach of the Act arising from:-
+(a) a proposed agreement;
+(b) an existing agreement;
+(c) a proposed merger;
+(d) an existing merger; or
+(e) an alleged misuse of market power.
+(3) Where the Commission concludes that a breach or breaches have
+occurred or are likely ot occur, it shall where applicable, consideer whether
+an exemption is warranted because of the existence of the type of benefits
+listed under setion 12(1)(b) and 13(1)(b) of the Act.
+(4) Subject to sub-rule (2) the Commission shall consider and decide
+on an enforcement action, namely whether:-
+(a) a compliance order shall be made against one or more parties;
+(b) a compliance agreement shall be negotiated with one or more
+parties; or
+Decision
+of the
+Commis
+sion
+
+[PDF PAGE 22]
+22
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(c) a fine shall be imposed to one or more parties.
+25.-(1) Every docision made puruant to Rule 24 shal be composed of
+the following:-
+(a) the introductory part;
+(b) the date and the place of the meeting;
+(c) facts on which the Commission relied to prove the infringement;
+(d) any material representatives that have beeb made during the
+course of the investigations;
+(e) any other circumstance related to the case;
+(f) the legal requirements for the Commission to reach at the decision;
+(g) the finding of the Commission including sanctions, remedies, right
+to appeal, sottlement or any other directive considered a
+necessary;
+(h) where financial penalty is being inposed, explanation on how the
+level of penalty has been calculated;
+(i) the date of implementing the order.
+(2) The Commission shall deliver its decision within sixty (60) working
+days from the date of confirmation of the transcript of the oral
+representations referred to in rule 22(9) of these Rules.
+(3) Notwithstanding sub-rule (2) exceptional circumstances may allow
+extension of the period of delivering the decision to a period not exceeding
+thirty (30) working days.
+(4) Every decision of the Commission shall be signed and dated by
+members a assigned in rule 19(2).
+26. The Commission may, within a reasonable tine, amend its final
+decision for any of the following purposes to:-
+(a) correct a clerical or typographical error or error of calculation;
+(b) rectify an accidental slip or omission; or
+(c) clarify an ambuguity.
+27.-(1) The Director General shall ensure implementation of the decision
+of the Commission.
+(2) Where the decision involves a compliance agreement, the
+Contents
+of deci
+sion
+Amend
+ments to
+final deci
+sion
+Imple
+mentation
+of deci
+sion
+
+[PDF PAGE 23]
+23
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+Commission shall enter into discussions with the relevant parties in order
+to negotiate a suitable form of agreement.
+(3) Where the Commission finds the agreement to be appropriate in
+the light of earlier decision of the Commission, the agreement shall be
+formally drawn up and signed.
+(4) Where it is not possible to negotiate an appropriate agreement,
+consideration shall be made to making a compliance order.
+28. The Commission in imposing the fines stipulated under section 60
+or any other provision of the Act shall have regard to:-
+(a) the nature and extent of non compliance or violation;
+(b) the wrongful gain or unfair advantage derived as result of the
+non-compliance or violations;
+(c) the degree of harassment caused to any person(s) as a result of
+the non-compliance or violation; or
+(d) the repetitive nature or continuance of the non-compliance or
+violation.
+29. All fines imposed by the Commission for a violation of the Act,
+shall be paid by the respondent to the Commission’s cash receipt office
+which shall issue duplicate receipts thereof.
+30. The amount of fine may be increased to an amount not exceeding
+the maximum statutory where the Commission finds that there are
+aggravating circumstances such as:-
+(a) where the firm cintinues or repeats the same or similar infringement
+after the Commission has made a finding;
+(b) refusal to cooperate with or obstruction of the Commission in
+carrying out its investigations; or
+(c) the role of leader in, or instigator of the infringement.
+31.-(1) The Commission may apply for execution of its orders directly
+to the High Court within Mainland Tanzania.
+(2) When applying for execution of Commission’s orders under sub-
+rule (1), the Commission shall forward:-
+Imposi-
+tion of
+fines
+Payment
+of fines
+Adjust
+ments to
+the
+amount of
+fine
+Transfer
+of order
+
+[PDF PAGE 24]
+24
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(a) a copy of the order;
+(b) a certificate setting forth that satisfaction of the order has not
+been obtained by the Commission, or, where the order has been
+executed in part, the extent to which satisfaction has been obtaines
+and what part of the order remains unsatisfied; and
+(c) a copy of any order for the execution of the order; or, if no such
+order has been made, a certificate to that effect.
+(3) The High Court to which the order was forwardes shall cause
+such copies and certificates to be filed without any further proof of the
+order for execution, or of the copies thereof, unless the Court, for any
+special reasons to be recorded under the hand of the Judge, requires
+such proof.
+(4) The Order shall be executed in the same manner as if it had been
+passed by the High Court.
+32.-(1) The annual turnover referred to under section 60(1) of the Act
+shall be the total sales of goods or services made by the firm in:-
+(a) the last full business  year of its participation in the infringement;
+or
+(b) the year reflected in the last audited accounts of the firm.
+(2) Where the figures made available by a firm are incomplete or not
+reliable, the Commission may determine the value of the sales or services
+of that firm on the basis of the partial figures it has obtained and any
+other information which it regards a relevant and appropriate.
+(3) The value of sales shall be determined before deduction of V AT
+and other taxes directly related to the sales.
+PART V
+MERGER PROCEDURES
+33.-(1) Any person who intends to acquire, control or to be acquired
+or controlled through a merger shall notify the Commission of that intended
+merger by filing a notification under section 11(2) of the Act.
+Annual
+turnover
+Merger
+notifica-
+tion
+require-
+ments
+
+[PDF PAGE 25]
+25
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(2) The notification under sub-rule (1) shall be:-
+(a) in Form FCC. 8 set out in the First Schedule to these Rules; and
+(b) accompanied by application fees prescribed under these Rules.
+(3) Any claim of confidentiality on the merger notification shall be
+supported by a written statement on Form FCC. 2 set out in the First
+Schedule to these Rules explaining why the information is confidential.
+(4) One original and three copies of the form under sub-rule (2)(a)
+and all the supporting documents shall be submitted to the Commission.
+(5) The supporting documents shall be either in originals or cettified
+copies of the originals.
+(6) Where notifications are signed by representatives of persons or of
+furms, such representatives shall produce written proof that they are
+authorised to act.
+(7) The parties to a merger shall not implement that merger until it has
+been approved, with or without conditions, by the Commission under
+section 11 or 13 of the Act.
+34.-(1) Notification shall contain the information, including all documents
+requested in the appicable forms set out in the First Schedule to these
+Rules.
+(2) The Director General may dispense with the obligation to provide
+any particular information on the notification, including ducoments, or
+with any other requirement specified in the prescribed form where it is
+considered that compliance with those obligations or requirements is not
+necessary for the examination of the case.
+35.-(1) Within five working days after receiving a Merger Notification,
+the Director responsible for mergers shall deliver to the filing firm in a
+prescribed form:-
+(a) notice of Complete Filing on Form FCC. 11; or
+(b) notice of Incomplete Filing on Form FCC. 12.
+(2) The Division dealing with mergers shall issue the notice under
+Informa-
+tion and
+docu-
+ments to
+be
+provided
+Review of
+notifica-
+tion
+
+[PDF PAGE 26]
+26
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+subrule (1)(a) if:-
+(a) the merger appears to fall within the jurisdiction of the Act; and
+all the requirements set out in Rule 33 have been satisfied; and
+(b) in the case fo a subsequent filing by firm, all the requirements set
+out in that form have been satisfied.
+(3) The Director responsible for mergers shall issue the notice under
+sub-rule (1)(b) if the merger notification filed does not meet the applicable
+creteria set out in sub-rule (2).
+(4) Where the filing firm neglects within the stipuleted time to provide
+such missing information or documents as the Commission may require,
+the Commission shall consider the merger as abandoned and Rule 45(2)
+shall apply.
+(5) Within five working days after receiving the Notice of Incomplete
+Filing, the acquiring firm may refer the matter to the Commission for an
+order setting aside any requirement set out in that notice.
+(6) Upon deciding on the matter referred to under sub-rule (5), the
+Commission may make an order:-
+(a) setting aside the Notice of Incomplete Filing entirely;
+(b) confirming any or all of the requirements set out in the Notice of
+Incomplete Filing;
+(c) substituting other requirements for any of the requirements set
+out in the Notice of Incomplete Filing; or
+(d) combining any or all of the requirements set out in the Notice of
+Incomplete Filing with additional or substitute requirements.
+(7) Sub-rules (1) to (6), shall apply to a subsequent filing by the acquiring
+firm in response to:-
+(a) a notice of Incomplete Filing issued to it; or
+(b) an order of the Commissiion under sub-rule (5).
+36.-(1) Where the Commission determines that the merger shall be
+examined, or otherwise not prohibited; it shall notify the person within the
+initial period.
+Merger
+review
+period
+and exten-
+sions
+
+[PDF PAGE 27]
+27
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(2) The initial period under sub-rule (1) is the period of fourteen allowed
+by section 11(3) of the Act to determine whether the merger shall be
+examined.
+(3) The Proposed merger shall be prohibited for a period of ninety
+days, during which it shall be examined.
+(4) In prohibiting the merger under sub-rule (3), the Director responsible
+for mergers hall issue a copy of Prohibition Certificate on Form FCC.
+14A set out in the First Schedule to these Rules to a party who notified
+the merger.
+(5) An extension period of thirty days granted by the Commission
+under section 11(4)(a) of the Act begins:-
+(a) on a working day following the date on which the ninety days
+period expires; or
+(b) in the case of second or subsequent extension granted under
+section 11(4)(b) of the Act, on the working day following the
+date on which previous extension expires.
+(6) In extending the period under sub-rule(4), the Commission shall
+issue a copy of Extension Certificate on Form FCC. 14B set out in the
+First Schedule to thise Rules to a party who notified the merger.
+(7) The initial period and any extension once begun shall continue
+without any interruption.
+37.-(1) The initial period for a merger begins on the working day
+following the date on which a merger notification together with all the
+supporting documents under Rule 35(2) were filed unless the Director
+responsible for mergers issues a Notice of Incomplete Filing to the filling
+firm within the time allowed by Rule 35(1).
+(2) Where the Director responsible for mergers issues a Notice of
+Incomplete Filing, the initial period for the merger shall begin on the
+business day following the date on which the filing firm subsequently
+files documents in response to that Notice.
+Com
+mence
+ment of
+Initial
+Period
+
+[PDF PAGE 28]
+28
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+38.-(1) The Director responsible for mergers shall investigate the
+merger with a view to establishing it has any major economic impact.
+(2) The provisions on investigation under Part IV shall apply mutatis
+mutandis to investigations conducted under this Rule.
+39.-(1) Subject to Rule 38, the Director responsible for mergers shall,
+in consultation with a lawyer and an economist, carry out an assessment
+to decide whether the relevant merger is likely to harm competition.
+(2) The Director responsible for mergers shall submit the report on
+the assessment in sub-rule (2) to the Director General.
+(3) The decision as to whether the merger is likely to harm competition
+at this preliminary stage shall be made by the Director responsible for
+mergers.
+(4) Where it appear there is little or no possibility that the relevant
+merger is likely to harm competition, the parties involved shall be given a
+“no objection” to the merger.
+(5) Where it is decided that the merger in question is likely to harm
+competition, further investigation shall be conducted by the Director
+responsible for mergers.
+40. Where the Director responsible for mergers decides to continue
+with investigations, the third parties to the merger may be informed of
+that decision.
+41.-(1) A Third party with sufficient interest in a merger may submit
+his interest through the prescribed Form FCC. 10 which shall notify the
+Commission of the interest to participate in the merger.
+(2) Any question that may be useful to the examination of the merger
+shall be put to both main parties and third parties.
+(3) Where the main parties to the merger wish to argue that there are
+benefits arising out of th merger that would justify exemption under section
+13 of the Act, the Director responsible for mergers shall have to obtain
+Decision
+as to
+wh et h er
+merger is
+likely to
+h a r m
+competi-
+tion
+Feedback
+to parties
+Further
+examina-
+tion  of the
+merger
+(second
+stage
+investiga-
+tion)
+P relimi-
+nary
+investiga-
+tion (first
+stage
+investiga-
+tion)
+
+[PDF PAGE 29]
+29
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+information regarding those alleged benefits.
+(4) Where all the written material is available, a round of meetings,
+primarily with parties, shall take place to focus on the key issues.
+(5) The scope of investigation shall be limited for the purpose of ensuring
+that the Division dealing with mergers completes its procedure within the
+timetable set out under section 11(3) to (5) of the Act.
+(6) The provisions on investigation under Part IV shall apply mutatis
+mutandis to this Rule.
+42.-(1) Where the second stage investigation is complete, teh Director
+responsible for mergers shall produce a report setting out the economic
+and legal arguments as to:-
+(a) why a breach of the Act is likely to take place; and
+(b) if so, whether an exemption under section 13 of the Act may be
+justified because of the existence of benefits.
+(2) The Director responsible for mergers shall consider the report in
+sub-rule (1) and decide whether to propose that the case be presented to
+the Commission.
+(3) Where it is decided that the case shall be presented to the
+Commission, the Director responsible for mergers shall present the report
+of the case setting out:-
+(a) the economic and legal arguments; and
+(b) the findings as proposed;
+(4) The Commisson shall consider the report under sub-rule (3).
+(5) The Commission shall decide whether to hear the parties alone, or
+the main parties together with the relevant third parties.
+(6) Where the Commission decides to hear th parties it shall identify
+and formulate the key issues of the case.
+(7) The main parties shall argue their case before the Commission.
+Assess
+ment of
+report
+
+[PDF PAGE 30]
+30
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(8) The Commission shall explore the key arguments presented before
+them.
+(9) The hearing shall cover the prior issues of whether there os likely
+to be a breach of the Act and whethe an exemption is warranted.
+(10) The Commission shall make a decision whether there is likely to
+be, a breach of the Act arising from the proposed merger.
+(11) Where the Commission concludes that a breach or breaches are
+likely to occur, they shall need to consider whether an exemption is
+warranted because of the existence of the type of benefits listed in section
+13(1)(b) of the Act.
+(12) Rules 17 to 31 shall apply mutatis mutandis to the hearing conducted
+by the Commission under this Part.
+(13) After completing the investigation and consideration of merger,
+the Commission shall:-
+(a) approve the meger; or
+(b) approve the merger subject to conditions; or
+(c) declare the merger prohihited.
+(14) To each decisions under sub-rule (13), the Commission shall-
+(a) issue either:-
+(i) a Clearance Certificate on Form FCC. 18; or
+(ii) a Notice of Prohibition on Form FCC. 15 to the firm that filed
+the Merger Notice;
+(b) make available to each party a copy of its reasons for decision;
+and
+(c) publish a notice of its decision in the Gazette or Commission’s
+official website.
+43. At any time during a merger investigation, the Commission may:-
+(a) requeat additional information from a party to a merger;
+(b) require a party to a merger to provide additional information, at
+any time, by serving on the party a request for additional
+information on Form FCC. 13 as set out in the First Schedule to
+these Rules setting out the specific information that the
+Commission requires.
+Request
+for addi
+tional in
+formation
+
+[PDF PAGE 31]
+31
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+44. Where the Director responsible for mergers has indicated on Notice
+of Incomplete Filing that a merger appears to fall outside the jurisdiction
+of the Act:-
+(a) the filing fees shall be forfeited;
+(b) the Director responsible for mergers shall return the Merger
+Notification to the acquiring firm that submitted the notification;
+and
+(c) the acquiring firm to that merger shall not file any further
+documents concerning that merger.
+45.-(1) The acquiring firm may notify the Commission on Form FCC.
+9 that it has abandoned the intended merger transaction and has no intention
+to implement it.
+(2) Upon the filing under sub-rule (1):-
+(a) the parties to the merger shall remain in the same position as if
+the marger had never been notified; and
+(b) the filing fee paid in respect of that merger shall be forfeited to
+the Commission.
+46. Where the Commission intendt to take a decision to revoke its
+own decision it shall:-
+(a) notify parties who have so requested in their written comments
+the opportunity to submit their arguments in a formal oral hearing;
+and
+(b) notify other involved parties who have so requested in their written
+comments the oppotunity to submit their arguments in a formal
+oral hearing.
+47.-(1) Where a firm has breached an obligation that was part of an
+approval or conditional approval of the merger, the Director responsible
+for mergers shall deliver to that firm a Notice of Apparent Breach through
+Form FCC. 16 before taking any further action under these Rules to
+revoke that approval or conditional approval.
+(2) Within ten working days after receiving a notice of Apparent Breach,
+a firm referred to in sub-rule (1) may:-
+(a) apply for settlement and submit to the Commission a settlement
+plan to remedy the breach; or
+Questions
+of juris-
+diction
+Abandon-
+ment
+Notifying
+parties on
+revocation
+of
+decision
+Breach of
+m e r g e r
+approval
+conditions
+or obliga-
+tions
+
+[PDF PAGE 32]
+32
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(b) request the Commission to review the notice of apparent breach
+on the grounds that the firm has substantially complied with its
+obligations with respect to the approval or conditional approval
+of the merger.
+(3) Where a firm submits a settlement plan to the Commission under
+sub-rule (2)(a), the Commission may either:-
+(a) accept the proposed settlement plan; or
+(b) reject the proposed settlement plan, and invite the firm to consult
+with the Commission concerning the apparent breach, with the
+aim of establishing a settlement plan satisfactory to the
+Commission for which all obligations of the firm with respect to
+the approval or conditional approval may be settled;
+(c) where a settlement referred to in sub rule (3)(b) is concluded, it
+shall be treated as compliance agreement in accordance to Section
+58(8) of the Act.
+(4) Where the Commission accepts a proposed settlement plan under
+sub-rule (3)(a) or (b), the Commission shall monitor the compliance of
+the firm with the settlement plan.
+(5) The Commission may revoke the approval or conditional approval
+of a merger referred to in sub-rule (1), only where:-
+(a) the firm concerned do not respond to the notice of Apparent
+Breach within ten working days after receiving it, in the manner
+provided in sub-rule (2);
+(b) the firm concerned does not agree to meet, or fails to meet as
+agreed, with the Commission, as required by sub-rule (3)(b);
+(c) the firm and the Commission are unable to agree to a settlement
+plan as contemplated in sub-rule (3)(b);
+(d) the firm acts in a manner calculated to frustrate the efforts of
+the Commission to monitor compliance with a settlement plan,
+as required by sub-rule (4); or
+(e) the firm fails to employ its best efforts to substantially comply
+with a settlement plan established in sub-rule (3).
+48.-(1) The Commission may, subject to sub-rule (2), revoke its own
+decision to approve or conditionally approve a merger where:-
+(a) the decision was based on incorrect information for which a
+Revoca
+tion of
+approval
+merger
+
+[PDF PAGE 33]
+33
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+party to the merger is responsible;
+(b) the approval was obtained by deceit; or
+(c) the firm concerned has breached an obligation attached to the
+decision.
+(2) Where the Commission is contemplating to revoke its own decision
+to approve or conditionally approve a merger, it shall, where the proposed
+revocation is based on sub-rule (1)(a) or (b), notify parties in accordance
+with rule 46 before taking any further staps under this rule; and in any
+case:-
+(a) notify any firm concerned, in writing, of the intention to do so;
+(b) advise any firm concerned in writing to consider a settlement on
+the findings of the Commission based on sub-rule (1) (a) or (b).
+(3) Where a settlement referred to in sub-rule (2)(b) is preferred by
+the firm concerned the procedure stipulated in rule 47(1) to (4) shall
+apply matatis mutandis.
+(4) Where there is no settlement referred to in sub-rule (3) the
+Commission shall publish a notice of the proposed revocation in the
+Commission’ s official website and in widely circulating newspapers.
+(5) The Commission may request further information from any person
+who submits a representation in response to a notice published pursuant
+to sub-rule (4).
+(6) After considering any submissions or other information received in
+relation to the proposed revocation, the Commission shall:-
+(a) either-
+(i) confirm the approval or conditional approval, aas the case
+may be, in writing; or
+(ii) revoke it by issuing a notice of revocation of merger decision
+in Form FCC. 17 to the firm concerned; and
+(b) publish a notice of that decision in the Commission’s offficial
+website and in widely circulating newspapers.
+(7) Where the Commission confirms the notice of revocation of merger
+decision, the effect of the notice is that:-
+(a) the Certificate of approval or conditional approval in respect of
+
+[PDF PAGE 34]
+34
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+the relevant merger is deemed to have been rejected as of the
+date of that Certificate;
+(b) each part to the merger is, for all purposes of the Act, in the
+same position as if they had nevweer notified the Commission of
+tha merger;
+(c) the Commission may further consider that merger only if the
+acquiring firm subsequantly files a new merger notification with
+respect to it; and
+(d) where a new merger notification is subsequently filed in respect
+of that merger, the Commission shal consider that merger on the
+basic of that new notification without reference to any previous
+notification filed in respect of it.
+49. For the purposes of the right to be heard, in the case of a notified
+merger, the following parties shall be distinguished:-
+(a) a notifying party, that is, a person or firm submitting a notification
+pursuant to section 11 of the Act;
+(b) other parties, that is, parties to the proposed merger other than
+the notifying party, such aas the seller and th firm which is the
+target of the merger; and
+(c) third parties who demonstrate sufficient interest, that is natural
+or legal persons, including:-
+(i) customers;
+(ii) supplies;
+(iii) competitors;
+(iv) members of the administrative or management bodies of the
+firms concerned or the recognised representatives of their
+employees; and
+(v) consumer associations, where the proposed merger concerns
+products or services used by final consumer.
+PART VI
+EXMPTION OF AGREEMENTS
+50.-(1) Parties intending to make or giving effect to an agreement
+falling within a class of agreements under section 12(1) of the Act shall
+notify the Commission using through Form FCC. 3 set out in the First
+Schedule to these Rules.
+(2) Upon receiving an application in sub-rule (1), the Division dealing
+Right to
+be heard
+Proce
+dures
+relating to
+exemp
+tion appli
+cations
+
+[PDF PAGE 35]
+35
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+with exemption of agreements shall within fourteen days where:-
+(a) the application is materially incomplete, advise the applicant of
+any further information required by issuing Form FCC. 4A; or
+(b)  the application does not provide specific exemption sought advise
+the applicant by issuing Form FCC 4B, before the application is
+considered.
+(3) Upon receiving an application in sub-rule (1), or information received
+under sub-rule (2), the division dealing with exemption of agreements
+shall within fourteen days issue a Notice of completeness of the
+notification of the proposed agreement specified in Form FCC 4C.
+(4) Where an applicant:-
+(a) does not respond to the Commission within thirty working days
+after being served with either Form FCC 4A or FCC 4B or both,
+the application shall be deemed to have been abandoned and the
+filing fees paid by the applicant shall be forfeited to the
+Commission; or
+(b) responds to the Commission, but does not, to the satisfaction of
+the Commission, meet the requirements set out in either Form
+FCC. 4A or FCC. 4B or both, the Division dealing with exemption
+of agreements may require the applicant to provide further
+information where necessary, and the provisions of this rule shall
+apply.
+(5) Any person who submit information to the Commission, comments
+or subsequently submits additional information to the Commission in the
+course of the same proceedings shall be required to clearly identity any
+material which he considers to be confidential on Form FCC. 2 set out in
+the First Schedule to these Rules.
+(6) Before granting or revoking an exemption under section 12 of the
+Act, the Commission:-
+(a) shall give a notice in the Commission’s official website and in
+widely circulated newspaper of the application for an exemption,
+or of its intention to revoke that exemption;
+(b) shall give interested parties thirty working days form the date of
+that notice to make written representations as to why the
+exemption should not be granted or revoked;
+
+[PDF PAGE 36]
+36
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(c) may request further information from any person who submits a
+representation in response t a notice published under paragraph
+(a) and
+(d) may conduct am investigation into the agreement or class of
+agreements concerned.
+(7) The provisions on investigation under Part IV shall apply mutatis
+mutandis to applications for exemption under this rule.
+(8) The Commission shall, by notice in the Commission’s official website
+and in widely circulated newspaper, give notice of any exemption granted,
+refused or revoked under these Rules.
+(9) Upon publishing the notice under sub-rule (8), the Commission
+shall provide written reasons for its decision.
+(10) The Respondent aggrieved by a decision of the Commission made
+under section 12 of the Act, may appeal to the Tribunal.
+(11) Where the Commission grants an exemption certificate under
+this rule, the certificate granted shall be on Form FCC. 19 set out in the
+First Schedule to these Rules.
+(12) Where the Commission revokes an exemption under this rule, the
+notice of revocation shall be on Form FCC. 6 set out in the First Schedule
+to these Rules.
+(13) All persons making or giving effect to the agreement under
+subsection (1) shall notify the Commission on the purposed agreement
+for its consideration for exemption under section 12.
+(14) Within fourteen days after receipt of the proposed agreement
+under subsection (13), the Commission shall issue Notice of completeness
+of the notification of the proposed agreement.
+(15) Within ninety days after receipt of the proposed agreement under
+subsection (13), the Commission shall issue a decision on the notified
+proposed agreement.
+(16) The Commission may extend the period of 90 referred to in
+subsection (15) for such further period not exceding thirty days as the
+Commission sees fit.
+
+[PDF PAGE 37]
+37
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(17) In addition, where the Commission determined its consideration
+the proposed agreement has been delayed in obtaining information from
+any of the parties to the proposed agreement for such further period the
+Commission consider it has been so delayed.
+51.-(1) Where the Commission determines that an application under
+Rule 50 does not constitute a prohibited practice as contemplated by
+section 12 of the Act, the following rules shall apply:-
+(a) the Commission shall issue a notice of refusal to grant an exemption
+on Form FCC. 5 set out in the First Schedule to these Rules;
+(b) the Commission may later withdraw its notice of refusal to grant
+an exemption, by:-
+(i) issuing notice to the applicant at least thirty working days
+before the withdrawal shall take effect; and
+(ii) providing the applicant with written reasons for its action.
+(2) Where the Commission decides to consider an application it has
+previously rejected, the provisions of Rule 50 shall apply.
+52.-(1) Where the Commission is contemplating revoking an exemption
+granted under section 12(6) of the Act, the Commission shall advise, in
+writing, the person concerned of the intention to do so, as well as publishing
+the notice required by rule 49(a).
+(2) The Commission may request further information from:-
+(a) the person concerned; or
+(b) any person who submits a representation in response to a notice
+published in terms of rule 49(a).
+(3) After considering any submissions or other information received in
+relation to the proposed revocation, the Commission shall:-
+(a) either revoke the exemption by issuing to the person concerned
+a notice of revocation through Form FCC. 6, or confirm in writing
+to that applicant the exemption as previously granted; and
+(b) give written reasons for its decision, as well as publishing the
+notice as required by rule 50(9).
+Proce
+dures con
+cerning
+practices
+that are
+not pro
+hibited
+Proce
+dures re
+lated to
+revoking
+exemp
+tion cer
+tificates
+
+[PDF PAGE 38]
+38
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+PART VII
+PUBLICA TIONS
+(a) Publication of Decisions
+53.-(1) The Commission shall publish in the Gazette or the
+Commission’s Official website every decision which it makes pursuant
+to the Act.
+(2) A copy of the published decision shall be placed in the Public
+Register.
+(3) Before publication of any report or a case, the Secretary of the
+Commission shall ensure that the requirements and procedures set out
+under section 76 of the Act regarding confidentiality of the material have
+been complied with.
+(4) Where a matter is contentious, it shall be referred to the Chairman
+who shall decide on behalf of the Commission what shall be excluded
+from the report.
+(5) The report under this rule shall contain:-
+(a) the names of the parties;
+(b) the key facts of the case;
+(c) the decision of the Commission the terms of any compliance
+orders or agreements; and
+(d) amount of fine, if any.
+(6) In any case where adverse findings have been made, the publication
+shall only be made after decisions of the Commission have been
+implemented.
+54.-(1) There shall be a Public Register which shall be available for
+inspection by the public at all times during working hours.
+(2) The department dealing with information systems and Services of
+the Commission shall be responsible to maintain the Public Register.
+(3) The materials to be maintained in the Public Register shall be
+obtained from all divisions of the Commission and shall be regularly
+updated.
+Publica
+tion of
+decision
+Public
+Register
+
+[PDF PAGE 39]
+39
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(4) The Public Register shall contain copies of:-
+(a) all formal decisions made in respect of offences committed under
+sections 8, 9, 10 and 11 of the Act, decisions to grant or refuse to
+grant exemptions under sections 12 and 13 of the Act and
+decisions to make or refuse to make orders under Part X and
+section 70 of the Act;
+(b) the reasons for granting or refusing exemptions or orders referred
+to under paragraph (a);
+(c) such other decisions and information as the Commission may
+determine;
+(d) reports and studies;
+(e) subsidiary legislation in the form of orders or rules of procedure
+made by the Commission;
+(f) adopted code of conduct and amendment made thereto;
+(g) any relevant information the Commission may determine.
+(b) Information Systems
+55.-(1) There shall be a department dealing with information Systems
+and Services.
+(2) The department dealing with Information Systems and Services
+shall be responsible for:-
+(a) the maintenance of the Core Database;
+(b) the maintenance of a reference file covering useful internet
+website;
+(c) acting as an intermediary in the retrival, storage and provision of
+electronic economic data an electronic economic evidence;
+(d) responsible for retrival and safe keeping of the electronic
+information obtained pursunt to rule 15(g) and (h) of these Rules;
+(e) storing and providing access to key hard copy texts;
+(f) the maintenance of the Public Register; and
+(g) the maintenance of the Commission’s internet  website.
+(3) In respect to sub-rule 2(a) and (d), access shall be for members
+and employees of the Commission.
+(4) In respet to sub-rules (2)(e) and (f), there shall be public access.
+Informa
+tion de-
+partment
+
+[PDF PAGE 40]
+40
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+56.-(1) The Commission’s website shall at minimum contain the
+following:-
+(a) the contents of the public register under rule 54 as provided from
+the respective Divisions;
+(b) the annual reports of the Commission;
+(c) press releases issued by the Commission;
+(d) any guidance that the Commission issues about the way in which
+it intends to interpret and apply the Act;
+(e) a brief account of the main Commission personnel and the
+organizational structure showing how they relate to each other;
+(f)  information on how to get in tough will the Commission, including
+contact names and telephone numbers; and
+(g) electronic platform for lodging of pleadings and other legal
+documents for competition matters as provided in these Rules.
+(2) Apart from the Internet website, radio and television shall be used
+by the Commission for publicity.
+PART VIII
+INQUIRIES, STUDIES AND RESEARCHES
+57.-(1) The Director responsible for Research and Advocacy shall be
+responsible for market Inquiries, studies and researches that relate to
+competition which flal under Part II of the Act.
+(2) The types of market inquiries, studies and researches under this
+Part may relate to:-
+(a) impedimants to competition which may exist in any economic
+sector under section 65(2)(e) of the Act; or
+(b)  the policies, procedures and programmes of regulatory bodies
+so as to assess their effect on competition under section 65(2)(h)
+of the Act.
+(3) The market inquiries, studies and researches under this Part may
+be initiated by:-
+(a) the Commission;
+(b) the Minister; or
+(c) a regulatory body.
+Internet
+website
+Investiga
+tion stud
+ies and in
+quiries
+
+[PDF PAGE 41]
+41
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(4) In respect to market inquiries, studies and researches, there shall
+be produced a strategy paper for the Commission which shall include:-
+(a) a statement of objectives;
+(b) criteria by which proposals shall be judged; and
+(c) an initial assessment of th optimum way of combining internal
+and external resources.
+(5) The strategy paper in sub-rule (4) shall be produced by the Director
+General in consultation with the Chairman.
+58.-(1) There shall be kept by the Director responsible for Research
+and Advocacy a record of all ideas and proposals for market inquiries,
+studies and researches.
+(2) The ideas and proposals may originate from complaints sent to the
+Commission, the Commissioners or form any other source.
+(3) The Director responsible for Research and Advocacy shall make
+assessment of all ideas and proposals appearing to have a value, including:-
+(a) potential benefits of the study;
+(b) possible cost of the study; and
+(c) possible duration of the study.
+(4) The Director responsible for Research and Advicacy shall, in
+consultation with the Director General, make recommendations to the
+Commission of the studies that are most valuable having regard to the
+criteria set out in the strategy paper made under rule 57(4).
+(5) The Commission may, decide on what studies to initiate, taking into
+consideration:-
+(a) any expectations of the study likely to be proposed by the Minister
+or a regulatory body;
+(b) the existing work load; or
+(c) the current resource position.
+(6) After the study has been authorised by the Commission, the Director
+responsible for Research all Advocacy shall:-
+(a) draw up detailed Terms of Reference; and
+(b) appoint a team to carry out the study making use of external
+specialists where appropriate.
+Initiation
+of the
+study
+
+[PDF PAGE 42]
+42
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(7) The members of the team referred to in sub-rule (6) shall be able
+to handle economic and legal issues that are likely to arise including the
+economic issues outside the competition field.
+59.-(1) Where a study is ordered by the Minister, he may consult the
+Commission about the subject-matter and scope of the study.
+(2) The Director General shall direct the Division responsible for
+Research and Advocacy to prepare submission to solicit the Commission’s
+views on the issue and convey them to the Ministry for directions.
+(3) Where the Minister has given directions to the Commission, the
+Director responsible for Research and Advocacy shall draw up the terms
+of reference based on the Minister’s directions.
+(4) The Director responsible for Research and Advocacy shall where
+appropriate appoint a team to carry out the study making use of external
+specialists.
+(5) The members of the team appointed in sub-rule (4) shall be able to
+handle economic and legal issues that are likely to arise including the
+economic issues outside the competition field.
+60.-(1) Where a regulatory body initiates a study,  it may consult the
+Commission in advance on the subject-matter and scope of the study.
+(2) The Director responsible for Research and Advocacy shall consult
+the Director General to determine the Commission’s views on the study
+and engage in a dialogue with the regulatory body on the same basis.
+(3) The terms of the strategy paper shall be taken into account in
+formulating the Commission’s views on the study.
+(4) Once the regulatory body has formally communicated the subject-
+matter of the study to Commission, the Director responsible for Research
+and Advocacy shall draw up detailed terms of reference reflecting the
+dialogue with the regulatory body.
+(5) The terms of reference in sub-rule (4) shall be approved by the
+Director General.
+Initiation
+by the
+Minister
+Initiation
+by a regu
+latory
+body
+
+[PDF PAGE 43]
+43
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(6) Where the Director General and the regulatory body are in
+agreement, the final text of the Terms of Reference shall be the document
+agreed between the two bodied for the purpose of the proposed study.
+(7) After establishing the subject of the study, the Director responsible
+for Research and Advocacy shall appoint the team to carry out the study
+making use of external specialists where appropriate.
+(8) The Director responsible for Research and Advocacy shall ensure
+that members of the team are collectively able to handle the economic
+and legal issies that are likely to arise both on competition and regulatory
+aspects.
+(9) The cost of the study shall be met by the relevant regulatory body.
+61.-(1) The Director responsible for Research and Advocacy shall
+make a public announcement to the effect that an inquiry under section
+68 of the Act has been set up.
+(2) The inquiry in sub-rule (1) shall be carried out involving investigation
+using an explicit methodological framework to be prescribed by the
+Commission.
+(3) The terms of reference of the inquiry may require the team to
+consider certain impediments to competition pursuant to section 65 of the
+Act and examine their effects on competition and any other economic
+benefits.
+(4) The data and views that have been sought at this point shall
+therefore need to be sufficient to provide the basis for writing the final
+report and hence enough to support eventual conclusions.
+(5) The methods used at this stage of an investigation shall be a
+combination of questionnaires and meetings.
+(6) An investigation framework shall be worked out to determine as
+far as possible what evidence to seek and how each part of that evidence
+is to be used in the ultimate analysis.
+Public in
+quiry for
+collection
+of data
+views
+
+[PDF PAGE 44]
+44
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(7) The questionnaires shall cover the whole range of evidence that is
+needed.
+(8) When designing the questionnaires it shall be ensured that all main
+areas contrubuting to the planned analysis are included.
+(9) A plan of operation shall be drawn up to set out what is to be done
+on weekly basis and to integrate the work on questionnaires with the
+arrangment of meetings.
+62.-(1) On completion of the date collection exercise, the team shall
+produce a report to summarize date and views collected and points towards
+the range of conclusions that may be drawn in the ultimate analysis.
+(2) The Director responsible for Research and Advocacy shall consider
+the report and decide whether any modifications need to be made on the
+scope of the study or the resources employed in lieu of what the team
+has so far discovered.
+(3) Where the Director responsible for Research and Advocacy in
+sub-rle (2) considers that no modification on the study is required it shall
+send the report to the Commission.
+(4) Where the study was initiated within the Commission, the Chairman
+shall decide after consulting other Commissioners if he sees fit, on the
+extent and nature of the modification to be made.
+(5) Where the Minister intiated the study:-
+(a) the Chairman shall determine what shall be the view of the
+Commission to a modification of the study; and
+(b) the Director responsible for Research and Advocacy shall make
+an appropriate proposal for the Ministry to decide on what
+modifications, if any, shall be made.
+(6) Where a regulatory body initiated the study:-
+(a) the Chairman shall determine what shall be the view of
+Commission to a modification of the study; and
+(b) the Director responsible for Research and Advocacy shall make
+an appropriate proposal to the regulatory body.
+Report
+from the
+collected
+data
+
+[PDF PAGE 45]
+45
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(7) Notwithstanding sub-rule (6), where there is a difference of views
+between the two sides, there shall be a dialogue to resolve the differences.
+(8) Where the Director responsible for Research and Advocacy decides
+that the scope of study shall be modified, it shall amend the terms of
+reference and make arrangements for any changes in the resources to
+be devoted to the study.
+63.-(1) The team appointed under rule 60(7) shall discuss on:-
+(a) take into account any modifications decided in the review;
+(b) revise the findings; and
+(c) draw up a plan of operations for further study.
+(2) The Division responsible for Research and Advocacy shall:-
+(a) identify and evaluate effects on competition together with any
+other economoc or technical effects arising from the behaviour
+or arrangements under scrutiny;
+(b) consider what shall be the effect of changes designed to eliminate
+or reduce any adverse effects on competition that had been
+identified; attempt to carry out some analysis of the effects of
+those changes in addition to collecting a range of views;
+(c) seek the views of experts in the relevant field as well as those of
+the interested parties; and
+(d) seek the views of the relevant government departments.
+64.-(1) The stud team referred to under rele 72 shall discuss with the
+Head of Research on the nature and contents of the final report to be
+produced which shall cover:-
+(a) the effects on competition arising from the bahaviour
+arrangements under scruting;
+(b) any other economic or technical effects of that behaviour or
+those arrangements;
+(c) changes that might be made to eliminate or reduce the adverse
+effects on competition;
+(d) the implications of those changes; and
+(e) the views of experts, interested parties and government
+departments on those changes and their possible implications.
+(2) The Director responsible for Research and Advocacy shall consider
+Evaluat
+ing ef
+fects on
+competi
+tion
+Final
+Report
+
+[PDF PAGE 46]
+46
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+the report and then send it to the Commission with recommendations
+about the conclusions to be drewn from the report and any further
+investigation that the Commissioners might themselves undertake.
+(3) The Commission shall then consider:-
+(a) the conclusions that it wishes to draw about the competition effects;
+(b) the conclusions that it wishes to draw about other economic and
+technical effects;
+(c) an assessment of overall impact;
+(d) the range of possible changes that it wishes to explore; and
+(e) the preliminary thinking on the likely impact of such changes.
+(4) Where the Commission wishes to explore a wider range of possible
+changes than has been covered in the team’s report or to go further in
+any other way, the Commission shall instruct the relevant Division
+responsible for Research and Advocacy to carry out further investigation
+that is required.
+(5) The Commission shall determine what meetings it wishes to hold
+with a view to ensure it has the opportunity to explore the key issues and
+that interested parties have been able to express their views direct to the
+Commission.
+(6) Where any further investigation required by the Commission has
+been carried out and the round of meetings with interested parties
+completed, the Commission shall meet to discuss coclusions and
+recommendations.
+(7) Where the study was initiated by a regulatory body, the Commission
+shall meet representatives of the regulatory body to discuss conclusions
+and recommendations in order to minimize any areas of disagreement
+between the two bodies.
+(8) The Director responsible for Research and Advocacy and the
+Commission shall set out a final report providings:-
+(a) the necessary facts and reasoning;
+(b) the conclusions they have reached on the economic study, and if
+relevant, technical impact of the bahaviour or arrangments under
+scrutiny; and
+(c) any recommendations that they may wish to make.
+
+[PDF PAGE 47]
+47
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(9) The Director responsible for Research and Advocacy shall:-
+(a) publish the report in the Public Register according to section
+77(3)(c) of the Act; and
+(b) ensure that the requirements set out under section 76 of the Act
+regarding confidentiality of material have been complied with.
+Provide that where a matter is contentious, it shall be referred to the
+Chairman who shall decide on behalf of the Commission wht to be excluded
+from the report on these grounds.
+(10) Where the study was initiated by the Minister, the report shall be
+made available to the Minister within the period of time allowed for the
+study by him pursuant to section 68(3) of the Act.
+(11) The handing over of the report by the Commission to the Minister
+shall also allow a reasonable period of time before the intended date of
+publication.
+(12) Where the study was initiated by a regulatory body, the report
+shall be made available to that body within a reasonable period of time
+before publication.
+PART IX
+GENERAL PROVISIONS
+65.-(1) Subject to the provisions of section 8 of the Act, the Commission
+may review an agreement upon application by a party.
+(2) Notwithstanding sub-rule (1), the Commission may on its own motion
+review its decision where it is satisfied that there are substantive changes
+in the agreement.
+66.-(1) Any person aggrieved by the decision of the Commission under
+the Act may appeal to the Tribunal.
+(2) An appeal under these Rules shall be made in accordance with
+section 61 of the Act and the Competition Rules.
+67.-(1) In setting the time-limits under these Rules the Commission
+shall have regard both to the time required for the preparation of the
+submission and to the urgency of the case.
+(2) Notwithstanding sub-rule (1), the time limits referred under rules
+10(8), 13, 19(3) and 35(4) shall not be less than twenty one days.
+Review of
+agree
+ments
+Appeals
+to Tribu
+nal
+Limitation
+of time
+
+[PDF PAGE 48]
+48
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(3) Where appropriate and upon request made before the expiry of
+the original time limit, the time may be extended.
+68.-(1) The fees payable for filing an applications for exemption of
+agreement with the Commission shall be eight million Tanzanian shillings
+plus annual fees of two million Tanzanian shillilngs multiplied by number
+of years requested for exemption.
+(2) Fees payable for filing application for merger shall be calculated
+from combined total annual turnover or assets contained in the last audited
+accounts of the merging firms whichever is higher as follows:-
+(a) firms with annual turnover or assets of Tanzania shillings eight
+hundred milllion to Tanzanian shillings twenty five billion shal be
+Tanzania shillings twenty five million;
+(b) firms with annual turnover or assets exceeding Tanzanian shillings
+twenty five billion and less than Tanzania shillings one hundred
+billion shall be Tanzanian shillings fifty million; and
+(c) firms with annual turnover or assets of Tanzanian shillings one
+hundred billion or above shall be Tanzanian shillings one hundred
+million.
+(3) Fees payable for reviewing an agreement shall be eight million
+Tanzanian shillings.
+(4) Fees payable for filing a complaint under Part II of the Act shall be
+five hundred thousand Tanzanian shillings;
+(5) Notwithstanding sub-rule (4), fees shall not be charged to:-
+(a) a person submitting information concerning an alleged prohibited
+practice; or
+(b) a consumer submitting a complaint against an alleged prohibited
+practice.
+(6) A cost of three million Tanzanian shillings shall be charged on
+withdrawal of a complaint.
+(7) Where an application in refused, the filing fees paid in respect of
+that application is non refundable.
+(8) A fees payment will be deemed to be received by the Commission
+on:-
+(a) the date that a cheque or money order in payment of that fees is
+delivered to the Commission; or
+Fees
+
+[PDF PAGE 49]
+49
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(b) the date that direct deposit or an electronic transfer of funds in
+the amount of that fee is credited to the account of the
+Commission at the financial institution to which it is transferred.
+(9) The Commission may charge a fees of five hundred Tanzania
+shillings per A4 size gage or part thereof to any person wishing to copy a
+record in the possession of the Commission and one thousand Tanzania
+shillilngs each for the Commission’s certificate on certified copies of
+ducuments.
+(10) The amount of each fees set out in this rule, shall be exclusive of
+VAT.
+69.-(1) After auditing of the Commission accounts by the Controller
+and Auditor General under section 79 of the Act, the Management letter
+containing findings shall be submitted to the Division Dealing with
+Corporate Affairs.
+(2) The Division dealing with Corporate Affairs shall respond to the
+findings in sub-rule (1).
+(3) The response in sub-rule (2) shall be submitted to the Commission
+Management by the Division dealing with Corporate Affairs.
+(4) The Management shall go through the responses in sub-rule (3)
+and agree or make changes.
+(5) The Division dealing with Corporate Affairs shall submit the report
+in sub-rule (4) to the Commission for approval.
+(6) The approval report shall be sent to the Controller and Auditor
+General.
+70.-(1) The Commission shall make Guidelines for purposes of providing
+guidance for simplified explanations of the Act and the Rules.
+(2) The Guidelines made under sub-rule (1) shall be complementary to
+and in no way override the providions of the Act and these Rules.
+71. The Fair Competition Commissiion Prosedure Rules, 2013 are
+hereby revoked.
+Re vo ca-
+tion GN.
+No. 73 of
+2013
+Accounts
+and finan-
+cial audit
+Guidance
+notes
+
+[PDF PAGE 50]
+50
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FIRST SCHEDULE
+________
+FORMS
+________
+FCC. 1
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+RULE 10(1)
+________
+COMPLAINT FORM
+Made under section 69 of the Fair Competition Act, 2003 and Rule 10(1) of the Fair
+Competition (Commission Procedure) Rules, 2018.
+This form shall be completed to the best of your knowledge, and submitted to the Commission for
+consideration of your complaints.
+If this complaint is lodged by a person other than an individual, please provide contact details of the
+person authorized to discuss the complaint.
+This form is a public record. However, the attached description of conduct and other information
+relating to this complaint is not part of the public record. You have a right to identify information that
+ou believe is confidential by completing the Confidentiality Claim form (Form FCC. 2) and submitting
+it with this form.
+1. Name and address of the person submitting complaint
+...........................................................................................................................................
+2. Name and address of person whose conduct is the subject of this complaint
+...........................................................................................................................................
+3. Description of complaint (provide a concise statement of the condust that is the subject of the
+compaint):
+...........................................................................................................................................
+...........................................................................................................................................
+...........................................................................................................................................
+......................................................................................................................
+
+[PDF PAGE 51]
+51
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+4. Please attach to this form any relevant documents, as well as a typed statement
+describing the conduct that is the subject of this complaint, including:-
+the name of each party involved in the contact;
+the dates on which the conduct occurred;
+a statement inducating when and how you became aware of the conduct and
+any other information you consider relevant.
+5. It the conduct continuing?
+.....................................................................................................................
+If not, when did the conduct end?
+.....................................................................................................................
+6. Name, address and title of the signatory
+Signed by the complainant
+.........................................................
+(Signature)
+..........................................................
+(Full Name)
+...........................................................
+(Address)
+............................................................
+(Title)
+............................................................
+(Date)
+7. For official use only:
+Commission file number: ......................................
+Date filed: .............................................................
+8. Contact:
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 52]
+52
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 2
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rules 10(10, 33(3) and 50(6)
+________
+COMFIDENTIALITY CLAIM FORM
+Made under section 76(2) of the Fair Competition Act, 2003 and Rule 10(10, 33(3) and 50(6) of
+the Competition Rules, 2018.
+The Commission shall confidentially any information identified by you in this Form after satisfying
+itself that the information is confidential according to the provisions of the Act and Rules made under
+the Act.
+Until the Commission satisfies itself on comfidentiality of your information, your information will be
+treated as confidential by the Commission, subject to any public notice requirements set out in the
+Act, or Rules made under the Act.
+Confidential information means trade, business or indutrial information that belongs to a person, and
+has a particular economic value
+1. Name [Applicant] and file number of the case
+...........................................................................................................................................
+2. Confidential information
+One a separate sheet of paper, list the following information and set out facts and onntentions
+supporting your claim that the identified information is confidential:-
+Column 1 - Name of the document that contains the confidential information
+Column 2 - The page and line number at which the confidential information begins and ends
+Column 3 - The name of the person that owns the particular information
+Column 4 - The nature of the economic value of the infomation
+Column 5 - The existing restrictions on access to the information
+3. Statement of Confidentiality:
+I, .......................................................................... Compiled, or supervised the persons who compiled
+the attached list. I believe that the information identified in that list is confidential information as
+defined under section 76 of the Fair Competition Act, 2003.
+4. Name, address and title of signatory:
+...................................................................................................
+
+[PDF PAGE 53]
+53
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+Signature: Date:
+...............................................................           ................................................................
+5. For official use only:
+Commission file number: ......................................
+Date filed: .............................................................
+6. Contact
+The Fair Competition Commission
+CRDB Head Office Building.
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 54]
+54
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 3
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 50(1)
+________
+APPLICATION FOR EXEMPTION
+Agreements affecting competition
+Made under section 12 of the Fair Competition Act, 2003 and Rule 50(1) of the Competition Rules,
+2018.
+Application for an exemption to make an agreement of which the object, effect or likely effect of the
+agreement is to appreciably prevent, restrict or distort competition.
+This Application shall be accompanied by filing fees prescrobed in rule 68.
+PLEASE FOLLOW DIRECTIONS ON BACK OF THIS FORM
+1. Applicant
+(a) Name of Applicant:
+(Refer to direction 2)
+...........................................................................................................................................
+...........................................................................................................................................
+...........................................................................................................................................
+(b) Short description of business carried on by applicant:
+(Refer to direction 3)
+...........................................................................................................................................
+...........................................................................................................................................
+...........................................................................................................................................
+...........................................................................................................................................
+(c) Address in Tanzania for service of documents on the applican:
+...........................................................................................................................................
+...........................................................................................................................................
+...........................................................................................................................................
+...........................................................................................................................................
+
+[PDF PAGE 55]
+55
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+2. Agreement
+(a) Description of the agreement, whether proposed or actual, for which exemption is
+sought:
+(Refer to direction 4)
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+(b) Description of those provisions of the agreement that are, or would or might,
+substantially lessen cmpetition:
+(Refer to direction 4)
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+(c) Description of the goods or services to which the agreement (whether proposed or
+actual) relate:
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+(d) The term for which exemption of the agreement (whether proposed or actual) is being
+sought and grounds supporting this period of exemption:
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+3. Parties to the proposed arrangement
+(a) Names, address and descriptions of business carried on by other parties or proposed
+parties to the contract or proposed agreement:
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+(b) Names, address and descriptions of business carried on by parties and other persons
+on whose behalf this application is made:
+(Refer to direction 5)
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+
+[PDF PAGE 56]
+56
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+4. Public benefit claims
+(a) Arguments in support of exemption:
+(Refer to direction 6)
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+(b) Facts and evidence relied upon in support of these claims:
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+5. Market definition
+Provide a description of the market i.e. the goods or services provides including a range of
+substitutes available for the relevant goods or services, and any restriction on the supply
+or acquisition of the relevant goods or services (for example geographic or legal
+restrictions):
+(Refer to direction 7)
+(a) Product market .......................................................................................
+......................................................................................................................
+(b) Geographical market ..............................................................................
+......................................................................................................................
+......................................................................................................................
+6. Public detriments
+Detriments to the public resulting or likely to result from the exemption, in particular the
+likely effect of the agreement on the prices of the goods or services described at paragraph
+2(c) and the goods or services in other effected markets:
+(Refer to direction 8)
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+7. Further information
+Name and address of person authorised by the applicant to provide additional
+information in relation to this application:
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+......................................................................................................................
+
+[PDF PAGE 57]
+57
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+Dated ...................................................
+Signed by/on behalf of the applicant
+...............................................................
+(Signature)
+................................................................
+(Full Name)
+.................................................................
+(Position in Organisation)
+8. For official use only:
+Commission file number: ........................
+Date filed: ................................................
+9. Contact:
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 58]
+58
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+DIRECTIONS:
+1. In lodging this form, applicants must iclude all information, including supporting
+evidence that they wish the Commission to take into account in assessing for exemption.
+Where there is insufficient space on this form to furnish the required information, the
+information is to be shown on separate sheets, numbered consecutively and signed by or
+on behalf of the applicant.
+2. Where the application is made by or on behalf of a corporation, the name of the
+corporation is to be inserted in item 1(a), not the name of the person signing the
+application, and the application is to be signed by a person authorised by the corporation
+to do so.
+3. Describe that part of the applicant’s business relating to the subject matter of the
+agreement in respect of which the application is made.
+4. Provide details of the agreement (whether proposed or actual) in respect of which the
+exemption is sought. Provide details of those provisions of the agreement that are, or
+might, substantially lessen competition.
+In providing these details:-
+(a) to the extent that any of the details have been reduced to writing - provide a true
+copy ot the writing; and
+(b) to the extent that of any of the details have not been reduced to writing - provide
+a full and correct description of the particulars that have not been reduced to
+writing.
+5. Where exemption is sought on behalf of other parties provide details of each of those
+parties including names, addresses, and descriptions of the business activities engaged in
+relating to the subject matter of the exemption, and evidence of the party’s consent to
+exemption heing sounght on their behalf.
+6. Provide details of those public benefits claimed to result or to be likely to result from
+the proposed agreements including quantification of those benefits where possible.
+7. Provide details of the market(s) likely to be effected by the agreement, in particular
+having regard to goods or services that may be substitutes for the good or service that is
+the subject matter of the exemption.
+8. Provide details of the detriments to the public which may result from the proposed
+agreement including quantification of those detriments where possible.
+9. Where the application is made also in respect of other agreements, which are or will be
+in similal terms to the agreement referred to in item 2, furnish with the application details
+of the manner in which those agreements vary in their terms from the agreements referred
+to in item 2.
+
+[PDF PAGE 59]
+59
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 4A
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+NOTICE OF MA TERIAL INCOMPLETENESS
+(EXEMPTION OF AN AGREEMENT)
+Made under Section 12(1) of the Fair Competition Act, 2003 and
+Rule 50(2)(a) of the Competition Rules, 2018
+The Applicants
+(Names and Addresses) .............................................................................
+1. You are hereby notified that the information, including all documents submitted
+with the notification is materially incomplete.
+2. Thus, you are hereby advised to provide the following information:
+................................................................................................................................
+................................................................................................................................
+3. The information supplied to the Commission shall be true and complete. Incorrect
+and misleading information may render a party liable to fines as provided for under
+Section 71(6) and 60 of the Fair Competition Act, 2003.
+4. This notice has been issued this ....... day of .............................., 20......
+5. Commission file number ..............................................................
+6. Name and title of the person authorized to sign.
+...........................................................................
+(Signature)
+............................................................................
+(Name)
+............................................................................
+(Title)
+7. Contact
+The Fair Competition Commission,
+GEPF House, 2nd Floor,
+Plot No. 37, Regent Estate, Bagamoyo Road,
+P. O. Box 7883,
+Dar es Salaam, Tanzania
+E mail: info@competition.or.tz
+Website: www.competition.or.tz
+
+[PDF PAGE 60]
+60
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 4B
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+PROVISION OF INFORMA TION ON SPECIFIC EXEMPTION SOUGHT
+Made under Section 12(1) of the Fair Competition Act, 2003 and
+Rule 50(2)(b) of the Competition Rules, 2018
+The Applicants
+(Names and Addresses) .............................................................................
+1. You are hereby notified that the information, including all documents submitted
+with the notification does not provide the specific exemption sought.
+2. Therefore, you are hereby advised to provide information on the specific
+exemption that you are seeking from the Commission.
+3. The information supplied to the Commission shall be true and complete. Incorrect
+and misleading information may render a party liable to fines as provided for under
+Section 71(6) and 60 of the Fair Competition Act, 2003.
+4. This notice has been issued this ....... day of .............................., 20......
+5. Commission file number ..............................................................
+6. Name and title of the person authorized to sign.
+...........................................................................
+(Signature)
+............................................................................
+(Name)
+............................................................................
+(Title)
+7. Contact
+The Fair Competition Commission,
+GEPF House, 2nd Floor,
+Plot No. 37, Regent Estate, Bagamoyo Road,
+P. O. Box 7883,
+Dar es Salaam, Tanzania
+E mail: info@competition.or.tz
+Website: www.competition.or.tz
+
+[PDF PAGE 61]
+61
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 4C
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+NOTICE OF COMPLETE FILING
+(EXEMPTION OF AN AGREEMENT)
+Made under Section 12(1) of the Fair Competition Act, 2003 and
+Rule 50(3) of the Competition Rules, 2018
+The Applicants
+(Names and Addresses) .............................................................................
+1. You are hereby notified that the information, including all documents submitted in
+the notification is complete.
+2. This notice has been issued this .......... day of ......................, 20....
+3. Commission file number ..............................................................
+4. Name and title of the person authorized to sign.
+...........................................................................
+(Signature)
+............................................................................
+(Name)
+............................................................................
+(Title)
+5. Contact
+The Fair Competition Commission,
+GEPF House, 2nd Floor,
+Plot No. 37, Regent Estate, Bagamoyo Road,
+P. O. Box 7883,
+Dar es Salaam, Tanzania
+E mail: info@competition.or.tz
+Website: www.competition.or.tz
+
+[PDF PAGE 62]
+62
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 5
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 51(1)
+________
+NOTICE OF REFUSAL TO GRANT EXEMPTION
+Made under Rule 51(1) of the Competition Rules, 2018
+To: The Applicant (Name and address): .............................................................
+If the Commission determines that an application does not satisfy circumstances
+contemplated by section 12 of the Act, the Commission shall issue a Notice of Refusal
+to Grant Exemption in a prescribed form.
+1. Your (the applicant) application for Exemption does not concern a prohibited
+practice. Consequently you are hereby granted a Notice of Refusal to Grant Exemption
+by the Commission on that regard.
+2. Reasons for Commissions decision
+.....................................................................................................................
+3. This Notice of Refusal to Grant Exemption has been issued this [insert da] day of
+[insert month] [insert year].
+4. Commission file number ..................................................................
+5. Name and title of the person authorized to sign
+...........................................................................
+(Name)
+...........................................................................
+(Signature)
+............................................................................
+FAIR COMPETITION COMMISSION
+6. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 63]
+63
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 6
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 51(13)
+________
+NOTICE OF REVOCA TION OF EXEMPTION
+Made under Rule 51(13) of the Competition Rules, 2018
+To: The Applicant (Name and address): .............................................................
+If the Commission is contemplating revoking an exemption granted under section 12(6)
+of the Act, the Commission may request further information from the person concerned
+or from any person who submits a representation in response to an notice published
+under Rule 50(7).
+Where after considering any submissions or other information received in relation to the
+proposed revocation the Commission decides to revoke the exemption, it shall issue to
+the person concerned a Notice of Revocation in a prescribed form.
+1. Your (the acquiring firm) are hereby granted a Notice of Revocation of Exemption on
+the following grounds:
+(a) Change of circumstances: .......................................................................
+(b) Exemption granted earlier was based on fallse, misleading or incomplete
+information.
+....................................................................................................................
+2. This Notice of Revocation of Exemption has been issued this [insert day] day of
+[insert month] [insert year].
+3. Commission file number ..................................................................
+4. Name and title of the person authorized to sign
+(Name) ...........................................................................
+(Signature) ................................................
+FAIR COMPETITION COMMISSION
+5. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 64]
+64
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 7
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 13
+________
+SUMMONS FOR APPEARANCE BEFORE THE COMMISSION
+IN THE MATTER OF COMMISSION CASE NO ..... OF .......... REGARDING
+COMPLAINT/MERGER/EXEMPTION
+PARTIES: .....................................................................................
+.....................................................................................
+.....................................................................................
+.....................................................................................
+By virtue of section71(1) & (2) of the Fair Competition Act, 2003 and Rule 13 of the
+Competition Rules, 2018 you are hereby summoned to appear to furnish the informa-
+tion i writing/to give oral evidence/to produce the specified document; and you should
+produce on that day all the ducuments upon which you intend to rely in support of the
+case before the Fair Competition Commission at the time and place specified below.
+Date ....... day ................ Time.............
+Venue: .................................. (Specify room number, floor etc)
+Details of information to be furnished/documents to be produced
+(1) .............................................................................................
+(2) .............................................................................................
+(3) .............................................................................................
+Given under my hand and seal of the Commission this ...... day of ..................., 20.......
+.............................................
+Chairman/Director General
+WITNESS: By virtue of section 71 of the Fair Competition Act, 2003 I ........................
+on this ................... day of ............................., 20.......... have served the abovementioned
+and has given summon in hand to ......................... in person/who is ............... to the said
+............................ or leaving it at ......................... which is the usual place of abode/place
+of work of the abovementioned.
+.................................................... ..........................................................
+Signature of the serving            Signature of the person summoned/
+officer/clerk            receiver on behalf
+
+[PDF PAGE 65]
+65
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 8
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 33(2)
+________
+MERGER NOTIFICATION
+(Application for Merger Clearance)
+To: The Fair Competition Commission
+Application is hereby made under section 11(2) of the Fair Competition Act, 2003, rule
+33(2) of the Competition rules, 2018 for a clearance to acquire a business or to acquire
+assets of the person (including a body corporate), named in Item 2 below.
+This Application shall be accompanied by filing fees prescribed under rule 68.
+PLEASE FOLLOW DIRECTIONS ON BACK OF THIS FORM
+1. The Applicant (the Acquiring firm)
+(a) Name and registered office of the Applicant including the place of incorporation
+................................................................................................................
+(b) Describe the business or businesses carried on by the Applicant including the
+products and services the Applicant supplies
+................................................................................................................
+(See Direction 3 of this Form)
+(c) Provide details of all related bodies corporate of the Applicant.
+................................................................................................................
+(See Direction 4 of this Form)
+(d) Address in Tanzania for service of ducuments on the Applicant
+................................................................................................................
+(e) Name and address of any person for whose benefit or on whose behalf the shares or
+assets to be acquired shall be held
+.....................................................................................................................
+2. The Target firm
+(a) In the case of a body corporate whose shares or assets are to be acquired:-
+(i) Name of the body corporate
+............................................................................................................
+(ii) Place of incorporation of the body corporate
+............................................................................................................
+
+[PDF PAGE 66]
+66
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(iii) Registeref office of the body corporate
+............................................................................................................
+(iv) Describe the business or businesses carried on by the body corporate including the
+products and services the Target supplies.
+.............................................................................................................
+(See Direction 5 of this Form)
+(v) Number and type of shares or description of assets to be acquired
+.............................................................................................................
+(b) In the case of a body corporate whose shares are to be acquired, provide details of:-
+(i) the issued capital of the body corporate;
+(ii) the holders of such issued capital.
+.................................................................................................
+(c) Provide details of all related bodies corporate of teh body corporate whose shares or
+assets are to be acquired by the Applicant
+..............................................................................................................
+(See Direction 4 of this Form)
+(d) In the case of a person (other than a body corporate) whose assets are to be acquired
+(i) Name and address of the person
+..............................................................................................................
+(ii) Describe the business or businesses carried on by the person including the products
+and services the person supplies
+..............................................................................................................
+(iii) Describe the assets to be acquired
+..............................................................................................................
+3. The acquisition
+(a) Outline the nature and details of the contract, arrangement, understanding or proposal
+for the acquisition and, if applicable, the public offer document, and provide a copy of
+any relevant contract, document or public offer document
+..............................................................................................................
+(See Direction 6 of this Form)
+(b)Provide details fo the commercial rationable for the acquisition and copies of all
+documents that were prepared specifically for the purpose of evaluating the proposed
+acquisition with respect to the market(s) affected and the nature of those effects.
+..............................................................................................................
+(c) Indicate whether the acquisition involves proposed ancillary arrangements and de-
+scribe the proposed arrangements
+..............................................................................................................
+4. Background information
+(a) Describe sathe industry sector(s) to which sthe acquisition relates
+...............................................................................................................
+(See Direction 7 of this Form)
+(b) Describe the area(s) of overlap in the operations of the Applicant and Target and any
+related bodies corporate (the merger parties)
+...............................................................................................................
+(See Direction 8 of this Form)
+
+[PDF PAGE 67]
+67
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(c) Provide details of any acquisitions made by the merging parties and any other
+acquisitions made in ateh industry sector(s) during the past five years.
+..............................................................................................................
+(d) Provide details of any existing vertical or horizontal relationships between the
+merging parties
+...............................................................................................................
+(e) Describe any other cooperative agreements to which any of the merger parties is a
+party
+...............................................................................................................
+(See Direction 9 of this Form)
+5. Market definition
+Describe the relevant market(s) (product, functional, geographic and time) relevant to the
+assessment of the acquisition’s effect on competition - this includes market(s) for the
+supply of goods or services and market(s) for the acquisition of goods or services (the
+relevant market(s))
+................................................................................................................
+(See Direction 10 of this Form)
+6. Suppliers fo inputs
+(a) Describe te inputs into the production of goods or services by each of the merger
+parties in the relevant market(s) and indicate the value of those inputs as a proportion of
+total production. Where alternative inputs are available, provide a list of substitutes
+...............................................................................................................
+(b) Provide the names and contact details of a representative selection of suppliers of
+inputs to each of the merger parties in the relevant market(s)
+...............................................................................................................
+(See Direction 11 of this Form)
+(c) Describe any purchasing arrangements in place with each of the suppliers identified
+above and outline whether it is expected or anticipated that these arrangements will
+continue or be varied in any way post-acquisition
+..............................................................................................................
+7. Competitors
+(a) Provide details of alternative suppliers of products now or shortly to be competitive
+with, or otherwise substitutable for, goods or services produced by each of the merger
+parties in the relevant market(s)
+.............................................................................................................
+(See Direction 12 of this Form)
+(b) If the competitors identified above do not produce goods or services which are
+substantially the same as those goods or services produced by the merger parties in the
+relevant market(s), expain why it is considered that these goods or services are viable
+alternatives
+..............................................................................................................
+8. Customers
+(a) Provide the names and contact details of a representative selection of the customers of
+each of the merger parties in the relevant market(s)
+
+[PDF PAGE 68]
+68
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+..............................................................................................................
+(See Direction 13 of this Form)
+(b) Describe the distribution channels available to the merger parties in supplying goods
+and services to customers and identify the relevant distribution channels in respect of
+each of the customers identified above
+...............................................................................................................
+(c) Describe the existing supply arrangements that the merger parties have in place with
+the customers identified above and whether it is expected or anticipated that these
+arrangements will continue or be varied in any way post-acquisition
+................................................................................................................
+(See Direction 14 of this Form)
+9. Market concentration
+Provide estimates of current and post-acquisition market shares for the merger parties
+and existing competitors in the relevant market(s) identified above
+................................................................................................................
+(See Direction 15 of this Form)
+10. Constraints on the exercise of market power
+(a) Provide details of the extent to which the merger parties are likely to be constrained
+post-aquisition from raising prices and profit margins and/or reducing the quality of
+goods and/or services by:
+(i) suppliers in the relevant market(s)
+...............................................................................................................
+(ii) competitors in the relevant market(s)
+...............................................................................................................
+(iii) customers in the relevant market(s)
+...............................................................................................................
+(iv) others
+...............................................................................................................
+(See Direction 16 of this Form)
+11. Imports
+(a) Provide details of the actual and potential level of imports in the relevant market(s)
+and details of the importers and their suppliers
+..............................................................................................................
+See Direction 17 of this Form)
+(b) Describe any barriers to importation in the relevant market(s) including whether
+significant investment in facilities or in dustribution arrangements in needed to facilitate
+importation
+..............................................................................................................
+(c) Describe facilities and distribution arrangements necessary for importation in the
+relevant market(s), their capacity and who has ownership or control of these facilities
+and arrangements
+...............................................................................................................
+(d) Provide details of the price of imports as opposed to domestics production in sthe
+relevant market(s) and explain any divergence in these prices
+...............................................................................................................
+
+[PDF PAGE 69]
+69
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(e) Provide details as to the extent of constraint which would be likely to be provided by
+imports on domestic suppliers including the merger parties in the relevant market(s)
+post-acquusition
+.............................................................................................................
+(See Direction 18 of this Form)
+12. Exports
+(a) Provide details of the actual and potential level of exports in the relevant market(s)
+.................................................................................
+(See Direction 19 of this Form)
+(b) Describe the export barriers faced by suppliers of inputs to the merger parties in the
+relevant market(s)
+.............................................................................................................
+(c) Provide details of the sale price of exports as opposed to domestic sale in the relevant
+market(s) and explain any divergence in these prices
+.............................................................................................................
+(d) Describe whether the suppliers of inputs to the merger parties are or would be likely
+to be able to export such inputs post-aquisition and, if so, describe the extent of
+constraints this would be likely to provide on the merger parties post-acquisition
+.............................................................................................................
+(See Direction 20 of this Form)
+13. Barriers to entry and expansion
+(a) Provide details of any barriers to entry and expansion in the relevant market(s)
+(i) Natural barriers ..............................................................
+(ii) Strategic barriers ...........................................................
+(iii) Regulatory and policy barriers
+(See Direction 21 of this Form)
+(b) Provide details of any firms not currently producing goods or services in the relevant
+market(s) but which could enter the relevant market(s) quickly and provide an effective
+competitive constraint
+...............................................................................................................
+(c) Provide details of any firms which have recently tried and failed to enter the relevant
+market(s), including the reasons (if known) for their failure
+...............................................................................................................
+14. Dynamic charactetistics
+Provide details of the dynamic characteristics of the relevant market(s)
+................................................................................................................
+(See Direction 22 of this Form)
+15. Vigorous and effective competitor
+Indicate whether the Target or any other participant in the relevant market(s) could be
+described as a vigorous and effective competitor to the Applicant or other market
+participants to any and to what extent, and why
+................................................................................................................
+(See Direction 23 of this Form)
+
+[PDF PAGE 70]
+70
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+16. Vertical integration
+(a) Describe whether the acquisition would, or would be likely to, result in increased
+vertical integration between firms involved at different functional levels in the relevant
+market(s)
+.............................................................................................................
+(See Direction 24 of this Form)
+(b) Describe whether the acquisition would, or would be likely to, increase the risk of
+limiting the supply of inputs or access to distribution such that downstream or upstream
+rivals face higher coats post-acquisition or full or partial forceclosure of key inputs or
+disribution channels
+.............................................................................................................
+17. Prices and profit margins
+(a) Provide details of recent and current levels of pricing in the relevant market(s)
+including the use of rebated and discounts
+.............................................................................................................
+(b) Provide details of supply  costs of goods and services supplied by the merger parties
+including manufacturing, marketing and sistribution costs in the relevant market(s)
+..............................................................................................................
+(c) Describe the competitive constraints, if any, which would, or would be likely to,
+prevent the merger parties from being able to significantly and sustainably increase sthe
+prices paid by their customers, or lower the prices paid to their suppliers, post-aquisition
+in the relevant market(s)
+...............................................................................................................
+(d) Describe the impact of the acquisition on the potentioal for coordinated conduct
+between remaining competition in sthe relevant market(s) post-acquisition
+................................................................................................................
+(See Direction 25 of this Form)
+(e) Describe the likely impact of the acquisition on the profit margins of the merger
+parties post-acquisition and the expected cause of any change
+................................................................................................................
+18. Related markets
+(a) Describe the extent of complementarities between products supplied by the merger
+parties
+................................................................................................................
+(See Direction 26 of this Form)
+(b) Describe the extent to which the products indentified above are, or could be, offered
+to customers as a product range through bundling or tying
+................................................................................................................
+(See Direction 27 of this Form)
+(c) Describe the competitive constraints that would, or would be likely to, prevent such
+bundling or tying from significantly foreclosing the ability of the merged entity’s com-
+petitors to compete, including foreclosure of access to distribution by the merged entity’s
+competitors
+...............................................................................................................
+
+[PDF PAGE 71]
+71
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+19. Other grounds for grant of clearance
+Outline any grounds for the granting by the Commission of a clearance not already
+addressed above
+..............................................................................................................
+20. The counterfactual
+Describe the likely state of the relevant market(s) in the future if the proposed
+acquisition does not take place, giving reasons
+..............................................................................................................
+21. International
+(a) Does the acquisition involve
+(i) A company operating in Tanzania that has a foreign parent?
+..............................................................................................................
+(ii) Tanzanian businesses or consumers affected by conduct occurring overseas?
+..............................................................................................................
+(iii) Foreign consumers affected by conduct occurring in Tanzania?
+..............................................................................................................
+(iv) Conduct occurring across international boundaries?
+..............................................................................................................
+(b) Provide details of competition authorities in jurisdictions other that Tanzania to
+which the proposed acquisition has been, or is intended to be, notified and the timing of
+such nitifications
+..............................................................................................................
+22. Attachments:
+Attach copies of the following for both acquiring and target firm:-
+(a) Memorandun and Articles of Association;
+(b) Copies of audited annual financial statements for the last three years;
+(c) Strategic business plans;
+(d) Certificates of incorporation/registration;
+(e) Annual performance report.
+23. Undertaking
+The Applicant is required, pursunt to rule 42(7) of the Competition Rules, 2018 to give
+an undertaking to the Commission that the acquisition will not be implement while the
+application for clearance is being considered by the commission. An undeertaking which
+is in a prescribed form that must be submitted to the Commission is attached to this form.
+24. Further information
+Name, postal address, telephone, facsimile and email contact details of person authorized
+by the Applicant to provide additional information in relation to this application
+...............................................................................................................
+25. Information provided in relation to the Target firm
+Where the Target firm has been consulted during the preparation of information provided
+in response to the questions contained in this Form relating to the Target firm, an
+authorised representative of the Target firm must indicate here that information relating
+to the Target firm is complete and accurate.
+
+[PDF PAGE 72]
+72
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+Dated .................................................................
+Signed by/on behalf of the Target firm
+............................................................................
+(Signature)
+............................................................................
+(Full Name)
+Note: If the Target is a corporation, state position occupied in the corporation by person
+signing. If signed by a legal Counsel on behalf of the Target firm, tis fact must be stated.
+26. Declaration
+The undersigned declare that, to the best of their knowledge and belief, the information
+given in response to questions in this form is true, correct and complete, that complete
+copies of ducuments required by this form have been supplied, and that all estimates are
+identified as such and are their best estimates of the underlying facts and that all the
+opinions expressed are sincere.
+The undersigned are aware of the provisions of section 71 of the Fair Competition Act,
+2003.
+.............................................................. ..........................................................
+Signature of authorised person Signature of authorised person
+.............................................................. ..........................................................
+Office held Office held
+.............................................................. ..........................................................
+(Print) Name of authorised person (Print) Name of authorised person
+This .................(insert day) day of .................... (insert month ................... (insert year)
+Note: If the Applicant os a corporation, state position occupied in the corporation by
+person signing. If signed by a legal Counsel on bahalf of the Applicant, this fact must be
+stated.
+Undertaking to the Fair Competition Commission given for the purposes of
+rule 33(7) of the Competition Rules, 2018
+By
+(Insert name of company)
+1. This undertaking (the Undertaking) is given to the Fair Competition (the Commission)
+by (name of the firm) of (firm’s address)
+2. [Name fo the firm] has nade an application for a merger clearance pursuant to section
+11 of the Act.
+3. [Name of the firm] hereby undertakes that it shall not give effect to the merger/
+acquisition which is the subject of the application referred to in paragraph 2 while the
+application is being considered by the Commission.
+4. This Undertaking comes into effect when:-
+(a) the Undertaking is executed by [Name of the firm]; and
+(b) the Commission accepts the Undertaking so executed.
+
+[PDF PAGE 73]
+73
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+5. (Name of the firm) acknowledges that the Commission will make this Undertaking
+available for public inspection.
+EXECUTED BY [Name of the firm]
+.................................................... .......................................................
+Signature fo Authorised Person                 Signature fo Authorised Person
+.................................................... .......................................................
+Office Held Office Held
+..................................................... .......................................................
+(Print) Name of Authorised Person (Print) Name of Autahorised Person
+This [insert da] day of [insert month] [ insert year].
+ACCEPTED BY THE COMMISSION
+...................................................................
+Commission Chairperson/Director General
+DIRECTIONS
+1. Where there is insufficient space on this Form to furnish the required information, the
+information must be shown on separate sheets, numberred consecutively ad signed by, or
+on behalf of, the Applicant.
+2. In all cases, evidence must be provided to support the contentiions made in responding
+to the questions on this Form.
+3. The response must include details of the ownrship structure (including a list of
+shareholders with a greater than five per cent shareholders) adn interests of the
+Applicant. The response must also include a copy of the Applicant’s most recent annual
+report.
+4. The following definitions apply in relation to question 1(c) and 2(c):-
+“related body corporate” means:-
+(a) a holding company of another body corporate; or
+(b) a subsidiary of another body corporate; or
+(c) subsidiary of a holding company of another body corporate;
+“subsidiary”, in relation to a body corporate (first body) means a first body that is
+controlled by another body (other body), because:
+(a) the other body-
+(i) controls the composition of the first body’s board; or
+(ii) is in a position to cast, or control the casting of, more than one half of the
+maximum number fo votes sthet might be cast at a general meeting of the
+first body corporate; or
+(iii) holds more than one half of the issued share capital of the first body
+(excluding andy part of that issued share capital that carries no right to
+participate beyond a specified amount in a distribution of either profits or
+capital); or
+(b) the first boyd is a subsidiary of a subsidiary of the other body.
+
+[PDF PAGE 74]
+74
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+“holding company”, in relation to a body corporate, means a body corporate of which
+the first body corporate is a subsidiary.
+5. The response must include details of the ownership structure (including a list of
+sharehoders with a greater that five per cent shareholding) and interests of the Target. The
+response must also include a copy of the Targer’s most recent annual report.
+6. The response must include the dat on which the contract, arrangement, understanding
+or proposal was, or in intended to be, concluded, the intended date on which the
+acquisition will be consummated and the consideration exchanged in relation to the
+acquisition. Where available, a copy of the contract, arrangement, understanding or
+proposal between the Applicant and the Target must be provided with this Form.
+7. The response must include background information in relation to the industry sector(s),
+a description of the role of the Applicant and the Target in the industry sector(s)
+including a description of the goods or services supplied both in Tanzania and
+internationally.
+8. Product and geographic areas of overlap must be specified and the response must
+include sthe whereabouts of all major production, supply or distribution facilities of the
+Applicant and the Target.
+9. Such agreements may include but are not limited to araangement or alliances relating to
+distribution, supply, jpurchasing, joint development, or research and development. The
+response must include the type fo agreement(s), sthe subject matter, the parties to the
+agreement(s) and the duration of the agreement(s), and whether the agreement(s) will
+continue following consummation of the acquisition.
+10. In order to determine whether a particular acquisition breaches section 11(1) and
+10(1) of the Act, an assessment of the relevant market(s) is required. Section 5(4) of the
+Act provides that:-
+“Market” means a market in Tanzania or part of Tanzania and refers to the range of
+reasonable possibilities for substitution in supply or demand between particular
+kinds of goods or services and between suppliers or acuirers, or potential suppliers
+or acquires, of those goods or services.
+The response must address the relevant product, functional, feographic and time dimen-
+sions of the market(s). The product dimension of the market must address sources and
+potential sources of substitutes for the goods or services produced by the merger parties.
+Both supply and demand side substitutability must be addressed. The functional dimen-
+sion of the market must address the vertical stages of production and distribution which
+comprise the relevant arena of competition (for example, wholesale or retail distribution).
+The geographic dimention of the market must identify the area(s) over which the merger
+parties and their competitors currently supply, or could supply, the relevant product(s)
+and to which customers could practically turn. The time dumension of the market must
+address the period over which substitution possibilities must be considered.
+
+[PDF PAGE 75]
+75
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+11. The response must provide details of at least five suppliers (or all suppliers of there
+are less than five) comprised of a cross-section of entities including large, medium and
+small suppliers. The response must include a discription of the goods and services
+supplied by each of these suppliers and an estimation of the value of the goods or
+services supplied.
+12. The response must include the location of each of the suppliers idintified and athe
+areas to which each of the idintified entities supplies.
+13. The response must provide details of at least five customers (or al costomers if there
+are less than five), comprised of a cross-section of entities including large, medium and
+small customers. The response must include a description of the goods or services and
+the value of the goods or services purchased by these customers.
+14. The response must describe the duration of contracts, the nature and extent of
+exclusivity, rebates and discounts and indentify any customers with contracts which are
+due to expire within the next two years and indicate the supply wolumes associated with
+such contracts.
+15. The market shares of each of the suppliers or purchasers identified, the Applicant
+and the Target in the relevant market(s) must be provided. In the case of supply markets,
+market shares must be given on the basis of productive capacity, sales and revenue and
+must be provided for each of the past five years. In the case of acquisition markets,
+market shares must be given on the basis of volume and value of inputs purchased and,
+again, must be provided for each of the past five years. The total size of the domestic
+market must be provided. The source(s) of the date relied upon in estimating market
+shares and total market sizes must be provided.
+16. The response must address me ability of suppliers to switch from supplying inputs
+to the merger parties to other avenues, the ability of competitors in the relevant market(s)
+to increase supply, the case with which constomers could change suppliers icluding any
+switching costs that they would incur, whether goods and services produced in the
+relevant market(s) should be considered homogenous or whether there are variations in
+price or quality and whether the relevant market(s) are characterised by brand loyalty.
+The response must also discuss whether the relevant market(s) are characterised by
+countervailing power, the market participants who are said to have such power and the
+extent that such powe would be likely to constrain the merger parties pas-acquisition.
+17. The response must cover whether it is viable for customers to import substitutes and
+the origin of imports, and address issues including but not limited to; options for the
+transportation of imports (for example, air, sea or rail); transport costs; whether the
+products is a high or low value product; whether the product is high or low density; and
+whether the product is durable enough to be transported without damage or deteroration
+in quality. The response must also give details of historical import levels for the past five
+years and the source of the information provides. The response must include the
+outcomes of any anti-dumping investigations concludes in the past five years.
+
+[PDF PAGE 76]
+76
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+18. The response must provide details of the price of actual or potential imports
+(including, additional costs such as freight and customs duties), whether existing import
+suppliles can accommodate a significant expansion in capacity without the need for
+significant investment and whether import competition would provide a constraint on
+the merged firm via a downstream maarket. The response must also include contact
+details of existing importers and their customers.
+19. The response must cover whether it is viable for suppliers to export to alternative
+purchasers and the likely export markets, and address issues including but not limited to
+the following:-
+options for the transportation of exports (for example, air, sea or rail);
+transport costs;
+whether the product is a high or low value product;
+whether the product is high or low density;
+whether the product is durable enough to be transported without damage or
+deteriorable in quality.
+The response must also give details of historical export levels for the past five years and
+the source of the information provided.
+20. The response must include contact details of existing exporters.
+21. The response must iclude reference to the following:-
+both the nature and height of barriers to entry and expansion;
+details of exit;
+entry and expansion in the relevant market(s) in the previous five year;
+any incentives or disincentives for new entry;
+how long it would take for a new entrant to establish itself as a vogorous and
+effective competitor.
+Barriers which must be addressed include, but are not limited to, the following
+sunk costs in production capacity;
+accessing shelf space;
+advertising and promotion;
+regulatory restrictions;
+requirements for scarce inputs;
+brand loyalty;
+minimum efficient scales of operation;
+goodwill
+access to intellectual property;
+the potential response of incumbentis to new entry
+22. The response must include references including, but not limited to, the following:
+growth;
+levels fo innovation;
+taechnological change;
+product and service differentiation in the relevant market(s).
+
+[PDF PAGE 77]
+77
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+23. The response must refer to current and historical pricing and purchasing behaviour,
+its record of innovation, its growth relative to the growth of the relevant market(s), and
+its history of independent behaviour.
+24. The response must indicate the extent to which the Applicant buys from or sells to
+the Target raw materials, supplies, services, capital or finished droducts for resale.
+25. The response must discuss factors conducive to coordination in a market including,
+but not limited to, the following:-
+the number of participants in the relevant market(s);
+transparency;
+homogeneity of firms;
+the size and frequensy of purchases;
+the presence of the same firms in more than one market.
+26. The response must address the complementarities that occurs where there is signifi-
+cant commonality of customers’ products and whether the strength of demand for one
+product is positively correlated with the strength of demand for another, either because
+the products form part of a range that distributors need to carry or because they must be
+consumed together for technical reasons.
+27. The response must address the circumstances where two or more products are, or
+could be, supplied only as a bundle (pure bundling) or, if supplied individually, are also
+offered as a bundle at a price that is lower that the price charged if sold individually
+(mixed bundling). The response must also address circumstances where eustomers
+seeking to acquire one product are required also to purchase a second product, or carry
+amounts of the second product (tying).
+
+[PDF PAGE 78]
+78
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 9
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 45
+________
+NOTICE OF ABANDONED MERGER
+Made under Rule 45 of the Competition Rules, 2018
+To: The Fair Competition Commission
+The Acquiring firm may notify the Commission in a prescribed form it has abandoned
+the intended merger transaction and has no intention to implement it.
+When this notice has been filed, the parties to the merger are in teh same position as if
+merger has never beeb notified.
+1. Name of the acquiring firm: ..........................................................................
+2. Name of abandonment: ...........................................................................
+3. Notice of abandonment:
+Take notice that the above named firm:-
+(a) has abandoned the intended marger preciously notified undeer the file number
+shown above and;
+(b) has no intention of taking any further steps to implement that intended merger
+4. Name and title of the person authorized to sign
+................................................................................................................
+(Name)
+................................................................................................................
+(Signature)
+................................................................................................................
+(Title) ....................................................................................
+(Date) ....................................................................................
+5. For official use only:
+Commission file number: ............................................
+Date filed: ...........................................................
+6. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 79]
+79
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 10
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 45
+________
+NOTICE OF INTENTION TO PARTICIPATE
+Made under rule 41(1) of the Competition Rules, 2018
+To: The Fair Competition Commission
+A target firm or third persons with sufficient interest my notify the Commission of its
+desire to participate in the merger proceedidngs by filing this form.
+1. Notice of intention to participate is hereby submitted regarding the proposed merger
+between ............................................... (Acquiring firm) and ........................ (Target firm)
+2. Name of the person to participate (Target firm)
+.............................................................................................................
+3. Name of person to participate (third persons including customers, suppliers and
+competitors demonstrating a sufficient interests)
+..............................................................................................................
+4. For third persons, give explanation, showing the sufficient interest you are having in
+this proposed merger
+..............................................................................................................
+5. Name and title of the person authorized to sign
+................................................................................................................
+(Name)
+................................................................................................................
+(Signature)
+................................................................................................................
+(Title)
+....................................................................................
+(Date)
+ ....................................................................................
+6. For official use only:
+Commission file number: ............................................
+Date filed: ...........................................................
+7. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 80]
+80
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 11
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 35(1)(a)
+________
+NOTICE OF COMPLETE FILING
+Made under rule 35(1)(a) of the Competition Rules, 2018
+To: The Acquiring Firm: ...............................................................................
+Within five business days after receiving a Merger notification (Merger Clearance
+Application) the Division dealing with mergers deliver to the filing firm a Notice of
+Complete Filing if the merger appears to fall within the jurisdiction of the Act and all the
+requirements set out in the notification form have been satisfied.
+1. You (the acquiring firm) are hereby notified that the information, including all
+documents requested in the application (notification) form is complete.
+2. The initial period for the merger (the 14 days) begins on the business day following the
+date on which you are issued this notice
+3. This notice has been issued [insert day] day of [insert month] [ insert year].
+4. Commission file number .......................................................
+5. Name and title of the person authorized to sign
+................................................................................................................
+(Name)
+................................................................................................................
+(Signature)
+................................................................................................................
+DIRECTOR GENERAL
+....................................................................................
+(Date)
+6. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 81]
+81
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 12
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 35(1)(b)
+________
+NOTICE OF INCOMPLETE FILING
+Made under rule 35(1)(b) of the Competition Rules, 2018
+To: The Acquiring firm:
+.....................................................................................................................
+Within five business days after receiving a Merger notification (Merger Clearance
+Application) the Commission shall deliver to the filing firm a Notice of Inomplete Filing
+if any of the requirements set out in the notification form have been satisfied.
+1. You (the acquiring firm) are hereby notified that the information, including all
+documents requested in the notification (application) form is incomplete.
+2. Please provide the following information:
+..........................................................................................................................................
+...................................................................................
+3. The information supplied to the Commission shall be true abd complete. Incorrect and
+misleading information may render a party liable to fines as provided for under section
+71(6) and 60 of the Fair Competition Act, 2003.
+4. This notice has been issued this [insert day] day of [insert month] [ insert year]
+5. Commission file number ........................................
+6. Name and title of the person authorized to sign
+................................................................................................................
+(Name)
+................................................................................................................
+(Signature)
+................................................................................................................
+FAIR COMPETITION COMMISSION
+....................................................................................
+(Date)
+7. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 82]
+82
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 13
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 43(b)
+________
+REQUEST FOR ADDITIONAL MERGER INFORMA TION
+Made under rule 43(b) of the Competition Rules, 2018
+To: The Acquiring Firm:
+.....................................................................................................................
+The Commission may, at any time during merger investigation request additional
+information from a party setting out the specific information that the Commission
+requires.
+The additional information requested shall be true and complete. Incorrect and
+misleading information may render a party liable to fines as provided for under section
+71(6) and 60 of the Fair Competition Act, 2003.
+1. Please provide the following additional information: ...................................................
+2. This Requested for Additional Information has been issued this [insert day] day of
+[insert month] [ insert year]
+3. Commission file number ........................................
+4. Name and title of the person authorized to sign
+................................................................................................................
+(Name)
+................................................................................................................
+(Signature)
+................................................................................................................
+FAIR COMPETITION COMMISSION
+....................................................................................
+(Date)
+5. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 83]
+83
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 14
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+EXTENSION CERTIFICATE
+Issued under section 11(4) of the Competition and Consumer Protection Act,
+2003 and Rule 36(5) of the Competition Rules, 2018
+The Acquiring Firm
+(Name and address) ......................................................................
+The Commission may extend the period of ninety days of examining the merger for such
+further period not exceeding thirty days and for such further period where the
+Commission has been delayed iin obtaining information from any of the parties to the
+proposed merger.
+On extending the period, the Commission shall issue a copy of Extension Certificate to
+a party who notified the merger.
+1. Your (the acquiring firm) are hereby notified that the period for examination the merger
+you applied for has been extended to .............. [days] further nd consequently you are
+issued Extension Certificate in this regard.
+2. An Extension period granted by the Commission begins on a business day following
+the date on which the ninety day s period expires or in the case of second or subsquent
+extension, on he business day following the date on which previous extension expires.
+3. This Extension certificate has been issued this [insert day] day of [insert month]
+[insert year].
+4. Commission file number ........................................
+5. Name and title of the person authorized to sign
+................................................................................................................
+(Name)
+................................................................................................................
+(Signature)
+................................................................................................................
+FAIR COMPETITION COMMISSION
+6. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 84]
+84
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 14A
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+90 DAYS PROHIBITION NOTICE
+Made under section 11(3) of the Fair Competition  Act, 2003 and
+rule 36(3) of the Competition Rules, 2018
+The Acquiring Firm
+(Name and address) ......................................................................
+7. You are hereby notified that the Commission has determined that the proposed merger
+should be examined.
+8. Thus, the said merger is prohibited for a period of 90 days from the date of this Notice
+and consequently you are issued with a 90 Days Prohibition Notice in this regard.
+9. This prohibition period begins on a business day following the date on which it is
+issued.
+10. This 90 Days Prohibition Notice has been issued this ... day of ..............., 20.....
+11. Commission file number FCC/M&A/....................../20...................
+12. Name and title of the person authorized to sign.
+.............................................................................
+(Signature)
+..............................................................................
+(Name)
+...............................................................................
+(Title)
+7. Contact
+The Fair Competition Commission,
+P. O. Box 7883,
+Dar es Salaam, Tanzania,
+E mail: info@competition.or.tz
+Website: www.competition.or.tz
+
+[PDF PAGE 85]
+85
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 14B
+FAIR COMPETITION COMMISSION
+THE FAIR COMPETITION COMMISSION PROCEDURE RULES, 2018
+________
+EXTENSION CERTIFICATE
+Made under section 11(4)(a) of the Fair Competition  Act, 2003 and
+rule 36(4) of the Competition Rules, 2018
+The Acquiring Firm
+(Name and address) ......................................................................
+1. You are hereby notified that the period for examining the merger you applied
+for has been extended to thirty (30) days and consequently you are issued
+Extension Certificate in this regard.
+2. This extension period begins on a business day following the date on which it
+is issued.
+3. This Extension Certificate has been issued this ........... day of .............., 20......
+4. Commission file number FCC/M&A/....................../20...................
+5. Name and title of the person authorized to sign.
+.............................................................................
+(Signature)
+..............................................................................
+(Name)
+...............................................................................
+(Title)
+6. Contact
+The Fair Competition Commission,
+P. O. Box 7883,
+Dar es Salaam, Tanzania,
+E mail: info@competition.or.tz
+Website: www.competition.or.tz
+
+[PDF PAGE 86]
+86
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 15
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+rule 42(14)(a)(ii)
+________
+NOTICE OF PROHIBITION OF MERGER
+Made under section 11(5) of the Fair Competition  Act, 2003 and
+Rule 42(14)(a)(ii) of the Competition Rules, 2018
+The Acquiring Firm
+(Name and address) ......................................................................
+Where after completing its investigation and consideration of merger, the Commission
+has made a decision that implementation of the merger shall be prohibited, or has
+declared the merger prohibited, it shall issue a Notice of Prohibition to the firm that filed
+the Merger Notification.
+1. Accounting to investigation/consideration of your merger application, you (the
+acquiring firm) are hereby notified that your merger notification (application) as between
+you (the acquiring firm) and (Target firm) has been declared prohibited/its
+implementation prohibited.
+2. This Notice of Prohibition has been issued this [insert day] day of [insert month]
+[insert year].
+3. Commission file number .............................................................
+4. Name and title of the person authorized to sign.
+.............................................................................
+(Name)
+..............................................................................
+(Signature)
+...............................................................................
+FAIR COMPETION COMMISSION
+5. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 87]
+87
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 16
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+NOTICE OF APPARENT BREACH OF MERGER
+Made under rule 47(1) of the Competition Rules, 2018
+The Acquiring Firm
+(Name and address) ......................................................................
+Where a firm appears to have breached an obligation that was part of an approval or
+conditional approval of its merger, the Commission shall deliver to that firm a Notice of
+Apparent Breach before taking any action to revoke that approval.
+1. You (the acquiring firm) are hereby granted a Notice of Apparent Breach after
+breaching the following conditions which are part of the prevously granted approval:
+................................................
+2. Within 10 business days after receiving this Notice, you (the acquiring firm) may
+submit to the Commission a plan to remedy the breach or request the Commissioners to
+review the Notice on the grounds that you (the acquiring firm) has substantially
+complied with your obligations with respect to the approval or conditional approval of
+the merger.
+3. This Notice of Apparent Breach has been issued this [insert day] day of [ insert
+month] [insert year].
+4. Commission file number .............................................................
+5. Name and title of the person authorized to sign.
+.............................................................................
+(Name)
+..............................................................................
+(Signature)
+...............................................................................
+FAIR COMPETION COMMISSION
+6. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 88]
+88
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 17
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+NOTICE OF REVOCATION OF MERGER DECISION
+Made under rule 48(6)(a)(ii) of the Competition Rules, 2018
+The Acquiring Firm
+(Name and address)
+.....................................................................................................................
+If the Commission is contemplating revoking its own decision  to approve or
+conditionality approve the merger, the Commission may request further information
+from the person concerned or from any person who submits a representation in response
+to a notice published under Rule 48(4).
+Where after considering any submisions or other information received in relation to the
+proposed revocation and the Commission decides to revoke the merger, it shall issue to
+the person concerned a Notice of Revocation in prescribed form.
+1. Y ou (the acquiring firm) are hereby granted a Notice fo Revocation of Merger Decision
+on the following graounds:
+(a) The decision was based on incorrect information: .........................................
+(b) The approval was obtained by deceit .........................................................
+(c) You have breached an obligation attached to the decision ....................
+2. This Notice of Revocation of Merger Decision has been issued this [insert day] day of
+[ insert month] [insert year].
+3. Commission file number .............................................................
+4. Name and title of the person authorized to sign.
+(Name) .................................................................
+(Signature) ....................................................
+FAIR COMPETION COMMISSION
+5. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 89]
+89
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 18
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+Rule 42(14)(a)(i)
+________
+MERGER CLEARANCE CERTIFICA TE
+Issued under section 11(3) and 13 of the Fair Competition Act, 2003 and
+rule 42(14) (a)(i) of the Competition Rules, 2018
+If a firm appears to have breached an obligation that was part of an approval or
+conditional approval of its merger, the Commission shall deliver to that firm a Notice of
+Apparent Breach in Form FCC. 16. Please refer to rule 47.
+1. Date: ...................................................................................................................
+2. To: Name and file number of the merger ................................................................
+3. You applied to the Fair Competition Commission on ....................... [Date] for merger
+approval in accordance with section 11 and 13 of the Fair Competition Act.
+4. After reviewing the information you provided, the Commission approves the merger
+in terms section 11 and 13 of the Act; and rule 42(13(a)/42(13)(b) for reasons set out in
+the Reasons for Decision.
+5. This approval is subject to no conditions/the conditions listed on the attached
+sheet.
+6. The Fair Competition Commission has the authority to revoke its own decision to
+approve or conditionally approve the merger under rule 48 if-
+(a) the decision was based on incorrect information or which a party to the merger
+is responsible;
+(b) the approval was obtained by deceit; or
+(c) The firm concerned has breached an obligation attached to the decision.
+7. Name and Title of Person authorized to sign on behalf of the Fair Competition
+Commission:
+............................................................................................................................
+Authorised signature:
+.............................................
+8. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 90]
+90
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+FCC. 19
+FAIR COMPETITION COMMISSION
+THE COMPETITION RULES, 2018
+________
+EXEMPTION CERTIFICATE
+Issued under section 12 of the Fair Competition Act, 2003 and
+rule 50(12) of the Competition Rules, 2018
+You, or any other person affected by this decision, may appeal to the Fair Competition
+Tribunal within 28 days after it has been published in the Gazette.
+1. To ..........................................................................
+2. Name and file number of the merger ................................................................
+3. You applied to the Fair Competition Commission on ....................... [Date] for
+exemption under section 12 of the Fair Competition Act, 2003.
+4. Because the subject practice or agreement contrubutes to the objective set out under
+section 12(1)(b) of the Act, the Commission grants an exemption under section 12(1) and
+(3) of the Act for a period of 5 years ending on ......................... for
+a single agreement/a category of agreements
+5. As described in your application, this exemption is subject to:
+no conditions/the conditions listed on the attached sheet
+6. The Commission has authority under section 12(6) of the Act to revoke this
+exemption if-
+(a) the circumstances has materially changed and consequently the reasons for
+granting the exemption no longer exists or
+(b) the exemption was granted wholly or partly on the basis of false, misleading or
+incomplete information.
+7. Name and Title of Person authorized to sign on behalf of the Fair Competition
+Commission:
+............................................................................................................................
+Authorised signature:
+.............................................
+8. Contact
+The Fair Competition Commission
+P. O. Box 7883
+Dar es Salaam
+Tanzania
+E mail: info@competition.or.tz
+
+[PDF PAGE 91]
+91
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+SECOND SCHEDULE
+________
+Guidance on the Fair Competition Act to competition matters
+Introduction
+The role of competition and economic regulatory bodies in a given economy is to support
+market operations in that economy.
+For that object to be accomplished, economic regulatory bodies and competition authori-
+ties are normally given unique but limited independence and powers to operate in their
+field of jurisdiction. Such independence and powers is ably explained by the following
+phrase. Another fundamental reason for the independence is that regulatory agencies are
+something of a legal hybrid .... they exercise the executive powers of administration and
+enforcement of the law. They are also quasi-legislative in that they make rules and
+establish policies which are prospective and universally applicable. Finally, regulators
+have to adjudicate disputes which arise from activities within the scope of their
+jurisdiction. In short, regulators are, at one and the same time executives, legislators and
+judges”.
+However, such independence and powers are highly circumsscribed. The sine qua non
+for competition and economic regulatory bodies is transparency. “The process, ressoning,
+the mathematics, the logic, the transactions, he administration and the mechanics of
+regulation must be absolutely transparent to all if the system is to inspire confidence in
+it. Without that confidence, investorys will not risk their capital, consumers will not
+tolerate adverse rate changes, politicians will not refrain from tampering with the
+process, and restructuring will be an empty shell”.
+For that reason, “To be credible to government, consumers and companies alike, the
+regulatory process must be open and accessible to all who wish to be heard. For that to
+happen, the regulators need to have rules that assure fairness and openess of the process,
+and there must be assurances that it is through that process and through that process
+alone, that jurisdictional decisions will be made ..... it is the regulator, having been
+presented will all the evidence and having heard the arguments of all interested parties,
+who must make the final decision”.
+Section 99 of the Fair Competition Act empowers the Commission to make Rules on
+certain aspects of proceedings for application of this Act.
+Section 2 of the same Act defines “competition”, “market” and “dominant position in a
+market” as “........ economic concepts and, subject to the provisions of the Act, shall be
+interpreted accordingly”.
+Section 77(4)(b) of the Act gives the Commission mandate to publish Rules in the
+Gazette.
+The Commission therefore wishes to comply with the Fair Competition Act and
+international best practice by publishing:
+
+[PDF PAGE 92]
+92
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+(i) The Competition Rules, 2018
+This part is legal guidance on the administrative and implementation of various
+aspects of the Fair Competition Act.
+(ii) Guidance on the Fair Competition Act
+This is an oversimplified guidance for the no legal public.
+Notes:
+The above quotes are extracted from a paper presented by the PSRC consultants on the
+project to establish the competition and economic regulatory frame in Tanzania. The
+paper was titled. “Analysis of the Energy and Water Utilities Regulatory Authority Act
+and the Surface and Maritime Transport Regulatory Authority Act” by Ashley Brown,
+LeBouef, Lamb, Greene and MacRae, Beston Massachussetts, USA.
+1. Overall Purpose of athe Fair Competition Act
+The overall purpose of the Fair Competition Act is to remove obstacles to effective
+competition in trade and commerce. This is geared towards bringing about the following
+effects:
+increase economic efficiency;
+lower prices for consumer;
+more innovation; and
+increase the rate of economic prowth.
+2. The Administration of the Fair Competition Act
+The Fair Competition Commission and the Fair Competition Tribunal have been set up
+to implement the law. Fair Competition Commission will act as a court of first instance
+and does most of the work.
+The Fair Competition Tribunal will hear appears against the decisions of the Commis-
+sion and decisions by other multi-sector regulatory authorities namely the Energy and
+Water Utilities Regulatory Authority (EWURA), the Surface and Marine Transport
+Regulatory Authority (SUMA TRA), Tanzania Communications Regulatory Authority
+(TCRA), Tanzania Civil Aviation Authority (TCAA) and other similar bodies that may
+be formed by law. The judgements and orders of the Fair Competition Tribunal are
+executed and enforced in the same manner as the judgements and orders of the High
+Court.
+Appeals against the decisions of the Fair Competition Tribunal shall be heard by the
+Court of Appeal.
+3. The Role of the Commission
+The Commisssion is there to promote competition. It has three main tasks:
+to study markets to identify obstacles to competition;
+to intervene to prevent companies harming competition; and
+to act as an advocate for competition in government circles.
+
+[PDF PAGE 93]
+93
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+4. How the Commission Decides which Cases to Take up
+There are five posssible ways in which the object of an investigation may be chosen:
+internal research of the Commission;
+a complaint from a company;
+a proposal from a consumer;
+the direction of a Minister; or
+a proposal of an official regulatory body.
+5. Scope of the Fair Competition Act
+All businesses in Tanzania Mainland, from sole traders through to large companies, are
+affected by the law
+The competition law focuses on agreements, merges and other practices that may harm
+competition
+When it comes to agreements, there are a few esceptions. The law does not apply to any
+agreements that:
+only effect sales abroad;
+relate to employment; or
+require adherence to technical standards.
+6. How the Law Works
+The law supports the working of the markets. Where there are competition impediments
+in the market a complaint may be made by another company, by a consumer or the
+Commission. In these cases the Commission will carry out formal investigations. Where
+the Commission reaches an adverse finding, it will have the power to take action against
+a business or group of businesses. It is therefore in the interest of all businesses to
+understand the implications of the competition law so that they can comply with the law
+in their undertakings.
+Therefore business is supported to progress smomthly without need to report anything
+to the Commission. If there are any problems in the market, the Commission intervenes
+by undertaking an investigation of events and actions that have already taken place and
+takes a decision.
+The exceptions to the two conditions of letting business to smoothly and investigation
+after the events have taken place, is in the area of large-scale mergers, where the law
+requires businesses to notify the Commission in advance. In practice it means that you
+cannot lawfully go ahead with the merger until the Commission has approved it.
+7. Approval of the Commission
+In the case where there are reports of competition impediments in the market, the
+Commission seeks to identify where competition is being harmed and then to remedy the
+situation. It will therefor be looking at issued such as where market power lies and how
+easy entry is into the market. Its conclusions will be based primarily on economic
+analysis.
+
+[PDF PAGE 94]
+94
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+8. Indications of how the Commission willl Interpret Harm to Competition
+One important point for companies to note is that the test is harm to competition and not
+harm to competitors. Examples of harm to competition would be a higher price level in
+the market, prevention of innovation or restricting the growth of the market. Harm
+suffered by competitors’ counts only in terms of any contribution it might make to harm
+the process of competition itself. In any case one firm piece of guidance is that companies
+will not generally be seen as capable of harming competition if their market share is less
+than 35 per cent. Bear in mind, however, that defining the total market size for the
+purpose of competition of competition analysis can be a complex maatter.
+9. Exceptions to the test of Harm to Competition
+There are four types of agreement that are always unlawful, and hence the Commission
+does not need to conduct any economic analysis. There are:-
+price fixing;
+collective boycott;
+agreed output restrictions; and
+collusive bidding or tendering.
+10. Factors that the Commission Takes into Account in Addition to Competition
+In the case of agreements and mergers (but not other practices) the Commission is
+allowed to take into account three other factors:-
+economic efficiency;
+technical or economic progress; and
+protection of the environment.
+The Commission has to weigh up any to competition against any benfits under any of
+these headings.
+11. Procedures of the Commission
+The Commission’s procedures vary according to the task in hand. When the Commission
+is carrying out a study of a sector, a market or is operating as an advocate of competition,
+its procedures are fairly informal. On the other hand, when it is investigating behavour
+that may harm competition and hence its conclusions may form the hasis for taking
+action against companies, its procedures are much more formal. One feature of these rules
+is the way in which the Commission takes care to protect the confidentiality of commer-
+cial information it gets from companies.
+12. Special Rules for Mergers
+There are special rules that apply only to mergers:-
+Megers of a certain size have to be notified in advance and basic information
+provides;
+There is a timetable for processing notified mergers;
+The Commission can charge fees for this processing.
+13. Powers of the Commission
+Where the Commission reaches an adverse finding that is, they conclude that competition
+has been harmed without sufficient countervalling benefit; they can apply sanctions and
+penalties. In all cases these are subject to appeal to the Tribunal.
+
+[PDF PAGE 95]
+95
+Fair  Competition Commission
+Government Notice No. 344 (contd.)
+There are two main actions that can be taken as a result of an investigation by the
+Commission; firstly, the Commission may require companies to take actions that will
+remedy the competition problems; this could include:-
+stopping behaviour that was damaging competition;
+selling assets;
+providing information;
+applying a fine which has to be within the range 5-10 per cent of annual
+turnover of the firm.
+While the Commission would normally take action after its investigation is complete, it
+can require companies to take the requisite action during the course fo the investigation.
+It would only do this if there was an imminent danger of sustantial commercial damage
+being suffered by other companies.
+In addition to the powers just described, the Commission can also require a company that
+has been found guilty of harming competition to pay compensation to other companies
+that have suffered from its bahaviour.
+To bring about the requisite action by companies, the Commission does not necessarily
+have to take the legal route of making an order which can be enforced through the courts.
+Where it is likely to be effective, it can alternatively reach an agreement with a company
+about the changes in its behaviour that are needed.
+14. Tribunal
+The Tribunal’s procedures are similar to those of a court. It can consider an appeal against
+a conslusion of the Commission on any basis. Its own verdict can take any one of five
+forms:-
+confirm the conclussion of the Commission;
+set it aside;
+amend it;
+send the case as a whole back to the Commission for it to consider again; or
+send one aspect of the case back to the Commission.
+The Tribunal can also hear appeals on procedural decisions made by the Commission.
+This may occur if companies feel they are not being fairly treated during an inquiry.
+These appeals are judged on the basis of the fairness of the procedures used and their
+legaligy.
+Disclaimer
+This Guide is designed to provide an introduction to the Fair Competition Act, 2003
+(FCA) and policy on competition and to helf business and comsumers understand the
+work of the Fair Competition Commission (FCC) and the Fair Competition Tribunal
+(FCT). It should not be relied for matters fo detail. For this readers should refer to the Act
+itself and the rules made under section 99 and 77(4)(b) of the Act.
+Dar es Salaam,          S AMUEL MWITA WANGWE,
+   ................., 2018 Chairman of the Commission

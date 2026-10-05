@@ -43,40 +43,6 @@ const heroSlidesData = [
     }
 ];
 
-// Testimonials Data
-const testimonialsData = [
-    {
-        name: 'Mariam Issa',
-        role: 'Community Member',
-        location: 'Dodoma Region',
-        content: 'LSF paralegals helped me secure my land rights after years of disputes. Now my children have a future.',
-        imageUrl: '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
-        rating: 5,
-        category: 'Land Rights',
-        featured: true,
-    },
-    {
-        name: 'John Mwakasege',
-        role: 'Small Business Owner',
-        location: 'Mwanza Region',
-        content: 'The legal awareness workshops changed everything for our community. We now know our rights and how to protect them.',
-        imageUrl: '/lovable-uploads/64c7c47e-f951-498d-bbf0-2c6602d2bd95.png',
-        rating: 5,
-        category: 'Legal Awareness',
-        featured: true,
-    },
-    {
-        name: 'Fatuma Hassan',
-        role: 'Women Group Leader',
-        location: 'Tanga Region',
-        content: 'Through Haki Yangu app, women in our village can now access legal help without traveling long distances.',
-        imageUrl: '/lovable-uploads/7cdc0b2c-cc42-4f40-9196-2324a35f30a1.png',
-        rating: 5,
-        category: 'Digital Access',
-        featured: true,
-    }
-];
-
 // Stats Data
 const statsData = [
     { label: 'Lives Transformed', value: '426,000+', icon: 'Users', order: 1 },
@@ -165,11 +131,6 @@ export default internalMutation({
             await ctx.db.insert("hero_slides", slide);
         }
 
-        // Seed Testimonials
-        for (const testimonial of testimonialsData) {
-            await ctx.db.insert("testimonials", testimonial);
-        }
-
         // Seed Stats
         for (const stat of statsData) {
             await ctx.db.insert("stats", stat);
@@ -185,6 +146,6 @@ export default internalMutation({
             await ctx.db.insert("news", news);
         }
 
-        console.log("Seeding complete! Hero slides, testimonials, stats, publications, and news added.");
+        console.log("Seeding complete! Hero slides, stats, publications, and news added.");
     },
 });

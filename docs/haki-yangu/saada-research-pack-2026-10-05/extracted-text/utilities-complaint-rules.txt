@@ -1,0 +1,2118 @@
+[PDF PAGE 1]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+1 
+ 
+GOVERNMENT NOTICE NO. 428 published on 5/6/2020 
+ 
+THE ENERGY AND WATER UTILITIES REGULATORY AUTHORITY ACT, 
+(CAP. 414) 
+_______ 
+ 
+RULES 
+_______ 
+(Made under section 40) 
+_______ 
+ 
+THE ENERGY AND WATER UTILITIES REGULATORY AUTHORITY (CONSUMER 
+COMPLAINTS SETTLEMENT PROCEDURE) RULES, 2020 
+ 
+ARRANGEMENT OF RULES 
+ 
+ 
+PART I 
+PRELIMINARY PROVISIONS 
+Rule    Title 
+ 
+1. Citation. 
+2. Application. 
+3. Interpretation. 
+ 
+PART II 
+FILING OF  COMPLAINT 
+ 
+4. Filing  complaint. 
+5. Rejection of  complaint. 
+6. Service of summons to present  defence. 
+7. Defence to  complaint. 
+8. Reply to  defence. 
+9. Third party procedure. 
+10. Directions. 
+11. Award against third party in default. 
+12. Amendment to complaint and  defence. 
+ 
+PART III 
+INVESTIGATION AND MEDIATION PROCESS 
+ 
+13. Investigation of  complaint. 
+14. Mediation. 
+15. Issuance of award. 
+
+[PDF PAGE 2]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+2 
+ 
+16. Referral of complaint to Division. 
+ 
+PART IV 
+HEARING PROCEDURES 
+ 
+17. Hearing procedure to be quasi- judicial. 
+18. Failure to appear. 
+19. Adjournment. 
+20. Application to intervene. 
+21. Decision of Authority. 
+22. Enforcement of  award. 
+ 
+PART V 
+APPEAL PROCEDURES 
+ 
+23. Appeal. 
+24. Ground of appeal. 
+25. Procedure for appeal. 
+ 
+PART VI 
+LIMITATION PERIODS 
+ 
+26. Dismissal of proceedings instituted after period of limitation. 
+27. Accrual of cause of action. 
+28. Exclusion of time of party’s absence from Tanzania. 
+29. Exclusion of time of proceeding bona fide in court of incompetent 
+jurisdiction. 
+30. Board may extend period of limitation. 
+ 
+PART VII 
+GENERAL PROVISIONS 
+ 
+31. Taxation for costs. 
+32. Applications. 
+33. Issuance of compliance orders. 
+34. General penalty. 
+35. Penalty for continued breach. 
+36. Authority to supplement procedures. 
+37. Revocation. 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 3]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+3 
+ 
+ 
+___________ 
+ 
+SCHEDULES 
+___________ 
+ 
+ 
+ 
+ THE ENERGY AND WATER UTILITIES REGULATORY 
+AUTHORITY ACT 
+ (CAP. 414) 
+ 
+_______ 
+ 
+RULES 
+_______ 
+ 
+(Made under section 40) 
+_______ 
+ 
+THE ENERGY AND WATER UTILITIES REGULATORY 
+AUTHORITY (CONSUMER COMPLAINTS SETTLEMENT 
+PROCEDURE) RULES, 2020 
+ 
+ 
+ PART I 
+PRELIMINARY PROVISIONS 
+ 
+Citation 
+  1. These Rules may be cited as the Energy and 
+Water Utilities Regulatory Authority (Co nsumer 
+Complaints Settlement Procedure) Rules, 2020. 
+  
+Application 
+  2. These Rules shall govern the procedure related to 
+the settlement of consumer complaints received by the 
+Authority in relation to the  regulated sector and for other 
+related matters. 
+  
+Interpretation  3. In these R ules, unless the context otherw ise 
+requires: 
+Cap. 414 “Act” means the Energy and Water Utilities Regulatory 
+Authority Act;  
+
+[PDF PAGE 4]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+4 
+ 
+ "Authority" means the Energy  and Water Utilities 
+Regulatory Authority established under the 
+provisions of the Act; 
+ “authorized representative” means a person duly authorized 
+by the complainant or the r espondent to represent 
+him in the conduct of the complaint and the term 
+shall include the Council; 
+ “Award holder” means the party to a complaint to  whom a 
+decision has been given in its favour und er rule 15 
+or rule 21; 
+ “Board” means the Board of Directors of the Aut hority 
+established under the provisions of the Act;  
+ “complainant” means a person who has filed a complaint to 
+the Authority pursu ant to the provisions of these 
+Rules; 
+ “complaint” means material  facts of the matter or act 
+complained by the complainant , in respect of the 
+supply, possible supply or purported supply of 
+regulated services and specifying the reliefs sought; 
+ “Council” mea ns the Energy and Water Utilities 
+Regulatory Auth ority Consumer Consultative 
+Council established under section 30 of the Act; 
+ 
+ 
+“Customer Service Charter” means a document prepared 
+by a regulated supplier and  approved by  the 
+Authority setting out, inter a lia, the proce dure of 
+receiving and settling complaints; 
+ “Director” means the director responsible for l egal affairs 
+of the Authority and shall be the taxing master; 
+ “Director General ” means the C hief Executive Officer of 
+the Authority; 
+ 
+ 
+“Division” means the division of the Authority responsible 
+for hearing of c omplaints and it shall have the 
+composition as follows: 
+ (a) Director responsible for legal services in the 
+Authority or his r epresentative who shall be the 
+Chairperson; 
+ (b) Director of the relevant  division of the Authority 
+under which the compla int arose or h is 
+representative; 
+ (c) Director responsible for regulatory economics of 
+the Authority or his representative; and 
+
+[PDF PAGE 5]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+5 
+ 
+ (d) Legal Officer of the Authority who shall be the 
+Secretary; 
+ 
+Cap. 287 
+Cap. 288 
+“local authority” shall have the meaning ascribed to it 
+under the Local Government (District Authorities) 
+Act, and the Local Government (Urban Authorities) 
+Act respectively; 
+ “mediator” means an officer of the Authority who is 
+assigned to mediate the parties under rule 14; 
+ “Minister” means the Minister  responsible f or t he 
+Authority; 
+ “regulated sector” means electricity sub -sector, petroleum 
+sub-sector, natural gas sub-sector, and water supply 
+and sanitation sector; 
+ “regulated services” means any goods  or services supplied 
+or offered for supply in a regulated sect or a nd 
+includes goods or services which the Authority 
+declares to be  of such goods or services under 
+section 40 (4)(a) of the Act; 
+ “regulated supplier”  means any person engaging in 
+activities or in connection with a regulated sector 
+and inc ludes any pers on w hom the Authority 
+declares under section 40 of the Act to be a 
+supplier; 
+ “respondent” means any regulated supplier against whom a 
+complaint is filed; 
+ “sector legislation” shall have the  meaning ascribed to it  
+under the Act;  
+ 
+Cap. 285 
+“Tribunal” m eans the Fair Competition Tribunal 
+established under the Fair Competition Act; and 
+  
+PART II 
+FILING OF COMPLAINT 
+ 
+Filing of 
+complaints  4.-(1) Any person may file a complaint against a 
+regulated supplier in respect of any matter connected with 
+the regul ated services by completing and filing with the 
+Authority the complaint form prescribed in the First  
+Schedule. 
+  
+  (2) Notwithstanding sub -rule (1), the Council or an 
+authorized representative may, on behalf of any consumer, 
+
+[PDF PAGE 6]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+6 
+ 
+lodge a complaint to the Authority. 
+  (3) Without prejudice to the requirement of sub -rule 
+(1), a complaint may be in any other form of 
+correspondence, electronic or otherwise, which shall, upon 
+receipt by the Authority,  be reduced into writing by the 
+Unit. 
+  (4) Notw ithstanding su b-rule (1), any person, or a 
+group of person, may file to the Authority a group 
+complaint, provided that- 
+ (a) a list of their names and signatures or thumb 
+print are obtained and submitted to the Authority 
+together with the complaint; and 
+ (b) minutes of the me eting resolving the filing of a 
+representative complaint are obtained and 
+submitted to the Authority together with the 
+complaint. 
+  (5) Without prejudice to other provisions of this rule  
+the Council may file with the Authority a complaint o r any 
+general complaint affecting public interest in the regulated 
+sectors. 
+  (6) Complaints shall be lodged to the Authority 
+either in English or Kiswahili languages. 
+  (7) Upon receipt of the complaints under this rule  
+the Authority shall proceed evalu ating the said  complaint 
+with a view to checking on its propr iety and compliance 
+with these Rules, the Act and sector legislation. 
+  (8) Where the Authority is satisfied that the 
+complaint is in order it sh all proceed processing the 
+complaint as provided for under these Rules. 
+  
+Rejection of 
+complaints  5.-(1)  The Director General  may reject a complaint  
+filed under rule 4 where:  
+ (a) it discloses no cause of action; 
+ (b) it is time barred; 
+ (c) it is pending before any court, tribunal, 
+arbitration or quasi-judicial body; 
+ (d) it does not fall under the Act or sector 
+legislation; 
+ (e) the complainant has no locus standi; or 
+ (f) it is found to be frivolous or vexatious. 
+  (2)The Authority shall , in the event of rejection 
+
+[PDF PAGE 7]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+7 
+ 
+under sub -rule (1), within seven days from the d ate of 
+decision inform the complainant in writing about such 
+rejection. 
+  (3) The rejection of the complaint under these Rules 
+shall not on  its own, bar the complainant from presenting a 
+fresh complaint in respect of the same cause of action 
+subject to fulfillment of the requirements of the law. 
+  (4) A complainant aggrieved by the decision of the 
+Director General under sub -rule may apply for a review of 
+the said decision in accordance with section 27 of the Act. 
+  
+Service of 
+summons to 
+present 
+defence 
+ 6.-(1) The Authority shall, not later than seven days 
+after evaluating and  accepting the complain t  under rule 
+4(8), direct the respondent using the summons prescribed in 
+the Second  Schedule to present his defence. 
+  (2) The summons under this rule  shall be served t o 
+the respondent by: 
+ (a) personal delivery to the r espondent or his 
+representative who shall acknowledge receipt by 
+signing and returning the summons to the 
+Authority; 
+ (b) registered mail with return receipt; or 
+ (c) publication in two newspapers of  general 
+circulation in Tanzania , one in English and 
+another in Kiswahili where the Authority has 
+determined that: 
+ (i) there are reasons to believe that the 
+respondent is keeping out of the way for 
+the purpose of avoiding the service;  
+ (ii) the summons cannot  for any other 
+reason, be served in an ordinary way; and 
+ (iii)there is proof  in writing from the local 
+authority that efforts to serve the 
+respondent were taken  and that such 
+efforts have failed due to reasons given 
+under sub- paragraphs (i) and (ii). 
+  (3) The complainant shall be served with the copy of 
+the summons to be served to the respondent under sub -rule 
+(1). 
+  
+Defence to 
+complaint  7.-(1) The respondent shall, not later than twenty -
+
+[PDF PAGE 8]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+8 
+ 
+one days after rec eipt of the summons in rule 6, present to 
+the Authority a defence to the complaint which may include 
+a counterclaim or claim for set-off. 
+  (2) The respondent shall not in his defence, deny 
+generally the grounds alleged by the complainant, but shall 
+deal specifically with each allegation of fact of whic h he 
+does not admit according to his knowledge. 
+  (3) Where the respondent denies an allegation of 
+fact in the complaint, he shall not do so evasively, but 
+answer the point of substance.  
+  (4) Every alleg ation of fact in the complaint, if not 
+denied spe cifically or b y ne cessary implication, or stated 
+not to be admitted in the defence by the respondent , shall be 
+taken to be admitted;  
+ Provided that , the Authority may at its discretion , 
+require any fact so admitted to be proved otherwise than by 
+such admission. 
+  (5) Where a respondent fails  to present a defence as 
+required under sub -rule (1), it shall be deemed that the 
+respondent has waived his right to appear and participate in 
+the proceedings and the Authority shall proceed with the 
+hearing ex-parte. 
+  (6) Notwith standing sub -rule (5) above, the 
+respondent may, by way of a letter, apply to the Authority 
+for an order to set aside the ex-parte order within t he time 
+prescribed under these Rules. 
+  
+Reply to 
+defence  8. After receipt of the defence from the respondent 
+as provided under rule (6), the complainant may prepare 
+and submit to the Authority a reply thereto within seven 
+days after receipt of such defence. 
+  
+Third party 
+procedure  9.–(1) Where in any complaint the respondent 
+claims against any person not a party to the complaint- 
+ (a) any contribution or indemnity; or 
+ (b) any relief or remedy relating to or connected 
+with the subject matter of the complaint and 
+substantially the same as a relief or reme dy 
+claimed by the complainant, 
+ the respondent may apply to the Authority to present a third 
+party notice. 
+
+[PDF PAGE 9]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+9 
+ 
+  (2) An application under sub -rule (1) shall be in 
+writing and shall state: 
+ (a) nature of the claim made by the complainant in a 
+complaint; 
+ (b) stage which the proceedings in the complaint 
+have reached; 
+ (c) nature of the claim made by the applicant against 
+the third party and its relation to the 
+complainant’s claim against the applicant; and 
+ (d) the name and address of the third party. 
+  (3) Upon receipt o f the application under this rule,  
+and where the Authority is s atisfied that the respondent’s 
+claim against the third party is in respect of a matter 
+referred to in sub-rule (1) and that, having regard to all the 
+circumstances of the complaint, it is reaso nable and proper 
+to grant leave to the respondent  to present a third party 
+notice, the Authority shall, upon such terms and conditions, 
+grant leave to the respondent to present a third party notice. 
+  (4) Every third party notice shall state: 
+ (a) nature of the complainant’s claim against the 
+respondent; 
+ (b) nature of the respondent’s claim against the third 
+party; 
+ (c) reliefs claimed by the respondent against the 
+third party; 
+ (d) period within which the third party may present 
+his defence; and 
+ (e) consequences of th e failure by the third party to 
+present his defence within such period. 
+  (5) The Authority shall cause to be served a copy of 
+a third party notice presented to it on the third party and a 
+Complainant. 
+  (6) Procedure for service  of summons under rule 
+6(2) shall apply mutatis mutandis to service of not ice under 
+this rule. 
+  (7) Where a third party notice has been served on 
+the third party, the third party shall, if he wishes to dispute 
+the claim in the complaint against the respondent presenting 
+the third party notice or his own liability to the respon dent, 
+within t wenty-one days of the service of the third party 
+notice, present to the Authority his defence. 
+
+[PDF PAGE 10]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+10 
+ 
+  
+Directions  10. Where a third party has presented a defence, the 
+Authority shall fix a date fo r the giving of directions and 
+may on such date, if satisfied that there is a proper question 
+to be tried as to the liability of the third party in respect of 
+the claim made against him by the respondent, order the 
+question of such liability to be tried in  such manner, at or 
+after the trial of the compla int, as the Au thority may direct 
+or, if the Authority is not so satisfied, make such order as 
+the nature of the complaint may require. 
+  
+Award against 
+third party in 
+default 
+ 11.-(1) Where a third party- 
+(a) makes default in presenting his defence within 
+the time prescribed under rule 9 (7); or 
+ (b) having presented a defence, makes a default in 
+appearing on the date fixed for the giving of 
+directions,  
+  the  respondent against whom  a third party notice  issued may 
+apply ex-parte to the Authority for an award  against the 
+third party in respect of any contribution, indemnity or relief 
+claimed in the notice. 
+  (2) The Authority may, on application for the 
+respondent in sub -rule (1) and on ex-parte proof by the 
+respondent of his claim against the third party, is sue an 
+award against the third party as the nature of the complaint 
+may require. 
+  
+Amendments 
+to  complaint 
+and defence 
+ 12.–(1) A complainant or  respondent may, upon 
+providing sufficient cause, be  allowed to amend a 
+complaint,  defence or  reply, as th e case may be,  provided 
+the other party is afforded an opportunity to make a 
+response thereto within a reasonable time prior to the 
+hearing. 
+  (2) A complainant or  respondent who intends to 
+apply for amendment to a complaint,  defence or  reply to 
+the defence under sub-rule (1), may do so by writing to the 
+Authority. 
+  (3) A complainant or respondent shall, upon being 
+allowed to amend a complaint, defence or reply as the case 
+may be, amend such a complaint , defence or reply within 
+the prescribed time as the Division may determine. 
+
+[PDF PAGE 11]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+11 
+ 
+  
+PART III 
+INVESTIGATION AND MEDIATION PROCEDURES 
+  
+Investigation 
+of complaint 
+ 13.-(1) The Authority shall, upon receipt of a 
+defence from the respondent under rule 7   or a r eply from 
+the complainant, if any, or otherwise c omes to the at tention 
+of the Authority that- 
+ (a) the complainant has an interest in the matter to 
+which the complaint relates; and 
+ (b) the complaint is not frivolous or vexatious, 
+ investigate the matter. 
+  (2) Where it appears to the Authority at any time 
+during or after the investigation that there exists a meritous 
+complaint and that the regulated supplier has not considered 
+the same, or has not considered it adequately, pursuant to 
+the Act, sector legislati on or a customer service charter, the 
+Authority may require the  regulated supplier to consider or 
+reconsider the complaint within fourteen days. 
+  
+Mediation  14.-(1) The Authority shall, as part of investigation  
+through the unit , attempt to resolve the c omplaint in an 
+amicable manner within sixty days from the date of f iling 
+the complaint. 
+  (2) During mediation in sub -rule (1)  the D irector 
+shall assign one official from the Authority to  act as a 
+mediator between the parties. 
+  (3) The mediator assigned  to mediate the parties 
+under sub-rule (2), shall strive to mediate the parties and in 
+doing so, he may call for mediation meetings to such place 
+and time as it may be agreed between the parties. 
+  (4) A settlement reached by the parties out of the 
+mediation session under sub -rule (3), shall be reduced into 
+writing in a form prescribed in the Third Schedule and shall 
+be signed by the parties and a copy thereof shall be 
+submitted by the mediator to the Authority for adoption.  
+  (5) The settlement reached under sub-rule (4) shall, 
+upon adoption by the Authority, be deemed to be the award 
+of the Authority. 
+  
+Issuance of 
+award  15. The Aut hority shall, after adoption  of the  
+
+[PDF PAGE 12]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+12 
+ 
+settlement under rule 14 (5 ) as its award, prepare and issue  
+the said award to the parties. 
+  
+Referral of 
+complaint to 
+Division 
+ 16.-(1) Where at any stage during the sixty days 
+period described under rule 14 (1) it becomes clear that the 
+parties cannot reach an amicable settlement, or where at the 
+conclusion of the sixty days period no amicable solution has 
+been reached, the Unit sha ll refer the m atter to the Division 
+for hearing. 
+  (2) The Authority shall, not later than seven days 
+after the complaint has been referred to the Division under 
+sub-rule (1), notify the parties using a sum mons prescribed 
+in the Fourth Schedule that a com plaint has been referred to 
+the Division for hearing. 
+  (3) The notification described in su b-rule (2) shall 
+be effected by- 
+ (a) personal delivery to the parties or their 
+representatives and the parties shall  
+acknowledge receipt by signing and returning 
+the notice to the Authority; 
+ (b) registered mail with return receipt; or 
+ (c) publication in two newspapers of general 
+circulation in Tanzania, one in English and 
+another in Kiswahili,  where th e Authority has 
+determined that- 
+ (i) there are reasons to believe that t he 
+respondent is keeping out of the way for the 
+purpose of avoiding the notification; 
+ (ii) the notice cannot  for any other reason  be 
+served in the ordinary way; or 
+ (iii) there is proof  in writing from the local 
+authority that efforts to serve the respondent 
+were taken  and t hat such efforts have failed 
+due to reasons given under sub -paragraphs 
+(i) and (ii). 
+  
+PART IV 
+HEARING PROCEDURE 
+ 
+Hearing 
+procedure to 
+be quasi-
+ 17.-(1) Hearing proceedings  under these Rules shall 
+be quasi-judicial in nature. 
+
+[PDF PAGE 13]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+13 
+ 
+Judicial  (2) A party may appear either in person, represented 
+by an advocate or its principal officer or an authorized 
+representative. 
+  (3) Where a party appears by representation in 
+accordance with sub -rule (2), the party shall be required to 
+produce proof of aut horization to represent, which sha ll 
+include any of the following-  
+ (a) power of attorney; 
+ (b) an introduction letter bearing the signatures and 
+passport size photographs of both the party 
+represented and the representative;   
+ (c) letter of appointment as admini strator or 
+administratrix of the deceased’s estate; 
+ (d) proof that the person has been named by the 
+party in the complaint form as a representative; 
+ (e) tenancy agreement where the interested party is 
+a tenant; and 
+ (f) birth certificate or affidavit as proof of 
+relationship where the complainant is a guardian 
+or parent of a minor. 
+ 
+Cap. 33 
+ (4) Suits by minors and persons of unsound mind 
+shall be instituted in accordance with  the procedure 
+prescribed under Order XXI of the Civil Procedure Code. 
+   (5) During hearing, the Division may- 
+ (a) require any person to produce any document or 
+information deemed relevant;  
+ (b) issue an interlocutory order upon a written 
+application by either party; and 
+ (c) require the attendance of any person to give 
+evidence and or produce any document that may 
+be in his custody. 
+  (6) The o ral evidence adduced by the parties during 
+hearing shall be under oath or affirmation. 
+  (7) For the purpose of this rule, “hearing” means all 
+processes req uired for the Authority’s determination, 
+including: 
+ (a) any attempt to reconcile the parties; 
+ (b) oral and written submissions made by the 
+parties; 
+ (c) examination of witnesses   
+ (d) discovery of documents;  
+
+[PDF PAGE 14]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+14 
+ 
+ (e) tendering of exhibits; 
+ (f) visitation of the scene of incident; and 
+ (g) production of documents by order of  the 
+Authority. 
+  (8) Where these R ules are silent on any matter of 
+procedure, the Division may regulate its own procedure. 
+  
+Failure to 
+appear  18.–(1) Where neither party appears when the 
+complaint is called for hearing, the Authority may make an 
+order that the complaint be dismissed. 
+  (2) Where the complainant fails to appear when the 
+complaint is called for hear ing, the Authority may make an 
+order that the complaint be dismissed. 
+  (3) Where the  respondent fails to appear when a 
+complaint is called for hearing and upon an application by a 
+complainant, the Authority may make an o rder for ex-parte 
+proof of the claims made by the complainant. 
+  (4) A party to whom a dismissal order has been 
+made under sub -rule (1) or (2) or an ex-parte order  has 
+been made under sub –rule (3) may apply in writing to the 
+Authority, within thirty days, for setting aside such 
+dismissal or ex-parte order, and the Authority shall proceed 
+on making decision to such Application. 
+  (5) In making a decision to the application under sub 
+–rule (4) the Authority shall consider whether there are 
+sufficient reasons in support of the application and it shall 
+notify the parties about its decision. 
+  
+Adjournment  19.-(1) A party may,  before or during hearing of a 
+complaint apply to the Division for adjournment. 
+  (2) An application for adjournment referred to under 
+sub-rule (1) may be made orally or in writing. 
+  (3) The Division may accept the application for an 
+adjournment if it is satisfied that the applicant has sufficient 
+reasons for applying for adjournment. 
+   (4) The Division may make determination on 
+payment of costs of adjourning the hearing of complaint as 
+it deems fit. 
+  
+Application to 
+intervene  20.-(1) Any person who  has an interest in the 
+complaint before the Authority may, at any stage before the 
+
+[PDF PAGE 15]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+15 
+ 
+conclusion of the hearing, file an application to the 
+Authority to intervene in the proceedings. 
+  (2) An application to intervene shall state: 
+ (a) the date the application is filed; 
+ (b) the number of the complaint; 
+ (c) the title of the hea ring to which the application 
+relates; 
+ (d) the name, postal and physical address of the 
+intervener; 
+ (e) the address for service; 
+ (f) the concise statement of the matters in issue 
+affecting the intervener; 
+ (g) the party whose position the intervener i ntends 
+to support; and  
+ (h) the grounds and documents in support of the 
+application. 
+  (3) The Authority shall notify parties to the 
+proceedings of the application and any party may file an 
+objection within s even days upon receipt of notice of the 
+application. 
+  (4) The  Division shall ascertain whether the 
+prospective intervener is directly affected by the outcome of 
+the hearing and whether his interest in the outcome is 
+established.  
+  (5) Where the Divisio n is satisfied that the 
+intervener has sufficient  interest it s hall grant the 
+application on such terms and conditions as it may deem fit. 
+  (6) Where the application is granted the intervener 
+shall, within seven days, file a state ment of intervention 
+containing- 
+ (a) succinct presentation of the facts and  arguments 
+supporting the intervention; 
+ (b) reliefs sought; and 
+ (c) list of documents annexed and a copy of every 
+document upon which the intervener relies. 
+  (7) The parties to the proceedings may, within seve n 
+days from the date of receipt of the notice und er sub -rule 
+(3), f ile to the Authority a reply to the statement of 
+intervention jointly or separately. 
+  
+Decision of  
+Authority  21.-(1) Upon receipt of findings and 
+
+[PDF PAGE 16]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+16 
+ 
+recommendations of the Division, the Au thority shall 
+consider the recommendations and is sue one or more of the 
+following orders- 
+ (a) imposing to a guilty party a fine of not less than 
+three million shillings or such amount as may be 
+prescribed under the sector legislation; 
+ (b) requiring a party to supply regulated services on 
+prescribed terms and conditions; 
+ (c) requiring a party to pay costs of another party or 
+of a person appearing at the hearing or 
+producing documents; 
+ (d) dismissing a complaint; 
+ (e) requiring specific performance; 
+(f) setting up an escrow account; 
+ (g) appointing trustees; 
+ (h) making refunds; and 
+ providing such other relief as may be deemed 
+reasonable and necessary. 
+  
+Enforcement 
+of award 
+ 
+ 22.–(1) Pursuant to section 35(1) of the Act , the 
+award of the Author ity shall be enforceable as an o rder of 
+the High Court. 
+  (2) The award holder s hall, subject to the period of 
+limitation specified in Part II of the Fifth  Schedule, apply 
+for registration of the award to the High Court. 
+  (3) The application of registration of the award 
+under sub -rule (2), shall be by way of a covering letter 
+enclosing the award to be registered. 
+ 
+ 
+ 
+Cap. 15 
+ (4) The High Court shall, after receipt of the 
+application under sub -rule (3), proceed registering the said 
+award as if the same has been issued under the Arbitra tion 
+Act. 
+  (5) Notwithstanding the provisions o f sub -rule (2) , 
+the Authority or the Council may, on behalf of the award 
+holder, cause to be registered the award as provided for 
+under sub-rule (3). 
+  
+PART V 
+APPEAL PROCEDURES 
+  
+ 
+Appeal  23.  A party a ggrieved by the decision of the 
+
+[PDF PAGE 17]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+17 
+ 
+ Authority under r ule 21, may wi thin twenty-one days from 
+the date of delivery of the award, appeal to the Tribunal. 
+  
+Grounds of 
+appeal  24.- Subject to the provisions of the Act, the grounds 
+of appeal to the Tribunal may be as follows- 
+ 
+ (a) the award issued was not based on the evidenc e 
+tendered; 
+ (b) the decision was made in an error in law; 
+ (c) the procedures or other statutory requirements 
+applicable to the Authority were not complied 
+with and the non -compliance materially affected 
+the award; or 
+ (d) the Authority did not have power to make the 
+award. 
+  
+Procedure for 
+appeal  25.  Every appeal to the Tribunal under rule 23 shall 
+be presented by filing memorandum of appeal. 
+  
+ 
+ 
+PART V1 
+LIMITATION PERIODS 
+  
+Dismissal of 
+proceedings 
+instituted after 
+period of 
+limitation 
+ 26.-(1) Subj ect to the provisions of these R ules, 
+every proceeding described in the second column of the 
+Fifth Schedule of these R ules and which is instituted after 
+the period of limitation prescribed opposite th ereto in the 
+third column, shall be dismissed whe ther or not li mitation 
+has been set up as a defence. 
+  (2) Where, after the institution of a complaint, a 
+person is made a party thereto, either as a complainant, 
+respondent, third party or interested party , the complaint 
+shall, as regards such person, be  deemed to hav e be en 
+instituted on the date on which he is made a party. 
+  
+Accrual of 
+cause of action  27.-(1) The period of lim itation prescribed under 
+these Rules in relation to any proceeding shall, com mence 
+from the date on which the right of action for such 
+proceedings accrues. 
+  (2) The right of action in respect of any proceeding 
+
+[PDF PAGE 18]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+18 
+ 
+shall accrue on the date on which the cause of action arises. 
+  (3) Where there is a continuing breach of contract or 
+a continuing wrong independent of a contract a fres h period 
+of limitation shall begin to run at every moment of the time 
+during which the breach or the wrong, as the case may be, 
+continues. 
+  
+Exclusion of 
+time of party’s 
+absence from 
+Tanzania 
+ 28. In computing the period of limitation prescribed 
+for any complaint or application, the time during which the 
+party has been absent from Tanzania shall be excluded. 
+  
+Exclusion of 
+time of 
+proceeding 
+Bona fide in 
+court without 
+jurisdiction 
+ 29. In computing the period of limitation under these 
+Rule, the time dur ing which the complainant has been 
+undertaking, proceeding in a court which, from defect of 
+jurisdiction or other cause of a like nature, is incompetent to 
+entertain it, shall be excluded. 
+  
+Board may 
+extend period 
+of limitation 
+ 30. Where the Board is o f the opinion that it is just 
+and equitable so to do,  may, by Order extend the period of 
+limitation in respect of any complaint for a period not 
+exceeding one-half of the period of limitation prescribed by 
+these Rules for such complaint. 
+ 
+PART VI 
+GENERAL PROVISIONS 
+  
+Taxation for 
+costs 
+ 
+ 31.-(1) Where any party has been awarded the costs 
+and wishes to recover the costs which h e has been awarded 
+under these R ules, he shall lodge a bill of cost for taxatio n 
+and the Director shall tax such bill accordingly. 
+ 
+ 
+GN. No. 
+264/2015 
+ (2) The bill of costs, under sub -rule (1), the bill of 
+costs shall be filed to the Authority and shall be in the form 
+prescribed under the Advocates Remuneration and Taxation 
+for Costs Rules, 2015. 
+  (3) Any person who is aggrieved  by the decisi on of 
+the Director under sub -rule (1) may appeal to the Fair 
+Competition Tribunal. 
+  
+Application  32. All appli cations to be made under these R ules 
+shall be in form of a letter addressed to the Authority stating 
+the reasons in support of the said application. 
+
+[PDF PAGE 19]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+19 
+ 
+  
+Issuance of 
+compliance 
+orders 
+ 
+ 33. At any stage during hearing and where the 
+Division is satisfied that a person has breached or is likely 
+to breach the provisions of the Act or sect or legislation, the 
+Authority may issue a complia nce order subj ect to section 
+39 of the Act or such other directives as it may deem 
+necessary. 
+  
+General 
+penalty  34. Any person who contravenes any provisions of 
+these rules for which no specific penalty i s prescribed shall 
+on conviction, be liable to a fine of three million shillings. 
+  
+Authority to 
+supplement 
+procedures 
+ 
+ 35. Where procedures  are not provided for in these 
+Rules, the Authority may do whatever is necessary and 
+permitted by the Act and the  applicable law to enable it to 
+effectively and c ompletely adjudicate on any matter before 
+it. 
+  
+Revocation of 
+GN. No. 10 of 
+2013 
+ 36.-(1) The Energy and Water Utilities Regulatory 
+Authority (Complaints Handling Procedure) Rules, 2013 are 
+hereby revoked. 
+  (2) Notwithstanding the revocation of the Ene rgy 
+and Water Utilities Regulatory Authority (Complaints 
+Handling Procedure) Rules, 2013 all awards, orders or 
+directives made or issued or deemed to have b een made or 
+issued under those R ules shall be deeme d to have b een 
+made under these R ules, and shall remain in forc e until set 
+aside, reversed, revoked or otherwise expire or cease to 
+have effect. 
+ 
+ 
+_______ 
+ 
+SCHEDULES 
+_______
+
+[PDF PAGE 20]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+20 
+ 
+___________ 
+ 
+FIRST SCHEDULE 
+___________ 
+ 
+(Made under rule 4(1)) 
+ 
+ 
+THE ENERGY AND WATER UTILITIES REGULATORY AUTHORITY 
+(EWURA) 
+ 
+COMPLAINT FORM 
+ 
+(1) Details of the Complainant:  
+ 
+Name: _ ________________________________________________________-
+______________ 
+ 
+Name of Representative ( where applicable): 
+_________________________________________ 
+ 
+Address: 
+________________________________________________________________
+___ 
+ 
+Customer Account Number  (where 
+applicable):______________________________________ 
+ 
+Physical Address : 
+_____________________________________________________________ 
+ 
+City:_________________________________________________-
+_____________________ 
+ 
+Telephone: 
+________________________________________________________________
+_ 
+ 
+Mobile Telephone: 
+___________________________________________________________ 
+ 
+E-
+mail:____________________________________________________________
+_________ 
+ 
+
+[PDF PAGE 21]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+21 
+ 
+ 
+(2) Details of the Respondent:  
+ 
+Name:__________________________________________________________
+___________ 
+ 
+Address: 
+________________________________________________________________
+___ 
+ 
+Physical 
+Address_________________________________________________________
+____ 
+ 
+City: 
+________________________________________________________________
+______ 
+ 
+Office Telephone : 
+____________________________________________________________ 
+ 
+Mobile Telephone: 
+___________________________________________________________ 
+ 
+E-mail: 
+________________________________________________________________
+_____ 
+ 
+(3) Nature of the Complaint (a separate sheet may be used):  
+ 
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+_________________________________________ 
+
+[PDF PAGE 22]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+22 
+ 
+  
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+_____ 
+ 
+(4) Reliefs sought 
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________ 
+ 
+(5) Has the Complainant tried to resolve the complaint directly with the 
+Respondent?  
+ 
+ 
+ 
+ 
+If yes, explain steps taken and results: 
+ 
+ 
+________________________________________________________________
+______________ 
+ 
+ 
+ 
+(6) Has the Complainant sought legal redress from any other institution?   
+ 
+ 
+ 
+If yes, provide  the name of the institution and details of the redress sought (a 
+separate sheet may be used): 
+ 
+ 
+________________________________________________________________
+_____________ 
+ Yes 
+  No  Yes 
+  No 
+
+[PDF PAGE 23]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+23 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+(7) Have the copies of all relevant documents been attached?  
+ 
+         
+ 
+ 
+If yes, itemize the list: (a separate sheet may be used) 
+ 
+ _____________________________________________-
+________________________________ 
+ 
+ 
+ 
+ 
+ 
+(8) Any other relevant information: 
+ 
+ 
+ 
+(9) I hereby declare that all the facts and information given in the application 
+are correct to the best of my knowledge. 
+  
+Signature of the 
+Complainant/Principal Officer of the Complainant 
+ 
+Date______________________________________ 
+            Day                Month                     Year 
+ 
+ 
+  
+For Authority’s Use Only  
+ 
+ 
+Date Received:_________________________File 
+No:__________________________________ 
+ 
+ 
+ 
+  No  Yes 
+ 
+YYY
+YYN
+o 
+
+[PDF PAGE 24]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+24 
+ 
+ 
+
+[PDF PAGE 25]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+25 
+ 
+ 
+___________ 
+ 
+JEDWALI LA KWANZA 
+___________ 
+ 
+(Limetengenezwa chini ya kanuni ya 4(1)) 
+ 
+ 
+ 
+MAMLAKA YA UDHIBITI WA HUDUMA ZA NISHATI NA MAJI 
+(EWURA) 
+ 
+FOMU YA MALALAMIKO 
+ 
+ (1) Maelezo ya Mlalamikaji:  
+ 
+Jina: _________________________________________________________ -
+______________ 
+ 
+Jina la Mwakilishi (Kama Yupo): 
+__________________________________________________ 
+ 
+Anuani: 
+________________________________________________________________
+______ 
+ 
+Namba ya Huduma ya Mteja (Kama 
+ipo):____________________________________________ 
+ 
+Anuani ya M akazi: 
+_____________________________________________________________ 
+ 
+Mji:_________________________________________________-
+_________________________ 
+ 
+Simu: 
+________________________________________________________________
+_______ 
+ 
+Simu ya Mkononi: 
+____________________________________________________________ 
+ 
+Anuani ya Barua 
+Pepe:___________________________________________________________ 
+
+[PDF PAGE 26]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+26 
+ 
+ 
+ 
+(2) Maelezo ya Mlalamikiwa:  
+ 
+Jina:___________________________________________________________-
+______________ 
+ 
+Anuani: 
+________________________________________________________________
+_____ 
+ 
+Anuani ya 
+Makazi__________________________________________________________
+___ 
+ 
+Mji: 
+________________________________________________________________
+________ 
+ 
+Namba ya Simu ya Ofisi: 
+_________________________________________________________ 
+ 
+Simu ya Mkononi: 
+_____________________________________________________________ 
+ 
+Anuani ya Barua Pepe: 
+___________________________________________________________ 
+ 
+(3) Maelezo ya Malalamiko (Karatasi ya Ziada inaweza tumika):  
+ 
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+
+[PDF PAGE 27]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+27 
+ 
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+______________________________________________ 
+ 
+(4) Nafuu Zinazoombwa 
+________________________________________________________________
+__________ 
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+________________________________ 
+ 
+(5) Je Mlalamikaji amechukua hatua zozote za kutatua  malalamiko haya n a 
+Mlalamikiwa?  
+ 
+ 
+ 
+ 
+Kama ndio, taja hatua alizochukua na matokeo ya hatua hizo: 
+________________________________________________________________
+______________ 
+ 
+________________________________________________________________
+__________ 
+ 
+________________________________________________________________
+______________ 
+ 
+________________________________________________________________
+_____________ 
+ 
+________________________________________________________________
+___________ 
+ 
+(6) Je Mlalamikaji a mefikisha malalamiko yake katika taasisi nyingine kwa 
+lengo la kupata msaada?   
+ 
+ Ndio 
+  Hapana  Ndio 
+  Hapana 
+
+[PDF PAGE 28]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+28 
+ 
+ 
+ 
+ 
+Kama ndio, taja jina la taasisi husika, nafuu zilizoombwa na matokeo husika  
+(Karatasi ya ziada inawezakutumika): 
+ 
+ 
+________________________________________________________________
+_____________ 
+ 
+________________________________________________________________
+______________ 
+ 
+________________________________________________________________
+______________ 
+ 
+________________________________________________________________
+______________ 
+ 
+________________________________________________________________
+______________ 
+ 
+________________________________________________________________
+______________ 
+ 
+  
+(7) Je nyaraka zote muhimu kwenye shauri hili zimeambatanishwa?  
+ 
+         
+ 
+Kama ndio zitaje: (Karatasi ya Ziada inawezakutumika) 
+ 
+ _____________________________________________-
+________________________________ 
+ 
+________________________________________________________________
+______________ 
+ 
+________________________________________________________________
+______________ 
+ 
+(8) Maelezo mengine yeyote muhimu kwenye shauri hili: 
+ 
+________________________________________________________________
+_____________ 
+  Hapana  Ndio 
+ 
+YYY
+YYN
+o 
+
+[PDF PAGE 29]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+29 
+ 
+ 
+________________________________________________________________
+______________ 
+(9) Nathibitisha kwamba maelezo yote yaliyotolewa kwenye malalamiko haya 
+ni kweli tupu kwa ufahamu wangu. 
+___________________ 
+Saini ya Mlalamikaji/Ofisa Mkuu wa Mlalamikaji 
+ 
+Tarehe______________________________________ 
+            Siku                Mwezi                   Mwaka 
+ 
+ 
+ 
+ Kwa Matumizi ya Mamlaka tu:  
+ 
+Tarehe Iliyopokelewa :___________________Namba ya 
+Faili:____________________________ 
+ 
+ 
+
+[PDF PAGE 30]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+30 
+ 
+_____________ 
+ 
+SECOND SCHEDULE 
+_____________ 
+ 
+(Made under rule 6 (1)) 
+____________ 
+ 
+THE ENERGY AND WATER UTILITIES REGULATORY AUTHORITY 
+ 
+(EWURA) 
+ 
+Complaint Number………………….. 
+ 
+TO: 
+ 
+…………………………………………. 
+…………………………………………. 
+…………………………………………. 
+ 
+ 
+1. …………………………….…..…………….  -
+ COMPLAINANT 
+ 
+2. ………………………………………………  -
+ RESPONDENT 
+ 
+ 
+SUMMONS TO FILE A DEFENCE 
+ 
+ 
+TAKE NOTICE  that Mr./Ms./Dr. ...... ...........................................(''the 
+Complainant'') of P.O. Box .......... ................................. has lodged a complaint 
+against you at EWURA, details of which are attached herewith. 
+ 
+PURSUANT to r ule 6 (6 ) of the Energy and Water Ut ilities Re gulatory 
+Authority (Consumer Complaints Settlement Procedure) Rules, GN. 
+No………..… You are required to submit to EWURA, within twenty one   (21) 
+days from the date of this notice, a written reply to the  complaint together with 
+all relevant documents you will rely upon in support of your defense.  Copy of 
+the reply should be served to the Complainant. 
+ 
+TAKE FURTHER NOTICE that failure to submit a reply within the stipulated 
+period above will imply that yo u have waived your right to be heard and 
+
+[PDF PAGE 31]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+31 
+ 
+EWURA shall proceed determining the matter in your absence as provided for 
+in GN. No. ………….  
+ 
+GIVEN with stamp  of EWURA this………. day of ……………………….. 
+20…… 
+ 
+ 
+................................................................................................. 
+DIRECTOR GENERAL/SECRETARY TO THE BOARD 
+ 
+ 
+COPY TO BE SERVED UPON: 
+ 
+……………………………………. 
+……………………………………. 
+……………………………………. 
+……………………………………. 
+ 
+
+[PDF PAGE 32]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+32 
+ 
+___________ 
+ 
+JEDWALI LA PILI 
+___________ 
+ 
+(Limetengenezwa chini ya kanuni ya 6(1)) 
+ 
+ 
+MAMLAKA YA UDHIBITI WA HUDUMA ZA NISHATI NA MAJI 
+ 
+(EWURA) 
+ 
+Malalamiko Namba………… 
+ 
+KWA: 
+ 
+……………………………………………. 
+……………………………………………. 
+……………………………………………. 
+ 
+ 
+1. …………………………..……..…………….  -
+ Mlalamikaji 
+ 
+2. …………………………….…………………  -
+ Mlalamikiwa 
+ 
+ 
+WITO WA KUWASILISHA UTETEZI 
+ 
+ 
+UNATAARIFIWA KUWA Bw./Bi./Bibi./Dkt. .............................................wa 
+S. L. P. ................ ................ (“Mlalamikaji”) amewasilisha malalamiko yake 
+hapa EWURA dhidi yako, nakala ya fomu ya malalamiko na nyaraka 
+alizowasilisha zimeambatanishwa kwa rejea.  
+ 
+KWA MUJIBU  wa kanuni ya  6 ( 6) cha Kan uni za T aratibu za Kutatua 
+Migogoro za EWURA [The Energy and Water Utilities Regulatory Authority 
+(Consumer Complaints Settlement Procedure) Rules, GN. No …………., 
+unatakiwa kuwasilisha majibu dhidi ya  hoja zilizotolewa na Mlalamikaji 
+pamoja na vielelezo vyote muhimu utakavyotumia katika utetezi wako ndani ya 
+siku ishirini na moja (21) tokea tarehe ya kuandikwa kwa waraka huu  hii. 
+Mlalamikaji apewe nakala ya majibu yako. 
+ 
+
+[PDF PAGE 33]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+33 
+ 
+ZINGATIA KUWA  kushindwa kuwasil isha utetezi wako ndani ya muda 
+uliotajwa hapo j uu kutakuo ndolea h aki yako ya kusikilizwa na EWURA 
+itaendelea kufanya uamuzi katika shauri hili kwa kuzingatia hoja za upande 
+mmoja kama ilivyoanishwa katika Tangazo la Serikali Na………………..  
+ 
+IMETOLEWA na m uhuri wa EWURA leo tarehe………….ya 
+mwezi……………………….. mwaka 20…….. 
+…………………………………………………………………. 
+MKURUGENZI MKUU/KATIBU WA BODI YA EWURA 
+ 
+NAKALA KWA: 
+ 
+…………………………………. 
+…………………………………. 
+
+[PDF PAGE 34]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+34 
+ 
+__________ 
+ 
+THIRD SCHEDULE 
+__________ 
+ 
+(Made under rule 14 (4)) 
+ 
+ 
+THE ENERGY AND WATER UTILITIES REGULATORY AUTHORITY 
+(EWURA) 
+ 
+SETTLEMENT FORM 
+(This form should be filled in by all the parties and each party shall retain one 
+copy and the other copy shall be submitted to the Authority) 
+ 
+1.0 DETAILS OF THE COMPLAINT 
+ 
+1.1 Name of the Complainant(s):
+ ............................................................................................ 
+ 
+1.2  Name of the Respondent (s):
+ ............................................................................................ 
+ 
+1.3 Name of the Third Party (if any):
+ …………………………………………………… 
+ 
+1.4 Name of the Intervener (if any):
+ …………………………………………………… 
+ 
+1.5 Number of the Complaint: 
+ ………............................................................................... 
+ 
+1.6 Date of Filing the Complaint to EWURA:
+ .................................................................... 
+ 
+1.7 Nature of the Complaint:
+ ............................................................................................ 
+ 
+……………………………………………………………………….…………
+……………….. 
+ 
+…………………………………………………………………….…..…………
+……………… 
+ 
+
+[PDF PAGE 35]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+35 
+ 
+2.0 DETAILS OF THE MEDIATION MEETING 
+ 
+2.1 Date (s) of the mediation meeting:
+ ………………………………………………….. 
+ 
+2.2 Place of the mediation meeting:
+ ……………………………………...…………… 
+ 
+2.3 Names of the participants (See the names and signature of the 
+participants in the annex sheet) 
+   
+2.4 What are the terms and conditions of the settlement? 
+ 
+The parties hereto have agreed as follows; 
+ 
+................................................................................................................................
+....................... 
+................................................................................................................................
+...................... 
+................................................................................................................................
+....................... 
+................................................................................................................................
+....................... 
+................................................................................................................................
+...................... 
+................................................................................................................................
+....................... 
+................................................................................................................................
+..................... 
+................................................................................................................................
+...................... 
+................................................................................................................................
+...................... 
+................................................................................................................................
+..................... 
+................................................................................................................................
+...................... 
+................................................................................................................................
+...................... 
+................................................................................................................................
+....................... 
+................................................................................................................................
+....................... 
+................................................................................................................................
+....................... 
+
+[PDF PAGE 36]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+36 
+ 
+................................................................................................................................
+...................... 
+................................................................................................................................
+...................... 
+................................................................................................................................
+....................... 
+................................................................................................................................
+....................... 
+3.0 VERIFICATION 
+ 
+3.1 I,…………………….…….…….., being the Complainant/ 
+Complainant’s Representative (a done e, administrator, executor, 
+administratrix or executrix)  hereby verify that all  the infor mation 
+contained in this form are true and the same reflects what the parties 
+hereto have agreed. 
+ 
+Name: …………………………….…… Signature:
+ ………..…….……………   
+ 
+Date: …………………………….. 
+ 
+3.2 I,………………………….……….., being th e Respondent/ Principal 
+Officer hereby verify that all the information contained in this form are 
+true and the same reflects what the parties hereto have agreed. 
+ 
+Name: …………………………….…… Signature:
+ ………..…….……………   
+ 
+Date: …………………………….. 
+ 
+3.3 I,……………………….……….., being the Third Party/ Third Party’s 
+Representative (a donee, a dministrator, executor, administratrix or 
+executrix) hereby verify that all the information contained in this form 
+are true and the same reflects what the parties hereto have agreed. 
+ 
+Name: …………………………….…… Signature:
+ ………..…….……………   
+ 
+Date: …………………………….. 
+ 
+3.4 I,……………………….……….., being the Intervener/ Intervener’s 
+Representative (a donee, administrator, executor, administratrix or 
+executrix)  hereby verify that all the information contained in this form 
+are true and the same reflects what the parties hereto have agreed. 
+
+[PDF PAGE 37]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+37 
+ 
+Name: …………………………….…… Signature:
+ ………..…….……………   
+ 
+Date: …………………………….. 
+ 
+ 
+3.5 I,……………………..….……….., being the Mediator in this matter 
+hereby verify that all the information contained in this form are  true 
+and the same reflects what the parties hereto have agreed. 
+ 
+Name: …………………………….…… Signature:
+ ………..…….……………   
+ 
+Date: …………………………….. 
+
+[PDF PAGE 38]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+38 
+ 
+ 
+MAMLAKA YA UDHIBITI WA HUDUMA ZA NISHATI NA MAJI 
+(EWURA) 
+ 
+FOMU YA MUAFAKA 
+(Fomu hii ijazwe na pande zote na kila upande upate nakala moja na nakala 
+inayobaki iwasilishwe EWURA) 
+ 
+1.0 MAELEZO YA MALALAMIKO 
+ 
+1.1 Jina la Mlalamikaji: 
+............................................................................................................... 
+ 
+1.2  Jina la Mlalamikiwa: 
+............................................................................................................ 
+ 
+1.3 Jina la Mlalamikiwa Mbadala (Kama yupo):
+ ……………………………………………… 
+ 
+1.4 Jina la Mlalamikiwa Mwombaji Kuunganishwa (Kama yupo): 
+………………..………… 
+ 
+1.5 Namba ya Malalamiko: 
+......................................................................................................... 
+ 
+1.6 Tarehe ya Kuwasilisha Malalamiko 
+EWURA....................................................................... 
+ 
+1.7 Aina ya 
+Malalamiko..............................................................................................
+................. 
+ 
+……………………………………………………………………….…
+………………….. 
+ 
+…………………………………………………………………….…..…
+………………… 
+ 
+2.0 MAELEZO YA KIKAO CHA UPATANISHI 
+ 
+2.1 Tarehe ya Kikao cha Upatanishi: 
+…………………………………………………….. 
+ 
+
+[PDF PAGE 39]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+39 
+ 
+2.2 Mahali Kikao Kilipofanyika: 
+………………………………………...…………… 
+2.3 Majina ya Waliohudhuria kikao cha Upatanishi (Angalia Kiambatisho 
+cha Majina na Sahihi) 
+   
+2.4 Je Upatanishi umefikiwa kwa masharti gani? 
+ 
+Pande husika zimekubaliana yafuatayo; 
+ 
+.....................................................................................................................
+.................................. 
+.....................................................................................................................
+................................. 
+.....................................................................................................................
+.................................. 
+.....................................................................................................................
+.................................. 
+.....................................................................................................................
+................................. 
+.....................................................................................................................
+.................................. 
+.....................................................................................................................
+................................ 
+.....................................................................................................................
+................................. 
+.....................................................................................................................
+................................. 
+.....................................................................................................................
+................................ 
+.....................................................................................................................
+................................. 
+.....................................................................................................................
+................................. 
+.....................................................................................................................
+.................................. 
+.....................................................................................................................
+.................................. 
+.....................................................................................................................
+.................................. 
+.....................................................................................................................
+................................. 
+
+[PDF PAGE 40]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+40 
+ 
+.....................................................................................................................
+................................. 
+.....................................................................................................................
+.................................. 
+.....................................................................................................................
+.................................. 
+ 
+3.0 UTHIBITISHO  
+ 
+3.1 Mimi,…………………….……….., nikiwa ni Mlalamikaji/Mwakilishi 
+wa Mlalamikaji (Mrithi/mnufaika, msimamizi wa mirathi pale ambapo 
+kuna wosia au la ) nathibitisha kwamba yote yaliyoandikwa katika 
+Fomu hii ni sahihi na kwamba haya ndio makubaliano yaliyofikiwa 
+kati ya pande husika katika mgogoro huu. 
+Jina:…………………………….………… 
+Saini:…………………..…………………   
+ 
+Tarehe:…………………………….. 
+ 
+3.2 Mimi,………………………………..…….., nikiwa ni 
+Mlalamikiwa/Afisa Mkuu  nathibitisha kwamba yote yaliyoandikwa 
+katika Fomu hii ni  sahihi na kwamba haya ndio makubalia no 
+yaliyofikiwa kati ya pande  husika. 
+ 
+Jina:............................................................... 
+Saini:…………..………………………   
+ 
+Tarehe:…………………………….. 
+ 
+3.3 Mimi,………………………………..…….., nikiwa ni Mlalamikiwa 
+Mbadala (Thrid P arty)/Mwakilishi wa Mlalamikiwa Mbadala  
+(Mrithi/mnufaika, msimamizi wa mirathi pale ambapo kuna wosia au 
+la) nathibitisha kwamba yote yaliyoandikwa katika Fomu hii ni sahihi 
+na kwamba haya ndio makubaliano yaliyofikiwa kati ya pande husika. 
+ 
+Jina:............................................................... 
+Saini:…………..………………………   
+ 
+Tarehe:…………………………….. 
+ 
+3.4 Mimi……………………………………, nikiwa ni Mtu anayeingilia 
+kati (Intervener/mwakilishi wa anayeingilia kati katika mgogoro huu 
+nathibitisha kwamba yote yaliyoandikwa katika Fomu hii  ni sahihi na 
+
+[PDF PAGE 41]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+41 
+ 
+kwamba haya ndiyo m akubaliano yaliyofikiwa kati ya pande mbili 
+husika katika mgogoro huu. 
+ 
+Jina:............................................................... 
+Saini:…………..………………………   
+ 
+Tarehe:…………………………….. 
+ 
+ 
+3.5 Mimi,…………………………….., nikiwa ni patanishi katika mgogoro 
+huu nathibit isha kwamb a yote y aliyoandikwa katika Fomu hii ni 
+sahihi na kwamba haya ndio makubaliano yaliyofikiwa kati ya pande 
+husika. 
+ 
+Jina:
+ .............................................Saini..................................................... 
+ 
+Tarehe: ………………………………………….………. 
+ 
+ 
+
+[PDF PAGE 42]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+42 
+ 
+____________ 
+ 
+FOURTH SCHEDULE 
+____________ 
+ 
+(Made under rule 16 (2)) 
+ 
+SUMMONS TO APPEAR 
+ 
+IN THE DIVISION OF THE ENERGY AND WATER UTILITIES 
+REGULATORY AUTHORITY AT …………… 
+ 
+ 
+Complaint Number: ……... / 20…… 
+To: 
+ 
+…………………………………….. 
+……………………………………. 
+……………………………………. 
+ 
+1. …………………………………  -  COMPLAINANT 
+ 
+2. ………………….……………  - RESPONDENT 
+ 
+ 
+NOTICE OF DATE OF HEARING 
+ 
+TAKE NOTICE  that the above complaint has been fixed for hearing 
+at………….. in………………District……………… Region, on the 
+…………………day of …………… 20……………... at 10:00 hours before the 
+ENERGY AND WATER UTILITIES REGULATORY AUTHORITY 
+DIVISION. 
+ 
+YOU ARE  hereby required to appear in person or by an authorized 
+representative without fail and submit to the other party and EWURA all  
+evidence you intend to rely on in defending you r case before …………. day of 
+………………20…... You may also wish to bring witnesses if any. 
+ 
+GIVEN with the stamp of EWURA this ……….day of ……….………20…. 
+ 
+ 
+ 
+................................................................................................. 
+DIRECTOR GENERAL/SECRETARY TO THE BOARD 
+  
+
+[PDF PAGE 43]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+43 
+ 
+KATIKA DIVISHENI YA MAMLAKA YA UDHIBITI WA HUDUMA ZA 
+NISHATI NA MAJI (EWURA), YA..................................... 
+ 
+Malalamiko Namba:………….../20............... 
+ 
+Kwa: 
+ 
+…………………………………… 
+…………………………………… 
+…………………………………… 
+ 
+ 
+1. …………………………..……..…………….  -
+ Mlalamikaji 
+ 
+2. …………………………….…………………  -
+ Mlalamikiwa 
+ 
+ 
+NOTISI YA KUSIKILIZA MALALAMIKO 
+ 
+ 
+UNATAARIFIWA KWAMBA malalamiko tajwa hapo juu yatakuja kwa ajili 
+ya kusikilizwa mbele ya  DIVISHENI YA  MAMLAKA YA UDHIBITI WA 
+HUDUMA ZA NIS HATI NA MAJI , katika ukumbi  wa ………… ……….. 
+wilaya ya………………….. Mkoa wa…………………… mnamo 
+saa…………………….. tarehe……………………………………. 
+ 
+UNAAMRIWA  kufika wewe mwenyewe au mwakilishi wako pasipo kukosa 
+katika muda, siku na eneo tajwa hapo  juu na pia kuwasilisha kwa upande wa 
+pili pamoja na EWURA, nak ala ya n yaraka zote utakazozitumia katika utetezi 
+wa shauri lako. Nakala hizo zifikie upande wa pili pamoja na EWURA kabla ya 
+tarehe ……………………………….Unaelekezwa pia kuja na mashahidi wako, 
+kama unao, utakaowatumia katika kutetea shauri lako. 
+ 
+IMETOLEWA na m uhuri wa E WURA leo tarehe………….ya 
+mwezi……………………….. mwaka 20…….. 
+ 
+ 
+…………………………………………………………… 
+MKURUGENZI MKUU/KATIBU WA BODI YA EWURA 
+
+[PDF PAGE 44]
+Energy And Water Utilities Regulatory Authority (Consumer Complaints 
+Settlement Procedure) 
+GN NO. 428 (Contd) 
+44 
+ 
+_____________ 
+ 
+FOURTH SCHEDULE 
+_____________ 
+ 
+(Made under rule 26 (1)) 
+ 
+LIMITATION PERIODS 
+ 
+PART I 
+COMPLAINTS 
+ 
+S/N NATURE OF COMPLAINT 
+ 
+PERIOD OF 
+LIMITATION 
+1 Unlawful disconnection of service Twenty-four months 
+2 Improper Billing /improper assessment of 
+connection costs 
+Twenty-four months 
+3 Failure or refusal to connect the service Twelve months 
+4 Sell or supply of Specification Petroleum Products Seven days 
+5 Sell or supply of Petroleum Product above the Cap 
+Price 
+Six months 
+6 Poor quality of service Twenty-four months 
+7 Damage to property as a result of supply of 
+regulated service  
+Thirty-six months 
+8 Other Twenty-four months 
+ 
+PART II 
+APPLICATIONS 
+ 
+S/N NATURE OF APPLICATION 
+ 
+PERIOD OF LIMITATION 
+1 Application to set aside  an ex-parte Order 
+or an order of dismissal 
+ 
+Thirty days 
+2 Application for registration of  the Award 
+at the High Court in terms of Rule 22 
+Twelve months 
+ 
+ 
+3 Other Thirty days 
+ 
+Dodoma,                                                  NZINYANGWA E. MCHANY 
+    19th May, 2020                                                 Director General 

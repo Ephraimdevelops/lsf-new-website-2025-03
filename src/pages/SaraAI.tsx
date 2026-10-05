@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useUser, SignInButton, UserButton } from '@clerk/clerk-react';
 import { useAction, useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import {
   ArrowUp, Bot, RotateCcw, Home, Phone,
   Scale, Users, Heart, Sparkles, BookOpen, ThumbsUp, ThumbsDown, LogOut, Settings,
@@ -35,6 +35,7 @@ const activityCopy: Record<string, string> = {
 };
 
 const SaraAIPage = () => {
+  const [searchParams] = useSearchParams();
   const { isSignedIn, user, isLoaded } = useUser();
   const askSara = useAction(api.sara_actions.ask);
   const clearHistory = useMutation(api.sara_chat.clearHistory);
@@ -54,7 +55,7 @@ const SaraAIPage = () => {
     timestamp: new Date(msg.timestamp)
   })) : [];
 
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState(() => searchParams.get('evaluationQuestion')?.slice(0, 1000) ?? '');
   const [isTyping, setIsTyping] = useState(false);
   const [activeRequestId, setActiveRequestId] = useState<string | undefined>();
   const activityEvents = useQuery(api.sara_chat.getActivityEvents, activeRequestId ? { requestId: activeRequestId, limit: 20 } : "skip");
@@ -96,10 +97,6 @@ const SaraAIPage = () => {
       // We don't need to await the result for UI updates, but we await to catch errors
       await askSara({
         message: text.trim(),
-        history: messages.slice(-10).map(m => ({
-          role: m.sender,
-          content: m.text
-        })),
         source: "web",
         clientRequestId: requestId,
       });

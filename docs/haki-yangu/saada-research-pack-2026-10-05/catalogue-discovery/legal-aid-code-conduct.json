@@ -1,0 +1,2275 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Legal Aid Code Conduct",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "ad685e81-a436-45d4-9dc2-b52f2a5e0042",
+                "uuid": "ad685e81-a436-45d4-9dc2-b52f2a5e0042",
+                "name": "The Legal Aid Act (CAP. 21 R.E. 2019)",
+                "handle": "123456789/224",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 21",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-03T07:17:45Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-03T07:17:45Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to regulate and coordinate the provision of legal aid services to indigent persons, to recognise paralegals, to repeal the Legal Aid (Criminal Proceedings) Act and to provide for other related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/224",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 21",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP. 21 R.E. 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Legal Aid Act (CAP. 21 R.E. 2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:05:12.110Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ad685e81-a436-45d4-9dc2-b52f2a5e0042"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9",
+                "uuid": "3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9",
+                "name": "THE LEGAL AID ACT, ACT NO. 1 OF 2017.",
+                "handle": "123456789/895",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-11-30T10:06:59Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-11-30T10:06:59Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2017-03-03",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to regulate and coordinate the provision of legal aid services to indigent persons, to recognise paralegals, to repeal the Legal Aid (Criminal Proceedings) Act and to provide for other related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Legal Aid Act, 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856-0331X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/895",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 1 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LEGAL AID ACT, ACT NO. 1 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 1 OF 2017.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:04.398Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3497f5f0-44ed-4758-b8d1-5e2d5bb8dbb9"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "844e0d81-aaad-49cb-bb18-dd3225004d39",
+                "uuid": "844e0d81-aaad-49cb-bb18-dd3225004d39",
+                "name": "THE LEGAL AID ACT, CHAPTER 21",
+                "handle": "123456789/4905",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "HAMZA S. JOHARI",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-09-04T07:35:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-10-28",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Annual Supplement incorporates all amendments made to the Legal Aid Act, Chapter 21 up to and including 31st July, 2025 and is printed under the authority of section 5(7) of the Laws Revision Act, Chapter 4.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4905",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 21",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LEGAL AID ACT, CHAPTER 21",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-09-04T07:45:53.750232Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/844e0d81-aaad-49cb-bb18-dd3225004d39"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+                "uuid": "81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+                "name": "THE LEGAL AID ACT, CHAPTER 21 R.E. 2023",
+                "handle": "123456789/1990",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Office of the attorney General",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-23T06:59:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-23T06:59:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to regulate and coordinate the provision of legal aid services to indigent persons, recognise paralegals, repeal the Legal Aid (Criminal Proceedings) Act and provide for other related matters.  2. This Act shall apply to Mainland Tanzania.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 21  THE LEGAL AID ACT.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1990",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 21",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LEGAL AID ACT, CHAPTER 21 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LEGAL AID ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:10:36.812288Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3f8b4ac2-aaeb-427a-b653-7f61ae207d08",
+                "uuid": "3f8b4ac2-aaeb-427a-b653-7f61ae207d08",
+                "name": "THE PENAL CODE [CAP. 16 R.E. 2022]",
+                "handle": "123456789/308",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "ATTORNEY GENERAL, ELIEZER MBUKI FELESHI,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-05T06:12:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-05T06:12:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-06-22",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "Nothing in this Code shall affect-\r\n(a)  the  liability, trial or punishment  of  a  person  for an offence against  the common law  or against any other law in force in Mainland Tanzania other than this Code;",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Revised Edition of the Penal Code, Chapter 16, has been revised up  to  and  including  15th  June,  2022  and  is  printed  under  the  authority  of section 4 of the Laws Revision Act, Chapter 4.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Penal Code",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/308",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "PRINTED BY THE GOVERNMENT PRESS, DODOMA-TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CAP. 16 R.E. 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "[PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PENAL CODE [CAP. 16 R.E. 2022]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:31.266Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3f8b4ac2-aaeb-427a-b653-7f61ae207d08"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "db817889-5237-434c-9f78-7136b88ad320",
+                "uuid": "db817889-5237-434c-9f78-7136b88ad320",
+                "name": "The Penal Code (CAP. 16 R.E. 2019)",
+                "handle": "123456789/221",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 16",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-03T07:09:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-03T07:09:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to establish a code of criminal law.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/221",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 16",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP. 16 R.E. 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Penal Code (CAP. 16 R.E. 2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:16.998Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db817889-5237-434c-9f78-7136b88ad320"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "8c987f44-10cd-4cd4-a6a6-9d39470a850c",
+                "uuid": "8c987f44-10cd-4cd4-a6a6-9d39470a850c",
+                "name": "THE LEGAL SECTOR LAWS (MISCELLANEOUS AMENDMENTS) ACT NO. 11 OF 2023",
+                "handle": "123456789/1335",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWIHAMBI, NENELWA J.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-12-04T04:53:15Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-12-04T04:53:15Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-12-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to amend various written laws relating to legal sector.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "This Act may be cited as the Legal Sector Laws (Miscellaneous Amendments) Act, 2023.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 - 035X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://elibrary.osg.go.tz/handle/123456789/1335",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "The Government Printer, Dodoma",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": "ACT SUPPLEMENT;11",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 11 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LEGAL SECTOR LAWS (MISCELLANEOUS AMENDMENTS) ACT NO. 11 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 11 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2024-06-28T08:39:16.523Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "2c4f895b-35b7-4627-b0d7-e670832883f8",
+                "uuid": "2c4f895b-35b7-4627-b0d7-e670832883f8",
+                "name": "THE LEGAL SECTOR LAWS (MISCELLANEOUS AMENDMENTS) ACT, NO. 11 OF 2023",
+                "handle": "123456789/1591",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWIHAMBI, NENELWA J.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-11T06:54:21Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-11T06:54:21Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-11-19",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Act may be cited as the Legal Sector Laws (Miscellaneous Amendments) Act, 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1591",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 11 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LEGAL SECTOR LAWS (MISCELLANEOUS AMENDMENTS) ACT, NO. 11 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-12T00:00:33.014Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2c4f895b-35b7-4627-b0d7-e670832883f8"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "c545f591-bf5d-482f-ac11-bbdad280726e",
+                "uuid": "c545f591-bf5d-482f-ac11-bbdad280726e",
+                "name": "THE PENAL CODE, CHAPTER 16, R.E 2023",
+                "handle": "123456789/1985",
+                "metadata": {
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-23T06:40:47Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-23T06:40:47Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-01-02",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Act may be cited as the Penal Code, and hereinafter is referred to as “this Code”.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1985",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 16",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PENAL CODE, CHAPTER 16, R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:11:26.085692Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c545f591-bf5d-482f-ac11-bbdad280726e"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "07e7e457-1fee-45ff-8a2d-5b57b33a6f07",
+                "uuid": "07e7e457-1fee-45ff-8a2d-5b57b33a6f07",
+                "name": "THE PENAL CODE",
+                "handle": "123456789/1964",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Office of the attorney General, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-22T08:00:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-22T08:00:25Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 16  THE PENAL CODE  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1964",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 16  THE PENAL CODE  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PENAL CODE",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CHAPTER 16  THE PENAL CODE  [PRINCIPAL LEGISLATION]",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-11-25T08:30:35.714693Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/07e7e457-1fee-45ff-8a2d-5b57b33a6f07"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "78a460e8-28a6-4efc-ae72-5cc99d85bf6f",
+                "uuid": "78a460e8-28a6-4efc-ae72-5cc99d85bf6f",
+                "name": "THE LEGAL SECTOR LAWS (MISCELLANEOUS AMENDMENTS) BILL, SUPP. NO. 8A OF 2023",
+                "handle": "123456789/1346",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHANA, PINDI",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2024-01-17T09:44:07Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2024-01-17T09:44:07Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-08-16",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to amend various written laws relating to legal sector.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Legal Sector Laws (Miscellaneous Amendments) Act, 2023. see sec. 1",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 - 034X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://elibrary.osg.go.tz/handle/123456789/1346",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "The Government Printer, Dodoma",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": "BILL SUPPLEMENT;8A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "BILL SUPPLEMENT NO. 8A OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LEGAL SECTOR LAWS (MISCELLANEOUS AMENDMENTS) BILL, SUPP. NO. 8A OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "BILL SUPP. NO. 8A OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2024-06-28T08:39:06.101Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78a460e8-28a6-4efc-ae72-5cc99d85bf6f"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "2873ce1f-92d2-4022-89f4-cf9fffd2b492",
+                "uuid": "2873ce1f-92d2-4022-89f4-cf9fffd2b492",
+                "name": "LEONARD DOMINIC RUBUYE t/a RUBUYE AGROCHEMICAL SUPPLIES VS. YARA TANZANIA LIMITED CIVIL APPEAL NO. 219 OF 2018.",
+                "handle": "123456789/1226",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "LILA, MWANDAMBO, J.A. AND MASHAKA, J. A J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-05T08:11:47Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-05T08:11:47Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-07-11",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "LEONARD DOMINIC RUBUYE T/A RUBUYE AGROCHEMICAL SUPPLIES V. YARA TANZANIA LIMITED COURT OF APPEAL OF TANZANIA AT DAR ES SALAAM\r\n(LILA, MWANDAMBO, MASHAKA, JJ.A.) CIVIL APPEAL NO. 219 OF 2018\r\n\r\n(From the Decision of the High Court (Commercial Division) at \r\nDar es Salaam (Mruma,J) dated the 26th  day of June, 2018 \r\nin Commercial Case No. 29 of 2016)\r\n\r\nLaw of Evidence- burden of proof- onus of proving existence or non-existence and standard of proof in civil cases- who has the onus of proof.\r\n\r\nCivil practice and procedure- Appeals- re-evaluation of evidence in the appeal- whether the first appellate Court has power to do so.\r\n\r\nLaw of Evidence-document tendering-documents not tendered and admitted in Court as exhibit-whether the Court can rely on such documents to form the basis of its decision.\r\n\r\nLaw of Evidence-document tendering-documents tendered in Court but no explanation is availed- whether the Court can rely on such documents.\r\n\r\nCivil Practice and Procedure-Assessors-hearing of cases in the Commercial Division with the aid of assessors- who has power to decide on their involvement. \r\n\r\nCivil Practice and Procedure- Hearing of cases in the High Court Commercial Division- rules governing hearing in the commercial division-under what circumstances Civil Procedure Code applies\r\n\r\nIn this is an appeal, the appellant, is challenging the judgment and decree of the High Court Commercial Division at Dar es salaam dated the 21st April, 2021 in Commercial Case No. 29 of 2016. The facts which gave rise to this appeal are as follows; The appellant and the respondent were in business relationship whereby the respondent supplied, upon request by the appellant, various kinds of fertilizers. The practice was that the appellant issued Local Purchasing Orders (LPOs) to the respondent who, upon delivery of the requested consignments, raised invoices for payments. Delivery of the goods was either in Dar es Salaam or Njombe warehouses and was signified by issuance of Delivery Notes (DNs). Trucks authorised by the appellant were used to collect the consignments. Payment for fertilizers delivered was either through Tanzania Interbank Settlement System (TISS) or direct internal transfers from NMB Bank to the respondent's account. In March, 2015, the respondent conducted an audit on the appellant's account and realised that the appellant had defaulted payment of the purchase price to the tune of TZS 847,346,800.00 which, upon sending to him a demand notice, payments were made totalling TZS 120,000,000.00, leaving TZS 727,346,8000.00 unpaid. This prompted the respondent to institute a suit against the appellant and Rubuye Agro Business Company (then 2nd Defendant) who is not a party to this appeal jointly before the High Court of Tanzania (Commercial Division) claiming for, among others, breach of contract and payment of TZS 727,346,800.46 being unpaid balance arising from fertilizers supplied and delivered to them. Rubuye Agro Business Company was found not being privy to the agreement hence no liability could arise against them. That resulted in being discharged from liability. The appellant was found to have breached the contract and was condemned to settle the debt, pay interest and costs. The decision aggrieved him, hence the present appeal.\r\nHeld\r\n(i). \tIt is a well settled position that the onus of proving existence or non-existence of any fact lies on the party asserting its existence or non-existence and in civil cases proof is at balance of probabilities.\r\n\r\n(ii)\tThe first appellate Court has the power to revisit and re-evaluate the entire evidence in an objective manner and come up with its own findings of facts.\r\n\r\n(iii).\tDocuments not tendered and admitted in Court as exhibits cannot be relied upon as evidence and cannot be the basis of a decision.\r\n\r\n(iv).\tDocuments though tendered in Court if not explanation is availed as to their purpose are of no assistance to the Court. The duty lies on the party relying on them to demonstrate their significance.\r\n\r\n(v).\tThe use or non-use of assessors in a trial of a suit is a matter left to the discretion of the trial judge to determine.  The Rule imposes a duty on the presiding judge to peruse the pleadings before him so as to decide whether or not the issues involved and which may arise during the trial of the suit would require any inputs from assessors so as to arrive at a just decision.\r\n\r\n(vi).\tApplication of the provisions of the CPC in adjudicating cases in the Commercial Court is restrictive and limited to situations where there is a lacuna in the Com Rules.\r\n\r\nAppeal partly allowed\r\n\r\nStatutory Provisions referred to:\r\n1.\tTanzania Court of Appeal Rules GN 368 of 2009 Rule 36, 106 (1) &(7)\r\n2.\tLaw of Contract Act, Cap. 433 R.E 2019 section 37 and 37\r\n3.\tEvidence Act Cap. 6 R.E 2019 Section 110 and 111\r\n4.\tCivil Procedure Code, Cap 33 R.E 2019 Order XVIII Rule 1A\r\n5.\tHigh Court (Commercial Division) Procedure Rules, 2012 rule 51(1) and (3)\r\n\r\nCases referred to: \r\n1.\tAttorney General and two Others vs. Eligi Edward Massawe and Others Civil Appeal No. 86 of 2002 [Unreported]\r\n2.\tSiza Patrice vs. Republic Criminal Appeal No. 19 of 2010[Unreported]\r\n3.\tKaimu Said vs. Republic Criminal Appeal No. 391 of 2019 [Unreported]\r\n4.\tPandya vs. Republic [1957] EA 336\r\n5.\tJapan International Corporation Agency (JICA) v Khaki Complex Limited [2006] TLR 343, \r\n6.\tAbdalla Abass Najim v Amini Ahmed AM [2006] T.L.R. 55; \r\n7.\tShemsa Khalifa and 2 Others v Suleiman and Hamed Abdalla, Civil Appeal No. 82 of 2012 [unreported].\r\n8.\tEngen Petroleum (T) Limited vs. Tanganyika Investment Oil and Transport Limited Civil Appeal No. 103 of 2003 [Unreported]\r\n9.\tMexon’s Investment Limited vs. DRTC Trading Co. Limited Civil Appeal No/ 91 of 2018 [Unreported]\r\n\r\nMr. Dickson Mtogesewa Learned Advocate for the appellant\r\nMr. Ayoub Mtafya Learned Advocate for the Respondent",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "(i). \tIt is a well settled position that the onus of proving existence or non-existence of any fact lies on the party asserting its existence or non-existence and in civil cases proof is at balance of probabilities.\r\n\r\n(ii)\tThe first appellate Court has the power to revisit and re-evaluate the entire evidence in an objective manner and come up with its own findings of facts.\r\n\r\n(iii).\tDocuments not tendered and admitted in Court as exhibits cannot be relied upon as evidence and cannot be the basis of a decision.\r\n\r\n(iv).\tDocuments though tendered in Court if not explanation is availed as to their purpose are of no assistance to the Court. The duty lies on the party relying on them to demonstrate their significance.\r\n\r\n(v).\tThe use or non-use of assessors in a trial of a suit is a matter left to the discretion of the trial judge to determine.  The Rule imposes a duty on the presiding judge to peruse the pleadings before him so as to decide whether or not the issues involved and which may arise during the trial of the suit would require any inputs from assessors so as to arrive at a just decision.\r\n\r\n(vi).\tApplication of the provisions of the CPC in adjudicating cases in the Commercial Court is restrictive and limited to situations where there is a lacuna in the Com Rules.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1226",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "LEONARD DOMINIC RUBUYE t/a RUBUYE AGROCHEMICAL SUPPLIES VS. YARA TANZANIA LIMITED CIVIL APPEAL NO. 219 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO. 219 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:59:30.039Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/2873ce1f-92d2-4022-89f4-cf9fffd2b492"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 9,
+        "totalElements": 97
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%20Aid%20Code%20Conduct&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%20Aid%20Code%20Conduct&page=8&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%20Aid%20Code%20Conduct&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Legal%20Aid%20Code%20Conduct&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Legal%20Aid%20Code%20Conduct&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 34,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "ATTORNEY GENERAL, ELIEZER MBUKI FELESHI,",
+              "count": 5,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.author=ATTORNEY%20GENERAL,%20ELIEZER%20MBUKI%20FELESHI,,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH,",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH,,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Legal%20Aid%20Code%20Conduct&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Legal%20Aid%20Code%20Conduct&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 20",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.subject=CHAPTER%2020,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 200",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.subject=CHAPTER%20200,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 21",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.subject=CHAPTER%2021,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 366",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.subject=CHAPTER%20366,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Legal%20Aid%20Code%20Conduct&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 26,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 71,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Legal%20Aid%20Code%20Conduct&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 97,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Legal%20Aid%20Code%20Conduct"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Legal%20Aid%20Code%20Conduct&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 97,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Legal%2520Aid%2520Code%2520Conduct&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

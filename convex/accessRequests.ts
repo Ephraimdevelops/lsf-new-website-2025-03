@@ -1,6 +1,7 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 import { requireAnyRole, requireAuthenticatedUser } from './lib/auth';
+import { paginationOptsValidator } from 'convex/server';
 
 const requestedRole = v.union(v.literal('staff'), v.literal('content_editor'), v.literal('provider_staff'), v.literal('stakeholder'), v.literal('donor'));
 
@@ -46,6 +47,46 @@ export const adminQueue = query({
   },
 });
 
+export const adminQueuePage = query({
+  args: { paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin"]);
+    const result = await ctx.db.query('access_requests')
+      .withIndex('by_status_submitted', (q) => q.eq('status', 'pending'))
+      .order('desc').paginate(args.paginationOpts);
+    return {
+      ...result,
+      page: await Promise.all(result.page.map(async (request) => {
+        const applicant = await ctx.db.get(request.userId);
+        return { ...request, applicant: applicant ? { name: applicant.name, email: applicant.email } : null };
+      })),
+    };
+  },
+});
+
+export const adminRequestForReview = query({
+  args: { id: v.id('access_requests') },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin"]);
+    const request = await ctx.db.get(args.id);
+    if (!request) return null;
+    const applicant = await ctx.db.get(request.userId);
+    const invitation = request.invitationId ? await ctx.db.get(request.invitationId) : null;
+    const inviter = invitation ? await ctx.db.get(invitation.invitedBy) : null;
+    const memberships = invitation ? await ctx.db.query('role_assignments')
+      .withIndex('by_user_status', q => q.eq('userId', invitation.invitedBy).eq('status', 'active')).collect() : [];
+    return { ...request, applicant: applicant ? { name: applicant.name, email: applicant.email } : null,
+      invitationEvidence: invitation ? {
+        invitedBy: invitation.invitedBy,
+        inviterName: inviter?.name ?? 'Account unavailable',
+        createdAt: invitation.createdAt,
+        status: invitation.status,
+        inviterStillMember: Boolean(inviter && !inviter.isDeleted && memberships.some(item => item.role === 'provider_staff' && item.organizationId === invitation.organizationId)),
+      } : null,
+    };
+  },
+});
+
 export const decide = mutation({
   args: { requestId: v.id('access_requests'), decision: v.union(v.literal('approved'), v.literal('rejected')), decisionNote: v.string(), organizationId: v.optional(v.id('justice_service_organizations')) },
   handler: async (ctx, args) => {
@@ -53,12 +94,26 @@ export const decide = mutation({
     const request = await ctx.db.get(args.requestId);
     if (!request || request.status !== 'pending') throw new Error('This request is no longer awaiting review.');
     if (reviewer._id === request.userId) throw new Error('You cannot approve your own access.');
+    if (request.invitationId) {
+      const invitation = await ctx.db.get(request.invitationId);
+      if (!invitation || invitation.accessRequestId !== request._id || invitation.status !== 'accepted') throw new Error('Invitation evidence is unavailable.');
+      if (reviewer._id === invitation.invitedBy) throw new Error('A different administrator must review an invitation you created.');
+      if (args.decision === 'approved') {
+        const inviter = await ctx.db.get(invitation.invitedBy);
+        const memberships = await ctx.db.query('role_assignments')
+          .withIndex('by_user_status', q => q.eq('userId', invitation.invitedBy).eq('status', 'active')).collect();
+        if (!inviter || inviter.isDeleted || !memberships.some(item => item.role === 'provider_staff' && item.organizationId === invitation.organizationId)) {
+          throw new Error('The inviter no longer represents this organisation. Reject this request and obtain a fresh invitation.');
+        }
+      }
+    }
     const applicant = await ctx.db.get(request.userId);
     if (!applicant || applicant.isDeleted) throw new Error('Applicant account is unavailable.');
     const note = args.decisionNote.trim();
     if (note.length < 10 || note.length > 2000) throw new Error('Record a decision reason of 10–2000 characters.');
     if (args.decision === 'approved') {
       if (!args.organizationId) throw new Error('Choose a verified organisation before granting access.');
+      if (request.invitationId && args.organizationId !== request.organizationId) throw new Error('An invited membership must be approved for its original organisation.');
       const organization = await ctx.db.get(args.organizationId);
       if (!organization || organization.verificationStatus !== 'verified') throw new Error('The organisation must be verified.');
       if (request.requestedRole === 'staff' && organization.organizationType !== 'lsf') throw new Error('LSF staff must belong to a verified LSF organisation.');

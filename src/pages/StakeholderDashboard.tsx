@@ -11,15 +11,15 @@ type SnapshotValues = {
   periodDays?: number;
   requestsSubmitted?: number | null;
   casesCreated?: number | null;
-  openCases?: number;
+  openCases?: number | null;
   resolvedCases?: number | null;
-  assignmentAcceptanceRate?: number;
-  averageAssignmentResponseHours?: number;
-  appointmentsKeptRate?: number;
-  referralAcceptanceRate?: number;
-  averageReferralResponseHours?: number;
+  assignmentAcceptanceRate?: number | null;
+  averageAssignmentResponseHours?: number | null;
+  appointmentsKeptRate?: number | null;
+  referralAcceptanceRate?: number | null;
+  averageReferralResponseHours?: number | null;
   referralCompletionCount?: number | null;
-  feedbackAverageRating?: number;
+  feedbackAverageRating?: number | null;
   feedbackCount?: number | null;
 };
 

@@ -2,6 +2,265 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { assertCaseTransition, caseTransitions } from "../convex/lib/caseLifecycle.ts";
+import { hasCurrentServiceReview, isReferralOrganisationBlocked, isServiceReviewOverdue, referralStatusAfterOrganisationChange, requireActiveReferralReadiness, requireDirectoryDecisionReason, requireDraftOrganisation, requireDraftService, requireIndependentDirectoryReviewer, requireLinkedCorrectionUpdate } from "../convex/lib/directoryLifecycle.ts";
+import { requireReadySourceForApproval } from "../convex/lib/saadaSourceLifecycle.ts";
+import { requireIndependentBaseRoleReview, requireRemainingAdministrator } from "../convex/lib/baseRoleLifecycle.ts";
+import { requireGuideResubmission } from "../convex/lib/guideLifecycle.ts";
+import { canClassifyIndependentParalegal, canUseCaseParticipantRole, canUseScopedCaseAffiliation, requireIndependentLegacyScopeReview } from "../convex/lib/caseParticipantAccess.ts";
+import { countDistinctReferralTransitions, summarizeTriage } from "../convex/lib/journeyMetrics.ts";
+import { prepareSaadaHistory } from "../convex/lib/saadaConversation.ts";
+import { noSourceResponse } from "../convex/lib/saadaEvidence.ts";
+import { isSameCaseRetry } from "../convex/lib/caseRetry.ts";
+import { acceptsMatchingIntake, requireMatchingLinkAccess, requireMatchingSource } from "../convex/lib/matchingAccess.ts";
+import { allowsCasePushToBeneficiary } from "../convex/lib/safeContact.ts";
+
+test("ordinary matching excludes emergency-only, closed and exhausted services", () => {
+  for (const urgency of [undefined, "standard", "urgent"]) {
+    assert.equal(acceptsMatchingIntake("emergency_only", urgency, 2), false);
+    assert.equal(acceptsMatchingIntake("open", urgency, 2), true);
+    assert.equal(acceptsMatchingIntake("limited", urgency), true);
+  }
+  assert.equal(acceptsMatchingIntake("emergency_only", "immediate_safety", 2), true);
+  for (const state of ["open", "limited", "closed", "emergency_only"]) {
+    assert.equal(acceptsMatchingIntake(state, "immediate_safety", 0), false);
+  }
+  assert.equal(acceptsMatchingIntake("closed", "immediate_safety", 2), false);
+});
+
+test("case push delivery honors the beneficiary's safe-contact choice", () => {
+  for (const method of [undefined, "none", "in_app"]) assert.equal(allowsCasePushToBeneficiary(method), false);
+  for (const method of ["phone", "sms", "email"]) assert.equal(allowsCasePushToBeneficiary(method), true);
+  const backend = readFileSync(new URL("../convex/notifications.ts", import.meta.url), "utf8");
+  assert.match(backend, /recipient\.isDeleted/);
+  assert.match(backend, /caseRecord\?\.beneficiaryId === notification\.userId/);
+  assert.match(backend, /request\?\.ownerId === notification\.userId && !allowsCasePushToBeneficiary\(request\.safeContactMethod\)/);
+  const expoPayload = backend.slice(backend.indexOf('fetch("https://exp.host/--/api/v2/push/send"'), backend.indexOf('const result = await response.json()'));
+  assert.match(expoPayload, /notificationId: notification\._id/);
+  assert.doesNotMatch(expoPayload, /resourceId: notification\.resourceId|resourceType: notification\.resourceType/);
+});
+
+test("external push needs account opt-in and the mobile inbox remains complete", () => {
+  const backend = readFileSync(new URL("../convex/notifications.ts", import.meta.url), "utf8");
+  const settings = readFileSync(new URL("../mobile/app/notification-settings.tsx", import.meta.url), "utf8");
+  const inbox = readFileSync(new URL("../mobile/app/notifications.tsx", import.meta.url), "utf8");
+  const registration = readFileSync(new URL("../mobile/src/usePushNotifications.ts", import.meta.url), "utf8");
+  const signOut = readFileSync(new URL("../mobile/src/useSafeSignOut.ts", import.meta.url), "utf8");
+  assert.match(backend, /pushEnabled: false/);
+  assert.match(backend, /mergedPreferences\.pushEnabled !== true/);
+  assert.match(backend, /args\.enabled && preferences\?\.pushEnabled !== true/);
+  assert.match(backend, /export const disableMyPushTokens = mutation/);
+  assert.match(backend, /type\.startsWith\("referral\."\)/);
+  assert.match(settings, /updatePushEnabled/);
+  assert.match(inbox, /const visibleNotifications = notifications;/);
+  assert.doesNotMatch(registration, /requestPermissionsAsync/);
+  assert.match(signOut, /await disableMyPushTokens\(\{\}\);\s*await signOut\(\);/);
+});
+
+test("web roles can reach the shared authenticated notification inbox", () => {
+  const app = readFileSync(new URL("../src/App.tsx", import.meta.url), "utf8");
+  const page = readFileSync(new URL("../src/pages/NotificationCenter.tsx", import.meta.url), "utf8");
+  const staff = readFileSync(new URL("../src/pages/StaffDashboard.tsx", import.meta.url), "utf8");
+  const provider = readFileSync(new URL("../src/pages/ParalegalDashboard.tsx", import.meta.url), "utf8");
+  assert.match(app, /path="\/notifications" element=\{<ProtectedRoute><NotificationCenter\s*\/><\/ProtectedRoute>\}/);
+  assert.match(page, /api\.notifications\.inbox/);
+  assert.match(page, /api\.notifications\.markRead/);
+  assert.match(page, /api\.notifications\.getPreferences/);
+  assert.match(page, /api\.notifications\.setPushEnabled/);
+  assert.match(staff, /to="\/notifications"/);
+  assert.match(provider, /to="\/notifications"/);
+});
+
+test("public matching cannot forge staff provenance or attach another person's request or case", () => {
+  assert.doesNotThrow(() => requireMatchingSource("directory", false));
+  assert.throws(() => requireMatchingSource("staff", false));
+  assert.throws(() => requireMatchingSource("saada", true));
+  const ownRequest = { actorId: "user-a", requestOwnerId: "user-a", isStaff: false, canAccessCase: false };
+  assert.doesNotThrow(() => requireMatchingLinkAccess(ownRequest));
+  assert.throws(() => requireMatchingLinkAccess({ ...ownRequest, actorId: "user-b" }));
+  assert.throws(() => requireMatchingLinkAccess({ ...ownRequest, actorId: undefined }));
+  assert.doesNotThrow(() => requireMatchingLinkAccess({ ...ownRequest, actorId: "staff", isStaff: true }));
+  assert.throws(() => requireMatchingLinkAccess({ actorId: "user-a", caseBeneficiaryId: "user-a", isStaff: false, canAccessCase: false }));
+  assert.throws(() => requireMatchingLinkAccess({ actorId: "user-a", caseBeneficiaryId: "user-a", isStaff: false, canAccessCase: true, requestId: "request-a", caseSourceRequestId: "request-b" }));
+  const backend = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
+  assert.match(backend, /if \(args\.caseId\) await requireCaseAccess\(ctx, args\.caseId\)/);
+  assert.match(backend, /requestOwnerId: request\?\.ownerId/);
+  assert.match(backend, /args\.requestId \|\| args\.caseId \|\| source === "staff" \? await ctx\.db\.insert\("matching_decisions"/);
+});
+
+test("case chat keeps the newest messages and retry keys cannot cross case or content type", () => {
+  assert.equal(isSameCaseRetry({ caseId: "case-a", kind: "text" }, { caseId: "case-a", kind: "text" }), true);
+  assert.equal(isSameCaseRetry({ caseId: "case-a", kind: "text" }, { caseId: "case-b", kind: "text" }), false);
+  assert.equal(isSameCaseRetry({ caseId: "case-a", kind: "voice" }, { caseId: "case-a", kind: "text" }), false);
+  const backend = readFileSync(new URL("../convex/caseManagement.ts", import.meta.url), "utf8");
+  const listMessages = backend.slice(backend.indexOf("export const listMessages"), backend.indexOf("export const generateVoiceMessageUploadUrl"));
+  assert.match(listMessages, /\.order\("desc"\)\s*\.take\(200\)/);
+  assert.match(listMessages, /messages\.reverse\(\)/);
+  assert.equal((backend.match(/isSameCaseRetry\(/g) ?? []).length, 4);
+});
+
+test("Saada does not invent an answer when approved evidence is absent", () => {
+  assert.match(noSourceResponse("en", "legal"), /cannot verify a legal answer/);
+  assert.match(noSourceResponse("sw", "legal"), /Siwezi kuthibitisha/);
+  assert.match(noSourceResponse("en", "services", 2), /No referral has been sent/);
+  assert.match(noSourceResponse("en", "services", 0), /could not find a current verified public match/);
+  const action = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
+  assert.match(action, /if \(retrievedSources\.length === 0 && !toolCallBuffer\)/);
+  assert.match(action, /if \(retrievedSources\.length === 0\)/);
+});
+
+test("saved visit plans do not reveal retired service details or allow new plans when intake is closed", () => {
+  const backend = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
+  const mobile = readFileSync(new URL("../mobile/app/service-visit.tsx", import.meta.url), "utf8");
+  assert.match(backend, /service && isCurrentPublicService\(service\) \? \{ _id: service\._id, name: service\.name/);
+  assert.match(backend, /service\.currentIntakeState === "closed"\) throw new ConvexError/);
+  assert.match(mobile, /service\.currentIntakeState !== "closed"/);
+});
+
+test("Saada uses stored conversation turns without repeating the current user message", () => {
+  const stored = [
+    { role: "user", content: "Where can I get help?" },
+    { role: "assistant", content: "Which district?" },
+    { role: "user", content: "Ilala" },
+  ];
+  assert.deepEqual(prepareSaadaHistory(stored, "Ilala"), stored.slice(0, 2));
+  assert.deepEqual(prepareSaadaHistory(stored, "New question"), stored);
+  const action = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
+  assert.match(action, /getRecentHistoryInternal/);
+  assert.doesNotMatch(action, /args\.history/);
+});
+
+test("triage timing counts older open requests but excludes historic reviews without a timestamp", () => {
+  const now = 200_000_000;
+  const recent = [
+    { status: "under_review", submittedAt: now - 7_200_000, triageStartedAt: now - 3_600_000 },
+    { status: "closed", submittedAt: now - 14_400_000, triageStartedAt: now - 3_600_000 },
+    { status: "under_review", submittedAt: now - 1_000_000 },
+  ];
+  const waiting = [
+    { status: "submitted", submittedAt: now - 90_000_000 },
+    { status: "submitted", submittedAt: now - 2_000_000 },
+  ];
+  assert.deepEqual(summarizeTriage(recent, waiting, now), {
+    startedWithTimestamp: 2,
+    averageHoursToStart: 2,
+    awaitingStart: 2,
+    awaitingOver24Hours: 1,
+  });
+  assert.equal(summarizeTriage([], [], now).averageHoursToStart, null);
+});
+
+test("referral transitions count each referral once per stage", () => {
+  const events = [
+    { type: "referral_accepted", referralId: "r1" },
+    { type: "referral_accepted", referralId: "r1" },
+    { type: "referral_accepted", referralId: "r2" },
+    { type: "referral_service_delivered", referralId: "r1" },
+  ];
+  assert.deepEqual(countDistinctReferralTransitions(events, ["referral_accepted", "referral_service_delivered"]), {
+    referral_accepted: 2,
+    referral_service_delivered: 1,
+  });
+});
+
+test("base-role change needs independent review and another active administrator", () => {
+  assert.throws(() => requireIndependentBaseRoleReview("admin-a", "admin-a", "target"));
+  assert.throws(() => requireIndependentBaseRoleReview("admin-a", "target", "target"));
+  assert.doesNotThrow(() => requireIndependentBaseRoleReview("admin-a", "admin-b", "target"));
+  assert.throws(() => requireRemainingAdministrator("admin-a", ["admin-a", "admin-a"]));
+  assert.doesNotThrow(() => requireRemainingAdministrator("admin-a", ["admin-a", "admin-b"]));
+});
+
+test("Saada approval requires indexed content and current provenance", () => {
+  const now = Date.now();
+  const source = { indexingStatus: "ready", processedAt: now, publisher: "Official publisher", jurisdiction: "national", language: "sw", contentCategory: "Law", versionLabel: "2026", reviewDueAt: now + 86_400_000 };
+  assert.doesNotThrow(() => requireReadySourceForApproval(source, true, now));
+  assert.throws(() => requireReadySourceForApproval({ ...source, indexingStatus: "failed" }, true, now));
+  assert.throws(() => requireReadySourceForApproval(source, false, now));
+  assert.throws(() => requireReadySourceForApproval({ ...source, reviewDueAt: now }, true, now));
+  assert.throws(() => requireReadySourceForApproval({ ...source, publisher: " " }, true, now));
+});
+
+test("directory drafts cannot be published at creation", () => {
+  assert.doesNotThrow(() => requireDraftOrganisation("draft", "none"));
+  assert.doesNotThrow(() => requireDraftService("draft", false));
+  assert.throws(() => requireDraftOrganisation("verified", "active"));
+  assert.throws(() => requireDraftService("verified", true));
+  assert.throws(() => requireDraftService("draft", true));
+});
+
+test("directory review requires a different person and a recorded reason", () => {
+  assert.throws(() => requireIndependentDirectoryReviewer("creator", "creator"));
+  assert.throws(() => requireIndependentDirectoryReviewer("editor", "creator", "editor"));
+  assert.doesNotThrow(() => requireIndependentDirectoryReviewer("reviewer", "creator", "editor"));
+  assert.throws(() => requireDirectoryDecisionReason("too short"));
+  assert.equal(requireDirectoryDecisionReason("Checked public contact and office hours."), "Checked public contact and office hours.");
+});
+
+test("public service review dates must exist and be in the future", () => {
+  const now = Date.now();
+  assert.equal(hasCurrentServiceReview(undefined, now), false);
+  assert.equal(hasCurrentServiceReview(now, now), false);
+  assert.equal(hasCurrentServiceReview(now - 1, now), false);
+  assert.equal(hasCurrentServiceReview(now + 1, now), true);
+  assert.equal(isServiceReviewOverdue("verified", undefined, now), true);
+  assert.equal(isServiceReviewOverdue("verified", now - 1, now), true);
+  assert.equal(isServiceReviewOverdue("verified", now + 1, now), false);
+  assert.equal(isServiceReviewOverdue("draft", undefined, now), false);
+});
+
+test("rejected public guide resubmission preserves editor and replacement lineage", () => {
+  const rejected = { status: "rejected", submittedBy: "editor-a", replacesGuideId: "published-v1" };
+  assert.doesNotThrow(() => requireGuideResubmission(rejected, "editor-a", "published-v1"));
+  assert.throws(() => requireGuideResubmission(rejected, "editor-b", "published-v1"));
+  assert.throws(() => requireGuideResubmission(rejected, "editor-a", undefined));
+  assert.throws(() => requireGuideResubmission({ ...rejected, status: "approved" }, "editor-a", "published-v1"));
+});
+
+test("provider correction completion requires a linked service edit after submission", () => {
+  assert.throws(() => requireLinkedCorrectionUpdate(100, undefined, 200));
+  assert.throws(() => requireLinkedCorrectionUpdate(100, 99, 200));
+  assert.throws(() => requireLinkedCorrectionUpdate(100, 150, 149));
+  assert.doesNotThrow(() => requireLinkedCorrectionUpdate(100, 150, 150));
+});
+
+test("referral agreements require verified organisations, safeguarding and a recorded data agreement", () => {
+  assert.throws(() => requireActiveReferralReadiness("draft", true, "signed-v1"));
+  assert.throws(() => requireActiveReferralReadiness("verified", false, "signed-v1"));
+  assert.throws(() => requireActiveReferralReadiness("verified", true, "  "));
+  assert.doesNotThrow(() => requireActiveReferralReadiness("verified", true, "signed-v1"));
+});
+
+test("suspending or retiring an organisation cannot leave referrals active", () => {
+  assert.equal(referralStatusAfterOrganisationChange("suspended", "active"), "suspended");
+  assert.equal(referralStatusAfterOrganisationChange("inactive", "active"), "suspended");
+  assert.equal(referralStatusAfterOrganisationChange("draft", "active"), "suspended");
+  assert.throws(() => referralStatusAfterOrganisationChange("inactive", "active", "active"));
+  assert.equal(referralStatusAfterOrganisationChange("verified", "suspended", "active"), "active");
+  assert.equal(isReferralOrganisationBlocked("suspended"), true);
+  assert.equal(isReferralOrganisationBlocked("inactive"), true);
+  assert.equal(isReferralOrganisationBlocked("verified"), false);
+});
+
+test("case participation does not survive loss of its professional role", () => {
+  assert.equal(canUseCaseParticipantRole("provider_staff", new Set(["provider_staff"])), true);
+  assert.equal(canUseCaseParticipantRole("provider_staff", new Set(["beneficiary"])), false);
+  assert.equal(canUseCaseParticipantRole("paralegal", new Set(["provider_staff"])), false);
+  assert.equal(canUseCaseParticipantRole("case_officer", new Set(["staff"])), true);
+  assert.equal(canUseCaseParticipantRole("case_officer", new Set(["beneficiary"])), false);
+  assert.equal(canUseScopedCaseAffiliation("verified", true), true);
+  assert.equal(canUseScopedCaseAffiliation("suspended", true), false);
+  assert.equal(canUseScopedCaseAffiliation("inactive", true), false);
+  assert.equal(canUseScopedCaseAffiliation("verified", false), false);
+});
+
+test("legacy case scope requires a separate reviewer and only permits true independent paralegals", () => {
+  assert.throws(() => requireIndependentLegacyScopeReview("reviewer", "reviewer", "worker"));
+  assert.throws(() => requireIndependentLegacyScopeReview("reviewer", "other", "reviewer"));
+  assert.doesNotThrow(() => requireIndependentLegacyScopeReview("reviewer", "other", "worker"));
+  assert.equal(canClassifyIndependentParalegal("paralegal", "paralegal", false), true);
+  assert.equal(canClassifyIndependentParalegal("paralegal", "paralegal", true), false);
+  assert.equal(canClassifyIndependentParalegal("provider_staff", "provider_staff", false), false);
+});
 
 test("the case lifecycle accepts every declared transition", () => {
   for (const [from, targets] of Object.entries(caseTransitions)) {
@@ -46,7 +305,7 @@ test("push delivery records Expo send tickets and receipt outcomes", () => {
   assert.match(schema, /by_ticket/);
 });
 
-test("approved paralegal profiles activate assignable user access", () => {
+test("reviewed paralegal profiles activate a role and readiness gates assignment", () => {
   const users = readFileSync(new URL("../convex/users.ts", import.meta.url), "utf8");
   const formSubmissions = readFileSync(new URL("../convex/formSubmissions.ts", import.meta.url), "utf8");
   const paralegals = readFileSync(new URL("../convex/paralegals.ts", import.meta.url), "utf8");
@@ -56,7 +315,8 @@ test("approved paralegal profiles activate assignable user access", () => {
   assert.match(users, /getApprovedParalegalProfileByEmail/);
   assert.match(users, /role:\s*approvedParalegalProfile\s*\?\s*"paralegal"\s*:\s*"user"/);
   assert.match(formSubmissions, /activateParalegalRoleForUser/);
-  assert.match(paralegals, /activateParalegalRoleForUser/);
+  assert.match(paralegals, /isParalegalReady/);
+  assert.match(caseManagement, /requireParalegalReadiness/);
   assert.match(formSubmissions, /isVerified:\s*args\.status\s*===\s*"approved"\s*\?\s*true/);
   assert.match(caseManagement, /withIndex\("by_role_status",\s*\(q\)\s*=>\s*q\.eq\("role",\s*"paralegal"\)\.eq\("status",\s*"active"\)\)/);
   assert.match(caseManagement, /legacyParalegalUsers/);
@@ -448,7 +708,7 @@ test("mobile demand-letter builder provides an offline practical document tool",
   assert.match(caseManagement, /case_document\.generated_letter/);
   assert.match(security, /\["caseManagement\.addGeneratedLetterDocument",\s*"case-access"\]/);
   assert.match(layout, /letter-builder/);
-  assert.match(home, /route: "\/letter-builder"/);
+  assert.match(resourceDetail, /router\.push\("\/letter-builder"\)/);
   assert.match(resourceDetail, /resource\.id === "demand-letter"/);
   assert.match(resourceDetail, /Build a demand letter/);
   assert.match(letterBuilder, /Share\.share/);
@@ -494,6 +754,7 @@ test("mobile my-documents library is backed by scoped case documents", () => {
   const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
   const layout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
   const home = readFileSync(new URL("../mobile/app/(tabs)/index.tsx", import.meta.url), "utf8");
+  const explore = readFileSync(new URL("../mobile/app/explore.tsx", import.meta.url), "utf8");
   const profile = readFileSync(new URL("../mobile/app/(tabs)/profile.tsx", import.meta.url), "utf8");
   const documents = readFileSync(new URL("../mobile/app/documents.tsx", import.meta.url), "utf8");
   const documentDetail = readFileSync(new URL("../mobile/app/document/[id].tsx", import.meta.url), "utf8");
@@ -507,7 +768,8 @@ test("mobile my-documents library is backed by scoped case documents", () => {
   assert.match(caseManagement, /ctx\.storage\.getUrl\(document\.storageId\)/);
   assert.match(security, /\["caseManagement\.myDocuments",\s*"authenticated"\]/);
   assert.match(layout, /documents/);
-  assert.match(home, /route: "\/documents"/);
+  assert.match(home, /router\.push\("\/explore"\)/);
+  assert.match(explore, /route: "\/documents"/);
   assert.match(profile, /My documents/);
   assert.match(documents, /api\.caseManagement\.myDocuments/);
   assert.match(documents, /pathname: "\/document\/\[id\]"/);
@@ -556,7 +818,7 @@ test("mobile release documentation identifies required environment and device QA
   const envCheck = readFileSync(new URL("../mobile/scripts/check-env.mjs", import.meta.url), "utf8");
   const mobileConfig = readFileSync(new URL("../mobile/src/config.ts", import.meta.url), "utf8");
   const rootLayout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
-  const mobileUserSync = readFileSync(new URL("../mobile/src/useStoreUserEffect.ts", import.meta.url), "utf8");
+  const mobileUserSync = readFileSync(new URL("../mobile/src/useStoreUserEffect.tsx", import.meta.url), "utf8");
   const userSyncNote = readFileSync(new URL("../docs/platform-review/76-mobile-identity-bootstrap.md", import.meta.url), "utf8");
 
   assert.match(readme, /EXPO_PUBLIC_CONVEX_URL/);
@@ -581,9 +843,9 @@ test("mobile release documentation identifies required environment and device QA
   assert.match(rootLayout, /ConfigurationRequired/);
   assert.match(rootLayout, /Missing required/);
   assert.match(rootLayout, /npm run env:check/);
-  assert.match(rootLayout, /useStoreUserEffect/);
+  assert.match(rootLayout, /AccountSyncProvider/);
   assert.match(mobileUserSync, /api\.users\.syncUser/);
-  assert.match(mobileUserSync, /lastSyncedClerkId/);
+  assert.match(mobileUserSync, /retry/);
   assert.match(mobileUserSync, /primaryEmailAddress/);
   assert.match(userSyncNote, /Clerk-to-Convex identity bootstrap/);
 });
@@ -596,7 +858,7 @@ test("mobile account recovery and role scope are visible without client-side pri
   const roleMatrix = readFileSync(new URL("../docs/haki-yangu/user-role-access-matrix-2026-09-09.md", import.meta.url), "utf8");
 
   assert.match(signIn, /reset_password_email_code/);
-  assert.match(signIn, /Recover account/);
+  assert.match(signIn, /Recover your account/);
   assert.match(signIn, /Set new password/);
   assert.match(profile, /api\.users\.currentAccess/);
   assert.match(profile, /Guest access/);
@@ -673,7 +935,7 @@ test("beneficiary web dashboard is connected to scoped private Haki Yangu record
   assert.match(userDashboard, /My Haki Yangu workspace/);
   assert.match(userDashboard, /Current legal-help status/);
   assert.match(userDashboard, /Privacy-first access/);
-  assert.match(userDashboard, /roles\.includes\("safeguarding_officer"\)/);
+  assert.match(userDashboard, /dashboardPath\(roles\)/);
   assert.doesNotMatch(userDashboard, /Recent Activity Placeholder|No recent activity yet|Community Member Dashboard/);
 });
 
@@ -775,8 +1037,9 @@ test("Saada restores governed history and only exposes verified public directory
   const actions = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
   const services = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
 
-  assert.match(mobileSaada, /api\.sara_chat\.getMessages/);
-  assert.match(mobileSaada, /historyHydrated/);
+  assert.match(mobileSaada, /api\.sara_chat\.getConversationMessages/);
+  assert.match(mobileSaada, /api\.sara_chat\.getLegacyConversation/);
+  assert.match(mobileSaada, /usePaginatedQuery/);
   assert.match(actions, /name: "find_services"/);
   assert.match(actions, /api\.justiceServices\.listPublicServices/);
   assert.match(actions, /do not claim a referral was sent/);
@@ -807,7 +1070,7 @@ test("Saada exposes real backend activity events instead of a generic spinner", 
   assert.match(saraActions, /human_review_requested/);
   assert.match(webSara, /Saada activity/);
   assert.match(webSara, /api\.sara_chat\.getActivityEvents/);
-  assert.match(mobileSara, /Saada activity/);
+  assert.match(mobileSara, /ChatActivity label=\{activityLabel\}/);
   assert.match(mobileSara, /api\.sara_chat\.getActivityEvents/);
   assert.match(security, /\["sara_chat\.getActivityEvents",\s*"authenticated-self"\]/);
 });
@@ -884,7 +1147,7 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(justiceServices, /averageResponseHours/);
   assert.match(justiceServices, /createOrganization/);
   assert.match(justiceServices, /updateOrganization/);
-  assert.match(justiceServices, /Only verified organizations can have an active referral agreement/);
+  assert.match(justiceServices, /requireActiveReferralReadiness\(nextVerification/);
   assert.match(security, /\["referrals\.myDestinationQueue",\s*"service-provider"\]/);
   assert.match(security, /\["referrals\.respondAsDestination",\s*"service-provider"\]/);
   assert.match(security, /\["referrals\.createOnwardReferral",\s*"case-worker-or-assigned-provider"\]/);
@@ -1017,19 +1280,24 @@ test("provider mobile organisation screen uses scoped governed service data", ()
   const security = readFileSync(new URL("../scripts/check-convex-security.mjs", import.meta.url), "utf8");
 
   assert.match(justiceServices, /export const myOrganization/);
-  assert.match(justiceServices, /withIndex\("by_user_status"/);
+  assert.match(justiceServices, /export const myOrganizations/);
+  assert.match(justiceServices, /const \{ assignments \} = await requireAnyRole\(ctx, \["paralegal", "provider_staff"\]\)/);
+  assert.match(justiceServices, /outside your approved access/);
   assert.match(justiceServices, /\["paralegal", "provider_staff"\]/);
   assert.match(justiceServices, /withIndex\("by_organization"/);
   assert.match(justiceServices, /verificationStatus: organization\.verificationStatus/);
   assert.match(justiceServices, /referralAgreementStatus: organization\.referralAgreementStatus/);
   assert.match(justiceServices, /services: services\.map/);
   assert.match(mobileOrganisation, /api\.justiceServices\.myOrganization/);
+  assert.match(mobileOrganisation, /api\.justiceServices\.myOrganizations/);
+  assert.match(mobileOrganisation, /Choose an approved organisation/);
   assert.match(mobileOrganisation, /No organisation linked/);
   assert.match(mobileOrganisation, /Linked services/);
   assert.match(mobileOrganisation, /Only LSF can verify/);
   assert.match(mobileOrganisation, /router\.push\(\{ pathname: "\/service\/\[id\]"/);
   assert.match(mobileWorkspace, /router\.push\("\/my-organisation"\)/);
   assert.match(security, /\["justiceServices\.myOrganization",\s*"service-provider"\]/);
+  assert.match(security, /\["justiceServices\.myOrganizations",\s*"service-provider"\]/);
 });
 
 test("paralegal mobile performance is computed from assigned cases and beneficiary feedback", () => {
@@ -1080,7 +1348,7 @@ test("paralegal support and wellbeing requests are persisted and staff-scoped", 
   assert.match(mobileSupport, /wellbeing/);
   assert.match(mobileSupport, /challenging_case/);
   assert.match(mobileSupport, /Send to LSF/);
-  assert.match(mobileWorkspace, /router\.push\("\/paralegal-support"\)/);
+  assert.match(mobileWorkspace, /router\.push\("\/paralegal-wellbeing"\)/);
   assert.match(mobileWorkspace, /api\.paralegals\.staffSupportQueue/);
   assert.match(mobileWorkspace, /api\.paralegals\.respondToSupportRequest/);
   assert.match(security, /\["paralegals\.mySupportRequests",\s*"service-provider"\]/);
@@ -1107,6 +1375,7 @@ test("case referral list projects private operational data before returning to c
 test("Saada knowledge and prompt changes require provenance and independent approval", () => {
   const schema = readFileSync(new URL("../convex/schema.ts", import.meta.url), "utf8");
   const sara = readFileSync(new URL("../convex/sara.ts", import.meta.url), "utf8");
+  const lifecycle = readFileSync(new URL("../convex/lib/saadaSourceLifecycle.ts", import.meta.url), "utf8");
   const actions = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
   const admin = readFileSync(new URL("../src/pages/SaraTrain.tsx", import.meta.url), "utf8");
   const mobile = readFileSync(new URL("../mobile/app/sara.tsx", import.meta.url), "utf8");
@@ -1115,14 +1384,16 @@ test("Saada knowledge and prompt changes require provenance and independent appr
   assert.match(schema, /publisher: v\.optional/);
   assert.match(schema, /reviewDueAt: v\.optional/);
   assert.match(sara, /A different administrator must review this prompt/);
-  assert.match(sara, /Complete source provenance and review metadata before approval/);
+  assert.match(sara, /requireReadySourceForApproval/);
+  assert.match(lifecycle, /Complete source provenance before approval/);
   assert.match(actions, /getApprovedPromptInternal/);
   assert.doesNotMatch(actions, /getConfigInternal, \{ key: "system_prompt" \}/);
   assert.match(actions, /PUBLISHER:/);
   assert.match(admin, /Submit for approval/);
   assert.match(admin, /Review due/);
   assert.match(mobile, /api\.sara_chat\.submitFeedback/);
-  assert.match(mobile, /Was this helpful/);
+  assert.match(mobile, /Helpful response/);
+  assert.match(mobile, /Unhelpful response/);
 });
 
 test("paralegal readiness requires verified profile, availability, ethics and safeguarding", () => {
@@ -1194,12 +1465,18 @@ test("mobile governance connects access, paralegal approval and Saada risk revie
   assert.match(governance, /useSensitiveScreenProtection\("governance"\)/);
   assert.match(governance, /api\.accessRequests\.adminQueue/);
   assert.match(accessReview, /api\.accessRequests\.decide/);
-  assert.match(governance, /api\.formSubmissions\.listParalegalApplications/);
+  assert.match(governance, /api\.formSubmissions\.paralegalReviewQueue/);
+  assert.match(governance, /\/paralegal-review-queue/);
+  assert.match(paralegalReview, /api\.formSubmissions\.paralegalApplicationForReview/);
   assert.match(paralegalReview, /api\.formSubmissions\.reviewParalegalApplication/);
-  assert.match(accessReview, /api\.justiceServices\.staffListOrganizations/);
-  assert.match(governance, /api\.sara_chat\.getRiskEvents/);
+  assert.match(accessReview, /api\.justiceServices\.staffOrganizationsPage/);
+  assert.match(accessReview, /api\.justiceServices\.staffSearchOrganizations/);
+  assert.match(governance, /api\.sara_chat\.getRiskEventsPage/);
   assert.match(governance, /\/saada-risk\/\[id\]/);
   assert.match(saadaRisk, /api\.sara_chat\.resolveRiskEvent/);
+  assert.match(saadaRisk, /api\.sara_chat\.getRiskEventForReview/);
+  const riskQueue = readFileSync(new URL("../mobile/app/saada-risk-queue.tsx", import.meta.url), "utf8");
+  assert.match(riskQueue, /api\.sara_chat\.getRiskEventsPage/);
   assert.match(governance, /roles\.includes\("admin"\)/);
   assert.match(workspace, /router\.push\("\/governance"\)/);
 });
@@ -1209,7 +1486,8 @@ test("mobile Saada source review opens provenance and uses independent approval"
   const detail = readFileSync(new URL("../mobile/app/saada-source/[id].tsx", import.meta.url), "utf8");
   const backend = readFileSync(new URL("../convex/sara.ts", import.meta.url), "utf8");
   assert.match(library, /\/saada-source\/\[id\]/);
-  assert.match(detail, /api\.sara\.getDocuments/);
+  assert.match(library, /api\.sara\.listDocumentsPage/);
+  assert.match(detail, /api\.sara\.getDocumentForReview/);
   assert.match(detail, /api\.sara\.reviewDocument/);
   assert.match(detail, /sourcePdfUrl/);
   assert.match(backend, /A different administrator must review this source/);
@@ -1236,10 +1514,14 @@ test("mobile service directory governance requires provenance and audits status 
   const directory = readFileSync(new URL("../mobile/app/directory-management.tsx", import.meta.url), "utf8");
   const backend = readFileSync(new URL("../convex/justiceServices.ts", import.meta.url), "utf8");
   const layout = readFileSync(new URL("../mobile/app/_layout.tsx", import.meta.url), "utf8");
-  assert.match(directory, /api\.justiceServices\.staffListOrganizations/);
-  assert.match(directory, /api\.justiceServices\.staffListServices/);
-  assert.match(directory, /api\.justiceServices\.updateOrganization/);
-  assert.match(directory, /api\.justiceServices\.updateService/);
+  assert.match(directory, /api\.justiceServices\.staffOrganizationsPage/);
+  assert.match(directory, /api\.justiceServices\.staffSearchOrganizations/);
+  assert.match(directory, /api\.justiceServices\.staffServicesPage/);
+  assert.match(directory, /api\.justiceServices\.staffSearchServices/);
+  const organisationDetail = readFileSync(new URL("../mobile/app/directory-organisation/[id].tsx", import.meta.url), "utf8");
+  const serviceDetail = readFileSync(new URL("../mobile/app/directory-service/[id].tsx", import.meta.url), "utf8");
+  assert.match(organisationDetail, /api\.justiceServices\.updateOrganization/);
+  assert.match(serviceDetail, /api\.justiceServices\.updateService/);
   assert.match(directory, /servicePointType === "safe_house"/);
   assert.match(backend, /Verified services require source, verifying authority/);
   assert.match(backend, /directory\.organization_updated/);
@@ -1294,7 +1576,8 @@ test("mobile donor reporting uses suppressed snapshots and independent approval"
   assert.match(screen, /api\.reporting\.generateDonorSafeSnapshot/);
   assert.match(screen, /api\.reporting\.approveSnapshot/);
   assert.match(screen, /Share\.share/);
-  assert.match(screen, /Small cells are suppressed/);
+  assert.match(screen, /Small counts are suppressed/);
+  assert.match(screen, /referralAcceptanceRate == null \? null/);
 });
 
 test("case chat supports governed two-minute voice notes", () => {

@@ -1,0 +1,2294 @@
+[PDF PAGE 1]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+579
+CHAPTER 50
+THE NATIONAL SOCIAL SECURITY FUND ACT
+[PRINCIPAL LEGISLATION]
+Arrangement of Sections
+Section Title 
+part i
+PRELIMINARY PROVISIONS
+1. Short title .
+2. Interpretation.
+part ii
+NATIONAL SOCIAL SECURITY FUND
+3. Establishment of National Social Security Fund.
+4. Management and administration of Fund.
+5. Vesting of existing fund to National Social Security Fund.
+part iii
+INSURED PERSONS AND CONTRIBUTING EMPLOYERS
+6. Insured persons.
+7. Insured ministers of religion.
+8. Repealed.
+9. Continuity of insurance despite loss qualifications for registration.
+10. Contribution records of insured persons.
+part iv
+REGISTRATION AND CONTRIBUTIONS TO THE FUND
+11. Registration of employers.
+12. Statutory contributions by contributing employers.
+13. Deductions of employee’s share.
+14. Payment of contributions.
+15. Treating unpaid contributions as paid.
+16. Non remittance by the employers.
+17. Refund of contributions paid in error.
+18. Payment by insured person.
+19. Recovery of contributions.
+
+[PDF PAGE 2]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+580
+20. Contributions when benefit drawn or during bankruptcy of employee.
+21. Contributions, etc, inalienable.
+22. Repealed.
+part v
+BENEFITS
+23. Classes of benefits.
+24. Operation dates in respect of benefits.
+25. Conditions for retirement pension.
+26. Amount of retirement pension.
+27. Duration of retirement pension.
+28. Retirement special lump sum.
+29. Early retirement.
+30. Conditions for invalidity pension.
+31. Amount of invalidity pension.
+32. Duration of Invalidity pension.
+ 33–34. Repealed.
+35. Conditions for survivors pension.
+36. Amount of survivors pension.
+37. Duration of survivors pension.
+38. Survivors special lump sum payment.
+39. Retirement and invalidity grant.
+40. Funeral grant.
+41. Unemployment benefits.
+42. Repealed.
+43. Condition for medical benefit.
+44. Medical benefits to be provided.
+45. Agreements with medical providers.
+46. Conditions for maternity benefit.
+47. Types of maternity benefits.
+48. Repealed.
+49. Restriction on double payment.
+50. Adjustment of benefits.
+51. Penalty for payment of benefits.
+52. Regulations for benefit provision.
+53. Repayment of benefit improperly received.
+54. Benefit to be inalienable.
+
+[PDF PAGE 3]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+581
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+part vi
+BOARD OF TRUSTEES OF NATIONAL SOCIAL SECURITY FUND
+55. Establishment of Board of Trustees.
+56. Management of Fund.
+57. Functions of Board.
+58. Duties of Board.
+59. Power of Board.
+60. Remuneration, allowances and benefits.
+61. Power to delegate.
+62. Minister may give directions to Board.
+part vii
+FINANCIAL PROVISIONS
+63. Fund to vest in Board.
+64. Investment of moneys in Fund.
+65. Utilisations of fund for acquisition of assets.
+66. Board’s liability to insured persons guaranteed.
+67. Refund of excess contributions.
+68. Financial resources.
+69. Annual and supplementary budget.
+70. Power to borrow.
+71. Accounts and audit.
+72. Fund account.
+73. Accounts of Fund.
+74. Management of Fund.
+75. Actuarial reports to be furnished to Bank.
+part viii
+LEGAL PROCEEDINGS, OFFENCES AND PENALTIES
+76. Criminal proceedings.
+77. Joinder in cases of non-payment of contributions.
+78. Recovery of contributions.
+79. Summary recovery.
+80. Priority for payment of contributions.
+81. Protection of contributions.
+82. Protection against attachment.
+83. Liability for acts of association of persons.
+84. Certificates as evidence.
+
+[PDF PAGE 4]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+582
+part ix
+DETERMINATION OF CLAIMS TO BENEFIT AND 
+LIABILITY FOR CONTRIBUTIONS
+85. Responsibility of Director General.
+86. Determination of Claims to benefit.
+87. Determination of questions as to liability for contributions.
+ 88-90. Repealed.
+part x
+GENERAL PROVISIONS
+91. Deemed to be in employment of first mentioned person.
+92. Inspectors.
+93. Liability of members.
+94. Regulations.
+95. Tax exemption.
+96. Establishment of supplementary schemes.
+97. Reciprocal agreements.
+98. Totalisation of periods and benefits.
+99. Repeal.
+100. Savings.
+101. Omitted.
+SCHEDULES
+
+[PDF PAGE 5]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+583
+PART I
+PRELIMINARY PROVISIONS
+1. This Act may be cited as the National Social Security Fund 
+Act.
+2. In this Act, unless the context otherwise requires-
+“actuarial” means a person trained to understand risks and 
+probabilities and to apply such skills to the financial 
+problems especially those involving uncertain future 
+events and that person is a member of an instate, society 
+or association of actuaries approved by the Division;
+“actuarial valuation” means valuation of assets and liabilities 
+of a scheme made by an actuary in accordance with the 
+guidelines issued by the Division;
+“actuarial report” means a report prepared by an actuarial 
+who effected actuarial evaluation under this Act;
+Short title 
+Interpretation
+Acts Nos.
+5 of 2012 s. 41
+24 of 2015 s. 33
+2 of 2018 s. 94
+GN. No 
+590 of 1998
+CHAPTER 50
+THE NATIONAL SOCIAL SECURITY FUND ACT
+An Act to establish the National Social Security Fund and to provide for 
+its constitution, administration and other matters related to the Fund.
+[1st July, 1998]
+[GN. No. 335 of 1998]
+[GN. No. 99 of 2002]
+Acts Nos.
+28 of 1997
+8 of 1998
+1 of 2008
+13 of 2009
+5 of 2012
+24 of 2015
+2 of 2018
+13 of 2023
+GNs. Nos.
+590 of 1998
+286 of 2000
+
+[PDF PAGE 6]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+584
+“actuary” means a person who is professionally qualified as 
+an actuary and approved by the Minister in the manner 
+prescribed in the regulations;
+“administration expenses” means all cost incidental or in 
+relation to registration of members, collection of members’ 
+contributions, investment and payment of members’ benefits;
+“benefit” means a benefit payable under this Act;
+“Board” means the Board of Trustees of the National Social 
+Security Fund;
+“child” includes a step child, a child born out of wedlock and 
+an adopted child in relation to insured person;
+“contract of service” has the meaning ascribed to it under 
+the Employment and Labour Relation Act;
+“contributing employer” means-
+(a) every person, corporate or unincorporate body of 
+persons having a contract of service or apprenticeship 
+with an employee; and
+(b) every Government department employing employees 
+not covered under the Government schemes;
+“contributing employment” means employment in respect 
+of an insured person;
+“contribution period” means where wages are paid to an 
+employee-
+(a) at intervals of more than a fortnight, the month during 
+which the wages are paid;
+(b) at intervals of more than a week but not more than a 
+fortnight, the fortnight ending with the last day of the 
+week in which the wages are paid; or
+(c) daily, the day on which the wages are paid:
+ Provided that, where wages are paid in advance to an 
+employee the contributions period shall be deemed to be the 
+appropriate period to which the wages relate and, if the wages 
+relate to more than such period, each such period shall be 
+deemed to be a contribution period;
+“dependant” means a member of the family of an insured 
+person who was wholly or in part dependent upon his 
+Cap. 366
+
+[PDF PAGE 7]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+585
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+earnings at the time of his death, or would but for the 
+illness of the insured person have been so dependent:
+Provided that, a person shall not be deemed to be a partial 
+dependant of another person unless he was dependant partially 
+on assistance from that other person from the provision of the 
+ordinary necessaries of life suitable for person of his station;
+“Division” means the division responsible for social security 
+within the Ministry responsible for social security 
+matters;
+“Director General” means the Director General of the Fund 
+appointed under this Act;
+“employee” means an individual who has entered into a 
+contract of employment or has entered into any other 
+contract in which–
+(a) the individual undertakes to work personally for the 
+other party to the contract; 
+(b) the other party is not a client or customer of any 
+profession, business, or undertaking carried on by the 
+individual;
+(c) is deemed to be an employee by the Minister under 
+section 99(3) of the Employment and Labour Relations 
+Act; or
+(d) is deemed to be an employee in accordance with section 
+62 of the Labour Institutions Act;
+“employee’s share” means that portion of a statutory 
+contribution set out in the First Schedule to be the 
+employee’s share of such contribution;
+“employer” means a person, corporate or uncorporated body 
+of persons having a contract of service or apprenticeship 
+with an employee;
+“existing fund” means the National Provident Fund;
+“formal sector” means the sector which include employers 
+and employees who have entered into contract of 
+employment or apprenticeship or any other contract;
+“Fund” means the National Social Security Fund established 
+by section 3;
+Cap. 366
+Cap. 300
+
+[PDF PAGE 8]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+586
+“informal sector” means the sector which include workers 
+who work informally and who do not work in terms of an 
+employment contract or any other contract;
+“inspector” means a compliance officer or any other person 
+duly appointed by the Board of Trustees;
+“insured person” means an employee or worker registered 
+by the Fund and includes a person entitled to or receiving 
+benefits under the Fund;
+“merged scheme” means the PPF Pension Scheme, the Public 
+Service Pension Scheme, GEPF Retirement Pension 
+Benefit Scheme and LAPF Pension Scheme merged by 
+the Public Service Social Security Act;
+“minimum salary” means the amount determined annually 
+by the Minimum Wage Board as the rate of average gross 
+monthly earnings for persons employed locally in Tanzania;
+“Minister” means the Minister responsible for social security 
+matters;
+“pensionable age” means the age of sixty years;
+“self employed” means a person who does not work in terms 
+of contract of employment or apprenticeship or any 
+other contract contemplated in the definition of the term 
+employee;
+“special lump sum” means an average amount of the last 
+sixty months contributions times the number of months 
+of contributions paid to the Fund:
+Provided that, where contributions so paid are less than 
+sixty months, the insured person shall be paid his accumulated 
+balance as a lump sum plus accrued interest as may be 
+prescribed by the Division;
+“Trustee” means a member of the Board and includes a 
+Chairman of the Board;
+“wages” means remuneration in money paid to an employee 
+under a contract of service or apprenticeship whether at a 
+payable fixed or determinable interval of time-
+(a) in respect of normal periods of work to be performed 
+by the employee;
+Cap. 371
+
+[PDF PAGE 9]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+587
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+(b) where payment is calculated in relation to set tasks or 
+journeys completed by the employee; or
+(c) where payment is calculated in relation to the volume 
+of work done, in respect of the volume completed by 
+the employee,
+and includes any allowance paid by the employer to the 
+employee either directly or by implication in respect of living 
+and any payment of wages in lieu of notice of termination of 
+employment; and
+“widow or widower” includes a spouse and any person 
+whom the deceased member had been living with as a 
+wife or husband for at least two years.
+PART II
+NATIONAL SOCIAL SECURITY FUND
+3.–(1) There is established a Fund to be known as the National 
+Social Security Fund into which shall be paid all contributions 
+and other moneys required by this Act.
+(2) There may be paid out of the Fund benefits and other 
+payments, including payments in respect of the expenses of 
+the Board, as are authorised by this Act.
+4.–(1) The management and the administration of the Fund 
+shall vest in the Board.
+(2) There shall be a Director General appointed by the 
+President to be the Chief Executive Officer of the Fund to 
+oversee the daily operations of the Fund.
+(3) The Director General shall hold office for a term of five 
+years and may, subject to satisfactory performance, be eligible 
+for re-appointment.
+5.–(1) The existing fund shall be transferred to the National 
+Social Security Fund and shall be vested in the Board which 
+shall, subject to provisions of this Act have the sole management 
+and control of it.
+Establishment of 
+National Social 
+Security Fund
+Management and 
+administration of 
+Fund
+Act No.
+5 of 2012 s. 42
+Vesting of 
+existing fund to 
+National Social 
+Security Fund
+
+[PDF PAGE 10]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+588
+(2) The funds of the National Social Security Fund shall 
+constitute of-
+(a) the existing fund vested in the Board under 
+subsection (1);
+(b) the assets of the existing fund;
+(c) the combined contributions of eligible employers and 
+the insured persons paid into the Fund at the rate set 
+out in the First Schedule;
+(d) income and capital appreciation derived from the 
+holding of that assets of the Fund in any form; and
+(e) such other sums or assets as may accrue or be granted 
+to the Fund.
+PART III
+INSURED PERSONS AND 
+CONTRIBUTING EMPLOYERS
+6.–(1) This Act shall apply in Mainland Tanzania in relation to 
+a person who is-
+(a) employed in the private sector;
+(b) self-employed;
+(c) a foreigner employed in Mainland Tanzania;
+(d) employed in the international organisation operating 
+in Mainland Tanzania; and
+(e) any other category of persons as may be specified by 
+the Minister upon recommendation of the Division.
+(2) Every insured person shall be issued with a registration 
+number upon registration.
+7.–(1) A religious organisation, which desires to make 
+contributions under this Act in respect of any minister of 
+religion, may apply to the Board in writing in that behalf.
+(2) Where the Board approves the application, it shall with 
+effect from that date as it shall appoint, declare this section to 
+apply to the organisation and minister and, from the appointed 
+date, this Act shall apply to the organisation in relation to the 
+Insured persons 
+Acts Nos. 
+5 of 2012 s. 43
+2 of 2018 s. 95
+Insured ministers 
+of religion
+
+[PDF PAGE 11]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+589
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+minister as if it were a contributing employer, and that minister 
+shall be registrable as an insured person.
+(3) For the purposes of this section-
+“minister of religion” includes any clerk in holy orders, 
+pastor, missionary, kadhi, imam, sheikh or other person 
+acting in any of those or similar capacities who is engaged 
+in ministering to the spiritual needs of others; and
+“religious organisation” includes any person or body from 
+whom a minister of religion receives his stipend.
+8. [Repealed by Act No.5 of 2012, s.44].
+9. A person registered as an insured person shall not cease to 
+be insured by reason of the fact that, since registration-
+(a) he is on contract on specific tasks; or
+(b) his employer has been restructured, sold or leased.
+10. The Board shall establish and maintain for each insured 
+person record of all contributions made to the Fund in respect 
+of the person for purposes of calculating the insured person’s 
+benefits as provided in this Act.
+PART IV
+REGISTRATION AND CONTRIBUTIONS 
+TO THE FUND
+11.–(1) Subject to the provisions of this Act, every contributing 
+employer shall, unless such employer has been registered 
+under the existing Fund, within one month, register under this 
+section in the prescribed manner. 
+(2) The period of one month mentioned in subsection (1) 
+shall, in every case, begin upon the commencement of this Act 
+or the date when the person concerned becomes a contributing 
+employer.
+(3) Upon the first day of the month following the month 
+in which the period mentioned in subsection (1) expires, the 
+Repealed
+Continuity of 
+insurance despite 
+loss qualifications 
+for registration
+Act No.
+5 of 2012 s. 45
+Contribution 
+records of insured 
+persons
+Registration of 
+employers
+
+[PDF PAGE 12]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+590
+employer to whose registration that period relates shall be a 
+contributing employer for the purposes of this Act.
+(4) The Minister may, for the purpose of the initial 
+registration of any category of employers, by order published 
+in the Gazette declare that category of employers shall not be 
+contributing employers until the expiry of such further period 
+as the order may specify.
+(5) A contributing employer who ceases to be an employer 
+of any employee shall thereupon cease to be a contributing 
+employer in respect of such employee.
+(6) A contributing employer who registers or is registered 
+under the provisions of this section shall, without delay, register 
+as an insured person every person who is or who subsequently 
+becomes an employee in his service, by notifying the Director 
+General of the particulars of such employees as may be prescribed.
+12.–(1) A contributing employer shall, for every contribution 
+period following the date of appointment of an insured person, 
+pay to the Fund a contribution that consist of the employer’s 
+and employee’s share at the rate stipulated in the First Schedule.
+(2) The employer may opt to contribute a greater rate than 
+the amount stipulated in subsection (1).
+(3) Where the employer agrees to contribute at a greater 
+rate or the whole contribution rate, such option shall not apply 
+to a member whose contribution rate at any given time does 
+not exceed fifty percent of his contributions.
+(4) Contribution shall not be paid under this section in 
+respect of an insured person who dies during the contribution 
+period, unless the employer deducts the employee’s share of 
+contribution from the salary payable in respect of any part of 
+such period to the estate of the deceased member.
+(5) A voluntary contributing employer of an insured 
+person shall remit to the Fund contribution at the percentage 
+stipulated in the First Schedule or a higher contribution rate 
+or segmentation of benefit rate to be regulated by the Minister 
+following the results of actuarial valuation.
+Statutory 
+contributions 
+by contributing 
+employers 
+Act No.
+5 of 2012 s. 46
+
+[PDF PAGE 13]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+591
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+(6) An employer of a non-citizen shall remit contribution 
+for such employee in accordance with the provision of this Act.
+(7) Every contribution shall be paid to the Fund within one 
+month after the end of the month to which the contribution 
+relates.
+13.–(1) A contributing employer who is liable to make or has 
+made a statutory contribution in respect of an insured person 
+may deduct the employees’ share of the statutory contribution-
+(a) from the wages due from him to the employee in respect 
+of the contribution period to which the statutory 
+contribution relates; or
+(b) from the wages due from him to the employee in 
+respect of any period within six months after the end 
+of the contribution period to which the statutory 
+contribution relates, 
+but not otherwise, and where a deduction is made under 
+paragraph (b) it shall be made in not less than four 
+approximately equal installments unless the employee agrees 
+to it being deducted in a fewer number or in one lump sum.
+(2) Where an employer deducts the employee’s share 
+of a statutory contribution from the wages of an insured 
+person under this section in advance of the payment of such 
+contribution to the Fund, the employer shall hold that share on 
+trust for the purposes of this Act.
+14.–(1) A contributing employer shall pay contributions to 
+the Fund in the manner prescribed under this Act, within 
+one month after the end of the month in respect of which the 
+contributions are due and payable.
+(2) An employer shall submit with the payment all 
+prescribed supporting particulars concerning the identity, 
+period of employment and earnings of the insured person to 
+whom the contributions relate.
+(3) Where any contribution is not paid within the period 
+stated under subsection (1) a sum equal to five per centum of 
+the amount unpaid shall be added as penalty for each month 
+Deductions of 
+employee’s share.
+Payment of 
+contributions
+
+[PDF PAGE 14]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+592
+or a part of a month after the date when payment should have 
+been made and the amount of the penalty shall be recovered as 
+a debt owing to the Fund by the employer:
+Provided that, the Board may, where it thinks fit, remit in 
+whole or in part any penalty imposed by this subsection.
+15. Where the Director General is satisfied that an employee’s 
+contribution has been deducted from his earnings, but the 
+employer has failed to pay the contribution together with 
+the paid employer’s contributions to the Fund, he may treat 
+the unpaid contributions as wholly or partially paid for the 
+purpose of any claim to the payment of benefits provided that 
+this shall be without prejudice to any action to recover the 
+amount due from the employer.
+16.–(1) Where the Director General is satisfied that there is 
+evidence of non remittance of the member’s contribution to 
+the Fund by an employer as required under this Act, he shall 
+report such default to the Division.
+(2) Without prejudice to subsection (1), the Director 
+General shall report to the Division any unusual occurrence 
+which in his opinion, is likely to jeopardize interests or rights 
+of members of the Fund.
+[s. 15A]
+17. Where the Director General is satisfied that any amount 
+has been paid to the Fund as contributions which were not 
+properly payable and that the amount was paid as a result 
+of error, a bona fide error, the amount paid in error shall be 
+refunded or applied, with the consent of the person who made 
+the payment, to any current liability.
+[s. 16]
+18.–(1) An insured person other than an insured employed 
+by a contributing employer who is liable to make a statutory 
+contribution in respect of that insured person may apply to the 
+Treating unpaid 
+contributions as 
+paid
+Non remittance 
+by the employers 
+Act No.
+5 of 2012 s. 47
+Refund of 
+contributions 
+paid in error
+Payment by 
+insured person
+
+[PDF PAGE 15]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+593
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+Director General for approval to his contributing to the Fund 
+on his own behalf.
+(2) Where the Director General approves the application, 
+the insured person may-
+(a) make consecutive monthly payments to the Fund of an 
+amount not greater than the statutory contribution;
+(b) make consecutive monthly payments to the Fund of 
+an amount not less than the employee’s share of the 
+contribution last paid in respect of the insured person 
+by a contributing employer; or
+(c) where the contribution period for the statutory 
+contributions was other than a month, the 
+corresponding monthly statutory contributions or 
+employee’s share thereof.
+(3) Where an insured person makes payments under this 
+section enters the employment of a contributing employer who 
+is liable to make a statutory contribution in respect of such 
+person, that person shall cease to be eligible to make payments 
+under this section.
+[s. 17]
+19.–(1) Every statutory contribution due to the Fund may be 
+recovered by way of a summary suit under Order XXXV of the 
+Civil Procedure Code at any time after the date on which it is 
+due.
+(2) Where an offence is committed by reason of non-payment 
+of statutory contribution, no prosecution shall be commenced 
+without consent of the Director of Public Prosecutions.
+[s. 18]
+20. This Act shall not be construed as relieving a contributing 
+employer from liability to make contributions to the Fund in 
+respect of any employee-
+(a) who is in receipt of or becomes entitled to any benefit; or
+(b) during the employee’s bankruptcy or insolvency.
+[s. 19]
+Recovery of 
+contributions
+Act No.
+5 of 2012 s. 48
+Cap. 33
+Contributions 
+when benefit 
+drawn or during 
+bankruptcy of 
+employee
+
+[PDF PAGE 16]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+594
+21.–(1) Subject to the provisions of this section the statutory 
+contributions, payments made by insured persons, and any 
+benefits accruing to an insured person shall be inalienable 
+except under this Act and shall not be assets for the benefit 
+of creditors in the event of the bankruptcy or insolvency of 
+an insured person or be liable to attachment for an insured 
+person’s debt; and any security, pledge or assignment given 
+before or after the coming into operation of this Act which 
+purports to include any such contribution, payment or benefit 
+shall to that extent be void.
+(2) Contributions made to the Fund in respect of an insured 
+person who is bankrupt or insolvent shall, while held in the 
+Fund, be deemed not to be after acquired property for the 
+purposes of the laws relating to bankruptcy or insolvency.
+(3) Where an employee who is an insured person is 
+convicted of an offence involving dishonesty and the 
+convicting court is satisfied that his employer has suffered 
+financial loss as a result of that offence, the court may order 
+payment to be made to the employer out of the Fund of an 
+amount not exceeding the aggregate of statutory contributions 
+made by that employer in respect of that insured person less 
+the employees’ shares thereof, and the amount so paid to 
+the employer shall be deducted from the employee’s benefits 
+entitlement in the Fund.
+(4) Without prejudice to subsections (1), (2) and (3), benefit 
+for entitled person may be used as collateral for home mortgage 
+for a member who has not attained the age of retirement.
+(5) The amount to be considered as the value out of collateral 
+for home mortgage shall be determined and set at the rate 
+prescribed under regulations and guidelines made under the 
+Social Security Act.
+[s. 20]
+22. [Repealed by Act No. 2 of 2018 s. 96].
+[s. 20A]
+Contributions, 
+etc, inalienable 
+Act No. 
+5 of 2012 s. 49
+Cap. 135
+Repealed
+
+[PDF PAGE 17]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+595
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+PART V
+BENEFITS
+23.–(1) The following classes of benefits are payable under this 
+Act, namely:
+(a) retirement pension;
+(b) invalidity pension;
+(c) survivors pension;
+(d) funeral grants;
+(e) maternity benefit;
+(f) unemployment benefit; and
+(g) health benefit.
+(2) The benefits payable under this Act may be segmented 
+in accordance with the provisions of this Act.
+[s. 21]
+24.–(1) Benefits payable under this Act except the benefits 
+mentioned in paragraphs (a), (b), (c), (d) and (f) of section 
+23(1) shall not be payable in respect of any period before the 
+date on which the Minister by order in the Gazette, declare to 
+be the date on which any benefit becomes payable.
+(2) The benefit under section 23(1)(f) shall be granted in 
+accordance with regulations made by the Minister pursuant to 
+the Social Security Act.
+[s. 22]
+25. Subject to the provisions of this Act, retirement pension 
+shall be payable to an insured person who-
+(a) has attained pensionable age;
+(b) in respect of whom not less than 180 monthly 
+contributions have been paid; and
+(c) who has attained the age of fifty-five or above but before 
+attaining pensionable age.
+[s. 23]
+Classes of benefits
+Acts Nos. 
+5 of 2012 s. 51
+2 of 2018 s. 97
+13 of 2023 s. 59
+Operation dates 
+in respect of 
+benefits
+Act No.
+2 of 2018 s. 98
+Cap. 135
+Conditions 
+for retirement 
+pension
+Act No.
+2 of 2018 s. 99
+
+[PDF PAGE 18]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+596
+26.–(1) The amount of retirement pension payable to an 
+insured person shall be calculated in accordance with a formula 
+prescribed in the regulations made by the Minister pursuant to 
+section 26 of the Social Security Act.
+(2) The minimum monthly pension may be recommended 
+by the Board upon consultation with the Division and based 
+on actuarial valuation.
+[s. 24]
+27. The retirement pension payment shall commence from 
+the month following the month in which the retired employee 
+satisfies the conditions under section 25 and end with the 
+month in which the pensioner dies.
+[s. 25]
+28. A member who has attained pensionable age and has 
+retired from employment but does not meet the qualification 
+prescribed in paragraph (b) of section 25 shall be entitled only 
+to the payment of a special lump sum in accordance with a 
+formula prescribed in the regulations made by the Minister 
+pursuant to section 26 of the Social Security Act.
+[s. 26]
+29.–(1) An insured person who is within five retirement years 
+of the pensionable age and has paid contributions for at least 
+180 months, may claim early retirement pension.
+(2) The amount of the retirement pension paid on early 
+retirement under subsection (1) shall be calculated in 
+accordance with a formula prescribed in the regulations 
+made by the Minister pursuant to section 26 of the Social 
+Security Act for each completed month less than the 
+pensionable age.
+(3) An early retirement pension shall not be payable if 
+the amount of the pension calculated in accordance with 
+subsection (2) would be lower than the minimum pension 
+under subsection (3) of section 26 of the Social Security Act.
+[s. 27]
+Amount of 
+retirement 
+pension
+Acts Nos.
+5 of 2012 s. 52
+2 of 2018 s. 100
+Cap. 135
+Duration of 
+retirement 
+pension
+Retirement 
+special lump sum
+Act No 
+2 of 2018 s. 101
+Cap. 135
+Early retirement
+Act Nos
+5 of 2012 s. 53
+2 of 2018 s. 102
+Cap. 135
+Cap. 135
+
+[PDF PAGE 19]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+597
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+30.–(1) An invalidity pension shall be payable to an insured 
+person who-
+(a) is suffering from permanent invalidity;
+(b) is under pensionable age;
+(c) either-
+(i) has made 180 contributions; or
+(ii) at least 36 monthly contributions have been paid in 
+respect of him of which twelve or more were paid 
+in the period of 36 months immediately preceding 
+the date of commencement of invalidity.
+(2) For the purposes of this section “permanent invalidity” 
+means the permanent loss of two-thirds or more of the earning 
+capacity because of physical or mental invalidity.
+[s. 28]
+31.–(1) The monthly rate of invalidity pension shall be 30 per 
+centum of the average monthly earnings of the insured person 
+supplemented by 1 per centum of his average monthly earnings 
+for every twelve months of pension contributions in addition 
+to 180 monthly contributions.
+(2) The monthly rate of invalidity pension shall be 
+supplemented by 1 per centum of the average monthly earnings 
+for every twelve months between whichever is the later of the 
+pensionable age and-
+(a) the date of entitlement to invalidity pension; or
+(b) the date of completion of 180 months contributory 
+employment.
+(3) The minimum monthly invalidity pension shall be 80 
+per centum of the national minimum wage.
+[s. 29]
+32. Subject to the provisions of this Act, invalidity pension 
+shall be payable for the duration of a permanent invalidity 
+commencing with the month following the date of the 
+invalidity and ending either-
+Conditions 
+for invalidity 
+pension 
+Amount of 
+invalidity pension 
+Duration of 
+Invalidity 
+pension
+
+[PDF PAGE 20]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+598
+(a) on pensionable age, if at that time the insured person is 
+entitled to retirement pension at the same or a higher 
+rate; or
+(b) on death of the invalid.
+[s. 30]
+33.-34. [Repealed by Act No. 5 of 2012 s. 53A].
+[s. 31 - 32]
+35.–(1) Subject to the provisions of this Act, where an insured 
+person dies a survivors pension shall be payable to his 
+dependants if at the time of the death, the insured person-
+(a) would have been entitled to an invalidity pension 
+if deemed to have been suffering from permanent 
+invalidity at the time of death; or
+(b) had attained pensionable age and would have been 
+entitled to retirement pension had he made a claim to 
+such pension:
+Provided that, if at the time of death, the insured person was 
+in receipt of retirement or invalidity pension, his dependants 
+shall be paid a lump sum equal to the insured person’s monthly 
+pension times thirty-three.
+(2) For the purposes of this section “dependant” includes 
+spouse, a child under twenty-one years receiving full time 
+education or a child under eighteen years.
+[s. 33]
+36. The survivors’ pension payable to a dependant shall be in 
+the prescribed pension percentage-
+(a) in the case of a widow or a widower, 40 per centum of 
+the pension, and where there are more than one widow 
+the amount shall be divided equally among the widows;
+(b) in the case of a widow or a widower and where there 
+are no dependant children, the widow or widower shall 
+be paid 100 per centum of the pension;
+(c) in the case of a dependant child under eighteen years or 
+under twenty-one years receiving full time education 
+Repealed
+Conditions for 
+survivors pension
+Act No.
+2 of 2018 s. 103
+Amount of 
+survivors pension
+
+[PDF PAGE 21]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+599
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+as the case may be, shall be paid 60 per centum of the 
+pension to be divided equally among such children;
+(d) where there is no widow or widower 100 per centum 
+of the pension shall be divided equally to dependant 
+children; or
+(e) in the case where there are no dependant children or 
+dependant spouse, parents of the deceased shall be 
+paid 100 per centum of the pension for life.
+[s. 34]
+37. Survivors pension shall be payable on the following bases, 
+namely:
+(a) in the case of a widow or widower who, at the date of 
+death of the deceased insured person is of the age of 45 
+or above or who is under the age of 45 and has the care 
+of dependant children under the age of 15, for life or 
+until remarriage;
+(b) in the case of a widow or widower at the date of death 
+of the deceased insured person is under the age of 45 
+and does not have the care of children under the age of 
+15, for a period of two years from the date of death of 
+the insured person;
+(c) in the case of a child- 
+(i) until the age of eighteen; or 
+(ii) until the child terminates full time education but 
+not later than the age of twenty-one; or 
+(iii) if the child is an invalid for life.
+[s. 35]
+38. Where a deceased insured person did not satisfy the 
+qualifying conditions specified under section 35, his 
+dependants shall be entitled to a special lump sum payment.
+[s. 36]
+39.–(1) Where an insured person qualifies for retirement 
+pension or invalidity pension he shall be entitled to a lump 
+sum payment before getting the monthly payment.
+Duration of 
+survivors pension
+Survivors special 
+lump sum 
+payment
+Retirement and 
+invalidity grant
+
+[PDF PAGE 22]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+600
+(2) Where a deceased insured person had not received 
+a retirement or invalidity pension prior to his death, the 
+dependants of the deceased insured person are entitled to the 
+lump sum payment.
+(3) The amount of lump sum payable under this section shall 
+be equal to 24 times the monthly amount of the retirement or 
+invalidity pension.
+[s. 37]
+40.–(1) A funeral grant shall be paid as reimbursement to 
+a family member who incurred expenses for the burial of a 
+deceased insured person.
+(2) The amount payable as funeral grant shall be determined 
+by the Board having regard to the general economic conditions.
+[s. 38]
+41.–(1) A member of a pension scheme who ceases to be 
+employed shall, subject to the provision of subsection (2), be 
+entitled to unemployment benefit.
+(2) Unemployment benefit shall not be paid unless the 
+applicant-
+(a) has been a contributing member for a period of not less 
+than eighteen months;
+(b) terminated or ceased to be employed in the 
+circumstances other than resignation;
+(c) is a citizen of the United Republic;
+(d) is not qualified for pension, gratuity or any other long 
+term benefits payable under this Act;
+(e) proves to the Director General that he has not secured 
+another employment; and
+(f) is below fifty-five year old.
+(3) Unemployment benefit shall be payable in a manner 
+and at the rate to be prescribed in the regulations.
+[s. 39]
+42. [Repealed by Act No. 2 of 2018 s. 105].
+[s. 40]
+Funeral grant
+Unemployment 
+benefits
+Act No. 
+2 of 2018 s. 104
+Repealed
+
+[PDF PAGE 23]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+601
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+43. Medical benefit shall be paid to a member, the spouse and 
+four children of the member if the member has contributed 
+to the Fund for a minimum of three months, of which three 
+months of contributions were paid to the Fund in the three 
+months immediately preceding the medical contingency.
+[s. 41]
+44.–(1) Medical benefits shall be provided by accredited 
+hospitals having such agreements with the Fund.
+(2) Subject to the provisions of the Social Security Act, 
+medical benefits to be granted shall include preventive and 
+curative care including but not limited to essential drugs, 
+clinical pathology and x-rays, laboratory tests, hospitalisation, 
+minor and major surgery or any other benefits as may be 
+determined by the Board.
+(3) Benefits under this section shall be limited to the medical 
+services to be provided by doctors, nurses and other medical 
+providers in the accredited hospitals.
+(4) The forms and procedures for benefits to be paid under 
+this section shall be fully described in the regulations that the 
+Minister shall set out under this Act.
+[s. 42]
+45. The Board shall appoint and enter into agreement with 
+different hospitals and dispensaries which will be accredited 
+to provide medicare services to insured persons and their 
+families.
+[s. 43]
+46. Maternity benefit shall be payable-
+(a) to an insured person who has made at least thirty-six 
+monthly contributions of which twelve contributions 
+are made in the thirty-six months prior to date of 
+confinement;
+Condition for 
+medical benefit
+Act No.
+13 of 2023 s. 60
+Medical benefits 
+to be provided 
+Act No
+5 of 2012 s. 54
+13 of 2023 s. 61
+Cap. 135
+Agreements with 
+medical providers
+Conditions for 
+maternity benefit 
+
+[PDF PAGE 24]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+602
+(b) upon the receipt by the Director General of a medical 
+certificate from an accredited medical provider, 
+certifying that the woman expects delivery of a child;
+(c) after three years from the day when the last payment 
+was made to the insured person unless the child dies 
+within a period of twelve months; and
+(d) to an insured person, for one month only, in the case of 
+still-birth.
+[s. 44]
+47. The following types of benefits are payable under the 
+maternity benefit, namely-
+(a) cash benefit at the rate of 100 per centum of the average 
+daily earnings for a period of twelve weeks;
+(b) medical care during pre-natal and post-natal period by 
+an accredited medical practitioner or midwife:
+Provided that, where prolonged medical care is required 
+after delivery, the post natal medical care shall be limited to 
+twelve weeks.
+[s. 45]
+48. [Repealed by Act No. 5 of 2012 s. 55].
+[s. 46]
+49.–(1) An insured person or his dependant shall not be 
+entitled to receive more than one benefit paid out in respect of 
+the same contingency.
+(2) The provision of subsection (1) shall not apply to an 
+insured person who is a member of both mandatory and 
+supplementary schemes.
+(3) Subject to the provision of subsection (1), an insured 
+person or his dependant who qualifies for more than one 
+benefit in respect of the same contingency shall be entitled to 
+be paid the benefit which is the highest or greater.
+[s. 47]
+Types of 
+maternity 
+benefits
+Repealed
+Restriction on 
+double payment
+Act No.
+5 of 2012 s. 56 
+
+[PDF PAGE 25]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+603
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+50.–(1) The rates of benefit payable shall be determined and 
+be set in conformity with standards and guidelines issued in 
+accordance with the provisions of the Social Security Act.
+(2) Benefit rates shall be received by the Board and adjusted 
+in line with actuarial valuation of the Fund as may be directed 
+by the Division.
+[s. 48]
+51.–(1) An employer shall, within six months before the date 
+of retirement of his employee, notify the Fund in writing about 
+the date of retirement of his employee.
+(2) Subject to subsection (1), the Fund shall, within sixty 
+days following the date of retirement, pay to the member the 
+due retirement pension benefits.
+(3) Where the Fund fails to pay retirement benefits to a 
+member within a period specified under subsection (2), and 
+the member is not responsible for that failure, the Fund shall 
+pay the member the principal sum that is due for payment as 
+retirement benefits plus a penalty of fifteen percent of that sum 
+per annum.
+[s. 49]
+52. Regulations may make provision for-
+(a) the administration of all benefits payable under this 
+Act;
+(b) disqualifying a person from the receipt of any benefit 
+if he fails to make a claim within the prescribed time; 
+provided that any such regulations may provide for 
+extending the time within which such claim shall be 
+made where good cause is shown for the delay;
+(c) the prevention of the receipt of more than one benefit 
+and the adjustment of benefits in special circumstances;
+(d) the time and manner of payment of a benefit and 
+the information or document to be furnished by any 
+person applying for payment; and
+Adjustment of 
+benefits
+Act No. 
+5 of 2012 s. 57
+Cap. 135
+Penalty for 
+payment of 
+benefits
+Acts Nos.
+5 of 2012 s. 57A
+2 of 2018 s. 106
+Regulations for 
+benefit provision 
+
+[PDF PAGE 26]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+604
+(e) suspending payment of a benefit to any person during 
+any period when that person-
+(i) is absent from Tanzania; or
+(ii) is serving a prison sentence or is under some other 
+legal custody:
+Provided that, specifications are prescribed for the 
+circumstances and manner in which payment of the whole or 
+any part of the benefit may instead of being so suspended be 
+paid during any such period to any person nominated by the 
+beneficiary, or for the maintenance of any prescribed person who 
+the Director General is satisfied is a dependant of the beneficiary;
+(f) enabling a person to be appointed to exercise on 
+behalf of any other person who being a minor or being 
+otherwise unable for the time being to act, any power 
+or right which that other person may be entitled to 
+exercise under this Act and to authorise the person so 
+appointed to receive and deal with any sum payable by 
+way of benefit to that other person; 
+(g) enabling a claim to be made or proceeded in the name 
+of the deceased, for authorising payment to or among 
+persons claiming as personal representatives, legatees, 
+next of kin, creditors or otherwise and for dispensing 
+with strict proof of title of persons so claiming; and
+(h) such other matters as may be necessary for the proper 
+administration of benefits, including the obligations of 
+claimants, beneficiaries and employers.
+[s. 50]
+53.–(1) Where it is found that any person by reason of non-
+disclosure or misrepresentation by him of a material fact, 
+whether the non-disclosure or misrepresentation was or was 
+not fraudulent has received any sum by way of benefit, while 
+he was not entitled to that benefit, he shall be liable to repay 
+the sum so received by him.
+(2) Where any person is liable to repay any sum received 
+by him by way of benefit, that sum may be recovered without 
+Repayment 
+of benefit 
+improperly 
+received 
+
+[PDF PAGE 27]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+605
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+prejudice to any other remedy by means of deductions from 
+any payment or benefit to which he thereafter becomes 
+entitled.
+[s. 51]
+54. Every assignment or charge on benefit and every agreement 
+to assign or charge any benefit shall be void, and on bankruptcy 
+of a beneficiary the benefit shall not pass to any trustee or other 
+person acting on behalf of creditors.
+[s. 52]
+PART VI
+BOARD OF TRUSTEES OF NATIONAL 
+SOCIAL SECURITY FUND
+55.–(1) There is established a Board of Trustees of the National 
+Social Security Fund which shall be registered by the Division.
+(2) The Board shall, in its corporate name be capable of-
+(a) suing and being sued;
+(b) taking, purchasing or otherwise acquiring, holding, 
+charging and disposing of property, movable or 
+immovable; and
+(c) entering into contracts and performing all such other 
+acts for the proper performance of its functions under 
+this Act which may lawfully be performed by a body 
+corporate.
+(3) The provisions of the Second Schedule to this Act 
+shall have effect as to the composition of the Board, the 
+appointment and termination of appointment of its members, 
+the proceedings of the Board and such other matters in relation 
+to the Board and its members.
+(4) The Minister may by order in the Gazette, amend, vary 
+or replace all or any of the provisions of the Second Schedule 
+to this Act.
+[s. 53]
+Benefit to be 
+inalienable
+Establishment of 
+Board of Trustees
+Act No.
+5 of 2012 s. 58 
+GN. No. 
+590 of 1998
+
+[PDF PAGE 28]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+606
+56. The Board shall manage the Fund in accordance with the 
+following objectives:
+(a) business or financial commitments undertaken shall be 
+consistent with the basic objectives of the scheme and 
+the interest of contributors;
+(b) the concept of the financing of pensions shall be 
+observed together with the need to take account of 
+long-term liabilities, and the linkage between higher 
+benefits and higher contributions;
+(c) adequate arrangements shall be made for preservation 
+of pension rights;
+(d) contribution credits for insured person shall be 
+maintained and be available for inspection by such 
+insured person;
+(e) the Fund shall be administered in such manner as 
+to give greater priority to the improvements of the 
+benefits payable to contributors and control internal 
+administration costs;
+(f) adequate steps shall be taken to avoid non-compliance 
+and evasion of Board’s obligations under this Act; and
+(g) all such other aspects of management as are incidental 
+to the foregoing or conducive to the attainment of the 
+objectives of the Fund shall be performed.
+[s. 54]
+57. The functions of the Board shall be-
+(a) to formulate, implement and review policies relating to 
+the Fund in accordance with this Act and the Social 
+Security Act;
+(b) to control and administer the Fund in accordance with 
+this Act;
+(c) subject to the provisions of this Act to invest monies 
+available in the Fund;
+(d) to provide technical assistance and advisory service 
+for the purposes of promoting social security 
+programmes; and
+Management of 
+Fund
+Functions of 
+Board
+Acts Nos. 
+5 of 2012 s. 59
+2 of 2018 s. 107
+Cap. 135
+
+[PDF PAGE 29]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+607
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+(e) to do all such acts and to enter into all such transactions 
+as, in the opinion of the Board may be necessary for the 
+proper and efficient administration of the Fund.
+[s. 55]
+58. It shall be the duty of the Board-
+(a) to manage and administer the Fund in accordance 
+with the highest standards which a person holding any 
+fund in a fiduciary capacity on behalf of another may 
+reasonably be expected to conform to;
+(b) to protect, safeguard and promote the interests of the 
+insured persons under this Act;
+(c) generally to do all such acts as the Board may reasonably 
+be expected to do, and in particular to-
+(i) uphold and support the credit of the Board;
+(ii) obtain and justify the confidence of the people of 
+the United Republic in general and of the insured 
+persons in particular; and
+(iii) to avert and minimise any loss to the Fund; and
+(d) to submit accounts of the Fund in respect of each 
+financial year for auditing by the Controller and 
+Auditor-General.
+[s. 56]
+59. In the performance of its functions the Board shall have 
+power to-
+(a) cause to be carried out actuarial assessment of the Fund 
+after every three years;
+(b) appoint on salaries upon such terms and conditions 
+as it may think fit such person or persons as it may 
+deem necessary for proper and efficient conduct of the 
+business of the Board;
+(c) appoint and employ upon such terms and conditions as 
+it may think fit such consultants, agents and contractors 
+as the Board may deem necessary;
+(d) appoint auditors for purposes of this Act; and
+Duties of Board
+Act No.
+5 of 2012 s. 60
+Power of Board
+
+[PDF PAGE 30]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+608
+(e) do all other such acts as are necessary to give effect to 
+the provisions of this Act.
+[s. 57]
+60. The Trustees shall be entitled to receive such remuneration, 
+allowances and other benefits as the Minister may direct.
+[s. 58]
+61.–(1) The Board may, in writing under the seal of the Board 
+delegate, subject to such terms, conditions and restrictions, to 
+any Committee of the Board, or to the Director General, or 
+any other employee of the Board all or any of the functions, 
+powers, or duties conferred upon the Board under this Act.
+(2) A delegation under subsection (1) may be made to 
+the holder of an office under the Board specifying the office 
+but without naming the holder, and in every such case each 
+successive holder of the office in question and each person 
+who occupies or performs the duties of that office may, without 
+any further authority perform or, as the case may be, exercise 
+the delegated function, power or duty in accordance with the 
+delegation made.
+(3) The Board may revoke a delegation made by it under 
+this section.
+(4) Delegation made under this section shall not prevent 
+the Board from itself performing or exercising the function, 
+power or duty delegated.
+(5) Any delegation made under this section shall be 
+published in the Gazette, and shall be presumed to be in force 
+unless the contrary is proved.
+(6) The Board shall not have power under this section to 
+delegate-
+(a) its power to delegate; or
+(b) the power to approve the annual budget or any 
+supplementary budget of receipts and expenditure, the 
+annual balance sheet or any statement of account.
+[s. 59]
+Remuneration, 
+allowances and 
+benefits
+Power to delegate
+
+[PDF PAGE 31]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+609
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+62. Without prejudice to the provisions of section 64, the 
+Minister may give the Board directions of general or specific 
+nature as to the performance of the Board of any of its functions 
+in relation to any matter appearing to the Minister to affect the 
+national interest, and the Board shall give effect to every such 
+directions.
+[s. 60]
+PART VII
+FINANCIAL PROVISIONS
+63.–(1) An account styled “the National Social Security Fund 
+account” shall be kept with such bank or banks as the Board 
+shall approve from time to time, and all moneys payable into 
+the Fund together with the income from investments of the 
+Fund and other moneys required to be paid into the Fund shall 
+be deposited in the Social Security Fund account.
+(2) The reserve account under the existing fund shall be 
+transferred to the National Social Security Fund account and 
+form part of that account.
+(3) The Board shall maintain a reserve account into which 
+accumulated revenues not needed to meet the costs of the 
+current financial year shall be deposited.
+(4) The Fund shall vest in the Board which shall hold the 
+Fund as trustees and shall manage, administer and operate 
+the Fund in accordance with this Act and may make such 
+payments thereon as are authorised by this Act.
+(5) The Board shall use, disburse, administer and manage 
+funds subject to guidelines issued under the Social Security 
+Act.
+(6) The Minister upon commencement of this Act shall, by 
+an order published in the Gazette, dissolve the account of the 
+existing Fund.
+[s. 61]
+Minister may 
+give directions to 
+Board
+Fund to vest in 
+Board 
+Act No. 
+5 of 2012 s. 61
+Cap. 135
+
+[PDF PAGE 32]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+610
+64.–(1) The Board may, invest moneys of the Fund in any 
+viable economic venture it considers appropriate.
+(2) The Board shall, in considering the appropriateness of 
+the venture for investment, take into account the economic 
+and commercial viability of that venture and guideline as may 
+be issued under the Social Security Act.
+(3) Where an investment is made in breach of subsection 
+(1), each member of the Board of Trustee, director, manager 
+or any officer of the Fund taking part of the decision to invest 
+shall be personally liable to a penalty of fine as prescribed 
+under the Social Security Act.
+(4) Notwithstanding the penalty imposed under subsection 
+(3), the Bank shall have power to-
+(a) regulate the Fund to comply with the investment 
+procedures;
+(b) discontinue the investment; or
+(c) take any other measure it considers appropriate.
+[s. 62]
+65. The Board may, subject to the provisions of sections 64 
+and 69 utilise moneys in the Fund for the acquisition of land, 
+or acquisition or construction of buildings and acquisition of 
+equipment and other assets required for the administration of 
+the Board and the efficient performance by it of its functions.
+[s. 63]
+66. To the extent that the Board is, by reason of insufficiency of 
+funds at its disposal, unable to meet its liability to any insured 
+person for any benefit to which such person is entitled under 
+this Act, or for any portion of any such benefit, the entitlement 
+of such insured person to such benefit or such portion of 
+benefit shall constitute a charge on and be paid out of the 
+Consolidated Fund.
+[s. 64]
+67. Any moneys paid to the Fund in excess of the amount for 
+which an employer is liable in respect of an employee or in 
+Investment of 
+moneys in Fund
+Act No.
+5 of 2012 s. 62
+Cap. 135
+Cap. 135
+Utilisations 
+of fund for 
+acquisition of 
+assets
+Act No.
+5 of 2012 s. 63
+Board’s liability to 
+insured persons 
+guaranteed
+Refund of excess 
+contributions
+
+[PDF PAGE 33]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+611
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+excess of the maximum statutory contribution payable for a 
+contribution period may be refunded to the employer or the 
+employee or both, as the case may be, in such manner as the 
+Board may determine.
+[s. 65]
+68. The funds and resources of the Board shall consist of-
+(a) any income from investments of the Fund approved 
+under this Act;
+(b) such sums as may be provided for by way of loan or 
+grant for the purposes of the Board;
+(c) any sums borrowed by the Board in accordance with 
+the provisions of this Act; and
+(d) any sums which may in any manner become payable to 
+or vested in the Board as a result of the performance by 
+the Board of its functions under this Act or any other 
+written law.
+[s. 66]
+69.–(1) In this Act “financial year” means any period not 
+exceeding twelve consecutive months designated in that behalf 
+by the Board.
+(2) Not less than two months before the beginning of any 
+financial year, other than the first financial year after the 
+commencement of this Act, the Board shall, at its meeting 
+especially convened for that purpose, pass a detailed budget 
+(in this Act called the annual budget) of the amounts 
+respectively-
+(a) expected to be received; and
+(b) expected to be disbursed, by the Board during that 
+financial year.
+(3) Where in any financial year the Board requires to make 
+any disbursement not provided for, or of an amount in excess 
+of the amount provided for, in the annual budget for the year 
+the Board shall, at a meeting, pass a supplementary budget 
+detailing the disbursement.
+Financial 
+resources
+Annual and 
+supplementary 
+budget
+
+[PDF PAGE 34]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+612
+(4) The annual budget and every supplementary budget 
+shall be in such form and include such details as the Minister 
+may direct.
+(5) Forthwith upon passing of any annual budget or any 
+supplementary budget the Board shall submit the same to the 
+Minister for approval.
+(6) The Minister shall, upon receipt of the annual budget 
+or any supplementary budget, approve or disapprove the 
+same or may approve subject to such amendment as he may 
+deem fit.
+(7) Where the Minister has approved any annual budget 
+or any supplementary budget, the budget, shall be binding 
+on the Board which, subject to the provisions of subsection 
+(8), shall confine its disbursements within the items and the 
+amounts contained in the applicable estimates as approved by 
+the Minister.
+(8) The Board may-
+(a) with the sanction in writing of the Minister, make a 
+disbursement notwithstanding that the disbursement 
+is not provided for in any budget;
+(b) from the amount of expenditure provided for in 
+any budget in respect of an item, transfer a sum not 
+exceeding fifty per centum of the amount so budgeted 
+to any other item contained in the budget; or
+(c) adjust expenditure limits to take account of 
+circumstances not reasonably foreseeable at the time 
+the budget was prepared, subject to submitting a 
+supplementary budget to the Minister within two 
+months of the alteration of expenditure limits becoming 
+necessary.
+[s. 67]
+70. The Board may, subject to the approval by the Minister, 
+Minister responsible for Finance and the Division, borrow 
+moneys for the purposes of the Board by way of loan or 
+overdraft, and upon such security and such terms relating to 
+Power to borrow
+Act No.
+5 of 2012 s. 64
+
+[PDF PAGE 35]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+613
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+the repayment of the principal and the payment of interest as 
+the Board may deem fit.
+[s. 68]
+71.–(1) The Board shall cause to be provided and kept proper 
+books of accounts and records with respect to-
+(a) the receipt and expenditure of moneys by, and other 
+financial transactions of, the Board; and
+(b) the assets and liabilities of the Board, and shall cause 
+to be made out for every financial year a balance 
+sheet and a statement showing details of the income 
+and expenditure of the Board and all its assets and 
+liabilities.
+(2) The accounts of the Fund including the balance sheet 
+relating to that financial year shall, not later than six months 
+after the closure of every financial year, be audited by the 
+Controller and Auditor-General and the audited accounts 
+shall be submitted to the Division and the Bank.
+(3) As soon as the accounts of the Board have been audited, 
+and in any case not later than six months after the audit, 
+the Board shall submit to the Minister a copy of the audited 
+statement of accounts together with a copy of the report 
+thereon made by auditors.
+(4) As soon as practicable after receipt by him of the copy of 
+the statement together with the copy of the report submitted 
+pursuant to subsection (3), the Minister shall lay a copy of the 
+statement together with a copy of the auditors’ report before 
+the National Assembly.
+(5) The Board shall publish annual audited accounts report 
+in such a manner as the Minister may, in consultation with the 
+Division, prescribe.
+(6) The Board shall, subject to the provisions of the Social 
+Security Act, submit to the Division and to the Bank a copy of 
+the audited statement of accounts together with a copy of the 
+report of the auditor.
+[s. 69]
+Accounts and 
+audit
+Act No.
+5 of 2012 s. 65
+Cap. 135
+
+[PDF PAGE 36]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+614
+72. For the avoidance of doubt it is hereby declared that the 
+fund and the monies in the account established pursuant to 
+section 63 shall not constitute or be regarded as funds of the 
+Board but shall, for the purposes of this Act and all other 
+written laws, be deemed to be funds held by the Board in trust 
+for the insured persons and the Government of the United 
+Republic to be administered by the Board in accordance with 
+the provisions of this Act:
+Provided that, it shall be lawful for the Board to make payments 
+out of the Fund for any of the purposes for which payments out 
+of the Fund account are expressly authorised by this Act.
+[s. 70]
+73. The Board shall cause to be kept, maintained and audited the 
+accounts of the Fund in the same manner and to the same extent 
+as the accounts of the Board are required to be kept, maintained 
+and audited by section 71 and the provisions of subsections (2), 
+(3) and (4) of section 71 shall apply mutatis mutandis, in relation 
+to the accounts, the statement of accounts and auditors’ report in 
+relation to the Fund and the reserve account.
+[s. 71]
+74.–(1) The Board shall be responsible for the management 
+and control of the Fund, and preparation of financial reports 
+in accordance with the provisions of this Act, regulations made 
+thereunder, directives, and guidelines issued by the Division.
+(2) Financial reports referred to under subsection (1) shall 
+contain-
+(a) financial position of the fund at that time;
+(b) entries made day to day of all sums of money received 
+and expended by the Fund and matters in respect of 
+which receipt and expenditure takes place;
+(c) the assets and liabilities of the Fund; and
+(d) such other information as may be required by the 
+Division.
+[s. 71A]
+Fund account
+Accounts of Fund
+Management of 
+Fund
+Act No.
+5 of 2012 s. 66
+
+[PDF PAGE 37]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+615
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+75.–(1) The Board shall, for the purposes of supervision, at 
+the interval of three years or at such other interval as may be 
+determined by the Division cause the assets and liabilities of 
+the Fund to be evaluated by the actuarial and submit a copy of 
+such report to the Division and the Minister.
+(2) The Division may, upon the receipt of the report under 
+subsection (1) and after scrutinising that report, direct the 
+Board to rectify any anomalies identified in that report.
+[s. 71B]
+PART VIII
+LEGAL PROCEEDINGS, OFFENCES 
+AND PENALTIES
+76.–(1) A person who-
+(a) for the purposes of evading payment of any contribution 
+by him or some other person knowingly makes any false 
+statement or representation, or produces or furnishes 
+or causes to be produced or furnished any document 
+or information which he knows to be false in material 
+particulars;
+(b) for the purposes of obtaining any benefit or refund 
+for himself or some other person, knowingly makes 
+any false statement or representation or produces or 
+furnishes or causes to be produced or furnished any 
+document or information which he knows to be false 
+in a material particular;
+(c) misrepresents or fails to disclose any material fact;
+(d) fails to pay to the Board within the prescribed period 
+any contributions which he is liable to pay under this 
+Act;
+(e) fails to comply with any regulations made under this 
+Act as a result of which there is loss to the Fund or as 
+a result of which the individual insured person records 
+of contribution cannot be maintained;
+Actuarial reports 
+to be furnished to 
+Bank
+Act No. 
+5 of 2012 s. 66
+Criminal 
+proceedings
+Acts Nos.
+1 of 2008 s. 33
+5 of 2012 s. 67
+2 of 2018 s. 108
+
+[PDF PAGE 38]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+616
+(f) fails without lawful excuse to produce documents 
+required to be produced under this Act;
+(g) obtains the consent of employees required under this 
+Act by duress or undue influence;
+(h) knowingly deducts from an employee’s wages any sum 
+in respect of a contribution to the Fund greater than 
+the employees share of the statutory contribution;
+(i) misrepresents or fails to disclose any material fact as 
+a result of which he obtains benefits from the Fund to 
+which he would not have been entitled; or
+(j) assaults, intimidates or brawls an inspector in the 
+course of his duties, 
+commits an offence and on conviction shall be liable to a fine 
+not exceeding ten million shillings or to imprisonment for a 
+term not exceeding two years or to both.
+(2) The court before which any person is convicted of an 
+offence under this Act may, without prejudice to any civil 
+remedy; order the person to pay to the Board the amount 
+of any contributions, together with any interests or penalty 
+thereon, certified to be due from such person to the Fund at 
+the date of conviction, and the amount may be recovered in 
+the same manner as a fine and shall be paid into the Fund for 
+the credit of the concerned insured persons.
+(3) Where the Director General is of the opinion that an 
+offence has been committed or is about to be committed 
+under this Act, he shall commence investigations and institute 
+criminal proceedings upon obtaining the consent of the 
+Director of Public Prosecutions.
+(4) Every magistrate, other than a primary court magistrate, 
+shall have jurisdiction, notwithstanding anything to the 
+contrary contained in any law respecting the jurisdiction of 
+such magistrate, in all cases or matters arising under this Act.
+[s. 72]
+77.–(1) Notwithstanding anything to the contrary contained 
+in any other law in force, in any proceedings against an 
+employer in respect of contributions due for more than one 
+Joinder in cases 
+of non-payment 
+of contributions
+
+[PDF PAGE 39]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+617
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+of his employees, the magistrate may permit one plaint or one 
+charge sheet to be made or filed in respect of all contributions 
+claimed to be due.
+(2) All claims shall rank equally between themselves, and shall 
+be entered in full to the insured persons’ contribution records, 
+unless the amount recovered from the employer be less than the 
+total amount of the claims with costs, in which case, after payment 
+of the costs, all the claims shall, subject to marginal adjustments, 
+abate in equal proportions among themselves and be entered to 
+the insured persons’ contribution records accordingly.
+[s. 73]
+78.–(1) An action for the recovery of contributions may 
+be instituted before any court by the Director General, an 
+inspector, or any other officer of the Board appointed by the 
+Board on that behalf.
+(2) The Director General or any other authorised officer 
+of the Fund approved by the Board may institute criminal 
+proceedings in the court in accordance with section 76 
+provided that the Director General or such officer is a public 
+prosecutor appointed by the Director of Public Prosecutions.
+[s. 74]
+79.–(1) An action for recovery of contributions and additional 
+contributions may be instituted by the Board, and where an 
+action is instituted before any court, any member of the Fund 
+or an advocate appointed by the Fund in that behalf may 
+appear and conduct the proceedings.
+(2) Every contribution and additional contributions due to 
+the Fund may be recovered by a summary suit under order 
+XXXV of the Civil Procedure Code at anytime within twelve 
+years after the date on which it is due.
+(3) Where an offence is committed by reasons of non-
+payment of statutory contribution, prosecution shall not be 
+commenced without the consent of the Director of Public 
+Prosecutions.
+[s. 74A]
+Recovery of 
+contributions 
+Act No.
+5 of 2012 s. 68
+Summary 
+recovery 
+Act No.
+2 of 2018 s. 109
+Cap. 33
+
+[PDF PAGE 40]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+618
+80. Where the Director General has given the court written 
+notice of a claim under this Act and-
+(a) an attachment is issued against the property of an 
+employer in execution of a decree against him and any 
+such property is seized or sold or otherwise realised in 
+pursuance of such execution; or
+(b) on the application of a creditor the property of an 
+employer is sold, 
+the proceeds of the sale or other realisation of such property 
+shall not be distributed to any person entitled thereto until 
+the court ordering the sale or realisation has made provision 
+for the payment, after the payment of costs of sale or 
+realisation, of any amounts due in respect of contributions 
+payable by the employer under this Act before the date of 
+such order.
+[s. 75]
+81. The sum standing to the credit of an insured person shall, 
+until such time when it is paid out in accordance with the 
+provisions of this Act, remain the property of the Fund and 
+shall not form part of the assets of an insured person in the 
+event of bankruptcy, or insolvency or be liable for attachment 
+in satisfaction of debts, unless such sum relates to home 
+mortgage referred to under section 21(4) of this Act in which 
+case the mortgagee shall have right to attach any portion of 
+contribution which is the subject of collateral.
+[s. 76]
+82. Notwithstanding anything to the contrary contained in any 
+other written law, where an order has been obtained against a 
+contributory insured person and subject to the provision of 
+subsection (4) of section 21, execution, attachment or process 
+of any nature shall not be issued against contributions of the 
+contributory insured person, except in accordance with the 
+terms of the Fund, such contributions shall not form part of 
+Priority for 
+payment of 
+contributions
+Protection of 
+contributions 
+Act No.
+5 of 2012 s. 69
+Protection against 
+attachment
+Act No.
+5 of 2012 s. 70
+
+[PDF PAGE 41]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+619
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+the contributory assets of the insured person in the event of 
+bankruptcy.
+[s. 77]
+83. Where an offence under this Act by any association of 
+persons, whether corporate or unincorporated, is found to 
+have been committed with the knowledge or connivance of, or 
+is attributable to any act or default on the part of, any person or 
+persons in apparent control of the association of persons, the 
+person or persons in apparent control and the association of 
+persons shall be deemed to have committed the offence.
+[s. 78]
+84. A copy of an entry in the accounts of the Fund or other 
+extract from the records of the Fund shall, when certified by the 
+Director General or any other officer of the Board nominated by 
+the Board in that behalf by writing under the seal of the Board, 
+be received in all courts as prima facie evidence of the truth of the 
+contents thereof and, of the debt due to the Fund by any person.
+[s. 79]
+PART IX
+DETERMINATION OF CLAIMS TO BENEFIT 
+AND LIABILITY FOR CONTRIBUTIONS
+85. The Director General shall be responsible for the 
+determination of claims to benefits and liability for the 
+payment of contributions.
+[s. 80]
+86.–(1) All claims to benefit shall be determined in the first 
+instance by the Director General.
+(2) Where entitlement is dependent on a medical question, 
+reference shall be made to a medical board for determination.
+(3) Where the Director General or any other person is 
+dissatisfied with the decision made by the Medical Board, he 
+may refer the decision to the Division.
+Liability for acts 
+of association of 
+persons 
+Certificates as 
+evidence
+Responsibility of 
+Director General
+Determination of 
+Claims to benefit
+Act No.
+5 of 2012 s. 71
+
+[PDF PAGE 42]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+620
+(4) All decisions on claims to benefit shall be notified to the 
+claimant in writing.
+[s. 81]
+87.–(1) The Director General shall be responsible for 
+determining-
+(a) whether an establishment and each one of its employees 
+is or was insurable under this Act and is or was liable 
+for payment of contributions;
+(b) an individual person is insurable and liable for 
+contributions under this Act;
+(c) the amount of earnings shall be taken into account to 
+determine liability; or
+(d) which person or organisation is or was liable for the 
+payment of contributions in the first instance;
+(2) The Director General may on request notify such 
+determination in writing.
+(3) Where a person is dissatisfied with the decision on a 
+claim to benefits or a question as to liability, he may apply to 
+the Division for review.
+(4) In any review where new facts are revealed or it is 
+concluded that the initial decision was in error, the aggrieved 
+person shall be paid the arrears of the benefit or the contribution 
+liability adjusted.
+(5) Where there is no basis for review and the issue is one 
+of insurability or liability the decision of the Director General 
+shall be final except where the matter is a question of law the 
+same may be referred to a competent court for determination.
+(6) All applications for review under this Act shall be made 
+in writing within thirty days from the date of the decision 
+complained about.
+[s. 82]
+88. - 90. [Repealed by Act No 5 of 2012 s. 73].
+[s. 83 - 85]
+Determination 
+of questions as 
+to liability for 
+contributions 
+Act No.
+5 of 2012 s. 72
+Repealed
+
+[PDF PAGE 43]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+621
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+PART X
+GENERAL PROVISIONS
+91. Where a person enters into a contract whereby some other 
+person is to provide employees for any lawful purpose of the 
+first mentioned person and it is not clear from the contract 
+which of the two persons is the employer, the employees shall, 
+unless the Director General otherwise requires, be deemed for 
+the purposes of this Act to be in the employment of the first 
+mentioned person.
+[s. 86]
+92.–(1) The Board may, appoint inspectors for the purposes of 
+this Act.
+(2) An inspector under this Act, if he has reasonable cause 
+to believe that there are employees on any premises who are 
+registrable, or in respect of whom contributions are payable 
+under this Act may, on production of a certificate under 
+the hand of the Director General of his appointment as an 
+inspector, enter at all reasonable times on the premises or 
+place and there make any examination and inquiry necessary 
+to obtain information for the purposes of this Act.
+(3) An inspector may, in the performance of his duties 
+require any employer to produce any employee employed by 
+him and any documents relating to contributions or liability to 
+contribute to the Fund, for inspection by him on the premises 
+or place.
+(4) For the purposes of this section-
+“document” means any matter expressed or described upon 
+any substance by means of letters, figures or marks, or by 
+more than one of those means, intended to be used or may 
+be used for the purposes of recording that matter; and
+“premises” means any building or other erection used for 
+the purposes of business, but does not include a dwelling 
+used exclusively for residential purposes.
+[s. 87]
+Deemed to be in 
+employment of 
+first mentioned 
+person
+Inspectors
+
+[PDF PAGE 44]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+622
+93. Without prejudice to the provisions of section 284A of the 
+Penal Code or of the Specified Officers (Recovery of Debts) 
+Act, an act done or omitted to be done, by any trustee or by any 
+officer, employee or agent of the Board shall not, when done or 
+omitted bona fide in execution or purported execution of his 
+duties as such trustee, officer, employee or agent, subject any 
+such person to any action, liability or demand.
+[s. 88]
+94.–(1) The Minister may, in consultation with the Division, 
+make regulations necessary or desirable to give effect to the 
+provisions of this Act, and without limiting the general power 
+it is hereby declared that regulations may be made for all or 
+any of the following purposes–:
+(a) prescribing conditions for registration under this Act;
+(b) prescribing the mode of collecting contributions, the 
+payment of claims and the computation of annuities;
+(c) prescribing that any provisions of this Act shall not 
+apply or shall apply with such modifications (if any) as 
+may be specified in the regulations to any person or 
+class of persons;
+(d) prescribing any forms for the purposes of this Act;
+(e) prescribing the establishment of medical boards, the 
+rules and procedure to be followed by such medical 
+boards and types of medical examination to be done 
+for the purposes of this Act;
+(f) prescribing the procedure for dealing with unclaimed 
+moneys in the Fund;
+(g) prescribing the duties of employers in respect of 
+registration of employees; and
+(h) prescribing benefits segmentation following 
+recommendation of actuarial valuation.
+(2) Regulations made under this section shall be published 
+in the Gazette.
+[s. 89]
+Liability of 
+members
+Cap. 16
+Cap. 76
+Regulations
+Act No.
+5 of 2012 s. 74
+
+[PDF PAGE 45]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+623
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+95.–(1) Notwithstanding any other enactment-
+(a) stamp duty shall not be payable on any receipt, contract, 
+instrument or other document given or executed by 
+the Board on behalf of the Fund or by any person in 
+respect of benefits or refund of contribution under this 
+Act; and
+(b) notwithstanding the provisions of paragraph (a), the 
+exemption granted under this subsection shall only 
+apply on money received by way of contributions from 
+members of the Fund, but any other earnings, gains, 
+or profit accruing to the Fund from other transactions 
+shall be subject to stamp duty.
+(2) An income tax shall not be charged on the members 
+contributions to the Fund, but any other earnings, gains or 
+profit accruing to the Fund shall be subject to the income tax.
+[s. 90]
+96.–(1) The Board may establish supplementary schemes in 
+accordance with provisions of the Social Security Act.
+(2) The Board may manage supplementary schemes 
+established by the employer or employee who is insured person 
+under separate account.
+[s. 91]
+97.–(1) The Government of Tanzania may enter into a 
+reciprocal agreement with the government of any other 
+territory in which a scheme similar to the Scheme has been 
+established and there may be included in the agreement the 
+following provisions:
+(a) that any period of insurance of such scheme in the 
+territory of that government may be treated as a period 
+of insurance of the Scheme and vice versa; and
+(b) that, subject to such conditions as may be agreed, any 
+amount standing to the credit of an insured person 
+under this Act who works for any employer in the 
+territory of that government may be transferred to his 
+credit in such Scheme, and vice versa.
+Tax exemption
+Act No.
+8 of 1998 s. 46
+Cap. 332
+Establishment of 
+supplementary 
+schemes
+Act No.
+5 of 2012 s. 75 
+Cap. 135
+Reciprocal 
+agreements
+
+[PDF PAGE 46]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+624
+(2) Any reciprocal agreement made under this section may 
+modify, adapt or amend the provisions of this Act to give effect 
+to the agreement.
+[s. 92]
+98.–(1) A member who has changed his employment from 
+private sector to any employer in public service his membership 
+shall be transferred to the Public Service Social Security Fund 
+and shall become an insured person subject to the provisions 
+of the Public Service Social Security Fund Act.
+(2) Notwithstanding the transfer of membership under 
+subsection (1), the contributions and his proportional share to 
+the assets of the Fund of such member shall not be transferred 
+to the Fund:
+Provided that, member’s benefits and contribution periods 
+in the Fund and the Public Service Social Security Fund shall 
+be totalised in accordance with the totalisation guidelines 
+prescribed by the Division.
+[s. 92A]
+99. [Repeals the National Provident Fund].
+[s. 93]
+100. Notwithstanding the repeal made under section 99-
+(a) all the assets and liabilities of the existing Fund existing 
+immediately before the commencement of this Act 
+shall vest in the National Social Security Fund together 
+with all the rights and obligations arising out of any 
+contract or otherwise as if this Act had not come into 
+force;
+(b) anything done or any action taken under the repealed 
+Acts shall in so far as it is not inconsistent with the 
+provisions of this Act, be deemed done or taken under 
+the corresponding provisions of this Act;
+(c) all subsidiary legislation made under the repealed Acts 
+which are in force on the commencement of this Act 
+shall be deemed to have been made under this Act and 
+Totalisation of 
+periods and 
+benefits 
+Act No.
+2 of 2018 s. 110
+Cap. 371
+Repeal
+Act No. 2 of 1975
+Savings
+
+[PDF PAGE 47]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+625
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+shall remain in force until revoked or rescinded by 
+subsidiary legislation made under this Act;
+(d) where immediately before the commencement of this 
+Act-
+(i) any person is liable to pay any sum of money to 
+the National Provident Fund or to the Director 
+General or to the Board in relation to any liability 
+arising from the repealed Acts that person shall 
+make such payment to the Fund, Board or the 
+Director General as if the liability to make such 
+payment had arisen under this Act;
+(ii) any legal proceedings for any offence under the 
+National Provident Fund Act or for the recovery 
+of any sum of money due under the repealed Acts 
+is pending before any court, those proceedings 
+may be continued and conducted.
+[s. 94]
+101. [Omitted].
+[s. 95]
+FIRST SCHEDULE
+(Made under sections 5(2)(c) and 12(1) and (5))
+CONTRIBUTIONS FOR EMPLOYEES
+Contribution Period Employer’s share deductible from 
+wages by Employer
+Statutory Contributions for each 
+employee
+(a) one month Ten cents for every complete 
+shilling of wages
+Twenty cents for every complete 
+shilling of wages
+(b) On fortnight Ten cents for every complete 
+shilling of wages
+Twenty cents for every complete 
+shilling of wages
+(c) One week Ten cents for every complete 
+shilling of wages
+Twenty cents for every complete 
+shilling of wages
+(d) One day Ten cents for every complete 
+shilling of wages
+Twenty cents for every complete 
+shilling of wages
+Omitted
+
+[PDF PAGE 48]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+626
+SECOND SCHEDULE
+(Made under sections 55(3) and (4))
+COMPOSITION AND PROCEEDINGS OF THE BOARD
+1. In this schedule unless the context requires otherwise
+“member” means a member of the Board and includes the Chairman.
+2.–(1) The members of the Board shall be-
+(a) a Chairman who shall be appointed by the President;
+(b) two members representing the most representative employers 
+organisation;
+(c) two members representing organisations of employees the 
+majority of whom are members to the Fund;
+(d) a representative of the Ministry responsible for labour;
+(e) a member representing the Ministry responsible for finance;
+(f)  one member representing the private sector appointed from 
+amongst person with knowledge and experience on social 
+security matters; and
+(g) one representative from the Office of the Attorney General.
+(2) The representatives referred to in item (b), (c), (d), (e), (f) and (g) 
+of subparagraph (1) shall be nominated by the organisation or ministry 
+concerned and shall be appointed by the Minister.
+(3) The nominations and appointments to be made under 
+subparagraph (2) shall be made from amongst persons with experience 
+in social security, financial matters or administration.
+(4) Notwithstanding subparagraph (2) and (3), the Chairman and 
+the members of the Board shall not be persons holding any political 
+post, or being Chief Executive of the Government.
+(5) The Minister shall, in appointing members, ensure that all 
+members are proper and fit persons for performing advisory functions 
+of the Board under the provisions of this Act and regulations made 
+thereunder and the Social Security (Regulatory Authority) Act.
+(6) The office of a member of the Board shall become vacant where-
+(a) the member ceases to belong to the nominating organisation 
+or ministry;
+(b) the member is withdrawn by the nominating organisation or 
+ministry; and
+(c) at the expiration of a period of three years from the date of 
+appointment:
+Provided that, a member whose term of office has come to an end by 
+effluxion of time may be re-appointed to the office.
+(7) All the members of the Board shall serve on a part-time basis 
+and shall be entitled to receive such remuneration and allowances as the 
+Minister may determine.
+Act Nos.
+13 of 2009 s. 15
+5 of 2012 ss. 76, 
+77
+Construction
+Composition
+Cap. 135
+
+[PDF PAGE 49]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+627
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+3. Every member of the Board shall continue to hold office until his 
+appointment is revoked or his office becomes vacant for reasons 
+specified in subparagraph (6) of paragraph 2.
+4. The Board shall elect one of its members to be the Vice chairman 
+for a term of one year from the date of his election and the person so 
+elected shall be eligible for re-election upon the expiry of his term of 
+office as Vice-chairman.
+5. The Director General shall be the Secretary of the Board.
+6.–(1) An ordinary meeting of the Board shall be convened by the 
+Chairman and the notice specifying the place, date and time of the 
+meeting shall be sent to each member at his usual place of business or 
+residence not less than fourteen days before the date of such meeting.
+(2) In case the Chairman is unable to act by reason of illness, absence 
+from mainland Tanzania, or other sufficient cause, the Vice chairman 
+may convene such meeting.
+(3) The Chairman, or in his absence, the Vice chairman, shall be 
+bound to convene a special meeting of the Board upon receipt of 
+request in writing in that behalf signed by not less than five members 
+of the Board, and not less than fourteen days’ notice of such meeting 
+shall be given to all members of the Board in the manner prescribed in 
+subparagraph (1).
+(4) The Chairman, the Vice chairman, or the temporary Chairman 
+elected in accordance with the provisions of paragraph 7(2)(c) presiding 
+at any meeting of the Board may invite any person who is not a member 
+to participate in the deliberations of the Board, but any such person 
+shall not be entitled to vote.
+7.–(1) One half of the total number of the members in office shall form 
+a quorum for a meeting of the Board.
+(2) There shall preside at any meeting of the Board-
+(a) the Chairman;
+(b) in the absence of the Chairman, the Vice chairman; or
+(c) in the absence of both the Chairman and the Vice chairman,
+such member as the members present may elect from amongst 
+themselves for the purpose of that meeting.
+(3) At any meeting of the Board a decision of the majority of the 
+members present and voting shall be deemed to be a decision of the 
+Board, and in the event of an equality of votes the Chairman of the 
+meeting shall have a casting vote in addition to his deliberative vote.
+8. Where any member absents himself from three consecutive meetings 
+of the Board without reasonable excuse the Board shall advise the 
+appointing authority of the fact and the appointing authority may 
+terminate the appointment of the member and appoint another member 
+in his place.
+Tenure of 
+appointment
+Vice chairman
+Secretary
+Meeting of the 
+Board
+Procedure and 
+quorum
+Absence from 
+three consecutive 
+meetings
+
+[PDF PAGE 50]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE NATIONAL SOCIAL SECURITY FUND ACT [CAP . 50 R.E. 2023]
+628
+9. Where any member is by reason of illness, infirmity or absence from 
+the United Republic, member unable to attend any meeting of the 
+Board, the appointing authority may appoint a temporary member in 
+his place and the temporary member shall cease to hold office on the 
+resumption of office of the substantive member.
+10. Minutes in proper form of each meeting of the Board shall be kept 
+and shall be confirmed by the Board at the next meeting and signed by 
+the Chairman of the meeting.
+11. The Seal of the Board shall not be affixed to any instrument except 
+in the presence of the Director General or such other officer of the 
+Board as the Board may appoint in that behalf.
+12. Subject to the provisions of this Schedule the Board shall have 
+power to regulate its own proceedings.
+Decision by 
+circulation of 
+papers
+Minutes of 
+meeting
+Seal
+Board may 
+regulate its own 
+proceedings

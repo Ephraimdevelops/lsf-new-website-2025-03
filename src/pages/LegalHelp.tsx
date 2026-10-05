@@ -122,6 +122,10 @@ const LegalHelp = () => {
             <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto font-medium">
               Find verified paralegals in your district or chat with Sara AI for instant legal guidance.
             </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Link to="/find-help"><Button className="bg-white text-primary hover:bg-white/90">Find verified services</Button></Link>
+              <Link to="/request-help"><Button className="bg-secondary-yellow text-black hover:bg-secondary-yellow/90">Request help from LSF</Button></Link>
+            </div>
           </div>
 
           {/* SEARCH COMPONENT - Transparent, Glassy & Simple */}

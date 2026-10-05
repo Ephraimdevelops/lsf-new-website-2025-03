@@ -1,0 +1,426 @@
+
+> vite_react_shadcn_ts@0.0.0 test:haki-contracts
+> node --experimental-strip-types --test scripts/haki-contracts.test.mjs
+
+TAP version 13
+# (node:10390) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: ordinary matching excludes emergency-only, closed and exhausted services
+ok 1 - ordinary matching excludes emergency-only, closed and exhausted services
+  ---
+  duration_ms: 0.6415
+  ...
+# Subtest: case push delivery honors the beneficiary's safe-contact choice
+ok 2 - case push delivery honors the beneficiary's safe-contact choice
+  ---
+  duration_ms: 0.550125
+  ...
+# Subtest: external push needs account opt-in and the mobile inbox remains complete
+ok 3 - external push needs account opt-in and the mobile inbox remains complete
+  ---
+  duration_ms: 0.774625
+  ...
+# Subtest: web roles can reach the shared authenticated notification inbox
+ok 4 - web roles can reach the shared authenticated notification inbox
+  ---
+  duration_ms: 2.153125
+  ...
+# Subtest: public matching cannot forge staff provenance or attach another person's request or case
+ok 5 - public matching cannot forge staff provenance or attach another person's request or case
+  ---
+  duration_ms: 1.040792
+  ...
+# Subtest: case chat keeps the newest messages and retry keys cannot cross case or content type
+ok 6 - case chat keeps the newest messages and retry keys cannot cross case or content type
+  ---
+  duration_ms: 0.829958
+  ...
+# Subtest: Saada does not invent an answer when approved evidence is absent
+ok 7 - Saada does not invent an answer when approved evidence is absent
+  ---
+  duration_ms: 0.742333
+  ...
+# Subtest: saved visit plans do not reveal retired service details or allow new plans when intake is closed
+ok 8 - saved visit plans do not reveal retired service details or allow new plans when intake is closed
+  ---
+  duration_ms: 0.667708
+  ...
+# Subtest: Saada uses stored conversation turns without repeating the current user message
+ok 9 - Saada uses stored conversation turns without repeating the current user message
+  ---
+  duration_ms: 0.997916
+  ...
+# Subtest: triage timing counts older open requests but excludes historic reviews without a timestamp
+ok 10 - triage timing counts older open requests but excludes historic reviews without a timestamp
+  ---
+  duration_ms: 0.616084
+  ...
+# Subtest: referral transitions count each referral once per stage
+ok 11 - referral transitions count each referral once per stage
+  ---
+  duration_ms: 0.145417
+  ...
+# Subtest: base-role change needs independent review and another active administrator
+ok 12 - base-role change needs independent review and another active administrator
+  ---
+  duration_ms: 0.104875
+  ...
+# Subtest: Saada approval requires indexed content and current provenance
+ok 13 - Saada approval requires indexed content and current provenance
+  ---
+  duration_ms: 0.116458
+  ...
+# Subtest: directory drafts cannot be published at creation
+ok 14 - directory drafts cannot be published at creation
+  ---
+  duration_ms: 0.078208
+  ...
+# Subtest: directory review requires a different person and a recorded reason
+ok 15 - directory review requires a different person and a recorded reason
+  ---
+  duration_ms: 0.074875
+  ...
+# Subtest: public service review dates must exist and be in the future
+ok 16 - public service review dates must exist and be in the future
+  ---
+  duration_ms: 0.051125
+  ...
+# Subtest: rejected public guide resubmission preserves editor and replacement lineage
+ok 17 - rejected public guide resubmission preserves editor and replacement lineage
+  ---
+  duration_ms: 0.076666
+  ...
+# Subtest: provider correction completion requires a linked service edit after submission
+ok 18 - provider correction completion requires a linked service edit after submission
+  ---
+  duration_ms: 0.060292
+  ...
+# Subtest: referral agreements require verified organisations, safeguarding and a recorded data agreement
+ok 19 - referral agreements require verified organisations, safeguarding and a recorded data agreement
+  ---
+  duration_ms: 0.0605
+  ...
+# Subtest: suspending or retiring an organisation cannot leave referrals active
+ok 20 - suspending or retiring an organisation cannot leave referrals active
+  ---
+  duration_ms: 0.054875
+  ...
+# Subtest: case participation does not survive loss of its professional role
+ok 21 - case participation does not survive loss of its professional role
+  ---
+  duration_ms: 0.067625
+  ...
+# Subtest: legacy case scope requires a separate reviewer and only permits true independent paralegals
+ok 22 - legacy case scope requires a separate reviewer and only permits true independent paralegals
+  ---
+  duration_ms: 0.064666
+  ...
+# Subtest: the case lifecycle accepts every declared transition
+ok 23 - the case lifecycle accepts every declared transition
+  ---
+  duration_ms: 0.129958
+  ...
+# Subtest: the case lifecycle rejects skipped and terminal transitions
+ok 24 - the case lifecycle rejects skipped and terminal transitions
+  ---
+  duration_ms: 0.11725
+  ...
+# Subtest: retryable domain writes have unique lookup indexes
+ok 25 - retryable domain writes have unique lookup indexes
+  ---
+  duration_ms: 1.031875
+  ...
+# Subtest: sensitive notifications use translation keys, not case content
+ok 26 - sensitive notifications use translation keys, not case content
+  ---
+  duration_ms: 0.275375
+  ...
+# Subtest: domain notifications use the central delivery helper
+ok 27 - domain notifications use the central delivery helper
+  ---
+  duration_ms: 0.471792
+  ...
+# Subtest: push delivery records Expo send tickets and receipt outcomes
+ok 28 - push delivery records Expo send tickets and receipt outcomes
+  ---
+  duration_ms: 0.152
+  ...
+# Subtest: reviewed paralegal profiles activate a role and readiness gates assignment
+ok 29 - reviewed paralegal profiles activate a role and readiness gates assignment
+  ---
+  duration_ms: 1.097458
+  ...
+# Subtest: public paralegal directory uses a safe projection and governed matching UX
+ok 30 - public paralegal directory uses a safe projection and governed matching UX
+  ---
+  duration_ms: 0.826542
+  ...
+# Subtest: intake captures preferred support language for staff routing and matching
+ok 31 - intake captures preferred support language for staff routing and matching
+  ---
+  duration_ms: 1.277
+  ...
+# Subtest: beneficiary intake persists complete triage context into staff review
+ok 32 - beneficiary intake persists complete triage context into staff review
+  ---
+  duration_ms: 0.498
+  ...
+# Subtest: submitted requests have an owner-scoped progress and withdrawal journey
+ok 33 - submitted requests have an owner-scoped progress and withdrawal journey
+  ---
+  duration_ms: 0.442167
+  ...
+# Subtest: provider availability informs assignment fit without exposing staff notes publicly
+ok 34 - provider availability informs assignment fit without exposing staff notes publicly
+  ---
+  duration_ms: 0.949583
+  ...
+# Subtest: paused provider assignment requires an audited staff override reason
+ok 35 - paused provider assignment requires an audited staff override reason
+  ---
+  duration_ms: 0.873042
+  ...
+# Subtest: staff assignment monitor exposes response timing and availability override history
+ok 36 - staff assignment monitor exposes response timing and availability override history
+  ---
+  duration_ms: 1.151875
+  ...
+# Subtest: case detail exposes assignment history to workers without beneficiary leakage
+ok 37 - case detail exposes assignment history to workers without beneficiary leakage
+  ---
+  duration_ms: 0.992792
+  ...
+# Subtest: appointment lifecycle is auditable and visible across worker and mobile surfaces
+ok 38 - appointment lifecycle is auditable and visible across worker and mobile surfaces
+  ---
+  duration_ms: 3.217417
+  ...
+# Subtest: deactivated Haki Yangu profiles are not silently restored
+ok 39 - deactivated Haki Yangu profiles are not silently restored
+  ---
+  duration_ms: 0.094
+  ...
+# Subtest: beneficiary case review requests are routed through staff without notifying assigned workers with details
+ok 40 - beneficiary case review requests are routed through staff without notifying assigned workers with details
+  ---
+  duration_ms: 0.705458
+  ...
+# Subtest: staff reassignment ends current access and creates a replacement offer
+ok 41 - staff reassignment ends current access and creates a replacement offer
+  ---
+  duration_ms: 0.715958
+  ...
+# Subtest: assignment offers expire automatically and cannot be accepted after expiry
+ok 42 - assignment offers expire automatically and cannot be accepted after expiry
+  ---
+  duration_ms: 0.846542
+  ...
+# Subtest: final case closure requires outcome, safe summary, document review, and feedback request
+ok 43 - final case closure requires outcome, safe summary, document review, and feedback request
+  ---
+  duration_ms: 0.645917
+  ...
+# Subtest: beneficiary mobile closure experience shows outcome, feedback request, and submitted feedback
+ok 44 - beneficiary mobile closure experience shows outcome, feedback request, and submitted feedback
+  ---
+  duration_ms: 0.329542
+  ...
+# Subtest: mobile offline queue stores sensitive pending case actions securely
+ok 45 - mobile offline queue stores sensitive pending case actions securely
+  ---
+  duration_ms: 0.483959
+  ...
+# Subtest: mobile demand-letter builder provides an offline practical document tool
+ok 46 - mobile demand-letter builder provides an offline practical document tool
+  ---
+  duration_ms: 1.692875
+  ...
+# Subtest: mobile document checker gives pre-signing guidance without silent upload
+ok 47 - mobile document checker gives pre-signing guidance without silent upload
+  ---
+  duration_ms: 0.542083
+  ...
+# Subtest: mobile my-documents library is backed by scoped case documents
+ok 48 - mobile my-documents library is backed by scoped case documents
+  ---
+  duration_ms: 1.357709
+  ...
+# Subtest: mobile my-appointments list is backed by scoped case appointments
+ok 49 - mobile my-appointments list is backed by scoped case appointments
+  ---
+  duration_ms: 0.750417
+  ...
+# Subtest: mobile release documentation identifies required environment and device QA gates
+ok 50 - mobile release documentation identifies required environment and device QA gates
+  ---
+  duration_ms: 1.439666
+  ...
+# Subtest: mobile account recovery and role scope are visible without client-side privilege grants
+ok 51 - mobile account recovery and role scope are visible without client-side privilege grants
+  ---
+  duration_ms: 0.905833
+  ...
+# Subtest: safeguarding officer is an enforced restricted operations role
+ok 52 - safeguarding officer is an enforced restricted operations role
+  ---
+  duration_ms: 0.365625
+  ...
+# Subtest: donor and stakeholder reporting uses approved aggregate snapshots
+ok 53 - donor and stakeholder reporting uses approved aggregate snapshots
+  ---
+  duration_ms: 0.681333
+  ...
+# Subtest: beneficiary web dashboard is connected to scoped private Haki Yangu records
+ok 54 - beneficiary web dashboard is connected to scoped private Haki Yangu records
+  ---
+  duration_ms: 0.418583
+  ...
+# Subtest: mobile always launches the connected application without a prototype switch
+ok 55 - mobile always launches the connected application without a prototype switch
+  ---
+  duration_ms: 0.140334
+  ...
+# Subtest: production mobile private surfaces do not show demo backend records
+ok 56 - production mobile private surfaces do not show demo backend records
+  ---
+  duration_ms: 0.507666
+  ...
+# Subtest: mobile QA seed creates real records only behind an explicit environment guard
+ok 57 - mobile QA seed creates real records only behind an explicit environment guard
+  ---
+  duration_ms: 0.538917
+  ...
+# Subtest: mobile Saada uses governed Convex AI with risk events and consent
+ok 58 - mobile Saada uses governed Convex AI with risk events and consent
+  ---
+  duration_ms: 3.05575
+  ...
+# Subtest: Saada restores governed history and only exposes verified public directory routes
+ok 59 - Saada restores governed history and only exposes verified public directory routes
+  ---
+  duration_ms: 0.224291
+  ...
+# Subtest: Saada exposes real backend activity events instead of a generic spinner
+ok 60 - Saada exposes real backend activity events instead of a generic spinner
+  ---
+  duration_ms: 0.332375
+  ...
+# Subtest: referral graph connects staff creation, provider response, and beneficiary visibility
+ok 61 - referral graph connects staff creation, provider response, and beneficiary visibility
+  ---
+  duration_ms: 2.695333
+  ...
+# Subtest: paralegal mobile case workspace connects worker tasks and document review
+ok 62 - paralegal mobile case workspace connects worker tasks and document review
+  ---
+  duration_ms: 1.059208
+  ...
+# Subtest: paralegal mobile case workspace connects appointments, referrals, and outcomes
+ok 63 - paralegal mobile case workspace connects appointments, referrals, and outcomes
+  ---
+  duration_ms: 0.496
+  ...
+# Subtest: paralegal deactivation revokes active access and records a notification and audit event
+ok 64 - paralegal deactivation revokes active access and records a notification and audit event
+  ---
+  duration_ms: 0.224291
+  ...
+# Subtest: provider mobile organisation screen uses scoped governed service data
+ok 65 - provider mobile organisation screen uses scoped governed service data
+  ---
+  duration_ms: 0.960417
+  ...
+# Subtest: paralegal mobile performance is computed from assigned cases and beneficiary feedback
+ok 66 - paralegal mobile performance is computed from assigned cases and beneficiary feedback
+  ---
+  duration_ms: 0.32025
+  ...
+# Subtest: paralegal support and wellbeing requests are persisted and staff-scoped
+ok 67 - paralegal support and wellbeing requests are persisted and staff-scoped
+  ---
+  duration_ms: 0.507
+  ...
+# Subtest: case referral list projects private operational data before returning to clients
+ok 68 - case referral list projects private operational data before returning to clients
+  ---
+  duration_ms: 0.130292
+  ...
+# Subtest: Saada knowledge and prompt changes require provenance and independent approval
+ok 69 - Saada knowledge and prompt changes require provenance and independent approval
+  ---
+  duration_ms: 0.498625
+  ...
+# Subtest: paralegal readiness requires verified profile, availability, ethics and safeguarding
+ok 70 - paralegal readiness requires verified profile, availability, ethics and safeguarding
+  ---
+  duration_ms: 0.2965
+  ...
+# Subtest: mobile paralegal applications securely collect reviewable identity and credential files
+ok 71 - mobile paralegal applications securely collect reviewable identity and credential files
+  ---
+  duration_ms: 0.49925
+  ...
+# Subtest: mobile LSF operations connects intake triage, case creation, matching and restricted safeguarding
+ok 72 - mobile LSF operations connects intake triage, case creation, matching and restricted safeguarding
+  ---
+  duration_ms: 0.717333
+  ...
+# Subtest: mobile governance connects access, paralegal approval and Saada risk review
+ok 73 - mobile governance connects access, paralegal approval and Saada risk review
+  ---
+  duration_ms: 1.207
+  ...
+# Subtest: mobile Saada source review opens provenance and uses independent approval
+ok 74 - mobile Saada source review opens provenance and uses independent approval
+  ---
+  duration_ms: 0.793834
+  ...
+# Subtest: mobile Saada policy review opens full instructions before independent approval
+ok 75 - mobile Saada policy review opens full instructions before independent approval
+  ---
+  duration_ms: 0.23175
+  ...
+# Subtest: Find Help comparison reads current verified public service records
+ok 76 - Find Help comparison reads current verified public service records
+  ---
+  duration_ms: 0.606708
+  ...
+# Subtest: mobile service directory governance requires provenance and audits status changes
+ok 77 - mobile service directory governance requires provenance and audits status changes
+  ---
+  duration_ms: 0.941875
+  ...
+# Subtest: Find Help continues through planned visits, check-in and escalation
+ok 78 - Find Help continues through planned visits, check-in and escalation
+  ---
+  duration_ms: 0.399958
+  ...
+# Subtest: mobile governance exposes a restricted content-safe platform audit trail
+ok 79 - mobile governance exposes a restricted content-safe platform audit trail
+  ---
+  duration_ms: 0.506208
+  ...
+# Subtest: local Expo web browses as guest with a production Clerk key and keeps sign-in disabled
+ok 80 - local Expo web browses as guest with a production Clerk key and keeps sign-in disabled
+  ---
+  duration_ms: 0.121
+  ...
+# Subtest: mobile donor reporting uses suppressed snapshots and independent approval
+ok 81 - mobile donor reporting uses suppressed snapshots and independent approval
+  ---
+  duration_ms: 0.263666
+  ...
+# Subtest: case chat supports governed two-minute voice notes
+ok 82 - case chat supports governed two-minute voice notes
+  ---
+  duration_ms: 0.385208
+  ...
+1..82
+# tests 82
+# suites 0
+# pass 82
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 155.784708

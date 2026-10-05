@@ -1,26 +1,34 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useQuery } from "convex/react";
 import { router } from "expo-router";
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Image, ImageBackground, Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useAuth, useUser } from "../../src/auth";
 import { api } from "../../src/backend/api";
 import { caseStatusLabels } from "../../src/caseLabels";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
-import { colors, spacing, type } from "../../src/theme";
+import { useAccountSync } from "../../src/useStoreUserEffect";
+import { civic, colors, type } from "../../src/theme";
 
 const primaryActions = [
-  { icon: "search-outline", sw: "Tafuta msaada", en: "Find help", subSw: "Huduma zilizothibitishwa karibu nawe", subEn: "Verified services near you", route: "/find-services", color: "#147F79", foreground: "#FFFFFF" },
-  { icon: "document-text-outline", sw: "Omba msaada", en: "Request help", subSw: "Eleza unachohitaji", subEn: "Tell us what you need", route: "/intake", color: "#A62B4D", foreground: "#FFFFFF" },
-  { icon: "chatbubble-ellipses-outline", sw: "Uliza Saada", en: "Ask Saada", subSw: "Mwongozo wa haki kwa lugha rahisi", subEn: "Plain-language rights guidance", route: "/sara", color: "#F16C22", foreground: "#FFFFFF" },
-  { icon: "book-outline", sw: "Jua haki zako", en: "Know your rights", subSw: "Miongozo mifupi ya vitendo", subEn: "Short, practical guides", route: "/(tabs)/learn?view=all", color: "#F3B61F", foreground: "#25201B" },
+  { sw: "Tafuta msaada", en: "Find help", subSw: "Anza na tatizo lako", subEn: "Start with your issue", route: "/find-services", icon: "search-outline", palette: civic.actionCards.find },
+  { sw: "Omba msaada", en: "Request help", subSw: "Tuambie kilichotokea", subEn: "Tell us what happened", route: "/intake", icon: "document-text-outline", palette: civic.actionCards.request },
+  { sw: "Haki Yangu AI", en: "Haki Yangu AI", subSw: "Pata maelezo rahisi", subEn: "Get simple guidance", route: "/sara", icon: "chatbubble-ellipses-outline", palette: civic.actionCards.saada },
+  { sw: "Jua haki zako", en: "Know your rights", subSw: "Miongozo ya kila siku", subEn: "Everyday guides", route: "/(tabs)/learn?view=all", icon: "book-outline", palette: civic.actionCards.rights },
+] as const;
+
+const homeSlides = [
+  { image: require("../../assets/home-hero.jpg"), eyebrow: { sw: "HAKI YANGU", en: "HAKI YANGU" }, title: { sw: "Elewa haki zako. Chukua hatua.", en: "Know your rights. Take the next step." }, body: { sw: "Mwongozo na msaada wa kisheria, mahali pamoja.", en: "Clear guidance and legal help in one place." }, action: { sw: "Anza hapa", en: "Start here" }, route: "/explore" },
+  { image: require("../../assets/home-find-help.jpg"), eyebrow: { sw: "TAFUTA MSAADA", en: "FIND HELP" }, title: { sw: "Anza na tatizo lako.", en: "Start with your issue." }, body: { sw: "Jibu maswali machache, kisha uone msaada unaokufaa.", en: "Answer a few questions to find a suitable next step." }, action: { sw: "Anza kutafuta", en: "Get started" }, route: "/find-services" },
+  { image: require("../../assets/home-request-help.jpg"), eyebrow: { sw: "OMBA MSAADA", en: "REQUEST HELP" }, title: { sw: "Huhitaji kujua pa kuanzia.", en: "You don't have to know where to start." }, body: { sw: "Eleza kinachokusumbua. Tutakuonyesha hatua inayofuata.", en: "Tell us what is happening. We'll show you a next step." }, action: { sw: "Omba msaada", en: "Request help" }, route: "/intake" },
 ] as const;
 
 const quickTools = [
-  { icon: "document-text-outline", sw: "Kagua\nHati", en: "Check\nDocument", route: "/document-checker", color: "#0E4C92" },
-  { icon: "folder-outline", sw: "Nyaraka\nZangu", en: "My\nDocuments", route: "/documents", color: "#2563EB" },
-  { icon: "clipboard-outline", sw: "Muundo\nwa Barua", en: "Letter\nTemplate", route: "/letter-builder", color: "#087F6F" },
-  { icon: "shield-checkmark-outline", sw: "Vidokezo\nvya Usalama", en: "Safety\nTips", route: "/safety", color: "#E5A100" },
+  { icon: "document-text-outline", sw: "Kagua hati", en: "Check document", subSw: "Elewa hati yako", subEn: "Understand a document", route: "/document-checker", color: "#2476C8", tint: "#EAF3FD" },
+  { icon: "location-outline", sw: "Msaada karibu", en: "Nearby help", subSw: "Huduma katika eneo lako", subEn: "Services in your area", route: "/nearby-help", color: "#048E83", tint: "#E7F6F3" },
+  { icon: "shield-checkmark-outline", sw: "Usalama", en: "Safety", subSw: "Namba za dharura", subEn: "Emergency numbers", route: "/safety", color: "#D89400", tint: "#FFF5D8" },
+  { icon: "call-outline", sw: "Piga LSF", en: "Call LSF", subSw: "Msaada wa moja kwa moja", subEn: "Talk to our team", route: "tel:+255222601534", color: "#9A1744", tint: "#F9ECF1" },
 ] as const;
 
 const requestStatusLabels = {
@@ -36,11 +44,16 @@ const requestStatusLabels = {
 } as const;
 
 export default function HomeScreen() {
+  const [slideWidth, setSlideWidth] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slideRef = useRef<ScrollView>(null);
   const { isSignedIn } = useAuth();
+  const { ready: accountReady } = useAccountSync();
   const { user } = useUser();
   const { locale } = useLanguage();
-  const cases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
-  const requests = useQuery(api.legalHelp.myRequests, isSignedIn ? {} : "skip");
+  const cases = useQuery(api.caseManagement.myCases, isSignedIn && accountReady ? {} : "skip");
+  const requests = useQuery(api.legalHelp.myRequests, isSignedIn && accountReady ? {} : "skip");
+  const invitations = useQuery(api.providerInvitations.mine, isSignedIn && accountReady ? {} : "skip");
   const activeCase = cases?.find((item) => !["closed", "closed_unresolved"].includes(item.status));
   const activeRequest = requests?.find((item) => !["converted_to_case", "withdrawn", "closed"].includes(item.status));
   const isLoadingJourney = isSignedIn && (cases === undefined || requests === undefined);
@@ -52,49 +65,69 @@ export default function HomeScreen() {
       ? `${activeRequest.publicId} · ${requestStatusLabels[activeRequest.status][locale]}`
       : isLoadingJourney
         ? (locale === "sw" ? "Tunapakua taarifa zako..." : "Loading your progress...")
-        : (locale === "sw" ? "Bado huna kesi hai" : "No active case yet");
+        : (locale === "sw" ? "Bado hakuna kesi" : "No case yet");
   const journeyHint = activeCase || activeRequest
     ? (locale === "sw" ? "Fungua kuona hatua inayofuata" : "Open to see your next step")
-    : (locale === "sw" ? "Ukiomba msaada, ombi lako litaonekana hapa" : "When you request help, your request will appear here");
+    : (locale === "sw" ? "Ukiomba msaada, litaonekana hapa." : "Your request will appear here when you ask for help.");
   const openJourney = () => {
     if (activeCase) return router.push({ pathname: "/case/[id]", params: { id: activeCase._id } });
     if (activeRequest) return router.push({ pathname: "/request/[id]", params: { id: activeRequest._id } });
     return router.push("/(tabs)/cases");
   };
 
+  useEffect(() => {
+    if (!slideWidth) return;
+    const timer = setInterval(() => {
+      setActiveSlide((current) => {
+        const next = (current + 1) % homeSlides.length;
+        slideRef.current?.scrollTo({ x: next * slideWidth, animated: true });
+        return next;
+      });
+    }, 6500);
+    return () => clearInterval(timer);
+  }, [slideWidth]);
+
   return (
     <Screen scroll={false} style={styles.screen}>
       <View style={styles.header}>
-        {user?.imageUrl ? <Image source={{ uri: user.imageUrl }} style={styles.avatar} /> : <View style={styles.avatarFallback}><Text style={styles.avatarInitial}>{firstName?.slice(0, 1).toUpperCase() ?? "H"}</Text></View>}
+        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Fungua wasifu" : "Open profile"} onPress={() => router.push("/(tabs)/profile")}>{user?.imageUrl ? <Image source={{ uri: user.imageUrl }} style={styles.avatar} /> : <View style={styles.avatarFallback}><Text style={styles.avatarInitial}>{firstName?.slice(0, 1).toUpperCase() ?? "H"}</Text></View>}</Pressable>
         <View style={styles.greeting}>
-          <Text style={styles.greetingEyebrow}>{locale === "sw" ? "HAKI YANGU" : "HAKI YANGU"}</Text>
-          <Text style={styles.greetingTitle}>{firstName ? (locale === "sw" ? `Habari, ${firstName}` : `Hello, ${firstName}`) : (locale === "sw" ? "Karibu" : "Welcome")}</Text>
-          <Text style={styles.greetingBody}>{locale === "sw" ? "Haki Yangu · msaada unaanzia hapa" : "Haki Yangu · your next step starts here"}</Text>
+          <Text style={styles.greetingEyebrow}>HAKI YANGU</Text>
+          <Text style={styles.greetingTitle}>{firstName ? (locale === "sw" ? `Karibu, ${firstName}` : `Welcome, ${firstName}`) : (locale === "sw" ? "Karibu" : "Welcome")}</Text>
+          <Text style={styles.greetingBody}>{locale === "sw" ? "Haki yako, hatua inayofuata" : "Your rights, your next step"}</Text>
         </View>
         <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Arifa" : "Notifications"} style={styles.bell} onPress={() => router.push("/notifications")}>
-          <Ionicons name="notifications-outline" size={27} color="#C90043" />
+          <Ionicons name="notifications-outline" size={29} color={colors.burgundy} />
         </Pressable>
       </View>
 
       <ScrollView style={styles.homeScroll} contentContainerStyle={styles.homeContent} showsVerticalScrollIndicator={false}>
-      <View style={styles.welcomeBand}>
-        <View style={styles.welcomeAccent} />
-        <View style={styles.welcomeCopy}>
-          <Text style={styles.welcomeEyebrow}>{locale === "sw" ? "HAKI YAKO, HATUA YAKO" : "YOUR RIGHTS. YOUR NEXT STEP."}</Text>
-          <Text style={styles.welcomeTitle}>{locale === "sw" ? "Msaada wa kisheria, unaoeleweka." : "Legal help, made clearer."}</Text>
-          <Text style={styles.welcomeBody}>{locale === "sw" ? "Jifunze, pata huduma, au zungumza na Saada." : "Learn your rights, find verified help, or ask Saada."}</Text>
-        </View>
-        <View style={styles.welcomeMark}><Ionicons name="compass-outline" size={25} color="#FFFFFF" /></View>
-      </View>
-      <Text style={styles.sectionTitle}>{locale === "sw" ? "Anza hapa" : "Start here"}</Text>
-      <View style={styles.actionGrid}>
-        {primaryActions.map((action, index) => (
-          <Pressable key={action.en} accessibilityRole="button" accessibilityLabel={locale === "sw" ? action.sw : action.en} accessibilityHint={locale === "sw" ? action.subSw : action.subEn} style={({ pressed }) => [styles.actionCard, index < 2 ? styles.actionLarge : styles.actionCompact, { backgroundColor: action.color }, pressed && styles.pressed]} onPress={() => router.push(action.route)}>
-            <View style={styles.actionTop}><View style={styles.actionIcon}><Ionicons name={action.icon} size={23} color={action.foreground} /></View><Ionicons name="arrow-forward" size={19} color={action.foreground} /></View>
-            <View style={styles.actionCopy}>
-              <Text style={[styles.actionTitle, { color: action.foreground }]}>{action[locale]}</Text>
-              <Text style={[styles.actionBody, { color: action.foreground }]}>{locale === "sw" ? action.subSw : action.subEn}</Text>
+      {!!invitations?.length && <Pressable accessibilityRole="button" onPress={() => router.push('/join')} style={{ padding: 18, borderRadius: 18, backgroundColor: colors.burgundySoft }}><Text style={{ color: colors.burgundy, fontFamily: type.bold, fontSize: 16 }}>{locale === 'sw' ? `Mialiko ya timu (${invitations.length})` : `Team invitations (${invitations.length})`}</Text><Text style={{ color: colors.inkMuted, marginTop: 6 }}>{locale === 'sw' ? 'Kagua mwaliko. LSF lazima iidhinishe kabla ya kutoa ruhusa.' : 'Review your invitation. LSF approval is required before work access.'}</Text></Pressable>}
+      <View style={styles.hero} onLayout={(event) => setSlideWidth(event.nativeEvent.layout.width)}>
+        {slideWidth > 0 ? <ScrollView ref={slideRef} horizontal pagingEnabled showsHorizontalScrollIndicator={false} onMomentumScrollEnd={(event) => setActiveSlide(Math.round(event.nativeEvent.contentOffset.x / slideWidth))}>
+          {homeSlides.map((slide) => <ImageBackground key={slide.route} source={slide.image} resizeMode="cover" style={[styles.heroSlide, { width: slideWidth }]}>
+            <View style={styles.heroShade} />
+            <View style={styles.heroContent}>
+              <Text style={styles.heroEyebrow}>{slide.eyebrow[locale]}</Text>
+              <Text style={styles.heroTitle}>{slide.title[locale]}</Text>
+              <Text style={styles.heroBody}>{slide.body[locale]}</Text>
+              <Pressable accessibilityRole="button" style={({ pressed }) => [styles.heroButton, pressed && styles.pressed]} onPress={() => router.push(slide.route)}><Text style={styles.heroButtonText}>{slide.action[locale]}</Text><Ionicons name="arrow-forward" size={18} color="#16242B" /></Pressable>
             </View>
+          </ImageBackground>)}
+        </ScrollView> : null}
+        <View style={styles.slideDots}>{homeSlides.map((slide, index) => <Pressable key={slide.route} accessibilityRole="button" accessibilityLabel={`${index + 1} / ${homeSlides.length}`} onPress={() => { slideRef.current?.scrollTo({ x: index * slideWidth, animated: true }); setActiveSlide(index); }} style={[styles.slideDot, index === activeSlide && styles.slideDotActive]} />)}</View>
+      </View>
+      <View style={styles.intro}>
+        <Text style={styles.sectionTitle}>{locale === "sw" ? "Nianze wapi?" : "Where do I start?"}</Text>
+        <Text style={styles.sectionSubtitle}>{locale === "sw" ? "Chagua unachohitaji sasa." : "Choose what you need now."}</Text>
+      </View>
+      <View style={styles.actionGrid}>
+        {primaryActions.map((action) => (
+          <Pressable key={action.en} accessibilityRole="button" accessibilityLabel={action[locale]} accessibilityHint={locale === "sw" ? action.subSw : action.subEn} style={({ pressed }) => [styles.actionCard, { backgroundColor: action.palette.background }, pressed && styles.pressed]} onPress={() => router.push(action.route)}>
+            <View style={[styles.actionIcon, { backgroundColor: "#FFFFFF" }]}><Ionicons name={action.icon} size={30} color={action.palette.foreground} /></View>
+            <Text style={[styles.actionTitle, { color: action.palette.foreground }]}>{action[locale]}</Text>
+            <Text style={styles.actionBody}>{locale === "sw" ? action.subSw : action.subEn}</Text>
+            <Ionicons name="arrow-forward" size={21} color={action.palette.foreground} style={styles.actionArrow} />
           </Pressable>
         ))}
       </View>
@@ -109,69 +142,68 @@ export default function HomeScreen() {
         <Ionicons name="chevron-forward" size={22} color="#123B52" />
       </Pressable>
 
-      <View style={styles.sectionHeader}><Text style={styles.sectionTitle}>{locale === "sw" ? "Zana za haraka" : "Quick tools"}</Text><Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Tazama zana zote" : "See all tools"} onPress={() => router.push("/(tabs)/profile")}><Text style={styles.seeAll}>{locale === "sw" ? "Tazama zote" : "See all"}</Text></Pressable></View>
+      <View style={styles.sectionHeader}><Text style={styles.toolsHeading}>{locale === "sw" ? "Zana za haraka" : "Quick tools"}</Text><Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Tazama zana zote" : "See all tools"} style={styles.seeAllButton} onPress={() => router.push("/explore")}><Text style={styles.seeAll}>{locale === "sw" ? "Tazama zote" : "See all"}</Text><Ionicons name="chevron-forward" size={19} color="#075171" /></Pressable></View>
       <View style={styles.tools}>
         {quickTools.map((tool) => (
-          <Pressable key={tool.en} accessibilityRole="button" accessibilityLabel={(locale === "sw" ? tool.sw : tool.en).replace("\n", " ")} style={({ pressed }) => [styles.tool, pressed && styles.pressed]} onPress={() => router.push(tool.route)}>
-            <Ionicons name={tool.icon} size={25} color={tool.color} />
+          <Pressable key={tool.en} accessibilityRole="button" accessibilityLabel={locale === "sw" ? tool.sw : tool.en} accessibilityHint={locale === "sw" ? tool.subSw : tool.subEn} style={({ pressed }) => [styles.tool, { backgroundColor: tool.tint }, pressed && styles.pressed]} onPress={() => tool.route.startsWith("tel:") ? void Linking.openURL(tool.route) : router.push(tool.route)}>
+            <View style={styles.toolIcon}><Ionicons name={tool.icon} size={23} color={tool.color} /></View>
             <Text style={styles.toolText}>{tool[locale]}</Text>
+            <Ionicons name="chevron-forward" size={20} color={tool.color} />
           </Pressable>
         ))}
       </View>
-      <Pressable accessibilityRole="button" style={styles.exploreCard} onPress={() => router.push("/explore")}>
-        <View style={styles.exploreIcon}><Ionicons name="grid-outline" size={23} color={colors.burgundy} /></View>
-        <View style={styles.caseCopy}><Text style={styles.exploreTitle}>{locale === "sw" ? "Angalia skrini na safari" : "Explore screens and journeys"}</Text><Text style={styles.exploreBody}>{locale === "sw" ? "Fungua sehemu za programu bila kuingia." : "Open app sections without signing in."}</Text></View>
-        <Ionicons name="chevron-forward" size={19} color={colors.burgundy} />
-      </Pressable>
       </ScrollView>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { paddingTop: spacing.sm, paddingHorizontal: 20, paddingBottom: 94 },
-  header: { minHeight: 58, flexDirection: "row", alignItems: "center", marginBottom: spacing.sm },
+  screen: { paddingTop: 8, paddingHorizontal: civic.pageInset, paddingBottom: 0, backgroundColor: colors.warmBackground },
+  header: { minHeight: 72, flexDirection: "row", alignItems: "center", marginBottom: 12, paddingHorizontal: 4 },
   homeScroll: { flex: 1 },
-  homeContent: { paddingBottom: spacing.lg },
-  avatar: { width: 50, height: 50, borderRadius: 25, borderWidth: 1, borderColor: "#F4CFD9" },
-  avatarFallback: { width: 50, height: 50, borderRadius: 25, backgroundColor: "#F4CFD9", alignItems: "center", justifyContent: "center" },
-  avatarInitial: { fontFamily: type.bold, color: colors.burgundy, fontSize: 22 },
-  greeting: { flex: 1, marginLeft: 14 },
-  greetingEyebrow: { fontFamily: type.bold, color: colors.burgundy, fontSize: 11 },
-  greetingTitle: { marginTop: 2, fontFamily: type.bold, color: "#161616", fontSize: 20 },
-  greetingBody: { marginTop: 2, fontFamily: type.regular, color: "#686168", fontSize: 13 },
-  bell: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
-  welcomeBand: { minHeight: 156, flexDirection: "row", alignItems: "center", overflow: "hidden", marginTop: 6, marginBottom: 23, paddingHorizontal: 17, paddingVertical: 17, borderRadius: 8, backgroundColor: "#173F3D" },
-  welcomeAccent: { position: "absolute", top: 0, bottom: 0, left: 0, width: 5, backgroundColor: "#F3B61F" },
-  welcomeCopy: { flex: 1, paddingLeft: 4 },
-  welcomeEyebrow: { fontFamily: type.bold, color: "#B8DED6", fontSize: 9 },
-  welcomeTitle: { marginTop: 7, maxWidth: 255, fontFamily: type.bold, color: "#FFFFFF", fontSize: 23, lineHeight: 28 },
-  welcomeBody: { marginTop: 6, maxWidth: 245, fontFamily: type.regular, color: "#E0EFEC", fontSize: 12, lineHeight: 17 },
-  welcomeMark: { width: 42, height: 42, marginLeft: 9, borderRadius: 8, alignItems: "center", justifyContent: "center", backgroundColor: "#2B6860" },
-  sectionTitle: { fontFamily: type.bold, color: colors.ink, fontSize: 18 },
-  actionGrid: { marginTop: spacing.sm, flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", rowGap: 10 },
-  actionCard: { width: "48.4%", borderRadius: 8, padding: 13, justifyContent: "space-between" },
-  actionLarge: { minHeight: 126 },
-  actionCompact: { minHeight: 108 },
-  actionTop: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  actionIcon: { width: 34, height: 34, borderRadius: 7, backgroundColor: "rgba(255,255,255,0.18)", alignItems: "center", justifyContent: "center" },
-  actionCopy: { marginTop: spacing.sm },
-  actionTitle: { fontFamily: type.bold, fontSize: 15, lineHeight: 19 },
-  actionBody: { marginTop: 3, fontFamily: type.regular, fontSize: 10, lineHeight: 14, opacity: 0.96 },
-  pressed: { opacity: 0.78, transform: [{ scale: 0.985 }] },
-  caseCard: { minHeight: 82, marginTop: 19, borderRadius: 8, borderWidth: 1, borderColor: "#DCE4EA", backgroundColor: "#F5F8FA", padding: 12, flexDirection: "row", alignItems: "center", gap: 12 },
-  caseIcon: { width: 44, height: 44, borderRadius: 12, backgroundColor: "#E2F0F6", alignItems: "center", justifyContent: "center" },
+  homeContent: { paddingBottom: 32 },
+  avatar: { width: 52, height: 52, borderRadius: 26 },
+  avatarFallback: { width: 52, height: 52, borderRadius: 26, backgroundColor: "#F3D2DD", alignItems: "center", justifyContent: "center" },
+  avatarInitial: { fontFamily: type.bold, color: colors.burgundy, fontSize: 25 },
+  greeting: { flex: 1, marginLeft: 12 },
+  greetingEyebrow: { fontFamily: type.bold, color: colors.burgundy, fontSize: 11, letterSpacing: 0.2 },
+  greetingTitle: { marginTop: 1, fontFamily: type.bold, color: "#102229", fontSize: 22 },
+  greetingBody: { marginTop: 2, fontFamily: type.regular, color: "#555966", fontSize: 14 },
+  bell: { width: 48, height: 48, alignItems: "center", justifyContent: "center" },
+  hero: { height: 205, borderRadius: 18, overflow: "hidden", backgroundColor: "#6C0B37" },
+  heroSlide: { height: 205 },
+  heroShade: { ...StyleSheet.absoluteFill, backgroundColor: "rgba(20,15,20,0.16)" },
+  heroContent: { flex: 1, alignItems: "flex-start", justifyContent: "center", paddingHorizontal: 18, paddingBottom: 12 },
+  heroEyebrow: { maxWidth: "72%", fontFamily: type.semibold, color: "#FFE2DB", fontSize: 10 },
+  heroTitle: { marginTop: 6, maxWidth: "72%", fontFamily: type.editorial, color: "#FFFFFF", fontSize: 23, lineHeight: 27 },
+  heroBody: { marginTop: 5, maxWidth: "73%", fontFamily: type.regular, color: "#FFFFFF", fontSize: 12, lineHeight: 17 },
+  heroButton: { minHeight: 34, minWidth: 120, marginTop: 10, paddingHorizontal: 11, borderRadius: 18, backgroundColor: "#FFFFFF", flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 10 },
+  heroButtonText: { fontFamily: type.semibold, color: "#16242B", fontSize: 15 },
+  slideDots: { position: "absolute", right: 15, bottom: 13, flexDirection: "row", gap: 6 },
+  slideDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: "rgba(255,255,255,0.55)" },
+  slideDotActive: { width: 18, backgroundColor: "#FFFFFF" },
+  intro: { marginTop: civic.sectionGap, marginBottom: 16, paddingHorizontal: 3 },
+  sectionTitle: { fontFamily: type.editorial, color: "#102229", fontSize: 26 },
+  sectionSubtitle: { marginTop: 2, fontFamily: type.regular, color: "#555966", fontSize: 15 },
+  actionGrid: { flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", rowGap: 16 },
+  actionCard: { width: "47.5%", minHeight: 168, borderRadius: 22, padding: 16, justifyContent: "flex-start" },
+  actionIcon: { width: 48, height: 48, borderRadius: 16, alignItems: "center", justifyContent: "center" },
+  actionTitle: { marginTop: 16, fontFamily: type.semibold, fontSize: 18, lineHeight: 23 },
+  actionBody: { marginTop: 5, marginRight: 14, fontFamily: type.regular, color: colors.charcoal, fontSize: 14, lineHeight: 19 },
+  actionArrow: { position: "absolute", right: 13, bottom: 16 },
+  pressed: { opacity: 0.82, transform: [{ scale: 0.985 }] },
+  caseCard: { minHeight: 96, marginTop: 24, borderRadius: 20, backgroundColor: "#FFFFFF", padding: 16, flexDirection: "row", alignItems: "center", gap: 12, borderWidth: 1, borderColor: colors.line },
+  caseIcon: { width: 52, height: 52, borderRadius: 15, backgroundColor: "#E0F0F5", alignItems: "center", justifyContent: "center" },
   caseCopy: { flex: 1 },
-  caseTitle: { fontFamily: type.bold, color: "#172B3A", fontSize: 15 },
-  caseBody: { marginTop: 2, fontFamily: type.medium, color: "#496273", fontSize: 12 },
-  caseHint: { marginTop: 2, fontFamily: type.regular, color: "#718493", fontSize: 11.5, lineHeight: 15 },
-  sectionHeader: { marginTop: 20, marginBottom: 8, flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  seeAll: { fontFamily: type.medium, color: "#0C4A6E", fontSize: 13 },
-  tools: { flexDirection: "row", gap: 8 },
-  tool: { flex: 1, minHeight: 72, borderRadius: 7, borderWidth: 1, borderColor: "#E1E7EB", backgroundColor: "#FFFFFF", paddingVertical: 8, paddingHorizontal: 3, alignItems: "center", justifyContent: "center" },
-  toolText: { marginTop: 5, fontFamily: type.medium, color: "#17384C", fontSize: 10, lineHeight: 13, textAlign: "center" },
-  exploreCard: { minHeight: 78, marginTop: spacing.lg, borderRadius: 8, borderWidth: 1, borderColor: "#E8B8CC", backgroundColor: "#FFF7FA", padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md },
-  exploreIcon: { width: 42, height: 42, borderRadius: 8, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
-  exploreTitle: { fontFamily: type.bold, color: colors.ink, fontSize: 14 },
-  exploreBody: { marginTop: 3, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 17 },
+  caseTitle: { fontFamily: type.bold, color: "#102D3A", fontSize: 18 },
+  caseBody: { marginTop: 1, fontFamily: type.medium, color: "#555966", fontSize: 13 },
+  caseHint: { marginTop: 2, fontFamily: type.regular, color: "#66717E", fontSize: 12, lineHeight: 16 },
+  sectionHeader: { marginTop: 24, marginBottom: 11, paddingHorizontal: 2, flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
+  toolsHeading: { fontFamily: type.bold, color: "#0D445E", fontSize: 20 },
+  seeAllButton: { minHeight: 44, flexDirection: "row", alignItems: "center", gap: 1 },
+  seeAll: { fontFamily: type.medium, color: "#075171", fontSize: 13 },
+  tools: { gap: 8 },
+  tool: { width: "100%", minHeight: 60, borderRadius: 12, paddingHorizontal: 14, flexDirection: "row", alignItems: "center", gap: 13 },
+  toolIcon: { width: 34, height: 34, alignItems: "center", justifyContent: "center" },
+  toolText: { flex: 1, fontFamily: type.semibold, color: "#11364A", fontSize: 15, lineHeight: 20 },
 });

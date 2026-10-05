@@ -15,19 +15,19 @@ export default function ResourceDetailScreen() {
   const resource = getResource(id);
 
   if (!resource) {
-    return <Screen style={styles.center}><Text style={styles.title}>{locale === "sw" ? "Mwongozo haujapatikana" : "Guide not found"}</Text><Button label={locale === "sw" ? "Rudi" : "Go back"} onPress={() => router.back()} /></Screen>;
+    return <Screen style={styles.center}><Text style={styles.title}>{locale === "sw" ? "Orodha haijapatikana" : "Checklist not found"}</Text><Button label={locale === "sw" ? "Rudi" : "Go back"} onPress={() => router.back()} /></Screen>;
   }
 
   return (
     <Screen>
       <View style={styles.header}>
         <Pressable accessibilityRole="button" onPress={() => router.back()}><Ionicons name="chevron-back" size={26} color={colors.burgundy} /></Pressable>
-        <Pressable accessibilityRole="button" onPress={() => void toggleSaved(resource.id)}><Ionicons name={isSaved(resource.id) ? "bookmark" : "bookmark-outline"} size={24} color={colors.burgundy} /></Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={isSaved(resource.id) ? (locale === "sw" ? "Ondoa orodha iliyohifadhiwa" : "Remove saved checklist") : (locale === "sw" ? "Hifadhi orodha" : "Save checklist")} onPress={() => void toggleSaved(resource.id)}><Ionicons name={isSaved(resource.id) ? "bookmark" : "bookmark-outline"} size={24} color={colors.burgundy} /></Pressable>
       </View>
-      <View style={[styles.heroIcon, { backgroundColor: resource.color }]}><Ionicons name={resource.icon} size={34} color={colors.burgundy} /></View>
+      <Text style={styles.kicker}>{locale === "sw" ? "ORODHA YA MAANDALIZI" : "PREPARATION CHECKLIST"}</Text>
       <Text style={styles.title}>{resource.title[locale]}</Text>
-      <Text style={styles.meta}>{resource.minutes} {locale === "sw" ? "dakika kusoma" : "min read"}</Text>
       <Text style={styles.summary}>{resource.summary[locale]}</Text>
+      <Text style={styles.meta}>{resource.minutes} {locale === "sw" ? "dakika kusoma" : "min read"}</Text>
 
       <View style={styles.panel}>
         <Text style={styles.panelTitle}>{locale === "sw" ? "Hatua muhimu" : "Key steps"}</Text>
@@ -46,6 +46,7 @@ export default function ResourceDetailScreen() {
           {resource.tips.map((tip, index) => <Text key={`${resource.id}-tip-${index}`} style={styles.tipText}>{tip[locale]}</Text>)}
         </View>
       </View>
+      <View style={styles.notice}><Ionicons name="information-circle-outline" size={18} color={colors.teal} /><Text style={styles.noticeText}>{locale === "sw" ? "Hii ni orodha ya maandalizi, si ushauri wa kisheria uliopitiwa na LSF. Thibitisha sheria na muda wa mwisho kwa mtaalamu." : "This is a preparation checklist, not LSF-reviewed legal advice. Confirm laws and deadlines with a qualified person."}</Text></View>
 
       {resource.id === "demand-letter" ? (
         <Button label={locale === "sw" ? "Tengeneza barua ya madai" : "Build a demand letter"} onPress={() => router.push("/letter-builder")} />
@@ -58,17 +59,19 @@ export default function ResourceDetailScreen() {
 const styles = StyleSheet.create({
   center: { justifyContent: "center", gap: spacing.lg },
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  heroIcon: { width: 68, height: 68, borderRadius: radius.lg, alignItems: "center", justifyContent: "center", marginTop: spacing.xl },
-  title: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 28, lineHeight: 34, marginTop: spacing.lg },
-  meta: { fontFamily: type.medium, fontWeight: "500", color: colors.burgundy, fontSize: 13, marginTop: spacing.sm },
-  summary: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 15, lineHeight: 23, marginTop: spacing.md },
-  panel: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.md, marginTop: spacing.xl },
-  panelTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
-  step: { flexDirection: "row", gap: spacing.md, alignItems: "flex-start" },
-  stepNumber: { width: 26, height: 26, borderRadius: 13, backgroundColor: colors.softPink, textAlign: "center", paddingTop: 4, fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
-  stepText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 14, lineHeight: 21 },
-  tipPanel: { flexDirection: "row", gap: spacing.md, backgroundColor: "#FFF7E8", borderRadius: radius.md, padding: spacing.lg, marginTop: spacing.lg, marginBottom: spacing.lg },
+  kicker: { fontFamily: type.semibold, color: colors.burgundy, fontSize: 11, marginTop: spacing.xl },
+  title: { fontFamily: type.editorial, color: colors.ink, fontSize: 29, lineHeight: 35, marginTop: spacing.sm },
+  meta: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 12, marginTop: spacing.sm },
+  summary: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 16, lineHeight: 24, marginTop: spacing.md },
+  notice: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm, borderTopWidth: 1, borderColor: colors.line, paddingTop: spacing.md, marginBottom: spacing.xl },
+  noticeText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 18 },
+  panel: { marginTop: spacing.xxl },
+  panelTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 19, marginBottom: spacing.sm },
+  step: { flexDirection: "row", gap: spacing.md, alignItems: "flex-start", paddingVertical: spacing.md, borderBottomWidth: 1, borderColor: colors.line },
+  stepNumber: { width: 24, color: colors.burgundy, fontFamily: type.semibold, fontSize: 15 },
+  stepText: { flex: 1, fontFamily: type.regular, color: colors.charcoal, fontSize: 16, lineHeight: 24 },
+  tipPanel: { flexDirection: "row", gap: spacing.md, backgroundColor: colors.goldSoft, borderRadius: 8, padding: spacing.lg, marginTop: spacing.xl, marginBottom: spacing.xl },
   tipCopy: { flex: 1 },
-  tipTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14, marginBottom: spacing.xs },
-  tipText: { fontFamily: type.regular, color: colors.charcoal, fontSize: 13, lineHeight: 20 },
+  tipTitle: { fontFamily: type.semibold, color: colors.charcoal, fontSize: 15, marginBottom: spacing.xs },
+  tipText: { fontFamily: type.regular, color: colors.charcoal, fontSize: 15, lineHeight: 23 },
 });

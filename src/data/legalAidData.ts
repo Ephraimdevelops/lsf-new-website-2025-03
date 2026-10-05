@@ -1,34 +1,12 @@
-// Centralized legal aid contact information
+// Published office contact, not a verified emergency or 24/7 helpline.
+// Source: https://www.lsftz.org/public/bio/9 (LSF headquarters contact).
+// Operational hours and regional intake must be confirmed by LSF.
 export const legalAidData = {
-  // Main national hotline
-  nationalHotline: "+255 870 119 363",
-  
-  // Regional coverage with localized hotlines
-  regions: [
-    { name: "All Regions", phone: "+255 870 119 363" },
-    { name: "Dar es Salaam", phone: "+255 717 111 764" },
-    { name: "Mwanza", phone: "+255 769 517 305" },
-    { name: "Arusha", phone: "+255 629 296 306" },
-    { name: "Dodoma", phone: "+255 754 110 307" },
-    { name: "Tanga", phone: "+255 711 032 998" },
-    { name: "Morogoro", phone: "+255 800 110 309" },
-    { name: "Mbeya", phone: "+255 745 887 221" },
-    { name: "Iringa", phone: "+255 762 334 556" }
-  ],
-  
-  // Contact methods
+  nationalHotline: "+255 22 260 1534", // Legacy property name; office number only.
+  regions: [{ name: "LSF office contact", phone: "+255 22 260 1534" }],
   contactMethods: {
-    emergency: {
-      phone: "+255 870 119 363",
-      description: "24/7 emergency legal assistance"
-    },
-    email: {
-      address: "help@lsf.or.tz",
-      description: "Send us your legal questions"
-    },
-    office: {
-      address: "Mikocheni Light Industrial Area, Dar es Salaam",
-      hours: "Mon-Fri: 8AM-5PM"
-    }
-  }
+    officeSupport: { phone: "+255 22 260 1534", description: "LSF office contact; confirm availability" },
+    email: { address: "info@lsftz.org", description: "Contact LSF" },
+    office: { address: "Chole Road, Masaki, Dar es Salaam", hours: "Confirm hours before visiting" },
+  },
 };

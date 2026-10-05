@@ -33,8 +33,8 @@ export default function OfflineScreen() {
         <Text style={styles.title}>{locale === "sw" ? "Unaweza kuendelea kusoma" : "You can keep reading"}</Text>
         <Text style={styles.heroBody}>
           {locale === "sw"
-            ? "Miongozo iliyopo ndani ya app na uliyoihifadhi inaweza kufunguliwa bila mtandao. Baadhi ya hatua za kesi huhifadhiwa kwenye kifaa na kutumwa mtandao ukirudi."
-            : "Built-in and saved guides can open without network. Some case actions are saved on this device and sent when your connection returns."}
+            ? "Orodha za maandalizi zilizopo ndani ya app zinafunguka bila mtandao. Si miongozo ya sheria iliyopitiwa. Baadhi ya hatua za kesi huhifadhiwa kwenye kifaa na kutumwa mtandao ukirudi."
+            : "Built-in preparation checklists open without network. They are not reviewed legal guides. Some case actions are saved on this device and sent when your connection returns."}
         </Text>
       </View>
 
@@ -66,6 +66,7 @@ export default function OfflineScreen() {
           locale === "sw" ? "Kutuma au kufuatilia ombi la msaada" : "Submitting or tracking a help request",
           locale === "sw" ? "Kutuma ujumbe, maoni, au ombi la miadi moja kwa moja" : "Sending messages, feedback, or appointment requests immediately",
           locale === "sw" ? "Kupakia nyaraka" : "Uploading documents",
+          locale === "sw" ? "Kuthibitisha mwongozo wa sheria uliopitiwa na tarehe yake ya ukaguzi" : "Checking a reviewed legal guide and its review date",
           locale === "sw" ? "Kupata majibu ya Haki" : "Getting Haki answers",
         ].map((item) => (
           <View key={item} style={styles.checkRow}>
@@ -75,7 +76,7 @@ export default function OfflineScreen() {
         ))}
       </View>
 
-      <Text style={styles.sectionTitle}>{savedResources.length ? (locale === "sw" ? "Miongozo uliyohifadhi" : "Saved guides") : (locale === "sw" ? "Miongozo muhimu" : "Essential guides")}</Text>
+      <Text style={styles.sectionTitle}>{savedResources.length ? (locale === "sw" ? "Orodha ulizohifadhi" : "Saved checklists") : (locale === "sw" ? "Orodha za maandalizi" : "Preparation checklists")}</Text>
       <View style={styles.resourceList}>
         {visibleResources.map((resource) => (
           <Pressable key={resource.id} style={styles.resourceCard} onPress={() => router.push({ pathname: "/resource/[id]", params: { id: resource.id } })}>

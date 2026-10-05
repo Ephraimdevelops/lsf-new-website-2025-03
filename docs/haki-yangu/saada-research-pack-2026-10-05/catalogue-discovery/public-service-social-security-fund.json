@@ -1,0 +1,2249 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Public Service Social Security Fund",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "An Act to provide for establishment of the <em>Public</em> <em>Service</em> <em>Social</em> <em>Security</em> Scheme; to provide for contributions to and payments of <em>social</em> <em>security</em> benefits in respect of the <em>service</em> of employees in the <em>public</em> <em>service</em>; to repeal the <em>Public</em> <em>Service</em> Retirement\r\nBenefits Act, the LAPF Pensions <em>Fund</em> Act, the GEPF Retirement Benefits <em>Fund</em> Act and the PPF Pensions <em>Fund</em> Act.\r\n"
+              ],
+              "dc.title": [
+                "THE <em>PUBLIC</em> <em>SERVICE</em> <em>SOCIAL</em> <em>SECURITY</em> <em>FUND</em> ACT, 2018. ACT NO. 2 OF 2018"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "5fe99abe-dcec-429b-91fb-7b70cabd23a6",
+                "uuid": "5fe99abe-dcec-429b-91fb-7b70cabd23a6",
+                "name": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT, 2018. ACT NO. 2 OF 2018",
+                "handle": "123456789/886",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, STEPHEN KAGAIGAI.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-11-30T09:59:15Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-11-30T09:59:15Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2018-02-09",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for establishment of the Public Service Social Security Scheme; to provide for contributions to and payments of social security benefits in respect of the service of employees in the public service; to repeal the Public Service Retirement\r\nBenefits Act, the LAPF Pensions Fund Act, the GEPF Retirement Benefits Fund Act and the PPF Pensions Fund Act.\r\nand to provide for other related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Public Service Social Security Fund Act, 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856-0331X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/886",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 2 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT, 2018. ACT NO. 2 OF 2018",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 2 OF 2018.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:35.007Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5fe99abe-dcec-429b-91fb-7b70cabd23a6"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "An Act to provide for establishment of the <em>Public</em> <em>Service</em> <em>Social</em> <em>Security</em> Scheme; to provide for contributions to and payments of <em>social</em> <em>security</em> benefits in respect of the <em>service</em> of employees in the <em>public</em> <em>service</em>; to repeal the <em>Public</em> <em>Service</em> Retirement Benefit Act, the LAPF Pensions <em>Fund</em> Act, the GEPF Retirement Benefits <em>Fund</em> Act and the PPF Pensions <em>Fund</em> Act and to provide for other related matters."
+              ],
+              "dc.title": [
+                "THE <em>PUBLIC</em> <em>SERVICE</em> <em>SOCIAL</em> <em>SECURITY</em> <em>FUND</em> ACT, CHAPTER 371 (R.E 2023 A.S. 2025)"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "48f7955f-303f-47ed-a7ed-937c92bccfec",
+                "uuid": "48f7955f-303f-47ed-a7ed-937c92bccfec",
+                "name": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT, CHAPTER 371 (R.E 2023 A.S. 2025)",
+                "handle": "123456789/4946",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "HAMZA S. JOHARI",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-09-04T09:42:31Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-10-28",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for establishment of the Public Service Social Security Scheme; to provide for contributions to and payments of social security benefits in respect of the service of employees in the public service; to repeal the Public Service Retirement Benefit Act, the LAPF Pensions Fund Act, the GEPF Retirement Benefits Fund Act and the PPF Pensions Fund Act and to provide for other related matters.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "This Act may be cited as the Public  Service Social Security Fund Act.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4946",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT, CHAPTER 371 (R.E 2023 A.S. 2025)",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Book",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-09-09T10:39:00.683317Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/48f7955f-303f-47ed-a7ed-937c92bccfec"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "An Act to provide for establishment of the <em>Public</em> <em>Service</em> <em>Social</em> <em>Security</em> Scheme; to provide for contributions to and payments of <em>social</em> <em>security</em> benefits in respect of the <em>service</em> of employees in the <em>public</em> <em>service</em>; to repeal the <em>Public</em> <em>Service</em> Retirement Benefit Act, the LAPF Pensions <em>Fund</em> Act, the GEPF Retirement Benefits <em>Fund</em> Act and the PPF Pensions <em>Fund</em> Act and to provide for other related matters. 2. This Act shall apply in Mainland Tanzania in respect of all employers and employees in the <em>Public</em> <em>Service</em>."
+              ],
+              "dc.title": [
+                "THE <em>PUBLIC</em> <em>SERVICE</em> <em>SOCIAL</em> <em>SECURITY</em> <em>FUND</em> ACT, CHAPTER 371 R.E. 2023"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "23196e36-2d1a-419a-87bb-ff677e1afdd4",
+                "uuid": "23196e36-2d1a-419a-87bb-ff677e1afdd4",
+                "name": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT, CHAPTER 371 R.E. 2023",
+                "handle": "123456789/2403",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-18T06:49:39Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-18T06:49:39Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for establishment of the Public Service Social Security Scheme; to provide for contributions to and payments of social security benefits in respect of the service of employees in the public service; to repeal the Public Service Retirement Benefit Act, the LAPF Pensions Fund Act, the GEPF Retirement Benefits Fund Act and the PPF Pensions Fund Act and to provide for other related matters. 2. This Act shall apply in Mainland Tanzania in respect of all employers and employees in the Public Service.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 371  THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2403",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 371",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT, CHAPTER 371 R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:01:05.319804Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/23196e36-2d1a-419a-87bb-ff677e1afdd4"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.title": [
+                "PATRICK MAGOLOGOZI MONGELLA v. THE BOARD OF TRUSTEES OF THE <em>PUBLIC</em> <em>SERVICE</em> <em>SOCIAL</em> <em>SECURITY</em> <em>FUND</em>, CIVIL APPLICATION NO. 342/18 OF 2019"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "caf78351-3912-4809-a7ac-b49bb9cba705",
+                "uuid": "caf78351-3912-4809-a7ac-b49bb9cba705",
+                "name": "PATRICK MAGOLOGOZI MONGELLA v. THE BOARD OF TRUSTEES OF THE PUBLIC SERVICE SOCIAL SECURITY FUND, CIVIL APPLICATION NO. 342/18 OF 2019",
+                "handle": "123456789/1863",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NDIKA, J.A., KITUSI, J.A., RUMANYIKA, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-05-26T08:08:32Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-05-26T08:08:32Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 342/18 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1863",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "COURT OF APPEAL OF TANZANIA AT DAR ES SALAAM",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 342/18 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "PATRICK MAGOLOGOZI MONGELLA v. THE BOARD OF TRUSTEES OF THE PUBLIC SERVICE SOCIAL SECURITY FUND, CIVIL APPLICATION NO. 342/18 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 342/18 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-05-26T08:11:01.205Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/caf78351-3912-4809-a7ac-b49bb9cba705"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "913b76d4-9edf-4429-9465-f67db61bd489",
+                "uuid": "913b76d4-9edf-4429-9465-f67db61bd489",
+                "name": "THE JUDGES   (REMUNERATION AND TERMINAL BENEFITS) ACT, CHAPTER 424. R.E 2023",
+                "handle": "123456789/2424",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-22T10:20:05Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-22T10:20:05Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for remuneration, terminal benefits and survivors benefits to a person holding the Office of Chief Justice, Justice of Appeal, Principal Judge and Judge and to provide for matters related thereto",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2424",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 424",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE JUDGES   (REMUNERATION AND TERMINAL BENEFITS) ACT, CHAPTER 424. R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:02:27.360653Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/913b76d4-9edf-4429-9465-f67db61bd489"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "db712289-9132-4795-bd9b-8e4634413c32",
+                "uuid": "db712289-9132-4795-bd9b-8e4634413c32",
+                "name": "THE SOCIAL SECURITY ACT, CHAPTER 135. R.E 2023",
+                "handle": "123456789/2172",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-31T07:14:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-31T07:14:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to regulate the Social Security Sector and to provide for related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2172",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 135",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE SOCIAL SECURITY ACT, CHAPTER 135. R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:11:36.668521Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/db712289-9132-4795-bd9b-8e4634413c32"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "c514a0fb-2bff-4a96-8e1a-d307d9573c3b",
+                "uuid": "c514a0fb-2bff-4a96-8e1a-d307d9573c3b",
+                "name": "THE NATIONAL SOCIAL SECURITY FUND ACT, CHAPTER 50",
+                "handle": "123456789/4908",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "HAMZA S. JOHARI",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-09-04T07:38:50Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-10-28",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Annual Supplement incorporates all amendments made to the National Social Security Fund Act, Chapter 50 up to and including 31th July, 2025 and is printed under the authority of section 5(7) of the Laws Revision Act, Chapter 4.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4908",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 50",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE NATIONAL SOCIAL SECURITY FUND ACT, CHAPTER 50",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-09-04T07:46:06.816098Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c514a0fb-2bff-4a96-8e1a-d307d9573c3b"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "7e231efc-9295-4a61-a01b-6faac61948cf",
+                "uuid": "7e231efc-9295-4a61-a01b-6faac61948cf",
+                "name": "THE SOCIAL SECURITY (REGULATORY AUTHORITY) ACT, ACT NO. OF 2008.",
+                "handle": "123456789/1027",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-02-15T10:24:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-02-15T10:24:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2008-06-06",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to regulate the social security sector and to provide for related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Social Security (Regulatory Authority) Short tide Act, 2008",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1027",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 8 OF 2008.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE SOCIAL SECURITY (REGULATORY AUTHORITY) ACT, ACT NO. OF 2008.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. OF 2008.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:02:51.503Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7e231efc-9295-4a61-a01b-6faac61948cf"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "1905d17c-c1f2-43ec-89a5-9adb22f54dcc",
+                "uuid": "1905d17c-c1f2-43ec-89a5-9adb22f54dcc",
+                "name": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (NO.6) ACT NO. 13 OF 2019.",
+                "handle": "123456789/884",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY., STEPHEN KAGAIGAI.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-11-30T09:58:19Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-11-30T09:58:19Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019-09-20",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The written laws specified in various Parts of this Act are amended in the manner specified in their respective Parts.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Written Laws (Miscellaneous Amendments) (No.6) Act, 2019.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 - 034X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/884",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 13 OF 2019.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (NO.6) ACT NO. 13 OF 2019.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 13 OF 2019.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:59:06.531Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1905d17c-c1f2-43ec-89a5-9adb22f54dcc"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "52d1ffa8-c895-4379-ab33-0168988ec4e9",
+                "uuid": "52d1ffa8-c895-4379-ab33-0168988ec4e9",
+                "name": "THE NATIONAL HEALTH INSURANCE FUND (AMENDMENT) ACT, No. 2. 2025",
+                "handle": "123456789/1736",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MHAGAMA, JENISTER JOACKIM",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-20T07:30:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-20T07:30:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-01-22",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to amend the National Health Insurance Fund Act with the view to making better provisions of health insurance services. This Bill to be submitted to the National Assembly is published for general information to the public together with a statement of its objects and reasons.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856-0331X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1736",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "THE NATIONAL HEALTH INSURANCE FUND",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE NATIONAL HEALTH INSURANCE FUND (AMENDMENT) ACT, No. 2. 2025",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-21T07:03:15.923Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52d1ffa8-c895-4379-ab33-0168988ec4e9"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "f4b3485e-b14f-4be1-be42-bc13e10e1d61",
+                "uuid": "f4b3485e-b14f-4be1-be42-bc13e10e1d61",
+                "name": "THE NATIONAL SOCIAL SECURITY FUND ACT, CHAPTER 50 R.E. 2023.",
+                "handle": "123456789/2018",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-24T08:40:30Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-24T08:40:30Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to establish the National Social Security Fund and to provide for its constitution, administration and other matters related to the Fund.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "CHAPTER 50 THE NATIONAL SOCIAL SECURITY FUND ACT.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2018",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 50",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE NATIONAL SOCIAL SECURITY FUND ACT, CHAPTER 50 R.E. 2023.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE NATIONAL SOCIAL SECURITY FUND ACT",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:11:51.519206Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "856aeb33-2bc7-4cc0-92e5-efa7d8c92026",
+                "uuid": "856aeb33-2bc7-4cc0-92e5-efa7d8c92026",
+                "name": "THE PERSONS WITH DISABILITIES ACT NO. 9 OF 2010.",
+                "handle": "123456789/995",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-02-15T08:55:49Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-02-15T08:55:49Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2010-05-20",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to make provision, for health care, social support, accessibility, rehabilitation, education, and vocational training, communication, employment or work protection and\r\npromotion of basic rights for persons with disabilities and to provide for related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "The Persons with Disabilities Act, 2010.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/995",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ACT NO. 9 OF 2010.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE PERSONS WITH DISABILITIES ACT NO. 9 OF 2010.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "ACT NO. 9 OF 2010.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:03:12.561Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/856aeb33-2bc7-4cc0-92e5-efa7d8c92026"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 18,
+        "totalElements": 207
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%20Service%20Social%20Security%20Fund&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%20Service%20Social%20Security%20Fund&page=17&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%20Service%20Social%20Security%20Fund&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Public%20Service%20Social%20Security%20Fund&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Public%20Service%20Social%20Security%20Fund&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 71,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "JAMHURI YA MUUNGANO WA TANZANIA",
+              "count": 26,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.author=JAMHURI%20YA%20MUUNGANO%20WA%20TANZANIA,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 18,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 13,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, STEPHEN KAGAIGAI.",
+              "count": 7,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20STEPHEN%20KAGAIGAI.,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Public%20Service%20Social%20Security%20Fund&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Public%20Service%20Social%20Security%20Fund&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2022",
+              "count": 15,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.subject=2022,equals"
+                }
+              }
+            },
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "2024",
+              "count": 8,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.subject=2024,equals"
+                }
+              }
+            },
+            {
+              "label": "DAR ES SALAAM.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.subject=DAR%20ES%20SALAAM.,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 258",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.subject=CHAPTER%20258,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Public%20Service%20Social%20Security%20Fund&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "1960 - 1979",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.dateIssued=%5B1960%20TO%201979%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2000 - 2019",
+              "count": 56,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 149,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Public%20Service%20Social%20Security%20Fund&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 207,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Public%20Service%20Social%20Security%20Fund"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Public%20Service%20Social%20Security%20Fund&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 207,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Public%2520Service%2520Social%2520Security%2520Fund&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

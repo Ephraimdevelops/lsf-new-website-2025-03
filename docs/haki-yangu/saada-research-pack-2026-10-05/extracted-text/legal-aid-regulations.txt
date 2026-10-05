@@ -1,0 +1,795 @@
+[PDF PAGE 1]
+Tanzania
+Legal Aid Act, 2017
+Legal Aid Regulations
+Government Notice 44 of 2018
+Legislation as at 9 February 2018
+There may have been updates since this ﬁle was created.
+PDF created on 28 October 2024 at 11:50.
+Collection last checked for updates: 31 July 2002.
+View online
+About this collection
+The legislation in this collection has been reproduced as it was originally printed in the Government Gazette, with
+improved formatting and with minor typographical errors corrected. All amendments have been applied directly to
+the text and annotated. A scan of the original gazette of each piece of legislation (including amendments) is available
+for reference.
+This is a free download from the TanzLII website and is presented in collaboration with the Laws.Africa Legislation
+Collection, a collection of African legislation that is digitised by Laws.Africa and made available for free.
+www.tanzlii.org | info@tanzlii.org
+www.laws.africa | info@laws.africa
+FRBR URI: /akn/tz/act/gn/2018/44/eng@2018-02-09
+There is no copyright on the legislative content of this document.
+This PDF copy is licensed under a Creative Commons Attribution 4.0 License (CC BY 4.0). Share widely and freely.
+i
+
+[PDF PAGE 2]
+Legal Aid Regulations (Government Notice 44 of 2018)
+Contents
+Part I – Preliminary provisions ....................................................................................................................................................................... 1
+1. Citation ......................................................................................................................................................................................................... 1
+2. Interpretation ............................................................................................................................................................................................. 1
+Part II – Administration and coordination of legal aid providers .....................................................................................................  1
+3. Appointment of Registrar ...................................................................................................................................................................... 1
+4. Appointment of Assistant Registrars ................................................................................................................................................  2
+Part III – Registration of legal aid providers and paralegals .............................................................................................................. 2
+(a) Registration of legal aid providers ..................................................................................................................................................  2
+5. Application forms .............................................................................................................................................................................. 2
+6. Determination of application and issuance of certiﬁcate .................................................................................................. 3
+7. Assistant Registrars to report on registered legal aid providers ...................................................................................... 3
+8. Code of ethics for legal aid providers ......................................................................................................................................  3
+(b) Registrations of paralegals .................................................................................................................................................................  3
+9. Requirements and conditions for registration ........................................................................................................................ 3
+10. Determination of application form by paralegals ..............................................................................................................  3
+11. Refusal of registration ..................................................................................................................................................................  4
+12. Training of paralegals ................................................................................................................................................................... 4
+13. Supervision of paralegals’ training .......................................................................................................................................... 4
+14. Promotion of legal literacy and awareness .......................................................................................................................... 4
+15. Removal of a registered paralegal from the register ........................................................................................................ 4
+16. Suspension and cancellation of certiﬁcate of registration .............................................................................................. 5
+Part IV – Legal aid to indigent persons and persons in lawful custody .........................................................................................  5
+(a) Provision of legal aid to indigent persons .................................................................................................................................... 5
+17. Eligibility for legal aid .................................................................................................................................................................. 5
+18. Availability of application forms ............................................................................................................................................... 5
+19. Consideration of application ......................................................................................................................................................  6
+20. Measures to be taken ...................................................................................................................................................................  6
+21. Obligation of indigent person ...................................................................................................................................................  7
+22. Obligation of legal aid provider ...............................................................................................................................................  7
+(b) Provision of legal aid services to persons in lawful custody ................................................................................................. 7
+23. Persons in lawful custody ...........................................................................................................................................................  7
+24. Application for legal aid service by persons in custody ..................................................................................................  8
+25. Management of legal aid provision at police station and prisons ............................................................................... 8
+26. Role of legal aid provider ...........................................................................................................................................................  8
+ii
+
+[PDF PAGE 3]
+27. Role of ofﬁcer in-charge of a police station or prison ...................................................................................................... 8
+Part V – Record management of legal aid provision ............................................................................................................................. 8
+28. Books and records ................................................................................................................................................................................. 8
+29. Reports on activities of legal aid service providers .................................................................................................................  9
+30. Failure to submit annual reports ....................................................................................................................................................  9
+31. Legal aid in civil proceedings by order of the court ................................................................................................................ 9
+32. Resources, mobilisation and referrals ............................................................................................................................................ 9
+33. Costs awarded to aided person ........................................................................................................................................................ 9
+34. Costs against aided person .............................................................................................................................................................  10
+35. Legal aid to children in conﬂict with the law .........................................................................................................................  10
+Part VI – Monitoring and evaluation of legal aid providers ............................................................................................................. 10
+36. Supervision ............................................................................................................................................................................................  10
+37. Inspection ...............................................................................................................................................................................................  10
+38. Power of inspectors ............................................................................................................................................................................ 10
+Part VII – Management of appeals and other complaints ................................................................................................................. 11
+39. Matters eligible for appeal .............................................................................................................................................................. 11
+40. Determination of appeals ................................................................................................................................................................  11
+41. Complaints ............................................................................................................................................................................................. 11
+42. Consideration of complaints ........................................................................................................................................................... 11
+43. Determination of complaints .......................................................................................................................................................... 12
+44. Decisions of complaint to be communicated ........................................................................................................................... 12
+Part VIII – Miscellaneous provisions .........................................................................................................................................................  12
+45. Legal aid providers’ forums, etc. ...................................................................................................................................................  12
+46. Continuous legal education ............................................................................................................................................................  12
+47. Legal aid providers with the certiﬁcate from the Chief Justice .......................................................................................... 12
+First Schedule LA Form No.001 ................................................................................................................................................................... 13
+Second Schedule LA Form No.002 .............................................................................................................................................................  13
+Third Schedule LA Form No.003 .................................................................................................................................................................  14
+Fourth Schedule LA Form No.004 ............................................................................................................................................................... 14
+Fifth Schedule LA Form No.005 ................................................................................................................................................................... 15
+Sixth Schedule LA Form No.006 .................................................................................................................................................................  15
+Seventh Schedule LA Form No.007 ............................................................................................................................................................ 16
+Eight Schedule LA Form No.008 .................................................................................................................................................................  16
+Ninth Schedule LA Form No.009 ................................................................................................................................................................. 17
+Tenth Schedule LA Form No.009 ................................................................................................................................................................. 17
+iii
+
+[PDF PAGE 4]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+Tanzania
+Legal Aid Act, 2017
+Legal Aid Regulations
+Government Notice 44 of 2018
+Published in Gazette of the United Republic of Tanzania No. 6 Vol. 99 on 9 February 2018
+Assented to on 5 February 2018
+Commenced on 9 February 2018
+[This is the version of this document from 9 February 2018.]
+THE LEGAL AID ACT, 2017
+REGULATIONS
+(Made under section 48)
+Part I – Preliminary provisions
+1. Citation
+These Regulations may be cited as the Legal Aid Regulations, 2018.
+2. Interpretation
+In these Regulations unless the context otherwise requires -
+"Act" means the Legal Aid Act;
+"accreditation or regulatory authority" means the authority which -
+(a) registered the institution providing legal aid;
+(b) in the case of a Non-Governmental Organization, the Registrar of the Non-Governmental
+Organizations;
+(c) in the case of a Community Based Organization, the Registrar of Societies;
+(d) in the case of a Trusteeship, the Registrar of Trustees; and
+(e) in the case of a Corporation, the Registrar of Companies;
+"Assistant Registrar" means Assistant Registrar referred to under section 8 of the Act;
+"certiﬁcate" means the certiﬁcate of registration of legal aid providers issued under regulation 6;
+"Registrar" means the Registrar referred to under section 6 of the Act;
+Part II – Administration and coordination of legal aid providers
+3. Appointment of Registrar
+Subject to section 6 of the Act, the Permanent Secretary of the Ministry responsible for legal affairs shall
+appoint the Registrar through instrument published in the Gazette as prescribed in the First Schedule.
+By TanzLII.org and Laws.Africa. Share widely and freely. 1
+
+[PDF PAGE 5]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+4. Appointment of Assistant Registrars
+(1) Pursuant to section 8 of the Act, Assistant Registrars shall be appointed through instruments
+published in the Gazette which shall bear the name and area of operation as prescribed in the First
+Schedule to these Regulations.
+(2) Public ofﬁcers who register community based organisations or community development
+organisations shall be eligible for appointment as Assistant Registrars of respective region or
+district.
+(3) The Assistant Registrar shall serve as such for the period of three years.
+Part III – Registration of legal aid providers and paralegals
+(a) Registration of legal aid providers
+5. Application forms
+(1) Every institution that intends to provide legal aid services shall apply to the Registrar for
+registration as a legal aid provider in terms of the provisions of the Act.
+(2) An application for registration shall be made in a form prescribed in the Second Schedule to these
+Regulations.
+(3) Application form shall be signed by the head of the institution or a person acting in that behalf and
+shall be stamped or sealed by the ofﬁcial stamp or seal.
+(4) Application form shall be accompanied by:
+(a) fees prescribed in the Third Schedule;
+(b) information relating to past activities related to legal aid, if any;
+(c) a clearance letter from the District Commissioner of the district where the applicant intends
+to operate;
+(d) a clearance letter from the Regional Commissioner of the region where the applicant intends
+to operate;
+(e) a clearance from Permanent Secretary of the Ministry responsible for local government
+where it intends to operate in the whole country.
+(5) All payments in relation to application fees shall be deposited in a prescribed bank account.
+(6) The ofﬁce of legal aid provider shall be maintained and shall meet the following basic requirements:
+(a) a separate room for the advocate or paralegal;
+(b) a secretarial desk and a computer;
+(c) chairs or benches for clients;
+(d) a basic collection of reference material including legal materials and paralegal manual
+currently in use;
+(e) a book shelf;
+(f) ﬁling cabinet or places for properly keeping of the records; and
+(g) physically easily accessible by people with disability.
+By TanzLII.org and Laws.Africa. Share widely and freely. 2
+
+[PDF PAGE 6]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+6. Determination of application and issuance of certiﬁcate
+(1) The Registrar shall, after consideration of the contents and other necessary attachments shall make
+registration of an institution as a legal aid provider.
+(2) Upon registration, the Registrar shall issue a certiﬁcate of registration to the applicant.
+(3) The certiﬁcate shall be of three levels as prescribed in the Fourth Schedule to these Regulations.
+7. Assistant Registrars to report on registered legal aid providers
+(1) Where the Assistant Registrar makes registration of a legal aid provider he shall make a report to
+that effect in the manner prescribed in the Fifth Schedule to these Regulations.
+(2) Subject to subregulation (1) the Assistant Registrar shall submit to the Registrar on quarterly basis
+the report of registered legal aid providers.
+8. Code of ethics for legal aid providers
+An institution registered as legal aid provider shall at all-time observe the code of ethics for legal aid
+providers and any other code of conducts prescribed for persons conducting legal services.
+(b) Registrations of paralegals
+9. Requirements and conditions for registration
+(1) Subject to the provisions of sections 19 and 20 of the Act, a person who intends to provide legal
+aid services as a paralegal shall apply for registration in a form prescribed in the Sixth Schedule to
+these Regulations.
+(2) The application shall be accompanied by -
+(a) certiﬁed copies of applicant’s qualiﬁcations which may include a bachelor degree, diploma or
+certiﬁcate of secondary education;
+(b) academic certiﬁcate indicating awareness of legal aid;
+(c) certiﬁcate of character from an immediate supervisor;
+(d) certiﬁcation from a person who has seen the applicant providing legal aid;
+(e) certiﬁcate of character from the hamlet leader where his operational ofﬁcer is located; and
+(f) fees prescribed in the Third Schedule;
+(3) All payments for application to provide legal aid shall be deposited in a prescribed bank account.
+10. Determination of application form by paralegals
+(1) The Registrar shall, after consideration of the contents and other necessary attachments make
+registration of a paralegal as a legal aid provider.
+(2) Upon registration, the Registrar shall issue a certiﬁcate of registration to the applicant as prescribed
+in the Seventh Schedule to these Regulations.
+(3) Conditions of certiﬁcate of registration for paralegals shall be as provided for under section 20 of
+the Act.
+By TanzLII.org and Laws.Africa. Share widely and freely. 3
+
+[PDF PAGE 7]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+11. Refusal of registration
+(1) The Registrar may refuse to register a person as a paralegal if he is satisﬁed that the applicant -
+(a) has not met the conditions prescribed under section 19 of the Act; or
+(b) has given false or fraudulent information in any material particular.
+(2) Where the Registrar has refused to register an applicant under subregulation (1), he shall within
+fourteen days from the date of such decision notify the applicant.
+(3) Where the applicant is dissatisﬁed with the decision made under this Regulation, he shall appeal in
+accordance with the procedures of appeal for institutions as prescribed for under section 14 of the
+Act.
+12. Training of paralegals
+(1) Paralegals shall be trained at different levels as prescribed in the National Qualiﬁcation Framework
+of legal aid providers.
+(2) Training for paralegals shall be categorised in the following:
+(a) short course training as approved by the Registrar lasting for a period of three to six months;
+(b) certiﬁcate courses accredited by the Vocational Education and Training Authority in
+accordance with the National Vocation Awards system in place; or
+(c) ordinary diploma courses accredited by the National Council for Technical Education in
+accordance with the National Technical Awards system in place.
+13. Supervision of paralegals’ training
+(1) Subject to paragraph (g) of section 7(1) of the Act, training for paralegals shall be conducted under
+supervision of the Registrar by a recognized institution.
+(2) A registered institution wishing to train its paralegals shall notify the Registrar who shall arrange
+with the training institution to facilitate such training.
+(3) Costs for training of paralegals shall be borne by the legal aid provider, a trainee or any other
+person who is interested in the training of paralegals.
+14. Promotion of legal literacy and awareness
+(1) In discharge of powers under section 7 of the Act, the Registrar shall, in consultation with relevant
+authorities, legal aid providers and other stakeholders take necessary measures to promote legal
+literacy and awareness among the public and, in particular, educate vulnerable sections of the
+society about their rights and duties under the Constitution and other laws.
+(2) Legal aid providers intending to engage in activities under section 7(1)(f) of the Act, shall make
+known to the Registrar the content of the legal literacy and awareness programs for purposes of
+verifying conformity with the Constitution, laws, national norms and values.
+15. Removal of a registered paralegal from the register
+The Registrar may remove from the register of paralegals, the name of a paralegal:
+(a) who no longer complies with the requirements and conditions for registration as a paralegal; or
+(b) who dies or is unﬁt to practice due to:
+(i) unsoundness of mind; or
+By TanzLII.org and Laws.Africa. Share widely and freely. 4
+
+[PDF PAGE 8]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+(ii) inability to discharge duties.
+16. Suspension and cancellation of certiﬁcate of registration
+(1) The Registrar may issue a written warning, suspend or cancel certiﬁcate of registration of a
+paralegal who contravenes the conditions set out for paralegals under the Act.
+(2) The Registrar may suspend a certiﬁcate of registration of a paralegals if a paralegal has(a) breached
+a code of conduct for legal aid providers and paralegals;
+(b) engaged in an activity that is reserved for an advocate; or
+(c) charged fees from an aided person.
+(3) The Registrar may cancel a certiﬁcate of registration of a paralegal if he is satisﬁed that (a)
+registration was obtained by mistake, fraud, undue inﬂuence or misrepresentation;
+(b) the paralegal has failed to comply with the conditions of registration; or
+(c) the paralegal has been convicted of an offence which touches his integrity, accountability or
+is subject to an order made under relevant body.
+(4) Where the Registrar suspends or cancels certiﬁcate of registration, he shall notify the relevant
+paralegal in writing of the decision and order such paralegal to stop providing legal aid.
+(5) The procedure for suspension or cancellation of certiﬁcate of registration of a paralegal and
+appeals shall apply mutatis mutandis the procedures for suspension or cancellation of certiﬁcate of
+registration of legal aid providers as prescribed under section 17 of the Act.
+Part IV – Legal aid to indigent persons and persons in lawful custody
+(a) Provision of legal aid to indigent persons
+17. Eligibility for legal aid
+A person may be eligible for legal aid if in the opinion of the legal aid provider -
+(a) that person is indigent;
+(b) there are reasonable grounds for initiating, carrying out or defending the matter for which he
+applies for legal aid;
+(c) the matter is of public interest;
+(d) the case is of a civil matter and there is reasonable prospect of success or recovering the matter.
+18. Availability of application forms
+(1) Application forms shall be made available through the Registrar, Assistant Registrar, legal aid
+providers and, in the case of police station or prison, through the ofﬁcer in-charge of police station
+or prison.
+(2) The applicant shall ﬁll in the form prescribed in the Eighth Schedule to these Regulations and
+return the same to the Registrar, Assistant Registrar, legal aid providers or to ofﬁcer in-charge of a
+police station or as the case may be of a prison.
+(3) All forms shall be obtained without any cost.
+By TanzLII.org and Laws.Africa. Share widely and freely. 5
+
+[PDF PAGE 9]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+19. Consideration of application
+(1) Subject to section 21 of the Act, and upon receipt of the application, the legal aid provider shall
+consider the contents of the application with all necessary attachment so as
+(a) to ensure eligibility of the applicant for legal aid service;
+(b) establish whether the legal aid service required by the applicant falls within the scope of
+functions of the legal aid provider;
+(c) establish whether the applicant or the legal matter involved is within the area of operation of
+the legal aid provider; and
+(d) evaluate the genuiness of the attached documents
+(2) Where the legal aid provider is satisﬁed with the contents of application and all the necessary , he
+shall -
+(a) assign the matter to an advocate or to a paralegal for provision of legal aid as may be
+required;
+(b) register the particulars of the indigent person and the legal aid services required or the legal
+aid services to be provided by the legal aid provider in the register to be kept by the legal
+service provider
+(3) Where the legal aid provider has considered of the application together with necessary attachment
+and such other information is satisﬁed that the applicant is not eligible for legal aid service, he may
+reject that application and notify the applicant accordingly.
+20. Measures to be taken
+(1) An advocate or paralegal may, prior to the provision of legal aid service:
+(a) hold meetings with the indigent person for clariﬁcation on issues and facts;
+(b) study or research on the legal issues involved, and the relevant laws;
+(c) determine appropriate measures to be taken in a given circumstances; and
+(d) notify or advice the indigent person on the measures to be taken.
+(2) Where the advocate or a paralegal determines the measures to be taken he shall in writing notify
+the legal aid provider for record keeping.
+(3) The measures to be determined under this regulation may be administrative measures which can be
+effected through necessary communication and administrative means or legal measures which can
+be effected through legal procedures.
+(4) For the purpose of this regulation, legal measures shall include:
+(a) legal advice;
+(b) preparation of legal documents;
+(c) institution of cases in court;
+(d) ﬁling of all necessary documents in court; or
+(e) representation of indigent person before the court.
+By TanzLII.org and Laws.Africa. Share widely and freely. 6
+
+[PDF PAGE 10]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+21. Obligation of indigent person
+(1) Where provision of legal aid service requires, the legal measure to be taken, the indigent person
+shall have the duty to -
+(a) cooperate and provide necessary and true facts and reliable documents to the advocate as
+may be required for pursuing the matter in court;
+(b) be available during the court process and whenever he is required to be present by an
+advocate or the court;
+(c) provide further clariﬁcation to the advocate on the matter or issue as may be required;
+(d) identify and ensure availability of witnesses in respect of his case before the court ; and
+(e) do such other activity regarding his case on his part as may be required by the advocate.
+(2) An indigent person who fails without good cause to discharge obligation as required under sub
+regulation 1 may be considered or declared by a legal aid provider as uncooperative.
+(3) Where an indigent person is declared or considered to be uncooperative, the legal aid provider may
+-
+(a) withdraw or cease to provide the legal aid service to the person;
+(b) return to the indigent person all documents submitted to the advocate in the course of
+providing legal aid services; or
+(c) advise the indigent person to seek for legal aid service from other legal aid service providers.
+(4) Withdrawal of legal aid service shall be effected without cost on the part of indigent person.
+22. Obligation of legal aid provider
+(1) For purpose of legal aid service provision and subject to the Act, it shall be the duty of the legal aid
+provider to -
+(a) provide legal services as may be required by the indigent person;
+(b) advise the indigent person on appropriate measures to be taken in view of the nature and
+circumstance of the matter in question;
+(c) guide the indigent person on the process and procedure for accessing justice;
+(d) keep the indigent person informed on the progress of the case;
+(e) clarify to the indigent person on the legal issues involved and determination of such issues;
+(f) inform the indigent person on the execution of judgment and on his right or remedy
+available;
+(g) inform the indigent person on matters of recourse such as application or appeals, if any; and
+(h) provide such other legal assistance as may be requested or required in the circumstances.
+(2) A legal aid provider, advocate or paralegal shall be liable for misconduct.
+(b) Provision of legal aid services to persons in lawful custody
+23. Persons in lawful custody
+(1) Persons in lawful custody include persons detained in police station or prisons.
+By TanzLII.org and Laws.Africa. Share widely and freely. 7
+
+[PDF PAGE 11]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+(2) Subject to the Act, a police ofﬁcer in-charge of a police station or prison ofﬁcer in-charge of a
+prison shall ensure or cause persons detained to access legal aid service.
+24. Application for legal aid service by persons in custody
+For the purpose of facilitation of provision of legal aid service to persons in custody, the ofﬁcer in-charge
+of the police station or prison shall distribute or cause to be distributed application form to each person in
+custody who intends to access legal aid services.
+25. Management of legal aid provision at police station and prisons
+(1) For purposes of these Regulations, ofﬁcer incharge of a police station or prison shall collect all duly
+ﬁlled in application forms and prepare a list of names of persons in custody who require legal aid
+services and submit the list and forms to the designated legal aid desk within a police station or
+prison, and where necessary to the legal aid providers within the area.
+(2) A list prepared under sub regulation (1) shall indicate particulars of the case, the legal matter
+involved and the nature of legal aid service required in respect of each person.
+(3) Legal aid services to persons in custody shall be provided without discrimination in collaboration
+with legal aid stakeholders.
+(4) The Registrar may enter into memorandum of understanding with the police force of prison
+service for better carrying out of the provisions of the Act in the provision of legal aid to persons in
+custody.
+26. Role of legal aid provider
+The legal aid provider shall, upon receipt of the matter as referred to it by the Assistant Registrar
+(a) assign the matter to an advocate, a lawyer or as the case may be to a paralegal for provision of legal
+aid service; and
+(b) ensure the assigned advocate, lawyer or paralegal meet with persons in custody for preliminary
+preparations prior to provision of legal aid service.
+27. Role of ofﬁcer in-charge of a police station or prison
+(1) It shall be the duty of the ofﬁcer in-charge of a police station or prison to facilitate and enable
+meetings of the persons in custody with advocates, lawyers or paralegals for the purpose of
+provision of legal aid service.
+(2) For the purpose of record keeping, the ofﬁcer incharge of a police station or prison shall prepare a
+report indicating names of persons in custody who have accessed legal aid service, particular of the
+case for each person, names of legal aid service provider, names of advocate, lawyer or paralegal
+assigned in respect of each person in custody.
+(3) The ofﬁcer in-charge of police station or prison shall submit a copy of the report prepared to the
+Registrar.
+Part V – Record management of legal aid provision
+28. Books and records
+Every legal aid provider shall keep proper and accurate records and reports of all the cases or matters
+handled.
+By TanzLII.org and Laws.Africa. Share widely and freely. 8
+
+[PDF PAGE 12]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+29. Reports on activities of legal aid service providers
+(1) Subject to section 26 of the Act, a legal aid provider shall keep proper records of their activities and
+submit annual reports of their activities to the Registrar
+(2) Without prejudice to the generality of sub regulation (1), reports to be submitted by legal aid
+provider shall indicate the following:
+(a) the type of a legal aid service provided;
+(b) the legal issues involved and geographical coverage;
+(c) particulars relating to advocate, lawyer and paralegal employed by the legal aid service
+provider;
+(d) number of cases handled for a period of time as the case may be, showing the type of cases
+and courts or tribunals to which they were ﬁled;
+(e) number of clients who received legal aid;
+(f) the outcome of provision of legal aid to indigent person;
+(g) sources of funding of the activities of legal aid service provider; and
+(h) any other information as may be required by the Registrar.
+30. Failure to submit annual reports
+Subject to sections 16 and 17 of the Act, the Registrar or the Assistant Registrar may suspend a certiﬁcate
+of registration of a legal aid provider if such legal aid service provider fails to submit annual report in
+accordance with the provision of these Regulations.
+31. Legal aid in civil proceedings by order of the court
+Pursuant to section 27 of the Act, where it is found that a person who is a party to a civil proceedings has
+insufﬁcient means to enable that person to obtain legal services and it is in the interest of justice that the
+person obtain legal aid, a presiding judge, magistrate or a chairman of the tribunal, as the case may be,
+may issue a certiﬁcate in the form prescribed in the Ninth Schedule to these Regulations to the effect that
+such person be provided legal aid services.
+32. Resources, mobilisation and referrals
+(1) Legal aid providers shall mobilise resources for implementation of program related to provision of
+legal aid services to indigent persons.
+(2) Programs implemented by legal aid providers in terms of sub regulation (1) may be speciﬁc to any
+thematic area according to the area of specialisation and or expertise.
+(3) Legal aid providers shall make known areas of their specialisation for purposes of facilitating
+referrals of clients to and amongst legal aid providers.
+33. Costs awarded to aided person
+(1) The normal procedure of taxation of costs applied under the Civil Procedure Code shall apply to
+costs awarded to a person in respect of whom legal aid has been provided.
+[Cap. 33]
+(2) The taxing master shall allocate one half of the amount to the legal aid provider to cover for costs
+incurred in respect of the proceedings in a court.
+By TanzLII.org and Laws.Africa. Share widely and freely. 9
+
+[PDF PAGE 13]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+(3) The person who has been provided legal aid shall receive a quarter of the amount.
+(4) The remaining amount shall be allocated to the National Legal Aid Board for continuous support of
+legal aid services in the country.
+34. Costs against aided person
+Subject to section 31 of the Act, where costs are awarded against the person who was provided legal aid,
+normal taxation procedures provided under the Civil Procedure Code shall apply.
+[Cap. 33]
+35. Legal aid to children in conﬂict with the law
+(1) Every advocate who comes in contact with a child in conﬂict with law shall report the matter to the
+Registrar or legal aid provider for necessary action.
+(2) The legal aid provider who receives information in terms of sub regulation (1) shall treat the matter
+urgently and provide legal assistance in terms of the Law of the Child Act.
+Part VI – Monitoring and evaluation of legal aid providers
+36. Supervision
+(1) A legal aid provider shall ensure that, in the performance of functions, each paralegal under their
+employment is supervised by an advocate employed by the legal aid provider.
+(2) A legal aid provider shall put in place mechanisms for quality assurance of services provided
+including but not limited to the following:
+(a) Client’s Service Charter;
+(b) regular monitoring of action taken on cases;
+(c) close supervision of new or inexperienced staff;
+(d) continuous training of staff and
+(e) Monthly reports on assignments given.
+37. Inspection
+(1) The Registrar or any person authorized by the Registrar in writing shall, during normal working
+hours, with or without prior notice to a legal aid provider, inspect the ofﬁces of legal aid providers.
+(2) The Registrar shall carry out inspection of the ofﬁces of the legal aid providers at least once in every
+calendar year.
+(3) A legal aid provider shall not deny access to or obstruct the Registrar or a person authorized by the
+Registrar from entering the ofﬁces of accessing records for purpose of inspection.
+38. Power of inspectors
+The Registrar, Assistant Registrar, or a person authorized in writing by the Registrar may -
+(a) at any time, during normal working hours enter the ofﬁces and ascertain whether the ofﬁce
+possesses the basic requirements stipulated in the Act and under these Regulations;
+(b) give such direction as he may deem necessary to ensure that the legal aid service provider complies
+with the provisions of the Act.;
+By TanzLII.org and Laws.Africa. Share widely and freely. 10
+
+[PDF PAGE 14]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+(c) require the production of books or records required to be kept under these Regulations; and
+(d) carry out any other inspections as the Registrar may deem ﬁt.
+Part VII – Management of appeals and other complaints
+39. Matters eligible for appeal
+For the purpose of section 14 of the Act, the following matters shall be eligible for appeal -
+(a) suspension of the certiﬁcate of registration of an institution as a legal aid service provider; or
+(b) cancellation of certiﬁcate of registration of an institution as a legal aid provider.
+40. Determination of appeals
+In considering or determining the appeal, the appellate authority may -
+(a) uphold the decision made;
+(b) dismiss the appeal;
+(c) review or vary the decision made;
+(d) refer the matter back for reconsideration or re-determination; or
+(e) issue such directives as may be appropriate.
+41. Complaints
+(1) For the purpose of these Regulations, a complaint may be made against the Registrar, Assistant
+Registrar, legal aid provider, an advocate, lawyer or a paralegal.
+(2) Where there is a complaint, the complainant shall in writing:
+(a) in the case of the Registrar, forward a complaint to the Permanent Secretary;
+(b) in the case of Assistant Registrar, forward a complaint to the Registrar;
+(3) Where the complaint is against the legal aid provider, an advocate, a lawyer or a paralegal, the
+complainant shall report the matter:
+(a) in the case of legal aid service provider, to the Registrar or as the case may be the Assistant
+Registrar; and
+(b) in the case of advocate or paralegal, to the legal aid service provider.
+(4) Complaints shall be made in the form prescribed in the Tenth Schedule to these Regulations.
+42. Consideration of complaints
+(1) All complaints submitted shall be determined by the respective authority for each level within
+fourteen days from the date of receipt of the complaints.
+(2) In considering the complaint, the respective authority shall -
+(a) investigate on the matter;
+(b) conduct inquiry as it may be appropriate in view of the nature or circumstances of the
+complaint;
+(c) call the complainant and such other witnesses to testify on the matter;
+By TanzLII.org and Laws.Africa. Share widely and freely. 11
+
+[PDF PAGE 15]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+(d) cause to be brought all documents relating to the matter for consideration; and
+(e) afford an opportunity to a person against whom the complaint is made to defend himself.
+43. Determination of complaints
+Where after consideration of the matter, the complaint made is proved, a person against whom the
+complaint was made may -
+(a) in the case of ﬁrst instance, be given a written warning;
+(b) be required to pay such amount of money as may be adequate to cover the cost or loss incurred by
+the complainant as the result of the complaint; and
+(c) be subjected to other measures as may be appropriate.
+44. Decisions of complaint to be communicated
+The decision on the determination of complaints shall be in writing and a copy of such decision shall
+within fourteen days from the date of decision, be communicated or sent to the complainant and to a
+person against whom the complaint was made.
+Part VIII – Miscellaneous provisions
+45. Legal aid providers’ forums, etc.
+(1) Legal aid providers may form and join networks, forums or clubs.
+(2) The legal aid providers’ networks, forums or clubs shall be at national, regional and district level.
+(3) The networks forums or clubs shall be approved by the Registrar.
+(4) Legal aid providers may meet at least once a year to:
+(a) deliberate matters related to improving legal aid service provision in the area of jurisdiction;
+(b) deliberate on issues related to incentives for legal aid providers, advocates, lawyers and
+paralegals providing legal aid services; and
+(c) advise the Registrar on various legal aid related issues.
+(5) The Registrar may participate in the legal aid providers’ networks, forum or clubs.
+46. Continuous legal education
+(1) It shall be a duty of a legal aid provider to ensure that every person providing legal aid undergoes
+continuous legal education program.
+(2) Every advocate, lawyer or paralegal who provides legal aid shall obtain points after attending each
+program for continuous legal education.
+(3) The program for continuous legal education shall be developed jointly between the Registrar, legal
+aid providers, professional body regulating advocates and the network of paralegals.
+47. Legal aid providers with the certiﬁcate from the Chief Justice
+(1) Subject to section 50 of the Act, legal aid providers awarded legal aid certiﬁcate by the Chief Justice
+prior to coming into force of the Act shall be required to apply to the Registrar for registration.
+(2) Upon application the Registrar shall register legal aid providers and issue a certiﬁcate without cost.
+By TanzLII.org and Laws.Africa. Share widely and freely. 12
+
+[PDF PAGE 16]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+(3) Upon expiry of prescribed time of the certiﬁcate, the legal aid provider shall be required to renew
+the certiﬁcate upon payment of fees prescribed under these Regulations.
+First Schedule LA Form No.001
+Instrument of appointment of Registrar/Assistant Registrar
+(Made under Regulation 4(1))
+I…………………………[name of appointing authority], Permanent Secretary of the ministry
+responsible for legal affairs, by virtue of powers vested in me by section 8(1) of the Legal Aid
+Act, DO HEREBY appoint you ……………………….[name of the appointed person] as the
+Registrar/Assistant Registrar of …………………[specify National, region or district of operation] and pursuant to
+this appointment you shall exercise with diligence the duties of Registrar/Assistant Registrar.
+This appointment shall shall be valid for a period of ................. years and shall commence on
+….day of……..,20.. and end on……day of……..20..
+[Signature]
+[Name and title of appointing authority]
+Second Schedule LA Form No.002
+Application form for registration as a legal aid provider
+(Made under Regulation 5(2))
+No. Particulars
+1. Na me and address of
+the Institution
+.........................................................
+2. Location and area of
+operation of the
+Institution
+.........................................................
+3. Services to be provided
+or nature of the
+activities of the
+Institution
+.........................................................
+4. Names and particulars
+of the advocates
+.........................................................
+By TanzLII.org and Laws.Africa. Share widely and freely. 13
+
+[PDF PAGE 17]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+No. Particulars
+5. Names and particulars
+of the
+lawyers/paralegals
+.........................................................
+6. Other information .........................................................
+Third Schedule LA Form No.003
+Fees payable under the Act
+(Made under Regulation 5(4))
+The following fees shall be paid in connection with matters arising under these Regulations:
+No. Item fees
+1. Registration of legal aid service
+provider
+Tshs.60,000/=
+2. Registration of paralegal Tshs.30,000/=
+3. Retention fee for legal aid
+provider in the Register
+Tshs.60,000/=
+4. Retention fee for paralegal in the
+Register
+Tshs.30,000/=
+Fourth Schedule LA Form No.004
+Certiﬁcate of registration
+(Made under Regulation 6(3)
+THIS IS TO CERTIFY THAT. ……………………………………[name of the institution] has
+been registered as a LEGAL AID SERVICE PROVIDER with effect from…………day of………….,20.... The area of
+operation of …………………..[name of the institution] shall be in ……………[specify area of operation whether in
+the whole country, Region or district].
+This registration is valid for a period of three years until …….day of……..20…… subject to the Institution’s
+original legal existence.
+Issued at ………………[place where this certiﬁcate is issued] this……..day of…………,20..
+[Signature]
+[Name and title of issuing Authority] Registrar/Assistant Registrar
+By TanzLII.org and Laws.Africa. Share widely and freely. 14
+
+[PDF PAGE 18]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+Fifth Schedule LA Form No.005
+Report of registered legal aid providers by Assistant Registrar
+(Made under Regulation 7(1))
+S/N Name of
+Institution
+Registered
+Area of
+operation
+and
+Physical
+Address)
+Composition
+of its
+Members
+Institution
+afﬁliated
+to (if all
+members
+are
+Paralegals)
+Date of
+Registration
+of an
+institution
+as a
+legal aid
+provider
+Necessary
+documents
+attached
+Remarks
+(if any)
+Date: ……………………………………….
+Ofﬁcial Stamp
+…………………………………………………….
+Name and Signature of the Assistant Registrar
+Sixth Schedule LA Form No.006
+Applictaion form for registration as a Paralegal
+(Made under Regulation 9(1))
+No. Particulars
+1. Name and address of the
+Institution
+.........................................................
+2. Location and area of operation .........................................................
+By TanzLII.org and Laws.Africa. Share widely and freely. 15
+
+[PDF PAGE 19]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+No. Particulars
+3. Legal status of an institution/
+paralegal
+.........................................................
+4. Services to be provided or nature
+of the activities conducted
+.........................................................
+5. Names and particulars of the
+Paralegals
+.........................................................
+6. Name and address of the
+Institution afﬁliating the
+Paralegals
+.........................................................
+7. Other information .........................................................
+8. Signature
+………………………………..
+Date ……/………………………./20..
+9. Name and Title of Authorised
+person
+Stamp
+FOR OFFICIAL USE ONLY:
+Seventh Schedule LA Form No.007
+Certiﬁcation of registrarion of Paralegal
+(Made under Regulation 10(2))
+THIS IS TO CERTIFY THAT ………………………………….[Name of the applicant] has been registered as a Paralegal
+with effect from ………… day of .………., 20 ……. under the umbrella of ……………………[Name of Institution],
+legal aid provider whose area of operation is ……………………… [specify area of operation whether in the whole
+country, Region or district].
+This registration is valid for a period of three years until ………………. day of …………… 20……….. subject to
+renewal of the certiﬁcate of registration.
+Issued at …………… [place where this certiﬁcate is issued] this ……………… day of ……………….., 20……..
+Signature
+[Name and title of issuing Authority] Registrar/Assistant Registrar
+Eight Schedule LA Form No.008
+Application form of legal aid service by indigents or persons in custody
+(Made under Regulation 18(2))
+By TanzLII.org and Laws.Africa. Share widely and freely. 16
+
+[PDF PAGE 20]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+To: Registrar/Assistant Registrar/Legal Aid Provider
+No. Particulars
+1. Name and address of the Indigent
+person or person in custody
+.......................................................................................................
+2. Legal issues for legal aid services
+applied
+.......................................................................................................
+3. Legal aid services applied for .......................................................................................................
+4. Other information .......................................................................................................
+5. Signature
+...................................................................................
+Date ……/………………………./20..
+FOR OFFICIAL USE ONLY:
+Ninth Schedule LA Form No.009
+Certiﬁcation of legal aid by order of the court/tribunal
+(Made under Regulation 31)
+To: Tick (√) where necessary
+(a) Registrar
+(b) Assistant Registrar
+(c) Legal Aid Service Provider
+I………………………………….[Name and title of the certifying authority] of …………………………..[Name of
+the court or tribunal] DO HEREBY certify that …………………………..[name of an indigent person] is having
+…………………….[nature of
+proceedings and case number] case before me. Due to the nature of this matter and in the interest of justice I
+order that the said …………………………………………..[name of the indigent person] be provided with legal aid
+before proceeding with his case in the next hearing date as indicated in summons.
+Signature ---------------------------------------------- Date:---------/----------------/---------------
+[Name and title of the certifying authority]
+Tenth Schedule LA Form No.009
+Complaints
+(Made under Regulation 41(4))
+By TanzLII.org and Laws.Africa. Share widely and freely. 17
+
+[PDF PAGE 21]
+Legal Aid Regulations (Government Notice 44 of 2018)  Tanzania
+To: Tick (√) where necessary
+(a) Permanent Secretary
+(b) Registrar
+(c) Assistant Registrar
+(d) Legal Aid Service Provider
+No. Particulars
+1. Name and address of the
+complainant
+----------------------------------------------------------
+2. Nature of the complaint ----------------------------------------------------------
+3. Particulars of the complaints ----------------------------------------------------------
+4. Remedy sought ----------------------------------------------------------
+5. Complainant’s signature
+----------------------------
+Date
+-------/--------------------------/20------
+FOR OFFICIAL USE ONLY:
+By TanzLII.org and Laws.Africa. Share widely and freely. 18

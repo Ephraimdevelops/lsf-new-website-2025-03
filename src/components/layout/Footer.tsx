@@ -1,9 +1,30 @@
+import { useState, type FormEvent } from 'react';
+import { useMutation } from 'convex/react';
+import { api } from '../../../convex/_generated/api';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, ArrowRight, Facebook, Twitter, Linkedin, Youtube, Instagram, ArrowUp, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, Facebook, Twitter, Linkedin, Youtube, Instagram, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [newsletterStatus, setNewsletterStatus] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const subscribe = useMutation(api.newsletter.subscribe);
+  const handleSubscribe = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubscribing(true);
+    setNewsletterStatus('');
+    try {
+      const result = await subscribe({ email, source: 'site_footer' });
+      setNewsletterStatus(result.message);
+      if (result.success) setEmail('');
+    } catch {
+      setNewsletterStatus('Unable to subscribe right now. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -65,21 +86,35 @@ const Footer = () => {
             <p className="text-white/70 text-lg leading-relaxed">
               LSF is a direct implementer and non-profit organization promoting access to justice and legal empowerment across Tanzania.
             </p>
+            <div className="flex flex-wrap gap-3 mt-7">
+              <Button asChild className="bg-white text-primary hover:bg-white/90 font-bold rounded-full px-6">
+                <Link to="/legal-help">Get Legal Help <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+              <Button asChild variant="outline" className="border-white/70 text-white bg-transparent hover:bg-white hover:text-primary font-bold rounded-full px-6">
+                <Link to="/contact">Contact Us <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </div>
           </div>
 
           {/* Newsletter Subscribe */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-            <h3 className="text-xl font-bold mb-2">Stay Updated</h3>
-            <p className="text-white/60 mb-6 text-sm">Get the latest legal aid updates, success stories, and opportunities delivered to your inbox.</p>
-            <div className="flex gap-2">
+          <div className="max-w-xl lg:justify-self-end w-full">
+            <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
+            <p className="text-white/75 mb-5 text-sm md:text-base">Subscribe to our newsletter for the latest updates on legal aid, resources, and impact stories.</p>
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
               <Input
-                placeholder="Enter your email address"
-                className="bg-white/10 border-white/10 text-white placeholder:text-white/40 h-12 focus-visible:ring-offset-0 focus-visible:ring-1 focus-visible:ring-white/30"
+                type="email"
+                aria-label="Email address for newsletter"
+                placeholder="Enter your email"
+                value={email}
+                onChange={event => setEmail(event.target.value)}
+                required
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/60 h-12 rounded-full px-5 flex-1 focus-visible:ring-offset-0 focus-visible:ring-1 focus-visible:ring-white/50"
               />
-              <Button className="bg-white text-primary hover:bg-gray-100 font-bold h-12 px-6">
-                Subscribe
+              <Button type="submit" disabled={isSubscribing} className="bg-white text-primary hover:bg-white/90 font-bold h-12 px-6 rounded-full shrink-0">
+                {isSubscribing ? 'Joining…' : 'Subscribe'} <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </div>
+            </form>
+            {newsletterStatus && <p role="status" className="text-white text-sm mt-3">{newsletterStatus}</p>}
           </div>
         </div>
 
@@ -108,7 +143,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <p className="font-bold text-sm text-white/90">Call Us</p>
-                  <a href="tel:+255870119363" className="text-white/70 text-sm hover:text-white transition-colors">+255 870 119 363</a>
+                  <a href="tel:+255222601534" className="text-white/70 text-sm hover:text-white transition-colors">+255 22 260 1534</a>
                 </div>
               </div>
               <div className="flex items-start gap-4 group">

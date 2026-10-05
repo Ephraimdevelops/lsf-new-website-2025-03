@@ -3,7 +3,7 @@ import type { Id } from "../../convex/_generated/dataModel";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation } from "convex/react";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
 import { api } from "../src/backend/api";
@@ -30,13 +30,17 @@ export default function IntakeScreen() {
   useSensitiveScreenProtection("intake");
   const { isSignedIn } = useAuth();
   const { locale, t } = useLanguage();
-  const { draft, hasSavedDraft, updateDraft, resetDraft, saveDraftForLater, restoreSavedDraft, clearSavedDraft } = useIntakeDraft();
+  const { draft, hasSavedDraft, hasGuestDraft, updateDraft, resetDraft, saveDraftForLater, restoreSavedDraft, restoreGuestDraft, clearSavedDraft } = useIntakeDraft();
   const saveDraft = useMutation(api.legalHelp.saveDraft);
   const generateAttachmentUploadUrl = useMutation(api.legalHelp.generateAttachmentUploadUrl);
   const attachToDraft = useMutation(api.legalHelp.attachToDraft);
   const submitRequest = useMutation(api.legalHelp.submit);
+  const recordJourney = useMutation(api.journeyAnalytics.record);
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const submitting = useRef(false);
+  const uploadedEvidence = useRef<{ key: string; storageId: Id<"_storage">; size: number } | null>(null);
+  const [cleanupFailed, setCleanupFailed] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [consentAccepted, setConsentAccepted] = useState(false);
@@ -57,6 +61,8 @@ export default function IntakeScreen() {
     step >= 8;
 
   async function finish() {
+    if (submitting.current || !consentAccepted) return;
+    submitting.current = true;
     setLoading(true);
     setError("");
     setNotice("");
@@ -83,25 +89,35 @@ export default function IntakeScreen() {
         urgency: draft.urgency,
         hasDocuments: draft.hasDocuments,
       });
+      if (saved.status === "withdrawn") throw new Error(locale === "sw" ? "Ombi hili liliondolewa. Angalia maombi yako kabla ya kuanza ombi jipya." : "This request was withdrawn. Check your requests before starting a new one.");
       let expectedVersion = saved.version;
-      if (evidence) {
-        const uploadUrl = await generateAttachmentUploadUrl({});
-        const fileResponse = await fetch(evidence.uri);
-        const blob = await fileResponse.blob();
-        const uploadResponse = await fetch(uploadUrl, { method: "POST", headers: { "Content-Type": evidence.mimeType ?? "application/octet-stream" }, body: blob });
-        if (!uploadResponse.ok) throw new Error(locale === "sw" ? "Faili halijapakiwa." : "Evidence upload failed.");
-        const { storageId } = await uploadResponse.json() as { storageId: string };
-        await attachToDraft({ requestId: saved.requestId, storageId: storageId as Id<"_storage">, name: evidence.name, type: evidence.mimeType ?? "application/octet-stream", size: evidence.size ?? blob.size });
-        expectedVersion += 1;
+      if (saved.status === "draft" && evidence) {
+        const evidenceKey = JSON.stringify([saved.requestId, evidence.uri, evidence.name, evidence.mimeType, evidence.size]);
+        let storageId = uploadedEvidence.current?.key === evidenceKey ? uploadedEvidence.current.storageId : undefined;
+        let actualSize = uploadedEvidence.current?.key === evidenceKey ? uploadedEvidence.current.size : evidence.size;
+        if (!storageId) {
+          const uploadUrl = await generateAttachmentUploadUrl({});
+          const fileResponse = await fetch(evidence.uri);
+          const blob = await fileResponse.blob();
+          const uploadResponse = await fetch(uploadUrl, { method: "POST", headers: { "Content-Type": evidence.mimeType ?? "application/octet-stream" }, body: blob });
+          if (!uploadResponse.ok) throw new Error(locale === "sw" ? "Faili halijapakiwa." : "Evidence upload failed.");
+          const result = await uploadResponse.json() as { storageId: Id<"_storage"> };
+          storageId = result.storageId;
+          actualSize = evidence.size ?? blob.size;
+          uploadedEvidence.current = { key: evidenceKey, storageId, size: actualSize };
+        }
+        const attached = await attachToDraft({ requestId: saved.requestId, storageId, name: evidence.name, type: evidence.mimeType ?? "application/octet-stream", size: actualSize ?? 0 });
+        expectedVersion = attached.version;
       }
-      await submitRequest({ requestId: saved.requestId, expectedVersion, consentVersion: "service-v1" });
-      resetDraft(locale);
-      await clearSavedDraft();
+      if (saved.status === "draft") await submitRequest({ requestId: saved.requestId, expectedVersion, consentVersion: "service-v1" });
       setSubmittedRequestId(saved.publicId ?? saved.requestId);
       setSubmittedRecordId(saved.requestId);
+      resetDraft(locale);
+      try { await clearSavedDraft(); } catch { setCleanupFailed(true); }
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Unable to submit request");
     } finally {
+      submitting.current = false;
       setLoading(false);
     }
   }
@@ -122,11 +138,11 @@ export default function IntakeScreen() {
     }
   }
 
-  async function restoreDraft() {
+  async function restoreDraft(guest = false) {
     setError("");
     setNotice("");
     try {
-      const restored = await restoreSavedDraft();
+      const restored = guest ? await restoreGuestDraft() : await restoreSavedDraft();
       if (restored) setDraftRestored(true);
       setNotice(restored ? (locale === "sw" ? "Rasimu imerejeshwa." : "Draft restored.") : (locale === "sw" ? "Hakuna rasimu iliyohifadhiwa." : "No saved draft found."));
     } catch (caught) {
@@ -137,6 +153,7 @@ export default function IntakeScreen() {
   if (submittedRequestId) {
     return (
       <Screen style={styles.confirmScreen}>
+        {cleanupFailed ? <View><Text accessibilityRole="alert" style={styles.error}>{locale === "sw" ? "Ombi limetumwa. Rasimu iliyohifadhiwa kwenye kifaa haikuondolewa. Usitume ombi tena; tumia namba ya kumbukumbu hapa chini." : "Your request was submitted. The saved draft on this device could not be removed. Do not submit again; use the reference below."}</Text><Button variant="secondary" label={locale === "sw" ? "Jaribu kuondoa rasimu ya kifaa" : "Retry clearing the device draft"} onPress={() => { void clearSavedDraft().then(() => setCleanupFailed(false)).catch(() => setCleanupFailed(true)); }} /></View> : null}
         <View style={styles.successCard}>
           <View style={styles.confettiRow}>
             <Text style={styles.confettiDot}>.</Text>
@@ -158,7 +175,10 @@ export default function IntakeScreen() {
   }
 
   return (
-    <Screen>
+    <Screen footer={<View style={styles.actions}>
+      {step < TOTAL_STEPS ? <Button label={t("next")} disabled={!canContinue} onPress={() => { if (step === TOTAL_STEPS - 1) void recordJourney({ surface: "mobile", step: "request_review" }).catch(() => undefined); setStep(step + 1); }} /> : <Button disabled={!consentAccepted} label={isSignedIn ? t("submit") : (locale === "sw" ? "Ingia kutuma ombi" : "Sign in to submit")} loading={loading} onPress={() => void finish()} />}
+      <Button label={locale === "sw" ? "Hifadhi, endelea baadaye" : "Save, continue later"} variant="quiet" onPress={() => void saveForLater()} />
+    </View>}>
       <View style={styles.header}><Pressable accessibilityRole="button" onPress={() => step > 1 ? setStep(step - 1) : router.back()}><Ionicons name="chevron-back" size={26} color={colors.burgundy} /></Pressable><Text style={styles.step}>{locale === "sw" ? `Hatua ya ${step} kati ya ${TOTAL_STEPS}` : `Step ${step} of ${TOTAL_STEPS}`}</Text><QuickExit locale={locale} /></View>
       <View style={styles.progressTrack}><View style={[styles.progress, { width: `${(step / TOTAL_STEPS) * 100}%` }]} /></View>
       {step === 1 ? IssueStep() : null}
@@ -175,18 +195,18 @@ export default function IntakeScreen() {
           <Text style={styles.restoreText}>{locale === "sw" ? "Rejesha rasimu iliyohifadhiwa" : "Restore saved draft"}</Text>
         </Pressable>
       ) : null}
+      {step === 1 && hasGuestDraft && !draftRestored ? <View style={styles.restoreCard}>
+        <View style={{ flex: 1 }}><Text style={styles.restoreText}>{locale === "sw" ? "Kuna rasimu iliyoandaliwa kabla ya kuingia kwenye akaunti. Ukiitumia, itahamishwa kwenye akaunti hii bila kutumwa." : "A draft was created before sign-in. Using it moves it to this account without submitting."}</Text>
+        {hasSavedDraft || draft.description || draft.issueCategory ? <Text style={styles.fieldError}>{locale === "sw" ? "Hii itachukua nafasi ya rasimu ya akaunti hii." : "This replaces this account's current draft."}</Text> : null}
+        <Button label={locale === "sw" ? "Tumia rasimu ya kabla ya kuingia" : "Use the draft created before sign-in"} variant="secondary" onPress={() => void restoreDraft(true)} /></View>
+      </View> : null}
       {notice ? <Text style={styles.notice}>{notice}</Text> : null}
       {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
-      <View style={styles.actions}>
-        {step < TOTAL_STEPS ? <Button label={t("next")} disabled={!canContinue} onPress={() => setStep(step + 1)} /> : <Button disabled={!consentAccepted} label={isSignedIn ? t("submit") : (locale === "sw" ? "Ingia kutuma ombi" : "Sign in to submit")} loading={loading} onPress={() => void finish()} />}
-        <Button label={locale === "sw" ? "Hifadhi, endelea baadaye" : "Save, continue later"} variant="quiet" onPress={() => void saveForLater()} />
-        {step > 1 ? <Button label={t("back")} variant="quiet" onPress={() => setStep(step - 1)} /> : null}
-      </View>
     </Screen>
   );
 
   function IssueStep() {
-    return <View style={styles.section}><View style={styles.stepSymbol}><Ionicons name="help-buoy-outline" size={28} color={colors.surface} /></View><Text style={styles.title}>{locale === "sw" ? "Unahitaji msaada kuhusu nini?" : "What kind of problem do you need help with?"}</Text><Text style={styles.body}>{locale === "sw" ? "Chagua aina iliyo karibu zaidi. Unaweza kutoa maelezo katika hatua inayofuata." : "Choose the closest match. You can explain the details in the next step."}</Text><View style={styles.issueList}>{issueOptions.map((item) => { const selected = draft.issueCategory === item.key; return <Pressable key={item.key} accessibilityRole="radio" accessibilityState={{ selected }} style={[styles.issueOption, selected && styles.issueOptionSelected]} onPress={() => updateDraft({ issueCategory: item.key })}><View style={[styles.issueOptionIcon, selected && styles.issueOptionIconSelected]}><Ionicons name={item.icon} size={22} color={selected ? colors.surface : colors.burgundy} /></View><View style={styles.issueOptionCopy}><Text style={[styles.issueOptionTitle, selected && styles.issueOptionTitleSelected]}>{locale === "sw" ? item.sw : item.en}</Text><Text style={[styles.issueOptionBody, selected && styles.issueOptionBodySelected]}>{locale === "sw" ? item.swBody : item.enBody}</Text></View><Ionicons name={selected ? "checkmark-circle" : "chevron-forward"} size={21} color={selected ? colors.surface : colors.inkMuted} /></Pressable>; })}</View><Pressable style={styles.saadaHelp} onPress={() => router.push("/sara")}><Ionicons name="sparkles" size={20} color={colors.teal} /><View style={styles.issueOptionCopy}><Text style={styles.saadaHelpTitle}>{locale === "sw" ? "Huna uhakika? Muulize Saada" : "Not sure? Ask Saada"}</Text><Text style={styles.saadaHelpBody}>{locale === "sw" ? "Atakusaidia kuelewa chaguo bila kutuma ombi." : "Get guidance without submitting a request."}</Text></View><Ionicons name="arrow-forward" size={18} color={colors.teal} /></Pressable></View>;
+    return <View style={styles.section}><View style={styles.stepSymbol}><Ionicons name="help-buoy-outline" size={28} color={colors.surface} /></View><Text style={styles.title}>{locale === "sw" ? "Unahitaji msaada kuhusu nini?" : "What kind of problem do you need help with?"}</Text><Text style={styles.body}>{locale === "sw" ? "Chagua aina iliyo karibu zaidi. Unaweza kutoa maelezo katika hatua inayofuata." : "Choose the closest match. You can explain the details in the next step."}</Text><View style={styles.issueList}>{issueOptions.map((item) => { const selected = draft.issueCategory === item.key; return <Pressable key={item.key} accessibilityRole="radio" accessibilityState={{ checked: selected }} aria-checked={selected} style={[styles.issueOption, selected && styles.issueOptionSelected]} onPress={() => updateDraft({ issueCategory: item.key })}><View style={[styles.issueOptionIcon, selected && styles.issueOptionIconSelected]}><Ionicons name={item.icon} size={22} color={selected ? colors.surface : colors.burgundy} /></View><View style={styles.issueOptionCopy}><Text style={[styles.issueOptionTitle, selected && styles.issueOptionTitleSelected]}>{locale === "sw" ? item.sw : item.en}</Text><Text style={[styles.issueOptionBody, selected && styles.issueOptionBodySelected]}>{locale === "sw" ? item.swBody : item.enBody}</Text></View><Ionicons name={selected ? "checkmark-circle" : "chevron-forward"} size={21} color={selected ? colors.surface : colors.inkMuted} /></Pressable>; })}</View><Pressable style={styles.saadaHelp} onPress={() => router.push("/sara")}><Ionicons name="sparkles" size={20} color={colors.teal} /><View style={styles.issueOptionCopy}><Text style={styles.saadaHelpTitle}>{locale === "sw" ? "Huna uhakika? Muulize Saada" : "Not sure? Ask Saada"}</Text><Text style={styles.saadaHelpBody}>{locale === "sw" ? "Atakusaidia kuelewa chaguo bila kutuma ombi." : "Get guidance without submitting a request."}</Text></View><Ionicons name="arrow-forward" size={18} color={colors.teal} /></Pressable></View>;
   }
 
   function DescriptionStep() {
@@ -320,7 +340,7 @@ function Field({ label, value, onChangeText, autoCorrect }: { label: string; val
 }
 
 function Choice({ label, selected, onPress, danger = false }: { label: string; selected: boolean; onPress: () => void; danger?: boolean }) {
-  return <Pressable accessibilityRole="radio" accessibilityState={{ selected }} onPress={onPress} style={[styles.choice, selected && styles.choiceSelected, danger && selected && styles.choiceDanger]}><Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={danger && selected ? colors.danger : colors.burgundy} /><Text style={styles.choiceText}>{label}</Text></Pressable>;
+  return <Pressable accessibilityRole="radio" accessibilityState={{ checked: selected }} aria-checked={selected} onPress={onPress} style={[styles.choice, selected && styles.choiceSelected, danger && selected && styles.choiceDanger]}><Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={danger && selected ? colors.danger : colors.burgundy} /><Text style={styles.choiceText}>{label}</Text></Pressable>;
 }
 
 function ReviewRow({ label, value, icon, onEdit, locale }: { label: string; value: string; icon?: keyof typeof Ionicons.glyphMap; onEdit?: () => void; locale?: "sw" | "en" }) {
@@ -386,7 +406,7 @@ const styles = StyleSheet.create({
   restoreCard: { marginTop: spacing.xl, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: spacing.sm, borderRadius: radius.md, borderWidth: 1, borderColor: "#E8B8CC", backgroundColor: colors.softPink, padding: spacing.md },
   restoreText: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
   notice: { fontFamily: type.medium, fontWeight: "500", color: colors.success, marginTop: spacing.lg, textAlign: "center" },
-  actions: { gap: spacing.sm, marginTop: spacing.xxl },
+  actions: { gap: spacing.xs },
   error: { fontFamily: type.regular, color: colors.danger, marginTop: spacing.lg },
   fieldError: { marginTop: -spacing.md, fontFamily: type.regular, color: colors.danger, fontSize: 12, lineHeight: 17 },
   confirmScreen: { justifyContent: "center", paddingTop: spacing.xxl },

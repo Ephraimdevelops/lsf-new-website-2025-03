@@ -1,0 +1,2268 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Judicial Review Rules",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.title": [
+                "THE LAW REFORM (FATAL ACCIDENTS AND MISCELLANEOUS PROVISIONS) (<em>JUDICIAL</em> <em>REVIEW</em> PROCEDURE AND FEES) <em>RULES</em>, GN NO. 324 OF 2014"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "96774d57-b86d-4b19-a3fd-5ab67fe44f97",
+                "uuid": "96774d57-b86d-4b19-a3fd-5ab67fe44f97",
+                "name": "THE LAW REFORM (FATAL ACCIDENTS AND MISCELLANEOUS PROVISIONS) (JUDICIAL REVIEW PROCEDURE AND FEES) RULES, GN NO. 324 OF 2014",
+                "handle": "123456789/409",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHIEF JUSTICE, MOHAMED CHANDE OTHMAN",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-19T11:04:13Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-19T11:04:13Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2014-09-05",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These  Rules  shall  apply  to  applications  for the prerogative orders of mandamus,  prohibition and certiora­ ri. (Made  under section 19)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "These Rules may be cited as the Law Reform (Fatal  Accidents  and  Miscellaneous  Provisions)  (Judicial Review Procedure and Fees) Rules, 2014",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 – 034X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/409",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "PRINTED BY THE GOVERNMENT PRESS, DAR ES SALAAM - TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. NO. 324 OF 2014",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LAW REFORM (FATAL ACCIDENTS AND MISCELLANEOUS PROVISIONS) (JUDICIAL REVIEW PROCEDURE AND FEES) RULES, GN NO. 324 OF 2014",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LAW REFORM (FATAL ACCIDENTS AND MISCELLANEOUS PROVISIONS) ACT (CAP.  310)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:03:57.779Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "D.P. Valambhia [1995] T.L.R. 161.\r\n\r\n3.\tThe remedy for application for <em>review</em> that has been rejected by the High Court is revision since her right of appeal is blocked by <em>judicial</em> process in terms of XLII <em>Rule</em> 7(1) of the Civil Procedure Code. ",
+                "It is a settled law on <em>review</em> that the power of <em>review</em> should not be confused with appellate powers which enables an appellate court to correct all errors committed by the subordinate court.\r\n\r\n6.\t"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "0336e6ad-f866-4283-a35c-614002ee59d8",
+                "uuid": "0336e6ad-f866-4283-a35c-614002ee59d8",
+                "name": "RUTH MAKARANGA VS. SALUM AYUBU CIVIL APPLICATION NO. 363/17 OF 2021",
+                "handle": "123456789/1185",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KWARIKO.  J.A., MWANDAMBO, J.A. AND KENTE, J. A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-03T11:33:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-03T11:33:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-09-13",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "RUTH MAKARANGA VS. SALUM AYUBU COURT OF APPEAL OF TANZANIA\r\nAT DAR ES SALAAM (Kwariko, Mwandambo and Kente JJ.A)\r\nCIVIL APPLICATION NO. 363/17 OF 2021\r\n\r\nApplication for Revision from the Ruling and Order of the High Court of Tanzania (Land Division) at Dar es Salaam in Misc. Land Application No. 385 of 2020 by Mango, J)\r\nCivil Procedure and Practice- Revision- Whether non-inclusion of all records of the trial Court in application for revision is fatal?\r\nCivil Procedure and Practice- Revision- which matters are revisable by the Court of Appeal?\r\nCivil Procedure and Practice- Revision- whether the decision rejecting application for review by the High Court is revisable by the Court of Appeal?\r\nCivil Procedure and Practice- Review- Grounds for Review at the High Court?\r\nCivil Procedure and Practice- Review- limits of power of the Court when exercising power of review?\r\nCivil Procedure and Practice-Review -error on face of record- what constitutes apparent error on face of record?\r\nFacts;\r\n By a notice of motion taken under section 4(3) of the Appellate Jurisdiction Act (the AJA) and rule 65 (1)(2)(3)(4) and (5) of the Tanzania Court of Appeal Rules, 2009, the applicant is moving the Court to revise the decision of the High Court of Tanzania (Mango, 1), Land Division at Dar es Salaam. The impugned ruling arises from an application for review in Misc. Land Application No. 385 of 2020 on the ground that there is an apparent error on the face of the record. \r\nThe Application was intimated with preliminary objections on grounds that; the application is incompetent for failure to include the proceedings of the lower courts; and, that the application is incompetent and bad in law for being preferred as an alternative to appeal. \r\nHeld;\r\n1.\tAs a general rule it is the duty of the applicant to lodge with the Court a complete record of the proceedings sought to be revised as stated in the case of Zanair Limited and Another v. Hassan & Sons Ltd, Civil Application No.348/15 of 2017 (unreported). However, the entire record of proceedings of the lower courts are not necessary for the determination of this application revision and therefore non-inclusion is not fatal especially where the decision or order sought to be revised is included.\r\n\r\n2.\tIt is trite law that revisional jurisdiction of the Court is exercisable in matters which are not appealable to the Court with or without leave or where the appellate process has been blocked by a judicial process. The Court reinstated the principles in the case of Halais Pro-Chemie v. Wella A. G [1996] T.L.R. 269, Moses Mwakibete v. Editor-Uhuru & Two Others [1995] T.L.R. 134 and Transport Equipment Ltd. v. D.P. Valambhia [1995] T.L.R. 161.\r\n\r\n3.\tThe remedy for application for review that has been rejected by the High Court is revision since her right of appeal is blocked by judicial process in terms of XLII Rule 7(1) of the Civil Procedure Code. The Court also reiterated its earlier stance as stated in the case of Bin Kuleb Transport Company Limited v. Registrar of Titles & Three Others, Civil Application No. 522/17 of 2020 (unreported)\r\n\r\n4.\tIn terms of Order XLII Rule 1 of the Civil Procedure Code, the Court has power to review its decision on three grounds; one, discovery of new evidence which could not have been produced or come to the party's knowledge after exercise of due diligence; two, some mistake or error apparent on the face of the record or; three, for any sufficient reason.\r\n\r\n5.\tIt is a settled law on review that the power of review should not be confused with appellate powers which enables an appellate court to correct all errors committed by the subordinate court.\r\n\r\n6.\tApparent error on face of record is a self-evident error on the face of the record not involving an examination or arguments to establish it. an error which has to be established by a long-drawn process or arguments and reasoning to establish it on points capable of two opinions cannot qualify to be an error apparent on the face of the record. The Court made reference to it in its decision in the case of Chandrakant Joshubhai Patel v. R [2004] T.L.R. 218, Karim Kiara v. R, Criminal Application No. 4 of 2007 and Epson s/o Michael v. R, Criminal Application No. 5 of 2009 (both unreported)\r\nApplication dismissed with costs\r\nStatutory provision referred to;\r\n1.\tCivil Procedure Code, [Cap 33 R.E 2019], Order XLII Rule 1, 7(1)\r\nCase laws referred to;\r\n1.\tHalais Pro-Chemie v. Wella A. G [1996] T.L.R. 269,\r\n2.\t Moses Mwakibete v. Editor-Uhuru & Two Others [1995] T.L.R. 134 \r\n3.\tTransport Equipment Ltd. v. D.P. Valambhia [1995] T.L.R. 161.\r\n4.\tChandrakant Joshubhai Patel v. R [2004] T.L.R. 218, \r\n5.\tKarim Kiara v. R, Criminal Application No. 4 of 2007 (unreported)\r\n6.\t Epson s/o Michael v. R, Criminal Application No. 5 of 2009 (unreported)\r\n7.\tBin Kuleb Transport Company Limited v. Registrar of Titles & Three Others, Civil Application No. 522/17 of 2020 (unreported)\r\n8.\tZanair Limited and Another v. Hassan & Sons Ltd, Civil Application No.348/15 of 2017 (unreported).",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "1.\tAs a general rule it is the duty of the applicant to lodge with the Court a complete record of the proceedings sought to be revised as stated in the case of Zanair Limited and Another v. Hassan & Sons Ltd, Civil Application No.348/15 of 2017 (unreported). However, the entire record of proceedings of the lower courts are not necessary for the determination of this application revision and therefore non-inclusion is not fatal especially where the decision or order sought to be revised is included.\r\n\r\n2.\tIt is trite law that revisional jurisdiction of the Court is exercisable in matters which are not appealable to the Court with or without leave or where the appellate process has been blocked by a judicial process. The Court reinstated the principles in the case of Halais Pro-Chemie v. Wella A. G [1996] T.L.R. 269, Moses Mwakibete v. Editor-Uhuru & Two Others [1995] T.L.R. 134 and Transport Equipment Ltd. v. D.P. Valambhia [1995] T.L.R. 161.\r\n\r\n3.\tThe remedy for application for review that has been rejected by the High Court is revision since her right of appeal is blocked by judicial process in terms of XLII Rule 7(1) of the Civil Procedure Code. The Court also reiterated its earlier stance as stated in the case of Bin Kuleb Transport Company Limited v. Registrar of Titles & Three Others, Civil Application No. 522/17 of 2020 (unreported)\r\n\r\n4.\tIn terms of Order XLII Rule 1 of the Civil Procedure Code, the Court has power to review its decision on three grounds; one, discovery of new evidence which could not have been produced or come to the party's knowledge after exercise of due diligence; two, some mistake or error apparent on the face of the record or; three, for any sufficient reason.\r\n\r\n5.\tIt is a settled law on review that the power of review should not be confused with appellate powers which enables an appellate court to correct all errors committed by the subordinate court.\r\n\r\n6.\tApparent error on face of record is a self-evident error on the face of the record not involving an examination or arguments to establish it. an error which has to be established by a long-drawn process or arguments and reasoning to establish it on points capable of two opinions cannot qualify to be an error apparent on the face of the record. The Court made reference to it in its decision in the case of Chandrakant Joshubhai Patel v. R [2004] T.L.R. 218, Karim Kiara v. R, Criminal Application No. 4 of 2007 and Epson s/o Michael v. R, Criminal Application No. 5 of 2009 (both unreported)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1185",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "RUTH MAKARANGA VS. SALUM AYUBU CIVIL APPLICATION NO. 363/17 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 363/17 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:58:02.879Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/0336e6ad-f866-4283-a35c-614002ee59d8"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "D.P. Valambhia [1995] T.L.R. 161.\r\n\r\n3.\tThe remedy for application for <em>review</em> that has been rejected by the High Court is revision since her right of appeal is blocked by <em>judicial</em> process in terms of XLII <em>Rule</em> 7(1) of the Civil Procedure Code. ",
+                "It is a settled law on <em>review</em> that the power of <em>review</em> should not be confused with appellate powers which enables an appellate court to correct all errors committed by the subordinate court.\r\n\r\n6.\t"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "e50305a1-8e0c-4114-a804-5f9934701ae4",
+                "uuid": "e50305a1-8e0c-4114-a804-5f9934701ae4",
+                "name": "RUTH MAKARANGA VS. SALUM AYUBU. CIVIL APPLICATION NO. 363/17 OF 2021",
+                "handle": "123456789/1190",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KWARIKO. J.A.., MWANDAMBO. J.A. And KENTE. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-04T06:22:55Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-04T06:22:55Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-09-13",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "RUTH MAKARANGA VS. SALUM AYUBU\r\nCOURT OF APPEAL OF TANZANIA\r\nAT DAR ES SALAAM\r\n(Kwariko, Mwandambo and Kente JJ.A)\r\nCIVIL APPLICATION NO. 363/17 OF 2021\r\n(Application for Revision from the Ruling and Order of the High Court of Tanzania (Land Division) at Dar es Salaam in Misc. Land Application No. 385 of 2020 by Mango, J)\r\nCivil Procedure and Practice- Revision- Whether non-inclusion of all records of the trial Court in application for revision is fatal?\r\nCivil Procedure and Practice- Revision- which matters are revisable by the Court of Appeal?\r\nCivil Procedure and Practice- Revision- whether the decision rejecting application for review by the High Court is revisable by the Court of Appeal?\r\nCivil Procedure and Practice- Review- Grounds for Review at the High Court?\r\nCivil Procedure and Practice- Review- limits of power of the Court when exercising power of review?\r\nCivil Procedure and Practice-Review -error on face of record- what constitutes apparent error on face of record?\r\nFacts;\r\n By a notice of motion taken under section 4(3) of the Appellate Jurisdiction Act (the AJA) and rule 65 (1)(2)(3)(4) and (5) of the Tanzania Court of Appeal Rules, 2009, the applicant is moving the Court to revise the decision of the High Court of Tanzania (Mango, 1), Land Division at Dar es Salaam. The impugned ruling arises from an application for review in Misc. Land Application No. 385 of 2020 on the ground that there is an apparent error on the face of the record. \r\nThe Application was intimated with preliminary objections on grounds that; the application is incompetent for failure to include the proceedings of the lower courts; and, that the application is incompetent and bad in law for being preferred as an alternative to appeal. \r\nHeld;\r\n1.\tAs a general rule it is the duty of the applicant to lodge with the Court a complete record of the proceedings sought to be revised as stated in the case of Zanair Limited and Another v. Hassan & Sons Ltd, Civil Application No.348/15 of 2017 (unreported). However, the entire record of proceedings of the lower courts are not necessary for the determination of this application revision and therefore non-inclusion is not fatal especially where the decision or order sought to be revised is included.\r\n\r\n2.\tIt is trite law that revisional jurisdiction of the Court is exercisable in matters which are not appealable to the Court with or without leave or where the appellate process has been blocked by a judicial process. The Court reinstated the principles in the case of Halais Pro-Chemie v. Wella A. G [1996] T.L.R. 269, Moses Mwakibete v. Editor-Uhuru & Two Others [1995] T.L.R. 134 and Transport Equipment Ltd. v. D.P. Valambhia [1995] T.L.R. 161.\r\n\r\n3.\tThe remedy for application for review that has been rejected by the High Court is revision since her right of appeal is blocked by judicial process in terms of XLII Rule 7(1) of the Civil Procedure Code. The Court also reiterated its earlier stance as stated in the case of Bin Kuleb Transport Company Limited v. Registrar of Titles & Three Others, Civil Application No. 522/17 of 2020 (unreported)\r\n\r\n4.\tIn terms of Order XLII Rule 1 of the Civil Procedure Code, the Court has power to review its decision on three grounds; one, discovery of new evidence which could not have been produced or come to the party's knowledge after exercise of due diligence; two, some mistake or error apparent on the face of the record or; three, for any sufficient reason.\r\n\r\n5.\tIt is a settled law on review that the power of review should not be confused with appellate powers which enables an appellate court to correct all errors committed by the subordinate court.\r\n\r\n6.\tApparent error on face of record is a self-evident error on the face of the record not involving an examination or arguments to establish it. an error which has to be established by a long-drawn process or arguments and reasoning to establish it on points capable of two opinions cannot qualify to be an error apparent on the face of the record. The Court made reference to it in its decision in the case of Chandrakant Joshubhai Patel v. R [2004] T.L.R. 218, Karim Kiara v. R, Criminal Application No. 4 of 2007 and Epson s/o Michael v. R, Criminal Application No. 5 of 2009 (both unreported)\r\nApplication dismissed with costs\r\nStatutory provision referred to;\r\n1.\tCivil Procedure Code, [Cap 33 R.E 2019], Order XLII Rule 1, 7(1)\r\nCase laws referred to;\r\n1.\tHalais Pro-Chemie v. Wella A. G [1996] T.L.R. 269,\r\n2.\t Moses Mwakibete v. Editor-Uhuru & Two Others [1995] T.L.R. 134 \r\n3.\tTransport Equipment Ltd. v. D.P. Valambhia [1995] T.L.R. 161.\r\n4.\tChandrakant Joshubhai Patel v. R [2004] T.L.R. 218, \r\n5.\tKarim Kiara v. R, Criminal Application No. 4 of 2007 (unreported)\r\n6.\t Epson s/o Michael v. R, Criminal Application No. 5 of 2009 (unreported)\r\n7.\tBin Kuleb Transport Company Limited v. Registrar of Titles & Three Others, Civil Application No. 522/17 of 2020 (unreported)\r\n8.\tZanair Limited and Another v. Hassan & Sons Ltd, Civil Application No.348/15 of 2017 (unreported).",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held;\r\n1.\tAs a general rule it is the duty of the applicant to lodge with the Court a complete record of the proceedings sought to be revised as stated in the case of Zanair Limited and Another v. Hassan & Sons Ltd, Civil Application No.348/15 of 2017 (unreported). However, the entire record of proceedings of the lower courts are not necessary for the determination of this application revision and therefore non-inclusion is not fatal especially where the decision or order sought to be revised is included.\r\n\r\n2.\tIt is trite law that revisional jurisdiction of the Court is exercisable in matters which are not appealable to the Court with or without leave or where the appellate process has been blocked by a judicial process. The Court reinstated the principles in the case of Halais Pro-Chemie v. Wella A. G [1996] T.L.R. 269, Moses Mwakibete v. Editor-Uhuru & Two Others [1995] T.L.R. 134 and Transport Equipment Ltd. v. D.P. Valambhia [1995] T.L.R. 161.\r\n\r\n3.\tThe remedy for application for review that has been rejected by the High Court is revision since her right of appeal is blocked by judicial process in terms of XLII Rule 7(1) of the Civil Procedure Code. The Court also reiterated its earlier stance as stated in the case of Bin Kuleb Transport Company Limited v. Registrar of Titles & Three Others, Civil Application No. 522/17 of 2020 (unreported)\r\n\r\n4.\tIn terms of Order XLII Rule 1 of the Civil Procedure Code, the Court has power to review its decision on three grounds; one, discovery of new evidence which could not have been produced or come to the party's knowledge after exercise of due diligence; two, some mistake or error apparent on the face of the record or; three, for any sufficient reason.\r\n\r\n5.\tIt is a settled law on review that the power of review should not be confused with appellate powers which enables an appellate court to correct all errors committed by the subordinate court.\r\n\r\n6.\tApparent error on face of record is a self-evident error on the face of the record not involving an examination or arguments to establish it. an error which has to be established by a long-drawn process or arguments and reasoning to establish it on points capable of two opinions cannot qualify to be an error apparent on the face of the record. The Court made reference to it in its decision in the case of Chandrakant Joshubhai Patel v. R [2004] T.L.R. 218, Karim Kiara v. R, Criminal Application No. 4 of 2007 and Epson s/o Michael v. R, Criminal Application No. 5 of 2009 (both unreported)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1190",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "RUTH MAKARANGA VS. SALUM AYUBU. CIVIL APPLICATION NO. 363/17 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 363/17 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:46.239Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e50305a1-8e0c-4114-a804-5f9934701ae4"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "The court held that the disciplinary hearing is internal process by the employer governed by <em>Rule</em> 13 of the Code of Good Practice and the CMA proceedings as a quasi-<em>judicial</em> tribunal conducts a fresh hearing and that CMA is not an appellate body <em>reviewing</em> disciplinary hearing."
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "393c04c1-2c8b-4a37-a748-bc393a37b47a",
+                "uuid": "393c04c1-2c8b-4a37-a748-bc393a37b47a",
+                "name": "ALLY AHMED MWERANI v. NATIONAL MICROFINACE BANK (NMB PLC), CIVIL APPEAL NO. 933 OF 2025.",
+                "handle": "123456789/4893",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MKUYE, J.A.,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-08-18T09:49:39Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-03-05",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The court held that the disciplinary hearing is internal process by the employer governed by Rule 13 of the Code of Good Practice and the CMA proceedings as a quasi-judicial tribunal conducts a fresh hearing and that CMA is not an appellate body reviewing disciplinary hearing.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4893",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 933 OF 2025",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ALLY AHMED MWERANI v. NATIONAL MICROFINACE BANK (NMB PLC), CIVIL APPEAL NO. 933 OF 2025.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-08-18T10:00:39.071804Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/393c04c1-2c8b-4a37-a748-bc393a37b47a"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "08e59aeb-e6dc-41ee-844a-30d56e86d336",
+                "uuid": "08e59aeb-e6dc-41ee-844a-30d56e86d336",
+                "name": "GOLDEN PALM LIMITED V.S COSMOS PROPERTIES LIMITED CIVIL APPLICATION NO. 561/01 OF 2019",
+                "handle": "123456789/1044",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NDIKA, FIKIRINI, J.A. AND KIHWELO, J.A J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-04-21T07:33:16Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-04-21T07:33:16Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-09-13",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "GOLDEN PALM LIMITED VS. COSMOS PROPERTIES LIMITED COURT OF APPEAL OF TANZANIA AT DAR ES SALAAM (Ndika, Fikirini, and Kihwelo JJ.A)\r\nCIVIL APPLICATION NO. 561/01 OF 2019\r\n\r\n(Application for Revision from the decision of the High Court of Tanzania at Dar es Salaam in Civil Case No. 154 of 2014 by Mutungi J)\r\nCivil Procedure and Practice- Revision- Whether the decision of high refusing grant of extension of time is subject to revisional power of the Court of Appeal?\r\nCivil Procedure and Practice- Application to set aside dismissal order- whether the decision declining to set aside dismissal order is appealable?\r\n\r\nFacts;\r\n\r\nThis is an application for revision of the order of the High Court in Civil Case No.154 of 2014 where the trial Court dismissed the suit. The basis for this application is borne on the ground that the trial Court had no jurisdiction to determine the suit whos the subject matter was a landed property and the fact that the trial Court refused to extend time for which an application for review on ground of jurisdiction may be raised despite the fact that the question of jurisdiction may be raised at any time.\r\n\r\nAt the trial Court the suit was dismissed for non-appearance of the Applicant. The Applicant attempted to have the suit restored by preferring the application to set aside dismissal order unsuccessfully. The Applicant decided to apply for extension of time for which to lodge a review which also was unsuccessfully and dismissed with costs. Being further aggrieved, the Applicant lodged an application for extension of time before the Court of Appeal for which to lodge revision which was granted and hence this application for revision.\r\n\r\nHeld;\r\n\r\n1.\tA party to the proceedings before the High Court cannot invoke revisional powers of the Court of Appeal as alternative to the appellate powers unless there are exceptional circumstances warranting that course or where the appellate process has been blocked by judicial process. The Court relied on the principles stated in the case of Halais Pro-Chemie v. Wella A.G. [1996] T.L.R. 269; Moses Mwakibete v. The Editor - Uhuru, Shirika la Magazeti ya Chama and National Printing Co. Ltd [1995] T.L.R. 134 and Transport Equipment Ltd. v. Devram P. Valambhia [1995] T.L.R. 161\r\n\r\n2.\tThe High Court's order refusing to set aside the dismissal had the effect of finally and conclusively determining the rights of the parties in the suit, therefore the order is appealable to this Court in terms of section 5 (1) (c) of the Appellate Jurisdiction Act.\r\n\r\nApplication was strike out with no order to costs.\r\nStatutory provisions referred;\r\n1.\tAppellate Jurisdiction Act, Section 5(1)(c)\r\nCase law referred to;\r\n\r\n1.\tHalais Pro-Chemie v. Wella A.G. [1996] T.L.R. 269; \r\n2.\tMoses Mwakibete v. The Editor - Uhuru, Shirika la Magazeti ya Chama and National Printing Co. Ltd [1995] T.L.R. 134 and \r\n3.\tTransport Equipment Ltd. v. Devram P. Valambhia [1995] T.L.R. 161",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "1.\tA party to the proceedings before the High Court cannot invoke revisional powers of the Court of Appeal as alternative to the appellate powers unless there are exceptional circumstances warranting that course or where the appellate process has been blocked by judicial process. The Court relied on the principles stated in the case of Halais Pro-Chemie v. Wella A.G. [1996] T.L.R. 269; Moses Mwakibete v. The Editor - Uhuru, Shirika la Magazeti ya Chama and National Printing Co. Ltd [1995] T.L.R. 134 and Transport Equipment Ltd. v. Devram P. Valambhia [1995] T.L.R. 161\r\n\r\n2.\tThe High Court's order refusing to set aside the dismissal had the effect of finally and conclusively determining the rights of the parties in the suit, therefore the order is appealable to this Court in terms of section 5 (1) (c) of the Appellate Jurisdiction Act.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1044",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "GOLDEN PALM LIMITED V.S COSMOS PROPERTIES LIMITED CIVIL APPLICATION NO. 561/01 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 561/01 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:58:22.982Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/08e59aeb-e6dc-41ee-844a-30d56e86d336"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "6498c63c-469f-4bc8-b01d-c26de7d76340",
+                "uuid": "6498c63c-469f-4bc8-b01d-c26de7d76340",
+                "name": "GOLDEN PALM LIMITED VS. COSMOS PROPERTIES LIMITED. CIVIL APPLICATION NO. 561/01 OF 2019",
+                "handle": "123456789/1194",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NDIKA. J.A., FIKIRINI. J.A., And KIHWELO. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-04T06:44:38Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-04T06:44:38Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-09-12",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "GOLDEN PALM LIMITED VS. COSMOS PROPERTIES LIMITED\r\nCOURT OF APPEAL OF TANZANIA\r\nAT DAR ES SALAAM\r\n(Ndika, Fikirini and Kihwelo JJ.A)\r\nCIVIL APPLICATION NO. 561/01 OF 2019\r\n(Application for Revision from the decision of the High Court of Tanzania at Dar es Salaam in Civil Case No. 154 of 2014 by Mutungi J)\r\nCivil Procedure and Practice- Revision- Whether the decision of high refusing grant of extension of time is subject to revisional power of the Court of Appeal?\r\nCivil Procedure and Practice- Application to set aside dismissal order- whether the decision declining to set aside dismissal order is appealable?\r\nFacts;\r\nThis is an application for revision of the order of the High Court in Civil Case No.154 of 2014 where the trial Court dismissed the suit. The basis for this application is borne on the ground that the trial Court had no jurisdiction to determine the suit whos the subject matter was a landed property and the fact that the trial Court refused to extend time for which an application for review on ground of jurisdiction may be raised despite the fact that the question of jurisdiction may be raised at any time.\r\nAt the trial Court the suit was dismissed for non-appearance of the Applicant. The Applicant attempted to have the suit restored by preferring the application to set aside dismissal order unsuccessfully. The Applicant decided to apply for extension of time for which to lodge a review which also was unsuccessfully and dismissed with costs. Being further aggrieved, the Applicant lodged an application for extension of time before the Court of Appeal for which to lodge revision which was granted and hence this application for revision.\r\n\r\nHeld;\r\n1.\tA party to the proceedings before the High Court cannot invoke revisional powers of the Court of Appeal as alternative to the appellate powers unless there are exceptional circumstances warranting that course or where the appellate process has been blocked by judicial process. The Court relied on the principles stated in the case of Halais Pro-Chemie v. Wella A.G. [1996] T.L.R. 269; Moses Mwakibete v. The Editor - Uhuru, Shirika la Magazeti ya Chama and National Printing Co. Ltd [1995] T.L.R. 134 and Transport Equipment Ltd. v. Devram P. Valambhia [1995] T.L.R. 161\r\n\r\n2.\tThe High Court's order refusing to set aside the dismissal had the effect of finally and conclusively determining the rights of the parties in the suit, therefore the order is appealable to this Court in terms of section 5 (1) (c) of the Appellate Jurisdiction Act.\r\n\r\nApplication was strike out with no order to costs.\r\nStatutory provisions referred;\r\n1.\tAppellate Jurisdiction Act, Section 5(1)(c)\r\nCase law referred to;\r\n1.\tHalais Pro-Chemie v. Wella A.G. [1996] T.L.R. 269; \r\n2.\tMoses Mwakibete v. The Editor - Uhuru, Shirika la Magazeti ya Chama and National Printing Co. Ltd [1995] T.L.R. 134 and \r\n3.\tTransport Equipment Ltd. v. Devram P. Valambhia [1995] T.L.R. 161",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held;\r\n1.\tA party to the proceedings before the High Court cannot invoke revisional powers of the Court of Appeal as alternative to the appellate powers unless there are exceptional circumstances warranting that course or where the appellate process has been blocked by judicial process. The Court relied on the principles stated in the case of Halais Pro-Chemie v. Wella A.G. [1996] T.L.R. 269; Moses Mwakibete v. The Editor - Uhuru, Shirika la Magazeti ya Chama and National Printing Co. Ltd [1995] T.L.R. 134 and Transport Equipment Ltd. v. Devram P. Valambhia [1995] T.L.R. 161\r\n\r\n2.\tThe High Court's order refusing to set aside the dismissal had the effect of finally and conclusively determining the rights of the parties in the suit, therefore the order is appealable to this Court in terms of section 5 (1) (c) of the Appellate Jurisdiction Act.\r\n\r\nApplication was strike out with no order to costs",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1194",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "GOLDEN PALM LIMITED VS. COSMOS PROPERTIES LIMITED. CIVIL APPLICATION NO. 561/01 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 561/01 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:46.342Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6498c63c-469f-4bc8-b01d-c26de7d76340"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3128b5a1-dbb7-4400-9446-a57acbfe44f4",
+                "uuid": "3128b5a1-dbb7-4400-9446-a57acbfe44f4",
+                "name": "ABDALLAH SOSPETER @ MABOMBA  VERSUS  THE REPUBLIC. CRIMINAL APPLICATION NO. 36/08 OF 2021",
+                "handle": "123456789/2572",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KHAMIS. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-10-15T07:24:46Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2007-03-19",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Abdallah Sospeter @ Mabomba, the applicant herein, was convicted of the offence of armed robbery contrary to sections 285 and 286 of the Penal Code and gang rape contrary to section 131'A' (2) of the then Sexual Offences Special Provisions Act, No. 4 of 1998. Upon mitigation, he was sentenced to thirty (30) years imprisonment for the first count and life imprisonment for the second count. The sentences were to run concurrently.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/2572",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CRIMINAL APPLICATION NO. 36/08 OF 2021",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ABDALLAH SOSPETER @ MABOMBA  VERSUS  THE REPUBLIC. CRIMINAL APPLICATION NO. 36/08 OF 2021",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-15T08:00:39.133250Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3128b5a1-dbb7-4400-9446-a57acbfe44f4"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "854ca3ad-4c25-4009-a5d8-8788ab6397fc",
+                "uuid": "854ca3ad-4c25-4009-a5d8-8788ab6397fc",
+                "name": "RUTH MAKARANGA VERSUS  SALUM AYUBU.  CIVIL APPLICATION NO. 363/17 OF 2021",
+                "handle": "123456789/2558",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KWARIKO. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MWANDAMBO. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "KENTE. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-10-13T12:01:07Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-06-18",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "By a notice of motion taken under section 4(3) of the Appellate Jurisdiction Act (the AJA) and rule 65 (1)(2)(3)(4) and (5) of the Tanzania Court of Appeal Rules, 2009, the applicant is moving the Court to revise the decision of the High Court of Tanzania (Mango, 1), Land Division at Dar es Salaam. The impugned ruling arises from an application for review in Misc. Land Application No. 385 of 2020 on the ground that there is an apparent error on the face of the record.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/2558",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 363/17 OF 2021",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "RUTH MAKARANGA VERSUS  SALUM AYUBU.  CIVIL APPLICATION NO. 363/17 OF 2021",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-13T14:00:50.149920Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/854ca3ad-4c25-4009-a5d8-8788ab6397fc"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "751b5a87-00da-4870-8dc6-1db9075c678d",
+                "uuid": "751b5a87-00da-4870-8dc6-1db9075c678d",
+                "name": "THE JUDICIARY ADMINISTRATION ACT, CHAPTER 237. R.E. 2023",
+                "handle": "123456789/2265",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-08-07T08:24:59Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-08-07T08:24:59Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-07-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to make better provisions for the administration of the Judiciary; to establish the Judiciary Service; to put in place the offices of the Chief Court Administrator and the Chief Registrar; to provide for the establishment of the Judiciary Fund; to repeal the Judicial Service Act, and to provide for related matters",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/2265",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 237",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE JUDICIARY ADMINISTRATION ACT, CHAPTER 237. R.E. 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:10:22.710234Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/751b5a87-00da-4870-8dc6-1db9075c678d"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "9147d401-42a1-4379-aecf-b30669c51cd9",
+                "uuid": "9147d401-42a1-4379-aecf-b30669c51cd9",
+                "name": "ARBOGAST ARSTIDES AND 3 OTHERS VS. ST. JOHN UNIVERSITY OF TANZANIA .",
+                "handle": "123456789/562",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "JUSTICE  OF  APPEAL, JUMA,  C.J.:",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "WAMBALI, MKUYE, J.A. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-10-10T08:47:24Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-10-10T08:47:24Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-09-15",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This appeal arises from the decision of the High Court at Dodoma dated 15/03/2018 which  dismissed the appellants' application for prerogative orders of certiorari and mandamus.The  appellants, ARBOGAST ARSTIDES, HELLO PETER, JOHN ONESMO and GRACE  DANIEL, were third year Bachelor of Science Degree (Education) students at the respondent  ST. JOHN'S UNIVERSITY OF TANZANIA  at Dodoma.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/562",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DODOMA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "CIVIL APPEAL NO. 26 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ARBOGAST ARSTIDES AND 3 OTHERS VS. ST. JOHN UNIVERSITY OF TANZANIA .",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL  NO. 26 OF 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:03:38.854Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/9147d401-42a1-4379-aecf-b30669c51cd9"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "f8ec84fd-7192-40cc-a421-f6726f5ed411",
+                "uuid": "f8ec84fd-7192-40cc-a421-f6726f5ed411",
+                "name": "INTERNATIONAL AND DOMESTIC: AVIATION DISPUTES SERVING THE STATE, SHAPING THE FUTURE",
+                "handle": "123456789/4403",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "OSG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-05-19T14:24:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2026",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Aviation is critical for trade, tourism, security and \neconomic growth.\n•International conventions impose obligations on States \nand carriers.\n•Aviation accidents and operational disruptions attract \nsignificant public scrutiny.\nand State resources\nclaims.\n•Effective dispute management protects public interest \n•The State faces increasing exposure to aviation-related \n•Cross-border aviation disputes involve complex jurisdictional \nissues",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "OSG (2026) INTERNATIONAL AND DOMESTIC: AVIATION DISPUTES SERVING THE STATE, SHAPING THE FUTURE",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4403",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "OSG",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "INTERNATIONAL AND DOMESTIC: AVIATION DISPUTES SERVING THE STATE, SHAPING THE FUTURE",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Presentation",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-05-19T14:30:51.740845Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f8ec84fd-7192-40cc-a421-f6726f5ed411"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "d8711155-bed7-4743-95f2-885a913540d0",
+                "uuid": "d8711155-bed7-4743-95f2-885a913540d0",
+                "name": "COSTANTINE VICTOR JOHN VS. MUHIMBILI NATIONAL HOSPITAL. CIVIL APPLICATION NO. 188/01 OF 2021.",
+                "handle": "123456789/1283",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MKUYE, KENTE. J.A. And KIHWELO. J.A. J. A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-11T09:44:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-11T09:44:35Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-10-19",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "COSTANTINE VICTOR JOHN VS. MUHIMBILI NATIONAL HOSPITAL IN THE COURT OF APPEAL OF TANZANIA AT DAR ES SALAAM (CORAM: MKUYE. J.A. KENTE. J.A. And KIHWELO. J.A.) CIVIL APPLICATION NO. 188/01 OF 2021\r\n\r\n[Arising from the Decision of the Court of Appeal of Tanzania at Dar es Salaam] (Mbarouk J.A, Mwarija J.A  and Mziray J. A dated 25th day of January, 2016 \r\nin Civil Application No. 44 of 2013\r\n\r\nCivil Law and Practice- Review of Courts Judgments- Grounds for the Court to review her own judgment \r\nCivil Law and Practise- Review of Courts Judgments- Whether you can raise a new grounds not raised before during review.\r\nLabor Law- Termination of employment- Termination basing on  absence from work without permission or without acceptable reason have to be more than five working days\r\n\r\nThis is an application for review of the Ruling of this Court which revised and set aside the decisions of both Labour Court and the Commission for Mediation and Arbitration (the CMA) and found that the applicant's termination was based on justifiable reasons. The application is brought under Rule 66 (1) (a) of the Tanzania Court of Appeal Rules, 2009 (the Rules), the applicant has fronted four grounds as follows; That the decision was based on a manifest error on the face o f the record because the court failed to consider that Exhibit D5 which contravened section 12 (c) o f the Muhimbiii National Hospital Act, No. 3 o f 2002 and regulation 10.4.3 and 10.6.b o f the Kanuni za Wafanyakazi, Hospitali ya Taifa ya Muhimbiii. (b) That the decision was based on a manifest error on the face of the record as the Court based on manifest error on the face of the record because of one, the courts failure to consider Exh. D5 which contravened section 12(c) of Muhimbili National Hospital Act, No. 3 of 2003 and rule 10.4.3 and 10.6.b of the Kanuni za Wafanyakazi, Hospital ya Taifa ya Muhimbili; two failure to consider that Exh. D5 did not qualify to be called the  termination letter but an information for abscondment; three failure to consider that the unexplained seven days among them were weekend and public holidays; and four that the court did not consider that the applicant reported at work on 24/9/2009\r\n\r\nHeld;\r\nThe said grounds one, two and four  are not grounds of review envisaged under Rule 66 (1) (a) of the Rules as they require the Court to re-asses the evidence. \r\nThe raised grounds do not depict an obvious or patent error which can be established without a long-drawn process of reasoning whereby there may be two opinions\r\nThat this is a new ground as it is not pegged under any provision of Rule 66(1) of the Rules.\r\nWe are of the considered view that the applicant's employment ought not to have been terminated since his absence from work without permission or without acceptable reason was not more than five working days and, therefore, in agreement with Mr. Mabula that had the Court been  availed with this information, it would not have arrived at that conclusion.\r\nStatutes Refereed;\r\nRule 66 of the Court of Appeal Rules\r\n59 (1) (g) of the Evidence Act, [Cap 6 R.E. 2019],\r\nsection 12 (c) of the Muhimbili National Hospital Act\r\nCases Referred;\r\nRoshan Meghee & Company Limited v. Commissioner General of Tanzania Revenue Authority [2017] T.L.R. 482\r\nAfrican Marble Company Limited (AMC) v. Tanzania Saruji Corporation TSC, Civil Application No. 132 of 2005 (unreported)\r\n\r\nChandrakant Joshubhai Patel v. Republic, [2004] TLR 218). \r\nPatrick Sanga v. Republic, Criminal Application No. 8 of 2011 (unreported) \r\n Charles Barnabas v. Republic, Criminal Application No. 13 of 2009 ( unreported).\r\nAbel Mwamwezi v. Republic, Criminal Application No. 1 of 2013 (unreported)\r\nSudy Mashana @ Kasala v. Republic, Criminal Application No. 2/09 of 2018 (unreported).\r\nKarim Kiara v. Republic, Criminal Application No. 4 of 2007( unreported).\r\nJaphet Msigwa v. Republic, Criminal Application No. 7 of 2011 ( unreported).\r\n Eusebia Nyenzi v. Republic, Criminal Application No. 6 of 2013 ( unreported).\r\n\r\nthe applicant was represented by Mr. Josephat Mabula, learned advocate whereas the respondent had the services of Ms. Alice Mtulo, learned Senior State Attorney assisted by Ms. Debora Mcharo and Mr. Rashid Mohamed, both learned State Attorneys.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The said grounds one, two and four  are not grounds of review envisaged under Rule 66 (1) (a) of the Rules as they require the Court to re-asses the evidence. \r\nThe raised grounds do not depict an obvious or patent error which can be established without a long-drawn process of reasoning whereby there may be two opinions\r\nThat this is a new ground as it is not pegged under any provision of Rule 66(1) of the Rules.\r\nWe are of the considered view that the applicant's employment ought not to have been terminated since his absence from work without permission or without acceptable reason was not more than five working days and, therefore, in agreement with Mr. Mabula that had the Court been  availed with this information, it would not have arrived at that conclusion.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1283",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "COSTANTINE VICTOR JOHN VS. MUHIMBILI NATIONAL HOSPITAL. CIVIL APPLICATION NO. 188/01 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 188/01 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:06.135Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d8711155-bed7-4743-95f2-885a913540d0"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 11,
+        "totalElements": 127
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%20Review%20Rules&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%20Review%20Rules&page=10&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%20Review%20Rules&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Judicial%20Review%20Rules&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Judicial%20Review%20Rules&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 30,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "JAMHURI YA MUUNGANO WA TANZANIA",
+              "count": 20,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.author=JAMHURI%20YA%20MUUNGANO%20WA%20TANZANIA,equals"
+                }
+              }
+            },
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 8,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "MWIHAMBI, NENELWA J.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.author=MWIHAMBI,%20NENELWA%20J.,equals"
+                }
+              }
+            },
+            {
+              "label": "OFFICE OF THE SOLICITOR GENERAL",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.author=OFFICE%20OF%20THE%20SOLICITOR%20GENERAL,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Judicial%20Review%20Rules&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Judicial%20Review%20Rules&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "DAR ES SALAAM.",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.subject=DAR%20ES%20SALAAM.,equals"
+                }
+              }
+            },
+            {
+              "label": "2022",
+              "count": 9,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.subject=2022,equals"
+                }
+              }
+            },
+            {
+              "label": "2024",
+              "count": 8,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.subject=2024,equals"
+                }
+              }
+            },
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 21",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.subject=CHAPTER%2021,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Judicial%20Review%20Rules&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 24,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 103,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Judicial%20Review%20Rules&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 127,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Judicial%20Review%20Rules"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Judicial%20Review%20Rules&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 127,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Judicial%2520Review%2520Rules&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

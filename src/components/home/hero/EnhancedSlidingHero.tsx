@@ -177,7 +177,7 @@ const EnhancedSlidingHero = () => {
                     variant="outline"
                     size="lg"
                     className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105 group"
-                    onClick={() => window.location.href = 'tel:+255870119363'}
+                    onClick={() => window.location.href = 'tel:+255222601534'}
                   >
                     <Phone className="mr-2 h-6 w-6" />
                     Call Now

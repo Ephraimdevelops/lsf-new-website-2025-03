@@ -1,0 +1,20 @@
+{
+  "checkedOn": "2026-10-05",
+  "status": "passed",
+  "checks": [
+    "JSON source IDs unique",
+    "Every pathway source reference resolves",
+    "All acquired file hashes match",
+    "Research approval flags remain false",
+    "Source and pathway records have no invented reviewer or legal deadline"
+  ],
+  "notValidated": [
+    "Legal currency/completeness",
+    "Applicability and legal advice",
+    "Translation accuracy",
+    "Reuse licences",
+    "Provider availability",
+    "Backend upload or retrieval",
+    "Full OCR and page-level visual quality"
+  ]
+}

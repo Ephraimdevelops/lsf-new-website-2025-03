@@ -52,12 +52,6 @@ export const saveDraft = mutation({
   },
   handler: async (ctx, args) => {
     const { user } = await requireAuthenticatedUser(ctx);
-    if (args.sourceServiceId) {
-      const source = await ctx.db.get(args.sourceServiceId);
-      if (!source || !source.active || source.visibility !== "public" || source.verificationStatus !== "verified") {
-        throw new ConvexError({ code: "VALIDATION", message: "The selected service is no longer available. Review Find Help before submitting." });
-      }
-    }
     const clientRequestId = normalizeText(args.clientRequestId, "Client request ID", 100);
     const now = Date.now();
     const existing = await ctx.db
@@ -66,6 +60,18 @@ export const saveDraft = mutation({
         q.eq("ownerId", user._id).eq("clientRequestId", clientRequestId),
       )
       .unique();
+
+    // Recover committed submissions before validating mutable directory data.
+    // This branch changes nothing and remains scoped to the signed-in owner.
+    if (existing && existing.status !== "draft") {
+      return { requestId: existing._id, publicId: existing.publicId, version: existing.version, status: existing.status };
+    }
+    if (args.sourceServiceId) {
+      const source = await ctx.db.get(args.sourceServiceId);
+      if (!source || !source.active || source.visibility !== "public" || source.verificationStatus !== "verified") {
+        throw new ConvexError({ code: "VALIDATION", message: "The selected service is no longer available. Review Find Help before submitting." });
+      }
+    }
 
     const normalized = {
       locale: args.locale,
@@ -85,9 +91,6 @@ export const saveDraft = mutation({
     };
 
     if (existing) {
-      if (existing.status !== "draft") {
-        return { requestId: existing._id, publicId: existing.publicId, version: existing.version, status: existing.status };
-      }
       if (args.expectedVersion !== undefined && args.expectedVersion !== existing.version) {
         throw new ConvexError({ code: "CONFLICT", message: "This draft changed on another device" });
       }
@@ -171,15 +174,25 @@ export const attachToDraft = mutation({
     const { user } = await requireAuthenticatedUser(ctx);
     const request = await ctx.db.get(args.requestId);
     if (!request || request.ownerId !== user._id) throw new ConvexError({ code: "FORBIDDEN", message: "Request access denied" });
-    if (request.status !== "draft") throw new ConvexError({ code: "CONFLICT", message: "Submitted requests cannot be changed" });
     if (args.size <= 0 || args.size > 10 * 1024 * 1024) throw new ConvexError({ code: "VALIDATION", message: "File must be smaller than 10 MB" });
+    const name = normalizeText(args.name, "File name", 180);
+    const type = normalizeText(args.type, "File type", 120);
+    const note = normalizeOptionalText(args.note, "File note", 500);
+    const existing = (await ctx.db.query("request_attachments").withIndex("by_request", q => q.eq("requestId", request._id)).collect())
+      .find(item => item.storageId === args.storageId);
+    if (existing) {
+      if (existing.ownerId !== user._id || existing.name !== name || existing.type !== type || existing.size !== args.size || existing.note !== note) {
+        throw new ConvexError({ code: "CONFLICT", message: "An attachment retry must match the original file details" });
+      }
+      return { attachmentId: existing._id, version: request.version };
+    }
+    if (request.status !== "draft") throw new ConvexError({ code: "CONFLICT", message: "Submitted requests cannot be changed" });
     const attachmentId = await ctx.db.insert("request_attachments", {
       requestId: request._id, ownerId: user._id, storageId: args.storageId,
-      name: normalizeText(args.name, "File name", 180), type: normalizeText(args.type, "File type", 120),
-      size: args.size, note: normalizeOptionalText(args.note, "File note", 500), createdAt: Date.now(),
+      name, type, size: args.size, note, createdAt: Date.now(),
     });
     await ctx.db.patch(request._id, { hasDocuments: true, updatedAt: Date.now(), version: request.version + 1 });
-    return { attachmentId };
+    return { attachmentId, version: request.version + 1 };
   },
 });
 
@@ -194,6 +207,7 @@ export const submit = mutation({
     const request = await ctx.db.get(args.requestId);
     if (!request) throw new ConvexError({ code: "NOT_FOUND", message: "Request not found" });
     if (request.ownerId !== user._id) throw new ConvexError({ code: "FORBIDDEN", message: "Request access denied" });
+    if (request.status === "withdrawn") throw new ConvexError({ code: "CONFLICT", message: "A withdrawn request cannot be submitted again" });
     if (request.status !== "draft") {
       return { requestId: request._id, publicId: request.publicId, status: request.status };
     }
@@ -260,8 +274,18 @@ export const getMyRequest = query({
     const request = await ctx.db.get(args.requestId);
     if (!request || request.ownerId !== user._id) return null;
     const source = request.sourceServiceId ? await ctx.db.get(request.sourceServiceId) : null;
+    const attachments = await ctx.db.query("request_attachments")
+      .withIndex("by_request", (q) => q.eq("requestId", request._id)).collect();
     return {
       request,
+      attachments: await Promise.all(attachments.map(async (attachment) => ({
+        _id: attachment._id,
+        name: attachment.name,
+        type: attachment.type,
+        size: attachment.size,
+        createdAt: attachment.createdAt,
+        url: await ctx.storage.getUrl(attachment.storageId),
+      }))),
       sourceService: source && source.active && source.visibility === "public" && source.verificationStatus === "verified" && source.servicePointType !== "safe_house"
         ? { _id: source._id, name: source.name, region: source.region, district: source.district }
         : null,
@@ -304,7 +328,9 @@ export const getDraft = query({
       .query("intake_answers")
       .withIndex("by_request", (q) => q.eq("requestId", request._id))
       .collect();
-    return { request, answers };
+    const attachments = await ctx.db.query("request_attachments")
+      .withIndex("by_request", (q) => q.eq("requestId", request._id)).collect();
+    return { request, answers, attachments: attachments.map(({ _id, name, type, size }) => ({ _id, name, type, size })) };
   },
 });
 
@@ -348,7 +374,7 @@ export const openForTriage = mutation({
     const now = Date.now();
     const nextVersion = request.status === "submitted" ? request.version + 1 : request.version;
     if (request.status === "submitted") {
-      await ctx.db.patch(request._id, { status: "under_review", version: nextVersion, updatedAt: now });
+      await ctx.db.patch(request._id, { status: "under_review", triageStartedAt: now, version: nextVersion, updatedAt: now });
     }
     const answers = await ctx.db
       .query("intake_answers")

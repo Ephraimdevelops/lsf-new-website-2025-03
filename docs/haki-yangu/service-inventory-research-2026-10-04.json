@@ -1,0 +1,33 @@
+{
+  "researchedAt": "2026-10-04",
+  "publicationStatus": "research_candidates_not_lsf_verified",
+  "registrationSource": "https://nalis.sheria.go.tz/en/lap-notice",
+  "registrationCaution": "Use the production NaLIS registry to check each organisation. The notice includes active and inactive registrations; submission alone does not establish eligibility, current intake or an LSF referral agreement.",
+  "candidates": [
+    {
+      "organisation": "Tanzania Women Lawyers Association (TAWLA)",
+      "contactSource": "https://www.tawla.or.tz/contact-us/",
+      "serviceSource": "https://www.tawla.or.tz/portfolio/legal-aid-services/",
+      "statedAudience": "Indigent women and children",
+      "offices": [
+        { "region": "Dar es Salaam", "address": null, "phone": "+255222852856", "reviewFlags": ["Contact page gives two different head-office addresses; confirm before directions."] },
+        { "region": "Arusha", "address": "Jengo la Condo, Ofisi No. 402, Ghorofa 4", "phone": "+255762973419" },
+        { "region": "Dodoma", "address": "Ilazo Mashariki, Mkabala Kanisa Katoliki", "phone": "+255719481794" },
+        { "region": "Mwanza", "address": "Ilemela, Mwanza", "phone": "+255756330323" },
+        { "region": "Tanga", "address": "Barabara ya 14, Tanga", "phone": null, "reviewFlags": ["Source prints +225 715 898 900. Do not silently convert country code to +255."] },
+        { "region": "Mbeya", "address": "Sae, Plot No. 67 Block X", "phone": "+255652392999", "reviewFlags": ["Office appears on contact page but not in the service-page region list."] }
+      ],
+      "remainingVerification": ["Current registration", "LSF agreement", "District and coordinates", "Contact confirmation", "Opening hours", "Current intake/capacity", "Languages and accessibility", "Service coverage and eligibility"]
+    },
+    {
+      "organisation": "Tanzania Network of Legal Aid Providers (TANLAP)",
+      "contactSource": "https://tanlap.or.tz/contact/",
+      "sourceVerification": "Search-index result retrieved; direct page retrieval timed out",
+      "address": "4th Floor, Sky City Mall, Plot no. 403/1&3, Block A, Mlalakuwa, Dar es Salaam",
+      "phone": "+255746237265",
+      "email": "info@tanlap.or.tz",
+      "reviewFlags": ["Network contact is not proof of a walk-in legal-aid clinic or available case capacity.", "Direct source and operational confirmation required."]
+    }
+  ],
+  "automaticPublication": false
+}

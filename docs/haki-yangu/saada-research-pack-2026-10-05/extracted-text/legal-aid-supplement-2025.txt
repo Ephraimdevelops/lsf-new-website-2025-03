@@ -1,0 +1,1383 @@
+[PDF PAGE 1]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+ 1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE UNITED REPUBLIC OF TANZANIA 
+ 
+CHAPTER 21 
+ 
+THE LEGAL AID ACT 
+ 
+[PRINCIPAL LEGISLATION] 
+ 
+ 
+ 
+REVISED EDITION 2023 (ANNUAL SUPPLEMENT) 2025 
+ 
+ 
+ 
+This Annual Supplement incorporates all amendments made to the 
+Legal Aid Act, Chapter 21 up to and including 31st July, 2025 and is printed 
+under the authority of section 5(7) of the Laws Revision Act, Chapter 4. 
+ 
+ 
+ 
+ 
+Dodoma,           HAMZA S. JOHARI 
+28th October, 2025.                      Attorney General 
+ 
+_______ 
+ 
+
+[PDF PAGE 2]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+2 
+ 
+ 
+
+[PDF PAGE 3]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+ 1 
+CHAPTER 21 
+______ 
+ 
+THE LEGAL AID ACT 
+  
+[PRINCIPAL LEGISLATION]  
+ 
+ARRANGEMENT OF SECTIONS 
+ 
+Section     Title 
+ 
+PART I 
+PRELIMINARY PROVISIONS 
+ 
+1. Short title. 
+2. Application. 
+3. Interpretation. 
+ 
+PART II 
+ADMINISTRATION AND COORDINATION OF LEGAL AID 
+PROVIDERS 
+ 
+4. Establishment of Board. 
+5. Functions of Board. 
+6. Registrar of legal aid. 
+7. Functions of Registrar. 
+8. Appointment of Assistant Registrars. 
+ 
+PART III 
+REGISTRATION OF LEGAL AID PROVIDERS 
+ 
+9. Register of legal aid providers. 
+10. Qualifications for registration as legal aid provider. 
+11. Application for registration. 
+12. Determination of applications. 
+13. Refusal of registration. 
+14. Appeals. 
+15. Certificate of registration. 
+16. Suspension and cancellation of certificates. 
+17. Procedure for suspension or cancellation. 
+
+[PDF PAGE 4]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+2 
+ 
+18. Supervision of legal aid providers. 
+ 
+PART IV 
+SPECIAL PROVISIONS ON PARALEGALS 
+ 
+19. Qualifications for paralegals. 
+20. Legal aid services by paralegals. 
+ 
+PART V 
+PROVISION OF LEGAL AID 
+ 
+(a) General Provisions 
+ 
+21. Application for legal aid. 
+22. Person who may apply for legal aid. 
+23. General principles of legal aid. 
+24. Legal aid to be provided by institutions. 
+25. Unauthorised payments. 
+26. Records, monitoring and evaluation. 
+ 
+(b) Legal Aid in Civil Proceedings 
+ 
+27. Legal aid in civil proceedings by order of court. 
+28. Notification of other parties. 
+29. Recovery of costs. 
+30. Execution of judgments. 
+31. Costs against aided person. 
+32. Aided person not required to provide security for costs. 
+ 
+(c) Legal Aid in Criminal Matters 
+ 
+33. Legal aid by order of the court. 
+34. Expenses incurred by advocates. 
+35. Legal aid for children in conflict with law. 
+36. Legal aid for persons in custody. 
+ 
+ 
+  
+
+[PDF PAGE 5]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+3 
+ 
+PART VI 
+FINANCIAL PROVISIONS 
+ 
+37. Sources of fund of Board. 
+38. Annual estimates. 
+39. Annual performance report. 
+40. Books of accounts. 
+ 
+PART VII 
+MISCELLANEOUS PROVISIONS 
+ 
+41. Registrar may require proof of existence. 
+42. Obligations relating to professional conduct. 
+43. Necessary order to be issued in case of professional misconduct. 
+44. Prohibition against discrimination. 
+45. Prohibition of misuse of funds for legal aid. 
+46. General offences. 
+47. Publication of legal aid providers. 
+48. Powers of Minister to make regulations. 
+49. Repeal and saving. 
+50. Transitional arrangements. 
+ 
+_______ 
+ 
+SCHEDULE 
+_______ 
+
+[PDF PAGE 6]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+4 
+ 
+____________ 
+ 
+CHAPTER 21 
+____________ 
+ 
+THE LEGAL AID ACT 
+ 
+An Act to regulate and coordinate the provision of legal aid services to 
+indigent persons, recognise paralegals, repeal the Legal Aid 
+(Criminal Proceedings) Act and provide for other related matters. 
+ 
+[1st July, 2017] 
+[GN. No. 217 of 2017] 
+ 
+Acts Nos. 
+  1 of 2017 
+11 of 2023 
+10 of 2024 
+ 
+PART I 
+PRELIMINARY PROVISIONS 
+ 
+Short title   1. This Act may be cited as the Legal Aid Act. 
+  
+Application   2. This Act shall apply to Mainland Tanzania. 
+  
+Interpretation  3. In this Act, unless the context requires otherwise- 
+ 
+Cap. 341 
+“advocate” has the meaning ascribed to it under the Advocates 
+Act; 
+ “aided person” means a person who has been granted legal aid 
+under this Act; 
+ “Assistant Registrar” means Assistant Registrar referred to 
+under section 8; 
+        “Board” means the Board established under section 4; 
+ 
+ 
+Cap. 237 
+“Chief Court Administrator” means the Chief Court 
+Administrator appointed under the Judiciary 
+Administration Act;  
+ “indigent person” means a person whose means are insufficient 
+to enable him to engage a private legal practitioner and 
+includes other categories of persons where the interests 
+of justice require; 
+
+[PDF PAGE 7]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+5 
+ 
+ “lawyer” means a person who is a holder of a bachelor degree 
+in laws or its equivalent and provides legal services 
+under a legal aid provider in accordance with this Act; 
+ “legal aid services” includes the provision of legal education 
+and information, legal advice, assistance or legal 
+representation to indigent persons; 
+ “legal assistance” means a legal support granted to a person on 
+civil or criminal cases to assist that person to take legal 
+steps in protection of his rights; 
+ “Minister” means the Minister responsible for legal affairs; 
+ “paralegal” means a person who is accredited and certified to 
+provide legal aid services after completing necessary 
+training in the relevant field of study approved or 
+recognized by this Act; 
+ “Permanent Secretary” means a Permanent Secretary of  the 
+Ministry responsible for legal affairs;  
+ “Registrar” means the Registrar referred to under  section 6; 
+and 
+ “Register” means a Register of Legal Aid providers established 
+under this Act. 
+  
+PART II 
+ADMINISTRATION AND COORDINATION OF LEGAL AID 
+PROVIDERS 
+  
+Establishment 
+of Board 
+ 4.-(1) There is established a Board to be known as the 
+National Legal Aid Advisory Board. 
+ (2) The provisions of the Schedule shall have effect as 
+to the composition of the Board, tenure of office, proceedings 
+at meetings of the Board and other matters relating to the 
+Board. 
+  
+Functions of 
+Board 
+ 5.-(1) The functions of the Board shall be to- 
+(a) provide policy guidelines to legal aid providers; 
+ (b) advise the Minister on policy and other matters of 
+relevance with respect to improving legal aid 
+provision; 
+ (c) approve the annual reports of legal aid providers; 
+
+[PDF PAGE 8]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+6 
+ 
+ (d) determine appeals from the decision of the 
+Registrar; and 
+ (e) perform other functions as may be directed by the 
+Minister. 
+  (2) In performing its functions under this Act, the 
+Board shall maintain as far as practicable, a system of 
+consultation and cooperation with Ministries, Government 
+institutions, legal aid providers or any other public or private 
+bodies established under any written law. 
+  
+Registrar of 
+legal aid 
+ 6.-(1) There shall be the Registrar of legal aid 
+providers. 
+ (2) A person responsible for legal aid matters in the 
+Ministry responsible for legal affairs shall be the Registrar. 
+  
+Functions of 
+Registrar 
+ 7.-(1) The functions and duties of the Registrar shall be 
+to- 
+(a) register legal aid providers; 
+ (b) investigate complaints of malpractice, 
+negligence, misconduct or disobedience against 
+legal aid providers; 
+ (c) suspend or cancel registration of any legal aid 
+provider; 
+ (d) keep and maintain the Register of legal aid 
+providers; 
+ (e) inspect any legal aid provider’s office with a view 
+to satisfying himself on the type and quality of 
+legal aid services offered; 
+ (f) take appropriate measures for promoting legal 
+literacy and legal awareness among the public 
+and, in particular, educate vulnerable sections of 
+the society about their rights and duties under the 
+Constitution and other laws; 
+ (g) coordinate and facilitate formulation and 
+accreditation of curriculum for training of 
+paralegals in consultation with the legal aid 
+providers, education and training accreditation 
+bodies; 
+
+[PDF PAGE 9]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+7 
+ 
+ (h) coordinate, monitor and evaluate the functions of 
+legal aid providers and give general and specific 
+directions for the proper implementation of legal 
+aid programmes;  
+ (i) keep records and reports regarding legal aid 
+providers; 
+ (j) prepare various reports on legal aid services and 
+other matters for submission before the Board; 
+ (k) facilitate information sharing in accessible format 
+and providing guidelines for networking between 
+legal aid providers and the Government;  
+ (l) determine disputes between legal aid providers 
+other than advocates, and between legal aid 
+providers and aided persons; and 
+ (m) perform any other functions as may be directed by 
+the Minister or the Board as the case may be. 
+  (2) The Registrar shall be the Secretary to the Board. 
+  (3) The Registrar shall in the performance and 
+discharge of his functions and duties under this Act- 
+ (a) be assisted by number of officers of the Ministry 
+responsible for legal affairs as may be 
+determined; and 
+ (b) be answerable to the Permanent Secretary who 
+shall be the link between the Government and 
+legal aid providers. 
+  
+Appointment of 
+Assistant 
+Registrars 
+ 8.-(1) The Permanent Secretary shall, for the purpose 
+of facilitating registration of legal aid providers at the regional 
+and district levels and after consultation with relevant 
+authority, designate for each region or district, a public officer 
+from amongst public officers within the region or district to be 
+the Assistant Registrar. 
+  (2) Save for section 11(5),  the Assistant Registrar 
+appointed under subsection (1) shall, on behalf of the Registrar, 
+register legal aid provider within the region or district for 
+which he is appointed and issue certificates of registration. 
+  (3) The Assistant Registrar appointed under this section 
+shall, in the performance of his functions under this Act, be 
+answerable to the Registrar. 
+
+[PDF PAGE 10]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+8 
+ 
+  
+PART III 
+REGISTRATION OF LEGAL AID PROVIDERS 
+  
+Register of legal 
+aid providers 
+ 9.-(1) There shall be a Register of legal aid providers 
+which contain the names of institutions providing legal aid, the 
+services provided and other particulars or matters as may be 
+prescribed. 
+  (2) The Registrar shall cause the Register, whether in 
+printed or electronic form, to be available to members of the 
+public, at police stations, courts , prisons and other public 
+places as may be determined by the Minister. 
+  
+Qualifications 
+for registration 
+as legal aid 
+provider 
+ 10.-(1) An institution shall not be registered as a legal 
+aid provider unless it has the following qualifications- 
+(a) it has been registered under the relevant laws; 
+(b) the provision of legal aid services is one of its core 
+functions; 
+ (c) it has office premises and office facilities; 
+ (d) it has not less than- 
+ (i) two advocates; 
+ (ii) one advocate and one lawyer; 
+ (iii) one lawyer and two paralegals; 
+ (iv) one advocate and two paralegals; or 
+ (v) three paralegals; and 
+ (e) it has been cleared by the body that has registered 
+it as to its records pertaining to management of 
+finances.  
+  (2) Subject to the provisions of s ubsection (1), an 
+institution which has no advocate shall be required to furnish 
+proof of affiliation with another legal aid provider which has 
+an advocate before being registered. 
+  (3) Without prejudice to the generality of subsection 
+(1), the provisions of paragraphs (a) and (b) shall not apply to 
+institutions established by an Act of Parliament or any 
+academic institution accredited under any written law. 
+  
+
+[PDF PAGE 11]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+9 
+ 
+Application for 
+registration 
+ 11.-(1) Subject to the provisions of section 10, an 
+institution applying for registration under this Act shall apply 
+in the manner prescribed in the regulations. 
+  (2) Without prejudice to the generality of subsection 
+(1), an application for registration shall be accompanied by- 
+ (a) a copy of the constitution of the institution or any 
+other document establishing the institution; 
+ (b) personal particulars of office bearers , advocates  
+or paralegals; 
+ (c) particulars relating to address and physical 
+location of the head office of the institution; 
+ (d) a copy of a certificate of clearance from a legal 
+aid provider’s registering authority; 
+ (e) an application fee prescribed in the regulations; 
+and 
+ (f) any other particulars or information as may be 
+required by the Registrar. 
+  (3) Where an institution intends to operate as a legal aid 
+provider in more than one district or in the whole region, an 
+application for its registration shall be submitted to the 
+Assistant Registrar designated for that region. 
+  (4) Where an institution intends to operate as a legal aid 
+provider within a certain district, an application for its 
+registration shall be submitted to the Assistant Registrar for 
+that district. 
+  (5) Where an institution intends to operate as a legal aid 
+provider in more than one region or it has been registered out 
+of the country, an application for its registration shall be 
+submitted to the Registrar. 
+  (6) Where the Assistant Registrar has registered a legal 
+aid provider, he shall make a report to that effect and submit 
+that report to the Registrar. 
+  (7) The Minister shall, by regulations, prescribe the 
+procedures for registration and operations of legal aid 
+providers at regional and district levels in terms of this Act. 
+  
+Determination 
+of applications 
+ 12.-(1) The Registrar or as the case may be Assistant 
+Registrar, shall consider and make determination of an 
+
+[PDF PAGE 12]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+10 
+ 
+application for registration  within twenty -one days after 
+receiving the application.  
+  (2) Pursuant to the provisions of subsection (1), in 
+determining the application, the Registrar or as the case may 
+be Assistant Registrar, may register or refuse to register an 
+institution as a legal aid provider. 
+  
+Refusal of 
+registration 
+ 13.-(1) The Registrar or Assistant Registrar may refuse 
+to register an institution as a legal aid provider where he is 
+satisfied that- 
+ (a) it has not met the conditions prescribed under 
+section 10; or 
+ (b) it has given false or fraudulent information in any 
+material particular.  
+  (2) Where the Registrar or Assistant Registrar has 
+refused to register a n institution as a  legal aid provider, he 
+shall, within fourteen days from the date of the decision, notify 
+the applicant of the reasons for the refusal. 
+  
+Appeals  14.-(1) An institution which is not satisfied with the 
+decision under section 13 may, within twenty one days- 
+ (a) in the case of decision of Assistant Registrar, 
+appeal to the Registrar; and  
+ (b) in the case of decision of the Registrar, appeal to 
+the Board. 
+  (2) The institution which is aggrieved by the decision 
+of the Board may, within thirty days from the date of receiving 
+the decision, appeal to the Minister. 
+  (3) The Minister shall, within thirty days from the date 
+of receiving the appeal consider and determine the appeal. 
+  (4) An institution aggrieved by the decision of the 
+Minister may appeal to the High Court for redress. 
+  
+Certificate of 
+registration 
+ 15.-(1) The Registrar, or Assistant Registrar shall, after 
+registration of a n institution as a  legal aid provider and upon 
+payment of a prescribed fee issue a certificate of registration in 
+the form prescribed in the regulations. 
+  (2) The certificate of registration shall contain- 
+ (a) the name and address of the legal aid provider; 
+
+[PDF PAGE 13]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+11 
+ 
+ (b) the area of operation of the legal aid provider; 
+ (c) legal status of the institution; and 
+ (d) terms and conditions in respect of which a 
+certificate is issued. 
+  (3) A certificate of registration issued under subsection 
+(1) shall be conclusive evidence for the institution to operate 
+as a legal aid provider under this Act. 
+  
+Suspension and 
+cancellation of 
+certificates 
+ 16.-(1) Subject to the provisions of section 17, the 
+Registrar may issue a written warning, suspend or cancel a 
+certificate of registration of the legal aid provider. 
+  (2) The Registrar may suspend a certificate of 
+registration of a legal aid provider, where he is satisfied that- 
+ (a) the legal aid provider has committed a 
+professional misconduct or failed to admonish its 
+employee for professional misconduct or breach 
+of the code of conduct prescribed by the relevant 
+professional body; 
+ (b) the legal aid provider is in breach of the code of 
+conduct prescribed under this Act or any written 
+law; 
+ (c) the legal aid provider operates in variance to its 
+constitution;  
+ (d) the legal aid provider has failed to keep proper 
+records of activities undertaken on behalf of an 
+aided person and the Registrar considers that, this 
+shall have an adverse effect on the interests of the 
+aided person generally or in any particular case. 
+  (3) The Registrar may cancel a certificate of 
+registration of a legal aid provider where he is satisfied that- 
+ (a) the registration was obtained by mistake, fraud , 
+undue influence or misrepresentation; 
+ (b) the legal aid provider has failed to comply with 
+the conditions of the registration; 
+ (c) the qualifications for registration has ceased to 
+exist in respect of the legal aid provider; 
+ (d) the office bearer of the legal aid provider has been 
+declared bankrupt, insolvent or has entered into an 
+arrangement with his creditors; 
+
+[PDF PAGE 14]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+12 
+ 
+ (e) an advocate or paralegal employed by a legal aid 
+provider has regularly breached professional 
+conduct; 
+ (f) a legal aid provider has discriminated aided 
+person in terms of gender, religion, race, tribe or 
+political affiliation; 
+ (g) the office bearer of the legal aid provider is 
+convicted of an offence which touches on his 
+integrity, accountability, or is subject to an order 
+made under the relevant body; or 
+ (h) the legal aid provider is not providing, or has not 
+provided, the service for which he is registered to 
+the prescribed standard. 
+  (4) Notwithstanding the provision of subsection (3), the 
+Registrar shall not cancel a certificate of registration of the 
+legal aid provider where it has notified the Registrar in respect 
+of paragraph (d),(e) and (g) and has taken necessary internal 
+measures to rectify the situation. 
+  (5) Where the Registrar suspends or cancels certificate 
+of registration, he shall-  
+ (a) notify the relevant legal aid provider in writing of 
+the decision and order the  legal aid provider to 
+stop operations; or  
+ (b) as the case may be and in accordance with the 
+procedure provided in section 17, remove the 
+name of the legal aid provider from the register. 
+  
+Procedure for 
+suspension or 
+cancellation 
+ 17.-(1) Where a legal aid provider is in default of the 
+terms and conditions in respect of which a certificate was 
+issued or is in violation of section 16, the Registrar may serve 
+to the legal aid provider, a default notice in writing specifying 
+the nature of the default. 
+  (2) Upon receipt of the default notice, a legal aid 
+provider shall make representation in writing to the Registrar 
+regarding remedy or rectification of the default within twenty  
+one days. 
+  (3) Where a legal aid provider has failed to remedy or 
+rectify the default within time specified in the default notice or 
+
+[PDF PAGE 15]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+13 
+ 
+has not made a representation satisfactory to the Registrar, the 
+Registrar shall suspend or cancel a certificate. 
+  (4) A legal aid provider whose certificate has been 
+suspended or cancelled may apply to the Registrar for review 
+of the decision to suspend or cancel the certificate, where he is 
+dissatisfied by the reasons for suspension or cancellation. 
+  (5) A legal aid provider who is aggrieved by the 
+decision of the Registrar to suspend or cancel a certificate may 
+appeal to the Board in accordance with the provisions of 
+section 14. 
+  
+Supervision of 
+legal aid 
+providers 
+ 18.-(1) The Assistant Registrar s hall, for purposes of 
+this Act, be a supervisor of legal aid providers in the respective 
+region or district. 
+ (2) In the discharge of supervisory duties, the Assistant 
+Registrar shall- 
+ (a) exercise general supervision in accordance with 
+the provisions of this Act; 
+ (b) investigate complaints of malpractice, 
+negligence, misconduct or disobedience and 
+make a report to the Registrar of the facts and 
+circumstances of any complaints; and 
+ (c) submit to the Registrar, on annual basis, names of 
+legal aid providers who have ceased to provide 
+legal aid. 
+  
+PART IV 
+SPECIAL PROVISIONS ON PARALEGALS 
+ 
+Qualifications 
+for paralegals 
+ 19.-(1) A paralegal shall be required to possess any of 
+the following- 
+(a) a bachelor degree in any discipline from an 
+accredited institution, save for a bachelor degree 
+in laws; 
+(b) a diploma or certificate from an accredited 
+institution; or 
+ (c) a certificate of secondary education. 
+
+[PDF PAGE 16]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+14 
+ 
+  (2) In addition to the requirement under subsection (1), 
+a paralegal shall undergo necessary training as may be 
+prescribed in the regulations. 
+  (3) Notwithstanding the generality of subsections (1) 
+and (2), a person who has been a paralegal for at least two years 
+and has undergone training under the current arrangement prior 
+to the commencement of this Act, shall qualify as a paralegal 
+for the purpose of this Act. 
+  (4) Subject to subsection (3) and other provisions of 
+this Act, the Registrar shall recognize and register paralegals 
+trained under a registered legal aid provider- 
+ (a) who meets the basic requirement set out in 
+subsection (1); and 
+ (b) in accordance with the approved curriculum. 
+  
+Legal aid 
+services by 
+paralegals 
+ 20.-(1) A paralegal may provide legal aid services in 
+accordance with the provisions of this Act.  
+ (2) Without prejudice to the generality of subsection 
+(1), a paralegal shall have the following duties: 
+ (a) carrying out educational programmes  in national 
+or local languages on legal issues and procedures 
+of concern to the community;  
+ (b) assisting aided person in the procedures to obtain 
+necessary legal documents;  
+ (c) guiding an aided person to a proper forum or to 
+access justice; and  
+ (d) advising the conflicting parties to seek amicable 
+settlement or referring them to dispute settlement 
+institutions. 
+  (3) A person who intends to provide legal aid services 
+as a paralegal under this Act, shall apply for the registration to 
+the Registrar or as the case may be to the Assistant Registrar. 
+  (4) Procedures for registration of paralegals under this 
+Act, shall be as prescribed under the regulations. 
+  (5) A paralegal shall not engage in an activity that is 
+reserved for advocates under any written law. 
+  (6) A paralegal shall not charge any fee from an aided 
+person for the provision of legal aid under this Act.  
+
+[PDF PAGE 17]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+15 
+ 
+  (7) A person who contravenes a provision of this 
+section, commits an offence and on conviction, shall be liable 
+to a fine not less than one million shillings or to imprisonment 
+for a term not less than three months, or to both. 
+  
+PART V 
+PROVISION OF LEGAL AID 
+ 
+(a) General Provisions 
+  
+Application for 
+legal aid 
+ 21.-(1) An indigent person who intends to receive legal 
+aid may approach any legal aid provider and apply for legal aid 
+services. 
+  (2) Upon receipt of an application made under 
+subsection (1), the legal aid provider may proceed processing 
+the case. 
+  (3) An application under subsection (1) shall, with 
+respect to the applicant’s eligibility for legal aid services, be 
+assessed in accordance with the legal aid providers procedures. 
+  
+Person who may 
+apply for legal 
+aid 
+ 22. An application for legal aid may be made by- 
+(a) the indigent person; 
+(b) a person authorised by the indigent person; or 
+ (c) a person or an institution on behalf of the indigent 
+person where the authority of the indigent person 
+cannot be reasonably obtained. 
+  
+General 
+principles of 
+legal aid 
+ 23. Subject to sections 20(6) and 25, the legal advice, 
+assistance or representation through legal aid shall not affect 
+the relationship between the rights of an advocate and a client 
+or any privilege arising out of the relationship. 
+  
+Legal aid to be 
+provided by 
+institutions 
+ 24.-(1) Pursuant to the provisions of this Act, legal aid 
+services shall be provided by an advocate, a lawyer or a 
+paralegal on behalf of the legal aid provider. 
+  (2) A person shall not provide legal aid services unless 
+is an advocate, a lawyer or paralegal attached to a legal aid 
+provider. 
+
+[PDF PAGE 18]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+16 
+ 
+  (3) A person who contravenes a provision of this 
+section commits an offence and on conviction shall be liable to 
+a fine of five million shillings or to twelve months 
+imprisonment or to both. 
+  
+Unauthorised 
+payments 
+ 25.-(1) A legal aid provider shall not demand, request 
+or receive payment from or, in respect of an aided person, in 
+relation to services rendered under this Act, unless the payment 
+is authorised under this Act. 
+  (2) A person who contravenes the provisions of 
+subsection (1) commits an offence and on conviction, shall be 
+liable to a fine not less than two million shillings or to 
+imprisonment for a term not less than six months, or to both. 
+  (3) In addition to the sentence imposed under 
+subsection (2), a person who is convicted for receiving 
+payment shall be required to refund the amount received from 
+the aided person. 
+  
+Records, 
+monitoring and 
+evaluation 
+ 26.-(1) A legal aid provider shall- 
+(a) provide legal services with a view to protecting 
+the interests of the aided person; and  
+ (b) keep proper records of activities undertaken on 
+behalf of an aided person and submit the same to 
+the Registrar annually or as may be directed by 
+the Registrar. 
+  (2) The Registrar or the Assistant Registrar shall 
+monitor and evaluate the activities and the quality of legal 
+services offered by a legal aid provider under subsection (1). 
+  
+(b) Legal Aid in Civil Proceedings 
+  
+Legal aid in 
+civil 
+proceedings 
+by order of 
+court 
+ 27. Where in any civil proceedings it appears to the 
+presiding judge or magistrate that- 
+(a) in the interests of justice a person should have 
+legal aid; and 
+ (b) the person has insufficient means to enable him to 
+obtain the legal services, 
+ the presiding judge, a magistrate, adjudicatory body or a 
+chairman of the land, labour or tax tribunal and any other 
+
+[PDF PAGE 19]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+17 
+ 
+tribunal shall cause the person to obtain legal aid , as the 
+Minister may determine by Order published in the Gazette. 
+  
+Notification of 
+other parties 
+ 28.-(1) Where a party to civil proceedings is granted 
+legal aid, the legal aid provider shall immediately notify the 
+other party to the proceedings and the court, of that fact. 
+  (2) Where other person subsequently becomes a party 
+to the proceedings, the legal aid provider shall give notice to 
+the new party. 
+  (3) Where the legal aid provider withdraws or is 
+discharged by the client, the legal aid provider shall 
+immediately notify the parties to the proceedings and the court, 
+of that fact. 
+  
+Recovery of 
+costs 
+ 29. Where an aided person has been awarded costs in 
+any proceedings, shall be entitled to the costs, provided that the 
+legal aid provider may have the right to deduct from the award, 
+the costs he incurred in respect of the proceedings in the 
+manner prescribed in the regulations. 
+  
+Execution of 
+judgments 
+ 30. A legal aid provider shall take necessary measures 
+to execute a judgment or any settlement in order to recover the 
+proceeds of proceedings. 
+  
+Costs against 
+aided person 
+ 31.-(1) Where an aided person receives legal aid for 
+civil proceedings and loses the case, the court shall not award  
+an order of costs against the aided person, unless there are 
+exceptional circumstances. 
+  (2) In determining whether there are exceptional 
+circumstances under subsection (1), the court may take in to 
+account any of the following: 
+ (a) conduct that causes the other party to incur 
+unnecessary costs; 
+ (b) unreasonable refusal to negotiate a settlement or 
+participate in alternative dispute resolution; 
+ (c) misleading or deceitful conduct; or 
+ (d) other conduct that abuses the processes of the 
+court. 
+
+[PDF PAGE 20]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+18 
+ 
+  (3) Where costs are awarded against the aided person, 
+the legal aid p rovider shall not be liable for payment of the 
+costs.  
+  
+Aided person 
+not required to 
+provide security 
+for costs 
+ 32. Notwithstanding the provisions of any written law, 
+an aided person shall not be required to furnish security for 
+costs during the trial or appeal proceedings. 
+  
+(c) Legal Aid in Criminal Matters 
+  
+Legal aid by 
+order of court 
+Act No. 
+10 of 2024 
+s. 43 
+ 33.-(1) Where in any criminal proceedings, it appears 
+to the presiding judge or magistrate that- 
+(a) in the interests of justice an accused person should 
+have legal aid in the preparation and conduct of 
+his defence or appeal as the case may be; and  
+ (b) his means are insufficient to enable him to obtain 
+legal services, 
+ the presiding judge or magistrate, as the case may be, shall 
+certify that the accused ought to have legal aid and upon the 
+certificate being issued, the Registrar shall assign to the 
+accused person a legal aid provider which has an advocate for 
+the purpose of preparation and conduct of his defence or 
+appeal, as the case may be. 
+  (2) Where in any criminal proceedings, a child is an 
+accused person, the presiding judge or magistrate shall certify 
+that, the accused  person ought to have legal aid and upon 
+certificate being issued, the Registrar or as the case may be, the 
+magistrate in  charge shall assign to the accused person an 
+advocate for the purpose of preparation and conduct of his 
+defence or appeal, as the case may be.  
+  (3) The Chief Justice shall, by rules published in the 
+Gazette, determine the remuneration of advocates assigned to 
+accused person under the provisions of subsection (1) and (2) 
+and the same shall be paid from the Judicial Fund. 
+  (4) For the purpose of this section “Registrar” means 
+the Registrar of the High Court. 
+  
+Expenses 
+incurred by 
+advocates 
+ 34.-(1) Where a legal aid provider which is assigned to 
+an accused person under the provisions of this Act incurs any 
+
+[PDF PAGE 21]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+19 
+ 
+special expenditure arising out of the performance of its duties, 
+it may submit a claim to the Chief Court Administrator. 
+  (2) The Chief Court Administrator may, where he is 
+satisfied that, the full claim or the portion thereof is reasonable, 
+authorise payment to the legal aid provider of the claim or 
+portion, as the case may be. 
+  (3) A dispute arising out of the decision of the Chief 
+Court Administrator under subsection (2) may be referred to 
+the Chief Justice, whose decision thereon shall be final. 
+  (4) The Chief Justice may, in writing, delegate any of 
+his functions under this subpart to the Principal Judge either 
+generally or for any specific proceeding. 
+  
+Legal aid for 
+children in 
+conflict with 
+law 
+ 35. Where a person is charged with the duty of 
+supervising the welfare of the child, in execution of his duties 
+deals with the child who has come into conflict with the law, 
+he shall cause the child to obtain legal aid immediately. 
+  
+Legal aid for 
+persons in 
+custody 
+ 36.-(1) The Police Force or Prison Services shall 
+designate mechanism for facilitating the provision of legal aid 
+services by legal aid providers to accused person or convicts in 
+custody in the manner to be prescribed in the regulations. 
+  (2) The regulations made under subsection (1) shall be 
+prepared in consultation with the Minister responsible for 
+Home Affairs. 
+  
+PART VI 
+FINANCIAL PROVISIONS 
+  
+Sources of fund 
+of Board 
+ 37. The funds of the Board shall consist of- 
+(a) any sums that may be appropriated by the 
+Parliament; 
+ (b) any monies raised by way of donations or grants 
+made within and outside the United Republic of 
+Tanzania; and  
+ (c) sums of money or assets which may vest in or 
+accrue to the Board from other sources by way of 
+fees, grants or in any other way under this Act or 
+
+[PDF PAGE 22]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+20 
+ 
+any other written law or in respect of the matter 
+incidental to the carrying out of its functions. 
+  
+Annual 
+estimates 
+ 38.-(1) The Board shall, before the commencement of 
+a financial year, cause to be prepared, estimates of the revenue 
+and expenditure for the year. 
+  (2) The annual estimates shall make provision for 
+estimated expenditure of the Board for a financial year 
+concerned, and the Board shall in particular, approve recurrent 
+and development expenditure. 
+  (3) The annual estimates shall be submitted to the 
+Minister who shall cause them to be laid before the National 
+Assembly within three months from the date of the submission 
+to him. 
+  
+Annual 
+performance 
+report 
+ 39. The Registrar shall, within three months, prepare 
+and submit to the Board an annual report on the performance 
+of the Board during the financial year and the Board shall 
+submit the same to the Minister who shall cause a copy of the 
+report to be laid before the National Assembly. 
+  
+Books of 
+accounts 
+ 40.-(1) The Board shall keep proper books of accounts. 
+ (2) Within three months from the end of each financial 
+year, the Board shall submit to the Controller and Auditor -
+General, accounts of the Board together with- 
+ (a) a statement of financial activities and income and 
+expenditure during that financial year; and 
+ (b) a statement of assets and liabilities of the Board 
+existing at the end of financial year. 
+  (3) The accounts of the Board shall be audited by the 
+Controller and Auditor-General. 
+  
+PART VII 
+MISCELLANEOUS PROVISIONS 
+  
+Registrar may 
+require proof of 
+existence 
+ 41.-(1) Where the Registrar has reason to suspect that , 
+a legal aid provider has ceased to exist or he is no longer 
+providing legal aid, he may issue a notice in writing to the 
+office bearers of that legal aid provider or publish a notice in a 
+
+[PDF PAGE 23]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+21 
+ 
+newspaper widely circulating in Mainland Tanzania, requiring 
+him to submit to the Registrar within a period of thirty days, 
+proof of his existence. 
+  (2) Where the legal aid provider fails to submit to the 
+Registrar proof of his existence, the Registrar shall cancel the 
+certificate of its registration and remove its name from the 
+register.  
+  
+Obligations 
+relating to 
+professional 
+conduct 
+ 42.-(1) An advocate who provides legal aid under this 
+Act shall be required to adhere to any rules or codes of conduct 
+of a professional body to which he belongs and his rights, 
+obligations, responsibilities, or duties as a member of the body 
+shall not in any way be affected by the provisions of this Act. 
+  (2) The Minister shall, by notice published in the 
+Gazette, provide a code of conduct for legal aid providers and 
+paralegals. 
+  (3) The code of conduct referred to under subsection 
+(2) shall provide for- 
+ (a) the protection of the rights and interests of an 
+aided person; 
+ (b) duties to the aided person, the Registrar and court; 
+ (c) conflict of interest; 
+ (d) observance of confidentiality; 
+ (e) in the case of professionals, the duty to observe 
+prescribed ethical standards of their respective 
+professional bodies;  
+ (f) non discrimination; 
+ (g) probity and ethical conduct; and 
+ (h) any other matter connected with legal aid. 
+  
+Necessary order 
+to be issued in 
+case of 
+professional 
+misconduct 
+ 43.-(1) Where an advocate has committed a 
+professional misconduct which is likely to occasion failure of 
+justice to the aided person, the presiding judge, shall issue 
+necessary order to rectify the situation. 
+ (2) For the purpose of subsection (1) necessary order 
+may include to- 
+ (a) summon the advocate to appear and continue with 
+the case; 
+
+[PDF PAGE 24]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+22 
+ 
+ (b) order the advocate to ensure proper preparation of 
+the case as may be required; 
+ (c) relinquish the advocate from his duties and 
+substitute him with another advocate; or 
+ 
+Cap. 341 
+(d) make other orders in respect of the advocate as 
+provided for under the Advocates Act. 
+  (3) Where professional misconduct has been 
+committed before the magistrate or any chairman of the 
+tribunal as the case may be, in addition to orders under 
+subsection (2)(a), (b) or (c), the magistrate or any chairman of 
+the tribunal as the case may be, sh all refer the matter relating 
+to the professional misconduct to the High Court for necessary 
+action. 
+  (4) For the purpose of this section, acts which constitute 
+professional misconduct include- 
+ (a) non appearance of the advocate in court or 
+tribunal; 
+ (b) non compliance of advocate with procedural 
+orders of the court or tribunal; or 
+ (c) any other acts to be prescribed in the regulations 
+or in any other Act regulating the conduct of 
+advocates. 
+  
+Prohibition 
+against 
+discrimination 
+ 44.-(1) Subject to the provisions of this Act, a legal aid 
+provider, advocate, lawyer or paralegal shall not provide legal 
+aid on the basis of discriminating aided person on his gender, 
+religion, race, tribe or political affiliation. 
+  (2) A person who contravenes subsection (1 ) commits 
+an offence and on conviction, shall be liable to a fine of not 
+less than five million shillings but not more than ten million 
+shillings or to imprisonment for a term not less than six months 
+but not more than twelve months or to both. 
+ 
+ 
+Prohibition of 
+misuse of funds 
+for legal aid 
+ 45.-(1) A legal aid provider or a person receiving funds, 
+aid or other kind of assistance for the purpose of providing 
+legal aid un der this Act, shall ensure that, the funds , aid or 
+assistance received is used for the provision of legal aid under 
+this Act. 
+
+[PDF PAGE 25]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+23 
+ 
+  (2) A person who contravenes this section commits an 
+offence and on conviction, shall be liable to a fine of not less 
+than ten million shillings but not exceeding fifteen million or 
+to imprisonment for a term of not less than six months but not 
+exceeding twelve months or to both. 
+  
+General offences  46. A person who- 
+ (a) fraudulently makes, causes or permits to be made, 
+any false or incorrect entry in the Register or any 
+copy of it; 
+ (b) provides legal aid without having qualifications as 
+prescribed under this Act; 
+ (c) makes any statement which is false in a ma terial 
+particular or misleading  with a view to gaining 
+any advantage or privilege under this Act; 
+ (d) impersonates any person registered or deemed to 
+be registered in terms of this Act; 
+ (e) refuses or fails  without lawful cause to appear  
+having been duly summoned to appear at an 
+inquiry by the Registrar under this Act; and 
+ (f) obstructs or hinders a member of the Board or the 
+Registrar or any person in the exercise of his 
+powers or the performance of his functions under 
+this Act, 
+ commits an offence, and on conviction, shall be liable to a fine 
+of not less than one million shillings or imprisonment for a 
+term of not less than six months or to both. 
+  
+Publication of 
+legal aid 
+providers 
+ 47. The Registrar shall, annually, publish in the 
+Gazette, in widely circulating newspapers in Mainland 
+Tanzania, and in any other means of communication , the 
+names of registered legal aid providers, and legal aid providers 
+whose names have been cancelled. 
+  
+Powers of 
+Minister to make 
+regulations 
+ 48.-(1) The Minister may make regulations for the 
+better carrying into effect of the provisions of this Act. 
+ (2) Notwithstanding the generality of subsection (1), 
+the Regulations made under this Act may provide for- 
+
+[PDF PAGE 26]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+24 
+ 
+ (a) the procedures for the provision of legal aid to 
+persons detained at police stations, in remand, 
+prison or other places of lawful custody; 
+ (b) procedures, terms and conditions of registration of 
+legal aid providers and paralegals; 
+ (c) procedures for inspection of legal aid providers; 
+ (d) fees to be paid under this Act; 
+ (e) procedures for management of disputes and 
+complaints under this Act; 
+ (f) the records to be kept by legal aid providers in 
+relation to legal aid assignments and the reports to 
+be submitted to the Registrar; 
+ (g) the amount payable by an aided person;  
+ (h) procedures for appeal under this Act, and 
+ (i) any other matter  which is required to be 
+prescribed under this Act. 
+  
+Repeal and 
+saving 
+Act No. 
+21 of 1969 
+ 49.-(1) Repeals the Legal Aid (Criminal Proceedings) 
+Act. 
+ (2) Notwithstanding subsection (1), orders, rules, 
+guidelines, directives and regulations made under the repealed 
+Act, shall have effect until other subsidiary legislations are 
+made under this Act. 
+  
+Transitional 
+arrangements 
+ 50.-(1) Notwithstanding the provisions of this Act, 
+legal aid arrangements which are in existence on the date of 
+commencement of this Act shall be continued and concluded 
+as if this Act had not been passed. 
+  (2) The institutions that provide legal aid services prior 
+to the commencement of this Act, shall within twelve months 
+of the coming into operation of this Act, register in accordance 
+with this Act. 
+  (3) Without prejudice to the generality of subsection 
+(2), legal aid providers who have been registered and awarded 
+legal aid certificate by Chief Justice shall be deemed to have 
+been registered under this Act. 
+ 
+  
+
+[PDF PAGE 27]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+25 
+ 
+__________ 
+SCHEDULE 
+_________ 
+(Made under section 4(2)) 
+ 
+COMPOSITION, TENURE OF OFFICE AND PROCEEDINGS OF THE BOARD  
+ 
+Composition 
+Act No. 
+11 of 2023 
+s. 52 
+ 1.-(1) The National Legal Aid Advisory Board shall consist 
+of the following members appointed by the Minister: 
+(a) a retired Judge or a practising advocate with not less than 
+ten years’ working experience in legal aid who shall be 
+the Chairperson; 
+ (b) a Law Officer representing the Attorney General; 
+ (c) one representative from legal aid providers; 
+ (d) one representative from the  National Criminal Justice  
+Forum; 
+ (e) one representative from Public Bar Association; 
+ (f) one representative from the Tanganyika Law Society; 
+ (g) the Director of legal services  from the Ministry 
+responsible for Local Government or his representative; 
+ (h) one representative from associations dealing with 
+persons with disabilities; and 
+ (i) one representative from umbrella associations of 
+paralegals. 
+  (2) The appointing authority shall in appointing members 
+under subparagraph (1) ensure that, there is gender representation in 
+the Board. 
+  (3) The Board may co -opt a number of persons to represent 
+any interest as the Board may determine except that the co -opted 
+member shall not have the right to vote. 
+  
+Vice-Chairman  2. The members shall elect one amongst their number to be 
+Vice-Chairman of the Board, and a member elected as Vice-Chairman, 
+may subject to his continuing to be a member, hold office for a term of 
+three years from the date of his election. 
+  
+Tenure of 
+office 
+ 3.-(1) The members of the Board shall hold office for a period 
+of three years and be eligible for re-appointment for a further period of 
+three years. 
+  (2) A member of the Board may at any time resign his office 
+by giving notice in writing addressed to the Minister, and from the date 
+specified in the notice or, where a date is not specified, from the date 
+of the receipt of the notice by the Minister, he shall cease to be a 
+member. 
+  
+Vacancy  4. Where a  member ceases to be a member for any reason 
+before the expiration of his term of office, the appointing authority may 
+
+[PDF PAGE 28]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+26 
+ 
+appoint another person in his place and the person appointed shall hold 
+office for the remainder of the term of his predecessor. 
+  
+Meetings of 
+Board 
+ 5.-(1) The Board shall ordinarily meet for the transaction of 
+its business at the time and at the place determined by it, but shall meet 
+at least once in every three months. 
+  (2) The Chairman, or in his absence, the Vice-Chairman, shall 
+preside at the meeting of the Board and in the absence of both, the 
+Chairman and the Vice -Chairman, the members present shall appoint 
+one of their number to preside over the meeting. 
+  (3) The Chairman or in his absence the Vice -Chairman, may 
+at any time call special meeting of the Board to deliberate on any matter 
+which he considers to be urgent. 
+  (4) The Chairman, or in his absence the Vice -Chairman may 
+invite any person who is not a member to participate in the 
+deliberations at any meeting of the Board, but the person invited shall 
+not be entitled to vote. 
+  
+Quorum  6. The Quorum at any meeting of the Board shall be at least 
+one third of the members.  
+  
+Decision of 
+Board 
+ 7.-(1) Matters proposed at a meeting of the Board shall be 
+decided by a majority of the votes of the members present and in the 
+event of any equality of votes, the person presiding shall have a second 
+casting vote in addition to his original or deliberative vote. 
+  (2) A decision may be made by the Board without a meeting 
+but by a circulation of the relevant papers amongst the members and 
+the expression of the views of the majority of the members in writing 
+shall be honoured but a member may require that , the decision be 
+deferred and the subject matter be considered at a meeting of the Board. 
+  
+Minutes of 
+meetings 
+ 8.-(1) The Board shall cause to be recorded and kept minutes 
+of business conducted or transacted at its meetings, and the minutes of 
+the meeting of the Board shall be read and confirmed, or amended and 
+confirmed, at the next meeting of the Board and signed by the chairman 
+and the secretary. 
+  (2)  Minutes purporting to be signed by the person presiding 
+at a meeting of the Board shall, in the absence of proof of error, be 
+deemed to be a correct record of the meeting whose minutes they 
+purport to be. 
+  
+Vacancies not 
+to invalidate 
+proceedings 
+ 9. The validity of any act or proceeding of the Board shall not 
+be affected by any vacancy among its member or by any defect 
+proceedings in the appointment of any of them. 
+  
+ 10. The orders, directions, notices or other documents made 
+or issued on behalf of the Board shall be dated and signed by- 
+
+[PDF PAGE 29]
+The Legal Aid Act                        [CAP. 21 R.E. 2023] A.S. 2025  
+ 
+27 
+ 
+Orders and 
+directions of 
+Board 
+(a) the Chairman or Vice-Chairman of the Board, as the case 
+may be; or 
+ (b) the Secretary. 
+  
+Remuneration 
+of members of 
+Board 
+ 11. A member of the Board shall be entitled to remuneration, 
+fees or allowances for expenses as the Minister may, upon 
+recommendations of the Board prescribe. 
+  
+Board may 
+regulate 
+proceedings 
+ 12. Subject to the provisions of this Schedule, the Board may 
+regulate its own proceedings. 
+ 
+________________________________ 

@@ -1,0 +1,47 @@
+{
+  "sourceId": "GEO-NBS-WARDS-2022",
+  "requestedUrl": "https://www.nbs.go.tz/uploads/statistics/documents/en-1714652282-TANZANIA_2022PHC_WARD_SHAPEFILES.zip",
+  "finalUrl": "https://www.nbs.go.tz/uploads/statistics/documents/en-1714652282-TANZANIA_2022PHC_WARD_SHAPEFILES.zip",
+  "status": "zip_acquired_inspected",
+  "file": "structured-data/nbs-2022-ward-shapefiles.zip",
+  "byteCount": 10419963,
+  "sha256": "a81eecf5021d1904d2d57a3c5ea40b8c3f538cd5b227e8d68a302653a6d1466e",
+  "archiveMembers": [
+    {
+      "name": "TANZANIA_2022PHC_WARDS_SHAPEFILES.cpg",
+      "bytes": 5
+    },
+    {
+      "name": "TANZANIA_2022PHC_WARDS_SHAPEFILES.dbf",
+      "bytes": 2945810
+    },
+    {
+      "name": "TANZANIA_2022PHC_WARDS_SHAPEFILES.prj",
+      "bytes": 354
+    },
+    {
+      "name": "TANZANIA_2022PHC_WARDS_SHAPEFILES.sbn",
+      "bytes": 46092
+    },
+    {
+      "name": "TANZANIA_2022PHC_WARDS_SHAPEFILES.sbx",
+      "bytes": 3564
+    },
+    {
+      "name": "TANZANIA_2022PHC_WARDS_SHAPEFILES.shp",
+      "bytes": 18035048
+    },
+    {
+      "name": "TANZANIA_2022PHC_WARDS_SHAPEFILES.shp.xml",
+      "bytes": 11997
+    },
+    {
+      "name": "TANZANIA_2022PHC_WARDS_SHAPEFILES.shx",
+      "bytes": 34852
+    }
+  ],
+  "productionEligible": false,
+  "licenceReview": "unresolved",
+  "currentAdministrativeBoundariesVerified": false,
+  "retrievedOn": "2026-10-05"
+}

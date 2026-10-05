@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import {
     User, Settings, LogOut, LayoutDashboard, Shield, Scale,
-    Users, ChevronDown, Sparkles
+    Users, ChevronDown, Sparkles, Bell
 } from 'lucide-react';
 import { dashboardPath } from '@/components/auth/dashboardPath';
 import { cn } from '@/lib/utils';
@@ -53,7 +53,7 @@ const UserProfileButton = () => {
     const userName = convexUser?.name || clerkUser?.firstName || 'User';
     const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
     const userImage = convexUser?.imageUrl || clerkUser?.imageUrl;
-    const userRole = convexUser?.role || 'user';
+    const userRole = ['admin', 'supervisor', 'staff', 'safeguarding_officer', 'content_editor', 'paralegal', 'provider_staff', 'stakeholder', 'donor', 'user'].find((role) => access?.roles.includes(role as typeof access.roles[number])) || convexUser?.role || 'user';
 
     // Role styling
     const roleConfig: Record<string, { label: string; color: string; icon: React.ElementType; dashboardPath: string }> = {
@@ -69,6 +69,11 @@ const UserProfileButton = () => {
             icon: Users,
             dashboardPath: '/dashboard/staff'
         },
+        supervisor: { label: 'Supervisor', color: 'bg-blue-100 text-blue-700 border-blue-200', icon: Shield, dashboardPath: '/dashboard/staff' },
+        safeguarding_officer: { label: 'Safeguarding officer', color: 'bg-blue-100 text-blue-700 border-blue-200', icon: Shield, dashboardPath: '/dashboard/safeguarding' },
+        content_editor: { label: 'Content editor', color: 'bg-purple-100 text-purple-700 border-purple-200', icon: Users, dashboardPath: '/dashboard/editorial' },
+        provider_staff: { label: 'Provider staff', color: 'bg-orange-100 text-orange-700 border-orange-200', icon: Scale, dashboardPath: '/dashboard/paralegal' },
+        donor: { label: 'Donor', color: 'bg-purple-100 text-purple-700 border-purple-200', icon: Users, dashboardPath: '/dashboard/stakeholder' },
         paralegal: {
             label: 'Paralegal',
             color: 'bg-orange-100 text-orange-700 border-orange-200',
@@ -149,6 +154,13 @@ const UserProfileButton = () => {
                 </DropdownMenuItem>
 
                 {/* Profile Settings */}
+                <DropdownMenuItem
+                    className="p-3 cursor-pointer rounded-lg hover:bg-gray-100 focus:bg-gray-100"
+                    onClick={() => navigate('/notifications')}
+                >
+                    <Bell className="mr-3 h-4 w-4 text-gray-500" />
+                    <span>Updates and notifications</span>
+                </DropdownMenuItem>
                 <DropdownMenuItem
                     className="p-3 cursor-pointer rounded-lg hover:bg-gray-100 focus:bg-gray-100"
                     onClick={() => navigate('/profile')}

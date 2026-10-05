@@ -7,9 +7,11 @@ import { Linking } from "react-native";
 import { api } from "../src/backend/api";
 import { Button } from "../src/components/Button";
 import { Screen } from "../src/components/Screen";
+import { PublicInformationLinks } from "../src/components/PublicInformationLinks";
 import { useLanguage } from "../src/i18n";
 import { useIntakeDraft } from "../src/intake/IntakeDraftContext";
 import { colors, radius, spacing, type } from "../src/theme";
+import { directoryLabel } from "../src/directoryLabels";
 
 const issueOptions = [
   { key: "employment", sw: "Ajira", en: "Work", icon: "briefcase-outline", tone: "#FFF0E6" },
@@ -18,6 +20,8 @@ const issueOptions = [
   { key: "safety", sw: "Usalama", en: "Safety", icon: "shield-checkmark-outline", tone: "#F2EAFB" },
   { key: "consumer", sw: "Mlaji", en: "Consumer", icon: "wallet-outline", tone: "#FFF7DA" },
 ] as const;
+
+const providerOptions = ["all", "paralegal", "legal_aid_provider", "government_office", "local_government", "police_gender_children_desk", "social_welfare", "court_or_tribunal", "labour_service", "land_service", "cso", "protection_service", "mediation", "partner_organisation", "other"] as const;
 
 const serviceTypeLabels: Record<string, { sw: string; en: string }> = {
   legal_information: { sw: "Taarifa za kisheria", en: "Legal information" },
@@ -48,16 +52,18 @@ function intakeLabel(state: string, locale: "sw" | "en") {
   return labels[state]?.[locale] ?? state.replaceAll("_", " ");
 }
 
-export default function FindServicesScreen() {
+export function FindServicesScreen({ initialStage = "search" }: { initialStage?: "search" | "results" }) {
   const { locale } = useLanguage();
   const { updateDraft } = useIntakeDraft();
   const [region, setRegion] = useState("");
   const [district, setDistrict] = useState("");
+  const [ward, setWard] = useState("");
+  const [providerType, setProviderType] = useState<string>("all");
   const [search, setSearch] = useState("");
   const [issueCategory, setIssueCategory] = useState("");
   const [openOnly, setOpenOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  const [stage, setStage] = useState<"search" | "results">("search");
+  const [stage, setStage] = useState<"search" | "results">(initialStage);
   const [matching, setMatching] = useState(false);
   const [matchError, setMatchError] = useState("");
   const [compareIds, setCompareIds] = useState<string[]>([]);
@@ -69,6 +75,8 @@ export default function FindServicesScreen() {
       servicePointType: string;
       region: string;
       district: string;
+      ward?: string;
+      villageOrMtaa?: string;
       physicalLocation?: string;
       latitude?: number;
       longitude?: number;
@@ -92,16 +100,19 @@ export default function FindServicesScreen() {
     issueCategory: issueCategory || undefined,
     search: search.trim() || undefined,
   });
-  const allPublicServices = useQuery(api.justiceServices.listPublicServices, stage === "results" ? {} : "skip");
+  const allPublicServices = useQuery(api.justiceServices.listPublicServices, {});
   const matchServices = useMutation(api.justiceServices.matchServices);
+  const recordJourney = useMutation(api.journeyAnalytics.record);
 
   async function runMatch() {
     setStage("results");
+    void recordJourney({ surface: "mobile", step: "find_help_search" }).catch(() => undefined);
     if (search.trim()) {
       // Keyword searches use the verified directory query; the matcher does not accept a keyword.
       setRecommendations(null);
       setMatchError("");
       setMatching(false);
+      if (services?.length === 0) void recordJourney({ surface: "mobile", step: "find_help_no_results" }).catch(() => undefined);
       return;
     }
     setMatching(true);
@@ -116,6 +127,7 @@ export default function FindServicesScreen() {
         urgency: "standard",
       });
       setRecommendations(result.recommendations as typeof recommendations);
+      if (result.recommendations.length === 0) void recordJourney({ surface: "mobile", step: "find_help_no_results" }).catch(() => undefined);
     } catch {
       setMatchError(locale === "sw" ? "Ulinganishi haujakamilika. Huduma zilizothibitishwa bado zinaonyeshwa hapa chini." : "Matching could not finish. Verified services are still shown below.");
       setRecommendations(null);
@@ -130,7 +142,12 @@ export default function FindServicesScreen() {
     whySuitable: [locale === "sw" ? "Huduma imethibitishwa" : "Verified public service"],
     whatToPrepare: [],
   }));
-  const list = unfilteredList?.filter((item) => !openOnly || item.service.currentIntakeState === "open");
+  const list = unfilteredList?.filter((item) => {
+    if (openOnly && item.service.currentIntakeState !== "open") return false;
+    if (providerType !== "all" && item.service.servicePointType !== providerType) return false;
+    if (ward.trim() && ![item.service.ward, item.service.physicalLocation].some((value) => value?.toLowerCase().includes(ward.trim().toLowerCase()))) return false;
+    return true;
+  });
   const compared = list?.filter((item) => compareIds.includes(String(item.service._id))) ?? [];
   function startEscalation() {
     updateDraft({
@@ -148,10 +165,10 @@ export default function FindServicesScreen() {
   return (
     <Screen key={stage}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Go back"} onPress={() => stage === "results" ? setStage("search") : router.back()} style={styles.backButton}>
+        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Go back"} onPress={() => router.back()} style={styles.backButton}>
           <Ionicons name="chevron-back" size={26} color={colors.burgundy} />
         </Pressable>
-        <Text style={styles.headerTitle}>{stage === "results" ? (locale === "sw" ? "Matokeo ya huduma" : "Service results") : (locale === "sw" ? "Tafuta msaada" : "Find Help")}</Text>
+        <Text style={styles.headerTitle}>{initialStage === "results" ? (locale === "sw" ? "Msaada karibu nawe" : "Help near you") : (locale === "sw" ? "Tafuta msaada" : "Find help")}</Text>
         <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Msaada uliohifadhi" : "Saved Help"} style={styles.headerAction} onPress={() => router.push("/saved-services")}>
           <Ionicons name="bookmark-outline" size={19} color={colors.burgundy} />
         </Pressable>
@@ -197,15 +214,23 @@ export default function FindServicesScreen() {
       <View style={styles.assurance}><Ionicons name="shield-checkmark-outline" size={18} color={colors.teal} /><Text style={styles.assuranceText}>{locale === "sw" ? "Huduma za umma zilizothibitishwa pekee. Huhitaji akaunti ili kutafuta." : "Only verified public services. No account needed to explore."}</Text></View>
       <Pressable accessibilityRole="button" style={styles.editSearch} onPress={() => router.push("/paralegals")}><Ionicons name="people-outline" size={18} color={colors.burgundy} /><Text style={styles.editSearchText}>{locale === "sw" ? "Tafuta paralegal aliyethibitishwa" : "Find a verified paralegal"}</Text><Ionicons name="arrow-forward" size={16} color={colors.burgundy} /></Pressable>
       </> : <>
-      <View style={styles.resultsHero}>
-        <View style={styles.resultsIcon}><Ionicons name={list?.length === 0 ? "search-outline" : "checkmark-circle-outline"} size={25} color={colors.teal} /></View>
-        <View style={styles.resultsCopy}><Text style={styles.resultsTitle}>{matching || !services ? (locale === "sw" ? "Tunatafuta huduma..." : "Finding services...") : allPublicServices?.length === 0 ? (locale === "sw" ? "Hakuna huduma zilizochapishwa" : "No published services") : list?.length === 0 ? (locale === "sw" ? "Hakuna huduma inayolingana" : "No matching services") : (locale === "sw" ? "Hizi ndizo huduma zinazopatikana" : "Here are available services")}</Text><Text style={styles.resultsBody}>{searchSummary || (locale === "sw" ? "Huduma zote zilizothibitishwa" : "All verified public services")}</Text></View>
+      <Text style={styles.directoryTitle}>{locale === "sw" ? "Unatafuta msaada gani?" : "What help do you need?"}</Text>
+      <View style={styles.directoryFilters}>
+        <View style={styles.searchField}><Ionicons name="search-outline" size={20} color={colors.inkMuted} /><TextInput accessibilityLabel={locale === "sw" ? "Tafuta huduma" : "Search services"} value={search} onChangeText={(value) => { setSearch(value); setRecommendations(null); }} placeholder={locale === "sw" ? "Tafuta jina au huduma" : "Search name or service"} placeholderTextColor={colors.inkMuted} style={styles.searchInput} /></View>
+        <Pressable accessibilityRole="button" accessibilityState={{ expanded: showFilters }} onPress={() => setShowFilters((current) => !current)} style={styles.filterTrigger}><Ionicons name="options-outline" size={20} color={colors.burgundy} /><Text style={styles.filterTriggerText}>{locale === "sw" ? "Chuja kwa eneo na huduma" : "Filter by area and provider"}</Text><Ionicons name={showFilters ? "chevron-up" : "chevron-down"} size={19} color={colors.burgundy} /></Pressable>
+        {showFilters ? <>
+        <View style={styles.locationRow}><TextInput accessibilityLabel={locale === "sw" ? "Mkoa" : "Region"} value={region} onChangeText={(value) => { setRegion(value); setRecommendations(null); }} placeholder={locale === "sw" ? "Mkoa" : "Region"} placeholderTextColor={colors.inkMuted} style={[styles.input, styles.locationInput]} /><TextInput accessibilityLabel={locale === "sw" ? "Wilaya" : "District"} value={district} onChangeText={(value) => { setDistrict(value); setRecommendations(null); }} placeholder={locale === "sw" ? "Wilaya" : "District"} placeholderTextColor={colors.inkMuted} style={[styles.input, styles.locationInput]} /></View>
+        <TextInput accessibilityLabel={locale === "sw" ? "Kata au mtaa" : "Ward or street"} value={ward} onChangeText={setWard} placeholder={locale === "sw" ? "Kata au mtaa (si lazima)" : "Ward or street (optional)"} placeholderTextColor={colors.inkMuted} style={styles.input} />
+        <Text style={styles.filterLabel}>{locale === "sw" ? "Aina ya msaada" : "Provider type"}</Text>
+        <View style={styles.providerWrap}>{providerOptions.map((option) => <Pressable key={option} accessibilityRole="button" accessibilityState={{ selected: providerType === option }} onPress={() => setProviderType(option)} style={[styles.providerChip, providerType === option && styles.providerChipActive]}><Text style={[styles.providerText, providerType === option && styles.providerTextActive]}>{option === "all" ? (locale === "sw" ? "Zote" : "All") : directoryLabel(option, locale === "sw")}</Text></Pressable>)}</View>
+        <Pressable accessibilityRole="button" onPress={() => { setRegion(""); setDistrict(""); setWard(""); setSearch(""); setProviderType("all"); setIssueCategory(""); setOpenOnly(false); setRecommendations(null); }} style={styles.reset}><Ionicons name="refresh-outline" size={17} color={colors.burgundy} /><Text style={styles.resetText}>{locale === "sw" ? "Futa vichujio" : "Clear filters"}</Text></Pressable>
+        </> : null}
       </View>
-      <Pressable accessibilityRole="button" style={styles.editSearch} onPress={() => setStage("search")}><Ionicons name="options-outline" size={18} color={colors.burgundy} /><Text style={styles.editSearchText}>{locale === "sw" ? "Badili tatizo, eneo au vichujio" : "Edit issue, location or filters"}</Text></Pressable>
+      <Pressable accessibilityRole="button" onPress={() => router.push("/paralegals")} style={styles.paralegalLink}><Ionicons name="people-outline" size={19} color={colors.teal} /><Text style={styles.paralegalText}>{locale === "sw" ? "Tafuta paralegal" : "Find a paralegal"}</Text><Ionicons name="arrow-forward" size={17} color={colors.teal} /></Pressable>
 
       <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>{locale === "sw" ? "Matokeo" : "Results"}{!matching && list ? ` (${list.length})` : ""}</Text>
-        <Text style={styles.sectionMeta}>{locale === "sw" ? "Yaliyothibitishwa na salama kuonyesha" : "Verified and safe to show"}</Text>
+        <Text style={styles.sectionTitle}>{allPublicServices?.length === 0 ? (locale === "sw" ? "Njia nyingine za kupata msaada" : "Other ways to get help") : (locale === "sw" ? "Huduma" : "Services")}{allPublicServices?.length && !matching && list ? ` (${list.length})` : ""}</Text>
+        {allPublicServices?.length ? <Text style={styles.sectionMeta}>{locale === "sw" ? "Rekodi zilizothibitishwa" : "Verified records"}</Text> : null}
       </View>
 
       {(!services || matching) ? <ActivityIndicator color={colors.burgundy} style={styles.loading} /> : null}
@@ -222,8 +247,8 @@ export default function FindServicesScreen() {
             </View>
             <Text style={styles.statePill}>{intakeLabel(item.service.currentIntakeState, locale)}</Text>
           </View>
-          <Text style={styles.subhead}>{locale === "sw" ? "Kwa nini inaweza kufaa" : "Why this may fit"}</Text>
-          {item.whySuitable.slice(0, 3).map((reason) => (
+          <Text style={styles.providerLabel}>{directoryLabel(item.service.servicePointType, locale === "sw")}{item.service.ward ? ` · ${item.service.ward}` : ""}</Text>
+          {item.whySuitable.slice(0, 1).map((reason) => (
             <View key={reason} style={styles.reasonRow}>
               <Ionicons name="checkmark-circle-outline" size={16} color={colors.teal} />
               <Text style={styles.reasonText}>{locale === "sw" ? suitabilityLabels[reason] ?? reason : reason}</Text>
@@ -254,16 +279,17 @@ export default function FindServicesScreen() {
       )) : !matching && services ? (
         <View style={styles.empty}>
           <Ionicons name="compass-outline" size={42} color={colors.burgundy} />
-          <Text style={styles.emptyTitle}>{allPublicServices?.length === 0 ? (locale === "sw" ? "Huduma zilizothibitishwa bado hazijachapishwa" : "No verified services are published yet") : (locale === "sw" ? "Hakuna huduma inayolingana sasa" : "No matching services yet")}</Text>
+          <Text style={styles.emptyTitle}>{allPublicServices?.length === 0 ? (locale === "sw" ? "Timu ya LSF inaweza kukuelekeza" : "LSF can guide you") : (locale === "sw" ? "Hakuna huduma inayolingana sasa" : "No matching services yet")}</Text>
           <Text style={styles.emptyText}>
             {allPublicServices?.length === 0
-              ? (locale === "sw" ? "LSF bado haijachapisha rekodi za huduma zilizokaguliwa. Unaweza kutuma ombi salama ili timu ikusaidie." : "LSF has not published reviewed service records. You can still send a private request for help.")
+              ? (locale === "sw" ? "Orodha ya huduma bado inaandaliwa. Piga LSF au tuma ombi ili upate maelekezo yanayofaa." : "The service directory is being prepared. Call LSF or send a request for guidance.")
               : (locale === "sw" ? "Jaribu eneo au tatizo jingine, au tuma ombi salama ili LSF ikusaidie." : "Try a different location or issue, or send a private request so LSF can help.")}
           </Text>
-          {allPublicServices?.length ? <Button label={locale === "sw" ? "Futa vichujio" : "Clear filters"} variant="secondary" onPress={() => { setRegion(""); setDistrict(""); setSearch(""); setIssueCategory(""); setOpenOnly(false); setRecommendations(null); setCompareIds([]); setStage("search"); }} /> : null}
+          {allPublicServices?.length ? <Button label={locale === "sw" ? "Futa vichujio" : "Clear filters"} variant="secondary" onPress={() => { setRegion(""); setDistrict(""); setWard(""); setProviderType("all"); setSearch(""); setIssueCategory(""); setOpenOnly(false); setRecommendations(null); setCompareIds([]); }} /> : <Button label={locale === "sw" ? "Piga LSF" : "Call LSF"} variant="secondary" onPress={() => void Linking.openURL("tel:+255222601534")} />}
           <Button label={locale === "sw" ? "Omba LSF ikupangie" : "Let LSF match me"} onPress={startEscalation} />
         </View>
       ) : null}
+      {!matching && list?.length === 0 && <PublicInformationLinks issue={issueCategory} />}
       {compared.length > 0 ? <View style={styles.comparePanel}>
         <Text style={styles.sectionTitle}>{locale === "sw" ? "Linganisha huduma" : "Compare services"} · {compared.length}/3</Text>
         <Text style={styles.compareMeta}>{compared.map((item) => item.service.name).join(" · ")}</Text>
@@ -355,4 +381,23 @@ const styles = StyleSheet.create({
   compareRow: { backgroundColor: colors.surface, borderRadius: radius.md, padding: spacing.md, gap: spacing.xs },
   compareName: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14 },
   compareMeta: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 17 },
+  directoryTitle: { marginTop: 20, fontFamily: type.editorial, color: colors.ink, fontSize: 24, lineHeight: 30 },
+  directoryFilters: { marginTop: 15, gap: 10 },
+  filterTrigger: { minHeight: 49, paddingHorizontal: 13, borderRadius: 9, backgroundColor: colors.surface, flexDirection: "row", alignItems: "center", gap: 10 },
+  filterTriggerText: { flex: 1, fontFamily: type.medium, color: colors.burgundy, fontSize: 14 },
+  locationRow: { flexDirection: "row", gap: 10 },
+  locationInput: { flex: 1, minWidth: 0 },
+  filterLabel: { marginTop: 6, fontFamily: type.semibold, fontSize: 13, color: colors.ink },
+  providerWrap: { flexDirection: "row", flexWrap: "wrap", gap: 7 },
+  providerChip: { minHeight: 36, paddingHorizontal: 11, borderRadius: 8, backgroundColor: colors.surface, justifyContent: "center" },
+  providerChipActive: { backgroundColor: colors.burgundy },
+  providerText: { fontFamily: type.medium, fontSize: 12, color: colors.ink },
+  providerTextActive: { color: colors.surface },
+  reset: { minHeight: 38, flexDirection: "row", alignItems: "center", gap: 5 },
+  resetText: { fontFamily: type.medium, color: colors.burgundy, fontSize: 13 },
+  providerLabel: { fontFamily: type.medium, color: colors.teal, fontSize: 12 },
+  paralegalLink: { minHeight: 49, marginTop: 10, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12, borderRadius: 9, backgroundColor: colors.tealSoft },
+  paralegalText: { flex: 1, fontFamily: type.semibold, color: colors.teal, fontSize: 13 },
 });
+
+export default FindServicesScreen;

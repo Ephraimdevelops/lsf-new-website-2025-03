@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { Linking, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import type { Id } from "../../../convex/_generated/dataModel";
 import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
@@ -21,13 +22,12 @@ export default function ParalegalApplicationReviewScreen() {
   const access = useQuery(api.users.currentAccess, isSignedIn ? {} : "skip");
   const canReview = access?.roles.some((role) => ["admin", "staff"].includes(role)) ?? false;
   const isAdmin = access?.roles.includes("admin") ?? false;
-  const applications = useQuery(api.formSubmissions.listParalegalApplications, canReview ? {} : "skip");
+  const application = useQuery(api.formSubmissions.paralegalApplicationForReview, canReview && id ? { id: id as Id<"paralegal_applications"> } : "skip");
   const review = useMutation(api.formSubmissions.reviewParalegalApplication);
   const [note, setNote] = useState("");
   const [decision, setDecision] = useState<"approved" | "rejected" | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
-  const application = applications?.find((item) => item._id === id);
   const ownApplication = Boolean(application && access?.user.email?.toLowerCase() === application.email.toLowerCase());
 
   async function save(status: "under_review" | "approved" | "rejected") {
@@ -51,7 +51,7 @@ export default function ParalegalApplicationReviewScreen() {
     {!isSignedIn ? <State icon="lock-closed-outline" title={sw ? "Maombi ni ya siri" : "Applications are private"} body={sw ? "Ingia kwa akaunti ya LSF." : "Sign in with an LSF account."} action={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
       : access === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ruhusa" : "Loading access"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !canReview ? <State icon="shield-outline" title={sw ? "Ufikiaji haujaruhusiwa" : "Access not authorised"} body={sw ? "Jukumu la LSF linahitajika kuona maombi haya." : "An LSF review role is required to view applications."} />
-      : applications === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ombi" : "Loading application"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
+      : application === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ombi" : "Loading application"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !application ? <State icon="search-outline" title={sw ? "Ombi halipatikani" : "Application not found"} body={sw ? "Huenda limeondolewa au huna ruhusa ya kuliona." : "It may have been removed, or you may not have access to it."} action={sw ? "Rudi kwenye utawala" : "Back to governance"} onPress={() => router.replace("/governance")} />
       : <>
         <View style={styles.hero}><View style={styles.heroIcon}><Ionicons name="ribbon-outline" size={32} color={colors.surface} /></View><Text style={styles.heroKicker}>{sw ? "UTHIBITISHO WA PARALEGAL" : "PARALEGAL VERIFICATION"}</Text><Text style={styles.heroTitle}>{application.fullName}</Text><Text style={styles.heroBody}>{sw ? "Kagua utambulisho, uzoefu na cheti kabla ya idhini." : "Review identity, experience and credentials before approval."}</Text></View>
@@ -60,21 +60,21 @@ export default function ParalegalApplicationReviewScreen() {
         <Text style={styles.sectionTitle}>{sw ? "Nyaraka za uthibitisho" : "Verification documents"}</Text><View style={styles.documents}><Document label={sw ? "Kitambulisho" : "Identity document"} url={application.identityDocumentUrl} onOpen={openFile} sw={sw} /><Document label={sw ? "Cheti cha paralegal" : "Paralegal certificate"} url={application.certificateDocumentUrl} onOpen={openFile} sw={sw} /><Document label={sw ? "Wasifu / CV" : "Resume / CV"} url={application.resumeDocumentUrl} onOpen={openFile} sw={sw} /></View>
         {ownApplication ? <View style={styles.notice}><Ionicons name="shield-outline" size={22} color={colors.burgundy} /><Text style={styles.body}>{sw ? "Huwezi kufanya uamuzi wa ombi lako mwenyewe." : "You cannot make a decision on your own application."}</Text></View> : ["approved", "rejected"].includes(application.status) ? <View style={styles.notice}><Ionicons name="checkmark-circle-outline" size={22} color={colors.burgundy} /><Text style={styles.body}>{sw ? "Uamuzi wa mwisho umerekodiwa. Mabadiliko yanahitaji utaratibu wa usimamizi." : "A final decision is recorded. Changes require a separate supervised process."}</Text></View> : <>
           <Text style={styles.sectionTitle}>{sw ? "Hatua ya ukaguzi" : "Review decision"}</Text><Text style={styles.body}>{sw ? "Anza ukaguzi kwanza; idhini ya mwisho inahitaji msimamizi na nyaraka zinazotakiwa." : "Start review first; final approval requires an administrator and the required documents."}</Text>
-          {application.status === "pending" ? <Button label={sw ? "Anza ukaguzi" : "Start review"} loading={saving} disabled={saving} onPress={() => void save("under_review")} /> : <>
+          {application.intakeOrigin ? <View style={styles.notice}><Ionicons name="mail-outline" size={22} color={colors.burgundy} /><Text style={styles.body}>{sw ? "Mwombaji lazima akamilishe mwaliko na kupakia nyaraka kabla ya ukaguzi." : "The applicant must complete the invitation and upload evidence before review can begin."}</Text></View> : application.status === "pending" ? <Button label={sw ? "Anza ukaguzi" : "Start review"} loading={saving} disabled={saving} onPress={() => void save("under_review")} /> : <>
             <TextInput value={note} onChangeText={setNote} multiline maxLength={1000} placeholder={sw ? "Sababu ya uamuzi na matokeo ya ukaguzi..." : "Decision reason and review findings..."} placeholderTextColor={colors.inkMuted} style={styles.input} />
             <View style={styles.choices}>{isAdmin ? <Choice label={sw ? "Idhinisha" : "Approve"} icon="checkmark-circle-outline" selected={decision === "approved"} onPress={() => setDecision("approved")} /> : null}<Choice label={sw ? "Kataa" : "Reject"} icon="close-circle-outline" selected={decision === "rejected"} onPress={() => setDecision("rejected")} /></View>
             {decision ? <View style={styles.confirm}><Text style={styles.confirmTitle}>{decision === "approved" ? (sw ? "Thibitisha idhini" : "Confirm approval") : (sw ? "Thibitisha kukataa" : "Confirm rejection")}</Text><Text style={styles.body}>{decision === "approved" ? (sw ? "Jukumu la paralegal linaweza kuanza kutumika baada ya hatua hii." : "The paralegal role may become active after this step.") : (sw ? "Ombi litafungwa na sababu itawekwa kwenye rekodi." : "The application will close and the reason will be recorded.")}</Text><Button label={decision === "approved" ? (sw ? "Idhinisha paralegal" : "Approve paralegal") : (sw ? "Kataa maombi" : "Reject application")} loading={saving} disabled={saving || note.trim().length < 10 || (decision === "approved" && (!application.identityDocumentUrl || !application.certificateStorageId))} onPress={() => void save(decision)} /></View> : null}
           </>}
         </>}
         {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
-        <Button label={sw ? "Rudi kwenye foleni" : "Back to queue"} variant="quiet" onPress={() => router.push("/governance")} />
+        <Button label={sw ? "Rudi kwenye foleni" : "Back to queue"} variant="quiet" onPress={() => router.push("/paralegal-review-queue")} />
       </>}
   </Screen>;
 }
 
 function Info({ label, value }: { label: string; value: string }) { return <View style={styles.info}><Text style={styles.label}>{label}</Text><Text style={styles.value}>{value}</Text></View>; }
 function Document({ label, url, onOpen, sw }: { label: string; url?: string | null; onOpen: (url: string) => void; sw: boolean }) { return <View style={styles.document}><Ionicons name="document-text-outline" size={22} color={colors.burgundy} /><View style={styles.flex}><Text style={styles.value}>{label}</Text><Text style={styles.label}>{url ? (sw ? "Inapatikana kwa ukaguzi" : "Available for review") : (sw ? "Haipo" : "Missing")}</Text></View>{url ? <Pressable accessibilityRole="button" accessibilityLabel={`${sw ? "Fungua" : "Open"} ${label}`} onPress={() => onOpen(url)}><Ionicons name="open-outline" size={22} color={colors.burgundy} /></Pressable> : null}</View>; }
-function Choice({ label, icon, selected, onPress }: { label: string; icon: keyof typeof Ionicons.glyphMap; selected: boolean; onPress: () => void }) { return <Pressable accessibilityRole="radio" accessibilityState={{ checked: selected }} onPress={onPress} style={[styles.choice, selected && styles.choiceActive]}><Ionicons name={icon} size={21} color={colors.burgundy} /><Text style={styles.choiceText}>{label}</Text></Pressable>; }
+function Choice({ label, icon, selected, onPress }: { label: string; icon: keyof typeof Ionicons.glyphMap; selected: boolean; onPress: () => void }) { return <Pressable accessibilityRole="radio" accessibilityState={{ checked: selected }} aria-checked={selected} onPress={onPress} style={[styles.choice, selected && styles.choiceActive]}><Ionicons name={icon} size={21} color={colors.burgundy} /><Text style={styles.choiceText}>{label}</Text></Pressable>; }
 function State({ icon, title, body, action, onPress }: { icon: keyof typeof Ionicons.glyphMap; title: string; body: string; action?: string; onPress?: () => void }) { return <View style={styles.state}><Ionicons name={icon} size={35} color={colors.burgundy} /><Text style={styles.sectionTitle}>{title}</Text><Text style={styles.body}>{body}</Text>{action && onPress ? <Button label={action} onPress={onPress} /> : null}</View>; }
 
 const styles = StyleSheet.create({

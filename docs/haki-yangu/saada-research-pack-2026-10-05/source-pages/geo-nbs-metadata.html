@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Tanzania - Region Shapefile Metadata 2022 Census</title>
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+
+<link rel="stylesheet" href="https://microdata.nbs.go.tz/themes/nbs_tz/css/style.css?v2021-231">
+<link rel="stylesheet" href="https://microdata.nbs.go.tz/themes/nbs_tz/css/custom.css?v2021">
+<link rel="stylesheet" href="https://microdata.nbs.go.tz/themes/nbs_tz/css/home.css?v03212019">
+<link rel="stylesheet" href="https://microdata.nbs.go.tz/themes/nbs_tz/css/variables.css?v07042021">
+<link rel="stylesheet" href="https://microdata.nbs.go.tz/themes/nbs_tz/css/facets.css?v062021">
+<link rel="stylesheet" href="https://microdata.nbs.go.tz/themes/nbs_tz/css/catalog-tab.css?v07052021">
+<link rel="stylesheet" href="https://microdata.nbs.go.tz/themes/nbs_tz/css/catalog-card.css?v10102021-1">
+<link rel="stylesheet" href="https://microdata.nbs.go.tz/themes/nbs_tz/css/filter-action-bar.css?v14052021-3">
+
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    var CI = {'base_url': 'https://microdata.nbs.go.tz/index.php'};
+
+    if (top.frames.length!=0) {
+        top.location=self.document.location;
+    }
+
+    $(document).ready(function()  {
+        /*global ajax error handler */
+        $( document ).ajaxError(function(event, jqxhr, settings, exception) {
+            if(jqxhr.status==401){
+                window.location=CI.base_url+'/auth/login/?destination=catalog/';
+            }
+            else if (jqxhr.status>=500){
+                alert(jqxhr.responseText);
+            }
+        });
+
+    }); //end-document-ready
+
+</script>
+
+
+<script type="text/javascript" src="https://microdata.nbs.go.tz/javascript/linkify.min.js?v=102026"></script><script type="text/javascript" src="https://microdata.nbs.go.tz/javascript/linkify-jquery.min.js?v=102026"></script><script type="text/javascript" src="https://microdata.nbs.go.tz/javascript/pym.v1.min.js?v=102026"></script><script type="application/ld+json">
+    {
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Region Shapefile Metadata 2022 Census - Tanzania",
+    "description": "Abstract\r\n---------------------------\r\n\r\nSummary\nThis dataset provides detailed information about the enumeration areas used for the 2022 Population and Housing Census (PHC) in Tanzania. The data was collected from 2020 to May 2022 and is available in ESRI Shapefile format, including geographic boundaries and key attributes of each ward area. The dataset aims to support census planning, management, and analysis by offering crucial insights into population distribution and characteristics.\nPurpose\nThe primary purpose of this dataset is to serve as a geographical reference for the ward areas used in the 2022 PHC. It aims to aid various census activities, including demographic analysis, ward area allocation, and strategic planning. The dataset is intended to improve the accuracy and efficiency of census operations by providing precise and up-to-date geographic information.\nData Structure\nThe dataset is provided in the ESRI Shapefile format, a popular vector data format for Geographic Information System (GIS) applications.\nGeographic Coverage\nThe dataset covers the entire geographic area of Tanzania. The boundaries of the ward areas are drawn according to administrative regions and internal geographical features.\r\n\r\nGeographic coverage\r\n---------------------------\r\n\r\nNational Coverage\r\n\r\nAnalysis unit\r\n---------------------------\r\n\r\nadministrative boundaries\r\n\r\nUniverse\r\n---------------------------\r\n\r\nEntire population of the country\r\n\r\nKind of data\r\n---------------------------\r\n\r\nAdministrative records data [adm]\r\n\r\nMode of data collection\r\n---------------------------\r\n\r\nCollector of ArcGIS\r\n\r\nCleaning operations\r\n---------------------------\r\n\r\nThe data editing, since the programme for data collectioon connect direct to server, so data editing was done in field with team after checking by office team if there is overlapping or shifting of boundary, or naming of the place or coding.\r\n\r\nSampling error estimates\r\n---------------------------\r\n\r\nThe spatial accuracy of the dataset is estimated to be within 3 meters, ensuring precise location information for each ward boundary.\r\n\r\nData appraisal\r\n---------------------------\r\n\r\nCensus, PHC 2022, Geographic, Shapefile, Mapping, Tanzania, Demographic Analysis",
+    "url": "https://microdata.nbs.go.tz/index.php/catalog/49",
+    "sameAs": "https://microdata.nbs.go.tz/index.php/catalog/study/TZA-NBS-PHC-2020-ShapeFilesv01",
+    "identifier": "TZA-NBS-PHC-2020-ShapeFilesv01",
+    "includedInDataCatalog": {
+        "@type": "DataCatalog",
+        "name": "https://microdata.nbs.go.tz/"
+    },
+    "temporalCoverage": "2020-2022",
+    "dateCreated": "2024-07-30T12:14:17+05:30",
+    "dateModified": "2024-09-19T12:55:57+05:30",
+    "spatialCoverage": {
+        "@type": "Place",
+        "name": "Tanzania"
+    },
+    "creator": [
+        {
+            "@type": "Organization",
+            "name": "Tanzania National Bureau of Statistics (NBS)"
+        }
+    ],
+    "producer": [
+        {
+            "@type": "Organization",
+            "name": "ESRI EASTERN AFRICA LIMITED"
+        },
+        {
+            "@type": "Organization",
+            "name": "President's Office, Regional Administration and Local Government Tanzania"
+        }
+    ]
+}</script>
+</head>
+
+<body>
+
+    <!-- site header -->
+    <style>
+.site-header .navbar-light .no-logo .navbar-brand--sitename {border:0px!important;margin-left:0px}
+.site-header .navbar-light .no-logo .nada-site-title {font-size:18px;}
+</style>
+<header class="site-header">
+    
+    <div class="container-fluid wb-user-bar">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+            <div class="col-12 mt-2 mb-2 wb-login-link login-bar">
+            <div class="float-right">
+            
+            <div class="dropdown ml-auto">
+            <a class="small" href="https://microdata.nbs.go.tz/index.php/auth/register">Sign Up</a> |
+                <a class="dropdown-toggle small" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle fa-lg"></i> Login</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item small" href="https://microdata.nbs.go.tz/index.php/auth/login">Login</a>
+                </div>
+                
+                            </div>
+            </div>
+        </div>
+
+    </div>
+<!-- /row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+        
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-md navbar-light rounded navbar-toggleable-md wb-navbar">
+
+                                                              <div class="navbar-brand">
+                        <div class="navbar-brand">
+                            <img src="https://microdata.nbs.go.tz/themes/nbs_tz/images/nbs_banner.png"  >
+                        </div>
+                        
+                    </div>
+
+                    
+                                        
+
+                    <button class="navbar-toggler navbar-toggler-right collapsed wb-navbar-button-toggler" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Start menus -->
+                                        <!-- Close Menus -->
+
+                </nav>
+            </div>
+
+        </div>
+        <!-- /row -->
+
+    </div>
+    
+</header>
+    
+    <div class="container-fluid container-bg wb-user-bar">
+
+        <div class="row">
+            <div class="col-12">
+            <div class="container">
+<nav class="navbar-nav mr-auto navbar-expand-lg navbar-light ">
+<!-- Start menus -->
+<div class="navbar-collapse collapse" id="containerNavbar" aria-expanded="false">
+        <ul class="navbar-nav mr-auto">
+                                            <li class="nav-item">
+                <a   class="nav-link" href="https://microdata.nbs.go.tz/index.php/home">Home</a>
+            </li>            
+                                            <li class="nav-item">
+                <a   class="nav-link" href="https://microdata.nbs.go.tz/index.php/catalog">Microdata  Catalog</a>
+            </li>            
+        
+            </ul>
+
+</div>
+
+<!-- Close Menus -->
+        </nav>
+</div>
+</div>
+</div>
+        </div>
+    <!-- page body -->
+    <div class="wp-page-body container-fluid page-catalog catalog">
+
+        <div class="body-content-wrap theme-nada-2">
+
+            <!--breadcrumbs -->
+            <div class="container">
+                                                    <ol class="breadcrumb wb-breadcrumb">
+                        	    <div class="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
+           <span typeof="v:Breadcrumb">
+                		         <a href="https://microdata.nbs.go.tz/index.php/" rel="v:url" property="v:title">Home</a> /
+                        
+       </span>
+                  <span typeof="v:Breadcrumb">
+                		         <a href="https://microdata.nbs.go.tz/index.php/catalog" rel="v:url" property="v:title">Central Data Catalog</a> /
+                        
+       </span>
+                  <span typeof="v:Breadcrumb">
+        	         	         <a class="active" href="https://microdata.nbs.go.tz/index.php/catalog/49" rel="v:url" property="v:title">TZA-NBS-PHC-2020-SHAPEFILESV01</a>
+                        
+       </span>
+               </div>
+                    </ol>
+                            </div>
+            <!-- /breadcrumbs -->
+
+            <style>
+.metadata-sidebar-container .nav .active{
+	background:#e9ecef;		
+}
+.study-metadata-page .page-header .nav-tabs .active a {
+	background: white;
+	font-weight: bold;
+	border-top: 2px solid #0071bc;
+	border-left:1px solid gainsboro;
+	border-right:1px solid gainsboro;
+}
+
+.study-info-content {
+    font-size: 14px;
+}
+
+.study-subtitle{
+	font-size:.7em;
+	margin-bottom:10px;
+}
+
+.badge-outline{
+	background:transparent;
+	color:#03a9f4;
+	border:1px solid #9e9e9e;
+}
+.study-header-right-bar span{
+	display:block;
+	margin-bottom:15px;
+}
+.study-header-right-bar{
+	font-size:14px;
+	color:gray;
+}
+.get-microdata-btn{
+	font-size:14px;
+}
+
+.link-col .badge{
+	font-size:14px;
+	font-weight:normal;
+	background:transparent;
+	border:1px solid #9E9E9E;
+	color:#03a9f4;
+}
+
+.link-col .badge:hover{
+	background:#03a9f4;
+	color:#ffffff;
+}
+
+.study-header-right-bar .stat{
+	margin-bottom:10px;
+	font-size:small;
+}
+
+.study-header-right-bar .stat .stat-label{
+	font-weight:bold;
+	text-transform:uppercase;
+}
+
+.field-metadata__table_description__ref_country .field-value,
+.field-metadata__study_desc__study_info__nation .field-value{
+	max-height:350px;
+	overflow:auto;
+}
+.field-metadata__table_description__ref_country .field-value  ::-webkit-scrollbar,
+.field-metadata__study_desc__study_info__nation .field-value ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.field-metadata__table_description__ref_country .field-value  ::-webkit-scrollbar-thumb,
+.field-metadata__study_desc__study_info__nation .field-value ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+</style>
+
+
+<div class="page-body-full study-metadata-page">
+	<span 
+		id="dataset-metadata-info" 
+		data-repositoryid="central"
+		data-id="49"
+		data-idno="TZA-NBS-PHC-2020-ShapeFilesv01"
+	></span>
+
+<div class="container-fluid page-header">
+<div class="container">
+
+
+<div class="row study-info">
+					<div class="col-md-2">
+			<div class="collection-thumb-container">
+				<a href="https://microdata.nbs.go.tz/index.php/catalog/central">
+				<img  src="https://microdata.nbs.go.tz/files/icon-blank.png?v=1726730757" class="mr-3 img-fluid img-thumbnail" alt="central" title="Central Data Catalog"/>
+				</a>
+			</div>		
+		</div>
+	
+	<div class="col">
+		
+		<div>
+		    <h1 class="mt-0 mb-1" id="dataset-title">
+                <span>Region Shapefile Metadata 2022 Census</span>
+                            </h1>
+            <div class="clearfix">
+		        <h6 class="sub-title float-left" id="dataset-sub-title"><span id="dataset-country">Tanzania</span>, <span id="dataset-year">2020 - 2022</span></h6>
+                                <a  
+                    href="https://microdata.nbs.go.tz/index.php/catalog/49/get-microdata" 
+                    class="get-microdata-btn badge badge-primary wb-text-link-uppercase float-left ml-3" 
+                    title="Get Microdata">					
+                    <span class="fa fa-download"></span>
+                    Get Microdata                </a>
+                                
+            </div>
+		</div>
+
+		<div class="row study-info-content">
+		
+            <div class="col pr-5">
+
+                <div class="row mt-4 mb-2 pb-2  border-bottom">
+                    <div class="col-md-2">
+                        Reference ID                    </div>
+                    <div class="col">
+                        <div class="study-idno">
+                            TZA-NBS-PHC-2020-ShapeFilesv01                            
+                        </div>
+                    </div>
+                </div>
+
+                		
+                                <div class="row mb-2 pb-2  border-bottom">
+                    <div class="col-md-2">
+                        Producer(s)                    </div>
+                    <div class="col">
+                        <div class="producers">
+                            Tanzania National Bureau of Statistics (NBS)                        </div>
+                    </div>
+                </div>
+                                
+                
+                
+                <div class="row border-bottom mb-2 pb-2 mt-2">
+                    <div class="col-md-2">
+                        Metadata                    </div>
+                    <div class="col">
+                        <div class="metadata">
+                            <!--metadata-->
+                            <span class="mr-2 link-col">
+                                                                                            
+                                                                    <a class="download" href="https://microdata.nbs.go.tz/index.php/metadata/export/49/ddi" title="DDI Codebook (2.5)">
+                                        <span class="badge badge-primary"> DDI/XML</span>
+                                    </a>
+                                
+                                <a class="download" href="https://microdata.nbs.go.tz/index.php/metadata/export/49/json" title="JSON">
+                                    <span class="badge badge-info">JSON</span>
+                                </a>
+                            </span>	
+                            <!--end-metadata-->
+                        </div>
+                    </div>
+                </div>
+
+                
+                	    </div>
+	
+	</div>
+
+	</div>
+
+    <div class="col-md-2 border-left">
+		<!--right-->
+		<div class="study-header-right-bar">
+				<div class="stat">
+					<div class="stat-label">Created on </div>
+					<div class="stat-value">Jul 30, 2024</div>
+				</div>
+
+				<div class="stat">
+					<div class="stat-label">Last modified </div>
+					<div class="stat-value">Sep 19, 2024</div>
+				</div>
+				
+									<div class="stat">
+						<div class="stat-label">Page views </div>
+						<div class="stat-value">39436</div>
+					</div>
+				
+									<div class="stat">
+						<div class="stat-label">Downloads </div>
+						<div class="stat-value">139278</div>
+					</div>				
+						</div>		
+		<!--end-right-->
+	</div>
+
+</div>
+
+
+
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs wb-nav-tab-space flex-wrap" role="tablist">
+								<li class="nav-item tab-description active"  >
+				<a href="https://microdata.nbs.go.tz/index.php/catalog/49/study-description" class="nav-link wb-nav-link wb-text-link-uppercase active" role="tab"  data-id="related-materials" >Study Description</a>
+			</li>
+												<li class="nav-item tab-related_materials "  >
+				<a href="https://microdata.nbs.go.tz/index.php/catalog/49/related-materials" class="nav-link wb-nav-link wb-text-link-uppercase " role="tab"  data-id="related-materials" >Downloads</a>
+			</li>
+										<li class="nav-item nav-item-get-microdata tab-get_microdata " >
+				<a href="https://microdata.nbs.go.tz/index.php/catalog/49/get-microdata" class="nav-link wb-nav-link wb-text-link-uppercase " role="tab" data-id="related-materials" >
+					<span class="get-microdata icon-da-direct"></span> Get Microdata				</a>
+			</li>                            
+										
+	<!--review-->
+	</ul>
+<!-- end nav tabs -->
+</div>
+</div>
+
+
+
+<div class="container study-metadata-body-content " >
+
+
+<!-- tabs -->
+<div id="tabs" class="study-metadata ui-tabs ui-widget ui-widget-content ui-corner-all study-tabs" >	
+  
+  <div id="tabs-1" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" >
+  	
+        <div class="tab-body-no-sidebar-x"><div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="navbar-collapse sticky-top metadata-sidebar-container">
+            <div class="nav flex-column">
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc.title_statement">Identification</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_description.version">Version</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1674579453273">Scope</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1684331110642">Coverage</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1684331430702">Producers and sponsors</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1684332928200">Data collection</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1686767889862">Data processing</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1684334914432">Data appraisal</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1684335103457">Data Access</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1684335112393">Disclaimer and copyrights</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#study_desc1684335140110">Contacts</a>
+                </li>
+                            <li class="nav-item">                    
+                    <a class="nav-link" href="#doc_desc.title_statement">Metadata production</a>
+                </li>
+                        </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc.title_statement">Identification</h2><div class="mb-2 field field-study_desc.title_statement.idno">
+    <div class="font-weight-bold field-title">Survey ID number</div>
+    <div class="field-value">
+                                    <span><p>TZA-NBS-PHC-2020-ShapeFilesv01</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.title_statement.title">
+    <div class="font-weight-bold field-title">Title</div>
+    <div class="field-value">
+                                    <span><p>Region Shapefile Metadata 2022 Census</p></span>
+            
+            </div>
+</div>
+<div class="table-responsive field field-study_desc_study_info_nation">
+    <div class="field-title">Country</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Name</th>
+                        <th>Country code</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                United Republic of Tanzania                                    </td>
+                            <td>            
+                                                TZA                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+<div class="mb-2 field field-study_desc.series_statement.series_name">
+    <div class="font-weight-bold field-title">Study type</div>
+    <div class="field-value">
+                                    <span><p>Admistrative boundaries, Census</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.study_info.abstract">
+    <div class="font-weight-bold field-title">Abstract</div>
+    <div class="field-value">
+                                    <span><p>Summary<br />
+This dataset provides detailed information about the enumeration areas used for the 2022 Population and Housing Census (PHC) in Tanzania. The data was collected from 2020 to May 2022 and is available in ESRI Shapefile format, including geographic boundaries and key attributes of each ward area. The dataset aims to support census planning, management, and analysis by offering crucial insights into population distribution and characteristics.<br />
+Purpose<br />
+The primary purpose of this dataset is to serve as a geographical reference for the ward areas used in the 2022 PHC. It aims to aid various census activities, including demographic analysis, ward area allocation, and strategic planning. The dataset is intended to improve the accuracy and efficiency of census operations by providing precise and up-to-date geographic information.<br />
+Data Structure<br />
+The dataset is provided in the ESRI Shapefile format, a popular vector data format for Geographic Information System &amp;#40;GIS&amp;#41; applications.<br />
+Geographic Coverage<br />
+The dataset covers the entire geographic area of Tanzania. The boundaries of the ward areas are drawn according to administrative regions and internal geographical features.</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.study_info.data_kind">
+    <div class="font-weight-bold field-title">Kind of Data</div>
+    <div class="field-value">
+                                    <span><p>Administrative records data [adm]</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.study_info.analysis_unit">
+    <div class="font-weight-bold field-title">Unit of Analysis</div>
+    <div class="field-value">
+                                    <span><p>administrative boundaries</p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_description.version">Version</h2><div class="mb-2 field field-study_desc.version_statement.version">
+    <div class="font-weight-bold field-title">Version Description</div>
+    <div class="field-value">
+                                    <span><ul>
+<li>v0.1</li>
+</ul></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.version_statement.version_date">
+    <div class="font-weight-bold field-title">Version Date</div>
+    <div class="field-value">
+                                    <span><p>2022-05-30</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.version_statement.version_notes">
+    <div class="font-weight-bold field-title">Version Notes</div>
+    <div class="field-value">
+                                    <span><p>This version produced after merging EAs shapefile into hamlet then into villages and final into wards</p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1674579453273">Scope</h2><div class="mb-2 field field-study_desc.study_info.notes">
+    <div class="font-weight-bold field-title">Notes</div>
+    <div class="field-value">
+                                    <span><ul>
+<li>BOUNDARIES; Regional Boundaries, District Boundaries,Council Boundaries,Constitutional Boundaries,Divisional Boundaries, Ward Boundaries</li>
+</ul>
+<p>STATISTIC CODE; Regional Codes, District Codes, Council Codes,Constitunal Codes,Divisional Codes,Ward Codes</p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1684331110642">Coverage</h2><div class="mb-2 field field-study_desc.study_info.geog_coverage">
+    <div class="font-weight-bold field-title">Geographic Coverage</div>
+    <div class="field-value">
+                                    <span><p>National Coverage</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.study_info.universe">
+    <div class="font-weight-bold field-title">Universe</div>
+    <div class="field-value">
+                                    <span><p>Entire population of the country</p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1684331430702">Producers and sponsors</h2><div class="table-responsive field field-study_desc_authoring_entity">
+    <div class="field-title">Primary investigators</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Name</th>
+                        <th>Affiliation</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                Tanzania National Bureau of Statistics (NBS)                                    </td>
+                            <td>            
+                                                MoF                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+<div class="table-responsive field field-study_desc_production_statement_producers">
+    <div class="field-title">Producers</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Name</th>
+                        <th>Affiliation</th>
+                        <th>Role</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                ESRI EASTERN AFRICA LIMITED                                    </td>
+                            <td>            
+                                                ESRI                                    </td>
+                            <td>            
+                                                Technical assistance in programme design                                    </td>
+            </tr>
+        <tr>
+                            <td>            
+                                                                                    </td>
+                            <td>            
+                                                                                    </td>
+                            <td>            
+                                                Technical assistance in selection of methodology                                    </td>
+            </tr>
+        <tr>
+                            <td>            
+                                                                                    </td>
+                            <td>            
+                                                                                    </td>
+                            <td>            
+                                                Technical assistance in selection of methodology                                    </td>
+            </tr>
+        <tr>
+                            <td>            
+                                                President's Office, Regional Administration and Local Government Tanzania                                    </td>
+                            <td>            
+                                                PO-RALG                                    </td>
+                            <td>            
+                                                Technical assistance in boundaries identification                                    </td>
+            </tr>
+        <tr>
+                            <td>            
+                                                                                    </td>
+                            <td>            
+                                                                                    </td>
+                            <td>            
+                                                Technical assistance  data processing                                     </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+<div class="table-responsive field field-study_desc_production_statement_funding_agencies">
+    <div class="field-title">Funding Agency/Sponsor</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Name</th>
+                        <th>Abbreviation</th>
+                        <th>Role</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                Government of Tanzania                                    </td>
+                            <td>            
+                                                URT                                    </td>
+                            <td>            
+                                                Financial support                                    </td>
+            </tr>
+        <tr>
+                            <td>            
+                                                WB                                    </td>
+                            <td>            
+                                                World bank                                    </td>
+                            <td>            
+                                                Financial support                                    </td>
+            </tr>
+        <tr>
+                            <td>            
+                                                UNFPA                                    </td>
+                            <td>            
+                                                United Nations Population Fund                                     </td>
+                            <td>            
+                                                Financial support                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1684332928200">Data collection</h2><div class="table-responsive field field-study_desc_study_info_coll_dates">
+    <div class="field-title">Dates of Data Collection</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Start</th>
+                        <th>End</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                2020-01-14                                    </td>
+                            <td>            
+                                                2022-05-30                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+<div class="field field-study_desc.method.data_collection.coll_mode">
+            <div class="field-title">Mode of data collection</div>
+        <div class="field-value">                        
+        <ul>
+                    <li>Collector of ArcGIS</li>
+                </ul>        
+    </div>
+</div>
+
+<div class="table-responsive field field-study_desc_method_data_collection_data_collectors">
+    <div class="field-title">Data Collectors</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Name</th>
+                        <th>Affiliation</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                National Bureau of Statistics                                    </td>
+                            <td>            
+                                                Ministry of Finance                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+<div class="mb-2 field field-study_desc.method.data_collection.act_min">
+    <div class="font-weight-bold field-title">Supervision</div>
+    <div class="field-value">
+                                    <span><p>For one to three  teams together there is one supervisor and a drive</p>
+<p>The role of the supervisor was to coordinator field data collection activities, including management of the field teams, supplies and equipment, coordinate with local authorities concerning the survey plan and make arrangements for any boundaries conflict (communicate with responsible ministry). Additionally, the field supervisor assigned the work to the interviewers, spot checked work, make sure all data are sent to central server daily or when there is stable internet. Communicate with central sever officers to make clarification about any doubt in his/her team</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.method.data_collection.coll_situation">
+    <div class="font-weight-bold field-title">Data Collection Notes</div>
+    <div class="field-value">
+                                    <span><p>Each field team comprised of 2 field mappers and a driver. For one to three teams together there is one supervisor and a driver. A total of 306 mappers, 165 supervisors and 6 GIS experts and IT (station in the server)  were used to collect and editing data. Data collection took place  from January 14, 2020 until May 30, 2022. Interviewing took place everyday throughout the fieldwork period, although interviewing teams were permitted to take one day off for editing and correction before sending data to server.</p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1686767889862">Data processing</h2><div class="mb-2 field field-study_desc.method.data_collection.cleaning_operations">
+    <div class="font-weight-bold field-title">Data Editing</div>
+    <div class="field-value">
+                                    <span><p>The data editing, since the programme for data collectioon connect direct to server, so data editing was done in field with team after checking by office team if there is overlapping or shifting of boundary, or naming of the place or coding.</p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1684334914432">Data appraisal</h2><div class="mb-2 field field-study_desc.method.analysis_info.sampling_error_estimates">
+    <div class="font-weight-bold field-title">Estimates of Sampling Error</div>
+    <div class="field-value">
+                                    <span><p>The spatial accuracy of the dataset is estimated to be within 3 meters, ensuring precise location information for each ward boundary.</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.method.analysis_info.data_appraisal">
+    <div class="font-weight-bold field-title">Data Appraisal</div>
+    <div class="field-value">
+                                    <span><p>Census, PHC 2022, Geographic, Shapefile, Mapping, Tanzania, Demographic Analysis</p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1684335103457">Data Access</h2><div class="table-responsive field field-study_desc_data_access_dataset_use_contact">
+    <div class="field-title">Access authority</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Name</th>
+                        <th>Affiliation</th>
+                        <th>URL</th>
+                        <th>Email</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                Mr. Benedict Mugambi                                    </td>
+                            <td>            
+                                                National Bureau of Statistics                                    </td>
+                            <td>            
+                                                https://www.nbs.go.tz/statistics/geographic-information-system-gis                                    </td>
+                            <td>            
+                                                benedict.mugambi@nbs.go.tz                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+<div class="table-responsive field field-study_desc_data_access_dataset_use_conf_dec">
+    <div class="field-title">Confidentiality</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Is signing of a confidentiality declaration required?</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                yes                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+<div class="mb-2 field field-study_desc.data_access.dataset_use.conditions">
+    <div class="font-weight-bold field-title">Access conditions</div>
+    <div class="field-value">
+                                    <span><p>Any stakeholder has access to the data through public or request from the authority.</p>
+<p>The shapefile up to level three have been shared here for public. The lower-level shapefiles are available by formal request to NBS through the following contact;</p>
+<p>National Bureau of Statistics Tanzania<br />
+P.O. Box 2683,<br />
+64 Lusinde Road,<br />
+41104 Tambukareli, DODOMA.<br />
+Email: sg@nbs.go.tz<br />
+Phone: +255 26 2963822<br />
+Fax: +255 26 2963828</p></span>
+            
+            </div>
+</div>
+<div class="mb-2 field field-study_desc.data_access.dataset_use.cit_req">
+    <div class="font-weight-bold field-title">Citation requirements</div>
+    <div class="field-value">
+                                    <span><p>National Bureau of Statistics</p>
+<p><a href="https://www.nbs.go.tz/statistics/geographic-information-system-gis">https://www.nbs.go.tz/statistics/geographic-information-system-gis</a></p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1684335112393">Disclaimer and copyrights</h2><div class="mb-2 field field-study_desc.production_statement.copyright">
+    <div class="font-weight-bold field-title">Copyright</div>
+    <div class="field-value">
+                                    <span><p>2022 PHC, National Bureau of Statistics</p></span>
+            
+            </div>
+</div>
+</div><div class="field-section-container pb-3"><h2 class="field-section" id="study_desc1684335140110">Contacts</h2><div class="table-responsive field field-study_desc_distribution_statement_contact">
+    <div class="field-title">Contacts</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Name</th>
+                        <th>Affiliation</th>
+                        <th>Email</th>
+                        <th>URL</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                Mr. Benedict Mugambi                                    </td>
+                            <td>            
+                                                National Bureau of Statistics                                     </td>
+                            <td>            
+                                                benedict.mugambi@nbs.go.tz                                    </td>
+                            <td>            
+                                                https://www.nbs.go.tz/statistics/geographic-information-system-gis                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+</div></div><div><div class="field-section-container pb-3"><h2 class="field-section" id="doc_desc.title_statement">Metadata production</h2><div class="mb-2 field field-doc_desc.idno">
+    <div class="font-weight-bold field-title">DDI Document ID</div>
+    <div class="field-value">
+                                    <span><p>DDI-TZA-NBS-PHC-2022-v01.</p></span>
+            
+            </div>
+</div>
+<div class="table-responsive field field-doc_desc_producers">
+    <div class="field-title">Producers</div>
+<div class="">
+<table class="table table-sm table-bordered table-striped table-condensed xsl-table table-grid ">
+            <tr>
+                        <th>Name</th>
+                        <th>Affiliation</th>
+                        <th>Role</th>
+                    </tr>
+            <tr>
+                            <td>            
+                                                National Bureau of Statistics                                    </td>
+                            <td>            
+                                                Ministry of Finance                                    </td>
+                            <td>            
+                                                Producer of Data                                    </td>
+            </tr>
+        
+</table>
+</div>
+</div>
+
+<div class="mb-2 field field-doc_desc.prod_date">
+    <div class="font-weight-bold field-title">Date of Metadata Production</div>
+    <div class="field-value">
+                                    <span><p>2022-05-30</p></span>
+            
+            </div>
+</div>
+<div class="field-section-container pb-3"><h2 class="field-section" id="doc_description1684333414594">Metadata version</h2><div class="mb-2 field field-doc_desc.version_statement.version">
+    <div class="font-weight-bold field-title">DDI Document version</div>
+    <div class="field-value">
+                                    <span><p>version 1.0</p></span>
+            
+            </div>
+</div>
+</div></div></div>        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $(".study-metadata").linkify();
+    });
+</script>    
+
+<style>
+
+.study-metadata h2{
+    border-bottom:1px solid #e8e8e8;
+    padding-bottom:5px;
+    margin-bottom:25px;
+    padding-top:20px;
+}
+.study-metadata .field-title{
+    text-transform: uppercase;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.study-metadata h4.field-title{
+    margin-top:0px;
+}
+
+.field-section-container .field-section-container h2{
+    font-size:22px;
+}
+
+.badge-tags{
+    font-size:14px!important;
+}
+</style></div>
+    
+	<div class="mt-5">                
+            <a class="btn btn-sm btn-secondary" href="https://microdata.nbs.go.tz/index.php/catalog"><i class="fas fa-arrow-circle-left"></i> Back to Catalog</a>
+        </div>
+  </div>
+</div>
+<!-- end-tabs-->    
+   </div> 
+</div>
+
+
+<!--survey summary resources-->
+<script type="text/javascript">
+	function toggle_resource(element_id){
+		$("#"+element_id).parent(".resource").toggleClass("active");
+		$("#"+element_id).toggle();
+	}
+	
+	$(document).ready(function () { 
+		bind_behaviours();
+		
+		$(".show-datafiles").click(function(){
+			$(".data-files .hidden").removeClass("hidden");
+			$(".show-datafiles").hide();
+			return false;
+		});
+
+		//setup bootstrap scrollspy
+		$("body").attr('data-spy', 'scroll');
+		$("body").attr('data-target', '#dataset-metadata-sidebar');
+		$("body").attr('data-offset', '0');
+		$("body").scrollspy('refresh');
+
+	});	
+	
+	function bind_behaviours() {
+		//show variable info by id
+		$(".resource-info").unbind('click');
+		$(".resource-info").click(function(){
+			if($(this).attr("id")!=''){
+				toggle_resource('info_'+$(this).attr("id"));
+			}
+			return false;
+		});			
+	}
+</script>        </div>
+    </div>
+
+    <!-- page footer -->
+    <footer>
+    <!-- footer top section -->
+        <!-- End footer top section -->
+
+    <!-- footer bottom section -->
+    <div class="full-row-footer-black-components">
+        <div class="container">
+            <div class="footer">
+                <div class="row">
+
+                    <!-- / footer logo -->
+                    <div class="col-12 col-md-6">
+
+                        <div class="text-center text-lg-left mt-2">
+                        
+                                                <a href="https://microdata.nbs.go.tz/index.php" style="color:#0088cc;padding-top:20px;" >
+                            NBS Microdata Catalog                        </a>                        
+                                                </div>
+
+                    </div>
+                    <!-- / footer logo -->
+
+                    <!-- Copyrights-->
+                    <div class="col-12 col-md-6 footer-bottom-right">
+                        <div class="">
+                            <div class="footer-copy-right">
+
+                                <p class="text-center text-lg-right">
+
+                                    <small>
+                                        ©
+                                        <script language="JavaScript">
+                                            var time = new Date();
+                                            var year = time.getYear();
+                                            if (year < 2000)
+                                                year = year + 1900 + ", ";
+                                            document.write(year); // End -->
+                                        </script> NBS Microdata Catalog, All Rights Reserved.
+                                    </small>
+
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- / Copyrights  -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer></body>
+
+</html>

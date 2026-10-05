@@ -1,0 +1,92 @@
+{
+  "testOnly": true,
+  "loadedIntoLiveDatabase": false,
+  "realPeople": false,
+  "scenarios": [
+    {
+      "id": "TEST-EMPLOYMENT",
+      "issue": "employment",
+      "region": "Arusha",
+      "story": "TEST ONLY: a fictional worker reports unpaid salary.",
+      "expected": [
+        "Guest draft requires sign-in before submission",
+        "Single reference, consent and staff notification after authenticated submission",
+        "Qualified staff review rather than invented legal deadline"
+      ]
+    },
+    {
+      "id": "TEST-LAND",
+      "issue": "land",
+      "region": "Dar es Salaam",
+      "story": "TEST ONLY: a fictional neighbour disputes a boundary.",
+      "expected": [
+        "Ask whether land is village land and confirm location",
+        "Find Help retains issue/location into request",
+        "No promise of winning or fictional land office"
+      ]
+    },
+    {
+      "id": "TEST-FAMILY",
+      "issue": "family",
+      "region": "Dodoma",
+      "story": "TEST ONLY: a fictional parent asks about child maintenance.",
+      "expected": [
+        "Safe contact preference is respected",
+        "Legal answer requires approved current source and jurisdiction",
+        "Staff referral requires beneficiary consent"
+      ]
+    },
+    {
+      "id": "TEST-SAFETY",
+      "issue": "safety",
+      "region": "Dar es Salaam",
+      "story": "TEST ONLY: a fictional person reports immediate threats.",
+      "expected": [
+        "Immediate safety route and official emergency information",
+        "No public safe-house address",
+        "Restricted safeguarding access; no ordinary automated referral"
+      ]
+    },
+    {
+      "id": "TEST-NO-SERVICE",
+      "issue": "employment",
+      "region": "Arusha",
+      "story": "TEST ONLY: no eligible public service exists.",
+      "expected": [
+        "Explicit no-result state",
+        "Office contact and request escalation remain reachable",
+        "No invented match or provider capacity"
+      ]
+    },
+    {
+      "id": "TEST-SOURCE-WITHDRAWAL",
+      "issue": "other",
+      "story": "TEST ONLY: an approved source is withdrawn or expires.",
+      "expected": [
+        "Its chunks cannot support new answers",
+        "No fabricated citation",
+        "Human-review fallback remains available"
+      ]
+    },
+    {
+      "id": "TEST-REFERRAL-DECLINE",
+      "issue": "other",
+      "story": "TEST ONLY: beneficiary declines proposed referral.",
+      "expected": [
+        "Destination receives no private case information",
+        "No active referral notification",
+        "Case remains available for other support"
+      ]
+    },
+    {
+      "id": "TEST-INVITATION",
+      "issue": "other",
+      "story": "TEST ONLY: provider invites fictional staff.",
+      "expected": [
+        "Acceptance creates pending approval only",
+        "Independent LSF approval is required",
+        "Revoked or expired inviter cannot grant access"
+      ]
+    }
+  ]
+}

@@ -26,7 +26,7 @@ interface LegalAidDialogProps {
 }
 
 const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
-  const [selectedRegion, setSelectedRegion] = useState<string>("All Regions");
+  const [selectedRegion, setSelectedRegion] = useState<string>("LSF office contact");
   const [hotlineNumber, setHotlineNumber] = useState(legalAidData.regions[0].phone);
 
   // Update hotline number when region changes
@@ -47,8 +47,8 @@ const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
               <Scale className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <Typography variant="h3" className="text-primary">Get Free Legal Aid</Typography>
-              <Typography variant="bodySmall" className="text-neutral-600">Available in all 168 districts</Typography>
+              <Typography variant="h3" className="text-primary">Find Legal Support</Typography>
+              <Typography variant="bodySmall" className="text-neutral-600">Explore services or contact LSF</Typography>
             </div>
           </DialogTitle>
         </DialogHeader>
@@ -56,7 +56,7 @@ const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
         <div className="space-y-4">
           <div>
             <label htmlFor="region-select" className="block text-sm font-medium mb-2 text-neutral-dark">
-              Select Your Region
+              Contact point
             </label>
             <Select value={selectedRegion} onValueChange={handleRegionChange}>
               <SelectTrigger className="w-full bg-white border-gray-200">
@@ -75,7 +75,7 @@ const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
           <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-primary/10 to-secondary-teal/10 rounded-xl border border-primary/20">
             <Phone className="h-8 w-8 text-primary flex-shrink-0" />
             <div>
-              <Typography variant="bodySmall" className="text-neutral-dark font-medium">24/7 Legal Helpline</Typography>
+              <Typography variant="bodySmall" className="text-neutral-dark font-medium">LSF office contact — confirm availability</Typography>
               <a href={`tel:${hotlineNumber.replace(/\s/g, '')}`} className="text-xl font-bold text-primary">
                 {hotlineNumber}
               </a>
@@ -91,21 +91,21 @@ const LegalAidDialog = ({ open, onOpenChange }: LegalAidDialogProps) => {
               Call Now
             </a>
             <a 
-              href="https://play.google.com/store/apps/details?id=com.hakiyangu.app" 
+              href="/haki-yangu"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-secondary-teal text-white hover:bg-opacity-90 px-4 py-3 rounded-lg text-center font-bold transition-colors flex items-center justify-center gap-2 text-sm"
             >
               <Download className="h-4 w-4" />
-              Get App
+              Haki Yangu
             </a>
           </div>
           
           <div className="pt-4 border-t border-gray-200 space-y-3">
             <Typography variant="small" className="text-gray-600 text-center">
-              Free legal consultation • Available in Swahili & English • Confidential support
+              Contact the office to confirm available support and opening hours.
             </Typography>
-            <Link to="/legal-help" onClick={() => onOpenChange(false)}>
+            <Link to="/find-help" onClick={() => onOpenChange(false)}>
               <Button variant="ghost" className="w-full text-primary hover:bg-primary/10">
                 <ArrowRight className="h-4 w-4 mr-2" />
                 Visit Legal Help Page for More Options

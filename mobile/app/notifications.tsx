@@ -7,7 +7,6 @@ import { api } from "../src/backend/api";
 import { Button } from "../src/components/Button";
 import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
-import { notificationCategory, useNotificationPreferences } from "../src/useNotificationPreferences";
 import { colors, radius, spacing, type } from "../src/theme";
 
 const labels: Record<string, { sw: string; en: string }> = {
@@ -37,8 +36,7 @@ export default function NotificationsScreen() {
   const notifications = useQuery(api.notifications.inbox, isSignedIn ? { limit: 50 } : "skip");
   const markRead = useMutation(api.notifications.markRead);
   const markAllRead = useMutation(api.notifications.markAllRead);
-  const { preferences } = useNotificationPreferences();
-  const visibleNotifications = notifications?.filter((notification) => preferences[notificationCategory(notification.type)]);
+  const visibleNotifications = notifications;
   return (
     <Screen>
       <View style={styles.header}>

@@ -1,0 +1,85 @@
+{
+  "status": "limited_document_identity_and_rule_checks_not_full_legal_review",
+  "notes": [
+    {
+      "id": "E01",
+      "sourceId": "PROC-SMALL-CLAIMS",
+      "locator": "PDF p3, rule2",
+      "observation": "The acquired rule excludes government claims and specified land, labour, probate, matrimonial and other specially regulated proceedings.",
+      "implication": "Small claim route must screen subject matter and defendant before value.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E02",
+      "sourceId": "PROC-SMALL-CLAIMS",
+      "locator": "PDF p4, rules4–5; pp10–17 schedule",
+      "observation": "The acquired text contains a value/primary-court-jurisdiction condition and prescribed claim/response forms.",
+      "implication": "Do not approve a monetary threshold until current amendments and primary-court jurisdiction are checked.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E03",
+      "sourceId": "PROC-COURT-FEES-2018",
+      "locator": "rule11",
+      "observation": "The acquired 2018 rules expressly revoke the 2015 court-fee rules.",
+      "implication": "2015 copy retained only for historical comparison.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E04",
+      "sourceId": "PROC-EFILING",
+      "locator": "PDF p3, rule2; rules6,10,20",
+      "observation": "Acquired electronic-filing rules contain scope limits, service-bureau provisions and exceptions to electronic filing.",
+      "implication": "Avoid universal instructions that everyone must file online unaided.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E05",
+      "sourceId": "ZNZ-LEGAL-AID-RULES",
+      "locator": "PDF pp1,3,7; rules14–20 and schedule",
+      "observation": "Gazette LN118/2019 cites Act13/2018 and contains service assessment, referral and recordkeeping provisions.",
+      "implication": "Supports Zanzibar-specific pathway research; authenticated Act and later amendments still missing.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E06",
+      "sourceId": "FAMILY-GYUMI-HIGH-COURT",
+      "locator": "PDF p1; final page27",
+      "observation": "Actual judgment text gives judgment date8 July2016, distinct from last order3 March2016.",
+      "implication": "Correct metadata at review; preserve original filename as provenance.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E07",
+      "sourceId": "FIN-BOT-GUIDELINES-SW",
+      "locator": "PDF p1; SHA256 comparison with EN copy",
+      "observation": "The sw-path file has an English cover and matches the English file byte for byte.",
+      "implication": "Not a verified Kiswahili source.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E08",
+      "sourceId": "ZNZ-KADHIS-2024",
+      "locator": "PDF p4 section1, visually inspected; p21 section44 extracted",
+      "observation": "Act8/2023 was assented1February2024 and published23February2024; section1 also requires ministerial Gazette appointment. Section44 describes repeal/savings.",
+      "implication": "Record Act year, assent, publication and commencement separately. Current application remains unapproved.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E09",
+      "sourceId": "FCC-DOMINANCE-2026",
+      "locator": "PDF pp1–2",
+      "observation": "Official catalogue copy identifies GN244 published14August2026 and2026 abuse-of-dominant-position regulations.",
+      "implication": "Newer2026 regulatory material exists; broad2023 corpus alone cannot be treated current.",
+      "approvalStatus": "not_submitted"
+    },
+    {
+      "id": "E10",
+      "sourceId": "WCF-REGULATIONS-VERSION",
+      "locator": "PDF opening licence notice and rule2",
+      "observation": "Repository states CC BY4.0 for that PDF; rule2 includes conditional Zanzibar coverage.",
+      "implication": "Record licence as observed candidate; attribution/use compliance and current law require separate review.",
+      "approvalStatus": "not_submitted"
+    }
+  ]
+}

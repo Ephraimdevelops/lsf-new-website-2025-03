@@ -1,0 +1,249 @@
+[
+  {
+    "sourceId": "CMA-PROCEDURE",
+    "observedLink": {
+      "label": "GN 2007 OF 64 THE LABOUR INSTITUTIONS (MEDIATION AND ARBITRATON) RULES, GN 64 OF 2007.pdf (15.67 MB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/e6214f3f-b616-4824-95d2-b355b24c6e5d/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "CRIM-PENAL",
+    "observedLink": {
+      "label": "CAP. 16 PENAL CODE, R.E 2023 (1.31 MB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/24895072-4453-4e53-9b85-55f8a4d36115/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "CMA-GUIDELINES",
+    "observedLink": {
+      "label": "GN 2007 OF 67 THE LABOUR INSTITUTIONS AND CODE OF CONDUCT FOR MDEIATORS AND ARBITRATION) RULES,GN 67 OF 2007.pdf (15.67 MB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/9078ab7c-9bd5-4890-b702-efed3545b444/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "LABOUR-COURT-RULES",
+    "observedLink": {
+      "label": "GN 2007 OF 106 THE_LABOUR_COURTS_RULES_2007_Govnt._Noti_2.pdf.pdf (7.27 MB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/7ec8fc7f-69f9-4ea6-92cf-defdf990eda0/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "EMPLOYMENT-GENERAL-FORMS",
+    "observedLink": {
+      "label": "GN 2017 OF 47 THE EMPLOYMENT AND LABOUR RELATIONS (GENERAL) REGULATIONS, 2016.pdf.pdf (14.15 MB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/9cb0042d-bdca-42e6-b41e-75f38e58777e/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "LABOUR-INSTITUTIONS-GENERAL",
+    "observedLink": {
+      "label": "GN 2017 OF 45 THE LABOUR INSTITUTIONS (GENERAL) REGULATIONS, 2016.pdf (361.21 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/aca1403c-1945-46fa-ad0b-fb81555567e6/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "PROC-APPEAL-AMENDMENT-2024",
+    "observedLink": {
+      "label": "THE TANZANIA COURT OF APPEAL (AMENDMENT) RULES, GN 188 OF 2024.pdf (433.87 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/6b8356d4-8756-4e54-9430-8e7f9a1c0146/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "PROC-JUDICIAL-REVIEW",
+    "observedLink": {
+      "label": "26GN 2014 OF 324 THE LAW REFORM (FATAL ACCIDENTS AND MISCELLANEOUS    GOVERNMENT NOTICE NO 324 published on 5-9-2014.pdf (4.06 MB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/351f501c-f4c0-4a4a-bb72-4164f9197113/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "SAFE-WITNESS-ACT",
+    "observedLink": {
+      "label": "CAP. 446 THE WHISTLEBLOWER AND WITNESS PROTECTION ACT, R.E 2023 (537.62 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/35cc4442-0ace-4711-a404-510d2242c3d0/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "ADR-ARBITRATION-ACT",
+    "observedLink": {
+      "label": "CAP. 15 ARBITRATION ACT, R.E 2023 (795.45 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/6886fb83-059c-4bbb-871a-bc08c1b413be/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "ADR-ARBITRATION-RULES",
+    "observedLink": {
+      "label": "GN No 146 of 2021 – The Arbitration (Rules of Procedure) Regulations..pdf (2.16 MB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/fcc53669-4b2c-4e09-9525-b5791a1629dc/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "ADR-ACCREDITATION",
+    "observedLink": {
+      "label": "5GN 2021 OF 147 – The  Reconciliation, Negotiation, Mediation and Arbitration (Practitioners Accreditation) Regulations.pdf (1.17 MB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/8a86862b-9841-4cd9-8b9c-a369351c8c1b/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "ADR-CONDUCT",
+    "observedLink": {
+      "label": "GN No 148 of 2021 – The Code of Conduct and Practice for Reconciliators, Negotiators, Mediators and Arbitrators Regulations.pdf (903.64 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/20374742-858b-4e49-b666-9391fad309bc/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "SOCIAL-NSSF",
+    "observedLink": {
+      "label": "CAP. 50 NATIONAL SOCIAL SECURITY FUND ACT, R.E 2023 (755.08 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/ace82c08-8bea-4d91-81da-126eb439ddda/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "SOCIAL-PSSSF-2025",
+    "observedLink": {
+      "label": "CHAPTER 371 THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT.pdf (523.06 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/cf923cdc-b36a-4a5b-88f8-21818597c3a2/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "PROC-APPLICABLE-LAWS",
+    "observedLink": {
+      "label": "CAP. 358 JUDICATURE AND APPLICATION OF LAWS ACT, R.E 2023 (558.64 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/a7a5234d-df38-4b24-a51e-94d2942edc41/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "RIGHTS-CHRAGG-ACT",
+    "observedLink": {
+      "label": "CAP. 391 COMMISSION FOR HUMAN RIGHTS AND GOOD GOVERNANCE ACT, R.E 2023 (663.87 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/98acaed6-6977-485e-966b-d9438f0e1cdb/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "PROC-CIVIL-FORMS-2022",
+    "observedLink": {
+      "label": "8GN NO. 355 OF 2022 THE CIVIL PROCEDURE CODE (APPROVED FORMS) (AMENDMENT) NOTICE, 2022.pdf (522.54 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/b3cb3170-a7c2-45b1-9705-1914c3baf669/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "AMENDMENTS-MISC-1-2025",
+    "observedLink": {
+      "label": "ACT NO. 1 - THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) ACT, 2025 CHAPA DOM.pdf (288.26 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/b6d45f4b-5f5b-4131-a65b-9ed70aca86ca/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "AMENDMENTS-MISC-2-2025",
+    "observedLink": {
+      "label": "ACT NO. 2 - THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) (NO. 2) ACT  2025 CHAPA DOM.pdf (169.83 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/dac09022-2d3e-4e4a-9990-9975383082c5/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "AMENDMENTS-MISC-2024",
+    "observedLink": {
+      "label": "ACT NO. 4 of 2024 THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) ACT, 2024.pdf (470.18 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/405cf59e-c8b3-4c98-9daf-7a30280171af/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "LEGAL-AID-SUPPLEMENT-2025",
+    "observedLink": {
+      "label": "CHAPTER 21  THE LEGAL AID ACT (2).pdf (416.2 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/18113afa-1306-4e8d-adcb-d4c0e40df33a/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "AMENDMENTS-LEGAL-SECTOR-2023",
+    "observedLink": {
+      "label": "ACT NO. 11 OF 2023 THE LEGAL SECTOR LAWS (MISCELLANEOUS AMENDMENTS) ACT, 2023.pdf (506.25 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/ac742b27-5513-489c-a85b-71246d477e09/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "SERVICES-LHRC",
+    "action": "manual_selection_required",
+    "candidates": []
+  },
+  {
+    "sourceId": "SERVICES-ZLS",
+    "action": "manual_selection_required",
+    "candidates": [
+      {
+        "label": "institutional-profile-2026.pdf",
+        "url": "https://zls.or.tz/sites/default/files/2026-08/institutional-profile-2026.pdf"
+      }
+    ]
+  },
+  {
+    "sourceId": "PERSONAL-ISLAMIC-RESTATEMENT",
+    "observedLink": {
+      "label": "CAP. 375 ISLAMIC LAW (RESTATEMENT) ACT, R.E 2023 (507.93 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/0a0023cc-55cd-4e0f-ac5f-42150b5f6f1a/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "CASE-LAND-SETH-2024",
+    "observedLink": {
+      "label": "Seth Japhet vs Nicholas Mero (Civil Appeal No 262 of 2022) 2024 TZCA 1261 (10 December 2024).pdf (217.34 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/482fef48-9cf6-483d-b5f7-f51f8daf4b9f/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "CASE-ESTATE-LONYAMALI",
+    "observedLink": {
+      "label": "ELIAHU LONYAMALI v. MOSSES LONYAMALI.pdf (263.17 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/a48f5f1d-467a-467c-89c8-437e98b71d8e/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "CASE-LABOUR-OATH-2022",
+    "observedLink": {
+      "label": "10. CAPITAL DRILLING (T) LIMITED VS. ALEX BARTHAZALI KABENDERA CIVIL APPEAL NO. 370 OF 2019.pdf (232.77 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/f1bd2ed7-fe8f-40ce-9c46-8269d85af9e7/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "CASE-INHERITANCE-LATIFA",
+    "observedLink": {
+      "label": "LATIFA AWADH SALEH & 3OTHERS v. MARIAM MBARAK AHMED.pdf (241.59 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/6c6c9454-9308-474a-aa28-3a2482e9c60e/download"
+    },
+    "action": "follow_single_observed_link"
+  },
+  {
+    "sourceId": "CASE-LAND-MABULA-2024",
+    "observedLink": {
+      "label": "Mabula Sayi vs Kalekwa  Malahya (Civil Appeal No 195 of 2022) 2024 TZCA 1235 (10 December 2024).pdf (324.14 KB)",
+      "url": "https://elibrary.osg.go.tz/bitstreams/e9dc5eda-0a71-4c3f-a238-0f32e9d50e58/download"
+    },
+    "action": "follow_single_observed_link"
+  }
+]

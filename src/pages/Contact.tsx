@@ -101,7 +101,7 @@ const ContactPage = () => {
   };
 
   const contactMethods = [
-    { icon: <Phone className="h-6 w-6" />, title: 'Call Us', value: '+255 870 119 363', description: 'Mon-Fri 8AM-5PM EAT', link: 'tel:+255870119363', color: 'bg-green-500' },
+    { icon: <Phone className="h-6 w-6" />, title: 'Call Us', value: '+255 22 260 1534', description: 'Confirm office hours before visiting', link: 'tel:+255222601534', color: 'bg-green-500' },
     { icon: <Mail className="h-6 w-6" />, title: 'Email Us', value: 'info@lsftz.org', description: 'Response within 24 hours', link: 'mailto:info@lsftz.org', color: 'bg-blue-500' },
     { icon: <MapPin className="h-6 w-6" />, title: 'Visit Us', value: 'Chole Rd, Masaki', description: 'Dar es Salaam, Tanzania', link: 'https://maps.google.com/?q=Chole+Road+Masaki+Dar+es+Salaam+Tanzania', color: 'bg-primary' },
     { icon: <MessageCircle className="h-6 w-6" />, title: 'AI Assistant', value: 'Chat Now', description: 'Get instant legal guidance', link: '/lsfchatbot', color: 'bg-purple-500' }
@@ -109,7 +109,7 @@ const ContactPage = () => {
 
   const quickLinks = [
     { icon: <Users className="h-5 w-5" />, label: 'Find a Paralegal', href: '/legal-help' },
-    { icon: <Headphones className="h-5 w-5" />, label: 'Legal Helpline', href: 'tel:+255870119363' },
+    { icon: <Headphones className="h-5 w-5" />, label: 'LSF office contact', href: 'tel:+255222601534' },
     { icon: <Building className="h-5 w-5" />, label: 'Partner With Us', href: '/opportunities' },
     { icon: <Globe className="h-5 w-5" />, label: 'About LSF', href: '/about' }
   ];
@@ -244,15 +244,15 @@ const ContactPage = () => {
                     <Phone className="h-6 w-6" />
                   </div>
                   <div>
-                    <p className="font-bold text-lg">Need Urgent Legal Help?</p>
-                    <p className="text-white/80 text-sm">Call our helpline directly</p>
+                    <p className="font-bold text-lg">Contact LSF for Support</p>
+                    <p className="text-white/80 text-sm">Call the office to confirm available support</p>
                   </div>
                 </div>
                 <a
-                  href="tel:+255870119363"
+                  href="tel:+255222601534"
                   className="inline-flex items-center gap-3 bg-white text-primary font-bold text-xl px-6 py-4 rounded-xl hover:bg-white/90 transition-all"
                 >
-                  +255 870 119 363
+                  +255 22 260 1534
                   <ArrowRight className="h-5 w-5" />
                 </a>
               </div>

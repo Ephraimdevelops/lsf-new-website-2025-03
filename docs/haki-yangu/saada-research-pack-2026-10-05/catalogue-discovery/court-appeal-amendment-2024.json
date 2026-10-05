@@ -1,0 +1,2116 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Court Appeal Amendment 2024",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "The Tanzania <em>Court</em> of <em>Appeal</em> (<em>Amendment</em>) Rules, <em>2024</em> and shall be read as one with the Tanzania <em>Court</em> of <em>Appeal</em> Rules, hereinafter referred to as “the principal Rules”.(Made under section 12)"
+              ],
+              "dc.title": [
+                "THE TANZANIA <em>COURT</em> OF <em>APPEAL</em> (<em>AMENDMENT</em>) RULES, GN 188 OF <em>2024</em>"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "5cb53706-9992-4c60-9b23-c8230baaa42c",
+                "uuid": "5cb53706-9992-4c60-9b23-c8230baaa42c",
+                "name": "THE TANZANIA COURT OF APPEAL (AMENDMENT) RULES, GN 188 OF 2024",
+                "handle": "123456789/1370",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "IBRAHIM, JUMA, H.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2024-04-09T05:06:39Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2024-04-09T05:06:39Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-03-22",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The Tanzania Court of Appeal (Amendment) Rules, 2024 and shall be read as one with the Tanzania Court of Appeal Rules, hereinafter referred to as “the principal Rules”.(Made under section 12)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "These Rules may be cited as the Tanzania Court of Appeal (Amendment) Rules, 2024",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.issn": [
+                    {
+                      "value": "0856 - 034X",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://elibrary.osg.go.tz/handle/123456789/1370",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "The Government Printer, Dodoma",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": "SUPPLEMENT;11",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GOVERNMENT NOTICE NO. 188 OF 2024",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE TANZANIA COURT OF APPEAL (AMENDMENT) RULES, GN 188 OF 2024",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "GOVERNMENT NOTICE NO. 188 OF 2024",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2024-06-28T08:39:01.801Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5cb53706-9992-4c60-9b23-c8230baaa42c"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "6abe3612-e76d-446a-ae2f-49567b329aa5",
+                "uuid": "6abe3612-e76d-446a-ae2f-49567b329aa5",
+                "name": "DEBORA JAMES IKHALA VS NYASULU ENOCK NKYAPI (CIVIL APPEAL NO. 665 OF 2023) [2024] TZCA 1143 (25 NOVEMBER 2024)",
+                "handle": "123456789/1578",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Ndika, J.A., Galeba, J.A., Ismail, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-11T06:45:53Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-11T06:45:53Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-11-25",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The respondent, Nyasulu Enock Nkyapi, prevailed in an action he initiated against the appellant, Debora James Ikhala, in the High Court, Land Division of Dar es Salaam. The lawsuit alleged a breach of the contract of sale for a parcel of land located at Plot No. 37, Block 'B', Tegeta, Kinondoni Municipality, Dar es Salaam, hereinafter referred to as \"the property.\" She is now of the opinion that justice was not served and hence, she urges us to reverse the trial court's verdict on the grounds of procedural indiscretion and the factual findings being contrary to the weight of the evidence",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1578",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "Civil Appeal No. 665 of 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "DEBORA JAMES IKHALA VS NYASULU ENOCK NKYAPI (CIVIL APPEAL NO. 665 OF 2023) [2024] TZCA 1143 (25 NOVEMBER 2024)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-12T00:00:44.982Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6abe3612-e76d-446a-ae2f-49567b329aa5"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "d70a9618-26cf-4d9b-9606-94c98da6f19f",
+                "uuid": "d70a9618-26cf-4d9b-9606-94c98da6f19f",
+                "name": "METRO PETROLEUM TANZANIA LIMITED & OTHERS V. UNITED BANK OF AFRICA, CIVIL APPEAL No. 86 OF 2024",
+                "handle": "123456789/4881",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KOROSSO. J.A,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-08-18T09:11:14Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-11-18",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The Court held that although the notice of appeal correctly identified the impugned decision (the High Court's ruling of 18 November 2022), the memorandum and record of appeal referred to a different decision (the ruling of 24 July 2015) which had been quashed by a prior Court of Appeal order; this discrepancy rendered the appeal documents inconsistent and the appeal invalid.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4881",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL No. 86 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "METRO PETROLEUM TANZANIA LIMITED & OTHERS V. UNITED BANK OF AFRICA, CIVIL APPEAL No. 86 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-08-18T09:16:04.450256Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d70a9618-26cf-4d9b-9606-94c98da6f19f"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "c62c08a4-a7fd-4105-8b68-25b61c3d4193",
+                "uuid": "c62c08a4-a7fd-4105-8b68-25b61c3d4193",
+                "name": "GERALD GODFREY LUTALO v. CRDB BANK PLC, CIVIL APPEAL NO. 431 OF 2024.",
+                "handle": "123456789/4888",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Kamana, J.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-08-18T09:36:07Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-11-03",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "A mortgage agreement and a loan agreement are separate contracts. A mortgagor is not necessarily a party to the loan agreement and vice versa.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4888",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 431 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "GERALD GODFREY LUTALO v. CRDB BANK PLC, CIVIL APPEAL NO. 431 OF 2024.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-08-18T09:46:03.741338Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/c62c08a4-a7fd-4105-8b68-25b61c3d4193"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "Reginald Martin and Helena Ignas learned counsel stood for the respondent. Mr. Saleh submitted that on 12th February <em>2024</em> they received the notice of preliminary objection around 15:00. It was his view that the preliminary objection be entertained first. He was also concerned that the preliminary objection contravenes rule 107 of the Tanzania <em>Court</em> of <em>Appeal</em> Rules, 2009, G.N. No. 368 of 2009 as <em>amended</em> by G.N. No. 362 of 2017, G.N. No. 344 of 2019, and G.N. No. 188 of <em>2024</em> herein cited as the Rules. Having heard Mr. Saleh's submission, Mr. Reginald Martin, for the \r\nrespondent, prayed to withdraw the preliminary objection. "
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "373bf5ea-6685-4ab2-ae64-a697854bc100",
+                "uuid": "373bf5ea-6685-4ab2-ae64-a697854bc100",
+                "name": "AARIF YUSUF SHARIF VS SABRI MWADINI HAJI 2025 TZCA 90 (21 FEBRUARY 2025)",
+                "handle": "123456789/1674",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "AGATHO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-12T06:48:30Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-12T06:48:30Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-01-21",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "When the matter came for hearing on 13th February 2025, by way of video conference from Dar es Salaam Mr. Sabri Saleh and Dimesh Mawji learned counsel appeared for the applicant, and Mr. Reginald Martin and Helena Ignas learned counsel stood for the respondent. Mr. Saleh submitted that on 12th February 2024 they received the notice of preliminary objection around 15:00. It was his view that the preliminary objection be entertained first. He was also concerned that the preliminary objection contravenes rule 107 of the Tanzania Court of Appeal Rules, 2009, G.N. No. 368 of 2009 as amended by G.N. No. 362 of 2017, G.N. No. 344 of 2019, and G.N. No. 188 of 2024 herein cited as the Rules. Having heard Mr. Saleh's submission, Mr. Reginald Martin, for the \r\nrespondent, prayed to withdraw the preliminary objection. The same was thus withdrawn as Mr. Saleh did not object to the prayer for its withdrawal. Following the withdrawal of the preliminary objection, the hearing of the application proceeded as set",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1674",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 1623 OF 2024",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "AARIF YUSUF SHARIF VS SABRI MWADINI HAJI 2025 TZCA 90 (21 FEBRUARY 2025)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-03-13T00:00:27.957Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/373bf5ea-6685-4ab2-ae64-a697854bc100"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b",
+                "uuid": "d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b",
+                "name": "ABSA BANK TANZANIA LIMITED AND ANOTHER VS HJORDIS FAMMESTAD (CIVIL APPEAL NO. 30 OF 2020) [2024] TZCA 1273 (13 DECEMBER 2024)",
+                "handle": "123456789/1510",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Levira, J.A., Mwarija, J.A., Masoud, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-01-20T11:00:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-01-20T11:00:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-12-13",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This appeal is against the judgment and decree of the High Court of Tanzania (Commercial Division) in Commercial Case No.6 of 2018. In that suit, the respondent had sued the appellants jointly and severally for payment of USD.335,121.59 on account of unlawful withdrawal of money from the Bank Account No. 7000070 of the respondent maintained by the first appellant. The appellant denied the claim. Nonetheless, at the end of the trial, the trial court entered judgment partly in favor of the respondent. \r\nBeing aggrieved by that decision, they preferred an appeal to the Court. The respondent was, as well, not satisfied with that decision and thus preferred cross appeal a subject of this ruling",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1510",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "Civil Appeal No. 30 of 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ABSA BANK TANZANIA LIMITED AND ANOTHER VS HJORDIS FAMMESTAD (CIVIL APPEAL NO. 30 OF 2020) [2024] TZCA 1273 (13 DECEMBER 2024)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-01-21T00:01:27.012Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d4a3fa3b-1a8b-42f1-852b-4b0d2a03014b"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "93f3ef1d-454d-400e-99f4-d1a598d6e354",
+                "uuid": "93f3ef1d-454d-400e-99f4-d1a598d6e354",
+                "name": "NJOMBE OUTGROWERS SERVICES COMPANY LTD V. NJOMBE FILLING STATION COMPANY LTD, CIVIL APPEAL No. 1252 OF 2024",
+                "handle": "123456789/4878",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-08-18T09:03:00Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-12-14",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The Court held that the period during which the applicant was pursuing applications for leave to appeal in the High Court and in this Court is excludable from the computation of the limitation period and that such pursuit constituted a sufficient cause for delay. The Court relied on authority recognising technical delay while an appellant pursues requisite leave.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4878",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL No. 1252 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "NJOMBE OUTGROWERS SERVICES COMPANY LTD V. NJOMBE FILLING STATION COMPANY LTD, CIVIL APPEAL No. 1252 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-08-18T09:15:47.708302Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/93f3ef1d-454d-400e-99f4-d1a598d6e354"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "6330ddb5-f725-4026-92b6-c9e6777e4359",
+                "uuid": "6330ddb5-f725-4026-92b6-c9e6777e4359",
+                "name": "ABBAS AWES OMAR V. DEZO CIVIL CONTRACTOR CO. LTD & DIAMOND TRUST BANK TANZANIA LTD, CIVIL APPEAL NO. 1425 OF 2024",
+                "handle": "123456789/4892",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NDIKA. A J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-08-18T09:47:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-08-21",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "There is no reason to fault the trial court in its reasoning and decision, when it held that as an adult and prudent man, he should have exercised caution wherever and whenever he placed his signature which is his commitment to any document signed.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4892",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 1425 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ABBAS AWES OMAR V. DEZO CIVIL CONTRACTOR CO. LTD & DIAMOND TRUST BANK TANZANIA LTD, CIVIL APPEAL NO. 1425 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-08-18T10:00:47.816547Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6330ddb5-f725-4026-92b6-c9e6777e4359"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "ba6209cc-2770-4c64-bbb4-da245bbf4587",
+                "uuid": "ba6209cc-2770-4c64-bbb4-da245bbf4587",
+                "name": "AARIF YUSUF SHARIF VERSUS SABRI MWADINI HAJI. CIVIL APPLICATION NO. 1623 OF 2024.",
+                "handle": "123456789/3478",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "AGATHO. JA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-03-19T06:15:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-11-28",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "When the matter came for hearing on 13th February 2025, by way of video conference from Dar es Salaam Mr. Sabri Saleh and Dimesh Mawji learned counsel appeared for the applicant, and Mr. Reginald Martin and Helena Ignas learned counsel stood for the respondent. Mr. Saleh submitted that on 12th February 2024 they received the notice of preliminary objection around 15:00. It was his view that the preliminary objection be entertained first. He was also concerned that the preliminary objection contravenes rule 107 of the Tanzania Court of Appeal Rules,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/3478",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 1623 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "AARIF YUSUF SHARIF VERSUS SABRI MWADINI HAJI. CIVIL APPLICATION NO. 1623 OF 2024.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-03-19T06:31:08.159880Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba6209cc-2770-4c64-bbb4-da245bbf4587"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3faccb48-8e02-472b-a4dc-b700cb329bf7",
+                "uuid": "3faccb48-8e02-472b-a4dc-b700cb329bf7",
+                "name": "JOSEPHAT JOSEPH MUSHI AND ANOTHER VS TANZANIA POSTAL BANK PLC AND ANOTHER (CIVIL APPEAL NO. 86 OF 2022) [2024] TZCA 1174 (3 DECEMBER 2024)",
+                "handle": "123456789/1572",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Issa, J.A., Mwandambo, J.A., Kairo, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-11T06:42:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-11T06:42:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-12-03",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The dispute giving rise to this appeal originated from the decision of the High Court of Tanzania at Mbeya (Mbagwa, J.) in Misc. Land Application No. 04 of 2021. Before the appellants filed the said application at the High Court, the parties had their dispute settled by compromise at the District Land and Housing Tribunal for Mbeya'(the DLHT) in Land Application No. 65 of 2019. The deed of settlement of a suit was made under Order XXIII Rule 3 of the Civil Procedure Code and was filed in (Mbagwa, J.)\r\ndated the 29th day of October, 2021 in Misc. Land Application No. 04 of 2021 JUDGMENT OF THE COURT 29th November & 3rd December, 2024 ISSA, J.A.: Court culminating into a consent judgment entered on 16th December, 2019. One of the terms of the consent judgment was that the 2ndappellant who was indebted to the 1st respondent was given a grace period for repayment of the sum amounting to TZS. 360,413,181.55",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1572",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "Civil Appeal No. 86 of 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "JOSEPHAT JOSEPH MUSHI AND ANOTHER VS TANZANIA POSTAL BANK PLC AND ANOTHER (CIVIL APPEAL NO. 86 OF 2022) [2024] TZCA 1174 (3 DECEMBER 2024)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-12T00:00:37.117Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3faccb48-8e02-472b-a4dc-b700cb329bf7"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "00ca71dc-e3ec-4348-b580-dacff5f98a29",
+                "uuid": "00ca71dc-e3ec-4348-b580-dacff5f98a29",
+                "name": "EZEKIAH TOM OLUOCH v. CHAMA CHA WALIMU TANZANIA, CIVIL APPLICATION NO. 659 OF 2024.",
+                "handle": "123456789/4889",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Kagomba, J.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-08-18T09:38:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-04-04",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "It is now settled that the time spent in court by a litigant in pursuit of the matter or matters relevant to the one under consideration, should be excluded in consideration",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4889",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 659 OF 2024",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "EZEKIAH TOM OLUOCH v. CHAMA CHA WALIMU TANZANIA, CIVIL APPLICATION NO. 659 OF 2024.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-08-18T09:45:25.892958Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/00ca71dc-e3ec-4348-b580-dacff5f98a29"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "85864b6d-662e-4184-8a78-d76033aa3422",
+                "uuid": "85864b6d-662e-4184-8a78-d76033aa3422",
+                "name": "BIMEL ENTERPRISES COMPANY LIMITED VS TANZANIA NATIONAL ROADS AGENCY AND 2 OTHERS (CIVIL APPEAL NO. 429 OF 2021) [2024] TZCA 1254 (11 DECEMBER 2024)",
+                "handle": "123456789/1561",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Kitusi, J.A., Ndika, J.A., Mashaka, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-06T12:23:21Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-06T12:23:21Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-12-11",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The appellant, a corporate body going by the name of Bimel Enterprises Company Ltd went to the High Court at Arusha Registry to seek reliefs for wrongful seizure of its construction equipment by the Tanzania National Roads Agency (TANROADS), the first respondent. The essence of the claim presents a few twists and turns involving two contracts, but not of immediate relevance.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1561",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "Civil Appeal No. 429 of 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BIMEL ENTERPRISES COMPANY LIMITED VS TANZANIA NATIONAL ROADS AGENCY AND 2 OTHERS (CIVIL APPEAL NO. 429 OF 2021) [2024] TZCA 1254 (11 DECEMBER 2024)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-07T00:00:38.277Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/85864b6d-662e-4184-8a78-d76033aa3422"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 6,
+        "totalElements": 65
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%20Appeal%20Amendment%202024&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%20Appeal%20Amendment%202024&page=5&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%20Appeal%20Amendment%202024&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Court%20Appeal%20Amendment%202024&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Court%20Appeal%20Amendment%202024&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 19,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "JAMHURI YA MUUNGANO WA TANZANIA",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.author=JAMHURI%20YA%20MUUNGANO%20WA%20TANZANIA,equals"
+                }
+              }
+            },
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "FELESHI, ELIEZER",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.author=FELESHI,%20ELIEZER,equals"
+                }
+              }
+            },
+            {
+              "label": "MWIHAMBI, NENELWA J.",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.author=MWIHAMBI,%20NENELWA%20J.,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Court%20Appeal%20Amendment%202024&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Court%20Appeal%20Amendment%202024&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2024",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.subject=2024,equals"
+                }
+              }
+            },
+            {
+              "label": "CIVIL APPLICATION NO. 1521 OF 2024",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.subject=CIVIL%20APPLICATION%20NO.%201521%20OF%202024,equals"
+                }
+              }
+            },
+            {
+              "label": "CIVIL APPLICATION NO. 1623 OF 2024",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.subject=CIVIL%20APPLICATION%20NO.%201623%20OF%202024,equals"
+                }
+              }
+            },
+            {
+              "label": "TOLEO NA. 35",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.subject=TOLEO%20NA.%2035,equals"
+                }
+              }
+            },
+            {
+              "label": "ACT NO. 11 OF 2023",
+              "count": 1,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.subject=ACT%20NO.%2011%20OF%202023,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Court%20Appeal%20Amendment%202024&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 1,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 64,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Court%20Appeal%20Amendment%202024&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 65,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Court%20Appeal%20Amendment%202024"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Court%20Appeal%20Amendment%202024&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 65,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Court%2520Appeal%2520Amendment%25202024&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

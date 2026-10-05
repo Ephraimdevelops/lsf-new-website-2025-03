@@ -1,0 +1,22 @@
+{
+  "reason": "Actual downloaded PDF is Executive Agencies forestry order, not small claims rules",
+  "acquisition": {
+    "sourceId": "PROC-SMALL-CLAIMS",
+    "retrievedOn": "2026-10-05",
+    "approvalStatus": "not_submitted",
+    "productionEligible": false,
+    "requestedUrl": "https://oagmis.oag.go.tz/portal/legislation/1420/download",
+    "finalUrl": "https://oagmis.oag.go.tz/portal/legislation/1420/download",
+    "contentType": "application/pdf",
+    "byteCount": 260822,
+    "sha256": "52d501d83683e020f5796fcfaf37413edfbd9bd71a727f0ebd28fbb4828dccca",
+    "status": "pdf_acquired_and_extracted",
+    "file": "source-files/proc-small-claims.pdf",
+    "textFile": "extracted-text/proc-small-claims.txt",
+    "pages": 4,
+    "extractedCharacters": 2696,
+    "pagesWithVeryLittleText": [],
+    "extractionQuality": "manual_review_required",
+    "documentIdentity": "not_yet_reconciled_with_register"
+  }
+}

@@ -48,7 +48,7 @@ export default function ServiceVisitScreen() {
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const days = Array.from({ length: 7 }, (_, index) => dayFromToday(week * 7 + index));
-  const channels: Channel[] = service ? [
+  const channels: Channel[] = service && service.currentIntakeState !== "closed" ? [
     ...((service.walkIn || !service.appointmentRequired) ? ["in_person" as const] : []),
     ...(service.phoneSupport ? ["phone" as const] : []),
     ...(service.remoteSupport ? ["remote" as const] : []),
@@ -109,7 +109,7 @@ export default function ServiceVisitScreen() {
     </Surface> : serviceId && service === null ? <Surface tone="pink" style={styles.section}>
       <Text style={styles.title}>{sw ? "Huduma haipatikani tena" : "Service no longer available"}</Text>
       <Text style={styles.muted}>{sw ? "Tafuta huduma nyingine iliyothibitishwa." : "Find another verified service."}</Text>
-      <Button label={sw ? "Tafuta huduma" : "Find services"} onPress={() => router.replace("/find-services")} />
+      <Button label={sw ? "Tafuta huduma" : "Find services"} onPress={() => router.replace("/nearby-help")} />
     </Surface> : serviceId ? <Surface style={styles.section}>
       <View style={styles.serviceRow}><View style={styles.serviceIcon}><Ionicons name="business-outline" size={22} color={colors.burgundy} /></View><View style={styles.flex}><Text style={styles.title}>{service?.name ?? (sw ? "Inapakia huduma..." : "Loading service...")}</Text><Text style={styles.muted}>{service ? `${service.district}, ${service.region}` : ""}</Text></View></View>
       <Text style={styles.label}>{sw ? "Chagua siku" : "Choose a day"}</Text>
@@ -120,21 +120,21 @@ export default function ServiceVisitScreen() {
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.dayList}>{days.map((choice) => {
         const selected = choice.toDateString() === day.toDateString();
-        return <Pressable key={choice.toDateString()} accessibilityRole="radio" accessibilityState={{ selected }} accessibilityLabel={choice.toLocaleDateString(sw ? "sw-TZ" : "en-TZ", { weekday: "long", day: "numeric", month: "long" })} onPress={() => setDay(choice)} style={[styles.day, selected && styles.dayActive]}><Text style={[styles.dayWeek, selected && styles.selectedText]}>{choice.toLocaleDateString(sw ? "sw-TZ" : "en-TZ", { weekday: "short" })}</Text><Text style={[styles.dayNumber, selected && styles.selectedText]}>{choice.getDate()}</Text></Pressable>;
+        return <Pressable key={choice.toDateString()} accessibilityRole="radio" accessibilityState={{ checked: selected }} aria-checked={selected} accessibilityLabel={choice.toLocaleDateString(sw ? "sw-TZ" : "en-TZ", { weekday: "long", day: "numeric", month: "long" })} onPress={() => setDay(choice)} style={[styles.day, selected && styles.dayActive]}><Text style={[styles.dayWeek, selected && styles.selectedText]}>{choice.toLocaleDateString(sw ? "sw-TZ" : "en-TZ", { weekday: "short" })}</Text><Text style={[styles.dayNumber, selected && styles.selectedText]}>{choice.getDate()}</Text></Pressable>;
       })}</ScrollView>
       <Text style={styles.label}>{sw ? "Chagua muda" : "Choose a time"}</Text>
       <View style={styles.timeGrid}>{times.map((choice) => {
         const selected = choice === time;
         const available = timeOnDay(day, choice) > Date.now();
-        return <Pressable key={choice} accessibilityRole="radio" accessibilityState={{ selected, disabled: !available }} disabled={!available} onPress={() => setTime(choice)} style={[styles.time, selected && styles.timeActive, !available && styles.disabled]}><Text style={[styles.timeText, selected && styles.selectedText]}>{choice}</Text></Pressable>;
+        return <Pressable key={choice} accessibilityRole="radio" accessibilityState={{ checked: selected, disabled: !available }} aria-checked={selected} disabled={!available} onPress={() => setTime(choice)} style={[styles.time, selected && styles.timeActive, !available && styles.disabled]}><Text style={[styles.timeText, selected && styles.selectedText]}>{choice}</Text></Pressable>;
       })}</View>
       <Text style={styles.label}>{sw ? "Namna ya kuwasiliana" : "How you plan to connect"}</Text>
       <View style={styles.channelGrid}>{channels.map((choice) => {
         const selected = choice === chosenChannel;
         const label = choice === "in_person" ? (sw ? "Tembelea" : "Visit") : choice === "phone" ? (sw ? "Simu" : "Phone") : (sw ? "Kwa mbali" : "Remote");
-        return <Pressable key={choice} accessibilityRole="radio" accessibilityState={{ selected }} onPress={() => setChannel(choice)} style={[styles.channel, selected && styles.channelActive]}><Ionicons name={choice === "in_person" ? "location-outline" : choice === "phone" ? "call-outline" : "videocam-outline"} size={19} color={selected ? colors.surface : colors.burgundy} /><Text style={[styles.channelText, selected && styles.selectedText]}>{label}</Text></Pressable>;
+        return <Pressable key={choice} accessibilityRole="radio" accessibilityState={{ checked: selected }} aria-checked={selected} onPress={() => setChannel(choice)} style={[styles.channel, selected && styles.channelActive]}><Ionicons name={choice === "in_person" ? "location-outline" : choice === "phone" ? "call-outline" : "videocam-outline"} size={19} color={selected ? colors.surface : colors.burgundy} /><Text style={[styles.channelText, selected && styles.selectedText]}>{label}</Text></Pressable>;
       })}</View>
-      {service && !channels.length ? <Text style={styles.warning}>{sw ? "Hakuna njia ya huduma iliyoorodheshwa. Angalia maelezo ya huduma." : "No access method is listed. Check the service details."}</Text> : null}
+      {service && !channels.length ? <Text style={styles.warning}>{service.currentIntakeState === "closed" ? (sw ? "Huduma hii haipokei watu kwa sasa. Tafuta huduma nyingine au omba msaada kutoka LSF." : "This service is closed to new contacts. Find another service or ask LSF for help.") : (sw ? "Hakuna njia ya huduma iliyoorodheshwa. Angalia maelezo ya huduma." : "No access method is listed. Check the service details.")}</Text> : null}
       <View style={styles.reminder}><Ionicons name="information-circle-outline" size={20} color={colors.teal} /><Text style={styles.reminderText}>{sw ? "Thibitisha saa na upatikanaji moja kwa moja kabla ya kwenda." : "Confirm hours and availability directly before visiting."}</Text></View>
       <Button label={sw ? "Hifadhi mpango wangu" : "Save my plan"} loading={busy} disabled={busy || !service || !chosenChannel || !future} onPress={() => void savePlan()} />
     </Surface> : null}

@@ -1,0 +1,2410 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Mediation and Arbitration",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These Regulations may be cited as the Code of Conduct for Reconciliators, Negotiators, <em>Mediators</em> and <em>Arbitrators</em>, Regulations 2021."
+              ],
+              "dc.title": [
+                "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, <em>MEDIATORS</em> AND <em>ARBITRATORS</em> REGULATIONS, GN NO. 148  OF 2021"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "fdb4e69e-1ff3-4e3c-b659-9110182900fa",
+                "uuid": "fdb4e69e-1ff3-4e3c-b659-9110182900fa",
+                "name": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, GN NO. 148  OF 2021",
+                "handle": "123456789/336",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T12:52:51Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T12:52:51Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-01-29",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "There is established a Code of Conduct and Practice for Reconciliators, Negotiators, Mediators and Arbitrators. The provisions of the First Schedule to these Regulations shall constitute a Code of Conduct and Practice for all accredited reconciliators, negotiators, mediators and arbitrators.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Regulations may be cited as the Code of Conduct for Reconciliators, Negotiators, Mediators and Arbitrators, Regulations 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/336",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 148 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, GN NO. 148  OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE (CAP 33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:10:18.586Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.title": [
+                "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, <em>MEDIATORS</em> AND <em>ARBITRATORS</em> REGULATIONS, 2021"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "7891dbf2-3f92-4a0e-8595-7c8f638b35de",
+                "uuid": "7891dbf2-3f92-4a0e-8595-7c8f638b35de",
+                "name": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, 2021",
+                "handle": "123456789/481",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-26T09:03:22Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-26T09:03:22Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-01-29",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "“Code” means the Code of Conduct and Practice for Reconciliators, Negotiators,  Mediators  and  Arbitrators to which the First Schedule to these Regulations relate;",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "In these Regulations, unless the context otherwise requires- Act means the Civil Procedure Code:",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "These Regulations may be cited as the Code of Conduct for Reconciliators, Negotiators, Mediators and Arbitrators,Regulations 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/481",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. 148 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE ACT, (CAP.33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:02:39.056Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/7891dbf2-3f92-4a0e-8595-7c8f638b35de"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.title": [
+                "RECONCILIATION, NEGOTIATION, <em>MEDIATION</em> AND <em>ARBITRATION</em> (PRACTITIONERS ACCREDITATION) REGULATIONS, 2021. G.N 147 OF 2021."
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "ca5ffa18-6bb0-4d26-aa8f-eac50414f53d",
+                "uuid": "ca5ffa18-6bb0-4d26-aa8f-eac50414f53d",
+                "name": "RECONCILIATION, NEGOTIATION, MEDIATION AND ARBITRATION (PRACTITIONERS ACCREDITATION) REGULATIONS, 2021. G.N 147 OF 2021.",
+                "handle": "123456789/480",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-26T09:02:42Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-26T09:02:42Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-01-29",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "“accreditation” means the recognition and registration of persons as competent  to  perform  the  functions  and  duties  as re conciliators,  negotiators,  mediators  or  arbitrators  in Mainland Tanzania; “accreditation” means the recognition and registration of persons as competent  to  perform  the  functions  and  duties  as re conciliators,  negotiators,  mediators  or  arbitrators  in Mainland Tanzania;",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "In  these Regulations, unless the context otherwise requires- Act means the Civil Procedure Code:",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "These Regulations may be cited as the Reconciliation, Negotiation, Mediation and Arbitration (Practitioners Accreditation) Regulations, 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/480",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. 147 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "RECONCILIATION, NEGOTIATION, MEDIATION AND ARBITRATION (PRACTITIONERS ACCREDITATION) REGULATIONS, 2021. G.N 147 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE ACT, 2021 (CAP.33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:07:08.841Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These Regulations may be cited as the Reconciliation, Negotiation, <em>Mediation</em> and <em>Arbitration</em> (Practitioners Accreditation) Regulations, 2021."
+              ],
+              "dc.title": [
+                "RECONCILIATION, NEGOTIATION, <em>MEDIATION</em> AND <em>ARBITRATION</em> (PRACTITIONERS ACCREDITATION) REGULATIONS, GN NO 147 OF 2021"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "e098f3ef-6051-4182-9e5d-0e9c784ba4e6",
+                "uuid": "e098f3ef-6051-4182-9e5d-0e9c784ba4e6",
+                "name": "RECONCILIATION, NEGOTIATION, MEDIATION AND ARBITRATION (PRACTITIONERS ACCREDITATION) REGULATIONS, GN NO 147 OF 2021",
+                "handle": "123456789/335",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T12:38:54Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T12:38:54Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-01-29",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "The Registrar shall, for purposes of these Regulations and generally the effective implementation of the provisions of the Act, convene meetings of the Accreditation Panel which shall be composed of seven members.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Regulations may be cited as the Reconciliation, Negotiation, Mediation and Arbitration (Practitioners Accreditation) Regulations, 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/335",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 147 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "RECONCILIATION, NEGOTIATION, MEDIATION AND ARBITRATION (PRACTITIONERS ACCREDITATION) REGULATIONS, GN NO 147 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE, (CAP 33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:34.534Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e098f3ef-6051-4182-9e5d-0e9c784ba4e6"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These rules may be cited as the Labour Institutions (Ethics and Code of Conduct for <em>Mediators</em> and <em>Arbitration</em>) Rules, 2007"
+              ],
+              "dc.title": [
+                "THE LABOUR INSTITUTIONS (ETHICS AND CODE OF CONDUCT FOR <em>MEDIATORS</em> AND <em>ARBITRATORS</em>) RULES, GN NO. 66 OF 2007"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "aed78792-186e-49c0-ad69-7df1b6710a87",
+                "uuid": "aed78792-186e-49c0-ad69-7df1b6710a87",
+                "name": "THE LABOUR INSTITUTIONS (ETHICS AND CODE OF CONDUCT FOR MEDIATORS AND ARBITRATORS) RULES, GN NO. 66 OF 2007",
+                "handle": "123456789/326",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAIRPERSON OF THE COMMISSION, ADAM NJANGA SIMBEYE",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T10:04:27Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T10:04:27Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2007-03-23",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "These Rules are developed in order to ensure that the conduct of Mediators and Arbitrators is of the highest standard and guide Mediators and Arbitrator appointed by the Commission on matters of professional conduct and practice generally.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These rules may be cited as the Labour Institutions (Ethics and Code of Conduct for Mediators and Arbitration) Rules, 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/326",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 66 OF 2007.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS (ETHICS AND CODE OF CONDUCT FOR MEDIATORS AND ARBITRATORS) RULES, GN NO. 66 OF 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS ACT, 2004",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:05:18.303Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/aed78792-186e-49c0-ad69-7df1b6710a87"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These Rules may be cited as the Labour Institutions (<em>Mediation</em> and <em>Arbitration</em> Guidelines) Rules, 2007 and shall come into operation on the date of the publication in the Gazette."
+              ],
+              "dc.title": [
+                "THE LABOUR INSTITUTIONS (<em>MEDIATION</em> AND <em>ARBITRATION</em> GUIDELINES) GN NO. 67 OF 2007"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "cae67bc5-e406-4eda-8e6e-b2996be1fbe5",
+                "uuid": "cae67bc5-e406-4eda-8e6e-b2996be1fbe5",
+                "name": "THE LABOUR INSTITUTIONS (MEDIATION AND ARBITRATION GUIDELINES) GN NO. 67 OF 2007",
+                "handle": "123456789/327",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAIRPERSON OF THE COMMISSION, ADAM NJANGA SIMBEYE",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T10:17:47Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T10:17:47Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2007-03-23",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "Mediation is a process in which a person independent of the parties is appointed as mediator and attempts to assist there to resolve a dispute and may meet with the parties either jointly or separately and through discussion and facilitation, attempt to help the parties settle their dispute.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Rules may be cited as the Labour Institutions (Mediation and Arbitration Guidelines) Rules, 2007 and shall come into operation on the date of the publication in the Gazette.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/327",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 67 OF 2007.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS (MEDIATION AND ARBITRATION GUIDELINES) GN NO. 67 OF 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS ACT, 2004",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:07:19.191Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "These Rules may be cited as the Labour Institutions (<em>Mediation</em> and <em>Arbitration</em>) Rules, 2007"
+              ],
+              "dc.title": [
+                "THE LABOUR INSTITUTIONS (<em>MEDIATION</em> AND <em>ARBITRATION</em>) RULES, GN NO. 64 OF 2007"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "691e334d-b69a-4e39-b831-7525b9318246",
+                "uuid": "691e334d-b69a-4e39-b831-7525b9318246",
+                "name": "THE LABOUR INSTITUTIONS (MEDIATION AND ARBITRATION) RULES, GN NO. 64 OF 2007",
+                "handle": "123456789/325",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAIRPERSON OF THE COMMISSION, ADAM NJANGA SIMBEYE",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-08-12T09:39:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-08-12T09:39:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2007-03-23",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "These Rules may be cited as the Labour Institutions (Mediation and Arbitration) Rules, 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/325",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GN NO. 64 OF 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS (MEDIATION AND ARBITRATION) RULES, GN NO. 64 OF 2007",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE LABOUR INSTITUTIONS, ACT.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:55.163Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/691e334d-b69a-4e39-b831-7525b9318246"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "06070bd9-ee80-49e4-adc8-2452794e244f",
+                "uuid": "06070bd9-ee80-49e4-adc8-2452794e244f",
+                "name": "BULYANHULU GOLD MINES LIMITED VS. PASCHARY ANDREW STANNY CIVIL APPEAL NO. 281 OF 2021.",
+                "handle": "123456789/1228",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MKUYE, GALEBA, J.A. AND KAIRO, J.A J. A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-05T08:24:09Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-05T08:24:09Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-07-21",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "IN THE COURT OF APPEAL OF TANZANIA AT SHINYANGA CORAM: MKUYE, J.A., GALEBA. J,A„ And KAIRO. J J CIVIL APPEAL NO. 105 OF 2021 BULYANHULU GOLD MINES LIMITED  VERSUS KENETH ROBERT FOURIE.\r\n\r\n[Appeal from the Decision of the High Court of Tanzania (Labour Division)\r\nat Shinyanga]\r\n(Mkwizu. J.)\r\nLabour disputes-Evidences and testimonies-Mandatory requirements before testimonies-whether Un sworn testimonies is valid in the eyes of law. Requirement of taking an oath before adducing of any evidences before the court of law.\r\nIn this appeal, Bulyanhulu Gold Mines Limited, the appellant employed Kenneth Robert Fourie, the respondent as a Fixed Plant Maintenance Specialist for a fixed term of 24 months effective 1st July 2017. It however, transpired that about thirteen (13) months later, on 31st August, 2018, the respondent was terminated on grounds of ill health. He was aggrieved by the termination and by a CMA F. 1, signed i on 18th September 2018, he instituted Labour Dispute No. RF/CMA/SHY/KHM/205/2018 In the Commission for Mediation and Arbitration at Shinyanga (the CMA), praying for payment of a total of United States Dollars 484,902.00. In this appeal, the appellant raised 3 grounds of appeal, but for reasons that will become obvious in the course of this judgment, the court of appeal only entertained the first ground of appeal which is a complaint that: \"That the Learned High Court Judge erred in law in upholding the award of the Commission for Mediation and Arbitration which is based on unsworn testimony.\"\r\n\r\nHELD\r\nThe court was on the view that it is appropriate, to lay ground as for this Court's position generally, on issues of taking evidence from witnesses in all courts. Before taking evidence from a witness in a court of law, it is mandatory for a judicial officer presiding over the proceedings to administer oath to a witness before the latter can adduce his or her evidence. \"It is now clear that the law makes it mandatory for the witnesses giving evidence in court to do so under oath. It follows therefore that the omission by the witnesses to take oath before giving evidence in this case is fatal and it vitiates the proceedings.\"\r\nthis appeal is allowed based on the first ground of appeal\r\nStatutory provision\r\nMediation and Arbitration Rules read together with section 4 (a) of the Oaths and Statutory Declarations Act, [Cap 34 R.E. 2019]\r\nThe Law of Evidence Act.\r\nCases referred.\r\nAttu 3. Myna v. CFAO Motors Tanzania Limited, Civil Appeal No. 269 of 2021 (unreported).\r\nTanzania Portland Cement Co. Ltd v. EkwasiMajigo, Civil Appeal No. 173 of 2019 \r\nThe Copycat Tanzania Limited v. Mariam Chamba, Civii Appeal No. 404 of 2020 (both un re ported)\r\nSNV Netherlands Development Organization Tanzania v. Anne Fidelis, Civil Appeal No. 198 of 2019 (unreported)\r\nCapital Drilling (T) v. Alex BarthazaliKabendera, Civil Appeal No. 370 Of 2019 (unreported)\r\nCatholic University of Health and Allied Sciences (CUHAS) v. EpiphaniaMkundeAthanase, Civil Appeal No. 257 of 2020 (unreported).",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The court was on the view that it is appropriate, to lay ground as for this Court's position generally, on issues of taking evidence from witnesses in all courts. Before taking evidence from a witness in a court of law, it is mandatory for a judicial officer presiding over the proceedings to administer oath to a witness before the latter can adduce his or her evidence. \"It is now clear that the law makes it mandatory for the witnesses giving evidence in court to do so under oath. It follows therefore that the omission by the witnesses to take oath before giving evidence in this case is fatal and it vitiates the proceedings.\" this appeal is allowed based on the first ground of appeal.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1228",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, SHINYANGA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "SHINYANGA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BULYANHULU GOLD MINES LIMITED VS. PASCHARY ANDREW STANNY CIVIL APPEAL NO. 281 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO. 281 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:58:09.144Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/06070bd9-ee80-49e4-adc8-2452794e244f"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "41aa0dec-67c9-4b9b-bcba-f734284945aa",
+                "uuid": "41aa0dec-67c9-4b9b-bcba-f734284945aa",
+                "name": "The Labour Institution Act (CAP. 300 R.E. 2019)",
+                "handle": "123456789/247",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 300",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-03T11:51:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-03T11:51:11Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the establishment of Labour Institutions, to provide for their functions, powers and duties, and to provide for other matters related to them.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/247",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 300",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP. 300 R.E. 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "The Labour Institution Act (CAP. 300 R.E. 2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:34.110Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/41aa0dec-67c9-4b9b-bcba-f734284945aa"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "The High Court dismissed the appellants' application for revision of the Commission for <em>Mediation</em> and <em>Arbitration</em> (CMA) decision, which had dismissed their labour dispute against the respondent."
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "ac1eb54b-9504-48de-9f9a-3d7a799230e4",
+                "uuid": "ac1eb54b-9504-48de-9f9a-3d7a799230e4",
+                "name": "PETER JACOB WEROMA & 11 OTHERS v. AKO GROUP LIMITED, CIVIL APPEAL NO. 172 OF 2021",
+                "handle": "123456789/1741",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MKUYE, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MWANDAMBO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "MAIGE, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-21T08:01:40Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-21T08:01:40Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-04-24",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This is an appeal before the Court of Appeal challenging the decision of the High Court of Tanzania in Labour Revision No. 16 of 2019, delivered on 24th April. The High Court dismissed the appellants' application for revision of the Commission for Mediation and Arbitration (CMA) decision, which had dismissed their labour dispute against the respondent.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1741",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 172 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "PETER JACOB WEROMA & 11 OTHERS v. AKO GROUP LIMITED, CIVIL APPEAL NO. 172 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-06-16T07:06:05.458Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ac1eb54b-9504-48de-9f9a-3d7a799230e4"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "1abb9e8b-8991-4855-bb93-1fe48007b646",
+                "uuid": "1abb9e8b-8991-4855-bb93-1fe48007b646",
+                "name": "BULYANHULU GOLD MINES LIMITED VS. PASCHARY ANDREW STANNY CIVIL APPEAL NO. 281 OF 2021.",
+                "handle": "123456789/1266",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MKUYE, GALEBA, J.A. AND KAIRO, J.A J. A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-10T10:57:37Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-10T10:57:37Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-07-21",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "IN THE COURT OF APPEAL OF TANZANIA AT SHINYANGA CORAM: MKUYE. J.A. GALEBA. J.A. And KAIRO. J.A. CIVIL APPEAL NO. 281 OF 2021\r\nBULYANHULU GOLD MINES LIMITED  VS. PASCHARY ANDREW STAN NY.\r\n\r\n[Appeal from the Decision of the High Court of Tanzania (Labour Division) at Shinyanga] \r\n(Mdemu, J.)\r\ndated the 26th day of February, 2021\r\nin Labour Revision No. 8 of 202\r\nLabour dispute -Unfair termination-\r\nburden of proof towards unfair termination in Labour cases\r\nGround for termination on ground of illness.Paschary Andrew Stanny, the respondent, was employed by Bulyanhulu Gold Mines Limited, the appellant on 31st January 2008. He was employed to work in the appellant's Underground Mining Department at Kakola in Kahama, initially as a Mining Trainee. He was promoted from that original title to Miner 1, Miner 2, Miner 3 and his last position with the appellant was Scoop Operator at the time he was terminated on 315t January i 2019. His termination was due to ill health following impaired hearing capacity of his right ear.\r\n\r\nHELD\r\ni)\tIn any proceedings concerning unfair termination of an employee by an employer, the employer shall prove that the termination is fair.\" The above section, comes out clearly that where there are allegations of unfair termination, the burden of proof that the termination complained of was fair, lies on the employer, and that is why, in Labour disputes it is the employer who starts to give evidence, though, a respondent, unlike in other civil matters and even criminal cases, where a party initiating the proceedings starts to adduceevidence and then a party sued comes next.\r\nii)\tAn employer who is considering to terminate an employee on grounds of ill health or injury shall take into account the following factors to determine the fairness of the reason in the circumstances (a) The cause of the incapacity; (b) The degree of the incapacity; (c) The temporary or permanent nature of the incapacity; (d) The ability to accommodate the incapacity; (s) The existence of any compensation or pension.\r\niii)\tthe appellant failed to discharge the burden of proof placed on her by section 39 of the ELRA, of proving that the reason for terminating the respondent was valid. We therefore find no substantiated valid reason, for termination of the respondent if the basis was ill health. Hence, we find no merit in the 5th ground of appeal and we accordingly dismissed.\r\nStatutory provision reffered.\r\nEmployment and Labour Relation Act\r\nLabour institution Act.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "i)\tIn any proceedings concerning unfair termination of an employee by an employer, the employer shall prove that the termination is fair.\" The above section, comes out clearly that where there are allegations of unfair termination, the burden of proof that the termination complained of was fair, lies on the employer, and that is why, in Labour disputes it is the employer who starts to give evidence, though, a respondent, unlike in other civil matters and even criminal cases, where a party initiating the proceedings starts to adduceevidence and then a party sued comes next.\r\nii)\tAn employer who is considering to terminate an employee on grounds of ill health or injury shall take into account the following factors to determine the fairness of the reason in the circumstances (a) The cause of the incapacity; (b) The degree of the incapacity; (c) The temporary or permanent nature of the incapacity; (d) The ability to accommodate the incapacity; (s) The existence of any compensation or pension.\r\niii)\tthe appellant failed to discharge the burden of proof placed on her by section 39 of the ELRA, of proving that the reason for terminating the respondent was valid. We therefore find no substantiated valid reason, for termination of the respondent if the basis was ill health. Hence, we find no merit in the 5th ground of appeal and we accordingly dismissed.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1266",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, SHINYANGA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "SHINYANGA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BULYANHULU GOLD MINES LIMITED VS. PASCHARY ANDREW STANNY CIVIL APPEAL NO. 281 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO. 281 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:59:08.725Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1abb9e8b-8991-4855-bb93-1fe48007b646"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "This matter originates from the Commission for <em>Mediation</em> and <em>Arbitration</em> Mbeya (hereinafter \"the CM A\"). The respondent, Cresence Mwandele was employed by the appellant in the position of Regional Manager Mbeya."
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "d56e825f-2b71-4e22-95a2-e22d18525052",
+                "uuid": "d56e825f-2b71-4e22-95a2-e22d18525052",
+                "name": "BAYPORT FINANCIAL SERVICES (T) LIMITED VERSUS CRESENCE MWANDELE",
+                "handle": "123456789/114",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA. J.A.. NDIKA. J.A., and KWARIKO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-03-30T09:29:56Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-03-30T09:29:56Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-11-25",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This matter originates from the Commission for Mediation and Arbitration Mbeya (hereinafter \"the CM A\"). The respondent, Cresence Mwandele was employed by the appellant in the position of Regional Manager Mbeya.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "Bayport Financial Services (T) Limited Versus Cresence Mwandele (2020)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost:8080/xmlui/handle/123456789/114",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "other",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.relation.ispartofseries": [
+                    {
+                      "value": ";CIVIL APPEAL NO. 19 OF 2017",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "MBEYA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "Misconduct of Arbitrator",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "Aboud, J",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    },
+                    {
+                      "value": "12th day of May, 2015",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 3
+                    },
+                    {
+                      "value": "Labour Revision No. 33 of 2013",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 4
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "BAYPORT FINANCIAL SERVICES (T) LIMITED VERSUS CRESENCE MWANDELE",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Other",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:00.157Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/d56e825f-2b71-4e22-95a2-e22d18525052"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 10,
+        "totalElements": 115
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%20and%20Arbitration&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%20and%20Arbitration&page=9&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%20and%20Arbitration&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Mediation%20and%20Arbitration&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Mediation%20and%20Arbitration&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 7,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., MWIGULU L. NCHEMBA",
+              "count": 5,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.author=MINISTER%20FOR%20CONSTITUTIONAL%20AND%20LEGAL%20AFFAIRS.,%20MWIGULU%20L.%20NCHEMBA,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAIRPERSON OF THE COMMISSION, ADAM NJANGA SIMBEYE",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.author=CHAIRPERSON%20OF%20THE%20COMMISSION,%20ADAM%20NJANGA%20SIMBEYE,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY., STEPHEN KAGAIGAI.",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY.,%20STEPHEN%20KAGAIGAI.,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Mediation%20and%20Arbitration&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Mediation%20and%20Arbitration&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "DAR ES SALAAM.",
+              "count": 12,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.subject=DAR%20ES%20SALAAM.,equals"
+                }
+              }
+            },
+            {
+              "label": "MWANZA.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.subject=MWANZA.,equals"
+                }
+              }
+            },
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "SHINYANGA.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.subject=SHINYANGA.,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 33",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.subject=CHAPTER%2033,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Mediation%20and%20Arbitration&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 36,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 79,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Mediation%20and%20Arbitration&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 115,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Mediation%20and%20Arbitration"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Mediation%20and%20Arbitration&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 115,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Mediation%2520and%2520Arbitration&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

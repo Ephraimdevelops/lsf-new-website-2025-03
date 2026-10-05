@@ -1,0 +1,739 @@
+[PDF PAGE 1]
+THE FAIR COMPETITION ACT 
+(CAP. 285) 
+CONSUMER COMPLAINTS HANDLING PROCEDURES, 2022 
+(Made under 62 (4) of the Competition Act No. 8 of 2003) 
+PART I PRELIMINARY PROVISIONS 
+Citation These Procedures may be cited as the Consumer Complaint Handling 
+1 Procedures, 2022 and shall be read with the Fair Competition Act, 
+2003 hereinafter referred to as the Act. 
+Application and 
+effective date 
+Commencement 3 These Procedures shall come into force on the date of issuance as 
+shall be indicated by the Chairman of the Commission. 
+Interpretation 
+These Procedures shall apply to all Consumer Complaints handled by 
+2 the Commission and shall be operational from the date it was signed. 
+4 In these Procedures, unless the context requires otherwise - 
+"Act" means the Fair Competition Act No 8 of 2003; 
+"Apparent breach" means a breach of the conditions issued by the 
+Commission to the respondent or any other person; 
+"Commission" means the Fair Competition Commission established 
+under section 62 of the Act; 
+"Commissioner" means a member of the Commission appointed under 
+section 63 of the Act; 
+Page 1 of 27 
+
+
+[PDF PAGE 2]
+"Complaint" means either: (a) a complaint initiated by the Commission 
+under section 69(1 ); or (b) a complaint that has been submitted to the 
+Commission under section 69(2) of the Act; 
+"Confidential information" means trade, business or industrial 
+information that belongs to a person which has a particular economic 
+value and is not generally available to or known by others; 
+"Final findings" means final findings of the Commission issued to the 
+respondents regarding the matter under investigation; 
+"Formal complainant" means any person who requests for formal 
+complainant status, and whose interests are, or are likely to be 
+materially affected by the subject matter of the complaint; 
+"Privileged information" means information that contains a request for 
+advice to, and advice from, external counsel qualified to practice if 
+made for that purpose, and in the interests, of the firm's right of 
+defence; 
+"Provisional findings" means preliminary findings of the Commission 
+supported by evidence of the alleged offence issued to the 
+respondents requiring to respond within a specified period; 
+"Settlement Plan" means a plan submitted by the respondents in terms 
+of these procedures; 
+"Statement of a Case" means a statement of a case comprising 
+preliminary facts and the suspected breach of the provisions of the Act 
+issued by the Commission to the Respondents. 
+"Technical Team" means a Team of experts as shall be appointed by 
+the Director General in terms of procedure 23(4)(a) of the Consumer 
+Complaint Handling Procedures, 2022; 
+"Tribunal" means the Fair Competition Tribunal established under 
+section 83 of the Act. 
+"Third party" means a person who is not the main party to a matter 
+before the Commission but who, in the opinion of the Commission has 
+Page 2 of 27 
+
+
+[PDF PAGE 3]
+a sufficient interest in the matter and includes a consumer, a consumer 
+organization or a competitor or any other authority; and 
+"Turnover" means explicitly to the amounts accrued from the sale of 
+goods or services or both. 
+Address of the 
+Commission 
+5 
+PART II ADMINISTRATION 
+All communications to the Commission shall be addressed to an 
+address which will be availed to the addressee by a particular 
+document from the Commission. 
+Business hours 6 (1) The Office of the Commission shall be open to the public every day 
+of the 
+Commission 
+from Monday to Friday, other than a public holiday. 
+(2) The Office hours shall be 08:00 hrs to 16:00 hrs 
+Page 3 of 27 
+
+
+[PDF PAGE 4]
+Delivery of 
+Documents 
+Issuing of 
+documents 
+PART Ill DELIVERY OF DOCUMENTS 
+7 (1) Delivery or transmission of documents and invitations from the 
+Commission to the addresses may be effected in any of the following 
+ways: 
+(a) delivery by hand against receipt; 
+(b) registered letter with acknowledgement of receipt; 
+(c) fax with a request for acknowledgement of receipt; or 
+(d) electronic mail with a request for acknowledgement of receipt. 
+(2) Where the document is delivered or transmitted outside of the 
+office hours of the Commission as prescribed under sub-procedure (2) 
+of procedure 6, the document shall be deemed to have been delivered 
+on the next working day. 
+(3) Any document that is delivered by fax must include a cover page, 
+and a document that is transmitted by electronic mail shall be 
+accompanied by a cover massage, in either case setting out: 
+(a) the name, address, and telephone number of the sender, 
+(b) the name of the person to whom it is addressed, and the name 
+of that person, representative, if it is being sent to the 
+representative of a person; 
+(c) the date and time of transmission; 
+(d) the total number of pages sent, including the cover page; and 
+(e) the name and telephone number of the person to contact if the 
+transmission appears to be incomplete or otherwise unsuccessful. 
+8 Where the Act or these Procedures require the Commission to issue 
+a document, the document shall be deemed to have been issued by 
+Page 4 of 27 
+
+
+[PDF PAGE 5]
+the Commission when it has been served on any person to whom it is 
+addressed. 
+Filing of 
+document 
+9 (1) The Commission may assign distinctive case numbers to each: 
+(a) complaint; and 
+(b) application. 
+(2) The Commission shall ensure that every document subsequently 
+filed in respect of the same proceeding is marked with the assigned 
+case number. 
+(3) The Commission may reject documents under sub-procedure (2) 
+of this Procedure if it is not properly marked with the assigned case 
+number and upon rejection within a specified time, may direct the 
+document filed to be properly marked. 
+(4) A person who files any document under the Act or these 
+Procedures shall provide to the Commission that person's: 
+a) legal name; 
+b) address for service; 
+c) telephone number; 
+d) email address and fax number if any; and 
+e) if the person is not an individual, the name of the individual 
+authorized to deal with the Commission on behalf of the person 
+filing the document. 
+(5) The language of the Commission shall be English or Kiswahili, but 
+all Orders or decisions of the Commission shall be in the English 
+language. 
+(6) All submissions of documents to the Commission, shall be made 
+in both hard and electronic copies. 
+Page 5 of 27 
+
+
+[PDF PAGE 6]
+(7) Notwithstanding the submission of both hard and electronic copies, 
+the submission of a hard copy shall take precedence over the 
+electronic copy. 
+(8) For the purpose of this procedure a document shall be deemed to 
+be substantially incomplete if; 
+(a) it contains omissions or incomplete information that the 
+Commission finds has a substantial impact on the discharge of its 
+functions under the Act. 
+Form of 10 Application made under these Procedures shall be in any manner or 
+application form. 
+Form of Notices 11 (1) Whenever the Commission is required to issue a notice to a party 
+issued by the under any provision of consumer protection in the Act, or under these 
+Commission procedures, the document may be in either form that the Commission 
+deems fit to issue. 
+(2) Where the Commission is required, either under the Act or these 
+procedures, to publish a notice in the Gazette that notice shall contain: 
+(a) the name of any person directly affected by the matter; 
+(b) the file number assigned by the Commission to the relevant 
+matter; 
+(c) the provision of the Act or Procedures under which the notice 
+is required; 
+(d) a brief and concise description of the nature of the relevant 
+matter; 
+(e) where the notice invites submissions, the last date on which 
+submission may be received; 
+(f) where the notice reports a decision: 
+Page 6 of 27 
+
+
+[PDF PAGE 7]
+(i) a brief and concise description of the nature of relevant 
+decision; and 
+(ii) a statement of any right of review of, or appeal from that 
+decision, including the period during which a review or appeal 
+may be lodged; and 
+(g) name, address and contact numbers of the person in the 
+Commission responsible for publishing the notice. 
+Initiation of a 
+complaint 
+PART IV HANDLING OF COMPLAINTS 
+(a) Investigation of a Complaint 
+12 (1) Subject to the provisions of the Act, a complaint may be initiated 
+by: 
+(a) any person submitting information concerning an alleged 
+prohibited practice to the Commission, in any manner; or 
+(b) any person submitting a complaint against an alleged 
+prohibited practice to the Commission in any manner; or 
+(c) the Commission on its own initiative; 
+(2) The Commission shall be deemed to have acted upon a complaint 
+from the first time when it requested information in writing from the 
+Respondent(s). 
+(3) Complaints initiated under sub-procedures (1) (a) and (b) shall be 
+deemed to be complaints initiated by the Commission. 
+(4) The Department responsible for consumer protection shall, within 
+three years from the time the complaint was initiated under sub­ 
+procedure (1) investigate the complaint with a view to establishing 
+whether there is a case to answer. 
+(5) Where the case to answer has not been established by the 
+Department responsible for consumer protection as stipulated under 
+Page 7 of 27 
+
+
+[PDF PAGE 8]
+Establishment 
+of a case 
+Request for 
+information 
+14 (1) Where the Department responsible for consumer protection is of 
+the opinion that there is a case to answer, it shall refer the matter to 
+the relevant Director responsible for the consumer protection. 
+(2) Where the Director responsible for consumer protection is of the 
+opinion that the conduct in question harms or is likely to harm 
+consumers, he shall cause the Department responsible for consumer 
+protection to prepare the statement of a case and serve the same to 
+the concerned parties. 
+(3) Subject to sub-procedures (1) and (2), the main parties shall be 
+provided with a statement of the case setting out the facts of the case 
+and the relevant provisions of the law alleged to have been 
+contravened. 
+(4) Where it appears that the relevant conduct does not harm or is not 
+likely to harm consumers, the parties involved shall be informed with 
+reasons that the Commission shall not be taking any further action. 
+15 (1) The Commission may, with or without summons, require a person 
+to provide all necessary information. 
+(2) Where a request under sub-procedure (1) is made, the 
+Commission shall in making such request: 
+(a) state the legal basis and the purpose of the request; 
+(b) specify the information required; 
+(c) fix the time and place within which it is to be provided; 
+(d) in the case where a request is made with a summon, specify 
+the prescribed penalty for the supply of incorrect or misleading 
+information and for not complying with the summon. 
+Page 10 of 27 
+
+
+[PDF PAGE 9]
+(3) In the case of the legal person or association having no legal 
+personality, their representatives shall supply the information 
+requested on behalf of the legal person or the association concerned. 
+(4) A person questioned by an officer conducting an investigation 
+shall answer each question to the best of his or her knowledge. 
+(5) The Commission may also specify the time and place at which 
+any document is to be produced. 
+Search warrant 16 (1) For the purpose of section 71 (5) of the Act, where the Commission 
+has reason to believe that a person is in possession or control of any 
+documents that may assist it in the performance of any of its functions, 
+the Chairman, the Director-General or any member of the 
+Commission, may apply to the Tribunal who, acting through the 
+Chairman, shall issue a warrant authorizing any police officer, 
+accompanied by staff of the Commission duly authorized by the 
+Chairman of the Commission to enter premises to conduct a search 
+and make copies or take extracts of documents therein. 
+(2) A warrant issued under sub-procedure (1) shall remain valid until 
+one of the following events occur: 
+(a) the warrant is executed; 
+(b) the warrant is canceled by the person who issued it or, in that 
+person's absence, by a person with similar authority; 
+(c) the purpose for issuing it has lapsed; or 
+(d) the warrant has expired. 
+(3) Immediately before execution of a warrant, the officer executing 
+the warrant shall produce his identity card and explain to the person 
+named in the warrant the authority by which the warrant is being 
+executed. 
+Page 11 of 27 
+
+
+[PDF PAGE 10]
+Powers to enter 17 (1) Authorized police officer accompanied by staff of the Commission 
+and search duly authorized by the Chairman to enter and search premises may:- 
+a) enter upon or into premises; 
+b) search the premises; 
+c) search any person on the premises if he has reasonable 
+grounds for believing that the person has in his personal 
+possession a document or goods that is relevant to the 
+investigation. 
+d) examine any document found in the premises that is relevant to 
+the investigation; 
+e) request information about any document from the owner of, or 
+person in control of the premises or from any person who has 
+control of the article or document, or from any other person who 
+may have the information and record the information; 
+f) take extracts from, or make copies of, any book or document 
+that is on or in the premises that are relevant to the investigation; 
+g) use any computer system on the premises, or require the 
+assistance of any person on the premises to use that computer 
+system, to: 
+i. search any data contained in or available to that 
+computer system; 
+ii. reproduce any record from that data; and 
+iii. seize any output from that computer for examination 
+and copying; 
+Page 12 of 27 
+
+
+[PDF PAGE 11]
+(h) attach and, if necessary, remove from the premises for 
+examination and safekeeping, anything that is relevant to the 
+investigation; and 
+(i) seal any business premises and books or records for the period 
+and to the extent necessary for the investigation. 
+U) Examine any products or goods found in the premises that is 
+relevant to the investigation; 
+(k) Take samples of goods or products in the premises that are 
+relevant to the investigation; and 
+(I) Seize any goods/products found in the premise for examination 
+or laboratory testing. 
+18 (1) A person who enters and searches any premises shall observe the 
+right to dignity and privacy of the person who is the subject of the 
+search. 
+(2) During the search, only a female police officer or female officer 
+shall search a female person, and only a male police male officer or 
+police officer shall search a male person. 
+(3) A conduct of entry and search shall be witnessed by a justice of 
+the peace, or two adult persons who reside around the area where the 
+search is conducted unless the circumstances are such that: 
+a) there is no sufficient time to secure their services; or 
+b) securing their service will defeat the purpose. 
+(4) A police officer who is authorised to enter and search the premises 
+or who is assisting an officer who is authorised to enter and search the 
+premises may overcome any resistance to the entry and search by 
+Page 13 of 27 
+
+
+[PDF PAGE 12]
+Commission to 
+adopt the 
+inquisitorial 
+hearing 
+procedure 
+using such force as is reasonably required including breaking doors or 
+windows of the premises. 
+(5) For the purposes of sub- procedure (4) a police officer shall audibly 
+demand entry and shall announce the purpose of the entry. 
+(6) The Commission shall not use as evidence any document collected 
+during the search which contains privileged information. 
+(b) Procedure for hearing 
+19 (1) The Commission shall adopt an inquisitorial procedure in 
+conducting the hearings. 
+(2) Subject to sub-procedure (1 ), the inquisitorial procedure shall be 
+considered as part of the investigation process. 
+(3) For the purpose of sub-procedure (2) the Commission shall 
+provide a forum for the presentation of any additional information or 
+analysis with a view to facilitate the investigation. 
+(4) The Commission shall, in conducting a hearing, not be bound by 
+the formal rules of evidence. 
+Submission of 20 Where it is decided that the case is to be submitted to the Commission, 
+the case to the the Department responsible for consumer protection shall present the 
+Commission report of the case setting out: 
+a) The facts constituting the offences; 
+b) Provisions alleged to have been contravened; 
+c) Evidence; and 
+d) Proposed remedial action. 
+Page 14 of 27 
+
+
+[PDF PAGE 13]
+Issuance of 
+provisional 
+findings 
+21 (1) The Commission shall, when sitting to review the case presented 
+to it by the Department responsible for Consumer Protection, first 
+consider the report referred under procedure 20. 
+(2) For the purpose of sub- procedure (1 ), the Commission shall be 
+duly constituted when presided by at least three assigned members 
+as provided for under section 73(4) and (5) of the Act. 
+(3) The Commission shall, where it takes the view that an infringement 
+has been committed or is likely to be committed, make and issue 
+provisional findings with reasons thereof to the respondent requiring 
+the respondent to make written representation within a specified 
+period. 
+(4) The provisional findings specified under sub- procedure (3) shall 
+set out: 
+a) The facts and legal arguments that constitute a finding of an 
+infringement; 
+b) Provisions alleged to have been contravened; 
+c) Evidence; 
+d) Proposed remedial action that may be implemented through 
+compliance order or agreements, compensatory order or fines or 
+issuance of directives to refrain from the continuity of an 
+infringement; 
+(5) The Respondents may apply for settlement discussions in the 
+manner prescribed under procedure 23. 
+(6) The Commission shall publish the issuing of provisional findings on 
+the Commission's website and widely circulating Newspapers. 
+Page 15 of 27 
+
+
+[PDF PAGE 14]
+Reply to 
+provisional 
+findings 
+22 (1) A recipient of the provisional findings shall have the right to make 
+a response in writing within the time limit set under procedure 21 (3). 
+(2) The Commission shall not be under any obligation to consider any 
+written submissions received by it after the expiry of the time limit set 
+in procedure 21 (3). 
+(3) A recipient of the provisional findings may, in the written 
+submissions provide all facts known to them which are relevant to their 
+defense against the findings raised by the Commission. 
+(4) For the purpose of sub-procedure (3), the recipient shall: 
+(a) provide an original version of the written submissions as well 
+as an electronic copy thereof, or in the absence of an electronic 
+copy, two (2) printout copies of such submission together with 
+attachment if any; and 
+(b) attach a non-confidential version of the representation which 
+shall state why the information should be treated as confidential; 
+except that: 
+(i) blanket or unsubstantiated confidentiality claim shall not be 
+admitted; and 
+(ii) the non-confidential version shall be submitted together with 
+the original response, and in any case not later than twenty-one 
+days (21) from the date of submission of the original response. 
+(5) Without prejudice to sub-procedure 4(b) (ii), the Commission 
+reserves the right to provide the recipient of provisional findings an 
+opportunity to make a confidentiality representation. 
+(6) Formal complainants and third parties who may be able to 
+materially assist the assessment of the case shall have a right to 
+Page 16 of 27 
+
+
+[PDF PAGE 15]
+submit written representations in the manner prescribed under these 
+Procedures. 
+(7) Disclosure of a non-confidential version of the preliminary findings 
+shall be sufficient to enable third parties to provide the Commission 
+with informed comments and this will not include any annexed 
+documents. 
+(8) Written representation by a formal complainant or third party shall 
+be submitted to the Commission not later than twenty-one days (21) 
+from the date on which the provisional findings were received by the 
+formal complainant or the third party. 
+(9) The non-confidential version of the written representations that 
+have been submitted by a formal Complainant or third party shall be 
+disclosed to the provisional findings recipient to allow them an 
+opportunity to comment. 
+Pre-hearing 
+conference 
+23 (1) A party may apply for settlement under procedure 21 (5) after 
+issuance of provisional findings and but not after issuance of final 
+findings on a matter by the Commission. 
+(2) When a recipient of Provisional Findings has applied for settlement 
+under procedure 21 (5) and this procedure, the following procedure 
+shall be considered: 
+(a) the Applicant shall submit his request to the Commission either 
+orally or in writing indicating his interest to engage the Commission 
+in a settlement discussion regarding the matter under 
+investigation; 
+(b) the Commission shall decide on the application for settlement 
+made under sub-procedure 2(a) of this procedure; 
+Page 17 of 27 
+
+
+[PDF PAGE 16]
+(c) the determination by the Commission under sub- procedure 
+2(b) shall be final; 
+(d) where the Commission rejects the request for settlement, the 
+matter shall proceed as stipulated under these Procedures; 
+(e) where the Commission grants the request for settlement, it shall 
+Order the Applicant to file a written settlement plan. 
+(3) Where the Applicant submits a settlement plan to the Commission 
+under sub-procedure (2); the Commission shall Consider its adequacy 
+and appropriateness. 
+(4) The Commission may either: 
+(a) Accept as it is or give some broad and specific directives to the 
+Director-General and cause the latter to constitute a Technical 
+Team to scrutinize the settlement plan and submit a report to the 
+Commission within 30 days. The Technical Team may request for 
+extension of time from the Commission; 
+(b) Reject the settlement plan and Order the Applicant to resubmit 
+a fresh settlement plan addressing specific issues as provided in 
+the Order; 
+(c) Where the Commission rejects, the resubmitted settlement plan 
+under sub-procedure 4(b) of this procedure; the settlement 
+proceedings shall be deemed to have failed and the Commission 
+shall proceed with the matter under procedure 24 of these 
+Procedures. 
+(5) The Technical Team may engage with the Applicant, call for 
+additional documents and or any other information as it shall deem 
+appropriate. 
+Page 18 of 27 
+
+
+[PDF PAGE 17]
+(a) Any admissions made during a failed settlement discussion 
+involving more than one Respondent will not be disclosed to either 
+the other Respondents involved either in the settlement 
+discussions or to those being investigated nor will the admission 
+be used in proceedings of the matter after the failed settlement 
+discussions; 
+(b) If settlement discussions are wholly or substantially successful 
+the Technical Team shall cause a report to be filed with the 
+Commission evidencing the Applicant's agreement to terms of 
+settlement; 
+(c) In case a settlement process fails, during settlement 
+discussions the Technical Team shall cause a report to be filed 
+with the Commission giving reasons for the failure. 
+(6) Upon receipt of the report from the Technical Team under sub­ 
+procedure 2 of this procedure, the Commission may either: 
+(a) accept the proposed settlement terms; or 
+(b) vary part of the contents of the settlement terms and cause an 
+agreement to be drawn and signed thus adopt a settlement 
+decision pursuant to Section 58(8) of the Act; or 
+(c) reject the proposed settlement terms and order the matter to 
+proceed with the matter as provided under Procedure 24 of these 
+procedures. 
+(7) Where during settlement discussions, an Applicant provides the 
+Commission with new evidence or information relevant to infringement 
+of the Act, such new evidence or information will be retained by the 
+Commission and may be used for investigation purposes as provided 
+in the Act and these procedures. 
+Page 19 of 27 
+
+
+[PDF PAGE 18]
+Oral 
+representation 
+24 (1) A recipient of provisional findings shall, during oral representation, 
+and upon application not later than fourteen days (14) after the 
+prescribed date of submission of written representation, have a right 
+to make oral representations on matters in the provisional findings. 
+(2) An Applicant under sub-procedure (1) shall: 
+(a) confirm to the Commission the requirement of having the 
+opportunity to develop arguments at an oral representation if the 
+provisional findings do not reflect the contents of the Applicant's 
+settlement submissions; 
+(b) within seven days (7) from submission of a written submission, 
+give an indication in advance of the matters the Applicant proposes 
+to focus on in the oral representation. 
+(3) A recipient of provisional findings may be represented by legal or 
+other advisors to assist in presenting the oral representations. 
+Provided that the Commission may set limits on the number of persons 
+that may attend meetings on behalf of the Respondent. 
+(4) Oral representations shall be used by the recipient of provisional 
+findings as an opportunity to highlight issues of particular importance 
+to their case, which have been set out in the written submissions. 
+(5) Formal complainants and other interested third parties shall, for the 
+purpose of protecting the confidentiality of the firm's business, not 
+attend the Respondent's oral representations meeting. 
+(6) As a general rule, any matter raised during the oral representation 
+stage shall be limited to matters already submitted to the Commission 
+in accordance with sub- procedure (2)(b). 
+Page 20 of 27 
+
+
+[PDF PAGE 19]
+(7) At the end of the presentation of oral representations, the 
+Commission may ask general questions or questions for clarification 
+which shall be in writing. 
+(8) Response to questions in sub- procedure (7) shall be obtained in 
+writing after the meeting. 
+(9) A transcript of the oral representations meeting shall be provided 
+to the Respondent for the purpose of confirming its accuracy and 
+identification of any confidential information. 
+(10) The Commission shall not accept blanket or any unsubstantiated 
+confidentiality claims. 
+Determination of 25 (1) The Commission shall consider all written and oral representations 
+oral and written 
+representation 
+to appraise the case as set out in the provisional findings and to 
+assess whether the conclusions reached in the provisional findings 
+continue to be supported by the evidence and facts. 
+(2) Any new evidence obtained during determination shall, where it 
+supports the provisional findings, and which is intended to be relied 
+upon by the Commission in establishing an infringement, be 
+communicated to the recipient of the provisional findings, and the 
+Commission shall afford the recipient an opportunity to respond to the 
+new evidence. 
+(3) The Commission shall, where it makes a finding that the new 
+evidence indicates a new allegation of infringement or materially 
+changes the nature of infringement occasioned in the provisional 
+finding, issue a supplementary provisional finding setting out the new 
+set of facts on which it proposes to rely to establish an infringement. 
+Page 21 of 27 
+
+
+[PDF PAGE 20]
+(4) The procedure for representation, settlement, and determination 
+of a provisional finding shall apply mutatis mutandis to supplementary 
+provisional findings, except that the time frame for responding to the 
+supplementary provisional findings shall be fourteen days (14). 
+(5) The Commission shall after considering the provisional or 
+supplementary provisional findings, make a final finding which will 
+form the basis of the Commission's decision. 
+The decision of 26 (1) The decision of the Commission shall be made in a duly constituted 
+the Commission meeting of the Commission through a majority of votes of the members 
+present and, in the event of an equality of votes, the presiding member 
+shall have a deliberative and a casting vote. 
+(2) The Commission shall decide whether there has been, or is likely 
+to be, a breach of the Act arising from misleading and deceptive 
+conduct. 
+(3) Subject to sub-procedure (2) the Commission shall consider and 
+decide on an enforcement action, namely whether: 
+(a) a compliance order shall be made against one or more parties; 
+(b) a compliance agreement shall be negotiated with one or more 
+parties; or 
+(c) a fine shall be imposed to one or more parties. 
+Contents of the 27 (1) Every decision made pursuant to procedure 26 shall be composed 
+decision of the following: 
+(a) the introductory part; 
+Page 22 of 27 
+
+
+[PDF PAGE 21]
+(b) the date and the place of the meeting; 
+(c) facts on which the Commission relied to prove the 
+infringement; 
+(d) any material representatives that have been made during the 
+investigations; 
+(e) any other circumstance related to the case; 
+(f) the legal requirements for the Commission to reach the 
+decision; 
+(g) the finding of the Commission including sanctions, remedies, 
+right to appeal, settlement or any other directive considered 
+necessary; 
+(h) where the financial penalty is being imposed, explanation on 
+how the level of penalty has been calculated; 
+(i) the date of implementing the Order. 
+(2) The Commission shall deliver its decision within sixty (60) working 
+days from the date of confirmation of the transcript of the oral 
+representations referred to in procedure 24(9). 
+(3) Notwithstanding sub-procedure (2) exceptional circumstances 
+may allow an extension of the period of delivering the decision to a 
+period not exceeding thirty (30) working days. 
+(4) Every decision of the Commission shall be signed and dated by 
+members assigned in procedure 21 (2). 
+Amendments to 
+the final 
+decision 
+28 The Commission may, within a reasonable time, amend its final 
+decision for any of the following purposes to: 
+Page 23 of 27 
+
+
+[PDF PAGE 22]
+(a) correct a clerical or typographical error or error of calculation; 
+(b) rectify an accidental slip or omission; or 
+(c) clarify an ambiguity. 
+Implementation 29 (1) The Director-General shall ensure implementation of the decision 
+of decision of the Commission. 
+(2) Where the decision involves a compliance agreement, the 
+Commission shall enter into discussions with the relevant parties in 
+order to negotiate a suitable form of agreement. 
+(3) Where the Commission finds the agreement to be appropriate in 
+the light of the earlier decision of the Commission, the agreement shall 
+be formally drawn up and signed. 
+(4) Where it is not possible to negotiate an appropriate agreement, 
+consideration shall be made to making a compliance order. 
+Imposition of 
+fines 
+30 The Commission in imposing the fines stipulated under section 60 or 
+any other provision of the Act shall have regard to: 
+(a) the nature and extent of non-compliance or violation; 
+(b) the wrongful gain or unfair advantage derived as a result of the 
+non-compliance or violations; 
+(c) the degree of harassment caused to any person(s) as a result 
+of the non-compliance or violation; or 
+(d) the repetitive nature or continuance of the non-compliance or 
+violation. 
+Page 24 of 27 
+
+
+[PDF PAGE 23]
+Payment of 
+fines 
+Adjustments to 32 The amount of fine may be increased to an amount not exceeding the 
+the amount of maximum statutory where the Commission finds that there are 
+fine aggravating circumstances such as: 
+(a) where the firm continues or repeats the same or similar 
+infringement after the Commission has made a finding; 
+(b) refusal to cooperate with or obstruction of the Commission in 
+carrying out its investigations; or 
+(c) the role of leader in, or instigator of the infringement. 
+Transfer of 
+Order 
+31 (1) All fines imposed by the Commission for a violation of the Act shall 
+be paid by the Respondent to the Commission through the payment 
+details issued by the Commission. 
+(2) Where payment of fines are made as provided under sub­ 
+procedure (1) the Commission shall crosscheck and issue duplicate 
+receipts thereof. 
+33 (1) The Commission may apply for execution of its Orders directly to 
+the High Court within Mainland Tanzania. 
+(2) When applying for the execution of Commission's Orders under 
+sub-procedure (1), the Commission shall forward: 
+(a) a copy of the Order; 
+(b) a certificate setting forth that satisfaction of the Order has not 
+been obtained by the Commission or, where the Order has been 
+executed in part, the extent to which satisfaction has been 
+obtained and what part of the Order remains unsatisfied; and 
+Page 25 of 27 
+
+
+[PDF PAGE 24]
+(c) a copy of any Order for the execution of the Order; or, if no such 
+Order has been made, a certificate to that effect. 
+(3) The High Court to which the Order was forwarded shall cause such 
+copies and certificates to be filed without any further proof of the Order 
+for execution, or of the copies thereof, unless the Court, for any special 
+reasons to be recorded under the hand of the Judge, requires such 
+proof. 
+(4) The Order shall be executed in the same manner as if it had been 
+passed by the High Court. 
+Annual turnover 34 (1) The annual turnover referred to under section 60(1) of the Act shall 
+be the total sales of goods or services made by the firm in: 
+(a) the last full business year of its participation in the infringement; 
+or 
+(b) the year reflected in the last audited accounts of the firm. 
+(2) Where the figures made available by a firm are incomplete or not 
+reliable, the Commission may determine the value of the sales or 
+services of that firm based on the partial figures it has obtained and 
+any other information which it regards a relevant and appropriate. 
+(3) The value of sales shall be determined before the deduction of VAT 
+and other taxes directly related to the sales. 
+Page 26 of 27 
+
+
+[PDF PAGE 25]
+,I 
+Issued at Dodoma on the 16Yd Case Meeting of the Commission by the 
+undersigned on 16th day of December, 2022 
+S/N NAME DESIGNATION SIGNATURE 
+1 Dr. Aggrey K. Mlimuka Chairman 
+2. Dr. Godwin 0. Osoro Commissioner 
+3. Mr. Jenard L. Bahati Commissioner 
+.J~r,~ J2 lazc-.e> 
+4. Mr. William E. Erio Commissioner 
+~ 
+Page 27 of 27 
+
+
+[PDF PAGE 26]
+. i 

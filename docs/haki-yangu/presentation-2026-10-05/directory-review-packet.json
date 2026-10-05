@@ -1,0 +1,160 @@
+{
+  "researchedAt": "2026-10-05",
+  "publicationStatus": "research_candidates_not_lsf_verified",
+  "registrationSource": "https://nalis.sheria.go.tz/en/lap-notice",
+  "registrationCaution": "Use the production NaLIS registry to check each organisation. The notice includes active and inactive registrations; submission alone does not establish eligibility, current intake or an LSF referral agreement.",
+  "candidates": [
+    {
+      "organisation": "Tanzania Women Lawyers Association (TAWLA)",
+      "contactSource": "https://www.tawla.or.tz/contact-us/",
+      "serviceSource": "https://www.tawla.or.tz/portfolio/legal-aid-services/",
+      "statedAudience": "Indigent women and children",
+      "offices": [
+        {
+          "region": "Dar es Salaam",
+          "address": null,
+          "phone": "+255222852856",
+          "reviewFlags": [
+            "Contact page gives two different head-office addresses; confirm before directions."
+          ]
+        },
+        {
+          "region": "Arusha",
+          "address": "Jengo la Condo, Ofisi No. 402, Ghorofa 4",
+          "phone": "+255762973419"
+        },
+        {
+          "region": "Dodoma",
+          "address": "Ilazo Mashariki, Mkabala Kanisa Katoliki",
+          "phone": "+255719481794"
+        },
+        {
+          "region": "Mwanza",
+          "address": "Ilemela, Mwanza",
+          "phone": "+255756330323"
+        },
+        {
+          "region": "Tanga",
+          "address": "Barabara ya 14, Tanga",
+          "phone": null,
+          "reviewFlags": [
+            "Source prints +225 715 898 900. Do not silently convert country code to +255."
+          ]
+        },
+        {
+          "region": "Mbeya",
+          "address": "Sae, Plot No. 67 Block X",
+          "phone": "+255652392999",
+          "reviewFlags": [
+            "Office appears on contact page but not in the service-page region list."
+          ]
+        }
+      ],
+      "remainingVerification": [
+        "Current registration",
+        "LSF agreement",
+        "District and coordinates",
+        "Contact confirmation",
+        "Opening hours",
+        "Current intake/capacity",
+        "Languages and accessibility",
+        "Service coverage and eligibility"
+      ]
+    },
+    {
+      "organisation": "Tanzania Network of Legal Aid Providers (TANLAP)",
+      "contactSource": "https://tanlap.or.tz/contact/",
+      "sourceVerification": "Search-index result retrieved; direct page retrieval timed out",
+      "address": "4th Floor, Sky City Mall, Plot no. 403/1&3, Block A, Mlalakuwa, Dar es Salaam",
+      "phone": "+255746237265",
+      "email": "info@tanlap.or.tz",
+      "reviewFlags": [
+        "Network contact is not proof of a walk-in legal-aid clinic or available case capacity.",
+        "Direct source and operational confirmation required."
+      ]
+    },
+    {
+      "organisation": "Legal and Human Rights Centre (LHRC)",
+      "contactSource": "https://legalaid.humanrights.or.tz/en/paralegals-network",
+      "offices": [
+        {
+          "region": "Dar es Salaam",
+          "address": "Isere Street, House No. 660, Kinondoni",
+          "phone": "+255717143784",
+          "alternativePhone": "+255683169400",
+          "email": "lhrckinondoni@humanrights.or.tz"
+        },
+        {
+          "region": "Arusha",
+          "address": "Dr. Helen Kijo-Bisimba House, Plot No. 116/5, Olosiva, Sakina kwa Idd",
+          "phone": "+255626281245",
+          "alternativePhone": "+255626281244",
+          "email": "lhrcarusha@humanrights.or.tz"
+        },
+        {
+          "region": "Dodoma",
+          "address": "Chimuli Street, Plot No. 20, Area D",
+          "phone": "+255678933155",
+          "alternativePhone": "+255655444828",
+          "email": "lhrcdodoma@humanrights.or.tz"
+        }
+      ],
+      "reviewFlags": [
+        "Contact publication is not current intake confirmation or LSF verification.",
+        "Paralegal listing repeats names across some districts; do not import individuals without reconciliation."
+      ]
+    },
+    {
+      "organisation": "Women's Legal Aid Centre (WLAC)",
+      "contactSource": "https://www.wlac.or.tz/?lang=en",
+      "phone": "+255222664051",
+      "email": "wlac@wlac.or.tz",
+      "region": "Dar es Salaam",
+      "publishedHours": "Monday–Friday 08:00–17:00; weekends closed",
+      "reviewFlags": [
+        "Confirm office address, registration, eligibility, live hours and referral capacity."
+      ]
+    },
+    {
+      "organisation": "Ministry of Constitutional and Legal Affairs — NaLIS",
+      "contactSource": "https://nalis.sheria.go.tz/sw",
+      "phone": "0800004004",
+      "email": "support.nalis@sheria.go.tz",
+      "reviewFlags": [
+        "Legal-aid information number; not established as an emergency number.",
+        "Registry migration notice requires checking current production registration; development registry excluded."
+      ]
+    },
+    {
+      "organisation": "Commission for Mediation and Arbitration (CMA)",
+      "contactSource": "https://cma.go.tz/services",
+      "address": "PSSSF Building, sixth floor, Makole Road, Dodoma",
+      "region": "Dodoma",
+      "email": "dir@cma.go.tz",
+      "phone": null,
+      "reviewFlags": [
+        "Source lists local numbers without an area code; no full phone invented.",
+        "Confirm correct district office, jurisdiction, forms, deadlines, fees and live appointment process."
+      ]
+    },
+    {
+      "organisation": "Registration, Insolvency and Trusteeship Agency (RITA)",
+      "contactSource": "https://www.rita.go.tz/rita-hq.php?lang=en",
+      "additionalSource": "https://erita.rita.go.tz/",
+      "email": "info@rita.go.tz",
+      "phone": null,
+      "address": null,
+      "reviewFlags": [
+        "Official pages conflict between Dar es Salaam and Dodoma headquarters and contacts; resolve before directions.",
+        "Documentation service is not an approved legal-aid referral partner."
+      ]
+    }
+  ],
+  "automaticPublication": false,
+  "paralegalResearch": {
+    "source": "https://legalaid.humanrights.or.tz/en/paralegals-network",
+    "status": "institutional_network_lead_only",
+    "individualsImported": 0,
+    "reason": "Duplicate district entries and unconfirmed current credentials, availability and publication permission. Existing LSF database must be reconciled first."
+  }
+}

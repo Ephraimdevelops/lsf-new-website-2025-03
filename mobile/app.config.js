@@ -28,6 +28,9 @@ module.exports = ({ config }) => {
         (sharedClerkKey.startsWith("pk_test_") ? sharedClerkKey : "") ||
         "",
       easProjectId: process.env.EXPO_PUBLIC_EAS_PROJECT_ID || config.extra?.eas?.projectId || "",
+      googleSsoEnabled: process.env.EXPO_PUBLIC_GOOGLE_SSO_ENABLED === "true",
+      appleSsoEnabled: process.env.EXPO_PUBLIC_APPLE_SSO_ENABLED === "true",
+      phoneAuthEnabled: process.env.EXPO_PUBLIC_PHONE_AUTH_ENABLED === "true",
     },
   };
 };

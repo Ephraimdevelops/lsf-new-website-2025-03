@@ -1,6 +1,6 @@
 import { dashboardPath as getDashboardPath } from '@/components/auth/dashboardPath';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, Phone, User, LogOut, LayoutDashboard, Settings } from 'lucide-react';
+import { ChevronDown, Phone, User, LogOut, LayoutDashboard, Settings, Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { navigationItems } from './navigationData';
@@ -31,7 +31,7 @@ const MobileNavigation = ({
   const userName = convexUser?.name || clerkUser?.firstName || 'User';
   const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   const userImage = convexUser?.imageUrl || clerkUser?.imageUrl;
-  const userRole = convexUser?.role || 'user';
+  const userRole = ['admin', 'supervisor', 'staff', 'safeguarding_officer', 'content_editor', 'paralegal', 'provider_staff', 'stakeholder', 'donor', 'user'].find((role) => access?.roles.includes(role as typeof access.roles[number])) || convexUser?.role || 'user';
 
   const dashboardPath = getDashboardPath(access?.roles);
 
@@ -72,6 +72,12 @@ const MobileNavigation = ({
                     </Button>
                   </Link>
                 </div>
+                <Link to="/notifications">
+                  <Button variant="outline" size="sm" className="w-full">
+                    <Bell className="h-4 w-4 mr-2" />
+                    Updates and notifications
+                  </Button>
+                </Link>
                 <SignOutButton redirectUrl="/">
                   <Button variant="ghost" size="sm" className="w-full text-red-600 hover:bg-red-50">
                     <LogOut className="h-4 w-4 mr-2" />

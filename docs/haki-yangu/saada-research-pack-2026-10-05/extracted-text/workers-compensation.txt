@@ -1,0 +1,3023 @@
+[PDF PAGE 1]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+453
+CHAPTER 263
+THE WORKERS COMPENSATION ACT
+[PRINCIPAL LEGISLATION]
+Arrangement of Sections
+Section Title
+part i
+PRELIMINARY PROVISIONS
+1. Short title.
+2. Application.
+3. Objectives of Act.
+4. Interpretation.
+part ii
+WORKERS COMPENSATION FUND
+5. Establishment of Workers Compensation Fund.
+6. Appointment of Director-General, management and administration of Fund.
+7. Functions of Director-General.
+8. Authorised persons.
+9. Appointment of assessors.
+10. Appointment of medical advisory panels.
+11. Delegation of Powers and assignment of duties by Director-General.
+part iii
+BOARD OF TRUSTEES OF THE WORKERS COMPENSATION FUND
+12. Establishment of Board.
+13. Functions of Board.
+14. Powers of Board.
+15. Fiduciary duties of Board.
+16. General duties of Board.
+17. Board may establish and subsidise organisations.
+18. Delegation of Powers and functions by Board.
+part iv
+RIGHT TO COMPENSATION AND PROTECTION
+19. Right to compensation for occupational injury.
+20. Accidents during conveyance by employer.
+21. Accidents during training for or performance of emergency services.
+
+[PDF PAGE 2]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+454
+22. Right to compensation for occupational diseases.
+23. Presumption of cause of occupational disease.
+24. Accidents or diseases contracted outside Tanzania.
+25. Accidents or diseases contracted in Tanzania.
+26. Refusal to pay compensation.
+27. Compensation may not be alienated or reduced.
+28. Cession or relinquishing of compensation void.
+29. Compensation not to form part of deceased employee’s estate.
+30. Civil liability of employer and third party not limited.
+31. Recovery of compensation from employers and third parties.
+32. Threats and compulsion, prohibited.
+part v
+CLAIMS FOR COMPENSATION
+33. Notice of accident by employee to employer.
+34. Notice of accident by employer to Director-General.
+35. Notice of occupational disease by employee and employer.
+36. Inquiry by Director-General into accident.
+37. Particulars in support of claim.
+38. Employee to submit to medical examination.
+39. Claim for compensation.
+40. Prescription of claim for compensation.
+41. Consideration of claim by Director-General.
+42. Appearance of parties at formal hearing.
+43. Powers of Director-General regarding witnesses.
+44. Power to administer oath.
+45. Offences by witnesses etc..
+part vi
+DETERMINATION OF COMPENSATION
+46. Compensation for temporary total or partial disablement.
+47. Expiry of compensation for temporary total or partial disablement.
+48. Compensation for permanent disablement.
+49. Payment of lump sum in lieu of pension.
+50. Compensation to employee who has previously received compensation.
+51. Constant attendant care grants.
+52. Dependants’ grants where employee dies.
+53. Funeral grants.
+54. Increase of monthly pensions.
+55. Advances on compensation.
+
+[PDF PAGE 3]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+455
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+56. Control over payment of compensation.
+57. Pensioner resident outside Tanzania.
+58. Manner of calculating earnings.
+59. Calculation of compensation for occupational disease.
+60. Deductions from employees prohibited.
+part vii
+MEDICAL AID AND REHABILITATION BENEFITS
+61. Conveyance of injured employee.
+62. Medical aid costs.
+63. Submission of medical report.
+64. Director-General to decide on medical aid benefits.
+65. Fees for medical aid.
+66. Contributions by Employees toward cost of medical aid prohibited.
+67. Medical aid provided by employers.
+68. Director-General may consult representatives of medical authorities  
+and associations.
+69. Director-General to provide rehabilitation.
+70. Director-General may require assessments and rehabilitation plans.
+part viii
+OBLIGATIONS OF EMPLOYERS
+71. Employers to register with Director-General.
+72. Employers to keep records.
+73. Employers to furnish returns of earnings.
+74. Assessment of employer.
+75. Assessment to be paid by employer to Director-General.
+76. Mandators and contractors.
+77. Employers or trade unions to inform employees of their rights.
+78. Employers to assist employees.
+part ix
+DISPUTES SETTLEMENT
+79. Director-General may review decisions.
+80. Appeal against decisions of Director-General and Minister.
+part x
+FINANCIAL PROVISIONS
+81. Application of funds.
+82. Bank accounts of Fund.
+
+[PDF PAGE 4]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+456
+83. Investment of funds.
+84. Annual budget of Fund.
+85. Annual report and financial statements of Fund.
+86. Periodic valuation of Fund.
+87. Auditing.
+part xi
+GENERAL PROVISIONS
+88. Reasons for decisions.
+89. Evidence.
+90. Compensation payable to assessors etc..
+part xii
+MISCELLANOUS PROVISIONS
+91. Access to information.
+92. Disclosure of information.
+93. Amendment of Schedules.
+94. Regulations.
+95. False statements.
+96. Penalties.
+97. Compounding offences.
+98. Repeal and savings.
+SCHEDULES
+
+[PDF PAGE 5]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+457
+PART I
+PRELIMINARY PROVISIONS
+1. This Act may be cited as the Workers Compensation Act.
+2.–(1) This Act shall apply to Mainland Tanzania.
+(2) Subject to subsection (1), this Act shall apply to-
+(a) all employers and employees including those in the 
+public service of the Government of Tanzania in Mainland 
+Tanzania;
+(b) employees while-
+(i) employed in any capacity on a Tanzanian ship or 
+aircraft;
+(ii) subject to section 25(1), employed outside Tanzania 
+on any other ship or aircraft; and
+(c) employees who subject to section 24, are injured in 
+occupation accidents or contract occupational diseases 
+while employed outside Tanzania.
+Short title
+Application
+CHAPTER 263
+THE WORKERS COMPENSATION ACT
+An Act to provide for compensation to employees for disablement or death 
+caused by or resulting from injuries or diseases sustained or contracted in 
+the course of employment; to establish the Fund for administration and 
+regulation of workers compensation and to provide for related matters.
+[1st March, 2011 for PART, I, II, III AND XII Except s. 98.]
+[GN. No. 165A of 2011] and
+[1st July, 2016 for Part IV , V , VI, VII, VIII, IX, X and XI]
+[GN. No. 335 of 2016]
+Acts Nos. 
+20 of 2008
+13 of 2017
+6 of 2021
+3 of 2023
+
+[PDF PAGE 6]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+458
+(3) Notwithstanding any other written law, any compensation 
+scheme existing at, or established after the commencement of 
+this Act shall award compensation not below the minimum 
+compensation rate set out in accordance with this Act.
+3. The objectives of this Act shall be to-
+(a) provided for adequate and equitable compensation for 
+employees who suffer occupational injuries or contract 
+occupational diseases arising out of, and in the course 
+of their employment, and in the case of death, for their 
+dependants;
+(b) provide for the rehabilitation of employees who 
+have suffered occupational injuries or contracted 
+occupational diseases in order to assist in restoring 
+their health, independence and participation in society;
+(c) provide for a framework for the effective, prompt and 
+empathetic consideration, settlement and payment 
+of compensation benefits to employees and their 
+dependants;
+(d) provide for the establishment, control and administration 
+of the Workers’ Compensation Fund, and the legal 
+framework for contributions to and payments from the 
+Fund;
+(e) give effect to international obligations with respect to 
+workers’ compensation; and
+(f) promote prevention of accidents and occupational 
+diseases.
+4. In this Act, unless the context otherwise requires-
+“accident” means an accident arising out of and in the course 
+of an employee’s employment and resulting in a person 
+injury, illness or death of the employee;
+“actuary” means any actuary approved by the Board in 
+accordance with section 86(1);
+“annual earnings” means-
+(a) the amount referred to in section 73(1)(a) where accepted 
+by the Director-General as correct;
+Objectives of Act
+Interpretation
+
+[PDF PAGE 7]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+459
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(b) the amount determined by the Director-General where 
+he believes that the amount referred to in paragraph (a) 
+is less than the amount actually paid; or
+(c) the estimated amount referred to in section 73(5) or (6);
+“assessor” means an assessor appointed under section 9; 
+“authorised person” means an authorised person appointed 
+under section 8;
+“Board” means the Board of Trustees of the Workers 
+Compensation Fund established under section 12;
+“business” means any industry, undertaking, trade or occupation 
+or any activity in which any employee is employed;
+“contractor” means any person engaged or contracted as such 
+by an employer to perform independently any task for 
+and on behalf of the employer;
+“dependant of an employee” means any of the following 
+persons who at the time of the death of the employee, was 
+wholly or partly financially dependent upon the employee;
+(a) a spouse, who at the time of the death of the employee 
+was married to the employee according to the law of 
+marriage;
+(b) where there is no spouse referred to in paragraph (a), a 
+person with whom the employee was at the time of the 
+employee’s death living as husband and wife;
+(c) a child of the employee or of the employee’s spouse, 
+under the age of eighteen years;
+(d) a child over eighteen years of the employee or the 
+employee’s spouse, and a parent or any person who 
+the Director-General believes was acting in the place 
+of a parent, brother, sister, half-brother or half-sister, 
+grand-parent or a grand-child of the employee;
+“Director-General” means the Director-General of the Fund 
+appointed under section 6;
+“disablement” means temporary partial disablement, 
+temporary total disablement, permanent total disablement 
+or serious disfigurement;
+
+[PDF PAGE 8]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+460
+“earnings” means the remuneration of an employee at the 
+time of the accident or the occurance of the occupational 
+disease as calculated under this Act;
+“employee” means-
+(a) any person, including an apprentice but excluding an 
+independent contractor, who works for another person 
+or for the state and who receives, or is entitled to receive, 
+any remuneration; and
+(b) any other person who in any manner assists in carrying 
+on or conducting the business of an employer;
+“employer” means any person, including the Government 
+and an executive agency, who employs an employee;
+“employers’ organisation” has the meaning ascribed to it 
+under the Employment and Labour Relations Act;
+“formal hearing” means a hearing between the parties in a 
+workers ‘compensation formally brought under the provision 
+of this Act prescribed over by the Director-General for the 
+purpose of solving differences, disagreements, and the like 
+in order to provide appropriate compensation benefits to a 
+claimant;
+“Fund” means the Workers Compensation Fund established 
+under section 5;
+“Labour Court” means the Labour Division of the High Court 
+established under the Labour Institutions Act;
+“mandator” means a person engaged or subcontracted as such 
+by a contractor to perform any task in part or in whole 
+for and on behalf of the contractor under his supervision;
+“medical aid” means medical, surgical or hospital treatment, 
+skilled nursing services, any remedial treatment approved 
+by the Director-General, the supply and repair of any 
+prosthesis or any device necessitated by disablement, and 
+ambulance services;
+“medical practitioner” has the meaning ascribed to it under 
+the Medical Practitioner and Dentists Act;
+“Minister” means the Minister responsible for labour;
+Cap. 366
+Cap. 300
+Cap. 152
+
+[PDF PAGE 9]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+461
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+“occupational disease” means any disease referred to in 
+section 22(1);
+“occupational injury” means a personal injury sustained by 
+an employee as a result of an occupational accident or 
+occupational disease;
+“periodical payment” means a periodical payment of 
+compensation in respect of temporary disablement;
+“permanent disablement” in relation to an employee, means 
+the permanent inability of the employee to perform any 
+work as a result of an accident or occupational disease for 
+which compensation is payable;
+“person under disability” means a minor, a lunatic or any 
+person who by law is subject to curatorship or tutorship;
+“serious and willful misconduct” means-
+(a) being under the influence of intoxicating liquor or a 
+drug having a narcotic effect;
+(b) a contravention of any law for the protection of the 
+health of employees or for the prevention of accidents, 
+if the contravention was committed willfully or with a 
+reckless disregard of the provisions of the law; or
+(c) any other kind or form of willful conduct that is likely 
+to cause disablement to a person;
+“Tanzanian aircraft” means an aircraft registered or licensed 
+in Tanzania under the laws governing the registration or 
+licensing of aircraft;
+“Tanzanian ship” means a vessel used in navigation which-
+(a) is registered in Tanzania under the laws governing the 
+registration of ships and is not registered in any other 
+state under similar laws; or
+(b) is owned or chartered by a person whose head office 
+or place of business is in Tanzania or by a person who 
+resides in Tanzania;
+“temporary partial disablement” means the temporary partial 
+inability of the employee to-
+(a) perform the whole of the work at which the employee 
+was employed at the time of the accident or occupational 
+disease; or
+
+[PDF PAGE 10]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+462
+(b) resume work at a rate of earnings not less than that 
+which the employee was receiving at the time of the 
+accident or occupational disease, 
+as a result of an accident or occupational disease for which 
+compensation is payable;
+“temporary total disablement” means the temporary total 
+inability of the employee to perform-
+(a) the work at which the employee was employed at the 
+time of the accident or at the time of contracting the 
+occupational disease; or 
+(b) a work similar to that work,
+as a result of an accident or occupational disease for which 
+compensation is payable;
+“trade union” has the meaning ascribed to it under the 
+Employment and Labour Relations Act.
+PART II
+WORKERS COMPENSATION FUND
+5.–(1) There is established a Fund to be known as the Workers 
+Compensation Fund.
+(2) The funds of the Fund shall consist of-
+(a) the assessments paid by the employers under this Act;
+(b) any other moneys paid by employers to the Fund under 
+this Act;
+(c) any penalty imposed under this Act, other than by a court;
+(d) any interest on investments of the Fund;
+(e) any subvention from the Government; and
+(f) any other moneys legally acquired.
+6.–(1) There shall be a Director-General appointed by the 
+President from amongst three qualified persons of high integrity 
+and who possess knowledge and experience in labour issues, 
+insurance, social security or workers compensation matters 
+recommended by the Minister.
+Cap. 366
+Establishment 
+of Workers 
+Compensation 
+Fund
+Appointment of 
+Director-General, 
+management and 
+administration of 
+Fund
+
+[PDF PAGE 11]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+463
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(2) The Minister shall by regulation prescribe the manner 
+and procedure of getting the three persons to be recommended 
+to the President under subsection (1). 
+(3) The Director-General shall be the chief executive officer 
+of the Fund and shall be responsible for daily activities of the 
+Fund.
+(4) The management and administration of the Fund shall 
+vest in the Board.
+(5) The Board shall determine the remuneration and the 
+terms and conditions of employment of the Director-General.
+7.–(1) Subject to the provisions of this Act, the Director-
+General shall-
+(a) inquire into accidents and occupational diseases;
+(b) receive notices of accidents and occupational diseases, 
+claims for compensation, medical reports and accounts, 
+objections, applications, returns of earnings and payments 
+due to the Fund;
+(c) by notice in the Gazette, prescribe the forms to be used 
+and the particulars to be furnished in connection with 
+a notice of occupational injuries and diseases, claims 
+for compensation or any other form or matter which he 
+may deem necessary for the administration of this Act;
+(d) adjudicate on claims and other matters coming before 
+the Director-General for decision;
+(e) issue an order for the payment of compensation in 
+respect of an award made by the Director-General;
+(f) decide whether a person is an employee, employer, a 
+mandator or a contractor for the purposes of this Act;
+(g) decide any issue relating to-
+(i) a right to compensation;
+(ii) the submission, consideration and adjudication of 
+claims for compensation;
+(iii) the calculation of earnings;
+(iv) the degree of disablement of any employee;
+(v) the amount and manner of payment of compensation;
+Functions of 
+Director-General
+
+[PDF PAGE 12]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+464
+(vi) the award, withholding, review, discontinuance, 
+suspension, increase or reduction of compensation; 
+and
+(vii) the liability for payment of compensation for 
+temporary total or partial disablement;
+(h) decide whether a person is a dependant of an employee 
+and, if so, the percentage of dependence, and, in the 
+case where there is more than one dependant, who shall 
+receive compensation and the allocation of compensation 
+among them;
+(i) decide upon-
+(i) the need for, and the nature and sufficiency of 
+medical aid;
+(ii) the reasonableness of the cost of medical aid, and 
+the amount and manner of payment of such cost;
+(j) decide upon the liability for assessment, tariffs of 
+assessment, the amount of assessments, the manner of 
+payment of assessment and related matters;
+(k) decide upon any other issue falling within the functions 
+of the Director-General in connection with the 
+administration of this act;
+(l) administer the Fund subject to the directions of the Board;
+(m) recover amounts due to the Fund, including amounts 
+which should not have been paid out or with the 
+approval of the Board, write off such amounts if, in his 
+opinion, they cannot be recovered;
+(n) record statistics and information regarding the occurrence 
+and causes of accidents and occupational diseases, and 
+the award of benefits under this Act; and
+(o) institute such inquiries and perform such other functions 
+as may be prescribed, or as he may deem necessary for 
+the administration of this Act.
+(2) The Director-General shall seek direction or approval of 
+the Board in determining or reviewing the amount of award to 
+compensation, appointment of member of a medical advisory 
+panel and assessors.
+
+[PDF PAGE 13]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+465
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+8.–(1) The Director-General may authorise any assessor, 
+employee of the Fund or any medical practitioner to investigate 
+any matter that he may deem necessary for the performance of 
+his functions under this Act.
+(2) A person authorised under subsection (1) shall be 
+furnished with a certificate to that effect signed by the Director-
+General.
+(3) An authorised person may-
+(a) at any reasonable time, with prior notice enter any 
+premises, and may be accompanied by an interpreter 
+or other assistant or a police officer;
+(b) while the authorised person is on the premises, or at 
+any time thereafter, question any person who is or was 
+on the premises, either alone or in the presence of any 
+other person on any matter to which this Act relates;
+(c) order any person who has control over or custody of 
+any book, document or thing on or in those premises 
+to produce without delay, or at such time and place 
+as may be determined by the authorised person, such 
+book, document or thing;
+(d) at any time and place order any person who has the 
+possession or custody of or is in the control of a book, 
+document or thing relating to the business of an 
+employer or previous employer, to produce without 
+delay or at such time and place as may be determined by 
+the authorised person, such book, document or thing;
+(e) seize any book, document or thing which in the opinion 
+of the authorised person may serve as evidence in any 
+matter under this Act;
+(f) examine or cause to be examined, make extracts from 
+or copies of any book, document or thing produced 
+to or seized by the authorised person and order any 
+person who, in the opinion of the authorised person, 
+is qualified to do so to explain any entry in the book, 
+document or thing;
+Authorised 
+persons
+
+[PDF PAGE 14]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+466
+(g) order an employee to appear before the authorised 
+person at such time and place as may be determined by 
+the authorised person, and question the employee.
+(4) An authorised person performing any function under 
+this section shall, on demand, produce the certificate referred 
+to in subsection (2).
+(5) Any person commits an offence if he-
+(a) pretends to be an authorised person;
+(b) refuses or without reasonable cause or excuse fails to 
+answer full and satisfactorily any question put to that 
+person by an authorised person in the performance of 
+his functions;
+(c) refuses or fails to comply with any lawful request or 
+order by an authorised person; or
+(d) hinders or obstructs an authorised person in the 
+performance of his functions.
+9.–(1) The Director-General may appoint such number of 
+persons as assessors as he may deem necessary in order to 
+assist in the performance of his functions under this Act.
+(2) The assessors referred to in subsection (1) shall be 
+persons who are suitably qualified and experienced and may 
+include medical practitioners.
+(3) An assessor shall be appointed for such period and on 
+such conditions as the Director-General may determine, but 
+he may, at any time, terminate the appointment of an assessor 
+who-
+(a) has been guilty of misconduct or neglect of duty; or
+(b) is not able to perform properly the functions of an 
+assessor under this Act.
+(4) An assessor shall be paid the prescribed remuneration 
+and traveling and subsistence allowances out of the Fund.
+Appointment of 
+assessors
+
+[PDF PAGE 15]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+467
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+10.–(1) The Director-General may appoint medical advisory 
+panels which shall consist of such members as he may deem 
+necessary to-
+(a) assist the Director-General with regard to the diagnosis 
+of occupational diseases in individual cases;
+(b) advise the Director-General and the Board regarding 
+the inclusion of occupational diseases set out in the 
+Third Schedule to this Act; or
+(c) advise the Director-General and the Board regarding 
+general policy concerning the diagnosis of, and 
+disablement as a result of occupational diseases.
+(2) The Director-General shall appoint a member of a 
+medical advisory panel as chairman of the panel.
+(3) The members of medical advisory panels shall be 
+appointed by the Director-General for such period and on 
+such conditions and such allowances as he may determine but 
+he may at any time terminate the appointment of any member 
+who-
+(a) is guilty of misconduct or neglect of duty; or
+(b) is not able to perform properly the functions of a 
+member of a medical advisory panel as provided under 
+this Act.
+11.–(1) The Director-General may delegate any powers or 
+assign any duties to an employee of the Fund and may at any 
+time, cancel any such delegation or assignment.
+(2) A delegation or assignment under subsection (1) shall-
+(a) be subject to such conditions as the Director-General 
+may determine;
+(b) not divest the Director-General of the power delegated 
+or duty assigned, and he may at any time, amend or 
+set aside any decision made under the delegation or 
+assignment; and
+(c) not prevent the exercise of the power or the performance 
+of the duty concerned by the Director-General.
+Appointment of 
+medical advisory 
+panels
+Delegation of 
+Powers and 
+assignment 
+of duties by 
+Director-General
+
+[PDF PAGE 16]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+468
+PART III
+BOARD OF TRUSTEES OF THE 
+WORKERS COMPENSATION FUND
+12.–(1) There is established a Board to be known as the Board 
+of Trustees of the Workers Compensation Fund.
+(2) The Board shall, in its corporate name, be capable of-
+(a) suing and being sued;
+(b) purchasing or otherwise acquiring, holding, charging 
+and disposing of property, movable or immovable; and
+(c) entering into contracts and performing all such other 
+acts for the proper performance of its functions under 
+this Act which may lawfully be performed by a body 
+corporate.
+(3) The provisions of the First Schedule to this Act shall have 
+effect as to the composition of the Board, the appointment and 
+termination of appointment of its members, the proceedings 
+of the Board and such other matters in relation to the Board 
+and members.
+13. The Board shall, subject to any other applicable written 
+law-
+(a) control and administer the Fund;
+(b) formulate, implement and review policy relating to 
+workers compensation in accordance with this Act;
+(c) advise the Minister on-
+(i) any matter relating to workers compensation;
+(ii) any amendments to this Act or any other related law;
+(iii) any regulations made under this Act;
+(d)  invest surplus money of the Fund;
+(e) provide technical assistance and advisory services for 
+the purpose of promoting workers compensation;
+(f) promote occupational safety and health measures in 
+collaboration with the Occupational Safety and Health 
+Authority and other relevant authorities;
+Establishment 
+of Board
+Functions 
+of Board
+
+[PDF PAGE 17]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+469
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(g) promote public awareness of the rights and obligations 
+of employees, dependants and employers under this Act;
+(h) provide an accessible and transparent procedure for the 
+lodging and investigation of any complaints regarding 
+the administration of this Act, including the conduct of 
+the Fund and its employees; and
+(i) do all such acts and enter into all such transactions as, 
+in the opinion of the Board, may be necessary for the 
+proper and efficient administration of the Fund.
+14. The Board shall-
+(a) cause to be carried out actuarial valuation of the Fund 
+after every three years;
+(b) appoint and employ upon such terms as it may think 
+fit, consultants, agents and contractors as the Board may 
+deem necessary; and
+(c) do all such other acts necessary to give effect to the 
+provisions of this Act.
+15.–(1) The Board shall-
+(a) have the duty of utmost care to ensure reasonable 
+protection of the assets and records of the Fund;
+(b) act with fidelity, honesty, integrity and in the best interest 
+of the Fund in managing the financial affairs of the Fund.
+(2) A member of the Board shall not-
+(a) act in a way that is inconsistent with the responsibilities 
+of the Board under this Act; or
+(b) use the position or privileges of, or confidential 
+information obtained as a member of the Board for 
+personal gain or to improperly benefit another person.
+(3) A member of the Board shall-
+(a) disclose to the Board any direct or indirect personal or 
+private business interest that the member or any spouse, 
+partner or close family member may have in any matter 
+before the Board; and
+Powers of Board
+Fiduciary duties 
+of Board
+
+[PDF PAGE 18]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+470
+(b) withdraw from the proceedings of the Board, when 
+the matter mentioned in paragraph (a) is considered, 
+unless the Board decides that the member’s direct or 
+indirect interest in the matter is trivial or irrelevant.
+16.–(1) The Board shall ensure that it has and maintains a 
+regular review system of administration for benefits of its 
+members in a manner that ensures adequate and equitable 
+compensation in accordance with the objectives and purpose 
+of this Act.
+(2) The Board shall take effective and appropriate steps to-
+(a) collect all revenue due to the Fund; 
+(b) prevent irregular expenditure, fruitless and wasteful 
+expenditure, losses resulting from criminal conduct, 
+and expenditure not complying with the operational 
+policies of the Fund; and
+(c) establish, maintain and review system of administration 
+of the benefits and to monitor in a manner that ensures 
+adequate and equitable compensation in accordance 
+with the objects of this Act.
+(3) The Board shall be responsible for the management, 
+including the safeguarding of the assets, management of the 
+revenue, expenditure and liabilities of the Fund.
+(4) The Board shall take effective and appropriate disciplinary 
+steps against any employee of the Fund who-
+(a) contravenes or fails to comply with the provisions of 
+this Act;
+(b) commits an act which undermines the financial 
+management and internal control system of the Fund; or
+(c) makes or commits funds towards an irregular expenditure 
+or a fruitless and wasteful expenditure.
+17.–(1) The Board may establish an organisation or scheme or 
+recognise and subsidise any existing organisation or scheme 
+whose objectives shall include one or more of the following-
+(a) the prevention of accidents or of any disease which is 
+due to the nature of a particular activity;
+General duties 
+of Board
+Board may 
+establish and 
+subsidise 
+organisations
+
+[PDF PAGE 19]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+471
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(b) the promotion of health or safety of employees, including 
+health and safety research or training;
+(c) the promotion of rehabilitation of injured employees 
+suffering from occupational diseases;
+(d) the provision of facilities designed to assist injured 
+employees and employees suffering from occupational 
+diseases to return to their work or to reduce or remove 
+any disability resulting from their injuries or disease; or
+(e) the promotion of the general welfare of injured employees 
+or employees suffering from occupational diseases.
+(2) The Board may subsidise or assist in the funding of the 
+organisation or scheme established pursuant to subsection (1).
+18.–(1) The Board may, in writing and subject to such 
+conditions as it may determine, delegate any of its powers, 
+functions or duties to the Director-General or an employee of 
+the Fund, and may at any time revoke such delegation.
+(2) A delegation under subsection (1) shall not-
+(a) divest the Board’s power, function or duty delegated, 
+and the Board may at any time amend or set aside any 
+decision made under the delegation; and
+(b) prevent the exercise of the power or the performance of 
+the function or duty concerned by the Board itself.
+(3) The Board shall not delegate-
+(a) its power to delegate; and
+(b) the power to approve the annual budget or any 
+supplementary budget of receipts and expenditure, the 
+annual balance sheet or any statement of account.
+PART IV
+RIGHT TO COMPENSATION AND PROTECTION
+19.–(1) Where an employee has an accident resulting in the 
+employee’s disablement or death, the employee or the dependants 
+of the employee shall, subject to the provisions of this Act, be 
+entitled to the compensation provided under this Act.
+Delegation of 
+Powers and 
+functions by 
+Board
+Right to 
+compensation 
+for occupational 
+injury
+Act No.
+3 of 2023; s. 23
+
+[PDF PAGE 20]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+472
+(2) Where an accident is attributable to the serious or 
+willful misconduct of the employee, no compensation shall be 
+payable unless-
+(a) the accident results in permanent total disablement;
+(b) the employee dies as a result of the accident leaving 
+a dependant wholly financially dependent upon the 
+employee.
+(3) Notwithstanding subsection (2), the Director-General 
+may, on behalf of the Fund, pay the whole or any portion of the 
+cost of medical aid in respect of such accident.
+(4) Where the Director-General believes that an employee 
+at the time of an accident was acting for the purposes, or in the 
+interests of, or in connection with the business of an employer, 
+the accident shall, for the purposes of this Act, be deemed to 
+have arisen out of, and in the course of employment of the 
+employee, notwithstanding that the employee was at the time 
+of the accident-
+(a) acting contrary to any law applicable to the employee’s 
+employment or to any instruction given by or on behalf 
+of the employer; or
+(b) acting without any instruction of the employer.
+(5) For the purpose of this section, “permanent disablement” 
+means disablement which may render the employee incapable 
+of engaging in his employment or require him to be hospitalised 
+beyond a period of twenty-four months.
+20. Any accident during the conveyance of an employee 
+to or from his place of employment for the purpose of his 
+employment by any means of conveyance shall be deemed to 
+take place in the course of the employee’s employment.
+21. An accident shall, for the purposes of this Act, be deemed to 
+have arisen out of, and in the course of employment if, at the 
+time of the accident, the employee-
+(a) with the consent of the employer, was being trained 
+in organised first aid, ambulance or rescue work, fire-
+fighting or any other emergency service;
+Accidents during 
+conveyance by 
+employer
+Accidents during 
+training for or 
+performance 
+of emergency 
+services
+
+[PDF PAGE 21]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+473
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(b) was engaged in the employer’s mine, works or premises 
+in organised first aid, ambulance or rescue work, fire-
+fighting or any other emergency service; or
+(c) with the consent of the employer, was engaged in any 
+organised first aid, ambulance or rescue work, fire-
+fighting or other emergency service on any mine, works 
+or premises other than the employer’s.
+22.–(1) Where an employee contracts a disease set out in 
+the Third Schedule to this Act, or any other disease, and the 
+disease has arisen out of, and in the course of the employee’s 
+employment, the employee shall, subject to the provisions of 
+this Act, be entitled to compensation.
+(2) Where an employee dies as a result of a disease referred 
+to under subsection (1), the dependants of the employee 
+shall, subject to the provisions of this Act, be entitled to the 
+compensation.
+(3) Where an employee has contracted a disease referred 
+to in subsection (1) and the Director-General believes that 
+his recovery is being delayed or that the temporary total 
+disablement of the employee is being prolonged by another 
+diseases, the Director-General may approve medical aid for 
+the other disease.
+(4) Where an employee has contracted a disease referred to 
+in subsection (1) resulting in permanent disablement and the 
+disease is aggravated by another disease, the Director-General 
+may, in determining the degree of permanent disablement, 
+take into account the effect of the other disease.
+(5) The provisions of this Act shall, with regards to accidents 
+apply, mutatis mutandis, to a disease referred to in subsection 
+(1), except where such provisions are clearly inappropriate.
+23. Where an employee who has contracted an occupational 
+disease set out in the Third Schedule to this Act was employed 
+in any work involving the handling of or exposure to any agent 
+mentioned in the Schedule in respect of that disease, it shall be 
+Right to 
+compensation 
+for occupational 
+diseases
+Presumption 
+of cause of 
+occupational 
+disease 
+
+[PDF PAGE 22]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+474
+presumed, unless the contrary is proved that the disease arose 
+out of, and in the course of the employee’s employment.
+24.–(1) Where an employer carries on business mainly in 
+Tanzania and his employee who is ordinarily working in 
+Tanzania gets an accident or contracts an occupational disease 
+while temporarily working outside Tanzania, the employees shall 
+be entitled to compensation as if the accident or occupational 
+disease had happened or been contracted, in Tanzania.
+(2) The amount of compensation referred to in subsection 
+(1) shall be determined on the basis of the earning which the 
+Director-General believes the employee would have received if 
+the employee had remained in Tanzania.
+(3) Subsection (1) shall not apply, if the employee has been 
+employed outside Tanzania for a continuous period of more 
+than twelve months, unless the Director-General, employee and 
+the employer concerned, otherwise agree.
+25.–(1) Where an employer carried on business mainly outside 
+Tanzania and his employee who is ordinarily working outside 
+Tanzania gets an accident while temporarily or contracts an 
+occupational disease working in Tanzania, the employee shall 
+not be entitled to compensation, unless the employer has paid 
+the necessary assessments in respect of the employees.
+(2) An employee referred to in subsection (1) who is 
+temporarily working in Tanzania for a continuous period of 
+more than twelve months shall be deemed to be ordinarily 
+employed by the employer in Tanzania.
+(3) Where an employee entitled to compensation under this 
+Act may lawfully claim for compensation under other laws 
+applicable in another country, that employee shall, by written 
+notice to the Director-General, elect to claim compensation 
+under one law only and not otherwise.
+(4) Where an employee who is a Tanzanian gets an accident 
+or contracts an occupational disease while working or employed 
+in, on or above the continental shelf, the employee shall be 
+Accidents 
+or diseases 
+contracted 
+outside Tanzania
+Accidents 
+or diseases 
+contracted in 
+Tanzania 
+
+[PDF PAGE 23]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+475
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+entitled to compensation as if the accident or the occupational 
+disease had happened or been contracted, in Tanzania.
+26. The Director-General may refuse to pay the whole or any 
+portion of compensation under this Act or any portion of the 
+cost of medical aid if-
+(a) the employee at any time represented to the employer 
+or the Director-General, knowingly, false information, 
+or was not then suffering from or had not previously 
+suffered from a serious injury or occupational disease 
+or any other serious disease, and the accident was 
+caused by, or the death or disablement resulted from or 
+was aggravated by such injury or disease; or
+(b) the Director-General believes that the death, or 
+disablement was caused, prolonged or aggravated by the 
+unreasonable refusal or willful neglect of the employee 
+to submit to medical aid in respect of any injury or 
+disease, whether caused by the accident or existing 
+before the accident.
+27.–(1) Notwithstanding the provisions of any other written 
+law, compensation shall not be-
+(a) ceded or pledged;
+(b) attached in any form of execution under a judgment or 
+order of a court of law; or
+(c) set off against any debt of the person entitled to the 
+compensation.
+(2) Notwithstanding subsection (1), the Director-General 
+shall pay compensation accrued to the employee in whole or 
+in part to an employer if the employer has made payments 
+to the employee in respect of disablement arising out of an 
+occupational injury or disease.
+28. Any agreement under which an employee cedes or purports 
+to cede or relinquish any right to compensation under this Act 
+shall be void.
+Refusal to pay 
+compensation
+Compensation 
+may not be 
+alienated or 
+reduced
+Cession or 
+relinquishing of 
+compensation 
+void 
+
+[PDF PAGE 24]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+476
+29. Any compensation due owing to the death of an employee 
+shall be paid to the dependants of the employee, or to any 
+other person on behalf of the employee shall not form part of 
+or become the subject of the employee’s estate.
+30.–(1) This Act shall not limit or in any way affect any civil 
+liability of an employer or any other person in respect of an 
+occupational injury or disease resulting in the disablement or 
+death of an employee if the injury or disease was caused by 
+negligence, breach of statutory duty or any other wrongful act 
+or omission of the employer, or any person for whose act or 
+omission the employer is responsible, or of any other person.
+(2) Any damage awarded to an employee or dependant of 
+an employee in an action at common law or any other law in 
+respect of the negligence, breach of statutory duty or other 
+wrongful act or omission of the employer or any other person, 
+shall be reduced by the value of any compensation which has 
+been paid or is payable by the Fund under this Act in respect 
+of the injury, death or disease.
+31. Where an occupational injury, death or disease in respect of 
+compensation which is payable under this Act, was caused in 
+circumstances resulting in the employer or any other person 
+being liable for damages in respect of such injury, death or 
+disease, the Director-General may institute a case in a court of 
+law against the employer or such other person for the recovery 
+of compensation that the Director-General is obliged to pay 
+under this Act.
+32.–(1) A person shall not threaten an employee or in any 
+manner compel or influence him to do anything resulting in or 
+directed at the deprivation of his right to compensation under 
+this Act.
+(2) Any person who contravenes subsection (1) commits 
+an offence.
+Compensation 
+not to form part 
+of deceased 
+employee’s estate
+Civil liability of 
+employer and 
+third party not 
+limited
+Recovery of 
+compensation 
+from employers 
+and third parties
+Threats and 
+compulsion, 
+prohibited
+
+[PDF PAGE 25]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+477
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+PART V
+CLAIMS FOR COMPENSATION
+33.–(1) An employee or any person on behalf of the employee 
+shall, as soon as possible after an accident has occurred, give 
+written or verbal notice of the accident to the employer and he 
+may also give notice of the accident to the Director-General in 
+a prescribed form.
+(2) Failure to give notice to an employer as required in 
+subsection (1) shall not bar a right to compensation where it is 
+proved that the employer had knowledge of the accident from 
+any other source at or about the time of the accident.
+(3) Subject to section 39, failure to give notice to an employer 
+as required in subsection (1) of this section or any error or in 
+accuracy in the notice, shall not bar a right to compensation if 
+the Director-General believes that-
+(a) the Funds is not or would not be seriously prejudiced 
+by the failure, error or inaccuracy if notice is then given 
+or the error or inaccuracy is corrected; and
+(b) the failure, error or inaccuracy was caused by an oversight, 
+absence from Tanzania or other reasonable cause.
+(4) Where an employee who is employed in any capacity 
+in an aircraft or on board a ship by the owner or person in 
+command of the ship meets with an accident, the person in 
+command or the owner of the ship or aircraft shall be deemed 
+to be the employer of the employee.
+34.–(1) Subject to this section, an employer shall, within seven 
+days after receiving a notice of an accident from the employee 
+or having learned in some other way that an accident has 
+occurred, report the accident to the Director-General in a 
+prescribed form.
+(2) An employer shall, at the request of an employee or the 
+dependant of an employee, furnish the employee or dependant 
+with a copy of the notice of the accident furnished by the 
+employer to the Director-General in respect of a claim for 
+compensation by the employee or dependant.
+Notice of accident 
+by employee to 
+employer
+Notice of accident 
+by employer to 
+Director-General
+
+[PDF PAGE 26]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+478
+(3) Any employer who contravenes this section commits an 
+offence.
+(4) For the purposes of this section-
+(a) “an accident” includes any injury reported by an 
+employee to the employer, if the employee when 
+reporting the injury alleges that it arose out of, and in 
+the course of employment, irrespective of whether the 
+employer believes that it did not;
+(b) “compensation” includes the cost of medical aid and 
+any other amount paid or payable under sections 46, 
+48, 52, 53 or 61(2) and, in the case of a pension, the 
+capitalised value of the pension as determined by the 
+Director-General, irrespective of whether a lump sum 
+is at any time paid in lieu of the whole or a portion 
+of the pension under section 49 or 57 and periodical 
+payments or allowances.
+35.–(1) An employee or a trade union, on behalf of the 
+employee, as soon as possible, after the occurrence of an 
+occupational disease shall give a written notice to his employer 
+or to the employer where the employee was last employed.
+(2) Subject to the provisions of subsection (1), the employee 
+may give a written notice of the disease in the prescribed 
+manner to the Director-General.
+(3) An employer shall, within seven working days after 
+receiving notice or learning in some other way that an employee 
+has contracted an occupational disease, report the disease in 
+the prescribed manner to the Director-General, irrespective 
+of whether the employer believes that the employee did not 
+contract the disease while in the employment of the employer 
+or in the employment of a previous employer.
+(4) An employer who contravenes subsection (3) commits 
+an offence.
+Notice of 
+occupational 
+disease by 
+employee and 
+employer
+
+[PDF PAGE 27]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+479
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+36.–(1) The Director-General shall, after receiving notice of 
+an accident or learning in some other way that an employee 
+has had an accident, make any inquiry which he may deem 
+necessary to decide upon any claim or liability under this Act.
+(2) Any employee or employer shall, at the request of the 
+Director-General, furnish other particulars regarding the accident, 
+injury, death or disease as the Director-General may require.
+(3) An employer who fails within a period of twenty one 
+working days to comply with the provisions of subsection (2), 
+commits an offence.
+(4) The Director-General may refuse to entertain a claim 
+of any employee who, within a period of six months from the 
+date of such request, fails to comply with subsection (2).
+(5) The Director-General shall, at the request of an employee 
+or employer, furnish any information which the Director-
+General may deem necessary to enable the employee or 
+employer to comply with the provisions of this Act.
+(6) Where the Director-General fails to furnish information 
+under subsection (5) that information shall have no effect to 
+the employee.
+37.–(1) An employee who has had an accident shall, when 
+reporting the accident or subsequently at the request of the 
+employer or the Director-General, furnish information and 
+documents as may be prescribed or as the employer or the 
+Director-General may require.
+(2) An employer shall within seven working days after 
+receiving claim, medical report or other documents or 
+information concerning the claim, send the claim report, 
+documents or information to the Director-General.
+38.–(1) An employee who claims compensation or to whom 
+compensation has been paid or payable shall, if required by 
+the Director-General and after reasonable notice, submit 
+himself to be examined by a medical practitioner appointed 
+by the Director-General at the time and place mentioned in 
+the notice.
+Inquiry by 
+Director-General 
+into accident
+Particulars in 
+support of claim 
+Employee to 
+submit to medical 
+examination
+
+[PDF PAGE 28]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+480
+(2) Any expenses incurred by an employee in order to 
+comply with the provisions of subsection (1) which the 
+Director-General may deem necessary and reasonable, and 
+the prescribed remuneration for a medical examination under 
+this section, shall be paid by the Director-General.
+(3) Where in the opinion of the appointed medical 
+practitioner, the employee is not capable of calling upon the 
+medical practitioner appointed by the Director-General, the 
+medical practitioner shall inform the Director-General, and 
+he shall examine the employee at another time and place as 
+may be agreed between the Director-General and medical 
+practitioner.
+(4) An employee shall be entitled at his own expense to have 
+a medical practitioner of his choice present at an examination 
+by the appointed medical practitioner.
+39.–(1) A claim for compensation shall be lodged by or on 
+behalf of the claimant in a prescribed form to the Director-
+General within twelve months after the date of the accident or 
+the date of death.
+(2) Where a claim for compensation is not lodged within 
+the period stipulated in subsection (1), the claim shall not be 
+considered under this Act, except where the accident concerned 
+has been reported under sections 34 or 35.
+(3) Notwithstanding subsection (2), a claim for compensation 
+by an employee in an aircraft or on board of a ship may be 
+lodged with the person in command of the aircraft or ship 
+concerned.
+(4) Where an employee referred to in subsection (3) meets 
+with an accident outside Tanzania resulting in death, a claim 
+for compensation shall be instituted within twelve months 
+after news of the death have been received by a dependant 
+claiming compensation.
+(5) The provisions of section 33 shall apply, mutatis mutandis, 
+to any failure to institute a claim or in respect of any error or 
+inaccuracy in a claim instituted.
+Claim for 
+compensation
+
+[PDF PAGE 29]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+481
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+40.–(1) A right to compensation shall lapse if the accident in 
+question is not brought to the attention of the Director-General 
+within twelve months after the date of the accident.
+(2) A right to compensation under this Act shall lapse if 
+an occupational disease is not brought to the attention of the 
+Director-General within twelve months from the occurrence 
+of that disease.
+(3) For the purpose of this Act, the occurrence of an accident 
+or occupational disease shall be deemed to be the date on 
+which a medical practitioner diagnosed the disease for the first 
+time and notified the employee of the diagnosis or such earlier 
+date as the Director-General may determine.
+41.–(1) The Director-General shall decide on a claim for 
+compensation, and for that purpose may-
+(a) carry out any inquiry; or
+(b) formally hear the claim. 
+(2) Where the Director-General decides upon a formal 
+hearing, he shall give notice of the date, time and place of the 
+hearing to the claimant and the employer in the prescribed 
+manner.
+(3) The Director-General-
+(a) may adjourn a formal hearing to another date, time 
+and place; and
+(b) shall keep or cause to be kept a record of the proceedings 
+as a formal hearing.
+(4) The Director-General shall, upon payment of the 
+prescribed fees, provide any person with a copy of the record.
+42.–(1) Every party or his representative to a claim for 
+compensation shall appear before the Director-General at a 
+formal hearing.
+(2) The Director-General may designate any person with 
+relevant competence to investigate a claim, preside at or attend 
+a formal hearing, cross-examine witnesses, adduce rebutting 
+evidence and present arguments.
+Prescription 
+of claim for 
+compensation
+Consideration of 
+claim by Director-
+General
+Appearance of 
+parties at formal 
+hearing
+
+[PDF PAGE 30]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+482
+(3) Notwithstanding subsection (2), the Chief Inspector 
+and all inspectors appointed in accordance with section 5 
+of the Occupational Health and Safety Act, the Labour 
+Commissioner, the Deputy Labour Commissioner and Labour 
+Officers appointed in accordance with sections 43 and 44 of the 
+Labour Institutions Act may represent a party or an employee 
+for a claim of compensation before the Director-General.
+43.–(1) The Director-General may, by written notice, summon 
+any person who-
+(a) in the opinion of the Director-General, is able to give 
+information concerning the subject of any inquiry under 
+this Act; or
+(b) is suspected to have in his possession, custody or control 
+any book, document or thing which has a bearing on 
+the inquiry, 
+to appear before him to be questioned or to produce such 
+book, document or thing.
+(2) Notwithstanding subsection (1), the Director-General 
+may, upon application by a claimant or employer and by written 
+notice, summon for the appearance any person as a witness.
+(3) The Director-General may issue a written notice to 
+summon witness if the applying party deposits a sum sufficient 
+to cover the necessary expenses to be incurred by the witness 
+summoned pursuant to subsection (2) as well as the cost of the 
+service of the notice.
+(4) Where a person has been summoned to appear under 
+subsection (1) and the Director-General is satisfied that as a 
+result of his appearance he has suffered any pecuniary loss or 
+incurred any expense, the Director-General may pay out of the 
+Fund the prescribed allowances or the amount of the loss or 
+expense, whichever is the lesser.
+44. The Director-General or an authorised person may 
+administer an oath to, or accept an affirmation from, any witness 
+summoned under section 43.
+Cap. 297
+Cap. 300
+Powers of 
+Director-General 
+regarding 
+witnesses
+Power to 
+administer oath
+
+[PDF PAGE 31]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+483
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+45.–(1) A person commits an offence where he-
+(a) has been duly summoned under section 43 and fails 
+without sufficient cause to attend at a time and place 
+specified in the summons;
+(b) fails to remain in attendance until excused by the 
+Director-General from further attendance;
+(c) refuses or fails to answer fully and satisfactorily any 
+question lawfully put to him;
+(d) refuses or fails to produce any book, document or thing 
+in his possession, custody or control which he has been 
+required to produce; or
+(e) hinders or obstruct the Director-General or an assessor 
+in the performance of any of their functions under this 
+section.
+(2) A person who, after having been sworn as a witness or 
+having made an affirmation, makes a false statement knowing 
+it to be false, commits an offence.
+(3) The law relating to privilege as applicable to a witness 
+testifying in a court of law shall be applicable at an inquiry 
+under this Act.
+PART VI
+DETERMINATION OF COMPENSATION
+46.–(1) Compensation for temporary total disablement shall 
+be calculated on the basis of seventy percent of the employee’s 
+monthly earnings at the time of the accident, subject to any 
+minimum and maximum amounts as may be set out in 
+regulations made by the Minister.
+(2) Compensation for temporary partial disablement shall 
+consist of the portion of the amount calculated under subsection 
+(1) and if the Director-General considers it equitable in the 
+circumstances.
+(3) Notwithstanding provisions of this Act the employer in 
+whose service an employee is at the time of the accident shall 
+Offences by 
+witnesses etc.
+Compensation 
+for temporary 
+total or partial 
+disablement
+
+[PDF PAGE 32]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+484
+be liable for the payment of the compensation referred to in 
+subsection (1), of the first month from the date of accident.
+(4) After expiry of the first month, the Director-General 
+shall refund the compensation paid by the employer under 
+subsection (3).
+(5) Any employer who fails to comply with subsection (3), 
+commits an offence and on conviction, shall be liable to a fine 
+not exceeding ten million or imprisonment for a term not 
+exceeding seven years.
+(6) Payment of compensation under subsections (1) and 
+(2), shall take place in the form of periodical payments at such 
+intervals, not exceeding one month, as the Director-General 
+may determine.
+(7) Periodical payments shall not be made in respect of 
+temporary total disablement or temporary partial disablement 
+that lasts for three days or less.
+(8) Periodical payments shall take place for as long as the 
+temporary total disablement continues, but shall not exceed 
+twenty-four months.
+(9) Where temporary total disablement continues-
+(a) for longer than twelve months, the Director-General 
+may order the continuation of the payments for a 
+further period of twelve months; and
+(b) for more than twenty-four months, the Director-General 
+may treat the disablement as permanent disablement.
+47.–(1) The right to compensation for temporary total or 
+partial disablement shall expire-
+(a) upon the ending of the disablement; 
+(b) where the employee resumes the work in which he was 
+employed at the time of the accident or occurrence of 
+the occupational disease;
+(c) where the employee resumes any other work at the 
+same or greater earnings; or
+(d) where the employee is awarded compensation for 
+permanent disablement.
+Expiry of 
+compensation 
+for temporary 
+total or partial 
+disablement
+
+[PDF PAGE 33]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+485
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(2) Notwithstanding the provisions of subsection (1), the 
+Director-General may award compensation for temporary 
+total or partial disablement if-
+(a) the disablement of the employee recurs or deteriorates; or
+(b) the employee receives further medical aid requiring 
+further absence from service, which the Director-
+General believes shall reduce the employee’s disablement.
+(3) Where the Director-General awards compensation 
+under subsection (2), the Director-General may suspend 
+pension payments to the employee concerned in respect of 
+the same accident, so long as the employee receives periodical 
+payments for temporary total or partial disablement.
+48.–(1) Where an employee has sustained an injury set out in 
+the Second Schedule, he shall, for the purposes of this Act, be 
+deemed to be permanently disabled to the degree set out in the 
+Second Schedule.
+(2) Where an employee has sustained an injury not mentioned 
+in the Second Schedule which leads to permanent disablement, 
+the Director-General shall determine the percentage of 
+disablement in respect of the injury which he believes shall lead 
+to a result consistent with the Second Schedule.
+(3) Where an injury referred to in subsections (1) and (2) 
+has unusual serious consequences for an employee as a result of 
+the special nature of the employee’s occupation, the Director-
+General may determine a higher percentage not exceeding 
+fifty percent of the normal rate, as he deems equitable.
+(4) Compensation for permanent disablement shall be paid, 
+subject to the minimum and maximum amounts set out in 
+regulations made by the Minister where-
+(a) the employee is one hundred percent permanently 
+disabled, a monthly pension based on seventy percent 
+of the employee’s monthly earnings at the time of the 
+accident;
+(b) the employee with less than one hundred per cent but 
+more than thirty percent permanent disablement, shall 
+Compensation 
+for permanent 
+disablement
+Act No.
+13 of 2017 s.35
+
+[PDF PAGE 34]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+486
+be paid monthly pension calculated in accordance with 
+paragraph (a) proportionate to the degree of permanent 
+disablement of the employee; or
+(c) the employee with thirty percent or less than thirty 
+percent permanent disablement shall be paid in the 
+form of a lump sum and the amount payable shall 
+be eighty-four times the monthly pension amount 
+provided in paragraph (a) proportionate to the degree 
+of permanent disablement of the employee.
+(5) Payment for temporary total or partial disablement 
+shall not be deducted from compensation payable under this 
+section.
+(6) For the purpose of this section, “monthly pension” 
+means a pension payable monthly during the lifetime of the 
+employee and shall cease or be adjusted when the employee 
+resumes work or qualifies for payment of an old age or invalidity 
+pension upon reaching retirement age.
+49.–(1) Where a pension does not exceed the prescribed 
+amount set out in the regulations made by the Minister, the 
+Director-General may, upon application by a pensioner, pay or 
+direct the payment of a lump sum in lieu of that pension or a 
+portion of that pension.
+(2) Where a pension exceeds the prescribed amount, the 
+Director-General may, upon application by a pensioner, in 
+lieu of a portion of that pension not exceeding the prescribed 
+amount, pay or direct the payment of a lump sum.
+(3) Where a pension payable under this Act is less than 
+the prescribed amount per month, the Director-General may 
+decide to pay or direct the payment of a lump sum in lieu of the 
+whole of the pension.
+(4) Pension or portion of a pension due to a child shall not 
+be paid in a lump sum.
+(5) Any lump sum to be paid under this section shall be as 
+prescribed in the regulations made by the Minister.
+Payment of lump 
+sum in lieu of 
+pension
+
+[PDF PAGE 35]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+487
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+50.–(1) In awarding compensation to an employee or reviewing 
+it in respect of permanent disablement, the Director-General 
+may take into account any compensation awarded to the 
+employee as provided under this Act or any other law as a 
+result of permanent disablement.
+(2) Where an employee who has received compensation for 
+permanent disablement subsequently meets with an accident 
+resulting in further permanent disablement in respect of which 
+compensation is payable under this Act, the Director-General 
+may calculate the employee’s compensation on the basis of the 
+earnings that the employee received at the time of any of the 
+accidents.
+(3) An employee shall not be paid compensation in the form 
+of a pension under this Act that exceeds the pension payable in 
+respect of one hundred percent disablement.
+51. Where the injury or disease in respect of which compensation 
+is payable under this Act causes disablement that renders the 
+employee unable to perform essential functions of his life 
+without the constant attendant care of another person, the 
+Director-General may, in addition to any other compensation, 
+grant an allowance towards the cost of the care.
+52.–(1) Subject to this section, where an employee dies as a 
+result of an injury caused by an accident, compensation shall 
+be payable as follows if-
+(a) the employee leaves a spouse or a person or person 
+provided for under paragraph (b) of the definition of 
+“dependant of an employee” in section 4 as a dependant-
+(i) a lump sum based on twice the monthly pension 
+provided under section 48(4)(a); or
+(ii) a monthly pension based on forty percent of the 
+monthly pension provided for under section 
+48(4)(a).
+(b) the employee leaves a child under the age of eighteen 
+years as a dependant or a child over the age of eighteen 
+Compensation 
+to employee who 
+has previously 
+received 
+compensation
+Constant 
+attendant care 
+grants
+Dependants’ 
+grants where 
+employee dies
+
+[PDF PAGE 36]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+488
+years who the Director-General believes is unable to earn 
+an income owing to a physical or mental disability as a 
+dependant, a monthly pension based on twenty percent 
+of the monthly pension provided under section 48(4)(a);
+(c) the employee at the time of death does not leave a 
+spouse or a person referred to in paragraph (b) of the 
+definition of “dependant of an employee” or where 
+the spouse or person later dies, the aggregate amount 
+of a pension payable under paragraph (b) may be 
+increased by an amount which the Director-General 
+deems equitable but not exceeding forty percent of the 
+pension provided under section 48(4)(a);
+(d) the employee leaves no spouse or child as a dependant 
+but leaves as a dependant a parent or any person who 
+the Director-General believes was acting in the place 
+of a parent, brother, sister, half-brother or half-sister, a 
+grand-parent or a grand-child-
+(i) who was wholly financially dependent upon the 
+employee, a monthly pension not exceeding forty 
+percent of the monthly pension provided under 
+section 48(4)(a), for as long as the Director-General 
+believes it may reasonably have been expected 
+that the employee would have contributed to the 
+maintenance of that person; or
+(ii) who was partly financially dependent upon the 
+employee and there is no dependent provided 
+under subparagraph (i), a lump sum as set out in 
+item 8 of the Fourth Schedule.
+(2) Where an employee leaves two or more dependants-
+(a) the compensation payable to the dependants shall, 
+notwithstanding the provisions of this section, be 
+awarded in the manner determined by the Director-
+General, but the compensation payable shall not exceed 
+the lump sum of pension which would have been 
+payable under this section if the employee had left only 
+one dependant; or
+
+[PDF PAGE 37]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+489
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(b) the Director-General may, where one of the dependants 
+referred to in paragraph (a) dies, allocate the pension 
+which was payable to that dependant to the children, 
+if any, of the dependant or, if there are no children, 
+to the other dependant or dependants referred to in 
+paragraph (a).
+(3) Pensions payable under this section in respect of the 
+death of an employee shall not, in all, exceed the pension for 
+one hundred percent permanent disablement which would 
+have been payable to the employee under section 48(4)(a).
+(4) Any pension payable to a child under the age of eighteen 
+years shall lapse at the end of the month in which the child 
+reaches the age of eighteen years, except-
+(a) where the child is unable to earn an income owing to a 
+physical or mental disability;
+(b) until the child complete secondary education; or
+(c) while the child is undergoing higher education and 
+where it could reasonably have been expected that the 
+employee would have contributed to the maintenance 
+of that child.
+(5) The pension payable to a child over the age of eighteen 
+years who is unable to earn an income owing to a physical 
+or mental disability, shall cease on a date determined by the 
+Director-General in a manner that he believes it may reasonably 
+have been expected that the employee would no longer have 
+contributed towards the maintenance of that child.
+(6) A pension payable to a spouse or a person provided 
+under paragraph (b) of the definition of “dependant of an 
+employee” in section 4, shall lapse on the last day of the month 
+in which the spouse or the person dies.
+(7) For the purposes of this section a dependant referred 
+to in paragraph (a) or (c) of the definition of “dependant of an 
+employee “in section 4 shall be deemed to have been wholly 
+financially dependant upon the employee at the time of the 
+accident unless the contrary is proved.
+
+[PDF PAGE 38]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+490
+(8) Amount shall not be deducted from pension or lump 
+sum awarded under this section to a dependent in respect of 
+any compensation awarded to the employee in respect of the 
+same or any other accident.
+53.–(1) The Director-General shall pay out of the Fund an 
+amount of compensation within the limits set out in item 9 of 
+the Fourth Schedule, for the funeral costs of an employee who 
+dies as a result of an injury caused by an accident.
+(2) Without prejudice to subsection (1), the Minister may 
+make regulations prescribing the manner in which calculation 
+of the amount of compensation to be paid shall be made.
+54.–(1) The Minister may, on the recommendation of the 
+Board and by notice in the Gazette, increase the monthly 
+pensions payable under sections 48 and 52 by such percentage 
+as he may determine.
+(2) At least sixty days before any increase, the Minister shall 
+publish a notice in the Gazette-
+(a) of the intention to increase the monthly pensions; and
+(b) inviting any person who wishes to comment on the 
+proposed increase to submit such comment in writing 
+to him within the period mentioned in the notice.
+(3) In determining the percentage referred to in subsection 
+(1), the Minister may differentiate between accidents which 
+happened on different dates.
+55. Where the Director-General believes the best interests of 
+an employee so requires, he may, in anticipation of an award 
+of compensation advance to or on behalf of the employee such 
+amount as he may deem equitable, subject to such conditions 
+as the Director-General may determine.
+Funeral grants
+Increase of 
+monthly pensions
+Advances on 
+compensation 
+
+[PDF PAGE 39]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+491
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+56.–(1) Compensation payable under this Act by the Director-
+General may be-
+(a) paid to the employee or the dependant of an employee 
+entitled or to any other person on behalf of the employee 
+or dependant, in installments or in any other manner;
+(b) invested or applied to the advantage of the employee or 
+the dependants of an employee;
+(c) paid to trustee or any other person to be applied in 
+accordance with conditions determined by the Director-
+General; and
+(d) applied in accordance with the combination of paragraphs 
+(a), (b) and (c);
+(2) On the death of an employee or a dependant of an 
+employee, the unpaid balance of compensation awarded shall 
+not form part of that person’s estate and-
+(a) shall be paid to dependant; or
+(b) where there is no dependant, the Director-General 
+may pay the whole or a portion of the balance to the 
+estate of the deceased.
+57.–(1) Where an employee or a dependant of an employee 
+to whom a pension is payable under the provisions of this Act 
+is resident outside Tanzania or is absent from Tanzania for a 
+period of more than six months, the Director-General may 
+award a lump sum in lieu of the pension, and upon payment of 
+the lump sum, the right to the pension shall expire.
+(2) Before the Director-General awards a lump sum, provided 
+for under subsection (1), he shall notify the employee or 
+dependant of the intention to award the amount and request 
+him to submit any representations for consideration within 
+the period specified by the Director-General.
+58.–(1) In order to determine compensation, the Director-
+General shall calculate the earnings of an employee in the 
+monthly rate at which the employee was being remunerated 
+by the employer at the time immediately before the accident.
+Control over 
+payment of 
+compensation
+Pensioner 
+resident outside 
+Tanzania
+Manner of 
+calculating 
+earnings 
+
+[PDF PAGE 40]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+492
+(2) For purposes of subsection (1), earning shall-
+(a) include-
+(i) the value of any food or quarters or both supplied 
+by the employer to the date of the accident; or
+(ii) any overtime payment or other special remuneration 
+in cash or in kind of a regular nature or for work 
+ordinarily performed;
+(b) exclude-
+(i) payment for intermittent overtime;
+(ii) payment for non-recurrent occasional services;
+(iii) amounts paid by an employer to an employee to 
+cover any special expenses; and
+(iv) ex gratia payments whether by the employer or 
+any other person.
+(3) Where an employee’s remuneration is determined in 
+accordance with a rate calculated upon work performed, 
+earnings shall be deemed to be the remuneration for similar 
+work upon the same conditions of remuneration prior to the 
+accident but not exceeding twelve months.
+(4) Where by reason of the short duration of the service of 
+an employee with an employer it is not practicable to calculate 
+earnings in such service, the employee’s earnings shall, if 
+possible, be calculated-
+(a) on the basis of the amount which the employee with 
+similar work at the same conditions of remuneration 
+earned with another employer during the twelve 
+months prior to the accident; or
+(b) on the basis of the amount which during the twelve 
+months prior to the accident was earned by other 
+employees of the first-mentioned employer with similar 
+work and on the same conditions of remuneration, or 
+would have been earned by the employee during the 
+previous twelve months had the employee been so 
+employed.
+(5) Where an employee has entered into contracts of service 
+with two or more employers, earnings shall be calculated as 
+
+[PDF PAGE 41]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+493
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+if the earnings under all such contracts were earnings in the 
+employment of the employer for whom the employee was 
+working at the time of the accident.
+(6) Where it is not practicable to calculate the earnings of 
+an employee in accordance with the preceding provisions, the 
+Director-General may calculate the earnings in a manner that 
+he may deem appropriate and equitable. 
+(7) Where earnings are calculated on a weekly basis, the 
+monthly earnings shall be calculated as equal to four and one 
+third times the amount of such weekly earnings.
+59.–(1) Compensation for an occupation disease shall be 
+calculated on the basis of-
+(a) the earnings of the employee calculated, with the changes 
+required by the context, in accordance with the provisions 
+of section 58; and
+(b) the disablement of the employee at the time of the 
+occurrence of the disease or an earlier date determined 
+by the Director-General, if the employee was suffering 
+from the disease at earlier date, whichever earnings are 
+more favourable to the employee.
+(2) Where an employee is no longer in employment at the 
+time of the occurrence of the disease, the employee’s earnings 
+shall be calculated on the basis of the earnings that the Director-
+General believes the employee would have been earning had 
+the employee still been working.
+60.–(1) An employer shall not deduct from the earnings of 
+an employee any amount or receive any amount from the 
+employee to compensate the employer directly or indirectly 
+for any amount which the employer is liable to pay under this 
+Act.
+(2) An employer who contravenes subsection (1) commits 
+an offence and on conviction, shall be liable to a fine not 
+exceeding five million shillings or imprisonment for a term 
+not exceeding seven years or to both.
+Calculation of 
+compensation 
+for occupational 
+disease
+Deductions 
+from employees 
+prohibited
+
+[PDF PAGE 42]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+494
+(3) A court convicting an employer of contravening 
+subsection (1) shall, in addition to any penalty it may impose, 
+order the employer to pay to the Director-General within 
+a specified period, the amount the employer has received 
+contrary to the provisions of subsection (1).
+(4) The Director-General shall pay the amount received 
+under subsection (3) to the employee from whose earnings 
+that amount has been deducted or from whom the amount has 
+been received.
+PART VII
+MEDICAL AID AND REHABILITATION BENEFITS
+61.–(1) Where an employee meets with an accident which 
+necessitates the employee’s conveyance to a hospital or to a 
+medical practitioner or from hospital or medical practitioner 
+to the employee’s residence, the employer shall, without delay, 
+make the necessary conveyance available.
+(2) The Director-General shall pay the reasonable cost 
+incurred in respect of that conveyance.
+(3) Any employer who contravenes subsection (1) commits 
+an offence, and on conviction, shall be liable to a fine not 
+exceeding one million shillings or imprisonment for a term of 
+twelve months.
+62.–(1) The Director-General shall, for a period of not more 
+than two years from the date of an accident or the contracting 
+of an occupational disease pay the reasonable cost incurred 
+by or on behalf of an employee in respect of medical aid 
+necessitated by the accident or disease.
+(2) The Director-General may, subject to the provisions of 
+subsection (1), after two years of medical aid, treat the employee 
+refereed to in the subsection to have permanent disablement.
+(3) Where the Director-General believes that further 
+medical aid, in addition to that referred to in subsection (1), 
+may reduce the disablement from which the employee is 
+Conveyance of 
+injured employee 
+Medical aid costs 
+
+[PDF PAGE 43]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+495
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+suffering, the Director-General may pay the cost incurred in 
+respect of the further medical aid.
+63.–(1) A medical practitioner shall furnish a medical report 
+to the employer concerned in the prescribed manner within 
+fourteen days after-
+(a) examining for the first time an employee injured in an 
+accident; or
+(b) diagnosing an occupational disease in an employee.
+(2) Where the employee at the time of the diagnosis of an 
+occupational disease was not in the service of the employer, 
+the medical report shall be furnished in the prescribed form to 
+the Director-General.
+(3) Where the Director-General requires further medical 
+report regarding an employee, the medical practitioner who 
+has treated or is treating the employee shall, upon request, 
+furnish the required reports in the form or manner to be 
+provided in the regulations. 
+(4) Where a medical practitioner fails to furnish a medical 
+report under this section or fails to complete it in a satisfactory 
+manner, the Director-General may defer the payment of the 
+costs of the medical aid concerned until the report has been 
+furnished or completed in a satisfactory manner.
+(5) Subject to subsection (4), no remuneration shall be 
+payable to a medical practitioner for the completion and 
+furnishing of a report under this subsection.
+(6) A medical practitioner shall, at the request of an employee 
+or the dependant of an employee, furnish the employee or 
+dependant with a copy of the report under this section.
+64. The Director-General may decide on all issues regarding 
+the need, nature and sufficiency of any medical aid benefits 
+supplied or to be supplied under this Act.
+65.–(1) Subject to the provisions of this section, the cost of 
+medical aid shall be calculated in accordance with a tariff of 
+fees determined by the Director-General.
+Submission of 
+medical report
+Director-General 
+to decide on 
+medical aid 
+benefits
+Fees for medical 
+aid
+
+[PDF PAGE 44]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+496
+(2) Where the Director-General is liable for the payment of 
+the cost of medical aid-
+(a) no amount shall be recoverable for the medical aid 
+concerned in excess of that determined in the tariff  
+of fees or, if no amount has been determined for 
+particular medical aid, no amount in excess of that 
+deemed reasonable by the Director-General; and
+(b) no amount shall be recoverable from the employee or 
+an employer for the medical aid concerned.
+66.–(1) An employer shall not demand or receive from an 
+employee a contribution toward the cost of medical aid 
+supplied or to be supplied under this Act.
+(2) An employer who contravenes subsection (1) commits 
+an offence and on conviction, shall be liable to a fine not 
+exceeding five million shillings or imprisonment for a term 
+not exceeding seven years or to both.
+(3) The court convicting an employer under subsection 
+(2), shall in addition to any penalty it may impose, order the 
+employer to pay to the Director-General within a specified 
+period as the court may determine, the amount the employer 
+has received contrary to subsection (1).
+(4) The Director-General shall pay the amount received 
+under subsection (3) to the employee from whose earnings 
+that amount was deducted or received by the employer.
+67.–(1) Where an employer makes arrangements to provide 
+medical aid to employees who are injured in accidents which 
+the Director-General believes they are not less favorable to the 
+employees than that provided for in this Act, the Director-
+General may, subject to conditions, approve such arrangements.
+(2) Where the Director-General has approved the 
+arrangements referred in subsection (1)-
+(a) the employees shall be entitled to medical aid in 
+accordance with the arrangements;
+Contributions 
+by Employees 
+toward cost of 
+medical aid 
+prohibited
+Medical aid 
+provided by 
+employers
+
+[PDF PAGE 45]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+497
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(b) the employer shall not be required to provide or pay 
+for medical aid except in accordance with the said 
+arrangements;
+(c) the Director-General may reimburse an employer out 
+of the Fund or reduce the employer’s assessment to the 
+extent that the Director-General may deem equitable.
+(3) The Director-General may, at any time, withdraw the 
+approval or vary the conditions referred to under subsection (1).
+68. The Director-General may consult any medical authority or 
+association concerning matters connected with or arising out 
+of the application of the provisions of this Act with regard to 
+medical aid, including the tariff of fees referred to under section 
+65 and may, for the purpose, disclose any information relating 
+to a matter in respect of which the views of the authority or 
+association are required.
+69.–(1) Where an employee suffers an accident or contracts 
+an occupation disease, the Director-General may, subject 
+to consent by the employee, provide the employee with 
+rehabilitation benefits to assist in restoring the employee’s 
+health, independence and participation in society to the 
+maximum extent practicable.
+(2) The rehabilitation benefits provided in subsection (1) 
+may consist of-
+(a) clinical rehabilitation for the purpose of physical and 
+psychological recovery of the employee;
+(b) vocational rehabilitation to assist an employee to 
+maintain employment, obtain employment or regain 
+or acquire vocational independence; and
+(c) social rehabilitation to assist in restoring an employee’s 
+independence to the maximum extent practicable.
+(3) For the purpose of clinical rehabilitation, medical aid 
+costs provided for under section 62 shall include the costs of 
+clinical rehabilitation.
+Director-General 
+may consult 
+representatives 
+of medical 
+authorities and 
+associations
+Director-General 
+to provide 
+rehabilitation
+
+[PDF PAGE 46]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+498
+70.–(1) The Director-General before providing vocational 
+or social rehabilitation to an employee under this Act, may 
+require the employee to-
+(a) undergo any assessment required by him at the cost of 
+the Fund;
+(b) co-operate with him in developing and implementing 
+an individual rehabilitation plan; or
+(c) undergo assessment of present and likely capabilities 
+for the purposes of rehabilitation at the Fund’s expense.
+(2) An individual rehabilitation plan under paragraph (b) 
+of subsection (1) shall-
+(a) identify the employee’s needs for rehabilitation;
+(b) identify the assessments to be done;
+(c) identify the services appropriate for those needs; and
+(d) specify the rehabilitation services to be provided to an 
+employee.
+(3) An employee who receives rehabilitation benefits shall, to 
+the extent practicable, comply with the terms of an individual 
+rehabilitation plan.
+PART VIII
+OBLIGATIONS OF EMPLOYERS
+71.–(1) An employer carrying on business in Tanzania shall 
+within the prescribed period and in the prescribed form 
+register himself to the Director-General and furnish the 
+Director-General with-
+(a) the prescribed particulars of the employer’s business; 
+and
+(b) any additional particulars he may require.
+(2) The particulars referred to in subsection (1) shall be 
+furnished separately in respect of each business carried on by 
+the employer.
+(3) An employer shall, within seven days of any change in 
+the particulars so furnished, notify the Director-General of the 
+change.
+Director-General 
+may require 
+assessments and 
+rehabilitation 
+plans
+Employers to 
+register with 
+Director-General
+
+[PDF PAGE 47]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+499
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(4) A person who fails to comply with the provisions of this 
+section commits an offence and on conviction, shall be liable 
+to a fine not exceeding fifty million shillings or imprisonment 
+for a term not exceeding five years or to both.
+72.–(1) An employer shall keep a register or other record of 
+the earnings and other prescribed particulars of all employees 
+employed by the employer and shall, at all reasonable times, 
+produce the register, record or a satisfactory reproduction on 
+demand to an authorised person for inspection.
+(2) An employer shall retain the register, record or reproduction 
+for a period of at least three years after the date of the last entry 
+on that register or record.
+(3) An employer who fails to comply with a provision of this 
+section commits an offence and on conviction, shall be liable to 
+a fine not exceeding twenty million shillings or imprisonment 
+for a term not exceeding five years or to both.
+(4) A health and safety representative elected under any 
+other law governing occupational health and safety and a trade 
+union representative appointed under the Employment and 
+Labour Relations Act, shall have the right to inspect and bring 
+to the attention of the Director-General, any register, record or 
+document which the employer maintains, keeps or completes 
+under this Act.
+73.–(1) Subject to subsection (2), an employer shall, not later 
+than the 31st day of March in each year, furnish the Director-
+General with a return in the prescribed form certified by the 
+employer, as correct, showing-
+(a) the amount of earnings up to the maximum contemplated 
+in section 74(7) paid by the employer to its employees 
+during the period with effect from the first day of March 
+of the immediately preceding year up to and including 
+the last day of February of the following year; and
+(b) such further information as may be prescribed or as 
+the Director-General may require.
+Employers to 
+keep records
+Cap. 366
+Employers to 
+furnish returns 
+of earnings
+
+[PDF PAGE 48]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+500
+(2) An employer who commences business after the last day 
+of February of a particular year shall, within seven working 
+days after commencement of his business, furnish the Director-
+General with a return in the prescribed form, certified by the 
+employer as correct, showing the estimated earnings of its 
+employees for the period with effect from the commencement 
+of the business up to and including the last day of February of 
+the following year.
+(3) Where an employer carries on business at more than 
+one place or carries on more than one class of business, the 
+Director-General may require a separate return for each place 
+or class of business from the employer.
+(4) Where in a return referred to in subsection (1), the amount 
+shown as earning, excluding earnings exceeding the maximum 
+referred to in section 74(7), is less than the amount actually 
+paid, the Director-General may order the employer to pay the 
+different between the amount shown and the actual amount. 
+(5) Where an employer fails to furnish a return or if the 
+estimate of the earnings which an employer expects to pay 
+during a particular period is in the opinion of the Director-
+General too low, the Director-General may estimate the earnings 
+concerned.
+(6) Where it appears that the actual earning are less than the 
+earnings assessed under subsection (5), the Director-General 
+may make the necessary adjustment.
+(7) An employer who fails to comply with the provisions 
+of this section commits an offence and on conviction, shall be 
+liable to a fine not exceeding twenty million or to imprisonment 
+for a term not exceeding three years or to both.
+74.–(1) Subject to the provisions of this section, an employer shall 
+be assessed or provisionally assessed by the Director-General 
+according to a tariff of assessment calculated on the basis of the 
+percentage of the annual earnings of the employer’s employees 
+as the Board may, with due regard to the requirements of the 
+Fund for the year of assessment, deem necessary.
+Assessment of 
+employer
+
+[PDF PAGE 49]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+501
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(2) For the purpose of this section, earnings shall be 
+calculated in the prescribed form.
+(3) Notwithstanding subsection (1), the Director-General 
+may-
+(a) assess a particular employer or category of employers by 
+the degree of risk exposure or on such other objective 
+basis as he may prescribe in writing published in the 
+Gazette;
+(b) levy a minimum assessment in respect of a particular 
+employer or category of employers.
+(4) In determining the tariff of assessment, the Director-
+General shall provide for the capitalized value of pensions.
+(5) Where the earnings paid by an employer in respect of 
+a particular period differ from the earnings shown in respect 
+of that period in the return concerned, the Director-General 
+shall adjust the employer’s assessment accordingly.
+(6) An assessment of an employer shall be paid at such time 
+and in such manner as the Director-General may determine.
+(7) The Minister may, on the recommendation of the 
+Board, prescribe by notice in the Gazette, a maximum amount 
+of earnings on which an assessment of an employer shall be 
+calculated by the Director-General.
+75.–(1) An assessment shall be paid to the Director-General 
+by an employer within thirty working days after the date of 
+the notice of assessment, or with the approval of the Director-
+General, in such installments and at such times and on such 
+conditions as he may determine.
+(2) Interest shall be payable on any overdue assessment at 
+a rate determined by the Director-General which shall not 
+exceed a standard rate of interest determined by the Minister. 
+(3) An employer who contravenes this section commits 
+an offence and on conviction, shall be liable to a fine of fifty 
+million shillings or imprisonment for a term of ten years or to 
+both.
+Assessment to be 
+paid by employer 
+to Director-
+General
+Act No.
+6 of 2021 s.80
+
+[PDF PAGE 50]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+502
+(4) The court convicting an employer under subsection 
+(3) shall, in addition to any penalty it may impose, order the 
+employer to pay to the Fund within a specified period as the 
+court may determine the assessment due and the interest 
+thereon.
+(5) Notwithstanding the provisions of subsection (2), the 
+Minister may, upon recommendation of the Board, waive 
+partially or wholly the accrued interest on overdue assessement 
+to an employer.
+76.–(1) Where a mandator in the course of, or for the purposes 
+of his business enters into an agreement with a contractor for 
+the execution by or under the supervision of the contractor 
+of the whole or any part of any work undertaken by the 
+mandator, the contractor shall, in respect of the employees of 
+the contractor employed in the execution of the work, register 
+as an employer in accordance with the provisions of this Act 
+and pay the necessary assessment.
+(2) Where a contractor fails to register or pay any assessment 
+referred to under subsection (1), the employees of the contractor 
+shall be deemed to be the employees of the mandator, and the 
+mandator shall pay the assessments in respect of the employees.
+(3) Where a mandator has paid an assessment or compensation 
+for which the mandator would not have been liable as provided 
+for under the provisions of subsection (1), the mandator may 
+recover that assessment or compensation from the contractor.
+(4) Where a mandator under this section paid an assessment 
+or compensation to the Director-General, the mandator may 
+set off the amount so paid against any debt to the contractor.
+(5) Notwithstanding the provisions of this section, the 
+Director-General may recover compensation from the 
+contractor instead of the mandator, and if the full amount 
+cannot be recovered from one, the remaining amount can be 
+recovered from the other.
+(6) A mandator shall not be liable in respect of any accident 
+which happened at a place which is not on or about the premises 
+Mandators and 
+contractors
+
+[PDF PAGE 51]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+503
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+on which the mandator undertook to execute the work, or 
+which is not otherwise under the control or management of 
+the mandator.
+77. Every employer or a trade union shall display a statement 
+of employee’s rights under this Act in the prescribed manner-
+(a) at the place where employees work; and
+(b) where it can be read by employees.
+78. An employer or the relevant trade union shall notify any 
+employee who is injured in an accident or who contracts an 
+occupational disease of his rights and the procedures to be 
+followed in order to claim compensation under this Act.
+PART IX
+DISPUTES SETTLEMENT
+79.–(1) The Director-General may review any decision in 
+connection with a claim for compensation or the award of 
+compensation on the ground-
+(a) that the employee has not submitted himself for an 
+examination referred to in section 38.
+(b) that the disablement giving rise to the award is 
+prolonged or aggravated by the unreasonable refusal or 
+failure of the employee to submit to medical aid;
+(c) that compensation awarded in the form of a periodical 
+payment or a pension is excessive or insufficient because 
+of existing or change of circumstances; or
+(d) that the decision or award was based on an incorrect 
+view or misrepresentation of the facts, or that the 
+decision or award would have been otherwise in the 
+light of evidence available at present but which was not 
+available when the Director-General made the decision 
+or award.
+(2) In reviewing the decision in accordance with subsection 
+(1), the Director-General shall issue notice inviting a party 
+concerned to make representation.
+Employers or 
+trade unions to 
+inform employees 
+of their rights
+Employers to 
+assist employees
+Director-General 
+may review 
+decisions
+
+[PDF PAGE 52]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+504
+(3) The Director-General may, after considering the evidence 
+and representations submitted and making such inquiry as the 
+Director-General may deem necessary, confirm, amend or set 
+aside its decision, and may suspend, discontinue, reduce or 
+increase compensation awarded.
+80.–(1) A person aggrieved by the decision of the Director-
+General may appeal against the decision within thirty working 
+days to the Minister.
+(2) A person aggrieved by a decision of the Minister may, 
+within sixty working days, from the date of decision, appeal 
+against that decision to the Labour Court.
+PART X
+FINANCIAL PROVISIONS
+81. The funds of the Fund shall be applied to-
+(a) the payment of compensation benefits to or on behalf 
+of or in respect of employees;
+(b) the prescribed remuneration and allowances to members 
+of the Board, assessors and authorised persons;
+(c) the cost of or in connection with the medical examination 
+of employees;
+(d) the cost of or in connection with the assessment of 
+employees for purposes of rehabilitation;
+(e) the cost involved in court proceedings arising from 
+administration of this Act;
+(f) any other expenditure incurred by the Board or 
+the Director-General in or in connection with the 
+performance of the functions under this Act;
+(g) promote maintenance of occupational safety and health 
+measures; and
+(h) any expenditure authorised by this Act.
+Appeal against 
+decisions of 
+Director-General 
+and Minister
+Application of 
+funds
+
+[PDF PAGE 53]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+505
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+82.–(1) The Board shall open and maintain with a bank or 
+banks approved by the Minister-
+(a) an account known as the Workers’ Compensation 
+Fund Account into which all moneys payable to the 
+Fund shall be deposited; and
+(b) a reserve account into which any surplus money 
+in the Fund may be deposited and from which any 
+investments referred to in section 83 may be made.
+(2) The objects of the reserve account under subsection (1)
+(b) shall be to-
+(a) provide for unforeseen demands on the Fund; and
+(b) stabilize the tariffs of assessment.
+(3) the Board shall determine the amounts to be held in the 
+reserve account and shall authorise payments from the reserve 
+account.
+83. The Board may, subject to regulations or guidelines 
+prescribed by the Minister or relevant supervisory authority, 
+invest surplus funds of the Fund with due regard to-
+(a) maintenance, growth and preservation of the Fund; and
+(b) economic and commercial viability of any investment.
+84.–(1) The Director-General shall submit to the Board, at 
+least six months before the start of the financial year or such 
+other period determined by the Board, a budget of estimated 
+revenue and expenditure for that financial year, for approval 
+by the Board.
+(2) The Board may not, in respect of the administrative 
+expenditure of the Fund in any financial year, approve the 
+budget or expenditure of an amount exceeding fifteen percent 
+of the estimated revenue for that financial year, unless the 
+Board is satisfied that there exist extenuating circumstances.
+85.–(1) The Fund shall-
+(a) keep full and proper records of the financial affairs of 
+the Fund;
+Bank accounts of 
+Fund
+Investment of 
+funds
+Annual budget of 
+Fund
+Annual report 
+and financial 
+statements of 
+Fund
+
+[PDF PAGE 54]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+506
+(b) prepare financial statements for each financial year in 
+accordance with generally accepted accounting practice;
+(c) submit within five months of the end of the financial 
+year to the Board-
+(i) an annual report on the activities of the Fund 
+during that financial year;
+(ii) the audited financial statements for that financial 
+year; and
+(iii) the report of the auditors on those statements.
+(2) The Director-General shall, within three months of 
+the approval by the Board of the annual report and financial 
+statements submit the report and financial statements to the 
+Minister.
+(3) The Minister shall table the report and statements 
+referred to in subsection (1) before the National Assembly.
+86.–(1) The assets and liabilities of the Fund shall, as the Board 
+may consider necessary, but in any event at intervals of not 
+more than three years, be valued by an actuary appointed by 
+the Board to determine the sufficiency of the Fund.
+(2) The result of the valuation referred to in subsection 
+(1) shall be included in the next annual report of the Fund 
+following completion of the valuation.
+87. Not later than six months after the close of every financial 
+year the accounts and the statement of the financial affairs 
+of the Fund for that financial year shall be audited by the 
+Controller and Auditor-General.
+PART XI
+GENERAL PROVISIONS
+88. Where the Director-General or any authorised person 
+makes decision, the Director-General or the authorised person, 
+shall furnish reasons to a person affected by that decision.
+Periodic valuation 
+of Fund
+Auditing
+Reasons for 
+decisions
+
+[PDF PAGE 55]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+507
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+89.–(1) The record of any decisions or award made by the 
+Director-General, and a copy of or extract from a record or 
+document kept by him or lodged with him which purports to 
+be certified by him as a true copy or extract shall, upon its mere 
+production in a court, be prima facie evidence of the content of 
+such record or document.
+(2) In any proceedings under this Act, or in any court, any 
+document purporting to be a sworn statement made by the 
+Director-General or an authorised person and in which it is 
+stated that-
+(a) a person is an employer, a mandator, a contractor; an 
+employee or a dependant of an employee under this Act;
+(b) a person is or was required under this Act to pay an 
+amount to the Director-General or to an employee or 
+other person specified in the statement;
+(c) an amount referred to in paragraph (b), or any portion 
+thereof, has or has not been paid on a date specified in 
+the statement; and
+(d) the Director-General has exercised a power under this 
+Act, 
+shall, upon its mere production, be prima facie evidence of 
+the facts stated therein.
+90.–(1) Where an assessor or a member of a medical advisory 
+panel is involved in an accident arising out of and in the course 
+of performing the functions as an assessor or a member of a 
+medical advisory panel resulting in personal injury, illness or 
+death, the assessor or member of a medical advisory panel shall 
+be entitled to compensation as if such assessor or a member 
+of medical advisory panel is an employee at the time of the 
+accident.
+(2) Subsection (1) shall apply to assessors who are not 
+employed.
+(3) The Director-General shall pay out of the Fund any 
+compensation under this section.
+Evidence
+Compensation 
+payable to 
+assessors etc.
+
+[PDF PAGE 56]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+508
+PART XII
+MISCELLANEOUS PROVISIONS
+91. An employee or a dependant of a deceased employee is 
+entitled to inspect and, at own expense, make copies of any 
+documents held by the Fund or the Director-General which 
+relate to any accident, injury, occupational disease or claim 
+for compensation involving the employee or dependant of the 
+employee.
+92.–(1) A person shall not disclose any information obtained 
+in the performance of that person’s functions under this Act, 
+except-
+(a) to the extent to which it may be necessary for the proper 
+administration of this Act;
+(b) for the purposes of the administration of justice; or
+(c) at the request of the Minister or any other person 
+entitled thereto.
+(2) A person who contravenes the provisions of subsection 
+(1) commits an offence.
+93.–(1) The Minister may, after consulting the Board and by 
+order, in the Gazette amend any Schedule to this Act.
+(2) At least sixty working days before any such amendment, 
+the Minister shall publish a notice in the Gazette-
+(a) of the intention to effect an amendment and the 
+proposed content of the amendment; and
+(b) inviting any person who wishes to comment on the 
+proposed amendment to submit such comment in 
+writing to the Director-General within the period 
+mentioned in the notice.
+94.–(1) The Minister may upon advise of the Board make 
+regulations for the better carrying out the provisions of this 
+Act and in particular, prescribing-
+Access to 
+information
+Disclosure of 
+information
+Amendment of 
+Schedules
+Regulations
+
+[PDF PAGE 57]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+509
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(a) the place of meeting and the procedure to be followed 
+at any meeting of the Director-General and assessors 
+or at any proceedings under this Act with which the 
+assessors are concerned or at any investigation under 
+this Act;
+(b) subject to section 65, the fees payable to medical 
+practitioners in respect of services rendered under this 
+Act;
+(c) the procedure to be followed in paying assessments to 
+the Fund;
+(d) the persons to whom the places and the manner in 
+which payment of assessments under this Act shall be 
+made;
+(e) the determination of the amount and the conditions 
+and manner of payment of benefits to assessors or 
+classes of assessors;
+(f) the disposal of moneys payable under this Act to 
+any person other than the Director-General and not 
+claimed within the prescribed period by the person 
+entitled thereto;
+(g) the determination of time for the consideration and 
+finalisation of compensation claims, the payment of 
+compensation and the adjudication of appeals against 
+decisions of the Director-General under this Act; and
+(h) any matter which may be or is prescribed under this 
+Act.
+(2) The Minister may, after consultation with the Board, 
+make regulations under subsection (1) in respect of different 
+classes of employers and employees of different areas.
+95. A person who in connection with a claim for compensation 
+under this Act, or in any return, notice, report or statement to 
+be given, made or furnished under this Act, makes or causes 
+to be made any statement which is false in a material respect, 
+knowing it to be false, commits an offence.
+False statements
+
+[PDF PAGE 58]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+510
+96. A person who is convicted of an offence where no specific 
+penalties have been provided under this Act on conviction, 
+shall be liable to a fine not exceeding five hundred thousand 
+shillings or to imprisonment for a term not exceeding six 
+months or to both.
+97.–(1) The Director-General may compound any of the 
+offences to which no penalty have been prescribed in this Act. 
+(2) Subject to subsection (1), the Director-General may 
+order the person alleged to commit an offence under this Act 
+to pay a fine not exceeding three hundred thousand shillings.
+98.–(1) [Repeals the Workers Compensation Act.]
+(2) Notwithstanding subsection (1), any regulation made, 
+direction, order or directive made or issued by the repealed 
+Act and which could be made, issued, prescribed or done 
+under a provision of this Act, shall be deemed to have been 
+made, issued, prescribed or done under this Act.
+(3) A claim for compensation or medical aid arising out 
+or accruing from the repealed law in respect of an accident 
+that happened or occupational disease contracted prior to the 
+commencement of this Act shall be dealt with under that laws 
+as if this Act had not been passed and any right or privilege 
+acquired or accrued under such law shall not be affected by 
+such repeal.
+FIRST SCHEDULE
+(Made under section 12(3))
+CONDUCT OF BUSINESS AND AFFAIRS OF THE BOARD
+1.–(1) The membership of the Board shall consist of persons with 
+integrity, knowledge and experience in labour issues, insurance, social 
+security or workers’ compensation as follows-
+(a) a Chairman who shall be appointed by the President;
+(b) other members appointed by the Minister as follows-
+(i) two members representing the most representative 
+employers’ organisation;
+Penalties
+Compounding 
+offences
+Repeal and 
+savings
+Ord. No.
+43 of 1948
+Composition 
+of Board
+Act No. 
+13 of 2017 s.36
+
+[PDF PAGE 59]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+511
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+(ii) two members representing the most representative 
+employees organisation;
+(iii) a Law Officer representing the Attorney General;
+(iv) a representative from the Ministry responsible for social 
+security;
+(v) a representative from the Ministry responsible for Public 
+Service Management;
+(vi) a representative from the Ministry responsible for finance; 
+and
+(vii) a representative from an association of persons with 
+disabilities arising from related injuries or diseases.
+(2) Members of the Board shall elect one of their number to be the 
+Vice Chairman who shall subject to his continuing to be a member, 
+hold office for a term of three years from the date of his election and 
+shall be eligible for re-election.
+(3) The Director-General of the Fund shall be secretary to the Board.
+2. A member of the Board shall hold office for a period of three years 
+on such terms and conditions as may be specified in the instrument of 
+appointment and may be eligible for re-appointment for one more term.
+3.–(1) A member other than the Director-General and persons who are 
+members by virtue of their position may-
+(a) at any time resign from office by notice in writing to the 
+Minister;
+(b) be removed from office by the Minister if the member-
+(i) has been absent from three consecutive meetings of the 
+Board without permission from the Chairman;
+(ii) is adjudged bankrupt or enters into a composition 
+scheme or arrangement with his creditors;
+(iii) is convicted of an offence involving dishonesty, fraud or 
+moral turpitude;
+(iv) is convicted of a criminal offence and sentenced to 
+imprisonment for a term exceeding six months,
+(v) is incapacitated by prolonged physical or mental illness; or
+(vi) is otherwise unable to discharge his functions.
+(2) In the case of a member who is a member by virtue of holding 
+some other office, he shall cease to be a member upon ceasing to hold 
+that office.
+(3) A member, other than a member referred to in subparagraph (2) 
+may, at any time resign by giving notice in writing to the President or, 
+as the case may be, to the Minister, and as from that date of the receipt 
+of the notice by the President or the Minister, he shall cease to be a 
+member.
+Tenure of office
+Vacation of office
+
+[PDF PAGE 60]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+512
+4.–(1) The Board shall meet not less than four times in every financial 
+year and not more than four months shall elapse between the date of 
+one meeting and the date of the next meeting.
+(2) The quorum for the conduct of the business of the Board shall be 
+half of the total number of members.
+(3) The Chairman shall preside at every meeting of the Board, and 
+in his absence, members present shall elect one among them to be the 
+Chairman.
+(4) Unless a unanimous decision is reached a decision on any matter 
+before the Board shall be by a majority of votes of the members present 
+and in the case of an equality of votes, the chairman or the person 
+presiding shall have a casting vote.
+(5) Subject to paragraph (3), no proceedings of the Board shall be 
+invalid by reason only of a vacancy among the members of the Board.
+(6) Subject to subparagraph (2), the Board may determine its own 
+procedure and for the attendance of any other person at its meetings.
+5.–(1) The affixing of the common seal of the Board shall be authenticated 
+by the signatures of the Secretary and the Chairman and any document 
+required by law to be made under seal.
+(2) The decision of the Board may be authenticated by the signatures 
+of the Secretary and the Chairman.
+6. Any contract or instrument which, if entered into or executed by a 
+person not being body corporate, would not require to be under seal, 
+may be entered into or executed on behalf of the Board by any person 
+generally or specially authorised by the Board for that purpose.
+7. The Board shall cause minutes of all proceedings of meetings of the 
+Board to be entered in books kept for that purpose.
+SECOND SCHEDULE
+(Made under section 48)
+PERCENTAGE OF PERMANENT DISABLEMENT
+Injury Percentage 
+of permanent 
+disablement
+1. Loss of two limbs 100
+2. Loss of both hands, or of all fingers and both thumbs 100
+3. Total loss of sight 100
+4. Total paralysis 100
+5. Injuries resulting in employee being permanent bedridden 100
+Meetings
+Common seal 
+Contracts and 
+instruments 
+Minutes
+
+[PDF PAGE 61]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+513
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+Injury Percentage 
+of permanent 
+disablement
+6. Any other injury causing permanent total disablement 100
+7. Loss of arm at shoulder 70
+8. Loss of arm between elbow and shoulder 68
+9. Loss of arm at elbow 67
+10. Loss of arm between wrist and elbow 65
+11. Loss of hand at wrist 60
+12. Loss of four fingers and thumb of one hand 60
+13. Loss of four fingers 40
+14. Loss of thumb - both phalanges 40
+15. One phalanx 15
+16. Loss of index finger - three phalanges 10
+17. Two phalanges 8
+18. One phalanx 5
+19. Loss of middle finger - three phalanges 8
+20. Two phalanges 6
+21. One phalanx 4
+22. Loss of ring finger - three phalanges 6
+23. Two phalanges 5
+24. One phalanx 3
+25. Loss of little finger - three phalanges 4
+26. Two phalanges 3
+27. One phalanx 2
+28. Loss of metacarpals - first, second or third (additional) 4
+29. fourth or fifth addition (additional) 2
+30. Loss of toes - at hip 70
+31. Between knee and hip 70
+32. below knee 45
+33. Loss of toes - all 15
+34. Big both phalanges 7
+35. big one phalanx 3
+36. Toes other than big one  
+37. four toes 7
+38. three toes 5
+39. two toes 3
+
+[PDF PAGE 62]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+514
+Injury Percentage 
+of permanent 
+disablement
+40. one toe 1
+41. Loss of eye - whole eye 30
+42. Loss of eye - sight 30
+43. Loss of eye - sight except perception of light 30
+44. Loss of hearing - both ears 50
+45. Loss of hearing - one ear 7
+1. Where there are two or more injuries, the sum of the percentage 
+for such injuries may be increased, in the discretion of the Director-
+General.
+2. Total permanent loss of the user of a limb shall be treated as the loss 
+of the limb.
+3. Where an employee has sustained an injury not mentioned in 
+this Schedule, the Director- General shall determine the percentage 
+of disablement in respect of the injury which the Director-General 
+believes will lead to a result consistent with the Schedule.
+4. Where an injury has unusual serious consequences for an employee as 
+a result of the special nature of the employee’s occupation, the Director-
+General may determine a larger percentage which the Director-General 
+deems equitable.
+THIRD SCHEDULE
+(Made under section 22(1))
+OCCUPATIONAL DISEASES
+1. The list of Occupational Diseases contained in this Schedule reflects 
+the list of occupational diseases appended to International Labour 
+Organisation R 194, List of Occupational Diseases Recommendation, 
+2010.
+2. For purposes of this Schedule, work shall mean-
+(a) any work involving the handling of or exposure to any agent 
+or agents mentioned in the List of Occupational Diseases;
+(b) any work involving the handling of, or exposure to the specified 
+agent or agents, the work processes, work activities and work 
+environments mentioned in the List of Occupational Diseases.
+
+[PDF PAGE 63]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+515
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+LIST OF OCCUPATIONAL DISEASES
+Occupational diseases caused by exposure to agents arising from work 
+activities
+1.1. Diseases caused by chemical agents
+1.1.1. Diseases caused by beryllium or its compounds
+1.1.2. Diseases caused by cadmium or its compounds
+1.1.3. Diseases caused by phosphorus or its compounds
+1.1.4. Diseases caused by chromium or its compounds
+1.1.5. Diseases caused by manganese or its compounds
+1.1.6. Diseases caused by arsenic or its compounds
+1.1.7. Diseases caused by mercury or its compounds
+1.1.8. Diseases caused by lead or its compounds
+1.1.9. Diseases caused by fluorine or its compounds
+1.1.10. Diseases caused by carbon disulfide
+1.1.11. Diseases caused by halogen derivatives of aliphatic or aromatic 
+hydrocarbons
+1.1.12. Diseases caused by benzene or its homologues
+1.1.13. Diseases caused by nitro- and amino-derivatives of benzene 
+or its homologues
+1.1.14. Diseases caused by nitroglycerine or other nitric acid esters
+1.1.15. Diseases caused by alcohols, glycols or ketones
+1.1.16. Diseases caused by asphyxiants like carbon monoxide, 
+hydrogen sulfide, hydrogen cyanide or its derivatives
+1.1.17. Diseases caused by acrylonitrile
+1.1.18. Diseases caused by oxides of nitrogen
+1.1.19. Diseases caused by vanadium or its compounds
+1.1.20. Diseases caused by antimony or its compounds
+1.1.21. Diseases caused by hexane
+1.1.22. Diseases caused by mineral acids
+1.1.23. Diseases caused by pharmaceutical agents
+1.1.24. Diseases caused by nickel or its compounds
+1.1.25. Diseases caused by thallium or its compounds
+1.1.26. Diseases caused by osmium or its compounds
+1.1.27. Diseases caused by selenium or its compounds
+1.1.28. Diseases caused by copper or its compounds
+1.1.29. Diseases caused by platinum or its compounds
+1.1.30. Diseases caused by tin or its compounds
+1.1.31. Diseases caused by zinc or its compounds
+1.1.32. Diseases caused by phosgene
+1.1.33. Diseases caused by corneal irritants like benzoquinone
+1.1.34. Diseases caused by ammonia
+1.1.35. Diseases caused by isocyanates
+1.1.36. Diseases caused by pesticides
+1.1.37. Diseases caused by sulphur oxides
+1.1.38. Diseases caused by organic solvents
+
+[PDF PAGE 64]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+516
+1.1.39. Diseases caused by latex or latex-containing products
+1.1.40. Diseases caused by chlorine
+1.1.41. Diseases caused by other chemical agents at work not mentioned 
+in the preceding items where a direct link is established scientifically, or 
+determined by methods appropriate to national conditions and practice, 
+between the exposure to these chemical agents arising from work 
+activities and the disease(s) contracted by the worker
+1.2. Diseases caused by physical agents
+1.2.1. Hearing impairment caused by noise
+1.2.2. Diseases caused by vibration (disorders of muscles, tendons, 
+bones, joints, peripheral blood vessels or peripheral nerves)
+1.2.3. Diseases caused by compressed or decompressed air
+1.2.4. Diseases caused by ionizing radiations
+1.2.5. Diseases caused by optical (ultraviolet, visible light, infrared) 
+radiations including laser
+1.2.6. Diseases caused by exposure to extreme temperatures
+1.2.7. Diseases caused by other physical agents at work not mentioned 
+in the preceding items where a direct link is established scientifically, 
+or determined by methods appropriate to national conditions and 
+practice, between the exposure to these physical agents arising from 
+work activities and the disease(s) contracted by the worker
+1.3. Biological agents and infectious or parasitic diseases
+1.3.1. Brucellosis
+1.3.2. Hepatitis viruses
+1.3.3. Human immunodeficiency virus (HIV)
+1.3.4. Tetanus
+1.3.5. Tuberculosis
+1.3.6. Toxic or inflammatory syndromes associated with bacterial or 
+fungal contaminants
+1.3.7. Anthrax
+1.3.8. Leptospirosis
+1.3.9. Diseases caused by other biological agents at work not 
+mentioned in the preceding items where a direct link is established 
+scientifically, or determined by methods appropriate to national conditions 
+and practice, between the exposure to these biological agents arising 
+from work activities and the disease(s) contracted by the worker
+2. Occupational diseases by target organ systems
+2.1. Respiratory diseases
+2.1.1. Pneumoconioses caused by fibrogenic mineral dust (silicosis, 
+anthraco-silicosis, asbestosis)
+2.1.2. Silicotuberculosis
+2.1.3. Pneumoconioses caused by non-fibrogenic mineral dust
+
+[PDF PAGE 65]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+517
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+2.1.4. Siderosis
+2.1.5. Bronchopulmonary diseases caused by hard-metal dust
+2.1.6. Bronchopulmonary diseases caused by dust of cotton (byssinosis), 
+flax, hemp, sisal or sugarcane (bagassosis)
+2.1.7. Asthma caused by recognised sensitising agents or irritants 
+inherent to the work process
+2.1.8. Extrinsic allergic alveolitis caused by the inhalation of organic 
+dusts or microbially contaminated aerosols, arising from work activities
+2.1.9. Chronic obstructive pulmonary diseases caused by inhalation 
+of coal dust, dust from stone quarries, wood dust, dust from cereals and 
+agricultural work, dust in animal stables, dust from textiles, and paper 
+dust, arising from work activities
+2.1.10. Diseases of the lung caused by aluminium
+2.1.11. Upper airways disorders caused by recognised sensitising 
+agents or irritants inherent to the work process
+2.1.12. Other respiratory diseases not mentioned in the preceding 
+items where a direct link is established scientifically, or determined by 
+methods appropriate to national conditions and practice, between the 
+exposure to risk factors arising from work activities and the disease(s) 
+contracted by the worker
+2.2. Skin diseases
+2.2.1. Allergic contact dermatoses and contact urticaria caused by 
+other recognised allergy provoking agents arising from work activities 
+not included in other items
+2.2.2. Irritant contact dermatoses caused by other recognised irritant 
+agents arising from work activities not included in other items
+2.2.3. Vitiligo caused by other recognised agents arising from work 
+activities not included in other items
+2.2.4. Other skin diseases caused by physical, chemical or biological 
+agents at work not included under other items where a direct link is 
+established scientifically, or determined by methods appropriate to national 
+conditions and practice, between the exposure to risk factors arising from 
+work activities and the skin disease(s) contracted by the worker
+2.3. Musculoskeletal disorders
+2.3.1. Radial styloid tenosynovitis due to repetitive movements, 
+forceful exertions and extreme postures of the wrist
+2.3.2. Chronic tenosynovitis of hand and wrist due to repetitive 
+movements, forceful exertions and extreme postures of the wrist
+2.3.3. Olecranon bursitis due to prolonged pressure of the elbow region
+2.3.4. Prepatellar bursitis due to prolonged stay in kneeling position
+2.3.5. Epicondylitis due to repetitive forceful work
+2.3.6. Meniscus lesions following extended periods of work in a 
+kneeling or squatting position
+
+[PDF PAGE 66]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+518
+2.3.7. Carpal tunnel syndrome due to extended periods of repetitive 
+forceful work, work involving vibration, extreme postures of the wrist, 
+or a combination of the three
+2.3.8. Other musculoskeletal disorders not mentioned in the preceding 
+items where a direct link is established scientifically, or determined 
+by methods appropriate to national conditions and practice, between 
+the exposure to risk factors arising from work activities and the 
+musculoskeletal disorder(s) contracted by the worker
+2.4. Mental and behavioural disorders
+2.4.1. Post-traumatic stress disorder
+2.4.2. Other mental or behavioural disorders not mentioned in 
+the preceding item where a direct link is established scientifically, or 
+determined by methods appropriate to national conditions and practice, 
+between the exposure to risk factors arising from work activities and 
+the mental and behavioural disorder(s) contracted by the worker
+3. Occupational cancer
+3.1. Cancer caused by the following agents
+3.1.1. Asbestos
+3.1.2. Benzidine and its salts
+3.1.3. Bis-chloromethyl ether (BCME)
+3.1.4. Chromium VI compounds
+3.1.5. Coal tars, coal tar pitches or soots
+3.1.6. Beta-naphthylamine
+3.1.7. Vinyl chloride
+3.1.8. Benzene
+3.1.9. Toxic nitro-and amino-derivatives of benzene or its homologues
+3.1.10. Ionizing radiations
+3.1.11. Tar, pitch, bitumen, mineral oil, anthracene, or the compounds, 
+products or residues of these substances
+3.1.12. Coke oven emissions
+3.1.13. Nickel compounds
+3.1.14. Wood dust
+3.1.15. Arsenic and its compounds
+3.1.16. Beryllium and its compounds
+3.1.17. Cadmium and its compounds
+3.1.18. Erionite
+3.1.19. Ethylene oxide
+3.1.20. Hepatitis B virus (HBV) and hepatitis C virus (HCV)
+3.1.21. Cancers caused by other agents at work not mentioned in 
+the preceding items where a direct link is established scientifically, or 
+determined by methods appropriate to national conditions and practice, 
+between the exposure to these agents arising from work activities and 
+the cancer(s) contracted by the worker
+
+[PDF PAGE 67]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+519
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+4. Other diseases
+4.1. Miners’ nystagmus
+4.2. Other specific diseases caused by occupations or processes not 
+mentioned in this list where a direct link is established scientifically, 
+or determined by methods appropriate to national conditions and 
+practice, between the exposure arising from work activities and the 
+disease(s) contracted by the worker
+FOURTH SCHEDULE
+(Made under section 52(1)(d) and 53(1))
+MANNER OF CALCULATING COMPENSATION
+(i) (ii) (iii) (iv) (v)
+Item Section
+Nature and 
+degree of 
+disablement
+Nature of 
+benefits Manner of calculating benefits
+1 46(1)
+Temporary 
+total 
+disablement
+Periodical 
+payment
+70% of an employee`s monthly 
+earnings at the time of the 
+accident subject to minimum 
+and maximum compensation 
+of such monthly amounts as set 
+out in regulations made from 
+time to time by the Minister.
+2 48(4)
+(a)
+Permanent 
+disablement of 
+100%
+Monthly 
+pension
+70% of an employee`s monthly 
+earnings at the time of the 
+accident subject to minimum 
+and maximum compensation 
+of such monthly amounts as set 
+out in regulations made from 
+time to time by the Minister.
+3 48(4)
+(b)
+Permanent of 
+disablement of 
+less than 100%
+Monthly 
+pension
+A monthly pension which 
+bears to a pension calculated 
+under item 2 the same 
+proportion as the degree of 
+permanent disablement to 
+100%
+4 49 n/a
+Lump sum 
+in lieu of 
+pension
+The prescribed amount 
+for purposes of section 49 
+of the Act shall be such 
+monthly amount as set out in 
+regulations made from time to 
+time by the Minister.
+
+[PDF PAGE 68]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE WORKERS COMPENSATION ACT [CAP . 263 R.E. 2023]
+520
+(i) (ii) (iii) (iv) (v)
+5 52(1)
+(a)(i) Fatal Lump sum
+Twice the employee’s monthly 
+pension that would have been 
+payable to the employee under 
+item 2 had the employee been 
+totally permanent disabled.
+6 52(1)
+(a)(ii) Fatal Monthly 
+pension
+40% of the pension that 
+would have been payable to 
+the employee under item 2 
+had the employee been totally 
+permanently disabled.
+7 52(1)
+(b) Fatal Monthly 
+pension
+20% of the monthly pension 
+that would have been payable 
+to the employee under item 2 
+had the employee been totally 
+permanently disabled, to each 
+child
+8 52(1)
+(d)(ii) Fatal Lump Sum
+Percentage dependence as a 
+portion of such amount as set 
+out in regulations made from 
+time to tome by the Minister.
+9 53 Fatal Funeral 
+grant
+A reasonable amount of funeral 
+costs to a maximum such 
+amount as set out in regulation 
+made from time to time by the 
+Minister or the actual amount, 
+whichever is the lesser.

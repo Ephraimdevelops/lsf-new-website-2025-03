@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<meta name="description"
+		  content="e-RITA Portal - Mfumo Rasmi wa Kidijitali wa Usajili wa Kuzaliwa, Vifo, Ndoa, Wadhamini na Ufilisi Tanzania (RITA).">
+	
+
+	<!-- Google Fonts & Bootstrap 5 CSS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+		  rel="stylesheet">
+
+	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css?v=PI8n5gCcz9cQqQXm3PEtDuPG8qx9oFsFctPg0S5zb8g" />
+	<link rel="stylesheet" href="/lib/bootstrap-icons/font/bootstrap-icons.css?v=AEMichyFVzMXWbxt2qy7aJsPBxXWiK7IK9BW0tW1zDs" />
+	<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=O2p11mherUYPja5rjeK2afvVekcdkigTHg_bG-cj8qk" />
+	<link rel="stylesheet" href="/css/landing.css?v=m8vS4KDSJsMg9rWXWPhIV4lOVQ8Ji_pLZBvx5zcRQVo" />
+	<link rel="stylesheet" href="/app.css?v=jLB35ZdwKQTl759VpBiKf_N7U2y3GHrEd5mPJUzCcsY" />
+	<link rel="icon" type="image/png" href="/images/rita-logo.png?v=YL7-_LZRFP6BK-1IU92jF6gz8wkN9YkidbOxYKi43kg" />
+</head>
+
+<body>
+	<!-- =========================================================
+       ROW 1: TOP GOVERNMENT BANNER
+       ========================================================= -->
+	<div class="gov-top-bar">
+		<div class="container d-flex flex-wrap justify-content-between align-items-center">
+			<div class="gov-title-wrap d-flex align-items-center gap-2">
+				<img src="/images/coat.png" alt="Nembo ya Taifa la Tanzania" class="gov-emblem">
+				<span class="fw-bold">JAMHURI YA MUUNGANO WA TANZANIA</span>
+				<span class="d-none d-md-inline opacity-75">| Wizara ya Katiba na Sheria</span>
+			</div>
+			<div class="gov-tools d-flex align-items-center gap-3">
+				<a href="tel:+255222924180" class="d-none d-lg-inline">
+					<i class="bi bi-telephone-fill me-1 text-warning"></i> Hotline: +255 (22) 2924180 / 181
+				</a>
+				<div class="d-flex gap-1">
+					<button class="lang-btn opacity-50" data-lang="sw" disabled style="cursor: not-allowed; pointer-events: none;" title="Swahili option coming soon">🇹🇿 Swahili</button>
+					<button class="lang-btn active" data-lang="en">🇬🇧 English</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- =========================================================
+       ROW 2: MAIN BRAND BAR (SEPARATED SIGN IN & REGISTER BUTTONS)
+       ========================================================= -->
+	<div class="rita-brand-bar">
+		<div class="container d-flex justify-content-between align-items-center">
+			<a class="d-flex align-items-center gap-3 text-decoration-none" href="#">
+				<img src="/images/rita-logo.png" alt="RITA Tanzania Logo" class="brand-logo">
+				<div>
+					<div class="brand-title">e-RITA Portal</div>
+					<div class="brand-subtitle">Registration, Insolvency &amp; Trusteeship Agency</div>
+				</div>
+			</a>
+
+			<div class="d-flex align-items-center gap-2">
+				<button class="sign-in-btn btn btn-rita-outline font-weight-bold rounded-pill px-4 d-flex align-items-center" hx-get="Auth/Login"
+						hx-target="#offcanvasBody" hx-swap="innerHTML" hx-indicator=".sign-in-btn">
+					<i class="bi bi-box-arrow-in-right me-1 htmx-hide-on-request"></i>
+					<span class="spinner-border spinner-border-sm htmx-indicator me-2" role="status"
+						  aria-hidden="true"></span>
+					<span data-i18n="tab_login" class="htmx-hide-on-request">Sign In</span>
+					<span class="htmx-indicator" data-i18n="loading">Loading ...</span>
+				</button>
+				<button class="btn btn-rita-gold fw-bold rounded-pill px-4 d-flex align-items-center" hx-get="/Auth/Register"
+						hx-target="#offcanvasBody" hx-swap="innerHTML">
+					<i class="bi bi-person-plus-fill me-1 htmx-hide-on-request"></i>
+					<span class="spinner-border spinner-border-sm htmx-indicator me-2" role="status"
+						  aria-hidden="true"></span>
+					<span data-i18n="tab_register" class="htmx-hide-on-request">Register Account</span>
+					<span class="htmx-indicator" data-i18n="loading">Loading ...</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- =========================================================
+       ROW 3: DEDICATED NAVIGATIONAL LINKS BAR
+       ========================================================= -->
+	<nav class="rita-sub-nav sticky-top navbar navbar-expand-lg">
+		<div class="container">
+			<button class="navbar-toggler border-0 text-white ms-auto" type="button" data-bs-toggle="collapse"
+					data-bs-target="#subRITANav">
+				<span class="navbar-toggler-icon navbar-toggler-icon-white"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="subRITANav">
+				<ul class="navbar-nav w-100 justify-content-between align-items-lg-center">
+					<li class="nav-item">
+						<a class="nav-link active" href="#home">
+							<i class="bi bi-house-door-fill text-warning"></i> <span data-i18n="nav_home">Home</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#services">
+							<i class="bi bi-balloon-heart-fill text-info"></i> <span data-i18n="nav_birth">
+							Birth
+							Services
+						</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#services">
+						<i class="bi bi-file-earmark-medical-fill text-success"></i> <span data-i18n="nav_death">
+						Death
+						Certificate
+					</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#tracker">
+					<i class="bi bi-radar"></i> <span data-i18n="nav_track">Track Status</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#faq">
+					<i class="bi bi-question-circle"></i> <span data-i18n="nav_faq">FAQ & Support</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</nav>
+
+    <!-- Offcanvas Shell -->
+<div class="offcanvas offcanvas-end rounded-4 my-1 m-md-2" tabindex="-1" id="dynamicOffcanvas"
+     aria-labelledby="dynamicOffcanvasLabel">
+    <div class="offcanvas-header border-bottom rounded-top-4 position-relative">
+        <div id="offcanvas-linear-progress" class="htmx-indicator offcanvas-linear-progress"></div>
+        <h5 class="offcanvas-title fw-bold" id="dynamicOffcanvasLabel">Offcanvas right</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body rounded-bottom-4 bg-light" id="offcanvasBody">
+        <div class="d-flex justify-content-center p-4">
+            <div class="spinner-border text-primary" role="status"></div>
+        </div>
+    </div>
+</div>
+<!-- Offcanvas Start Shell (Left Drawer for Service Info & Guidelines - Large) -->
+<div class="offcanvas offcanvas-start rounded-4 my-1 m-md-2" tabindex="-1" id="dynamicOffcanvasStart"
+     aria-labelledby="dynamicOffcanvasStartLabel" style="min-width: 50%;">
+    <div class="offcanvas-header border-bottom rounded-top-4 position-relative">
+        <div id="offcanvas-start-linear-progress" class="htmx-indicator offcanvas-linear-progress"></div>
+        <h5 class="offcanvas-title fw-bold" id="dynamicOffcanvasStartLabel">Service Information</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body rounded-bottom-4 bg-light p-0" id="offcanvasStartBody">
+        <div class="d-flex justify-content-center align-items-center p-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading info...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================================================
+       4. DYNAMIC HERO SECTION (CENTERED & DECLUTTERED)
+       ========================================================= -->
+<section id="home" class="hero-section">
+	<div class="container">
+		<div class="row justify-content-center text-center">
+			<div class="col-lg-10">
+				<div class="hero-badge mx-auto">
+					<i class="bi bi-shield-check text-warning"></i>
+					<span data-i18n="hero_badge">Mfumo Rasmi wa Serikali ya Tanzania</span>
+				</div>
+				<h1 class="hero-title mb-3" data-i18n="hero_title">
+					Huduma za RITA kwa <span>Kasi, Salama na Urahisi</span>
+				</h1>
+				<p class="hero-subtitle mx-auto max-width-700 mb-4" data-i18n="hero_sub">
+					Jisajili na kuomba Vyeti vya Kuzaliwa na Vifo mtandaoni. Ingia kwenye akaunti yako au tengeneza akaunti
+					mpya kuanza maombi.
+				</p>
+
+				<!-- Hero Action Buttons -->
+				<div class="d-flex flex-wrap justify-content-center gap-3">
+					<button class="btn btn-rita-gold btn-lg px-4 d-flex align-items-center justify-content-center" hx-get="/Auth/Login"
+							hx-target="#offcanvasBody" hx-swap="innerHTML">
+						<i class="bi bi-box-arrow-in-right me-2 htmx-hide-on-request"></i>
+						<span class="spinner-border spinner-border-sm htmx-indicator me-2" role="status"
+							  aria-hidden="true"></span>
+						<span data-i18n="hero_btn_login" class="htmx-hide-on-request">
+							Sign In to Account
+						</span>
+						<span class="htmx-indicator" data-i18n="loading">Loading ...</span>
+					</button>
+					<button class="btn btn-outline-light btn-lg rounded-pill fw-bold px-4 d-flex align-items-center justify-content-center"
+							hx-get="/Auth/Register" hx-target="#offcanvasBody" hx-swap="innerHTML">
+						<i class="bi bi-person-plus-fill me-2 htmx-hide-on-request"></i>
+						<span class="spinner-border spinner-border-sm htmx-indicator me-2" role="status"
+							  aria-hidden="true"></span>
+						<span data-i18n="hero_btn_register" class="htmx-hide-on-request">
+							Create New Account
+						</span>
+						<span class="htmx-indicator" data-i18n="loading">Loading ...</span>
+					</button>
+					<a href="#tracker" class="btn btn-rita-primary btn-lg rounded-pill px-4">
+						<i class="bi bi-search me-2"></i><span data-i18n="hero_btn_track">Track Status</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- =========================================================
+       5. STATS & QUICK RIBBON
+========================================================= -->
+<div class="container">
+	<div class="stats-ribbon">
+		<div class="row g-4">
+			<div class="col-md-4">
+				<div class="stat-item">
+					<div class="stat-icon-wrapper">
+						<i class="bi bi-file-check-fill"></i>
+					</div>
+					<div>
+						<div class="stat-value">1.2M+</div>
+						<div class="stat-label" data-i18n="stats_online_apps">
+							Online Applications Received Annually
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="stat-item">
+					<div class="stat-icon-wrapper text-success" style="background: rgba(16, 185, 129, 0.1);">
+						<i class="bi bi-person-badge-fill"></i>
+					</div>
+					<div>
+						<div class="stat-value">&lt; 48 HRS</div>
+						<div class="stat-label" data-i18n="stats_processing_time">
+							Average Application Completion Time
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="stat-item">
+					<div class="stat-icon-wrapper text-warning" style="background: rgba(255, 193, 7, 0.15);">
+						<i class="bi bi-headset"></i>
+					</div>
+					<div>
+						<div class="stat-value">24/7</div>
+						<div class="stat-label" data-i18n="stats_support">Customer and GePG Support</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- =========================================================
+       6. SERVICES SHOWCASE & OFFICIAL FEE SCHEDULE (STATUS CARD ADDED)
+       ========================================================= -->
+<section id="services" class="py-5 my-4">
+	<div class="container">
+		<div class="text-center max-width-700 mx-auto mb-5">
+			<span class="badge bg-primary text-white px-3 py-2 rounded-pill fw-bold mb-2">
+				SERVICES &amp; OFFICIAL FEES
+			</span>
+			<h2 class="section-title mb-2" data-i18n="sec_services_title">Huduma Zilizopo na Ada Zake</h2>
+			<p class="section-subtitle" data-i18n="sec_services_sub">
+				Kagua mahitaji, nyaraka zinazohitajika na ada rasmi kabla ya kuingia kwenye akaunti yako kuanza maombi.
+			</p>
+		</div>
+
+		<div class="row g-4">
+			<!-- Service 1: Birth -->
+			<div class="col-md-6 col-lg-4">
+				<div class="service-card">
+					<div>
+						<div class="service-card-icon bg-icon-blue">
+							<i class="bi bi-balloon-heart-fill"></i>
+						</div>
+						<span class="service-badge badge-fast" data-i18n="svc_birth_badge">Civil Registration</span>
+						<h3 class="service-card-title" data-i18n="svc_birth_title">Birth Certificate</h3>
+						<p class="service-card-desc" data-i18n="svc_birth_desc">
+							Registration for children and adults, hospital verification, and late registration
+							certificate.
+						</p>
+
+						<div class="p-3 bg-light rounded-3 mb-3 small">
+							<div class="fw-bold text-dark mb-1">
+								<i class="bi bi-paperclip me-1 text-primary"></i><span data-i18n="svc_birth_docs_title">Required Documents:</span>
+							</div>
+							<div class="text-muted" data-i18n="svc_birth_docs_list">
+								• Parent NIDA ID<br>• Notification of Birth from Hospital
+							</div>
+							<div class="fw-bold text-success mt-2" data-i18n="fee_birth">
+								Fee: From TZS 7,000 depending on application scenario
+							</div>
+						</div>
+					</div>
+					<button id="birth-learn-more-btn"
+							class="btn btn-rita-outline w-100 rounded-pill d-flex align-items-center justify-content-center gap-1"
+							hx-get="/birth-info"
+							hx-target="#offcanvasStartBody" hx-swap="innerHTML"
+							hx-indicator="#birth-learn-more-btn, this">
+						<i class="bi bi-info-circle me-1 htmx-hide-on-request"></i>
+						<span class="spinner-border spinner-border-sm htmx-indicator me-1" role="status" aria-hidden="true"></span>
+						<span data-i18n="btn_learn_more" class="htmx-hide-on-request">Learn More</span>
+						<span class="htmx-indicator" data-i18n="loading">Loading...</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Service 2: Death -->
+			<div class="col-md-6 col-lg-4">
+				<div class="service-card">
+					<div>
+						<div class="service-card-icon bg-icon-green">
+							<i class="bi bi-file-earmark-medical-fill"></i>
+						</div>
+						<span class="service-badge badge-online" data-i18n="svc_death_badge">
+							Vital Records Service
+						</span>
+						<h3 class="service-card-title" data-i18n="svc_death_title">Death Certificate</h3>
+						<p class="service-card-desc" data-i18n="svc_death_desc">
+							Submit death notification, obtain an official death certificate, and legal confirmation.
+						</p>
+
+						<div class="p-3 bg-light rounded-3 mb-3 small">
+							<div class="fw-bold text-dark mb-1">
+								<i class="bi bi-paperclip me-1 text-primary"></i><span data-i18n="svc_death_docs_title">Required Documents:</span>
+							</div>
+							<div class="text-muted" data-i18n="svc_death_docs_list">
+								• Hospital Death Report (Burial Permit)<br>• Deceased ID or NIDA
+							</div>
+							<div class="fw-bold text-success mt-2" data-i18n="fee_death">
+								Fee: From TZS 7,000 depending on application scenario
+							</div>
+						</div>
+					</div>
+					<button id="death-learn-more-btn"
+							class="btn btn-rita-outline w-100 rounded-pill d-flex align-items-center justify-content-center gap-1"
+							hx-get="/death-info"
+							hx-target="#offcanvasStartBody" hx-swap="innerHTML"
+							hx-indicator="#death-learn-more-btn, this">
+						<i class="bi bi-info-circle me-1 htmx-hide-on-request"></i>
+						<span class="spinner-border spinner-border-sm htmx-indicator me-1" role="status" aria-hidden="true"></span>
+						<span data-i18n="btn_learn_more" class="htmx-hide-on-request">Learn More</span>
+						<span class="htmx-indicator" data-i18n="loading">Loading...</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Service 3: Application Status Tracking Card -->
+			<div class="col-md-6 col-lg-4">
+				<div class="service-card border-primary border-opacity-25" style="background: rgba(15, 98, 254, 0.02);">
+					<div>
+						<div class="service-card-icon bg-icon-gold">
+							<i class="bi bi-radar"></i>
+						</div>
+						<span class="service-badge badge-gepg">Public Online Tool</span>
+						<h3 class="service-card-title" data-i18n="svc_track_title">Track Application Status</h3>
+						<p class="service-card-desc" data-i18n="svc_track_desc">
+							Check progress of your application online using Application Code and Control Number.
+						</p>
+
+						<div class="p-3 bg-light rounded-3 mb-3 small">
+							<div class="fw-bold text-dark mb-1">
+								<i class="bi bi-info-circle me-1 text-primary"></i><span data-i18n="svc_track_docs_title">Required Numbers:</span>
+							</div>
+							<div class="text-muted" data-i18n="svc_track_docs_list">
+								• Application Code (e.g: RITA-2026-7842)<br>• GePG Control Number (e.g: 991080048291)
+							</div>
+							<div class="fw-bold text-success mt-2" data-i18n="svc_track_fee">Fee: Free</div>
+						</div>
+					</div>
+
+					<a href="#tracker"
+					   class="btn btn-rita-gold flex-grow-1 rounded-pill text-center font-weight-bold d-flex align-items-center justify-content-center"
+					   data-i18n="svc_track_btn">
+						Track Status
+					</a>
+				</div>
+			</div>
+
+			<!-- Service 4: Certificate Verification -->
+			<div class="col-md-6 col-lg-4">
+				<div class="service-card">
+					<div>
+						<div class="service-card-icon bg-icon-purple">
+							<i class="bi bi-patch-check-fill"></i>
+						</div>
+						<span class="service-badge badge-online">Government Use</span>
+						<h3 class="service-card-title">Certificate Verification</h3>
+						<p class="service-card-desc" data-i18n="svc_verify_desc">
+							Verify authenticity of RITA certificates for use in other government services, employment,
+							education, and legal procedures.
+						</p>
+
+						<div class="p-3 bg-light rounded-3 mb-3 small">
+							<div class="fw-bold text-dark mb-1">
+								<i class="bi bi-paperclip me-1 text-primary"></i><span data-i18n="svc_verify_docs_title">Required Information:</span>
+							</div>
+							<div class="text-muted" data-i18n="svc_verify_docs_list">
+								• Certificate Number or Application Code<br>• Applicant Name and Event Year
+							</div>
+							<div class="fw-bold text-success mt-2" data-i18n="svc_verify_fee">
+								Fee: 6,000 TZS for Birth and Death Certificates
+							</div>
+						</div>
+					</div>
+					<button id="verification-learn-more-btn"
+							class="btn btn-rita-outline w-100 rounded-pill d-flex align-items-center justify-content-center gap-1"
+							hx-get="/verification-info"
+							hx-target="#offcanvasStartBody" hx-swap="innerHTML"
+							hx-indicator="#verification-learn-more-btn, this">
+						<i class="bi bi-info-circle me-1 htmx-hide-on-request"></i>
+						<span class="spinner-border spinner-border-sm htmx-indicator me-1" role="status" aria-hidden="true"></span>
+						<span data-i18n="btn_learn_more" class="htmx-hide-on-request">Learn More</span>
+						<span class="htmx-indicator" data-i18n="loading">Loading...</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Service 5: Duplicate Certificate -->
+			<div class="col-md-6 col-lg-4">
+				<div class="service-card">
+					<div>
+						<div class="service-card-icon bg-icon-blue">
+							<i class="bi bi-files"></i>
+						</div>
+						<span class="service-badge badge-fast">Re-Issuance</span>
+						<h3 class="service-card-title">Duplicate Certificate</h3>
+						<p class="service-card-desc" data-i18n="svc_duplicate_desc">
+							Apply for a replacement certificate if the original is lost, damaged, or needs re-issuance
+							for official use.
+						</p>
+
+						<div class="p-3 bg-light rounded-3 mb-3 small">
+							<div class="fw-bold text-dark mb-1">
+								<i class="bi bi-paperclip me-1 text-primary"></i><span data-i18n="svc_duplicate_docs_title">Required Documents:</span>
+							</div>
+							<div class="text-muted" data-i18n="svc_duplicate_docs_list">
+								• Original Certificate Number or Application Record<br>• Applicant NIDA ID
+							</div>
+							<div class="fw-bold text-success mt-2" data-i18n="svc_duplicate_fee">
+								Fee: 7,000 TZS for Birth and Death Certificates
+							</div>
+						</div>
+					</div>
+					<button id="duplicate-learn-more-btn"
+							class="btn btn-rita-outline w-100 rounded-pill d-flex align-items-center justify-content-center gap-1"
+							hx-get="/duplicate-info"
+							hx-target="#offcanvasStartBody" hx-swap="innerHTML"
+							hx-indicator="#duplicate-learn-more-btn, this">
+						<i class="bi bi-info-circle me-1 htmx-hide-on-request"></i>
+						<span class="spinner-border spinner-border-sm htmx-indicator me-1" role="status" aria-hidden="true"></span>
+						<span data-i18n="btn_learn_more" class="htmx-hide-on-request">Learn More</span>
+						<span class="htmx-indicator" data-i18n="loading">Loading...</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Service 6: Certificate Correction -->
+			<div class="col-md-6 col-lg-4">
+				<div class="service-card">
+					<div>
+						<div class="service-card-icon bg-icon-green">
+							<i class="bi bi-pencil-square"></i>
+						</div>
+						<span class="service-badge badge-online">Record Update</span>
+						<h3 class="service-card-title">Certificate Correction</h3>
+						<p class="service-card-desc" data-i18n="svc_correction_desc">
+							Apply for correction of details on a certificate such as names, dates, or other records
+							after submitting legal evidence.
+						</p>
+
+						<div class="p-3 bg-light rounded-3 mb-3 small">
+							<div class="fw-bold text-dark mb-1">
+								<i class="bi bi-paperclip me-1 text-primary"></i><span data-i18n="svc_correction_docs_title">Required Documents:</span>
+							</div>
+							<div class="text-muted" data-i18n="svc_correction_docs_list">
+								• Copy of certificate with error<br>• Proof documents for correct details (e.g:
+								affidavit / hospital letter)
+							</div>
+							<div class="fw-bold text-success mt-2" data-i18n="svc_correction_fee">
+								Fee: 13,000 TZS for Birth and Death Certificates
+							</div>
+						</div>
+					</div>
+					<button id="correction-learn-more-btn"
+							class="btn btn-rita-outline w-100 rounded-pill d-flex align-items-center justify-content-center gap-1"
+							hx-get="/correction-info"
+							hx-target="#offcanvasStartBody" hx-swap="innerHTML"
+							hx-indicator="#correction-learn-more-btn, this">
+						<i class="bi bi-info-circle me-1 htmx-hide-on-request"></i>
+						<span class="spinner-border spinner-border-sm htmx-indicator me-1" role="status" aria-hidden="true"></span>
+						<span data-i18n="btn_learn_more" class="htmx-hide-on-request">Learn More</span>
+						<span class="htmx-indicator" data-i18n="loading">Loading...</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- =========================================================
+       7. PUBLIC APPLICATION STATUS TRACKER (DUAL INPUTS)
+       ========================================================= -->
+<section id="tracker" class="py-5 bg-light border-top border-bottom">
+	<div class="container">
+		<div class="text-center max-width-700 mx-auto mb-5">
+			<span class="badge bg-success text-white px-3 py-2 rounded-pill fw-bold mb-2" data-i18n="tracker_badge">APPLICATION TRACKER</span>
+			<h2 class="section-title mb-2" data-i18n="tracker_title">Track Your Application Status</h2>
+			<p class="section-subtitle" data-i18n="tracker_sub">
+				Enter both Application Code and GePG Control Number to check status.
+			</p>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-lg-9">
+				<div class="bg-white rounded-4 shadow-sm border p-4 mb-4">
+					
+<form id="tracker-form" hx-post="/check-app-status" hx-target="#offcanvasBody" hx-swap="innerHTML" hx-indicator="#offcanvas-linear-progress, .tracker-submit-btn" hx-on::before-request="beforeRequestHandler(event)" hx-disabled-elt="#tracker-form input, #tracker-form button" class="row g-3 d-flex align-items-center justify-content-center" novalidate>
+	<input name="__RequestVerificationToken" type="hidden" value="CfDJ8DJESZED569OpFwg9euWAlZLasmt0fa21JfBC2pR-uRGnfebkwnxJIIVyJutxWn_p5dNcVmzn9sIdiljBA9HBwI5Q_YTgy2khLib6l2jQsOXX0nPWNzHYUSMMPu5SayOE77nZrCqrVqrXoy19kNZGpE" />
+	<div class="col-md">
+		<label class="form-label small fw-bold" data-i18n="tracker_label_app" for="AppCode">
+			1. Application Code *
+		</label>
+		<input type="text" id="tracker-app-code" class="form-control form-control-lg" placeholder="260711Y0012-B" data-i18n="tracker_ph_app" required data-val="true" data-val-required="The Application code field is required." name="AppCode" value="">
+		<span class="text-danger small fw-light d-block mt-1 field-validation-valid" data-valmsg-for="AppCode" data-valmsg-replace="true"></span>
+	</div>
+	<div class="col-md">
+		<label class="form-label small fw-bold" data-i18n="tracker_label_ctrl" for="ControlNo">
+			2. GePG Control Number *
+		</label>
+		<input type="text" id="tracker-ctrl-num" class="form-control form-control-lg" placeholder="991080048291" data-i18n="tracker_ph_ctrl" required data-val="true" data-val-required="The Control number field is required." name="ControlNo" value="">
+		<span class="text-danger small fw-light d-block mt-1 field-validation-valid" data-valmsg-for="ControlNo" data-valmsg-replace="true"></span>
+	</div>
+	<div class="col-md-3 align-self-end">
+		<button type="submit" class="tracker-submit-btn btn btn-rita-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2 px-4 mb-1">
+			<span class="spinner-border spinner-border-sm text-light htmx-indicator" style="padding:.5em;" role="status" aria-hidden="true"></span>
+			<i class="bi bi-search htmx-hide-on-request me-1"></i>
+			<span data-i18n="tracker_btn_search" class="htmx-hide-on-request">Search</span>
+		</button>
+	</div>
+</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- =========================================================
+       8. FAQ & HELPDESK SUPPORT SECTION
+========================================================= -->
+<section id="faq" class="py-5">
+	<div class="container">
+		<div class="text-center max-width-700 mx-auto mb-5">
+			<h2 class="section-title mb-2" data-i18n="faq_title">Frequently Asked Questions (FAQ)</h2>
+			<p class="section-subtitle" data-i18n="faq_sub">
+				Get quick answers about using the e-RITA Portal and GePG payments.
+			</p>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-lg-9">
+				<div class="accordion rita-accordion" id="faqAccordion">
+					<div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
+						<h2 class="accordion-header">
+							<button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
+									data-bs-target="#faq1">
+								<span data-i18n="faq_q1">
+									1. How long does it take to get a Birth or Death Certificate after applying?
+								</span>
+							</button>
+						</h2>
+						<div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+							<div class="accordion-body text-muted" data-i18n="faq_a1">
+								For standard applications without extra review needs, processing typically takes 24 to
+								48 hours after GePG Control Number payment is completed.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+									data-bs-target="#faq2">
+								<span data-i18n="faq_q2">
+									2. Which channels can be used to pay the GePG Control Number?
+								</span>
+							</button>
+						</h2>
+						<div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+							<div class="accordion-body text-muted" data-i18n="faq_a2">
+								You can pay via any mobile financial network (Vodacom M-Pesa, Tigo Pesa, Airtel Money, HaloPesa)
+								or any local commercial bank (NMB, CRDB, NBC, Azania, etc.) using your assigned Control Number.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+									data-bs-target="#faq3">
+								<span data-i18n="faq_q3">
+									3. What documents are required to apply for a Birth Certificate?
+								</span>
+							</button>
+						</h2>
+						<div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+							<div class="accordion-body text-muted" data-i18n="faq_a3">
+								You will need a Notification of Birth from the hospital or health facility, applicant or parent identification (such as National ID, Voter ID, or Passport), and supporting documents if applying for late registration.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+									data-bs-target="#faq4">
+								<span data-i18n="faq_q4">
+									4. How can I track the status of my application?
+								</span>
+							</button>
+						</h2>
+						<div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+							<div class="accordion-body text-muted" data-i18n="faq_a4">
+								You can track your application status anytime using the "Track Application Status" tool on the home page by entering your Application Code (e.g., RITA-2026-7842) and your GePG Control Number.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+									data-bs-target="#faq5">
+								<span data-i18n="faq_q5">
+									5. How do I request a Duplicate Certificate if mine is lost or damaged?
+								</span>
+							</button>
+						</h2>
+						<div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+							<div class="accordion-body text-muted" data-i18n="faq_a5">
+								Select the "Duplicate Certificate" service from the portal, enter your previous certificate number or application record details, upload a Police Loss Report or Affidavit, and submit your application.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+									data-bs-target="#faq6">
+								<span data-i18n="faq_q6">
+									6. Can I apply for a correction of details on an existing certificate?
+								</span>
+							</button>
+						</h2>
+						<div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+							<div class="accordion-body text-muted" data-i18n="faq_a6">
+								Yes. Choose "Certificate Correction", attach a scanned copy of the certificate containing the error along with official legal proof (such as an affidavit, hospital birth notification, or government ID), and submit for verification by the Registrar.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+									data-bs-target="#faq7">
+								<span data-i18n="faq_q7">
+									7. What should I do if my GePG payment status is not updating?
+								</span>
+							</button>
+						</h2>
+						<div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+							<div class="accordion-body text-muted" data-i18n="faq_a7">
+								Payments via mobile money or bank channels usually update within minutes. If your application status does not update within 30 minutes, re-check using the "Track Application Status" tool or contact RITA Support with your transaction receipt details.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+									data-bs-target="#faq8">
+								<span data-i18n="faq_q8">
+									8. Is an in-person visit to a RITA office required after applying online?
+								</span>
+							</button>
+						</h2>
+						<div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+							<div class="accordion-body text-muted" data-i18n="faq_a8">
+								In most standard cases, the entire application procedure is completed online. You will receive an SMS and portal notification once your certificate is approved and ready for collection at your designated district office or download.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<!-- =========================================================
+       FOOTER
+       ========================================================= -->
+<footer class="bg-dark text-white pt-5 pb-3">
+	<div class="container">
+		<div class="row g-4 mb-4">
+			<div class="col-lg-4">
+				<div class="d-flex align-items-center gap-3 mb-3">
+					<img src="/images/rita-logo.png" alt="RITA Logo" style="height: 48px;">
+					<div>
+						<h5 class="fw-bold mb-0 text-white">RITA Tanzania</h5>
+						<div class="small text-white-50">e-RITA Citizen Portal</div>
+					</div>
+				</div>
+				<p class="text-white-50 small">
+					<span data-i18n="footer_about">
+						Registration, Insolvency and Trusteeship Agency (RITA) is a government
+						institution under the Ministry of Constitution and Legal Affairs responsible for registering
+						vital human events.
+					</span>
+				</p>
+			</div>
+
+			<div class="col-lg-2 col-md-4">
+				<h6 class="fw-bold text-warning mb-3" data-i18n="footer_quick_links">Quick Links</h6>
+				<ul class="list-unstyled small">
+					<li class="mb-2">
+						<a href="#home" class="text-white-50 text-decoration-none" data-i18n="footer_link_home">
+							Home
+						</a>
+					</li>
+					<li class="mb-2">
+						<a href="#services" class="text-white-50 text-decoration-none"
+						   data-i18n="footer_link_services">Services</a>
+					</li>
+					<li class="mb-2">
+						<a href="#tracker" class="text-white-50 text-decoration-none"
+						   data-i18n="footer_link_track">Track Status</a>
+					</li>
+					<li class="mb-2">
+						<a href="#faq" class="text-white-50 text-decoration-none" data-i18n="footer_link_faq">
+							FAQ
+							&amp;
+							Support
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-4">
+				<h6 class="fw-bold text-warning mb-3" data-i18n="footer_contact_hq">Head Office Contacts</h6>
+				<p class="text-white-50 small mb-1">
+					<i class="bi bi-geo-alt-fill text-primary me-2"></i> Mtaa wa Simu /
+					Kambarage, Dodoma, Tanzania
+				</p>
+				<p class="text-white-50 small mb-1">
+					<i class="bi bi-telephone-fill text-primary me-2"></i> +255 26 232 4053 /
+					0800 110 055
+				</p>
+				<p class="text-white-50 small mb-0">
+					<i class="bi bi-envelope-fill text-primary me-2"></i> info@rita.go.tz
+				</p>
+			</div>
+
+			<div class="col-lg-3 col-md-4">
+				<h6 class="fw-bold text-warning mb-3" data-i18n="footer_gepg_title">Secure GePG Payments</h6>
+				<p class="text-white-50 small" data-i18n="footer_gepg_desc">
+					This platform uses Tanzania Government GePG for fast and secure payments.
+				</p>
+				<div class="d-flex gap-2">
+					<span class="payment-partner-badge text-white">M-PESA</span>
+					<span class="payment-partner-badge text-white">TIGO PESA</span>
+					<span class="payment-partner-badge text-white">NMB / CRDB</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="border-top border-secondary pt-3 text-center small text-white-50">
+			<span data-i18n="footer_copyright">
+				&copy; 2026 Registration, Insolvency &amp; Trusteeship Agency (RITA). All rights reserved.
+			</span>
+		</div>
+	</div>
+</footer>
+
+<script src="/lib/jquery/jquery.min.js?v=_JqT3SQfawRcv_BIHPThkBvs0OEvtFFmqPF_lYI_Cxo"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js?v=CDOy6cOibCWEdsRiZuaHf8dSGGJRYuBGC-mjoJimHGw"></script>
+<script src="/lib/htmx/htmx.js?v=mzvInMWRhNFg0uh-ejysFVfyIFL2MEVb628muXz7PrI"></script>
+<script src="/lib/bootbox.js/bootbox.min.js?v=cbLoZxi-BDlW2dAudG2GIv9dVlJ-u_4hKho7oyZ0DlI"></script>
+<script src="/js/auth.js?v=N0lX-FzM_GCgFAf2UqYKjwQ6SzNzXm5ZoYoUxTaxDgk"></script>
+<script src="/js/i18n.js?v=z0qcRsed1MoAwb60Dlk5naBhJNrNUcYJy_xTWqfrHo4"></script>
+<script>
+		document.body.addEventListener('showOffcanvas', function() {
+			const offcanvasEl = document.getElementById('dynamicOffcanvas');
+			const instance = bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl, { backdrop: true, keyboard: true });
+			instance.show();
+		});
+
+		document.body.addEventListener('showOffcanvasStart', function() {
+			const offcanvasEl = document.getElementById('dynamicOffcanvasStart');
+			const instance = bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl, { backdrop: true, keyboard: true });
+			instance.show();
+		});
+
+		document.body.addEventListener('showStaticOffcanvas', function() {
+			const offcanvasEl = document.getElementById('dynamicOffcanvas');
+			const instance = bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl, { backdrop: 'static', keyboard: false });
+			instance.show();
+		});
+
+		document.addEventListener('DOMContentLoaded', function() {
+			const urlParams = new URLSearchParams(window.location.search);
+			const action = urlParams.get('action');
+			if (action === 'email-confirmed') {
+				const token = urlParams.get('token') || '';
+				const url = token ? `/Auth/EmailConfirmed?token=${encodeURIComponent(token)}` : '/Auth/EmailConfirmed';
+				htmx.ajax('GET', url, { target: '#offcanvasBody', swap: 'innerHTML' });
+				window.history.replaceState({}, document.title, window.location.pathname);
+			} else if (action === 'login') {
+				const returnUrl = urlParams.get('returnUrl') || '';
+				const reason = urlParams.get('reason') || '';
+				const queryParams = new URLSearchParams();
+				if (returnUrl) queryParams.append('returnUrl', returnUrl);
+				if (reason) queryParams.append('reason', reason);
+				const queryString = queryParams.toString() ? '?' + queryParams.toString() : '';
+				const url = `/Auth/Login${queryString}`;
+				htmx.ajax('GET', url, { target: '#offcanvasBody', swap: 'innerHTML' });
+				window.history.replaceState({}, document.title, window.location.pathname);
+			} else if (action === 'password-change' || urlParams.has('token')) {
+				const token = urlParams.get('token') || '';
+				const url = token ? `/Auth/PasswordChange?token=${encodeURIComponent(token)}` : '/Auth/PasswordChange';
+				htmx.ajax('GET', url, { target: '#offcanvasBody', swap: 'innerHTML' });
+				window.history.replaceState({}, document.title, window.location.pathname);
+			} else if (action === 'payment-success') {
+				const res = urlParams.get('res') || '';
+				const url = res ? `/Payment/Success?res=${encodeURIComponent(res)}` : '/Payment/Success';
+				htmx.ajax('GET', url, { target: '#offcanvasBody', swap: 'innerHTML' });
+				window.history.replaceState({}, document.title, window.location.pathname);
+			} else if (action === 'payment-fail') {
+				const res = urlParams.get('res') || '';
+				const url = res ? `/Payment/Fail?res=${encodeURIComponent(res)}` : '/Payment/Fail';
+				htmx.ajax('GET', url, { target: '#offcanvasBody', swap: 'innerHTML' });
+				window.history.replaceState({}, document.title, window.location.pathname);
+			}
+		});
+</script>
+
+	<script src="/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="/js/auth.js?v=N0lX-FzM_GCgFAf2UqYKjwQ6SzNzXm5ZoYoUxTaxDgk"></script>
+
+
+</body>
+
+</html>

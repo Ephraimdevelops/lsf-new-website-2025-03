@@ -1,0 +1,254 @@
+{
+  "sourceRecordCount": 4344,
+  "extractedRecordCount": 4344,
+  "deletedRecordsSkipped": 0,
+  "fieldCount": 17,
+  "fields": [
+    {
+      "name": "OBJECTID_1",
+      "type": "N",
+      "length": 10,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "OBJECTID",
+      "type": "N",
+      "length": 10,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "reg_code",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "reg_name",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "dist_code",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "dist_name",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "counc_code",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "counc_name",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "const_code",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "const_name",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "div_code",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "div_name",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "ward_code",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "ward_name",
+      "type": "C",
+      "length": 50,
+      "decimalPlaces": 0
+    },
+    {
+      "name": "Shape_Leng",
+      "type": "F",
+      "length": 19,
+      "decimalPlaces": 11
+    },
+    {
+      "name": "Shape_Le_1",
+      "type": "F",
+      "length": 19,
+      "decimalPlaces": 11
+    },
+    {
+      "name": "Shape_Area",
+      "type": "F",
+      "length": 19,
+      "decimalPlaces": 11
+    }
+  ],
+  "regionCount": 31,
+  "regions": [
+    {
+      "code": "01",
+      "name": "Dodoma"
+    },
+    {
+      "code": "02",
+      "name": "Arusha"
+    },
+    {
+      "code": "03",
+      "name": "Kilimanjaro"
+    },
+    {
+      "code": "04",
+      "name": "Tanga"
+    },
+    {
+      "code": "05",
+      "name": "Morogoro"
+    },
+    {
+      "code": "06",
+      "name": "Pwani"
+    },
+    {
+      "code": "07",
+      "name": "Dar es Salaam"
+    },
+    {
+      "code": "08",
+      "name": "Lindi"
+    },
+    {
+      "code": "09",
+      "name": "Mtwara"
+    },
+    {
+      "code": "10",
+      "name": "Ruvuma"
+    },
+    {
+      "code": "11",
+      "name": "Iringa"
+    },
+    {
+      "code": "12",
+      "name": "Mbeya"
+    },
+    {
+      "code": "13",
+      "name": "Singida"
+    },
+    {
+      "code": "14",
+      "name": "Tabora"
+    },
+    {
+      "code": "15",
+      "name": "Rukwa"
+    },
+    {
+      "code": "16",
+      "name": "Kigoma"
+    },
+    {
+      "code": "17",
+      "name": "Shinyanga"
+    },
+    {
+      "code": "18",
+      "name": "Kagera"
+    },
+    {
+      "code": "19",
+      "name": "Mwanza"
+    },
+    {
+      "code": "20",
+      "name": "Mara"
+    },
+    {
+      "code": "21",
+      "name": "Manyara"
+    },
+    {
+      "code": "22",
+      "name": "Njombe"
+    },
+    {
+      "code": "23",
+      "name": "Katavi"
+    },
+    {
+      "code": "24",
+      "name": "Simiyu"
+    },
+    {
+      "code": "25",
+      "name": "Geita"
+    },
+    {
+      "code": "26",
+      "name": "Songwe"
+    },
+    {
+      "code": "51",
+      "name": "Kaskazini Unguja"
+    },
+    {
+      "code": "52",
+      "name": "Kusini Unguja"
+    },
+    {
+      "code": "53",
+      "name": "Mjini Magharibi"
+    },
+    {
+      "code": "54",
+      "name": "Kaskazini Pemba"
+    },
+    {
+      "code": "55",
+      "name": "Kusini Pemba"
+    }
+  ],
+  "candidateKeyDuplicates": {
+    "09/02/22/071": 2,
+    "52/02/11/201": 2,
+    "53/02/13/233": 2,
+    "17/03/11/031": 2,
+    "17/03/11/211": 2
+  },
+  "recordsMissingCoreFields": [],
+  "projectionConflict": "NBS overview webpage describes Arc1960; this acquired2022 ZIP .prj specifies WGS1984 World Mercator in metres. Do not use webpage projection for this file.",
+  "productionEligible": false,
+  "notValidated": [
+    "Current2026 administrative boundaries",
+    "Legal service catchment areas",
+    "Code semantics and official unique IDs",
+    "Polygon topology and GIS coordinate transformations",
+    "Reuse permissions"
+  ]
+}

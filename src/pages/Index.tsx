@@ -5,7 +5,6 @@ import HomeImpactNumbers from '@/components/home/HomeImpactNumbers';
 import CompactNewsSection from '@/components/home/CompactNewsSection';
 import ImpactStories from '@/components/home/ImpactStories';
 import ModernPartnersSection from '@/components/home/ModernPartnersSection';
-import ModernCallToAction from '@/components/home/ModernCallToAction';
 import SEOHead from '@/components/shared/SEOHead';
 import JsonLd from '@/components/shared/JsonLd';
 
@@ -50,9 +49,6 @@ const Index = () => {
 
             {/* Compact News & Publications Section */}
             <CompactNewsSection />
-
-            {/* Call-to-Action with Newsletter */}
-            <ModernCallToAction />
 
             {/* Modern Partners Section */}
             <ModernPartnersSection />

@@ -51,7 +51,7 @@ const AdminHome = () => {
           <p className="text-gray-600 font-calibri">Welcome back! Here's what's happening with your website.</p>
         </div>
         <Button asChild size="sm">
-          <Link to="/admin/analytics">
+          <Link to="/admin?tab=analytics">
             Full Analytics <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
@@ -61,7 +61,7 @@ const AdminHome = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium font-calibri">Unique Visitors (Est.)</CardTitle>
+            <CardTitle className="text-sm font-medium font-calibri">Identified Visitors</CardTitle>
             <Users size={16} className="text-primary" />
           </CardHeader>
           <CardContent>
@@ -89,7 +89,7 @@ const AdminHome = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium font-calibri">Total Downloads</CardTitle>
+            <CardTitle className="text-sm font-medium font-calibri">PDF Download Requests</CardTitle>
             <Download size={16} className="text-secondary-green" />
           </CardHeader>
           <CardContent>
@@ -279,7 +279,7 @@ const AdminHome = () => {
               </Link>
             </Button>
             <Button asChild variant="outline" className="h-auto p-4 flex flex-col gap-2">
-              <Link to="/admin/analytics">
+              <Link to="/admin?tab=analytics">
                 <TrendingUp size={20} />
                 <span className="font-calibri">View Analytics</span>
               </Link>

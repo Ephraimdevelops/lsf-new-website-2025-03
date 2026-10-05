@@ -29,10 +29,10 @@ const ParalegalSignup = () => {
     }, [logEvent, visitorId]); // Fire once on mount
 
     const benefits = [
-        { icon: GraduationCap, title: 'Free Training', desc: 'Comprehensive legal aid training program' },
-        { icon: Users, title: 'Community Impact', desc: 'Help thousands access justice in your area' },
-        { icon: Shield, title: 'Legal Protection', desc: 'Work under LSF\'s legal framework' },
-        { icon: Heart, title: 'Support Network', desc: 'Join 500+ paralegals across Tanzania' },
+        { icon: GraduationCap, title: 'Learning', desc: 'Complete the training assigned to your role' },
+        { icon: Users, title: 'Community Impact', desc: 'Help people find and follow legal support' },
+        { icon: Shield, title: 'Verified Access', desc: 'LSF reviews identity and credentials before work access' },
+        { icon: Heart, title: 'Support Network', desc: 'Work with a supervised legal aid network' },
     ];
 
     return (
@@ -52,8 +52,7 @@ const ParalegalSignup = () => {
                         </Typography>
 
                         <Typography variant="body" className="text-xl text-white/80 max-w-2xl mx-auto">
-                            Help bridge the justice gap in your community. Join over 500 paralegals
-                            across Tanzania providing free legal aid to those who need it most.
+                            Help bridge the justice gap in your community. Apply for LSF review and use one account across the website and mobile app.
                         </Typography>
                     </div>
                 </Container>
@@ -87,7 +86,7 @@ const ParalegalSignup = () => {
                                 Apply to Become a Paralegal
                             </Typography>
                             <Typography variant="body" className="text-neutral-600">
-                                Complete the form below and our team will review your application within 5-7 business days.
+                                Complete the form and attach your verification documents. LSF will review your application and show the decision in your account.
                             </Typography>
                         </div>
 
@@ -107,14 +106,14 @@ const ParalegalSignup = () => {
                             Contact our paralegal recruitment team for more information.
                         </Typography>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button variant="outline" className="gap-2">
+                            <Button asChild variant="outline" className="gap-2"><a href="tel:+255222601534">
                                 <Phone className="h-4 w-4" />
-                                +255 870 119 363
-                            </Button>
-                            <Button variant="outline" className="gap-2">
+                                +255 22 260 1534
+                            </a></Button>
+                            <Button asChild variant="outline" className="gap-2"><a href="mailto:info@lsftz.org">
                                 <Mail className="h-4 w-4" />
-                                paralegals@lsftz.org
-                            </Button>
+                                info@lsftz.org
+                            </a></Button>
                         </div>
                     </div>
                 </Container>

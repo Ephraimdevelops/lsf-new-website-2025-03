@@ -1,5 +1,8 @@
 import { useState, useRef } from 'react';
-import { useMutation, useAction } from 'convex/react';
+import { useMutation, useQuery } from 'convex/react';
+import { useAuth, useUser } from '@clerk/clerk-react';
+import { Link } from 'react-router-dom';
+import type { Id } from '../../convex/_generated/dataModel';
 import { api } from '../../convex/_generated/api';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -12,6 +15,9 @@ import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { useVisitorId } from '@/hooks/useVisitorId';
 
 const ParalegalApplicationForm = () => {
+    const { isSignedIn } = useAuth();
+    const { user } = useUser();
+    const application = useQuery(api.paralegals.getMyApplication, isSignedIn ? {} : 'skip');
     // 1. Network Status
     const isOnline = useOnlineStatus();
 
@@ -42,6 +48,9 @@ const ParalegalApplicationForm = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [identityFile, setIdentityFile] = useState<File | null>(null);
+    const [certificateFile, setCertificateFile] = useState<File | null>(null);
+    const [resumeFile, setResumeFile] = useState<File | null>(null);
 
     // =====================================================
     // ANALYTICS: Track signup funnel
@@ -76,6 +85,16 @@ const ParalegalApplicationForm = () => {
 
     // Convex Mutation
     const submitApplication = useMutation(api.formSubmissions.submitParalegalApplication);
+    const generateUploadUrl = useMutation(api.formSubmissions.generateParalegalDocumentUploadUrl);
+    const uploadDocument = async (file: File): Promise<Id<'_storage'>> => {
+        if (file.size > 10 * 1024 * 1024) throw new Error(`${file.name} exceeds the 10 MB limit.`);
+        if (!['application/pdf', 'image/jpeg', 'image/png'].includes(file.type)) throw new Error(`${file.name} must be a PDF, JPG or PNG.`);
+        const url = await generateUploadUrl({});
+        const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': file.type }, body: file });
+        if (!response.ok) throw new Error(`Could not upload ${file.name}. Please retry.`);
+        const result = await response.json();
+        return result.storageId as Id<'_storage'>;
+    };
 
     // Options Lists
     const regions = [
@@ -127,7 +146,11 @@ const ParalegalApplicationForm = () => {
         }
 
         // 3. Validation
-        if (!formData.fullName || !formData.email || !formData.phone ||
+        if (!identityFile || !certificateFile) {
+            setError('Please attach your identity document and paralegal credential.');
+            return;
+        }
+        if (!formData.fullName || !(user?.primaryEmailAddress?.emailAddress || formData.email) || !formData.phone ||
             !formData.region || !formData.district || !formData.education ||
             !formData.experience || !formData.motivation) {
             setError('Please fill in all required fields marked with *');
@@ -138,9 +161,12 @@ const ParalegalApplicationForm = () => {
         setError(null);
 
         try {
+            const idDocumentStorageId = await uploadDocument(identityFile);
+            const certificateStorageId = await uploadDocument(certificateFile);
+            const resumeStorageId = resumeFile ? await uploadDocument(resumeFile) : undefined;
             const result = await submitApplication({
                 fullName: formData.fullName,
-                email: formData.email,
+                email: user?.primaryEmailAddress?.emailAddress ?? formData.email,
                 phone: formData.phone,
                 region: formData.region,
                 district: formData.district,
@@ -149,6 +175,9 @@ const ParalegalApplicationForm = () => {
                 experience: formData.experience,
                 motivation: formData.motivation,
                 languages: formData.languages.length > 0 ? formData.languages : undefined,
+                idDocumentStorageId,
+                certificateStorageId,
+                resumeStorageId,
                 roleTitle: honeypotValue,
             });
 
@@ -169,7 +198,7 @@ const ParalegalApplicationForm = () => {
             if (err.message && err.message.includes('Rate limit')) {
                 setError('You are submitting too fast. Please wait a moment.');
             } else {
-                setError('An error occurred. Please try again.');
+                setError(err instanceof Error ? err.message : 'An error occurred. Please try again.');
             }
         } finally {
             setIsSubmitting(false);
@@ -187,23 +216,21 @@ const ParalegalApplicationForm = () => {
                     <h3 className="text-2xl font-bold mb-4">Application Submitted!</h3>
                     <p className="text-neutral-600 mb-8 max-w-md mx-auto">
                         Thank you for your interest in becoming a paralegal. We will review your
-                        application and contact you within 5-7 business days.
+                        application. You can check its status from the same account on the website or mobile app.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button variant="outline" onClick={() => window.location.href = '/'}>
                             Return Home
                         </Button>
-                        <Button onClick={() => {
-                            setIsSubmitted(false);
-                            setFormData(initialFormState);
-                        }}>
-                            Submit Another Application
-                        </Button>
+                        <Button asChild><Link to="/dashboard/user">My dashboard</Link></Button>
                     </div>
                 </CardContent>
             </Card>
         );
     }
+
+    if (!isSignedIn) return <Card><CardContent className="p-8"><h3 className="text-xl font-bold">Sign in to apply</h3><p className="mt-2 text-neutral-600">Use the same account on the website and mobile app. Your application and review status will stay linked to it.</p><Button asChild className="mt-5"><Link to="/login?redirect_url=%2Fbecome-a-paralegal">Sign in or create an account</Link></Button></CardContent></Card>;
+    if (application && !(application.status === 'pending' && application.intakeOrigin)) return <Card><CardContent className="p-8"><h3 className="text-xl font-bold">Your application</h3><p className="mt-2 text-neutral-600">Status: {application.status.replaceAll('_', ' ')}. Sign in on either platform with this account to follow your next steps.</p><Button asChild className="mt-5"><Link to="/dashboard/user">Open dashboard</Link></Button></CardContent></Card>;
 
     // Render Form
     return (
@@ -227,6 +254,7 @@ const ParalegalApplicationForm = () => {
                             <p>{error}</p>
                         </div>
                     )}
+                    {application?.intakeOrigin && <div className="rounded-xl border border-sky-200 bg-sky-50 p-4 text-sm text-sky-900">LSF has created an invitation for your account. Complete this form and attach your documents so the team can review it.</div>}
 
                     {/* Personal Information */}
                     <div>
@@ -252,7 +280,7 @@ const ParalegalApplicationForm = () => {
                                 <label className="block text-sm font-medium mb-2">Email Address *</label>
                                 <input
                                     type="email"
-                                    value={formData.email}
+                                    value={user?.primaryEmailAddress?.emailAddress ?? formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     onFocus={trackSignupStart}
                                     className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
@@ -414,6 +442,16 @@ const ParalegalApplicationForm = () => {
                                 required
                                 disabled={isSubmitting}
                             />
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-rose-100 bg-rose-50/40 p-5">
+                        <h3 className="text-lg font-bold">Verification documents</h3>
+                        <p className="mt-1 text-sm text-neutral-600">PDF, JPG or PNG, up to 10 MB each. Only authorised LSF reviewers can inspect these files.</p>
+                        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                            <label className="text-sm font-semibold">Identity document *<input type="file" accept=".pdf,.jpg,.jpeg,.png" required onChange={(event) => setIdentityFile(event.target.files?.[0] ?? null)} disabled={isSubmitting} className="mt-2 block w-full rounded-xl border bg-white p-3 text-sm" /></label>
+                            <label className="text-sm font-semibold">Paralegal credential *<input type="file" accept=".pdf,.jpg,.jpeg,.png" required onChange={(event) => setCertificateFile(event.target.files?.[0] ?? null)} disabled={isSubmitting} className="mt-2 block w-full rounded-xl border bg-white p-3 text-sm" /></label>
+                            <label className="text-sm font-semibold">CV or supporting document (optional)<input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={(event) => setResumeFile(event.target.files?.[0] ?? null)} disabled={isSubmitting} className="mt-2 block w-full rounded-xl border bg-white p-3 text-sm" /></label>
                         </div>
                     </div>
 

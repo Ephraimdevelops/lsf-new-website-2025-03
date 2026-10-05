@@ -19,7 +19,7 @@ import {
   UserRoundCheck,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../../convex/_generated/api";
 import type { Id } from "../../convex/_generated/dataModel";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,17 @@ import { Textarea } from "@/components/ui/textarea";
 
 type TriageDetail = FunctionReturnType<typeof api.legalHelp.openForTriage>;
 type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments" | "matching" | "referrals" | "services";
+const workspaceTabs: WorkspaceTab[] = ["requests", "cases", "documents", "reviews", "assignments", "matching", "referrals", "services"];
+const workspaceDescriptions: Record<WorkspaceTab, string> = {
+  requests: "Review incoming requests and establish the next safe step.",
+  cases: "Coordinate assigned case work and follow progress through closure.",
+  documents: "Review documents and consent evidence with the right case context.",
+  reviews: "Resolve beneficiary review and reassignment requests.",
+  assignments: "Track assignment offers and provider responses.",
+  matching: "Review recommended matches and record accountable decisions.",
+  referrals: "Track consent-gated referrals and destination responses.",
+  services: "Maintain and verify organisations and public service points.",
+};
 type ReferralQueueStatus =
   | "awaiting_beneficiary_consent"
   | "created"
@@ -260,7 +271,16 @@ function StatusPill({
 
 const StaffDashboard = () => {
   const { signOut } = useAuth();
-  const [tab, setTab] = useState<WorkspaceTab>("requests");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedTab = searchParams.get("tab");
+  const tab: WorkspaceTab = workspaceTabs.find((item) => item === requestedTab) ?? "requests";
+  const setTab = (next: WorkspaceTab) => {
+    setSearchParams((current) => {
+      const updated = new URLSearchParams(current);
+      updated.set("tab", next);
+      return updated;
+    });
+  };
   const [requestStatus, setRequestStatus] = useState<
     "all" | "submitted" | "under_review" | "waiting_for_information"
   >("all");
@@ -305,6 +325,8 @@ const StaffDashboard = () => {
   const [referralConsentFile, setReferralConsentFile] = useState<File | null>(null);
   const [serviceForm, setServiceForm] = useState<ServiceFormState>(initialServiceForm);
   const [organizationForm, setOrganizationForm] = useState<OrganizationFormState>(initialOrganizationForm);
+  const [serviceDecisionReasons, setServiceDecisionReasons] = useState<Record<string, string>>({});
+  const [serviceEvidence, setServiceEvidence] = useState<Record<string, { source: string; authority: string }>>({});
   const [pending, setPending] = useState(false);
   const [notice, setNotice] = useState<{
     type: "success" | "error";
@@ -363,7 +385,6 @@ const StaffDashboard = () => {
   const createJusticeOrganization = useMutation(api.justiceServices.createOrganization);
   const createJusticeService = useMutation(api.justiceServices.createService);
   const updateJusticeService = useMutation(api.justiceServices.updateService);
-  const seedJusticeServices = useMutation(api.hakiYanguSeed.seedJusticeServices);
   const createReferral = useMutation(api.referrals.createForCase);
   const generateReferralConsentUploadUrl = useMutation(api.referrals.generateConsentUploadUrl);
   const reviewConsentEvidence = useMutation(api.referrals.reviewConsentEvidence);
@@ -611,8 +632,8 @@ const StaffDashboard = () => {
       const result = await createJusticeOrganization({
         name: organizationForm.name.trim(),
         organizationType: organizationForm.organizationType,
-        verificationStatus: organizationForm.verificationStatus,
-        referralAgreementStatus: organizationForm.referralAgreementStatus,
+        verificationStatus: "draft",
+        referralAgreementStatus: "none",
         focalPersonName: organizationForm.focalPersonName.trim() || undefined,
         focalPersonEmail: organizationForm.focalPersonEmail.trim() || undefined,
         focalPersonPhone: organizationForm.focalPersonPhone.trim() || undefined,
@@ -648,12 +669,8 @@ const StaffDashboard = () => {
         servicePointType: serviceForm.servicePointType,
         classification: serviceForm.classification,
         visibility: serviceForm.visibility,
-        verificationStatus: serviceForm.verificationStatus,
-        verifyingAuthority: "LSF",
-        source: "Staff-entered service directory record",
-        lastVerifiedAt: serviceForm.verificationStatus === "verified" ? Date.now() : undefined,
-        nextReviewAt: serviceForm.verificationStatus === "verified" ? Date.now() + 1000 * 60 * 60 * 24 * 180 : undefined,
-        active: serviceForm.verificationStatus !== "inactive",
+        verificationStatus: "draft",
+        active: false,
         country: "Tanzania",
         region: serviceForm.region.trim(),
         district: serviceForm.district.trim(),
@@ -680,38 +697,45 @@ const StaffDashboard = () => {
   }
 
   function setServiceVerified(id: Id<"justice_services">) {
+    const decisionReason = serviceDecisionReasons[id]?.trim();
+    const record = justiceServices?.find((item) => item._id === id);
+    const source = serviceEvidence[id]?.source?.trim() || record?.source?.trim();
+    const verifyingAuthority = serviceEvidence[id]?.authority?.trim() || record?.verifyingAuthority?.trim();
+    if (!decisionReason || decisionReason.length < 10) { setNotice({ type: "error", text: "Record a verification reason of at least 10 characters." }); return; }
+    if (!source || !verifyingAuthority) { setNotice({ type: "error", text: "Record a checked source and verifying authority before approval." }); return; }
     void run(async () => {
       await updateJusticeService({
         id,
+        decisionReason,
         updates: {
+          source,
+          verifyingAuthority,
           verificationStatus: "verified",
           active: true,
           lastVerifiedAt: Date.now(),
           nextReviewAt: Date.now() + 1000 * 60 * 60 * 24 * 180,
         },
       });
+      setServiceDecisionReasons((current) => ({ ...current, [id]: "" }));
       setNotice({ type: "success", text: "Service verified and active." });
     });
   }
 
   function deactivateService(id: Id<"justice_services">) {
+    const decisionReason = serviceDecisionReasons[id]?.trim();
+    if (!decisionReason || decisionReason.length < 10) { setNotice({ type: "error", text: "Record a deactivation reason of at least 10 characters." }); return; }
     void run(async () => {
       await updateJusticeService({
         id,
+        decisionReason,
         updates: {
           verificationStatus: "inactive",
           active: false,
           currentIntakeState: "closed",
         },
       });
+      setServiceDecisionReasons((current) => ({ ...current, [id]: "" }));
       setNotice({ type: "success", text: "Service deactivated." });
-    });
-  }
-
-  function seedServices() {
-    void run(async () => {
-      const result = await seedJusticeServices({});
-      setNotice({ type: "success", text: `Seeded ${result.total} justice services (${result.inserted} new, ${result.updated} updated).` });
     });
   }
 
@@ -910,6 +934,10 @@ const StaffDashboard = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Link to="/notifications" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Updates</Link>
+            <Link to="/dashboard/paralegal-reviews" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Paralegal reviews</Link>
+            <Link to="/dashboard/training-management" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Training</Link>
+            <Link to="/dashboard/reporting" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Reporting</Link>
             <Link
               to="/"
               className="hidden rounded-lg px-3 py-2 text-sm font-semibold text-neutral-600 hover:bg-neutral-100 sm:block"
@@ -930,13 +958,12 @@ const StaffDashboard = () => {
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
               Human-supported justice
             </p>
-            <h1 className="text-3xl sm:text-4xl">Triage and case operations</h1>
+            <h1 className="text-3xl sm:text-4xl">{tab === "requests" ? "Triage and case operations" : `${tab[0].toUpperCase()}${tab.slice(1)} workspace`}</h1>
             <p className="mb-0 max-w-2xl text-base text-neutral-600">
-              Review requests, establish accountable cases, and coordinate
-              verified assistance from one controlled workspace.
+              {workspaceDescriptions[tab]}
             </p>
           </div>
-          <div className="inline-flex w-fit rounded-xl border bg-white p-1 shadow-sm">
+          <nav aria-label="LSF operations areas" className="flex w-full flex-wrap gap-1 rounded-xl border bg-white p-1 shadow-sm lg:w-auto">
             <button
               onClick={() => setTab("requests")}
               className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "requests" ? "bg-primary text-white" : "text-neutral-600"}`}
@@ -985,18 +1012,18 @@ const StaffDashboard = () => {
             >
               Services
             </button>
-          </div>
+          </nav>
         </div>
 
         <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-8">
-          <div className="rounded-2xl border bg-white p-4">
+          <button type="button" onClick={() => setTab("requests")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <FileSearch className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{newCount}</p>
             <p className="mb-0 text-sm text-neutral-500">New requests</p>
-          </div>
-          <div className="rounded-2xl border bg-white p-4">
+          </button>
+          <button type="button" onClick={() => { setTab("requests"); setRequestStatus("all"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-orange-100 text-orange-700">
               <AlertTriangle className="h-5 w-5" />
             </div>
@@ -1004,8 +1031,8 @@ const StaffDashboard = () => {
             <p className="mb-0 text-sm text-neutral-500">
               Urgent or safeguarding
             </p>
-          </div>
-          <div className="rounded-2xl border bg-white p-4">
+          </button>
+          <button type="button" onClick={() => setTab("cases")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-teal-100 text-teal-700">
               <BriefcaseBusiness className="h-5 w-5" />
             </div>
@@ -1013,49 +1040,49 @@ const StaffDashboard = () => {
             <p className="mb-0 text-sm text-neutral-500">
               Active cases in scope
             </p>
-          </div>
-          <div className="rounded-2xl border bg-white p-4">
+          </button>
+          <button type="button" onClick={() => { setTab("documents"); setDocumentStatus("pending_review"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <FileText className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{pendingDocumentCount}</p>
             <p className="mb-0 text-sm text-neutral-500">Documents to review</p>
-          </div>
-          <div className="rounded-2xl border bg-white p-4">
+          </button>
+          <button type="button" onClick={() => { setTab("reviews"); setReviewQueueStatus("submitted"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{pendingReviewCount}</p>
             <p className="mb-0 text-sm text-neutral-500">Case review requests</p>
-          </div>
-          <div className="rounded-2xl border bg-white p-4">
+          </button>
+          <button type="button" onClick={() => { setTab("assignments"); setAssignmentStatus("offered"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-orange-100 text-orange-700">
               <Clock3 className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{openAssignmentOfferCount}</p>
             <p className="mb-0 text-sm text-neutral-500">Open assignment offers</p>
-          </div>
-          <div className="rounded-2xl border bg-white p-4">
+          </button>
+          <button type="button" onClick={() => { setTab("matching"); setMatchingReviewStatus("pending_review"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <UserRoundCheck className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{matchingDecisionCount}</p>
             <p className="mb-0 text-sm text-neutral-500">Matching reviews</p>
-          </div>
-          <div className="rounded-2xl border bg-white p-4">
+          </button>
+          <button type="button" onClick={() => setTab("referrals")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-teal-100 text-teal-700">
               <ChevronRight className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{activeReferralCount}</p>
             <p className="mb-0 text-sm text-neutral-500">Referrals in selected queue</p>
-          </div>
-          <div className="rounded-2xl border bg-white p-4">
+          </button>
+          <button type="button" onClick={() => setTab("services")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <Building2 className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{verifiedServiceCount}</p>
             <p className="mb-0 text-sm text-neutral-500">Verified services</p>
-          </div>
+          </button>
         </section>
 
         {notice && (
@@ -1433,29 +1460,10 @@ const StaffDashboard = () => {
                     <option value="lsf">LSF</option>
                     <option value="other">Other</option>
                   </select>
-                  <select
-                    value={organizationForm.verificationStatus}
-                    onChange={(event) => updateOrganizationForm({ verificationStatus: event.target.value as OrganizationFormState["verificationStatus"] })}
-                    className="h-11 rounded-xl border bg-white px-3 text-sm"
-                  >
-                    <option value="draft">Draft</option>
-                    <option value="verified">Verified</option>
-                    <option value="suspended">Suspended</option>
-                    <option value="inactive">Inactive</option>
-                  </select>
+                  <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">New organisation: draft until independent LSF review.</p>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <select
-                    value={organizationForm.referralAgreementStatus}
-                    onChange={(event) => updateOrganizationForm({ referralAgreementStatus: event.target.value as OrganizationFormState["referralAgreementStatus"] })}
-                    className="h-11 rounded-xl border bg-white px-3 text-sm"
-                  >
-                    <option value="none">No referral agreement</option>
-                    <option value="draft">Draft agreement</option>
-                    <option value="active">Active agreement</option>
-                    <option value="expired">Expired agreement</option>
-                    <option value="suspended">Suspended agreement</option>
-                  </select>
+                  <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">Referral agreement: none until separately reviewed.</p>
                   <input
                     value={organizationForm.slaHours}
                     onChange={(event) => updateOrganizationForm({ slaHours: event.target.value })}
@@ -1580,16 +1588,7 @@ const StaffDashboard = () => {
                     <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
                       Verification
                     </label>
-                    <select
-                      value={serviceForm.verificationStatus}
-                      onChange={(event) => updateServiceForm({ verificationStatus: event.target.value as ServiceFormState["verificationStatus"] })}
-                      className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                    >
-                      <option value="draft">Draft</option>
-                      <option value="verified">Verified</option>
-                      <option value="expired">Expired</option>
-                      <option value="inactive">Inactive</option>
-                    </select>
+                    <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">New service: inactive draft until source and contact verification.</p>
                   </div>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -1668,9 +1667,6 @@ const StaffDashboard = () => {
                 <div className="flex flex-col gap-2 sm:flex-row">
                   <Button disabled={pending} onClick={createServicePoint}>
                     Create service
-                  </Button>
-                  <Button disabled={pending} variant="outline" onClick={seedServices}>
-                    Seed QA services
                   </Button>
                 </div>
               </div>
@@ -1794,6 +1790,8 @@ const StaffDashboard = () => {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
+                      <textarea value={serviceDecisionReasons[service._id] ?? ""} onChange={(event) => setServiceDecisionReasons((current) => ({ ...current, [service._id]: event.target.value }))} className="min-h-[72px] rounded-xl border bg-white p-3 text-sm" placeholder="Verification or deactivation reason (10+ characters)" aria-label={`Decision reason for ${service.name}`} />
+                      {service.verificationStatus !== "verified" ? <><input value={serviceEvidence[service._id]?.source ?? service.source ?? ""} onChange={(event) => setServiceEvidence((current) => ({ ...current, [service._id]: { source: event.target.value, authority: current[service._id]?.authority ?? service.verifyingAuthority ?? "" } }))} className="h-11 rounded-xl border bg-white px-3 text-sm" placeholder="Checked source (official URL or named contact)" aria-label={`Checked source for ${service.name}`} /><input value={serviceEvidence[service._id]?.authority ?? service.verifyingAuthority ?? ""} onChange={(event) => setServiceEvidence((current) => ({ ...current, [service._id]: { source: current[service._id]?.source ?? service.source ?? "", authority: event.target.value } }))} className="h-11 rounded-xl border bg-white px-3 text-sm" placeholder="Verifying authority" aria-label={`Verifying authority for ${service.name}`} /><p className="text-xs text-neutral-500">A different LSF reviewer must confirm this source and the service contact.</p></> : null}
                       {service.verificationStatus !== "verified" && (
                         <Button disabled={pending} onClick={() => setServiceVerified(service._id)}>
                           Verify

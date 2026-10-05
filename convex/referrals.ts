@@ -4,6 +4,7 @@ import type { Doc } from "./_generated/dataModel";
 import { getActiveRoles, requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 import { assertCaseTransition, getActorRoleSet, requireCaseAccess, requireCaseWorker, writeAudit } from "./lib/hakiYangu";
 import { createNotification } from "./lib/notifications";
+import { isReferralOrganisationBlocked } from "./lib/directoryLifecycle";
 
 const referralStatus = v.union(
   v.literal("draft"),
@@ -255,11 +256,14 @@ export const staffQueue = query({
       : await ctx.db.query("referrals").order("desc").take(100);
     return await Promise.all(records.map(async (referral) => {
       const consent = referral.consentId ? await ctx.db.get(referral.consentId) : null;
+      const destinationService = await ctx.db.get(referral.destinationServiceId);
+      const destinationOrganisation = destinationService?.organizationId ? await ctx.db.get(destinationService.organizationId) : null;
       return {
         referral,
         case: await ctx.db.get(referral.caseId),
         beneficiary: await ctx.db.get(referral.beneficiaryId),
-        destinationService: await ctx.db.get(referral.destinationServiceId),
+        destinationService,
+        destinationUnavailable: !destinationService?.active || destinationService.verificationStatus !== "verified" || isReferralOrganisationBlocked(destinationOrganisation?.verificationStatus),
         destinationUser: referral.destinationUserId ? await ctx.db.get(referral.destinationUserId) : null,
         parentReferral: referral.parentReferralId ? await ctx.db.get(referral.parentReferralId) : null,
         onwardReferral: referral.onwardReferralId ? await ctx.db.get(referral.onwardReferralId) : null,
@@ -277,11 +281,14 @@ export const getForStaff = query({
     const referral = await ctx.db.get(args.referralId);
     if (!referral) return null;
     const consent = referral.consentId ? await ctx.db.get(referral.consentId) : null;
+    const destinationService = await ctx.db.get(referral.destinationServiceId);
+    const destinationOrganisation = destinationService?.organizationId ? await ctx.db.get(destinationService.organizationId) : null;
     return {
       referral,
       case: await ctx.db.get(referral.caseId),
       beneficiary: await ctx.db.get(referral.beneficiaryId),
-      destinationService: await ctx.db.get(referral.destinationServiceId),
+      destinationService,
+      destinationUnavailable: !destinationService?.active || destinationService.verificationStatus !== "verified" || isReferralOrganisationBlocked(destinationOrganisation?.verificationStatus),
       destinationUser: referral.destinationUserId ? await ctx.db.get(referral.destinationUserId) : null,
       consent,
       consentEvidenceUrl: consent?.evidenceStorageId ? await ctx.storage.getUrl(consent.evidenceStorageId) : null,
@@ -327,17 +334,20 @@ export const myDestinationQueue = query({
         .collect(),
     ))).flat();
 
-    return await Promise.all(records.filter((referral) => referral.status !== "awaiting_beneficiary_consent").map(async (referral) => ({
-      referral,
-      case: await ctx.db.get(referral.caseId),
-      destinationService: await ctx.db.get(referral.destinationServiceId),
-      onwardReferral: referral.onwardReferralId ? await ctx.db.get(referral.onwardReferralId) : null,
-      consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
-      events: await ctx.db
-        .query("referral_events")
-        .withIndex("by_referral_time", (q) => q.eq("referralId", referral._id))
-        .collect(),
-    })));
+    const visible = await Promise.all(records.filter((referral) => referral.status !== "awaiting_beneficiary_consent").map(async (referral) => {
+      const destinationService = await ctx.db.get(referral.destinationServiceId);
+      const destinationOrganisation = destinationService?.organizationId ? await ctx.db.get(destinationService.organizationId) : null;
+      if (isReferralOrganisationBlocked(destinationOrganisation?.verificationStatus)) return null;
+      return {
+        referral,
+        case: await ctx.db.get(referral.caseId),
+        destinationService,
+        onwardReferral: referral.onwardReferralId ? await ctx.db.get(referral.onwardReferralId) : null,
+        consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
+        events: await ctx.db.query("referral_events").withIndex("by_referral_time", (q) => q.eq("referralId", referral._id)).collect(),
+      };
+    }));
+    return visible.filter((item) => item !== null);
   },
 });
 
@@ -785,6 +795,11 @@ export const respondAsDestination = mutation({
     if (!referral) throw new ConvexError("Referral not found.");
     if (referral.destinationUserId !== user._id) {
       throw new ConvexError("Referral destination access denied.");
+    }
+    const destinationService = await ctx.db.get(referral.destinationServiceId);
+    const destinationOrganisation = destinationService?.organizationId ? await ctx.db.get(destinationService.organizationId) : null;
+    if (isReferralOrganisationBlocked(destinationOrganisation?.verificationStatus)) {
+      throw new ConvexError("This organisation is suspended or retired. LSF must review this referral before further provider action.");
     }
     if (!allowedTransitions[referral.status]?.includes(args.status)) {
       throw new ConvexError(`Referral cannot move from ${referral.status} to ${args.status}.`);

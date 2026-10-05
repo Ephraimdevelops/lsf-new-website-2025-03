@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useQuery } from 'convex/react';
+import { api } from '../../../convex/_generated/api';
 import { Star, Quote } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
@@ -8,56 +10,8 @@ const HakiYanguTestimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useIntersectionObserverCallback(setIsVisible, { threshold: 0.1 });
 
-  const testimonials = [
-    {
-      name: "Sarah Mwalimu",
-      location: "Dar es Salaam",
-      role: "Teacher",
-      rating: 5,
-      content: "Haki Yangu helped me understand my land rights when my family was facing eviction. The paralegal connected me with was so knowledgeable and supportive. I got the help I needed within hours.",
-      image: "/lovable-uploads/testimonial-1.jpg"
-    },
-    {
-      name: "Juma Kimaro",
-      location: "Arusha",
-      role: "Farmer",
-      rating: 5,
-      content: "As someone living in a remote village, I never thought I could access legal help. This app changed everything. Now I can get legal advice right from my phone, even without internet.",
-      image: "/lovable-uploads/testimonial-2.jpg"
-    },
-    {
-      name: "Grace Mwamba",
-      location: "Mwanza",
-      role: "Small Business Owner",
-      rating: 5,
-      content: "The document templates saved me thousands of shillings. I was able to create proper contracts for my business without hiring expensive lawyers. The app is a game-changer!",
-      image: "/lovable-uploads/testimonial-3.jpg"
-    },
-    {
-      name: "Ahmed Hassan",
-      location: "Zanzibar",
-      role: "Student",
-      rating: 5,
-      content: "The educational videos helped me understand my rights as a tenant. When my landlord tried to increase rent unfairly, I knew exactly what to do. Knowledge is power!",
-      image: "/lovable-uploads/testimonial-4.jpg"
-    },
-    {
-      name: "Mary Kisanga",
-      location: "Dodoma",
-      role: "Community Leader",
-      rating: 5,
-      content: "Our entire village now uses Haki Yangu. We've resolved so many disputes that used to divide our community. It's bringing peace and understanding to our people.",
-      image: "/lovable-uploads/testimonial-5.jpg"
-    },
-    {
-      name: "Peter Mwangi",
-      location: "Kilimanjaro",
-      role: "Driver",
-      rating: 5,
-      content: "When I had an accident and the insurance company was giving me trouble, Haki Yangu connected me with a legal expert who helped me get fair compensation. I'm forever grateful.",
-      image: "/lovable-uploads/testimonial-6.jpg"
-    }
-  ];
+  const testimonials = useQuery(api.testimonials.get) || [];
+  if (testimonials.length === 0) return null;
 
   return (
     <section 
@@ -93,7 +47,7 @@ const HakiYanguTestimonials = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div 
-                key={index}
+                key={testimonial._id}
                 className={`group transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >

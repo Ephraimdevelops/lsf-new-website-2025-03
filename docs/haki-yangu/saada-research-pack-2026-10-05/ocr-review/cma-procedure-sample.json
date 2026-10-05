@@ -1,0 +1,17 @@
+{
+  "engine" : "Apple Vision VNRecognizeTextRequest",
+  "pages" : [
+    {
+      "lineCount" : 27,
+      "lowConfidenceLineCount" : 0,
+      "meanLineConfidence" : 1,
+      "page" : 1,
+      "text" : "Labour Institutions (Mediation and Arbitration)\nGOVERNMENT NOTICE No. 64 published on 23\/3\/2007\nTHE LABOUR INSTITUTIONS, ACT,\n(No. 7 oF 2004)\nRULES\nMade under section 15(1)(e)\nTHE LABOUR INSTITUTIONS ES EDITION AND ARBITRATION)\nCitation\nTitle\nARRANGEMENT OF RULES\nPARTI\nTRELIMINARY PROVISIONS\n• Interpretatio\n• Citation and Commencemer\nPART II\nSERVICE AND FILING OF DOCUMENTS\n3. Opening hours of the offices of the Commission.\n. Calculation of time.\ns.\nSigning of documents.\nService of documents to other party.\n7.\nProof of service of document.\n8. Filing of documents with the Commission.\nDocuments and notices sent by registered post.\n10. Time limits for referring.\nIl. Seeking of condonation for documents delivered disputes late"
+    }
+  ],
+  "productionEligible" : false,
+  "recognitionLanguage" : "en-US",
+  "sourceFile" : "source-files\/cma-procedure.pdf",
+  "sourcePDFPageCount" : 19,
+  "status" : "machine_ocr_unverified"
+}

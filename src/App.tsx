@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
-import { useStoreUserEffect } from "@/hooks/useStoreUserEffect";
+import { AccountSyncProvider } from "@/hooks/useStoreUserEffect";
 import CookieConsent from "@/components/CookieConsent";
 
 import { lazyWithRetry } from "./utils/lazyRetry";
@@ -17,6 +17,9 @@ import Index from "./pages/Index";
 
 // Lazy load all other routes with retry logic for ChunkLoadErrors
 const About = lazyWithRetry(() => import("./pages/About"));
+const NewHomepage = lazyWithRetry(() => import("./pages/NewHomepage"));
+const HomepageConcept = lazyWithRetry(() => import("./pages/HomepageConcept"));
+const HomepageThree = lazyWithRetry(() => import("./pages/HomepageThree"));
 const BeneficiaryCase = lazyWithRetry(() => import("./pages/BeneficiaryCase"));
 const WhatWeDo = lazyWithRetry(() => import("./pages/WhatWeDo"));
 const Programs = lazyWithRetry(() => import("./pages/Programs"));
@@ -31,6 +34,14 @@ const News = lazyWithRetry(() => import("./pages/News"));
 const Publications = lazyWithRetry(() => import("./pages/Publications"));
 const Resources = lazyWithRetry(() => import("./pages/Resources"));
 const LegalHelp = lazyWithRetry(() => import("./pages/LegalHelp"));
+const FindHelp = lazyWithRetry(() => import("./pages/FindHelp"));
+const ServiceDetail = lazyWithRetry(() => import("./pages/ServiceDetail"));
+const KnowYourRights = lazyWithRetry(() => import("./pages/KnowYourRights"));
+const RequestHelp = lazyWithRetry(() => import("./pages/RequestHelp"));
+const SavedHelp = lazyWithRetry(() => import("./pages/SavedHelp"));
+const BeneficiaryDocuments = lazyWithRetry(() => import("./pages/BeneficiaryDocuments"));
+const ReportingWorkspace = lazyWithRetry(() => import("./pages/ReportingWorkspace"));
+const BeneficiaryRequest = lazyWithRetry(() => import("./pages/BeneficiaryRequest"));
 const Impact = lazyWithRetry(() => import("./pages/Impact"));
 const GrantMaking = lazyWithRetry(() => import("./pages/GrantMaking"));
 const CapacityBuilding = lazyWithRetry(() => import("./pages/CapacityBuilding"));
@@ -70,12 +81,17 @@ const Cookies = lazyWithRetry(() => import("./pages/Cookies"));
 const Accessibility = lazyWithRetry(() => import("./pages/Accessibility"));
 const StaffDashboard = lazyWithRetry(() => import("./pages/StaffDashboard"));
 const ParalegalDashboard = lazyWithRetry(() => import("./pages/ParalegalDashboard"));
+const ParalegalLearning = lazyWithRetry(() => import("./pages/ParalegalLearning"));
+const TrainingManagement = lazyWithRetry(() => import("./pages/TrainingManagement"));
+const SaadaEvaluations = lazyWithRetry(() => import("./pages/SaadaEvaluations"));
+const ProviderOrganisation = lazyWithRetry(() => import("./pages/ProviderOrganisation"));
 const ParalegalSignup = lazyWithRetry(() => import("./pages/ParalegalSignup"));
 const ParalegalLogin = lazyWithRetry(() => import("./pages/ParalegalLogin"));
 const ParalegalSignupAuth = lazyWithRetry(() => import("./pages/ParalegalSignupAuth"));
 const StakeholderDashboard = lazyWithRetry(() => import("./pages/StakeholderDashboard"));
 const UserDashboard = lazyWithRetry(() => import("./pages/UserDashboard"));
 const ProfileSettings = lazyWithRetry(() => import("./pages/ProfileSettings"));
+const NotificationCenter = lazyWithRetry(() => import("./pages/NotificationCenter"));
 const Signup = lazyWithRetry(() => import("./pages/Signup"));
 const Login = lazyWithRetry(() => import("./pages/Login"));
 const Join = lazyWithRetry(() => import("./pages/Join"));
@@ -83,6 +99,12 @@ const LSFChatbotFullPage = lazyWithRetry(() => import("./components/shared/chatb
 const Connect = lazyWithRetry(() => import("./pages/Connect"));
 const LinksManager = lazyWithRetry(() => import("./pages/admin/LinksManager"));
 const SaraTrain = lazyWithRetry(() => import("./pages/SaraTrain"));
+const EditorialDashboard = lazyWithRetry(() => import("./pages/EditorialDashboard"));
+const LegalGuideReview = lazyWithRetry(() => import("./pages/LegalGuideReview"));
+const AccessRequestReview = lazyWithRetry(() => import("./pages/AccessRequestReview"));
+const ParalegalReviewQueue = lazyWithRetry(() => import("./pages/ParalegalReviewQueue"));
+const ParalegalReviewDetail = lazyWithRetry(() => import("./pages/ParalegalReviewDetail"));
+const SafeguardingDashboard = lazyWithRetry(() => import("./pages/SafeguardingDashboard"));
 
 // Loading component
 const PageLoader = () => (
@@ -96,8 +118,7 @@ const PageLoader = () => (
 
 // Auth sync wrapper - syncs Clerk users to Convex
 const AuthSync = ({ children }: { children: React.ReactNode }) => {
-  useStoreUserEffect();
-  return <>{children}</>;
+  return <AccountSyncProvider>{children}</AccountSyncProvider>;
 };
 
 const queryClient = new QueryClient();
@@ -114,6 +135,10 @@ function App() {
                   <Suspense fallback={<PageLoader />}>
                     <Routes>
                       <Route path="/" element={<Index />} />
+                      <Route path="/new-homepage" element={<NewHomepage />} />
+                      <Route path="/new-homepage01" element={<HomepageConcept variant={1} />} />
+                      <Route path="/new-homepage02" element={<HomepageConcept variant={2} />} />
+                      <Route path="/new-homepage03" element={<HomepageThree />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/what-we-do" element={<WhatWeDo />} />
                       <Route path="/strategic-focuses" element={<StrategicFocuses />} />
@@ -165,13 +190,62 @@ function App() {
                         </ProtectedRoute>
                       } />
                       <Route path="/dashboard/staff" element={
-                        <ProtectedRoute allowedRoles={["admin", "supervisor", "staff", "safeguarding_officer"]}>
+                        <ProtectedRoute allowedRoles={["admin", "supervisor", "staff"]}>
                           <StaffDashboard />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/access-requests/:id" element={
+                        <ProtectedRoute allowedRoles={["admin"]}><AccessRequestReview /></ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/paralegal-reviews" element={
+                        <ProtectedRoute allowedRoles={["admin", "staff"]}><ParalegalReviewQueue /></ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/paralegal-reviews/:id" element={
+                        <ProtectedRoute allowedRoles={["admin", "staff"]}><ParalegalReviewDetail /></ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/safeguarding" element={
+                        <ProtectedRoute allowedRoles={["admin", "supervisor", "staff", "safeguarding_officer"]}>
+                          <SafeguardingDashboard />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/reporting" element={
+                        <ProtectedRoute allowedRoles={["admin", "supervisor", "staff"]}>
+                          <ReportingWorkspace />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/training-management" element={
+                        <ProtectedRoute allowedRoles={["admin", "staff"]}>
+                          <TrainingManagement />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/saada-evaluations" element={
+                        <ProtectedRoute allowedRoles={["admin", "staff"]}>
+                          <SaadaEvaluations />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/editorial" element={
+                        <ProtectedRoute allowedRoles={["admin", "content_editor"]}>
+                          <EditorialDashboard />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/editorial/review/:id" element={
+                        <ProtectedRoute allowedRoles={["admin", "content_editor"]}>
+                          <LegalGuideReview />
                         </ProtectedRoute>
                       } />
                       <Route path="/dashboard/paralegal" element={
                         <ProtectedRoute allowedRoles={["paralegal", "provider_staff"]}>
                           <ParalegalDashboard />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/paralegal/learning" element={
+                        <ProtectedRoute allowedRoles={["paralegal"]}>
+                          <ParalegalLearning />
+                        </ProtectedRoute>
+                      } />
+                      <Route path="/dashboard/provider/organisation" element={
+                        <ProtectedRoute allowedRoles={["paralegal", "provider_staff"]}>
+                          <ProviderOrganisation />
                         </ProtectedRoute>
                       } />
                       <Route path="/dashboard/stakeholder" element={
@@ -180,17 +254,26 @@ function App() {
                         </ProtectedRoute>
                       } />
                       <Route path="/dashboard/user/cases/:id" element={<ProtectedRoute allowedRoles={["user"]}><BeneficiaryCase /></ProtectedRoute>} />
+                      <Route path="/dashboard/user/requests/:id" element={<ProtectedRoute allowedRoles={["user"]}><BeneficiaryRequest /></ProtectedRoute>} />
+                      <Route path="/dashboard/user/saved-help" element={<ProtectedRoute allowedRoles={["user"]}><SavedHelp /></ProtectedRoute>} />
+                      <Route path="/dashboard/user/documents" element={<ProtectedRoute allowedRoles={["user"]}><BeneficiaryDocuments /></ProtectedRoute>} />
                       <Route path="/dashboard/user" element={
                         <ProtectedRoute allowedRoles={["user"]}>
                           <UserDashboard />
                         </ProtectedRoute>
                       } />
-                      <Route path="/profile" element={<ProfileSettings />} />
+                      <Route path="/profile" element={<ProtectedRoute><ProfileSettings /></ProtectedRoute>} />
+                      <Route path="/notifications" element={<ProtectedRoute><NotificationCenter /></ProtectedRoute>} />
                       <Route path="/bookmarks" element={<Bookmarks />} />
                       <Route path="/become-a-paralegal" element={<ParalegalSignup />} />
                       <Route path="/whistleblower" element={<Whistleblower />} />
                       <Route path="/faq" element={<FAQ />} />
                       <Route path="/haki-yangu" element={<HakiYangu />} />
+                      <Route path="/find-help" element={<FindHelp />} />
+                      <Route path="/find-help/:id" element={<ServiceDetail />} />
+                      <Route path="/know-your-rights" element={<KnowYourRights />} />
+                      <Route path="/know-your-rights/:id" element={<KnowYourRights />} />
+                      <Route path="/request-help" element={<RequestHelp />} />
                       <Route path="/sara-ai" element={<SaraAI />} />
                       <Route path="/sara" element={<SaraAI />} />
                       <Route path="/sara/train" element={

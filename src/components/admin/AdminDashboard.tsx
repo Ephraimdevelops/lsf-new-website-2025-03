@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Home,
   FileText,
@@ -16,6 +16,7 @@ import {
   MessageSquare,
   Scale,
   Bot,
+  Bell,
   ShieldCheck
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -28,6 +29,7 @@ import AdminSettings from './AdminSettings';
 import AdminHeroSlides from './AdminHeroSlides';
 import EnhancedAnalyticsDashboard from './EnhancedAnalyticsDashboard';
 import AdminStories from './AdminStories';
+import AdminTestimonials from './AdminTestimonials';
 import AdminNewsletter from './AdminNewsletter';
 import AdminFormSubmissions from './AdminFormSubmissions';
 import AdminParalegals from './AdminParalegals';
@@ -35,24 +37,32 @@ import AdminSaraAnalytics from './AdminSaraAnalytics';
 import AdminTeam from './AdminTeam';
 import AdminAccess from './AdminAccess';
 import AdminPlatform from './AdminPlatform';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface AdminDashboardProps {
   onLogout: () => void;
 }
 
 const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
-  const [activeTab, setActiveTab] = useState('home');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get('tab') === 'platform' ? 'home' : searchParams.get('tab') ?? 'home';
+  const setActiveTab = (next: string) => setSearchParams((current) => {
+    const updated = new URLSearchParams(current);
+    updated.set('tab', next);
+    return updated;
+  });
   const navigate = useNavigate();
 
   const menuItems = [
-    { id: 'home', label: 'Dashboard', icon: Home },
-    { id: 'platform', label: 'Haki Yangu Platform', icon: ShieldCheck },
+    { id: 'home', label: 'LSF control centre', icon: ShieldCheck },
     { id: 'haki-yangu-ops', label: 'Haki Yangu Ops', icon: Scale },
+    { id: 'notifications', label: 'Updates', icon: Bell },
     { id: 'access', label: 'Users & Access', icon: Users },
+    { id: 'website', label: 'Website overview', icon: Home },
     { id: 'hero-slides', label: 'Hero Slides', icon: Presentation },
     { id: 'news', label: 'News', icon: FileText },
     { id: 'stories', label: 'Success Stories', icon: Heart },
+    { id: 'testimonials', label: 'Testimonials', icon: MessageSquare },
     { id: 'publications', label: 'Publications', icon: BookOpen },
     { id: 'opportunities', label: 'Opportunities', icon: Briefcase },
     { id: 'newsletter', label: 'Newsletter', icon: Mail },
@@ -67,6 +77,8 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
   const renderContent = () => {
     switch (activeTab) {
       case 'home':
+        return <AdminPlatform openTab={setActiveTab} navigate={navigate} />;
+      case 'website':
         return <AdminHome />;
       case 'access':
         return <AdminAccess />;
@@ -78,6 +90,8 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         return <AdminNews />;
       case 'stories':
         return <AdminStories />;
+      case 'testimonials':
+        return <AdminTestimonials />;
       case 'publications':
         return <AdminPublications />;
       case 'opportunities':
@@ -97,14 +111,14 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
       case 'settings':
         return <AdminSettings />;
       default:
-        return <AdminHome />;
+        return <AdminPlatform openTab={setActiveTab} navigate={navigate} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <div className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50">
+      <div className="fixed inset-y-0 left-0 hidden w-64 bg-white shadow-lg z-50 md:block">
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-center h-16 border-b border-gray-200">
@@ -119,7 +133,7 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
                 return (
                   <li key={item.id}>
                     <button
-                      onClick={() => item.id === 'haki-yangu-ops' ? navigate('/dashboard/staff') : setActiveTab(item.id)}
+                      onClick={() => item.id === 'haki-yangu-ops' ? navigate('/dashboard/staff') : item.id === 'notifications' ? navigate('/notifications') : setActiveTab(item.id)}
                       className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-colors duration-200 ${activeTab === item.id
                         ? 'bg-primary text-white'
                         : 'text-gray-600 hover:bg-gray-100'
@@ -149,8 +163,9 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
       </div>
 
       {/* Main content */}
-      <div className="ml-64">
-        <div className="p-8">
+      <div className="md:ml-64">
+        <div className="border-b bg-white p-3 md:hidden"><label className="block text-sm font-semibold text-gray-800">LSF workspace<select aria-label="LSF workspace" value={activeTab} onChange={(event) => event.target.value === 'haki-yangu-ops' ? navigate('/dashboard/staff') : event.target.value === 'notifications' ? navigate('/notifications') : setActiveTab(event.target.value)} className="mt-2 w-full rounded-xl border p-3">{menuItems.filter((item) => item.id !== 'haki-yangu-ops').map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label><Button onClick={onLogout} variant="outline" className="mt-3 w-full">Sign out</Button></div>
+        <div className="p-4 md:p-8">
           {renderContent()}
         </div>
       </div>

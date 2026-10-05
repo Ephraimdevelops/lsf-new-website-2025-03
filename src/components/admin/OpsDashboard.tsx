@@ -55,7 +55,7 @@ const OpsDashboard = () => {
                         )}
                         <div>
                             <p className={`text-2xl font-bold ${budget.isLocked ? 'text-red-700' : 'text-green-700'}`}>
-                                {budget.isLocked ? 'LOCKED' : 'Active'}
+                                {budget.isLocked ? 'LOCKED' : 'Within configured limit'}
                             </p>
                             <p className="text-sm text-gray-600">
                                 ${budget.usage.toFixed(2)} / ${budget.limit.toFixed(2)}
@@ -77,7 +77,7 @@ const OpsDashboard = () => {
                     <div className="flex flex-col gap-3">
                         <div className="flex items-center justify-between">
                             <span className={`font-bold ${systemStatus.isMaintenance ? 'text-red-600' : 'text-green-600'}`}>
-                                {systemStatus.isMaintenance ? 'MAINTENANCE MODE' : 'OPERATIONAL'}
+                                {systemStatus.isMaintenance ? 'MAINTENANCE MODE' : 'ENABLED — READINESS UNVERIFIED'}
                             </span>
                         </div>
                         <Button
@@ -85,8 +85,9 @@ const OpsDashboard = () => {
                             onClick={handleKillSwitch}
                             className="w-full font-bold"
                         >
-                            {systemStatus.isMaintenance ? "RESTORE SYSTEM (Go Live)" : "KILL SWITCH (Emergency Stop)"}
+                            {systemStatus.isMaintenance ? "ENABLE SAADA" : "PAUSE SAADA"}
                         </Button>
+                        <p className="text-xs text-gray-600">This switch does not approve sources or confirm model uptime.</p>
                     </div>
                 </CardContent>
             </Card>
@@ -103,7 +104,7 @@ const OpsDashboard = () => {
                     {staleDocs.length === 0 ? (
                         <div className="flex items-center gap-2 text-green-600">
                             <CheckCircle className="h-5 w-5" />
-                            <span className="text-sm font-medium">All content is fresh</span>
+                            <span className="text-sm font-medium">No stale records in this check; approval is separate</span>
                         </div>
                     ) : (
                         <div className="max-h-24 overflow-y-auto space-y-2 pr-2">

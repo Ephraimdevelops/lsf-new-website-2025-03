@@ -7,7 +7,7 @@ import { colors, radius, spacing, type } from "../src/theme";
 
 const supportActions = [
   { key: "request", icon: "document-text-outline", route: "/intake", sw: "Omba msaada", en: "Request help", swHelp: "Tuma maelezo ya tatizo lako kwa LSF.", enHelp: "Send your issue details to LSF." },
-  { key: "sara", icon: "sparkles-outline", route: "/sara", sw: "Uliza Saada", en: "Ask Saada", swHelp: "Pata taarifa rahisi na hatua zinazofuata.", enHelp: "Get simple information and next steps." },
+  { key: "sara", icon: "sparkles-outline", route: "/sara", sw: "Haki Yangu AI", en: "Haki Yangu AI", swHelp: "Pata taarifa rahisi na hatua zinazofuata.", enHelp: "Get simple information and next steps." },
   { key: "safety", icon: "warning-outline", route: "/safety", sw: "Mpango wa usalama", en: "Safety plan", swHelp: "Anza hapa kama hali ni nyeti au hatari.", enHelp: "Start here if the situation is sensitive or unsafe." },
   { key: "learn", icon: "book-outline", route: "/(tabs)/learn", sw: "Soma miongozo", en: "Read guides", swHelp: "Elewa haki zako kwa lugha rahisi.", enHelp: "Understand your rights in plain language." },
 ] as const;

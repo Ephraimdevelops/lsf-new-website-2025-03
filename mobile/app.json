@@ -30,6 +30,19 @@
       "expo-localization",
       "expo-font",
       [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Haki Yangu to select your profile and cover photos.",
+          "cameraPermission": false,
+          "microphonePermission": false,
+          "colors": {
+            "cropToolbarColor": "#8A1538",
+            "cropToolbarIconColor": "#FFFFFF",
+            "cropToolbarActionTextColor": "#FFFFFF"
+          }
+        }
+      ],
+      [
         "expo-notifications",
         {
           "color": "#8A1538",

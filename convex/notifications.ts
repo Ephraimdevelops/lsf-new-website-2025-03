@@ -3,6 +3,8 @@ import { internalAction, internalMutation, internalQuery, mutation, query } from
 import { internal } from "./_generated/api";
 import { requireAuthenticatedUser } from "./lib/auth";
 import { normalizeOptionalText, normalizeText } from "./lib/security";
+import { allowsCasePushToBeneficiary } from "./lib/safeContact";
+import type { Id } from "./_generated/dataModel";
 
 const preferencesValidator = v.object({
   cases: v.boolean(),
@@ -13,6 +15,7 @@ const preferencesValidator = v.object({
 });
 
 const defaultPreferences = {
+  pushEnabled: false,
   cases: true,
   messages: true,
   appointments: true,
@@ -55,7 +58,7 @@ function notificationCategory(type: string) {
   if (type.startsWith("message.")) return "messages" as const;
   if (type.startsWith("appointment.")) return "appointments" as const;
   if (type.startsWith("document.")) return "documents" as const;
-  if (type.startsWith("case.") || type.startsWith("assignment.") || type.startsWith("request.")) return "cases" as const;
+  if (type.startsWith("case.") || type.startsWith("assignment.") || type.startsWith("request.") || type.startsWith("referral.")) return "cases" as const;
   return "service" as const;
 }
 
@@ -129,8 +132,27 @@ export const updatePreferences = mutation({
     return await ctx.db.insert("notification_preferences", {
       userId: user._id,
       ...args.preferences,
+      pushEnabled: false,
       updatedAt: now,
     });
+  },
+});
+
+export const setPushEnabled = mutation({
+  args: { enabled: v.boolean() },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const now = Date.now();
+    const existing = await ctx.db.query("notification_preferences")
+      .withIndex("by_user", (q) => q.eq("userId", user._id)).unique();
+    if (existing) await ctx.db.patch(existing._id, { pushEnabled: args.enabled, updatedAt: now });
+    else await ctx.db.insert("notification_preferences", { userId: user._id, ...defaultPreferences, pushEnabled: args.enabled, updatedAt: now });
+    if (!args.enabled) {
+      const subscriptions = await ctx.db.query("push_subscriptions")
+        .withIndex("by_user", (q) => q.eq("userId", user._id)).collect();
+      for (const subscription of subscriptions) await ctx.db.patch(subscription._id, { enabled: false, updatedAt: now });
+    }
+    return { enabled: args.enabled };
   },
 });
 
@@ -139,9 +161,13 @@ export const registerPushToken = mutation({
     token: v.string(),
     platform: v.optional(v.string()),
     projectId: v.optional(v.string()),
+    enabled: v.boolean(),
   },
   handler: async (ctx, args) => {
     const { user } = await requireAuthenticatedUser(ctx);
+    const preferences = await ctx.db.query("notification_preferences")
+      .withIndex("by_user", (q) => q.eq("userId", user._id)).unique();
+    if (args.enabled && preferences?.pushEnabled !== true) throw new ConvexError("Turn on external alerts before registering a push token.");
     const token = normalizeText(args.token, "Push token", 300);
     if (!token.startsWith("ExponentPushToken[")) {
       throw new ConvexError({ code: "VALIDATION", message: "Unsupported push token" });
@@ -155,7 +181,7 @@ export const registerPushToken = mutation({
       userId: user._id,
       platform: normalizeOptionalText(args.platform, "Platform", 40),
       projectId: normalizeOptionalText(args.projectId, "Project ID", 80),
-      enabled: true,
+      enabled: args.enabled,
       updatedAt: now,
       lastSeenAt: now,
     };
@@ -168,6 +194,18 @@ export const registerPushToken = mutation({
       ...patch,
       createdAt: now,
     });
+  },
+});
+
+export const disableMyPushTokens = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const subscriptions = await ctx.db.query("push_subscriptions")
+      .withIndex("by_user", (q) => q.eq("userId", user._id)).collect();
+    const now = Date.now();
+    for (const subscription of subscriptions) await ctx.db.patch(subscription._id, { enabled: false, updatedAt: now });
+    return { disabled: subscriptions.length };
   },
 });
 
@@ -198,12 +236,48 @@ export const pushDeliveryPayload = internalQuery({
     const notification = await ctx.db.get(args.notificationId);
     if (!notification) return null;
 
+    const recipient = await ctx.db.get(notification.userId);
+    if (!recipient || recipient.isDeleted) {
+      return { notification, subscriptions: [], skippedReason: "account-unavailable" };
+    }
+
+    let request = null;
+    let missingContext = false;
+    if (notification.resourceId && notification.resourceType === "legal_help_request") {
+      request = await ctx.db.get(notification.resourceId as Id<"legal_help_requests">);
+      missingContext = !request;
+    } else if (notification.resourceId && ["case", "case_appointment", "case_review_request"].includes(notification.resourceType ?? "")) {
+      let caseId: Id<"cases"> | undefined;
+      if (notification.resourceType === "case") caseId = notification.resourceId as Id<"cases">;
+      if (notification.resourceType === "case_appointment") {
+        const appointment = await ctx.db.get(notification.resourceId as Id<"case_appointments">);
+        caseId = appointment?.caseId;
+      }
+      if (notification.resourceType === "case_review_request") {
+        const review = await ctx.db.get(notification.resourceId as Id<"case_review_requests">);
+        caseId = review?.caseId;
+      }
+      const caseRecord = caseId ? await ctx.db.get(caseId) : null;
+      missingContext = !caseRecord;
+      if (caseRecord?.beneficiaryId === notification.userId) {
+        request = await ctx.db.get(caseRecord.sourceRequestId);
+        missingContext = !request;
+      }
+    }
+    if (missingContext) return { notification, subscriptions: [], skippedReason: "case-context-unavailable" };
+    if (request?.ownerId === notification.userId && !allowsCasePushToBeneficiary(request.safeContactMethod)) {
+      return { notification, subscriptions: [], skippedReason: "safe-contact-in-app-only" };
+    }
+
     const category = notificationCategory(notification.type);
     const preferences = await ctx.db
       .query("notification_preferences")
       .withIndex("by_user", (q) => q.eq("userId", notification.userId))
       .unique();
     const mergedPreferences = preferences ?? defaultPreferences;
+    if (mergedPreferences.pushEnabled !== true) {
+      return { notification, subscriptions: [], skippedReason: "push-not-enabled" };
+    }
     if (!mergedPreferences[category]) {
       return { notification, subscriptions: [], skippedReason: "preference-disabled" };
     }
@@ -292,9 +366,6 @@ export const deliverPushForNotification = internalAction({
             body: copy.body,
             data: {
               notificationId: notification._id,
-              type: notification.type,
-              resourceType: notification.resourceType,
-              resourceId: notification.resourceId,
             },
             sound: "default",
             priority: "default",

@@ -1,10 +1,12 @@
 import { ConvexError, v } from "convex/values";
-import type { Id } from "./_generated/dataModel";
+import { paginationOptsValidator } from "convex/server";
+import type { Doc, Id } from "./_generated/dataModel";
 import { internalMutation, mutation, query } from "./_generated/server";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
 import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 import {
   assertCaseTransition,
+  canAccessCaseParticipant,
   getActorRoleSet,
   requireCaseAccess,
   requireCaseWorker,
@@ -12,6 +14,9 @@ import {
 } from "./lib/hakiYangu";
 import { createNotification } from "./lib/notifications";
 import { assertAllowedUpload, normalizeOptionalText, normalizeText } from "./lib/security";
+import { canClassifyIndependentParalegal, requireIndependentLegacyScopeReview } from "./lib/caseParticipantAccess";
+import { isParalegalReady } from "./lib/paralegalAccess";
+import { isSameCaseRetry } from "./lib/caseRetry";
 
 const caseStatusValidator = v.union(
   v.literal("under_review"),
@@ -67,6 +72,19 @@ const ASSIGNMENT_EXPIRY_BATCH_LIMIT = 50;
 const APPOINTMENT_REMINDER_WINDOW_MS = 24 * 60 * 60 * 1000;
 const APPOINTMENT_REMINDER_BATCH_LIMIT = 100;
 const operationalReviewRoles = ["admin", "staff", "supervisor", "safeguarding_officer"] as const;
+
+async function accessibleParticipantLinks(ctx: QueryCtx, userId: Id<"users">, links: Doc<"case_participants">[]) {
+  const roles = await getActorRoleSet(ctx, userId);
+  const checks = await Promise.all(links.map((link) => canAccessCaseParticipant(ctx, link, roles)));
+  return links.filter((_, index) => checks[index]);
+}
+
+async function canNotifyCaseParticipant(ctx: MutationCtx, participant: Doc<"case_participants">) {
+  const user = await ctx.db.get(participant.userId);
+  if (!user || user.isDeleted) return false;
+  const roles = await getActorRoleSet(ctx, user._id);
+  return await canAccessCaseParticipant(ctx, participant, roles);
+}
 
 function publicReference(prefix: string, id: string, now: number) {
   const date = new Date(now).toISOString().slice(0, 10).replaceAll("-", "");
@@ -204,7 +222,8 @@ export const myCases = query({
       .withIndex("by_user", (q) => q.eq("userId", user._id))
       .filter((q) => q.eq(q.field("status"), "active"))
       .collect();
-    const participantCases = await Promise.all(participantLinks.map((link) => ctx.db.get(link.caseId)));
+    const allowedLinks = await accessibleParticipantLinks(ctx, user._id, participantLinks);
+    const participantCases = await Promise.all(allowedLinks.map((link) => ctx.db.get(link.caseId)));
     const merged = new Map(owned.map((record) => [record._id, record]));
     for (const record of participantCases) if (record) merged.set(record._id, record);
     return [...merged.values()].sort((a, b) => b.updatedAt - a.updatedAt);
@@ -224,7 +243,8 @@ export const myConversations = query({
       .withIndex("by_user", (q) => q.eq("userId", user._id))
       .filter((q) => q.eq(q.field("status"), "active"))
       .collect();
-    const participantCases = await Promise.all(participantLinks.map((link) => ctx.db.get(link.caseId)));
+    const allowedLinks = await accessibleParticipantLinks(ctx, user._id, participantLinks);
+    const participantCases = await Promise.all(allowedLinks.map((link) => ctx.db.get(link.caseId)));
     const records = new Map(owned.map((record) => [record._id, record]));
     for (const record of participantCases) if (record) records.set(record._id, record);
 
@@ -275,7 +295,8 @@ export const staffCaseQueue = query({
       .withIndex("by_user", (q) => q.eq("userId", user._id))
       .filter((q) => q.eq(q.field("status"), "active"))
       .collect();
-    const records = await Promise.all(links.map((link) => ctx.db.get(link.caseId)));
+    const allowedLinks = await accessibleParticipantLinks(ctx, user._id, links);
+    const records = await Promise.all(allowedLinks.map((link) => ctx.db.get(link.caseId)));
     return records.filter((record) => record !== null).sort((a, b) => b.updatedAt - a.updatedAt);
   },
 });
@@ -296,8 +317,9 @@ export const serviceProviders = query({
       if (!provider || provider.isDeleted) return null;
       const [roles, profile] = await Promise.all([
         getActorRoleSet(ctx, provider._id),
-        ctx.db.query("paralegal_applications").withIndex("by_email", (q) => q.eq("email", provider.email.toLowerCase())).first(),
+        ctx.db.query("paralegal_applications").withIndex("by_email", (q) => q.eq("email", provider.email.toLowerCase())).order("desc").first(),
       ]);
+      if (!roles.has("provider_staff") && !isParalegalReady(profile)) return null;
       return {
         id: provider._id,
         name: provider.name,
@@ -308,6 +330,68 @@ export const serviceProviders = query({
       };
     }));
     return providers.filter((provider) => provider !== null).sort((a, b) => a.name.localeCompare(b.name));
+  },
+});
+
+export const legacyCaseScopeQueuePage = query({
+  args: { role: v.union(v.literal("paralegal"), v.literal("provider_staff")), paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin"]);
+    const page = await ctx.db.query("case_participants")
+      .withIndex("by_role_scope_review_status", (q) => q.eq("role", args.role).eq("organizationId", undefined).eq("scopeReviewDecision", undefined).eq("status", "active"))
+      .paginate(args.paginationOpts);
+    return {
+      ...page,
+      page: await Promise.all(page.page.map(async (participant) => {
+        const [worker, caseRecord, affiliations, hasOrganisationMembership] = await Promise.all([
+          ctx.db.get(participant.userId),
+          ctx.db.get(participant.caseId),
+          getAssignableAffiliations(ctx, participant.userId),
+          hasProfessionalOrganisationMembership(ctx, participant.userId),
+        ]);
+        return { participant, workerName: worker?.name ?? worker?.email ?? "—", workerEmail: worker?.email ?? "", casePublicId: caseRecord?.publicId ?? "—", caseStatus: caseRecord?.status ?? "unknown", affiliations, canMarkIndependent: canClassifyIndependentParalegal(participant.role, worker?.role ?? "", hasOrganisationMembership) };
+      })),
+    };
+  },
+});
+
+export const reviewLegacyCaseScope = mutation({
+  args: {
+    participantId: v.id("case_participants"),
+    decision: v.union(v.literal("organisation"), v.literal("independent")),
+    organizationId: v.optional(v.id("justice_service_organizations")),
+    professionalRole: v.optional(v.union(v.literal("paralegal"), v.literal("provider_staff"))),
+    reason: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const { user: reviewer } = await requireAnyRole(ctx, ["admin"]);
+    const participant = await ctx.db.get(args.participantId);
+    if (!participant || participant.status !== "active" || !["paralegal", "provider_staff"].includes(participant.role) || participant.organizationId || participant.scopeReviewDecision) throw new ConvexError("This legacy participant no longer needs scope review.");
+    requireIndependentLegacyScopeReview(reviewer._id, participant.addedBy, participant.userId);
+    const reason = args.reason.trim();
+    if (reason.length < 15 || reason.length > 1000) throw new ConvexError("Record a 15–1000 character evidence-based reason.");
+    const worker = await ctx.db.get(participant.userId);
+    if (!worker || worker.isDeleted) throw new ConvexError("Worker account is unavailable.");
+    let organizationId: Id<"justice_service_organizations"> | undefined;
+    let professionalRole: "paralegal" | "provider_staff" = participant.role as "paralegal" | "provider_staff";
+    if (args.decision === "organisation") {
+      if (!args.organizationId || !args.professionalRole) throw new ConvexError("Choose the verified organisation and matching worker role.");
+      const affiliations = await getAssignableAffiliations(ctx, worker._id);
+      if (!affiliations.some((item) => item.organizationId === args.organizationId && item.role === args.professionalRole)) throw new ConvexError("This worker has no active verified affiliation with the selected organisation and role.");
+      organizationId = args.organizationId;
+      professionalRole = args.professionalRole;
+    } else {
+      if (args.organizationId || args.professionalRole) throw new ConvexError("Independent review cannot specify an organisation.");
+      if (!canClassifyIndependentParalegal(participant.role, worker.role, await hasProfessionalOrganisationMembership(ctx, worker._id))) throw new ConvexError("Only a paralegal with no active organisation membership can be reviewed as independent.");
+    }
+    const now = Date.now();
+    await ctx.db.patch(participant._id, { organizationId, role: professionalRole, scopeReviewDecision: args.decision, scopeReviewedBy: reviewer._id, scopeReviewedAt: now, scopeReviewReason: reason });
+    const assignments = await ctx.db.query("case_assignments").withIndex("by_case", (q) => q.eq("caseId", participant.caseId)).collect();
+    for (const assignment of assignments.filter((item) => item.assigneeId === participant.userId && item.status === "accepted")) {
+      await ctx.db.patch(assignment._id, { organizationId, assigneeRole: professionalRole });
+    }
+    await writeAudit(ctx, reviewer._id, "case.legacy_scope_reviewed", "case_participant", participant._id, { caseId: participant.caseId, workerId: participant.userId, decision: args.decision, organizationId, professionalRole, reason });
+    return { participantId: participant._id, decision: args.decision };
   },
 });
 
@@ -474,6 +558,52 @@ async function requireAssignableAvailability(
   };
 }
 
+async function getAssignableAffiliations(ctx: QueryCtx | MutationCtx, assigneeId: Id<"users">) {
+  const assignments = await ctx.db.query("role_assignments").withIndex("by_user_status", (q) => q.eq("userId", assigneeId).eq("status", "active")).collect();
+  const memberships = await Promise.all(assignments.filter((item) => (item.role === "paralegal" || item.role === "provider_staff") && item.organizationId).map(async (item) => {
+    const organizationId = ctx.db.normalizeId("justice_service_organizations", item.organizationId!);
+    const organisation = organizationId ? await ctx.db.get(organizationId) : null;
+    return organisation?.verificationStatus === "verified" ? { organizationId: organisation._id, organizationName: organisation.name, role: item.role as "paralegal" | "provider_staff" } : null;
+  }));
+  const byOrganisation = new Map<string, NonNullable<(typeof memberships)[number]>>();
+  for (const membership of memberships) if (membership && (!byOrganisation.has(membership.organizationId) || membership.role === "provider_staff")) byOrganisation.set(membership.organizationId, membership);
+  return [...byOrganisation.values()];
+}
+
+async function hasProfessionalOrganisationMembership(ctx: QueryCtx | MutationCtx, assigneeId: Id<"users">) {
+  const assignments = await ctx.db.query("role_assignments").withIndex("by_user_status", (q) => q.eq("userId", assigneeId).eq("status", "active")).collect();
+  return assignments.some((item) => (item.role === "paralegal" || item.role === "provider_staff") && item.organizationId);
+}
+
+async function resolveAssignmentScope(ctx: MutationCtx, assigneeId: Id<"users">, selectedOrganizationId?: Id<"justice_service_organizations">) {
+  const assignee = await ctx.db.get(assigneeId);
+  if (!assignee || assignee.isDeleted) throw new ConvexError("Assignee account is unavailable.");
+  const affiliations = await getAssignableAffiliations(ctx, assigneeId);
+  if (selectedOrganizationId) {
+    const selected = affiliations.find((item) => item.organizationId === selectedOrganizationId);
+    if (!selected) throw new ConvexError("The selected organisation is not a current verified affiliation for this worker.");
+    if (selected.role === "paralegal") await requireParalegalReadiness(ctx, assigneeId);
+    return { organizationId: selected.organizationId, assigneeRole: selected.role };
+  }
+  if (affiliations.length === 1) {
+    if (affiliations[0].role === "paralegal") await requireParalegalReadiness(ctx, assigneeId);
+    return { organizationId: affiliations[0].organizationId, assigneeRole: affiliations[0].role };
+  }
+  if (affiliations.length > 1) throw new ConvexError("Choose which verified organisation this worker represents for this case.");
+  if (await hasProfessionalOrganisationMembership(ctx, assigneeId)) throw new ConvexError("This worker's organisation is not verified for new case assignments.");
+  if (assignee.role === "paralegal") {
+    await requireParalegalReadiness(ctx, assigneeId);
+    return { organizationId: undefined, assigneeRole: "paralegal" as const };
+  }
+  throw new ConvexError("This worker needs a verified organisation affiliation before receiving a case offer.");
+}
+
+async function requireParalegalReadiness(ctx: MutationCtx, userId: Id<"users">) {
+  const user = await ctx.db.get(userId);
+  const profile = user ? await ctx.db.query("paralegal_applications").withIndex("by_email", (q) => q.eq("email", user.email.toLowerCase())).order("desc").first() : null;
+  if (!isParalegalReady(profile)) throw new ConvexError("The paralegal must complete verified onboarding and training before receiving or accepting case work.");
+}
+
 export const providerRecommendations = query({
   args: { caseId: v.id("cases") },
   handler: async (ctx, args) => {
@@ -494,11 +624,15 @@ export const providerRecommendations = query({
     const providers = await Promise.all([...providerIds].map(async (userId) => {
       const provider = await ctx.db.get(userId);
       if (!provider || provider.isDeleted) return null;
-      const [roles, profile, assignments] = await Promise.all([
+      const [roles, profile, assignments, affiliations, hasOrganisationMembership] = await Promise.all([
         getActorRoleSet(ctx, provider._id),
-        ctx.db.query("paralegal_applications").withIndex("by_email", (q) => q.eq("email", provider.email.toLowerCase())).first(),
+        ctx.db.query("paralegal_applications").withIndex("by_email", (q) => q.eq("email", provider.email.toLowerCase())).order("desc").first(),
         ctx.db.query("case_assignments").withIndex("by_assignee_status", (q) => q.eq("assigneeId", provider._id).eq("status", "accepted")).collect(),
+        getAssignableAffiliations(ctx, provider._id),
+        hasProfessionalOrganisationMembership(ctx, provider._id),
       ]);
+      if (!roles.has("provider_staff") && !isParalegalReady(profile)) return null;
+      if (!affiliations.length && (provider.role !== "paralegal" || hasOrganisationMembership)) return null;
       const activeAssignments = await Promise.all(assignments.map(async (assignment) => {
         const assignedCase = await ctx.db.get(assignment.caseId);
         return assignedCase && !["resolved", "closed_unresolved", "closed"].includes(assignedCase.status) ? assignedCase : null;
@@ -567,6 +701,7 @@ export const providerRecommendations = query({
         name: provider.name,
         email: provider.email,
         role: roles.has("provider_staff") ? "provider_staff" as const : "paralegal" as const,
+        affiliations,
         imageUrl: provider.imageUrl,
         region: profile?.region,
         district: profile?.district,
@@ -705,6 +840,7 @@ export const offerAssignment = mutation({
   args: {
     caseId: v.id("cases"),
     assigneeId: v.id("users"),
+    organizationId: v.optional(v.id("justice_service_organizations")),
     availabilityOverrideReason: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
@@ -723,18 +859,22 @@ export const offerAssignment = mutation({
       .filter((q) => q.or(q.eq(q.field("status"), "offered"), q.eq(q.field("status"), "accepted")))
       .collect();
     if (openAssignments.some((assignment) => assignment.assigneeId === args.assigneeId)) {
-      return openAssignments.find((assignment) => assignment.assigneeId === args.assigneeId)!._id;
+      const existingOffer = openAssignments.find((assignment) => assignment.assigneeId === args.assigneeId)!;
+      if (args.organizationId && existingOffer.organizationId !== args.organizationId) throw new ConvexError("This worker already has an offer under a different organisation.");
+      return existingOffer._id;
     }
     if (openAssignments.some((assignment) => assignment.status === "accepted")) {
       throw new ConvexError({ code: "CONFLICT", message: "Case already has an active assignee" });
     }
 
+    const scope = await resolveAssignmentScope(ctx, args.assigneeId, args.organizationId);
     const availability = await requireAssignableAvailability(ctx, args.assigneeId, args.availabilityOverrideReason);
     const now = Date.now();
     const expiresAt = assignmentOfferExpiresAt(now);
     const assignmentId = await ctx.db.insert("case_assignments", {
       caseId: args.caseId,
       assigneeId: args.assigneeId,
+      ...scope,
       offeredBy: user._id,
       status: "offered",
       offeredAt: now,
@@ -774,6 +914,7 @@ export const reassignCase = mutation({
   args: {
     caseId: v.id("cases"),
     newAssigneeId: v.id("users"),
+    organizationId: v.optional(v.id("justice_service_organizations")),
     reason: v.optional(v.string()),
     resolutionNote: v.optional(v.string()),
     availabilityOverrideReason: v.optional(v.string()),
@@ -798,6 +939,7 @@ export const reassignCase = mutation({
     if (openAssignments.some((assignment) => assignment.assigneeId === args.newAssigneeId)) {
       throw new ConvexError({ code: "CONFLICT", message: "New assignee already has an open assignment on this case" });
     }
+    const scope = await resolveAssignmentScope(ctx, args.newAssigneeId, args.organizationId);
     const availability = await requireAssignableAvailability(ctx, args.newAssigneeId, args.availabilityOverrideReason);
 
     const endedAssigneeIds = new Set<Id<"users">>();
@@ -825,6 +967,7 @@ export const reassignCase = mutation({
     const assignmentId = await ctx.db.insert("case_assignments", {
       caseId: args.caseId,
       assigneeId: args.newAssigneeId,
+      ...scope,
       offeredBy: user._id,
       status: "offered",
       offeredAt: now,
@@ -914,7 +1057,8 @@ export const assignmentInbox = query({
       .withIndex("by_assignee_status", (q) => q.eq("assigneeId", user._id).eq("status", "offered"))
       .order("desc")
       .collect();
-    const activeOffers = assignments.filter((assignment) => (assignment.expiresAt ?? assignmentOfferExpiresAt(assignment.offeredAt)) > now);
+    const affiliations = await getAssignableAffiliations(ctx, user._id);
+    const activeOffers = assignments.filter((assignment) => (assignment.expiresAt ?? assignmentOfferExpiresAt(assignment.offeredAt)) > now && (assignment.organizationId ? affiliations.some((item) => item.organizationId === assignment.organizationId && item.role === assignment.assigneeRole) : assignment.assigneeRole === "paralegal" && user.role === "paralegal"));
     return await Promise.all(activeOffers.map(async (assignment) => ({
       assignment,
       case: await ctx.db.get(assignment.caseId),
@@ -929,7 +1073,10 @@ export const myTasks = query({
     const tasks = args.status
       ? await ctx.db.query("case_tasks").withIndex("by_assignee_status", (q) => q.eq("assigneeId", user._id).eq("status", args.status!)).collect()
       : await ctx.db.query("case_tasks").withIndex("by_assignee_status", (q) => q.eq("assigneeId", user._id).eq("status", "open")).collect();
-    return await Promise.all(tasks.sort((a, b) => (a.dueAt ?? Number.MAX_SAFE_INTEGER) - (b.dueAt ?? Number.MAX_SAFE_INTEGER)).map(async (task) => ({ task, case: await ctx.db.get(task.caseId) })));
+    const participants = await ctx.db.query("case_participants").withIndex("by_user", (q) => q.eq("userId", user._id)).collect();
+    const allowedLinks = await accessibleParticipantLinks(ctx, user._id, participants.filter((item) => item.status === "active"));
+    const accessibleCaseIds = new Set(allowedLinks.map((item) => item.caseId));
+    return await Promise.all(tasks.filter((task) => accessibleCaseIds.has(task.caseId)).sort((a, b) => (a.dueAt ?? Number.MAX_SAFE_INTEGER) - (b.dueAt ?? Number.MAX_SAFE_INTEGER)).map(async (task) => ({ task, case: await ctx.db.get(task.caseId) })));
   },
 });
 
@@ -951,6 +1098,7 @@ export const completeTask = mutation({
     const { user } = await requireAuthenticatedUser(ctx);
     const task = await ctx.db.get(args.taskId);
     if (!task || task.assigneeId !== user._id) throw new ConvexError({ code: "FORBIDDEN", message: "Task access denied" });
+    await requireCaseWorker(ctx, task.caseId);
     if (task.status === "done") return { status: task.status };
     await ctx.db.patch(task._id, { status: "done", completedAt: Date.now() });
     await addEvent(ctx, { caseId: task.caseId, actorId: user._id, type: "task_completed", audience: "workers", publicLabelKey: "case.timeline.taskCompleted", metadata: { taskId: task._id } });
@@ -984,6 +1132,19 @@ export const respondToAssignment = mutation({
 
     const caseRecord = await ctx.db.get(assignment.caseId);
     if (!caseRecord) throw new ConvexError({ code: "NOT_FOUND", message: "Case not found" });
+    if (args.response === "accepted" && !assignment.assigneeRole) {
+      throw new ConvexError("This older offer has no verified worker scope. Ask LSF to issue a new assignment offer.");
+    }
+    if (args.response === "accepted" && assignment.assigneeRole === "paralegal") await requireParalegalReadiness(ctx, user._id);
+    if (args.response === "accepted" && assignment.organizationId) {
+      const affiliations = await getAssignableAffiliations(ctx, user._id);
+      if (!affiliations.some((item) => item.organizationId === assignment.organizationId && item.role === assignment.assigneeRole)) {
+        throw new ConvexError("This organisation affiliation is no longer verified or active. Ask LSF for reassignment.");
+      }
+    }
+    if (args.response === "accepted" && !assignment.organizationId && (assignment.assigneeRole !== "paralegal" || user.role !== "paralegal" || await hasProfessionalOrganisationMembership(ctx, user._id))) {
+      throw new ConvexError("This independent paralegal offer is no longer eligible. Ask LSF for reassignment.");
+    }
     const now = Date.now();
     if ((assignment.expiresAt ?? assignmentOfferExpiresAt(assignment.offeredAt)) <= now) {
       await expireAssignmentOffer(ctx, {
@@ -1001,17 +1162,22 @@ export const respondToAssignment = mutation({
     });
 
     if (args.response === "accepted") {
+      const currentRoles = await getActorRoleSet(ctx, user._id);
+      const participantRole = assignment.assigneeRole ?? (currentRoles.has("provider_staff") ? "provider_staff" : "paralegal");
+      const independent = !assignment.organizationId && assignment.assigneeRole === "paralegal";
       const participant = await ctx.db
         .query("case_participants")
         .withIndex("by_case_user", (q) => q.eq("caseId", caseRecord._id).eq("userId", user._id))
         .unique();
       if (participant) {
-        await ctx.db.patch(participant._id, { status: "active", removedAt: undefined });
+        await ctx.db.patch(participant._id, { role: participantRole, organizationId: assignment.organizationId, scopeReviewDecision: independent ? "independent" : undefined, status: "active", removedAt: undefined });
       } else {
         await ctx.db.insert("case_participants", {
           caseId: caseRecord._id,
           userId: user._id,
-          role: "paralegal",
+          organizationId: assignment.organizationId,
+          scopeReviewDecision: independent ? "independent" : undefined,
+          role: participantRole,
           status: "active",
           addedBy: assignment.offeredBy,
           addedAt: now,
@@ -1163,9 +1329,9 @@ export const listMessages = query({
     const messages = await ctx.db
       .query("case_messages")
       .withIndex("by_conversation_time", (q) => q.eq("conversationId", conversation._id))
-      .order("asc")
+      .order("desc")
       .take(200);
-    return await Promise.all(messages.map(async (message) => ({
+    return await Promise.all(messages.reverse().map(async (message) => ({
       ...message,
       audioUrl: message.type === "voice" && message.storageId ? await ctx.storage.getUrl(message.storageId) : null,
     })));
@@ -1206,7 +1372,10 @@ export const addDocument = mutation({
       .query("case_documents")
       .withIndex("by_uploader_client", (q) => q.eq("uploaderId", user._id).eq("clientDocumentId", clientDocumentId))
       .unique();
-    if (existing) return existing._id;
+    if (existing) {
+      if (!isSameCaseRetry({ caseId: existing.caseId, kind: existing.source ?? "upload" }, { caseId: args.caseId, kind: "upload" })) throw new ConvexError({ code: "CONFLICT", message: "Document retry key belongs to another case or document type" });
+      return existing._id;
+    }
 
     const metadata = await ctx.db.system.get(args.storageId);
     if (!metadata) throw new ConvexError({ code: "NOT_FOUND", message: "Uploaded file not found" });
@@ -1280,7 +1449,10 @@ export const addGeneratedLetterDocument = mutation({
       .query("case_documents")
       .withIndex("by_uploader_client", (q) => q.eq("uploaderId", user._id).eq("clientDocumentId", clientDocumentId))
       .unique();
-    if (existing) return existing._id;
+    if (existing) {
+      if (!isSameCaseRetry({ caseId: existing.caseId, kind: existing.source ?? "upload" }, { caseId: args.caseId, kind: "letter_builder" })) throw new ConvexError({ code: "CONFLICT", message: "Document retry key belongs to another case or document type" });
+      return existing._id;
+    }
 
     const textContent = normalizeText(args.textContent, "Letter content", 12000);
     const now = Date.now();
@@ -1326,7 +1498,8 @@ export const myDocuments = query({
       .withIndex("by_user", (q) => q.eq("userId", user._id))
       .filter((q) => q.eq(q.field("status"), "active"))
       .collect();
-    const participantCases = await Promise.all(participantLinks.map((link) => ctx.db.get(link.caseId)));
+    const allowedLinks = await accessibleParticipantLinks(ctx, user._id, participantLinks);
+    const participantCases = await Promise.all(allowedLinks.map((link) => ctx.db.get(link.caseId)));
     const accessibleCases = new Map(owned.map((record) => [record._id, record]));
     for (const record of participantCases) if (record) accessibleCases.set(record._id, record);
 
@@ -1418,7 +1591,10 @@ export const sendMessage = mutation({
       .query("case_messages")
       .withIndex("by_sender_client", (q) => q.eq("senderId", user._id).eq("clientMessageId", clientMessageId))
       .unique();
-    if (existing) return existing._id;
+    if (existing) {
+      if (!isSameCaseRetry({ caseId: existing.caseId, kind: existing.type }, { caseId: args.caseId, kind: "text" })) throw new ConvexError({ code: "CONFLICT", message: "Message retry key belongs to another case or message type" });
+      return existing._id;
+    }
 
     const conversation = await ctx.db
       .query("case_conversations")
@@ -1444,6 +1620,7 @@ export const sendMessage = mutation({
       .collect();
     for (const participant of participants) {
       if (participant.userId === user._id) continue;
+      if (!await canNotifyCaseParticipant(ctx, participant)) continue;
       await createNotification(ctx, {
         userId: participant.userId,
         type: "message.received",
@@ -1470,7 +1647,10 @@ export const sendVoiceMessage = mutation({
     const { user, caseRecord } = await requireCaseAccess(ctx, args.caseId);
     const clientMessageId = normalizeText(args.clientMessageId, "Client message ID", 100);
     const existing = await ctx.db.query("case_messages").withIndex("by_sender_client", (q) => q.eq("senderId", user._id).eq("clientMessageId", clientMessageId)).unique();
-    if (existing) return existing._id;
+    if (existing) {
+      if (!isSameCaseRetry({ caseId: existing.caseId, kind: existing.type }, { caseId: args.caseId, kind: "voice" })) throw new ConvexError({ code: "CONFLICT", message: "Message retry key belongs to another case or message type" });
+      return existing._id;
+    }
     if (args.durationMs < 500 || args.durationMs > 120_000) throw new ConvexError({ code: "VALIDATION", message: "Voice notes must be between 1 second and 2 minutes" });
     const metadata = await ctx.db.system.get(args.storageId);
     if (!metadata) throw new ConvexError({ code: "NOT_FOUND", message: "Uploaded voice note not found" });
@@ -1483,6 +1663,7 @@ export const sendVoiceMessage = mutation({
     const participants = await ctx.db.query("case_participants").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).filter((q) => q.eq(q.field("status"), "active")).collect();
     for (const participant of participants) {
       if (participant.userId === user._id) continue;
+      if (!await canNotifyCaseParticipant(ctx, participant)) continue;
       await createNotification(ctx, { userId: participant.userId, type: "message.received", titleKey: "notifications.update.title", bodyKey: "notifications.messageReceived.body", resourceType: "case", resourceId: caseRecord._id });
     }
     await writeAudit(ctx, user._id, "message.voice_sent", "case_message", messageId, { caseId: caseRecord._id, durationMs: Math.trunc(args.durationMs) });
@@ -1701,7 +1882,8 @@ export const myAppointments = query({
       .withIndex("by_user", (q) => q.eq("userId", user._id))
       .filter((q) => q.eq(q.field("status"), "active"))
       .collect();
-    const participantCases = await Promise.all(participantLinks.map((link) => ctx.db.get(link.caseId)));
+    const allowedLinks = await accessibleParticipantLinks(ctx, user._id, participantLinks);
+    const participantCases = await Promise.all(allowedLinks.map((link) => ctx.db.get(link.caseId)));
     const accessibleCases = new Map(owned.map((record) => [record._id, record]));
     for (const record of participantCases) if (record) accessibleCases.set(record._id, record);
 
@@ -1802,6 +1984,7 @@ export const requestAppointment = mutation({
       .collect();
     for (const participant of participants) {
       if (participant.userId === user._id || participant.role === "beneficiary") continue;
+      if (!await canNotifyCaseParticipant(ctx, participant)) continue;
       await createNotification(ctx, {
         userId: participant.userId,
         type: "appointment.requested",

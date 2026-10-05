@@ -54,14 +54,5 @@ const defaultHeroSlides: HeroSlide[] = [
 // Keep the original export for backward compatibility
 export const heroSlides = getHeroSlides();
 
-export const regions: Region[] = [
-  { name: "All Regions", phone: "+255 870 119 363" },
-  { name: "Dar es Salaam", phone: "+255 717 111 764" },
-  { name: "Mwanza", phone: "+255 769 517 305" },
-  { name: "Arusha", phone: "+255 629 296 306" },
-  { name: "Dodoma", phone: "+255 754 110 307" },
-  { name: "Tanga", phone: "+255 711 032 998" },
-  { name: "Morogoro", phone: "+255 800 110 309" },
-  { name: "Mbeya", phone: "+255 745 887 221" },
-  { name: "Iringa", phone: "+255 762 334 556" }
-];
+// Published LSF office contact; regional contacts require directory verification.
+export const regions: Region[] = [{ name: "LSF office contact", phone: "+255 22 260 1534" }];

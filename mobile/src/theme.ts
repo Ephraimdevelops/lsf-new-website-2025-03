@@ -18,9 +18,27 @@ export const colors = {
   line: "#E8E2E5",
   surface: "#FFFFFF",
   background: "#FFFFFF",
+  warmBackground: "#FCFBFA",
   success: "#217A55",
   warning: "#A55B13",
   danger: "#B3261E",
+} as const;
+
+// Human Civic surfaces: strong colour marks the primary action; supporting
+// choices sit on quiet tints so information remains easy to scan.
+export const civic = {
+  pageInset: 24,
+  minimumTouch: 48,
+  bodySize: 16,
+  bodyLineHeight: 23,
+  sectionGap: 32,
+  cardGap: 16,
+  actionCards: {
+    find: { foreground: "#075D63", background: "#E6F5F3" },
+    request: { foreground: colors.burgundy, background: colors.burgundySoft },
+    saada: { foreground: "#A34A13", background: colors.orangeSoft },
+    rights: { foreground: "#745708", background: colors.goldSoft },
+  },
 } as const;
 
 export const spacing = {
@@ -52,7 +70,9 @@ export const shadow = {
 } as const;
 
 export const type = {
-  regular: "Ubuntu_400Regular",
-  medium: "Ubuntu_500Medium",
-  bold: "Ubuntu_700Bold",
+  regular: "NotoSans_400Regular",
+  medium: "NotoSans_500Medium",
+  semibold: "NotoSans_600SemiBold",
+  bold: "NotoSans_700Bold",
+  editorial: "SourceSerif4_600SemiBold",
 } as const;

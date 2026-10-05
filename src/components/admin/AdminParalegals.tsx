@@ -145,9 +145,9 @@ function parseCSV(text: string): CsvRecord[] {
         // Skip if phone is too short (invalid)
         if (phone.length < 9) continue;
 
-        // Generate placeholder email if missing
+        // A real email is required so the person can claim this invitation.
         if (!email) {
-            email = `noemail_${phone}@csv-import.local`;
+            continue; // An applicant needs a real email to claim and complete the invitation.
         }
 
         // Deduplicate by email
@@ -247,7 +247,7 @@ const AdminParalegals = () => {
             }
 
             toast.success(
-                `Import complete: ${totalImported} added, ${totalDuplicates} duplicates skipped` +
+                `Import complete: ${totalImported} pending invitation records, ${totalDuplicates} duplicates skipped` +
                 (allErrors.length > 0 ? `, ${allErrors.length} errors` : '')
             );
 
@@ -269,7 +269,7 @@ const AdminParalegals = () => {
             await addParalegal(formData);
             setIsAddModalOpen(false);
             setFormData({ fullName: '', email: '', phone: '', region: '', district: '' });
-            toast.success("Paralegal added successfully");
+            toast.success("Invitation record created. The applicant must complete verification and LSF review.");
         } catch (error: any) {
             console.error("Failed to add paralegal", error);
             toast.error(error.message || "Failed to add paralegal");

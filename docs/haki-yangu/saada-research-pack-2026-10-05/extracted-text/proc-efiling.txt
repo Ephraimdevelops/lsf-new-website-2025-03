@@ -1,0 +1,1224 @@
+[PDF PAGE 1]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+1 
+ 
+ 
+GOVERNMENT NOTICE NO. 148 published on 13/04/2018 
+THE JUDICATURE AND APPLICATION OF LAWS ACT 
+(CAP. 358) 
+_______ 
+ 
+RULES 
+_______ 
+  
+(Made under section 4) 
+_______ 
+ 
+JUDICATURE AND APPLICATION OF LAWS (ELECTRONIC 
+FILING) RULES, 2018 
+ 
+ARRANGEMENT OF RULES 
+ 
+PART I 
+PRELIMINARY PROVISIONS 
+ 
+1.  Citation. 
+2.  Application. 
+3.  Interpretation. 
+ 
+PART II 
+ELECTRONIC FILING SYSTEM 
+ 
+4.  Establishment of an electronic filing system. 
+5.  Chief Registrar to supervise the electronic filing system.  
+6.  Establishment of Service Bureau. 
+7.  Registered user and authorised user. 
+ 
+PART III 
+PROCEDURE FOR ELECTRONIC FILING OF DOCUMENTS 
+ 
+8.  Documents to be filed electronically. 
+9.  Official record of the court. 
+10.  Procedure for electronic filing. 
+
+[PDF PAGE 2]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+2 
+ 
+11.  Preparation and formatting of documents. 
+12.  Conversion to PDF. 
+13.  Signing of electronic documents. 
+14.  Affidavits in electronic form. 
+15.  Service of documents. 
+16.  Retention of originals. 
+17.  Responsibility of producing originals. 
+18.  Discrepancy. 
+19.  Access to electronic documents. 
+20.  Exemption from electronic filing. 
+21.  Date and time of filing.  
+22.  Reckoning of date and time for service. 
+23.  When time for service begins to run. 
+24.  Exclusion of time. 
+25.  Hard copies of pleadings and other documents filed electronically. 
+26.  Electronically filed documents to be titled. 
+27.  Storage and retrieval of electronically filed pleadings and other 
+documents 
+ 
+PART IV 
+USER ACCOUNTS AND NOTIFICATIONS 
+ 
+28.  User ID. 
+29.  Eligibility and registration.  
+30.  User password. 
+31.  Confidentiality of user ID and password. 
+32.  Multiple user accounts. 
+33.  Receipt of notification. 
+34.  Payment of court fees. 
+ 
+PART V 
+SIGNING OF JUDGMENTS, ORDERS, ETC. 
+ 
+35.  Electronic signing of judgments, orders, etc.  
+36.  Electronic signatures to have the force of conventional signatures. 
+ 
+
+[PDF PAGE 3]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+3 
+ 
+ THE JUDICATURE AND APPLICATION OF LAWS ACT 
+(CAP. 358) 
+_______ 
+ 
+RULES 
+________ 
+ 
+(Made under section 4) 
+________ 
+ 
+JUDICATURE AND APPLICATION OF LAWS (ELECTRONIC 
+FILING) RULES, 2018 
+ 
+PART I  
+PRELIMINARY PROVISIONS 
+  
+Citation 1. These Rules may be cited as the Judicature and 
+Application of Laws  (Electronic Filing) Rules, 2018. 
+  
+Application 2.-(1) These Rules shall apply to all proceedings in all 
+courts save for proceedings in primary courts.  
+ (2) The Chief Justice may, by order restrict the scope 
+of application of these Rules.  
+  
+Interpretation 
+ 
+ 
+ 
+ 
+Cap.237 
+3. In these Rules, unless the context requires 
+otherwise: 
+“authorized user” means a partner, director, officer or 
+employee of a registered entity who designated as an 
+authorized user; 
+“Chief Registrar” means the Chief Registrar appointed 
+under section 27(1) of the Judiciary Administration Act;  
+“court” means a district court, a court of resident 
+magistrate, the High Court and the Court of Appeal; 
+“Director of Case Management” means the director 
+responsible for case management appointed by the 
+Judicial Service Commission; 
+“ECF” means Electronic Case File created by documents 
+filed electronically and such other documents and 
+exhibits referred to under rule 9; 
+
+[PDF PAGE 4]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+4 
+ 
+“electronic filing” means the submission of documents 
+through the electronic filing system but does not 
+include  e-mailing or sending a document by acsimile; 
+"electronic filing system" means the system of electronic 
+filing and electronic service of documents via the 
+internet established under these Rules; 
+ 
+ 
+ 
+ 
+Cap. 442 
+“electronic service" means the electronic transmission of a 
+notice of filing, which contains a hyperlink for 
+accessing the document, to the electronic mail (e-mail) 
+address of a party who has consented to electronic 
+service;   
+“electronic signature” has the meaning ascribed to it by the 
+Electronic Transactions Act; 
+“entity” means the Attorney General’s Chambers, a 
+department of the Government or a public authority, a 
+sole proprietorship, an incorporated partnership, 
+including a limited liability partnership and a limited 
+partnership, a law firm, a company or other body 
+corporate; 
+“law officer” includes a state attorney, a solicitor and any 
+legal officer employed in public service; 
+“notification" means a system-generated notice 
+acknowledging activity within the electronic filing 
+system; 
+“party”  means any party to a proceeding and includes an 
+accused person; 
+“PDF” means Portable Document Format compatible with 
+Adobe Reader which includes: 
+(a)  electronically converted PDFs which are created 
+from word processing documents (MSWord, 
+WordPerfect, etc.) using Adobe Acrobat or similar 
+software and are text searchable, accessible, and 
+their file size is small;  and 
+(b)  scanned PDFs which are created from paper 
+documents run through an optical scanner and have 
+a larger file size and lower quality image; 
+“Registrar” means Registrar of the Court of the Appeal, 
+Registrar of the High Court, a Deputy Registrar and 
+includes an acting Registrar or Deputy Registrar;  
+
+[PDF PAGE 5]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+5 
+ 
+“registered user” means an individual or entity with an 
+assigned username and password identification  
+authorized code by the Judiciary to access and utilize 
+the electronic filing system (EFS); 
+ 
+Cap. 442 
+ “secure electronic signature” means  a signature duly 
+recognized in terms of section 7 of the Electronic 
+Transactions Act; 
+“service bureau” means a service bureau established under 
+these Rules; 
+"user" means 
+a registered user or an authorized user  
+registered with the electronic filing system; and 
+“user ID” means the e-mail address provided or  
+identification code assigned during registration that is 
+used to log in to the electronic filing system. 
+  
+PART II 
+ELECTRONIC FILING SERVICES 
+  
+Establishment 
+of an 
+electronic 
+filing system 
+4.-(1) The Chief Justice may establish an electronic 
+filing system and make provision for specified documents 
+to be filed, served, delivered or otherwise conveyed using 
+that system. 
+(2) Where a document is required to be filed with, 
+served on, delivered or otherwise conveyed to the court 
+under any other provision of these Rules, it shall be so 
+filed, served, delivered or otherwise conveyed using the 
+electronic filing service in accordance with these Rules and 
+any practice directions for the time being issued by the 
+Chief Justice. 
+  
+Chief 
+Registrar to 
+supervise the 
+electronic 
+filing service  
+5.  The electronic filing service shall be under the 
+supervision of the Chief Registrar.  
+  
+Establishment 
+of service 
+bureau 
+6.-(1)  The Chief Registrar may establish  and operate 
+or appoint agents to operate a service bureau to assist in the 
+filing, service, delivery or conveyance of documents using 
+the electronic filing service. 
+
+[PDF PAGE 6]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+6 
+ 
+  (2) The duties and rules of conduct for the agents 
+appointed under this sub-rule (1) shall be as prescribed 
+under the Second Schedule to these Rules. 
+  (3) The Director of Case Management shall be the 
+superintendent of any agent appointed under this Rule. 
+  
+Registered 
+user and 
+authorised 
+user 
+7.-(1) Any entity may apply to the Chief Registrar to 
+be a registered user in accordance with these Rules. 
+(2)  Any entity which is a registered user may 
+designate one or more of its partners, directors, officers or 
+employees to be an authorised user in accordance with 
+these Rules. 
+ (3)  The Chief Registrar may allow an entity to be a 
+registered user or a person to be an authorised user on such 
+terms and conditions as he thinks fit.  
+ (4)  An application for registration referred to under 
+sub-rule (1 shall be in the Form ‘A’ set out in the First 
+Schedule to these Rules. 
+ (5) A registered user that designates an authorised user 
+and supplies the authorised user’s identification code 
+through the electronic filing system shall be deemed to 
+approve the use of the identification code in conjunction 
+with the electronic filing service by that authorised user. 
+ (6)  For the purposes of these Rules, a service bureau 
+established under rule 4 shall be deemed to be a registered 
+user, and every designated officer of a service bureau shall 
+be deemed to be an authorised user. 
+ (7) The following periods shall constitute time on 
+which the entity becomes eligible for electronic filing- 
+ (a)  the date on which an entity is registered as 
+authorized user; or  
+(b)  the date on which on a person is registered as an 
+entity. 
+  
+PART III 
+PROCEDURE FOR ELECTRONIC FILING OF DOCUMENTS 
+  
+Documents to 
+be filed 
+electronically 
+8. All pleadings, petitions, applications, appeals and 
+such other documents shall be filed electronically in 
+
+[PDF PAGE 7]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+7 
+ 
+accordance with these Rules. 
+  
+Official 
+record of the 
+court 
+9. The official record of the court shall be the electronic 
+case file (ECF), proceedings pertaining to that case, 
+together with any documents and exhibits filed under the 
+conventional method.   
+  
+Procedure for  
+electronic 
+filing 
+ 
+ 
+10.-(1) Any requirement for filing, service, delivery or 
+otherwise conveyance of a document shall be satisfied by 
+the filing, service, delivery or otherwise conveyance of a 
+single copy using the electronic filing system in accordance 
+with these Rules.  
+  (2)  Filing, service, delivery or conveyance of a 
+document using the electronic filing system under these 
+Rules may be done in one of the following manner- 
+ (a)  by electronic transmission; or  
+(b)  via a service bureau. 
+ (3)  Notwithstanding any provision under these Rules, 
+the Registrar or the magistrate in-charge may allow a 
+document, part of a document or any class of documents to 
+be filed, served, delivered or otherwise conveyed other 
+than by using the electronic filing system.  
+(4)  The electronic submission form used in submitting 
+documents under these Rules shall be as set out in the 
+Form B in the First Schedule to these Rules.  
+(5)  Any document which is filed with, served on, 
+delivered or otherwise conveyed to the Registrar or 
+magistrate in-charge through the electronic filing system 
+by a registered user using a user ID shall be deemed to 
+have been intentionally so filed, served, delivered or 
+otherwise conveyed by the registered user. 
+ (6)  Any document which is filed with, served on, 
+delivered or otherwise conveyed to the Registrar or 
+magistrate in- charge through the electronic filing system 
+by an authorised user ,other than a designated officer of a 
+service bureau, using user ID shall be deemed to have been 
+so filed, served, delivered or otherwise conveyed- 
+ (a)  by the authorised user on behalf and with the 
+authority of the registered user to whom the 
+
+[PDF PAGE 8]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+8 
+ 
+authorised user belongs; and 
+(b)  with the intention to do so. 
+ (7)  Any document which is filed with, served on, 
+delivered or otherwise conveyed to the Registrar or 
+magistrate in-charge through the electronic filing system 
+by an authorised user, who is  a designated officer of a 
+service bureau, using an identification code shall be 
+deemed to have been so filed, served, delivered or 
+otherwise conveyed- 
+ (a)  on behalf and with the authority of the person 
+tendering the document to the service bureau for such 
+purpose and with the intention of that person to do 
+so; or  
+(b)  where the person tendering the document to the 
+service bureau is acting as agent for his principal, on 
+behalf and with the authority of his principal and 
+with the intention of the principal to do so. 
+ 
+ 
+ 
+ 
+ 
+Cap. 442 
+ 
+(8)  A document which is filed, served, delivered or 
+otherwise conveyed to the Registrar or magistrate in-
+charge using user ID in compliance with the security 
+procedures of the electronic filing system shall be deemed 
+to be an electronic record within the meaning of the 
+Electronic Transactions Act. 
+  
+Preparation  
+and 
+formatting of 
+documents 
+11 .-(1) All original pleadings or documents other than 
+annexures or attachments shall be prepared electronically 
+using MS Word.  
+(2) The formatting style of the text for the documents 
+under sub-rule (1) shall be as prescribed in the Third 
+Schedule to these Rules.   
+  
+Conversion to 
+PDF 
+12 .-(1) The documents shall be converted to PDF using 
+any compatible PDF converter.  
+ (2) Where the document is not a text document and has 
+to be enclosed with the petition, appeal or application or 
+other pleadings, the document shall be scanned using an 
+image resolution of 300 dpi (dot per inch) and saved as a 
+PDF document. 
+ 
+
+[PDF PAGE 9]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+9 
+ 
+ (3) The maximum permissible size of the file that can 
+be uploaded at the time of filing shall be 100 MB. 
+ (4) Text documents prepared in MS Word, converted to 
+PDF and scanned documents shall be merged as a single 
+PDF file. 
+ (5)  Where the document cannot be converted in whole 
+or part into an electronic format for any sufficient reason, 
+the hardcopy of the document may, subject to the approval 
+of the Registrar or magistrate in-charge be filed.  
+ (6)  For the purpose of facilitating hearings involving 
+documents, every single page of a hard copy of a document 
+shall be paginated so that it corresponds with the 
+pagination of the document in the electronic case file.   
+  
+ Signing of 
+electronic 
+documents 
+13. -(1) All electronic documents required to be filed by 
+a party or his advocate shall be electronically signed by 
+that party or his advocate.  
+(2)  Notwithstanding sub rule (1), where a document is 
+filed, served, delivered or otherwise conveyed using the 
+electronic filing system, any requirement under these Rules 
+relating to signing by or the signature of an authorised user 
+or a registered user, shall be deemed to be complied with if 
+the user ID of the authorised user or registered user has 
+been applied to or associated with, directly or indirectly, 
+the document or the transmission containing the document. 
+ (3)  For the purposes of sub-rule (2)-  
+ (a)  where the user ID of a registered user is applied to 
+or associated with, directly or indirectly, a 
+document or a transmission containing a document 
+in compliance with the security procedures of the 
+electronic filing system- 
+ (i)  the document shall be deemed to be signed by 
+the registered user; and 
+(ii)  the contents of the document shall be deemed to 
+be endorsed by the registered user;  
+ (b)  
+where the user ID of an authorised user, other than  
+the designated officer of a service bureau, is applied 
+to or associated with, directly or indirectly, a 
+document or a transmission containing a document 
+
+[PDF PAGE 10]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+10 
+ 
+in compliance with the security procedures of the 
+electronic filing system- 
+ (i)  the document shall be deemed to be signed by 
+the authorised user on behalf and with the 
+authority of the registered user to whom the 
+authorised user belongs; and 
+(ii)  the contents of the document shall be deemed to 
+be endorsed by that registered user; or  
+ (c)  where the user ID of an authorised user, who is  a 
+designated officer of a service bureau, is applied to 
+or associated with, directly or indirectly, a 
+document or a transmission containing a document 
+in compliance with the security procedures of the 
+electronic filing system- 
+ (i)  the document shall be deemed to be signed by 
+the authorised user on behalf and with the 
+authority of the person tendering the document 
+to the service bureau and the contents of the 
+document shall be deemed to be endorsed by 
+that person; or 
+(ii)  where the person tendering the document to the 
+service bureau is acting as agent for his 
+principal, the document shall be deemed to be 
+signed on behalf and with the authority of his 
+principal and the contents of the document shall 
+be deemed to be endorsed by his principal.  
+ 
+ 
+ 
+ 
+ 
+ 
+Cap. 442 
+ 
+(4)  For the avoidance of doubt, it is declared that the 
+application to or association of the user ID of an authorised 
+user or a registered user, directly or indirectly, with a 
+document or a transmission containing a document in 
+compliance with the security procedures of the electronic 
+filing system is a secure electronic signature within the 
+meaning of the Electronic Transactions Act. 
+  
+Affidavits in 
+electronic 
+form 
+14.-(1) Affidavits which are filed in court using the 
+electronic filing system may be used in all proceedings to 
+the same extent and for the same purposes as paper 
+affidavits filed in court. 
+ 
+
+[PDF PAGE 11]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+11 
+ 
+ (2)  Where an affidavit is to be filed in court using the 
+electronic filing system, it shall comply with the following 
+requirements: 
+(a)  the affidavit shall be sworn or affirmed in the usual 
+way in which the deponent and commissioner for 
+oaths sign the original paper affidavit;  
+(b)  a true and complete electronic image of the 
+original paper affidavit shall be created; and 
+(c)  the original paper affidavit shall be retained by the 
+party who filed it.  
+ (3) Notwithstanding sub-rule (2)(c), where the original 
+paper affidavit subsequently becomes unavailable within 
+five years after it was filed, the court may grant leave for 
+the electronic image of the original paper affidavit filed in 
+court using the electronic filing system to be used in the 
+proceedings for which it was filed, or in any other 
+proceedings. 
+(4) For the purpose of this rule, affidavit includes any 
+witness statement made upon oath or affirmation and filed 
+in court in lieu of examination in chief.  
+  
+Service of 
+documents 
+15 .-(1)  Where a document- 
+(a)  other than a document which is required by these 
+Rules to be served personally; or  
+(b)  which is required by these Rules to be served 
+personally and which the party to be served has 
+agreed,  
+may be served using the electronic filing system.  
+ (2) Where a document is required under any other 
+provision of these Rules to be served, delivered or 
+otherwise conveyed by a person to any other person and 
+that person is an authorised user or a registered user or is 
+represented by an advocate who is an authorised user or a 
+registered user, such service, delivery or conveyance may 
+be effected by using the electronic filing system or by 
+electronic transmission or via a service bureau. 
+(3)  For the purposes of sub-rule (1)(b), a party who 
+has instructed his advocate  to accept service of a document 
+which is required by these Rules to be served in non 
+
+[PDF PAGE 12]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+12 
+ 
+electronic form shall be deemed to have consented to be 
+served using the electronic filing system.  
+ (4)  The document shall be deemed to be served, 
+delivered or otherwise conveyed under these Rules where it 
+is- 
+(a)  served, delivered or otherwise conveyed by 
+electronic transmission from the computer system 
+of the authorised user or registered users on the 
+date and at the time that the first part of the 
+transmission is received in the computer system of 
+the electronic filing system; and  
+(b)  remotely composed on the computer system of the 
+electronic filing service system, on the date and at 
+the time that the first part of the transmission 
+containing instructions from the authorised user or 
+registered user to so serve, deliver or convey the 
+document is received in the computer system of 
+the electronic filing system.  
+ (5) A person serving the document may produce a 
+record of the service, delivery or conveyance which is 
+issued by the electronic filing system or the service bureau 
+to the person on whom the document is served as evidence 
+of the service, delivery or conveyance, as well as the date 
+and time of such service, delivery or conveyance. 
+(6)  The person serving the document may file a 
+Registrar’s certificate of service issued through the 
+electronic filing system or the service bureau in lieu of an 
+affidavit of service and the certificate shall be regarded as 
+prima facie  evidence of such service, delivery or 
+conveyance on the date and at the time as stated. 
+(7)  Where a document has to be served, delivered or 
+conveyed by the person serving the document to more than 
+one person, he may effect such service, delivery or 
+conveyance using the electronic filing system on such 
+persons who are registered users or authorised users, and 
+sub-rules (1), (3), (4) and (5) of this rule shall apply with 
+such modifications as are necessary.  
+ (8) Any document which is served, delivered or 
+otherwise conveyed by a registered user to a person 
+
+[PDF PAGE 13]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+13 
+ 
+through the electronic filing system using a user ID shall be 
+deemed to have been so served, delivered or otherwise 
+conveyed by the registered user and with his intention to do 
+so.  
+ (9) Any document which is served, delivered or 
+otherwise conveyed by an authorised user, other than  other 
+than  designated officer of a service bureau, to a person 
+through the electronic filing system using a user ID shall be 
+deemed to have been so served, delivered or otherwise 
+conveyed- 
+(a)  by the authorised user on behalf and with the 
+authority of the registered user to whom the 
+authorised user belongs; and 
+(b)  with the intention of that registered user.  
+ (10)  Any document which is served, delivered or 
+otherwise conveyed by an authorised user, who is a 
+designated officer of a service bureau, shall be deemed to 
+have been so served, delivered or otherwise conveyed- 
+(a)  on behalf and with the authority of the person 
+tendering the document to the service bureau for 
+such purpose and with the intention of that person 
+to do so; or  
+(b)  where the person tendering the document to the 
+service bureau is acting as an agent for his 
+principal, on behalf and with the authority of his 
+principal and with the intention of the principal to 
+do so.  
+ 
+ 
+ 
+ 
+Cap. 442 
+ (11)  Any document which is served, delivered or 
+otherwise conveyed to a person using a user ID in 
+compliance with the security procedures of the electronic 
+filing service shall be described as an electronic record 
+within the meaning of the Electronic Transactions Act.  
+  
+Retention of 
+originals 
+ 
+Cap. 309 
+16. All documents filed electronically shall, subject to 
+the time prescribed in the Retention and Disposal Schedule 
+made under the Records and Archives Management Act, be 
+preserved for production upon being so directed by the 
+court at any time. 
+  
+
+[PDF PAGE 14]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+14 
+ 
+Responsibilit 
+y to produce 
+originals 
+17. A party who has filed electronic documents shall be 
+responsible for producing the originals of such documents 
+and proving their authenticity.  
+  
+Discrepancy 18. Where a document was filed using the electronic 
+filing system, and there is any inconsistency between the 
+information entered into the electronic submission form of 
+the document and the information contained in the 
+document, the information contained in the document shall 
+prevail.  
+  
+Access to 
+electronic 
+documents 
+19. Access to pleadings and other documents filed 
+electronically in a case shall be provided only to the 
+parties, their advocates or authorized representatives, upon 
+mailing to the court an application along with a blank CD-
+Rom, DVD-Rom or any other memory device for a 
+computer system. 
+  
+Exemption 
+from 
+electronic 
+filing 
+20.-(1) The Registrar or a magistrate in-charge  may, 
+upon an oral application by a party, his advocate or his 
+authorized representative, exempt a party from filing 
+electronically of the whole or  part of the pleadings or 
+documents where: 
+(a)  electronic filing is, for reasons to be explained in the 
+application, not feasible; 
+(b)  there are concerns about confidentiality and 
+protection of privacy; 
+(c)  the document cannot be scanned or filed 
+electronically because of its size, shape or 
+condition; 
+ (d)  the electronic filing system is either inaccessible or 
+not available; or 
+ (e)  where for any other reason it is deemed sufficient to 
+warrant the exemption. 
+ (2) Where the Registrar or magistrate in-charge is 
+satisfied that there was good cause for exemption, he shall 
+grant the request under sub-rule (1) in writing. 
+  
+ 
+
+[PDF PAGE 15]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+15 
+ 
+Date and time 
+of filing 
+21.-(1) A document shall be considered to have been 
+filed if it is submitted through the electronic filing system 
+before midnight, East African time, on the date it is 
+submitted, unless a specific time is set by the court or it is 
+rejected. 
+(2) A document submitted at or after midnight or on a 
+Saturday, Sunday, or public holiday shall, unless it is 
+rejected by the court, be considered filed the next working 
+day. 
+  
+Reckoning of  
+date and time 
+for service 
+22.  Where a document is filed with, served on, 
+delivered or otherwise conveyed to the Registrar or 
+magistrate in-charge using the electronic filing service and 
+is subsequently accepted by the Registrar or magistrate in-
+charge, it shall be deemed to be filed, served, delivered or 
+conveyed- 
+(a)  where the document is filed, served, delivered or 
+conveyed by electronic transmission from the 
+computer system of the authorised user or registered 
+user, on the date and at the time that the first part of 
+the transmission is received in the electronic filing 
+system; 
+ (b)  where the document is remotely composed on the 
+computer system of the electronic filing system, on 
+the date and at the time that the first part of the 
+transmission containing instructions from the 
+authorised user or registered user to so file, serve, 
+deliver or convey the document is received in the 
+electronic filing service; and 
+(c)  where the document is filed, served, delivered or 
+conveyed via a service bureau, on the date and at 
+the time that the first part of the transmission is 
+received in the electronic filing system of the court. 
+  
+When time 
+for service 
+begins to run 
+23.-(1)  Where a document is filed with, served on, 
+delivered or otherwise conveyed to the court by electronic 
+transmission, the time for service of that document shall 
+begin to run from the time that the Registrar’s or the 
+magistrate in-charge’s  notification of his acceptance of the 
+
+[PDF PAGE 16]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+16 
+ 
+document is received in the computer system of that 
+registered user. 
+(2)  Where a document is filed with or otherwise 
+conveyed to the Registrar or the magistrate in-charge  via a 
+service bureau, the time for service of that document shall 
+begin to run from the time that the Registrar’s  or the 
+magistrate in-charge’s  notification of his acceptance of the 
+document is received by the service bureau. 
+(3)  Where the Registrar’s or magistrate in-charge’s 
+notification referred under this rules is received in the 
+computer system or by the service bureau respectively on a 
+day other than a working day, it shall be deemed for the 
+purpose of this rule to have been received on the next 
+working day. 
+  
+Computation 
+of time 
+24. -(1) The period during which electronic filing system 
+is not in operation, for any reason, shall be excluded from 
+the computation of time for filing. 
+(2) Problems on the user's end, such as problems with 
+the user’s Service Provider (SP), hardware, or software 
+problems, shall not constitute a sufficient reason for an 
+untimely filing. 
+ 
+Cap 89 
+(3) For the purpose of sub-rule (1), the excluded time 
+shall not extend the limitation period for such filing under 
+the Law of Limitation Act, or any other written law. 
+ (4) Where electronic filing is done the rules relating to 
+time for the purposes of limitation shall be the same as 
+those applicable to a conventional filing. 
+(5) Where party misses a filing deadline due to 
+technical problems referred to in sub-rule (1) the party 
+shall move informally and ex parte  the Registrar or the 
+magistrate in-charge not later than 15:00 hrs of the 
+following working day for appropriate relief. 
+(6) Where the Registrar or magistrate in-charge is 
+satisfied that there was good cause for missing the 
+deadline, he shall grant the request under sub-rule (5) in 
+writing. 
+  
+
+[PDF PAGE 17]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+17 
+ 
+Hard copies 
+of pleadings 
+and other 
+documents 
+filed 
+electronically 
+25. Hard copies of all pleadings and other documents 
+filed electronically may be printed by: 
+(a)  the parties, their advocates or authorized 
+representatives for their use in court or elsewhere; 
+or 
+(b)  the registry, for use of the court where need arises . 
+  
+Electronically 
+filed 
+documents to 
+be titled 
+26. All documents filed electronically shall be titled in 
+the same manner as they are titled when filed in the 
+conventional manner. 
+  
+Storage and 
+retrieval of 
+electronically 
+filed 
+pleadings and 
+other 
+documents 
+27.-(1)  The pleadings and  other documents 
+electronically filed shall be stored in a server maintained 
+by the court. 
+(2) Each case shall be separately labeled and encrypted 
+so as to facilitate easy identification and retrieval. 
+(3) The court shall ensure that pleadings and other 
+documents if printed are stored in a secure and restricted 
+place. 
+(4) Back-up copies of all electronically filed pleadings 
+and other documents shall be preserved in the manner to be 
+prescribed by the court. 
+  
+PART IV 
+USER ACCOUNTS AND NOTIFICATIONS 
+  
+User ID 28. The e-mail address provided or identification code 
+assigned during registration shall serve as a unique User 
+ID. 
+  
+Eligibility 
+and 
+registration 
+29.-(1) All state attorneys, advocates or any person 
+entitled to appear before the court, including those 
+admitted pro hac vice, shall register as users of the court’s 
+electronic filing system or move for exemption. 
+ (2) An application for registration shall be made 
+through the Form C set out in the First Schedule to these 
+Rules. 
+ (3) Where the Registrar or magistrate in-charge 
+permits a party to proceedings who is not represented by an 
+
+[PDF PAGE 18]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+18 
+ 
+advocate may, register as an authorised user in the ECF 
+system solely for the purpose of the proceedings. 
+ (4) Registration of a pro se  filer or an accused person 
+shall be in the Form D as set out in the First Schedule to 
+these Rules. 
+ (5) Where at any time in the course of the proceedings, 
+a party retains an advocate who appears on his behalf, the 
+advocate shall inform the Registrar or magistrate in-charge 
+to terminate the party’s registration as a user or authorized 
+user upon the advocate’s appearance. 
+ (6) Where a registered user or an authorized user has 
+an internet email address, registration as a user constitutes 
+consent to electronic service of all documents as provided 
+under these Rules. 
+ (7) Once registration is completed, the user or 
+authorized user shall receive notification of the user login 
+and password. 
+  
+User 
+Password 
+30. During registration, the user shall designate a 
+unique password in accordance with the specifications 
+given by the system and may reset his password at any 
+time. 
+  
+Confidentialit 
+y of User ID 
+and  password 
+31.-(1) The user ID and password are confidential and 
+shall be used only by the user or any other person that the 
+user authorizes. 
+(2) The user or a person permitted by him shall protect 
+the security of his password and immediately notify the 
+Registrar or the magistrate in-charge if it comes to his 
+knowledge that the password has been compromised.  
+(3)  A user shall contact the registrar or the magistrate 
+in-charge where he believes that a filing was submitted 
+falsely under his name.  
+  
+Multiple User 
+Accounts 
+32.  A user or an authorized user may set up multiple 
+accounts using multiple e-mail addresses and shall monitor 
+each account and upload filings correctly.  
+  
+
+[PDF PAGE 19]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+19 
+ 
+Receipt of 
+notifications 
+33.-(1)  Whenever an authorized user submits a 
+document to the court through the electronic filing system, 
+the system shall automatically generate and transmit to the 
+authorized user a notification acknowledging such 
+submission with date and time stamp. 
+(2) A notification shall also be sent at the time the 
+court accepts or rejects any submitted document. 
+  
+Payment of 
+court fees 
+34.  Court fees may be paid electronically through a 
+mode of payment prescribed by the Chief Justice. 
+  
+PART V 
+SIGNING OF ORDERS, JUDGMENTS, ETC. 
+  
+Electronic 
+signing of 
+judgments, 
+orders, etc. 
+35.-(1) The assigned Judge, Registrar or magistrate, as 
+the case may be, may electronically sign orders, judgments, 
+decrees, summons, notice, rulings, notifications and such 
+other document relating to the case. 
+ (2) The Registrar or magistrate shall transmit 
+judgments, ruling or other documents stated under sub-rule 
+(1) to the users of the case in an electronic form. 
+  
+Electronic 
+signatures to 
+have the force 
+of 
+conventional 
+signatures 
+36. Any judgment, ruling, decree, order, notice or 
+summons signed electronically shall have the same force 
+and effect as if the Judge, the Registrar or the magistrate 
+had affixed his signature to a paper copy of the order and it 
+had been entered on the record in the conventional method. 
+ 
+ 
+
+[PDF PAGE 20]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+20 
+ 
+ 
+FIRST SCHEDULE   
+____________ 
+ 
+FORM A 
+ 
+ (Made under rule 7(4)) 
+ 
+DECLARATION:  
+I declare that all information contained in this form is correct and honestly 
+presented. Attached (Admission & Practicing Certificate). 
+E-Signature 
+ 
+ 
+ 
+ 
+ENTITY REGISTRATION FORM 
+(made under rule 7(4)) 
+Entity’s Name  
+TIN Number  
+Business Reg. 
+No. 
+ 
+Website  
+Email  
+Physical  Address   
+Mobile No.  
+Office  Tel. No.  
+
+[PDF PAGE 21]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+21 
+ 
+AUTHORISED USER: 
+No. First Name Last Name Qualification/Title ID No./Roll 
+No 
+1.     
+2.     
+3.     
+ 
+ 
+ 
+
+[PDF PAGE 22]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+22 
+ 
+FORM  B 
+SUBMISSION FORM 
+(Made under rule 10(4)) 
+Case Title 
+Court  
+Division  
+Category  
+Case Type  
+Nature  
+Case Details 
+Filed by(Advocate/ Prose filer/ Law officer/agent)  
+Filed by Law Firm  
+Status  
+Office Reference No.  
+Relief Claimed  
+Name(s) Name of Deponent(s)  
+Hearing Set down Date  
+Urgent  
+Involved Debt   
+Parties to Serve  
+Case Parties 
+Republic/Attorney General/ Plaintiff/ 
+DPP/Petitioner/Accused/Applicant/Appellant 
+ 
+Defendant/ Respondent/Republic  
+
+[PDF PAGE 23]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+23 
+ 
+ 
+Case Legal Practitioners 
+Names Qualifications 
+Documents 
+Pleadings/Charge Sheet  and Other Documents  
+Case Summary 
+  
+ 
+FORM  C 
+STATE ATTORNEY /ADVOCATE’S REGISTRATION FORM 
+(made under rule 29(2)) 
+Surname  
+Other Names  
+First Names  
+Roll No.  
+Nationality  
+TIN Number  
+Date of Birth  
+Identity Number 
+(Passport/ National ID/ 
+Voters ID & Driving 
+Licence) 
+ 
+Law Firm Name  
+Email  
+Physical Address   
+Mobile No.  
+
+[PDF PAGE 24]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+24 
+ 
+Office  Telephone No.  
+ 
+DECLARATION:  
+I declare that all information contained in this form is correct and honestly presented. 
+Attached (Admission & Practicing Certificate). 
+E-Signature   
+FOR 
+M  D 
+USER REGISTRATION FORM 
+(made under r. 29(5)) 
+Surname Name  
+Other Names  
+First Name  
+Nationality  
+TIN Number  
+Date of Birth  
+Identity Number 
+Identity Number 
+(Passport, National ID, 
+Voters ID & Driving 
+Licence) 
+ 
+Email  
+Physical Address   
+Mobile No.  
+Office Tel. No.  
+ 
+DECLARATION:  
+ 
+I declare that all information contained in this form is correct and honestly presented. 
+Attached (Admission & Practicing Certificate). 
+ 
+E-Signature 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 25]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+25 
+ 
+SECOND SCHEDULE 
+________ 
+ 
+CODE OF CONDUCT AND RESPONSIBILITIES OF THE AGENT 
+______ 
+ 
+(Made under rule 6(2)) 
+______  
+ 
+PART A: Duties of the Agent  
+ 
+An agent appointed under rule 6 shall perform the following duties- 
+(a)  prepare electronic documents; 
+(b)  transmit electronic documents to and from the system; 
+(c)  equip himself with a software compatible with system specifications; 
+(d)  provide online services; 
+(e)  provide intermediate services; 
+(f)   furnish the Chief Registrar or Resident Magistrate in-charge of the Court with correct 
+information to the best of his knowledge and belief; 
+(g)   advise authorized users accurately and timely on progress of their affairs; 
+(h)  ensure that all documents to be transmitted to the system are properly completed with 
+required supporting attachments;  
+(i)  quote his registration number on all correspondences with the Chief Registrar; and 
+(j)  be personally responsible for the acts or omissions  of any of his employees or associates in 
+assisting the filing, service, delivery or conveyance of documents using the electronic filing 
+service. 
+ 
+PART B: Rules of Conduct 
+ 
+In the discharge of duties and responsibilities set out in Part A , the agent shall-  
+(a)  refrain from using information acquired in the course of discharging his duties for his 
+personal advantage or any of his employees or  associates; 
+(b)  be well mannered, honest, sincere and truthful when handling the affairs of the authorized 
+user; 
+(c)  refrain from entering into any arrangement whereby the legal advice has been prepared by 
+unauthorized person;  
+(d)  exhibit a high degree of skills and competence;  
+(e)  ensure a high level of conversancy with court process and judicial practice; and  
+(f)  ensure that his technical knowledge is kept up to date. 
+ 
+
+[PDF PAGE 26]
+Judicature and Application of Laws (Electronic Filing) 
+GN. No. 148 (contd.)  
+26 
+ 
+__________  
+ 
+THIRD SCHEDULE 
+__________ 
+ 
+FORMAT OF TEXT  
+________  
+ 
+(Made under rule 11(2)) 
+________ 
+ 
+ Paper size : A-4 
+Margins : Top : 1.5” 
+Bottom : 1.5” 
+Left : 1.75” 
+ Right: 1.5” 
+Justified 
+Font : Times New Roman 
+Font size : 12 
+Line spacing : 1.5 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Dar es Salaam,                  I
+BRAHIM HAMIS JUMA , 
+............................, 2018                     Chief Justice 
+L. S  

@@ -1,0 +1,683 @@
+[PDF PAGE 1]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+1 
+ 
+GOVERNMENT NOTICE  No.  467  published on  17/08/2018 
+ 
+THE SOCIAL SECURITY (REGULATORY AUTHORITY) ACT,  
+(CAP. 135) 
+________ 
+ 
+REGULATIONS 
+________ 
+ 
+(Made under section 25A) 
+ 
+SOCIAL SECURITY SCHEMES (BENEFITS) REGULATIONS, 2018 
+ 
+PART I 
+PRELIMINARY PROVISIONS 
+1. Citation.   
+2. Application.  
+3. Interpretation. 
+PART II 
+LONG TERM BENEFITS 
+ 
+4. Qualifying conditions for old age benefits. 
+5. Retirement age. 
+6. Termination of employment in public interest. 
+7. Pension benefit factors. 
+8. Pension formula. 
+9. Annual pensionable emolument. 
+10. Commencement of payment of pension. 
+11. Pension indexation. 
+12. Deferred pension. 
+13. Special lumpsum. 
+14. Minimum pension. 
+15. Reduction factor. 
+16. Invalidity benefits. 
+17. Death gratuity. 
+18. Survivors pension. 
+19. Basis of survivor pension. 
+ 
+ 
+
+[PDF PAGE 2]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+2 
+ 
+ 
+PART III 
+SHORT TERM BENEFITS 
+ 
+20. Rate of unemployment benefits. 
+21. Duration of unemployment benefits. 
+22. Sickness benefit. 
+23. Rate of sickness benefit. 
+24. Access to mortgage. 
+25. Conditions for granting mortgage facility.  
+ 
+ 
+PART IV 
+GENERAL PROVISIONS 
+ 
+26. Offences  and penalties. 
+27. Revocation and saving. 
+
+[PDF PAGE 3]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+3 
+ 
+GOVERNMENT NOTICE  No.  467  published on  17/08/2018 
+ 
+THE SOCIAL SECURITY (REGULATORY AUTHORITY) ACT,  
+(CAP. 135) 
+__________ 
+ 
+REGULATIONS 
+__________ 
+ 
+(Made under section 25A) 
+ 
+SOCIAL SECURITY SCHEMES (BENEFITS) REGULATIONS, 2018 
+ 
+PART I 
+PRELIMINARY PROVISIONS 
+ 
+Citation    1.- (1)  These Regulations may be cited as the Social 
+Security Schemes (Benefits)  Regulations, 2018. 
+    
+Application   2.-(1) These Regulations shall, subject to sub -
+regulation (2),  apply to all schemes operating in Ma inland 
+Tanzania. 
+ 
+ 
+ 
+ 
+Cap. 50 
+ (2) Notwithstanding sub -regulation (1), applicat ion of 
+the provisions of these R egulations to the National Social 
+Security Fund shall be in relation to the benefits , the 
+computation of which is not provided for in the  Nat ional 
+Social Security Fund Act. 
+  
+Interpretation   3. In these Regulations, unless the context otherwise 
+requires -  
+Cap. 135 “Act” means the Social Security (Regulatory Authority)  Act;  
+   
+ “Authority” means the Social Security Regulatory Authority 
+established under section 4 of the Social Security 
+(Regulatory Authority) Act; 
+ “annual pensionable emolument” means the emolument which 
+is taken for the purposes of computing any pension 
+granted to the member under under the schemes laws; 
+ "commutation"  me ans  a process  of converting  part of 
+pension amount  payable  in the future  income  stream  
+to present  value terms to be paid t o a pensioner as a 
+
+[PDF PAGE 4]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+4 
+ 
+lump sum; 
+ "commutation factor"  means  the  actuarial  neutral  factor  
+used to calculate  pension  lump sums at retirement; 
+ “commutation rate” means the rate of pension payable up front 
+as commuted pension; 
+ “compulsory retirement age or pensionable age” means the age 
+of sixty years or any other  age statutorily provided as 
+such by any other written law; 
+ "defined benefit  scheme"  means  a type of retirement  scheme 
+in which  benefits  are pre -determined in an instrument 
+of establishment  of  a  scheme    where  individual   
+contributions are  matched  with  the  required  
+resources to meet  the  benefit cost for a specific  time; 
+Act No. 2 of 2018 
+and Cap. 50 
+“Fund” means the Public Service Social Security Fund 
+established under the Public Service Social Security 
+Fund Act and, where the context so requires, the 
+National Social Security Fund Act; 
+ "mandatory defined   benefit   schemes"   includes- 
+Cap. 50 (a) the   National Social Security Fund or in its acronym 
+“NSSF” established under the National Social Security 
+Fund  Act; and   
+Act No. 2 of 2018 (b) the Public Service Social Security Fund or in its 
+acronomy “PSSSF” established under the Public 
+Service Social Security Fund Act; 
+ “Minister” means the Minister responsible for social security 
+matters; 
+ “reduction factor” means actuarial neutral factor  reduced from 
+a monthly pension in lieu of voluntary retirement;  
+ “retirement age” means the age of voluntary retirement or 
+compursory retirement prescribed in the respective 
+schemes laws and includes any other retirement age 
+statutorily provided by any other written law;  
+ "salary" has the same meaning ascri bed to it by the respective 
+schemes laws; 
+ "sectoral  minimum wage" means  the minimum  wage as set 
+by the respective sectoral  minimum  wage  board; 
+ "scheme" means the mandatory pension schemes in Tanzania 
+Mainland;  
+Act No. 2 of 2018 
+and Cap. 50 “schemes laws” means the Public Service Social Security Fund 
+Act and National Social Security Fund Act; and 
+ 
+ 
+ 
+"voluntary retirement age" means the age of fifty five years and 
+includes any age thereafter prior attaining compulsory 
+
+[PDF PAGE 5]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+5 
+ 
+ retirement age or any other  age statutorily provided as 
+such by any other written law;  
+  
+ 
+PART II 
+LONG TERM BENEFITS 
+ 
+Qualifying 
+conditions for old 
+age pension benefit 
+ 4. A person shall not qualify for old age pension  
+benefit unless such person has-  
+(a) contributed to the Fun d for the period of not less 
+than one hundred and eighty months; and  
+ (b) attained the retirement age. 
+  
+Retirement age  5.-(1) A member may retire-  
+ (a) compulsorily, at the age of sixty years; or 
+ (b) voluntarily, any time upon attaining the age of fifty 
+five; 
+  (2) A m ember whose statutory terms of employment 
+prescribe an age of retirement shorter or longer than the age 
+provided for under sub regulation (1), shall retire in accordance 
+with such prescribed terms. 
+  
+Termination of 
+employment in the 
+public interest 
+ 6.-(1) A member terminated from employment on 
+public interest prior attaining voluntary retirement age and has 
+contributed to the Fund for not less than one hundred and 
+eighty (180) months- 
+(a) shall be paid commuted pension; and  
+(b) his pension shall be deferred and payable in 
+accordance with regulation 11. 
+  (2) A member who is  terminated from employment on 
+public interest prior attaining the age voluntary retirement and 
+whose contribution period is less tha n one hundred and eighty 
+months, shall be entitled to special lumpsum.   
+  
+Pension benefit 
+factors  7.-(1) Pension benefit factors to be used in the formula 
+for calculating full pension shall include- 
+ (a) annual accrual factor of 2.07 per-centum of the 
+annual pensionable emolument or 1/580 of the 
+monthly pensionable emolument per month; 
+ (b) commutation factor of  12.5; 
+ (c) commutation rate of 25 per-centum of full pension; 
+and 
+(d) monthly pension of 75 percentum of full pension 
+
+[PDF PAGE 6]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+6 
+ 
+divided by 12. 
+  (2) A full pension referred to under subregulation (1) 
+shall comprise of  commuted pension and monthly pension. 
+  
+Pension formula  8.-(1)  Subject to sub  reguation (2), pension benefits 
+under the respective schemes laws shall be calculated as 
+follows: 
+ (a) full pension-  
+1/580 x n umber of months served  x annual 
+pensionable emoluments; 
+ (b) commuted pension-  
+(1/580 x n umber of months served x annual 
+pensionable e moluments) x 12.5 x 25  per-
+centum; 
+ (c) monthly pension-   
+1/580 x n umber of months served  x annual 
+pensionable e moluments) x 75  per-centum x 
+1/12.  
+  (2) Notwithstanding sub regulation (1), pension benefit 
+for a member who joined the Public Service Pension Fund, 
+GEPF Retirement Benefit Fund  and the LAPF Pension Fund  
+prior to 1st July, 2014, who at the date of commencement of the 
+Public Service Social Security Fund Act, has attained voluntary 
+retirement age shall be- 
+ (a) a total of pension benefit attained for the period 
+ending on the date prior to the commencement of 
+the Public Service Social Security Fund Act; and 
+ (b) the period commencing on the date of 
+commencement of th e Public Service Social 
+Security Fund Act to the date of retirement.  
+  (3)  Notwithstanding regulation 7 and subregulation (1) 
+of this regulation, pension benefit for the period ending on the 
+date prior to the date of commencement of the Public Service 
+Social Security Fund Act, shall be calculated as follows: 
+ (a) full pension-  
+1/540 x n umber of months served  prior to the 
+date of commencement of the Public Service 
+Social Security Fund Act x annual pensionable 
+emoluments;  
+ (b) commuted pension-  
+(1/540 x number of months served  prior to the 
+date of commencement of the Public Service 
+
+[PDF PAGE 7]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+7 
+ 
+Social Security Fund Act x Annual 
+Pensionable Emoluments) x 1 5.5 x 25  
+percentum;  
+ (c) monthly pension-   
+1/540 x n umber of months prior to the date of 
+commencement  of the Public Serv ice Social 
+Security Fund Act x annual pensionable 
+emoluments) x 75 percentum x 1/12. 
+  (4) The pension beneftit for the period commencing on 
+the date of commencement of the Public Service Social 
+Security Act  shall, for the months served after the date of 
+commencement, be calculated using the formula under 
+subregulation (1). 
+  (5) M onthly pension  of a pensioner whose pension 
+benefit is calculated under this regulation shall be indexed in a 
+manner prescribed in regulation 11. 
+  
+Annual pensionable 
+emolument  9. Subject to regulation 8, a nnual pensionable 
+emoluments shall be- 
+ (a) for the purpose of calculating pension pursuant 
+to regulation 8(1), an average of the highest 
+three years salaries which a member received 
+during the last ten years preceding his 
+retirement, and 
+ (b) for the purpose of calculating pension pursuant 
+to regulation 8(2), the last salary which a 
+member received preceding his retirement  
+  
+Commencement of 
+payment of pension 
+ 10. The p ayment of pension shall commence on the 
+month following th e month  which the member ceased to 
+receive salary due to retirement. 
+  
+Pension indexation  11.-(1) Indexation rate for a monthly pension shall be 
+fifty per-centum of the prevailing inflation rate provided that 
+inflation rate ranges between one per-centum to ten percentum.  
+  (2) Where in flation rate is above ten pecentum, 
+indexation rate shall be five pecentum. 
+  (3) Where  inflation rate is below one per-centum, 
+indexation shall not apply for the inflation. 
+  (4) The Minister shall review pension indexation rate 
+under this regulation after every three years. 
+  (5) Notwithstanding sub regulation (4), the Minister 
+
+[PDF PAGE 8]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+8 
+ 
+may, where he is considers necessary and after taking into 
+consideration the sustainability of the Fund, review the pension 
+indexation rate at any time before expiration of period of three 
+years. 
+  
+Deferred pension  12.-(1) A member who  has contributed to the Fund for  
+a period of not less than one hundred and eighty  months but 
+has not reached retirement age shall, on termination of service -  
+ (a) due to appointment to a political post where there 
+is specific arrangement for retirement benefit;  
+ (b) due to retrenchment;  
+ (c) as a result of restructuring of office; 
+ (d) on abolition of public office;  
+ be granted a commuted pension and his monthly pensio n be 
+deferred until he attains the age of fifty five. 
+  (2) The commuted and mo nthly pension payable under 
+these R egulations shall be calculated in accordance with  the 
+provisions of regulation 8: 
+ Provided that the the deferred monthly pension shall be 
+indexed pursuant to the provisions of these Regulations until 
+the date on which the member whose pension was deferred 
+attains the age of voluntary retirement.    
+  
+Special lumpsum  13.-(1) Except as otherwise provided in these 
+Regulations, a member who exi ts the Fund before qualifying 
+for pension shall be paid a special lumpsum. 
+  (2) The s pecial lumpsum shall be an amount equal to 
+the sum of the member’s monthly contributions paid to the 
+Fund plus an interest calculated in a manner prescribed by the 
+Authority.  
+  (3) The amount applicable in calculating special 
+lumpsum shall be compounded annually. 
+  
+Minimum pension 
+ 
+ 
+Cap 300 
+ 14.-(1) The minimum monthly retirement pension 
+payable to a member shall not be less than forty per-centum of 
+sectoral minimum w age prescribed in accordance with the 
+Labour Institutions Act for which the pensioner saved prior to 
+his retirement or the pension a pensioner was receiving before 
+the commencement of these Regulations, whichever is greater. 
+  (2) The minimum pension under sub regulation (1) 
+shall not apply to a membe r who opts for early retirement for 
+the period before attaining the age of compulsory retirement.  
+
+[PDF PAGE 9]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+9 
+ 
+  
+Reduction factor  15.-(1) A reduction factor of 0.3 per-centum shall be 
+applied on monthly pension of a me mber who opts for early 
+retirement.  
+  (2) A pension reduction factor shall apply on each 
+completed month before reaching the compulsory retirement 
+age. 
+  (3) The r eduction factor referred to under sub 
+regulation (1) shall not apply to- 
+ (a) a commuted pens ion of a member who opts for 
+early retirement; and 
+ (b) a member whose retirement or exit from 
+employment was involuntary.  
+  
+Invalidity benefits  16.-(1) Invalidity pension shall be payable to a member 
+who- 
+ (a) is terminated from employment due to illness 
+which is not work related sickness or accident; or 
+ (b) is suffering from a permanent invalidity which is 
+not result ed from employment related illness or 
+accident;  
+ (c) is below the age of voluntary retirement; and 
+ (d) has been in service for at least thirty six months of 
+which twelve months have been contributed in the 
+year preceding the illness. 
+  (2) The rate of invalidity benefit shall be determined in 
+accordance with the provision of regulation 8, provided that the 
+minimum pension shall not be less than thirty  per-centum of 
+annual pensionable emolument devided by twelve payable 
+monthly. 
+  (3) Invalidity pension shall be indexed in a manner 
+provided in regulation 11. 
+  
+Death gratuity  17.-(1) Where a member  dies while in service , his 
+dependants shall be entitled to death gratuity in the following 
+manner- 
+ (a) special lump sum or annual pensionable 
+emoluments, whichever is greater, of the deceased 
+member whose contributing period is less than one 
+hundred and eighty months; or 
+ (b) commuted pension and survivors monthly pension 
+which shall be calculated in a manner prescribed in 
+
+[PDF PAGE 10]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+10 
+ 
+these Regulations. 
+   
+  (2) A widow or widower, shall be entitled to forty  per-
+centum of the death gratuity, and where there are more than one 
+widow, the amount shall be divided equally among them. 
+ (3) Children of the deceased member shall, subject to 
+provisions of these Reg ulations, be entitled to sixty  per-
+centum of the death gratuity. 
+  (4) where there are no dependant children, the widow 
+or widower shall be paid 100 per-centum of the death gratuity. 
+ (5) Where there is no widow or widower, the 
+dependent childern shall be paid 100 per-centum of the death 
+gratuity. 
+  (6) Where the deceased member has a child or children 
+attending school, death gratuity shall be split into two halves, 
+where- 
+(a) one half shall be used to cover education benefit t o 
+be administered by the scheme; and 
+(b) the other half shall be distributed equally among 
+the survivors. 
+  (7) Notwithstanding the provisions of  subregulations 
+(2) and (3 ), the Court may, after taking i nto consideration of 
+the needs and best interest of the widow or widower as the case 
+may be and the children concerned, vary the distribution of 
+death gratuity provided that, in so doing,  the Court shall assign 
+reasons for such variation. 
+  
+  
+Survivors pension  18.-(1) Survivors pension shall be paid to  dependants 
+of the deceased member who has contributed to the Fund for a 
+period of not less than one hundred and eighty months. 
+  (2) Survivors pension shall be calculated in accordance 
+with the provisions of regulation 8(1)(c). 
+  
+Basis of survivor 
+pension  19.-(1) Survivors pension shall be payable on the 
+following basis- 
+ (a) in the case of the widow or widower  who at the 
+date of death is 45 years of age or above or who is 
+under the age of 45  years and h as the care of 
+dependent children under the age of 15  years, for 
+life or until re-marriage; 
+
+[PDF PAGE 11]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+11 
+ 
+ (b) in the case of child  under the age of 21 years 
+receiving full time education or a child under the 
+age of 18 years , as the case may be, shall be paid 
+60 percentum of the pension to be divided equally 
+among the children. 
+  (2) Where the deceased member is not survived by 
+widow or widower , 100 per-centum of the pen sion shall be 
+divided equally among the dependent children. 
+  (3) Without prejudice to the respective s chemes laws, 
+where the deceased member is not survived by dependent 
+children or dependent spouse, 100 percentum of the pension 
+shall be paid to the parents of the deceased for life. 
+  (4) The entitlement amount prescribed under sub 
+regulation (1) shall be  paid in compliance with the procedures 
+of the court relating to distribution of deceased property or 
+estate. 
+ 
+PART III 
+SHORT TERM BENEFITS 
+  
+Unemployment 
+benefits 
+ 20. Unemployment benefit shall be payable on monthly 
+basis at the  rate equivalent to 33. 3 percentum of the salary 
+earned at the time of ceasing to be employed.  
+  
+Duration of 
+unemployment 
+benefits 
+ 21.-(1) The u nemployment benefit shall, unless a  
+member secures another employment, be  paid for a maximum 
+period of six months within twelve months: 
+  Provided that unemployment benefit shall not be paid 
+for a period exceeding an aggregate of eighteen months for 
+entire employment circle or career. 
+  (2) Where the period for which a member is entitled to 
+receive unemployment benefit pursuant to s ubregulation (1) 
+expires and the member has not secured another employment 
+within eighteen months after the date  of expiration of the 
+period of receiving unemployment benefit, he may apply to the 
+Director General to convert his contribution into supplementary 
+scheme of his choice. 
+  (3) The member whose contributions are converted 
+under sub regulation (2) may continue to contribute to the 
+supplementary scheme subject to the trust deed or rule 
+governing the respective scheme.   
+  (4) Where such  member’s contributions are converted 
+to a supplementary scheme, the amount to be converted shall 
+
+[PDF PAGE 12]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+12 
+ 
+be special lump sum minus total amount of unemployment 
+benefit accessed.   
+  (5) Notwithstanding sub regulation (2), a member 
+whose contribution period is below eighteen  months shall, 
+upon ceasing to be employed, be entitled to a payment of fifty 
+per-centum of the total contribution. 
+  (6) Where  the member has not secured another 
+employment within eighteen months after the date of expiration 
+of the period of receiving a payment of fifty per-centum of the 
+total contributions, such member  may apply to the Director 
+General to convert his remaining contribution into 
+supplementary scheme and he may continue to contribute to the 
+supplementary scheme subject to the trust deed or  rule 
+governing the supplementary scheme. 
+  (7) T he amount to be converted to supplementary 
+scheme shall be computed as special lump sum minus the  
+amount paid under sub regulation (6). 
+   
+Sickness benefit   22.-(1) The s ickness benefit shall be payable to a 
+member who- 
+ 
+ 
+ 
+ 
+Cap. 366 
+Cap. 298 
+(a) is suffering from a  sickness or accident which is 
+not resulted from employment injury for more than 
+three month s, and the employer has exercised his  
+obligation in accordance with Employment and 
+Labour Relations Act or the Public Service Act, as 
+the case may be, to pay him a half salary for a 
+period of three month s prior to termination from 
+the employment; 
+ (b) is under the age of voluntary retirement; and 
+ (c) has contributed to the scheme for at least thirty six 
+months of which twelve months contributions have 
+been made in the year preceding the sickness. 
+ 
+ 
+Cap 366 
+ (2) The Fund shall pay sickness benefit under these 
+Regulations after the first 63 days of sick leave payabable in 
+accordance with employment and labour relations Act and shall 
+be payable for a maximum period of three months. 
+  
+Rate of sickness 
+benefit 
+ 23. The rate of sickness benefit shall be forty per-
+centum of the monthly salary enjoyed by the member prior to 
+the sickness.  
+  
+Access to mortgage  24.-(1) Subject to sub regulation (3) and the procedure 
+
+[PDF PAGE 13]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+13 
+ 
+laid down in the operational manual of the respective schemes, 
+a member may use part of his benefit entitlements as collateral 
+for home mortgage. 
+  
+  (2) The amount to be accessed for home mortgage shall 
+not exceed fifty per-centum of- 
+(a) special lumpsum , for a member who has 
+contributed to the Fund for a period of  less than 
+one hundred and eighty months; and 
+ (b) entitlement of pension, for a member who has 
+contributed to the Fund for a period of not less than 
+one hundred and eighty months. 
+  (3) For the  purpose of this regulation, schemes shall 
+enter into agreement with commercial banks for the provision 
+of home mortgage. 
+Conditions for 
+granting mortgage 
+facility  
+ 25. Subject to other conditions  governing home  
+mortgage, a member may access home mortgage facility if he 
+fulfils the following conditions- 
+ (a) he is a member of a scheme; 
+ (b) he has contributed or deemed  to have contributed 
+to a scheme for at least ten years; 
+ (c) repayment of the facility shall not go beyo nd the 
+member’s compulsory retirement age; and 
+ (d) he is a Tanzanian citizen. 
+  
+PART IV 
+GENERAL PROVISIONS 
+ 
+Offences  and 
+penalties 
+ 26.-(1) A ny scheme or peson who contravenes any 
+provision of these Regulations commits an offence and shall be 
+liable to penalty as stipulated under the Act. 
+  (2) Notwithstanding the penalty imposed under su b 
+regulation (1), the Authority may- 
+ (a) where the offence is committed by the scheme, 
+direct such scheme to comply with these 
+Regulations; 
+ (b) where the offence is committ ed by an officer, 
+member of management  or trustee, recommend for 
+disqualification to the respective appointing 
+authority of such  officer, member of management  
+or trustee; 
+ (c) take any other necessary measure it considers 
+
+[PDF PAGE 14]
+Social Security Schemes (Benefits) 
+GN. No. 467 (Contd.) 
+ 
+14 
+ 
+appropriate for the better implemen tation of these 
+Regulations. 
+  
+Revocation and 
+saving 
+ 27.-(1) The Social Security Schemes (Pension Benefits 
+Harmonization) Rules, 2017 are hereby revoked. 
+  (2) Notwithstanding the revocation of the Social 
+Security Schemes (Pension Benefits Harmonizatio n) Rules, 
+2017, transaction, claim or directive made or issued prior to the 
+commencement of these Regulations shall not be affected. 
+ 
+ 
+ 
+ 
+ 
+Dodoma,                            JENISTA J. MHAGAMA  
+  16 August, 2018                           Minister of State, Prime Minister's Office 
+ Policy, Parliament, Labour, Youth, Employment     
+and Persons with Disability 
+ 

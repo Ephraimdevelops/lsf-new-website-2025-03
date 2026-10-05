@@ -7,13 +7,20 @@
     "dev": "vite",
     "security:public-assets": "node scripts/check-public-assets.mjs",
     "security:convex": "node scripts/check-convex-security.mjs",
-    "test:security": "npm run security:public-assets && npm run security:convex",
+    "test:security": "npm run security:public-assets && npm run security:convex && npm run test:auth-routing",
+    "test:auth-routing": "node --experimental-strip-types --test scripts/auth-routing.test.mjs",
     "test:haki-contracts": "node --experimental-strip-types --test scripts/haki-contracts.test.mjs",
+    "test:provider-invitations": "node --test scripts/provider-invitations.test.mjs",
+    "haki:preflight": "node scripts/haki-release-preflight.mjs",
+    "haki:preflight:release": "node scripts/haki-release-preflight.mjs --release",
+    "haki:directory-readiness": "node scripts/haki-directory-readiness.mjs",
     "prebuild": "npm run test:security",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:intake-drafts": "node --test scripts/intake-draft-storage.test.mjs",
+    "test:intake-submission": "node --test scripts/intake-submission.test.mjs"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.57.0",

@@ -22,9 +22,9 @@ const local = readEnv(localEnvPath);
 const parent = readEnv(parentEnvPath);
 
 const values = {
-  convexUrl: local.EXPO_PUBLIC_CONVEX_URL || parent.EXPO_PUBLIC_CONVEX_URL || parent.VITE_CONVEX_URL || "",
-  clerkPublishableKey: local.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY || parent.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY || "",
-  easProjectId: local.EXPO_PUBLIC_EAS_PROJECT_ID || parent.EXPO_PUBLIC_EAS_PROJECT_ID || "",
+  convexUrl: process.env.EXPO_PUBLIC_CONVEX_URL || local.EXPO_PUBLIC_CONVEX_URL || parent.EXPO_PUBLIC_CONVEX_URL || parent.VITE_CONVEX_URL || "",
+  clerkPublishableKey: process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY || local.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY || parent.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY || (parent.VITE_CLERK_PUBLISHABLE_KEY?.startsWith("pk_test_") ? parent.VITE_CLERK_PUBLISHABLE_KEY : "") || "",
+  easProjectId: process.env.EXPO_PUBLIC_EAS_PROJECT_ID || local.EXPO_PUBLIC_EAS_PROJECT_ID || parent.EXPO_PUBLIC_EAS_PROJECT_ID || "",
 };
 
 const checks = [

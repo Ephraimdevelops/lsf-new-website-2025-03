@@ -1,0 +1,1094 @@
+[PDF PAGE 1]
+JUDICIARY OF TANZANIA 
+ 
+ 
+ 
+ 
+ 
+ 
+Published by the Judiciary of Tanzania  
+(Version.1.0) 
+ 
+ 
+Prepared by: 
+Department of Case Management (DCM) 
+ 
+2024 
+ 
+ELECTRONIC CASE MANAGEMENT SYSTEM (e-CMS) 
+USER GUIDE FOR EXTERNAL USERS 
+ 
+
+[PDF PAGE 2]
+1 
+ 
+Contents 
+1.0 REGISTRATION OF AN EXTERNAL USER .......................................................................... 3 
+1.1 INDEPENDENT ADVOCATE ..................................................................................................... 4 
+1.2 STATE ATTORNEY ...................................................................................................................... 5 
+1.3 INDIVIDUAL LITIGANT .............................................................................................................. 5 
+1.4 ORGANIZATION LITIGANT ....................................................................................................... 5 
+2.0 LOGIN ................................................................................................................................................. 6 
+3.0 RESETTING/ FORGETTING PASSWORD............................................................................. 6 
+4.0 E-CASE FILING ............................................................................................................................... 7 
+4.1 CRIMINAL CASE FILING ........................................................................................................... 8 
+4.1.1 SUBMITTING A CHARGE SHEET ................................................................................ 8 
+4.1.2 FILING INFORMATION .................................................................................................... 9 
+4.1.3 FILING AN APPEAL ......................................................................................................... 10 
+4.1.4 FILING AN APPEAL FROM PRIMARY COURT ..................................................... 11 
+4.1.5 FILING OF ATTACHED APPLICATION .................................................................... 13 
+4.1.6 FILING FIRST INSTANCE APPLICATION. .............................................................. 14 
+4.1.8 SUBMITTING SUBSEQUENT DOCUMENT ....................................................... 15 
+4.1.9 APPEALS FROM COURT MARTIAL .................................................................... 16 
+4.2 CIVIL CASE FILING ................................................................................................................... 17 
+4.2.1 FILING ORIGINAL CIVIL CASE .................................................................................. 17 
+4.2.2 FILING AN APPEAL ............................................................................................................................ 18 
+4.2.3 FILING AN APPEAL FROM PRIMARY COURT ..................................................... 20 
+4.2.4 FILING FIRST INSTANCE APPLICATION. ....................................................... 21 
+4.2.5 FILING OF ATTACHED APPLICATION .............................................................. 22 
+4.2.6 APPEALS FROM TRIBUNALS................................................................................ 23 
+4.2.7 FILING OF EXCECUTION APPLICATION ............................................................... 24 
+4.2.7 APPLICATION FOR BILL OF COSTS ........................................................................ 25 
+4.2.9 FILING OF SUBSEQUENT DOCUMENTS ................................................................ 26 
+5.0 FILING FAMILY LAW CASES................................................................................................... 26 
+5.1 FILING OF PROBATE CAUSES ................................................................................. 26 
+5.2 FILING PROBATE APPEAL ......................................................................................... 27 
+5.3 FILING APPEAL FROM PRIMARY COURT ................................................................. 28 
+5.4 FILING A MATRIMONIAL CAUSE .................................................................................. 29 
+
+[PDF PAGE 3]
+2 
+ 
+5.5 FILING A MATRIMONIAL APPEAL ................................................................................ 29 
+5.6 SUBMISSION OF INVENTORY. ....................................................................................... 30 
+5.7 SUBMISSION OF FINAL ACCOUNT .............................................................................. 31 
+6.0 FILING OF CASES AT THE COURT OF APPEAL ............................................................. 31 
+6.1 FILING OF CIVIL APPEAL ....................................................................................................... 32 
+6.1.1 FILING CIVIL APPEALS FROM MAINLAND ........................................................... 33 
+6.1.2 FILING APPEALS FROM ZANZIBAR AND TRIBUNALS ............................... 33 
+6.1.3 FILING OF APPLICATIONS FROM COURT OF APPEAL ............................ 34 
+6.1.4 FILING OF APPLICATIONS FROM HIGH COURT ......................................... 35 
+6.1.5 FILING BILL OF COST ................................................................................................... 36 
+6.1.5 FILING OF SUBSEQUENT DOCUMENTS .......................................................... 37 
+6.2 GROUNDS OF APPEAL ............................................................................................................ 38 
+6.2.1 FILING OF GROUNDS OF APPEAL ........................................................................... 38 
+6.2.2 AMMENDMENT OF THE GROUNDS OF APPEAL ................................................ 38 
+6.3 FILING OF CRIMINAL CASES................................................................................................ 39 
+6.3.1 FILING CRIMINAL APPEALS FROM MAINLAND ................................................. 39 
+6.3.2 FILING CRIMINAL APPEALS FROM ZANZIBAR .................................................. 40 
+6.3.3 FILING OF APPLICATIONS FROM COURT OF APPEAL ............................ 41 
+6.3.4 FILING OF APPLICATIONS FROM HIGH COURT ......................................... 42 
+6.3.5 FILING OF SUBSEQUENT DOCUMENTS ................................................................ 43 
+6.4 GROUNDS OF APPEAL ............................................................................................................ 43 
+6.4.1 FILING OF GROUNDS OF APPEAL ........................................................................... 43 
+6.4.2 AMMENDMENT OF THE GROUNDS OF APPEAL ................................................ 44 
+ 
+  
+
+[PDF PAGE 4]
+3 
+ 
+1.0 REGISTRATION OF AN EXTERNAL USER 
+An external user is anyone in need of judicial services, which may 
+include Advocate, State Attorney, Prosecutor, Individual, 
+Institution, and so on. 
+To access the system, type "cms.judiciary.go.tz" in the address 
+bar, then press the "Enter" key on your computer. The "JoT-eCMS" 
+form will open. 
+Click the word “Create an account” as shown in the arrow in 
+Figure No. 1 below 
+ 
+ 
+Figure No. 1 
+ 
+You will see the registration form as shown in  Figure No. 2 below. 
+Click the button for the group that applies to you, if you are: 
+ 
+
+
+[PDF PAGE 5]
+4 
+ 
+ 
+Figure No. 2 
+ 
+1.1 INDEPENDENT ADVOCATE  
+ 
+i. For an independent advocate, enter your roll number. 
+ii. Click the “continue” button. See Figure No.3 
+ 
+ 
+ 
+Figure No.3 
+iii.  Your advocate information will appear; confirm that the 
+information is correct. 
+
+
+[PDF PAGE 6]
+5 
+ 
+iv. Enter and verify your password, then click the “Create account” 
+button. 
+v. You will receive a "link" to verify your account via email. 
+vi. Click the "link," and it will direct you to our system to log in. 
+1.2 STATE ATTORNEY 
+i. For a state attorney, enter your National Identification Number 
+(NIDA). 
+ii. Click the “Continue” button. 
+iii. Your state attorney information will appear; confirm that the 
+information is correct. 
+iv. Enter and verify your password, then click the “ Create 
+Account” button. 
+v. You will receive a "link" to verify your account via email. 
+vi. Click the "link," and it will direct you to our system to log in. 
+1.3 INDIVIDUAL LITIGANT 
+i.  For an Individual Complainant, enter your National 
+Identification Number (NIDA). 
+ii. Click the “continue” button. 
+iii. A page with several questions will appear. 
+iv. Answer those questions correctly to verify your information. 
+v. Click the “continue” button. 
+vi. Enter your email address, phone number, password, and 
+confirm your password, then click the “ Create Account” 
+button. 
+vii. You will receive a "link" to verify your account via email. 
+viii. Click the "link," and it will direct you to our system to log in. 
+1.4 ORGANIZATION LITIGANT 
+i. For an organization representative, enter the organization's 
+registration number from BRELA. 
+ii. The organization’s name will appear; verify and confirm. 
+iii. Enter your information correctly. 
+iv. Click the “Create account” button. 
+v. You will receive a "link" to verify your account via email. 
+vi. Click the "link," and it will direct you to our system to log in. 
+
+[PDF PAGE 7]
+6 
+ 
+2.0 LOGIN 
+i. Type "cms.judiciary.go.tz" in the address bar. 
+ii. Press the "Enter" key on your computer. The "JoT-eCMS" 
+form will open. 
+iii. Enter your email address and password. 
+iv. Click the "Sign in" button to access the system. Figure No. 4 
+explains further. 
+ 
+Figure No. 4 
+3.0 RESETTING/ FORGETTING PASSWORD  
+i. Click the word "forgot password?" as shown in Figure No.5. 
+ii. Enter your email address and then click the "Send Password 
+reset email" button. You will receive a "link" to reset your 
+password via your email. 
+iii. Enter and confirm your new password, then click the "Reset 
+Password" button. 
+
+
+[PDF PAGE 8]
+7 
+ 
+ 
+Photo No. 5 
+ 
+4.0 E-CASE FILING 
+After successfully logging in the system, click “ e-case Filing” menu 
+on the left side of the dashboard. Choose “Civil e-filing” to access a 
+list and file civil cases or “Criminal e-filing” for criminal cases see 
+Figure No 6  
+ 
+
+
+[PDF PAGE 9]
+8 
+ 
+Figure No 6 
+4.1 CRIMINAL CASE FILING 
+If you choose “Criminal e-Filing” a list of registered criminal cases 
+will appear. On the right side, click the “File New” button to register 
+either a charge sheet , Information, Appeal/Notice of intention to 
+appeal, Applications/Revision, first instance application, subsequent 
+Documents or Appeals from Court Martial as shown in Figure No. 7 
+below 
+ 
+Figure No. 7 
+4.1.1 SUBMITTING A CHARGE SHEET 
+i. Click the "New Charge sheet" button to view page for filling 
+charge sheet. 
+ii. Fill in all the required information completely, then click 
+"Submit" to file the case in court, as shown in Figure No. 8 
+below. 
+
+
+[PDF PAGE 10]
+9 
+ 
+If your information is incomplete, you can save a draft by clicking 
+the "Save Draft" button and continue later by accessing the draft 
+window available in the “Criminal e-filing” module. (Further 
+explanation on the use of drafts is provided below.) 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. This window is used by prosecutors who are not 
+directly integrated to the e-cms system. 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+ 
+Figure No. 8 
+4.1.2 FILING INFORMATION 
+i. Click the "Information" button, to access the search page as 
+shown in Figure No. 9. 
+ 
+
+
+[PDF PAGE 11]
+10 
+ 
+Figure No 9. 
+ii. Fill in the case reference number of the case intended to file 
+information to see its details, 
+iii. Click “File information” button.  
+iv. Fill all fields then click the “ submit” button to file the 
+information. as shown in Figure No. 8  
+If your information is incomplete, you can save a draft by clicking 
+the "Save Draft" button and continue later by accessing the draft 
+window available in the “ Criminal e -filing” module. (Further 
+explanation on the use of drafts is provided below.) 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. This window is used by prosecutors who are not directly 
+integrated to the e-cms system. 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+4.1.3 FILING AN APPEAL 
+i. For filing an appeal, click the "Appeal/Appeal Notice" button, 
+to access the search page as shown in Figure No. 10. 
+ 
+
+
+[PDF PAGE 12]
+11 
+ 
+Photo No. 10 
+ii. Select the type of decision you are appealing as shown in Figure 
+No. 10 above. 
+iii. Enter the case reference number you are appealing in order to 
+view its details. 
+iv. Click the "Notice of Intention to Appeal" button. 
+v. Fill in all the sections, then click the "Submit" button to submit 
+the intention to appeal. 
+vi. Repeat the step of selecting the type of decision and entering 
+the case reference number (as shown in Figure No. 10) to view 
+the case details. 
+vii. Click the "File an Appeal" button to file the appeal. 
+viii. Complete all the required information and then click " Submit" 
+to file the case in court.  
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Criminal e-filing” module. (Further explanation on 
+the use of drafts is provided below.) 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. Decisions that can be appealed through "Appeal Against 
+Interlocutory Decision" are only those that do not 
+conclusively determine the case. 
+iii. Decisions that can be appealed through "Appeal Against 
+Final Decision" are only those that conclusively 
+determine the case. 
+iv. The account used to file the case will be the one 
+receiving all court orders. 
+4.1.4 FILING AN APPEAL FROM PRIMARY COURT 
+i. For filing an appeal, click the "Appeal from primary Court" 
+button, to access the search page as shown in Figure No. 10. 
+
+[PDF PAGE 13]
+12 
+ 
+ 
+ 
+Figure No. 10 
+ii. Select between Appeal and Revision as shown in Figure No. 
+10 above. 
+iii. Enter the case reference number you are appealing/filing 
+revision in order to view its details. 
+iv. Click the "File Appeal/Revision" button. 
+v. Fill in all the sections, then click the "Submit" button to submit 
+the intention to appeal. 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Criminal e-filing” module. (Further explanation on 
+the use of drafts is provided below.) 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. You should select "Appeals from Primary Court" if your 
+application relates to a criminal case originating from 
+the Primary Court. 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+ 
+
+
+[PDF PAGE 14]
+13 
+ 
+4.1.5 FILING OF ATTACHED APPLICATION 
+i. Click the “New Application” button to access a search page as 
+shown in figure No. 11 
+ 
+ 
+ 
+ 
+ 
+ 
+figure No. 11 
+ii. Fill in the reference number of the case intended to file the 
+application to see all relevant information. 
+iii. Click the “File Application” button to see the relevant form.  
+iv. Fill all details then click “ Submit” to file an attached 
+application.  
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Criminal e-filing” module. (Further explanation on 
+the use of drafts is provided below.) 
+Note: 
+
+
+[PDF PAGE 15]
+14 
+ 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. You should select "Appeals from Primary Court" if your 
+application relates to a criminal case originating from 
+the Primary Court. 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+ 
+4.1.6 FILING FIRST INSTANCE APPLICATION.  
+i. Click on the “First Instance Application” button to access the 
+first instance application form.   
+ii. Fill in all appropriate fields click "Submit" to file the case before 
+the court. See figure 12 below. 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Criminal e-filing” module. (Further explanation on 
+the use of drafts is provided below.). 
+ 
+Figure No 12 
+Note: 
+
+
+[PDF PAGE 16]
+15 
+ 
+i.  All field with asterisk (*) are mandatory 
+ii.  Choose “first instance application” only when the 
+intended application is not associated with any criminal 
+matter pending before the court. 
+iii.  The account used to file the case will be the one 
+receiving all court orders. 
+4.1.8 SUBMITTING SUBSEQUENT DOCUMENT  
+i. Click the “Subsequent Document” button to access a search 
+page. 
+ii. Fill in the reference number of the case intended to file the 
+subsequent document to see all relevant information. 
+iii. Click the “ File Subsequent Document” button to see the 
+relevant form. 
+iv.  Fill all details and attach document in PDF format. 
+v. Click “Submit” to file  before the court as shown in Figure 
+No. 13 
+  
+Figure No. 13 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Criminal e-filing” module. (Further explanation on 
+the use of drafts is provided below.) 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+
+
+[PDF PAGE 17]
+16 
+ 
+ii. You should select " Subsequent Documents" if there is a 
+pending case.  
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+4.1.9 APPEALS FROM COURT MARTIAL 
+i. Click on the “Appeals from Court Martial” button to access 
+the application form.   
+ii. Fill in all appropriate fields click " Submit" to file the case 
+before the court. See figure 14 below. 
+ 
+Figure 14 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Criminal e-filing” module. (Further explanation on 
+the use of drafts is provided below.). 
+Note: 
+i.  All field with asterisk (*) are mandatory 
+
+
+[PDF PAGE 18]
+17 
+ 
+ii.  Choose “ Appeals from Court Martial ” only when the 
+intended application is from Court Martial. 
+iii.  The account used to file the case will be the one 
+receiving all court orders. 
+ 
+4.2 CIVIL CASE FILING 
+Click “Civil e-Filing” button to access a list of registered civil cases. 
+Click the “ File N ew” button on the right side  to access the 
+registration buttons as shown in Figure No. 15. 
+ 
+Figure No. 15 
+4.2.1 FILING ORIGINAL CIVIL CASE 
+File any original civil case which can be initiated by either a plaint, 
+petition, originating summons and similar ones.  
+i. Click the "New Plaint" button. 
+ii. Complete all required information in full. 
+
+
+[PDF PAGE 19]
+18 
+ 
+iii. Click "Submit" to file the case in court, as shown in Figure 
+No. 16 below. 
+ 
+ 
+Figure No 16 
+Note; 
+i. The account used to file the case will be the one receiving 
+all court orders. 
+ii. All the fields with asterisk (*) signs are mandatory. 
+4.2.2 FILING AN APPEAL 
+i. For filing an appeal, click the " New Appeal/Notice" button, to 
+access the search page. As seen in figure no 17 below. 
+
+
+[PDF PAGE 20]
+19 
+ 
+ 
+Figure no 17 
+ii. Select the type of decision you are appealing as shown in Figure 
+No. 17 above. 
+iii. Enter the case reference number you are appealing in order to 
+view its details. 
+iv. Click the "File an Appeal" button to file the appeal. 
+v. Complete all the required information and then click " Submit" 
+to file the case in court.  
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Civil e-filing” module. (Further explanation on the 
+use of drafts is provided below.) 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. Decisions that can be appealed through "Appeal 
+Against Interlocutory Decision" are only those that do 
+not conclusively determine the case. 
+iii. Decisions that can be appealed through "Appeal 
+Against Final Decision" are only those that 
+conclusively determine the case. 
+iv. The account used to file the case will be the one 
+receiving all court orders. 
+
+
+[PDF PAGE 21]
+20 
+ 
+4.2.3 FILING AN APPEAL FROM PRIMARY COURT 
+i. For filing an appeal, click the "Appeal from primary Court" 
+button, to access the search page. 
+ii.  Select between Appeal and Revision as shown in Figure No. 
+18. Below. 
+ 
+Figure No. 18 
+iii. Enter the case reference number you are appealing/filing 
+revision in order to view its details. 
+iv. Click the "File Appeal/Revision" button. 
+v. Fill in all the sections, then click the "Submit" button to submit 
+the Application. 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Civil e-filing” module. (Further explanation on the 
+use of drafts is provided below.) 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. You should select "Appeals from Primary Court" if your 
+application relates to a civil case originating from the 
+Primary Court. 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+
+
+[PDF PAGE 22]
+21 
+ 
+4.2.4 FILING FIRST INSTANCE APPLICATION.  
+i. Click on the “ First Instance Application” button to access 
+the first instance application form.   
+ii. Fill in all appropriate fields click " Submit" to file the case 
+before the court. See figure 19 below. 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Civil e-filing” module. (Further explanation on the 
+use of drafts is provided below.). 
+ 
+Figure No 19 
+Note: 
+i.  All field with asterisk (*) are mandatory 
+ii.  Choose “first instance application” only when the 
+intended application is not associated with any civil 
+matter pending before the court. 
+iii.  The account used to file the case will be the one 
+receiving all court orders. 
+ 
+
+
+[PDF PAGE 23]
+22 
+ 
+4.2.5  FILING OF ATTACHED APPLICATION  
+i. Click the “New Application” button to access a search page  
+ii. Fill in the reference number of the case intended to file the 
+application to see all relevant information. 
+iii. Click the “File Other Application” button to see the relevant 
+form. 
+iv. Fill all details then click “Submit” to file an attached 
+application. As seen in figure No 20 below. 
+ 
+figure No 20 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Civil e-filing” module. (Further explanation on the 
+use of drafts is provided below.) 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. You should select "Appeals from Primary Court" if your 
+application relates to a civil case originating from the 
+Primary Court. 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+ 
+
+
+[PDF PAGE 24]
+23 
+ 
+4.2.6  APPEALS FROM TRIBUNALS 
+i. Click on the “Appeals from Tribunals” button to access the 
+application form.   
+ii. Fill in all appropriate fields click " Submit" to file the case 
+before the court. See figure No.21 below. 
+ 
+Figure No.21 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Civil e-filing” module. (Further explanation on the 
+use of drafts is provided below.). 
+Note: 
+i.  All field with asterisk (*) are mandatory 
+ii.  Choose “Appeals from Tribunal” only when the intended 
+application is from Tribunal. 
+iii.  The account used to file the case will be the one 
+receiving all court orders. 
+
+
+[PDF PAGE 25]
+24 
+ 
+4.2.7 FILING OF EXCECUTION APPLICATION 
+i. Click the “New Execution” button to access a search page. 
+ii. Fill in the reference number of the case intended to file the 
+application to access all relevant information. 
+iii. Click the “ File Execution” button to access the relevant 
+form.  
+iv. Fill all details then click “Submit” to file an execution 
+application before the court.  See figure No 22 below. 
+ 
+Figure No. 22 
+If your information is incomplete, you can save a draft by clicking the 
+"Save Draft" button and continue later by accessing the draft window 
+available in the “Civil e-filing” module. (Further explanation on the 
+use of drafts is provided below.) 
+Note: 
+i.  All field with asterisk sign (*) are mandatory. 
+ii. Select “execution” if the  intended application originates 
+from the civil case decision.  
+iii. The account used to file the case will be the one 
+receiving all court orders.  
+
+
+[PDF PAGE 26]
+25 
+ 
+ 
+4.2.7 APPLICATION FOR BILL OF COSTS 
+i. Click the “Bill of Cost” button to access a search page. 
+ii. Fill in the reference number of the case intended to file the 
+application to access all relevant information. 
+iii. Click the “File Bill of Cost” button to access the relevant 
+form. 
+iv. Fill all the details then click “ Submit” to file a bill of cost 
+application before the court. See Figure No. 23 below.  
+ 
+Figure No. 23 
+Note: 
+i.  All field with asterisk sign (*) are mandatory. 
+ii. Select “Bill of Cost” this if the application originates from 
+the cost incurred in prosecuting the civil case, civil appeal, 
+civil application and other matter similar nature. 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+
+
+[PDF PAGE 27]
+26 
+ 
+4.2.9 FILING OF SUBSEQUENT DOCUMENTS 
+i. Select the “Subsequent” Document” button to file subsequent 
+documents on a civil case pending before the court. 
+ii. Fill the case reference number of the respective case to access 
+relevant information. 
+iii. Click the “File Subsequent Document” button. 
+iv. Fill and attach the document in PDF format. 
+v. Click the “Submit” button to submit to court 
+5.0 FILING FAMILY LAW CASES 
+On the"Family Cases"menu, click the “Probate and Matrimonial” to 
+access a list of registered family law  cases. Click the “File New” 
+button on the righ t side  to access the family cases admission 
+section.see figure No. 24 below. 
+ 
+Figure No.24. 
+5.1 FILING OF PROBATE CAUSES 
+i. Click the “Probate and Administration”  button to access the 
+relevant form.  
+
+
+[PDF PAGE 28]
+27 
+ 
+ii. Fill all the details, then click “Submit” to file probate and 
+administration case before the court. See Figure No. 25 below
+ 
+Figure No. 25 
+ 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory and 
+must be completed. 
+ii. Select "Probate & Administration" if your application is 
+being filed for the first time. 
+iii. The client account used to open the succession case 
+will be the one to receive all subsequent court orders. 
+5.2 FILING PROBATE APPEAL 
+i. For filing Probate Appeal, click the " Probate Appeal " button, 
+to access the search page. As seen in figure No. 26 below. 
+ 
+
+
+[PDF PAGE 29]
+28 
+ 
+Figure no 26 
+ii. Enter the case reference number you are appealing in order 
+to view its details. 
+iii. Click the "File an Appeal" button to file the appeal. 
+iv. Complete all the required information and then click 
+"Submit" to file the case in court.  
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. Select "Probate Appeals" if your application relates to 
+or arises from another ongoing probate matter before 
+the Court 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+5.3 FILING APPEAL FROM PRIMARY COURT 
+i. Click the "Appeal from Primary Court" button, to access the 
+search page as shown in Figure No. 27. Below. 
+ 
+Figure No. 27 
+ii. Select between Appeal and Revision as shown in Figure No. 
+27 above. 
+iii. Enter the case reference number you are appealing/filing 
+revision in order to view its details. 
+iv. Click the "File Appeal/Revision" button to access the form. 
+v. Fill in all the sections, then click the "Submit" button to 
+submit the Application. 
+
+
+[PDF PAGE 30]
+29 
+ 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. You should select "Appeals from Primary Court" if your 
+application relates to a probate cause originating from 
+the Primary Court. 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+5.4 FILING A MATRIMONIAL CAUSE 
+i. Click the “Matrimonial Cause”  button to access the relevant 
+form. 
+ii. Fill all the details then click “Submit” to file matrimonial 
+cause in court. See Figure No.28 below. 
+ 
+Figure No.28  
+5.5 FILING A MATRIMONIAL APPEAL 
+i. Click the " Matrimonial Appeal " button, to access the 
+search page. 
+ii. Enter the case reference number you are appealing in order 
+to view its details. As seen in figure No. 29 below. 
+
+
+[PDF PAGE 31]
+30 
+ 
+ 
+Figure no 29 
+iii. Click the "File an Appeal" button to file the appeal. 
+iv. Complete all the required information and then click 
+"Submit" to file the case in court. 
+Note: 
+i. All fields marked with an asterisk (*) must be filled in. 
+ii. Select "Probate Appeals" if your application relates to or 
+arises from another ongoing probate matter before the 
+Court 
+iii. The account used to file the case will be the one 
+receiving all court orders. 
+ 
+5.6 SUBMISSION OF INVENTORY. 
+Once an administrator has been appointed by the court a notification 
+of his appointment will be sent to his page for him file an inventory.  
+i. Click the “Probate and Matrimonial” menu. 
+ii. Click the " Submission of Inventory " card to view the list of 
+cases waiting to submit the deceased's estate inventory. 
+iii. Select the case by clicking the arrow icon. 
+iv. Click the "File Inventory" button to view the relevant form. 
+v. Enter the details and value of the deceased’s assets. Also, enter 
+the details and value of the deceased's debts, if any. 
+vi. Confirm your details by checking the checkbox; 
+
+
+[PDF PAGE 32]
+31 
+ 
+vii. Click the " Save Inventory " button to submit the 
+deceased's estate inventory. 
+5.7 SUBMISSION OF FINAL ACCOUNT 
+After submitting the inventory of the estate, you will receive a closing 
+call that will demand you to submit the final accounts.  
+i. Click the “Probate and Matrimonial” menu to see windows. 
+ii. Click the "Submission of Final Accounts" window to view the 
+list of cases waiting to submit the final accounts. 
+iii. Click the "Final Accounts" button to view the relevant form. 
+iv. Enter all the details accurately, then click the "Submit" button 
+to save the information. 
+v. Click the " Save Receipt " button to view the asset account 
+details. 
+vi. Confirm your details by checking the checkbox. 
+vii. Click the "Submit" button to submit the final accounts to 
+the court. 
+6.0 FILING OF CASES AT THE COURT OF APPEAL 
+On the “ Court of Appeal ” menu, click “ Civil” to access a list of 
+registered civil cases or click “Criminal” to access list of criminal case 
+and to file new criminal case as shown in Figure No. 30 below. 
+
+[PDF PAGE 33]
+32 
+ 
+ 
+Figure No. 30 
+6.1 FILING OF CIVIL APPEAL  
+i. Click the "Court of Appeal" menu. 
+ii. Click " Civil" to view the list of civil cases that have been 
+registered. 
+iii. Click the " File New" button on the right side to access the 
+section for filing cases in the Court of Appeal. 
+iv. Choose either " Appeal from Mainland", "Other appeals", 
+"Application", "Application from Court of Appeal", 
+"Application from High Court", "Bill of Costs", or 
+"Subsequent Document", as explained in figure No. 31. 
+ 
+Figure No. 31 
+
+
+[PDF PAGE 34]
+33 
+ 
+6.1.1 FILING CIVIL APPEALS FROM MAINLAND 
+i. Click the "New Notice of Appeal" button on the “Appeals from 
+Mainland” card to access the search page. 
+ii. Enter the case reference number you are appealing to view its 
+details. 
+iii. Click the "File Notice of Appeal" button to open the appeal. 
+iv. Fill in all the details and then click " Submit" to file the appeal 
+in court, as shown in Figure No. 32 below. 
+ 
+Figure No. 32 
+ 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. The customer account used to open the case will be the 
+one to receive all court orders 
+6.1.2 FILING APPEALS FROM ZANZIBAR AND TRIBUNALS 
+i. Click the "New Notice of Appeal" button on the “Other 
+Appeals” card to access the page. 
+ii. Fill in all the details and then click "Submit" to file the 
+appeal in court, as shown in Figure No. 33 below. 
+
+
+[PDF PAGE 35]
+34 
+ 
+ 
+Figure No. 33 
+ 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. The customer account used to open the case will be the 
+one to receive all court orders 
+6.1.3  FILING OF APPLICATIONS FROM COURT OF APPEAL 
+i. Click the " New Other Application " button on the  other 
+application card to access the search page. 
+ii. Enter the case reference number you want to file application to 
+view its details. 
+iii. Click the " File Application from Court  of Appeal" button to 
+open the application form. 
+iv. Fill in all the details and then click " Submit" to file the appeal 
+in court, as shown in figure No. 34 below. 
+
+
+[PDF PAGE 36]
+35 
+ 
+ 
+figure No. 34 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. The customer account used to open the case will be the 
+one to receive all court orders. 
+6.1.4  FILING OF APPLICATIONS FROM HIGH COURT 
+i. Click the " New Application" button on the “Application 
+from High Court” card to access the search page. 
+ii. Enter the case reference number you want to file application 
+to view its details. 
+iii. Click the "  File Application from High Court  " button to 
+open the appeal. 
+iv. Fill in all the details and then click "Submit" to file the appeal 
+in court, as shown in figure No. 35 below. 
+
+
+[PDF PAGE 37]
+36 
+ 
+ 
+figure No. 35 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. The customer account used to open the case will be the 
+one to receive all court orders. 
+6.1.5 FILING BILL OF COST 
+i. Click the "Bill of Costs" button to access the search page. 
+ii. Enter the case reference number for the application being filed 
+to view its details. 
+iii. Click the "File Bill of Costs" button to view the relevant form. 
+iv. Fill in all the details and then click "Submit" to file the case in 
+court, as shown in Figure No. 36 below. 
+ 
+Figure No. 36 
+
+
+[PDF PAGE 38]
+37 
+ 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. Select "Bill of Costs" if your application is based on the 
+expenses incurred in conducting a civil case, civil 
+appeal, civil application, or other similar matters. 
+iii. The customer account used to open the case will be the 
+one to receive all court orders. 
+6.1.6  FILING OF SUBSEQUENT DOCUMENTS 
+i. Click the "New Document" button to access the search page, 
+as shown in Figure No. 37 below. 
+ 
+Figure No. 37 
+ii. Choose between " Prior to Memorandum/Application"  or 
+"After Memorandum/Application" as shown in Image No. 
+37 above. 
+iii. Enter the case reference number for the document you wish 
+to file to view its details. 
+iv. Click the " File Subsequent Document " button to view the 
+page. 
+v. Fill in all the details accurately and then click " Submit" to 
+file the document in court. 
+Notes: 
+i. All fields marked with an asterisk (*) are mandatory. 
+
+
+[PDF PAGE 39]
+38 
+ 
+ii. The customer account used to open the case will be the 
+one to receive all court orders. 
+ 
+6.2 GROUNDS OF APPEAL 
+6.2.1 FILING OF GROUNDS OF APPEAL 
+If a notice of appeal is approved and admitted, and after payment has 
+been made, the “Appeal Notice” field will change status to “admitted”.  
+i. Click on the "Court of Appeal" module. 
+ii. Select the "Civil" button to view various case cards 
+iii. Choose the "Admitted Notice" card to see the list of appeals 
+awaiting submission of grounds 
+iv. Select a case by clicking the checkmark symbol (✓) 
+v. Click the "File Memorandum of Appeal"  button to access the 
+relevant form  
+Complete all required information then click  "Submit" to file 
+your appeal grounds with the Court" 
+6.2.2 AMMENDMENT OF THE GROUNDS OF APPEAL 
+If the submitted grounds of appeal and other documents are rejected 
+for amendment; 
+i. Click on the "Court of Appeal" module. 
+ii. Select the "Civil" button to view various case cards. 
+iii. Choose the "Returned/Rejected" card to see a list of remitted 
+cases. 
+iv. Click the "Returned/Rejected Memorandum" button to view  
+the cases. 
+v. Select a case by clicking the checkmark symbol (✓) 
+vi. Click the "File Memorandum of Appeal"  button to access the 
+relevant form. 
+vii. Complete all required information then click  "Re-
+submit" to file your amended grounds of appeal. 
+
+[PDF PAGE 40]
+39 
+ 
+6.3 FILING OF CRIMINAL CASES 
+i. Click “Court of Appeal” menu. 
+ii. Click “Criminal” to access a list of registered criminal cases. 
+iii. Click the “File New” button at the right side to access court of 
+appeal admission section. 
+iv. Select either “Appeal from Mainland ”, “ Other appeals ”, 
+“Application from Court of Appeal”, “Application from High 
+Court”, or “Subsequent Document” as shown in figure No 
+38 below. 
+ 
+Figure No 38 
+6.3.1 FILING CRIMINAL APPEALS FROM MAINLAND 
+i. Click the "New Notice of Appeal" button on the appeals from 
+mainland card to access the search page. 
+ii. Enter the case reference number you are appealing to view 
+its details. 
+iii. Click the "File Notice of Appeal" button to open the appeal. 
+iv. Fill in all the details and then click "Submit" to file the appeal 
+in court, as shown in Figure No. 39 below. 
+ 
+
+
+[PDF PAGE 41]
+40 
+ 
+ 
+Figure No. 39  
+ 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. The customer account used to open the case will be the 
+one to receive all court orders 
+6.3.2 FILING CRIMINAL APPEALS FROM ZANZIBAR  
+i. Click the "New Notice of Appeal" button on the appeals from 
+Other Appeals card to access the page. 
+ii. Fill in all the details and then click "Submit" to file the appeal 
+in court, as shown in Figure No. 40 below. 
+
+
+[PDF PAGE 42]
+41 
+ 
+ 
+Figure No. 40 
+ 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. The customer account used to open the case will be the 
+one to receive all court orders 
+6.3.3 FILING OF APPLICATIONS FROM COURT OF APPEAL 
+i. Click the " New Other Application " button on the other 
+application card to access the search page. 
+ii. Enter the case reference number you want to file application 
+to view its details. 
+iii. Click the " File Application from Court  of Appeal" button 
+to open the application form. 
+iv. Fill in all the details and then click "Submit" to file the appeal 
+in court, as shown in figure No. 41 below. 
+
+
+[PDF PAGE 43]
+42 
+ 
+ 
+figure No. 41 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. The customer account used to open the case will be the 
+one to receive all court orders. 
+6.3.4  FILING OF APPLICATIONS FROM HIGH COURT 
+i. Click the "New Application" button on the Application from 
+high court card to access the search page. 
+ii. Enter the case reference number you want to file application 
+to view its details. 
+iii. Click the "  File Application from High Court  " button to  
+access the relevant form. 
+iv. Fill in all the details and then click "Submit" to file the appeal 
+in court, as shown in figure No. 42 below. 
+
+
+[PDF PAGE 44]
+43 
+ 
+ 
+figure No. 42 
+Note: 
+i. All fields marked with an asterisk (*) are mandatory. 
+ii. The customer account used to open the case will be the 
+one to receive all court orders. 
+6.3.5 FILING OF SUBSEQUENT DOCUMENTS 
+i. Select the “Subsequent” Document” button to file subsequent 
+documents on a criminal appeal pending before the court. 
+ii. Fill the case reference number of the respective case to access 
+relevant information. 
+iii. Click the “File Subsequent Document” button. 
+iv. Fill and attach the document in PDF format. 
+v. Click the “Submit” button to submit to the court 
+6.4 GROUNDS OF APPEAL 
+6.4.1 FILING OF GROUNDS OF APPEAL 
+If a notice of appeal is approved and admitted, and after payment has 
+been made, the “Appeal Notice” field will change status to “admitted”.  
+i. Click on the "Court of Appeal" module. 
+ii. Select the "Criminal" button to view various case cards 
+iii. Choose the "Admitted Notice" card to see the list of appeals 
+awaiting submission of grounds 
+iv. Select a case by clicking the arrow symbol  
+v. Click the "File Memorandum of Appeal" button to access 
+the relevant form 
+
+
+[PDF PAGE 45]
+44 
+ 
+vi. Complete all required information then click "Submit" to file 
+your grounds of appeal in the Court" 
+6.4.2 AMMENDMENT OF THE GROUNDS OF APPEAL 
+If the submitted grounds of appeal and other documents are 
+rejected for amendment; 
+i. Click on the "Court of Appeal" module. 
+ii. Select the "Criminal" button to view various case cards. 
+iii. Choose the "Returned/Rejected" card to see the list of 
+remitted cases. 
+iv. Click the "Returned/Rejected Memorandum" button to 
+view cases. 
+v. Select a case by clicking the Arrow symbol  
+vi. Press the "File Memorandum of Appeal" button to 
+access the relevant form. 
+vii. Complete all required information then click "Re-
+submit" to file your amended grounds of appeal. 
+ 

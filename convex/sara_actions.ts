@@ -5,6 +5,8 @@ import { v } from "convex/values";
 import { api, internal } from "./_generated/api";
 import OpenAI from "openai";
 import { normalizeText } from "./lib/security";
+import { prepareSaadaHistory } from "./lib/saadaConversation";
+import { noSourceResponse } from "./lib/saadaEvidence";
 
 // ==========================================
 // EMERGENCY SAFETY SYSTEM (CRITICAL)
@@ -92,11 +94,11 @@ async function requireAdminOrStaffAction(ctx: ActionCtx) {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("Unauthorized");
 
-    const role = await ctx.runQuery(internal.users.getRoleByClerkIdInternal, {
+    const roles = await ctx.runQuery(internal.users.getActiveRolesByClerkIdInternal, {
         clerkId: identity.subject,
     });
 
-    if (role !== "admin" && role !== "staff") {
+    if (!roles.some((role) => role === "admin" || role === "staff")) {
         throw new Error("Forbidden");
     }
 }
@@ -131,6 +133,7 @@ export const ingestDocument = action({
         versionLabel: v.string(),
         effectiveDate: v.optional(v.string()),
         reviewDueAt: v.number(),
+        replacesDocumentId: v.optional(v.id("documents")),
     },
     handler: async (ctx, args): Promise<{ success: boolean; documentId: any }> => {
         await requireAdminOrStaffAction(ctx);
@@ -187,7 +190,7 @@ export const ingestDocument = action({
         }
 
         // 3. Create Document Record
-        const documentId = await ctx.runMutation(internal.sara.createDocument, {
+        const claim = await ctx.runMutation(internal.sara.createDocument, {
             title,
             storageId: args.storageId,
             text: text,
@@ -201,37 +204,49 @@ export const ingestDocument = action({
             versionLabel: normalizeText(args.versionLabel, "Version", 80),
             effectiveDate: args.effectiveDate?.trim() || undefined,
             reviewDueAt: args.reviewDueAt,
+            replacesDocumentId: args.replacesDocumentId,
         });
 
-        // 4. Chunk Text
-        const chunks = chunkText(text);
-
-        // 5. Generate Embeddings
-        const openai = getOpenAI();
-        const batchSize = 20;
-        for (let i = 0; i < chunks.length; i += batchSize) {
-            const batch = chunks.slice(i, i + batchSize);
-
-            const embeddingResponse = await openai.embeddings.create({
-                model: "text-embedding-3-small",
-                input: batch,
-            });
-
-            const chunkData = batch.map((chunkText: string, idx: number) => ({
-                text: chunkText,
-                embedding: embeddingResponse.data[idx].embedding,
-                index: i + idx,
-            }));
-
-            // 6. Store Embeddings
-            await ctx.runMutation(internal.sara.addEmbeddings, {
-                documentId,
-                chunks: chunkData,
-            });
+        const documentId = claim.documentId;
+        if (!claim.created) {
+            if (claim.indexingStatus === "ready") return { success: true, documentId };
+            if (claim.indexingStatus === "failed") throw new Error("This upload already has a failed source record. Retry indexing from the source list.");
+            throw new Error("This upload already has a source record being indexed. Check its status in the source list.");
         }
-
-        await ctx.runMutation(internal.sara.markDocumentProcessed, { id: documentId });
+        try { await indexDocumentText(ctx, documentId, text); }
+        catch (error) {
+            await ctx.runMutation(internal.sara.markDocumentIndexFailed, { id: documentId, error: error instanceof Error ? error.message : "Indexing failed" });
+            throw error;
+        }
         return { success: true, documentId };
+    },
+});
+
+async function indexDocumentText(ctx: ActionCtx, documentId: any, text: string) {
+    const chunks = chunkText(text);
+    if (!chunks.length) throw new Error("No extractable text found in this PDF.");
+    const openai = getOpenAI();
+    for (let i = 0; i < chunks.length; i += 20) {
+        const batch = chunks.slice(i, i + 20);
+        const response = await openai.embeddings.create({ model: "text-embedding-3-small", input: batch });
+        await ctx.runMutation(internal.sara.addEmbeddings, { documentId, chunks: batch.map((chunk, idx) => ({ text: chunk, embedding: response.data[idx].embedding, index: i + idx })) });
+    }
+    await ctx.runMutation(internal.sara.markDocumentProcessed, { id: documentId });
+}
+
+export const retryDocumentIndex = action({
+    args: { id: v.id("documents") },
+    handler: async (ctx, args) => {
+        await requireAdminOrStaffAction(ctx);
+        const doc = await ctx.runQuery(internal.sara.getDocumentForReindex, { id: args.id });
+        if (!doc.text.trim()) throw new Error("This source has no extractable text; upload a corrected PDF.");
+        await ctx.runMutation(internal.sara.beginDocumentReindex, { id: args.id });
+        try { await indexDocumentText(ctx, args.id, doc.text); }
+        catch (error) {
+            await ctx.runMutation(internal.sara.markDocumentIndexFailed, { id: args.id, error: error instanceof Error ? error.message : "Indexing failed" });
+            throw error;
+        }
+        return { success: true };
     },
 });
 
@@ -242,12 +257,10 @@ export const ingestDocument = action({
 export const ask = action({
     args: {
         message: v.string(),
-        history: v.array(v.object({
-            role: v.union(v.literal("user"), v.literal("assistant")),
-            content: v.string(),
-        })),
         source: v.optional(v.union(v.literal("web"), v.literal("mobile"), v.literal("unknown"))),
         clientRequestId: v.optional(v.string()),
+        conversationId: v.optional(v.id("sara_conversations")),
+        locale: v.optional(v.union(v.literal("sw"), v.literal("en"))),
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
@@ -255,6 +268,9 @@ export const ask = action({
             throw new Error("Unauthenticated call to Sara AI Action");
         }
         const userId = identity.subject;
+        if (args.conversationId) {
+            await ctx.runQuery(internal.sara_chat.checkConversationOwner, { conversationId: args.conversationId, userId });
+        }
         const source = args.source ?? "unknown";
         const requestId = args.clientRequestId?.trim().slice(0, 120) || `${source}-${Date.now()}`;
         const messagePreview = args.message.slice(0, 240);
@@ -333,6 +349,8 @@ export const ask = action({
             // Create and immediately complete the bot message
             const botMessageId = await ctx.runMutation(internal.sara_chat.createBotMessage, {
                 userId,
+                conversationId: args.conversationId,
+                clientRequestId: requestId,
             });
 
             await ctx.runMutation(internal.sara_chat.updateMessage, {
@@ -340,6 +358,9 @@ export const ask = action({
                 content: EMERGENCY_RESPONSE,
                 isDone: true,
                 toolCalls: ["EMERGENCY_SAFETY_TRIGGER"],
+                questionAsked: args.message,
+                clientRequestId: requestId,
+                retrievedSources: [],
             });
             await activity("completed", "completed", "saada.activity.completed", "Emergency guidance returned", { bypassedLlm: true });
 
@@ -347,13 +368,15 @@ export const ask = action({
         }
         await activity("risk_check_completed", "completed", "saada.activity.risk_check_completed", "Safety gate completed");
 
-        const openai = getOpenAI();
-
         // 1. Create Placeholder Bot Message
         const botMessageId = await ctx.runMutation(internal.sara_chat.createBotMessage, {
             userId,
+            conversationId: args.conversationId,
+            clientRequestId: requestId,
         });
 
+        try {
+        const openai = getOpenAI();
         // 2. Embed Query & RAG
         await activity("knowledge_search_started", "started", "saada.activity.knowledge_search_started", "Searching approved knowledge");
         const embeddingResponse = await openai.embeddings.create({
@@ -382,8 +405,10 @@ export const ask = action({
 
         let context = "";
         let confidenceWarning = "";
+        let usedSourceIds: string[] = [];
+        let retrievedSources: Array<{ documentId: string; title: string; publisher?: string; versionLabel?: string; sourceUrl?: string }> = [];
 
-        if (highConfidenceResults.length === 0 && results.length > 0) {
+        if (highConfidenceResults.length === 0) {
             await ctx.runMutation(internal.sara.recordRiskEvent, {
                 userId,
                 eventType: "low_confidence",
@@ -392,23 +417,20 @@ export const ask = action({
                 metadata: { resultCount: results.length },
             });
             await activity("human_review_requested", "waiting", "saada.activity.human_review_requested", "Low confidence legal guidance needs caution", { resultCount: results.length });
-            // Low confidence - warn SARA to be honest
+            // Do not pass low-confidence passages to generation or cite them.
             confidenceWarning = `
 ⚠️ IMPORTANT: The knowledge base returned LOW CONFIDENCE results for this query.
 You MUST be honest and say something like: "Samahani, sijui jibu la swali hilo kwa uhakika. 
 Tafadhali wasiliana na wakili au paralegal kwa ushauri sahihi."
 DO NOT make up legal information. It is SAFER to say "I don't know" than to guess.
 `;
-            // Still provide context but with low confidence
-            const chunks = await ctx.runQuery(internal.sara.getChunks, {
-                ids: results.map(r => r._id)
-            });
-            context = chunks.map(chunk => `[SOURCE: ${chunk?.sourceTitle ?? "Approved LSF source"}; PUBLISHER: ${chunk?.publisher ?? "LSF-approved publisher"}; VERSION: ${chunk?.versionLabel ?? "reviewed edition"}; EFFECTIVE: ${chunk?.effectiveDate ?? "not stated"}; URL: ${chunk?.sourceUrl ?? "stored source PDF"}]\n${chunk?.text || ""}`).join("\n\n");
         } else if (highConfidenceResults.length > 0) {
             // High confidence - use filtered results
             const chunks = await ctx.runQuery(internal.sara.getChunks, {
                 ids: highConfidenceResults.map(r => r._id)
             });
+            usedSourceIds = [...new Set(chunks.map((chunk) => chunk.documentId))];
+            retrievedSources = [...new Map(chunks.map((chunk) => [chunk.documentId, { documentId: String(chunk.documentId), title: chunk.sourceTitle, publisher: chunk.publisher, versionLabel: chunk.versionLabel, sourceUrl: chunk.sourceUrl }])).values()];
             context = chunks.map(chunk => `[SOURCE: ${chunk?.sourceTitle ?? "Approved LSF source"}; PUBLISHER: ${chunk?.publisher ?? "LSF-approved publisher"}; VERSION: ${chunk?.versionLabel ?? "reviewed edition"}; EFFECTIVE: ${chunk?.effectiveDate ?? "not stated"}; URL: ${chunk?.sourceUrl ?? "stored source PDF"}]\n${chunk?.text || ""}`).join("\n\n");
         }
 
@@ -418,18 +440,18 @@ DO NOT make up legal information. It is SAFER to say "I don't know" than to gues
         // Fetch dynamic system prompt from DB (Admin Config)
         const approvedPrompt = await ctx.runQuery(internal.sara.getApprovedPromptInternal, {});
 
-        const defaultSystemPrompt = `You are Saada, the official legal assistant for LSF (Legal Services Facility) Tanzania.
+        const defaultSystemPrompt = `You are Haki Yangu AI, the official legal assistant for LSF (Legal Services Facility) Tanzania.
 
 CORE IDENTITY:
-- Name: Saada
+- Name: Haki Yangu AI
 - Role: Official Legal Assistant (Sheria Assistant & Resource Associate)
 - Institution: Legal Services Facility (LSF)
 - Mission: To help Tanzanians understand their rights and access justice.
 
 TRUST & AUTHORITY:
 - You represent the official platform of LSF Tanzania.
-- Always include this declaration in your introductions: "Naitwa Saada. Nimeboreshwa zaidi ili kukusaidia kuelewa sheria za Tanzania kwa lugha rahisi na kupata msaada wa kisheria." 
-- Your name is Saada. You have no other past names or identities. You are solely the AI assistant for LSF.
+- Introduce yourself as Haki Yangu AI and explain your role in plain language.
+- Your public name is Haki Yangu AI. You are the AI assistant for LSF.
 
 LANGUAGE & CULTURAL GUIDELINES:
 - Use Kiswahili cha Kitanzania (Tanzanian Swahili) as your primary language.
@@ -458,6 +480,8 @@ ${context || "No relevant context found. Please be honest about not having speci
         if (approvedPrompt?.prompt) {
             finalSystemPrompt = `${approvedPrompt.prompt}
 
+PUBLIC PRODUCT NAME: The assistant is presented to users as Haki Yangu AI. Use this name when identifying yourself.
+
 ${confidenceWarning}
 
 IMPORTANT: If a tool returns a string starting with "::PARALEGAL_CARD:", you MUST include that exact string in your response. Do not summarize it or remove the colons. This is required for the UI to render the card.
@@ -466,9 +490,14 @@ KNOWLEDGE BASE CONTEXT:
 ${context || "No relevant context found. Please be honest about not having specific information."}`;
         }
 
+        const storedHistory = await ctx.runQuery(internal.sara_chat.getRecentHistoryInternal, {
+            userId,
+            conversationId: args.conversationId,
+        });
+        // Clients save the current user turn before invoking this action. Do not repeat it.
         const messages: any[] = [
             { role: "system", content: finalSystemPrompt },
-            ...args.history.slice(-10), // Limit to last 10 messages (5 turns)
+            ...prepareSaadaHistory(storedHistory, args.message),
             { role: "user", content: args.message }
         ];
 
@@ -517,6 +546,7 @@ ${context || "No relevant context found. Please be honest about not having speci
         });
 
         let fullContent = "";
+        const resultCards: string[] = [];
         let toolCallBuffer: any = null;
         let updateCount = 0;
         let totalTokens = 0;
@@ -545,7 +575,7 @@ ${context || "No relevant context found. Please be honest about not having speci
                 updateCount++;
 
                 // Throttle updates (every 5 chunks)
-                if (updateCount % 5 === 0) {
+                if (retrievedSources.length > 0 && updateCount % 5 === 0) {
                     await ctx.runMutation(internal.sara_chat.updateMessage, {
                         messageId: botMessageId,
                         content: fullContent,
@@ -557,6 +587,7 @@ ${context || "No relevant context found. Please be honest about not having speci
 
         // 5. Handle Tool Execution (if any)
         if (toolCallBuffer) {
+            if (!["find_services", "find_paralegals"].includes(toolCallBuffer.name)) throw new Error("Unsupported Saada tool.");
             await ctx.runMutation(internal.sara.recordRiskEvent, {
                 userId,
                 eventType: "tool_routing",
@@ -570,6 +601,7 @@ ${context || "No relevant context found. Please be honest about not having speci
 
             await activity("service_search_started", "started", "saada.activity.service_search_started", "Looking for verified public support", { region, toolName: toolCallBuffer.name });
             let searchResults = "I could not find a verified public service for those details. Use Find Help or submit a reviewed request to LSF.";
+            let toolResultCount = 0;
 
             if (toolCallBuffer.name === "find_services") {
                 const services = await ctx.runQuery(api.justiceServices.listPublicServices, {
@@ -578,12 +610,26 @@ ${context || "No relevant context found. Please be honest about not having speci
                     district: argsObj.district,
                 });
                 await activity("service_search_completed", "completed", "saada.activity.service_search_completed", `${services.length} verified public services checked`, { region, resultCount: services.length });
+                toolResultCount = services.length;
                 if (services.length) {
                     searchResults = `Verified public directory results:\n${services.slice(0, 3).map((service: any) => `- ${service.name} — ${service.district}, ${service.region}; intake: ${service.currentIntakeState}; access: ${[service.phoneSupport && "phone", service.walkIn && "walk-in", service.remoteSupport && "remote"].filter(Boolean).join(", ") || "confirm with service"}`).join("\n")}\nTell the user these are directory records, advise them to open Find Help for current details, and do not claim a referral was sent.`;
+                    for (const service of services.slice(0, 3)) {
+                        resultCards.push(`::SERVICE_CARD:${JSON.stringify({
+                            id: String(service._id),
+                            name: service.name,
+                            district: service.district,
+                            region: service.region,
+                            intake: service.currentIntakeState,
+                            phoneSupport: service.phoneSupport,
+                            walkIn: service.walkIn,
+                            remoteSupport: service.remoteSupport,
+                        })}::`);
+                    }
                 }
             } else {
                 const paralegals = await ctx.runQuery(api.paralegals.listApprovedParalegals, { region: region });
                 await activity("service_search_completed", "completed", "saada.activity.service_search_completed", `${paralegals.length} verified paralegal records checked`, { region, resultCount: paralegals.length });
+                toolResultCount = paralegals.length;
                 if (paralegals && paralegals.length > 0) {
                 // Find a paralegal matching the district if strictly requested, otherwise use the first from the region
                 const district = argsObj.district;
@@ -606,10 +652,14 @@ ${context || "No relevant context found. Please be honest about not having speci
                 });
 
                 searchResults = `Found a verified paralegal. Details: ::PARALEGAL_CARD:${cardData}::`;
+                resultCards.push(`::PARALEGAL_CARD:${cardData}::`);
                 }
             }
             await activity("tool_execution_completed", "completed", "saada.activity.tool_execution_completed", `${toolCallBuffer.name} completed`, { toolName: toolCallBuffer.name });
 
+            if (retrievedSources.length === 0) {
+                fullContent = noSourceResponse(args.locale, toolCallBuffer.name === "find_services" ? "services" : "paralegals", toolResultCount);
+            } else {
             // Append tool call result
             const currentToolCallId = toolCallBuffer.id || "call_" + Date.now();
 
@@ -654,15 +704,26 @@ ${context || "No relevant context found. Please be honest about not having speci
                     }
                 }
             }
+            }
+        }
+
+        if (retrievedSources.length === 0 && !toolCallBuffer) {
+            fullContent = noSourceResponse(args.locale, "legal");
         }
 
         // 6. Final Done Update (with token tracking)
+        for (const card of resultCards) {
+            if (!fullContent.includes(card)) fullContent += `\n${card}`;
+        }
         await ctx.runMutation(internal.sara_chat.updateMessage, {
             messageId: botMessageId,
             content: fullContent,
             isDone: true,
             tokens: totalTokens,
             toolCalls: toolCallBuffer ? [toolCallBuffer.name] : undefined,
+            questionAsked: args.message,
+            clientRequestId: requestId,
+            retrievedSources,
         });
 
         await ctx.runMutation(internal.sara.recordRiskEvent, {
@@ -674,14 +735,31 @@ ${context || "No relevant context found. Please be honest about not having speci
                 tokens: totalTokens,
                 toolUsed: toolCallBuffer ? toolCallBuffer.name : null,
                 highConfidenceResultCount: highConfidenceResults.length,
+                sourceIds: usedSourceIds,
             },
         });
-        await activity("completed", "completed", "saada.activity.completed", "Saada response completed", {
+        await activity("completed", "completed", "saada.activity.completed", "Haki Yangu AI response completed", {
             tokens: totalTokens,
             toolUsed: toolCallBuffer ? toolCallBuffer.name : null,
             highConfidenceResultCount: highConfidenceResults.length,
+            sourceIds: usedSourceIds,
         });
 
         return fullContent;
+        } catch (caught) {
+            const detail = caught instanceof Error ? caught.message : "";
+            const content = args.locale === "en"
+                ? "I'm unable to answer right now. Your question is saved, so you can return to it later. You can still find legal support or draft a help request below."
+                : "Siwezi kujibu kwa sasa. Swali lako limehifadhiwa, unaweza kulirudia baadaye. Bado unaweza kutafuta msaada wa kisheria au kuandaa ombi hapa chini.";
+            await ctx.runMutation(internal.sara_chat.updateMessage, {
+                messageId: botMessageId, content, isDone: true,
+                questionAsked: args.message, clientRequestId: requestId,
+                retrievedSources: [], failureCode: "unavailable",
+            });
+            await activity("failed", "failed", "saada.activity.failed", "AI response temporarily unavailable", {
+                reason: /429|credits|quota/i.test(detail) ? "provider_quota" : "provider_error",
+            });
+            return content;
+        }
     },
 });

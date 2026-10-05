@@ -1,0 +1,2338 @@
+[PDF PAGE 1]
+THE UNITED REPUBLIC OF TANZANIA
+MINISTRY OF HEALTH, COMMUNITY DEVELOPMENT,
+GENDER, ELDERLY AND CHILDREN
+NATIONAL GUIDELINES FOR THE
+ESTABLISHMENT AND MANAGEMENT 
+OF SAFE HOUSES FOR VICTIMS OF TRAFFICKING IN
+PERSONS AND SURVIVORS OF VIOLENCE
+MINISTRY OF HEALTH, COMMUNITY DEVELIOMENT
+GENDER, ELDERLY AND CHILDREN
+P.O. BOX 573, DODOMA
+July, 2019 
+
+
+[PDF PAGE 2]
+
+
+[PDF PAGE 3]
+i
+THE UNITED REPUBLIC OF TANZANIA
+MINISTRY OF HEALTH, COMMUNITY DEVELOPMENT, GENDER,    
+ELDERLY AND CHILDREN
+NATIONAL GUIDELINES FOR THE
+ESTABLISHMENT AND MANAGEMENT
+OF SAFE HOUSES FOR VICTIMS OF TRAFFICKING IN
+PERSONS AND SURVIVORS OF VIOLENCE 
+MINISTRY OF HEALTH, COMMUNITY DEVELIOMENT
+GENDER, ELDERLY AND CHILDREN
+P.O. BOX 573, DODOMA
+July, 2019
+
+
+[PDF PAGE 4]
+ii
+ TABLE OF CONTENTS
+FOREWORD ...........................................................................................................................iv
+ACKNOWLEDGEMENT ..........................................................................................................v
+LIST OF ABBREVIATIONS ....................................................................................................vi
+GLOSSARY............................................................................................................................vii
+SECTION ONE: INTRODUCTION ...........................................................................................1
+1.0 Background ........................................................................................................................3
+1.1 Rationale for  the Guidelines ..............................................................................................4
+1.2 Objectives of the Guidelines ...............................................................................................4
+1.2.1 General Objective ............................................................................................................4
+1.2.2 Specific Objectives ..........................................................................................................4
+1.3 Guiding Principles...............................................................................................................4
+1.4 Intended Users of the Guidelines .......................................................................................5
+SECTION TWO: GUIDELINES FOR ESTABLISHMENT OF THE SAFE HOUSES ...............6
+2.1 Introduction .........................................................................................................................6
+2.2 Premises and Layout of the Safe House ............................................................................6
+2.3 Safe House Registration Requirements .............................................................................6
+2.4 Inspection of the Safe House Premises .............................................................................7
+2.5 Application Procedures for License ....................................................................................8
+SECTION THREE: GUIDELINES FOR SAFE HOUSE MANAGEMENT ..............................10
+3.1 Introduction .......................................................................................................................10
+3.2 Safe House Staffing and their Professions .......................................................................10
+3.2.1 Safe House Manager.....................................................................................................10
+3.2.2 Social Worker ................................................................................................................10
+3.2.3 Child Care Worker .........................................................................................................11
+3.2.4 Clinical Officer/Registered Nurse ..................................................................................11
+3.2.5 Safe House Attendants ..................................................................................................11
+3.2.6 Safe House Security Guards .........................................................................................11
+3.2.7 Other Staff Members .....................................................................................................11
+3.2.8 Volunteers and Interns...................................................................................................11
+3.3 Management of Safe House Residents ............................................................................12
+3.3.1 Screening of Victims and Survivors ...............................................................................12
+3.3.2 Admission of Victims and Survivors into the Safe House ..............................................12
+3.3.3 Residents’ Rights and Obligations .................................................................................13
+3.3.4 Safe House Security Guidelines ....................................................................................13
+
+[PDF PAGE 5]
+iii
+3.3.5 Provision of Services at the Safe House .......................................................................14
+3.4 Death of the Safe House Resident ...................................................................................18
+3.5 Victim/Survivor Case File Management ...........................................................................18
+3.6 Safe House Financial Management Guidelines ...............................................................19
+SECTION FOUR: MONITORING, EVALUATION AND REPORTING ...................................20
+4.0 Introduction .......................................................................................................................20
+4.1 Reporting Mechanism.......................................................................................................20
+4.2 Evaluation Criteria ............................................................................................................20
+ANNEXURE ...........................................................................................................................21
+ANNEX 01: FORMS ...............................................................................................................21
+Form No. 1: Application for a Licence.....................................................................................21
+Form No. 2: Environmental Health Inspection  .......................................................................24
+Form No. 3: Licence for Safe House ......................................................................................27
+Form No. 4: Initial Investigation  for Victim and Survivor ........................................................28
+Form No. 5: Medical Report for Victims of Trafficking in Persons ..........................................32
+Form No. 6: Medical Report for Survivors of GBV and VAC  .................................................35
+Form No. 7: Admission Record...............................................................................................39
+Form No. 8: Social Investigation Report .................................................................................41
+Form No. 9: Family Tracing and Family Assessment  ............................................................44
+Form No. 10: Voluntary Return Declaration and Authorization ...............................................49
+Form No. 11: Authorisation for Discharge  ..............................................................................50
+Form No. 12: Repatriation and Reception  for  Victim of TIP…………………......……………. 52
+Form No. 13: Referral  for Victim and Survivors .....................................................................54
+Form No. 14: Admission Register ...........................................................................................55
+Form No. 15: Monthly Tracking/Statistics ...............................................................................56
+Form No. 16:  Annual Financial Report ..................................................................................57
+Form No. 17:  Death Report for Victim and Survivor ..............................................................59
+ANNEX 02: CODE OF CONDUCT .........................................................................................61
+ANNEX 03:  BEHAVIOUR RULES .........................................................................................62
+
+[PDF PAGE 6]
+iv
+Tanzania intends to become a semi-industrialized nation by 2025. One of the issues which are 
+considered to be important in achieving the intended vision is the industrial transformation that goes 
+hand in hand with efforts to improve quality of life and human well-being. However, in the process 
+of improving the quality of life and human well-being, the society has to be free from traffi  cking in 
+persons and violence such as Gender Based Violence (GBV) and Violence against Children (VAC). 
+The mentioned developmental problems have taken a new turn in most African countries whereby, 
+the majority of African population who have been experiencing traffi  cking in persons, GBV and VAC; 
+have been denied opportunity to contribute to their national development.
+Tanzania is not exempted from the aforementioned developmental problems. Various reports indicate 
+that Tanzania is a source, transit and destination country of victims of traffi  cking in persons. Likewise, 
+violence against women and children is a daily reality for large number of women and children in 
+Tanzania. This situation raises the need for addressing these challenges in a manner that is effi  cient 
+and effective. One of the interventions among others is establishment of Safe Houses which are 
+expected to provide secured temporary accommodation and rehabilitation services to victims and 
+survivors. However, there had not been standardized National guidelines which provide guidance 
+on the establishment and management of Safe Houses for victims of traffi  cking in persons and, 
+survivors of GBV and VAC.
+Recognizing the need for such guidelines, the government of the United Republic of Tanzania, 
+through the Ministry of Health, Community Development, Gender, Elderly and Children vowed for 
+the development of the National Guidelines for Establishment and Management of Safe Houses. 
+Through support from the International Organisation for Migration (IOM), the Ministry managed to 
+develop such guidelines to provide a clear checklist for the requirements of establishing and managing 
+Safe Houses. It also provides guidelines for offering services for the victims and survivors as well as 
+monitoring and evaluation framework of Safe House operations. I am therefore optimistic that, the 
+welfare of the victims and survivors will be protected and enhanced when there is a maximum use of 
+these guidelines by the Safe Houses and other relevant stakeholders.
+Dr. John K. Jingu
+Permanent Secretary
+For eword
+
+
+[PDF PAGE 7]
+v
+The National Guidelines for the Establishment and Management of Safe Houses for Victims of 
+Traffi  cking in Persons and Survivors of Violence in Tanzania were developed through a consultative 
+process. The process involved different stakeholders from government and non-state actors under 
+the leadership of the Ministry of Health, Community Development, Gender, Elderly and Children. 
+First and foremost, I sincerely convey my special thanks to the International Organisation for 
+Migration (IOM) and the Government of Sweden for their generous technical and fi  nancial support in 
+the development of these guidelines. 
+Furthermore, the Ministry appreciates the outstanding work done by the technical review team which 
+comprised of  Ms. Miriam Luka and Ms. Mwanaisha Moyo, from the Ministry of Health Community 
+Development, Gender Elderly and Children; Mr. Ahmad Mwen-dadi and Mr. Alex Lupilya from the Anti- 
+Traffi  cking in Persons Secretariat (ATS) in the Ministry of Home Affairs; Ms. Mariam Mkumbwa from 
+President Offi  ce Regional Administration and Local Government (PO-RALG), Ms. Enna Lutengano 
+and Dr. Andrew William from the IOM who worked under the guidance of the Lead Consultant, Dr. 
+Nuru Ayub Kalufya.  
+I also acknowledge the valuable contributions made by the representatives from the Ministry of 
+Constitution and Legal Affairs, UNICEF, UNFPA, UN Women, FARAJA Young Women Development 
+Centre, Daughters of Mary Immaculate Spring of Hope (DMI) and WOTESAWA Young Domestic 
+Workers Organisation during the entire process of developing these guidelines.
+Lastly but not least, I would like to thank all other key and relevant stakeholders who participated in 
+one way or the other in the development of these guidelines. It is expected that, these guidelines will 
+ensure effective operation of the safe house and enhance provision of quality services.
+Dr. Naftali B. Ng’ondi
+Commissioner for Social Welfare
+Acknowledgement
+Dr. Naftali B. Ng’ondi
+
+
+[PDF PAGE 8]
+vi
+ACCA   Association of Chartered Certified Accountants
+ACRWC  African Charter for the Rights and Welfare of the Child
+AIDS   Acquired Immunodeficiency Syndrome
+CBOs   Community Based Organisations
+CSOs   Civil Society Organisations
+CRC   Convention on the Rights of the Child
+FBOs    Faith-Based Organizations
+GBV    Gender Based Violence
+GN   Government Notice
+HIV   The Human Immunodeficiency Viruses
+IOM    International Organisation for Migration
+MoCLA  Ministry of Constitution and Legal Affairs
+MoHCDGEC   Ministry of Health, Community Development, Gender, Elderly and Children
+NBAA   National Board of Accountancy and Auditors
+NGOs    Non-Governmental Organisations
+PO-RALG   President’s Office - Regional Administration and Local Government
+TDHS   Tanzania Demographic and Health Survey
+TDV   Tanzania Development Vision
+TIP   Trafficking in Persons                             
+VAC    Violence against Children
+VAWC    Violence against Women and Children
+VoTs   Victims of Trafficking in Persons
+List of abbreviations 
+
+[PDF PAGE 9]
+vii
+Abuse: Misuse of power through which the perpetrator gains control or the advantage of the abused, 
+using and causing physical or psychological harm or inflicting or inciting fear of that harm. 
+Child: According to Law of the Child Act, a child is defined as a person below the age of 18 years.
+Commissioner: Refers to the Commissioner for Social Welfare
+Consent: Making an informed choice freely and voluntarily to do something without threats, force, 
+or other forms of coercion, abduction, fraud, deception, or misrepresentation. 
+Empowerment: Refers to providing resources to people in disadvantaged situations, so that they 
+can strengthen their capacities in order to fully participate in the community and to articulate their 
+interests. 
+Family: Refers to a fundamental social group in the society typically consisting of one or two parents 
+and their children (if any). 
+Gender: The term used to denote the social and economic characteristics assigned to men and 
+women. 
+Gender-Based Violence: An umbrella term for any act, omission, or conduct that is perpetuated 
+against a person’s will and that is based on socially ascribed differences (gender) between males 
+and females. In this context, GBV includes, but not limited to sexual violence, physical violence and 
+harmful traditional practices, and economic and social violence. 
+Individual file: Refers to a file which is established and maintained by the Safe House to store all 
+Safe House documents of a family or victim/survivor including electronic records.
+Physical violence: Beating, punching, kicking, biting, burning, maiming, or killing, with or without 
+weapons—often in combination with other forms of gender-based violence.
+Psychosocial Support Services: Refer to services which help individuals to heal the psychological 
+wounds and rebuild social structures after an emergency or a critical event. These services include 
+mental health counselling, education, group support and other related services.
+Recreational Services: Refers to those services which involve activities of leisure that shall never 
+endanger safety and security of the Safe House and its residents. 
+Safe House: refers to shelter, centre or   temporary placement suitable for protection and assistance 
+to victims of trafficking in persons and survivors of GBV and VAC.  
+Safe House Operators: refers to Safe House owners. 
+Survivor: Someone, a child or an adult, who has been physically, sexually, and/or psychologically 
+violated because of his/her age or gender. 
+Glossary
+
+[PDF PAGE 10]
+viii
+The Guidelines : Refers to the National Guidelines for Establishment and Management of Safe 
+Houses for Assisting Victims of Trafficking in Persons and Survivors of Violence.
+Trafficking in Persons:   means a recruitment, transportation, transfer, harbouring or receipt of 
+persons, by means of threat or use of force or other forms of coercion, abduction, fraud, deception, 
+abuse of power or of a position of vulnerability or of the giving or receiving of payments or benefits to 
+achieve the consent of a person having control over another person, for the purpose of exploitation.
+victim” means a person who has suffered harm, including mental and physical injury, emotional 
+suffering, economic loss or substantial impairment of the person’s fundamental human rights through 
+acts that are a violation of the Anti-Trafficking in Persons Act.
+Violence Against Children: Is the intentional use of physical force or power, threatened or actual, 
+against a child, by an individual or group that either results in or has a high likelihood of resulting in 
+actual or potential harm to the child’s health, survival, development or dignity.
+Violence: Control and oppression that can include emotional, social, or economic force, coercion or 
+pressure as well as physical harm. 
+
+[PDF PAGE 11]
+1
+1.0 Background 
+Tanzania aims to be a middle-income country by the year 2025. It is a vision that requires the 
+government to undertake social and economic transformations which will contribute positively to the 
+improvement in quality of life and welfare of its people. However, such transformations need not only 
+be sustainable but also inclusive by considering the welfare of the vulnerable groups in the society. 
+The vulnerable groups include those who are likely to be potential victims of trafficking in persons 
+and survivors of violence. It is aspired to have a community which is free from trafficking in persons 
+(TIP), Gender Based Violence (GBV) and Violence against Children (VAC). 
+Trafficking in persons, particularly women and children is a complex phenomenon and has become 
+an issue of global concern in recent years.  Similarly, GBV and VAC have gained much prominence 
+in international and regional fora.  It cannot be denied that victims of trafficking in persons (VoTs), 
+survivors of GBV and VAC suffer physical, emotional and sexual abuse including rape, threat against 
+themselves and families and in extreme cases, death. Several initiatives for prevention and response 
+to TIP, GBV and VAC have been established through adoption of several international, regional and 
+national instruments and launching of several programmes to address these global challenges.
+According to Agenda 2030: The Sustainable Development Goals (SDGs), which has  seven (7)  
+targets promoting the need to better prevent and respond to trafficking in persons, GBV and VAC. 
+In addition, the SDGs particularly goal 5;2 and goal 16;2, among others, aim to end all forms of 
+trafficking in persons, violence and abuse against women, girls and children. Moreover, the Protocol to 
+Prevent, Suppress and Punish Trafficking in Persons especially women and children supplementing 
+the United Nations Convention on Transnational Organized Crime (2000) requires member states to 
+put measures in place that aim at preventing and responding to TIP while paying particular attention 
+to women and children. Of important, article 6 (3) requires state parties to the protocol to cooperate 
+with non-governmental organizations in the provision of appropriate services including housing 
+for victims of trafficking in persons. Furthermore, the Convention on the Elimination of All Forms 
+of Discrimination against Women (CEDAW, 1979), apart from protecting women from all forms of 
+discrimination, article 6 requires state parties to take appropriate measures that are intended to 
+suppress all forms of trafficking and exploitation of women. 
+Similarly, the Convention on the Rights of the Child (CRC, 1989) among other things, it aims at 
+protecting the child from all forms of physical or emotional violence; injury or negligent treatment, 
+maltreatment or exploitation and including sexual abuse. Further to that article 20 requires a child 
+who is temporarily or permanently deprived of his or her family environment to be entitled to special 
+protection and assistance provided by the state. Such protection involves being placed in suitable 
+institutions for that child to be cared for. 
+Moreover, the Beijing Declaration and Platform for Action (1995), article 29 requires states to take 
+preventive measures aimed at eliminating all forms of violence against women and girls. Moreover, 
+in that platform it was highlighted that sexual and GBV, including physical and psychological abuse, 
+trafficking in women and girls and other forms of abuse and sexual exploitation place girls and women 
+at high risk of physical and mental trauma, disease and unwanted pregnancy. In addition, one of the 
+critical issues of concern addressed in the Platform for action number 125 requires Governments to 
+Section One
+Introduction
+
+[PDF PAGE 12]
+2
+provide well-funded shelters and relief support for girls and women subjected to violence, as well as 
+medical, psychological and other counselling services and free or low-cost legal aid. 
+In the same vein, the Protocol to the African Charter on Human and Peoples’ Rights on the Rights of 
+Women in Africa, commonly known as Maputo Protocol (2003), it requires states to protect women 
+especially the girl child from all forms of abuse. Besides, article 4 (2)(i) requires member countries 
+to establish mechanisms and accessible services for effective rehabilitation of survivors of violence 
+against women. In addition, the African Charter on the Rights and Welfare of the Child (ACRWC, 
+1990), article 16 lays down provisions for protection of child against all forms of abuse and torture.
+The government of Tanzania has also taken initiatives to address the trafficking in persons and 
+violence against women and children. For example, the Anti-Trafficking in Persons Act, No. 6 of 
+2008 and its 2015 regulations, stipulates extensive provisions for criminalizing all acts amounting 
+to trafficking in persons. The Legislation also   recognizes the need for rescuing, rehabilitating, 
+protecting and assisting victims of trafficking in persons (VoTs). Similarly, the Law of the Child 
+Act of 2009 stipulates a number of rights of the child and recognises the need for managing the 
+institutionalized child care. The two above legislations, provide for establishment of Safe Houses 
+for protection and rehabilitation of victims of trafficking and survivors of violence. In addition, the 
+National Plan of Action to end Violence Against Women and Children (2017-2022) endeavours to 
+create a comprehensive and integrated protection system delivering quality and timely support to 
+women and children affected by violence. 
+Moreover, the National Anti-Trafficking in Persons Action Plan (2018-2021) among other things 
+aims to provide support to victims. Such support includes shelters, food, medical care, counselling, 
+education, vocational training, and to reunify, reintegrate and repatriate victims of trafficking. 
+According to the National Anti-Trafficking in Persons Action Plan 2018 – 20211, the Anti-Trafficking in 
+Persons Secretariat attended 186 victims (of which 185 were female and only one male) during the 
+period 2015 to 2017. Furthermore, the National Crime and Traffic Incidents Statistics Report 2018 2 
+registered 32 reported cases of trafficking in persons in the country. However, the reported cases are 
+few due to the fact that communities across the country including VoTs lack an understanding of the 
+concept of trafficking in persons. 
+The Tanzania Demographic Health Survey (TDHS) of 20103 depicted that 39 percent of women aged 
+15-49 years have experienced physical violence since age 15 and almost one-third of women (33%) 
+aged 15-49 had experienced physical violence in the 12 months prior to the survey. The 2015 TDHS4 
+demonstrates an increase of physical violence among women in Tanzania. The survey showed that, 
+40% of women aged 15-49 years (that is an increase of 1% from 2010) have experienced one or 
+more acts of physical violence since the age of 15. Furthermore, it revealed that half of all married 
+women have ever experienced spousal violence, most commonly physical violence (39%) and 
+emotional violence (36%), while 14% have experienced sexual violence. 
+Moreover, TDHS 2015 revealed that more than half of women (54%) who have experienced physical 
+or sexual violence from anyone have sought help from someone. One third of women (34%) have 
+1  8 - 2021)
+2  January - December, 2017, Inspector General of Police, Tanzania Police Force Headquarters
+3  zania Demographic and Health Survey 2010. Dar es Salaam, Tanzania: NBS and ICF Macro.
+
+[PDF PAGE 13]
+3
+never sought help or told anyone. Among those who sought help, the most common source for help 
+was the woman’s own family (56%) irrespective of the type of violence. Also, among women who 
+experienced sexual violence only, the next most common source was a friend (18%) and neighbours 
+(14%). Nine percent of women who sought help for violence reported the police as a source. One 
+percent (1%) of women sought help from medical practitioner, 2.4 percent of women sought help 
+from lawyers and 1.5 percent of women sought help from social work organisation.
+In 2011, Tanzania released findings of the Violence Against Children (VAC) survey which found that 
+nearly one in three girls and one out of seven boys experience some form of sexual violence before 
+turning 18. Most children do not report their experience, few seek services, and even fewer actually 
+receive any care, treatment, or support if they do report. Rates of physical and emotional violence 
+are high. Among girls, 72% experience some form of physical violence, while for boys the figure is 
+71%. Emotional violence affects approximately one quarter of boys and girls.
+Most of the victims/survivors have been accommodated and receiving services from already 
+established Safe Houses owned by non-governmental organizations. Equally, victims of trafficking in 
+persons rescued at different times by law enforcement officers, the Anti-trafficking in person secretariat 
+and social welfare officers have also been protected and assisted in the already established Safe 
+House owned by non-governmental organizations. However, most of these established Safe Houses 
+have been operating without being regulated by standardized guidelines by the government. This 
+fact is evidenced by the field visit report of February, 2019 on assessing the administration and 
+management of the already established Safe Houses from the sampled regions of Arusha and 
+Kigoma by the Ministry of Health, Community Development, Gender, Elderly and Children. 
+The field visit report amongst other things, indicated lack of a clear criteria for the admission of 
+victims and survivors. Equally, there was no guidance on the provision of services to the victims 
+and survivors. Additionally, the reporting channels and tools were not consistent among the visited 
+Safe Houses. Furthermore, there was no well-established coordination and collaboration between 
+relevant stakeholders and the Safe Houses operators. Also, there was no available checklist for the 
+establishment and management of Safe Houses. Based on these evidence there is a dire need of 
+establishing a well-managed Safe Houses as a mechanism to provide safe protection and assistance 
+to victims and survivors in line with International and  national  commitments that aim to prevent and 
+respond to trafficking in persons, GBV and VAC. 
+Therefore, the government of the United Republic of Tanzania through the Ministry of Health, 
+Community Development, Gender, Elderly and Children (MoHCDGEC), with the support from the 
+IOM and in collaboration with other key stakeholders developed these national guidelines that 
+provide a systematic way of establishing, managing and monitoring Safe Houses.  
+1.1 Rationale for the Guidelines
+The basis for establishment of Safe Houses for victims of TIP and survivors of GBV and VAC in Tanzania 
+rest on the commitments made by the government to the international and regional instruments to 
+prevent and respond to these global challenges. Despite the efforts made by the government to 
+respond to cases on trafficking in persons, gender based violence and violence against children 
+still there has not been a comprehensive national guideline for the establishment and management 
+of Safe Houses. The lack of the said guidelines has resulted to challenges related to regulation 
+
+[PDF PAGE 14]
+4
+and management of safe houses. In this regard, the Ministry of Health Community Development 
+Gender Elderly and Children in collaboration with International Organisation for Migration and other 
+stakeholders has developed these guidelines to provide guidance to government institutions and 
+partners on establishment and management of Safe Houses. 
+1.2 Objectives of the Guidelines 
+1.2.1 General Objective
+The general objective of the guidelines is to ensure that victims of trafficking and survivors of GBV 
+and VAC are protected, assisted and reintegrated in accordance with international and national 
+standards. 
+1.2.2 Specific Objectives
+The National Guidelines have the following specific objectives: -
+(i)  Provision of clear requirements for establishment and management of  Safe Houses,
+(ii)  Provision of guidance for offering services to the victims and survivors including those with 
+special needs,
+(iii) Provision of guidance on monitoring and evaluation of operations at the Safe Houses. 
+1.3 Guiding Principles
+Service delivery to victims and survivors shall be based on the following fundamental guiding 
+principles: -
+(i)  The best interest of victims and survivors shall be of paramount importance at all stages of 
+service delivery, care, support and protection,
+(ii)  The protection and assistance to victims and survivors shall be based on individualised care 
+plans,
+(iii)  All services shall be provided only with the full and informed consent of victims and survivors 
+unless it is for the best interest of the victim or survivor,
+(iv)  Victims and survivors shall have the right to full participation at all stages of service delivery, 
+care, support and protection, if necessary through an interpreter,
+(v)  Participation in assistance programmes shall be on a voluntary basis, at the free and 
+informed consent of the victim and survivor,
+(vi)  With the exception of instances where the safety of the victim or survivor is involved, service 
+providers shall not be permitted to disclose information relating to the victim or survivor 
+without his or her consent,
+(vii)  A victim or survivor with disability shall be entitled to special care, treatment, facilities for his 
+or her rehabilitation and equal opportunities to education and training wherever possible to 
+develop his or her full potential and to be self-reliant,
+(viii)  Placement at the Safe House shall be temporary, preferably for a period not exceeding six 
+months and shall be used as a last resort, except when the circumstances for extension are 
+approved by the relevant Council Social Welfare Officer.
+
+[PDF PAGE 15]
+5
+1.4 Intended Users of the Guidelines 
+These guidelines have been prepared to guide key implementers in establishing and managing 
+Safe Houses, assisting and providing comprehensive victim and survivor centred and high-quality 
+services to victims of trafficking in persons as well as GBV and VAC survivors. The key implementers 
+and beneficiaries of these guidelines include the Ministry of Health, Community Development, 
+Gender, Elderly and Children; the Ministry of Home Affairs (MoHA); the President’s Office – Regional 
+Administration and Local Government (PORALG); the Ministry of Constitution and Legal Affairs 
+(MoCLA); the Ministry of Foreign Affairs, Community Based Organisation (CBOs); Civil Society 
+Organisations (CSOs);  Faith –Based Organisation (FBOs) and;  development partners who are, in 
+one way or another, involved in addressing or responding to trafficking in persons, GBV and VAC.
+
+[PDF PAGE 16]
+6
+2.1 Introduction
+The Safe House establishment guidelines cover key issues which are required in order for the Safe 
+House to become operational in a manner that it provides safe environment for staff, victims and 
+survivors. This section covers basic requirements for premises and layout, application, inspection 
+and licensing procedures of the Safe House. 
+2.2 Premises and Layout of the Safe House
+The following are the basic guidelines for the premises and layout of the Safe House:
+(i) The location of the Safe House shall have an access to social services, 
+(ii)  The Safe House location shall not be known to the public for safety and security reasons, 
+(iii)  Safe House should be located at safe and conducive environment for physical and 
+psychological wellbeing of victims and survivors. For instance, it should be far away from 
+entertainment centres,
+(iv)  The Safe House shall be fenced using bricks to ensure maximum protection and safety 
+of victims and survivors, 
+(v)  The physical layout has to take into consideration of people with special needs,
+(vi)  The Safe House’s maximum capacity (total number of residents who can be safely 
+accommodated) should take into consideration of potential admissions of additional 
+residents,
+(vii)  There shall be separate Safe Houses for accommodating men and women victims 
+and survivors, whereas the Safe House for women shall also have a separate wing for 
+children accommodation that separate boys and girls,
+(viii)  There must be a special room(s) that shall accommodate people with communicable 
+diseases to control the spread of diseases within the Safe House,
+(ix)  Where a Safe House is operated in premises which comprise more than one storey 
+building, the staff office and all required services for victims and survivors with disabilities 
+shall be located on the ground floor,
+(x)  Within the Safe House there must be an office for the staff, 
+The Safe House is required to have age-related recreational services for the victims and survivors. 
+2.3 Safe House Registration Requirements
+The following are the Safe House registration requirements to be fulfilled by the applicants before 
+submitting official application for registration:
+(i).  The applicant shall be required to have permanent buildings which are habitable and 
+intended to provide safe environment to the victims and survivors, 
+(ii).  The applicant shall be required to have the title deed or certificate of occupancy of the 
+Section Two
+Guidelines for Establishment of the Safe Houses
+
+[PDF PAGE 17]
+7
+area where the Safe House has been built,
+(iii).  In case the building is leased, the applicant must have the lease contract of not less than 
+three years, which allows a provision of one year notice of its expiry date, 
+(iv).  The applicant shall be required to have an introduction letter from the Ward Executive 
+Officer, a certified copy of the constitution of the organization/institution, the registration 
+certificate of the organization/institution, a letter of financial commitment from the owner 
+(s) or sponsor (s) of the Safe House, copies of bank statement for the period of six 
+months,
+(v).  The applicant shall, within three months after registration, be required to submit certified 
+copies of professional certificates of employees. 
+Upon registration, each Safe House shall form a Welfare Committee that, among others, it will discuss 
+welfare issues of the victims and survivors and operation of the Safe House. A Welfare Committee 
+shall be composed of the following members: -
+(i). Council Social Welfare Officer,
+(ii). Council Health Officer,
+(iii). Council Community Development Officer,
+(iv). Village or Mtaa chairperson,
+(v). Two members from the community, one of whom shall be a woman,
+(vi). One member to be appointed by Council’s Director,
+(vii). An officer in-charge of a Safe Houses,
+(viii). One Police officer from the police station in the respective area.
+The welfare committee shall elect its own chairperson and secretary from among its members 
+provided that the officer in-charge of the centre shall not be elected to these post
+2.4 Inspection of the Safe House Premises
+The Safe House premises must be inspected and verified if they can provide secured and habitable 
+accommodation to the victims and survivors including the ones with special needs. In addition, 
+the Safe House premises must guarantee the residents’ health and safety. During inspection the 
+following issues must be observed: -
+(i) Food preparation and serving areas should be adequate to ensure safe food preparation 
+and storage. Kitchens should contain appropriate cooking, serving and eating utensils 
+and avoid as much as possible the use of plastic utensils.
+(ii)  There should be enough space for groups of residents to congregate and engage in 
+various activities,
+(iii) Toilets, washing and bathing facilities should be in good repair, clean and available in 
+sufficient numbers. The ratio of victims to toilets and bath rooms should be 15:1,
+(iv) Safe House should have adequate sleeping space, hygienic place to store clothes and 
+personal items of residents, 
+
+[PDF PAGE 18]
+8
+(v) There must be one suitable bed with a mattress for every victim or survivor, provided with 
+appropriate clean bedding which is changed at least twice every week and periodically 
+replaced. Sleeping space should be rooms with enough space between beds, and big 
+windows/ventilations for air supply,
+(vi) There must be a special room at the Safe House available at all times for private, individual 
+discussions and counselling. Conversations and counselling of victims and survivors will 
+include sensitive, confidential information that should not be overheard by other staff 
+members or residents,
+(vii) There should be a secured observation room in every Safe House which shall have a 
+first-aid kit, 
+(viii) Laundry and washing facilities should be available in the premises,
+(ix) Indoor and safe outdoor recreation space should be available including availability of play 
+materials for children in accordance to age and gender,
+(x) There should be designated room for supplies, items of personal hygiene, extra clothing 
+for residents and other goods,
+(xi) Each Safe House should maintain standards of cleanliness and hygiene in line with health 
+regulations and practices, 
+(xii) Availability of adequately ventilated and sufficient space with a distance of not less than 
+two and a half feet between the beds or cots used by victims or survivors, 
+(xiii) Every Safe House shall put in place functioning fire fighting equipment and, all staff and 
+residents should be oriented on how to use the equipment.
+2.5 Application Procedures for License 
+The following are the basic application procedures:
+(i) The applicant shall submit the filled in application form (Form No 1) for licensing to the 
+Council Director of the respective area. The application form shall be submitted along 
+together with the required documents stated under Guideline 2.3(iv), 
+(ii) The Council Social Welfare Officer will scrutinize the application including conducting 
+social investigation upon submission of the required documents, 
+(iii) During social investigation, the Social Welfare Officer of the Council shall also conduct 
+physical assessment which will cover assessment on buildings, general environment, 
+trustees and other stakeholders which will provide the basis for assessing the application 
+for license of the proposed Safe House. Physical assessment shall also include vetting 
+of Safe House owners and staff regarding their personal records and history,
+(iv) The Council Social Welfare Officer shall prepare and compile the social assessment 
+report,
+(v) Councils Environmental Health Officers shall conduct environmental assessment of the 
+proposed Safe House and advise an applicant on the required improvements if any,
+(vi) The Councils Health Environmental Officer shall submit the environmental assessment 
+report to the Council Social Welfare Officer,
+
+[PDF PAGE 19]
+9
+(vii) The Council Social Welfare Officer shall submit all collected application documents and 
+the reports to the Commissioner for Social Welfare for consideration and approval,
+(viii) Where, the Commissioner for Social Welfare is satisfied with the submitted application, 
+shall issue license certificate to the applicant. The license shall be valid for only two 
+years and it shall not be transferable. After the stipulated period the owner has to reapply 
+for new license,
+(ix) In case the licensed Safe House shifts to another building, the owner must reapply for a 
+new license,
+(x) In the event the Commissioner is not satisfied with the submitted documents, the applicant 
+should be notified within 14 days from the date of decision and the reason for rejection, 
+(xi) Whereas the applicant is not satisfied by rejection of the submitted license application 
+within 14 days, be allowed to appeal to the Minister responsible for Social Welfare and 
+shall be required to submit the written appeal attached with the relevant evidence, 
+(xii) The duration of processing application for license will be within forty-five days since the 
+receipt of the required licensing documents by the office of the Commissioner. At the 
+Councils, the processing of the application for license will be within sixty days since the 
+receipt of the application.
+
+[PDF PAGE 20]
+10
+3.1 Introduction
+Management of Safe House is one of critical issues which determine its technical, operational and 
+financial sustainability. It mainly focuses on two issues which are the Safe House staffing and their 
+professions, and the management of Safe House residents.
+ 
+3.2 Safe House Staffing and their Professions
+(i). The Safe House must be composed of qualified staff with the required qualifications.  In 
+order to determine the most appropriate composition of Safe House staff, the Safe House 
+owner and relevant partners should consider range of services offered, on-site or through 
+referral to partner service providers and the likely number of residents to be assisted and 
+accommodated as per the capacity of the Safe House,
+(ii). Every Safe House shall employ such number of qualified and trained staff as may be 
+necessary for the efficient running of the Safe House. Consideration should be given to 
+the number, gender composition, age, state of health and special needs of the victims and 
+survivors residing at the Safe House, 
+(iii). Upon signing a contract of employment, a staff shall be required to sign code of conduct 
+(Annex No. 02) and adhere to it throughout their employment and execution of their duties,
+(iv). Each Safe House must have an organization structure with clear job descriptions and 
+relationships among different positions. 
+3.2.1 Core staff members and their duties
+At a minimum level, each Safe House should have the following core staff members and their duties:
+3.2.1.1 Safe House Manager
+Each Safe House should have one core staff member as manager, who shall have the overall 
+responsibility for management. He/she shall maintain overall responsibility for the day-to-day 
+operations, including supervision of other staff and services to residents. The manager shall ensure 
+the safety, health and well-being of residents and staff and adherence to the guiding principles of the 
+Safe House. The Safe House Manager shall ensure that the following minimum numbers of staff are 
+on duty at all times: -
+(i). Two staff, regardless of the number of victims and survivors accommodated,
+(ii). One social Worker,
+(iii). One staff member trained in first aid, 
+(iv). One trained personnel in fire fighting,  
+(v). Two security officers/guards and, one of whom shall be a woman.
+3.2.1.2 Social Worker
+The Social Worker shall have the minimum qualification of a Diploma in Social Work with not less 
+than one year of professional experience working with victims or survivors. Below are some of the 
+minimum duties:
+(i) To conduct assessment and develop care plan,
+(ii) To coordinate implementation of the care plan,
+Section Three
+Guidelines for Safe House Management
+
+[PDF PAGE 21]
+11
+(iii)  Provision of appropriate services including psychosocial care and support,
+(iv)  Being responsible for the day-to-day care and welfare of the victims and survivors,
+(v) To facilitate family tracing, reunification and reintegration.
+3.2.1.3 Child Care Worker
+Child Care Workers shall have a minimum qualification of certificate in social work or child care from 
+a recognized institution. He/she shall provide close parental care, supervision and guidance to the 
+victims and survivors hosted in the Safe House. 
+3.2.1.4 Clinical Officer/Registered Nurse
+The Safe House shall ensure that either a Clinical Officer/Registered Nurse with a minimum 
+qualification of Diploma in Clinical Medicine/ Diploma in nursing respectively is employed or that the 
+Safe House is within easy access of a health facility.
+3.2.1.5 Safe House Attendants
+Each Safe House should have a reasonable number of attendants responsible for various activities 
+related to service provision to residents. Such number of attendants shall include house keepers, 
+cooks, and any other staff to ensure the effective running and safety of the Safe House.
+3.2.1.6 Safe House Security Guards
+Every Safe House should employ security guards considering gender representation and must have 
+a certificate of attendance of formal training on security services. The following are the duties and 
+responsibilities of the Safe House security guard; -
+(i). To ensure safety and legality of all individuals getting into the Safe House’s premises,
+(ii). To verify incoming and outgoing properties and goods, 
+(iii). To ensure day and night security of the Safe House residents, staff and properties., 
+(iv). To report to the relevant Safe House authorities on security and safety-related incidents 
+such as fire, floods, theft etc., 
+(v). To advise on appropriate means of improving safety and security within the Safe House. 
+3.2.2 Other Staff Members
+Depending on the Safe House’s resources, needs and whether services are provided mainly on-site 
+or off-site, Safe House staff may include teachers, activity coordinators, interpreters, and others, as 
+deemed necessary.
+3.2.3 Volunteers and Interns
+Safe Houses may decide to use volunteers and interns to accommodate growing number of 
+residents, services and activities. However, the use of volunteers and interns is subject to availability 
+of resources, security concerns, supervisory capacity and Safe House needs. In this light Safe House 
+should consider the following aspects:
+(i) Acceptance of a volunteer and intern will be subjected to the compliance with the security 
+regulations and quality control which require a volunteer to: -
+(a) undergo initial vetting and personal background verification,
+
+[PDF PAGE 22]
+12
+(b) sign Safe House rules,
+(c) undergo induction training on counter-trafficking, GBV and VAC and sign related 
+codes of conduct.
+(ii) A volunteer has to be supervised by a regular staff member in any activity conducted by 
+him/her. 
+3.3 Management of Safe House Residents
+Management guidelines are intended to ensure the provision of appropriate care and quality services 
+for Safe House residents. It is therefore important for service providers   to have an understanding 
+of trafficking in persons, GBV and VAC, their effects and implications on service delivery. The below 
+are the guidelines for delivering services to the victims and survivors:
+3.3.1 Screening of Victims and Survivors
+It is important to properly screen persons referred, as victims or survivors to Safe Houses for 
+assistance to ensure that they meet criteria. Therefore, this guideline provides guidance for Safe 
+Houses in verifying and assisting victims and survivors.
+(i) Ordinarily victims and survivors may be identified by a wide variety of stakeholders 
+including, but not limited to, the police and NGOs. However, in the event a presumed victim 
+or survivor is identified by any actor other than the Social Welfare Officer the same should 
+be referred to the Council Social Welfare Officer who will within 24 hours conduct initial 
+investigation and complete Form no. 4 for admission of the victim/ survivor in the Safe 
+House. Nevertheless, where a case brought to an attention of the Social Welfare Officer 
+requires urgent intervention, appropriate services should be provided to a victim or survivor 
+within 72 hours.
+(ii) In the case of an individual who independently seeks Safe House assistance, the Social 
+Worker shall conduct pre-interview assessment and make sure that, he/she provides 
+immediate service to the presumed victims or survivor before referring to the Social Welfare 
+Officer for further assessment.
+3.3.2 Admission of Victims and Survivors into the Safe House
+It is important for each Safe House to ensure proper admission of a victim or survivor. This shall be 
+primary responsibility of the manager; however, she/he may delegate this assignment to other staff 
+but under close supervision. The following are the guidelines for the admission of the victim and 
+survivor:
+(i) The Safe House Manager shall only admit victims and survivors brought by the Social 
+Welfare Officer, 
+(ii) The Safe House Manager shall ensure that all victims and survivors admitted to the Safe 
+House are recorded in the admission register,
+(iii) The Safe House Manager shall ensure that every victim or survivor undergoes a medical 
+examination immediately after records are entered into the admission register. The medical 
+practitioner administering examination shall then complete Form No 5 or 6 and submit to 
+Social Welfare Officer,
+(iv) Where a victim or survivor is admitted to the Safe House, the Social Welfare Officer in 
+
+[PDF PAGE 23]
+13
+collaboration with the Social Worker shall conduct a social investigation within seven days, 
+and subsequently complete Form No. 8, 
+(v) The Safe House Manager shall ensure that the Admission Form No. 7 is completed and 
+placed in the victim’s or survivor’s case file,
+(vi) The Social Worker, in consultation with the Social Welfare Officer shall develop a care plan 
+based on the conducted social investigation, 
+(vii)  The Social Worker shall work with other staff and relevant professionals to implement the 
+care plan and shall review the plan after every three (3) months to ensure that it meets the 
+victim’s or survivor’s needs.
+3.3.3 Residents’ Rights and Obligations 
+A. Residents’ Rights 
+It is important for the victims and survivors to understand their rights so that they can be assured 
+with physical, mental and social wellbeing. The following are their rights at the Safe House, but not 
+limited to:
+(i) Each victim or survivor must be treated with due respect and cultural sensitivity,
+(ii) Each victim or survivor must be entitled to confidentiality and privacy,
+(iii) In the process of developing a care plan, the respective victim or survivor must be involved 
+in development of the care plan,
+(iv) Each victim or survivor is entitled to receive services based on their informed consent, 
+(v) Each victim or survivor shall be informed regarding the services provided and their purposes 
+in a language they understand. 
+B. Residents’ Obligations
+Residents throughout their stay in the Safe House are obliged to adhere to the rules stipulated. In 
+this regard each resident upon admission to the Safe House will be oriented to residents’ behavioural 
+rules and ultimately be required to sign for compliance (Annex 03).
+3.3.4 Safe House Security Guidelines
+Security of the Safe House is of great importance. Therefore, staff and residents should always 
+adhere to the security rules without compromise. The following are the security rules, but not limited 
+to:
+(i)  No unauthorised visitors are allowed in the Safe House at any time,
+(ii) The location of the Safe House or any personal details of any resident or staff member 
+of the Safe House shall only be disclosed to relevant government authorities with written 
+approval from the Council Director of the respective area, 
+(iii) The full name or other personal details of a victim shall not be disclosed to any other resident 
+or staff. Only first names are to be used, unless explicitly indicated otherwise,
+(iv) The security instructions should always be adhered to when the victim and survivor 
+communicate with family members or close persons and other persons outside the Safe 
+House,
+
+[PDF PAGE 24]
+14
+(v) Whenever outside the Safe House, the security instructions concerning any movements 
+and contacts with persons outside the Safe House are to be strictly adhered to,
+(vi) Any suspicious contact or activity within and outside Safe House must be immediately 
+reported to the Safe House Manager.
+3.3.5 Provision of Services at the Safe House
+These guidelines intend to guide Safe Houses in provision of care, support and protection to victims 
+and survivors throughout their stay in the houses. As a part of management of residents, the following 
+are the minimum requirements for the provision of the basic needs, rehabilitation services, referral 
+services, family reunification, reintegration and follow up.
+BASIC NEEDS 
+Provision of basic needs is one of the main responsibilities of the Safe House in order to ensure the 
+survival and protection of the victims and survivors. For the sake of these guidelines, basic needs 
+include food and nutrition, medical treatment and accommodation. 
+Food and Nutrition
+(i) Every Safe House shall ensure that each victim or survivor in the house is provided with a 
+balanced diet which is nutritious, 
+(ii) Victims or survivors shall be provided with adequate meals at regular intervals for not less 
+than three times a day and that shall be prepared and cooked in hygienic conditions,
+(iii) Victims or survivors with special dietary needs due to medical reasons shall be entitled to 
+such a diet,
+(iv) Every Safe House shall keep in place a menu for the diet provided to victims and survivors 
+in the Safe House and such menu shall be available for inspection by the Social Welfare 
+Officer and the Welfare Committee.
+   Medical Services
+(i) Where the victim or survivor has a medical emergency, medical examination shall be carried 
+out as soon as possible,
+(ii) The Safe House shall ensure that every victim or survivor undergoes a medical examination 
+at an interval of not more than six months and, where the victim or survivor examined 
+suffers from any physical or mental ailment, the medical practitioner shall submit a report 
+with recommendations to the Social Welfare Officer,
+(iii) The Safe House shall ensure that the victims or survivors residing in the Safe House: 
+(a) are immunised against such diseases as directed by the Ministry of Health, Community 
+Development, Gender, Elderly and Children,
+(b) receive any medical treatment as directed by a Medical Officer,
+(c) attend a clinic every month or a specified period of time if the victim or survivor is 
+under five (5) years of age; or an adult victim or survivor as required by the medical 
+practitioner. 
+(iv) Where a victim or survivor is eighteen years and above, the nature of any medical treatment 
+shall be explained to him or her by medical practitioner,
+
+[PDF PAGE 25]
+15
+(v) No victim or survivor shall be the subject of medical research without his or her written 
+consent and the written permission of the Commissioner of Social Welfare or Council 
+Director in the case of a minor.
+Accommodation and other required facilities
+(i) Every Safe House shall provide for safe and secured accommodation to the victims and 
+survivors including availability of safe and clean water, 
+(ii) Every Safe House shall provide special accommodation arrangements to victims and 
+survivors with special needs, 
+(iii) Every child be provided with appropriate clean bedding which shall be changed not less 
+than twice in a week and periodically replaced, 
+(iv) Special attention as to their personal needs shall be given to children with disabilities or 
+other medical conditions,
+(v) For victims and survivors with disabilities and, those with special needs, appropriate facilities 
+shall be accessible to those victims and survivors. These services shall include access to 
+washing facilities, sleeping areas, the dining room, health facilities, recreational areas and 
+suitable toilets.
+REHABILITATION SERVICES 
+Each Safe House shall be required to provide rehabilitation services which include education, 
+psychosocial care and support, vocational training and economic empowerment to the victims and 
+survivors as follows: - 
+(i). Every Safe House shall provide psychosocial care and support which must be   provided 
+by the Social Worker or Child Care Worker or Social Welfare Officer as per the National 
+Guidelines on the Provision of Psychosocial Care and Support,
+(ii). Depending on their age and needs, every Safe House shall ensure that every victim or 
+survivor has an access to education or vocational training for the duration of their stay in 
+the Safe House,
+(iii). With special consideration on the age category, every Safe House may economically 
+empower victims and survivors by imparting entrepreneurship skills, life skills and other 
+related skills,
+(iv). Every Safe House shall ensure that victims or survivors are exposed to various recreational 
+activities offered.
+REFERRAL SERVICES 
+Referral service is a strategic partnership that is designed to engage relevant stakeholders in 
+attending the needs of victims or survivors which might not be available in the Safe House. Therefore, 
+the following are the guides for referral services:
+(i) Each Safe House should keep a copy of the Directory of Service Providers for Assistance to 
+victims and survivors, which includes an up-to-date list of service providers.. This Directory 
+will help to enhance cooperation and referral of victims and survivors, and should form the 
+basis of the service providers’ referral mechanism, 
+
+[PDF PAGE 26]
+16
+(ii) The victims or survivors be informed in a friendly manner, on their rights and available 
+services in all referral processes,
+(iii) Victims and survivors should be referred to the Safe House or Agency which is licensed and 
+registered by the government,
+(iv) Safe Houses should take into consideration the safety and security needs, as well as the 
+age and gender of the victim or survivor when determining the most appropriate place for 
+referral. Confidentiality of personal information and use of data need to be taken care of 
+during the referral process,
+(v) Information of the victim or survivor must be shared on a “need-to-know basis”, 
+(vi) It must be ensured that, upon referral to another Safe House, the Manager of the receiving 
+Safe House is provided with all necessary information about the referred victim or survivor,
+(vii) Where   a victim or survivor is not in need of Safe House or Agency services, she/he is 
+referred to the relevant Council Social Welfare Officer for necessary assistance,
+(viii) It should be ensured that all referral decisions are documented in the case file, which should 
+be kept in the secured and confidential place.
+FAMILY REUNIFICATION AND REINTEGRATION
+Family reunification and reintegration is the process of reintegrating a victim or survivor back into 
+his/her family or community in order to receive care and protection and to find a sense of belonging 
+and purpose in all spheres of life. Reintegration is considered the best option for the victim or 
+survivor leaving Safe House - but only if and when it is deemed safe and appropriate after thorough  
+assessment. During reintegration the following steps need to be considered:
+Family Tracing
+Family tracing is one of the most important stages in the reintegration process. In this case, it is 
+important for victims or survivors to assist Safe House staff and the Social Welfare Officer in locating 
+their families’ whereabouts within or outside the country. The following are the key guidelines to 
+consider when tracing a victim or survivor’s family: 
+(i) Information from the victim or survivor file (including information from initial and social 
+investigation reports) should be reviewed, 
+(ii) The Social Worker in collaboration with the Social Welfare Officer shall probe for details to 
+identify the family members and association to community institutions like a school, cchurch, 
+mosque that can give a lead to locate the family. In cases where the victim or survivor can 
+provide the name of the local leader, or village their contacts would be used to locate the 
+family, 
+(iii) If family tracing is done in another Council, make sure the Social Welfare Officer in that 
+Council is involved to coordinate all tracing activities in that Council, 
+(iv) Key persons must be contacted to get more information or validate the information collected,
+(v)  Social Welfare Officer /Social Worker should conduct a family visits to assess the family and 
+the community. 
+
+[PDF PAGE 27]
+17
+Family and Community Assessment 
+The following are the key considerations when conducting family and community assessments: 
+(i) Risk factors that may affect the safety and well-being of the victim or survivor and changes 
+that need to be made,
+(ii) Family strengths and resilience, including those of siblings, 
+(iii) Family members’ perception of the reasons for separation and other problems, 
+(iv) Family’s level of readiness/capacity for change, 
+(v) Family’s economic situation and ability to care for the victim or survivor, ,
+(vi) Families willingness to have the victim or survivor reintegrated, 
+(vii) Examining the family weaknesses and their consequences to victims’ or survivors’ welfare 
+and ways to address them,
+(viii) Preparedness at all times to probe the issue of domestic or sexual violence against any 
+victim or survivor in the household, and to respond to any disclosure or concern that may 
+arise. 
+(ix) Assessment of community capacity on the understanding of aspects of trafficking in persons, 
+GBV and VAC, 
+(x) Assessment of community capacity on provision of required support to victims or survivors,
+(xi) Assessment of community capacity to prevent and address stigma, discrimination and 
+violation of victims or survivor’s   rights in general,
+(xii) Level of social services provision and accountability in the community to support victims 
+or survivors such as long distances to schools, health facilities and free legal aid services, 
+(xiii) Assessment of community capacity to engage victims or survivors in the community 
+cohesion for future sustainability of economic plans.
+ 
+Reintegration and Follow up 
+The aim of the reintegration process is to provide for a victim’s /or survivor’s safe, dignified and 
+sustainable reinsertion into society and a normalized life. The reintegration services intend to 
+rehabilitate the victims or survivors in the normal life and to the environment of origin. Accordingly, 
+the reintegration assistance can include a full range of services. However, the Safe House may 
+administer the provision of the reintegration services in collaboration with government, development 
+partners and other organizations. The following are the necessary considerations in the reintegration 
+process:
+(i) The Social Worker in collaboration with the Social Welfare Officer and the victim or survivor 
+shall develop a reintegration plan.  In developing the plan, the goals must be realistic. 
+They should not only suit the personal needs, skills and qualifications of victims or 
+survivors but also the opportunities available in the place of residence, country or region 
+in which reintegration will take place. The reintegration plan may include family mediation/
+reunification; medical/health; start up grants; legal services; education/vocational training/
+apprenticeship; income-generating activities and security,
+(ii) The reintegration plan must be based on the services that are available in the respective 
+locality at which reintegration will take place. It is essential that services be provided to the 
+victims or survivors with full and informed consent, 
+
+[PDF PAGE 28]
+18
+(iii) Social Welfare Officer in collaboration with Social Worker shall conduct post-reintegration 
+follow-up, monitoring and evaluation on whether or not the re-integration benefits a victim 
+or survivor. In this case, the following must be monitored and evaluated, but not limited to: -
+(a) Relationship of a victim or survivor with the family and community,
+(b) Attitude and perceptions of a family and community towards a victim or survivor,
+(c) Improvement of victim’s or survivor’s welfare, 
+(d) Sense of family and community belongingness,
+(e) Victim or survivor engagement in family and community activities.
+(iv) The reintegration process shall be facilitated by the government Social Welfare Officer (s).
+3.4 Death of the Safe House Resident 
+Circumstances may arise that the victim or survivor dies in the Safe House. In such situations the 
+following issues should be considered in addressing the matter:
+(i) When the death of the resident is confirmed by a government medical practitioner, the 
+Safe House authority shall then notify the relevant Council Social Welfare Officer. The 
+management of the Safe House shall then inform the police about the death of such a 
+victim or survivor within 12 hours of the occurrence of such a death. The notification shall 
+give particulars of the deceased including name, sex, age, tribe, as well as the date, cause 
+and circumstances of the death,
+(ii) Upon the death of victim or survivor the Safe House shall, in consultation with the relevant 
+council Social Welfare Officer, obtain a death certificate and post mortem report if need 
+arises,
+(iii) In case the victim or survivor is a native   whose community (or family members) is  known, 
+the relevant Council Social Welfare Officer shall inform the local community leaders and/or 
+family members within 24 hours of the occurrence of the victim’s or survivor’s death,
+(iv) In case of death of a foreign victim or survivor whose country of origin is known the Council 
+Director  shall inform  the Ministry responsible for Social Welfare who shall then inform the 
+Ministry  responsible for  Home Affairs  which shall inform the relevant Embassy and/or 
+family members within 24 hours of the occurrence of the victim’s or survivor’s death. Such 
+information shall include name, sex, age, tribe, nationality as well as the date, cause and 
+circumstances of the death,
+(v) The Welfare Committee shall receive notice of the victim’s or survivor’s death from the 
+Social Welfare Officer. The Committee shall consider the circumstances of the death and 
+whether any action needs to be taken by the Safe House or provide any other directives as 
+it is deemed fit,
+(vi) The Council Director shall inform the Commissioner on the occurrence of the death of victim 
+or survivor within 24 hours.
+3.5 Victim/Survivor Case File Management
+File and information management of victims and survivors is of great importance and cannot be 
+compromised in any way. This is because they are the key determinants of victim’s and survivor’s 
+protection, safety, rehabilitation and reintegration. It is therefore required that Safe House staff and 
+
+[PDF PAGE 29]
+19
+other relevant service providers to adhere to ethics, confidentiality and professionalism in handling 
+victim or survivor’s case files. The following are the key considerations in the management and 
+protection of victims’ and survivors’ file and information:  
+(i) Individual files should be identified only by identification code numbers. Master files 
+connecting individual names to identification code numbers must be kept in a secured 
+place, with access restricted to the authorized personnel, 
+(ii) Coded individual files must be kept in a secured place with access restricted to personnel 
+authorized to work on the specific case,
+(iii) Communication about cases between staff members, or between staff and partner 
+organizations, should take place only on a “need-to-know” basis, and with the consent from 
+the victim or survivor,
+(iv) Individual files should never be left on desks, tables or in common areas unattended, 
+(v) Information about cases should never be revealed to persons outside the office except if it 
+is for the best interest of the victim or survivor and in cases where specific permission has 
+been granted by the victim or survivor,
+(vi) Communication about cases of victims or survivors among staff members, or partner 
+organizations, should never take place in a public location, 
+(vii) Details of victims   and survivors case should not be discussed with another victim or 
+survivor. Where   necessary to do so, names and personal details must be changed so that 
+the case being discussed cannot be identified,
+(viii) Staff members may discuss details of their work   during (peer) supervision or in staff 
+meetings. Information shared during peer supervision or staff meetings must be kept 
+confidential and consider professionalism,  
+(ix) Staff members are forbidden to discuss case and case details with the family and friends of 
+victims or survivors, 
+(x) The same guidelines stated above also apply to interpreters, and must be strongly 
+emphasized (and included in service contracts) to those who are contracted 
+3.6 Safe House Financial Management Guideline 
+Financial management guidelines intend to ensure an effective and efficient management of financial 
+resources by the Safe House which ultimately result to enhancement of financial sustainability. The 
+following   aspects should be considered   for effective and efficient financial management: 
+(i) Every Safe House should prepare financial policy and regulations to govern its financial 
+matters,
+(ii) Safe Houses shall prepare book of accounts to support various financial transactions 
+entered by the Safe House in specified period of time,
+(iii)  Safe Houses shall prepare annual financial reports and submit to the Commissioner for 
+Social Welfare to ensure and assess the financial sustainability,
+(iv)  Annual financial reports shall be certified by Auditors who are recognized by the National 
+Board of Accountancy and Auditors (NBAA) or Association of Chartered Certified Accountants 
+(ACCA).
+
+[PDF PAGE 30]
+20
+4.0 Introduction
+Monitoring, evaluation and reporting component is an important aspect in ensuring the guidelines’ 
+compliance by the key implementers. It stipulates the reporting mechanism process, evaluation 
+criteria and reporting tools that can be used to assess whether the guidelines are adhered or not.
+4.1 Reporting Mechanism
+The reporting mechanism focuses on the effective and efficient communication channel among the 
+key actors. The following are the guidelines on the reporting mechanism:  
+(i). The Safe Houses shall submit monthly reports on the status of its activities to the Council 
+Executive Director within seven (7) days at the beginning of the subsequent month. The 
+respective Council shall provide feedback to the Safe House management regarding the 
+submitted monthly report within two (2) weeks after report submission. In addition, the Safe 
+Houses shall provide annual operational and financial reports to the Council Executive 
+Director within one (1) month after the year ending,
+(ii). The Council Social Welfare Officer shall physically visit the Safe Houses in the respective 
+Council on quarterly basis in order to validate the submitted reports and provide feedback 
+on the spot. In addition, the Council Social Welfare Officers shall prepare a separate 
+assessment report on compliance to these guidelines 
+(iii). The Council shall submit reports on the operational and financial status of Safe House 
+to Regional Secretariat who will submit the reports to PO-RALG on quarterly basis. PO-
+RALG shall share the submitted reports with the Ministry responsible for Social Welfare and 
+Ministry responsible for Home Affairs on quarterly basis. 
+(iv). Each Safe House shall also submit monthly operational and   annual financial reports to the 
+Commissioner.
+4.2 Evaluation Criteria
+It is important to evaluate the operation and services provided by the Safe Houses based on the 
+objectives of the guidelines. The Commissioner or the Social Welfare Officer on his/her behalf shall 
+conduct the evaluation. Below are the key evaluation criteria: 
+(i) Safe Houses that are  should be capable of serving victims and survivors in terms of physical 
+infrastructure. In this case, the evaluation should be in accordance with subsection 2.2 and 
+2.4, 
+(ii) Safe House premises and layout should ensure maximum safety and protection of the 
+victims and survivors including those with special needs. In this case, the evaluation should 
+be done in accordance with subsection 3.3.4, 
+(iii) Safe Houses that are licensed should be capable of serving victims and survivors in terms 
+of human resources. In this case, the evaluation should be in accordance with subsection 
+3.2,
+(iv) The provision of appropriate care and interventions for Safe House residents should cover 
+psychological, emotional and physical health effects. The evaluation shall be done in 
+accordance with subsection 3.3.5,
+(v) Confidentiality and security of case file information should guarantee protection and safety 
+of victims and survivors. In this case, the evaluation should be in accordance with subsection 
+3.5,
+(vi) Licensed Safe Houses should be capable of serving victims and survivors in terms of financial 
+management and sustainability. In this case, the evaluation should be in accordance with 
+subsection 3.6.
+Section Four
+Monitoring, Evaluation And Reporting
+
+[PDF PAGE 31]
+21
+ANNEX 01: FORMS
+Form No. 1: APPLICATION FOR A LICENCE 
+1. Details of the Applicant
+1.1 Name of organization …………...…………….……………....................…………......……..……
+1.2 Name of Officer in Charge (OIC): ….………………..……………………………….....……….….
+1.3 Physical Address: …………………………..………………………………………….....………….
+1.4 Postal Address:……….......………………………........……………………………………………..
+1.5 Telephone: ………………..……….……….. 1.6 Mobile: ………………….……..…..…….………
+1.7 Email Address: ………........………………………………….….....………………..…..…………..
+1.8 What are the organisation’s main areas of activity? ……………….............….............…..….…
+……….……………………………………………..……………………………………………….………..
+….…....................................................................................................................................……….
+1.9 Does the organisation operate, or have they operated in the past, any other Safe House in 
+Tanzania? YES, or NO. If YES, give details below:
+Licence No  Name of Safe House  District             Currently Active?
+…………………  ………………………………….  …………………  YES or NO
+…………………  ………………………………….  ….………………  YES or NO
+1.10 Has the organisation previously been refused a License to operate a Safe House in Tanzania, 
+or had a License revoked? YES, or NO If YES, give details below: 
+Name of Safe House   District                      Date of Application or 
+Revoked
+……………………………    …………………...….....…        ……………............……..
+………………….…...……      ………………..……… .....            …………………………..
+2 Details of the Safe House
+2.1 Name of the Safe House: …….......………………………………………………………………
+2.2 District: ………………………….......……… 2.3 Ward: …………………..………………........
+2.4 Physical Address: ……........……………………………………….………......…..…….........…..
+2.5 Postal Address: ………........………………………………………….…………………...........…
+Annexure
+
+[PDF PAGE 32]
+22
+2.6 Telephone: ……………………………………….. 2.7 Mobile: ……………………............…....….
+2.8 Email Address: .......................................................................................................….......…….
+2.9 Name of Safe House Officer in Charge: ………….……………..……………………..……..……
+2.10 What is the intended maximum capacity of the Safe House (for both age groups)? 
+Aged 0 – 17 years: ………………………… Aged 18 years and above: ……………………..…….…
+2.11 What sex of victims/Survivors will be accommodated in the Safe House? MALE or FEMALE 
+or BOTH
+2.12 Is it intended that the Safe House will accommodate any victim/Survivor with disabilities, chronic 
+illnesses or HIVAIDS that will require special care? YES or NO
+Give details: ………………………………..……………………………………………………….....……
+……………………………………………………………………………………………………….….……
+…………….................................................................................................................................…..
+2.13 Are the premises for the Safe House owned outright or leased and if the latter, what is the length 
+of the lease and the notice period? OWNED OUTRIGHT or LEASED
+(If leased) Length of Lease: ……………………………… Notice Period: ……………………...….…..
+2.14 What will be the main source(s) of income for the Safe House?
+……………………………………………………………………………………………………….......……
+………………………………………………………………………………………………………......……
+3 Referees
+3.1 Give details of THREE referees below:
+Name         Position               Contact Details
+……………….……………........…       ………………………………  ………………………
+…………………………………….        ………………………….…...  ……...........................
+…………………..…………….......        ……………………………...  ………………………
+4 Declaration
+I, the undersigned, submit this application for a License to operate a Safe House on the basis of 
+the information provided above. I confirm that all the details are true and accurate and, if granted a 
+license, undertake to comply with all the relevant regulations and any guidance or directions from the 
+Commissioner of Social Welfare.
+Signature: …………………………………..………………………………………………....…...…….…
+Name: …………………………………………..………..………………………………………….....……
+Position in Organization: ………………………………………………………………………..…...…….
+Date: ………………………………………………………………………………………..…………….....
+
+[PDF PAGE 33]
+23
+(RECOMMENDATION AND DECISION)
+5 Social Welfare Officer Recommendations
+5.1 Recommendation of Social Welfare Officer: RECOMMEND or DO NOT RECOMMEND (Delete 
+as appropriate)
+With a maximum capacity of: ………………...
+Aged 0 – 17 years: ……………………………  Aged 18 years and above: ……………………..
+Reasons or Conditions:
+….……………………………..………………………………………..….……………………………..
+………………………………………………………………………………….………………..……………
+……...................................................................................................................................................
+5.2 Name of Social Welfare Officer: …………….………………….......…………......….……………..
+5.3 Signature: ……………….………………….……….……………………….....……....…......………..
+5.4 Date: …………….………….…..……………..............................……………………..……………..
+6 Decision of the Commissioner for Social Welfare
+6.1 Decision on Application: APPROVE or DO NOT APPROVE (Delete as appropriate)
+Reasons or Conditions:
+….………………………………………………………………...………………………........………………
+……………………………………………………………………………………………….....…….…………
+…….....................................................................................................................................................
+6.2 Licence Number (if the application is approved):
+…………………………………….………….……………….............…………........………………………
+6.3 Signature of the Commissioner for Social Welfare: ………………………   Date: .....……..………
+
+[PDF PAGE 34]
+24
+Form No. 2: ENVIRONMENTAL HEALTH INSPECTION 
+1. Name of the Safe House ……………………………………………….…………………………
+2. Previous Registration number of the Safe House (if applicable): …………………………….
+3. Name(s) of the manager(s)or owner(s)………………………………………….…………………
+4. Nature of ownership:  INDIVIDUAL/JOINT/PUBLIC*   
+5. Nationality of the manager(s) or owner(s): TANZANIAN/FOREIGNER/BOTH*
+6. Location of the Safe House: -
+     Council: …………………..…………….  Ward: …………….……………………..…….
+     Kijiji/Street /Mtaa: ……………………………………………………………..….…………
+    Postal Address: ……………………………….Telephone: ………………………………
+    Mobile……………….………………… Email: …………………….………………………
+7. Maximum number of residents at the Safe House (Male and Female) ……………                         
+8.a) Profile of residents at the Safe House (if applicable)
+AGE FEMALE MALE TOTAL 
+Above 18 years
+6-18 years
+2-5 years
+Below 2 years
+8. b) Profile of residents with special needs (if applicable)
+AGE FEMALE MALE TOTAL 
+Above 18 years
+6- 18 years
+2-5 year olds
+Below 2 years
+
+[PDF PAGE 35]
+25
+Details for Assessment: 
+9a Are there any residents with Communicable diseases? (if applicable) YES/NO*
+9b If YES has the manager(s) or owner(s) put in place an enabling 
+environment to deal with the disease?  
+10a Has the manager(s) or owner(s) put in place an enabling environment in 
+line with the guidelines?  YES/NO*
+10b If the answer is NO what are the reasons?
+11a Does the safe house have rooms that are adequately ventilated? YES/NO
+11b If the answer is NO what are the reasons for non –compliance?
+12a Does the safe house have firefighting equipment and staff/residents 
+oriented on its use? YES/NO
+12b If the answer is NO what are the reasons?
+13a Does the safe house have Laundry and washing facilities available in the 
+premises? YES/NO
+13b If NO what is missing and why?
+14a Are the premises kept clean and in a hygienic condition? YES/NO*
+14b If the answer is NO, why?
+15a Does the safe house have toilets, washing and bathing facilities that are 
+in good condition and clean? YES/NO*
+15b If the answer is NO what is missing and why?
+16a Are the sewage systems in place and in good condition? YES/NO*
+16b If the answer is NO, why?
+17a Is food preparation environment clean to ensure its safety and storage? YES/NO*
+17b If the answer is NO, what are the identified gaps and problems?
+18a Does the safe house have enough space for groups of residents to 
+assemble and engage in various activities? YES/NO
+18b If the answer is NO what is missing and why?
+19a Is the Safe House suitable and safe for residents? YES/NO*
+19b If the answer is NO, what are the weaknesses/problems?
+20a What is the date of the last inspection?
+20b Have steps been taken to address the instructions of the previous 
+inspection? (answer N/A if this is the first inspection)
+YES/NO
+/N/A*
+20c Provide details of the steps taken to implement the instructions and details of the 
+instructions which have not been addressed:
+
+[PDF PAGE 36]
+26
+21. Provide any other relevant information …………………………….………………………….....……
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………………………………………………………….……………
+…………………………………………………..………………………………...........……...………………
+22. Summary of the Assessment 
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+Recommendations  
+I confirm that I have assessed and inspected the Safe House and Recommend the following: ……
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+…………………………………………………..………………………………...........……...………………
+Signature: …..……………….….……………. Date: ………………………...………….......………..
+Name:   ………….…………………………… Position …………….……....………..........…………
+Qualification: ……………………………………………..………………………………….......………
+
+[PDF PAGE 37]
+27
+Form No. 3: LICENCE FOR SAFE HOUSE 
+This is to certify that:
+…………………………………………………..………………………………...........……...………………
+(Name of Applicant)
+having applied for a License to operate a Safe House and having been found, after investigation, to 
+meet the requirements for protecting and assisting victims of trafficking in persons and survivors of 
+gender-based violence and violence against children is hereby licensed to operate a Safe House at:
+Region…………………… District:…….………………… Ward:…………….……...........…………...
+and such a Safe House shall be known as:……………………………………………………….......…… 
+and shall have maximum capacity of………………… victims/survivors. Aged 0 – 17 years:….…………… 
+ged 18 years and above:……………........................................……….
+With the License Number:…………………………………………………
+Issued by Commissioner for Social Welfare: 
+Name: ………….…………..………  Signature: ………………………………………..
+Place: ………………………………   Date: ……………………….…..…………………
+
+[PDF PAGE 38]
+28
+Form No. 4: INITIAL INVESTIGATION FOR VICTIM AND SURVIVOR 
+Instructions
+After the Victim of Trafficking in Persons/Survivor of GBV and VAC is rescued, Identified and or 
+reported to any Law Enforcement Officer, Labour Officer or Medical Practitioner this Form together 
+with referral form (No. 13) has to be filled in and sent to referral service agency or Social Welfare 
+Officer who shall verify the information and send the victim/survivor to the Safe House.
+Tick the relevant one in the box:
+£ Victim of Trafficking                         £  Survivor of GBV                     £ Survivor of VAC       
+A. Personal Information
+Surname: _________________________________________
+Given names: _____________________________________
+Tribe: _____________________________________
+Date of birth: Date______ Month _________Year __________
+Distinguishing feature: _______________________________
+Sex: __________________(Male/Female)
+Nationality: _______________________________________
+Religion __________________________________________
+Place of origin ________ Council: ___________ Ward: __________ 
+Village/Street/Mtaa: ___________
+Permanent address:
+____________________________________________________________________________
+_______________________________________________________________________Marital
+status _____________(married, unmarried, divorced, separated, widow/widower)
+Number of children _________
+Experience of abuse _______________________(sexual, physical or psychological )
+Perpetrator of abuse (Relationship) ______________(spouse, sibling, father, mother, other relative, 
+partner/boyfriend/girlfriend/friend/ community member, other,)
+Education level: ________________________________________________________________
+Reason(s) for Migrating/leaving home_____________________ (Job opportunity, study opportunity, 
+wanted adventure, economic need, force/kidnapped/marital conflict, escape violence, other)
+Activity at recruitment (for victim of trafficking) _______________________ (study, study and work, 
+unemployed, unpaid work, none, other)
+Community setting _________________________(city, town, village, isolated, nomadic, other)
+
+[PDF PAGE 39]
+29
+FOR CHILDREN:
+Education level _______________________________________________________________
+Is the child victim/survivor living with his/her biological parents? ___________________(YES / NO)
+Is the child victim/survivor an orphan? ____(YES / NO); Relationship with guardian:
+______________________________________________________________________________
+Names of the parents/guardian at home: ______________________________________________
+Physical address of the parents/guardian __________________________________________
+Occupation/means of livelihood of;
+(a) Mother ______________________________________________________________________
+(b) Father ______________________________________________________________________
+(c) Guardian ____________________________________________________________________
+B. Recruitment experience (For Victims of Trafficking)
+Date of recruitment _________________
+Country of recruitment _______________
+Means of recruitment/entry into trafficking_______________(personal contact, advertisement,  
+promise, kidnaping,  agency, abduction/force, false contract, marriage, adoption, other)
+Victim’s relationship with recruiter __________________ (family member, classmate, close friend, 
+acquaintance, stranger, employer, boyfriend, girlfriend, other)
+Sex of recruiter __________________________(male, female)
+Recruiter’s citizenship _______________________________
+Recruiter’s country of residence________________________
+Purpose of Recruitment _________________ (work offer, marriage, travel/tourism, study, other)
+Destination country at recruitment __________________
+C. Transportation and travel routes (For Victims of Trafficking)
+Means of transport _________________ (on foot, car, taxi, bus, airplane, train, boat/ship, other)
+Travel documents __________________ (legal, false/falsified, none)
+Border crossings ___________________ (legal, illegal, no border crossed)
+D. Exploitation/Abuse experience
+Form(s) of exploitation/abuse ____________________(sexual exploitation/abuse, emotional abuse, 
+physical abuse,  forced labour, begging, delinquency, adoption for purpose of exploitation, removal 
+of organs, other)
+
+[PDF PAGE 40]
+30
+Place of exploitation/abuse ________________________________________________________
+Date when exploitation/abuse began _________________________________________________
+Date rescued from exploitation/abuse ________________________________________________
+Means of exit from exploitation/abuse _____________( released by trafficker/abuser, escaped on 
+his/her own, escaped with help of third party, intervention of law enforcement officers, intervention 
+of Social Welfare Officer, intervention of outreach workers, paid debt bondage, other, )
+History of previous exploitation/abuse_________________________________________________
+Place of previous exploitation/abuse _________________________________________________
+Identification/assistance during previous exploitation/abuse ______________________ (identified, 
+assisted, declined identification, declined assistance)
+E. Identification and assistance
+Place of identification _____________________________________________________________
+Date victim/survivor was identified ___________________________________________________
+Identifying Institution/Actor ____________________ (border authority, law enforcement officer, 
+outreach workers/program, Social Worker, Social Welfare Officer, labour inspector, helpline service, 
+transportation personnel, client, private citizen, medical personnel, lawyer, other, )
+Date of admission at the Safe House:  _________________________
+Type of assistance provided _____________________(accommodation, food, water, sanitary pads, 
+medical care, psychological assistance, education, vocational training, job placement, reintegration 
+grant, entrepreneurship skills, family mediation, financial assistance, other)
+Statement to Police ____________________ (Yes/No/)
+Name of the Police Station: ______________________________________________________
+Description of case (Criminal case Number and dates) _______________________________
+Court of first appearance of the case (date): ________________________________________
+Testimony in Court against the perpetrator __________(Yes/No/)
+Is the case in progress? Yes/No ____, If Yes, give details of the case ________________________
+Protection: ________________ (pre-trial, during trial, post-trial, a combination of these, no protection 
+at all)
+Victim/survivor compensation __________________ (Yes/No//Not applicable)
+Date of discharge: _____________________________
+
+[PDF PAGE 41]
+31
+F. Other
+Comments (enter additional details and clarification)
+______________________________________________________________________________
+______________________________________________________________________________
+______________________________________________________________________________
+______________________________________________________________________________
+Signature of the Recorder (with name and contact details)
+______________________________________________
+______________________________________________
+______________________________________________
+
+[PDF PAGE 42]
+32
+Form No. 5: MEDICAL REPORT FOR VICTIMS OF TRAFFICKING IN PERSONS 
+(To be completed by a Medical Practitioner)
+Name of examining medical practitioner: ……………………………………….......……………………
+Name of the health facility: ………………………………………….…………………….…....….………
+Date of medical examination of the victim/……………………….………………………......….………
+1. Basic information
+Name of victim/ ……………...……………………………………………...………….......….….………..
+Sex (M or F)……………………….…………… Age …………..…………………….…........................
+Date of Birth………………………….………..……………….………………………........…….……….
+Height................................................. Weight.................................................................................
+Name of Safe House  ………………………..…………………………………...……………..………..
+Next of Kin………….............................……….Tel. No………………………………...….......………..
+Religion………………………………….………Tribe ………………………………………......……….
+Nationality ……………………..……………………………………………….……………………...…..
+2. Past Medical History
+Has the examined victim suffered from any of the following? If yes indicate YES against the diagnosis, 
+if not, please write “NO” in the appropriate space.
+1. Tuberculosis ………………….……
+2. Gastric or Duodenal Ulcer ………………….……
+3. Recurrent indigestion …………………….…
+4. Dysentery ………………….……
+5. Jaundice ………………….……
+6. Diabetes ………………….……
+7. Poliomyelitis or other neurological disorders ……………………….
+8. Epilepsy ………………….……
+9. Nervous breakdown …………………….…
+10. Psychiatric disorder ………………….……
+11. Eye disorder ………………….……
+12. Ear, nose or throat disorder …………………….…
+13. Skin diseases …………………….…
+14. Anaemia ………………….……
+
+[PDF PAGE 43]
+33
+15. Gynaecological disorders …………………..........…….
+16. Malaria or other tropical disease …………………..……
+17. Cholera ………………….......……
+18. Operations …………………..……
+19. Trauma or injuries …………………...……
+20. Any other condition ………………………..
+If you answered YES to any of the above, provide further information:
+………………………………………………………………………………………….......…………………
+…………………………………………………………………………………………….......………………
+……………………………………………………………………………………………….......……………
+……………………………………………………………………………………………….…….....………
+3. Present Medical Examination
+General Observation ……………………………………………………………………….........………..
+Central nervous system....................................................................................................................
+Respiratory system...........................................................................................................................
+Cardiovascular system.....................................................................................................................
+Digestive system ……………………………………………………………...…………….......………….
+Reproductive system …………………………………………………..……………………......…………
+Endocrine system ……………………………………………………...……………………….......………
+Oral observation ……………………………………………………………………………….......………..
+Allergies……………………………………………………………………...……………….........…………
+3.1 Routine Investigation
+1. Routine Urine analysis...................................................................................................................
+2. Stool...............................................................................................................................................
+3. Hb%...............................................................................................................................................
+3.2. Specific Investigation ……………………………………..….……..…………………………………
+3.3 Diagnosis ………………………………………………….…………......………………………………
+3.4 Treatment ………………………………………………...........…………………………………………
+
+[PDF PAGE 44]
+34
+3.5 Findings
+Is the victim free of communicable disease? ..................................................................................
+Any serious disorder or disability: ………………………………………………………………………..
+Findings of the clinical officer: ……………………………….……………………..…..………….…….
+…………………………………………...……………………………………………....….………………
+Recommendations of the clinical officer: …………………….………….……………....………..……
+………………………………………………………………………………….…...........…...……………
+Signature of the Medical Practitioner …………………………….………...…………..…..……….…
+Date………………………………………………………………………............…………….....………
+Official Stamp of the health Facility……………………..................................……………...……….
+
+[PDF PAGE 45]
+35
+Form No. 6: MEDICAL REPORT FOR SURVIVORS OF GENDER BASED VIOLENCE 
+AND VIOLENCE AGAINST CHILDREN
+General Information Name of Health Facility
+Full Name(s) Survivor Registration No
+Date of Birth (MM/DD/YEAR)
+........./......./...............
+Marital Status(tick √)   
+Single         [   ]   
+Married      [   ]   
+Divorced    [   ]
+Sex
+●   Male
+●   Female
+Residence
+Witness(es) Contact (s) 
+Occupation 
+Description Of Incidence
+Date of Assault
+MM       DD      YEAR
+......../......./..............
+Time of Assault
+HOURS:MIN           AM     PM
+[   ] [   ] : [   ] [   ]       [    ]     [    ]
+Place of Assault Number of Assailant(s)
+Alleged Assailants 
+●   Unknown
+●   Known (indicate relationship with victim)
+Type of Assault
+●   Sexual
+●   Physical
+●   Psychological
+Presenting symptoms/complaints Circumstances of incidence (penetration, 
+how/where, and what was used?)
+Did the assailant use a condom?
+●   No
+●   Yes 
+Did the survivor have a bath?
+●   No
+●   Yes
+Did the survivor vomit after assault?
+●   No
+●   Yes
+Did the survivor go to toilet?
+●   No 
+●   Yes 
+Is The Incident Reported to Police?
+●   No
+●   Yes (Indicate the name Of station)
+
+[PDF PAGE 46]
+36
+Obs/Gyn History
+LNMP (Last Normal Mensural Period)
+............../............../.................
+Gravida    [    ]
+Parity        [    ]
+History of sexual intercourse prior this 
+incidence?
+●   No 
+●   Yes 
+History of Pregnancy 
+●   No 
+●   Yes 
+●   Don’t know 
+History of contraception 
+●   No 
+●   Yes (indicate the type(s))
+Last sexual consensual intercourse
+MM     DD    YEAR
+......../......../.............
+History of current sexual relationship 
+●   No 
+●   Yes  
+HIV status
+●   Positive
+●   Negative
+●   Unknown 
+Examination Date ......./......./............                                
+Time [    ] [    ]:[    ] [    ]  AM     PM     
+Mental health state (comment(s))
+●   Normal
+●   In shock
+●   Tearful
+●   Depressed
+Anxious
+●   Confused
+●   Hyper arousal
+●   Coma 
+●   Other(s)………………………………
+Physical Examination
+Comment on general condition of the survivor ●   BP___________mmHg
+●   Pulse Rate_______beat/min
+●   Resp Rate_______cycles/min
+●   Temp_______ºC
+Did the survivor change0 clothes
+●   No 
+●  Yes (where were the worn clothes 
+taken?)……………..
+State of the clothes 
+●   Stains
+●   Tears
+●   Color
+Any visible obvious injuries
+●   No
+●     Yes (if yes comment)………………
+
+[PDF PAGE 47]
+37
+Genital-Anal Examination
+Describe in details the physical state of the following structure(s):
+External genitalia Cervix 
+Vaginal/hymen Digital rectal examination
+Other orifices (oral cavity, tongue, palate)
+Type of GBV/VAC Encountered
+Physical                      [    ]
+Sexual                         [    ]
+emotional                    [    ]
+Physical and sexual    [    ]
+Emergency Treatment Given
+Stitching Surgery
+●   No 
+●   Yes (comments)
+Emergency contraception
+●   No 
+●   Yes (indicate which drugs)
+PEP
+●   No
+●   Yes
+STI preventive treatment 
+●   No
+●   Yes 
+Comment on any other medication/treatment/management given to the survivor:
+Laboratory Investigation Comments
+Urine-Pregnancy Test
+Microscopy
+Other(s)
+Vaginal Swab-Sperm
+Culture and sensitivity
+Blood 
+DNA
+VDRL
+Hepatitis B surface antigen
+Full blood picture
+Haemoglobin (HB) 
+
+[PDF PAGE 48]
+38
+X matching 
+Blood chemistry
+Serological test for HIV
+Anal Swab
+Other(s)……………………………..
+Survivor Referred To…
+●   Police Station
+●   VCT Clinic
+●   HIV Clinic
+●   Other (s) (specify)……………………..
+Remarks
+Name and signature of examining doctor
+Name: _____________________
+Signature___________________
+Date ____/____/_____
+Name and signature of examining nurse
+Name: _____________________
+Signature___________________
+Date ____/____/_____
+END
+
+[PDF PAGE 49]
+39
+Form No. 7: ADMISSION RECORD
+(To be completed by Social Worker)
+1 Details of Safe House
+Name of Safe House: …………………………………. Licence Number: ……………………..…....
+2. Details of victim/Survivor
+2.1 First Name: ………….………. Middle Name: ………………. Last Name: ……..……........……….
+2.2 Date of Birth: ………………………… 2.3 Sex: …………… 2.4 Religion: ……………...............… 
+2.5 Tribe: ……….......................….…......  2.6 Nationality ………………..................………………..…
+2.6.1 Place of Birth:……………..………. 2.6.2 Region/Province: ……………………….…........…….. 
+2.6.3 District: ……………....….. 2.6.4 Ward: ………………….2.6.5 Village/Mtaa: ……………...……
+2.7 Marital status: ....................2.7.1 Married: ………...……...2.7.2 Single: ……….......……….....… 
+2.7.3 Widow/Widower: ................…………..
+3. Assistance/Care Arrangements Prior to Admission
+3.1 Did the victim/survivor receive any assistance/care prior to admission? YES or NO,
+If YES, give details: …………………………………………………………………….........……….........
+4 Details of Father
+4.1 Status of the victim’s/survivor’s father, ALIVE or DEAD or MISSING (tick whichever appropriate)
+4.2 First Name: …………………  Middle Name: ………………  Last Name: ……………
+4.3 Date of Birth: ………………………....… 4.4 Tribe: …………………......……….................
+4.5 Current Address:
+4.5.1 Country ………….….…… 4.5.2 Region: …………….………….. 4.5.3 District: …………...……
+4.5.4 Ward: ………………. 4.5.5 Village/Mtaa: ….………… 5.5.6 House No (if any) ……….......……
+5 Details of Mother
+5.1 Status of the victim’s/survivor’s Mother, ALIVE or DEAD or MISSING (tick whichever appropriate)
+5.2 First Name: …………………  Middle Name:……..……… Last Name: ……….........…………
+5.3 Date of Birth: …………………………....… 5.4 Tribe: ………………..………......……….......
+
+[PDF PAGE 50]
+40
+5.5 Current Address:
+5.5.1 Country ………..…….…..……. 5.5.2Region: ………..………..…….. 5.5.3 District: ……....…….
+5.5.4 Ward: ……………. 5.5.5 Village/Mtaa: …..…… 5.5.6 House No (if any) ….......................……
+6 Details of Relative or Guardian or spouse (where needed)
+6.1 First Name: …………………  Middle Name: ………………  Last Name: …………...........…
+6.2 Sex: …………….. 6.3 Date of Birth: …………………. 6.4 Tribe: ……....................................……
+6.5 Current Address: 
+6.5. Country ……………..……..6.5.2Region: ……………...……….. 6.5.3 District: ………….…....…..
+6.5.4 Ward: ………….…. 6.5.5 Village/Mtaa:………....……… 6.5.6 House No. (if any) ……….......…
+7 Victim’s/survivor’s Needs
+7.1 Short term needs: ……………………………………
+7.2 Long term needs: …………………………………….
+7.3 Any special needs of the victim/survivors (including minors, disabled, lactating mothers, victim/
+survivors with chronic illness, etc)…………………………………...................…………………………
+………………………………………………………………………………………………………........……
+8 Admission Details
+8.1 Date of admission………………………………..........……....................……………….…......…….
+8.2 Reasons for admission:
+…………………………………………………….....………………………....……….......................…….
+Name of the Safe House Manager: ….…..................……….…………..........………..................…… 
+Signature: ….……………………….………… Date: .………………………...............................………
+
+[PDF PAGE 51]
+41
+Form No. 8: SOCIAL INVESTIGATION REPORT 
+(To be completed by Social Welfare Officer and copy sent to the Safe House)
+1 Details of victims/Survivors
+1.1 First Name: ……………………  Middle Name: …….………….. Last Name: ………………..
+1.2 Date of Birth: …………………….… 1.3 Sex: ……………………………
+1.4 Religion: …………………………..... 1.5 Tribe: ……………………….....
+1.6 Current Place of Residence or Contact Details: ………………………………………………….
+1.7 Marital status of the victim/Survivor....................................... (Single or married or divorced or 
+separated).………………………………………………………………………………......…………
+2 Sources of Information
+Identify all the sources of information used in making this social investigation (tick where relevant) 
+and put the dates:
+2.1 Discussions with the victims/survivors: Date ………………............  £
+2.2 Discussions or Meeting with the Police: Date ……………...........… £
+2.3 Discussions or Meeting with a Medical Officer: Date ……….….…..   £
+2.4 Discussions or Meeting with the Safe House: Date………………… £
+2.5 Other (give details and dates): ……………………… ……………...... £
+3 Current Care Situations
+3.1 What is the current status of the victim’s/survivor’s parents or relatives?
+Father: ALIVE or DEAD or  (MISSING)
+Mother: ALIVE or DEAD or  (MISSING)
+3.2 What is the current marital status of the parents? …………………………….........………………..
+3.3 What are the current care arrangements for victims/survivors?
+..........................................................................................................................………………………
+4 Needs of the Victims/Survivors
+4.1 Is the victim/survivor currently attending school or training? YES or NO......................... 
+If YES, give details (type of school or training) ………..………………………………......….....…..
+4.2 Does the victim/survivor have any specific educational needs? YES or NO…………….…….
+If YES, give details: ……………………………………….....………………………………………..
+
+[PDF PAGE 52]
+42
+4.3 Does the victim/survivor have a disability, chronic illness or other condition that may require 
+special care? YES or NO ……………………
+If YES, give details: ………………………………………...………………………………………..
+5 Family Reunification
+5.1 Is the victim/Survivor separated from his or her parents? YES or NO………………………….
+If YES, for how long? ………………………………………………………………….……......…..
+5.2 What efforts have been made to trace the parents or reunify the victim/survivor?
+……………………………………………………………………………………………………………
+……………………………………………………………………………………………………………
+5.3 What is your assessment of the potential for family reunification?
+……………………………………………………………………………………………………………
+……………………………………………………………………………………………………………
+6 Assessment of potential of the victims/survivors to placement in a Safe House 
+6.1 What is your assessment of the victim’s/survivor’s suitability for placement in a Safe House for 
+Protection and Assistance?
+……………………………………………………………………………………………………………
+....................................................................................................................................................
+6.2 Have you been able to identify a potential Safe House? YES or NO …………………..........…….
+If YES, give details (all Safe Houses for Protection and Assistance to victims/survivors must be
+licenced and entered in the Register)
+Name of Centre: ………………………………………… Licence No:……………………….…….
+6.3 Why do you believe that the proposed Safe House for Protection and Assistance to victims/
+survivors is suitable for placement?………………………….………………………........…
+…………………………………………………………………………………………………………………
+….………………............................................................................................................................…
+6.4 What are the views of the victim/survivor?
+……………………………………………………………………………………………………………
+……………………………………………………………………………………………………………
+6.5 What are the views of the potential Safe House for Protection and Assistance to victims/survivors?
+
+[PDF PAGE 53]
+43
+…………………………………………………………………….………………………………………
+…………………………………………………………………………………………......……………
+6.6 Are there any special support needed for this placement? YES or NO ……………………
+If YES, give details:……………................………….................……………………...…………………
+6.7 What further actions are required to achieve a permanent long term care solution for this victim/
+survivor?………………………………………………………………………………………......
+7 Recommendation & Formal Decision
+7.1 I confirm that I have completed the Social Investigation form for the above named victim/survivor 
+and that I RECOMMEND or DO NOT RECOMMEND (delete as applicable) a placement in a Safe 
+House for Protection and Assistance to victim/survivor as described above.
+Name: …………………….………Signature: …………………….. Date: ………………….………
+Social Welfare Officer
+7.2 I APPROVE or DO NOT APPROVE (delete as applicable) the placement of the above named 
+victim/survivor in the Safe House for Protection and Assistance.
+Name: ………………….………..Signature: ….……..……………… Date: .………………………......
+Council Social Welfare Officer
+
+[PDF PAGE 54]
+44
+Form No. 9: FAMILY TRACING AND FAMILY ASSESSMENT
+Introductory Note:
+Before starting the assessment, which will be done through participatory interviews with the family, 
+please inform the interviewees the purpose of the assessment. The purpose is to collect information 
+on the socio-economic situation of the family in order to be able to determine and evaluate what could 
+be the best options for the victim/survivor in the short and long-term plan. The family assessment will 
+under no circumstances to be conducted in a forceful insistent manner.
+Upon the completion of the family assessment and the confirmation of the parents/or legal guardians 
+on the information provided, the Social Welfare Officer will follow up appropriately with the victim/
+survivor in the Safe House and/or the legal guardian and will conclude on the feasibility of possible 
+reunification/reintegration.
+Section 1: Consent for family tracing and family assessment
+I hereby declare my consent that the Social Welfare Officer will (based on the provided information) 
+conduct family tracing and family assessment for the purposes of my voluntary family reunification/
+community reintegration/repatriation and resettlement in exceptional cases.
+Victim’s/Survivor’s Name: ……………  Signature: ………… Date: ………….. Place: ……..
+1.1 General information about the victim/survivor 
+Name of the victim/survivor
+Date of Birth (DDMMYYYY)
+Age
+Sex
+Place of Birth
+Citizenship
+Current place of residence: (tick whichever appropriate)
+[    ] in a Safe House
+[    ] with family members
+[    ] with friends
+[    ] with a fostering family
+[    ] other
+Specify: 
+___________________________________________________________________________
+Name:………………………………………………………………
+Address:…………………………………………………………..
+Phone Number:…………………….……………......…………..
+Email:………………………………………………………………
+
+[PDF PAGE 55]
+45
+1.2. General information on the location of the family 
+Parents/Legal 
+Guardian
+Names Address and 
+Tel. Number/
+Mobile
+E-mail Address Any other 
+Relevant 
+Information 
+Father
+Mother
+Any other 
+possible care 
+taker
+Section 2: Assessment (to be completed by Social Welfare Officer)
+The objective of conducting assessment is to get information/details which will assists in reunification 
+and reintegration of the victim/survivor. The following family members and key persons familiar to the 
+victim/survivor will be contacted in this assessment. This will include, but not limited to:
+i. Grandfather;
+ii. Grandmother;
+iii. Mother;
+iv. Father;
+v. Brother;
+vi. Sister;
+vii. Uncle;
+viii. Aunt;
+ix. Cousin;
+x. Local authority;
+xi. Community leader;
+xii. Religious leader;
+2.1 Please list all members of the household (even if not present at the interview)
+The household is defined as the persons who live under the same roof and share at least one meal 
+per day together.
+Name of 
+Household 
+Member
+Relation Education Occupation
+Health 
+Problem if 
+any
+Disability 
+if any
+Any other 
+Comment
+
+[PDF PAGE 56]
+46
+2.2 Please mention who, among the above-listed, is or are the “bread winner/s”: _____________
+______________________________________________________________________________
+______________________________________________________________________________
+2.3 Do the parents live together in the same household? [    ] Yes; [    ] No
+ If No, why?
+[    ] separated / divorced
+[    ] deceased
+[    ] emigrated
+[    ] other,
+specify:_____________________________________________________________
+2.4 The family income: 
+[    ] is enough to meet the secondary needs of the family
+[    ] meets just the basic needs
+[    ] is not sufficient to meet the family’s basic needs
+2.5 Location of the family dwelling:
+[    ] village
+[    ] city
+[    ] rural 
+[    ] slums
+[    ] town
+2.6 Type of family dwelling:
+[    ] single-family unit house
+[    ] apartment
+[    ] other,
+specify: ______________________________________________________________
+2.7 Does the family stay permanent or temporary in this dwelling?
+
+[PDF PAGE 57]
+47
+2.8 Please describe briefly the physical conditions of the neighbourhood:
+______________________________________________________________________________
+2.9 What were the reasons for the victim/survivor to leave the household?
+[    ] Economic reasons
+[    ] Family encouraged him/her to do so
+[    ] Matrimonial/family conflicts
+[    ] Peer influence
+Other, specify: _____________________________________________________________
+2.10 How often has there been contact with the victim/survivor since he/she left the household?
+[    ] daily
+[    ] weekly
+[    ] monthly
+[    ] few times a year
+[    ] never
+[    ] other, specify:________________
+2.11 If the victim/survivor wanted to come back home, would the family accept him/her back into the 
+family unit?
+[    ] YES
+[    ] NO
+If NO, why?
+[    ]  because of economic reasons
+[    ]  because family/parents have split
+[    ]  the family cannot raise him/her
+[    ]  the family has invested a lot of money in his/her journey
+[    ]  the family needs his/her money (remittances)
+[    ]  because of conflicts/problems between the child and the family
+Other, specify:_________________________________________________________________
+Any other comments that might be relevant Please invite the respondents to add on the above 
+listed comments, if they so desire. 
+
+[PDF PAGE 58]
+48
+Respondent’s Declaration:
+* I ………………. (parent/legal guardian) have been informed that the information collected during 
+the interview will be used to determine what alternatives are the best in the interest of……………….. 
+(name of the victim/survivor).
+* Furthermore, I have been informed that the information gathered during the interview will remain 
+strictly internally within ………………….. (name the department/ organization) and used only for the 
+purpose stated above.
+* I, therefore, certify that the information shared during the interview is correct to the best of my 
+knowledge. By signing this form, I am attesting that I freely assented to participate in the interview.
+Name of the parent/legal guardian: ………..………. Signature: ……...……….. Place: ….....…...........
+Date: ………………
+Interviewer’s Declaration:
+I confirm that the participant was given an opportunity to ask questions during the interview and all 
+the questions asked by the participant have been answered correctly and to the best of my ability. 
+I further confirm that the individual has not been coerced into giving consent, and the consent has 
+been given freely and voluntarily. 
+Name of the interviewer: ….....………. Signature: ………...……. Place: ….....……… Date: …………
+
+[PDF PAGE 59]
+49
+Form No. 10: VOLUNTARY RETURN DECLARATION AND AUTHORIZATION FOR 
+COLLECTION AND DISCLOSURE OF PERSONAL DATA
+Note: Please allow the individual to read the form (or ensure it can be translated in a 
+language that she/he understands) and explain it before asking him/her to sign the voluntary 
+declaration. I, the undersigned, ____________________________, express my informed 
+decision to return voluntarily to my home village/rural/town/city/country or a third country (where 
+I’m entitled to permanent residence), which is___________________, through the assistance of 
+……………………………. (Mention the name of the organization). I understand that I will not be 
+allowed to stop over in any transit country (for international victims). I understand that the personal 
+data of myself and my dependants __________________________________________________
+(Name of child/family members) are necessary for the provision of assistance. 
+I have also been informed that the personal data will be shared with and processed by _________
+___________________________________ (Name of third party e.g. donors, relevant institutions/
+government entities) to achieve the specified purpose above and in lieu of that I hereby authorize 
+____________________________ {Mention the name of the organization(s)} and any authorized 
+person or entity acting on behalf of……………………. {Mention the name of the organization(s)} 
+to collect, use, disclose and dispose of the personal data provided. I, therefore, declare that the 
+information I have provided is true and correct to the best of my knowledge. I understand that if I 
+make a false statement in signing this form, the assistance provided by ………… (Mention name of 
+the organization) can be terminated at any time. 
+Signed on___________ at __________________ _____________________________________ 
+Victim’s/survivor’s signature: ______________________________________________________ 
+Interpreter’s Name (if applicable): ___________________ Signature:______________________
+Name of Social Welfare Officer: ____________________  Signature: _____________________ 
+[ORGANIZATION’S STAMP]
+
+[PDF PAGE 60]
+50
+Form No. 11: AUTHORISATION FOR DISCHARGE 
+(To completed by Social Welfare Officer in triplicate)
+In respect of ___________________________________________ (full name of victim/survivor), 
+currently accommodated at _____________________________________ (name of the Safe 
+House) I _____________________________________________________ (name of Social 
+Welfare Officer) authorise the discharge of the named victim/survivor on the understanding that this 
+victim shall be: 
+A. Reunified with his or her biological parents or guardians (complete/delete as appropriate)  
+Name(s):______________________________________________________ 
+Address:______________________________________________________ 
+Location:______________________________________________________  
+Telephone/mobile phone:_________________________________________
+B. Fostered by 
+Name(s):_____________________________________________________ 
+Address:______________________________________________________ 
+Location:_____________________________________________________  
+Telephone/mobile phone:________________________________________
+C. Transferred to another institution 
+Name of Centre: ____________________________________________
+Address: ____________________________________________________
+Location: ___________________________________________________
+D. Reintegrated in the community  
+Name of the officer/ Local Leader received the victim/survivor:________________
+Title______________________________________________________________
+Address: _________________________________________________________
+Location__________________________________________________________
+Mobile/Tel. Number: ________________________________________________
+
+[PDF PAGE 61]
+51
+Social Welfare Officer authorized the discharge of the victim/survivor: 
+Name: ___________ Contact: ________________Signature: _________Date: __________  
+Officer In-charge of the Safe House: 
+Name: ___________ Contact: ________________Signature: _________Date: __________  
+Officer(s) escorting the Victim/survivor (if any):
+Name: ___________ Contact: ________________Signature: _________Date: __________  
+Name: ___________ Contact: ________________Signature: _________Date: __________  
+Name: ___________ Contact: ________________Signature: _________Date: __________  
+Person receiving the victim/survivor:
+Name: ___________ Contact: ________________Signature: _________Date: __________  
+Local Leader witnessing the receipt of the victim/survivor:
+Name: ___________ Contact: ________________Signature: _________Date: __________  
+Social Welfare Officer receiving the victim/survivor:
+Name: ___________ Contact: ________________Signature: _________Date: __________  
+
+[PDF PAGE 62]
+52
+Form No. 12: REPATRIATION AND RECEPTION FOR VICTIM OF TRAFFICKING IN 
+PERSONS
+(To be completed by the Anti-trafficking in Persons Secretary )
+REPATRIATION FROM _____________ TO_____________
+A: PARTICULARS OF THE VICTIM
+Names:
+FIRST NAME______________ MIDLE NAME ________________ SURNAME ______________
+Sex: M £ F £ Date of Birth: _________________ Place of Birth: __________________
+Identity document: £Passport   £Identity card   £Birth certificate   £Has no documents
+ID No. ______Place of Issue: __________ Date of Issue __________Expiry date: ___________
+Citizenship: £ __________________________ £ Other ___________________________
+Country of Residence _____________________________________
+Nationality -----------------------------------------------------------
+Physical address _________________________________________________________
+Home address/ Permanent address ___________________________________________
+B: DESCRIPTION OF THE VICTIM
+Child_______________________________________________
+Adult _______________________________________________
+Disabled person _______________________________________________
+Other  _______________________________________________.
+C: PARTICULARS OF RELATIVES OR NEXT OF KIN
+Names:
+FIRST NAME_______________ MIDLE NAME ________________ SURNAME ______________
+Sex: M £ F £ Date of Birth: ____________ Place of Birth: _____________________________
+Relationship_____________________________________________________
+Physical Address__________________________________________________
+Permanent residence_______________________________________________
+Telephone number_________________________________________________
+D: VICTIM’ OPINION
+__________________________________________________________________________
+__________________________________________________________________________
+Signature___________________________________________________________________
+Date______________________________________________________________________
+
+[PDF PAGE 63]
+53
+E: RECOMMENDATION OF THE ANTI-TRAFFICKING IN PERSONS SECRETARY: 
+_____________________________________________________________________________
+______________________________________________________________________________
+______________________________________________________________________________
+______________________________________________________________________________
+Name: _______________ Title: ______________Signature_______________ Date: __________
+F: RECOMMENDATION OF THE PERMANENT SECRETARY OF THE MINISTRY OF HOME 
+AFFAIRS: _____________________________________________________________________
+______________________________________________________________________________
+______________________________________________________________________________
+Name: _____________ Title: _______________Signature________________ Date: __________
+G: RECOMMENDATION OF THE PERMANENT SECRETARY OF THE FOREIGN AFFAIRS:  
+______________________________________________________________________________
+______________________________________________________________________________
+______________________________________________________________________________
+Name: ______________ Title: ________________Signature______________ Date: __________
+H: RECOMMENDATION OF DESIGNATED EMBASSY
+______________________________________________________________________________
+______________________________________________________________________________
+__________________________________________________________________________
+______________________________________________________________________________
+I : PARTICULARS OF RECIPIENT OFFICER:
+NAME: ………………………………………………
+ADDRESS……………………………………………
+DESIGNATION……………………………………..
+SIGNATURE………………………………….……..
+DATE…………………………………………...……
+
+[PDF PAGE 64]
+54
+Form No. 13: REFERRAL FORM FOR VICTIM AND SURVIVORS 
+(To be completed by Social Worker, Social Welfare Officer, Law Enforcement Officer, Labour 
+Inspector, Medical Practitioner)
+In respect to____________________________________________ (Full name of Victim/survivor)
+Currently accommodated in or rescued/identified at___________________ (name of the place)
+I_________________________________________ (Name of the officer) referring the above 
+named victim/survivor to _____________________________ (name of the Institution) 
+Address: _______________________________ Location: _______________________________
+Reason of the referral: ____________________________________________________________
+______________________________________________________________________________
+Full name of the in charge of the Institution: ___________________ Title: _______________
+Signature: _________________________________ Date: _____________________
+Full name of the officer escorting the victim/Survivor: ____________ Title: _____________
+Signature: ________________________ Date: _____________________
+……………………………………………………………………………………………………………
+Acknowledgement of Receipt: (the receiving organisation/agency must acknowledge in writing 
+and sign this section and send it back to the referring organisation/agency)
+I ___________________ (name of the receiving person) acknowledge that I have received 
+the referred victim/survivor _____________________ (name of the victim/survivor) from 
+_____________________ (name of the officer escorting the victim/survivor)
+Signature: ________________ Title:  _______________Date: ____________ Time: ________
+
+[PDF PAGE 65]
+55
+Form No. 14: ADMISSION REGISTER
+Victims of Trafficking in Persons and Survivors of Gender Based Violence and Violence against Children 
+(To be completed by the Social Worker at the Safe House)
+S. 
+N
+Name of the 
+Victim/ 
+Survivor
+Sex Age Marital 
+Status Tribe Religion Address Nationality
+VoT
+(Tick)
+Survivor of 
+GBV & VAC 
+(Tick)
+Date of 
+Admission
+Date of 
+Discharge
+Special
+Needs 
+(mention) Comments
+
+[PDF PAGE 66]
+56
+Form No. 15: MONTHLY TRACKING/STATISTICS
+Victims of Trafficking in Persons and Survivors of Gender Based Violence and Violence against Children
+Month ………….Year…………….
+(To be completed by the Safe House Manager)
+License 
+No.
+Date 1st
+Licensed
+Name Of 
+License 
+Holder
+Name 
+of Safe 
+House
+Region District Ward Maximum Capacity of Safe 
+House
+No. of Victims/ 
+Survivors 
+Admitted
+Number of 
+Victims/Survivors 
+Discharged
+Number of 
+Victims/Survivors 
+Remained
+17yrs 
+&-below
+18yrs & 
+above
+Total F M T F M T F M T
+Name: ___________________________  Title: __________________________
+Signature: _________________________  Date: _________________________
+
+[PDF PAGE 67]
+57
+Form No. 16:  ANNUAL FINANCIAL REPORT
+(To be completed by Officer In-charge of the Safe House)
+1. License no.
+2. Name of Safe House
+3. Address
+4. Name of Licensee
+5. Name of Manager
+6. Report of Receipts and Expenditures for
+Receipts    Shs.   Expenditures    Shs.
+7. Contributions or Income
+Cash   In kind +
+a. Local Government
+b Parents
+c. Children
+d. Local Donations*
+e. Outside Donations ^
+8. Expenditure
+a. Supplies for victims/Survivors - food
+b. Supplies for victims/Survivors – non-food items (e.g. clothes etc.)
+c. Staff costs - Management
+d. Staff costs - professional staff
+e. Staff costs - Supporting staff
+f. Equipment costs
+g. Maintenance and cleaning of Safe House
+h. Capital expenditure**
+i. Other costs (please specify) 
+
+[PDF PAGE 68]
+58
+………………………………………………………………………………………………………
+…………………………………………………………………………………………………
+…………………………………………………………………………………………………
+9. Cost per victim/survivor
+a. Total expenditure divided by the total no. of victims/Survivors at the Safe House at the end of the 
+financial year
+b. Does any of the income and expenditure set out in section 8 of this form relate to facilities and 
+services that are provided for victims/Survivors who are not formally resident in the Safe House?
+i) Yes
+ 
+ii) No
+10. Staffing
+a. Total number of staff at the Safe House
+b. Number of Social workers
+c. Number of Non Residential Workers
+d. Number of supporting staff (cleaners, guards etc.)
+Signature of Licensee      Date
+Explanation of Terms:
+Receipts in kind are gifts or food, clothing, equipment, or donations which are not provided in cash
+* Local Donations are receipts from private persons or organizations within Tanzania
+^ Outside Donations are receipts from persons or organizations outside Tanzania
+**Capital Expenditure is one of major expenditure on the infrastructure or premises e.g. new buildings, 
+a water supply system, etc.)
+***Some Safe House provide facilities and services such as primary education, secondary education, 
+vocational training and day care facilities on site to victims/Survivors who are not formally admitted 
+or resident in the Safe House.
+
+[PDF PAGE 69]
+59
+Form No. 17:  DEATH REPORT FOR VICTIM AND SURVIVOR 
+(Part I to be completed by the In-charge of the Safe House where the victim was residing and Part 
+II to be completed by Medical Officer from Government Hospital and submitted to the Council 
+Social Welfare Officer)
+PART I
+1. Details of Safe House
+1.1 Name of Safe House: _________________________ 1.2 Licence Number: ____________
+1.3 Physical address of the Safe House:  _____________________________________________
+2. Details of Victim/Survivor
+2.1 Tick the relevant one:
+£ Victim of trafficking    £ Survivor of GBV      £   Survivor of VAC       
+ 
+2.2 First Name: ______________ Middle Name: ____________ Last Name: _________________
+2.3 Date of Birth: _________________2.3 Sex: _________ 2.4 Religion: __________________  
+2.5 Tribe: ___________________________
+2.6 Place of Birth:
+2.6.1 Region: _________________ 2.6.2 District: ______________ 2.6.3 Ward: _______________ 
+2.6.4 Village/Mtaa: ___________________
+2.7 Marital status: _______________________
+2.8 Next of Kin: _________________________ 2.8 Contact/Address: _________________
+3. Particulars of Death
+3.1 Source of Death Information:  __________________________________________________
+3.2 Place of Death: ______________________________________________________________
+3.3 Date and Time of Death:  ______________________________________________________
+3.4 Remarks:  __________________________________________________________________
+Name of the In-charge: ____________________Signature: ____________ Date: _______
+
+[PDF PAGE 70]
+60
+PART II
+4. Certificate by the Medical Officer
+I ___________________________ certify that the above named Victim of Trafficking / Survivor of 
+Gender Based Violence / Survivor of Violence against Children died on __________ The cause of 
+death was __________________________________________________________
+_____________________________________________________________________________
+___________________________
+Signed by Medical Officer
+Date: ________________
+
+[PDF PAGE 71]
+61
+ANNEX 02: CODE OF CONDUCT 
+I, Name ………………………….,……………….Title………………………………………...agree 
+to uphold the highest standards of personal and professional conduct at all times. In all of my 
+interactions with victims and survivors at the Safe House, I shall:
+(a)  Safeguard and protect victims and survivors from all forms of violence, abuse, exploitation,  
+and neglect;
+(b)  Treat victims and survivors with respect regardless of age, race, colour, sex, language, religion, 
+political or other opinion, national, ethnic or social origin, property, disability, health, birth or 
+other status;
+(c)  Not discriminate against, show differential treatment, or favour particular victims or survivors to 
+the disadvantage of others;
+(d)  Not use language or behaviour towards victims or survivors that is inappropriate, harassing, 
+abusive, sexually provocative, or culturally inappropriate;
+(e)  Respect the physical integrity of all victims and survivors;
+(f)  Not engage a victim or survivor in any form of sexual activity or acts, including paying for sexual 
+services or acts;
+(g)  Never behave physically in a manner that is inappropriate or sexually provocative, or suggest 
+inappropriate behaviour or relations of any kind;
+(h)  Never act in ways intended to shame, humiliate, belittle or degrade victims or survivors, or 
+otherwise perpetrate any form of emotional abuse;
+(i) Never engage in any way in the exploitation of victims or survivors, or place victims or survivors 
+in situations which would leave them vulnerable to any form of exploitation;
+(j)  Never develop relationships with victims or survivors which could in any way be deemed 
+exploitative or abusive, or act in any way that may place a victim or survivor at risk of abuse;
+(k)  Never condone or participate in behaviour which is illegal, unsafe or abusive to victims or 
+survivors;
+(l)  Abstain from viewing, possessing, producing or distributing child pornography;
+(m)  Respect victims’ and survivors’ privacy and never take photographs or videos of victims or 
+survivors without their express consent and the consent of the officer-in-charge;
+(n)  Not invite unaccompanied victims or survivors into my home, unless they are at immediate risk 
+of injury or in physical danger;
+(o)  Refrain from hiring victims or survivors for domestic or other labour which is inappropriate given 
+their age or developmental stage, which interferes with their time available for education and 
+recreational activities, or which places them at significant risk of injury;
+(p)  Comply with all relevant laws of the United Republic of Tanzania; and
+(q)  Immediately report concerns or allegations of any violence, abuse or exploitation of a victim or 
+survivor in accordance with appropriate procedures.
+I understand that the onus is on me to use common sense and avoid actions or behaviours that could 
+be construed as abusive, exploitative or harmful to victims or survivors when performing my duties.
+Signature: _______________________ Date: __________
+
+[PDF PAGE 72]
+62
+ANNEX 03:  BEHAVIOUR RULES
+All victims and survivors at the Safe House are expected to behave in a responsible and respectful 
+manner in accordance with the following Behaviour Rules, a victim or survivor whose behaviour 
+violates any of these rules may be subject to disciplinary action: -
+1.  Cooperate and follow all lawful directives given by staff members. This means that back-talking, 
+arguing, ignoring or defying an order from staff members is not allowed.
+2.  Use clean, respectful language at all times. The centre will not tolerate any foul language.
+3.  Demonstrate honesty and integrity. You must not lie or make any false or misleading statements 
+to a staff member.
+4.  Treat others with dignity and respect. This means no arguing, name calling, threats, and pranks, 
+harassing or provoking another person, or fighting. All residents are expected to make it possible 
+for everyone to live together peacefully.
+5.  Take good care of the property and belongings with respect. Do not damage, destroy or steal 
+anything.
+6.  The centre’s furniture and equipment are for your use, so take care of them. You must not 
+damage, destroy or misuse any of the centre’s property.
+7. You are allowed to have some personal items with you, but not if they are a danger to the safety, 
+security or good order of the centre. You cannot have anything in your possession unless it has 
+been approved by the officer-in-charge. Making or possessing a weapon or anything that is 
+designed to cause injury is strictly prohibited.
+8.  If you need medication for a medical condition, you will be given approval by the Safe House 
+Manager to have that medication. You cannot have any medication that has not been approved 
+by the manager, and must not give medication to any other victim.
+9.  Smoking, using drugs and drinking alcohol are strictly prohibited. You might be tested from time 
+to time for the presence of drugs or alcohol and cannot refuse to submit to the test.
+10.  You will not make sexual contact with other persons or behave in a sexually inappropriate way 
+at any time. This may include anything from touching inappropriately and kissing to having sex.
+11.  Cooperate with and assist staff members in maintaining safety, order, and discipline. You must 
+not do anything to undermine the good order and discipline of the centre or encourage other 
+victims to do so.
+I …………………………………….. acknowledge to have read and understood the material 
+contents of the rules and their implications upon me in the event I violate any or all of them.
+……………………………………………                                   ……………..………………..  
+                      Signature                  Date
+
+[PDF PAGE 73]
+63
+
+[PDF PAGE 74]
+64
+
+[PDF PAGE 75]
+
+
+[PDF PAGE 76]
+THE UNITED REPUBLIC OF TANZANIA
+MINISTRY OF HEALTH, COMMUNITY DEVELOPMENT,
+GENDER, ELDERLY AND CHILDREN
+NATIONAL GUIDELINES FOR THE
+ESTABLISHMENT AND MANAGEMENT 
+OF SAFE HOUSES FOR VICTIMS OF TRAFFICKING IN
+PERSONS AND SURVIVORS OF VIOLENCE
+MINISTRY OF HEALTH, COMMUNITY DEVELIOMENT
+GENDER, ELDERLY AND CHILDREN
+P.O. BOX 573, DODOMA
+July, 2019 

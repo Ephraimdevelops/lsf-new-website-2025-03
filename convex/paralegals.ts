@@ -1,10 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
-import {
-    activateParalegalRoleForUser,
-    markParalegalProfileJoined,
-} from "./lib/paralegalAccess";
+import { isParalegalReady } from "./lib/paralegalAccess";
 import { writeAudit } from "./lib/hakiYangu";
 import { createNotification } from "./lib/notifications";
 
@@ -41,6 +38,8 @@ export const listApprovedParalegals = query({
 
         if (includePrivate) return paralegals;
 
+        paralegals = paralegals.filter(isParalegalReady);
+
         return paralegals.map((paralegal) => ({
             _id: paralegal._id,
             _creationTime: paralegal._creationTime,
@@ -65,6 +64,7 @@ export const getParalegal = query({
     handler: async (ctx, args) => {
         const paralegal = await ctx.db.get(args.id);
         if (!paralegal) return null;
+        if (paralegal.status === "approved" && !isParalegalReady(paralegal)) return null;
         if (paralegal.status !== "approved") {
             await requireAnyRole(ctx, ["admin", "staff"]);
             return paralegal;
@@ -113,6 +113,7 @@ export const getMyApplication = query({
         return await ctx.db
             .query("paralegal_applications")
             .withIndex("by_email", (q) => q.eq("email", email))
+            .order("desc")
             .first();
     },
 });
@@ -218,13 +219,16 @@ export const incrementProfileViews = mutation({
 export const toggleVerified = mutation({
     args: { id: v.id("paralegal_applications") },
     handler: async (ctx, args) => {
-        await requireAnyRole(ctx, ["admin", "staff"]);
+        const { user } = await requireAnyRole(ctx, ["admin"]);
 
         const paralegal = await ctx.db.get(args.id);
         if (paralegal) {
+            if (paralegal.status !== "approved") throw new Error("Only approved paralegals can change verification status.");
+            if (!paralegal.isVerified && (!paralegal.reviewedBy || !(paralegal.idDocumentStorageId || paralegal.idDocumentUrl) || !paralegal.certificateStorageId)) throw new Error("Identity and credential review must be recorded before verification.");
             await ctx.db.patch(args.id, {
                 isVerified: !paralegal.isVerified,
             });
+            await writeAudit(ctx, user._id, "paralegal.verification_changed", "paralegal_application", args.id, { verified: !paralegal.isVerified });
         }
         return { success: true };
     },
@@ -262,7 +266,7 @@ export const updateParalegalProfile = mutation({
         const isStaff = ["admin", "staff"].includes(actor.user.role);
         const isSelf = actor.identity.email?.toLowerCase() === paralegal.email.toLowerCase();
         if (!isStaff && !isSelf) throw new Error("Forbidden");
-        if (!isStaff && (args.onboardingCompleted !== undefined || args.hasJoinedHakiYangu !== undefined)) throw new Error("Use the governed onboarding completion flow.");
+        if (args.onboardingCompleted !== undefined || args.hasJoinedHakiYangu !== undefined) throw new Error("Use the governed onboarding completion flow.");
 
         const { id, ...updates } = args;
         if (updates.weeklyCapacity !== undefined) {
@@ -289,6 +293,13 @@ export const completeMyOnboarding = mutation({
         if (!application.availabilityStatus || !application.workingHours?.trim()) throw new Error("Set your availability and working hours first.");
         if (!args.ethicsAccepted || !args.codeOfConductAccepted || !args.safeguardingTrainingCompleted) throw new Error("Complete all ethics, conduct, and safeguarding declarations.");
         const now = Date.now();
+        const training = await ctx.db.query("paralegal_training_modules").withIndex("by_status", (q) => q.eq("status", "approved")).collect();
+        const required = training.filter((item) => item.required && item.reviewDueAt > now);
+        if (!required.length) throw new Error("LSF must publish a current required training module before onboarding can finish.");
+        for (const module of required) {
+            const completion = await ctx.db.query("paralegal_training_completions").withIndex("by_user_module", (q) => q.eq("userId", actor.user._id).eq("moduleId", module._id)).unique();
+            if (completion?.moduleVersion !== module.version) throw new Error("Review and acknowledge each required LSF training module first.");
+        }
         await ctx.db.patch(application._id, { ethicsAcceptedAt: now, codeOfConductAcceptedAt: now, safeguardingTrainingCompletedAt: now, onboardingCompleted: true, hasJoinedHakiYangu: true });
         await ctx.db.insert("audit_logs", { action: "paralegal.onboarding_completed", entityType: "paralegal_application", entityId: application._id, userId: actor.user._id, timestamp: now, metadata: { changedFieldNames: ["ethicsAcceptedAt", "codeOfConductAcceptedAt", "safeguardingTrainingCompletedAt", "onboardingCompleted"] } });
         return { success: true };
@@ -400,21 +411,23 @@ export const addParalegalManually = mutation({
     handler: async (ctx, args) => {
         const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
         const now = Date.now();
+        const email = args.email.trim().toLowerCase();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.endsWith(".local")) throw new Error("A real email address is required so the applicant can complete verification.");
 
         // Check if an application for this email already exists
         const existing = await ctx.db
             .query("paralegal_applications")
-            .filter((q) => q.eq(q.field("email"), args.email.toLowerCase()))
+            .filter((q) => q.eq(q.field("email"), email))
             .first();
 
         if (existing) {
             throw new Error("A paralegal with this email already exists.");
         }
 
-        // Insert directly as approved
+        // A staff-created record is an invitation to apply, not a verified worker.
         const id = await ctx.db.insert("paralegal_applications", {
-            fullName: args.fullName,
-            email: args.email.toLowerCase(),
+            fullName: args.fullName.trim(),
+            email,
             phone: args.phone,
             region: args.region,
             district: args.district,
@@ -422,24 +435,15 @@ export const addParalegalManually = mutation({
             experience: "Manual Entry",
             motivation: "Added by Admin",
             specializations: args.specializations || [],
-            isVerified: true, // Auto-verified since admin added them
-            status: "approved",
+            isVerified: false,
+            status: "pending",
+            intakeOrigin: "manual_invitation",
             submittedAt: now,
-            approvedAt: now,
             profileViews: 0,
             hasJoinedHakiYangu: false,
-            onboardingCompleted: true,
+            onboardingCompleted: false,
         });
-
-        const matchingUser = await ctx.db
-            .query("users")
-            .withIndex("by_email", (q) => q.eq("email", args.email.toLowerCase()))
-            .first();
-        if (matchingUser) {
-            await activateParalegalRoleForUser(ctx, { userId: matchingUser._id, grantedBy: user._id, now });
-            await markParalegalProfileJoined(ctx, id, now);
-        }
-
+        await writeAudit(ctx, user._id, "paralegal.invitation_created", "paralegal_application", id, { intakeOrigin: "manual_invitation" });
         return { success: true, id };
     },
 });
@@ -469,10 +473,12 @@ export const importParalegalsBatch = mutation({
 
         for (const record of args.records) {
             try {
+                const email = record.email.trim().toLowerCase();
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.endsWith(".local")) throw new Error("A real email address is required.");
                 // Skip if email already exists
                 const existing = await ctx.db
                     .query("paralegal_applications")
-                    .filter((q) => q.eq(q.field("email"), record.email.toLowerCase()))
+                    .filter((q) => q.eq(q.field("email"), email))
                     .first();
 
                 if (existing) {
@@ -483,7 +489,7 @@ export const importParalegalsBatch = mutation({
                 const now = Date.now();
                 const id = await ctx.db.insert("paralegal_applications", {
                     fullName: record.fullName.trim(),
-                    email: record.email.toLowerCase().trim(),
+                    email,
                     phone: record.phone.trim(),
                     region: record.region.trim(),
                     district: record.district.trim(),
@@ -491,22 +497,15 @@ export const importParalegalsBatch = mutation({
                     education: "CSV Import",
                     experience: "CSV Import",
                     motivation: "Imported from CSV",
-                    isVerified: true,
-                    status: "approved",
+                    isVerified: false,
+                    status: "pending",
+                    intakeOrigin: "csv_invitation",
                     submittedAt: now,
-                    approvedAt: now,
                     profileViews: 0,
                     hasJoinedHakiYangu: false,
-                    onboardingCompleted: true,
+                    onboardingCompleted: false,
                 });
-                const matchingUser = await ctx.db
-                    .query("users")
-                    .withIndex("by_email", (q) => q.eq("email", record.email.toLowerCase().trim()))
-                    .first();
-                if (matchingUser) {
-                    await activateParalegalRoleForUser(ctx, { userId: matchingUser._id, grantedBy: user._id, now });
-                    await markParalegalProfileJoined(ctx, id, now);
-                }
+                await writeAudit(ctx, user._id, "paralegal.invitation_imported", "paralegal_application", id, { intakeOrigin: "csv_invitation" });
                 imported++;
             } catch (e: any) {
                 errors.push(`${record.fullName}: ${e.message}`);

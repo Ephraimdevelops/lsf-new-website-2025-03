@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="sw">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Government Website | Tovuti ya Serikali">
+    <meta name="keywords" content="Government,website , Tovuti,serikali ">
+    <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#2e3289">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2e3289">
+
+  <title> WCF | Huduma Mtandao
+  </title>
+
+  <!-- favicons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="https://www.wcf.go.tz/site/images/icon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://www.wcf.go.tz/site/images/icon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://www.wcf.go.tz/site/images/icon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.wcf.go.tz/site/images/icon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://www.wcf.go.tz/site/images/icon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.wcf.go.tz/site/images/icon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://www.wcf.go.tz/site/images/icon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.wcf.go.tz/site/images/icon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.wcf.go.tz/site/images/icon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://www.wcf.go.tz/site/images/icon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.wcf.go.tz/site/images/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://www.wcf.go.tz/site/images/icon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.wcf.go.tz/site/images/icon/favicon-16x16.png">
+
+  <link rel="stylesheet" href="https://www.wcf.go.tz/site/css/master.min.css">
+  <link rel="stylesheet" href="https://www.wcf.go.tz/site/css/jquery-ui.css">
+  <link rel="stylesheet" href="https://www.wcf.go.tz/site/css/swiper.min.css">
+  <link rel="stylesheet" href="https://www.wcf.go.tz/site/css/select2.min.css">
+
+  <style type="text/css">
+    /* for google iframe */
+    .google-map iframe{
+      height:100%;
+      width:100%;
+    }
+
+    /* for google recaptcha */
+    .g-recaptcha-bubble-arrow{
+      display: none;
+    }
+    .g-recaptcha-bubble-arrow + div{
+      position: fixed !important;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+    }
+
+    /* control rending on rich text, for temporary use */
+    .rich-text img{
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    .rich-text table{
+      max-width: 100% !important;
+    }
+    .padd-items-h-5 li a {padding-left:5px !important; padding-right:5px !important}
+    
+    .text-sm-small{
+        @media(max-width:480px){
+            font-size:16px !important;
+        }
+    }
+    .text-sm-very-small{
+        @media(max-width:480px){
+            font-size:12px !important;
+        }
+    }
+  </style>
+
+    
+</head> 
+
+
+
+<body>
+  <div class="container max-1920 px-0">
+
+    <!-- HEADER -->
+    <header class="col-12 px-0   mb-0 bg-header-trans bg-radial-gradient-transparent-white-inverteddd position-relative" 
+  style="z-index:999; font-family:Arial, Helvetica, sans-serif">
+  <div class="faded h-100 w-100 position-absolute top-left bg-white parallax-banner" 
+    style=" background:url(https://www.wcf.go.tz/site/images/flag.jpg); background-size: cover; background-position: center;"
+  data-offset="80px"></div>
+  <div class="header-bg h-100 w-100 position-absolute top-left"></div>
+  <div class="header-bg-2 h-100 w-100 position-absolute top-left"></div>
+
+  <!-- top navbar -->
+  <div class="col-12  bg-dark-fadeddd ">
+    <div class="container px-0">
+      <div class="row top_nav px-0">
+        <div class="col-12 px-0 text-accent text-bold d-flex mx-auto justify-content-end align-items-center">
+          <div class="d-flex text-sm-very-small  d-none text-accent justify-content-end padd-items-h-5  py-0 pb-0 align-items-center" >
+            <ul class="d-noneee my-0 d-lg-flex align-items-center ">
+              <li class='list-inline-item'><a href='https://www.wcf.go.tz/faqs'>MMM</a></li><li class='list-inline-item'><a target='_blank' rel='noopener noreferrer' href='https://emrejesho.gov.go.tz/institution-view/5543006097217181918'>e-Mrejesho</a></li><li class='list-inline-item'><a href='https://www.wcf.go.tz/contacts'>Wasiliana Nasi</a></li><li class='list-inline-item'><a target='_blank' rel='noopener noreferrer' href='https://mail.wcf.go.tz/'>Barua Pepe ya Wafanyakazi</a></li><li class='list-inline-item'><a href='https://www.wcf.go.tz/complaints'>Mrejesho</a></li><li class='list-inline-item'><a target='_blank' rel='noopener noreferrer' href='https://fraud.wcf.go.tz'>Ripoti Viashiria vya Udanganyifu na Rushwa</a></li>
+            </ul>
+            <ul class=" my-0 d-flex align-items-center ">
+              <li class="list-inline-item px-2   ">
+                <a title="Switch Language to English" href="https://www.wcf.go.tz/language/en">
+                  ENGLISH
+                </a>
+              </li>
+              <li class="list-inline-item pr-2  d-none ">
+                <a title="Switch Language to swahili" href="https://www.wcf.go.tz/language/sw">
+                  KISWAHILI
+                </a>
+              </li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /top navbar -->
+
+  <!-- top middle -->
+  <div class="px-0 pb-2 position-relative bg-header-trans">
+    <div class="col-md-12 mt-0 py-1 top-middle   ">
+      <div class="container px-0 position-relative">
+        <div class="row">
+          <div class="col-3 col-lg-2 float-left text-left my-auto">
+            <a href="https://www.wcf.go.tz">
+              <img src="https://www.wcf.go.tz/site/images/emblem.png" alt="Tanzania emblem" class="mx-auto img-fluid" style="width: 110px" />
+            </a>
+          </div>
+          <div class="col-6 col-lg-8 text-center my-auto text-uppercase">
+            <div class="p-2 px-4" style="color:#000070 !important">
+              <div class="mb-1 text-shadow-light d-none d-md-block titlee font-weight-bold align-items-center ">
+                Ofisi ya Waziri Mkuu Kazi, Ajira na Mahusiano
+              </div>
+              <h2 class="mb-0 text-sm-small text-boldd text-shadow-light text-center font-weight-bold titlee align-items-center ">            
+                Mfuko wa Fidia kwa Wafanyakazi
+              </h2>
+            </div>
+          </div>
+          <div class="col-3 col-lg-2  float-right text-right my-auto d-flex justify-content-end align-items-center">       
+            <a href="https://www.wcf.go.tz"><img src="https://www.wcf.go.tz/site/images/logo.png" alt="WCF Logo" class="mx-auto img-fluid fade-on" style="width: 150px"/></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- top middle -->
+
+  <div class="bg-white position-relative" style="height:2px; z-index: 3;"></div>
+
+  <!-- top bottom -->
+  <div class="col-12 px-0 bg-white top-fixed border-bottom-primary" style="padding-bottom:2px; margin-bottom:2px;">
+    <div class="col-md-12 col-xs-12 main-menu  bg-primary-dark d-flex border-top border-left-secondary-thickkk position-relative active justify-content-center align-items-center"
+    style="border-left-width:10px !important; --order:3">
+      <!-- HEADER -->
+      <nav class="navbar main-navigation medium-text p-0 fade-on mx-lg-5 justify-content-start align-items-center" id='cssmenu' >
+        <div id="head-mobile"></div>
+        <div class="menu-button text-hover-secondary text-white d-flex align-items-center d-lg-none">
+          <i class="menu-icon fa fa-bars mr-2" style="font-size: 25px;"></i> 
+          <span class=" bold-600">Menu</span>
+        </div>
+        <ul class="m-0 capitalize-parent-itemsss d-lg-flex">
+          <li class=""><a class="nav-link" href="https://www.wcf.go.tz"> Mwanzo </a></li>
+          <li class='drop drop-toggle'><a href='#' class='nav-link' data-toggle='drop'>Kuhusu Sisi</a><ul class='drop-menu'><li><a class='' href= 'https://www.wcf.go.tz/pages/establishment'>Kuanzishwa</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/vision-and-mission'>Dira na Dhamira</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/functions'>Majukumu</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/organization-structure'>Muundo wa Taasisi</a></li><li><a class='' href= 'https://www.wcf.go.tz/administration/board-members'>Wajumbe wa Bodi</a></li><li><a class='' href= 'https://www.wcf.go.tz/administration/management'>Menejimenti</a></li></ul></li><li class='drop drop-toggle'><a href='#' class='nav-link' data-toggle='drop'>Machapisho</a><ul class='drop-menu'><li><a class='' href= 'https://www.wcf.go.tz/publications/acts'>Sheria</a></li><li><a class='' href= 'https://www.wcf.go.tz/publications/app'>APP</a></li><li><a class='' href= 'https://www.wcf.go.tz/publications/client-service-charter'>Mkataba wa Huduma kwa Wateja</a></li><li><a class='' href= 'https://www.wcf.go.tz/publications/forms'>Fomu</a></li><li><a class='' href= 'https://www.wcf.go.tz/publications/guidelines'>Muongozo</a></li><li><a class='' href= 'https://www.wcf.go.tz/publications/report'>Hesabu zilizokaguliwa</a></li><li><a class='' href= 'https://www.wcf.go.tz/publications/strategic-plan-2022-2023-2026-2027'>Mpango Mkakati 2022/2023 - 2026/2027</a></li></ul></li><li class='drop drop-toggle'><a href='#' class='nav-link' data-toggle='drop'>Watoa Huduma za Afya</a><ul class='drop-menu'><li><a class='' href= 'https://www.wcf.go.tz/health-providers'>Bima za Afya zilizoidhinishwa na WCF</a></li><li><a class='' href= 'https://www.wcf.go.tz/hospitals'>Hospitali na Vituo vya Afya Vilivyoidhinishwa na WCF</a></li></ul></li><li class='drop drop-toggle'><a href='#' class='nav-link' data-toggle='drop'>Mafao</a><ul class='drop-menu'><li><a class='' href= 'https://www.wcf.go.tz/pages/medical-aid-2'>Huduma ya Matibabu</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/medical-aid'>Malipo ya ulemavu wa muda</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/permanent-disablement'>Ulemavu wa muda mrefu</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/constant-attendant-care-grant'>Malipo kwa anayemhudumia mgonjwa</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/rehabilitation-services'>Huduma za Utengamao</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/compensation-to-dependants-of-deceased-employee'>Malipo kwa wategemezi endapo mfanyakazi atafariki</a></li><li><a class='' href= 'https://www.wcf.go.tz/pages/funeral-grants'>Msaada wa Mazishi</a></li></ul></li><li class=''><a class='nav-link' href='https://www.wcf.go.tz/pages/contribution'>Michango</a></li><li class='drop drop-toggle'><a href='#' class='nav-link' data-toggle='drop'>Kituo cha Habari</a><ul class='drop-menu'><li><a class='' href= 'https://www.wcf.go.tz/press-releases'>Taarifa kwa Umma</a></li><li><a class='' href= 'https://www.wcf.go.tz/speeches'>Hotuba</a></li><li><a class='' href= 'https://www.wcf.go.tz/publications/online-magazine'>Jarida la Mtandaoni</a></li><li><a class='' href= 'https://www.wcf.go.tz/galleries/listing/photos'>Maktaba ya Picha</a></li><li><a class='' href= 'https://www.wcf.go.tz/galleries/listing/videos'>Maktaba ya Video</a></li></ul></li><li class=''><a class='nav-link' href='https://www.wcf.go.tz/contacts'>Ofisi za Mfuko</a></li><li class='drop drop-toggle'><a href='#' class='nav-link' data-toggle='drop'>Huduma Mtandao</a><ul class='drop-menu'><li><a target='_blank' rel='noopener noreferrer' class='' href= 'https://portal.wcf.go.tz'>Usajili na Michango</a></li><li><a target='_blank' rel='noopener noreferrer' class='' href= 'https://portal.wcf.go.tz/'>Toa Taarifa Kuhusiana na Ajali au Ugonjwa Utokanao na Kazi</a></li><li><a target='_blank' rel='noopener noreferrer' class='' href= 'https://portal.wcf.go.tz'>Maombi ya Mapitio ya Madai ya Fidia</a></li><li><a target='_blank' rel='noopener noreferrer' class='' href= 'https://portal.wcf.go.tz/'>Huduma za Matibabu</a></li></ul></li>
+        </ul>
+      </nav>
+      <div class="position-absolute search-toggle top-right text-white text-hover-secondary hover-bg-primary h-50 d-flex align-items-center p-3">
+        <span class="mt-0 pt-0"><i class="fas fa-search fa-1x"></i></span>
+      </div>
+      <div class="position-absolute search-toggle bg-primary top-left text-white text-hover-secondary hover-bg-primary h-100 d-flex align-items-center p-1"></div>
+      <!-- /HEADER -->
+      <div class="search-form-container move-left position-absolute top-left w-100 overflow-hidden" style="z-index: 9999999;">
+        <div class="search-form position-absolute top-left h-100 w-100 px-1 p-1  bg-primary-dark box-shadow d-flex 
+        align-items-center justify-content-center">
+          <form class=" d-flex justisty-content-between  overflow-hiddenn py-0 mx-auto position-relative"
+           method="GET" action="https://www.wcf.go.tz/search" autocomplete="off">
+            <div class="h-100 w-100 position-absolute">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 629.77 86.6">
+                <polygon class="fill-secondary" points="604.77 0 25 0 0 43.3 25 86.6 604.77 86.6 629.77 43.3 604.77 0"/>
+              </svg>
+            </div>
+            <div class="h-100 w-100 d-flex justisty-content-between  z-index-2">
+              <input class="form-control border-0 bg-none text-primary "  maxlength="60" required type="search" placeholder="Search" aria-label="Search" name="q"
+                		        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+	      />
+              <span class="d-flex">
+                <button type="submit" class="search-icon text-primary btn bg-white-transparentt" name="button">
+                  <i class="fas fa-search fa-1x"></i>
+                </button>
+                <button type="button" class="text-primary search-toggle border-left fadedd btn bg-white-transparentt" name="button">
+                  <i class="fas fa-eye-slash fa-1x"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 d-lg-none border-bottom-primary"></div>
+  </div>
+  <div class="bg-white position-absolute z-index-2" style="height: 2px; bottom:0"></div>
+  <!-- /top bottom -->
+
+</header>
+    <!-- /HEADER -->
+
+    <!-- contents -->
+    
+  <div class="pages-decorater-top bg-gradient-secondary-transparent position-relative">
+    <div id="particles-js" class="h-100 w-100 top-left position-absolute"></div>
+    
+    <div class="container-fluid px-lg-5 breadcumb-banner 
+     h-100 w-100 top-left position-absolute  parallax-banner faded-banner"  
+      style="background-image:url(https://www.wcf.go.tz/uploads/backgrounds/1703069529-ZZZTest5852.jpg); 
+     background-repeat: no-repeat; background-size: cover;"      data-offset="270px" data-rate="0.3">
+    </div>
+
+    <div class="container breadcumb-banner  pt-4" style="transform: translateY(25px)">
+      <ol class="breadcrumb fa bg-transparent px-md-4 px-3  text-dark bold-600 ">
+        <li class="breadcrumb-item"><a href="https://www.wcf.go.tz"><span class="fas fa-home d-none"></span></a>Home</li>
+        <li class="breadcrumb-item active" aria-current="page">Huduma Mtandao</li>
+     </ol>
+    </div>
+  </div>
+
+  <div class="about-page main-container container pages-decorater-bottom border-radius-0 bg-white p-md-4 pt-4">
+    
+<div class="about-page main-container container-fluid bg-white">
+    <div class="col-12">
+    
+        <div class="row">
+            <div class="col-lg-8 my-2 pr-lg-5 page-content">
+
+                <div class="row">
+                    <div class="col-12 py-1 px-0 border-bottom-faded">
+                        <h5 class="pl-0  text-uppercase "> 
+                          <div class="d-block  py-1 lines position-relative">
+                            <div class="pr-sm-2 py-1 text-primary  position-relative"> 
+                            <span class="border-left-primary text-dark  d-inline-block  pl-1 ">
+                              <span class="border-left-secondary-thick pl-2  d-inline-block"> Huduma Mtandao </span> 
+                            </span>
+                            </div>
+                          </div>                
+                        </h5>   
+                    </div>
+                        
+                    <div class="col-12 px-0 ">
+                                                    <div class="py-4 px-3 bg-light-darker">
+                                                                    <div class="col px-0 pb-1 border-bottom-faded last-no-border">  
+                                        <div class="d-flex align-items-center rounded-slight  hover-bg-trans h-100 w-100 p-2 pointer-hover position-relative">                                    
+                                            <a href="https://portal.wcf.go.tz/" target="_blank" rel="noopener noreferrer" class="d-flex w-100 list-item  align-items-center text-bold text-primary">
+                                                <i class="fa  text-md fa-hand-point-right px-2 pr-3 align-self-center"></i>
+                                                <i class="fa text-md fa-external-link-alt px-2 pr-3  align-self-center"></i>
+                                                <span class="d-inline-block">
+                                                    <div> Usajili wa Waajiri na Ulipaji wa Michango </div>                        
+                                                </span>   
+                                            </a>                
+                                        </div>
+                                    </div>                
+                                                                    <div class="col px-0 pb-1 border-bottom-faded last-no-border">  
+                                        <div class="d-flex align-items-center rounded-slight  hover-bg-trans h-100 w-100 p-2 pointer-hover position-relative">                                    
+                                            <a href="https://portal.wcf.go.tz/" target="_blank" rel="noopener noreferrer" class="d-flex w-100 list-item  align-items-center text-bold text-primary">
+                                                <i class="fa  text-md fa-hand-point-right px-2 pr-3 align-self-center"></i>
+                                                <i class="fa text-md fa-external-link-alt px-2 pr-3  align-self-center"></i>
+                                                <span class="d-inline-block">
+                                                    <div> Toa Taarifa kuhusu Ajali, Ugonjwa au Kifo kilichotokana na Kazi </div>                        
+                                                </span>   
+                                            </a>                
+                                        </div>
+                                    </div>                
+                                                                    <div class="col px-0 pb-1 border-bottom-faded last-no-border">  
+                                        <div class="d-flex align-items-center rounded-slight  hover-bg-trans h-100 w-100 p-2 pointer-hover position-relative">                                    
+                                            <a href="https://portal.wcf.go.tz" target="_blank" rel="noopener noreferrer" class="d-flex w-100 list-item  align-items-center text-bold text-primary">
+                                                <i class="fa  text-md fa-hand-point-right px-2 pr-3 align-self-center"></i>
+                                                <i class="fa text-md fa-external-link-alt px-2 pr-3  align-self-center"></i>
+                                                <span class="d-inline-block">
+                                                    <div> Maombi ya Mapitio ya Madai ya Fidia </div>                        
+                                                </span>   
+                                            </a>                
+                                        </div>
+                                    </div>                
+                                                                    <div class="col px-0 pb-1 border-bottom-faded last-no-border">  
+                                        <div class="d-flex align-items-center rounded-slight  hover-bg-trans h-100 w-100 p-2 pointer-hover position-relative">                                    
+                                            <a href="https://portal.wcf.go.tz/" target="_blank" rel="noopener noreferrer" class="d-flex w-100 list-item  align-items-center text-bold text-primary">
+                                                <i class="fa  text-md fa-hand-point-right px-2 pr-3 align-self-center"></i>
+                                                <i class="fa text-md fa-external-link-alt px-2 pr-3  align-self-center"></i>
+                                                <span class="d-inline-block">
+                                                    <div> Huduma za Matibabu </div>                        
+                                                </span>   
+                                            </a>                
+                                        </div>
+                                    </div>                
+                                                            </div>
+                                            </div>
+                    
+                </div>
+
+            </div>
+            <div class="col-lg-4 px-0 mt-2">
+                <div class="d-none d-md-block sticky-top " style="z-index:0 !important">
+  <div class="pressside mb-3 ">
+    <div class="pressside-heading text-primary border-bottom-faded p-1 px-2">
+      <h5 class="pl-0   text-uppercase section-heading bg-none bg-white-transparent-hover-secondary   rounded-slightt pr-lg-5"> 
+        <a href="https://www.wcf.go.tz/news" class="d-block  py-1    lines position-relative">
+          <div class="pr-sm-2 py-1 text-primary  position-relative"> 
+            <!-- <i class="fa fa-cog pr-2  align-self-center"></i>  -->
+            <span class="border-left-primary text-bold  pl-1 ">
+              <span class="border-left-secondary-thick pl-2 text-nowrap">Habari na Matukio</span> 
+            </span>
+            <span class="position-absolute view-all">
+              <i class="fa fa-arrow-right"> </i>
+              <!-- <span class="text-small text-nowrap d-inline-block pl-2 ">View All </span>  -->
+            </span>
+          </div>
+        </a>                
+      </h5>  
+    </div>
+  
+    <div class="pressside-body p-2 ">
+                                    <a href="https://www.wcf.go.tz/news/sangu-dira-2050-inachangiwa-na-uwekezaji-wa-kimkakati" class="col mb-1 cursor-pointer zoom-container show-more-content-news p-2 d-flex border-bottom box-shadow  bg-white last-no-border align-items-center "  style="min-height:110px"> 
+          <div class="col-3 col-md-4 px-0 text-center d-flex flex-column justify-content-center pr-0 border-rightt " >
+            <div class="overflow-hidden box-shadow-slight">
+              <div class="square-container  image my-0 hover-text-primary background-image" 
+              style="background-image:url('https://www.wcf.go.tz/uploads/news/93be15dea10e1cfe61efcd854a80c536.jpeg'); " >  <div class="dark-overlay"></div></div>
+            </div>
+           
+          </div>
+          <div class="col-9 col-md-8 pl-3 text-left "> 
+                        <div class="">
+              <span class="small text-faded "> 02 Oct 2026 | <span class="text-uppercase">news</span></span>
+            </div>
+            <div class="hover-text-primary ">SANGU: DIRA 2050 INACHANGIWA NA UWEKEZAJI WA KIMKAKATI. </div>
+            
+          </div>
+        </a>
+                              <a href="https://www.wcf.go.tz/news/wcf-yashiriki-mkutano-mkuu-wa-tughe-taifa-yatoa-elimu-kuhusu-huduma-za-fidia-kwa-wafanyakazi" class="col mb-1 cursor-pointer zoom-container show-more-content-news p-2 d-flex border-bottom box-shadow  bg-white last-no-border align-items-center "  style="min-height:110px"> 
+          <div class="col-3 col-md-4 px-0 text-center d-flex flex-column justify-content-center pr-0 border-rightt " >
+            <div class="overflow-hidden box-shadow-slight">
+              <div class="square-container  image my-0 hover-text-primary background-image" 
+              style="background-image:url('https://www.wcf.go.tz/uploads/news/892aa16dbed105144842f2dd76a265cd.png'); " >  <div class="dark-overlay"></div></div>
+            </div>
+           
+          </div>
+          <div class="col-9 col-md-8 pl-3 text-left "> 
+                        <div class="">
+              <span class="small text-faded "> 30 Sep 2026 | <span class="text-uppercase">news</span></span>
+            </div>
+            <div class="hover-text-primary ">WCF YASHIRIKI MKUTANO MKUU WA TUGHE TAIFA, YATOA ELIMU KUHUSU HUDUMA ZA FIDIA KWA WAFANYAKAZI </div>
+            
+          </div>
+        </a>
+                  </div>
+  
+    <div class="pressside-footer  p-2 px-md-3 d-flex justify-content-between">
+        <a href="https://www.wcf.go.tz/news" class="readmore bg-white border d-inline-block px-3 py-2 rounded-mediumm  box-shadow-slight text-primary hover-bg-primary cursor-pointer  ">
+          <span>Habari </span>
+          <i class="fa fa-chevron-right"></i>
+        </a> 
+        <a href="https://www.wcf.go.tz/eventes" class="readmore bg-white border d-inline-block px-3 py-2 rounded-mediumm  box-shadow-slight text-primary hover-bg-primary cursor-pointer  ">
+          <span>Matukio </span>
+          <i class="fa fa-chevron-right"></i>
+        </a>     
+    </div>
+  
+  </div>
+  
+  <div class="pressside  ">
+  
+    <div class="pressside-heading  p-2 text-primary border-bottom">
+      <h5 class="pl-0   text-uppercase section-heading bg-none bg-white-transparent-hover-secondary rounded-slightt pr-lg-5"> 
+        <a href="https://www.wcf.go.tz/online-services" class="  py-1 d-block  lines position-relative">
+          <div class="pr-sm-2 py-1 text-primary  position-relative"> 
+            <!-- <i class="fa fa-cog pr-2  align-self-center"></i>  -->
+            <span class="border-left-primary text-bold  pl-1 ">
+              <span class="border-left-secondary-thick pl-2 text-nowrap">Huduma Mtandao</span> 
+            </span>
+            <span class="position-absolute view-all">
+              <i class="fa fa-arrow-right"> </i>
+              <!-- <span class="text-small text-nowrap d-inline-block pl-2 ">View All </span>  -->
+            </span>
+          </div>
+        </a>                
+      </h5>  
+    </div>
+  
+    <div class="pressside-body border-leftt p-2">
+        <div class="d-flex flex-column h-100 rounded-slightt overflow-hidden">
+
+                                  <div class="col px-0 border-bottom last-no-border bg-white-transparent py-0 my-0 " style="min-height:76px">
+              <a href="https://portal.wcf.go.tz/" target="_blank"
+                class="row h-100 mx-0 cursor-pointer border-color-secondary  bg-gradient-white-secondary box-shadow-slight hover-bg has-hover-bounce has-hover-text-primary has-hover-text-secondary">
+                <div class=" col-3  h-100 text-center border-right border-color-black">
+                  <div class=" text-primary h-100  d-flex justify-content-center position-relative align-items-center " >
+                    <div class="p-2222 round h-100 d-flex justify-content-center position-relative align-items-center box-40">
+                      <div class="ring d-flex position-absolute justify-content-center align-items-center m-auto  box-50"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.6 105.77"><polygon class="stroke-primary" points="89.1 77.89 89.1 27.89 45.8 2.89 2.5 27.89 2.5 77.89 45.8 102.89 89.1 77.89"/></svg>
+                      </div>
+                      <div class="ring d-flex position-absolute justify-content-center align-items-center m-auto box-40"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.6 100"><polygon class="fill-primary" points="86.6 75 86.6 25 43.3 0 0 25 0 75 43.3 100 86.6 75"/></svg>
+                      </div>
+                      <img src="https://www.wcf.go.tz/site/images/svgs/web.svg" class="hover-bounce white-icon position-relative z-index-2" style="width: 30px; height:auto">
+                    </div> 
+                  </div>
+                </div>
+                <div class="col-9 pl-3 text-left h-100 d-flex flex-column justify-content-center"> 
+                  
+                  <div class="hover-text-primary ">Usajili wa Waajiri na Ulipaji wa Michango</div>
+                </div>
+              </a>
+            </div>
+                                  <div class="col px-0 border-bottom last-no-border bg-white-transparent py-0 my-0 " style="min-height:76px">
+              <a href="https://portal.wcf.go.tz/" target="_blank"
+                class="row h-100 mx-0 cursor-pointer border-color-secondary  bg-gradient-white-secondary box-shadow-slight hover-bg has-hover-bounce has-hover-text-primary has-hover-text-secondary">
+                <div class=" col-3  h-100 text-center border-right border-color-black">
+                  <div class=" text-primary h-100  d-flex justify-content-center position-relative align-items-center " >
+                    <div class="p-2222 round h-100 d-flex justify-content-center position-relative align-items-center box-40">
+                      <div class="ring d-flex position-absolute justify-content-center align-items-center m-auto  box-50"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.6 105.77"><polygon class="stroke-primary" points="89.1 77.89 89.1 27.89 45.8 2.89 2.5 27.89 2.5 77.89 45.8 102.89 89.1 77.89"/></svg>
+                      </div>
+                      <div class="ring d-flex position-absolute justify-content-center align-items-center m-auto box-40"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.6 100"><polygon class="fill-primary" points="86.6 75 86.6 25 43.3 0 0 25 0 75 43.3 100 86.6 75"/></svg>
+                      </div>
+                      <img src="https://www.wcf.go.tz/site/images/svgs/web.svg" class="hover-bounce white-icon position-relative z-index-2" style="width: 30px; height:auto">
+                    </div> 
+                  </div>
+                </div>
+                <div class="col-9 pl-3 text-left h-100 d-flex flex-column justify-content-center"> 
+                  
+                  <div class="hover-text-primary ">Toa Taarifa kuhusu Ajali, Ugonjwa au Kifo kilichotokana na Kazi</div>
+                </div>
+              </a>
+            </div>
+                                  <div class="col px-0 border-bottom last-no-border bg-white-transparent py-0 my-0 " style="min-height:76px">
+              <a href="https://portal.wcf.go.tz" target="_blank"
+                class="row h-100 mx-0 cursor-pointer border-color-secondary  bg-gradient-white-secondary box-shadow-slight hover-bg has-hover-bounce has-hover-text-primary has-hover-text-secondary">
+                <div class=" col-3  h-100 text-center border-right border-color-black">
+                  <div class=" text-primary h-100  d-flex justify-content-center position-relative align-items-center " >
+                    <div class="p-2222 round h-100 d-flex justify-content-center position-relative align-items-center box-40">
+                      <div class="ring d-flex position-absolute justify-content-center align-items-center m-auto  box-50"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.6 105.77"><polygon class="stroke-primary" points="89.1 77.89 89.1 27.89 45.8 2.89 2.5 27.89 2.5 77.89 45.8 102.89 89.1 77.89"/></svg>
+                      </div>
+                      <div class="ring d-flex position-absolute justify-content-center align-items-center m-auto box-40"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.6 100"><polygon class="fill-primary" points="86.6 75 86.6 25 43.3 0 0 25 0 75 43.3 100 86.6 75"/></svg>
+                      </div>
+                      <img src="https://www.wcf.go.tz/site/images/svgs/web.svg" class="hover-bounce white-icon position-relative z-index-2" style="width: 30px; height:auto">
+                    </div> 
+                  </div>
+                </div>
+                <div class="col-9 pl-3 text-left h-100 d-flex flex-column justify-content-center"> 
+                  
+                  <div class="hover-text-primary ">Maombi ya Mapitio ya Madai ya Fidia</div>
+                </div>
+              </a>
+            </div>
+                              </div>
+    </div>
+  </div>
+</div>            </div>
+        </div>
+        
+    </div>
+
+</div>
+
+  </div>
+
+    <!-- /contents -->
+
+     <!-- CHATBOT -->
+     <div class="chatbot-container d-none d-md-block overflow-hidden" style="position:fixed; bottom:0; right:1em; z-index:999; width:100%; min-width:300px; max-width:540px">
+    <div class="mr-lg-4 d-flex flex-column align-items-end">
+      <div class="bot-header w-100 cursor-pointer d-flex justify-content-between align-items-center py-0 overflow-hidden "> 
+        <div class="col h-40 d-flex align-items-center bot-header-text  bg-primary text-white" style="min-width:260px"> Online Help </div> 
+        <div id="botToggle"
+          onclick="document.getElementById('chatController').classList.remove('d-none')"
+          class="bot-toggle bg-primary d-flex align-items-center justify-content-center py-3 px-3 box-40">
+          <i class="when-inactive text-white fa fa-comment-dots "></i>
+          <i class="position-absolute when-active text-white fa fa-times "></i>
+        </div>
+      </div>
+      <div class="bot-body w-100 px-3 bg-white box-shadow border border-top-0 position-relative"> 
+        
+        <small class="text-faded d-block mb-2 "> 
+          Adequate And Equitable Compensations
+        </small>
+        <form class="faq-form "  method="POST" action="https://www.wcf.go.tz/complaints" accept-charset="UTF-8"style="min-height: 250px">
+          <input type="hidden" name="_token" value="eFivjNRgDpXUseBeZPhy6PKmIzcfokTNWgJQAOI9">          <!-- <div class="form-group no-faq">
+            <textarea type="text" class="form-control py-2" id="inputAddress2" placeholder="Something is coming..." style="resize:none">Subject</textarea>
+         </div> -->
+
+         <div class="form-group no-faq d-none move-left" style="--order:2">
+            <div class="d-flex bg-primary-very-faded border-faded align-items-center">
+                <span class="fa fa-bullseye text-primary border-right border-color-primary  px-2"></span>
+                <input name="subject" type="text" class="form-control bg-none border-0 py-3 col" id="inputName" placeholder="Subject" requireddd>
+            </div>
+         </div>
+
+          <div class="form-group " >
+            <div id="wrapper" class="w-100">
+              <select id="selectFaqList" name="select" class="w-100" >
+                                  <option class="w-100" value="faq_0"> Mfuko wa Fidia kwa Wafanyakazi ni nini?</option>
+                                  <option class="w-100" value="faq_1"> Mfuko wa Fidia kwa Wafanyakazi ulianza lini?</option>
+                                  <option class="w-100" value="faq_2"> Nini Malengo ya kuanzishwa kwa Mfuko wa Fidia kwa Wafanyakazi?</option>
+                                  <option class="w-100" value="faq_3"> Nini Majukumu ya Mfuko wa Fidia kwa Wafanyakazi?</option>
+                                  <option class="w-100" value="faq_4"> Walengwa wa Mfuko ni kina nani?</option>
+                                  <option class="w-100" value="faq_5"> Wajibu na Majukumu ya Mwajiri katika Mfuko ni yapi?</option>
+                                  <option class="w-100" value="faq_6"> Wajibu wa Mfanyakazi katika Mfuko ni nini?</option>
+                                  <option class="w-100" value="faq_7"> Mfanyakazi atajuaje kama Mwajiri amejisajili katika Mfuko?</option>
+                                  <option class="w-100" value="faq_8"> Ni jinsi gani mwajiri ananufaika na Mfuko?</option>
+                                  <option class="w-100" value="faq_9"> Je kuna tofauti gani baina ya WCF na Mifuko mingine ya Hifadhi ya Jamii?</option>
+                                  <option class="w-100" value="faq_10"> Je kuna tofauti gani baina ya WCF na OSHA?</option>
+                                  <option class="w-100" value="faq_11"> Je, ni lazima mwajiri kujisajili katika Mfuko wa Fidia?</option>
+                                  <option class="w-100" value="faq_12"> Je, Mwajiri anawezaje kujisajili katika Mfuko wa Fidia?</option>
+                                  <option class="w-100" value="faq_13"> Je, Mwajiri anawezaje kuchangia katika Mfuko wa Fidia?</option>
+                                  <option class="w-100" value="faq_14"> Ni nani anayechangia katika Mfuko wa Fidia?</option>
+                                  <option class="w-100" value="faq_15"> Mfanyakazi atajuaje kama Mwajiri wake anamchangia katika Mfuko?</option>
+                                  <option class="w-100" value="faq_16"> Je Mwajiri atachangia kiasi gani kila mwezi kwa ajili ya Mfanyakazi?</option>
+                                  <option class="w-100" value="faq_17"> Mapato ghafi ya mfanyakazi ni yapi?</option>
+                                  <option class="w-100" value="faq_18"> Viwango vya uchangiaji vinapatikanaje?</option>
+                                  <option class="w-100" value="faq_19"> Muda wa uwasilishaji wa michango kwenye Mfuko ni upi?</option>
+                                  <option class="w-100" value="faq_20"> Je, Mwajiri anaweza kupata taarifa ya michango yake kutoka katika Mfuko?</option>
+                                  <option class="w-100" value="faq_21"> Je mwajiri ana haki ya kurudishiwa michango yake endapo hakuna fidia itakayolipwa kwa wafanyakazi wake kama hakutatokea ajali, ugonjwa ama kifo kutokana na kazi?</option>
+                                  <option class="w-100" value="faq_22"> Ni nani wanufaika wa mafao yanayotolewayo na Mfuko wa Fidia?</option>
+                                  <option class="w-100" value="faq_23"> Mfuko ulianza lini kulipa fidia?</option>
+                                  <option class="w-100" value="faq_24"> Je, inakuaje kwa wafanyakazi walioumia kabla ya Tarehe 01 Julai 2016?</option>
+                                  <option class="w-100" value="faq_25"> Mafao yanayotolewa na Mfuko ni yapi?</option>
+                                  <option class="w-100" value="faq_26"> Ni huduma gani za matibabu zinatolewa na Mfuko?</option>
+                                  <option class="w-100" value="faq_27"> Nawezaje kutoa taarifa ya ajali, ugonjwa au kifo kinachotokana na kazi?</option>
+                                  <option class="w-100" value="faq_28"> Natakiwa kuwasilisha madai ya fidia kwenye Mfuko katika kipindi gani?</option>
+                                  <option class="w-100" value="faq_29"> Mfanyakazi anatakiwa kufanya nini pindi Mwajiri anapokataa kuwasilisha katika Mfuko taarifa ya ajali, ugonjwa au kifo?</option>
+                                  <option class="w-100" value="faq_30"> Nawezaje kupata huduma ya matibabu?</option>
+                                  <option class="w-100" value="faq_31"> Ulemavu ni nini?</option>
+                                  <option class="w-100" value="faq_32"> Mfanyakazi, Mwajiri au Mwakilishi wa Mfanyakazi atafanyaje iwapo hajaridhika na tuzo au uamuzi wa fidia?</option>
+                                  <option class="w-100" value="faq_33"> Je, nawezaje kuwasilisha maoni/maulizo/malalamiko yangu?</option>
+                                  <option class="w-100" value="faq_34"> Mfuko wa Fidia kwa Wafanyakazi ni nini?</option>
+                                  <option class="w-100" value="faq_35"> Ofisi zetu hupatikana wapi?</option>
+                              </select>
+            </div>
+          </div>
+  
+          <div class="faq-ans move-left p-3 bg-light-slight border-faded d-none" style="--order:2"></div>
+  
+          <div class="form-group no-faq d-none move-left" style="--order:2">
+                <div class="d-flex bg-primary-very-faded border-faded align-items-center">
+                    <div class="fa fa-user text-primary border-right border-color-primary  px-2"></div>
+                    <input name="first_name" type="text" class="form-control bg-none border-0 py-3 col" id="inputName" placeholder="Full name" requireddd>
+                </div>
+          </div>
+  
+          <div class="form-group no-faq d-none move-left" style="--order:1.5">
+            <div class="d-flex bg-primary-very-faded border-faded align-items-center">
+                <span class="fa fa-phone text-primary border-right border-color-primary px-2"></span>
+                <input name="phone" type="text" class="form-control bg-none border-0 py-3" id="inputphone" placeholder="Your phone number" requireddd>
+            </div>
+          </div>
+  
+          <div class="form-group no-faq d-none move-left" style="--order:3">
+            <div class="d-flex align-items-center bg-primary-very-faded border-faded">
+                <span class="fa fa-paper-plane text-primary border-right border-color-primary px-2"></span>
+                <input name="email" type="text" class="form-control bg-none border-0 py-3" id="inputEmail" placeholder="Your email address" requireddd>
+            </div>
+          </div>
+
+          
+  
+          <button type="submit" disabled class="btn btn-primary submit-faq d-none move-left" style="--order:3.5"><span> send </span><span class="fa pl-2 fa-arrow-right"></span></button>
+        </form>   
+        
+        <div class="position-absolute h-100 w-100 top-left bg-white chat-controller" id="chatController">
+          <div class="row my-2 has-hover-bounce">
+            <div class="col-3 p-3 text-center" style="font-size:30px !important">
+              <span class="fab hover-bounce fa-whatsapp icon-medium text-success"></span> 
+            </div>
+            <div class="col-9 p-3">
+              <h5 class="text-bold mb-2">Chati Kupitia Whatapp</h5>
+              <div class="faded text-muted mb-2">Wasiliana nasi kupitia Whatsapp</div>
+              <div class="text-left"> 
+                <a type="button" onclick="
+                  document.getElementById('botToggle').click();
+                  document.getElementById('chatController').classList.add('d-none')
+                  "  
+                  href="https://wa.me/255739169622" target="_blank" 
+                  class="btn px-4 d-inline-block text-white bg-secondary rounded-medium  fade-on" style="--order:1; min-width:90px">
+                  Ingia
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row my-2 border-top has-hover-bounce">
+            <div class="col-3 p-3 text-center" style="font-size:30px !important">
+              <span style="color:#111" class="fa fa-comment-dots hover-bounce  icon-medium" ></span> 
+            </div>
+            <div class="col-9 p-3">
+              <h5 class="text-bold mb-2">Unaitaji Msaada</h5>
+              <div class="faded text-muted  mb-2">Pata majibu ya hitaji lako hapa</div>
+              <div class="text-left"> 
+                <button type="button" onclick="document.getElementById('chatController').classList.add('d-none')"
+                   class="btn d-inline-block btn-secondary bg-dark px-4 rounded-medium fade-on" style="--order:1; min-width:90px">
+                  Uliza Sasa
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  <div class="d-none">
+          <div class="answered-faq" id="faq_0" data-faq="Mfuko wa Fidia kwa Wafanyakazi ni nini?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mfuko wa Fidia kwa Wafanyakazi (WCF) ni Taasisi ya Hifadhi ya Jamii iliyoundwa kwa mujibu wa Kifungu cha 5 cha </span></span><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Sheria ya Fidia kwa Wafanyakazi [Sura 263]</span></span><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">. Lengo la kuanzishwa kwa Mfuko huu ni kushughulikia masuala ya Fidia kwa Wafanyakazi waliopo katika sekta ya umma na binafsi Tanzania Bara ambao wataumia, kuugua ama kufariki kutokana na kazi wanazozifanya kwa mujibu wa mikataba ya ajira zao.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_1" data-faq="Mfuko wa Fidia kwa Wafanyakazi ulianza lini?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mfuko wa Fidia kwa Wafanyakazi (WCF)<strong> </strong>ulianza rasmi tarehe 1 Julai 2015 kwa mujibu wa tangazo la Serikali Na.105 la 2011</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_2" data-faq="Nini Malengo ya kuanzishwa kwa Mfuko wa Fidia kwa Wafanyakazi?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Malengo ya kuanzishwa kwa Mfuko wa Fidia kwa Wafanyakazi ni pamoja na:</span></span></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kulipa fidia himilivu na stahiki kwa wafanyakazi watakaoumia ama kuugua kutokana na kazi walizoajiriwa nazo au kulipa fidia kwa wategemezi endapo Mfanyakazi atafariki kutokana na ajali ama ugonjwa uliosababishwa na kazi aliyoajiriwa nayo;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutekeleza matakwa ya Sera ya Hifadhi ya Jamii ya mwaka 2003;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa huduma ya utengemao; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuweka utaratibu utakaowezesha kuharakisha malipo ya fidia kwa wafanyakazi na wategemezi wao; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuweka utaratibu mzuri wa kupokea michango kutoka kwa waajiri na kufanya malipo; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kukidhi matakwa ya Mikataba ya Kimataifa inayohusu fidia kwa wafanyakazi;&nbsp; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kukuza mbinu za kupambana na kuzuia ajali, magonjwa na vifo mahala pa kazi. </span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_3" data-faq="Nini Majukumu ya Mfuko wa Fidia kwa Wafanyakazi?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Majukumu ya Mfuko wa Fidia kwa Wafanyakazi ni pamoja na:</span></span></strong></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kusajili waajiri</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kufanya tathmini ya mazingira hatarishi mahala pa kazi</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kukusanya na kupokea michango kutoka kwa waajiri</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuwekeza michango itakayokusanywa</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kulipa fidia stahiki</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutunza kumbukumbu za matukio ya ajali, magonjwa na vifo mahala pa kazi</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kukuza mbinu za kuzuia ajali, magonjwa ama vifo kutokana na kazi</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa elimu kwa Umma kuhusu Mfuko </span></span></span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_4" data-faq="Walengwa wa Mfuko ni kina nani?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Ni waajiri na wafanyakazi wote katika Sekta ya Umma na Binafsi Tanzania Bara.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_5" data-faq="Wajibu na Majukumu ya Mwajiri katika Mfuko ni yapi?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Wajibu na Majukumu ya Mwajiri katika Mfuko ni kama yafuatayo:</span></span></strong></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kujisajili katika Mfuko; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kulipa michango katika Mfuko kwa wakati;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuwasilisha taarifa za mapato ya mwaka ya wafanyakazi; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuhakikisha wakandarasi wanaowatumia wanazingatia Sheria ya Fidia kwa Wafanyakazi wakati wa utekelezaji wa majukumu ya kimkataba baina yao;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuimarisha usalama na afya mahala pa kazi;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa taarifa pindi mfanyakazi anapoumia, anapougua au kufariki kutokana na kazi;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutunza kumbukumbu na kuwasilisha taarifa za matukio ya ajali, magonjwa yanayotokana na kazi au vifo katika Mfuko kwa wakati;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuwasilisha katika Mfuko madai ya fidia kwa wafanyakazi kwa wakati pamoja na vielelezo vinavyohusu madai hayo;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuwafahamisha wafanyakazi kuhusu haki zinazohusiana na masuala ya fidia kwa wafanyakazi kwa kuweka tamko linalohusu haki za wafanyakazi katika maeneo yao ya kazi na sehemu ambayo inaweza kusomeka;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuweka sehemu wazi cheti cha usajili katika Mfuko ili wafanyakazi wajue kuwa mwajiri wao amejisajili; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa taarifa yoyote katika Mfuko inayo muhusu Mfanyakazi au mtegemezi wa Mfanyakazi inayoweza kuathiri ulipaji wa fidia;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa taarifa katika Mfuko kuhusu mabadiliko yoyote ya taarifa za mwajiri au wafanyakazi; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa ushirikiano kwa Mfuko katika utekelezaji wa Sheria ya Fidia kwa Wafanyakazi.</span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_6" data-faq="Wajibu wa Mfanyakazi katika Mfuko ni nini?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Wajibu wa Mfanyakazi katika Mfuko ni:</span></span></strong></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa taarifa kwa wakati kwa mwajiri au Mkurugenzi Mkuu pindi atakapopatwa na ajali au kubainika kuwa na ugonjwa unaotokana na kazi;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa ushirikiano pindi atakapohitajika kufanyiwa uchunguzi wa kitabibu; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuzingatia maelekezo yanayotolewa na Mamlaka mbalimbali kuhusu usalama mahali pa kazi </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuzingatia Sheria, Kanuni, Taratibu na Miongozo mbalimbali kuhusu masuala ya fidia kwa wafanyakazi;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutunza kumbukumbu binafsi zinazohusu masuala ya kazi;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kutoa ushirikiano kwa Mfuko katika utekelezaji wa Sheria ya Fidia kwa Wafanyakazi.</span></span></span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_7" data-faq="Mfanyakazi atajuaje kama Mwajiri amejisajili katika Mfuko?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiri ana wajibu wa kuweka cheti cha usajili sehemu ambayo wafanyakazi wanaweza kukiona kwa urahisi kwa lengo kujua kuwa mwajiri wao amejisajili. Aidha, mfanyakazi ana haki ya kuwasiliana na Mfuko moja kwa moja ili kupata uhakika endapo mwajiri wake amejisajili.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_8" data-faq="Ni jinsi gani mwajiri ananufaika na Mfuko?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiri ananufaika na Mfuko kama ifuatavyo;</span></span></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kuwa na uhakika wa kinga ya wafanyakazi wake dhidi ya majanga (ajali, ugonjwa au kifo) yanayoweza kuwapata kutokana na kazi ili kuongezeka kwa tija katika uzalishaji; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kupungua kwa gharama za ufuatiliaji wa madai ya fidia zilizokuwepo mwanzo kabla ya kuanza kwa Mfuko;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kupata ushauri wa kitaalamu kuhusiana na usalama mahali pa kazi;</span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_9" data-faq="Je kuna tofauti gani baina ya WCF na Mifuko mingine ya Hifadhi ya Jamii?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Tofauti baina ya WCF na mifuko mingine ni;</span></span></span></span></p>
+
+<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">1. Madhumuni;</span></span></strong></span></span></p>
+
+<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">WCF ni Mfuko wenye dhamana ya kulipa fidia kwa wafanyakazi ama wategemezi wao endapo mfanyakazi ataumia, kuugua ama kufariki kutokana na kazi.</span></span></span></span></p>
+
+<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Aidha, Mifuko ya Pensheni, mathalani NSSF au PSSSF, ina dhamana ya kulipa mafao ya uzeeni pindi mfanyakazi anapostaafu kwa hiari au lazima. </span></span></span></span></p>
+
+<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kwa upande mwingine, Mfuko wa Bima ya Afya mathalani NHIF una dhamana ya kutoa Bima ya matibabu kwa magonjwa yasiyotokana na kazi.</span></span></span></span></p>
+
+<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">2. Uchangiaji;</span></span></strong></span></span></p>
+
+<p style="text-align:justify"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Katika Mfuko wa WCF jukumu la uchangiaji ni la mwajiri pekee, wakati katika Mifuko mingine (PSSSF, NSSF &amp; NHIF) jukumu la kuchangia lipo kwa Mwajiri na Mfanyakazi.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_10" data-faq="Je kuna tofauti gani baina ya WCF na OSHA?" data-ans="<p><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">WCF ni Mfuko wenye dhamana ya kulipa fidia kwa wafanyakazi ama wategemezi wao endapo mfanyakazi ataumia, kuugua ama kufariki kutokana na kazi. Aidha, Mfuko una jukumu la kisheria la kukuza mbinu za kuzuia ajali na magonjwa yanayotokana na kazi kwa kushirikiana na OSHA.</span></span></span></span></p>
+
+<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Aidha, OSHA ni mamlaka yenye dhamana ya kusimamia usalama na afya mahala pa kazi kwa kuhakikisha waajiri wote nchini wanaweka miundombinu na mifumo inayohakikisha usalama na afya mahala pa kazi vinalindwa.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_11" data-faq="Je, ni lazima mwajiri kujisajili katika Mfuko wa Fidia?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Ndiyo. </span></span><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kwa mujibu wa Sheria ya Fidia kwa Wafanyakazi, mwajiri yoyote Tanzania Bara anawajibika kujisajili katika Mfuko.&nbsp; Mwajiri aliyekuwepo kabla ya tarehe 01 Julai 2015, aliwajibika kujisajili kwenye Mfuko tarehe 01 Julai 2015. Kwa Mwajiri aliyekuwepo baada tarehe 01 Julai 2015, anawajibika kujisajili kwenye mfuko ndani ya siku thelathini (30) baada ya kuajiri mfanyakazi wa kwanza.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_12" data-faq="Je, Mwajiri anawezaje kujisajili katika Mfuko wa Fidia?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiri anaweza kujisajili katika Mfuko kwa njia ya mtandao (portal.wcf.go.tz) au kwakujaza Fomu za usajili (WCR-1 na WCR-2) na kuziwasilisha kwenye ofisi ya Mfuko iliyopo karibu nae.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_13" data-faq="Je, Mwajiri anawezaje kuchangia katika Mfuko wa Fidia?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiri anachangia katika Mfuko kwa njia ya mtandao (portal.wcf.go.tz) baada ya kupata kumbukumbu namba ya malipo <em>(control number).</em> </span></span></p>" ></div>
+          <div class="answered-faq" id="faq_14" data-faq="Ni nani anayechangia katika Mfuko wa Fidia?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kwa mujibu wa sheria, Mwajiri ndiye mwenye jukumu la kuchangia kwenye Mfuko. Aidha, ni kosa la jinai kwa mwajiri kumlazimisha mfanyakazi kuchangia kwa namna yoyote kwenye Mfuko.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_15" data-faq="Mfanyakazi atajuaje kama Mwajiri wake anamchangia katika Mfuko?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mfanyakazi anaweza kumuuliza Mwajiri wake kuhusu kuchangiwa katika Mfuko, pia anaweza kuwasiliana na Mfuko moja kwa moja ili kujua kama mwajiri wake anamchangia.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_16" data-faq="Je Mwajiri atachangia kiasi gani kila mwezi kwa ajili ya Mfanyakazi?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiri anachangia asilimia sifuri nukta tano (0.5%) ya mapato ghafi ya wafanyakazi katika sekta ya umma na binafsi</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_17" data-faq="Mapato ghafi ya mfanyakazi ni yapi?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mapato ghafi ya mfanyakazi yanajumuisha mshahara (basic salary) na posho anazolipwa sambamba na mshahara wa kila mwezi na zisizobadilika.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_18" data-faq="Viwango vya uchangiaji vinapatikanaje?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Viwango vya uchangiaji vipo kwa mujibu wa sheria na vinapatikana baada ya kufanyika kwa Tathmini ya uhimilivu wa Mfuko (Actuarial Valuation).</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_19" data-faq="Muda wa uwasilishaji wa michango kwenye Mfuko ni upi?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Michango ya kila mwezi itawasilishwa ndani ya mwezi husika au mwezi unaofuata (kwa mfano michango ya mwezi wa Julai itawasilishwa kabla tarehe 31 Agosti). Aidha, Mwajiri anaweza akalipa kwa miezi mitatu, sita au mwaka lakini baada ya ridhaa ya Mkurugenzi Mkuu wa Mfuko.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_20" data-faq="Je, Mwajiri anaweza kupata taarifa ya michango yake kutoka katika Mfuko?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Ndio. Mwajiri anaweza kupata taarifa ya michango yake kwa njia ya mtandao (portal.wcf.go.tz) au kwa kuwasiliana na Mfuko.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_21" data-faq="Je mwajiri ana haki ya kurudishiwa michango yake endapo hakuna fidia itakayolipwa kwa wafanyakazi wake kama hakutatokea ajali, ugonjwa ama kifo kutokana na kazi?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Hapana. Mfuko unaendeshwa kwa mfumo wa bima yaani uchangiaji wa pamoja kwa lengo la kufidia watakaoathirika. Hivyo basi, michango iliyowasilishwa kwenye Mfuko hairudishwi kwa mwajiri. </span></span></p>" ></div>
+          <div class="answered-faq" id="faq_22" data-faq="Ni nani wanufaika wa mafao yanayotolewayo na Mfuko wa Fidia?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Wanufaikaji wa Mafao yatolewayo na Mfuko ni:</span></span></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Wafanyakazi wote wanaoumia au wanaopata magonjwa kutokana na kazi ambao wapo katika Sekta Binafsi na Sekta ya Umma Tanzania Bara.</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Wategemezi wa mfanyakazi atakayefariki kwa ajali au ugonjwa unaotokana na kazi.</span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_23" data-faq="Mfuko ulianza lini kulipa fidia?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mfuko ulianza kulipa fidia<strong> </strong>tarehe 01 Julai 2016.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_24" data-faq="Je, inakuaje kwa wafanyakazi walioumia kabla ya Tarehe 01 Julai 2016?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Wafanyakazi wote walioumia, kuugua ama kufariki kutokana na kazi kabla ya Tarehe 01 Julai 2016, madai yao yatashughulikiwa kwa utaratibu wa zamani kama ulivyoainishwa katika Sheria ya Fidia kwa Wafanyakazi ya Mwaka 1949 kwa wafanyakazi wa sekta binafsi na Sheria ya Utumishi wa Umma Namba 8 ya Mwaka 2002 kwa wafanyakazi wa sekta ya umma.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_25" data-faq="Mafao yanayotolewa na Mfuko ni yapi?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mafao yanayotolewa na Mfuko ni:</span></span></strong></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Huduma ya matibabu</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Malipo ya ulemavu wa muda</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Malipo ya ulemavu wa kudumu</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Malipo kwa anayemhudumia mgonjwa</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Huduma za utengemao</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Msaada wa mazishi</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Malipo kwa wategemezi</span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_26" data-faq="Ni huduma gani za matibabu zinatolewa na Mfuko?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Huduma za matibabu zinazotolewa na Mfuko ni pamoja na:</span></span></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Huduma ya kusafirisha wagonjwa</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kumuona daktari</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Uchunguzi</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Upasuaji </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Uuguzi</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Dawa</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Kurudia matibabu itakapobidi </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Viungo bandia</span></span></span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_27" data-faq="Nawezaje kutoa taarifa ya ajali, ugonjwa au kifo kinachotokana na kazi?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Taarifa ya ajali, ugonjwa au kifo itatolewa kwa njia ya mtandao (portal.wcf.go.tz).</span></span></span></span></p>
+
+<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Tukio la Ajali</span></span></strong></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiriwa au mwakilishi wa Mwajiriwa anapaswa kutoa taarifa kwa Mwajiri ndani ya siku mbili (2) tokea tukio la ajali;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiri baada ya kupokea taarifa hiyo au kutambua kutokea kwa ajali, anapaswa kutoa taarifa kwenye Mfuko kwa njia ya mtandao (portal.wcf.go.tz) ndani ya siku saba (7) za kazi kuanzia siku ya tukio la ajali. Ili kuwezesha Mfuko kuthibitisha taarifa, mwajiri ataambatisha nakala ya mkataba wa ajira, taarifa ya namna tukio lilivyo tokea na taarifa ya polisi endapo ni ajali wakati wa safari (Conveyance) au inayohusisha tukio la jinai.</span></span></span></span></li>
+</ol>
+
+<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Tukio la Ugonjwa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></strong></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiriwa au mwakilishi wa Mwajiriwa anapaswa kutoa taarifa kwa Mwajiri ndani ya siku kumi na nne (14) za kazi tokea kutambulika kwa ugonjwa unaotokana na kazi; </span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiri baada ya kupokea taarifa ya ugonjwa unaotokana na kazi, anapaswa kutoa taarifa kwenye Mfuko kwa njia ya mtandao (portal.wcf.go.tz) ndani ya siku saba (7) za kazi tokea siku ya kutambulika kwa ugonjwa. Ili kuwezesha Mfuko kuthibitisha taarifa mwajiri ataambatisha taarifa ya kitabibu ya uchunguzi wa ugonjwa na nakala ya mkataba wa ajira.</span></span></span></span></li>
+</ol>
+
+<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><strong><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Tukio la Kifo</span></span></strong></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mwajiri au Mwakilishi wa Mwajiriwa aliyefariki, baada ya kupokea taarifa hiyo au kutambua kutokea kwa kifo, anapaswa kutoa taarifa kwenye Mfuko kwa njia ya mtandao (portal.wcf.go.tz) au kwa kujaza fomu (WCN 1) ndani ya kipindi kisichozidi miezi kumi na mbili (12) tokea siku ya ajali au kugundulika kwa ugonjwa;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Ili kuwezesha Mfuko kuthibitisha taarifa, mwajiri ataambatisha taarifa ya tukio la ajali, nakala ya mkataba wa ajira, nakala ya cheti cha kifo, taarifa ya namna tukio lilivyo tokea, nakala ya kibali cha mazishi na taarifa ya polisi endapo ni ajali wakati wa safari (Conveyance) au inayohusisha tukio la jinai.</span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_28" data-faq="Natakiwa kuwasilisha madai ya fidia kwenye Mfuko katika kipindi gani?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Madai ya fidia yanapaswa kuwasilishwa katika Mfuko ndani ya kipindi kisichozidi miezi kumi na mbili (12) tokea tukio la ajali au kugundulika kwa ugonjwa.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_29" data-faq="Mfanyakazi anatakiwa kufanya nini pindi Mwajiri anapokataa kuwasilisha katika Mfuko taarifa ya ajali, ugonjwa au kifo?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Endapo Mwajiri atakataa kuwasilisha taarifa ya ajali, ugonjwa au kifo katika Mfuko, Mfanyakazi au mwakilishi wa Wafanyakazi ana haki ya kuwasilisha taarifa hiyo katika Mfuko. Aidha, mwajiri kukataa kutoa taarifa ya tukio la ajali, ugonjwa au kifo ni kosa la jinai kwa mujibu wa Sheria ya Fidia kwa Wafanyakazi. </span></span></p>" ></div>
+          <div class="answered-faq" id="faq_30" data-faq="Nawezaje kupata huduma ya matibabu?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Ili kupata huduma, mfanyakazi atapaswa kuwasilisha Fomu (WCN -1) iliyojazwa kikamilifu na mwajiri pamoja na kitambulisho chake cha kazi afikapo hospitalini. Pamoja na fomu hiyo, kwa matibabu ya ugonjwa unaotokana na kazi Mfanyakazi ataambatisha barua iliyotolewa na Mfuko ili kumuwezesha kupata huduma. Orodha ya watoa huduma na mahospitali husika inapatikana kwenye tovuti ya Mfuko (</span></span><span style="font-size:11.0pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><a href="http://www.wcf.go.tz" style="color:#0563c1; text-decoration:underline"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">www.wcf.go.tz</span></span></a></span></span><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">) </span></span></p>" ></div>
+          <div class="answered-faq" id="faq_31" data-faq="Ulemavu ni nini?" data-ans="<p style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Ulemavu ni hali ya kupungua au kupoteza uwezo wa kufanya kazi na hivyo kuathiri kipato cha mfanyakazi. Ulemavu upo wa aina mbili; </span></span></span></span></p>
+
+<ol>
+	<li style="text-align:justify"><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Ulemavu wa muda hutokea katika kipindi ambacho Mfanyakazi aliyepata ajali au ugonjwa unaotokana na kazi anapokuwa amelazwa, kupatiwa siku za mapumziko ya kujiuguza zaidi ya tatu (3) au kazi nyepesi kama itakavyoshauriwa na daktari;</span></span></span></span></li>
+	<li style="text-align:justify"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Ulemavu wa kudumu hutokea ambapo Mfanyakazi aliyepata ajali au ugonjwa unaotokana na kazi amepata ulemavu wa kudumu ambao umeathiri uwezo wake wa kutimiza majukumu yake ya kazi. Fidia hii hutolewa kwa mfanyakazi aliefikia ukomo wa matibabu</span></span></li>
+</ol>" ></div>
+          <div class="answered-faq" id="faq_32" data-faq="Mfanyakazi, Mwajiri au Mwakilishi wa Mfanyakazi atafanyaje iwapo hajaridhika na tuzo au uamuzi wa fidia?" data-ans="<p><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mfanyakazi, Mwajiri au Mwakilishi wa Mfanyakazi ana haki ya kuwasilisha maombi ya mapitio ya tuzo au uamuzi wa fidia kwa Mkurugenzi Mkuu wa Mfuko ndani ya siku ishirini na moja (21) za kazi tangu alipopokea tuzo au uamuzi huo. Maombi hayo yawasilishwe kwa njia ya mtandao (portal.wcf.go.tz) au kwa kujaza Fomu ya mapitio (WCC-5).</span></span></span></span></p>
+
+<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Aidha, endapo mleta maombi hataridhika na uamuzi wa mapitio wa Mkurugenzi Mkuu ana haki ya kuwasilisha maombi ya rufaa dhidi ya uamuzi huo kwa Waziri mwenye dhamana ya masuala ya kazi ndani ya siku </span></span></p>
+
+<p><span style="font-size:11pt"><span style="font-family:&quot;Calibri&quot;,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">thelathini (30) za kazi tangu alipopokea uamuzi huo. Maombi hayo yawasilishwe kwa Fomu ya rufaa (WCC-6).</span></span></span></span></p>
+
+<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Vivyo hivyo, endapo mleta maombi atakuwa hajaridhika na uamuzi wa Waziri ana haki kuwasilisha maombi ya marejeo katika Mahakama Kuu Divisheni ya Kazi ndani ya siku sitini (60) za kazi tangu alipopokea uamuzi wa Muheshimiwa Waziri.</span></span></p>" ></div>
+          <div class="answered-faq" id="faq_33" data-faq="Je, nawezaje kuwasilisha maoni/maulizo/malalamiko yangu?" data-ans="<p><span style="font-size:12.0pt"><span style="font-family:&quot;Arial&quot;,sans-serif">Mfanyakazi, Mwajiri, Mwakilishi wa Mfanyakazi au Mtu yeyote anaweza kuwasilisha maoni/maulizo/malalamiko kuhusu huduma zinazotolewa na Mfuko kwa njia ya maandishi (barua pepe/ barua/tovuti), simu au kufika katika ofisi za Mfuko. </span></span></p>" ></div>
+          <div class="answered-faq" id="faq_34" data-faq="Mfuko wa Fidia kwa Wafanyakazi ni nini?" data-ans="<p>Mfuko Fidia kwa wafanyakazi (WCF) ni Taasisi ya hifadhi ya jamii iliyoundwa kwa mujibu wa kifungu cha 5 cha sheria ya Fidia kwa wafanyakazi [Sura 263 marejeo ya mwaka 2015].Lengo la kuanzishwa kwa Mfuko huu ni kushughulikia maswala ya Fidia kwa Wafanyakazi waliopo katika sekta ya umma na binafsi Tanzania bara ambao wataumia,kuugua ama kufariki kutokana na kazi wanazozifanya kwa mujibu wa mikataba ya ajira zao.</p>" ></div>
+          <div class="answered-faq" id="faq_35" data-faq="Ofisi zetu hupatikana wapi?" data-ans="<div>
+<div>Mfuko wa Fidia kwa Wafanyakazi upo katika Jengo la Victoria, Kitalu No. 37, Barabara ya Bagamoyo, Ghorofa ya 1 na 6</div>
+
+<div>S. L. P 79655,Dar es Salaam. Muda wa Kazi: 2:00 asubuhi - 11:00 jioni</div>
+&nbsp;</div>" ></div>
+      </div>     <!-- /CHAtBOt -->
+
+        <!-- SOCIALS -->
+        <div class="social-media-side d-none d-lg-block">
+       <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/wcf_tz/"
+        class="social-media-box d-flex align-items-center justify-content-end">
+      <div class="h-40 d-flex align-items-center social-text bg-primary text-white">instagram</div>
+      <div class="box-40 d-flex box-shadow-slight cursor-pointer justify-content-center
+       bg-white border text-primary align-items-center">
+        <i class="fab fa-instagram"></i>
+      </div>
+    </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UC8iPLFFoKFU1dvwQLspTG6Q"
+        class="social-media-box d-flex align-items-center justify-content-end">
+      <div class="h-40 d-flex align-items-center social-text bg-primary text-white">youtube</div>
+      <div class="box-40 d-flex box-shadow-slight cursor-pointer justify-content-center
+       bg-white border text-primary align-items-center">
+        <i class="fab fa-youtube"></i>
+      </div>
+    </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/wcf_tz?t=jRWgD3QzTWoTa_fkbXuavQ&amp;s=09"
+        class="social-media-box d-flex align-items-center justify-content-end">
+      <div class="h-40 d-flex align-items-center social-text bg-primary text-white">twitter</div>
+      <div class="box-40 d-flex box-shadow-slight cursor-pointer justify-content-center
+       bg-white border text-primary align-items-center">
+        <i class="fab fa-twitter"></i>
+      </div>
+    </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/wcf-tanzania-228a7523b"
+        class="social-media-box d-flex align-items-center justify-content-end">
+      <div class="h-40 d-flex align-items-center social-text bg-primary text-white">linkedin</div>
+      <div class="box-40 d-flex box-shadow-slight cursor-pointer justify-content-center
+       bg-white border text-primary align-items-center">
+        <i class="fab fa-linkedin"></i>
+      </div>
+    </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Wcf_tz-114124744637111/"
+        class="social-media-box d-flex align-items-center justify-content-end">
+      <div class="h-40 d-flex align-items-center social-text bg-primary text-white">facebook</div>
+      <div class="box-40 d-flex box-shadow-slight cursor-pointer justify-content-center
+       bg-white border text-primary align-items-center">
+        <i class="fab fa-facebook"></i>
+      </div>
+    </a>
+    </div>
+
+ 
+         <!-- /SOCIALS -->
+   
+    <!-- FOOTER -->
+    <footer class="ega-footer parallax-banner  pb-0 pt-4  position-relative"
+  style="background:url(https://www.wcf.go.tz/site/images/bg/bg7.jpg); background-size:cover; background-repeat: no-repeat;"
+  data-offset="400px" data-rate="0.1">
+
+  <div class="bg-gradient-with-transparent h-100 w-100 bg position-absolute top-left"> </div>
+  <span class="scroll-to-top has-hover-bounce bg-none border-0 text-white cursor-pointer  " style="transform:translateY(-20px)">
+    <div class="p-2  round  bg-primaryy d-flex justify-content-center position-relative align-items-center box-60">
+      <div class="ring rounddd d-flex position-absolute justify-content-center align-items-center m-auto  borderrr border-color-secondaryyy border-width-333 box-70"  >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.6 105.77"><polygon class="stroke-secondary" points="89.1 77.89 89.1 27.89 45.8 2.89 2.5 27.89 2.5 77.89 45.8 102.89 89.1 77.89"/></svg>
+      </div>
+      <div class="ring rounddd d-flex position-absolute justify-content-center align-items-center m-auto  borderrr border-color-secondaryyy border-width-333 box-60"  >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.6 100"><polygon class="fill-secondary" points="86.6 75 86.6 25 43.3 0 0 25 0 75 43.3 100 86.6 75"/></svg>
+      </div>
+      <span class="d-inline-block box-40 position-relative z-index-2" style="transform: scaleY(-1); top:-10px">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.55 50.67" class="hover-bounce" ><polygon class="stroke-white" points="45.27 17.54 1.97 1.97 45.27 48.69 88.58 1.97 45.27 17.54"/></svg>
+      </span>
+    </div> 
+  </span>
+  <div class="main-container container px-lg-5">
+    <div class="row pb-3">
+  
+      <div class="col-lg-6   no-padding-sm footer-content">
+        <div class="row">
+          <div class="col-md-6 text-center text-lg-left">
+                          <h6 class="footer-heading d-inline-block pb-2 mb-4 border-bottom-secondary text-uppercase">Wasiliana Nasi</h6> 
+              
+                              <p class="my-1 mb-3 px-3 px-md-0">WCF Dodoma
+1 Barabara ya Kambarage, Jengo la Kambarage, Ghorofa ya 3,
+S. L. P 329, 41104 Dodoma.
+Muda wa Kazi: 2:00 asubuhi - 11:00 jioni</p>
+                                          <p class="my-1"><span class="text-faded fa fa-envelope mr-2"></span> 
+                <a href="mailto:info@wcf.go.tz">info@wcf.go.tz</a>
+              </p>
+                                            <p class="my-1">
+                  <i class="fa fa-phone ml-2"  style="transform:scaleX(-1)"></i>
+                  <a href="tel:0800110028">0800110028</a>
+                </p>
+                                            <p class="my-1">
+                  <i class="fa fa-mobile-alt mr-2"></i>
+                  <a href="tel:+255 222 926 108">+255 222 926 108</a>
+                </p>
+                                            <p class="my-1">
+                  <i class="fa fa-fax mr-2"></i>
+                  <a href="fax:+255 222 926 107">+255 222 926 107</a>
+                </p>
+                                    </div>
+          <div class="col-md-6 no-padding-sm text-center text-lg-left">
+            <h6 class="footer-heading d-inline-block pb-2 mb-4 border-bottom-secondary text-uppercase">WCF</h6>            
+                                      <div class="pr-1 py-2"><a  href="https://www.wcf.go.tz/pages/establishment"> Kuhusu Sisi </a></div>
+                      </div>
+        </div>      
+      </div>
+      <div class="col-lg-6 px-0 px-xs-2 m-0">
+        <div class="row footer-content  row px-xs-2   pb-0 mb-0">
+          <div class="col-md-6 no-padding-sm text-center text-lg-left">
+            <h6 class="footer-heading d-inline-block pb-2 mb-4 border-bottom-secondary text-uppercase">Kurasa za Karibu</h6>            
+             
+                            <div class="pr-1 py-2"><a  href="https://www.wcf.go.tz/publications/acts"> Sheria </a></div>
+             
+                            <div class="pr-1 py-2"><a  target="_blank" rel="noopener noreferrer"  href="https://portal.wcf.go.tz/claim_review"> Mapitio ya Madai </a></div>
+             
+                            <div class="pr-1 py-2"><a  target="_blank" rel="noopener noreferrer"  href="https://maombi.mikutano.gov.go.tz/auth_login?next=/client_reserv_meeting"> eMikutano </a></div>
+             
+                            <div class="pr-1 py-2"><a  target="_blank" rel="noopener noreferrer"  href="https://portal.wcf.go.tz"> Usajili na Michango </a></div>
+             
+                            <div class="pr-1 py-2"><a  target="_blank" rel="noopener noreferrer"  href="https://portal.wcf.go.tz/"> Taarifa ya Tukio Kazini (Ajali, Ugonjwa, Kifo) </a></div>
+                      </div>
+          <div class="col-md-6 no-padding-sm text-center mt-4 mt-md-0 text-lg-left">
+            <h6 class="footer-heading d-inline-block pb-2 mb-4 border-bottom-secondary text-uppercase">Tovuti Mashuhuri </h6>            
+             
+                            <div class="pr-1 my-1"><a target="_blank" rel="noopener noreferrer" href="https://www.pmo.go.tz/"> PMO </a></div>      
+             
+                            <div class="pr-1 my-1"><a target="_blank" rel="noopener noreferrer" href="https://www.kazi.go.tz/"> OWM-KVAU </a></div>      
+             
+                            <div class="pr-1 my-1"><a target="_blank" rel="noopener noreferrer" href="https://www.osha.go.tz/"> OSHA </a></div>      
+             
+                            <div class="pr-1 my-1"><a target="_blank" rel="noopener noreferrer" href="https://www.tra.go.tz/"> TRA </a></div>      
+             
+                            <div class="pr-1 my-1"><a target="_blank" rel="noopener noreferrer" href="http://www.mnh.or.tz/"> MNH </a></div>      
+             
+                            <div class="pr-1 my-1"><a target="_blank" rel="noopener noreferrer" href="https://www.utumishi.go.tz/"> UTUMISHI </a></div>      
+             
+                            <div class="pr-1 my-1"><a target="_blank" rel="noopener noreferrer" href="https://www.moi.ac.tz/"> MOI </a></div>      
+                           
+          </div>
+                  </div>
+      </div>
+    </div>
+    <div class="col-12 p-0 container d-block d-lg-none mb-2">
+              <h4 class="footer-media text-center pt-4 pb-0 mb-0">
+                                                                                                                                                                                                  <a href="https://www.instagram.com/wcf_tz/" target="_blank" rel="noopener noreferrer"><i class="fab icon fa-instagram  px-2" aria-hidden="true"></i></a>
+                                                                                    <a href="https://www.youtube.com/channel/UC8iPLFFoKFU1dvwQLspTG6Q" target="_blank" rel="noopener noreferrer"><i class="fab icon fa-youtube  px-2" aria-hidden="true"></i></a>
+                                                                                                                                                                                                    <a href="https://twitter.com/wcf_tz?t=jRWgD3QzTWoTa_fkbXuavQ&amp;s=09" target="_blank" rel="noopener noreferrer"><i class="fab icon fa-twitter  px-2" aria-hidden="true"></i></a>
+                                                                                                                                                                                                                                                                                                                                                                                        <a href="https://www.facebook.com/Wcf_tz-114124744637111/" target="_blank" rel="noopener noreferrer"><i class="fab icon fa-facebook-f px-2" aria-hidden="true"></i></a>
+                                                                                                                                                                                            </h4>
+          </div>
+  </div>
+
+  <div class="site-info bg-primary  border-top-secondary position-relative z-index-2"> 
+    <div class="col-md-12 pl-0 list no-padding-sm text-center  footer-links footer-nav p-3">
+      <ul class="list-inline mb-0">
+        <li class='list-inline-item'><a href='https://www.wcf.go.tz/sitemap'>Ramani ya Tovuti</a></li><li class='list-inline-item'><a href='https://www.wcf.go.tz/pages/disclaimer'>Kanusho</a></li><li class='list-inline-item'><a href='https://www.wcf.go.tz/pages/privacy-policy'>Sera ya Faragha</a></li><li class='list-inline-item'><a href='https://www.wcf.go.tz/pages/terms-and-conditions'>Vigezo na Masharti</a></li><li class='list-inline-item'><a href='https://www.wcf.go.tz/pages/copyright'>Hatimiliki</a></li>
+      </ul>
+    </div>
+    <div class="copyright text-white-50 p-3 footer-nav">
+        <div class="text-center my-1">
+          Imesanifiwa na Imetengenezwa na
+          <a href="https://www.ega.go.tz" class="" rel="noopener noreferrer" target="_blank">Mamlaka ya Serikali Mtandao</a>
+          Huendeshwa na Mfuko wa Fidia kwa Wafanyakazi
+        </div>
+        <div class="text-white-50 text-center">
+          © 2026 WCF, Haki zote zimehifadhiwa.
+        </div>
+    </div>
+  </div>
+</footer>
+
+    <!-- /FOOTER -->
+
+  </div>
+  <input type="hidden" id="base_url" value="https://www.wcf.go.tz">
+
+  <script src="https://www.wcf.go.tz/site/js/jquery.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/jquery-ui.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/bootstrap.bundle.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/slick.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/owl.carousel.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/datatables.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/magnific-popup.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/select2.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/color-thief.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/swiper.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/particles.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/custom.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/select-search.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/particles-prop.min.js"></script>
+  <script src="https://www.wcf.go.tz/site/js/dropdown.min.js"></script>
+  <script src="https://www.wcf.go.tz/admin/js/visitors-counter/client.min.js"></script>
+  <script src="https://www.wcf.go.tz/admin/js/visitors-counter/visitors.logs.js"></script>
+<script src="https://www.ega.go.tz/assets/js/announcement.min.js"></script>
+  <script type="text/javascript"> 
+    const chatbot_container= document.querySelector('.chatbot-container');
+    const chatbot_header = document.querySelector('.bot-header');
+
+    if(chatbot_container){
+      chatbot_header.addEventListener('click',()=>{
+        chatbot_container.classList.toggle('active'); console.log(chatbot_container.classList)
+      })
+    }
+  </script>
+
+    
+
+<p style="font-size:1px"><a href="https://id-jpmaxwin.com/">slot gacor</a></p>
+</body>
+
+</html>

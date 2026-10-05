@@ -1,225 +1,107 @@
-import { useRef } from 'react';
-import {
-  ArrowDown, Shield, Smartphone, MessageCircle,
-  Globe, Users, Award, TrendingUp, CheckCircle2,
-  Lock, Zap, Scale, Heart
-} from 'lucide-react';
-import Layout from '../components/layout/Layout';
-import Container from '../components/shared/Container';
-import Typography from '../components/shared/Typography';
-import { Button } from '@/components/ui/button';
-import HakiYanguChatbot from '@/components/haki-yangu/HakiYanguChatbot';
-import HakiYanguAppSection from '@/components/legal-help/HakiYanguAppSection';
+import { ArrowRight, BookOpen, BriefcaseBusiness, FileText, FolderOpen, MapPin, MessageCircle, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import Layout from '@/components/layout/Layout';
+import Container from '@/components/shared/Container';
 
-const HakiYangu = () => {
-  const contentRef = useRef<HTMLDivElement>(null);
+const journeys = [
+  { title: 'Find Help', description: 'Explore listed legal aid services and choose how to contact them.', to: '/find-help', icon: MapPin, style: 'bg-teal-700 text-white' },
+  { title: 'Ask Saada', description: 'Ask a question and get guidance from the assistant.', to: '/sara', icon: MessageCircle, style: 'bg-rose-800 text-white' },
+  { title: 'Request Help', description: 'Tell us what happened and send a request for human support.', to: '/request-help', icon: FileText, style: 'bg-orange-600 text-white' },
+  { title: 'Know Your Rights', description: 'Read available guides in plain language.', to: '/know-your-rights', icon: BookOpen, style: 'bg-amber-100 text-slate-900' },
+];
 
-  const scrollToContent = () => {
-    contentRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+const nextSteps = [
+  { title: 'Your cases', description: 'Check your request and case status, messages and next steps.', to: '/dashboard/user', icon: BriefcaseBusiness },
+  { title: 'Saved help', description: 'Return to services you saved while exploring.', to: '/dashboard/user/saved-help', icon: FolderOpen },
+  { title: 'Your documents', description: 'Open documents connected to your requests and cases.', to: '/dashboard/user/documents', icon: FileText },
+];
 
+export default function HakiYangu() {
   return (
     <Layout>
-      {/* 1. HERO SECTION - Massive, Impactful, Program Detail Style */}
-      <div className="relative min-h-[90vh] flex items-center">
-        {/* Background - Dark Overlay over Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/lovable-uploads/haki yangu app uzinuzi.webp"
-            alt="Haki Yangu Digital Justice"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-black/60" />
-        </div>
-
-        <Container className="relative z-10 text-white">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-              <Shield className="w-4 h-4 text-secondary-teal" />
-              <span className="text-sm font-bold uppercase tracking-wider">LSF Flagship Innovation</span>
-            </div>
-
-            <Typography variant="h1" className="text-5xl lg:text-7xl font-black mb-8 leading-tight">
-              The Digital Scale <br />
-              <span className="text-secondary-teal">of Justice.</span>
-            </Typography>
-
-            <Typography variant="body" className="text-xl lg:text-2xl text-white/90 mb-10 max-w-2xl leading-relaxed">
-              We are closing the justice gap by putting a paralegal in every pocket. Haki Yangu is Tanzania's first comprehensive digital legal aid platform.
-            </Typography>
-
-            <div className="flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                onClick={scrollToContent}
-                className="bg-white text-primary hover:bg-gray-100 h-14 px-8 rounded-full font-bold text-lg"
-              >
-                Explore the Platform
-                <ArrowDown className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-primary h-14 px-8 rounded-full font-bold text-lg bg-transparent"
-              >
-                Download App
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      <div ref={contentRef}>
-        {/* 2. THE CHALLENGE - "Why Digital?" */}
-        <section className="py-24 bg-white">
-          <Container>
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <Typography variant="overline" className="text-primary mb-4 block">The Challenge</Typography>
-                <Typography variant="h2" className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                  Justice Delayed is Justice Denied.
-                </Typography>
-                <div className="w-20 h-2 bg-secondary-teal rounded-full mb-8"></div>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  For millions of Tanzanians, especially women in rural areas, the formal justice system is geographically distant, financially impossible, and culturally intimidating.
-                </p>
+      <main className="bg-[#fcf9f8] text-slate-950">
+        <section className="relative overflow-hidden bg-[#fffaf8] py-16 sm:py-20 lg:py-28">
+          <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-rose-100/60 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-amber-100/60 blur-3xl" />
+          <Container className="relative grid gap-12 lg:grid-cols-[1fr_.85fr] lg:items-center">
+            <div className="max-w-2xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white px-4 py-2 text-sm font-semibold text-rose-900 shadow-sm">
+                <ShieldCheck className="h-4 w-4" /> Haki Yangu · Legal help in Tanzania
+              </span>
+              <h1 className="mt-7 text-5xl font-black tracking-tight text-[#520a28] sm:text-6xl lg:text-7xl">A clearer way to find legal help.</h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-700">Explore services, ask a question, or tell us what happened. Choose the path that feels right for you.</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link to="/find-help" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-teal-700 px-6 py-3 font-bold text-white shadow-md transition hover:bg-teal-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">Find Help <ArrowRight className="h-4 w-4" /></Link>
+                <Link to="/request-help" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#870b3a] px-6 py-3 font-bold text-white shadow-md transition hover:bg-[#67062a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-800">Request Help <ArrowRight className="h-4 w-4" /></Link>
               </div>
-              <div className="grid gap-6">
-                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                    <Scale className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-2">The Distance Gap</h4>
-                    <p className="text-gray-600">The nearest primary court is often over 50km away for rural residents.</p>
-                  </div>
-                </div>
-                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                    <Lock className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-2">The Privacy Barrier</h4>
-                    <p className="text-gray-600">Stigma prevents victims of GBV from walking into public police stations.</p>
-                  </div>
-                </div>
-                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                    <Zap className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-2">The Information Void</h4>
-                    <p className="text-gray-600">Complex legal language makes laws inaccessible to the average citizen.</p>
-                  </div>
-                </div>
+              <p className="mt-5 text-sm text-slate-600">You can explore services and guides before signing in. Sending a request requires an account.</p>
+            </div>
+            <div className="rounded-[2rem] border border-rose-100 bg-white/90 p-5 shadow-[0_25px_70px_-30px_rgba(82,10,40,.35)] sm:p-7">
+              <p className="mb-5 text-sm font-bold uppercase tracking-[.18em] text-[#870b3a]">How can we help today?</p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {journeys.map(({ title, description, to, icon: Icon, style }) => (
+                  <Link key={to} to={to} className={`group flex min-h-44 flex-col rounded-2xl p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current ${style}`}>
+                    <Icon className="h-9 w-9" strokeWidth={1.8} />
+                    <strong className="mt-5 text-xl">{title}</strong>
+                    <span className="mt-1 text-sm leading-snug opacity-90">{description}</span>
+                    <ArrowRight className="ml-auto mt-auto h-4 w-4 transition group-hover:translate-x-1" />
+                  </Link>
+                ))}
               </div>
             </div>
           </Container>
         </section>
 
-        {/* 3. THE SOLUTION - Reuse Components */}
-        <div className="bg-gray-50 py-10">
+        <section className="py-16 sm:py-20" aria-labelledby="paths-heading">
           <Container>
-            <div className="text-center mb-10">
-              <Typography variant="overline" className="text-primary mb-2 block">The Solution</Typography>
-              <Typography variant="h2" className="text-4xl font-bold">A Multi-Channel Approach</Typography>
+            <div className="max-w-2xl">
+              <p className="text-sm font-bold uppercase tracking-[.18em] text-rose-800">Two ways to begin</p>
+              <h2 id="paths-heading" className="mt-3 text-3xl font-black text-[#520a28] sm:text-4xl">Your situation determines the next step.</h2>
             </div>
-          </Container>
-
-          {/* Mobile App */}
-          <HakiYanguAppSection />
-
-          {/* WhatsApp Bot */}
-          <HakiYanguChatbot />
-        </div>
-
-        {/* 4. IMPACT DASHBOARD - "By the Numbers" */}
-        <section className="py-24 bg-primary text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/pattern-bg.png')] opacity-10 bg-cover bg-center" />
-          <Container className="relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-              <div>
-                <Typography variant="h2" className="text-4xl lg:text-5xl font-bold mb-6">
-                  Real Impact, Real Time.
-                </Typography>
-                <p className="text-xl text-white/80">
-                  Since its launch, Haki Yangu has transformed from a pilot project into a national lifeline.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-8">
-                <div>
-                  <div className="text-5xl font-black text-secondary-teal mb-2">50k+</div>
-                  <div className="text-lg font-medium opacity-80">Downloads & Users</div>
-                </div>
-                <div>
-                  <div className="text-5xl font-black text-secondary-teal mb-2">1,200</div>
-                  <div className="text-lg font-medium opacity-80">Cases Reported</div>
-                </div>
-                <div>
-                  <div className="text-5xl font-black text-secondary-teal mb-2">24/7</div>
-                  <div className="text-lg font-medium opacity-80">Availability</div>
-                </div>
-                <div>
-                  <div className="text-5xl font-black text-secondary-teal mb-2">100%</div>
-                  <div className="text-lg font-medium opacity-80">Privacy Guaranteed</div>
-                </div>
-              </div>
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <article className="rounded-3xl border border-rose-100 bg-[#fff1f4] p-7 sm:p-9">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#870b3a] text-white"><FileText className="h-6 w-6" /></div>
+                <h3 className="mt-5 text-2xl font-bold text-[#520a28]">I have a problem and need support</h3>
+                <p className="mt-3 text-slate-700">Describe what happened, review what you will send, then follow your request and any next steps in your account.</p>
+                <Link to="/request-help" className="mt-6 inline-flex min-h-11 items-center gap-2 font-bold text-[#870b3a] underline underline-offset-4">Start a request <ArrowRight className="h-4 w-4" /></Link>
+              </article>
+              <article className="rounded-3xl border border-teal-100 bg-[#eaf8f5] p-7 sm:p-9">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-700 text-white"><MapPin className="h-6 w-6" /></div>
+                <h3 className="mt-5 text-2xl font-bold text-teal-950">I want to explore nearby help</h3>
+                <p className="mt-3 text-slate-700">Search the service directory, read available details and save useful places. You can request support later if you still need it.</p>
+                <Link to="/find-help" className="mt-6 inline-flex min-h-11 items-center gap-2 font-bold text-teal-800 underline underline-offset-4">Find services <ArrowRight className="h-4 w-4" /></Link>
+              </article>
             </div>
           </Container>
         </section>
 
-        {/* 5. CASE STUDY - "The Human Story" */}
-        <section className="py-24 bg-white">
+        <section className="border-y border-rose-100 bg-white py-16 sm:py-20" aria-labelledby="continue-heading">
           <Container>
-            <div className="bg-gray-50 rounded-3xl p-8 lg:p-12 border border-gray-100 shadow-sm">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="order-2 lg:order-1">
-                  <Typography variant="overline" className="text-primary mb-4 block">Case Study</Typography>
-                  <h3 className="text-3xl font-bold mb-6">"I was afraid to speak, until I could do it silently."</h3>
-                  <div className="space-y-6 text-gray-600">
-                    <p>
-                      Maria (not her real name), a 24-year-old in Dodoma, was facing harassment from her employer but feared losing her job if she reported it publicly.
-                    </p>
-                    <p>
-                      Using the Haki Yangu App, she submitted an anonymous report detailing the incidents. The report was instantly routed to an LSF-verified paralegal in her ward.
-                    </p>
-                    <p>
-                      Within 48 hours, the paralegal intervened. The harassment stopped, and Maria kept her job. She never had to step foot in a courtroom.
-                    </p>
-                  </div>
-                  <div className="mt-8 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl">M</div>
-                    <div>
-                      <p className="font-bold text-gray-900">Maria S.</p>
-                      <p className="text-sm text-gray-500">Dodoma, Tanzania</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="order-1 lg:order-2">
-                  <div className="aspect-square rounded-2xl overflow-hidden relative">
-                    <img
-                      src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800&fit=crop"
-                      alt="Empowered Woman"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-                      <div className="bg-white/20 backdrop-blur-md p-4 rounded-xl border border-white/30 text-white w-full">
-                        <p className="font-bold flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-green-400" />
-                          Case Resolved
-                        </p>
-                        <p className="text-xs opacity-80">Duration: 48 Hours</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="max-w-2xl">
+              <p className="text-sm font-bold uppercase tracking-[.18em] text-rose-800">Continue your journey</p>
+              <h2 id="continue-heading" className="mt-3 text-3xl font-black text-[#520a28] sm:text-4xl">Everything you need to follow up.</h2>
+              <p className="mt-3 text-slate-700">Sign in to see information connected to your account.</p>
+            </div>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {nextSteps.map(({ title, description, to, icon: Icon }) => (
+                <Link key={to} to={to} className="group rounded-2xl border border-slate-200 bg-[#fcf9f8] p-6 shadow-sm transition hover:border-rose-300 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-800">
+                  <Icon className="h-7 w-7 text-[#870b3a]" />
+                  <h3 className="mt-5 text-xl font-bold text-slate-950">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">{description}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#870b3a]">Open <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span>
+                </Link>
+              ))}
             </div>
           </Container>
         </section>
-      </div>
+
+        <section className="bg-[#520a28] py-12 text-white">
+          <Container className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div><h2 className="text-2xl font-bold">Not sure where to begin?</h2><p className="mt-2 text-rose-100">Saada can help you understand your options before you decide what to do.</p></div>
+            <Link to="/sara" className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-bold text-[#520a28] transition hover:bg-rose-50">Ask Saada <ArrowRight className="h-4 w-4" /></Link>
+          </Container>
+        </section>
+      </main>
     </Layout>
   );
-};
-
-export default HakiYangu;
+}

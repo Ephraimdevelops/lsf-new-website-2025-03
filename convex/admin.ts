@@ -1,6 +1,9 @@
 import { v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { paginationOptsValidator } from "convex/server";
+import type { Doc } from "./_generated/dataModel";
+import { mutation, query, type QueryCtx } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
+import { requireIndependentBaseRoleReview, requireRemainingAdministrator } from "./lib/baseRoleLifecycle";
 
 // Get dashboard analytics
 export const getAnalytics = query({
@@ -193,54 +196,215 @@ export const getUsers = query({
     },
 });
 
-export const getUsersWithAccess = query({
-    args: {},
-    handler: async (ctx) => {
+async function projectUsersWithAccess(ctx: QueryCtx, users: Doc<"users">[]) {
+    return await Promise.all(users.map(async (user) => {
+        const assignments = await ctx.db.query("role_assignments")
+            .withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active"))
+            .collect();
+        const pendingBaseRoleChange = await ctx.db.query("base_role_change_requests")
+            .withIndex("by_target_status", (q) => q.eq("targetUserId", user._id).eq("status", "pending")).first();
+        const projectedAssignments = await Promise.all(assignments.map(async (item) => {
+            const organizationId = item.organizationId ? ctx.db.normalizeId("justice_service_organizations", item.organizationId) : null;
+            const [organization, pendingRevocation] = await Promise.all([
+                organizationId ? ctx.db.get(organizationId) : null,
+                ctx.db.query("role_revocation_requests").withIndex("by_assignment_status", (q) => q.eq("assignmentId", item._id).eq("status", "pending")).first(),
+            ]);
+            return { id: item._id, role: item.role, organizationId: item.organizationId,
+                organizationName: organization?.name ?? null, grantedAt: item.grantedAt, pendingRevocation: !!pendingRevocation };
+        }));
+        return { _id: user._id, name: user.name, email: user.email, role: user.role,
+            roles: [...new Set([user.role, ...assignments.map((item) => item.role)])],
+            assignments: projectedAssignments,
+            pendingBaseRoleChange: !!pendingBaseRoleChange,
+            hasAssignments: assignments.some((item) => item.role !== "user"), isDeleted: user.isDeleted ?? false };
+    }));
+}
+
+export const listUsersWithAccessPage = query({
+    args: { paginationOpts: paginationOptsValidator },
+    handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin"]);
-        const users = await ctx.db.query("users").order("desc").take(300);
-        return await Promise.all(users.map(async (user) => {
-            const assignments = await ctx.db.query("role_assignments")
-                .withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active"))
-                .collect();
-            return { _id: user._id, name: user.name, email: user.email, role: user.role,
-                roles: [...new Set([user.role, ...assignments.map((item) => item.role)])],
-                hasAssignments: assignments.some((item) => item.role !== "user"), isDeleted: user.isDeleted ?? false };
+        const result = await ctx.db.query("users").order("desc").paginate(args.paginationOpts);
+        return { ...result, page: await projectUsersWithAccess(ctx, result.page) };
+    },
+});
+
+export const searchUsersWithAccess = query({
+    args: { search: v.string() },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+        const search = args.search.trim().toLowerCase().slice(0, 120);
+        if (search.length < 2) return [];
+        const [byName, byEmail] = await Promise.all([
+            ctx.db.query("users").withSearchIndex("search_name", (q) => q.search("name", search)).take(50),
+            ctx.db.query("users").withSearchIndex("search_email", (q) => q.search("email", search)).take(50),
+        ]);
+        const unique = [...new Map([...byName, ...byEmail].map((user) => [user._id, user])).values()];
+        return await projectUsersWithAccess(ctx, unique);
+    },
+});
+
+export const listOrganizationMembers = query({
+    args: { organizationId: v.id("justice_service_organizations") },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+        const relevant = await ctx.db.query("role_assignments").withIndex("by_organization", (q) => q.eq("organizationId", args.organizationId)).collect();
+        return await Promise.all(relevant.map(async (item) => {
+            const member = await ctx.db.get(item.userId);
+            return { id: item._id, name: member?.name ?? member?.email ?? "—", email: member?.email ?? "", role: item.role, status: item.status, grantedAt: item.grantedAt, revokedAt: item.revokedAt };
         }));
     },
 });
 
-// Role changes are limited to an authenticated administrator and written to the audit trail.
-// Admin and safeguarding grants need a separate multi-review workflow.
-export const updateUserRole = mutation({
-    args: {
-        userId: v.id("users"),
-        role: v.literal("user"),
+export const listRoleRevocations = query({
+    args: {},
+    handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+        const pending = await ctx.db.query("role_revocation_requests").withIndex("by_status", (q) => q.eq("status", "pending")).order("desc").collect();
+        return await Promise.all(pending.map(async (request) => {
+            const target = await ctx.db.get(request.targetUserId);
+            const assignment = await ctx.db.get(request.assignmentId);
+            return { ...request, targetName: target?.name ?? target?.email ?? "—", role: assignment?.role ?? "unknown", organizationId: assignment?.organizationId };
+        }));
     },
+});
+
+export const listRoleRevocationsPage = query({
+    args: { paginationOpts: paginationOptsValidator },
     handler: async (ctx, args) => {
-        const { user: actor } = await requireAnyRole(ctx, ["admin"]);
-        if (actor._id === args.userId) throw new Error("You cannot change your own role.");
-        const target = await ctx.db.get(args.userId);
-        if (!target || target.isDeleted) throw new Error("User is not available.");
-        const activeAssignments = await ctx.db.query("role_assignments")
-            .withIndex("by_user_status", (q) => q.eq("userId", args.userId).eq("status", "active"))
-            .collect();
-        if (activeAssignments.some((item) => item.role !== "user")) {
-            throw new Error("Assigned professional roles require a supervised change process.");
+        await requireAnyRole(ctx, ["admin"]);
+        const result = await ctx.db.query("role_revocation_requests")
+            .withIndex("by_status", (q) => q.eq("status", "pending")).order("desc").paginate(args.paginationOpts);
+        return { ...result, page: await Promise.all(result.page.map(async (request) => {
+            const [target, assignment] = await Promise.all([ctx.db.get(request.targetUserId), ctx.db.get(request.assignmentId)]);
+            return { ...request, targetName: target?.name ?? target?.email ?? "—", role: assignment?.role ?? "unknown", organizationId: assignment?.organizationId };
+        })) };
+    },
+});
+
+export const listBaseRoleChanges = query({
+    args: {},
+    handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin"]);
+        const requests = await ctx.db.query("base_role_change_requests").withIndex("by_status", (q) => q.eq("status", "pending")).order("desc").collect();
+        return await Promise.all(requests.map(async (request) => {
+            const target = await ctx.db.get(request.targetUserId);
+            return { ...request, targetName: target?.name || target?.email || "—", currentRole: target?.role ?? "unavailable" };
+        }));
+    },
+});
+
+export const listBaseRoleChangesPage = query({
+    args: { paginationOpts: paginationOptsValidator },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin"]);
+        const result = await ctx.db.query("base_role_change_requests")
+            .withIndex("by_status", (q) => q.eq("status", "pending")).order("desc").paginate(args.paginationOpts);
+        return { ...result, page: await Promise.all(result.page.map(async (request) => {
+            const target = await ctx.db.get(request.targetUserId);
+            return { ...request, targetName: target?.name || target?.email || "—", currentRole: target?.role ?? "unavailable" };
+        })) };
+    },
+});
+
+export const requestBaseRoleChange = mutation({
+    args: { targetUserId: v.id("users"), reason: v.string() },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["admin"]);
+        if (user._id === args.targetUserId) throw new Error("You cannot request removal of your own base role.");
+        const target = await ctx.db.get(args.targetUserId);
+        if (!target || target.isDeleted || target.role === "user") throw new Error("An active professional base role is required.");
+        const reason = args.reason.trim();
+        if (reason.length < 10 || reason.length > 2000) throw new Error("Record a 10–2000 character reason.");
+        const existing = await ctx.db.query("base_role_change_requests").withIndex("by_target_status", (q) => q.eq("targetUserId", args.targetUserId).eq("status", "pending")).first();
+        if (existing) throw new Error("This account already has a base-role review pending.");
+        const now = Date.now();
+        const id = await ctx.db.insert("base_role_change_requests", { targetUserId: target._id, previousRole: target.role, reason, status: "pending", requestedBy: user._id, requestedAt: now });
+        await ctx.db.insert("audit_logs", { action: "access.base_role_change_requested", entityType: "user", entityId: target._id, userId: user._id, timestamp: now, metadata: { previousRole: target.role, reason } });
+        return { id };
+    },
+});
+
+export const reviewBaseRoleChange = mutation({
+    args: { id: v.id("base_role_change_requests"), decision: v.union(v.literal("approved"), v.literal("rejected")), note: v.string() },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["admin"]);
+        const request = await ctx.db.get(args.id);
+        if (!request || request.status !== "pending") throw new Error("Pending base-role request not found.");
+        requireIndependentBaseRoleReview(request.requestedBy, user._id, request.targetUserId);
+        const note = args.note.trim();
+        if (note.length < 10 || note.length > 2000) throw new Error("Record a 10–2000 character review reason.");
+        const target = await ctx.db.get(request.targetUserId);
+        if (args.decision === "approved" && (!target || target.isDeleted || target.role !== request.previousRole)) throw new Error("The account's base role changed; review a fresh request.");
+        const now = Date.now();
+        if (args.decision === "approved" && target) {
+            if (request.previousRole === "admin") {
+                const baseAdmins = await ctx.db.query("users").withIndex("by_role", (q) => q.eq("role", "admin")).collect();
+                const assignedAdmins = await ctx.db.query("role_assignments").withIndex("by_role_status", (q) => q.eq("role", "admin").eq("status", "active")).collect();
+                const assignedUsers = await Promise.all(assignedAdmins.map((assignment) => ctx.db.get(assignment.userId)));
+                const activeAdminIds = [...baseAdmins, ...assignedUsers.filter((entry) => entry !== null)].filter((entry) => !entry.isDeleted).map((entry) => entry._id);
+                requireRemainingAdministrator(target._id, activeAdminIds);
+            }
+            const activeAssignments = await ctx.db.query("role_assignments").withIndex("by_user_status", (q) => q.eq("userId", target._id).eq("status", "active")).collect();
+            for (const assignment of activeAssignments.filter((item) => item.role === request.previousRole)) {
+                await ctx.db.patch(assignment._id, { status: "revoked", revokedAt: now });
+            }
+            if (request.previousRole === "paralegal") {
+                const applications = await ctx.db.query("paralegal_applications").withIndex("by_email", (q) => q.eq("email", target.email.toLowerCase())).collect();
+                for (const application of applications.filter((item) => item.status === "approved" || item.isVerified)) {
+                    await ctx.db.patch(application._id, { status: "rejected", isVerified: false, onboardingCompleted: false, availabilityStatus: "unavailable", reviewNotes: `Access withdrawn after independently reviewed base-role change ${request._id}.`, reviewedBy: user._id, reviewedAt: now });
+                }
+            }
+            await ctx.db.patch(target._id, { role: "user" });
         }
-        if (target.role === "admin" || target.role === "safeguarding_officer" || target.role === "paralegal") {
-            throw new Error("Sensitive roles require a separate supervised review.");
+        await ctx.db.patch(request._id, { status: args.decision, reviewedBy: user._id, reviewedAt: now, reviewNote: note });
+        await ctx.db.insert("audit_logs", { action: `access.base_role_change_${args.decision}`, entityType: "user", entityId: request.targetUserId, userId: user._id, timestamp: now, metadata: { previousRole: request.previousRole, newRole: args.decision === "approved" ? "user" : request.previousRole, reason: request.reason, reviewNote: note } });
+        return { success: true };
+    },
+});
+
+export const requestRoleRevocation = mutation({
+    args: { assignmentId: v.id("role_assignments"), reason: v.string() },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["admin"]);
+        const assignment = await ctx.db.get(args.assignmentId);
+        if (!assignment || assignment.status !== "active") throw new Error("Active assignment not found.");
+        if (assignment.userId === user._id) throw new Error("You cannot request removal of your own access.");
+        const target = await ctx.db.get(assignment.userId);
+        if (!target || target.isDeleted) throw new Error("Target account is unavailable.");
+        if (target.role === assignment.role) throw new Error("This role is also held as the account's base role and needs a separate account-level review.");
+        const activeSameRole = await ctx.db.query("role_assignments").withIndex("by_user_status", (q) => q.eq("userId", target._id).eq("status", "active")).collect();
+        if (activeSameRole.filter((item) => item.role === assignment.role).length > 1) throw new Error("This user has multiple active assignments for this role; review all assignments together.");
+        const reason = args.reason.trim();
+        if (reason.length < 10 || reason.length > 2000) throw new Error("Record a 10–2000 character reason.");
+        const prior = await ctx.db.query("role_revocation_requests").withIndex("by_assignment_status", (q) => q.eq("assignmentId", args.assignmentId).eq("status", "pending")).first();
+        if (prior) throw new Error("A revocation request is already pending for this role.");
+        const now = Date.now();
+        const id = await ctx.db.insert("role_revocation_requests", { assignmentId: args.assignmentId, targetUserId: target._id, reason, status: "pending", requestedBy: user._id, requestedAt: now });
+        await ctx.db.insert("audit_logs", { action: "access.revocation_requested", entityType: "role_assignment", entityId: args.assignmentId, userId: user._id, timestamp: now, metadata: { targetUserId: target._id, role: assignment.role, reason } });
+        return { id };
+    },
+});
+
+export const reviewRoleRevocation = mutation({
+    args: { id: v.id("role_revocation_requests"), decision: v.union(v.literal("approved"), v.literal("rejected")), note: v.string() },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["admin"]);
+        const request = await ctx.db.get(args.id);
+        if (!request || request.status !== "pending") throw new Error("Pending request not found.");
+        if (request.requestedBy === user._id || request.targetUserId === user._id) throw new Error("An independent administrator must review this request.");
+        const note = args.note.trim();
+        if (note.length < 10 || note.length > 2000) throw new Error("Record a 10–2000 character review reason.");
+        const assignment = await ctx.db.get(request.assignmentId);
+        if (args.decision === "approved" && (!assignment || assignment.status !== "active")) throw new Error("The role is no longer active.");
+        if (args.decision === "approved" && assignment) {
+            const target = await ctx.db.get(request.targetUserId);
+            if (!target || target.role === assignment.role) throw new Error("The target's current base role requires separate review.");
         }
-        if (target.role === args.role) return { success: true };
-        const previousRole = target.role;
-        await ctx.db.patch(args.userId, { role: args.role });
-        await ctx.db.insert("audit_logs", {
-            action: "user.role_changed",
-            entityType: "user",
-            entityId: args.userId,
-            userId: actor._id,
-            timestamp: Date.now(),
-            metadata: { previousRole, newRole: args.role },
-        });
+        const now = Date.now();
+        if (args.decision === "approved" && assignment) await ctx.db.patch(assignment._id, { status: "revoked", revokedAt: now });
+        await ctx.db.patch(request._id, { status: args.decision, reviewedBy: user._id, reviewedAt: now, reviewNote: note });
+        await ctx.db.insert("audit_logs", { action: `access.revocation_${args.decision}`, entityType: "role_assignment", entityId: request.assignmentId, userId: user._id, timestamp: now, metadata: { targetUserId: request.targetUserId, role: assignment?.role, note } });
         return { success: true };
     },
 });
@@ -249,9 +413,32 @@ export const listRoleAudit = query({
     args: {},
     handler: async (ctx) => {
         await requireAnyRole(ctx, ["admin"]);
-        return await ctx.db.query("audit_logs")
-            .withIndex("by_action", (q) => q.eq("action", "user.role_changed"))
-            .order("desc").take(50);
+        const actions = ["user.role_changed", "access.approved", "access.rejected", "access.revocation_requested", "access.revocation_approved", "access.revocation_rejected", "access.base_role_change_requested", "access.base_role_change_approved", "access.base_role_change_rejected"];
+        const groups = await Promise.all(actions.map((action) => ctx.db.query("audit_logs")
+            .withIndex("by_action", (q) => q.eq("action", action)).order("desc").take(50)));
+        const recent = groups.flat().sort((a, b) => b.timestamp - a.timestamp).slice(0, 50);
+        return await Promise.all(recent.map(async (row) => {
+            const metadata = (row.metadata ?? {}) as Record<string, unknown>;
+            const actorId = ctx.db.normalizeId("users", row.userId);
+            const actor = actorId ? await ctx.db.get(actorId) : await ctx.db.query("users").withIndex("by_clerk_id", (q) => q.eq("clerkId", row.userId)).first();
+            const fromMetadata = typeof metadata.targetUserId === "string" ? metadata.targetUserId : typeof metadata.applicantId === "string" ? metadata.applicantId : null;
+            let targetId = fromMetadata ? ctx.db.normalizeId("users", fromMetadata) : null;
+            if (!targetId && row.entityType === "user" && row.entityId) targetId = ctx.db.normalizeId("users", row.entityId);
+            if (!targetId && row.entityType === "access_request" && row.entityId) {
+                const requestId = ctx.db.normalizeId("access_requests", row.entityId);
+                const request = requestId ? await ctx.db.get(requestId) : null;
+                targetId = request?.userId ?? null;
+            }
+            if (!targetId && row.entityType === "role_assignment" && row.entityId) {
+                const assignmentId = ctx.db.normalizeId("role_assignments", row.entityId);
+                const assignment = assignmentId ? await ctx.db.get(assignmentId) : null;
+                targetId = assignment?.userId ?? null;
+            }
+            const target = targetId ? await ctx.db.get(targetId) : null;
+            const role = typeof metadata.role === "string" ? metadata.role : typeof metadata.previousRole === "string" ? metadata.previousRole : null;
+            return { _id: row._id, action: row.action, entityId: row.entityId, timestamp: row.timestamp,
+                actorName: actor?.name || actor?.email || null, targetName: target?.name || target?.email || null, role };
+        }));
     },
 });
 

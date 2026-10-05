@@ -1,0 +1,55 @@
+{
+  "status": "limited_identity_checks_not_case_law_approval",
+  "cases": [
+    {
+      "sourceId": "CASE-LAND-SETH-2024",
+      "documentTypeObserved": "full_judgment_candidate",
+      "topicObserved": "land",
+      "locator": "PDF p1 andp11",
+      "reviewNote": "Signed9December2024; delivered10December2024. Review personal-law and land-dispute reasoning, binding scope and later treatment.",
+      "fullReasonsReviewed": false,
+      "subsequentTreatmentReviewed": false,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-LAND-MABULA-2024",
+      "documentTypeObserved": "full_judgment_candidate",
+      "topicObserved": "family",
+      "locator": "PDF p1 andp16",
+      "reviewNote": "PC Matrimonial Appeal; signed6December2024, delivered10December2024. Relevant to divorce procedure and remedies; not a general land-title judgment.",
+      "fullReasonsReviewed": false,
+      "subsequentTreatmentReviewed": false,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-LABOUR-OATH-2022",
+      "documentTypeObserved": "full_judgment_candidate",
+      "topicObserved": "employment",
+      "locator": "PDF p1 andp9",
+      "reviewNote": "Signed13July2022, delivered14July2022. Read entire reasoning and retrial order; do not turn procedural outcome into a dismissal merits ruling.",
+      "fullReasonsReviewed": false,
+      "subsequentTreatmentReviewed": false,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-ESTATE-LONYAMALI",
+      "documentTypeObserved": "official_summary_only",
+      "topicObserved": "inheritance",
+      "locator": "Two-page OSG summary",
+      "reviewNote": "Full judgment, actual CA date and GN428/2025 temporal application not verified. Summary cannot substitute for binding reasons.",
+      "fullReasonsReviewed": false,
+      "subsequentTreatmentReviewed": false,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-INHERITANCE-LATIFA",
+      "documentTypeObserved": "official_summary_only",
+      "topicObserved": "inheritance",
+      "locator": "Two-page OSG summary",
+      "reviewNote": "Full judgment and delivered date missing. A struck-out appeal does not determine the merits of a disputed Muslim will.",
+      "fullReasonsReviewed": false,
+      "subsequentTreatmentReviewed": false,
+      "productionEligible": false
+    }
+  ]
+}

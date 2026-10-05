@@ -8,12 +8,14 @@ import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
+import { useAccountSync } from "../../src/useStoreUserEffect";
 import { colors, radius, spacing, type } from "../../src/theme";
 
 export default function MessagesScreen() {
   const { isSignedIn } = useAuth();
+  const { ready: accountReady } = useAccountSync();
   const { locale } = useLanguage();
-  const conversations = useQuery(api.caseManagement.myConversations, isSignedIn ? {} : "skip");
+  const conversations = useQuery(api.caseManagement.myConversations, isSignedIn && accountReady ? {} : "skip");
 
   return (
     <Screen>

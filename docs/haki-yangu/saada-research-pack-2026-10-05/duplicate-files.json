@@ -1,0 +1,16 @@
+[
+  {
+    "sha256": "9abb3196e38da5f3363d59102a995c8b9f1261012a9f6164451627781aeaf538",
+    "sourceIds": [
+      "CONSUMER-FAIR-COMPETITION",
+      "FCC-CURRENT-ACT"
+    ]
+  },
+  {
+    "sha256": "2da211dee0acf959131dfb38f568122ed2f0a4f741123f1ca9abae5449e8d30f",
+    "sourceIds": [
+      "FIN-BOT-GUIDELINES-EN",
+      "FIN-BOT-GUIDELINES-SW"
+    ]
+  }
+]

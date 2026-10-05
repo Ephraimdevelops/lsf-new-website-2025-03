@@ -1,0 +1,2329 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "Civil Procedure Amendment 2025",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "794e596e-17b3-4fab-a85b-476e52412c74",
+                "uuid": "794e596e-17b3-4fab-a85b-476e52412c74",
+                "name": "THE CIVIL PROCEDURE CODE (APPROVED FORMS) (AMENDMENT) NOTICE, 2022",
+                "handle": "123456789/1550",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "IBRAHIM, HAMIS JUMA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-05T07:11:55Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-05T07:11:55Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-05-22",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Notice may be cited as the Civil Procedure  (Approved Forms) (Amendment) Notice, 2022 and shall be read as one with the Civil Procedure (Approved Forms) Notice, 2017 hereinafter referred to as the \"principal Notice\".",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1550",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "GOVERNMENT NOTICE No. 355 ,2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE (APPROVED FORMS) (AMENDMENT) NOTICE, 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-05T08:52:21.934Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/794e596e-17b3-4fab-a85b-476e52412c74"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "78ef6af3-ddb5-4288-80eb-11212b581dc7",
+                "uuid": "78ef6af3-ddb5-4288-80eb-11212b581dc7",
+                "name": "JOVET TANZANIA LIMITED VERSUS BAVARIA N. V. CIVIL APPLICATION NO. 207 OF 2018",
+                "handle": "123456789/2554",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "KOROSSO. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "LEVIRA. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-10-13T11:10:38Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2014-09-04",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Ruling on the preliminary objection raised by the respondent in the appeal before the Court. In the appeal, the appellant is aggrieved by the decision of the High Court, Commercial Division at Dar es Salaam  Misc. Commercial Cause No. 183 of 2018 arising from Commercial Case No. 94 of 2018 and Misc. Commercial Application No. 171 of 2018.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/2554",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 207 OF 2018",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "JOVET TANZANIA LIMITED VERSUS BAVARIA N. V. CIVIL APPLICATION NO. 207 OF 2018",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-13T14:00:47.283326Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/78ef6af3-ddb5-4288-80eb-11212b581dc7"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "e07f948a-d04d-4dc8-bef0-e46fa6860f1a",
+                "uuid": "e07f948a-d04d-4dc8-bef0-e46fa6860f1a",
+                "name": "POWER ROADS TANZANIA LIMITED v. BANK OF AFRICA TANZANIA  LIMITED, CIVIL APPEAL NO. 429 OF 2020",
+                "handle": "123456789/1783",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "NDIKA, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "SEHEL, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "KHAMIS, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-26T08:24:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-26T08:24:48Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019-11-27",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held: (i) Parties are bound by their pleadings, and it is not open for a court to base its decision on an unpleaded issue. \r\n(ii) Issues for determination in a suit generally drizzle from the pleadings, and unless the pleadings are amended per the provisions of Order VI rule 17 of the Civil Procedure Code, the trial Court in accordance with Order XX rule 5 of the Civil Procedure Code, may only pronounce judgment on the issues arising from the pleadings or such issues as framed at the \r\ncommencement of trial. (iii) The function of pleadings is to give fair notice of the case to the opposite party so that he may prepare and direct his evidence on the issues recorded (iv) A Reporting person must strictly comply with the reporting requirements \r\nunder section 17(1) of the Anti-Money Laundering Act (AMLA), which prohibits carrying out any activity on a suspicious transaction before reporting it to the Financial Intelligence Unit (FIU). Any delay or unauthorized action taken before reporting may constitute non compliance with the law.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1783",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 429 OF 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "POWER ROADS TANZANIA LIMITED v. BANK OF AFRICA TANZANIA  LIMITED, CIVIL APPEAL NO. 429 OF 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-06-10T09:16:01.122Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e07f948a-d04d-4dc8-bef0-e46fa6860f1a"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6",
+                "uuid": "6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6",
+                "name": "THE CIVIL PROCEDURE CODE (AMENDMENT OF THE FIRST SCHEDULE RULES) G.N. 256 OF 2005",
+                "handle": "123456789/476",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHIEF JUSTICE, BARNABAS A. SAMATTA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-23T12:08:41Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-23T12:08:41Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2005-09-02",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "Subject to the provisions of this Code, all persons having an interest either in the mortgage, security or in the right of redemption shall be joined as parties to any suit relating to mortgage:",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Order XXXII of the principal is amended generally by revoking Rule 1 and replacing it.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "This Order may be cited as the Civil Procedure Code(Amendment of the First Schedule) order, 2005 and shall be read as one with the first schedule of the Civil Procedure Code Act, 1996 ( hereinafter referred to as the Principal Order)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/476",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. 256 OF 2005.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE (AMENDMENT OF THE FIRST SCHEDULE RULES) G.N. 256 OF 2005",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE ACT, 1966. (CAP.33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:59.187Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/6b1e8a45-44f4-49d2-a5cf-4e5ae35093a6"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3867fdce-ff00-47b4-a130-bf7fedfcbb2e",
+                "uuid": "3867fdce-ff00-47b4-a130-bf7fedfcbb2e",
+                "name": "PETER WEGESA CHACHA TIMASI & 3 others v. NORTH MARA GOLD  MINE, CIVIL APPEAL NO. 49 OF 2020",
+                "handle": "123456789/1742",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "GALEBA, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "KENTE, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-21T08:05:17Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-21T08:05:17Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2018-09-20",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This is an appeal from the Decision of the High Court of Tanzania in Land Case No. 16 of 2016 challenging the High Court’s dismissal order of the appellants' suit. In that quest, the appellants lodged a memorandum of appeal containing five grounds of appeal challenging the trial court decision for dismissing the whole suit on the ground that the same was incompetent for contravening the order of amendment of a plaint.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1742",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 49 OF 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "PETER WEGESA CHACHA TIMASI & 3 others v. NORTH MARA GOLD  MINE, CIVIL APPEAL NO. 49 OF 2020",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-06-16T07:00:31.596Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3867fdce-ff00-47b4-a130-bf7fedfcbb2e"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "325110ac-5faa-4873-ba47-cf916ae54e9a",
+                "uuid": "325110ac-5faa-4873-ba47-cf916ae54e9a",
+                "name": "THE CIVIL PROCEDURE CODE (APPROVED FORMS) (AMENDMENT) NOTICE, 2022 G.N 355 OF 2022",
+                "handle": "123456789/483",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHIEF JUSTICE, IBRAHIM HAMIS JUMA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-26T09:04:18Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-26T09:04:18Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-05-20",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "The full name of the witness, his place of residence and  if  he  is  making  the  statement  in  his professional,  or  occupational  capacity,  the  address at  which  he  works,  the  position  he  holds  and  the name of his firm or employer.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The principal Notice is amended by inserting between Form C/12 and Form D/1.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "This notice may be cited as the Civil Procedure (Approved Forms) (Amendment) Notice, 2022 and shall be read as one with the Civil Procedure (Approved Forms) Notice, 2017 hereinafter referred to as the \"principal Notice\".",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/483",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N 355 OF 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE (APPROVED FORMS) (AMENDMENT) NOTICE, 2022 G.N 355 OF 2022",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE ACT, (CAP. 33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:00:02.461Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/325110ac-5faa-4873-ba47-cf916ae54e9a"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "675e76cb-ce67-469a-87c6-8002f108e6ff",
+                "uuid": "675e76cb-ce67-469a-87c6-8002f108e6ff",
+                "name": "THE CIVIL PROCEDURE CODE (AMENDMENT OF THE FIRST SCHEDULE) RULES 2011 G.N 136 OF 2011.",
+                "handle": "123456789/477",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHIEF JUSTICE, MOHAMED C. OTHMAN",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AFFAIRS AND JUSTICE., HON. CELINA KOMBANI (MP)",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-26T09:00:54Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-26T09:00:54Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2011-04-01",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "Where  a  judge  has  vacated  office  after pronouncing judgement without signing the decree, the  Registrar,  Deputy  Registrar  or  the  District Registrar of the High Court shall sign the decree.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": ". This Order shall be deemed to apply to all judgments, decisions decrees and  orders  of the court delivered,  passed  or  issued  before  and after the coming into operation of this Order.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "This Order may be cited as the Civil Procedure Code(Amendment) order, 2011 and shall be read as one with the first schedule to the Civil Procedure Code, hereinafter referred to as the Principal Order.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/477",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. 136 OF 2011.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE (AMENDMENT OF THE FIRST SCHEDULE) RULES 2011 G.N 136 OF 2011.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE ACT, (CAP. 33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:49.529Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/675e76cb-ce67-469a-87c6-8002f108e6ff"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "520c4d45-ae6f-4475-b4e9-1d4e66822d99",
+                "uuid": "520c4d45-ae6f-4475-b4e9-1d4e66822d99",
+                "name": "THE CIVIL PROCEDURE CODE (AMENDMENT OF THE FIRST SCHEDULE)  RULES, 2021 G.N 761 OF 2021",
+                "handle": "123456789/482",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHIEF JUSTICE, IBRAHIM HAMIS JUMA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., PALAMAGAMBA J. A. M. KABUDI",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-26T09:03:50Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-26T09:03:50Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2021-10-22",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "The principal Schedule  is amended by deleting Order  XVIII and substituting for it.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The principal Schedule is amended in Order VIII rule  22(1)  by adding  the  phrase “and  determine  whether the  trial shall proceed orally or by witness statements and giving  appropriate  direction  in  that  behalf”  between  the word “trial” and a \"full stop.\"",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "These Rules may be cited as the Civil Procedure Code (Amendment of the First Schedule) Rules,2021 and shall be read as one with the First Schedule to the Civil Procedure Code, hereinafter referred to as the “principal Schedule.\"",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/482",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA,TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. 761 OF 2021.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE (AMENDMENT OF THE FIRST SCHEDULE)  RULES, 2021 G.N 761 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE ACT, (CAP. 33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:10.694Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/520c4d45-ae6f-4475-b4e9-1d4e66822d99"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "168fcf46-0378-4f33-bd1d-aec8aaca2537",
+                "uuid": "168fcf46-0378-4f33-bd1d-aec8aaca2537",
+                "name": "JAMES KABALO MAPALALA & 11 OTHERS v. THE  MINISTER OF THE STATE IN THE PRESIDENT OFFICE  RESPONSIBLE FOR REGIONAL AND LOCAL GOVERNMENT, MISCELANEOUS CIVIL CAUSE NO. 97 OF 2004",
+                "handle": "123456789/2794",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Mandia, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "Massati, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "Mihayo, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-12-23T09:03:43Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-12-23",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "On 5th October, 2004 the Petitioners herein who are heads of respective registered political parties filed in this Court a Constitutional Petition under Articles 5 (1), (2), (3), 13 (6) (a) and 21 (1) and (2) of the Constitution of the United Republic of Tanzania of 1977 as amended in 2000 and under S. 4 of the Basic Rights and Enforcement Act,994. That on the same day this petition was filed, three of the Petitioners herein, namely James Kabalo Mapalala, Ibrahim Haruna Lipumba, and James Francis Mbatia, filed a Chamber Application under a certificate of urgency. This Application was filed under Order 37 Rule 2 and Sections 68 (c) and 95 of the Civil Procedure Code, 1966, applied to this Court for three orders, namely: -",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/2794",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "HIGH COURT OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "MISCELANEOUS CIVIL CAUSE NO. 97 OF 2004",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "JAMES KABALO MAPALALA & 11 OTHERS v. THE  MINISTER OF THE STATE IN THE PRESIDENT OFFICE  RESPONSIBLE FOR REGIONAL AND LOCAL GOVERNMENT, MISCELANEOUS CIVIL CAUSE NO. 97 OF 2004",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-12-23T09:15:29.424286Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/168fcf46-0378-4f33-bd1d-aec8aaca2537"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "4f966f14-e673-4355-a608-be5a529d8e4b",
+                "uuid": "4f966f14-e673-4355-a608-be5a529d8e4b",
+                "name": "DOMINIC ISHENGOMA v. GEITA GOLD MINING LTD,  CIVIL REFERENCE NO. 8 OF 2023",
+                "handle": "123456789/1720",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Kwariko, M. A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "Levira, M. C",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "Ngwembe, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-17T12:26:41Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-17T12:26:41Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-12-08",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held: (i) The amendment of Section 5 of the Appellate Jurisdiction Act, through The Legal Sector Laws (Miscellaneous Amendment) Act No. 11 of 2023, removed the requirement for obtaining leave to appeal to the Court. (ii) The decision to grant an extension of time is at the discretion of the Court, as per Rule 10 of the Rules. (iii)  A reference under Rule 62(1)(b) can only address issues that were raised and considered by the Single Justice. (iv) Illegality can be grounds for seeking an extension of time, only if the alleged illegality must be apparent on the face of the record and not something discovered after a prolonged process",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1720",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL REFERENCE NO. 8 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "DOMINIC ISHENGOMA v. GEITA GOLD MINING LTD,  CIVIL REFERENCE NO. 8 OF 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-06-16T07:15:38.285Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/4f966f14-e673-4355-a608-be5a529d8e4b"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "bd4e7dea-8f4b-46d0-83de-d44960a10ba7",
+                "uuid": "bd4e7dea-8f4b-46d0-83de-d44960a10ba7",
+                "name": "THE CIVIL PROCEDURE CODE (AMENDMENT OF THE FIRST SCHEDULE)  RULES, 2019. G.N. 381 OF 2019.OF",
+                "handle": "123456789/479",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHIEF JUSTICE, IBRAHIM J. JUMA,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MINISTER FOR CONSTITUTIONAL AND LEGAL AFFAIRS., AUGUSTINE MAHIGA,",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-26T09:02:18Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-26T09:02:18Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019-05-10",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "Every suit shall be instituted by presenting a plaint electronically or manually to the court or such officer appointed in that behalf.” by deleting rule 3 and substituting for it the following-   Where a suit has been duly instituted it shall be assigned to a specific Judge or Magistrate  electronically or manually by the Judge or Magistrate in Charge of the court.”",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The principal Schedule is amended in Order IV by (a) deleting sub-rule (1) of rule and substituting for it.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "These Rules may be cited as the Civil Procedure Code(Amendment of the First Schedule)Rules,2019 and shall be read as one with the First Schedule to the Civil Procedure Code hereinafter referred to as principal “Schedule”.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/479",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. 381 OF 2019.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE (AMENDMENT OF THE FIRST SCHEDULE)  RULES, 2019. G.N. 381 OF 2019.OF",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE CIVIL PROCEDURE CODE ACT, 2019. (CAP.33)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:06:09.538Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/bd4e7dea-8f4b-46d0-83de-d44960a10ba7"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "f21c2575-899e-42af-9b0e-2960a1bdbfbd",
+                "uuid": "f21c2575-899e-42af-9b0e-2960a1bdbfbd",
+                "name": "AMY P. KIBATALA v. THE ATTORNEY GENERAL &  ANOTHER, MISCELLANEOUS CIVIL CAUSE NO. 37 OF 2015",
+                "handle": "123456789/2793",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "KIHIO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MUJULIZI, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "MWANDAMBO, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-12-23T08:58:37Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2025-12-23",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The Petitioner filed the present petition by way of Originating summons pursuant to the provisions of Sections 4, 5 and 6 (1) (a) and (b) of the Basic Rights and Duties Enforcement Act [Cap 3 R.E. 2002] \"Cap 3)\" and Articles 5, 18 (1), 21 (2) and 29 (2) of the Constitution of the United Republic of Tanzania, 1977 (as amended). The petition seeks two main reliefs, namely, interpretation of section 104 (1) of the National Elections Act, [Cap 343 R.E. 2002] (the Act), and a declaration that voters and/or interested Voters have a right to stay orderly beyond a distance of 200 metres from where voting/tallying is taking place without breaking the law. In compliance with Rule 4 of the Basic Rights and Duties Enforcement (Practice and Procedure) Rules, 2014, the petition is supported by an affidavit sworn by the Petitioner.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/2793",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "HIGH COURT OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "MISCELLANEOUS CIVIL CAUSE NO. 37 OF 2015",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "AMY P. KIBATALA v. THE ATTORNEY GENERAL &  ANOTHER, MISCELLANEOUS CIVIL CAUSE NO. 37 OF 2015",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-12-23T09:00:52.527634Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/f21c2575-899e-42af-9b0e-2960a1bdbfbd"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 40,
+        "totalElements": 475
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%20Procedure%20Amendment%202025&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%20Procedure%20Amendment%202025&page=39&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%20Procedure%20Amendment%202025&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Civil%20Procedure%20Amendment%202025&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=Civil%20Procedure%20Amendment%202025&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 110,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 24,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "CLERK OF THE NATIONAL ASSEMBLY, THOMAS D. KASHILILAH.",
+              "count": 17,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.author=CLERK%20OF%20THE%20NATIONAL%20ASSEMBLY,%20THOMAS%20D.%20KASHILILAH.,equals"
+                }
+              }
+            },
+            {
+              "label": "JAMHURI YA MUUNGANO WA TANZANIA",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.author=JAMHURI%20YA%20MUUNGANO%20WA%20TANZANIA,equals"
+                }
+              }
+            },
+            {
+              "label": "ATTORNEY GENERAL, ELIEZER MBUKI FELESHI,",
+              "count": 9,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.author=ATTORNEY%20GENERAL,%20ELIEZER%20MBUKI%20FELESHI,,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Civil%20Procedure%20Amendment%202025&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=Civil%20Procedure%20Amendment%202025&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "DAR ES SALAAM.",
+              "count": 79,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.subject=DAR%20ES%20SALAAM.,equals"
+                }
+              }
+            },
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 24,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "DAR ES SALAAM",
+              "count": 21,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.subject=DAR%20ES%20SALAAM,equals"
+                }
+              }
+            },
+            {
+              "label": "MWANZA.",
+              "count": 10,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.subject=MWANZA.,equals"
+                }
+              }
+            },
+            {
+              "label": "ARUSHA.",
+              "count": 4,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.subject=ARUSHA.,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=Civil%20Procedure%20Amendment%202025&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "1960 - 1979",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.dateIssued=%5B1960%20TO%201979%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2000 - 2019",
+              "count": 136,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 337,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=Civil%20Procedure%20Amendment%202025&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 475,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=Civil%20Procedure%20Amendment%202025"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=Civil%20Procedure%20Amendment%202025&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 475,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=Civil%2520Procedure%2520Amendment%25202025&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,6 +1,8 @@
 import { mutation, query, internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
+import { paginationOptsValidator } from "convex/server";
 import { requireAnyRole } from "./lib/auth";
+import { requireReadySourceForApproval } from "./lib/saadaSourceLifecycle";
 
 // Generate upload URL for PDF files
 export const generateUploadUrl = mutation(async (ctx) => {
@@ -24,9 +26,28 @@ export const createDocument = internalMutation({
         versionLabel: v.string(),
         effectiveDate: v.optional(v.string()),
         reviewDueAt: v.number(),
+        replacesDocumentId: v.optional(v.id("documents")),
     },
     handler: async (ctx, args) => {
-        return await ctx.db.insert("documents", {
+        // A storage reference is the retry identity. Claim it atomically so two
+        // ingestion actions cannot create and index separate copies of one upload.
+        const existing = await ctx.db.query("documents")
+            .withIndex("by_storageId", (q) => q.eq("storageId", args.storageId)).first();
+        if (existing) {
+            const fields = ["title", "uploadedByClerkId", "sourceUrl", "publisher", "jurisdiction", "language", "contentCategory", "versionLabel", "effectiveDate", "reviewDueAt", "replacesDocumentId", "type"] as const;
+            if (fields.some((field) => existing[field] !== args[field])) throw new Error("An ingestion retry must match the original uploader and source metadata.");
+            if (existing.approvalStatus === "withdrawn" || existing.approvalStatus === "rejected") throw new Error("This source was withdrawn or rejected. Upload a corrected source for review.");
+            return { documentId: existing._id, created: false, indexingStatus: existing.indexingStatus };
+        }
+        if (args.replacesDocumentId) {
+            const previous = await ctx.db.get(args.replacesDocumentId);
+            if (!previous || previous.approvalStatus !== "approved") throw new Error("Only an approved source may be replaced.");
+            const pending = await ctx.db.query("documents")
+                .withIndex("by_replaces_approval", (q) => q.eq("replacesDocumentId", previous._id).eq("approvalStatus", "pending"))
+                .first();
+            if (pending) throw new Error("A replacement is already awaiting review.");
+        }
+        const documentId = await ctx.db.insert("documents", {
             title: args.title,
             text: args.text,
             storageId: args.storageId,
@@ -40,16 +61,51 @@ export const createDocument = internalMutation({
             versionLabel: args.versionLabel,
             effectiveDate: args.effectiveDate,
             reviewDueAt: args.reviewDueAt,
+            replacesDocumentId: args.replacesDocumentId,
             approvalStatus: "pending",
+            indexingStatus: "processing",
             uploadedAt: Date.now(),
         });
+        return { documentId, created: true, indexingStatus: "processing" as const };
     },
 });
 
 export const markDocumentProcessed = internalMutation({
     args: { id: v.id("documents") },
     handler: async (ctx, args) => {
-        await ctx.db.patch(args.id, { processedAt: Date.now() });
+        const doc = await ctx.db.get(args.id);
+        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "processing") throw new Error("This source is no longer being indexed.");
+        const firstChunk = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).first();
+        if (!firstChunk) throw new Error("No searchable content was indexed.");
+        await ctx.db.patch(args.id, { processedAt: Date.now(), indexingStatus: "ready", indexingError: undefined });
+    },
+});
+
+export const markDocumentIndexFailed = internalMutation({
+    args: { id: v.id("documents"), error: v.string() },
+    handler: async (ctx, args) => {
+        const doc = await ctx.db.get(args.id);
+        if (doc && doc.approvalStatus === "pending") await ctx.db.patch(args.id, { indexingStatus: "failed", indexingError: args.error.slice(0, 500) });
+    },
+});
+
+export const getDocumentForReindex = internalQuery({
+    args: { id: v.id("documents") },
+    handler: async (ctx, args) => {
+        const doc = await ctx.db.get(args.id);
+        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "failed") throw new Error("Only failed, pending sources can be reindexed.");
+        return { text: doc.text ?? "" };
+    },
+});
+
+export const beginDocumentReindex = internalMutation({
+    args: { id: v.id("documents") },
+    handler: async (ctx, args) => {
+        const doc = await ctx.db.get(args.id);
+        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "failed") throw new Error("Source is no longer eligible for retry.");
+        const chunks = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).collect();
+        for (const chunk of chunks) await ctx.db.delete(chunk._id);
+        await ctx.db.patch(args.id, { indexingStatus: "processing", indexingError: undefined, processedAt: undefined });
     },
 });
 
@@ -66,6 +122,8 @@ export const addEmbeddings = internalMutation({
         ),
     },
     handler: async (ctx, args) => {
+        const doc = await ctx.db.get(args.documentId);
+        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "processing") throw new Error("This source is no longer being indexed.");
         for (const chunk of args.chunks) {
             await ctx.db.insert("embeddings", {
                 documentId: args.documentId,
@@ -165,20 +223,72 @@ export const getDocuments = query({
     },
 });
 
+export const listDocumentsPage = query({
+    args: { paginationOpts: paginationOptsValidator, status: v.union(v.literal("pending"), v.literal("approved"), v.literal("due"), v.literal("history")) },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+        const page = args.status === "due"
+            ? await ctx.db.query("documents").withIndex("by_approval_review_due", (q) => q.eq("approvalStatus", "approved").lte("reviewDueAt", Date.now() + 30 * 24 * 60 * 60 * 1000)).order("asc").paginate(args.paginationOpts)
+            : args.status === "history"
+            ? await ctx.db.query("documents").filter((q) => q.or(q.eq(q.field("approvalStatus"), "rejected"), q.eq(q.field("approvalStatus"), "withdrawn"), q.eq(q.field("approvalStatus"), undefined))).order("desc").paginate(args.paginationOpts)
+            : await ctx.db.query("documents").withIndex("by_approval_status", (q) => q.eq("approvalStatus", args.status === "pending" ? "pending" : "approved")).order("desc").paginate(args.paginationOpts);
+        return { ...page, page: await Promise.all(page.page.map(async ({ text, ...document }) => ({ ...document, sourcePdfUrl: await ctx.storage.getUrl(document.storageId) }))) };
+    },
+});
+
+export const getDocumentForReview = query({
+    args: { id: v.id("documents") },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+        const document = await ctx.db.get(args.id);
+        if (!document) return null;
+        const previous = document.replacesDocumentId ? await ctx.db.get(document.replacesDocumentId) : null;
+        const { text: _text, ...doc } = document;
+        if (!previous) return { doc: { ...doc, sourcePdfUrl: await ctx.storage.getUrl(doc.storageId) }, previous: null };
+        const { text: _previousText, ...prior } = previous;
+        return { doc: { ...doc, sourcePdfUrl: await ctx.storage.getUrl(doc.storageId) }, previous: { ...prior, sourcePdfUrl: await ctx.storage.getUrl(prior.storageId) } };
+    },
+});
+
+export const listSourceEvidence = query({
+    args: {},
+    handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+        const events = await ctx.db.query("saada_activity_events").withIndex("by_type_time", (q) => q.eq("type", "completed")).order("desc").take(50);
+        return await Promise.all(events.map(async (event) => {
+            const metadata = event.metadata as { sourceIds?: unknown; highConfidenceResultCount?: unknown } | undefined;
+            const ids = Array.isArray(metadata?.sourceIds) ? metadata.sourceIds.filter((id: unknown): id is string => typeof id === "string").slice(0, 5) : [];
+            const sources = await Promise.all(ids.map(async (id) => {
+                const normalized = ctx.db.normalizeId("documents", id);
+                const doc = normalized ? await ctx.db.get(normalized) : null;
+                return doc ? { id: doc._id, title: doc.title, version: doc.versionLabel ?? "—", status: doc.approvalStatus ?? "unreviewed" } : null;
+            }));
+            return { id: event._id, requestId: event.requestId, createdAt: event.createdAt, source: event.source, highConfidenceResultCount: typeof metadata?.highConfidenceResultCount === "number" ? metadata.highConfidenceResultCount : 0, sources: sources.filter((item) => item !== null) };
+        }));
+    },
+});
+
 export const reviewDocument = mutation({
     args: { id: v.id("documents"), decision: v.union(v.literal("approved"), v.literal("rejected")), note: v.string() },
     handler: async (ctx, args) => {
         const { user, identity } = await requireAnyRole(ctx, ["admin"]);
         const doc = await ctx.db.get(args.id);
         if (!doc) throw new Error("Document not found");
+        if (doc.approvalStatus !== "pending") throw new Error("Only a pending source can be reviewed. Upload a new version for replacement.");
         if (doc.uploadedByClerkId === identity.subject) throw new Error("A different administrator must review this source.");
-        if (doc.approvalStatus === args.decision) return { success: true };
-        if (args.decision === "approved" && !doc.processedAt) throw new Error("Document indexing must finish before approval.");
-        if (args.decision === "approved" && (!doc.publisher || !doc.jurisdiction || !doc.language || !doc.contentCategory || !doc.versionLabel || !doc.reviewDueAt)) throw new Error("Complete source provenance and review metadata before approval.");
-        if (args.decision === "approved" && doc.reviewDueAt! <= Date.now()) throw new Error("Review due date must be in the future.");
+        if (args.decision === "approved") {
+            const indexedChunk = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).first();
+            requireReadySourceForApproval(doc, Boolean(indexedChunk), Date.now());
+        }
         const note = args.note.trim();
         if (note.length < 10 || note.length > 2000) throw new Error("Record a 10–2000 character review reason.");
         const now = Date.now();
+        if (args.decision === "approved" && doc.replacesDocumentId) {
+            const previous = await ctx.db.get(doc.replacesDocumentId);
+            if (!previous || previous.approvalStatus !== "approved") throw new Error("The previous source is no longer approved.");
+            await ctx.db.patch(previous._id, { approvalStatus: "withdrawn", reviewNote: `Replaced by ${doc.versionLabel ?? "new version"}`, reviewedBy: user._id, lastReviewedAt: now });
+            await ctx.db.insert("audit_logs", { action: "saada.document_superseded", entityType: "document", entityId: previous._id, userId: user._id, timestamp: now, metadata: { replacementId: doc._id } });
+        }
         await ctx.db.patch(doc._id, { approvalStatus: args.decision, reviewedBy: user._id, reviewNote: note, lastReviewedAt: now, approvedAt: args.decision === "approved" ? now : undefined });
         await ctx.db.insert("audit_logs", { action: `saada.document_${args.decision}`, entityType: "document", entityId: doc._id, userId: user._id, timestamp: now, metadata: { title: doc.title, previousStatus: doc.approvalStatus ?? "legacy_unreviewed" } });
         return { success: true };
@@ -193,9 +303,25 @@ export const getApprovedChunkIds = internalQuery({
             const chunk = await ctx.db.get(id);
             if (!chunk) continue;
             const document = await ctx.db.get(chunk.documentId);
-            if (document?.approvalStatus === "approved") allowed.push(id);
+            if (document?.approvalStatus === "approved" && document.reviewDueAt && document.reviewDueAt > Date.now()) allowed.push(id);
         }
         return allowed;
+    },
+});
+
+export const withdrawDocument = mutation({
+    args: { id: v.id("documents"), reason: v.string() },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["admin"]);
+        const doc = await ctx.db.get(args.id);
+        if (!doc) throw new Error("Document not found.");
+        if (doc.approvalStatus !== "approved") throw new Error("Only approved sources can be withdrawn.");
+        const reason = args.reason.trim();
+        if (reason.length < 10 || reason.length > 2000) throw new Error("Record a 10–2000 character withdrawal reason.");
+        const now = Date.now();
+        await ctx.db.patch(args.id, { approvalStatus: "withdrawn", reviewNote: reason, reviewedBy: user._id, lastReviewedAt: now });
+        await ctx.db.insert("audit_logs", { action: "saada.document_withdrawn", entityType: "document", entityId: args.id, userId: user._id, timestamp: now, metadata: { title: doc.title, reason } });
+        return { success: true };
     },
 });
 
@@ -203,10 +329,12 @@ export const getApprovedChunkIds = internalQuery({
 export const deleteDocument = mutation({
     args: { id: v.id("documents") },
     handler: async (ctx, args) => {
-        await requireAnyRole(ctx, ["admin"]);
+        const { user } = await requireAnyRole(ctx, ["admin"]);
 
         const doc = await ctx.db.get(args.id);
         if (!doc) throw new Error("Document not found");
+        if (doc.approvalStatus === "approved" || doc.approvalStatus === "withdrawn") throw new Error("Approved or withdrawn sources are retained for audit. Withdraw an approved source from answers instead.");
+        if (doc.approvalStatus === "pending" && doc.indexingStatus === "processing") throw new Error("Wait for indexing to finish before removing this source.");
 
         // 1. Delete Embeddings
         const embeddings = await ctx.db
@@ -225,6 +353,7 @@ export const deleteDocument = mutation({
 
         // 3. Delete Document Record
         await ctx.db.delete(args.id);
+        await ctx.db.insert("audit_logs", { action: "saada.document_deleted", entityType: "document", entityId: args.id, userId: user._id, timestamp: Date.now(), metadata: { title: doc.title, previousStatus: doc.approvalStatus ?? "unreviewed" } });
     },
 });
 
@@ -239,6 +368,7 @@ export const getChunks = internalQuery({
             const chunk = await ctx.db.get(id);
             if (chunk) {
                 const document = await ctx.db.get(chunk.documentId);
+                if (document?.approvalStatus !== "approved" || !document.reviewDueAt || document.reviewDueAt <= Date.now()) continue;
                 chunks.push({ ...chunk, sourceTitle: document?.title ?? "Approved LSF source", sourceUrl: document?.sourceUrl, publisher: document?.publisher, versionLabel: document?.versionLabel, effectiveDate: document?.effectiveDate, jurisdiction: document?.jurisdiction });
             }
         }

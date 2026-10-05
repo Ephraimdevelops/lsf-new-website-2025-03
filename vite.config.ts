@@ -40,6 +40,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     optimizeDeps: {
+      // Research HTML is evidence, not an application entry point.
+      entries: ['index.html'],
       exclude: ['@rollup/rollup-linux-x64-gnu'],
       force: true
     },

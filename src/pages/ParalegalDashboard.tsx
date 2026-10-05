@@ -20,7 +20,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../../convex/_generated/api";
 import type { Id } from "../../convex/_generated/dataModel";
 import { Button } from "@/components/ui/button";
@@ -129,7 +129,14 @@ function StatusPill({ value, urgent = false }: { value: string; urgent?: boolean
 const ParalegalDashboard = () => {
   const { signOut } = useAuth();
   const { user } = useUser();
-  const [tab, setTab] = useState<ProviderTab>("inbox");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedTab = searchParams.get("tab");
+  const tab: ProviderTab = requestedTab === "cases" || requestedTab === "referrals" ? requestedTab : "inbox";
+  const setTab = (next: ProviderTab) => setSearchParams((current) => {
+    const updated = new URLSearchParams(current);
+    updated.set("tab", next);
+    return updated;
+  });
   const [caseTab, setCaseTab] = useState<CaseSubTab>("timeline");
   const [selectedCaseId, setSelectedCaseId] = useState<Id<"cases"> | null>(null);
   const [declineReason, setDeclineReason] = useState("");
@@ -173,10 +180,21 @@ const ParalegalDashboard = () => {
   const createOnwardReferral = useMutation(api.referrals.createOnwardReferral);
 
   useEffect(() => {
-    if (!selectedCaseId && cases && cases.length > 0 && tab === "cases") {
-      setSelectedCaseId(cases[0]._id);
-    }
-  }, [cases, selectedCaseId, tab]);
+    if (!cases || tab !== "cases") return;
+    const linkedCase = cases.find((item) => item._id === searchParams.get("case"));
+    if ((linkedCase?._id ?? null) !== selectedCaseId) setSelectedCaseId(linkedCase?._id ?? null);
+  }, [cases, selectedCaseId, searchParams, tab]);
+
+  const selectCase = (caseId: Id<"cases"> | null) => {
+    setSelectedCaseId(caseId);
+    setSearchParams((current) => {
+      const updated = new URLSearchParams(current);
+      updated.set("tab", "cases");
+      if (caseId) updated.set("case", caseId);
+      else updated.delete("case");
+      return updated;
+    });
+  };
 
   async function run(action: () => Promise<void>) {
     setPending(true);
@@ -194,7 +212,7 @@ const ParalegalDashboard = () => {
     void run(async () => {
       await respondToAssignment({ assignmentId: item.assignment._id, response: "accepted" });
       if (item.case) {
-        setSelectedCaseId(item.case._id);
+        selectCase(item.case._id);
         setCaseTab("timeline");
         setTab("cases");
       }
@@ -400,6 +418,9 @@ const ParalegalDashboard = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Link to="/notifications" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Updates</Link>
+            {access?.roles.includes("paralegal") && <Link to="/dashboard/paralegal/learning" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Learning</Link>}
+            <Link to="/dashboard/provider/organisation" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">My organisation</Link>
             <Link to="/" className="hidden rounded-lg px-3 py-2 text-sm font-semibold text-neutral-600 hover:bg-neutral-100 sm:block">
               Public website
             </Link>
@@ -431,7 +452,7 @@ const ParalegalDashboard = () => {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {paralegal && <ParalegalProfileEdit paralegal={paralegal} />}
-            <div className="inline-flex rounded-xl border bg-white p-1 shadow-sm">
+            <nav aria-label="Provider work areas" className="inline-flex rounded-xl border bg-white p-1 shadow-sm">
               <button onClick={() => setTab("inbox")} className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "inbox" ? "bg-primary text-white" : "text-neutral-600"}`}>
                 Inbox
               </button>
@@ -441,16 +462,16 @@ const ParalegalDashboard = () => {
               <button onClick={() => setTab("referrals")} className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "referrals" ? "bg-primary text-white" : "text-neutral-600"}`}>
                 Referrals
               </button>
-            </div>
+            </nav>
           </div>
         </div>
 
         <section className="mb-6 grid gap-3 sm:grid-cols-5">
-          <Metric icon={<Inbox className="h-5 w-5" />} value={openAssignments} label="Assignment offers" tone="primary" />
-          <Metric icon={<ChevronRight className="h-5 w-5" />} value={openReferrals} label="Referral inbox" tone="orange" />
-          <Metric icon={<BriefcaseBusiness className="h-5 w-5" />} value={activeCases} label="Active cases" tone="teal" />
-          <Metric icon={<FileText className="h-5 w-5" />} value={pendingDocuments} label="Documents to review" tone="primary" />
-          <Metric icon={<CalendarClock className="h-5 w-5" />} value={appointments.length} label="Selected case appointments" tone="orange" />
+          <Metric icon={<Inbox className="h-5 w-5" />} value={openAssignments} label="Assignment offers" tone="primary" onClick={() => setTab("inbox")} />
+          <Metric icon={<ChevronRight className="h-5 w-5" />} value={openReferrals} label="Referral inbox" tone="orange" onClick={() => setTab("referrals")} />
+          <Metric icon={<BriefcaseBusiness className="h-5 w-5" />} value={activeCases} label="Active cases" tone="teal" onClick={() => setTab("cases")} />
+          <Metric icon={<FileText className="h-5 w-5" />} value={pendingDocuments} label="Documents to review" tone="primary" onClick={() => { setTab("cases"); setCaseTab("documents"); }} />
+          <Metric icon={<CalendarClock className="h-5 w-5" />} value={appointments.length} label="Selected case appointments" tone="orange" onClick={() => { setTab("cases"); setCaseTab("appointments"); }} />
         </section>
 
         {notice && (
@@ -669,7 +690,7 @@ const ParalegalDashboard = () => {
                   </div>
                 )}
                 {cases?.map((record) => (
-                  <button key={record._id} onClick={() => { setSelectedCaseId(record._id); setCaseTab("timeline"); }} className="w-full border-b p-4 text-left hover:bg-[#fbf7f8] focus-visible:bg-[#fbf7f8]">
+                  <button key={record._id} onClick={() => { selectCase(record._id); setCaseTab("timeline"); }} className="w-full border-b p-4 text-left hover:bg-[#fbf7f8] focus-visible:bg-[#fbf7f8]">
                     <div className="mb-2 flex items-center justify-between gap-2">
                       <span className="font-heading text-sm font-bold">{record.publicId}</span>
                       <StatusPill value={record.status} urgent={record.priority !== "standard"} />
@@ -693,7 +714,7 @@ const ParalegalDashboard = () => {
                 </div>
               ) : (
                 <div className="p-4 sm:p-7">
-                  <button onClick={() => setSelectedCaseId(null)} className="mb-5 flex items-center gap-2 text-sm font-bold text-primary lg:hidden">
+                  <button onClick={() => selectCase(null)} className="mb-5 flex items-center gap-2 text-sm font-bold text-primary lg:hidden">
                     <ArrowLeft className="h-4 w-4" />
                     Back to cases
                   </button>
@@ -946,14 +967,14 @@ const ParalegalDashboard = () => {
   );
 };
 
-function Metric({ icon, value, label, tone }: { icon: React.ReactNode; value: number; label: string; tone: "primary" | "teal" | "orange" }) {
+function Metric({ icon, value, label, tone, onClick }: { icon: React.ReactNode; value: number; label: string; tone: "primary" | "teal" | "orange"; onClick: () => void }) {
   const toneClass = tone === "primary" ? "bg-primary/10 text-primary" : tone === "teal" ? "bg-teal-100 text-teal-700" : "bg-orange-100 text-orange-700";
   return (
-    <div className="rounded-2xl border bg-white p-4">
+    <button type="button" onClick={onClick} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
       <div className={`mb-3 flex h-9 w-9 items-center justify-center rounded-xl ${toneClass}`}>{icon}</div>
       <p className="mb-1 text-2xl font-bold">{value}</p>
       <p className="mb-0 text-sm text-neutral-500">{label}</p>
-    </div>
+    </button>
   );
 }
 

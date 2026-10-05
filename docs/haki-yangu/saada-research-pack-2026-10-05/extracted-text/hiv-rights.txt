@@ -1,0 +1,1351 @@
+[PDF PAGE 1]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+77
+CHAPTER 431
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT
+[PRINCIPAL LEGISLATION]
+Arrangement of Sections
+Section Title 
+part i
+PRELIMINARY PROVISIONS
+1. Short title. 
+2. Application. 
+3. Interpretation. 
+part ii
+GENERAL DUTIES
+4. General duties. 
+5. Ministry to promote safety measures and precautions. 
+6. Roles of sectors. 
+part iii
+PUBLIC EDUCATION AND PROGRAMMES ON HIV AND AIDS
+7. Public education and programmes on HIV and AIDS. 
+8. Dissemination of HIV and AIDS information. 
+9. HIV and AIDS education in work place.  
+10. Training of health practitioners. 
+11. Donation of tissues, organs, blood or blood products. 
+12. Surgical, dental and similar procedures. 
+part iv
+TESTING AND COUNSELLING
+13. HIV testing. 
+14. Counselling. 
+15. Prohibition of compulsory HIV testing.  
+16. Test results. 
+17. HIV self-testing. 
+18. Responsibilities of person providing or distributing self testing kits. 
+
+[PDF PAGE 2]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+78
+19. Quality and standards of self-testing kits. 
+20. Methods of self-testing. 
+21. Offences under this Part. 
+part v
+CONFIDENTIALITY
+22. Medical confidentiality. 
+23. Exceptions to confidentiality. 
+part vi
+HEALTH AND SUPPORT SERVICES
+24. Basic health services to persons living with HIV . 
+25. Programmes on survival, life skills and palliative services. 
+26. Prevention of transmission. 
+27. Prevention and control of STIs. 
+28. Condoms. 
+29. Access to health care facility. 
+30. Prevention of transmission from mother to child. 
+31. Post exposure prophylaxis. 
+32. Misleading information or statement. 
+part vii
+STIGMA AND DISCRIMINATION
+33. Prohibition of discriminatory laws, policies and practices. 
+34. Restriction of health practitioners to stigmatise or discriminate. 
+35. Prohibition of other forms of discrimination. 
+36. Prohibition of stigma and discrimination. 
+37. Offences relating to stigma and discrimination. 
+part viii
+RIGHTS AND OBLIGATIONS OF PERSONS LIVING WITH HIV
+38. Rights and obligations of persons living with HIV , orphans, etc. 
+39. Access to education and basic health care services. 
+40. Prohibition of misuse of aid by NGOs, FBOs, CBOs, public institutions  
+and private organisations. 
+
+[PDF PAGE 3]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+79
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+part ix
+ESTABLISHMENT OF RESEARCH COMMITTEE
+41. National HIV and AIDS Research Fellowship Committee. 
+42. Functions of Committee. 
+43. Ethics clearance. 
+44. Research by international teams. 
+45. Research monitoring. 
+46. Vaccine trials and research on persons. 
+47. Dissemination of research findings. 
+part x
+MONITORING AND EV ALUATION
+48. Monitoring. 
+49. Reporting by health care facility. 
+50. Diagnoses and reporting. 
+part xi
+OFFENCES AND PENALTIES
+51. Offences relating to breach of confidentiality. 
+52. Offences relating to spreading HIV . 
+53. Offences relating to breach of safe practices leading to spreading HIV . 
+54. Penalty for offence relating to obstruction. 
+55. General penalty. 
+part xii
+MISCELLANEOUS PROVISIONS
+56. Complaints. 
+57. Regulations. 
+58. Prohibition of compulsion. 
+59. Amendment of Schedule. 
+SCHEDULE
+
+[PDF PAGE 4]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+80
+PART I
+PRELIMINARY PROVISIONS
+1. This Act may be cited as the HIV and AIDS (Prevention and 
+Control) Act.
+2. This Act shall apply to Mainland Tanzania.
+3. In this Act, unless the context otherwise requires-
+“ AIDS” means Acquired Immuno-Deficiency Syndrome, 
+which is a condition characterised by a combination of 
+signs and symptoms, caused by HIV which attacks and 
+weakens the body’s immune system, making the afflicted 
+individual susceptible to other life-threatening infections;
+“ AIDS Committee” has the meaning ascribed to it under the 
+Tanzania Commission for AIDS Act;
+“ ARVs” means Anti Retroviral Drugs;
+“CBO” means a Community Based Organisation;
+“child” for the purposes of HIV testing under this Act, means 
+a person below the age of fifteen;
+Short title
+Application
+Interpretation
+Act No.
+14 of 2019 ss. 14 
+and 15
+Cap. 379
+CHAPTER 431
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT
+An Act to provide for prevention, treatment, care, support and control 
+of HIV and AIDS, for promotion of public health in relation to HIV 
+and AIDS; to provide for appropriate treatment, care and support using 
+available resources to people living with or at risk of HIV and AIDS and 
+to provide for related matters.
+[1st January, 2009]
+[GN. No. 394 of 2008]
+Acts Nos.
+2 of 2008
+14 of 2019
+
+[PDF PAGE 5]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+81
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+“Committee” means the National HIV and AIDS Research 
+Fellowship Committee established under section 41;
+“COSTECH” means Commission for Science and Technology 
+established by the Tanzania Commission for Science and 
+Technology Act;
+“court” means the High Court and courts subordinate 
+thereto with exception to primary court;
+“FBO” means a Faith Based Organisation;
+“heath practitioner” means any person trained to care for 
+patients;
+“HIV negative” means absence of HIV or HIV antibodies 
+upon HIV testing;
+“HIV positive” means presence of HIV infection as 
+documented by the presence of HIV or HIV antibodies 
+in the sample being tested;
+“HIV self-testing” means the process of a person collecting 
+his own specimen, oral fluid or blood, performing a test 
+and interpreting the results in a private setting, either 
+alone or with someone he trusts;
+“HIV testing” means any laboratory procedure done on an 
+individual to determine the presence or absence of HIV 
+infection;
+“HIV transmission” means the transfer of HIV from one 
+infected person to an uninfected person, most commonly 
+through sexual intercourse, blood transfusion, sharing of 
+intravenous needles, during pregnancy or breast feeding;
+“HIV and AIDS monitoring and evaluation framework” 
+means documentation and analysis of the number of HIV 
+and AIDS infections and the pattern of its spread;
+“HIV and AIDS prevention and control” means measures 
+aimed at protecting non-infected person from contracting 
+HIV and minimising the impact of the condition of 
+persons living with HIV;
+“Human Immuno-deficiency Virus (HIV)” means the virus 
+which causes AIDS;
+Cap. 226
+
+[PDF PAGE 6]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+82
+“informed consent” means the voluntary agreement of a 
+person to undergo or be subjected to a procedure based 
+on full information, whether such agreement is written, 
+conveyed verbally or indirectly expressed;
+“learning institution” includes primary and secondary 
+schools, colleges, universities and other higher learning 
+institutions;
+“local government authority” means the local government 
+authority established under the Local Government (District 
+Authorities) Act and the Local Government (Urban 
+Authorities) Act;
+“Minister” means the Minister responsible for health;
+“Ministry” means the ministry responsible for health;
+“NACP” means National AIDS Control Programme, 
+established within the Ministry;
+“NGO” shall have the meaning ascribed to it under the 
+Non-Governmental Organisations Act;
+“NIMR” means the National Institute for Medical Research 
+established by the National Institute for Medical 
+Research Act;
+“positive prevention” means the provision of public health 
+promotion to persons living with HIV;
+“Private Health Laboratory Board” has the meaning 
+ascribed to it under the Private Health Laboratories 
+(Regulation) Act;
+“private health laboratory” shall have the meaning as 
+ascribed to it under the Private Health Laboratories 
+(Regulation) Act;
+“private sector” includes informal sector;
+“research incentives” means compensation for time or other 
+resources expended by a human subject participating or 
+taking part in a clinical trial;
+“Secretary” means the Secretary to the Committee referred 
+to under section 41;
+“sexual partner” means a person involved in sex;
+Cap. 287 
+Cap. 288
+Cap. 56
+Cap. 59
+Cap. 136
+
+[PDF PAGE 7]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+83
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+“stigma” is an attitude of condescension or disrespect 
+towards another person because one knows or suspects 
+that person is infected with HIV , or because that person 
+has close relationship with a person known or suspected 
+to be infected with HIV;
+“stigmatise” means-
+(a) to vilify, or to incite hatred, ridicule or contempt 
+against a person or group of persons on the grounds 
+of an attribute of the person or of members of the 
+group living with HIV , by publication, distribution or 
+dissemination to the public; or
+(b) the making of any communication to the public, including 
+any arctic or gesture, that is threatening, abusive, insulting, 
+degrading, demeaning, defamatory, disrespectful, 
+embarrassing, critical, provocative or offensive;
+“STIs” means Sexually Transmitted Infections; and
+“TACAIDS” means the Tanzania Commission for AIDS 
+established under the Tanzania Commission for AIDS Act.
+PART II
+GENERAL DUTIES
+4.–(1) Every person, institution and organisation living, 
+registered or operating in Tanzania shall, be under the general 
+duty to-
+(a) promote public awareness on causes, modes of 
+transmission, consequences, prevention and control of 
+HIV and AIDS;
+(b) reduce;
+(i) the spread of HIV and AIDS;
+(ii) prevalence of STIs in the population; and
+(iii) adverse effects of HIV and AIDS;
+(c) protect rights of the orphans by-
+(i) providing health care and social services;
+(ii) prohibiting compulsory HIV testing unless 
+provided for under this Act; and
+(iii) fighting stigma and discrimination;
+Cap. 379
+General duties
+Act No. 
+14 of 2019 s. 14
+
+[PDF PAGE 8]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+84
+(d) discourage negative traditions and usages which may 
+enhance HIV and AIDS spread in the community;
+(e) promote all traditions and usages which may reduce 
+the transmission and prevalence of the infection in the 
+community; and
+(f) increase access, care and support to persons living with 
+HIV from community or health care facilities.
+(2) The Government, political, religious, traditional leaders 
+and employers in the private sector shall-
+(a) integrate or prioritise on HIV and AIDS in their 
+proceedings and public appearances; and
+(b) advocate against stigma and discrimination of people 
+living with HIV .
+(3) Every person, institution, organisation, Government, 
+political, religious, traditional leaders and employers in the 
+private sector discharging a duty under subsections (1) and (2) 
+shall be under obligation to consult or liaise with TACAIDS 
+for purposes of ensuring that resources are evenly distributed 
+within Tanzania in order to-
+(a) avoid concentration of such resources in one 
+geographical area; and
+(b) initiate pre-informed activities intended to prevent and 
+control HIV and AIDS.
+5. The Ministry shall promote utmost safety and universal 
+precautions in invasive medical or non-medical practices and 
+procedures in order to reduce the risk of transmission of HIV 
+and AIDS.
+6.–(1) Every ministry, department, agency, local government 
+authority, parastatal organisation, institution whether public 
+or private, shall design and implement gender and disability 
+responsive HIV and AIDS plans in its respective area and such 
+plans shall be mainstreamed and implemented within the 
+activities of such sector.
+Ministry to 
+promote safety 
+measures and 
+precautions
+Roles of sectors
+
+[PDF PAGE 9]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+85
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+(2) Every FBO shall undertake deliberate efforts in 
+prevention, care and control of HIV and AIDS through special 
+plans and programmes in its activities.
+(3) Civil societies and private organisations shall, in 
+collaboration with the Government, design and implement 
+plans and programmes aimed at or geared towards prevention, 
+care of patients and control of HIV and AIDS in their respective 
+areas.
+(4) Every sector preparing a plan or programme under 
+this section shall, before implementation of such plan or 
+programme, submit them to TACAIDS for coordination and 
+advice.
+PART III
+PUBLIC EDUCATION AND 
+PROGRAMMES ON HIV AND AIDS
+7.–(1) It shall be the responsibility of the Ministry to consult 
+the respective local government authority and other relevant 
+stakeholders with a view to formulating education programmes 
+relating to prohibition of stigma and discrimination against 
+persons living with or taking care of patients living with HIV .
+(2) For purposes of this section the term “stakeholders” 
+includes the youths.
+8.–(1) The Ministry, health practitioners, workers in the 
+public and private sectors and NGOs shall, for the purpose of 
+providing HIV and AIDS education to the public, disseminate 
+information regarding HIV and AIDS to the public.
+(2) Dissemination of HIV and AIDS education and 
+information shall form part of the delivery of health care 
+services by health practitioners and workers in the public and 
+private sectors.
+(3) Every institution providing HIV and AIDS information 
+whether public or private shall ensure that the information to 
+the public is provided in appropriate format, technology and is 
+accessible to disabled persons.
+Public education 
+and programmes 
+on HIV and AIDS
+Act No.
+14 of 2019 ss. 14 
+and 16
+Dissemination of 
+HIV and AIDS 
+information
+
+[PDF PAGE 10]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+86
+9. Every employer in consultation with the Ministry shall 
+establish and coordinate a workplace programme on HIV and 
+AIDS for employees under his control and such programme 
+shall include provision of gender responsive HIV and AIDS 
+education, distribution of condoms and support to people 
+living with HIV .
+10. The Ministry shall, for the purpose of ensuring prevention 
+and control of HIV and AIDS to the public, develop and 
+conduct programmes to train health practitioners on universal 
+precaution measures on HIV/AIDS and STIs and treatment 
+procedures and such programmes shall, using available 
+resoures be adopted by health institutions.
+11.–(1) A person may on his own motion, volunteer to donate 
+a tissue, organ, blood or blood products to the recognised 
+laboratory or institution.
+(2) A laboratory or institution shall not accept a donation 
+of tissue or organ, whether such donation is gratuitous or not, 
+unless a sample from the donor has tested negative for HIV .
+(3) A laboratory or institution shall not transfuse blood 
+or blood products whether such blood or blood products 
+are donated gratuitously or not, unless a sample from that 
+donation has tested negative for HIV .
+(4) Any blood, blood product, tissue or organ which has 
+been tested positive for HIV shall be disposed of immediately 
+and properly.
+(5) A person who contravenes the provisions of this section, 
+commits an offence and on conviction shall be liable-
+(a) in case of an individual, to a fine of not less than 
+two  hundred thousand shillings but not exceeding 
+one million shillings or to imprisonment for a term 
+of not less than six months but not exceeding twelve 
+months; or
+(b) in case of a laboratory or an institution, to a fine not 
+less than five million shillings but not exceeding ten 
+million shillings.
+HIV and AIDS 
+education in 
+work place
+Act No.
+14 of 2019 s. 14 
+Training of health 
+practitioners
+Donation of 
+tissues, organs, 
+blood or blood 
+products
+
+[PDF PAGE 11]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+87
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+12.–(1) Every health practitioner shall during surgical, dental 
+and similar procedures have a duty to ensure that-
+(a) parenteral exposure (sharp objects) are handled with 
+care during performance of any procedure;
+(b) at all levels of health care, delivery services, and in case 
+of accident, he uses the necessary tools such as gloves, 
+goggles and gowns;
+(c) he handles and disposes off used syringes and other 
+material used in blood testing; and
+(d) he handles and disposes off in an appropriate manner 
+body fluids or wastes of persons known or believed to 
+be infected with HIV .
+(2) A person who is the owner, manager or the in charge of 
+health care facility shall have a duty to ensure-
+(a) the provision of post exposure prophylaxis;
+(b) the provision of necessary tools such as gloves, goggles 
+and gowns; and
+(c) appropriate handling and disposition of used syringes, 
+materials used in blood testing and body fluids or 
+wastes of persons known or believed to be infected 
+with HIV .
+(3) A person who contravenes the provisions of this section, 
+commits an offence and upon conviction he shall be liable to a 
+fine of not less than five hundred thousand shillings.
+PART IV
+TESTING AND COUNSELLING
+13.–(1) Except for HIV self-testing, for purposes of facilitating 
+HIV testing, every health care facility and voluntary counselling 
+and HIV testing centre recognised by the NACP shall be an 
+HIV testing center for the purpose of this Act.
+(2) The Private Health Laboratory Board may, by order 
+published in the Gazette, accredit any private laboratory to be 
+an HIV testing center.
+Surgical, dental 
+and similar 
+procedures
+HIV testing
+Act No.
+14 of 2019 s. 17
+
+[PDF PAGE 12]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+88
+(3) Every health practitioner performing or otherwise 
+involved in the performance of an HIV test shall take all 
+measures to ensure that-
+(a) the testing process is carried out promptly and 
+efficiently; and
+(b) the result of the HIV test is communicated in accordance 
+with this Act.
+(4) Except for HIV self-testing, HIV testing shall be 
+undergone or conducted in a health care or center recognised 
+by NACP .
+(5) For the purpose of this section “HIV testing centre” 
+includes any centre established in any place for the purpose of 
+HIV testing.
+14. A person who is the owner, manager or incharge of a testing 
+center shall ensure that the center is physically accessible by 
+disabled persons and there is a trained and authorised person 
+to provide pre and post HIV test counselling to a person 
+undergoing HIV test, and where feasible, to any other person 
+likely to be affected by the results.
+15.–(1) Every person residing in Tanzania may, on his own 
+motion, volunter to undergo HIV testing.
+(2) A child or a person with inability to comprehend the 
+result may undergo HIV testing after a written consent of a 
+parent or recognised guardian.
+(3) A person shall not be compelled to undergo HIV testing.
+(4) Without prejudice to the generality of subsection (3), 
+consent shall not be required on HIV testing-
+(a) under an order of the court;
+(b) on the donor of human organs and tissues; and
+(c) to sexual offenders.
+(5) Every pregnant woman and the man responsible for the 
+pregnancy or spouse and every person attending a health care 
+facility shall be counselled and offered voluntary HIV testing.
+Counselling
+Prohibition of 
+compulsory 
+HIV testing
+
+[PDF PAGE 13]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+89
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+(6) All health practitioners, traditional and alternative health 
+practitioners, traditional birth attendants and any other person 
+attending patients shall be encouraged to undergo HIV testing.
+(7) A health practitioner who compels any person to undergo 
+HIV testing or procures HIV testing to another person without 
+the knowledge of that other person commits an offence.
+(8) Without prejudice to the preceding subsections, a 
+medical practitioner responsible for the treatment of a person 
+may undertake HIV test in respect of that person without the 
+consent of the person if-
+(a) the person is unconscious and unable to give consent; 
+and
+(b) the medical practitioner reasonably believes that such a 
+test is clinically necessary or desirable in the interest of 
+that person.
+16.–(1) The results of an HIV test shall be confidential and 
+shall be released only to the person tested.
+(2) Notwithstanding subsection (1), the results of an HIV 
+test may be released to-
+(a) in case of a person below the age of eighteen years, a 
+parent, guardian or someone he trusts;
+(b) in case of person with inability to comprehend the 
+results, his spouse or his recognised guardian;
+(c) a spouse or a sexual partner of an HIV tested person; or
+(d) the court, where applicable.
+17.–(1) Notwithstanding other provisions of this Act, a person 
+may undertake self-testing in accordance with the procedures 
+provided for under this Part.
+(2) A person who undertakes self-testing or assists another 
+person to undertake self-testing shall ensure that- 
+(a) testing is voluntary;
+(b) he undertakes or assists to undertake confirmation of 
+the results in a health facility or authorised HIV testing 
+services; and
+(c) he disposes the used test kits in a proper manner.
+Test results
+Act No.
+14 of 2019 s. 18
+HIV self-testing
+Act No.
+14 of 2019 s. 19
+
+[PDF PAGE 14]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+90
+(3) A person below the age of eighteen years shall not 
+undertake self-testing or be provided with self-testing kits.
+[s. 16A]
+18.–(1) A person shall not provide or supply self-testing 
+kits unless he has undergone training in HIV self-testing 
+recognised by the Ministry.
+(2) A person who provides or supplies self-testing kits shall, 
+before providing or supplying such kits-
+(a) provide pre-testing counseling to the user in accordance 
+with the provisions of this Act;
+(b) instruct the user on the proper procedures of HIV 
+self-testing and disposal of used self-testing kits;
+(c) inform the user that HIV self-testing does not provide 
+definitive and conclusive diagnosis; and
+(d) advise the user to visit a health facility or authorised 
+HIV testing services for confirmation of results.
+[s. 16B]
+19. A person shall not use or supply self-testing kits unless the 
+kits are approved and registered by the authority responsible 
+for quality and standards control.
+[s. 16C]
+20. HIV self-testing shall be done in the following manner:
+(a) by an individual alone; or
+(b) by an individual with the assistance of someone he 
+trusts or a trained HIV testing service provider.
+[s. 16D]
+21. A person who contravenes the provisions of this Part, 
+commits an offence.
+[s. 16E]
+Responsibilities of 
+person providing 
+or distributing 
+self testing kits
+Act No.
+14 of 2019 s. 19
+Quality and 
+standards of 
+self-testing kits
+Act No.
+14 of 2019 s. 19
+Methods of 
+self-testing
+Act No.
+14 of 2019 s. 19
+Offences under 
+this Part
+Act No.
+14 of 2019 s. 19
+
+[PDF PAGE 15]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+91
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+PART V
+CONFIDENTIALITY
+22.–(1) All health practitioners, workers, employers, 
+recruitment agencies, insurance companies, data recorders, 
+sign language interpreters, legal guardians, a person who assists 
+another person to undertake self-testing and other custodians 
+of any medical records, files, data or test results shall observe 
+confidentiality in the handling of all medical information and 
+documents, particularly the identity and status of persons 
+living with HIV .
+(2) A person who received results under section 16 shall be 
+obliged to observe confidentiality in respect of the HIV result 
+received by him under that section.
+(3) A person who contravenes the provisions of this section 
+commits an offence.
+[s. 17]
+23. The medical confidentiality shall not be considered 
+breached in-
+(a) complying with reportorial requirements in conjunction 
+with the monitoring and evaluation programmes;
+(b) informing other health practitioners directly involved 
+or about to be involved in the treatment or care of a 
+person living with HIV;
+(c) responding to an order of the court over legal 
+proceedings where the main issue is HIV status of an 
+individual; or
+(d) giving information to the appointed member of the 
+deceased’s family.
+[s. 18]
+Medical 
+confidentiality
+Act No.
+14 of 2019 ss. 14 
+and 20
+Exceptions to 
+confidentiality
+Act No.
+14 of 2019 s. 14
+
+[PDF PAGE 16]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+92
+PART VI
+HEALTH AND SUPPORT SERVICES
+24.–(1) The Government shall, using available resources 
+ensure that, every person living with HIV , vulnerable children 
+and orphans are accorded with basic health services.
+(2) Every CBO, Private Organisation and FBO dealing with 
+HIV and AIDS matters shall, in consultation with the local 
+government authority in the area of its jurisdiction, provide 
+community based HIV and AIDS prevention, support and 
+care services.
+[s. 19]
+25. The Ministry shall, in collaboration with other ministries 
+prepare programmes and conduct training for persons living 
+with HIV on-
+(a) their survival needs;
+(b) life skills; and
+(c) formation of support groups for the purpose of 
+providing palliative services and care.
+[s. 20]
+26.–(1) Any person who has knowledge of being infected with 
+HIV after being tested shall-
+(a) immediately inform his spouse or sexual partner of the 
+fact; and
+(b) take all reasonable measures and precautions to prevent 
+the transmission of HIV to others.
+(2) The person referred to under subsection (1) shall 
+inform his spouse or his sexual partner of the risk of becoming 
+infected if he has sex with such person unless that other person 
+knows that fact.
+(3) A person who abuses his spouse or sexual partner 
+either verbally, physically or by conduct in connection with 
+compliance with the provisions of this Act, commits an offence 
+and shall upon conviction be liable to a fine of not less than 
+Basic health 
+services to 
+persons living 
+with HIV
+Act No.
+14 of 2019 s. 14
+Programmes on 
+survival, life skills 
+and palliative 
+services 
+Act No.
+14 of 2019 s. 14
+Prevention of 
+transmission
+
+[PDF PAGE 17]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+93
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+five hundred thousand shillings but not exceeding one million 
+shillings or to imprisonment for a term of not less than three 
+months but not more than six months or to both.
+[s. 21]
+27. The Ministry shall-
+(a) ensure that STIs services are strengthened; and
+(b) create public awareness on STIs as far as it relates to 
+transmission of HIV and AIDS.
+[s. 22]
+28.–(1) The Ministry shall quantify requirement of condoms 
+in Tanzania by espousing different stakeholders, mobilising 
+resources required for procurement of condoms generally 
+with a view to ensuring availability of condoms of standard 
+quality in Tanzania.
+(2) Condoms shall not be manufactured or imported to 
+Tanzania unless the condoms conform with the standards 
+provided by the authorities responsible for quality and standards 
+control and where possible, the condoms should bear the 
+information relating to the condoms and be in braille print.
+(3) A person who contravenes the provisions of subsection 
+(2), commits an offence and on conviction shall be liable, in 
+case of-
+(a) an individual, to a fine of not less than ten million 
+shillings but not exceeding thirty million shillings or 
+to imprisonment for a term of not less than three years 
+but not exceeding five years or to both; and
+(b) a body corporate, to a fine of not less than fifty million 
+shillings but not exceeding one hundred million 
+shillings.
+[s. 23]
+29.–(1) A person being the owner, manager or incharge of health 
+care facility or medical insurance whether public or private shall 
+facilitate access to health care services to persons living with 
+HIV without discrimination on the basis of their status.
+Prevention and 
+control of STIs
+Condoms
+Act No.
+14 of 2019 s. 21
+Access to health 
+care facility
+Act No.
+14 of 2019 s. 14
+
+[PDF PAGE 18]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+94
+(2) The Ministry shall, where resources allow, take necessary 
+steps to ensure the availability of ARVs and other health care 
+services and medicines to persons living with HIV and those 
+exposed to risk of HIV infection.
+[s. 24]
+30.–(1) The Ministry shall regulate the care and treatment of 
+HIV infected pregnant women, mothers infected with HIV 
+while giving birth and measures to reduce HIV transmission 
+from mother to child.
+(2) In an endeavor to prevent the mother to child 
+transmission of HIV-
+(a) trained and authorised persons shall provide 
+counselling services to HIV infected pregnant and 
+breast feeding women and to men responsible for the 
+pregnancies or spouses respectively;
+(b) health care facilities shall monitor, provide treatment 
+and apply measures necessary to reduce HIV 
+transmission from mother to child; and
+(c) prevention of mother to child transmission of HIV , 
+health services should be parent friendly.
+[s. 25]
+31. A health practitioner who is exposed to or infected with 
+HIV in the course of rendering health care services to a person 
+living with HIV shall be entitled to-
+(a) post exposure prophylaxis;
+(b) treatment or access to continuum of care in case of 
+HIV diagnosis; and
+(c) compensation for any injury directly resulting from 
+infection with HIV .
+[s. 26]
+32.–(1) All statements or information regarding the cure of 
+HIV and AIDS shall be subjected to scientific verification 
+before they are announced.
+Prevention of 
+transmission 
+from mother to 
+child
+Post exposure 
+prophylaxis
+Act No.
+14 of 2019 s. 14
+Misleading 
+information or 
+statement
+Act No.
+14 of 2019 s. 22
+
+[PDF PAGE 19]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+95
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+(2) Publication of statements or information referred to 
+under subsection (1) shall be attached with both evidence of 
+pre-and post-cure HIV test results.
+(3) A person who makes or causes to be made any misleading 
+statement or information regarding curing, preventing or 
+controlling HIV and AIDS contrary to this section, commits 
+an offence and on conviction shall be liable to a fine of not 
+less than five million shillings but not exceeding fifty million 
+shillings or to imprisonment for a term of not less than six 
+months but not exceeding three years or to both.
+[s. 27]
+PART VII
+STIGMA AND DISCRIMINATION
+33. A person shall not formulate a policy, enact any law or Act 
+in a manner that discriminates directly or by its implication 
+persons living with HIV , orphans or their families.
+[s. 28]
+34. A health practitioner who deals with persons living with 
+HIV shall provide health services without any kind of stigma 
+or discrimination.
+[s. 29]
+35. A person shall not-
+(a) deny any person admission, participation into services 
+or expel that other person from any institution;
+(b) deny or restrict any person to travel within or outside 
+Tanzania;
+(c) deny any person employment opportunity;
+(d) deny or restrict any person to live anywhere; or
+(e) deny or restrict the right of any person to residence, 
+on the grounds of the person’s actual, perceived or suspected 
+HIV and AIDS status.
+[s. 30]
+Prohibition of 
+discriminatory 
+laws, policies and 
+practices
+Act No.
+14 of 2019 s. 14
+Restriction 
+of health 
+practitioners to 
+stigmatise or 
+discriminate
+Act No.
+14 of 2019 s. 14
+Prohibition of 
+other forms of 
+discrimination
+
+[PDF PAGE 20]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+96
+36. A person shall not stigmatise or discriminate in any manner 
+any other person on the grounds of such other person’s actual, 
+perceived or suspected HIV and AIDS status.
+[s. 31]
+37. A person who contravenes any provision under this Part, 
+commits an offence and on conviction shall be liable to a fine 
+of not less than two million shillings or to imprisonment for a 
+term not exceeding one year or to both.
+[s. 32]
+PART VIII
+RIGHTS AND OBLIGATIONS OF 
+PERSONS LIVING WITH HIV1
+38.–(1) A person living with HIV shall, using available 
+resources have-
+(a) a right to the highest attainable standard of physical 
+and mental health; and
+(b) a right to treatment of opportunistic infections.
+(2) A person living with HIV shall, subject to the provisions 
+of subsection (1), have an obligation to-
+(a) protect others from infection; and
+(b) share in scientific advancement and its benefits.
+[s. 33]
+39.–(1) Every local government authority shall design, 
+formulate establish and coordinate mechanism and strategic 
+plans for ensuring that the most vulnerable children within its 
+respective area are afforded means to access education, basic 
+health care and livelihood services. 
+1 This title has been amended by Act No. 14 of 2019, section 14 (General 
+amendment).
+Prohibition 
+of stigma and 
+discrimination
+Offences relating 
+to stigma and 
+discrimination
+Rights and 
+obligations of 
+persons living 
+with HIV , 
+orphans, etc.
+Act No.
+14 of 2019 s. 14
+Access to 
+education and 
+basic health care 
+services
+
+[PDF PAGE 21]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+97
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+(2) The Minister may, in consultation with the Minister 
+responsible for local government, make regulations setting out 
+criteria for identifying the most vulnerable children referred to 
+under subsection (1).
+(3) For the purpose of this section, the term “most vulnerable 
+children” includes orphans.
+[s. 34]
+40.–(1) Everybody corporate, NGO, CBO, FBO, public 
+institution or private organisation and any person receiving 
+aid or other kind of assistance for the purpose of providing 
+preventive, research, treatment, support or care to persons 
+living with HIV , widows, widowers, orphans or the most 
+vulnerable children shall ensure that the aid and assistance 
+received is used for that purpose.
+(2) A body corporate, NGO, CBO, FBO or private 
+organisation which misuses any aid commits on offence and 
+on conviction shall be liable -
+(a) in case of an individual, to imprisonment for a term of 
+not less than three years but not exceeding five years or 
+confiscation of property worth the value of the aid or 
+assistance received and refund of the misused funds; 
+and
+(b) in case of an NGO, CBO, FBO, private organisation or 
+a body corporate, to a fine of not less than five million 
+shillings but not exceeding fifty million shillings or 
+confiscation of property worth the value of aid or 
+assistance received and refund of the misused funds.
+(3) A body corporate, NGO, CBO, FBO or private 
+organisation which is convicted pursuant to subsection (1) 
+may be deregistered from the register of body corporate, 
+NGOs, CBO, FBO or private organisation, as the case may be.
+[s. 35]
+Prohibition of 
+misuse of aid by 
+NGOs, FBOs, 
+CBOs, public 
+institutions 
+and private 
+organisations
+Act No.
+14 of 2019 s. 14
+
+[PDF PAGE 22]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+98
+PART IX
+ESTABLISHMENT OF RESEARCH COMMITTEE
+41.–(1) There shall be established a Committee to be 
+known as the National HIV and AIDS Research Fellowship 
+Committee.
+(2) The Committee shall comprise of the following members:
+(a) the Chairman;
+(b) one member from the National AIDS Control 
+Programme;
+(c) one member from TACAIDS;
+(d) one member representing higher learning institutions;
+(e) a Law Officer representing the Office of the Attorney 
+General;
+(f) one member representing private HIV and AIDS 
+research bodies;
+(g) one member from NIMR;
+(h) one member from COSTECH;
+(i) one member from Muhimbili National Hospital;
+(j) one member representing National Health Research 
+Forum;
+(k) one member representing the Association of Private 
+Health Facilities of Tanzania;
+(l) one member representing organisations of people 
+living with HIV; and
+(m) one member from the Commission for Human Rights 
+and Good Governance.
+(3) All members referred under subsection (2) shall be 
+appointed by the Minister.
+(4) The Director for Preventive Services in the Ministry 
+shall be the Secretary to the Committee.
+(5) The tenure of office, meetings and other procedural 
+matters of the Committee shall be as set out in the Schedule 
+to this Act.
+[s. 36]
+National HIV and 
+AIDS Research 
+Fellowship 
+Committee
+
+[PDF PAGE 23]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+99
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+42.–(1) The Committee shall be responsible for:
+(a) evaluating all proposals submitted for funding within 
+the HIV and AIDS Research Fellowship Programme 
+in respect to scientific quality, appropriateness as to 
+priority area of research and funding level requested;
+(b) establishing the criteria for evaluating and funding the 
+submitted proposals;
+(c) awarding best research proposals fellowships of at least 
+ten million Tanzanian shillings and maximum of fifty 
+million Tanzanian shillings;
+(d) advertising the fellowship programmes on an annual 
+basis; and
+(e) mobilising resources for the Committee.
+(2) The functions, activities and other expenses of the 
+Committee shall be funded by the Ministry.
+[s. 37]
+43.–(1) All proposals seeking funding support from the 
+Committee shall be required to submit evidence of having 
+obtained ethical clearance of their proposals from the National 
+Research Ethics Committee of the NIMR, COSTECH or other 
+research ethics bodies established under any written laws.
+(2) All research on HIV and AIDS involving local and 
+multinational researchers shall require approval by the 
+National HIV and AIDS Research Fellowship Committee.
+[s. 38]
+44. For the purpose of research conducted under this Part, 
+every international research team shall include a national 
+counterpart who shall be responsible for that study in Tanzania.
+[s. 39]
+45.–(1) The Committee shall establish a mechanism for 
+monitoring researches funded by the Committee by requiring 
+a quarterly or six monthly report from persons awarded 
+fellowships.
+Functions of 
+Committee
+Ethics clearance
+Research by 
+international 
+teams
+Research 
+monitoring
+
+[PDF PAGE 24]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+100
+(2) After a research fellowship project has been completed, 
+the research fellow shall be required to submit the final report 
+of activities and budgeted expenditure to the Committee and 
+copies of all publications originating from the funded project 
+to NACP , TACAIDS and NIMR.
+[s. 40]
+46.–(1) The Ministry, in collaboration with the relevant 
+institutions may institute trials on HIV and AIDS vaccines, 
+medicines and other related bio-products within the country, 
+provided that such trials shall not endanger the health of 
+persons undergoing such trials.
+(2) A person shall not undertake HIV and AIDS related 
+bio-medical research on another person or on any tissue or 
+blood removed from such person unless-
+(a) there is informed consent of that other person; or
+(b) where that other person is a child, there is informed 
+consent of a parent or legal guardian of the child.
+(3) For the purpose of subsection (2), a person whose 
+consent is sought to be obtained, shall be adequately informed 
+of the aims, methods, anticipated benefits and potential 
+hazards and discomforts of the research.
+(4) The person who is the subject of the research, shall 
+be adequately provided with compensation as far as ethical 
+regulations are concerned.
+[s. 41]
+47.–(1) The public and private institutions shall maintain 
+inventory of all ongoing and completed research projects on 
+HIV and AIDS and TACAIDS shall, in collaboration with 
+NACP , compile the relevant research findings and submit to 
+the Minister. 
+(2) The Minister may, upon receipt of the research findings 
+and after consultation with the Minister responsible for multi-
+sectoral coordination, policy of HIV and AIDS prevention and 
+control, disseminate relevant research findings to the public.
+Vaccine trials 
+and research 
+on persons
+Dissemination of 
+research findings
+Act No.
+14 of 2019 s. 23
+
+[PDF PAGE 25]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+101
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+(3) For the purpose of facilitating dissemination of research 
+findings under this Part, researchers shall translate or cause 
+to be translated research findings into Kiswahili and English 
+languages for public consumption.
+(4) Research findings shall be in appropriate format and 
+technologies accessible to disabled persons.
+[s. 42]
+PART X
+MONITORING AND EV ALUATION
+48. The Ministry shall establish a comprehensive system of 
+monitoring and evaluation mechanisms to determine the 
+magnitude and progression of HIV infections and other 
+matters relating to HIV and AIDS.
+[s. 43]
+49. Every owner, manager or the incharge of a health care 
+facility shall adopt measures issued by the Ministry to ensure 
+the reporting and confidentiality of any medical records 
+and personal data relating to HIV and AIDS including all 
+information which may be accessed from various data.
+[s. 44]
+50.–(1) Every institution, hospital, laboratory, clinic and blood 
+bank in the Regions and Districts shall be required to diagnose 
+and report HIV and AIDS cases to the Ministry.
+(2) The information referred to under subsection (1) shall 
+be submitted to TACAIDS for inclusion in the HIV and AIDS 
+Monitoring and Evaluation Framework.
+[s. 45]
+Monitoring
+Reporting by 
+health care 
+facility
+Diagnoses and 
+reporting
+
+[PDF PAGE 26]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+102
+PART XI
+OFFENCES AND PENALTIES
+51. A health practitioner or any person referred to under 
+sections 16 and 22 who-
+(a) breaches medical confidentiality; or
+(b) unlawfully discloses information regarding HIV and 
+AIDS status of any person, commits an offence, and 
+on conviction shall be liable to a fine of not less than 
+five hundred thousand shillings but not exceeding one 
+million shillings or to imprisonment for a term of not 
+less than six months but not exceeding twelve months, 
+or to both.
+[s. 46]
+52.–(1) A person who intentionally transmits HIV to another 
+person commits an offence, and on conviction shall be liable 
+to imprisonment to a term of not less than five years and not 
+exceeding ten years.
+(2) In addition to the penalty prescribed under subsection 
+(1), the court may order payment of compensation to the 
+victim in the sum and manner it deems fit.
+[s. 47]
+53.–(1) A person who intentionally breaches any provisions 
+relating to safe procedures and practices leading to spreading 
+of HIV , commits an offence and on conviction shall be liable-
+(a) in case of an individual, to a fine of not less than two 
+hundred thousand shillings but not exceeding five 
+hundred thousand shillings or to imprisonment to a 
+term of not less than three months but not exceeding 
+six months; or
+(b) in case of a health care facility, to a fine of not less than 
+three million shillings but not exceeding five million 
+shillings.
+Offences relating 
+to breach of 
+confidentiality
+Offences relating 
+to spreading HIV
+Act No.
+14 of 2019 s. 24
+Offences relating 
+to breach of safe 
+practices leading 
+to spreading HIV
+
+[PDF PAGE 27]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+103
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+(2) The health care facility which is convicted pursuant to 
+subsection (1) may be deregistered from the register of health 
+care facilities.
+[s. 48]
+54.–(1) It shall be an offence for a person to obstruct or prevent 
+any activity related to implementation of the provisions of this 
+Act in any manner whatsoever.
+(2) A person convicted of an offence under this section, 
+shall be liable to a fine of not less than one hundred thousand 
+shillings but not exceeding five hundred thousand shillings 
+or to imprisonment for a term not exceeding six months or 
+to both.
+[s. 49]
+55. A person, who commits any offence against the provisions 
+of this Act shall be liable on conviction for every such offence 
+except where in any other section a specific penalty is provided 
+to a fine of not less than two hundred thousand shillings or to 
+imprisonment for a term of not less than three months or 
+to both.
+[s. 50]
+PART XII
+MISCELLANEOUS PROVISIONS
+56.–(1) A complaint against contravention of any provision of 
+this Act may be lodged in writing to-
+(a) the Secretary to the village, ward, district or urban 
+AIDS Committees or as the case may be;
+(b) the police station;
+(c) the owner, manager or the incharge of a health care 
+facility concerned; or
+(d) the employer.
+(2) Every complainant shall be required to give all the 
+necessary information in relation to the complaint in question.
+Penalty for 
+offence relating 
+to obstruction
+General penalty
+Complaints
+
+[PDF PAGE 28]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+104
+(3) The Minister may make regulations prescribing the 
+mode of lodging and handling of complaints under this Act.
+[s. 51]
+57. The Minister may make regulation prescribing-
+(a) circumstances under which HIV testing results may be 
+released to another person;
+(b) methods, programmes and coordination of distribution 
+and use of ARVs;
+(c) the manner under which professional counseling shall 
+be undertaken;
+(d) the conduct of HIV tests, informing of the results of 
+HIV tests, reporting of HIV tests results and any other 
+matter necessary or convenient in relation to HIV tests;
+(e) the preparation, maintenance and release of data 
+relating to transmission, status of, and persons living 
+with HIV;
+(f) parenteral exposure (sharp instruments), syringes and 
+other material used in blood testing and the manner of 
+disposing them;
+(g) precautions to be taken by health practitioners against 
+HIV transmission during surgical, dental, delivery 
+services and any other similar procedures;
+(h) provision of post exposure prophylaxis at all levels of 
+health care services and necessary tools such as gloves, 
+goggles and gowns to all health practitioners and any 
+other person who cares for persons living with HIV;
+(i) the manner of handling and disposing of body fluids 
+and wastes of persons known or believed to have been 
+infected with HIV;
+(j) manner in which vaccines and other trials are to be 
+conducted;
+(k) circumstances under which a person may be regarded 
+to make misleading statement to the public regarding 
+the persons living with HIV , orphans and their families;
+(l) matters relating to the involvement of the community 
+in the implementation of the provisions of this Act;
+Regulations
+Act No.
+14 of 2019
+ss. 14 and 25
+
+[PDF PAGE 29]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+105
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+(m) provision, supply, handling and disposal of self-testing 
+kits;
+(n) circumstances under which a person may be regarded 
+to stigmatise and discriminate a person living with 
+HIV , orphans and their families; and
+(o) anything which may be provided for the better carrying 
+out of the provisions of this Act.
+[s. 52]
+58. Notwithstanding any provisions of this Act, no religious 
+organisation or group shall be compelled in any manner to 
+do or not to do anything which is against the belief of that 
+organisation or group so long as such doing or, forbearance to 
+do, does not contravene any provision of any written law.
+[s. 53]
+59. The Minister may, by order published in the Gazette, 
+amend, vary or replace the Schedule to this Act.
+[s. 54]
+SCHEDULE
+(Made under section 41(5))
+PROCEDURE AND CONDUCT OF 
+MEETINGS OF THE COMMITTEE
+1.–(1) The tenure of office for the Chairman and the members of the 
+Committee shall be three years and may be eligible for further one 
+term.
+(2) The members shall elect a Vice-Chairman of the Committee 
+from amongst their number.
+2.–(1) The Committee shall ordinarily meet at such times and places as 
+it deems necessary for transaction of its business, but shall meet at least 
+once in every three months.
+(2) The Chairman or, in his absence the Vice-Chairman, may at 
+any time convene an extraordinary meeting of the Committee, upon a 
+written request by the majority of members in office.
+Prohibition of 
+compulsion
+Amendment of 
+Schedule
+Tenure of office 
+and election of 
+Vice-Chairman 
+Meeting of 
+Committee
+
+[PDF PAGE 30]
+©2025 Government of Tanzania. All rights reserved. No part of this book may be reproduced or distributed without permission of OAG.
+THE HIV AND AIDS (PREVENTION AND CONTROL) ACT [CAP . 431 R .E. 2023]
+106
+(3) The Chairman or, in his absence the Vice-Chairman, shall 
+preside at every meeting of the Committee and, in the absence of both 
+the Chairman and the Vice-Chairman, the members present shall 
+appoint a member from amongst themselves to preside the meeting.
+3. Where a member of the Committee who is a member by virtue of his 
+office is unable for any reason to attend any meeting of the Committee, 
+he may nominate another person from his organisation to represent 
+him in the meeting.
+4. The quorum at any meeting of the Committee shall be half of the 
+members in office.
+5.–(1) Subject to subparagraph (2), matters proposed to be deliberated 
+upon at a meeting of the Committee shall be decided by a majority of 
+the votes of the members present, and in the event of an equality of 
+votes, the person presiding over the meeting shall have a casting vote in 
+addition to his deliberative vote.
+(2) Notwithstanding the provisions of subparagraph (1), where the 
+Chairman so directs a decision may be made by the Committee without 
+a meeting by circulation of the relevant papers among the members, and 
+the expression of the views of the members in writing, shall constitute 
+the decision of the Committee, but any member may require that the 
+decision be deferred and the subject matter be considered at a meeting 
+of the Committee.
+6.–(1) The Committee shall cause to be recorded and kept minutes of 
+all business conducted or transacted at the meeting and the minutes of 
+each meeting of the Committee shall be read and confirmed or amended 
+and confirmed at the next meeting of the Committee and signed by the 
+person presiding and the Secretary to the meeting.
+(2) Any minutes purporting to be signed by the person presiding 
+and the Secretary at a meeting of the Committee shall, in the absence of 
+proof of error, be deemed to be a correct record of the meeting whose 
+minutes they purport to be.
+7. The validity of any act or proceeding of the Committee shall not be 
+affected by any vacancy among its members or by any defect in the 
+appointment of any of them.
+8. Subject to the provisions of this Schedule, the Committee may 
+regulate its own proceedings.
+Absent members 
+to be represented
+Quorum
+Decision of 
+Committee
+Minutes of 
+meetings
+Validity of 
+proceedings 
+Committee 
+may regulate its 
+proceedings 

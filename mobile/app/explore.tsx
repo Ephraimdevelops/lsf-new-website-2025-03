@@ -22,7 +22,7 @@ const groups: { sw: string; en: string; stepsSw: string; stepsEn: string; destin
     stepsSw: "Tafuta msaada → omba msaada → fuatilia → pata hatua inayofuata",
     stepsEn: "Find Help → Request Help → track progress → next step",
     destinations: [
-      { route: "/find-services", icon: "search-outline", sw: "Tafuta Msaada", en: "Find Help", detailSw: "Huduma halisi zilizothibitishwa", detailEn: "Real verified services" },
+      { route: "/find-services", icon: "search-outline", sw: "Tafuta Msaada", en: "Find Help", detailSw: "Anza na tatizo lako", detailEn: "Start with your issue" },
       { route: "/saved-services", icon: "bookmark-outline", sw: "Msaada uliohifadhi", en: "Saved Help", detailSw: "Orodha na mipango yako hulindwa", detailEn: "Your saved list and plans are private", private: true },
       { route: "/service-visit", icon: "calendar-outline", sw: "Safari ya huduma", en: "Service visit", detailSw: "Panga na fuatilia ziara", detailEn: "Plan and follow up a visit", private: true },
       { route: "/paralegals", icon: "people-outline", sw: "Paralegal", en: "Paralegals", detailSw: "Tafuta msaada wa jamii", detailEn: "Find community legal help" },
@@ -35,11 +35,11 @@ const groups: { sw: string; en: string; stepsSw: string; stepsEn: string; destin
     ],
   },
   {
-    sw: "Saada na maarifa", en: "Saada and knowledge",
+    sw: "Haki Yangu AI na maarifa", en: "Haki Yangu AI and knowledge",
     stepsSw: "Uliza → jifunze → kagua hati → andaa hatua",
     stepsEn: "Ask → learn → check a document → prepare an action",
     destinations: [
-      { route: "/sara", icon: "chatbubble-ellipses-outline", sw: "Uliza Saada", en: "Ask Saada", detailSw: "Tazama mazungumzo; kutuma swali kunahitaji akaunti", detailEn: "See chat; sending a question requires an account", private: true },
+      { route: "/sara", icon: "chatbubble-ellipses-outline", sw: "Haki Yangu AI", en: "Haki Yangu AI", detailSw: "Tazama mazungumzo; kutuma swali kunahitaji akaunti", detailEn: "See chat; sending a question requires an account", private: true },
       { route: "/(tabs)/learn", icon: "book-outline", sw: "Jua Haki Zako", en: "Know Your Rights", detailSw: "Soma miongozo inayopatikana", detailEn: "Read available guides" },
       { route: "/document-checker", icon: "scan-outline", sw: "Kagua hati", en: "Check a document", detailSw: "Angalia zana ya hati", detailEn: "Explore the document tool" },
       { route: "/letter-builder", icon: "create-outline", sw: "Andaa barua", en: "Build a letter", detailSw: "Andika na kagua rasimu", detailEn: "Draft and review a letter" },
@@ -77,7 +77,7 @@ const groups: { sw: string; en: string; stepsSw: string; stepsEn: string; destin
       { route: "/safeguarding", icon: "shield-outline", sw: "Ulinzi", en: "Safeguarding", detailSw: "Kesi nyeti zinalindwa", detailEn: "Sensitive cases are protected", private: true },
       { route: "/governance", icon: "people-circle-outline", sw: "Idhini na ufikiaji", en: "Access and approvals", detailSw: "Majukumu na uamuzi wa idhini", detailEn: "Roles and approval decisions", private: true },
       { route: "/directory-management", icon: "business-outline", sw: "Orodha ya huduma", en: "Service directory", detailSw: "Uthibitishaji wa huduma", detailEn: "Service verification", private: true },
-      { route: "/saada-governance", icon: "library-outline", sw: "Utawala wa Saada", en: "Saada governance", detailSw: "Vyanzo na majibu ya hatari", detailEn: "Sources and flagged answers", private: true },
+      { route: "/saada-governance", icon: "library-outline", sw: "Utawala wa Haki Yangu AI", en: "Haki Yangu AI governance", detailSw: "Vyanzo na majibu ya hatari", detailEn: "Sources and flagged answers", private: true },
       { route: "/editorial-workspace", icon: "book-outline", sw: "Uhariri wa miongozo", en: "Guide editorial", detailSw: "Chanzo, rasimu na idhini huru", detailEn: "Sources, drafts and independent approval", private: true },
       { route: "/reporting", icon: "bar-chart-outline", sw: "Ripoti", en: "Reporting", detailSw: "Taarifa za athari", detailEn: "Impact reports", private: true },
       { route: "/audit-log", icon: "list-outline", sw: "Rekodi za ukaguzi", en: "Audit log", detailSw: "Historia ya hatua muhimu", detailEn: "History of important actions", private: true },

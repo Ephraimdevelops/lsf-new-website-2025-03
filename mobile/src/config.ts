@@ -5,6 +5,9 @@ type AppExtra = {
   convexUrl?: string;
   clerkPublishableKey?: string;
   easProjectId?: string;
+  googleSsoEnabled?: boolean;
+  appleSsoEnabled?: boolean;
+  phoneAuthEnabled?: boolean;
 };
 
 const extra = (Constants.expoConfig?.extra ?? {}) as AppExtra;
@@ -13,6 +16,9 @@ export const appConfig = {
   convexUrl: extra.convexUrl ?? "",
   clerkPublishableKey: extra.clerkPublishableKey ?? "",
   easProjectId: extra.easProjectId ?? Constants.easConfig?.projectId ?? "",
+  googleSsoEnabled: extra.googleSsoEnabled === true,
+  appleSsoEnabled: extra.appleSsoEnabled === true,
+  phoneAuthEnabled: extra.phoneAuthEnabled === true,
 };
 
 const isValidConvexUrl = /^https:\/\/.+\.convex\.cloud$/.test(appConfig.convexUrl);

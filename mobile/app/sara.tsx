@@ -1,474 +1,397 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useAction, useMutation, useQuery } from "convex/react";
-import { router } from "expo-router";
+import { useAction, useMutation, usePaginatedQuery, useQuery } from "convex/react";
+import { router, useLocalSearchParams } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
-import { Alert, Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Alert, Animated, Keyboard, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View, useWindowDimensions } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import type { Id } from "../../convex/_generated/dataModel";
 import { api } from "../src/backend/api";
 import { useAuth } from "../src/auth";
-import { QuickExit } from "../src/components/QuickExit";
-import { Screen } from "../src/components/Screen";
+import { ChatActivity, useReducedMotion } from "../src/chat/ChatActivity";
+import { ChatResponse, type ChatSource } from "../src/chat/ChatResponse";
+import { chatPreview } from "../src/chat/preview";
 import { useLanguage } from "../src/i18n";
-import { colors, radius, spacing, type } from "../src/theme";
-import { useSensitiveScreenProtection } from "../src/useSensitiveScreenProtection";
 import { useIntakeDraft } from "../src/intake/IntakeDraftContext";
+import { colors, type } from "../src/theme";
+import { useSensitiveScreenProtection } from "../src/useSensitiveScreenProtection";
 
-const quickPrompts = {
-  sw: [
-    "Nifanye nini kama sijalipwa mshahara?",
-    "Nawezaje kupata msaada wa kisheria karibu nami?",
-    "Mkataba wa upangaji unapaswa kuwa na nini?",
-  ],
-  en: [
-    "What should I do if I have not been paid?",
-    "How can I find legal help near me?",
-    "What should a tenancy agreement include?",
-  ],
+type ConversationId = Id<"sara_conversations"> | "legacy" | null;
+type Message = { id: string; role: "user" | "assistant"; content: string; sources?: ChatSource[]; failed?: boolean };
+const prompts = {
+  sw: ["Sijalipwa mshahara. Nianzie wapi?", "Nipate msaada wa kisheria karibu nami", "Nielewe haki zangu kama mpangaji"],
+  en: ["I haven't been paid. Where do I start?", "Find legal support near me", "Help me understand my rights as a tenant"],
 };
-
-const saadaAvatar = require("../assets/saada-paralegal.png");
-
-type ParalegalCard = {
-  name?: string;
-  region?: string;
-  district?: string;
-  phone?: string;
-  verified?: boolean;
+const activities: Record<string, [string, string]> = {
+  intent_detected: ["Ninaangalia swali lako", "Looking at your question"],
+  risk_check_started: ["Ninaangalia hali yako", "Understanding your situation"],
+  risk_check_completed: ["Ninaandaa hatua inayofuata", "Working out the next step"],
+  knowledge_search_started: ["Ninapitia vyanzo vya kisheria", "Reviewing legal sources"],
+  knowledge_search_completed: ["Ninaandaa mwongozo wako", "Preparing your guidance"],
+  service_search_started: ["Ninatafuta huduma karibu nawe", "Finding services near you"],
+  service_search_completed: ["Ninakagua huduma zilizopatikana", "Checking the matching services"],
+  tool_execution_started: ["Ninaangalia chaguo za msaada", "Looking into support options"],
+  tool_execution_completed: ["Ninaunganisha taarifa", "Bringing the details together"],
+  human_review_requested: ["Msaada wa mtu unapendekezwa", "Human support is recommended"],
+  completed: ["Ninakamilisha jibu", "Finishing your answer"],
+  failed: ["Jibu halijakamilika", "The response did not complete"],
 };
-
-type MessagePart =
-  | { type: "text"; text: string }
-  | { type: "paralegal"; card: ParalegalCard };
-
-type ChatMessage = {
-  id: string;
-  role: "assistant" | "user";
-  content: string;
-};
-
-const activityCopy = {
-  sw: {
-    intent_detected: "Swali limepokelewa",
-    risk_check_started: "Tunakagua usalama na sera",
-    risk_check_completed: "Ukaguzi wa usalama umekamilika",
-    knowledge_search_started: "Tunapitia mwongozo ulioidhinishwa",
-    knowledge_search_completed: "Mwongozo ulioidhinishwa umepitiwa",
-    service_search_started: "Tunatafuta huduma zilizothibitishwa",
-    service_search_completed: "Huduma zilizothibitishwa zimekaguliwa",
-    tool_execution_started: "Tunatumia zana iliyoidhinishwa",
-    tool_execution_completed: "Zana imekamilika",
-    human_review_requested: "Mapitio ya binadamu yanapendekezwa",
-    completed: "Jibu limekamilika",
-    failed: "Saada haikuweza kukamilisha ombi",
-  },
-  en: {
-    intent_detected: "Question received",
-    risk_check_started: "Checking safety and policy",
-    risk_check_completed: "Safety check completed",
-    knowledge_search_started: "Reviewing approved legal guidance",
-    knowledge_search_completed: "Approved guidance reviewed",
-    service_search_started: "Looking for verified services",
-    service_search_completed: "Verified services checked",
-    tool_execution_started: "Running an approved tool",
-    tool_execution_completed: "Approved tool completed",
-    human_review_requested: "Human review recommended",
-    completed: "Response completed",
-    failed: "Saada could not complete this request",
-  },
-} as const;
-
-const paralegalCardPattern = /::PARALEGAL_CARD:(\{.*?\})::/g;
-
-function parseAssistantContent(content: string): MessagePart[] {
-  const parts: MessagePart[] = [];
-  let cursor = 0;
-  for (const match of content.matchAll(paralegalCardPattern)) {
-    const [token, json] = match;
-    const index = match.index ?? 0;
-    const before = content.slice(cursor, index).trim();
-    if (before) parts.push({ type: "text", text: before });
-    try {
-      parts.push({ type: "paralegal", card: JSON.parse(json) as ParalegalCard });
-    } catch {
-      parts.push({ type: "text", text: token });
-    }
-    cursor = index + token.length;
-  }
-  const after = content.slice(cursor).trim();
-  if (after) parts.push({ type: "text", text: after });
-  return parts.length ? parts : [{ type: "text", text: content }];
-}
-
-function SaraMessageContent({ content, isUser, locale }: { content: string; isUser: boolean; locale: "en" | "sw" }) {
-  if (isUser) {
-    return <Text style={[styles.messageText, styles.userText]}>{content}</Text>;
-  }
-
-  return (
-    <View style={styles.messageStack}>
-      {parseAssistantContent(content).map((part, index) => {
-        if (part.type === "text") {
-          return <Text key={`text-${index}`} style={styles.messageText}>{part.text}</Text>;
-        }
-        return <ParalegalRecommendation key={`paralegal-${index}`} card={part.card} locale={locale} />;
-      })}
-    </View>
-  );
-}
-
-function ParalegalRecommendation({ card, locale }: { card: ParalegalCard; locale: "en" | "sw" }) {
-  const location = [card.district, card.region].filter(Boolean).join(", ");
-  return (
-    <View style={styles.paralegalCard}>
-      <View style={styles.paralegalHeader}>
-        <View style={styles.paralegalAvatar}>
-          <Ionicons name="person-outline" size={18} color={colors.burgundy} />
-        </View>
-        <View style={styles.paralegalTitleBlock}>
-          <Text style={styles.paralegalName}>{card.name || (locale === "sw" ? "Mtoa msaada" : "Legal helper")}</Text>
-          <Text style={styles.paralegalMeta}>{location || (locale === "sw" ? "Angalia mahali kwenye orodha" : "Check location in directory")}</Text>
-        </View>
-      </View>
-
-      <View style={styles.paralegalActions}>
-        <Pressable style={styles.secondaryAction} onPress={() => router.push("/find-services")}>
-          <Ionicons name="search-outline" size={15} color={colors.burgundy} />
-          <Text style={styles.secondaryActionText}>{locale === "sw" ? "Hakiki taarifa" : "Verify details"}</Text>
-        </Pressable>
-        <Pressable style={styles.primaryAction} onPress={() => router.push("/intake")}>
-          <Text style={styles.primaryActionText}>{locale === "sw" ? "Omba msaada" : "Request help"}</Text>
-        </Pressable>
-      </View>
-    </View>
-  );
-}
 
 export default function SaraScreen() {
   useSensitiveScreenProtection("sara");
   const { locale } = useLanguage();
-  const { updateDraft } = useIntakeDraft();
-  const { isSignedIn } = useAuth();
-  const askSaada = useAction(api.sara_actions.ask);
-  const saveUserMessage = useMutation(api.sara_chat.sendMessage);
-  const clearRemoteHistory = useMutation(api.sara_chat.clearHistory);
+  const sw = locale === "sw";
+  const { isSignedIn, userId } = useAuth();
+  const insets = useSafeAreaInsets();
+  const { height: windowHeight } = useWindowDimensions();
+  const reducedMotion = useReducedMotion();
+  const { evaluationQuestion } = useLocalSearchParams<{ evaluationQuestion?: string }>();
+  const { draft, hasSavedDraft, updateDraft, resetDraft } = useIntakeDraft();
+  const ask = useAction(api.sara_actions.ask);
+  const createConversation = useMutation(api.sara_chat.createConversation);
+  const saveMessage = useMutation(api.sara_chat.sendMessage);
+  const deleteConversation = useMutation(api.sara_chat.deleteConversation);
+  const clearLegacy = useMutation(api.sara_chat.clearHistory);
+  const [deleting, setDeleting] = useState<ConversationId>(null);
   const submitFeedback = useMutation(api.sara_chat.submitFeedback);
-  const remoteHistory = useQuery(api.sara_chat.getMessages, isSignedIn ? {} : "skip");
+  const [conversationId, setConversationId] = useState<ConversationId>(null);
+  const [optimistic, setOptimistic] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
-  const [activeRequestId, setActiveRequestId] = useState<string | undefined>();
-  const activityEvents = useQuery(api.sara_chat.getActivityEvents, activeRequestId ? { requestId: activeRequestId, limit: 20 } : "skip");
+  const [requestId, setRequestId] = useState<string>();
   const [error, setError] = useState("");
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const [historySearch, setHistorySearch] = useState("");
+  const [consentOpen, setConsentOpen] = useState(false);
+  const [handoffStory, setHandoffStory] = useState<string | null>(null);
   const [consentAccepted, setConsentAccepted] = useState(false);
-  const [historyHydrated, setHistoryHydrated] = useState(false);
-  const [ratedMessages, setRatedMessages] = useState<Record<string, "positive" | "negative">>({});
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: "intro",
-      role: "assistant" as const,
-      content:
-        locale === "sw"
-          ? "Karibu. Mimi ni Saada kutoka LSF. Naweza kukusaidia kuelewa haki zako kwa lugha rahisi, lakini si mbadala wa wakili au huduma ya dharura."
-          : "Welcome. I am Saada from LSF. I can help you understand your rights in plain language, but I am not a lawyer or an emergency service.",
-    },
-  ]);
-  const chatScrollRef = useRef<ScrollView>(null);
-  const latestUserQuestion = [...messages].reverse().find((message) => message.role === "user")?.content;
-  const hasStartedChat = Boolean(latestUserQuestion);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+  const [atBottom, setAtBottom] = useState(true);
+  const [rated, setRated] = useState<Record<string, "positive" | "negative">>({});
+  const [previewMode, setPreviewMode] = useState<"reply" | "working" | null>(null);
+  const preview = __DEV__ && previewMode !== null;
+  const scroll = useRef<ScrollView>(null);
+  const inputRef = useRef<TextInput>(null);
+  const followBottom = useRef(true);
+  const sending = useRef(false);
+  const session = useRef(0);
+  const consentBody = useRef("");
+  const entrance = useRef(new Animated.Value(1)).current;
+
+  const threads = usePaginatedQuery(api.sara_chat.listConversations, isSignedIn ? {} : "skip", { initialNumItems: 20 });
+  const legacy = useQuery(api.sara_chat.getLegacyConversation, isSignedIn ? {} : "skip");
+  const history = usePaginatedQuery(api.sara_chat.getConversationMessages,
+    isSignedIn && conversationId && !preview ? { conversationId: conversationId === "legacy" ? undefined : conversationId } : "skip",
+    { initialNumItems: 30 });
+  const events = useQuery(api.sara_chat.getActivityEvents, isSignedIn && pending && requestId ? { requestId, limit: 1 } : "skip");
+  const serverMessages: Message[] = conversationId ? [...history.results].reverse().map(message => ({
+    id: String(message._id), role: message.role, content: message.content,
+    sources: Array.isArray(message.metadata?.retrievedSources) ? message.metadata.retrievedSources : undefined,
+    failed: Boolean(message.metadata?.failureCode),
+  })) : [];
+  const messages: Message[] = preview ? chatPreview(sw).slice(0, previewMode === "working" ? 1 : 2) : [...serverMessages, ...optimistic.filter(message => !serverMessages.some(saved => saved.id === message.id))].filter(message => message.content);
+  const latestQuestion = [...messages].reverse().find(message => message.role === "user")?.content;
+  const started = messages.length > 0;
+  const loadingMessages = !preview && Boolean(conversationId) && history.status === "LoadingFirstPage" && !optimistic.length;
+  const event = events?.[events.length - 1];
+  const activityLabel = activities[preview ? "service_search_started" : event?.type || "intent_detected"]?.[sw ? 0 : 1] || (sw ? "Ninaandaa jibu" : "Preparing an answer");
+  const currentTitle = conversationId === "legacy" ? (sw ? "Mazungumzo ya awali" : "Earlier conversation") : threads.results.find(thread => thread._id === conversationId)?.title;
+  const filteredThreads = threads.results.filter(thread => thread.title.toLocaleLowerCase().includes(historySearch.toLocaleLowerCase()));
 
   useEffect(() => {
-    if (!isSignedIn || remoteHistory === undefined || historyHydrated) return;
-    if (remoteHistory.length) {
-      setMessages((current) => [current[0], ...remoteHistory.slice(-20).map((message) => ({ id: String(message._id), role: message.role, content: message.content }))]);
-    }
-    setHistoryHydrated(true);
-  }, [historyHydrated, isSignedIn, remoteHistory]);
-
+    session.current += 1;
+    setConversationId(null); setOptimistic([]); setInput(""); setError(""); setPending(false);
+    setConsentAccepted(false); setHistoryOpen(false); setConsentOpen(false); setHandoffStory(null); setRated({});
+    sending.current = false;
+  }, [userId]);
   useEffect(() => {
-    if (!isSignedIn || !historyHydrated || pending || !remoteHistory?.length) return;
-    setMessages((current) => [current[0], ...remoteHistory.slice(-20).map((message) => ({ id: String(message._id), role: message.role, content: message.content }))]);
-  }, [historyHydrated, isSignedIn, pending, remoteHistory]);
+    if (evaluationQuestion?.trim()) setInput(evaluationQuestion);
+  }, [evaluationQuestion]);
+  useEffect(() => {
+    const show = Keyboard.addListener("keyboardDidShow", () => setKeyboardVisible(true));
+    const hide = Keyboard.addListener("keyboardDidHide", () => setKeyboardVisible(false));
+    return () => { show.remove(); hide.remove(); };
+  }, []);
+  useEffect(() => {
+    entrance.setValue(reducedMotion ? 1 : 0);
+    const animation = Animated.timing(entrance, { toValue: 1, duration: 300, useNativeDriver: true });
+    animation.start();
+    return () => animation.stop();
+  }, [conversationId, entrance, reducedMotion]);
 
-  async function rateMessage(messageId: string, rating: "positive" | "negative") {
-    if (messageId.startsWith("intro") || messageId.startsWith("assistant-")) return;
-    try {
-      await submitFeedback({ messageId: messageId as any, rating });
-      setRatedMessages((current) => ({ ...current, [messageId]: rating }));
-    } catch {
-      setError(locale === "sw" ? "Maoni hayakuhifadhiwa. Jaribu tena." : "Feedback was not saved. Please try again.");
-    }
+  function selectConversation(id: ConversationId) {
+    if (sending.current) return;
+    setPreviewMode(null);
+    setConversationId(id); setOptimistic([]); setInput(""); setError(""); setHistoryOpen(false);
+    followBottom.current = true; setAtBottom(true);
   }
 
-  function clearHistory() {
-    Alert.alert(locale === "sw" ? "Futa mazungumzo?" : "Clear conversation?", locale === "sw" ? "Ujumbe wa mazungumzo haya hautaonekana tena kwenye Saada." : "These chat messages will no longer appear in Saada.", [
-      { text: locale === "sw" ? "Ghairi" : "Cancel", style: "cancel" },
-      { text: locale === "sw" ? "Futa" : "Clear", style: "destructive", onPress: () => void performClearHistory() },
+  function confirmDelete(id: Exclude<ConversationId, null>, title: string) {
+    if (deleting || pending) return;
+    Alert.alert(sw ? "Futa mazungumzo?" : "Delete conversation?", title, [
+      { text: sw ? "Ghairi" : "Cancel", style: "cancel" },
+      { text: sw ? "Futa" : "Delete", style: "destructive", onPress: async () => {
+        setDeleting(id);
+        try {
+          if (id === "legacy") await clearLegacy();
+          else await deleteConversation({ conversationId: id });
+          if (conversationId === id) selectConversation(null);
+        } catch { Alert.alert(sw ? "Haikufutwa" : "Could not delete", sw ? "Jaribu tena." : "Please try again."); }
+        finally { setDeleting(null); }
+      } },
     ]);
   }
 
-  async function performClearHistory() {
-    setError("");
-    try {
-      if (isSignedIn) await clearRemoteHistory();
-      setMessages([
-      {
-        id: "intro-reset",
-        role: "assistant",
-        content:
-          locale === "sw"
-            ? "Historia imefutwa. Uliza swali fupi kuhusu ajira, ardhi, familia, usalama, au haki za walaji."
-            : "History is cleared. Ask a short question about employment, land, family, safety, or consumer rights.",
-      },
-    ]);
-      setHistoryHydrated(true);
-    } catch {
-      setError(locale === "sw" ? "Historia haikufutwa. Jaribu tena." : "Conversation was not cleared. Please try again.");
-    }
+  function toBottom(animated = true) {
+    followBottom.current = true; setAtBottom(true);
+    scroll.current?.scrollToEnd({ animated: animated && !reducedMotion });
   }
 
-  function safeFailureReply(message: unknown) {
-    const detail = message instanceof Error ? message.message : String(message ?? "");
-    if (/unauth|logged in|jwt|clerk|forbidden/i.test(detail)) {
-      return locale === "sw"
-        ? "Ili Saada itumie mfumo salama wa LSF, tafadhali ingia kwanza. Unaweza bado kutumia sehemu za kujifunza na kutuma ombi la msaada."
-        : "To use Saada through the secure LSF system, please sign in first. You can still use learning resources and start a help request.";
-    }
-    if (/maintenance|monthly usage|OPENAI_API_KEY|limit/i.test(detail)) {
-      return locale === "sw"
-        ? "Saada haipatikani kikamilifu sasa. Kwa usalama, tumia kitufe cha kuomba msaada au tafuta paralegal aliyethibitishwa."
-        : "Saada is not fully available right now. For safety, use request help or find a verified paralegal.";
-    }
-    return locale === "sw"
-      ? "Saada haikuweza kujibu sasa. Usitumie jibu la AI kwa dharura; tafuta msaada rasmi au anza ombi kwa LSF."
-      : "Saada could not answer right now. Do not rely on AI in an emergency; contact official help or start an LSF request.";
-  }
-
-  async function send(text = input) {
+  async function send(text = input, accepted = consentAccepted) {
     const body = text.trim();
-    if (!body || pending) return;
+    if (!body || sending.current || preview) return;
     if (!isSignedIn) {
-      setInput(body);
-      setError(locale === "sw" ? "Ingia kwanza ili kutuma swali hili kwa Saada. Swali halijatumwa." : "Sign in to send this question to Saada. It has not been sent.");
+      router.push({ pathname: "/sign-in", params: { returnTo: "sara" } });
       return;
     }
-    if (!consentAccepted) {
-      setError(locale === "sw" ? "Kubali masharti mafupi ya Saada kwanza." : "Accept the brief Saada guidance terms first.");
+    if (!accepted) {
+      consentBody.current = body;
+      Keyboard.dismiss(); setConsentOpen(true);
       return;
     }
-    setPending(true);
-    const requestId = `mobile-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    setActiveRequestId(requestId);
-    setError("");
-    setInput("");
-    const history = messages.slice(-10).map((message) => ({
-      role: message.role,
-      content: message.content,
-    }));
-    setMessages((current) => [...current, { id: `user-${Date.now()}`, role: "user", content: body }]);
+    sending.current = true; setPending(true); setError(""); setInput("");
+    const request = "mobile-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
+    const sessionAtStart = session.current;
+    setRequestId(request);
+    const temporaryId = "local-" + request;
+    setOptimistic(current => [...current, { id: temporaryId, role: "user", content: body }]);
+    followBottom.current = true;
     try {
-      await saveUserMessage({ content: body });
-      const response = await askSaada({
+      let target = conversationId;
+      if (!target) {
+        target = await createConversation({ title: body });
+        if (session.current !== sessionAtStart) return;
+        setConversationId(target);
+      }
+      const savedId = await saveMessage({ content: body, conversationId: target === "legacy" ? undefined : target });
+      if (session.current !== sessionAtStart) return;
+      setOptimistic(current => current.map(message => message.id === temporaryId ? { ...message, id: String(savedId) } : message));
+      await ask({
         message: body,
-        history,
-        source: "mobile",
-        clientRequestId: requestId,
+        source: "mobile", clientRequestId: request, locale,
+        conversationId: target === "legacy" ? undefined : target,
       });
-      setMessages((current) => [...current, { id: `assistant-${Date.now()}`, role: "assistant", content: response || safeFailureReply("") }]);
-    } catch (caught) {
-      const reply = safeFailureReply(caught);
-      setMessages((current) => [...current, { id: `assistant-safe-${Date.now()}`, role: "assistant", content: reply }]);
-      setError(locale === "sw" ? "Saada haikujibu kikamilifu. Tumia njia salama hapo juu." : "Saada could not complete the response. Use the safe next step above.");
+    } catch {
+      if (session.current !== sessionAtStart) return;
+      setError(sw ? "Jibu halikukamilika. Unaweza kujaribu tena au kutafuta msaada." : "The reply did not finish. You can try again or find support.");
+      setInput(body);
+      setOptimistic(current => current.filter(message => message.id !== temporaryId));
     } finally {
-      setPending(false);
+      if (session.current === sessionAtStart) { setPending(false); sending.current = false; }
     }
   }
 
-  return (
-    <Screen scroll={false} style={styles.screen}>
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={styles.keyboard}>
-      <View style={styles.header}>
-        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Go back"} onPress={() => router.back()}>
-          <Ionicons name="chevron-back" size={26} color={colors.burgundy} />
-        </Pressable>
-        <Text style={styles.headerTitle}>{locale === "sw" ? "Uliza Saada" : "Ask Saada"}</Text>
-        <View style={styles.headerActions}>
-          <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Futa historia" : "Clear history"} onPress={clearHistory}>
-            <Ionicons name="trash-outline" size={22} color={colors.burgundy} />
-          </Pressable>
-          <QuickExit locale={locale} />
-        </View>
-      </View>
+  async function rate(id: string, rating: "positive" | "negative") {
+    if (id.startsWith("local-")) return;
+    try {
+      await submitFeedback({ messageId: id as Id<"sara_chats">, rating });
+      setRated(current => ({ ...current, [id]: rating }));
+    } catch { setError(sw ? "Maoni hayakuhifadhiwa. Jaribu tena." : "Feedback could not be saved. Try again."); }
+  }
 
-      <ScrollView ref={chatScrollRef} style={styles.chatScroll} contentContainerStyle={styles.chatContent} keyboardShouldPersistTaps="handled" onContentSizeChange={() => { if (messages.length > 1) chatScrollRef.current?.scrollToEnd({ animated: true }); }}>
-
-      {!hasStartedChat ? <View style={styles.hero}>
-        <Image source={saadaAvatar} style={styles.avatar} />
-        <View style={styles.heroCopy}>
-        <Text style={styles.heroLabel}>{locale === "sw" ? "MSAIDIZI WA HAKI YANGU" : "HAKI YANGU ASSISTANT"}</Text>
-        <Text style={styles.title}>Saada</Text>
-        <Text style={styles.heroBody}>
-          {locale === "sw"
-            ? "Pata maelezo rahisi ya haki zako, hatua zinazofuata, na njia salama ya kuunganishwa na msaada."
-            : "Get simple rights guidance, next steps, and a safe path to verified support."}
-        </Text>
-        <View style={styles.online}><Ionicons name="information-circle-outline" size={13} color={colors.surface} /><Text style={styles.onlineText}>{locale === "sw" ? "Mwongozo wa jumla" : "General guidance"}</Text></View>
-        </View>
-      </View> : null}
-
-      {!hasStartedChat ? <Pressable
-        accessibilityRole="checkbox"
-        accessibilityState={{ checked: consentAccepted }}
-        style={[styles.consentCard, consentAccepted && styles.consentCardAccepted]}
-        onPress={() => setConsentAccepted((current) => !current)}
-      >
-        <Ionicons
-          name={consentAccepted ? "checkmark-circle" : "ellipse-outline"}
-          size={22}
-          color={consentAccepted ? colors.teal : colors.burgundy}
-        />
-        <Text style={styles.consentText}>
-          {locale === "sw"
-            ? "Ninaelewa Saada hutoa taarifa za jumla tu. Kwa hatari ya haraka au ushauri rasmi, niwasiliane na paralegal, wakili, au huduma ya dharura."
-            : "I understand Saada gives general information only. For immediate danger or formal advice, I should contact a paralegal, lawyer, or emergency service."}
-        </Text>
-      </Pressable> : null}
-
-      {!isSignedIn ? (
-        <View style={styles.guestCard}>
-          <Ionicons name="lock-closed-outline" size={18} color={colors.burgundy} />
-          <Text style={styles.guestTitle}>{locale === "sw" ? "Ingia kuuliza Saada" : "Sign in to ask Saada"}</Text>
-          <Text style={styles.guestBody}>{locale === "sw" ? "Mazungumzo yako yanahitaji akaunti salama. Bado unaweza kutafuta huduma au kuanza ombi la msaada." : "Your conversation needs a secure account. You can still find services or start a help request."}</Text>
-          <Pressable style={styles.guestPrimary} onPress={() => router.push({ pathname: "/sign-in", params: { returnTo: "sara" } })}><Text style={styles.guestPrimaryText}>{locale === "sw" ? "Ingia salama" : "Sign in securely"}</Text></Pressable>
-          <View style={styles.guestActions}><Pressable onPress={() => router.push("/find-services")}><Text style={styles.guestLink}>{locale === "sw" ? "Tafuta msaada" : "Find Help"}</Text></Pressable><Pressable onPress={() => router.push("/intake")}><Text style={styles.guestLink}>{locale === "sw" ? "Omba msaada" : "Request Help"}</Text></Pressable></View>
-        </View>
-      ) : null}
-
-      {!hasStartedChat ? <View style={styles.promptRow}>
-        {quickPrompts[locale].map((prompt) => (
-          <Pressable key={prompt} style={styles.prompt} onPress={() => isSignedIn ? void send(prompt) : setInput(prompt)}>
-            <Text style={styles.promptText}>{prompt}</Text>
-          </Pressable>
-        ))}
-      </View> : null}
-
-      <View style={styles.messages}>
-        {messages.map((message) => (
-          <View key={message.id} style={[styles.messageRow, message.role === "user" && styles.userRow]}>
-            {message.role === "assistant" ? <Image source={saadaAvatar} style={styles.messageAvatar} /> : null}
-            <View style={[styles.bubble, message.role === "user" ? styles.userBubble : styles.assistantBubble]}>
-              <SaraMessageContent content={message.content} isUser={message.role === "user"} locale={locale} />
-              {message.role === "assistant" && !message.id.startsWith("intro") && !message.id.startsWith("assistant-") ? <View style={styles.feedbackRow}><Text style={styles.feedbackLabel}>{ratedMessages[message.id] ? (locale === "sw" ? "Asante kwa maoni" : "Feedback saved") : (locale === "sw" ? "Jibu hili limesaidia?" : "Was this helpful?")}</Text><Pressable accessibilityLabel="Helpful" onPress={() => void rateMessage(message.id, "positive")}><Ionicons name={ratedMessages[message.id] === "positive" ? "thumbs-up" : "thumbs-up-outline"} size={18} color={colors.teal} /></Pressable><Pressable accessibilityLabel="Not helpful" onPress={() => void rateMessage(message.id, "negative")}><Ionicons name={ratedMessages[message.id] === "negative" ? "thumbs-down" : "thumbs-down-outline"} size={18} color={colors.danger} /></Pressable></View> : null}
-            </View>
-          </View>
-        ))}
-        {pending ? (
-          <View style={styles.activityPanel}>
-            <Text style={styles.activityTitle}>{locale === "sw" ? "Saada inafanya kazi" : "Saada activity"}</Text>
-            {(activityEvents?.length ? activityEvents : [{ _id: "local-start", type: "intent_detected", status: "started", summary: locale === "sw" ? "Tunaanza ombi" : "Starting request" } as any]).map((event: any) => {
-              const icon = event.status === "completed" ? "checkmark-circle" : event.status === "failed" ? "alert-circle" : "ellipse";
-              const color = event.status === "completed" ? colors.success : event.status === "failed" ? colors.danger : colors.burgundy;
-              return (
-                <View key={event._id} style={styles.activityRow}>
-                  <Ionicons name={icon} size={16} color={color} />
-                  <Text style={styles.activityText}>
-                    {event.summary || activityCopy[locale][event.type as keyof typeof activityCopy.en] || (locale === "sw" ? "Inaendelea..." : "Working...")}
-                  </Text>
-                </View>
-              );
-            })}
-          </View>
-        ) : null}
-      </View>
-
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-
-      {latestUserQuestion ? <Pressable style={styles.signInNotice} onPress={() => { updateDraft({ description: latestUserQuestion.slice(0, 5000) }); router.push("/intake"); }}><Ionicons name="document-text-outline" size={18} color={colors.burgundy} /><Text style={styles.signInNoticeText}>{locale === "sw" ? "Tumia swali lako kuanza ombi. Utalikagua kabla ya kutuma." : "Use your own question to start a request. Review it before sending."}</Text><Ionicons name="chevron-forward" size={18} color={colors.burgundy} /></Pressable> : null}
-      </ScrollView>
-      <View style={styles.composer}>
-        <TextInput
-          value={input}
-          onChangeText={setInput}
-          multiline
-          blurOnSubmit={false}
-          autoCorrect
-          textAlignVertical="top"
-          maxLength={1200}
-          placeholder={locale === "sw" ? "Andika swali lako kwa Saada..." : "Ask Saada your question..."}
-          placeholderTextColor={colors.inkMuted}
-          style={styles.input}
-        />
-        <Pressable disabled={pending || !input.trim()} onPress={() => void send()} style={[styles.send, (pending || !input.trim()) && styles.disabled]}>
-          <Ionicons name="arrow-up" size={22} color={colors.surface} />
-        </Pressable>
-      </View>
-      </KeyboardAvoidingView>
-    </Screen>
+  const iconButton = (icon: keyof typeof Ionicons.glyphMap, label: string, onPress: () => void, disabled = false) => (
+    <Pressable accessibilityRole="button" accessibilityLabel={label} disabled={disabled} onPress={onPress} style={({ pressed }) => [styles.headerButton, pressed && styles.pressed, disabled && styles.disabled]}>
+      <Ionicons name={icon} size={21} color="#FFF9F5" />
+    </Pressable>
   );
+
+  return <SafeAreaView edges={["top"]} style={styles.screen}>
+    <StatusBar style="light" />
+    <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <View style={styles.header}>
+        {iconButton("chevron-back", sw ? "Rudi" : "Back", () => router.back())}
+        <View style={styles.identity}><Text style={styles.title}>Haki Yangu <Text style={styles.aiLabel}>AI</Text></Text><Text numberOfLines={1} style={styles.subtitle}>{currentTitle || (sw ? "Tuko pamoja, hatua kwa hatua" : "Together, one step at a time")}</Text></View>
+        {iconButton("time-outline", sw ? "Mazungumzo ya awali" : "Past conversations", () => { Keyboard.dismiss(); setHistorySearch(""); setHistoryOpen(true); }, pending)}
+        {iconButton("create-outline", sw ? "Mazungumzo mapya" : "New conversation", () => selectConversation(null), pending)}
+      </View>
+
+      <View style={styles.canvas}>
+        <View style={styles.contextBar}><View style={styles.lsfMark}><Text style={styles.lsfText}>LSF</Text></View><Text style={styles.contextText}>{sw ? "Msaidizi wako wa haki" : "Your rights companion"}</Text><Pressable accessibilityRole="button" accessibilityLabel={sw ? "Ondoka haraka" : "Quick exit"} onPress={() => router.replace("/(tabs)")} style={styles.exit}><Ionicons name="exit-outline" size={15} color={colors.inkMuted} /><Text style={styles.exitText}>{sw ? "Toka" : "Exit"}</Text></Pressable></View>
+        {preview ? <View style={styles.previewBar}><Text style={styles.previewLabel}>Design preview</Text>{(["reply", "working"] as const).map(mode => <Pressable key={mode} onPress={() => { setPreviewMode(mode); followBottom.current = false; scroll.current?.scrollTo({ y: 0, animated: false }); }} style={[styles.previewOption, previewMode === mode && styles.previewSelected]}><Text style={styles.previewLabel}>{mode === "reply" ? "Reply" : "Working"}</Text></Pressable>)}<Pressable accessibilityLabel="Close preview" style={styles.toolButton} onPress={() => selectConversation(null)}><Ionicons name="close" size={17} color={colors.inkMuted} /></Pressable></View> : null}
+        <ScrollView ref={scroll} style={styles.flex} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive"
+          contentContainerStyle={[styles.chatContent, !started && styles.emptyContent]}
+          onScroll={event => {
+            const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
+            const bottom = contentSize.height - contentOffset.y - layoutMeasurement.height < 100;
+            followBottom.current = bottom; setAtBottom(bottom);
+          }} scrollEventThrottle={80}
+          onContentSizeChange={() => { if (started && followBottom.current) scroll.current?.scrollToEnd({ animated: false }); }}>
+          {loadingMessages ? <View style={styles.loading}><ActivityIndicator color={colors.burgundy} /><Text style={styles.smallText}>{sw ? "Inafungua mazungumzo" : "Opening conversation"}</Text></View> : null}
+
+          {!started && !loadingMessages ? <Animated.View style={[styles.welcome, { opacity: entrance, transform: [{ translateY: entrance.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }] }]}>
+            <View style={styles.welcomeMark}><Ionicons name="chatbubble-ellipses-outline" size={27} color={colors.burgundy} /></View>
+            <Text style={styles.greeting}>{sw ? "Karibu. Tuanzie hapa." : "Hello. Let's start here."}</Text>
+            <Text style={styles.welcomeBody}>{sw ? "Niambie kinachoendelea. Tutafute hatua inayokufaa." : "Tell me what's happening. Let's find your next step."}</Text>
+            <View style={styles.topicRow}>
+              {[{ icon: "book-outline" as const, sw: "Haki zangu", en: "My rights", color: "#A67927", prompt: prompts[locale][2] }, { icon: "location-outline" as const, sw: "Msaada karibu", en: "Nearby help", color: colors.teal, prompt: prompts[locale][1] }, { icon: "compass-outline" as const, sw: "Hatua inayofuata", en: "Next steps", color: colors.burgundy, prompt: prompts[locale][0] }].map(topic => <Pressable key={topic.en} style={styles.topic} onPress={() => { setInput(topic.prompt); inputRef.current?.focus(); }}><Ionicons name={topic.icon} size={20} color={topic.color} /><Text style={styles.topicText}>{sw ? topic.sw : topic.en}</Text></Pressable>)}
+            </View>
+            <View style={styles.suggestions}>{prompts[locale].slice(0, 2).map(prompt => <Pressable key={prompt} onPress={() => { setInput(prompt); inputRef.current?.focus(); }} style={styles.suggestion}><Text style={styles.suggestionText}>{prompt}</Text><Ionicons name="arrow-forward" size={16} color="#8C898B" /></Pressable>)}</View>
+            {isSignedIn && threads.results[0] ? <Pressable style={styles.resume} onPress={() => selectConversation(threads.results[0]._id)}><Ionicons name="time-outline" size={17} color={colors.inkMuted} /><View style={styles.flex}><Text style={styles.resumeLabel}>{sw ? "Endelea ulipoishia" : "Pick up where you left off"}</Text><Text numberOfLines={1} style={styles.resumeTitle}>{threads.results[0].title}</Text></View><Ionicons name="chevron-forward" size={15} color={colors.inkMuted} /></Pressable> : null}
+          </Animated.View> : null}
+
+          {conversationId && history.status === "CanLoadMore" ? <Pressable style={styles.loadMore} onPress={() => { followBottom.current = false; history.loadMore(30); }}><Text style={styles.smallText}>{sw ? "Ujumbe wa awali" : "Earlier messages"}</Text></Pressable> : null}
+          {history.status === "LoadingMore" ? <ActivityIndicator color={colors.teal} /> : null}
+          <View style={styles.messageList}>{messages.map(message => <View key={message.id} style={message.role === "user" ? styles.userRow : styles.assistantRow}>
+            {message.role === "user" ? <View style={styles.userBubble}><Text selectable style={styles.userText}>{message.content}</Text></View> : <>
+              <View style={styles.answerIdentity}><Ionicons name={message.failed ? "information-circle-outline" : "sparkles-outline"} size={14} color={colors.burgundy} /><Text style={styles.answerIdentityText}>{message.failed ? (sw ? "Haipatikani kwa sasa" : "Temporarily unavailable") : "Haki Yangu AI"}</Text></View>
+              <ChatResponse content={message.content} sources={message.sources} sw={sw} preview={preview} />
+              {!pending && !preview && !message.failed ? <View style={styles.answerTools}><Pressable style={styles.toolButton} accessibilityLabel={sw ? "Jibu limesaidia" : "Helpful response"} onPress={() => void rate(message.id, "positive")}><Ionicons name={rated[message.id] === "positive" ? "thumbs-up" : "thumbs-up-outline"} size={16} color={rated[message.id] === "positive" ? colors.teal : "#939094"} /></Pressable><Pressable style={styles.toolButton} accessibilityLabel={sw ? "Jibu halijasaidia" : "Unhelpful response"} onPress={() => void rate(message.id, "negative")}><Ionicons name={rated[message.id] === "negative" ? "thumbs-down" : "thumbs-down-outline"} size={16} color={rated[message.id] === "negative" ? colors.burgundy : "#939094"} /></Pressable>{rated[message.id] ? <Text style={styles.smallText}>{sw ? "Asante" : "Thank you"}</Text> : null}</View> : null}
+            </>}
+          </View>)}</View>
+          {pending || (preview && previewMode === "working") ? <ChatActivity label={activityLabel} reducedMotion={reducedMotion} /> : null}
+          {error ? <View style={styles.errorRow}><Ionicons name="alert-circle-outline" size={17} color={colors.burgundy} /><Text style={styles.errorText}>{error}</Text><Pressable onPress={() => void send()} accessibilityLabel={sw ? "Jaribu tena" : "Retry"} style={styles.toolButton}><Ionicons name="refresh-outline" size={20} color={colors.burgundy} /></Pressable></View> : null}
+          {latestQuestion && !pending && !preview ? <View style={styles.nextSteps}>
+            <Pressable style={styles.nextStep} onPress={() => router.push("/find-services")}><Ionicons name="location-outline" size={16} color={colors.teal} /><Text style={styles.nextStepText}>{sw ? "Tafuta msaada" : "Find support"}</Text><Ionicons name="arrow-forward" size={14} color={colors.inkMuted} /></Pressable>
+            <Pressable accessibilityRole="button" style={styles.nextStep} onPress={() => { Keyboard.dismiss(); setHandoffStory(latestQuestion.slice(0, 5000)); }}><Ionicons name="document-text-outline" size={16} color={colors.burgundy} /><Text style={styles.nextStepText}>{sw ? "Andaa ombi" : "Draft a request"}</Text><Ionicons name="arrow-forward" size={14} color={colors.inkMuted} /></Pressable>
+          </View> : null}
+        </ScrollView>
+
+        {!atBottom && started ? <Pressable accessibilityLabel={sw ? "Ujumbe mpya zaidi" : "Latest message"} style={styles.jumpButton} onPress={() => toBottom()}><Ionicons name="arrow-down" size={19} color={colors.charcoal} /></Pressable> : null}
+        <View style={[styles.composerArea, { paddingBottom: keyboardVisible ? 8 : Math.max(insets.bottom, 12) }]}>
+          {!isSignedIn ? <Pressable style={styles.signIn} onPress={() => router.push({ pathname: "/sign-in", params: { returnTo: "sara" } })}><Ionicons name="lock-closed-outline" size={12} color={colors.inkMuted} /><Text style={styles.signInText}>{sw ? "Ingia ili kuhifadhi na kuendelea na mazungumzo" : "Sign in to save and continue your conversations"}</Text><Ionicons name="arrow-forward" size={13} color={colors.burgundy} /></Pressable> : null}
+          <View style={styles.composer}>
+            <TextInput ref={inputRef} accessibilityLabel={sw ? "Ujumbe kwa Haki Yangu AI" : "Message Haki Yangu AI"} value={input} editable={!preview} autoCorrect={!sw} spellCheck={!sw} onChangeText={setInput} multiline maxLength={1200} style={styles.input} placeholder={sw ? "Uliza chochote kuhusu haki zako..." : "Ask about your rights..."} placeholderTextColor="#989397" textAlignVertical="top" onFocus={() => { if (followBottom.current) toBottom(false); }} />
+            <Pressable accessibilityRole="button" accessibilityLabel={sw ? "Tuma ujumbe" : "Send message"} accessibilityState={{ disabled: pending || preview || !input.trim() }} disabled={pending || preview || !input.trim()} onPress={() => void send()} style={({ pressed }) => [styles.send, !input.trim() && styles.sendIdle, pressed && styles.pressed]}>{pending ? <ActivityIndicator size="small" color="#FFFFFF" /> : <Ionicons name="arrow-up" size={21} color={input.trim() ? "#FFFFFF" : "#827A7E"} />}</Pressable>
+          </View>
+          <Text style={styles.disclaimer}>{sw ? "Mwongozo wa jumla. Hakiki taarifa muhimu." : "General guidance. Check important information."}</Text>
+        </View>
+      </View>
+    </KeyboardAvoidingView>
+
+    <Modal visible={historyOpen} animationType={reducedMotion ? "none" : "slide"} onRequestClose={() => setHistoryOpen(false)}>
+      <View style={[styles.historyScreen, { paddingTop: insets.top, paddingBottom: insets.bottom }]}><StatusBar style="dark" />
+        <View style={styles.historyHeader}><Pressable style={styles.lightIcon} accessibilityLabel={sw ? "Funga historia" : "Close history"} onPress={() => setHistoryOpen(false)}><Ionicons name="chevron-back" size={23} color={colors.charcoal} /></Pressable><Text style={styles.historyTitle}>{sw ? "Mazungumzo yako" : "Your conversations"}</Text><Pressable style={styles.lightIcon} accessibilityLabel={sw ? "Mazungumzo mapya" : "New conversation"} onPress={() => selectConversation(null)}><Ionicons name="create-outline" size={22} color={colors.burgundy} /></Pressable></View>
+        <View style={styles.search}><Ionicons name="search-outline" size={18} color={colors.inkMuted} /><TextInput value={historySearch} onChangeText={setHistorySearch} style={styles.searchInput} placeholder={sw ? "Tafuta mazungumzo" : "Search conversations"} placeholderTextColor={colors.inkMuted} accessibilityLabel={sw ? "Tafuta mazungumzo" : "Search conversations"} /></View>
+        {!isSignedIn ? <View style={styles.historyEmpty}><Ionicons name="chatbubbles-outline" size={34} color={colors.teal} /><Text style={styles.emptyTitle}>{sw ? "Mazungumzo yako, pamoja." : "Your conversations, together."}</Text><Text style={styles.emptyBody}>{sw ? "Ingia ili kuhifadhi mazungumzo na kuyarudia baadaye." : "Sign in to keep your conversations and return to them later."}</Text><Pressable style={styles.modalPrimary} onPress={() => { setHistoryOpen(false); router.push({ pathname: "/sign-in", params: { returnTo: "sara" } }); }}><Text style={styles.modalPrimaryText}>{sw ? "Ingia" : "Sign in"}</Text></Pressable></View> : <ScrollView contentContainerStyle={styles.historyList} keyboardShouldPersistTaps="handled">
+          {threads.status === "LoadingFirstPage" ? <ActivityIndicator color={colors.burgundy} /> : null}
+          {filteredThreads.map(thread => <View key={thread._id} style={[styles.historyItem, conversationId === thread._id && styles.historyItemActive]}><Pressable onPress={() => selectConversation(thread._id)} style={styles.historyOpenRow}><Ionicons name="chatbubble-outline" size={19} color={colors.inkMuted} /><View style={styles.flex}><Text numberOfLines={2} style={styles.historyItemTitle}>{thread.title}</Text><Text style={styles.historyDate}>{new Date(thread.updatedAt).toLocaleDateString(sw ? "sw-TZ" : "en-GB", { day: "numeric", month: "short" })}</Text></View></Pressable><Pressable disabled={Boolean(deleting)} style={styles.lightIcon} accessibilityLabel={(sw ? "Futa mazungumzo: " : "Delete conversation: ") + thread.title} onPress={() => confirmDelete(thread._id, thread.title)}>{deleting === thread._id ? <ActivityIndicator size="small" color={colors.burgundy} /> : <Ionicons name="trash-outline" size={17} color="#A1949B" />}</Pressable></View>)}
+          {legacy && !historySearch ? <View style={styles.historyItem}><Pressable style={styles.historyOpenRow} onPress={() => selectConversation("legacy")}><Ionicons name="archive-outline" size={19} color={colors.inkMuted} /><View style={styles.flex}><Text style={styles.historyItemTitle}>{sw ? "Mazungumzo ya awali" : "Earlier conversation"}</Text><Text style={styles.historyDate}>{sw ? "Historia yako iliyohifadhiwa" : "Your existing saved history"}</Text></View></Pressable><Pressable disabled={Boolean(deleting)} style={styles.lightIcon} accessibilityLabel={sw ? "Futa mazungumzo ya awali" : "Delete earlier conversation"} onPress={() => confirmDelete("legacy", sw ? "Mazungumzo ya awali" : "Earlier conversation")}><Ionicons name="trash-outline" size={17} color="#A1949B" /></Pressable></View> : null}
+          {!filteredThreads.length && (historySearch || !legacy) && threads.status !== "LoadingFirstPage" ? <View style={styles.historyEmpty}><Ionicons name="chatbubbles-outline" size={30} color={colors.teal} /><Text style={styles.emptyTitle}>{historySearch ? (sw ? "Hakuna matokeo" : "No matches") : (sw ? "Mwanzo mpya" : "A fresh start")}</Text><Text style={styles.emptyBody}>{historySearch ? (sw ? "Jaribu maneno mengine." : "Try another search.") : (sw ? "Mazungumzo utakayoanza yataonekana hapa." : "Conversations you start will appear here.")}</Text></View> : null}
+          {threads.status === "CanLoadMore" ? <Pressable style={styles.loadMore} onPress={() => threads.loadMore(20)}><Text style={styles.smallText}>{sw ? "Mazungumzo zaidi" : "More conversations"}</Text></Pressable> : null}
+          {threads.status === "LoadingMore" ? <ActivityIndicator color={colors.teal} /> : null}
+        </ScrollView>}
+        {__DEV__ ? <Pressable style={styles.previewEntry} onPress={() => { setHistoryOpen(false); setPreviewMode("reply"); setConversationId(null); setOptimistic([]); setError(""); setInput(""); followBottom.current = false; }}><Ionicons name="color-palette-outline" size={18} color={colors.teal} /><Text style={styles.smallText}>Design preview</Text><Ionicons name="arrow-forward" size={16} color={colors.inkMuted} /></Pressable> : null}
+      </View>
+    </Modal>
+
+    <Modal visible={handoffStory !== null} transparent animationType={reducedMotion ? "none" : "fade"} onRequestClose={() => setHandoffStory(null)}>
+      <View style={styles.modalBackdrop}><View style={[styles.consentSheet, { maxHeight: Math.max(160, windowHeight - insets.top - insets.bottom - 48) }]}><ScrollView contentContainerStyle={{ gap: 16 }} keyboardShouldPersistTaps="handled">
+        <View style={styles.consentHeader}><Ionicons name="document-text-outline" size={25} color={colors.burgundy} /><Pressable accessibilityRole="button" accessibilityLabel={sw ? "Funga" : "Close"} onPress={() => setHandoffStory(null)} style={styles.lightIcon}><Ionicons name="close" size={22} color={colors.inkMuted} /></Pressable></View>
+        <Text style={styles.emptyTitle}>{sw ? "Kagua maelezo ya ombi" : "Review your request story"}</Text>
+        <Text selectable style={styles.consentBody}>{handoffStory}</Text>
+        <Text style={styles.consentBody}>{sw ? "Tutatumia maneno yako pekee kuanza rasimu mpya. Jibu la AI halitaongezwa. Hakuna ombi litakalotumwa mpaka ukague taarifa zote na ukubali kutuma." : "Only your words will start a new draft. The AI answer will not be included. Nothing is submitted until you review all details and consent to send."}</Text>
+        {(draft.description || draft.issueCategory || draft.region || draft.district || draft.desiredHelp || draft.sourceServiceId || hasSavedDraft) ? <>
+          <Text style={styles.errorText}>{sw ? "Tayari una rasimu. Kuanzisha mpya kutabadilisha rasimu iliyo wazi; rasimu iliyohifadhiwa itabaki mpaka uhifadhi tena au utume." : "You already have a draft. Starting a new one replaces the open draft; a saved draft stays until you save again or submit."}</Text>
+          <Pressable accessibilityRole="button" style={styles.loadMore} onPress={() => { setHandoffStory(null); router.push("/intake"); }}><Text style={styles.nextStepText}>{sw ? "Endelea na rasimu iliyopo" : "Continue the existing draft"}</Text></Pressable>
+        </> : null}
+        <Pressable accessibilityRole="button" style={styles.modalPrimary} onPress={() => { if (!handoffStory) return; resetDraft(locale); updateDraft({ description: handoffStory, locale }); setHandoffStory(null); router.push("/intake"); }}><Text style={styles.modalPrimaryText}>{sw ? "Anza rasimu mpya kwa maneno haya" : "Start a new draft with these words"}</Text></Pressable>
+      </ScrollView></View></View>
+    </Modal>
+
+    <Modal visible={consentOpen} transparent animationType={reducedMotion ? "none" : "fade"} onRequestClose={() => setConsentOpen(false)}>
+      <View style={styles.modalBackdrop}><View style={styles.consentSheet}>
+        <View style={styles.consentHeader}><Ionicons name="information-circle-outline" size={25} color={colors.burgundy} /><Pressable accessibilityLabel={sw ? "Funga" : "Close"} onPress={() => setConsentOpen(false)} style={styles.lightIcon}><Ionicons name="close" size={22} color={colors.inkMuted} /></Pressable></View>
+        <Text style={styles.emptyTitle}>{sw ? "Kabla hatujaanza" : "Before we start"}</Text>
+        <Text style={styles.consentBody}>{sw ? "Haki Yangu AI hutoa mwongozo wa jumla. Inaweza kukosea na si mbadala wa wakili au huduma ya dharura." : "Haki Yangu AI provides general guidance. It can make mistakes and does not replace a lawyer or emergency services."}</Text>
+        <Pressable style={styles.modalPrimary} onPress={() => { setConsentAccepted(true); setConsentOpen(false); void send(consentBody.current, true); }}><Text style={styles.modalPrimaryText}>{sw ? "Nimeelewa, endelea" : "I understand, continue"}</Text><Ionicons name="arrow-forward" size={18} color="#FFFFFF" /></Pressable>
+      </View></View>
+    </Modal>
+  </SafeAreaView>;
 }
 
 const styles = StyleSheet.create({
-  screen: { paddingBottom: spacing.md },
-  keyboard: { flex: 1 },
-  chatScroll: { flex: 1 },
-  chatContent: { paddingBottom: spacing.md },
-  header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  headerActions: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
-  headerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
-  hero: { marginTop: spacing.xl, backgroundColor: colors.burgundy, borderRadius: 8, padding: spacing.lg, gap: spacing.md, flexDirection: "row", alignItems: "center", overflow: "hidden" },
-  avatar: { width: 82, height: 82, borderRadius: 25, backgroundColor: colors.softPink },
-  heroCopy: { flex: 1 },
-  heroLabel: { fontFamily: type.bold, fontWeight: "700", color: colors.peach, fontSize: 13, letterSpacing: 0.8 },
-  title: { marginTop: 3, fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 27 },
-  heroBody: { marginTop: 4, fontFamily: type.regular, color: "#FAEAF0", fontSize: 13, lineHeight: 19 },
-  online: { alignSelf: "flex-start", marginTop: spacing.sm, flexDirection: "row", alignItems: "center", gap: 4, borderRadius: radius.sm, backgroundColor: "rgba(255,255,255,0.15)", paddingHorizontal: 8, paddingVertical: 5 },
-  onlineText: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 13 },
-  body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21, textAlign: "center" },
-  locked: { marginTop: spacing.xxl, alignItems: "center", gap: spacing.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.xl },
-  consentCard: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm, marginTop: spacing.md, borderRadius: radius.md, borderWidth: 1, borderColor: "#E8B8CC", backgroundColor: "#FFF7FA", padding: spacing.md },
-  consentCardAccepted: { borderColor: colors.teal, backgroundColor: colors.tealSoft },
-  consentText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 18 },
-  signInNotice: { flexDirection: "row", alignItems: "center", gap: spacing.sm, marginTop: spacing.md, borderRadius: radius.md, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, padding: spacing.md },
-  signInNoticeText: { flex: 1, fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13, lineHeight: 19 },
-  guestCard: { marginTop: spacing.lg, borderRadius: 8, backgroundColor: colors.tealSoft, borderWidth: 1, borderColor: "#B8DFDA", padding: spacing.lg, gap: spacing.sm },
-  guestTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.ink, fontSize: 18 },
-  guestBody: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20 },
-  guestPrimary: { minHeight: 48, marginTop: spacing.sm, borderRadius: radius.md, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
-  guestPrimaryText: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 14 },
-  guestActions: { flexDirection: "row", justifyContent: "space-between", gap: spacing.md, marginTop: spacing.sm },
-  guestLink: { fontFamily: type.bold, fontWeight: "700", color: colors.teal, fontSize: 13 },
-  promptRow: { marginTop: spacing.xl, gap: spacing.sm },
-  prompt: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.md },
-  promptText: { fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 19 },
-  messages: { marginTop: spacing.xl, gap: spacing.md },
-  messageRow: { flexDirection: "row", alignItems: "flex-end", gap: spacing.sm },
-  userRow: { justifyContent: "flex-end" },
-  messageAvatar: { width: 30, height: 30, borderRadius: 10, backgroundColor: colors.softPink },
-  emptyText: { fontFamily: type.regular, color: colors.inkMuted, textAlign: "center", lineHeight: 21, paddingVertical: spacing.xl },
-  bubble: { maxWidth: "92%", borderRadius: radius.md, padding: spacing.md },
-  userBubble: { alignSelf: "flex-end", backgroundColor: colors.burgundy },
-  assistantBubble: { alignSelf: "flex-start", backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line },
-  messageStack: { gap: spacing.sm },
-  messageText: { fontFamily: type.regular, color: colors.charcoal, fontSize: 14, lineHeight: 21 },
-  feedbackRow: { marginTop: spacing.sm, paddingTop: spacing.sm, borderTopWidth: 1, borderTopColor: colors.line, flexDirection: "row", alignItems: "center", gap: spacing.md },
-  feedbackLabel: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.inkMuted, fontSize: 12 },
-  userText: { color: colors.surface },
-  paralegalCard: { marginTop: spacing.xs, borderRadius: radius.md, borderWidth: 1, borderColor: "#F3D8E4", backgroundColor: "#FFF7FA", padding: spacing.md, gap: spacing.md },
-  paralegalHeader: { flexDirection: "row", gap: spacing.sm, alignItems: "center" },
-  paralegalAvatar: { width: 36, height: 36, borderRadius: 18, backgroundColor: "#F6E7EE", alignItems: "center", justifyContent: "center" },
-  paralegalTitleBlock: { flex: 1 },
-  paralegalName: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14 },
-  paralegalMeta: { marginTop: 2, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19 },
-  paralegalActions: { flexDirection: "row", gap: spacing.sm },
-  secondaryAction: { flex: 1, minHeight: 38, borderRadius: radius.sm, borderWidth: 1, borderColor: "#E8B8CC", alignItems: "center", justifyContent: "center", flexDirection: "row", gap: 6 },
-  secondaryActionText: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
-  primaryAction: { flex: 1, minHeight: 38, borderRadius: radius.sm, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
-  primaryActionText: { fontFamily: type.bold, fontWeight: "700", color: colors.surface, fontSize: 13 },
-  thinking: { fontFamily: type.medium, fontWeight: "500", color: colors.inkMuted, fontSize: 13 },
-  activityPanel: { alignSelf: "flex-start", maxWidth: "92%", borderRadius: radius.md, borderWidth: 1, borderColor: "#F3D8E4", backgroundColor: "#FFF7FA", padding: spacing.md, gap: spacing.sm },
-  activityTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 12, textTransform: "uppercase" },
-  activityRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm },
-  activityText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 18 },
-  error: { marginTop: spacing.md, backgroundColor: "#FDEDEC", color: colors.danger, borderRadius: radius.sm, padding: spacing.md, fontFamily: type.medium },
-  composer: { flexDirection: "row", alignItems: "flex-end", gap: spacing.sm, marginTop: spacing.xl },
-  input: { flex: 1, minHeight: 54, maxHeight: 130, borderRadius: 20, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, fontFamily: type.regular, color: colors.charcoal, fontSize: 15 },
-  send: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
-  disabled: { opacity: 0.5 },
+  flex: { flex: 1 },
+  previewBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 18, backgroundColor: "#F5F7F5" },
+  previewLabel: { fontFamily: type.regular, fontSize: 11, color: colors.teal },
+  previewOption: { paddingHorizontal: 10, paddingVertical: 9, borderRadius: 6 },
+  previewSelected: { backgroundColor: "#E1ECE7" },
+  previewEntry: { flexDirection: "row", alignItems: "center", gap: 12, padding: 24, borderTopWidth: 1, borderTopColor: "#EEE9EC" },
+  screen: { flex: 1, backgroundColor: "#321D27" },
+  header: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 12, paddingTop: 6, paddingBottom: 22 },
+  headerButton: { width: 42, height: 44, alignItems: "center", justifyContent: "center" },
+  identity: { flex: 1, paddingLeft: 5 },
+  title: { fontFamily: type.medium, fontSize: 18, color: "#FFF9F5", lineHeight: 24 },
+  aiLabel: { fontFamily: type.regular, color: "#DAC0CB" },
+  subtitle: { fontFamily: type.regular, fontSize: 11, color: "#C5AEB9", marginTop: 3 },
+  canvas: { flex: 1, backgroundColor: "#FFFFFF", borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: "hidden" },
+  contextBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 24, paddingTop: 13, paddingBottom: 8 },
+  lsfMark: { width: 27, height: 23, borderRadius: 5, backgroundColor: "#F6F0DF", alignItems: "center", justifyContent: "center" },
+  lsfText: { fontFamily: type.medium, fontSize: 9, color: "#806321" },
+  contextText: { flex: 1, fontFamily: type.regular, fontSize: 11, color: "#969094" },
+  exit: { minHeight: 36, flexDirection: "row", alignItems: "center", gap: 5 },
+  exitText: { fontFamily: type.regular, fontSize: 11, color: colors.inkMuted },
+  chatContent: { paddingHorizontal: 24, paddingTop: 18, paddingBottom: 24 },
+  emptyContent: { flexGrow: 1 },
+  welcome: { paddingTop: 28 },
+  welcomeMark: { width: 54, height: 54, borderRadius: 18, backgroundColor: "#F6EFF2", alignItems: "center", justifyContent: "center", marginBottom: 24 },
+  greeting: { fontFamily: type.medium, fontSize: 29, lineHeight: 37, color: "#34272E", maxWidth: 290 },
+  welcomeBody: { fontFamily: type.regular, fontSize: 15, lineHeight: 23, color: "#8A8287", marginTop: 12, maxWidth: 300 },
+  topicRow: { flexDirection: "row", gap: 10, marginTop: 30 },
+  topic: { flex: 1, minHeight: 76, paddingVertical: 12, paddingHorizontal: 7, alignItems: "center", justifyContent: "center", gap: 10, borderRadius: 8, backgroundColor: "#F8F8F6" },
+  topicText: { fontFamily: type.regular, fontSize: 11, textAlign: "center", color: "#655E62", lineHeight: 16 },
+  suggestions: { marginTop: 23 },
+  suggestion: { flexDirection: "row", alignItems: "center", gap: 20, paddingVertical: 17, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: "#EAE7E8" },
+  suggestionText: { flex: 1, fontFamily: type.regular, fontSize: 14, lineHeight: 21, color: "#756D72" },
+  resume: { flexDirection: "row", alignItems: "center", gap: 10, marginTop: 27, paddingVertical: 12 },
+  resumeLabel: { fontFamily: type.regular, fontSize: 11, color: "#989095", marginBottom: 4 },
+  resumeTitle: { fontFamily: type.regular, fontSize: 13, color: "#655B62" },
+  messageList: { gap: 28 },
+  userRow: { alignItems: "flex-end" },
+  userBubble: { maxWidth: "87%", backgroundColor: "#F2EDF0", borderRadius: 20, borderTopRightRadius: 5, paddingHorizontal: 17, paddingVertical: 13 },
+  userText: { fontFamily: type.regular, fontSize: 15, lineHeight: 23, color: "#4F3946" },
+  assistantRow: { gap: 12 },
+  answerIdentity: { flexDirection: "row", alignItems: "center", gap: 7 },
+  answerIdentityText: { fontFamily: type.regular, fontSize: 11, color: "#9C7C8A" },
+  answerTools: { flexDirection: "row", alignItems: "center", gap: 3 },
+  toolButton: { width: 42, height: 42, alignItems: "center", justifyContent: "center" },
+  nextSteps: { flexDirection: "row", flexWrap: "wrap", gap: 10, marginTop: 14 },
+  nextStep: { flexDirection: "row", alignItems: "center", gap: 7, minHeight: 42, borderRadius: 8, paddingHorizontal: 11, backgroundColor: "#F5F7F5" },
+  nextStepText: { fontFamily: type.regular, fontSize: 12, color: "#696568" },
+  composerArea: { paddingHorizontal: 16, paddingTop: 10, backgroundColor: "#FFFFFF" },
+  composer: { flexDirection: "row", alignItems: "flex-end", gap: 8, padding: 7, backgroundColor: "#F8F6F7", borderRadius: 27, borderWidth: 1, borderColor: "#EEE9EC" },
+  input: { flex: 1, minHeight: 42, maxHeight: 130, paddingVertical: 11, paddingLeft: 13, fontFamily: type.regular, fontSize: 14, lineHeight: 21, color: "#3F353B" },
+  send: { width: 42, height: 42, borderRadius: 21, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
+  sendIdle: { backgroundColor: "#EAE2E6" },
+  disclaimer: { textAlign: "center", fontFamily: type.regular, fontSize: 10, lineHeight: 16, color: "#A49CA1", marginTop: 9 },
+  signIn: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 6, paddingBottom: 12 },
+  signInText: { flexShrink: 1, fontFamily: type.regular, fontSize: 11, color: "#81757C" },
+  jumpButton: { position: "absolute", bottom: 155, right: 23, width: 38, height: 38, borderRadius: 19, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#E6E0E3", alignItems: "center", justifyContent: "center" },
+  errorRow: { flexDirection: "row", alignItems: "center", gap: 8, marginTop: 16 },
+  errorText: { flex: 1, fontFamily: type.regular, fontSize: 13, lineHeight: 20, color: colors.burgundy },
+  loading: { paddingVertical: 60, alignItems: "center", gap: 14 },
+  smallText: { fontFamily: type.regular, fontSize: 12, color: colors.inkMuted },
+  loadMore: { alignItems: "center", padding: 18 },
+  pressed: { opacity: 0.65 },
+  disabled: { opacity: 0.35 },
+  historyScreen: { flex: 1, backgroundColor: "#FFFFFF" },
+  historyHeader: { flexDirection: "row", alignItems: "center", paddingHorizontal: 12, paddingVertical: 10 },
+  historyTitle: { flex: 1, fontFamily: type.semibold, fontSize: 21, color: "#3F3039", paddingLeft: 6 },
+  lightIcon: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
+  search: { marginHorizontal: 24, marginTop: 12, marginBottom: 20, paddingHorizontal: 14, backgroundColor: "#F7F5F6", borderRadius: 8, flexDirection: "row", alignItems: "center", gap: 10 },
+  searchInput: { flex: 1, minHeight: 48, fontFamily: type.regular, fontSize: 14, color: colors.charcoal },
+  historyList: { paddingHorizontal: 16, paddingBottom: 30 },
+  historyOpenRow: { flex: 1, flexDirection: "row", alignItems: "center", gap: 13, minHeight: 48 },
+  historyItem: { flexDirection: "row", alignItems: "center", gap: 13, paddingHorizontal: 12, paddingVertical: 18, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: "#EEE9EC" },
+  historyItemActive: { backgroundColor: "#F8F2F5", borderRadius: 8 },
+  historyItemTitle: { fontFamily: type.medium, fontSize: 15, lineHeight: 22, color: "#4D3C46" },
+  historyDate: { fontFamily: type.regular, fontSize: 11, color: "#A0969C", marginTop: 5 },
+  historyEmpty: { paddingHorizontal: 24, paddingTop: 60, gap: 18 },
+  emptyTitle: { fontFamily: type.regular, fontSize: 25, lineHeight: 32, color: "#3F3039" },
+  emptyBody: { fontFamily: type.regular, fontSize: 15, lineHeight: 23, color: colors.inkMuted },
+  modalBackdrop: { flex: 1, backgroundColor: "rgba(35,20,29,0.38)", justifyContent: "center", padding: 24 },
+  consentSheet: { borderRadius: 24, backgroundColor: "#FFFFFF", padding: 24, gap: 16 },
+  consentHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  consentBody: { fontFamily: type.regular, fontSize: 15, lineHeight: 24, color: "#81717A" },
+  modalPrimary: { minHeight: 50, borderRadius: 8, backgroundColor: colors.burgundy, paddingHorizontal: 18, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 12, marginTop: 8 },
+  modalPrimaryText: { fontFamily: type.medium, fontSize: 14, color: "#FFFFFF" },
 });

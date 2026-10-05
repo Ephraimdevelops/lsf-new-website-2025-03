@@ -14,6 +14,7 @@ interface LayoutProps {
 
 // Paths that have their own dedicated event trackers (to avoid double-counting)
 const DETAIL_PAGE_PREFIXES = ['/news/', '/publications/', '/stories/', '/opportunities/'];
+const PRIVATE_PAGE_PREFIXES = ['/admin', '/dashboard', '/profile', '/notifications', '/login', '/signup', '/request-help', '/sara', '/join', '/my-'];
 
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
@@ -26,20 +27,23 @@ const Layout = ({ children }: LayoutProps) => {
     if (!visitorId) return;
 
     // Guard: Don't fire again for the same path (prevents React strict mode double-fire)
-    if (lastLoggedPath.current === location.pathname + location.search) return;
-    lastLoggedPath.current = location.pathname + location.search;
+    if (lastLoggedPath.current === location.pathname) return;
+    lastLoggedPath.current = location.pathname;
 
     // Skip paths that have their own dedicated trackers to prevent double-counting
     const isDetailPage = DETAIL_PAGE_PREFIXES.some(prefix => location.pathname.startsWith(prefix));
-    if (isDetailPage) return;
+    if (isDetailPage || PRIVATE_PAGE_PREFIXES.some(prefix => location.pathname.startsWith(prefix))) return;
 
     // Determine resource type based on path
     let resourceType = 'page';
     if (location.pathname === '/become-a-paralegal') resourceType = 'paralegal_recruitment';
 
     // Capture real browser metadata for traffic source & device analytics
-    const referrer = document.referrer || 'direct';
-    const userAgent = navigator.userAgent || '';
+    const referrerHost = document.referrer ? new URL(document.referrer).hostname.toLowerCase() : '';
+    const sourceClass = !referrerHost || referrerHost === window.location.hostname ? 'direct'
+      : /google|bing|yahoo|duckduckgo/.test(referrerHost) ? 'search'
+      : /facebook|instagram|linkedin|twitter|t\.co/.test(referrerHost) ? 'social' : 'other';
+    const deviceClass = /mobile|android|iphone|ipad/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
 
     // Log the page view — once per unique path
     logEvent({
@@ -49,10 +53,8 @@ const Layout = ({ children }: LayoutProps) => {
       visitorId: visitorId,
       meta: {
         path: location.pathname,
-        search: location.search,
-        title: document.title,
-        referrer,
-        userAgent,
+        sourceClass,
+        deviceClass,
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

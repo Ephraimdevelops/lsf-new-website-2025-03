@@ -1,0 +1,798 @@
+[PDF PAGE 1]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+GUIDELINES FOR HANDLING FINANCIAL CONSUMER COMPLAINTS, 2025 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BANK OF TANZANIA 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+[PDF PAGE 2]
+ 
+ 
+ 
+TABLE OF CONTENTS 
+PART I ......................................................................................................................................................... 1 
+PRELIMINARY PROVISIONS ................................................................................................................ 1 
+Citation ..................................................................................................................................................... 1 
+Authorization ........................................................................................................................................... 1 
+Application ............................................................................................................................................... 1 
+Interpretation ........................................................................................................................................... 1 
+Application ............................................................................................................................................... 2 
+Objectives ................................................................................................................................................ 2 
+Guiding principles ................................................................................................................................... 2 
+PART II ....................................................................................................................................................... 3 
+AWARENESS AND ACCESSIBILITY ................................................................................................... 3 
+Strategy for educating consumers about their rights and the complaint process. ....................... 3 
+Visibility of complaint procedures ........................................................................................................ 3 
+Multiple channels for submission ......................................................................................................... 4 
+Assistance to consumers with special needs .................................................................................... 4 
+Service fee .............................................................................................................................................. 4 
+Agents and third parties ........................................................................................................................ 4 
+PART III. ..................................................................................................................................................... 5 
+COMPLAINT HANDLING AND RESOLUTION PROCEDURES BY FINANCIAL SERVICE 
+PROVIDER ................................................................................................................................................. 5 
+Appropriate and effective internal procedure for handling complaints ........................................... 5 
+Dedicated complaints unit or officer(s)................................................................................................ 5 
+Training requirements for staff involved in complaint handling ....................................................... 6 
+Traceability of complaints ..................................................................................................................... 6 
+Minimum complaint information required ............................................................................................ 6 
+Acknowledgment of Complaints ........................................................................................................... 6 
+Investigation of complaint ..................................................................................................................... 6 
+
+[PDF PAGE 3]
+ 
+ii 
+ 
+Complaint resolution .............................................................................................................................. 7 
+Communication with complainant ........................................................................................................ 7 
+Collaboration with another financial service provider ....................................................................... 8 
+Record keeping....................................................................................................................................... 8 
+PART IV ...................................................................................................................................................... 8 
+COMPLAINT HANDLING AT THE BANK .......................................................................................... 9 
+Lodging complaint at the Bank ............................................................................................................. 9 
+Notice of submission of response ...................................................................................................... 10 
+Consequences of not responding to the complaint ......................................................................... 10 
+Withdrawal of the complaint ............................................................................................................... 10 
+Determination ........................................................................................................................................ 11 
+Application for review ........................................................................................................................... 11 
+PART V ...................................................................................................................................................... 11 
+REPORTING ............................................................................................................................................ 11 
+Submission of reports .......................................................................................................................... 11 
+PART VI .................................................................................................................................................... 12 
+MISCELLANEOUS ................................................................................................................................. 12 
+Communication language ................................................................................................................... 12 
+Engagement with stakeholders for best practices and improvements ......................................... 12 
+Commitment to consumer protection and service excellence ....................................................... 12 
+PART VII ................................................................................................................................................... 12 
+ENFORCEMENT ..................................................................................................................................... 12 
+SCHEDULES ............................................................................................................................................ 13 
+FIRST SCHEDULE .................................................................................................................................. 13 
+SECOND SCHEDULE ............................................................................................................................. 14 
+THIRD SCHEDULE ................................................................................................................................ 15 
+
+[PDF PAGE 4]
+ 
+1 
+ 
+PART I 
+ PRELIMINARY PROVISIONS 
+Citation 1. These Guidelines shall be cited as “the Bank of Tanzania Guidelines 
+for Handling Financial Consumer Complaints, 2025”. 
+Authorization  2. These Guidelines are issued under regulation 50 of the Bank of 
+Tanzania (Financial Consumer Protection) Regulations, 2019. 
+Application  3. These Guidelines shall apply to financial service providers and 
+consumers as defined in the Bank of Tanzania (Financial Consumer 
+Protection) Regulations, 2019. 
+Interpretation 4. In these Guidelines, unless the context requires otherwise: 
+“Act” means the Bank of Tanzania Act, 2006; 
+“Agent” means an entity or individual engaged by the financial service 
+provider to offer products or services on its behalf; 
+“Bank” means Bank of Tanzania; 
+“Complainant” means an indiv idual or entity who has lodged a 
+complaint with a financial service provider or the Bank. 
+“Complaint” means dissatisfaction expressed by a consumer on 
+financial product or service provided by a financial service provider, 
+as opposed to an inquiry;  
+“Complaint Handling Mechanism ” means systems and processes 
+established by a financial service provider to effectively manage and 
+resolve consumer complaints; 
+“Consumer” means a person that uses, or has used or is using, any 
+of the financial product or service pro vided by a financial service 
+provider; 
+“Dedicated Officer ” is a person appointed by a financial service 
+provider who is tasked with handling consumer complaints; 
+“Determination” means the process by which the Bank evaluates and 
+decides on consumer complaints; 
+“Eligible Complaint ” means a complaint that meets the necessary 
+criteria or requirements in accordance with the provisions of these 
+Guidelines to be processed;  
+
+[PDF PAGE 5]
+ 
+2 
+ 
+“Financial Consumer Protection Unit ” means the unit designated 
+within the Bank to handle consumer complaints; 
+“Financial service provider ” means an institution or individual 
+licensed, regulated and supervised by the Bank; 
+“Inquiry” means consumer’s request for information or clarification to 
+financial services provider relating to products or services; 
+“Individual money lender ” means a person licensed to undertake 
+microfinance business of lending money in accordance with the 
+provisions of the Microfinance Act, 2018; 
+“Primary Financial Service Provider ” means a financial service 
+provider that has direct relationship with a consumer in offering the 
+respective financial products or services; 
+“Secondary Financial Service Provider ” means a financial service 
+provider indirectly involved in the consumer transactions; and 
+“Third Party ” means an indivi dual or entity that form part of the 
+business processes and which are necessary to support the provision 
+of banking or related financial services. 
+Application  5. These Guidelines shall apply to financial service providers and 
+consumers as defined in the Bank of Tanzania (Financial Consumer 
+Protection) Regulations, 2019. 
+Objectives  6. The primary objective of these Guidelines is to establish a 
+standardized approach for managing consumer complaints among 
+financial service providers, aiming to enhance consumer satisfaction, 
+trust, and confidence within the financial sector. Specifically, the 
+Guidelines aim to: 
+(a) establish a framework that ensures complaints are managed 
+efficiently, fairly, timely and transparently;  
+(b) provide procedures for submission, assessment, and resolution of 
+consumer complaints; and 
+(c) provide for responsibilities of financial service providers and 
+complainants in the process of handling consumer complaints. 
+Guiding principles 7. (1) A financial service provider shall adhere to key principles 
+stipulated in Clause 6 (2) when handling complaints to ensure 
+consumer satisfaction and regulatory compliance.  
+
+[PDF PAGE 6]
+ 
+3 
+ 
+ (2) At minimum, the principles shall include the following: 
+(a) Honesty: presenting all material facts in a clear and accurate 
+manner without any intent to mislead complainant; 
+(b) Confidentiality: respecting consumer privacy and ensure that 
+personal information and complaint details are handled with 
+strictly confidentiality; 
+(c) Transparency: communicating its complaint handling  
+processes, including procedures for submission of complain t 
+and what consumer can expect during the resolution process; 
+and 
+(d) Fairness and equal treatment:  treating complainant fairly 
+without any form of bias in any way in handling complaints. 
+PART II 
+AWARENESS AND ACCESSIBILITY 
+Strategy for 
+educating 
+consumers about 
+their rights and the 
+complaint process. 
+8. (1) A financial service provider shall develop and implement a 
+strategy to ensure consumers are adequately informed about their 
+right to lodge complaints and the available mechanisms for handling 
+those complaints. This strategy shall, among others, provide for 
+disclosure of information for complaints handling, open access to 
+compliant submission, process of resolution, appeal and timeframe. 
+(2)  The overarching objective of the strategy is to provide clear 
+communication and accessibility to empower consumers to 
+understand their rights and the process for addressing complaints. 
+Visibility of 
+complaint 
+procedures 
+ 
+ 
+9. (1) A financial service provider shall ensure that the consumer 
+complaint redressal mechanism is displayed in a conspicuous 
+position in the public part of its principal place of business and in its 
+branches and agencies. 
+(2) At minimum the consumer complaint redressal mechanism poster 
+shall contain the following information: 
+ (a) channels for submission of complaint. 
+(b) contact information of financial services provider. 
+
+[PDF PAGE 7]
+ 
+4 
+ 
+(c) statutory timeline for resolving complaint (Including 
+acknowledgement days and internal escalation process); and 
+(d) procedures for appeal to the Bank specifying the updated 
+Bank’s information for lodging consumer’s complaints. 
+(e) Notwithstanding clause 8(1) a financial service provider 
+operating digital platforms shall conspicuously display the 
+contents of the complaint redressal mechanism on its 
+business premises, website, portal, or social media channels, 
+ensuring accessibility and visibility of the information to 
+consumers. 
+(f) The information in the complaint redressal mechanism poster 
+shall be made available in both Kiswahili and English and 
+provided to consumers free of charge upon request. 
+Multiple channels 
+for submission 
+10. (1) A financial service provider shall design submission channels that 
+is secure, efficient, convenient, reliab le and appropriate to 
+consumers. 
+(2) A financial service provider shall receive complaints through 
+analog or digital means based on consumer profile. 
+(3) For the purpose of clause 9(1&2), a financial service provider shall 
+be required to have at least three channels for receiving complaints. 
+Assistance to 
+consumers with 
+special needs 
+11. A financial service provider shall accord assistance to consumers with 
+special needs such as disability or language problems. 
+Service fee 12. A financial service provider shall not charge any cost, fee, or penalty 
+to a consumer for accepting, handling, or resolving complaints. In 
+addition, telephone channels used for lodging complaints shall be toll 
+free.  
+Provided all complaints received via telephone to be recorded and 
+stored as provided under clause 16 of these Guidelines. 
+Agents and third 
+parties 
+13. (1) A financial service provider shall be responsible for addressing 
+complaints related to third party or agents. 
+(2) A financial service provider shall be responsible for maintaining 
+records of all complaints received and resolved by their agents.  
+
+[PDF PAGE 8]
+ 
+5 
+ 
+PART III. 
+COMPLAINT HANDLING AND RESOLUTION PROCEDURES BY FINANCIAL SERVICE 
+PROVIDER 
+Appropriate and 
+effective internal 
+procedure for 
+handling 
+complaints 
+14. (1) Without prejudice to regulation 5 of the Bank of Tanzania 
+(Financial Consumer Protection) Regulations, 2019,  that requires a 
+financial service provider to put in place appropriate financial 
+consumer protection policies, a financial service provider shall have 
+internal procedures for handling complaints. 
+(2)  The internal procedures for handling complaints referred under 
+clause 13 (1) may be standalone document or embed in the existing 
+policies of a financial service provider. 
+(3) At minimum, the complaints handling procedures shall include: 
+(a) receipt of complaints; 
+(b) handling and resolving of complaints; 
+(c) monitoring of complaints and its resolutions; 
+(d) reporting and communication of complaint resolutions 
+within the financial service provider and to the Bank; and 
+(e) communication of resolutions to complainant. 
+(4) A financial service provider shall approve the policy and ensure 
+the complaints handling procedures are regularly reviewed in 
+accordance with governance structure. 
+(5) A financial service provider shall ensure that all relevant staff are 
+aware of internal complaints handling procedures. 
+Dedicated 
+complaints unit or 
+officer(s) 
+15. (1) A financial service provider,  with exception to individual money 
+lender, shall have a dedicated complaint unit comprised of 
+appropriate complaints handling officer(s) versed in handling 
+complaints.  
+(2) For the purpose of clause 14 (1), individual money lender shall 
+have a dedicated officer versed in handling complaints.  
+(3) A financial service provider with branch operations or regional 
+offices shall appoint a dedicated officer at each branch or regional 
+office empowered to either resolve complaints or have access to the 
+person who has the authority to resolve complaints. 
+
+[PDF PAGE 9]
+ 
+6 
+ 
+Training 
+requirements for 
+staff involved in 
+complaint handling 
+16. A financial service provider shall provide regular relevant training in 
+complaint handling to its dedicated officer(s) to enhance efficiency. 
+Traceability of 
+complaints 
+17. (1) A financial service provider shall ensure that the complaint is 
+traceable. 
+(2) For the purpose of clause 16 (1), a financial service provider shall 
+assign a unique registration number upon receipt of each complaint.  
+(3) The assigned number referred in clause 16 (2) shall be provided 
+to the complainant when such complaint is presented for the first time 
+to the financial service provider.  
+(4) Notwithstanding clause 16 (2) the complainant shall be informed 
+of the assigned com plaint reference number to enable tracking and 
+future follow-ups. 
+Minimum 
+complaint 
+information 
+required 
+18. Upon receipt of the complaint, the financial service provider shall 
+register complaint information as prescribed in the First Schedule of 
+these Guidelines.  
+Acknowledgment 
+of Complaints 
+ 
+19. A financial service provider shall:- 
+(1) Notify in writing or otherwise, as the circumstance requires, 
+immediately by an acknowledgement of receipt of a complaint. 
+(2) For the purpose of clause 18(1), the notification shall include 
+possible timeline for resolution depending on the nature of the 
+complaint, as stipulated in the Bank of Tanzania (Financial Consumer 
+Protection) Regulations, 2019.  
+Investigation of 
+complaint 
+20. (1) A financial service provider, upon receipt of complaint, shall: - 
+(a) assess the subject matter of the complaint and establish whether 
+it requires further investigation or not; 
+(b) if it requires investigation, investigate the complaint competently, 
+promptly and impartially;  
+(c) In addition to clause 19 (1) (a) and (b), assess fairly the subject 
+matter of the complaint and see whether the complaint should be 
+upheld and what remedial action or redress (or both) may b e 
+appropriate; 
+
+[PDF PAGE 10]
+ 
+7 
+ 
+(d) offer any appropriate redress or remedial action; 
+(e) explain to the complainant, in a fair, clear, and non -misleading 
+manner, the assessment of the complaint, the decision made, and 
+any offer of remedial action or redress; and 
+(f) comply promptly with any offer of remedial action or redress which 
+the complainant accepts. 
+ (2) For the purpose of clause 19(1)(b), the complaint shall be 
+investigated by a person not directly involved in the matter and able 
+to act independently and impartially. 
+Complaint 
+resolution  
+21. (1) A financial service provider shall resolve the complaint and 
+present the decision to the complainant within timeframe stipulated in 
+the Bank of Tanzania (Financial Consumer Protection) Regulations , 
+2019. 
+(a) If the financial service provider is unable to resolve the complaint 
+within stipulated time frame, shall: 
+(i) inform the complainant before the expiration of the time 
+specified for the delay and provide reasons; 
+(ii) outline the measures being taken to resolve the matter; and 
+(iii) ensure that the matter is resolved within the time not 
+exceeding half of the period specified in clause 20(1). 
+(2) A financial service provider shall notify the complainant of the final 
+resolution using the same channel used or preferred by the 
+complainant. 
+(3) In the event that the complainant is not satisfied with the 
+resolution, the financial service provider shall advise the complainant 
+to lodge the complaint to the Bank. 
+Communication 
+with complainant 
+22. (1) A financial service provider shall maintain transparent 
+communication with the complainant throughout the entire complaint 
+handling process. This shall include regular updates on the progress 
+of their complaint and any required action. 
+(2) A financial service provider shall provide final resolution in writing, 
+clearly outlining the outcome(s), reason (s) for the decision, and 
+further steps the complainant may take, if necessary. 
+
+[PDF PAGE 11]
+ 
+8 
+ 
+Collaboration with 
+another financial 
+service provider 
+23. (1) W here a financial service or product involves multiple financial 
+service providers, a primary service provider shall collaborate with 
+secondary service provider(s) in resolving complaints within 
+timeframe provided in the Bank of Tanzania (Financial Consumer  
+Protection) Regulations, 2019. 
+(2)  For the purpose of clause 22 (1), the primary financial service 
+provider that receive the complaint shall analyse the complaint within 
+three working days and escalate the complaint to the relevant 
+secondary financial service provider requesting required i nformation 
+and documentation relating to the complaint. 
+(3)  Secondary financial service provider shall provide the requested 
+information to the primary financial service provider within three 
+working days after receiving the request. 
+(4)  Notwithstanding clause 22 (2) and (3), the primary financial 
+service provider shall submit complete complaint to the secondary 
+financial service provider to resolve within five working days and 
+submit feedback to primary financial service provider. 
+Record keeping  
+ 
+24. (1) A financial service provider shall record and retain information of 
+complaints for at least a period of five ( 5) years from the date of 
+receipt.    
+(2) Information to be retained shall include:    
+(a) Complaint registration number; 
+(b) The nature of the complaint;    
+(c) Any correspondence between the institution concerned and 
+the complainant, including the manner in which the complaint 
+was resolved and details of any redress offered by the 
+financial service provider concerned; and 
+(d) Relevant d ocumentation or evidence of the complaint 
+concerned. 
+(3) The records shall be kept in a convenient and accessible form to 
+facilitate discharge to the Bank when requested. 
+PART IV 
+
+[PDF PAGE 12]
+ 
+9 
+ 
+COMPLAINT HANDLING AT THE BANK 
+ 
+Lodging complaint 
+at the Bank 
+25. (1) A complainant who is dissatisfied with the decision of a financial 
+service provider or has not received a response within timeframe 
+stipulated in the Bank of Tanzania (Financial Consumer Protection) 
+Regulations, 2019, has the right to appeal to the Complaint Financial 
+Consumer Protection Unit at the Bank. 
+ 
+(2) A complaint may be submitted through any of the following 
+channels during working hours: 
+(a) the SEMA NA BOT website; 
+(b) the SEMA NA BOT mobile application; 
+(c) the SEMA NA BOT toll-free number (IVR); 
+(d) the SEMA NA BOT chatbot; or 
+(e) any other acceptable method, depending on the available 
+communication channels 
+ 
+(3) The Bank shall receive, process and determine consumer ’s 
+complaints after being satisfied that:  
+(a) the complaint has been handled by financial service provider to its 
+finality;  
+(b) the consumer has not been satisfied with the decision reached by 
+financial service provider;  
+(c) time for handling the complaint as set out in the Bank of Tanzania 
+(Financial Consu mer Protection) Regulations, 2019  has lapsed 
+without consumer getting notification from the financial service 
+provider;  
+(d) a complaint has not been subject to legal proceedings before a 
+Court or Tribunal or any other competent authority;  
+(e) a complainant has s uffered financial loss or material 
+inconvenience; 
+(f) a complaint whose resolution would not affect the right of other 
+party to the complaint who is not interest ed with the resolution by 
+the Bank; 
+(g) A complaint is not vexatious or not frivolous; 
+
+[PDF PAGE 13]
+ 
+10 
+ 
+(h) A complainant has not misrepresented facts of his complaints; 
+(i) A complainant has provided relevant information and documents 
+to assist in the resolution of the complaint; and 
+(j) A complainant fully cooperates in the dispute resolution process. 
+ 
+(4) Notwithstanding clause 24 (3) non-compliance with clause 24 
+(3)(h), (i), and (j) shall grant the Bank the authority to dismiss the 
+complaint or resolve it at its discretion. 
+Notice of 
+submission of 
+response 
+26. The Bank shall , upon receiving a consumer's complaint , notify the 
+financial se rvice provider to submit the response to the complaint 
+within 10 days from the date of receipt of the notification using form 
+number 1 as provided under Second Schedule made under these 
+Guidelines. 
+Consequences of 
+not responding to 
+the complaint 
+ 
+27. (1) Where the financial service provider fails to respond to the Bank's 
+notification under clause 25, the Bank shall proceed to determine the 
+matter ex-parte. 
+(2) Without prejudice to the provisions of clause 26 (1) the Bank may     
+impose penalties or sanctions as provided under the Bank of 
+Tanzania (Financial Consumer Protection) Regulation, 2019. 
+Withdrawal of the 
+complaint  
+ 
+28.  (1) A complainant has the right to withdraw his complaint at any point 
+during the resolution process. 
+(2) The withdrawal request shall be made in writing and submitted to 
+the Bank. 
+(3) Upon receiving the withdrawal notice, the Bank shall: - 
+(a) Cease further investigation or action on the complaint; and 
+(b) Provide confirmation of the withdrawal to the complainant 
+and financial service provider in writing. 
+(4) A complaint that has been withdrawn shall not be reinstated. 
+
+[PDF PAGE 14]
+ 
+11 
+ 
+Determination 29.  (1)  The Bank shall deliver its decision on the matter within time 
+specified in the Bank of Tanzania (Financial Consumer Protection) 
+Regulation, 2019. 
+(2) The complainant or financial service provider shall be required to 
+either signify his acceptance or non-acceptance of the determination, 
+in writing not later than seven (7) days from the delivery of the 
+determination. 
+(3) The Bank shall, in determining a complaint, adhere to the general 
+principles of natural justice and not be bound by strict legal principles. 
+(4) The determination by the Bank on the complaint referred by a 
+complainant shall be binding and conclusive unless a dissatisfied 
+party has lodged an application for review. 
+Application for 
+review  
+30. (1) A complainant or financial service provider may request the Bank 
+in writing, within Seven (7) days from the delivery of the determination 
+made in terms of these guidelines, to reconsider such determination. 
+(3) The Bank may make decision on reconsideration without further 
+submissions received or may provide an opportunity for the 
+complainant or the financial service provider to provide further written 
+submissions. 
+(4) The Bank shall, within twenty-one days from the date of receipt of 
+the application for review, make a determination. 
+PART V 
+REPORTING 
+Submission of 
+reports  
+31. (1)  A financial service provider shall submit a report to the Bank on 
+monthly basis, as prescribed in the Third Schedule of these 
+guidelines, through the means of submission as may be decided by 
+the Bank. 
+(2) The report referred to clause 30(1) shall be submitted to the Bank 
+within fifteen days following the end of the reference month. 
+
+[PDF PAGE 15]
+ 
+12 
+ 
+PART VI 
+MISCELLANEOUS 
+Communication 
+language 
+32. A financial service provider shall use either use  English or Kiswahili 
+language. 
+Engagement with 
+stakeholders for 
+best practices and 
+improvements 
+ 
+33. (1) A financial service provider shall engage with stakeholders, 
+including consumers, consumer associations, regulatory bodies, and 
+industry experts, through regular consultations and feedback 
+sessions. 
+(2) The financial service provider may implement structured feedback 
+mechanisms, such as surveys or focus groups, to gather insights on 
+best practices and areas for improvement in complaint handling and 
+consumer protection. 
+Commitment to 
+consumer 
+protection and 
+service excellence 
+34. A financial service provider shall at all times comply with its internal 
+financial consumer protection policies and deliver quality services 
+while handling consumer complaints. 
+PART VII 
+ENFORCEMENT 
+Sanctions 
+ 
+35. Noncompliance to these Guidelines shall attract sanctions and 
+administrative measures on any financial service provider, as 
+provided in the Bank of Tanzania (Financial Consumer Protection) 
+Regulation, 2019. 
+Amendment to 
+the Guidelines 
+36. These Guidelines shall be amended as and when need arises. 
+Revocation 37. Bank of Tanzania Guidelines for Banking Consumers ’ Complaints, 
+2015 are hereby revoked. 
+  
+
+[PDF PAGE 16]
+ 
+13 
+ 
+SCHEDULES 
+FIRST SCHEDULE 
+(Made under clause 17) 
+ 
+Custo
+mer's 
+Name 
+Gen
+der 
+Employ
+ment 
+Status 
+Employ
+ment 
+Sector 
+Phon
+e 
+Num
+ber 
+Place 
+of  
+Origi
+n 
+Compl
+aint 
+Categ
+ory 
+Nature 
+of  
+Compl
+aint 
+Val
+ue  
+Modal
+ity of  
+Submis
+sion  
+Langu
+age 
+Date 
+of 
+submis
+sion  
+Compl
+aint's 
+registra
+tion 
+number 
+Stat
+us 
+Date 
+the 
+compl
+aint 
+was 
+resolv
+ed 
+Resolu
+tion 
+remar
+ks 
+Key issue(s) 
+noted 
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[PDF PAGE 17]
+ 
+14 
+ 
+ 
+SECOND SCHEDULE 
+(Made under clause 25) 
+FINANCIAL SERVICE PROVIDER’S RESPONSE FORM (FORM No.1) 
+ 
+ 
+Name of Financial Service Provider…………………………... 
+ 
+Address: ……………………………….………......................... 
+ 
+Telephone No. …………………………………………………. 
+ 
+ 
+No: ………… 
+Complainant’s name 
+ 
+ 
+Complainant’s Contact 
+Information 
+ 
+ 
+Nature of complaint 
+ 
+ 
+Was the complaint resolved? YES: ………... 
+ 
+Date: …………................ 
+NO: ……. 
+ 
+Date: ………………  
+ 
+If YES, how was it 
+concluded? 
+ 
+ 
+If NO state the reasons 
+ 
+ 
+Supporting evidence 
+ 
+ 
+ 
+  
+
+[PDF PAGE 18]
+ 
+15 
+ 
+ 
+THIRD SCHEDULE 
+(Made under clause 30) 
+MONTHTLY REPORT FORM (FORM No.2) 
+ 
+ 
+ 
+Name of Financial Service Provider: ………………………………………...…………… 
+ 
+Date of submission: ……………………………………………… 
+ 
+S/N Service/product Nature of 
+complaint 
+ 
+ 
+ 
+ 
+ 
+Amount Outcome 
+Resolved Not 
+Resolved 
+Withdrawn 
+  
+ 
+ 
+     
+  
+ 
+ 
+     
+  
+ 
+ 
+     
+TOTAL      
+ 
+ 
+Submitted by: …………...………………...Signed…………………Date……………...…. 
+ 
+ 
+ 
+ 
+ 
+Dodoma      Emmanuel Mpawe Tutuba  
+Governor 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

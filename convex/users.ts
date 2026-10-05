@@ -49,22 +49,22 @@ export const getDashboardData = query({
 export const syncUser = mutation({
     args: {
         name: v.string(),
-        email: v.string(),
         clerkId: v.string(),
         imageUrl: v.optional(v.string()),
-        role: v.optional(v.string()),
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
         if (!identity || identity.subject !== args.clerkId) {
             throw new Error("Unauthorized");
         }
-        // The client-provided email cannot be used to grant a paralegal role.
-        // Clerk supplies the email bound to the authenticated identity.
-        const authenticatedEmail = identity.email?.trim().toLowerCase();
-        if (!authenticatedEmail) throw new Error("A verified account email is required.");
+        // A matching email grants an existing approved profile only when the
+        // identity provider explicitly confirms ownership in its signed token.
+        const authenticatedEmail = identity.email?.trim().toLowerCase() ?? "";
+        const authenticatedPhone = identity.phoneNumber?.trim();
         const now = Date.now();
-        const approvedParalegalProfile = await getApprovedParalegalProfileByEmail(ctx, authenticatedEmail);
+        const approvedParalegalProfile = authenticatedEmail && identity.emailVerified === true
+            ? await getApprovedParalegalProfileByEmail(ctx, authenticatedEmail)
+            : null;
 
         const existingUser = await ctx.db
             .query("users")
@@ -77,11 +77,13 @@ export const syncUser = mutation({
             }
             const patchData: {
                 email: string;
+                phoneNumber?: string;
                 lastLogin: number;
                 name?: string;
                 imageUrl?: string;
             } = {
-                email: authenticatedEmail,
+                email: authenticatedEmail || existingUser.email,
+                phoneNumber: authenticatedPhone || existingUser.phoneNumber,
                 lastLogin: now,
             };
             // Only update name if it's currently placeholder "User" or empty
@@ -104,6 +106,7 @@ export const syncUser = mutation({
         const userId = await ctx.db.insert("users", {
             name: args.name,
             email: authenticatedEmail,
+            phoneNumber: authenticatedPhone,
             clerkId: identity.subject,
             imageUrl: args.imageUrl,
             // Role grants are managed by an authorized platform workflow only.
@@ -159,6 +162,15 @@ export const getRoleByClerkIdInternal = internalQuery({
 
         if (!user || user.isDeleted) return null;
         return user.role;
+    },
+});
+
+export const getActiveRolesByClerkIdInternal = internalQuery({
+    args: { clerkId: v.string() },
+    handler: async (ctx, args) => {
+        const user = await ctx.db.query("users").withIndex("by_clerk_id", (q) => q.eq("clerkId", args.clerkId)).unique();
+        if (!user || user.isDeleted) return [];
+        return await getActiveRoles(ctx, user._id);
     },
 });
 

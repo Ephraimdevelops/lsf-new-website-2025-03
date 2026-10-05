@@ -20,7 +20,6 @@ const PublicationDetail = () => {
 
   const publicationData = useQuery(api.publications.getById, { id });
   const publication = publicationData ? { ...publicationData, id: publicationData._id } : null;
-  const incrementDownload = useMutation(api.publications.incrementDownloadCount);
   const logEvent = useMutation(api.analytics.logEvent);
 
   const isLoading = publicationData === undefined;
@@ -50,12 +49,9 @@ const PublicationDetail = () => {
   }, [publication, publicationId, visitorId]);
 
   const trackAndDownload = async () => {
-    if (publication) {
-      // Increment the old download counter (legacy)
-      incrementDownload({ id: publication.id });
-
-      // Log analytics event for detailed tracking
-      logEvent({
+    if (publication?.pdfUrl) {
+      // Count the download request once. Browser delivery cannot be verified here.
+      await logEvent({
         type: "publication_download",
         resourceId: publicationId,
         resourceType: "publication",
@@ -67,9 +63,7 @@ const PublicationDetail = () => {
         },
       });
 
-      if (publication.pdfUrl) {
-        await forceDownload(publication.pdfUrl, `${publication.title}.pdf`);
-      }
+      await forceDownload(publication.pdfUrl, `${publication.title}.pdf`);
     }
   };
 

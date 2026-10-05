@@ -1,0 +1,179 @@
+{
+  "status": "research_review_required",
+  "conflicts": [
+    {
+      "id": "C01",
+      "sourceIds": [
+        "PROC-SMALL-CLAIMS"
+      ],
+      "observation": "Search-indexed legislation/1420/download returned a forestry order, not small-claims rules.",
+      "resolutionOrRequiredAction": "Wrong document isolated in quarantine; correct record 1318 acquired. Match PDF cover and operative text before indexing.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C02",
+      "sourceIds": [
+        "PROC-SMALL-CLAIMS",
+        "PROC-EFILING"
+      ],
+      "observation": "Small-claims rule 5 cites GN248/2018 for electronic filing; acquired electronic-filing Gazette says GN148/2018.",
+      "resolutionOrRequiredAction": "Do not silently alter statute text. Legal reviewer must reconcile official citation, corrections and later instruments.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C03",
+      "sourceIds": [
+        "PROC-COURT-FEES2015",
+        "PROC-COURT-FEES-2018"
+      ],
+      "observation": "2018 court-fee rule 11 expressly revokes 2015 rules.",
+      "resolutionOrRequiredAction": "Keep 2015 historical and excluded from current guidance; check later amendments to 2018 rules.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C04",
+      "sourceIds": [
+        "FIN-BOT-GUIDELINES-EN",
+        "FIN-BOT-GUIDELINES-SW"
+      ],
+      "observation": "English and sw-path financial complaints PDFs have identical hashes; the sw-path cover is English.",
+      "resolutionOrRequiredAction": "Treat both as one English document; do not count as a Kiswahili translation.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C05",
+      "sourceIds": [
+        "ZNZ-LEGAL-AID-CATALOGUE",
+        "ZNZ-LEGAL-AID-EN",
+        "ZNZ-LEGAL-AID-SW",
+        "ZNZ-LEGAL-AID-RULES"
+      ],
+      "observation": "Public catalogue labels conflict on Zanzibar Legal Aid Act number/year; linked Act PDFs fail. Acquired Gazette rules identify Act13/2018.",
+      "resolutionOrRequiredAction": "Rules are supporting evidence, not a substitute for the authenticated current Act. Obtain full Act and amendments from Zanzibar authority.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C06",
+      "sourceIds": [
+        "FAMILY-GYUMI-HIGH-COURT",
+        "FAMILY-GYUMI-APPEAL",
+        "BASE-MARRIAGE"
+      ],
+      "observation": "High Court filename says 3 March 2016; judgment page1 states last order3/3/2016 and judgment8/7/2016. Statute and judgments must be read together.",
+      "resolutionOrRequiredAction": "Use judgment date from actual document, preserve conflicting filename metadata. Qualified review of current binding effect and later cases required.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C07",
+      "sourceIds": [
+        "CRIM-PROCEDURE",
+        "CRIM-PROCEDURE-SUPPLEMENT-2025"
+      ],
+      "observation": "R.E.2023 is not the latest acquired criminal-procedure text; OSG also supplies annual supplement through July31,2025.",
+      "resolutionOrRequiredAction": "Link versions, inspect supplement and search later amendments through research date; neither is automatically certified current.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C08",
+      "sourceIds": [
+        "RITA-FAQ",
+        "RITA-PORTAL",
+        "RITA-SERVICES"
+      ],
+      "observation": "Older FAQ and live portal can describe different fees and registration scenarios.",
+      "resolutionOrRequiredAction": "Do not extract a single universal fee. Verify scenario, regulation, date and office confirmation.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C09",
+      "sourceIds": [
+        "ZNZ-CONSTITUTION-EN",
+        "ZNZ-AG-CATALOGUE"
+      ],
+      "observation": "Government-hosted Zanzibar Constitution PDF upload date does not establish constitutional amendment cutoff.",
+      "resolutionOrRequiredAction": "Reconcile against authenticated current edition and amendments; hosting/upload date is not legal commencement.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C10",
+      "sourceIds": [
+        "ENVIRONMENT-AMENDMENT"
+      ],
+      "observation": "One catalogue lead uses BILL in filename while OAG has an Act record.",
+      "resolutionOrRequiredAction": "Check downloaded cover, Act number, assent, commencement and provisions; do not treat a Bill as enacted law.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C11",
+      "sourceIds": [
+        "SAFE-NPA-II",
+        "SAFE-FGM-EN",
+        "SAFE-FGM-SW"
+      ],
+      "observation": "Ministry publication catalogue contained unrelated gambling footer content.",
+      "resolutionOrRequiredAction": "Record source-integrity concern; verify each PDF separately against issuing ministry and signed title/version. Hosting alone is insufficient.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C12",
+      "sourceIds": [
+        "CONSUMER-FCC-FRAMEWORK",
+        "FCC-CONSUMER-PROCEDURE",
+        "FCC-AMENDMENT-2024"
+      ],
+      "observation": "Initial FCC framework HTML contained only a three-character shell. Rendered official catalogue subsequently exposed actual instrument links, now acquired.",
+      "resolutionOrRequiredAction": "Acquisition gap resolved by rendered catalogue and PDFs; shell itself remains excluded as legal text. Review instrument currency and scope.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C13",
+      "sourceIds": [
+        "PROC-SMALL-CLAIMS"
+      ],
+      "observation": "Gazette cover gives Small Claims Procedure Rules2023; rule1 in the body cites Rules2022.",
+      "resolutionOrRequiredAction": "Preserve both observations; GN159 published10 March2023. Legal reviewer must check official correction/current citation.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C14",
+      "sourceIds": [
+        "ZNZ-KADHIS-2024",
+        "ZNZ-KADHIS-RULES-2021"
+      ],
+      "observation": "Gazette published2024 contains Act8/2023. Section1 requires an appointed commencement date; section44 contains repeal and pending-proceeding savings.",
+      "resolutionOrRequiredAction": "Commencement notice and newer2024 procedure/appeal rules still required. Do not assume2021 rules govern all new cases.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C15",
+      "sourceIds": [
+        "CMA-PROCEDURE",
+        "CMA-GUIDELINES"
+      ],
+      "observation": "Official copies contain image scans with no native text. Local machine OCR completed38 pages; visually obvious recognition errors appear despite high engine confidence.",
+      "resolutionOrRequiredAction": "OCR is an unverified aid. Review every operative rule and form against scan before indexing. Engine confidence is not legal accuracy.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C16",
+      "sourceIds": [
+        "SERVICES-LHRC",
+        "SERVICES-TAWLA",
+        "SERVICES-TAWLA-CONTACT"
+      ],
+      "observation": "Public pages show different phone/address/office details within the same page or across service and contact pages.",
+      "resolutionOrRequiredAction": "Preserve candidate alternatives and flag conflicts. Confirm with provider before approving directory records.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C17",
+      "sourceIds": [
+        "WCF-REGULATIONS-VERSION",
+        "WCF-REGULATIONS-2016"
+      ],
+      "observation": "Repository editions show differing validity-period labels for the2016 regulations; original rule2 contains a conditional Zanzibar coverage branch.",
+      "resolutionOrRequiredAction": "Acquire2021 and later amendments and reconcile editions. Do not infer territorial coverage solely from client location.",
+      "resolvedForProduction": false
+    }
+  ]
+}

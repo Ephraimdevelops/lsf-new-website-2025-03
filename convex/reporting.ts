@@ -15,6 +15,13 @@ function percentage(numerator: number, denominator: number) {
   return Math.round((numerator / denominator) * 1000) / 10;
 }
 
+function donorSafePercentage(numerator: number, denominator: number) {
+  if (denominator < DEFAULT_SUPPRESSION_THRESHOLD) return null;
+  const remainder = denominator - numerator;
+  if ((numerator > 0 && numerator < DEFAULT_SUPPRESSION_THRESHOLD) || (remainder > 0 && remainder < DEFAULT_SUPPRESSION_THRESHOLD)) return null;
+  return percentage(numerator, denominator);
+}
+
 function average(values: number[]) {
   if (!values.length) return 0;
   return Math.round((values.reduce((sum, value) => sum + value, 0) / values.length) * 10) / 10;
@@ -79,17 +86,17 @@ export const generateDonorSafeSnapshot = mutation({
       periodDays: days,
       requestsSubmitted: suppressSmallCell(periodRequests.filter((request) => request.status !== "draft").length),
       casesCreated: suppressSmallCell(periodCases.length),
-      openCases: cases.filter((caseRecord) => !["resolved", "closed_unresolved", "closed"].includes(caseRecord.status)).length,
+      openCases: suppressSmallCell(cases.filter((caseRecord) => !["resolved", "closed_unresolved", "closed"].includes(caseRecord.status)).length),
       resolvedCases: suppressSmallCell(resolvedCases.length),
       safeguardingCases: suppressSmallCell(safeguardingCases.length),
       safeguardingReviewRequests: suppressSmallCell(safeguardingReviews.length),
-      assignmentAcceptanceRate: percentage(acceptedAssignments.length, periodAssignments.length),
-      averageAssignmentResponseHours: average(assignmentResponseHours),
-      appointmentsKeptRate: percentage(completedAppointments.length, periodAppointments.length),
-      referralAcceptanceRate: percentage(acceptedReferrals.length, periodReferrals.length),
-      averageReferralResponseHours: average(referralResponseHours),
+      assignmentAcceptanceRate: donorSafePercentage(acceptedAssignments.length, periodAssignments.length),
+      averageAssignmentResponseHours: assignmentResponseHours.length >= DEFAULT_SUPPRESSION_THRESHOLD ? average(assignmentResponseHours) : null,
+      appointmentsKeptRate: donorSafePercentage(completedAppointments.length, periodAppointments.length),
+      referralAcceptanceRate: donorSafePercentage(acceptedReferrals.length, periodReferrals.length),
+      averageReferralResponseHours: referralResponseHours.length >= DEFAULT_SUPPRESSION_THRESHOLD ? average(referralResponseHours) : null,
       referralCompletionCount: suppressSmallCell(periodReferrals.filter((referral) => ["service_delivered", "closed"].includes(referral.status)).length),
-      feedbackAverageRating: average(periodFeedback.map((record) => record.rating)),
+      feedbackAverageRating: periodFeedback.length >= DEFAULT_SUPPRESSION_THRESHOLD ? average(periodFeedback.map((record) => record.rating)) : null,
       feedbackCount: suppressSmallCell(periodFeedback.length),
     };
 
@@ -119,6 +126,7 @@ export const generateDonorSafeSnapshot = mutation({
 export const approveSnapshot = mutation({
   args: {
     snapshotId: v.id("metric_snapshots"),
+    note: v.string(),
   },
   handler: async (ctx, args) => {
     const { user } = await requireAnyRole(ctx, ["admin", "supervisor"]);
@@ -126,13 +134,51 @@ export const approveSnapshot = mutation({
     if (!snapshot) throw new ConvexError("Metric snapshot not found.");
     if (snapshot.generatedBy === user._id) throw new ConvexError("A different administrator or supervisor must approve this report.");
     if (snapshot.approvalStatus !== "draft") throw new ConvexError("Only draft reports can be approved.");
+    if (args.note.trim().length < 10) throw new ConvexError("Record the disclosure review and approval reason.");
     await ctx.db.patch(snapshot._id, {
       approvalStatus: "approved",
       approvedBy: user._id,
       approvedAt: Date.now(),
+      reviewNote: args.note.trim(),
     });
-    await ctx.db.insert("audit_logs", { action: "reporting.snapshot_approved", entityType: "metric_snapshot", entityId: snapshot._id, userId: user._id, timestamp: Date.now(), metadata: { generatedBy: snapshot.generatedBy, changedFieldNames: ["approvalStatus", "approvedBy", "approvedAt"] } });
+    await ctx.db.insert("audit_logs", { action: "reporting.snapshot_approved", entityType: "metric_snapshot", entityId: snapshot._id, userId: user._id, timestamp: Date.now(), metadata: { generatedBy: snapshot.generatedBy, changedFieldNames: ["approvalStatus", "approvedBy", "approvedAt", "reviewNote"] } });
     return { success: true };
+  },
+});
+
+export const rejectSnapshot = mutation({
+  args: { snapshotId: v.id("metric_snapshots"), reason: v.string() },
+  handler: async (ctx, args) => {
+    const { user } = await requireAnyRole(ctx, ["admin", "supervisor"]);
+    const snapshot = await ctx.db.get(args.snapshotId);
+    if (!snapshot || snapshot.approvalStatus !== "draft") throw new ConvexError("Only draft reports can be rejected.");
+    if (snapshot.generatedBy === user._id) throw new ConvexError("A different reviewer must reject this report.");
+    if (args.reason.trim().length < 10) throw new ConvexError("Record the rejection reason.");
+    const now = Date.now();
+    await ctx.db.patch(snapshot._id, { approvalStatus: "rejected", rejectedBy: user._id, rejectedAt: now, reviewNote: args.reason.trim() });
+    await ctx.db.insert("audit_logs", { action: "reporting.snapshot_rejected", entityType: "metric_snapshot", entityId: snapshot._id, userId: user._id, timestamp: now, metadata: { changedFieldNames: ["approvalStatus", "reviewNote"] } });
+    return { success: true };
+  },
+});
+
+export const recordShareInitiated = mutation({
+  args: { snapshotId: v.id("metric_snapshots") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    const snapshot = await ctx.db.get(args.snapshotId);
+    if (!snapshot || snapshot.approvalStatus !== "approved") throw new ConvexError("Only approved reports may be shared.");
+    const now = Date.now();
+    const id = await ctx.db.insert("report_share_events", { snapshotId: snapshot._id, initiatedBy: user._id, initiatedAt: now, channel: "device_share_sheet" });
+    await ctx.db.insert("audit_logs", { action: "reporting.share_initiated", entityType: "metric_snapshot", entityId: snapshot._id, userId: user._id, timestamp: now, metadata: { shareEventId: id } });
+    return id;
+  },
+});
+
+export const listShareEvents = query({
+  args: { snapshotId: v.id("metric_snapshots") },
+  handler: async (ctx, args) => {
+    await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+    return await ctx.db.query("report_share_events").withIndex("by_snapshot", (q) => q.eq("snapshotId", args.snapshotId)).order("desc").take(20);
   },
 });
 
@@ -163,6 +209,10 @@ export const listSnapshots = query({
       values: snapshot.values,
       qualityFlags: snapshot.qualityFlags,
       publicSummary: snapshot.publicSummary,
+      generatedBy: externalReportingOnly ? undefined : snapshot.generatedBy,
+      approvedBy: externalReportingOnly ? undefined : snapshot.approvedBy,
+      approvedAt: snapshot.approvedAt,
+      reviewNote: externalReportingOnly ? undefined : snapshot.reviewNote,
     }));
   },
 });

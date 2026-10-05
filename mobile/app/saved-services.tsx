@@ -33,7 +33,7 @@ export default function SavedServicesScreen() {
       <Text style={styles.title}>{sw ? "Ingia kuona huduma zako" : "Sign in to see your saved help"}</Text>
       <Text style={styles.body}>{sw ? "Huduma na mipango yako inaonekana kwako tu baada ya kuingia." : "Your saved services and plans are visible only after sign-in."}</Text>
       <Button label={sw ? "Ingia" : "Sign in"} onPress={() => router.push({ pathname: "/sign-in", params: { returnTo: "saved-services" } })} />
-      <Button label={sw ? "Endelea kutafuta huduma" : "Continue exploring services"} variant="secondary" onPress={() => router.push("/find-services")} />
+      <Button label={sw ? "Endelea kutafuta huduma" : "Continue exploring services"} variant="secondary" onPress={() => router.push("/nearby-help")} />
     </Surface> : <>
       <Text style={styles.sectionTitle}>{sw ? "Huduma nilizohifadhi" : "Saved services"}{saved ? ` · ${saved.length}` : ""}</Text>
       {saved === undefined ? <ActivityIndicator color={colors.burgundy} style={styles.loading} /> : saved.length ? saved.map(({ service }) => <Pressable key={String(service._id)} accessibilityRole="button" style={styles.serviceCard} onPress={() => router.push({ pathname: "/service/[id]", params: { id: String(service._id) } })}>
@@ -44,17 +44,17 @@ export default function SavedServicesScreen() {
         <Ionicons name="bookmark-outline" size={29} color={colors.teal} />
         <Text style={styles.title}>{sw ? "Bado hakuna huduma iliyohifadhiwa" : "No saved services yet"}</Text>
         <Text style={styles.body}>{sw ? "Tafuta huduma iliyothibitishwa, kisha uihifadhi ili uirudie hapa." : "Explore verified services and save one to return to it here."}</Text>
-        <Button label={sw ? "Tafuta msaada" : "Find Help"} onPress={() => router.push("/find-services")} />
+        <Button label={sw ? "Tafuta huduma karibu" : "Find nearby services"} onPress={() => router.push("/nearby-help")} />
       </Surface>}
 
       <Text style={styles.sectionTitle}>{sw ? "Mipango ya kutembelea au kupiga simu" : "Visit and call plans"}{visits ? ` · ${planned.length}` : ""}</Text>
-      {visits === undefined ? <ActivityIndicator color={colors.burgundy} style={styles.loading} /> : planned.length ? planned.slice(0, 3).map(({ visit, service }) => <Pressable key={String(visit._id)} accessibilityRole="button" style={styles.visitCard} onPress={() => router.push({ pathname: "/service-visit", params: { serviceId: String(visit.serviceId) } })}>
+      {visits === undefined ? <ActivityIndicator color={colors.burgundy} style={styles.loading} /> : planned.length ? planned.slice(0, 3).map(({ visit, service }) => <Pressable key={String(visit._id)} accessibilityRole="button" style={styles.visitCard} onPress={() => router.push(service ? { pathname: "/service-visit", params: { serviceId: String(visit.serviceId) } } : "/service-visit")}>
         <View style={styles.visitIcon}><Ionicons name={visit.channel === "in_person" ? "location-outline" : "call-outline"} size={22} color={colors.teal} /></View>
-        <View style={styles.flex}><Text style={styles.serviceName}>{service?.name ?? (sw ? "Huduma" : "Service")}</Text><Text style={styles.meta}>{new Date(visit.plannedFor).toLocaleString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}</Text><Text style={styles.planLabel}>{sw ? "Mpango binafsi · si miadi iliyothibitishwa" : "Personal plan · not a confirmed appointment"}</Text></View>
+        <View style={styles.flex}><Text style={styles.serviceName}>{service?.name ?? (sw ? "Huduma haipatikani tena" : "Service no longer public")}</Text><Text style={styles.meta}>{new Date(visit.plannedFor).toLocaleString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}</Text><Text style={styles.planLabel}>{sw ? "Mpango binafsi · si miadi iliyothibitishwa" : "Personal plan · not a confirmed appointment"}</Text></View>
         <Ionicons name="chevron-forward" size={20} color={colors.inkMuted} />
       </Pressable>) : <Surface tone="teal" style={styles.empty}><Text style={styles.body}>{sw ? "Bado hujapanga ziara au simu. Unaweza kupanga kutoka ukurasa wa huduma." : "No visits or calls planned. You can make a personal plan from a service page."}</Text></Surface>}
       {planned.length > 3 ? <Button label={sw ? "Angalia mipango yote" : "View all plans"} variant="secondary" onPress={() => router.push("/service-visit")} /> : null}
-      <View style={styles.footer}><Button label={sw ? "Tafuta huduma zaidi" : "Find more services"} variant="secondary" onPress={() => router.push("/find-services")} /></View>
+      <View style={styles.footer}><Button label={sw ? "Tafuta huduma zaidi" : "Find more services"} variant="secondary" onPress={() => router.push("/nearby-help")} /></View>
     </>}
   </Screen>;
 }

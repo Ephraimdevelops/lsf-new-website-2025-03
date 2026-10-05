@@ -6,11 +6,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { ExternalLink, Save, RefreshCw } from 'lucide-react';
-import { useUser } from '@clerk/clerk-react';
+import { useClerk, useUser } from '@clerk/clerk-react';
 
 const AdminSettings = () => {
   const { toast } = useToast();
   const { user: clerkUser } = useUser();
+  const clerk = useClerk();
 
   // Fetch settings from database
   const dbSettings = useQuery(api.settings.getSettings);
@@ -232,16 +233,7 @@ const AdminSettings = () => {
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={() => {
-                      // Open Clerk's user profile modal
-                      const clerkBtn = document.querySelector('[data-clerk-user-button]');
-                      if (clerkBtn) {
-                        (clerkBtn as HTMLElement).click();
-                      } else {
-                        // Fallback: Open Clerk directly
-                        window.open('https://accounts.clerk.dev/user', '_blank');
-                      }
-                    }}
+                    onClick={() => clerk.openUserProfile()}
                     className="gap-2"
                   >
                     <ExternalLink className="w-4 h-4" />

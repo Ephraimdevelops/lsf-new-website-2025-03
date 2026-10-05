@@ -261,9 +261,9 @@ const Donate = () => {
                 <Mail className="h-5 w-5" />
                 <span>partnerships@lsftz.org</span>
               </a>
-              <a href="tel:+255870119363" className="flex items-center gap-2 hover:text-white transition-colors">
+              <a href="tel:+255222601534" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone className="h-5 w-5" />
-                <span>+255 870 119 363</span>
+                <span>+255 22 260 1534</span>
               </a>
             </div>
           </div>

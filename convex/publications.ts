@@ -1,4 +1,6 @@
 import { v } from "convex/values";
+import { paginationOptsValidator } from "convex/server";
+import { requireGuideResubmission } from "./lib/guideLifecycle";
 import { mutation, query } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
 import { Id } from "./_generated/dataModel";
@@ -318,7 +320,7 @@ const guideInput = {
 };
 
 export const submitLegalGuide = mutation({
-    args: guideInput,
+    args: { ...guideInput, replacesGuideId: v.optional(v.id("legal_guides")), resubmitsGuideId: v.optional(v.id("legal_guides")) },
     handler: async (ctx, args) => {
         const { user } = await requireAnyRole(ctx, ["content_editor", "admin"]);
         const fields = [args.titleSw, args.titleEn, args.summarySw, args.summaryEn, args.category, args.sourceTitle, args.publisher];
@@ -329,14 +331,29 @@ export const submitLegalGuide = mutation({
         try { source = new URL(args.sourceUrl); } catch { throw new Error("Provide a valid source URL."); }
         if (source.protocol !== "https:" || !source.hostname.includes(".")) throw new Error("The source must have a public HTTPS URL.");
         if (args.reviewDueAt <= Date.now() || args.reviewDueAt > Date.now() + 3 * 365 * 24 * 60 * 60 * 1000) throw new Error("Choose a review date within three years.");
+        const prior = args.replacesGuideId ? await ctx.db.get(args.replacesGuideId) : null;
+        if (args.replacesGuideId && (!prior || prior.status !== "approved")) throw new Error("Only an approved guide can be replaced.");
+        const rejectedDraft = args.resubmitsGuideId ? await ctx.db.get(args.resubmitsGuideId) : null;
+        if (args.resubmitsGuideId) requireGuideResubmission(rejectedDraft, user._id, args.replacesGuideId);
+        if (rejectedDraft) {
+            const pendingResubmission = await ctx.db.query("legal_guides")
+                .withIndex("by_resubmits_status", (q) => q.eq("resubmitsGuideId", rejectedDraft._id).eq("status", "pending")).first();
+            if (pendingResubmission) throw new Error("This rejected guide already has a resubmission awaiting review.");
+        }
+        if (prior) {
+            const pending = await ctx.db.query("legal_guides")
+                .withIndex("by_replaces_status", (q) => q.eq("replacesGuideId", prior._id).eq("status", "pending"))
+                .first();
+            if (pending) throw new Error("This guide already has a revision awaiting review.");
+        }
         const now = Date.now();
         const id = await ctx.db.insert("legal_guides", {
             ...args, titleSw: args.titleSw.trim(), titleEn: args.titleEn.trim(), summarySw: args.summarySw.trim(), summaryEn: args.summaryEn.trim(),
             stepsSw: args.stepsSw.map((step) => step.trim()), stepsEn: args.stepsEn.map((step) => step.trim()),
             sourceTitle: args.sourceTitle.trim(), sourceUrl: source.toString(), publisher: args.publisher.trim(), category: args.category.trim(),
-            version: 1, status: "pending", submittedBy: user._id, submittedAt: now,
+            version: rejectedDraft ? rejectedDraft.version : prior ? prior.version + 1 : 1, replacesGuideId: prior?._id, resubmitsGuideId: rejectedDraft?._id, status: "pending", submittedBy: user._id, submittedAt: now,
         });
-        await ctx.db.insert("audit_logs", { action: "content.legal_guide_submitted", entityType: "legal_guide", entityId: id, userId: user._id, timestamp: now, metadata: { category: args.category, jurisdiction: args.jurisdiction } });
+        await ctx.db.insert("audit_logs", { action: "content.legal_guide_submitted", entityType: "legal_guide", entityId: id, userId: user._id, timestamp: now, metadata: { category: args.category, jurisdiction: args.jurisdiction, replacesGuideId: prior?._id, resubmitsGuideId: rejectedDraft?._id } });
         return id;
     },
 });
@@ -352,6 +369,46 @@ export const listLegalGuidesForReview = query({
     },
 });
 
+export const listLegalGuidesPage = query({
+    args: { paginationOpts: paginationOptsValidator, status: v.union(v.literal("pending"), v.literal("approved"), v.literal("due"), v.literal("history")) },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["content_editor", "admin"]);
+        const roles = await ctx.db.query("role_assignments").withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active")).collect();
+        const isAdmin = user.role === "admin" || roles.some((item) => item.role === "admin");
+        if (args.status === "due") {
+            const cutoff = Date.now() + 30 * 24 * 60 * 60 * 1000;
+            const due = isAdmin
+                ? ctx.db.query("legal_guides").withIndex("by_status_review_due", (q) => q.eq("status", "approved").lte("reviewDueAt", cutoff))
+                : ctx.db.query("legal_guides").withIndex("by_submitter_status_review_due", (q) => q.eq("submittedBy", user._id).eq("status", "approved").lte("reviewDueAt", cutoff));
+            return due.order("asc").paginate(args.paginationOpts);
+        }
+        if (isAdmin && args.status !== "history") {
+            const status = args.status;
+            return ctx.db.query("legal_guides").withIndex("by_status", (q) => q.eq("status", status)).order("desc").paginate(args.paginationOpts);
+        }
+        const base = isAdmin
+            ? ctx.db.query("legal_guides")
+            : ctx.db.query("legal_guides").withIndex("by_submitted_by", (q) => q.eq("submittedBy", user._id));
+        return base.filter((q) => args.status === "history"
+            ? q.or(q.eq(q.field("status"), "rejected"), q.eq(q.field("status"), "retired"))
+            : q.eq(q.field("status"), args.status)).order("desc").paginate(args.paginationOpts);
+    },
+});
+
+export const getLegalGuideForReview = query({
+    args: { id: v.id("legal_guides") },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["content_editor", "admin"]);
+        const roles = await ctx.db.query("role_assignments").withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active")).collect();
+        const isAdmin = user.role === "admin" || roles.some((item) => item.role === "admin");
+        const guide = await ctx.db.get(args.id);
+        if (!guide || (!isAdmin && guide.submittedBy !== user._id)) return null;
+        const previous = guide.replacesGuideId ? await ctx.db.get(guide.replacesGuideId) : null;
+        const rejectedDraft = guide.resubmitsGuideId ? await ctx.db.get(guide.resubmitsGuideId) : null;
+        return { guide, previous, rejectedDraft };
+    },
+});
+
 export const reviewLegalGuide = mutation({
     args: { id: v.id("legal_guides"), decision: v.union(v.literal("approved"), v.literal("rejected")), note: v.string() },
     handler: async (ctx, args) => {
@@ -364,6 +421,11 @@ export const reviewLegalGuide = mutation({
         if (note.length < 10 || note.length > 2000) throw new Error("Record a 10–2000 character review reason.");
         if (args.decision === "approved" && guide.reviewDueAt <= Date.now()) throw new Error("The source review date has passed.");
         const now = Date.now();
+        if (args.decision === "approved" && guide.replacesGuideId) {
+            const prior = await ctx.db.get(guide.replacesGuideId);
+            if (!prior || prior.status !== "approved") throw new Error("The previous version is no longer active; review this revision again.");
+            await ctx.db.patch(prior._id, { status: "retired", reviewNote: `Replaced by version ${guide.version}`, reviewedBy: user._id, reviewedAt: now });
+        }
         await ctx.db.patch(args.id, { status: args.decision, reviewNote: note, reviewedBy: user._id, reviewedAt: now });
         await ctx.db.insert("audit_logs", { action: `content.legal_guide_${args.decision}`, entityType: "legal_guide", entityId: args.id, userId: user._id, timestamp: now, metadata: { previousStatus: guide.status, sourceUrl: guide.sourceUrl } });
         return { success: true };
@@ -371,7 +433,7 @@ export const reviewLegalGuide = mutation({
 });
 
 export const listPublicLegalGuides = query({
-    args: {},
+    args: { refreshTick: v.optional(v.number()) },
     handler: async (ctx) => {
         const guides = await ctx.db.query("legal_guides").withIndex("by_status", (q) => q.eq("status", "approved")).collect();
         return guides.filter((guide) => guide.reviewDueAt > Date.now()).map((guide) => ({
@@ -379,5 +441,20 @@ export const listPublicLegalGuides = query({
             stepsSw: guide.stepsSw, stepsEn: guide.stepsEn, category: guide.category, jurisdiction: guide.jurisdiction,
             sourceTitle: guide.sourceTitle, sourceUrl: guide.sourceUrl, publisher: guide.publisher, reviewDueAt: guide.reviewDueAt, version: guide.version,
         }));
+    },
+});
+
+export const retireLegalGuide = mutation({
+    args: { id: v.id("legal_guides"), reason: v.string() },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["admin"]);
+        const guide = await ctx.db.get(args.id);
+        if (!guide || guide.status !== "approved") throw new Error("Only an approved guide can be retired.");
+        const reason = args.reason.trim();
+        if (reason.length < 10 || reason.length > 2000) throw new Error("Record a 10–2000 character retirement reason.");
+        const now = Date.now();
+        await ctx.db.patch(args.id, { status: "retired", reviewNote: reason, reviewedBy: user._id, reviewedAt: now });
+        await ctx.db.insert("audit_logs", { action: "content.legal_guide_retired", entityType: "legal_guide", entityId: args.id, userId: user._id, timestamp: now, metadata: { reason, version: guide.version } });
+        return { success: true };
     },
 });

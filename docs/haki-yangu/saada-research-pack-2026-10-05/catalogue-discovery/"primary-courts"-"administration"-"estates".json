@@ -1,0 +1,2251 @@
+{
+  "id": null,
+  "scope": null,
+  "query": "\"Primary Courts\" \"Administration\" \"Estates\"",
+  "appliedFilters": null,
+  "sort": null,
+  "configuration": null,
+  "type": "discover",
+  "_links": {
+    "self": {
+      "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522"
+    }
+  },
+  "_embedded": {
+    "searchResult": {
+      "_embedded": {
+        "objects": [
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "dcd5520d-feea-45c4-b744-c77b513af22d",
+                "uuid": "dcd5520d-feea-45c4-b744-c77b513af22d",
+                "name": "LUCKSON RUTAFUBIBWA KIIZA (The administrator of the estate of the late Angelina Bagenyi VS.  ERASMUS RUHUNGU (The administrator of the estate of the late Gaudensia Rwakailima. CIVIL APPEAL NO. 375 OF 2021",
+                "handle": "123456789/1178",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARI3A. J. A.., SEHEL, J.A And MAIGE, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-03T08:29:53Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-03T08:29:53Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-07-12",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "LUCKSON RUTAFUBIBWA (The Administrator of the Estate of late Angelina Bagenyi VS. ERASMUS RUHUNGU (The Administrator of the Estate of late Gaudensia Rwakailima\r\nCOURT OF APPEAL OF TANZANIA\r\nAT BUKOBA\r\n[MWARIJA, SEHEL, MAIGE, JJ.A.]\r\n\r\nCIVIL APPEAL NO. 375 OF 2021\r\n\r\n(From the Decision of the High Court of Tanzania at \r\nBukoba (Bongole, J.) dated the 8th day of June, 2018\r\nin Revision Application No. 3 of 2017)\r\n\r\nRules of Natural Justice-Right to be heard-whether it is a fundamental constitution right\r\n\r\nRules of Natural Justice-Right to be heard-deciding the matter without hearing the parties-whether renders the decision void\r\n\r\nThis appeal arose from the ruling of the High Court of Tanzania sitting at Bukoba (Bongole, J) handed down on 8/6/2018 in Application for Revision No. 3 of 2017. The application was instituted by the respondent, Erasmus Ruhungu (as an administrator of the estate of the late Gaudensia Rwakailima) against the appellant, Angelina Bagenyi (now deceased). The respondent moved the High Court to revise the decision of the Resident Magistrate's Court of Bukoba in Misc. Civil Revision No. 3 of 2012 in which the said Court revised execution proceedings arising from Rukindo Primary Court Civil Case No, 19 of 1996. In response to the application for revision, the appellant lodged in the High Court, a notice of preliminary objection consisting of the following three grounds; that: \"(i) The court has not been properly moved. (ii)  The court is not clothed with jurisdiction to entertain the matter. (iii) The application has been hopelessly filed out of time.  Having heard the learned counsel for the parties on the preliminary objection, the learned High Court Judge found that all the grounds thereof are devoid of merit and therefore, overruled the preliminary objection. After having disposed of the preliminary points of objection, the learned Judge proceeded to determine the application for revision. He acted on the submissions made on the preliminary objection to dismiss the application, holding that the same was lacking in merit. The appellant was aggrieved by the decision of the High Court hence this appeal. \r\n\r\nBefore commencement of the hearing Counsel for the Appellant informed the Court about the demise of the appellant. He pointed out that, one Luckson Rutafubibwa Kiiza was appointed by the Primary Court of Kashasha to be the administrator of her estate.  He prayed, in the circumstances, that the administrator be made a party to the appeal. The prayer was not objected to by the counsel for the respondent and was therefore granted by the Court.\r\n\r\nHeld\r\n\r\n1.\t\"It is a cardinal principle of natural justice that a person should not be condemned unheard but fair procedure demands that both sides should be heard: audi alteram partem. In this country, natural justice is not merely a principle of the common law, it has become a fundamental constitution right Article 13(b) (a) includes the right to be heard among the attributes of equality before the law\".\r\n\r\n2.\tSince the parties were not heard before the application for revision was determined, the impugned decision is on that ground, void.\r\n\r\n\r\nAppeal allowed\r\nStatutory Provisions referred to:\r\n1.\tConstitution of the United Republic of Tanzania [Cap. 2 R.E 2019] Article 13(b)(a)\r\n2.\tCourt of Appeal Rules, 2009 as amended rule 105(1)\r\n\r\nCases referred to:\r\n\r\n1.\t Transport Equipment Limited v. Devram Valambhia [1998] T. L. R89\r\n2.\t  Eco-Tech (Zanzibar) Limited, Znz Civil Application No. 1 of 2007 (unreported)\r\n3.\tMbeya - Rukwa Autoparts and Transport Limited v. Jestina George Mwakyoma [2003] T. L. R. 251.\r\n\r\nMr. Zedy Ally Learned Counsel for the appellant\r\nMr. Abraham Lupia, learned Advocate for the Respondent",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held\r\n\r\n1.\t\"It is a cardinal principle of natural justice that a person should not be condemned unheard but fair procedure demands that both sides should be heard: audi alteram partem. In this country, natural justice is not merely a principle of the common law, it has become a fundamental constitution right Article 13(b) (a) includes the right to be heard among the attributes of equality before the law\".\r\n\r\n2.\tSince the parties were not heard before the application for revision was determined, the impugned decision is on that ground, void.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1178",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, BUKOBA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "BUKOBA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "LUCKSON RUTAFUBIBWA KIIZA (The administrator of the estate of the late Angelina Bagenyi VS.  ERASMUS RUHUNGU (The administrator of the estate of the late Gaudensia Rwakailima. CIVIL APPEAL NO. 375 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO. 375 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:08:21.571Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/dcd5520d-feea-45c4-b744-c77b513af22d"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "52e3f738-6750-43b7-a905-c6e7e87cac6e",
+                "uuid": "52e3f738-6750-43b7-a905-c6e7e87cac6e",
+                "name": "LUCKSON RUTAFUBIBWA KIIZA (The administrator of the estate of the late Angelina Bagenyi VS.  ERASMUS RUHUNGU (The administrator of the estate of the late Gaudensia Rwakailima. CIVIL APPEAL NO. 375 OF 2021",
+                "handle": "123456789/1179",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA, SEHEL J-A And MAIGE. J.A. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2023-05-03T09:51:23Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2023-05-03T09:51:23Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2022-07-12",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "LUCKSON RUTAFUBIBWA (The Administrator of the Estate of late Angelina Bagenyi VS. ERASMUS RUHUNGU (The Administrator of the Estate of late Gaudensia Rwakailima\r\nCOURT OF APPEAL OF TANZANIA AT BUKOBA [MWARIJA, SEHEL, MAIGE, JJ.A.]\r\nCIVIL APPEAL NO. 375 OF 2021.\r\n\r\n(From the Decision of the High Court of Tanzania at \r\nBukoba (Bongole, J.) dated the 8th day of June, 2018\r\nin Revision Application No. 3 of 2017)\r\n\r\nRules of Natural Justice-Right to be heard-whether it is a fundamental constitution right\r\n\r\nRules of Natural Justice-Right to be heard-deciding the matter without hearing the parties-whether renders the decision void\r\n\r\nThis appeal arose from the ruling of the High Court of Tanzania sitting at Bukoba (Bongole, J) handed down on 8/6/2018 in Application for Revision No. 3 of 2017. The application was instituted by the respondent, Erasmus Ruhungu (as an administrator of the estate of the late Gaudensia Rwakailima) against the appellant, Angelina Bagenyi (now deceased). The respondent moved the High Court to revise the decision of the Resident Magistrate's Court of Bukoba in Misc. Civil Revision No. 3 of 2012 in which the said Court revised execution proceedings arising from Rukindo Primary Court Civil Case No, 19 of 1996. In response to the application for revision, the appellant lodged in the High Court, a notice of preliminary objection consisting of the following three grounds; that: \"(i) The court has not been properly moved. (ii)  The court is not clothed with jurisdiction to entertain the matter. (iii) The application has been hopelessly filed out of time.  Having heard the learned counsel for the parties on the preliminary objection, the learned High Court Judge found that all the grounds thereof are devoid of merit and therefore, overruled the preliminary objection. After having disposed of the preliminary points of objection, the learned Judge proceeded to determine the application for revision. He acted on the submissions made on the preliminary objection to dismiss the application, holding that the same was lacking in merit. The appellant was aggrieved by the decision of the High Court hence this appeal. \r\n\r\nBefore commencement of the hearing Counsel for the Appellant informed the Court about the demise of the appellant. He pointed out that, one Luckson Rutafubibwa Kiiza was appointed by the Primary Court of Kashasha to be the administrator of her estate.  He prayed, in the circumstances, that the administrator be made a party to the appeal. The prayer was not objected to by the counsel for the respondent and was therefore granted by the Court.\r\n\r\nHeld\r\n\r\n1.\t\"It is a cardinal principle of natural justice that a person should not be condemned unheard but fair procedure demands that both sides should be heard: audi alteram partem. In this country, natural justice is not merely a principle of the common law, it has become a fundamental constitution right Article 13(b) (a) includes the right to be heard among the attributes of equality before the law\".\r\n\r\n2.\tSince the parties were not heard before the application for revision was determined, the impugned decision is on that ground, void.\r\n\r\n\r\nAppeal allowed\r\nStatutory Provisions referred to:\r\n1.\tConstitution of the United Republic of Tanzania [Cap. 2 R.E 2019] Article 13(b)(a)\r\n2.\tCourt of Appeal Rules, 2009 as amended rule 105(1)\r\n\r\nCases referred to:\r\n\r\n1.\t Transport Equipment Limited v. Devram Valambhia [1998] T. L. R89\r\n2.\t  Eco-Tech (Zanzibar) Limited, Znz Civil Application No. 1 of 2007 (unreported)\r\n3.\tMbeya - Rukwa Autoparts and Transport Limited v. Jestina George Mwakyoma [2003] T. L. R. 251.\r\n\r\nMr. Zedy Ally Learned Counsel for the appellant\r\nMr. Abraham Lupia, learned Advocate for the Respondent",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "1. \"It is a cardinal principle of natural justice that a person should not be condemned unheard but fair procedure demands that both sides should be heard: audi alteram partem. In this country, natural justice is not merely a principle of the common law, it has become a fundamental constitution right Article 13(b) (a) includes the right to be heard among the attributes of equality before the law\".\r\n\r\n2.Since the parties were not heard before the application for revision was determined, the impugned decision is on that ground, void.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/1179",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, BUKOBA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "BUKOBA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "LUCKSON RUTAFUBIBWA KIIZA (The administrator of the estate of the late Angelina Bagenyi VS.  ERASMUS RUHUNGU (The administrator of the estate of the late Gaudensia Rwakailima. CIVIL APPEAL NO. 375 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO. 375 OF 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:11.862Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/52e3f738-6750-43b7-a905-c6e7e87cac6e"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "To appreciate  the  nature  of the present application, we find it apt to narrate it, albeit briefly, as we could glean from the  record. It is this:  on 27.12.2007, the Tanga Urban <em>Primary Court</em>, through Probate Cause  No. 240 of 2007, appointed the second respondent Jambia Ng'anzi Khalfan as <em>administrator</em> of the  <em>estates</em> of the late Ng'anzi Khalfan."
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "a933e101-a18e-4078-8e64-fecf6e22e719",
+                "uuid": "a933e101-a18e-4078-8e64-fecf6e22e719",
+                "name": "HASSAN  NG'ANZI KHALFAN VS. NJAMA JUMA MBEGA (Legal Representative of the late MWANAHAMISI NJAMA). AND ANOTHER.",
+                "handle": "123456789/621",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "JUSTICE  OF  APPEAL, MWAMBEGELE, J.A.:",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "JUSTICE  OF  APPEAL, MZIRAY. J.A., KEREFU. J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-10-19T16:45:37Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-10-19T16:45:37Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-02-18",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The background to the present application is rather chequered. To appreciate  the  nature  of the present application, we find it apt to narrate it, albeit briefly, as we could glean from the  record. It is this:  on 27.12.2007, the Tanga Urban Primary Court, through Probate Cause  No. 240 of 2007, appointed the second respondent Jambia Ng'anzi Khalfan as administrator of the  estates of the late Ng'anzi Khalfan.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/621",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "TANGA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "CIVIL APPLICATION NO. 218/12 OF 2018",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "HASSAN  NG'ANZI KHALFAN VS. NJAMA JUMA MBEGA (Legal Representative of the late MWANAHAMISI NJAMA). AND ANOTHER.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPLICATION  NO.  218/12 OF  2018",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:04:58.551Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a933e101-a18e-4078-8e64-fecf6e22e719"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "31b5573c-d662-4e27-9139-e834fa3b402c",
+                "uuid": "31b5573c-d662-4e27-9139-e834fa3b402c",
+                "name": "ELIAHU LONYAMALI v. MOSSES LONYAMALI, CIVIL APPEAL NO. 269 OF 2023.",
+                "handle": "123456789/4899",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Sehel, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2026-08-18T10:47:30Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2020-11-26",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "As a general rule, in Civil matters, the trial court is required to base its decision on framed issues",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/4899",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 269 OF 2023",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ELIAHU LONYAMALI v. MOSSES LONYAMALI, CIVIL APPEAL NO. 269 OF 2023.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2026-08-18T11:00:34.005712Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/31b5573c-d662-4e27-9139-e834fa3b402c"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "5a319f7d-696e-4e8d-a541-01e8e0a6048a",
+                "uuid": "5a319f7d-696e-4e8d-a541-01e8e0a6048a",
+                "name": "THE COURT FEES RULES, 2015, G.N. 187 OF 2015",
+                "handle": "123456789/487",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHIEF JUSTICE, MOHAMED C. OTHMAN",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-09-26T09:08:09Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-09-26T09:08:09Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2015-05-15",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description": [
+                    {
+                      "value": "Where a fee is payable based on the value of a property, the market value of such property or the interest in respect of such property, shall be deemed to be the value of the property.    (2)  The  value  of  property  or  interest  referred  to  in sub rule (1) shall be declared by a person who is paying the fees  and  the  court  may  require  the  declaration  to  be supported by a certificate of a valuer or other evidence.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "In  these  Rules,  unless  the  context  otherwise requires- “magistrate” means a magistrate in  primary court, a district magistrate or a resident magistrate and it includes a civil magistrate and an honorary magistrate;",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.citation": [
+                    {
+                      "value": "These Rules may cited as the Court Fees Rules, 2015.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/487",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DAR ES SALAAM, TANZANIA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "[SUBSIDIARY LEGISLATION] G.N. 187  OF 2015.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE COURT FEES RULES, 2015, G.N. 187 OF 2015",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "THE JUDICATURE AND APPLICATION OF LAWS ACT, (CAP.358)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:01:21.078Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/5a319f7d-696e-4e8d-a541-01e8e0a6048a"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "a4df2fad-039c-4ffd-a31a-2e563e5df2dd",
+                "uuid": "a4df2fad-039c-4ffd-a31a-2e563e5df2dd",
+                "name": "LUCKSON RUTAFUBIBWA KIIZA VERSUS ERASMUS RUHUNGU.  CIVIL APPEAL NO. 375 OF 2021",
+                "handle": "123456789/2531",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MWARIJA. J. A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "SEHEL, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "MAIGE, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-10-07T09:28:45Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2018-06-08",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This appeal arises from the ruling of the High Court of Tanzania sitting at Bukoba (Bongole, J) handed down on 8/6/2018 in Application for Revision No. 3 of 2017. The application was instituted by the respondent, Erasmus Ruhungu (as an administrator of the estate of the late Gaudensia Rwakailima) against the appellant, Angelina Bagenyi (now deceased).",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/2531",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 375 OF 2021",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "LUCKSON RUTAFUBIBWA KIIZA VERSUS ERASMUS RUHUNGU.  CIVIL APPEAL NO. 375 OF 2021",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-11T11:02:52.199607Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a4df2fad-039c-4ffd-a31a-2e563e5df2dd"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "3e9d26f9-5aa5-4c10-a826-d5a6fe231ace",
+                "uuid": "3e9d26f9-5aa5-4c10-a826-d5a6fe231ace",
+                "name": "ABDULKADIR SULEIMAN MBEO (Administrator of the  Estate of the Late SUWED SADIQ) VERSUS  RAYMOND ANGAUFOON LEIYA.  CIVIL APPEAL NO. 90 OF 2021",
+                "handle": "123456789/2574",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "WAMBALI. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "KEREFU. J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "MGEYEKWA, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-10-15T07:38:09Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2005-12-02",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "On 17th February, 2004 the late Suwed Sadiq sued Raymond Angaufoon Leiya and Angaufoon A. L. Nkya in Land Case No. 24 of 2004 before the High Court, Land Division jointly and severally for vacant possession of the land on Plot No. 192 Block 'W' (the suit property)situated at Magomeni area in Dar es Salaam under Certificate of Title No. 20628. The third respondent was joined as a third party after the application of the 1st and 2nd respondents. It is noteworthy that Suwed \nSadiq passed away on 28th August, 2020 and thus Abdulkadir Suleiman Mbeo was appointed as the legal representative by the Primary Court of Magomeni on 10th December, 2020.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz123456789/2574",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPEAL NO. 90 OF 2021",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ABDULKADIR SULEIMAN MBEO (Administrator of the  Estate of the Late SUWED SADIQ) VERSUS  RAYMOND ANGAUFOON LEIYA.  CIVIL APPEAL NO. 90 OF 2021",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.type": [
+                    {
+                      "value": "Article",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-10-15T08:00:43.705034Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/3e9d26f9-5aa5-4c10-a826-d5a6fe231ace"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "1f6756ef-ac02-46b2-a44c-b93e0a108c72",
+                "uuid": "1f6756ef-ac02-46b2-a44c-b93e0a108c72",
+                "name": "ANTHONY LEONARD MSANZE  AND ANOTHER VS. JULIANA ELIAS MSANZE AND 2 OTHERS.",
+                "handle": "123456789/835",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "JUSTICE  OF  APPEAL, JUMA, J.A.:",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "JUSTICE  OF  APPEAL, SAMBO, J.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-11-17T06:09:39Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-11-17T06:09:39Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2013-03-07",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "On 26th September, 2011 the High Court of Tanzania at Arusha (Sambo, J.) upheld preliminary points of objection and dismissed the appellants’ suit against the three respondents, for nullification of a sale and transfer of a parcel of land which belonged to the late Elias Leonard Msanze. That land is situated at Plot No.65 Block BB Kwangulelo in Arusha Municipality.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/835",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA, ARUSHA.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "ARUSHA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "CIVIL APPEAL NO76 OF 2012",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "ANTHONY LEONARD MSANZE  AND ANOTHER VS. JULIANA ELIAS MSANZE AND 2 OTHERS.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title.alternative": [
+                    {
+                      "value": "CIVIL APPEAL NO.76 OF 2012.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T17:59:16.367Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/1f6756ef-ac02-46b2-a44c-b93e0a108c72"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "e8bd5cd2-db6e-49d7-876f-7e20dcca4451",
+                "uuid": "e8bd5cd2-db6e-49d7-876f-7e20dcca4451",
+                "name": "Magistrates’ Courts Act (CAP. 11 R.E. 2019)",
+                "handle": "123456789/189",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "CHAPTER 11",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2022-06-01T09:54:50Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2022-06-01T09:54:50Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2019",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "An Act to provide for the jurisdiction, powers, and functions of magistrates’ courts and for other related matters.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "http://localhost/handle/123456789/189",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "Government Printer",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 11",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "PRINCIPAL LEGISLATION",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "CAP. 11 R.E. 2019",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "Magistrates’ Courts Act (CAP. 11 R.E. 2019)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2023-07-25T18:09:01.680Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/e8bd5cd2-db6e-49d7-876f-7e20dcca4451"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "a3dc76b7-6f48-4219-9102-eed24f9692ce",
+                "uuid": "a3dc76b7-6f48-4219-9102-eed24f9692ce",
+                "name": "THE MAGISTRATES’ COURTS ACT, CHAPTER 11, R.E 2023",
+                "handle": "123456789/1979",
+                "metadata": {
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-07-23T06:29:22Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-07-23T06:29:22Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2023-01-02",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "This Act may be cited as the Magistrates’ Courts Act. In this Act, unless the context otherwise requires\r\n“appropriate judicial authority” means the Chief Justice and any person appointed by the Chief Justice under section 15 to be, or to perform the functions of, the appropriate judicial authority for the relevant purpose;",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1979",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "GOVERNMENT PRINTER DODOMA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CHAPTER 11",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "THE MAGISTRATES’ COURTS ACT, CHAPTER 11, R.E 2023",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-09-28T17:11:02.881823Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/a3dc76b7-6f48-4219-9102-eed24f9692ce"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": {
+              "dc.description.abstract": [
+                "After the demise of Habibu Ally, in 2007, the appellant was appointed by the <em>Primary Court</em> of Kigamboni via Probate and <em>Administration</em> Cause No. 64 of 2007 administer his <em>estate</em>"
+              ]
+            },
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "8150aebb-f068-47aa-b738-5df6a6916ee8",
+                "uuid": "8150aebb-f068-47aa-b738-5df6a6916ee8",
+                "name": "SHARIFA HABIBU (AS LEGAL PERSONAL REPRESENTATIVE OF THE ESTATE OF THE LATE HABIBU ALLY) VS MOHAMED JUMA ALI AND 2 OTHERS (CIVIL APPEAL NO. 445 OF 2021) [2024] TZCA 1144 (25 NOVEMBER 2024)",
+                "handle": "123456789/1579",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "Mgeyekwa, J.A., Ndika, J.A., Galeba, J.A.",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-02-11T06:46:36Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-02-11T06:46:36Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2024-11-25",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "The main issue of controversy between the parties to this appeal is the ownership of a parcel of land described as Plot No. 657, Block 31 (the suit property) situated at Kigamboni within Dar es Salaam Region. The material background and essential facts of  \r\nmatter as obtained from the record of appeal indicate that the alleged owner of the suit property was the late Habibu Ally who passed away in 1987 when the deceased's daughter Sharifa Habibu was three years old. After the demise of Habibu Ally, in 2007, the appellant was appointed by the Primary Court of Kigamboni via Probate and Administration Cause No. 64 of 2007 administer his estate",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1579",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.language.iso": [
+                    {
+                      "value": "en",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "Civil Appeal No. 445 of 2021",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "SHARIFA HABIBU (AS LEGAL PERSONAL REPRESENTATIVE OF THE ESTATE OF THE LATE HABIBU ALLY) VS MOHAMED JUMA ALI AND 2 OTHERS (CIVIL APPEAL NO. 445 OF 2021) [2024] TZCA 1144 (25 NOVEMBER 2024)",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-02-12T00:00:50.268Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/8150aebb-f068-47aa-b738-5df6a6916ee8"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "hitHighlights": null,
+            "type": "discover",
+            "_links": {
+              "indexableObject": {
+                "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c"
+              }
+            },
+            "_embedded": {
+              "indexableObject": {
+                "id": "ba0fea54-9eda-434f-8d1d-7d20a066139c",
+                "uuid": "ba0fea54-9eda-434f-8d1d-7d20a066139c",
+                "name": "HASSAN NG’ANZI KHALFAN v. NJAMA JUMA MBEGA AND  ANOTHER, CIVIL APPLICATION NO. 218 of 2018",
+                "handle": "123456789/1716",
+                "metadata": {
+                  "dc.contributor.author": [
+                    {
+                      "value": "MZIRAY, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    },
+                    {
+                      "value": "MWAMBEGELE, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 1
+                    },
+                    {
+                      "value": "KEREFU, J.A",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 2
+                    }
+                  ],
+                  "dc.date.accessioned": [
+                    {
+                      "value": "2025-03-17T09:48:42Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.available": [
+                    {
+                      "value": "2025-03-17T09:48:42Z",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.date.issued": [
+                    {
+                      "value": "2018",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.description.abstract": [
+                    {
+                      "value": "Held: (i) It is a settled principle that the revisional power of the court is not an alternative to its appellate jurisdiction unless there are exceptional circumstances.",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.identifier.uri": [
+                    {
+                      "value": "https://elibrary.osg.go.tz/handle/123456789/1716",
+                      "language": null,
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.publisher": [
+                    {
+                      "value": "THE COURT OF APPEAL OF TANZANIA",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.subject": [
+                    {
+                      "value": "CIVIL APPLICATION NO. 218 of 2018",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ],
+                  "dc.title": [
+                    {
+                      "value": "HASSAN NG’ANZI KHALFAN v. NJAMA JUMA MBEGA AND  ANOTHER, CIVIL APPLICATION NO. 218 of 2018",
+                      "language": "en_US",
+                      "authority": null,
+                      "confidence": -1,
+                      "place": 0
+                    }
+                  ]
+                },
+                "inArchive": true,
+                "discoverable": true,
+                "withdrawn": false,
+                "lastModified": "2025-06-16T07:26:07.412Z",
+                "entityType": null,
+                "type": "item",
+                "_links": {
+                  "accessStatus": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/accessStatus"
+                  },
+                  "bundles": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/bundles"
+                  },
+                  "identifiers": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/identifiers"
+                  },
+                  "mappedCollections": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/mappedCollections"
+                  },
+                  "owningCollection": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/owningCollection"
+                  },
+                  "relationships": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/relationships"
+                  },
+                  "version": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/version"
+                  },
+                  "templateItemOf": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/templateItemOf"
+                  },
+                  "thumbnail": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/thumbnail"
+                  },
+                  "submitter": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c/submitter"
+                  },
+                  "self": {
+                    "href": "https://elibrary.osg.go.tz/server/api/core/items/ba0fea54-9eda-434f-8d1d-7d20a066139c"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "page": {
+        "number": 0,
+        "size": 12,
+        "totalPages": 7,
+        "totalElements": 84
+      },
+      "_links": {
+        "next": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&page=1&size=12"
+        },
+        "last": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&page=6&size=12"
+        },
+        "self": {
+          "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&size=12"
+        }
+      }
+    },
+    "facets": [
+      {
+        "name": "author",
+        "facetType": "text",
+        "facetLimit": 5,
+        "minValue": "(Chapter 365)",
+        "maxValue": "Z.G.Muruke. J",
+        "openByDefault": true,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/author?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "JAMHURI YA MUUNGANO WA TANZANIA",
+              "count": 36,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.author=JAMHURI%20YA%20MUUNGANO%20WA%20TANZANIA,equals"
+                }
+              }
+            },
+            {
+              "label": "OFFICE OF THE ATTORNEY GENERAL, OAG",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.author=OFFICE%20OF%20THE%20ATTORNEY%20GENERAL,%20OAG,equals"
+                }
+              }
+            },
+            {
+              "label": "HAMZA S. JOHARI",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.author=HAMZA%20S.%20JOHARI,equals"
+                }
+              }
+            },
+            {
+              "label": "KEREFU. J.A",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.author=KEREFU.%20J.A,equals"
+                }
+              }
+            },
+            {
+              "label": "MAIGE, J.A",
+              "count": 2,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.author=MAIGE,%20J.A,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "subject",
+        "facetType": "hierarchical",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "next": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&page=1&size=5"
+          },
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/subject?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2019",
+              "count": 16,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.subject=2019,equals"
+                }
+              }
+            },
+            {
+              "label": "2022",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.subject=2022,equals"
+                }
+              }
+            },
+            {
+              "label": "PRINCIPAL LEGISLATION",
+              "count": 6,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.subject=PRINCIPAL%20LEGISLATION,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 1",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.subject=CHAPTER%201,equals"
+                }
+              }
+            },
+            {
+              "label": "CHAPTER 13",
+              "count": 3,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.subject=CHAPTER%2013,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "dateIssued",
+        "facetType": "date",
+        "facetLimit": 5,
+        "minValue": "14-02-20",
+        "maxValue": "2026-08-24",
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 5
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/dateIssued?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&size=5"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "2000 - 2019",
+              "count": 36,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.dateIssued=%5B2000%20TO%202019%5D,equals"
+                }
+              }
+            },
+            {
+              "label": "2020 - 2026",
+              "count": 48,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.dateIssued=%5B2020%20TO%202026%5D,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "has_content_in_original_bundle",
+        "facetType": "standard",
+        "facetLimit": 2,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 2
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/has_content_in_original_bundle?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&size=2"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "true",
+              "count": 84,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.has_content_in_original_bundle=true,equals"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "entityType",
+        "facetType": "text",
+        "facetLimit": 5,
+        "openByDefault": false,
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/entityType?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22"
+          }
+        },
+        "_embedded": {
+          "values": []
+        }
+      },
+      {
+        "name": "access_status",
+        "facetType": "text",
+        "facetLimit": 10,
+        "openByDefault": false,
+        "page": {
+          "number": 0,
+          "size": 10
+        },
+        "_links": {
+          "self": {
+            "href": "https://elibrary.osg.go.tz/server/api/discover/facets/access_status?query=%22Primary%20Courts%22%20%22Administration%22%20%22Estates%22&size=10"
+          }
+        },
+        "_embedded": {
+          "values": [
+            {
+              "label": "open.access",
+              "count": 84,
+              "authorityKey": null,
+              "type": "discover",
+              "_links": {
+                "search": {
+                  "href": "https://elibrary.osg.go.tz/server/api/discover/search/objects?query=%2522Primary%2520Courts%2522%2520%2522Administration%2522%2520%2522Estates%2522&f.access_status=open.access,equals"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

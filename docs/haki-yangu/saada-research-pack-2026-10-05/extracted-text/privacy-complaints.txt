@@ -1,0 +1,1071 @@
+[PDF PAGE 1]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449A (Contd.) 
+1
+GOVERNMENT NOTICE No. 449B published on 4/7/2023 
+THE UNITED REPUBLIC OF TANZANIA 
+THE PERSONAL DATA PROTECTION ACT 
+(CHAPTER 44) 
+__________ 
+REGULATIONS 
+_________ 
+THE PERSONAL DATA PROTECTION (COMPLAINTS SETTLEMENT PROCE DURES) 
+REGULATIONS, 2023 
+[SUBSIDIARY LEGISLATION] 
+This version of the Personal Data Protection (Complaints Settlement 
+Procedures) Regulations, 2023 has been translated into English Language, 
+and is published pursuant to section 84(4) of the Interpretation of Laws 
+Act, Chapter 1. 
+Dodoma, E LIEZER MBUKI FELESHI ,
+3rd July, 2023 Attorney General 
+
+[PDF PAGE 2]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+1
+
+[PDF PAGE 3]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+1
+THE PERSONAL DATA PROTECTION ACT, 
+(C AP . 44) 
+_________ 
+REGULATIONS 
+________ 
+(Made under section 64) 
+THE PERSONAL DATA PROTECTION (COMPLAINTS SETTLEMENT PROCE DURES) 
+REGULATIONS, 2023 
+ARRANGEMENT OF REGULATIONS 
+Regulations Title 
+PART I
+PRELIMINARYPROVISIONS 
+1. Citation. 
+2. Application 
+3. Interpretation. 
+PART II 
+FILING OF COMPLAINT 
+4. Filing complaint. 
+5. Rejection of complaint. 
+6. Service of summons to present defence. 
+7. Defence to complaint. 
+8. Reply to defence. 
+9. Third partyprocedure. 
+10. Directions. 
+11. Award against third party. 
+12. Amendments to complaint, defence or reply. 
+PART III 
+INVESTIGATION AND MEDIATION PROCEDURES 
+13. Investigation of complaint. 
+14. Mediation. 
+
+[PDF PAGE 4]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+2
+15. Issuance of award. 
+16. Failure of mediation. 
+PART IV 
+HEARING PROCEDURE 
+17. Complaint hearing procedures. 
+18. Failure to appear. 
+19. Adjournment. 
+20. Application to intervene in complaint. 
+21. Award. 
+22. Enforcementnotice. 
+23. Penalty notice. 
+24. Enforcement of award. 
+PART V
+GENERAL PROVISIONS 
+25. Application for review. 
+26. Appeal.
+27. Taxation for costs. 
+28. Issuance of compliance order. 
+29. General penalty. 
+30. Other procedures. 
+_________ 
+SCHEDULE 
+_________ 
+
+[PDF PAGE 5]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+3
+THE PERSONAL DATA PROTECTION ACT, 
+(C AP . 44) 
+_________ 
+REGULATIONS 
+_________ 
+(Made under section 64) 
+THE PERSONAL DATA PROTECTION (COMPLAINTS SETTLEMENT PROCE DURES) 
+REGULATIONS, 2023 
+PART I
+PRELIMINARY PROVISIONS 
+Citation 1.These Regulations may be cited as the Personal 
+Data Protection (Complaints Settlement Procedures) 
+Regulations, 2023 .
+Application 2.These Regulationsshall apply to Mainland 
+Tanzania as well as Tanzania Zanzibar savethat, in 
+Tanzania Zanzibar,these Regulations shall not apply to 
+Non-Union matters. 
+Interpretation 3.In these Regulations, unless the context 
+otherwise requires- 
+"Board" means the Board of Directors of the Commission 
+established under the provisions of the Act ;
+"Committee" means the Committee to hear the complaint 
+appointed under regulation 17(2); 
+"code of ethics for the protection of personal data" means 
+the code of ethics prepared by the data controller 
+or data processor and approved by the Commission 
+specifying, among other things, the ethics and 
+conducts that should be observed during the 
+collection or processing of personal data; 
+"complaint" means the material facts of the matter or act 
+complained by the complainant, in respect of the 
+processing or any other use that violates the 
+principles of personal data protection of the data 
+subject by the data controller or data processor; 
+
+[PDF PAGE 6]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+4
+"data processor" has the meaning ascribed to it in the Act; 
+"Director General" means the Director General of the 
+Commission appointed in section 11 of the Act; 
+“data controller” means a natural person, legal person or 
+public body which alone or jointly with others 
+determines the purpose and means of processing of 
+personal data; and where the purpose and means of 
+processing are determined by law, “data 
+controller” is the natural person, legal person or 
+public body designated as such by that law and it 
+includes his representative ;
+"complainant" means a person who has filed a complaint 
+to the Commission pursuant to these Regulations; 
+"respondent" means the data controller or data processor 
+or any person against whom a complaint is filed; 
+"third party" means a person who is not part of the 
+complaint but the respondent has a complaint 
+against him; 
+"mediator" means an officer of the Commission who is 
+assigned to mediate the parties to the complaint 
+under regulation 14; 
+"authorised representative" means a person dully 
+authorised in accordance with the Act, to represent 
+the complainant or the respondent in a complaint 
+under these Regulations; 
+"penalty notice" means a notice issued under regulation 
+22; 
+"enforcement notice" means a notice issued under 
+regulation 21; 
+Cap. 44 "Act" means the Personal Data Protection Act; 
+"Commission” means the Personal Data Protection 
+Commission established under the provisions of 
+the Act; 
+"award" means the decision of the Commission in the 
+underlying complaint, and includes any previous 
+decision; and 
+"Minister" means the Minister responsible for 
+communication. 
+PART II 
+
+[PDF PAGE 7]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+5
+FILING OF COMPLAINT 
+Filing of 
+complaint 
+4.-(1) Any person who considers that there is a
+violation of personal data protection principles or is 
+dissatisfied with the decision of the data controller or data 
+processor regarding personal data may submit a complaint 
+to the Commission using Form No. 1 set out in the 
+Schedule to these Regulations. 
+(2) Without prejudice to the provisions of 
+subregulation (1), the complaint may be submitted orally 
+and reduced in writing by the Commission using the form 
+referred to in subregulation (1) and signed by the 
+complainant. 
+(3) Notwithstanding the generality of subregulation 
+(1), any person, or group of persons, may file to the 
+Commission a group complaint, provided that- 
+(a) a list of their names and signatures or 
+thumbprints have been obtained and submitted 
+to the Commission together with the complaint; 
+and 
+(b) the minutes of the meeting resolving the filing 
+of the representative complaint have been 
+obtained and submitted to the Commission 
+together with the complaint. 
+(4) Complaints shall be submitted in Kiswahili or 
+English language. 
+(5) After receiving a complaint under this 
+regulation, the Commission shall evaluate the complaint 
+with the view to checking on its propriety and compliance 
+with the Act and these Regulations. 
+(6) After the completion of the evaluation under 
+subregulation (5) and where the Commission is satisfied 
+that the complaint has met the requirements of the Act and 
+these Regulations, it shallproceed to deal with the 
+complaint as provided for under these Regulations. 
+Rejection of 
+complaint 
+5.-(1) After the conclusion of the evaluation of the 
+complaint under regulation 4(5), the Commission may 
+reject the complaint where- 
+(a) it discloses no cause of action; 
+
+[PDF PAGE 8]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+6
+(b) it is time barred; 
+(c) the matter being complained of is pending 
+before any court, tribunal, arbitration or quasi- 
+judicial body; 
+(d) the matter being complained of does not fall 
+under the Act; or 
+(e) the complainant has no locus standi. 
+(2) The Commission shall, in the event of 
+rejectionof the complaintunder subregulation (1), notify 
+the complainant in writing about the rejection of the 
+complaint within seven days from the date of the decision, 
+and explain the reasons for the decision to reject the 
+complaint. 
+(3) The rejection of a complaint for any of the 
+reasons mentioned in subregulation (1) shall not on its 
+own bar the complainant from presenting a fresh 
+complaint in respect of the same cause of action subject to 
+the fulfillment the requirements of the Act and these 
+Regulations. 
+(4) A complainant aggrieved by the decision of the 
+Commission under subregulation (1) may apply for a
+review of the decision in accordance with section 48 of the 
+Act. 
+Service of 
+summons to 
+present defence 
+6.-(1) The Commission shall, for a period not 
+exceeding seven days after evaluating and being satisfied 
+that the complaint submitted in accordance with regulation 
+4 has met the requirements of the Act and these 
+Regulations, shall serve a summons to the respondent in 
+Form No. 2 set out in the Schedule to these Regulations 
+anddirecting him to present his defence. 
+(2) A summons issued under subregulation (1) 
+shall be served on the respondent by- 
+(a) personal delivery to the complainant or his 
+representative who shall acknowledge receipt 
+by signing and returning a copy of the 
+summons to the Commission; 
+(b) registered mail of the respondent and return a
+receipt; or 
+(c) publication in two newspapers of general 
+circulation to the public in the country, one in 
+
+[PDF PAGE 9]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+7
+Kiswahili and the other in English,where the 
+Commission has determined that- 
+(i) there are reasons to believe that the 
+respondent is keeping out of the way 
+for the purpose of avoiding the service; 
+or 
+(ii) the summons cannot,for any other 
+reason, be served in an original way; 
+and 
+(iii) there is a proof in writing from the 
+local government authority that efforts 
+to serve the respondent were taken and 
+that such efforts have failed due to 
+reasons given in paragraphs (i) and (ii). 
+Defence to 
+complaint 
+7.-(1) The respondent shall, within a period not 
+exceeding twenty-one days after receiving the summons, 
+present a defence to the Commission. 
+(2) The respondent shall, in his defence, answer 
+every allegation of fact which he does not admit according 
+to his knowledge and not deny generally the grounds 
+alleged by the complainant. 
+(3) Where the respondent fails to present his 
+defence as required under subregulation (1), it shall be 
+deemed that the respondent has waived his right to appear 
+and participate in the proceedings and the Commission 
+shall proceed with the hearing ex-parte .
+(4) Notwithstanding subregulation (3), the 
+respondent may, by way of a letter, apply to the 
+Commission for an order to set aside the ex-parte order. 
+Reply to defence 8. After receipt of the defence from the respondent 
+as provided under regulation 7, the complainant may 
+prepare and submit to the Commission a reply thereto 
+within the time provided. 
+Third party 
+procedure 
+9.-(1) Where in any complaint, the respondent 
+claims against any person not a party to the complaint, the 
+respondent may apply to the Commission to present a
+third-party notice. 
+(2) The application under subregulation (1) shall be 
+
+[PDF PAGE 10]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+8
+in writing and shall state- 
+(a) the name and address of the third-party; 
+(b) the nature of the claim made by the 
+complainant in a complaint; 
+(c) the stage at which the proceedings in the 
+complaint have reached; and 
+(d) the nature of the claim made by the applicant 
+against the third party and its relation to the 
+complaint of the complainant against the 
+applicant. 
+(3) Upon receipt of the application under 
+subregulation (1) and where the Commission is satisfied 
+that the complaint of the respondent against the third party 
+is related to the matter referred to in subregulation (2), and 
+that after considering all the circumstances of the 
+complaint, it is reasonable and proper to grant leave to the 
+respondent to present a third-party notice, the Commission 
+shall, upon such terms and conditions, grant leave to the 
+respondent to present a third-party notice. 
+(4) Every third-party notice shall state- 
+(a) the nature of the complainant's claim against 
+the respondent; 
+(b) the nature of the respondent's claim against the 
+third party; 
+(c) the relief claimed by the respondent against the 
+third party; 
+(d) the period within which the third party may 
+presenthisdefence; and 
+(e) the consequences of the failure by the third 
+party to present his defence within such period. 
+(5) The Commission shall cause to be served a
+copy of the third-party notice presented to it on the third 
+party and the complainant in accordance with the 
+procedure provided under regulation 6(2). 
+(6) Where a third-party notice has been served on 
+the third party, the third party shall, if he wishes to dispute 
+the claim against him by the respondent in the complaint, 
+within fourteen days from the service of the third-party 
+notice, present to the Commission hisdefence. 
+
+[PDF PAGE 11]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+9
+Directions 10. Where a third party has presented a defence, 
+the Commission shall fix a date for issuing of directions 
+and may, on such date, if it is satisfied that there is a
+proper question to be tried as to the liability of the third 
+party in respect of the claim made against him by the 
+respondent, order the question of such liability to be tried 
+in such manner, at or after the trial of the complaint as the 
+Commission may direct, or if the Commission is not 
+satisfied, make such order as the nature of the complaint 
+may require. 
+Award against 
+third party 
+11.-(1) Where the third party- 
+(a) makes default in presenting his defence within 
+the time prescribed under regulation 9(6); or 
+(b) having presenting a defence, makes a default in 
+appearing on the date fixed for the issuance of 
+directions, 
+if the respondent who presents a third-party notice is 
+found liable to the complaint, the respondent may present 
+an ex-parte application to the Commission for an award 
+against the third party in respect of the relief sought. 
+(2) The Commission may, on the application by the 
+respondent under subregulation (1) and on the ex-parte 
+proof by the respondentof his claim against the third party, 
+issue an award against the third party as the nature of the 
+complaint may require. 
+Amendments to 
+complaint, 
+defence or reply 
+12.-(1) The complainant or respondent may, 
+uponprovidingsufficient cause, be allowed to amend a
+complaint, defence or reply to the defenceand the other 
+party shall be afforded an opportunity to make a response 
+thereto within a reasonable time prior to the hearing. 
+(2) The complainant or respondent who intends 
+tomake amendmentsinthe complaint, defence or reply to 
+the defence under subregulation (1), shall submit to the 
+Commission an application to make such amendments in 
+writing. 
+(3) The complainant or respondent shall, upon 
+being allowed to amend the complaint, defence or reply to 
+the defence, amend such a complaint, defence or reply to 
+the defence within the time specified by the Commission. 
+
+[PDF PAGE 12]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+10 
+PART III 
+INVESTIGATION AND MEDIATIONPROCEDURES 
+Investigation of 
+complaint 
+13.-(1) The Commission shall, upon receiving the 
+defence from the respondent or a reply from the 
+complainant, if any, or otherwise comes to the attention of 
+the Commission that- 
+(a) the complainant has an interest in the matter to 
+which the complaint relates; and 
+(b) the complaint is not frivolous or vexatious, 
+investigate the matter. 
+(2) The Commission shall, before commencing the 
+investigation of the complaint under these Regulations, 
+give the respondent a notice of investigation specifying 
+the intention to conduct the investigation using Form No. 
+3 set out in the Schedule to these Regulations. 
+(3) Whereit appears to the Commission, at any 
+time during or after the investigation, that there is a
+meritious complaint and that the data controller or data 
+processor has not considered the same, or has not 
+considered it adequately in accordance with the Act, or the 
+code of ethics for the protection of personal data, the 
+Commission may require the data controller or data 
+processor to consider or reconsider the complaint within 
+fourteen days. 
+Mediation 14.-(1) The Commission shall, as part of 
+investigation, attempt to resolve the complaint in an 
+amicable manner within thirty days from the date of filing 
+the complaint. 
+(2) Duringmediating in subregulation (1), the 
+Commission shall appoint one officer from the 
+Commission to act asamediator between the parties to the 
+complaint. 
+(3) The mediator appointed to mediate the parties 
+to the complaint under subregulation (2) shall strive to 
+mediate the parties and in doing so, he may call for 
+mediation meetings at a place and time as may be agreed 
+upon by the parties. 
+
+[PDF PAGE 13]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+11 
+(4) A settlement reached by the parties from the 
+mediation meeting under subregulation (3), shall be 
+reduced in writing in Form No. 4 set out in the Schedule to 
+these Regulations and shall be signed by the parties and a
+copy thereof shall be submitted by the mediator to the 
+Commission. 
+(5) The settlement reached under subregulation (4) 
+shall, upon adoption by the Commission, be deemed to be 
+the award of the Commission. 
+Issuance of 
+award 
+15.The Commission shall, after adopting the 
+settlement as its award, prepare and issue the award to the 
+parties within twenty-one days from the date of receipt of 
+the settlement. 
+Failure of 
+mediation 
+16.-(1) Where, at any stage within thirty-days 
+period specified under regulation 14(1), it becomes clear 
+that the parties cannot reach an amicable settlement within 
+the time provided, the mediator shall refer the complaint 
+to the Commission for hearing. 
+(2) The Commission shall, within a period not 
+exceeding seven days after the complaint has been referred 
+to the Commission under subregulation (1), notify the 
+parties using a summons in Form No. 5 set out in the 
+Scheduleto these Regulations, that the complaint has been 
+referred to the Commission for hearing. 
+PART IV 
+HEARING PROCEDURE 
+Complaint 
+hearing 
+procedures 
+17.-(1) Procedures for hearing complaints shall be 
+quasi-judicial in nature. 
+(2) After investigation and upon failure of efforts 
+of mediation, the Commission shall appoint a Complaints 
+Hearing Committee that shall be composed of three 
+persons among people with expertise and experience in 
+the field of law, personal data protection and ICT within 
+the Commission. 
+(3) Without prejudice the provisions of 
+subregulation (2), the Committee may invite any person 
+
+[PDF PAGE 14]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+12 
+with expertise related to the complaint being heard. 
+(4) A party may appear either in person, 
+represented by an advocate or its principal officer or an 
+authorised representative. 
+(5) Where the party appears by representation in 
+accordance with subregulation (4), the party shall be 
+required to produce proof of authorisation to represent 
+which shall include any of the following: 
+(a) power of attorney; 
+(b) an introduction letter bearing the signatures 
+and passport size photographs of both the party 
+represented and the representative; 
+(c) letter of appointment as the administrator or 
+administratrix of the deceased's estate; 
+(d) proof that the person has been named by the 
+party in the complaint form as a representative; 
+(e) tenancy agreement where the interested party is 
+a tenant; and 
+(f) birth certificate or affidavit as proof of 
+relationship where the complainant is the 
+guardian or parent of a minor. 
+(6) Complaints by minors or persons with mental 
+health disabilities shall be handled in accordance with the 
+provisions of the relevant laws. 
+(7) During the hearing of the complaints, the 
+Committee may- 
+(a) require any person to produce any documents 
+or information deemed relevant; 
+(b) issue an interlocutory order upon a written 
+application by either party; and 
+(c) require the attendance of any person to give 
+evidence or produce any document that may be 
+in his custody. 
+(8) The oral evidence adduced by the parties 
+during hearing shall be under oath or affirmation. 
+(9) For the purposes of this regulation, "hearing" 
+means all process required for determination, including- 
+(a) any attempt to reconcile the parties; 
+(b) oral and written submissions made by parties; 
+(c) examination of witnesses; 
+
+[PDF PAGE 15]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+13 
+(d) discovery of documents; 
+(e) tendering of exhibits; 
+(f) visitation of the scene of the incident; and 
+(g) production of documents by order of the 
+Commission. 
+(10) For the purpose of providing justice under 
+these Regulations, where these Regulations are silent on 
+any matter of procedure, the Committee may regulate its 
+own procedure. 
+Failure to appear 18.-(1) Where neither party appears when the 
+complaint is called for hearing, the Commission may 
+make an order that the complaint be dismissed. 
+(2) Where the complainant fails to appear when the 
+complaint is called for hearing, the Commission may 
+make an order that the complaint be dismissed. 
+(3) Where the respondent fails to appear when the 
+complaint is called for hearing, the Commission may, 
+upon application by the complainant, make an order for 
+ex-parte proof of the claims made by the complainant. 
+(4) A party against whom a dismissal order has 
+been made under subregulation (1) or (2) or an ex-parte 
+order has been made under subregulation (3) may apply in 
+writing to the Commission, within thirty days from the 
+date of issuance of the order, for setting aside such 
+dismissal or ex-parte order, and the Commission shall 
+proceed on making decision to such applications. 
+(5) In making a decision to the application under 
+subregulation (4), the Commission shall consider whether 
+there are sufficient reasons in support of the application 
+and it shall notify the parties about its decision. 
+Adjournment 19.-(1) A party may, before or during hearing of a
+complaint, apply to the Committee for adjournment. 
+(2) The application for adjournment may be made 
+orally or in writing. 
+(3) The committee may accept the application for 
+adjournment if it is satisfied that the applicant has 
+sufficient reasons for applying for adjournment. 
+Application to 20.-(1) Any person who has an interest in the 
+
+[PDF PAGE 16]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+14 
+intervene in 
+complaint 
+complaint before the Commission may, at any stage before 
+conclusion of the hearing, file an application to the 
+Commission to intervene in the proceedings. 
+(2) The application for intervention shall state- 
+(a) the date to which the application is filed; 
+(b) the number of the complaint; 
+(c) the title of the complaint to which the 
+application relates; 
+(d) the name, postal and physical address of the 
+intervener; 
+(e) a concise statement of the matter in issue 
+affecting the intervener; 
+(f) the party whose position the intervener intends 
+to support in the complaint; and 
+(g) the grounds and documents in support of the 
+application. 
+(3) The Commission shall notify the parties to the 
+proceedings of the application and any party may file an 
+objection within seven days upon receipt of notice of the 
+application. 
+(4) The Committee shall ascertain whether the 
+prospective intervener is directly affected by the outcome 
+of the hearing of the complaint and whether his interest in 
+the outcome is established. 
+(5) Where the Committee is satisfied that the 
+intervener has sufficient interest, it shall grant the 
+application on such terms and conditions as it may deem 
+fit. 
+(6) Where the application is granted, the intervener 
+shall, within seven days from the date of granting, file a
+statement of intervention containing: 
+(a) the particulars of the intervener together with 
+the material facts of the complaint including 
+the particulars specified in paragraphs (b), (c) 
+and (d) of subregulation (2); 
+(b) succinct presentation of the facts and 
+arguments supporting the intervention; 
+(c) relief sought; 
+(d) a list of documents annexed and a copy of 
+every document upon which the intervener 
+
+[PDF PAGE 17]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+15 
+relies. 
+(7) The parties to the proceedings may, within 
+seven days from the date of receipt of the notice under 
+subregulation (3), file to the Commission, jointly or 
+severally, a reply to the statement of intervention in the 
+complaint. 
+(8) After hearing the complaint, the Committee 
+shall prepare and submit recommendations to the 
+Commission. 
+Award 21. Upon receipt of the recommendations of the 
+Committee, the Commission shall consider the 
+recommendations and issue a written award in the relevant 
+complaint. 
+Enforcement 
+notice 
+22.-(1) Where the Commission is satisfied that a
+person has failed to comply with any of the provisions of 
+the Act or these Regulations, the Commission may issue 
+an enforcement notice to that person in Form No. 6 set out 
+in the Schedule to these Regulations, to be attached to the 
+award issued under regulation 20, requiring him to take 
+steps to rectify the deficiencies within seven days after 
+receiving the notice. 
+(2) The Commission may issue the following 
+directions in the enforcement notice: 
+(a) rectify or change personal data; 
+(b) prevent or suspend collection or processing; 
+(c) erase or remove the personal data from the 
+system; 
+(d) destroy personal data; or 
+(e) any other direction as the Commission may 
+deem appropriate. 
+(3) The notice issued under subregulation (1), shall 
+require the respondent to submit a report on the 
+implementation of the enforcement notice within the time 
+specified in the notice. 
+Penalty notice 23.-(1) Where after expiry of the enforcement 
+period provided under subregulation 22(1) and the 
+Commission is satisfied that the person issued with the 
+
+[PDF PAGE 18]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+16 
+enforcement notice has failed to comply with the 
+directions given, the Commission may issue a penalty 
+notice using Form No. 7 set out in the Schedule to these 
+Regulations. 
+(2) For the purpose of implementing these 
+Regulations, the penalty notice shall form part of the 
+award issued by the Commission in the relevant 
+complaint. 
+Enforcement of 
+award 
+24.-(1) Subject to the Act and the provisions of 
+these Regulations, the award of the Commission shall be 
+enforceable as the order of the High Court. 
+(2) The award holder shall, subject to the limitation 
+period specified in the penalty notice, apply for the 
+registration of the award at the High Court. 
+(3) Applications for registration of awards under 
+subregulation (2) shall be by way of a covering letter 
+enclosing the award to be registered. 
+Cap. 15 
+(4) The High Court shall, after receiving the 
+application under subregulation (3), proceed to register the 
+award as if the same has been issued under the Arbitration 
+Act. 
+PART V
+GENERAL PROVISIONS 
+Application for 
+review 
+25.-(1) Subject to the provisions of the Act and 
+these Regulations, any party to the complaint who is not 
+satisfied with the award of the Commission may, within 
+twenty-one days, apply for review of the award to the 
+Commission using Form No. 8 set out in the Schedule to 
+these Regulations. 
+(2) The Commission shall, within fourteen days 
+from receiving the application for review, review its award 
+and may reverse, alter or revoke any direction given in the 
+award. 
+(3) Review of award of the Commission shall be 
+made by an officer or officers other than the one who 
+handled the complaint. 
+
+[PDF PAGE 19]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+17 
+Appeal 26. Any party who is aggrieved by the decision of 
+the Commission under regulation 21 may, within a period 
+of twenty-one days from the date of delivery of the award, 
+appeal to the High Court. 
+Taxation for 
+costs 
+27.-(1) Where any party has been awarded the 
+costs and wishes to recover the costs which he has been 
+awarded under these Regulations, he shall lodge a bill of 
+costs for taxation and the Commission shall tax such bill 
+accordingly. 
+GN. No. 
+263 of 2015 
+(2) The bill of costs shall be filed to the 
+Commission and shall be in the form prescribed under the 
+Advocate Remuneration and Taxation for Costs Rules of 
+2015. 
+(3) Any person who is aggrieved with the decision 
+of the Commission under subregulation (1) may appeal to 
+the High Court. 
+Issuance of 
+compliance 
+order 
+28. At any stage during hearing of the complaint 
+and where the Commission is satisfied that a person has 
+breached or is likely to breach the provisions of the Act, 
+the Commission may issue a compliance order as it may 
+deem appropriate. 
+General penalty 29. Any person who contravenes any of the 
+provisions of these Regulations for which no specific 
+penalty is prescribed shall, on conviction, be liable to 
+penalty as provided under the Act. 
+Other 
+procedures 
+30. Where procedures are not provided for in these 
+Regulations, the Commission may do whatever is 
+necessary and permitted by the Act or other relevant law 
+to enable it to effectively and completely adjudicate on 
+any matter before it. 
+
+[PDF PAGE 20]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+18 
+_________ 
+SCHEDULE 
+__________ 
+FORMS 
+FORM NO. 1
+(Made under regulation 4(1)) 
+COMPLAINT FORM 
+(1) Details of the Complainant: 
+Name: _________________________________________________________________ 
+Name of Representative (If any): _______________________ ___________________________ 
+Address: ________________________________________________________________ 
+Customer Service Number (If Available):________________ ______________________________ 
+Physical Address: ___________________________________ __________________________ 
+City: ___________________________________________________________________________ 
+Phone: 
+_____________________________________________________________________________ 
+Mobile Phone: ____________________________________________________________ 
+Email:___________________________________________________________ 
+(2) Details of the Respondent: 
+Name of Data Controller / Data 
+Processor_______________________________________________________ 
+Address: ___________________________________________________________________ 
+Physical Address_______________________________________________________________ 
+City: 
+________________________________________________________________________________ 
+Office Telephone: ___________________________________________________________ 
+Mobile Phone: _____________________________________________________________ 
+Email Address: ___________________________________________________________ 
+(3) Nature of Complaint (A separate paper may be used): 
+________________________________________________________________________________ 
+________________________________________________________________________________ 
+__________________________ 
+(4) Relief Sought 
+________________________________________________________________________________ 
+________________________________________________________________________________ 
+(5) Has the Complainant tried to resolve the complaint direc tly with the Respondent? 
+If yes, state the steps taken and the results of those steps: 
+________________________________________________________________________________ 
+________________________________________________________________________ 
+Yes No 
+
+[PDF PAGE 21]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+19 
+(6) Has the Complainant sought legal redress from any other i nstitution? 
+If yes, state the name of the relevant institution, the relie f sought and the relevant results (A 
+separate paper may be used): 
+__________________________________________________________________________ 
+________________________________________________________________________________ 
+(7) Have the copies of all relevant documents being attached ? 
+If yes, itemise the list: (A separate paper may be used) 
+__________________________________________________________________________ 
+________________________________________________________________________________ 
+(8) Any other relevant information: 
+__________________________________________________________________________ 
+________________________________________________________________________________ 
+(9) I hereby declare that all the facts and information given in this complaint are correct to the best 
+of my knowledge. 
+Date ____ _____ ______ 
+______________________________________ 
+Day Month Year Signature of the Complainant/Principal Offi cer of the 
+Complainant 
+For Commission Use Only: 
+Date Received:___________________File Number:________ ______________________ 
+Received by ____________________________ Signature ____ _____________________ 
+No Yes 
+No Yes 
+YYY 
+
+[PDF PAGE 22]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+20 
+FORM NO. 2
+(Made under regulation 6(1)) 
+SUMMONS FORM 
+Complaint No. .………… 
+TO: 
+…………………………………………….
+…………………………………………….
+1. ……………………..……..…………….-Complainant 
+2. …………………………….…………………-Respondent 
+SUMMONS TO FILE A DEFENCE 
+TAKE NOTICETHAT Mr/Mrs/Ms/Dr ......................... .................. (“Complainant”) of P.O 
+Box ................................ has lodged a compla int to the COMMISSION against you, a copy of the 
+complaint form and the documents he submitted are attached f or reference. 
+PURSUANT to regulation 7(1) ofthe Personal Data Protection (Complaints Settlement Procedures) 
+Regulations, 2023 you are required to submit defence agains t the allegations lodged by the 
+Complainant together with all the relevant documents you wi ll rely upon in support of your defence 
+within twenty-one (21) days from the date of issuance of this summons. The complainant should be 
+served a copy of your defence. 
+TAKE FURTHER NOTICE THAT failure to submit your defence with in the time mentioned above 
+will imply that you have waived your right to be heard and the C OMMISSION shall proceed to 
+determine the matter in your absence in accordance with the a bove-mentionedRegulations. 
+GIVEN with the stamp of the COMMISSION this ………... day of ……..… 20……………..
+………………………………………………………………….
+DIRECTOR GENERAL / SECRETARY TO THE BOARD 
+COPY TO: 
+………………………………….
+………………………………….
+
+[PDF PAGE 23]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+21 
+FORM NO. 3
+(Made under regulation 13(2)) 
+NOTICE OF INVESTIGATION 
+I. COMPLAINT 
+___________________________________________________________ 
+Name of Respondent: _______________________________ Com plaint Number____________ 
+The Commission has received a complaint of alleged violatio n of the provisions of the Personal 
+Data Protection Act against you. 
+II. NOTICE 
+Through this notice, the Commission informs you that it has d ecided to investigate the alleged 
+violation of the provisions of the PersonalData Protection Act against you. 
+You are requested to cooperate with the Officer(s) of the Com mission or any person authorised by 
+the Commission to investigate the said complaint with the ai m of determine and substantiating the 
+complaint. 
+GIVEN with the stamp of the COMMISSION this ………... day of ……..… 20……………..
+________________________________ 
+DIRECTOR GENERAL / SECRETARY TO THE BOARD 
+COPY TO: 
+………………………………….
+………………………………….
+
+[PDF PAGE 24]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+22 
+FORM NO. 4
+(Made under regulation 14(4)) 
+SETTLEMENT FORM 
+(This form should be filled by all parties and each party shou ld retain one copy and the remaining 
+copy should be submitted to the COMMISSION) 
+1.0 DETAILS OF COMPLAINT 
+1.1 Name of 
+Complainant(s): .............................................. ................................................ ............... 
+1.2 Name of 
+Respondent(s): ..................................... ......... ................................................ ............ 
+1.3 Name of the Third party (If any): …………………………………………………… 
+1.4 Name of the Intervener (If any): …………………………….………..………… 
+1.5 Number of the 
+Complaint: ......................................... ..... ................................................ ......... 
+1.6 Date of Filing the Complaints to 
+COMMISSION................................................ ........................ 
+1.7 Nature of the 
+Complaint................................................... ................................................ .............. 
+………………………………………………………………………….………………… 
+….. 
+……………………………………………………………….…..…………………… 
+2.0 DETAILS OF MEDIATION MEETING 
+2.1 Date(s) of Mediation Meeting: …………………………………………………….. 
+2.2 Place of the Mediating Meeting: …………………………………………………… 
+2.3 Names of the Participants at the Mediation Meeting (See the N ames and Signatures 
+Appendix) 
+2.4 What are the terms and conditions of the settlement? 
+The parties hereto have agreed as follows: 
+................................................ ................................................ ................................................ 
+................................................ ................................................ ................................................ 
+................................................ ................................................ ................................................ .
+................................................ ................................................ ................................................ .
+3.0 VERIFICATION OF SETTLEMENT 
+3.1 I, …………………….……….., being the Complainant/Representative of the 
+Complainant, hereby verify that all the information contai ned in this Form are true and 
+the same reflects what the parties hereto have agreed. 
+Name:…………………………….………… 
+Signature…………………..………………… 
+Date………………………….. 
+
+[PDF PAGE 25]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+23 
+3.2 I, ………………………………..…….., being the Respondent/Representative of the 
+Respondent, hereby verify that all the information contain ed in this Form are true and 
+the same reflects what the parties hereto have agreed. 
+Name:................................................ ............... 
+Signature…………..……………………… 
+Date………………………….. 
+3.3 I, ………………………………..…….., being the Third party/Representative of the 
+Third party,hereby verify that all the information contain ed in this Form are true and the 
+same reflects what the parties hereto have agreed. 
+Name:................................................. 
+Signature…………..……………………… 
+Date………………………….. 
+3.4 I, ………………………………..…….., being the Intervener / Representative of the 
+Intervener, hereby verify that all the information contain ed in this Form are true and the 
+same reflects what the parties hereto have agreed. 
+Name:................................................ ............... 
+Signature…………..……………………… 
+Date………………………….. 
+3.5 I,………………………….., being the Mediator in this dispute, hereby verify that all the 
+information contained in this Form are true and the same refl ects what the parties hereto 
+have agreed. 
+Name:............................................ Signature .. .......................................... ...... .
+Date: ………………………………………….……….
+
+[PDF PAGE 26]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+24 
+FORM NO. 5
+(Made under regulation 16(2)) 
+SUMMONS TO APPEAR 
+BEFORE THE PERSONAL DATA PROTECTION COMMISSION 
+Complaint No.………… 
+To: 
+……………………………… 
+……………………………… 
+……………………………… 
+1. ……………………..……..…………….-Complainant 
+2. …………………………….…………………-Respondent 
+NOTICE OF DATE OF HEARING OF COMPLAINT 
+TAKE NOTE THAT the above-mentioned complaint has been fixed for hearing before the 
+PERSONAL DATA PROTECTION COMMISSION, in the venue of ………………….. dist rict 
+of ………………….. Region of …………………… date……………………………….
+at …………………….. hours 
+YOU ARE HEREBY required to appear in person or by an authorise d representative without fail in 
+the time, day and place mentioned above and also submit to the other party and the COMMISSION, 
+a copy of all the documents you will rely in the defence of your case and that on the day of the 
+hearing you must come withthe original copies of those docum ents. The copies should reach the 
+other party together with the COMMISSION before the date ………………………………. Yo u 
+are also required to bring your witnesses, if any, that you wi ll use in defending your case. 
+GIVEN with the stamp of the COMMISSION this ………... day of ……..… 20……………..
+……………………………….…… 
+DIRECTOR GENERAL / SECRETARY TO THE BOARD 
+
+[PDF PAGE 27]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+25 
+FORM NO. 6
+(Made under regulation 22(1)) 
+ENFORCEMENT NOTICE 
+I. ENFORCEMENT ……………………………………………………… 
+Name of Respondent (Data Controller/ Data Processor): …………………………. Com plaint 
+Number…………… 
+The Commission has received a complaint of alleged violatio n of the provisions of the Personal 
+Data Protection Act against you. 
+II. DIRECTIONS 
+The Commission directs you to do the following: 
+................................................ ................................................ ..................................... 
+................................................ ................................................ ..................................... 
+................................................ ................................................ .............................. 
+GIVEN with the stamp of the COMMISSION this ………... day of ……..… 20……………..
+………………………………….. 
+GENERAL DIRECTOR 
+
+[PDF PAGE 28]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+26 
+FORM NO. 7
+(Made under regulation 23(1)) 
+PENALTY NOTICE 
+I. PENALTY 
+Recipient Name …………………………………………………… 
+Enforcement Notice Number ………………………………………… 
+II. The Commission in accordance with section 46 of the Act and re gulation 22 issue the 
+following penalty /compensation: 
+…………………………………………………………………………………………………… 
+………………… 
+…………………………………………………………………………………………………… 
+………………… 
+III. RIGHT OF APPEAL 
+The party that is aggrieved with the decisions has a right to a ppeal to the High Court 
+within 21 days from the date of the decisions. 
+GIVEN with the stamp of the COMMISSION this ………... day of ……..…
+20…………….. 
+………………………………….. 
+GENERAL DIRECTOR 
+
+[PDF PAGE 29]
+Personal Data Protection (Complaints Settlement Procedur es) 
+GN. NO. 449B (Contd.) 
+27 
+FORM NO. 8
+(Made under regulation 25) 
+REVIEW OF THE DECISION OF THE COMMISSION 
+A. DETAILS OF PERSON GIVEN NOTICE OF ENFORCEMENT 
+Name. 
+Registration Number/ 
+Identification Number 
+Contact details 
+(Phone number/ email address) 
+B. COMPLAINT NUMBER_________________________ 
+ENFORCEMENT/PENALTY NOTICE NUMBER________________________________ 
+C. GROUNDS FOR REVIEW OF ENFORCEMENT/PENALTY NOTICE 
+................................................ ................................................ .............................................. 
+…………………………………………………………………………………………………… 
+…
+Note: 
+*If the space provided in this Form is insufficient, submit t he information as an Attachment to this 
+Form. 
+* If you have supporting documents to prove your claim, pleas e attach a copy to this Form. 
+*The information submitted will be dealt with utmost confid entiality. 
+_____________________________________________ 

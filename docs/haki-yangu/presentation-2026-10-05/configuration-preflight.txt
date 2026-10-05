@@ -1,0 +1,17 @@
+
+> vite_react_shadcn_ts@0.0.0 haki:preflight
+> node scripts/haki-release-preflight.mjs
+
+Haki Yangu local preflight (configuration only)
+PASS Shared Convex deployment
+PASS Shared Clerk instance
+OPEN Production Clerk key
+OPEN EAS project ID
+PASS iOS bundle identifier
+PASS Android package
+PASS Security and contract checks available
+MANUAL Verified service contacts and public/private directory classification
+MANUAL Approved Tanzanian legal corpus and Saada high-risk evaluation
+MANUAL Cross-role web, iOS, Android, offline, notification and accessibility rehearsal
+MANUAL LSF privacy, safeguarding, retention and incident-response approval
+This report does not prove deployment, runtime behavior, or release approval.

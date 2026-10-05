@@ -1,17 +1,13 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 import { useLanguage } from "../../src/i18n";
-import { colors } from "../../src/theme";
+import { FloatingTabBar } from "../../src/components/FloatingTabBar";
 
 export default function TabLayout() {
   const { t, locale } = useLanguage();
-  return <Tabs screenOptions={{
+  return <Tabs tabBar={(props) => <FloatingTabBar {...props} />} screenOptions={{
     headerShown: false,
-    tabBarActiveTintColor: colors.burgundy,
-    tabBarInactiveTintColor: "#626269",
-    tabBarLabelStyle: { fontFamily: "Ubuntu_500Medium", fontSize: 11 },
-    tabBarItemStyle: { paddingTop: 7, paddingBottom: 5 },
-    tabBarStyle: { height: 68, paddingBottom: 6, backgroundColor: "#FFFFFF", borderTopColor: "#E5E7EB", elevation: 0 },
+    tabBarHideOnKeyboard: true,
   }}>
     <Tabs.Screen name="index" options={{ title: t("home"), tabBarIcon: ({ focused, color, size }) => <Ionicons name={focused ? "home" : "home-outline"} color={color} size={size} /> }} />
     <Tabs.Screen name="cases" options={{ title: locale === "sw" ? "Kesi yangu" : "My Case", tabBarIcon: ({ focused, color, size }) => <Ionicons name={focused ? "folder" : "folder-outline"} color={color} size={size} /> }} />

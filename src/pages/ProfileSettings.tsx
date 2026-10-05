@@ -18,6 +18,7 @@ import Footer from "@/components/layout/Footer";
 const ProfileSettings = () => {
     const { user: clerkUser } = useUser();
     const convexUser = useQuery(api.users.current);
+    const access = useQuery(api.users.currentAccess);
     const updateProfile = useMutation(api.users.updateProfile);
     const generateUploadUrl = useMutation(api.users.generateUploadUrl);
 
@@ -99,7 +100,7 @@ const ProfileSettings = () => {
     };
 
     const userInitials = (name || clerkUser?.firstName || "U").slice(0, 2).toUpperCase();
-    const userRole = convexUser?.role || "user";
+    const userRole = access?.roles.filter((role) => role !== "user").join(" · ") || convexUser?.role || "user";
 
     // Navigation state management (reused from dashboard layouts)
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);

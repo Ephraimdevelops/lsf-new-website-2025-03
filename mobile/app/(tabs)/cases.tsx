@@ -9,6 +9,7 @@ import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
 import { AppHeader } from "../../src/components/AppHeader";
 import { useLanguage } from "../../src/i18n";
+import { useAccountSync } from "../../src/useStoreUserEffect";
 import { colors, radius, spacing, type } from "../../src/theme";
 
 const requestStatus: Record<string, { sw: string; en: string }> = {
@@ -23,9 +24,10 @@ const requestStatus: Record<string, { sw: string; en: string }> = {
 
 export default function CasesScreen() {
   const { isSignedIn } = useAuth();
+  const { ready: accountReady } = useAccountSync();
   const { locale, t } = useLanguage();
-  const cases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
-  const requests = useQuery(api.legalHelp.myRequests, isSignedIn ? {} : "skip");
+  const cases = useQuery(api.caseManagement.myCases, isSignedIn && accountReady ? {} : "skip");
+  const requests = useQuery(api.legalHelp.myRequests, isSignedIn && accountReady ? {} : "skip");
   const visibleRequests = requests?.filter((item) => item.status !== "converted_to_case") ?? [];
   return (
     <Screen>

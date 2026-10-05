@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Women's Legal Aid Centre</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css"> -->
+
+    <!-- FontAwesome -->
+	<link rel="stylesheet" href="assets/plugins/fontawesome-free-5.15.2-web/css/all.css">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="assets/css/main-style.css?s=53">
+
+    <link rel="stylesheet" href="assets/css/sky-mega-menu.css" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="assets/plugins/slick/slick.css"/>
+    <!-- Add the new slick-theme.css if you want the default styling -->
+    <link rel="stylesheet" type="text/css" href="assets/plugins/slick/slick-theme.css"/>
+
+    <!-- Add Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="assets/plugins/aos/dist/aos.css" type="text/css">
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 100vh; /* 100% of the viewport height */
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .swiper-slide > .swiper-slide-cover {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: transparent no-repeat 50% 50% /cover;
+        }
+
+        .swiper-slide .slide1 {
+            background-image: url(https://picsum.photos/800/400?image=670);
+            transform-origin: 0 100%;
+        }
+
+        .swiper-slide .slide2 {
+            background-image: url(https://picsum.photos/800/400?image=837);
+            transform-origin: 100% 100%;
+        }
+
+        .swiper-slide .slide3 {
+            background-image: url(https://picsum.photos/800/400?image=947);
+            transform-origin: 100% 0;
+        }
+
+        .swiper-slide .slide4 {
+            background-image: url(https://picsum.photos/750/250?image=945);
+            transform-origin: 0 100%;
+        }
+        /* .swiper-scale-effect .swiper-slide-cover {
+            transition: 10s ease-out;
+            transform: scale(1.2);
+        }
+
+        .swiper-scale-effect .swiper-slide.swiper-slide-active .swiper-slide-cover {
+            transform: scale(1);
+        } */
+
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header-top" data-aos="fade-down">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-6">
+                    <phone><i class="fas fa-phone-alt"></i> +255 22 266 4051</phone>
+                    <mail><a href=""><i class="fas fa-envelope"></i> wlac@wlac.or.tz</a></mail>
+                </div>
+                <div class="col-lg-2 col-md-2 d-none d-sm-block"></div>
+                <div class="col-lg-4 col-md-4 col-4">
+                    <language-switch>
+                        <a href="?lang=en" class="selected" data-language-text="ENGLISH" data-language-code="EN">ENGLISH</a> | <a href="?lang=sw"  data-language-text="SWAHILI" data-language-code="SW">SWAHILI</a>
+                    </language-switch>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-4" data-aos="fade-right" data-aos-delay="100">
+                    <img src="assets/images/logo.png" alt="WLAC logo" class="logo-image">
+                    <div class="logo-text">Women’s <br class="one">Legal Aid <br class="two">Centre</div>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <div class="main-menu-section">
+                        <!-- mobile menu -->
+                        <div id="menu_main">
+                            <div class="hamburger-menu">
+                                <input id="menu__toggle" type="checkbox" />
+                                <label class="menu__btn" for="menu__toggle">
+                                    <span></span>
+                                </label>
+
+                                <ul class="menu__box">
+                                    <li><div class="menu__logo"></div></li>
+
+                                    <li><a class="menu__item" href="index.php">Home</a></li>
+                                    <li><a class="menu__item" href="#">About Us</a></li>
+                                    <li>
+                                        <ul>
+                                            <li><a class="menu__item menu__sub" href="page.php?p=2">Our Background</a></li>
+                                            <li><a class="menu__item menu__sub" href="board.php">Our Board</a></li>
+                                            <li><a class="menu__item menu__sub" href="team.php">Staff Team</a></li>
+                                            <li><a class="menu__item menu__sub" href="partners.php">Donors & Partners</a>
+                                            <li><a class="menu__item menu__sub" href="page.php?p=167">Job Vacancies</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="menu__item" href="#">Programmes</a></li>
+                                    <li>
+                                        <ul>
+                                            <li><a class="menu__item menu__sub" href="page.php?p=7">Access To Justice</a></li>
+                                            <li><a class="menu__item menu__sub" href="page.php?p=29">Community Awareness</a></li>
+                                            <li><a class="menu__item menu__sub" href="page.php?p=30">Institutional Sustainability</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="menu__item" href="news.php">News</a></li>
+                                    <li><a class="menu__item" href="reports.php">Reports</a></li>
+                                    <li><a class="menu__item" href="contact-feedback.php">Contact Us</a></li>
+
+                                    <!-- <li><div class="menu__social"></div></li> -->
+                                </ul>
+                            </div>
+
+                            <!-- mega desktop menu -->
+                            <ul id="site-navigation" class="sky-mega-menu sky-mega-menu-anim-slide sky-mega-menu-response-to-switcher">
+                                <li class="current"  >
+                                    <a href="index.php" class="menu"><!--<i class="fa fa-home"></i>--> Home</a>
+                                </li>
+
+                                <!-- switcher -->
+                                <li class="switcher" style="display:none;">
+                                    <a href="#"><i class="fa fa-bars"></i>Menu</a>
+                                </li>
+                                <!--/ switcher -->
+
+                                <li aria-haspopup="true" class="" >
+                                    <a href="#" class="menu">About Us</a>
+                                    <div class="grid-container3">
+                                        <ul>
+                                            <li><a href="page.php?p=2">Our Background</a></li>
+                                            <li><a href="board.php">Our Board</a></li>
+                                            <li><a href="team.php">Staff Team</a></li>
+                                            <li><a href="partners.php">Donors & Partners</a>
+                                            <li><a href="page.php?p=167">Job Vacancies</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li aria-haspopup="true" class=""  >
+                                    <a href="#" class="menu">Programmes</a>
+                                    <div class="grid-container3">
+                                        <ul>
+                                            <li><a href="page.php?p=7">Access To Justice</a></li>
+                                            <li><a href="page.php?p=29">Community Awareness</a></li>
+                                            <li><a href="page.php?p=30">Institutional Sustainability</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li aria-haspopup="true"  class="" >
+                                    <a href="news.php" class="menu">News</a>
+                                </li>
+
+                                <li aria-haspopup="true" class=""  >
+                                    <a href="reports.php?token=" class="menu">Reports</a>
+                                </li>
+
+                                <!-- <li aria-haspopup="true" >
+                                    <a href="services.php?token=" class="menu">Gallery</a>
+                                </li> -->
+
+                                
+                                <li aria-haspopup="true" class=""  >
+                                    <a href="contact-feedback.php?token=" class="menu">Contact Us</a>
+                                    <!--<div class="grid-container3">
+                                        <ul>
+                                            <li><a href="contact-us.php?token=">Feedback Form</a></li>
+                                            <li><a href="map-location.php?token=">Location Map</a></li>
+                                        </ul>
+                                    </div>-->
+                                </li>
+
+                                <li class="right" aria-haspopup="true" data-aos="fade-left" data-aos-delay="100">
+                                    <a href="donate.php?token=" class="donate-button">Donate</a>
+                                </li>
+
+                            </ul>
+                            <!--/ mega menu -->
+                        </div>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <div class="banner-section">
+        <div class="image-container">
+            <div class="image" style="background-image: url(files/banners/thumbnails/pic_20240315151145_IMG-20240307-WA0005_1600_700.jpg)"></div>        </div>
+        <!-- <span class="prev">&#10094;</span> -->
+        <!-- <span class="next">&#10095;</span> -->
+        <span class="shadow-top"> </span>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var images = $('.image');
+            var numImages = images.length;
+            var currentIndex = 0;
+            var isDragging = false;
+            var draggableOptions = {
+                axis: "x",
+                containment: "parent",
+                start: function() {
+                    isDragging = true;
+                },
+                stop: function() {
+                    isDragging = false;
+                }
+            };
+
+            $('.banner-section').hover(
+                function() {
+                    // Pause animation on hover
+                    $(this).find('.image-container').stop();
+                },
+                function() {
+                    // Resume animation on hover out
+                    if (!isDragging) {
+                        animateImages();
+                    }
+                }
+            );
+
+            $('.prev').click(function() {
+                currentIndex = (currentIndex - 1 + numImages) % numImages;
+                moveSlide(currentIndex);
+            });
+
+            $('.next').click(function() {
+                currentIndex = (currentIndex + 1) % numImages;
+                moveSlide(currentIndex);
+            });
+
+            function moveSlide(index) {
+                var displacement = -100 * index + "%";
+                $('.image-container').css('transform', 'translateX(' + displacement + ')');
+            }
+
+            function animateImages() {
+                currentIndex = (currentIndex + 1) % numImages;
+                moveSlide(currentIndex);
+
+                setTimeout(function() {
+                    animateImages();
+                }, 7000); // Adjust the interval between slides as needed
+            }
+
+            animateImages(); // Start animation
+        });
+
+        // $(document).ready(function() {
+        //     var images = $('.image');
+        //     var numImages = images.length;
+        //     var originalBg = $('.image-container').css('transform');
+        //     var currentIndex = 0;
+        //     var direction = 1; // 1 for forward, -1 for reverse
+
+        //     $('.banner-section').hover(
+        //         function() {
+        //             // Pause animation on hover
+        //             $(this).find('.image-container').stop();
+        //         },
+        //         function() {
+        //             // Resume animation on hover out
+        //             animateImages();
+        //         }
+        //     );
+
+        //     function animateImages() {
+        //         currentIndex += direction;
+        //         var displacement = -100 * currentIndex + "%";
+        //         $('.image-container').css('transform', 'translateX(' + displacement + ')');
+
+        //         if (currentIndex === numImages - 1 || currentIndex === 0) {
+        //             direction *= -1; // Change direction when reaching the end or beginning
+        //         }
+
+        //         setTimeout(function() {
+        //             animateImages();
+        //         }, 7000); // Adjust the interval between slides as needed
+        //     }
+
+        //     animateImages(); // Start animation
+        // });
+    </script>
+
+        <!-- Programmes Section -->
+    <div class="programmes-section container-fluid" data-aos="fade-up">
+        <div class="main-section-title">Our <strong>Programmes</strong></div>
+        <div class="item-list">
+            <a href="page.php?p=7" class="item-panel" data-aos="fade-up">
+                <div class="image-cover" style="background-image: url('files/pages/pic_20260508062019_Picture1.png');"></div>
+                <div class="programme-title">Access To Justice</div>
+            </a>
+            <a href="page.php?p=29" class="item-panel" data-aos="fade-up">
+                <div class="image-cover" style="background-image: url('files/pages/pic_20260508063151_Picture2.png');"></div>
+                <div class="programme-title">Community Awareness</div>
+            </a>
+            <a href="page.php?p=30" class="item-panel" data-aos="fade-up">
+                <div class="image-cover" style="background-image: url('files/pages/pic_20260508063523_Picture3.png');"></div>
+                <div class="programme-title">Institutional Sustainability</div>
+            </a>
+        </div>
+    </div>
+        <!-- News & Events Section -->
+    <div class="news-events-section container-fluid">
+        <div class="main-section-title"><strong>News</strong> & <strong>Events</strong></div>
+        <div class="row">
+            <div class="col-lg-6 col-12 mb-4" data-aos="fade-right">
+                                <a href="news_detail.php?token=RDlCRWdzbzVadDVpcy9wVnpDUDBVQT09" class="current-news-events-section">
+                    <div class="image-cover " style="background-image: url('files/news/thumbnails/pic_20240318101124_WLAC NEW_740_494.png'); background-size: cover;"></div>
+                    <div class="info">
+                                            <div class="meta-section">
+                            <div class="item-date">March 8, 2024</div><span> • </span>
+                            <div class="programme-type">News & Updates</div>
+                        </div>
+                        <div class="item-title">Happy Womens Day</div>
+                        <div class="item-summary"> International Womens Day 2024 campaign theme:Invest in women: Accelerate progress#InspireInclusion.</div>
+                    </div>
+                </a>
+                            </div>
+            <div class="col-lg-6 col-12">
+                <div class="news-events-list">
+                                            <a href="news_detail.php?token=MVRnUytoUnMxZk9IR1VGQ2E4N2hzUT09" class="news-event-entry" data-aos="fade-left" data-aos-duration="2000">
+                                <div class="image-cover" style="background-image: url('files/news/thumbnails/pic_20231211042950_09022440-d35e-491e-b00d-717ad9a3bafc-1_740_494.jpg'); background-size: cover;" ></div>
+                                <div class="info">
+                                    <div class="meta-section">
+                                        <div class="item-date">December 12, 2023</div><span> • </span>
+                                        <div class="programme-type">News & Updates</div>
+                                    </div>
+                                    <div class="item-title">Happy Womens Day</div>
+                                    <div class="item-summary">International Womens Day 2023 campaign theme:#EmbraceEquity.For International Womens Day and beyond, lets all fully #EmbraceEquity. Equity isnt...</div>
+                                </div>
+                            </a>
+                                                    <a href="news_detail.php?token=Umt5MDRRWFhCRjJEZVZwNGhEZkk2dz09" class="news-event-entry" data-aos="fade-left" data-aos-duration="2000">
+                                <div class="image-cover" style="background-image: url('files/news/thumbnails/pic_20231211041653_wlac-tpfnet_740_494.jpeg'); background-size: cover;" ></div>
+                                <div class="info">
+                                    <div class="meta-section">
+                                        <div class="item-date">December 4, 2022</div><span> • </span>
+                                        <div class="programme-type">News & Updates</div>
+                                    </div>
+                                    <div class="item-title">Setting up Gender & Children Desks with the Police</div>
+                                    <div class="item-summary">In February 2018, Womens Legal Aid Centre (WLAC) Executive DirectorMs. Theodosia Muhuloreceived a certificate to recognize WLACs contribution...</div>
+                                </div>
+                            </a>
+                                                    <a href="news_detail.php?token=dHdDNEl5MmFxY29PRXY0TXJqNGxpUT09" class="news-event-entry" data-aos="fade-left" data-aos-duration="2000">
+                                <div class="image-cover" style="background-image: url('files/news/thumbnails/pic_20231211041132_wlac-widow-poster_740_494.jpeg'); background-size: cover;" ></div>
+                                <div class="info">
+                                    <div class="meta-section">
+                                        <div class="item-date">October 4, 2022</div><span> • </span>
+                                        <div class="programme-type">News & Updates</div>
+                                    </div>
+                                    <div class="item-title">Advocating Rights for Widows and Orphans</div>
+                                    <div class="item-summary">Part of our work at WLAC involves utilisingawareness campaigns, community systems, and media at large to sensitise community members on civic and...</div>
+                                </div>
+                            </a>
+                                        </div>
+            </div>
+        </div>
+    </div>
+        <!-- StatsCounter Section -->
+    <div class="stat-counter-line">
+        <div class="stat-counter container-fluid" data-wow-duration="1.4s">
+            <div class="stat-item" data-aos="zoom-in" data-aos-duration="2000">
+                <div class="title counter-number counting" data-duration="2000" data-count="90000">0</div>
+                <div class="description">Women, children and refugees supported</div>
+            </div>
+            <div class="stat-item" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="title counter-number counting" data-duration="2000" data-count="130000">0</div>
+                <div class="description">Cases directly won using legal systems</div>
+            </div>
+            <div class="stat-item" data-aos="zoom-in" data-aos-duration="2300">
+                <div class="title counter-number counting" data-duration="2000" data-count="30">0</div>
+                <div class="description">Years of experience in Tanzania</div>
+            </div>
+            <div class="stat-item" data-aos="zoom-in" data-aos-duration="3000">
+                <div class="title counter-number counting" data-duration="2000" data-count="20">0</div>
+                <div class="description">Paralegal organizations countrywide</div>
+            </div>
+        </div>
+    </div>
+    
+        <!-- Testimonials Section -->
+    <div class="testimonial-section" data-aos="fade-up" data-aos-duration="3000">
+        <div class="bg">
+            <div class="container-fluid">
+            <div class="main-title"><strong>What people Says?</strong></div>
+                <div class="testimonial-list">
+                                                    <div class="testimonial">
+                                    <div class="message">I was fleeing domestic violence with my children, and we had nowhere to go. We were scared and alone. But then we found WLAC, and they helped us get back on our feet. They found us a safe place to stay and provided us with everything we needed, including food, clothing, and other necessities. I am so grateful to WLAC for their help and support.</div>
+                                    <div class="author">Nuru - Mother</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">I was a refugee from a war-torn country, and I didnt know anything about the laws of this country. I was also struggling to make ends meet. But then I found WLAC, and they helped me turn my life around. They helped me get my asylum status and find a job. I am now able to live a safe and stable life, thanks to WLAC.</div>
+                                    <div class="author">Zahra - Refugee</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">I was a victim of sexual harassment at work. I was too afraid to speak up, but then I found WLAC. They helped me file a complaint with my employer and represented me in mediation. The employer agreed to settle the case, and I received a monetary award. I am so grateful to WLAC for helping me get justice.</div>
+                                    <div class="author">Hawa - Employee</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">I was a single mother struggling to make ends meet. I didnt know where to turn. But then I found WLAC, and they helped me get the help I needed. They helped me get access to food stamps and other government benefits. I am now able to provide for my children and give them a better life.</div>
+                                    <div class="author">Zainab - Single mother</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">I was facing eviction from my home because I couldnt afford to pay my rent. I was terrified of losing my home. But then I found WLAC, and they helped me negotiate a payment plan with my landlord. I am now able to stay in my home and provide for my family. I am so grateful to WLAC for their help.</div>
+                                    <div class="author">Khadija - Tenant</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">I was struggling with a child custody dispute. I was worried about losing custody of my child. But then I found WLAC, and they helped me negotiate a custody agreement with my ex-spouse that was fair to both of us and our child. I am so relieved to have this matter resolved, and I am grateful to WLAC for their help.</div>
+                                    <div class="author">Amina - Mother</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">I was facing a criminal charge that I didnt commit. I was scared and didnt know what to do. But then I found WLAC, and they provided me with a lawyer. My lawyer was able to prove my innocence, and the charges were dismissed. I am so grateful to WLAC for helping me clear my name.</div>
+                                    <div class="author">Mwanaisha - Criminal defendant</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">My child was sexually abused by a neighbor, and I was devastated. But WLAC was there for me every step of the way. They helped me file a police report and provided me with a lawyer to represent me in court. The abuser was convicted and sentenced to prison, and my child is now getting the help she needs to heal. I am so grateful to WLAC for their support during this difficult time.</div>
+                                    <div class="author">Aisha - Daughter</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">I was a victim of domestic violence, and I felt like I had nowhere to turn. But then I found WLAC, and they helped me get my life back. They provided me with legal aid and helped me get a divorce and a restraining order against my abusive husband. I am now safe and able to start my life over, thanks to WLAC.</div>
+                                    <div class="author">Fatuma - Mother</div>
+                                </div>
+                                                    <div class="testimonial">
+                                    <div class="message">I was fired from my job because I was pregnant. I was devastated and didnt know what to do. But then I found WLAC, and they helped me fight back. They provided me with a lawyer who filed a discrimination lawsuit against my former employer. I won the case and got my job back, plus back pay. I am so grateful to WLAC for helping me stand up for my rights.</div>
+                                    <div class="author">Mariam - Employee</div>
+                                </div>
+                                    </div>
+                
+            </div>
+        </div>
+    </div>
+        <!-- Partners Section -->
+    <div class="partner-section  container-fluid">
+        <div class="main-section-title" data-aos="fade-down" data-aos-duration="4000"><strong>Partners</strong> & <strong>Donors</strong></strong></div>
+        <div class="partners-list" data-aos="fade-up" data-aos-duration="3000">
+            <div><a href="https://lsftz.org" target="_blank"><img class="partner-logo" src="files/links/pic_20231211053055_wlac-lsf.jpg" alt="Legal Service Facility"></a></div><div><a href="https://www.fordfoundation.org/" target="_blank"><img class="partner-logo" src="files/links/pic_20231211053118_wlac-partners-ford.jpg" alt="Ford Foundation"></a></div><div><a href="https://baringfoundation.org.uk" target="_blank"><img class="partner-logo" src="files/links/pic_20231211053029_wlac-baring.jpg" alt="The Baring Foundation"></a></div><div><a href="https://www.kirkensnodhjelp.no/en/" target="_blank"><img class="partner-logo" src="files/links/pic_20231211053047_wlac-nca.jpg" alt="Norwegian Church Aid"></a></div><div><a href="https://thefoundation.or.tz/" target="_blank"><img class="partner-logo" src="files/links/pic_20231211053105_wlac-fcs.png" alt="Foundation for Civil Society (FCS)"></a></div><div><a href="https://www.ukaiddirect.org" target="_blank"><img class="partner-logo" src="files/links/pic_20231211052953_wlac-partners-ukaid.jpg" alt="UK Aid"></a></div><div><a href="https://www.womankind.org.uk/" target="_blank"><img class="partner-logo" src="files/links/pic_20231211053130_wlac-partners-womankind.jpg" alt=" Womankind Worldwide"></a></div><div><a href="https://www.sigrid-rausing-trust.org" target="_blank"><img class="partner-logo" src="files/links/pic_20231211053018_wlac-rausing.jpg" alt="The Sigrid Rausing Trust"></a></div><div><a href="https://www.unhcr.org" target="_blank"><img class="partner-logo" src="files/links/pic_20231211055545_wlac-unhcr.jpg" alt="UNHCR"></a></div><div><a href="https://www.unicef.org" target="_blank"><img class="partner-logo" src="files/links/pic_20231211055558_wlac-unicef.jpg" alt="UNICEF"></a></div><div><a href="https://www.unwomen.org/en" target="_blank"><img class="partner-logo" src="files/links/pic_20231211052930_wlac-unwomen.jpg" alt="UN Women"></a></div><div><a href="https://tz.usembassy.gov" target="_blank"><img class="partner-logo" src="files/links/pic_20231211053004_wlac-us.jpg" alt="U.S. Embassy in Tanzania"></a></div>        </div>
+    </div>
+        <!-- Footer Section -->
+    <div class="footer-slogan" data-aos="fade-up" data-aos-duration="3000">
+        <div class="container-fluid">
+            <div class="slogan"><div class="info">For Women We Stand</div></div>
+        </div>
+    </div>
+
+    <div class="footer-top" data-aos="fade-up" data-aos-duration="3000">
+        <div class="container-fluid">
+            <div class="section">
+                <div class="footer-title">CONTACT US</div>
+                <div class="footer-body">
+                    <p>Women’s Legal Aid Centre (WLAC)</p>
+                    <p>P.O. Box 79212, <br>
+                       Dar es Salaam, Tanzania</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="footer-title">QUICK LINKS</div>
+                <div class="footer-body">
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">News & Events</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Donation</a></li>
+                        <li><a href="#">Annual Reports</a></li>
+                        <li><a href="#">Photo Gallery</a></li>
+                        <li><a href="#">Location Map</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <div class="footer-title">SUBSCRIBE US</div>
+                <div class="footer-body">
+                    <p>Subscribe with our newsletters and receive news about our discounts.</p>
+
+                    <form action="">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Your Email Here" aria-label="Your Email Here" aria-describedby="button-subscribe">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" id="button-subscribe"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <strong style="text-transform:uppercase">CONNECT WITH US</strong>
+                    <div class="social-links">
+                        <a href="https://web.facebook.com/WomensLegalAidCentre/" class="facebook"><span></span></a>
+                        <a href="http://twitter.com/wlactanzania" class="twitter"><span></span></a>
+                        <a href="https://www.instagram.com/wlactanzania" class="instagram"><span></span></a>
+                        <a href="#" class="linkedin"><span></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="footer-title">Opening Hours</div>
+                <div class="footer-body">
+                    <table width="90%" border="0" style="margin-bottom: 20px;">
+                        <tr style="border-bottom: 1px solid #ccc;">
+                            <td>Mon - Fri :</td>
+                            <td align="right">8.00 am - 5.00 pm</td>
+                        </tr>
+                        <tr>
+                            <td>Sat - Sun :</td>
+                            <td align="right">Closed</td>
+                        </tr>
+                    </table>
+
+                    <strong style="text-transform:uppercase">We are “NGOSource” Verified</strong>
+                    <div class="ngo-social-verified">
+                        <img src="assets/images/social-icons/ngos_ed_on_file_widget.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom" data-aos="fade-up" data-aos-duration="2000">
+        <div class="container-fluid">
+            <div class="copyright">Copyright &copy; 2026 Women’s Legal Aid Centre. All Rights Reserved.</div>
+            <div class="disclaimer">
+                <a href="#">Privacy Policy</a> <a href="#">Legal</a> <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </div>
+        <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/slick/slick.min.js"></script>
+
+    <!-- Add Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- <script src="https://unpkg.com/swiper/plugin/kenburns/swiper-plugin-kenburns.min.js"></script> -->
+
+    <script type="text/javascript" src="assets/plugins/aos/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            offset: 50, //offset: 120,
+            duration: 1000, // values from 0 to 3000, with step 50ms
+            easing: 'ease', // default easing for AOS animations
+            once: true, // whether animation should happen only once - while scrolling down
+        });
+
+
+        $('body').find('*').each(function() {
+            var modifiedText = $(this).html().replace(/’/g, "'");
+            $(this).html(modifiedText);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var mySwiper = new Swiper('.swiper-container', {
+                // Optional parameters
+                direction: 'horizontal',
+                loop: true,
+                autoplay: {
+                    delay: 3000, // 3 seconds between slides
+                },
+                speed: 1000,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                // Add the Ken Burns effect
+                effect: 'kenburns',
+                    kenburnsEffect: {
+                    maxZoom: 1.5, // Maximum zoom level
+                    minZoom: 1, // Minimum zoom level
+                    scale: 1.1, // Scale factor
+                },
+            });
+        });
+
+
+        $(document).ready(function(){
+
+            function updateLanguageText() {
+                if ($(window).width() <= 767.98) {
+                    $('a[data-language-code]').each(function() {
+                        var language = $(this).data('language-code');
+                        $(this).text(language);
+                    });
+                } else {
+                    // Reset the text to original value if screen size is larger
+                    $('a[data-language-text]').each(function() {
+                        var originalText = $(this).data('language-text');
+                        $(this).text(originalText);
+                    });
+                }
+            }
+
+            // Call the function on page load
+            updateLanguageText();
+
+            // Bind the function to the window resize event
+            $(window).resize(function() {
+                updateLanguageText();
+            });
+
+            $('.testimonial-list').slick({
+                dots: false,
+                infinite: true,
+                speed: 2000,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 18000,
+                pauseOnHover: true,
+            });
+
+            $('.partners-list').slick({
+                lazyLoad: 'ondemand',
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows: false,
+                centerMode: true,
+                variableWidth: true,
+                autoplay: true,
+                autoplaySpeed: 4000,
+                centerPadding: '40px',
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            dots: false,
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                            dots: false,
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            dots: false,
+                        }
+                    }
+                ]
+            });
+
+         
+            // Stats Counter
+            var countingElements = document.querySelectorAll('.counting');
+
+            var intersectionObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        // Run the counting animation when element is viewable
+                        var $this = $(entry.target),
+                            countTo = $this.attr('data-count');
+
+                        $({ countNum: $this.text() }).animate({
+                                countNum: countTo
+                            },
+                            {
+                                delay: 10,
+                                duration: 3000,
+                                easing: 'swing',
+                                step: function() {
+                                    // Format the countedUp number to have comma.
+                                    var formattedNumber = Math.floor(this.countNum).toLocaleString();
+
+                                    // Add + sign to the end of the number.
+                                    formattedNumber += '+';
+
+                                    $this.text(formattedNumber);
+                                },
+                                complete: function() {
+                                    // Format the countedUp number to have comma.
+                                    var formattedNumber = Math.floor(this.countNum).toLocaleString();
+
+                                    // Add + sign to the end of the number.
+                                    formattedNumber += '+';
+
+                                    $this.text(formattedNumber);
+                                    // Unobserve the element after the animation is complete
+                                    observer.unobserve(entry.target);
+                                }
+                            });
+                    }
+                });
+            });
+
+            // Observe all elements with class .counting
+            countingElements.forEach(function(element) {
+                intersectionObserver.observe(element);
+            });
+
+        });
+
+    </script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+    <script>
+        $(document).ready(function() {
+            // Load initial polls
+            loadPolls();
+
+            // Function to load questions
+            function loadPolls() {
+                $.ajax({
+                    url: 'poll_get.php',
+                    type: 'GET',
+                    success: function(data) {
+                        $('#polls').html(data);
+                    }
+                });
+            }
+
+            // Function to handle voting submission
+            $(document).on('submit', 'form', function(event) {
+                event.preventDefault();
+                var form = $(this);
+                var formData = form.serialize();
+
+                $.ajax({
+                    url: 'poll_vote.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        $('#polls').html(response);
+                        $('#pollSubmitted').html('Poll submitted');
+                    }
+                });
+            });
+
+            $('#vote_btn').on('click', function(event) {
+                event.preventDefault();
+                var form = $('#vote_form');
+                var formData = form.serialize();
+
+                $.ajax({
+                    url: 'poll_vote.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        console.log(response);
+                        // $('#polls').html(response);
+                        // $('#pollSubmitted').html('Poll submitted');
+                    }
+                });
+            });
+
+            // Function to load poll results
+            function loadPollResults() {
+                $.ajax({
+                    url: 'poll_get_results.php',
+                    type: 'GET',
+                    success: function(data) {
+                        $('#pollResults').html(data);
+                    }
+                });
+            }
+
+            // // Load poll results initially
+            // loadPollResults();
+
+            // // Set interval to update poll results every 10 seconds
+            // setInterval(function() {
+            //     loadPollResults();
+            // }, 10000); // Update every 10 seconds
+        });
+    </script>
+</body>
+
+</html>
