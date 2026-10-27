@@ -1,3 +1,4 @@
+import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
 import { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import Container from '@/components/shared/Container';
@@ -110,20 +111,20 @@ const Whistleblower = () => {
   const protectionFeatures = [
     {
       icon: Shield,
-      title: "Complete Protection",
-      description: "You are fully protected from retaliation when you report concerns in good faith.",
+      title: "Your safety matters",
+      description: "Before sending, check who can see your report and choose a safe way for the team to contact you.",
       color: "from-primary to-primary-dark"
     },
     {
       icon: Lock,
-      title: "Absolute Confidentiality",
-      description: "Your identity and information will be kept confidential to the fullest extent possible.",
+      title: "Privacy of your report",
+      description: "Read the reporting policy to understand who can see your information and how it is handled.",
       color: "from-secondary-teal to-secondary-teal/80"
     },
     {
       icon: Eye,
       title: "Anonymous Reporting",
-      description: "You may report completely anonymously, though contact information helps with follow-up.",
+      description: "You can choose not to give your name. Avoid details that could identify you if you want to remain unnamed.",
       color: "from-secondary-orange to-secondary-orange/80"
     }
   ];
@@ -440,7 +441,7 @@ const Whistleblower = () => {
                       >
                         {isSubmitting ? (
                           <span className="flex items-center gap-2">
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            <BrandLoadingIcon size={18}/>
                             Submitting Securely...
                           </span>
                         ) : !isOnline ? (

@@ -1,0 +1,18 @@
+import BrandLoading from '@/components/shared/BrandLoading';
+import { useCopy } from "@/i18n/useCopy";
+import { useEffect, useState } from 'react';
+import { useQuery } from 'convex/react';
+import { Link } from 'react-router-dom';
+import { api } from '../../../convex/_generated/api';
+import { lazy, Suspense } from "react";
+const ServiceMap = lazy(() => import("./ServiceMap"));
+import type { SearchPoint } from './NearbySearch';
+export default function ParalegalDirectory({ origin, radiusKm, region, issue }: { origin?: SearchPoint; radiusKm?: number; region: string; issue: string }) {
+  const c = useCopy();
+  const [refresh, setRefresh] = useState(0), [mapVisible, setMapVisible] = useState(false);
+  useEffect(() => { const t = setInterval(() => setRefresh(v => v + 1), 30_000); return () => clearInterval(t); }, []);
+  const records = useQuery(api.paralegals.listApprovedParalegals, { verifiedOnly: true, origin: origin ? { latitude: origin.latitude, longitude: origin.longitude } : undefined, radiusKm, refresh });
+  const people = (records ?? []).filter(p => (!region.trim() || [p.region,p.district].join(' ').toLowerCase().includes(region.trim().toLowerCase())) && (!issue || (p.specializations ?? []).some(s => s.toLowerCase().includes(issue))));
+  const availability: Record<string,string> = { accepting_cases: 'Accepting requests', limited: 'Limited availability', paused: 'Temporarily paused', unavailable: 'Unavailable' };
+  return <section className="mt-10 space-y-4"><h2 className="text-2xl font-bold">Verified paralegals</h2><p className="text-sm text-gray-600">Distance uses an opted-in fresh approximate current location, or a chosen public meeting office. Personal positions are never mapped. Online status does not imply availability. LSF reviews requests before assigning support.</p><button type="button" className="min-h-12 text-primary underline" aria-pressed={mapVisible} onClick={() => setMapVisible(v => !v)}>{mapVisible ? 'Hide meeting-office map' : 'Show meeting offices on map'}</button>{mapVisible && <Suspense fallback={<BrandLoading compact text={c("Loading map…")}/>}><ServiceMap places={people.flatMap(p => p.meetingPoint ? [{ id: String(p.meetingPoint.id), name: p.fullName + ' · ' + p.meetingPoint.name, latitude: p.meetingPoint.latitude, longitude: p.meetingPoint.longitude }] : [])} onSelect={id => { window.location.assign('/find-help/' + encodeURIComponent(id)); }} /></Suspense>}{records === undefined ? <BrandLoading compact text={"Loading verified paralegals\u2026"}/> : !people.length ? <p>No matching verified paralegals listed. Widen your search or request LSF support.</p> : <div className="grid gap-4 md:grid-cols-2">{people.map(p => <article key={p._id} className="rounded-2xl border p-5 space-y-2"><h3 className="text-lg font-semibold">{p.fullName}</h3><p>{p.district}, {p.region}</p><p>{p.presence === 'online' ? c("Online") : p.presence === 'away' ? c("Away") : c("Online status unavailable")} · {availability[p.availabilityStatus ?? ''] ?? 'Check availability'}</p>{p.distanceSource === 'current_location' && p.distanceKm != null && <p>{c("Current location · approximately ")}{p.distanceKm} km away</p>}{p.meetingPoint && <p>Chosen meeting office: {p.meetingPoint.name}{p.distanceSource === 'office' && p.distanceKm != null ? ` · ${p.distanceKm.toFixed(1)} km straight-line` : ''}</p>}<p className="text-sm">{p.specializations?.join(' · ')}{p.languages?.length ? ' · ' + p.languages.join(', ') : ''}</p><Link className="inline-block min-h-12 py-3 font-semibold text-primary" to="/request-help">Ask LSF for suitable support</Link></article>)}</div>}</section>;
+}

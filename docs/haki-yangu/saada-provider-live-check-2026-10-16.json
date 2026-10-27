@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-10-16T09:35:36.343Z",
+  "environment": "configured development key; direct synthetic provider test",
+  "model": "gpt-4o",
+  "checks": [
+    {
+      "name": "Query/document embedding endpoint",
+      "passed": true,
+      "dimensions": 1536,
+      "inputTokens": 8
+    },
+    {
+      "name": "Chat and tool-call generation",
+      "passed": true,
+      "usage": {
+        "prompt_tokens": 55,
+        "completion_tokens": 1,
+        "total_tokens": 56,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      }
+    },
+    {
+      "name": "Streamed answer after tool result",
+      "passed": true,
+      "usage": {
+        "prompt_tokens": 44,
+        "completion_tokens": 1,
+        "total_tokens": 45,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      }
+    }
+  ],
+  "providerCalls": 3,
+  "privateUserDataSent": false,
+  "appRecordWrites": 0,
+  "passed": true,
+  "totalTestTokens": 109,
+  "estimatedTestCostUSD": 0.00026766,
+  "costEstimateNote": "Provider list-rate estimate, not an invoice. https://developers.openai.com/api/docs/pricing"
+}

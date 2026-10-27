@@ -1,0 +1,177 @@
+{
+  "sourceUrl": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+  "extractedRows": [
+    [
+      "NO.",
+      "INSTITUTION NAME",
+      "ADDRESS",
+      "WARD",
+      "DISTRICT",
+      "REGION",
+      "REGISTRATION\nNUMBER"
+    ],
+    [
+      "1.",
+      "CENTRAL DISTRICT PARALEGAL UNIT (CEPAU)",
+      "DUNGA",
+      "DUNGA BWENI",
+      "KATI",
+      "KUSINI\nUNGUJA",
+      "LAP-2021-0002"
+    ],
+    [
+      "2.",
+      "CHAKE CHAKE PARALEGAL ORGANIZATION\n(CHAPO)",
+      "KICHUNGWANI CHAKE\nCHAKE P.O.BOX 239",
+      "KICHUNGWANI",
+      "CHAKE\nCHAKE",
+      "KUSINI PEMBA",
+      "LAP-2021-0005"
+    ],
+    [
+      "3.",
+      "IDARA YA MSAADA WA KISHERIA",
+      "772",
+      "KIEMBESAMAKI",
+      "MGHARIBI\n\"B\"",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2020-0001"
+    ],
+    [
+      "4.",
+      "JUMUIYA YA WASAIDIZI WA SHERIA MAGHARIB 'A'\n(PAUWA)",
+      "CHUINI",
+      "CHUINI",
+      "MGHARIBI\n\"A\"",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2021-0004"
+    ],
+    [
+      "5.",
+      "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\nKASKAZINI 'A' (NAPAC)",
+      "P. BOX. 4971 - GAMBA",
+      "GAMBA",
+      "KASKAZINI\n'A'",
+      "KASKAZINI\nUNGUJA",
+      "LAP-2021-0003"
+    ],
+    [
+      "6.",
+      "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\nMAGHARIBI 'B' (UWASHEMA)",
+      "JITIMAI",
+      "FUONI\nMIGOMBANI",
+      "MGHARIBI\n\"B\"",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2021-0006"
+    ],
+    [
+      "NO.",
+      "INSTITUTION NAME",
+      "ADDRESS",
+      "WARD",
+      "DISTRICT",
+      "REGION",
+      "REGISTRATION\nNUMBER"
+    ],
+    [
+      "7.",
+      "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\nMICHEWENI(MIDIPAO)",
+      "WINGWI MAPOFU",
+      "WINGWI\nMAPOFU",
+      "MICHEWENI",
+      "KASKAZINI\nPEMBA",
+      "LAP-2021-0010"
+    ],
+    [
+      "8.",
+      "JUMUIYA YA WATU WENYE ULEMAVU ZANZIBAR\n(UWZ)",
+      "S.L.P 2043 - ZANZIBAR",
+      "KIKWAJUNI\nBONDENI",
+      "MJINI",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2022-0001"
+    ],
+    [
+      "9.",
+      "MKOANI DISTRICT PARALEGAL ORGANIZATION",
+      "P.O.BOX 100 MKOANI PEMBA",
+      "NG'OMBENI",
+      "MKOANI",
+      "KUSINI PEMBA",
+      "LAP-2020-0002"
+    ],
+    [
+      "10.",
+      "MKOANI DISTRICT PARALEGAL ORGANIZATION",
+      "P.O.BOX 100 MKOANI PEMBA",
+      "NG'OMBENI",
+      "MKOANI",
+      "KUSINI PEMBA",
+      "LAP-2022-0002"
+    ],
+    [
+      "11.",
+      "NORTH B PARALEGAL ORGANIZATION",
+      "MAHONDA - ZANZIBAR",
+      "MAHONDA",
+      "KASKAZINI\n'B'",
+      "KASKAZINI\nUNGUJA",
+      "LAP-2021-0007"
+    ],
+    [
+      "12.",
+      "URBAN PARALEGAL ORGANIZATION",
+      "MAKADARA",
+      "MITIULAYA",
+      "MJINI",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2021-0008"
+    ],
+    [
+      "13.",
+      "WETE PARALEGAL ORGANIZATION",
+      "92-WETE PEMBA",
+      "SELEM",
+      "WETE",
+      "KASKAZINI\nPEMBA",
+      "LAP-2021-0009"
+    ],
+    [
+      "14.",
+      "ZANZIBAR LAW SOCIETY (ZLS)",
+      "P.O.BOX 3319,KIEMBE\nSAMAKI -ZANZIBAR",
+      "KIEMBESAMAKI",
+      "MGHARIBI\n\"B\"",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2020-0003"
+    ],
+    [
+      "15.",
+      "ZANZIBAR LEGAL SERVICES CENTRE",
+      "3360, KIJANGWANI",
+      "MIKUNGUNI",
+      "MJINI",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2022-0003"
+    ],
+    [
+      "16.",
+      "ZANZIBAR PARALEGAL'S NETWORK ORGANIZATION",
+      "FUONI ZANZIBAR",
+      "FUONI\nKIPUNGANI",
+      "MGHARIBI\n\"B\"",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2022-0004"
+    ],
+    [
+      "17.",
+      "ZAPAO",
+      "AMANI, SLP 4552",
+      "AMANI",
+      "MJINI",
+      "MJINI\nMAGHARIB\nUNGUJA",
+      "LAP-2021-0001"
+    ]
+  ],
+  "status": "machine_table_extraction_requires_independent_review"
+}

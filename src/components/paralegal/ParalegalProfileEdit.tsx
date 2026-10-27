@@ -1,3 +1,5 @@
+import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
+import { useCopy } from "@/i18n/useCopy";
 
 import { useState } from 'react';
 import { useMutation } from 'convex/react';
@@ -32,6 +34,7 @@ interface ParalegalProfileEditProps {
 type AvailabilityStatus = NonNullable<ParalegalProfileEditProps["paralegal"]["availabilityStatus"]>;
 
 const ParalegalProfileEdit = ({ paralegal }: ParalegalProfileEditProps) => {
+    const c = useCopy();
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
@@ -133,7 +136,7 @@ const ParalegalProfileEdit = ({ paralegal }: ParalegalProfileEditProps) => {
             <DialogTrigger asChild>
                 <Button variant="outline" className="gap-2">
                     <Camera className="h-4 w-4" />
-                    Edit Profile
+                    {c("Edit Profile")}
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -272,7 +275,7 @@ const ParalegalProfileEdit = ({ paralegal }: ParalegalProfileEditProps) => {
                         <Button type="submit" disabled={isLoading} className="bg-primary hover:bg-primary/90">
                             {isLoading ? (
                                 <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    <BrandLoadingIcon className="mr-2 h-4 w-4 " />
                                     Saving...
                                 </>
                             ) : (

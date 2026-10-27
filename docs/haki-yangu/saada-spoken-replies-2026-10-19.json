@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-19",
+  "environment": "Existing Convex development backend; local web preview; mobile source",
+  "feature": "Spoken Haki Yangu AI replies",
+  "provider": "Existing server-side OpenAI key",
+  "model": "gpt-4o-mini-tts",
+  "voice": "coral",
+  "flow": [
+    "User taps Listen on an owned completed assistant reply",
+    "Server loads the saved answer; client cannot supply arbitrary text",
+    "Formatting and raw URLs removed, visible service names/locations/intake/valid phone retained",
+    "Long answers split into ordered sections, each at most 1200 UTF-8 bytes",
+    "Speech generated with an instruction to preserve the original English/Kiswahili text",
+    "Audio delivered inline to authenticated caller; no public storage URL",
+    "One active player; explicit Stop and local replay; next section generated only after current section completes"
+  ],
+  "privacy": [
+    "No automatic speech or microphone permission",
+    "AI voice and OpenAI shown alongside Listen controls",
+    "No answer text or audio written to AI cost ledger",
+    "Web audio cached in component memory and revoked on close/navigation/account change",
+    "Native audio cached in app cache; deletion requested on close/unmount/account change. Navigation or backgrounding stops playback; a retained screen can retain its cache, and abrupt termination may leave OS cache files",
+    "Late responses cannot start playback after the player closes",
+    "Player stops when backgrounded or unfocused; no queued generation starts in a background screen"
+  ],
+  "costs": {
+    "developmentMonthlyAllowanceUSD": 5,
+    "checkedLive": true,
+    "reservation": "Conservative ~0.20 USD per section, reconciled from final SSE input/output token receipt; an application estimate, not a provider-enforced output cap",
+    "rateLimit": "20 speech sections per 10 minutes per user, plus existing shared 10 AI calls/minute and 100/day",
+    "failedOrInterrupted": "Retain allowance when provider usage is uncertain",
+    "sameSectionReplay": "No extra paid call while audio remains cached; in-flight stop/replay shares its request",
+    "newSelectionOrReload": "Can require a new paid generation after previous player cache is disposed",
+    "testReceipts": [
+      {
+        "feature": "saada_speech",
+        "model": "gpt-4o-mini-tts",
+        "status": "settled",
+        "reservationMicroUsd": 199368,
+        "costMicroUsd": 4355,
+        "inputTokens": 98,
+        "outputTokens": 358
+      },
+      {
+        "feature": "saada_speech",
+        "model": "gpt-4o-mini-tts",
+        "status": "settled",
+        "reservationMicroUsd": 199356,
+        "costMicroUsd": 4907,
+        "inputTokens": 117,
+        "outputTokens": 403
+      }
+    ],
+    "totalTwoLiveWebTestCostUSD": 0.009262
+  },
+  "verification": {
+    "focusedTests": 24,
+    "failedTests": 0,
+    "webTypecheck": "passed",
+    "mobileTypecheck": "passed",
+    "convexTypecheck": "passed",
+    "webBuild": "passed; existing large bundle warning",
+    "expoWebExport": "passed",
+    "securityClassification": "passed, 411 public functions",
+    "liveWebKiswahili": "passed: generation, playback, replay, Stop",
+    "liveWebEnglish": "passed: generation, playback, replay, Stop",
+    "nativePlayback": "passed on iPhone 17 Pro Max simulator: existing synthetic beneficiary signed in; English speech decoded and played, audio timer advanced (10s/14s in first test and 12s/17s after final UI update), Stop reset playback to zero, replay worked from cached audio",
+    "productionRelease": "not performed",
+    "nativeMicrophone": "not exercised in this spoken-output change",
+    "androidDevice": "not exercised",
+    "nativeAccount": "Existing synthetic beneficiary development fixture; no new identity created",
+    "finalBuilds": "Web and mobile types, web build and Expo web export passed after final playback lifecycle changes"
+  },
+  "scopeLimits": [
+    "Tap-to-listen replies, not continuous hands-free Realtime conversation",
+    "No voice cloning",
+    "Kiswahili pronunciation/accent quality still needs human listening evaluation",
+    "Existing legal-source approval and directory readiness restrictions unchanged"
+  ],
+  "evidence": [
+    "saada-spoken-answer-sw-2026-10-19.png",
+    "saada-spoken-answer-en-2026-10-19.png",
+    "saada-spoken-answer-ios-2026-10-19.png"
+  ],
+  "sources": [
+    "https://developers.openai.com/api/docs/guides/text-to-speech",
+    "https://developers.openai.com/api/docs/models/gpt-4o-mini-tts",
+    "https://developers.openai.com/api/reference/resources/audio/subresources/speech/methods/create",
+    "https://docs.expo.dev/versions/v57.0.0/sdk/audio/"
+  ]
+}

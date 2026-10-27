@@ -17,4 +17,5 @@ export function requireReadySourceForApproval(source: {
   if (!source.reviewDueAt || source.reviewDueAt <= now) {
     throw new Error("Review due date must be in the future.");
   }
+  if (/publisher review pending/i.test(source.publisher)) throw new Error("Confirm the publisher attribution before approval.");
 }

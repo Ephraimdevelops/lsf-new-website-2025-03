@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-24T20:56:07.386Z",
+  "receipts": [
+    {
+      "id": "t173zg140vx0jbs41vhxxj88a98fzqqm",
+      "title": "TEST ONLY — browser upload rehearsal",
+      "status": "retired",
+      "recoverable": true
+    },
+    {
+      "id": "t177zt2adbq1g0snn4whxx9sz18fzv5e",
+      "title": "TEST ONLY — browser draft 1791553685773",
+      "status": "retired",
+      "recoverable": true
+    }
+  ],
+  "approved": 0,
+  "deletedPermanently": 0
+}

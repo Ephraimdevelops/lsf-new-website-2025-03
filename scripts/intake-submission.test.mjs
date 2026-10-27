@@ -8,6 +8,7 @@ function fixture(actor = 'alice') {
   const put = (table, id, value) => rows.set(id, { _id: id, table, ...value });
   put('users', 'alice-user', { clerkId: 'alice', role: 'user' });
   put('users', 'bob-user', { clerkId: 'bob', role: 'user' });
+  put('managed_uploads', 'scan-receipt', { ownerId: 'alice-user', storageId: 'blob-one', purpose: 'request_attachment', status: 'clean', type: 'application/pdf', size: 100 });
   put('legal_help_requests', 'request', { ownerId: 'alice-user', clientRequestId: 'retry', status: 'draft', version: 1, publicId: 'HYR-TEST', locale: 'sw', description: 'Synthetic employment story', region: 'Test region', district: 'Test district', desiredHelp: 'Test guidance', safeContactMethod: 'in_app', preferredLanguage: 'sw', urgency: 'standard' });
   const db = {
     get: async id => rows.get(id) ?? null,
@@ -18,6 +19,7 @@ function fixture(actor = 'alice') {
         withIndex(_index, cb) { const chain = { eq(key, value) { filters.push([key,value]); return chain; } }; cb(chain); return q; },
         collect: async () => [...rows.values()].filter(r => r.table === table && filters.every(([key,value]) => r[key] === value)),
         unique: async () => (await q.collect())[0] ?? null,
+        first: async () => (await q.collect())[0] ?? null,
       }; return q;
     },
   };

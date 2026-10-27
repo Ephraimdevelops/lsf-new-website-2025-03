@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-16",
+  "provider": "OpenAI",
+  "promptVersion": "2026-10-16.2",
+  "scope": "Development backend and local web/mobile source; no production or Play Store release",
+  "changes": [
+    "Natural conversational system instructions in English and Tanzanian Kiswahili",
+    "Auto, English and Kiswahili reply controls, saved separately from app interface locale",
+    "Current language request and recent own conversation preference applied to model and fixed replies",
+    "Short acknowledgments preserve conversation language",
+    "Natural greetings and thanks without model cost",
+    "Focused clarification uses facts already shared; no assumption that every issue is tenancy"
+  ],
+  "validation": {
+    "focusedTests": {
+      "passed": 150,
+      "failed": 0
+    },
+    "webTypecheck": "passed",
+    "mobileTypecheck": "passed",
+    "webProductionBuild": "passed; existing large chunk warning",
+    "backendStrictTypecheckAndDevelopmentDeploy": "passed at 17:19:55",
+    "signedInWeb": [
+      "Kiswahili greeting",
+      "English greeting",
+      "Explicit Kiswahili request with Auto selected",
+      "Follow-up retains Kiswahili"
+    ],
+    "mobileLive": "Not verified. Existing simulator development connection was unavailable; native keyboard input did not navigate to the new Metro session. Simulator restored to home screen."
+  },
+  "approvalStatus": {
+    "indexedLegalDocuments": 12,
+    "approvedCurrentLegalDocuments": 0,
+    "pendingRightsGuides": 110,
+    "approvedCurrentRightsGuides": 0,
+    "reason": "Existing backend requires a different administrator from the uploader to review each source. User approval does not change reviewer identity; no review gate bypassed."
+  },
+  "limitations": [
+    "Conversational tests do not establish substantive legal-answer coverage while approved current evidence is absent",
+    "Language history is bounded to recent own conversation; reply picker persists separately",
+    "No live mobile conversational test pass claimed"
+  ],
+  "proof": "saada-bilingual-conversation-2026-10-16.png"
+}

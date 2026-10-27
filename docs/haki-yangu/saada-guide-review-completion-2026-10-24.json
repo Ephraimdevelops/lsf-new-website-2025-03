@@ -1,0 +1,3270 @@
+{
+  "checkedAt": "2026-10-24T21:01:59.570Z",
+  "status": "prepared_for_independent_legal_and_language_review",
+  "approved": 0,
+  "records": [
+    {
+      "id": "t174p895g07jrfx69qneae2cc58fv78b",
+      "titleEn": "I need disability access to a justice service in Zanzibar. What can I request?",
+      "titleSw": "Nahitaji ufikivu kwa mtu mwenye ulemavu katika huduma ya haki Zanzibar. Niombe nini?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Zanzibar Persons with Disabilities Act8/2022, Gazette7067B",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2022/tz-znz-government-gazette-legal-supplement-part-ii-dated-2022-12-30-no-7067b.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md716ysynv4rbmse4w5af0zy1h8gwzg5",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t171jfepw0w5rrhpve7x3gde218ftqa4",
+      "titleEn": "A relative has been detained in Zanzibar. How can we ask about bail?",
+      "titleSw": "Ndugu ameshikiliwa Zanzibar. Tunauliziaje dhamana?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Criminal Procedure Act Gazette",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-06-no-6692.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7e3hg3f2yzv80mpvd5g4w80d8gwshd",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17feaznkq40etqsj39k7byq3s8fv2z9",
+      "titleEn": "My Zanzibar social-security contributions appear missing. What should I check?",
+      "titleSw": "Michango yangu ya hifadhi ya jamii Zanzibar haionekani. Nikague nini?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "ZLSC legal aid and legislation information",
+      "sourceUrl": "https://zlsc.or.tz/aid/",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7dj03tddxv3bgvdwyn5amges8gxc90",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179jvc1d1myhdt0v59wvg11ph8ftc1s",
+      "titleEn": "I have an electricity or water complaint in Zanzibar. Where do I start?",
+      "titleSw": "Nina malalamiko ya umeme au maji Zanzibar. Nianzie wapi?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "ZURA complaint guidance",
+      "sourceUrl": "https://zura.go.tz/filling-a-complaint/",
+      "citationReachability": "unavailable",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1784s84d3nqa2c6pxzsd48abd8ftvym",
+      "titleEn": "My lawyer will not return my documents. Where can I complain?",
+      "titleSw": "Wakili wangu harudishi nyaraka zangu. Nalalamika wapi?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Legal Aid Act, Chapter 21",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c1dsb40fh8hdveccvzhymy18gc4tr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t176qfkdft1yxtvvq0c1fxzj658ftnwr",
+      "titleEn": "How can I check the progress of my court case?",
+      "titleSw": "Ninawezaje kujua maendeleo ya shauri langu?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Legal Aid Act, Chapter 21",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c1dsb40fh8hdveccvzhymy18gc4tr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17deah4yskh9dyps792fcqkjd8fv20j",
+      "titleEn": "I need an interpreter to use the court. How do I request one?",
+      "titleSw": "Nahitaji mkalimani kutumia mahakama. Namuombaje?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Legal Aid Act, Chapter 21",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c1dsb40fh8hdveccvzhymy18gc4tr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17evmk863d3j14p703zdrz57h8fva1e",
+      "titleEn": "I cannot afford court fees. What help can I ask about?",
+      "titleSw": "Siwezi kumudu ada za mahakama. Niulizie msaada gani?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Legal Aid Act, Chapter 21",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c1dsb40fh8hdveccvzhymy18gc4tr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1788f5wd3z7x72718wvcf1p658ftjk2",
+      "titleEn": "My public-service application has stalled. How can I follow up?",
+      "titleSw": "Ombi langu la huduma ya umma limekwama. Nilifuatilieje?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "RITA frequently asked questions",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179yhex8thh84f95z7nt50xnd8ftpmd",
+      "titleEn": "I married abroad. What proof might I need in Tanzania?",
+      "titleSw": "Nilifunga ndoa nje ya nchi. Nahitaji uthibitisho gani Tanzania?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "RITA frequently asked questions",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t173nygbr0hfwchaxsexevsrq98ftt9s",
+      "titleEn": "I want to object to a proposed marriage. Where can I ask for advice?",
+      "titleSw": "Nataka kupinga ndoa inayopangwa. Nauliza ushauri wapi?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "RITA frequently asked questions",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17912dav6emf7dj1191e1dxa98fvfwv",
+      "titleEn": "I have changed my name. Which records should I update?",
+      "titleSw": "Nimebadili jina. Nisasishe kumbukumbu zipi?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "RITA frequently asked questions",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17dzmx9rg4mvz0q1zjtjt2dm58fvsgw",
+      "titleEn": "I found my stolen property with someone else. What should I do?",
+      "titleSw": "Nimeona mali yangu iliyoibiwa kwa mtu mwingine. Nifanye nini?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Criminal Procedure Act, Cap. 20",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1731fes4zn2aqzfbema5wr2k58fvt6h",
+      "titleEn": "Someone controls my movement or forces me to work. How can I seek help safely?",
+      "titleSw": "Mtu anazuia uhuru wangu au kunilazimisha kufanya kazi. Nipateje msaada kwa usalama?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Criminal Procedure Act, Cap. 20",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17dygsehthp962wenmp3bamw98ftsj2",
+      "titleEn": "I am asked to sign a police statement I do not understand. What should I do?",
+      "titleSw": "Ninaombwa kusaini maelezo ya polisi nisiyoyaelewa. Nifanye nini?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Criminal Procedure Act, Cap. 20",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1787kqa22rhwzqjnk907d46k98ftjq7",
+      "titleEn": "Police took my property during a search. What records should I request?",
+      "titleSw": "Polisi wamechukua mali yangu wakati wa upekuzi. Niombe kumbukumbu gani?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Criminal Procedure Act, Cap. 20",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t178k3n9n9bp55dxyt65j0k44s8fthwm",
+      "titleEn": "An organisation has incorrect personal information about me. What can I do?",
+      "titleSw": "Shirika lina taarifa binafsi zisizo sahihi kunihusu. Nifanye nini?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Personal Data Protection Act, 2022",
+      "sourceUrl": "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fd0f8gq5t6jgqa7z1n28sh8gdf4a",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17aj6b7hvqt7ndbmf7vqgjm0n8ftz10",
+      "titleEn": "A seller’s advertisement misled me. How do I complain?",
+      "titleSw": "Tangazo la muuzaji limenipotosha. Nalalamikaje?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Bank of Tanzania financial consumer protection",
+      "sourceUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md72xh6rbmm39xr7wc0efn2em18gwqfr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1734z1zmc6jg0ws9mygnbcxhx8fte9c",
+      "titleEn": "I sent mobile money to the wrong recipient. What should I do?",
+      "titleSw": "Nimetuma pesa kwa simu kwa mtu asiye sahihi. Nifanye nini?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Bank of Tanzania financial consumer protection",
+      "sourceUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md72xh6rbmm39xr7wc0efn2em18gwqfr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17ew44jdh2qgfhnbp0n8t3s1s8fve6x",
+      "titleEn": "My insurance claim was refused. How can I challenge it?",
+      "titleSw": "Dai langu la bima limekataliwa. Nalipingaje?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "TIRA insurance claims and complaints guidelines, 2025",
+      "sourceUrl": "https://www.tira.go.tz/index.php/news/the-insurance-claims-and-complaints-managment-guidelines",
+      "citationReachability": "page_observed_requires_legal_review",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1779r22sgycvdy7kgw02jkpvd8fvh6g",
+      "titleEn": "I received an inheritance payment. What records should I keep?",
+      "titleSw": "Nimepokea sehemu ya mirathi. Nihifadhi kumbukumbu gani?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17699m9k50yk8bskwxs3hes298fvxng",
+      "titleEn": "The estate administrator can no longer act. How can we replace them?",
+      "titleSw": "Msimamizi wa mirathi hawezi kuendelea. Tunambadilishaje?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179zx146yh4cn0ppnmx2dmtn18ft4qd",
+      "titleEn": "We believe there was a will but cannot find it. What should we do?",
+      "titleSw": "Tunadhani kulikuwa na wosia lakini hatuuoni. Tufanye nini?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17aa3hbs7t96zkrz6eqg0j61s8fvwsg",
+      "titleEn": "An estate has property in several regions. Where should we start?",
+      "titleSw": "Mirathi ina mali katika mikoa kadhaa. Tuanze wapi?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t170sybvpzp4vp598ea98v4wss8fv78s",
+      "titleEn": "I cannot find my marriage certificate. How can I prove the marriage?",
+      "titleSw": "Sipati cheti cha ndoa. Ninawezaje kuthibitisha ndoa?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t173acpfh3n457mzz7nhtehvkd8fv8sp",
+      "titleEn": "I am caring for a child whose parents are unavailable. How do I formalise this?",
+      "titleSw": "Ninamlea mtoto ambaye wazazi wake hawapatikani. Nifanye utaratibu gani rasmi?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17c5qvdk0eygktf5fnfbn6swx8ftmhm",
+      "titleEn": "The other parent plans to move away with our child. What can I do?",
+      "titleSw": "Mzazi mwingine anapanga kuhama na mtoto wetu. Nifanye nini?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1774nvxqvhjpze2w6qtsjcxgx8fvs90",
+      "titleEn": "A child maintenance order is not being followed. What next?",
+      "titleSw": "Amri ya matunzo ya mtoto haitekelezwi. Nifanye nini?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1794jjer3zt5v14fdns2qgy2x8ft409",
+      "titleEn": "My rented home needs urgent repairs. Where do I start?",
+      "titleSw": "Nyumba ninayopanga inahitaji matengenezo ya haraka. Nianzie wapi?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1725rkqayeysjhbxrn64jk4618ft4rh",
+      "titleEn": "My land lease is ending. How can I prepare?",
+      "titleSw": "Mkataba wa upangaji wa ardhi unaisha. Nijiandae vipi?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t170pvmqsty7kz30frg9r7srqh8ft9x7",
+      "titleEn": "A co-owner wants to sell our land without my agreement. What should I check?",
+      "titleSw": "Mmiliki mwenza anataka kuuza ardhi bila makubaliano yangu. Nikague nini?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t178dqqnmdarpc8vpxqwpmz8dx8ftbjv",
+      "titleEn": "My land title document is lost. What should I do?",
+      "titleSw": "Hati yangu ya ardhi imepotea. Nifanye nini?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t172pyv051mnj2rbe1hfsad2y98ftz79",
+      "titleEn": "My fixed-term contract is ending. How do I check my position?",
+      "titleSw": "Mkataba wangu wa muda maalumu unaisha. Nahakiki vipi hali yangu?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17ddrx3ybpsqhhngccn9bnmvx8ftv9w",
+      "titleEn": "I am being pressured to sign a workplace settlement. What can I do?",
+      "titleSw": "Ninalazimishwa kusaini makubaliano ya mgogoro wa kazi. Nifanye nini?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17e7gfkk835dghdrzpjn92w2h8fvpdr",
+      "titleEn": "I want to resign. What should I check first?",
+      "titleSw": "Nataka kuacha kazi. Nikague nini kwanza?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17fxwmg9py7ad4115ynqb4hd58fv9at",
+      "titleEn": "I have been called to a disciplinary hearing. How do I prepare?",
+      "titleSw": "Nimeitwa kwenye kikao cha nidhamu kazini. Nijiandae vipi?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17f33nvps76m5czkk4cfpx7298fv1qz",
+      "titleEn": "I cannot afford a lawyer in Zanzibar. How do I find the right legal-aid provider?",
+      "titleSw": "Siwezi kumudu wakili Zanzibar. Napataje mtoa msaada sahihi?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Registered Legal Aid Provider Organisations public list",
+      "sourceUrl": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md753pje0me66qt5556ycpt3ts8gxgbz",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t177mh2c9rzjwe3a9k8q00pm4d8ftp3q",
+      "titleEn": "I need emergency protection or shelter in Zanzibar. How do I seek it safely?",
+      "titleSw": "Nahitaji ulinzi au makazi salama ya dharura Zanzibar. Nayatafutaje kwa usalama?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Children Act Gazette",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md79mem0327105gn3wrxnzgyc98gwbc2",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17dfgg5rh9ystbpxmr0e62zm18fv9kh",
+      "titleEn": "My child needs maintenance or protection in Zanzibar. Where do I start?",
+      "titleSw": "Mtoto anahitaji matunzo au ulinzi Zanzibar. Nianzie wapi?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Children Act Gazette",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md79mem0327105gn3wrxnzgyc98gwbc2",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t173h58x3vjykrvv0v0eagyt4x8fv3nc",
+      "titleEn": "A relative died in Zanzibar. How do we identify the inheritance process?",
+      "titleSw": "Ndugu amefariki Zanzibar. Tunatambuaje utaratibu wa mirathi?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Kadhi’s Courts Act 2023, published February 2024",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77jna5ez7v8ry8dgzxdmvc458gwtan",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t171yxaszq1bx3jycz101ymc6n8fv9a0",
+      "titleEn": "I need divorce or marriage guidance in Zanzibar. Does the Kadhi court apply?",
+      "titleSw": "Nahitaji mwongozo wa talaka au ndoa Zanzibar. Mahakama ya Kadhi inahusika?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Kadhi’s Courts Act 2023, published February 2024",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77jna5ez7v8ry8dgzxdmvc458gwtan",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17b7bg9yd7t91easmwq8nekgx8ftcz7",
+      "titleEn": "I was dismissed or not paid in Zanzibar. Where do I seek labour help?",
+      "titleSw": "Nimefukuzwa au sijalipwa Zanzibar. Natafuta msaada wa kazi wapi?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Employment Act Gazette counterpart",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-ii-dated-2005-10-07-no-6115.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md794bkqq0hvc275xtp49tzj3h8gxq22",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t178ef1vf8ka2sbmstbbp2zps98ftvex",
+      "titleEn": "I have a land dispute in Zanzibar. Which route should I use?",
+      "titleSw": "Nina mgogoro wa ardhi Zanzibar. Nitumie njia ipi?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Zanzibar Land Tribunal Act7/1994: Assembly copy",
+      "sourceUrl": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674626468.pdf",
+      "citationReachability": "unavailable",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17eg5yebdkyrtb8rpmxhkg5ts8fv9jm",
+      "titleEn": "I live in Zanzibar and need a birth or death certificate. Where do I apply?",
+      "titleSw": "Niko Zanzibar na nahitaji cheti cha kuzaliwa au kifo. Naomba wapi?",
+      "category": "Zanzibar-specific pathways",
+      "jurisdiction": "zanzibar",
+      "sourceTitle": "Zanzibar Civil Status Registration Act",
+      "sourceUrl": "https://zcsra.go.tz/Downloads/act_3.pdf",
+      "citationReachability": "unavailable",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17ceek27mxb97mkzak3bx4dcn8fvsa0",
+      "titleEn": "My legal-aid referral was ignored or the service asked for an unexplained fee. What next?",
+      "titleSw": "Rufaa yangu ya msaada imepuuzwa au huduma imedai ada isiyoeleweka. Nifanye nini?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Legal Aid Act, Chapter 21",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c1dsb40fh8hdveccvzhymy18gc4tr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17fq87e4xedfwnzz4xdqy1fws8ft6qr",
+      "titleEn": "I won a case but the other side has not complied. What can I do?",
+      "titleSw": "Nimeshinda shauri lakini upande mwingine hautekelezi. Nifanye nini?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Civil Procedure Code Act, Cap. 33",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179p2q834b12vv9x7hkjn1x618fvnkb",
+      "titleEn": "I lost my case or missed a filing deadline. Is there any next step?",
+      "titleSw": "Nimeshindwa shauri au nimechelewa kuwasilisha. Kuna hatua nyingine?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Tanzania Court of Appeal Rules",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/a6814a06-c3f3-43a4-944d-d5b1da442b56",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75e1z9f86ycqkwqb83j66qhn8gw7fm",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17dcwk72qqgwq2ygr83ka7bvx8ft9v7",
+      "titleEn": "Can mediation resolve my dispute without a full court case?",
+      "titleSw": "Usuluhishi unaweza kutatua mgogoro bila shauri kamili mahakamani?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "RECONCILIATION, NEGOTIATION, MEDIATION AND ARBITRATION (PRACTITIONERS ACCREDITATION) REGULATIONS, 2021. G.N 147 OF 2021.",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7a5mjh1npzj44eyz3689qgkn8gxygn",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1798801k557ts6xhm0yzbadsd8ft0z1",
+      "titleEn": "I received a court summons or notice. What should I do?",
+      "titleSw": "Nimepokea wito au taarifa ya mahakama. Nifanye nini?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Civil Procedure Code Act, Cap. 33",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17a5sra0w8wzh9gznwzarzcb18fvv5a",
+      "titleEn": "What documents should I bring when asking for legal help?",
+      "titleSw": "Nipeleke nyaraka gani ninapoomba msaada wa kisheria?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Legal Aid Act, Chapter 21",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c1dsb40fh8hdveccvzhymy18gc4tr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1766y2zh1m1qbv1ngp2xgythx8fvwmh",
+      "titleEn": "I have a dispute but do not know which office or court handles it. How do I choose?",
+      "titleSw": "Nina mgogoro lakini sijui ofisi au mahakama sahihi. Nachaguaje?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Legal Aid Act, Chapter 21",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c1dsb40fh8hdveccvzhymy18gc4tr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17axeka2p8mxe4d8mg6v9vcps8ft484",
+      "titleEn": "I cannot afford a lawyer. How do I ask for legal aid?",
+      "titleSw": "Siwezi kumudu wakili. Naombaje msaada wa kisheria?",
+      "category": "Getting legal help and using justice pathways",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Legal Aid Act, Chapter 21",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c1dsb40fh8hdveccvzhymy18gc4tr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17aqdjcw6nkax7p7nsn9y6c418ftat0",
+      "titleEn": "A public service is refusing reasonable disability access. How can I complain?",
+      "titleSw": "Huduma ya umma inakataa msaada unaofaa wa ulemavu. Nalalamikaje?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Persons with Disabilities Act, Cap. 183",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/568/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7dmymkckvjxf3y82kxqf9g398gxgzy",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t171exz3e91pr9kwq4b2srybhx8fvntt",
+      "titleEn": "An official asks for an unofficial payment to provide a service. What can I do?",
+      "titleSw": "Afisa anadai malipo yasiyo rasmi ili kutoa huduma. Nifanye nini?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Prevention and Combating of Corruption Act, Cap. 329",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/432/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md73qb077cte57smt20ycnn3g18gw4pe",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t174bzdm9z7x15srvpybdh8wfd8fvjfn",
+      "titleEn": "My NIDA card is lost or the details do not match. Where do I start?",
+      "titleSw": "Kitambulisho cha NIDA kimepotea au taarifa hazilingani. Nianzie wapi?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "NIDA online services",
+      "sourceUrl": "https://services.nida.go.tz/",
+      "citationReachability": "page_observed_requires_legal_review",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17c82mv6pempnsqnapcajy7798fvshs",
+      "titleEn": "My marriage certificate is lost, or I need my divorce registered. What next?",
+      "titleSw": "Cheti cha ndoa kimepotea au nataka kusajili talaka. Nifanye nini?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "RITA online services",
+      "sourceUrl": "https://rita.go.tz/erita.php?lang=en",
+      "citationReachability": "unavailable",
+      "preparedCitationCorrection": {
+        "id": "t17c82mv6pempnsqnapcajy7798fvshs",
+        "title": "My marriage certificate is lost, or I need my divorce registered. What next?",
+        "previousSourceUrl": "https://rita.go.tz/erita.php?lang=en",
+        "proposedSourceUrl": "https://www.rita.go.tz/erita.php?lang=en",
+        "checkedAt": "2026-10-24T20:59:37.860Z",
+        "status": "prepared_for_author_correction"
+      },
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179b3d1g27yr1769ck24qbyt98ftmyf",
+      "titleEn": "A relative died without a death certificate. How do we obtain one?",
+      "titleSw": "Ndugu amefariki bila cheti cha kifo. Tunakipataje?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "RITA online services",
+      "sourceUrl": "https://rita.go.tz/erita.php?lang=en",
+      "citationReachability": "unavailable",
+      "preparedCitationCorrection": {
+        "id": "t179b3d1g27yr1769ck24qbyt98ftmyf",
+        "title": "A relative died without a death certificate. How do we obtain one?",
+        "previousSourceUrl": "https://rita.go.tz/erita.php?lang=en",
+        "proposedSourceUrl": "https://www.rita.go.tz/erita.php?lang=en",
+        "checkedAt": "2026-10-24T20:59:38.946Z",
+        "status": "prepared_for_author_correction"
+      },
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t174gy64n7r3b911z3741sd6yh8ft1s7",
+      "titleEn": "My certificate has a spelling error or wrong detail. What can I do?",
+      "titleSw": "Cheti kina kosa la herufi au taarifa. Nifanye nini?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "eRITA official portal",
+      "sourceUrl": "https://erita.rita.go.tz/",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17b04k2v8ysb4hfz1fh3xspms8ftdz1",
+      "titleEn": "My birth or death certificate is lost. How do I replace it?",
+      "titleSw": "Cheti changu cha kuzaliwa au kifo kimepotea. Nakipataje tena?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "eRITA official portal",
+      "sourceUrl": "https://erita.rita.go.tz/",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17fccdd3my08799qmcx417za18fvqdb",
+      "titleEn": "I was born at home and have no birth certificate. How do I begin?",
+      "titleSw": "Nilizaliwa nyumbani na sina cheti cha kuzaliwa. Nianzie wapi?",
+      "category": "Documents and public services",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "RITA frequently asked questions",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17fwx6v4ztv572w58pt28at7s8ftbwt",
+      "titleEn": "My photos or personal information are being shared to threaten me. Where do I start?",
+      "titleSw": "Picha au taarifa zangu zinasambazwa ili kunitishia. Nianzie wapi?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Personal Data Protection Act, 2022",
+      "sourceUrl": "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fd0f8gq5t6jgqa7z1n28sh8gdf4a",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t174x8z93qpwyhxbfr0566yphh8ftqhy",
+      "titleEn": "Someone is threatening me because I reported an offence. What can I do?",
+      "titleSw": "Mtu ananitishia kwa sababu nimetoa taarifa ya kosa. Nifanye nini?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "THE WHISTLEBLOWER AND  WITNESS PROTECTION ACT, CHAPTER 446, R.E. 2023",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/2a879887-a8e4-40d7-b539-6973db660512",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7ce1tyv6qzmbec329ajavsk58gx1vg",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t170xmh01myga0rnb32jw06jhn8ftz0p",
+      "titleEn": "Police did not act on my report. How do I follow up?",
+      "titleSw": "Polisi hawajachukua hatua kwa taarifa yangu. Nifuatilieje?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Criminal Procedure Act, Cap. 20",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t173gx3tf4rxxhdmhy644axkbn8ftaqp",
+      "titleEn": "How do I ask about bail, and must I pay someone privately?",
+      "titleSw": "Naulizaje kuhusu dhamana, na lazima nimlipe mtu binafsi?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Criminal Procedure Act, Cap. 20",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t175eq049mt3kant0fdd8svxb18ftbbp",
+      "titleEn": "I or a relative has been arrested. How do we get legal help?",
+      "titleSw": "Mimi au ndugu amekamatwa. Tunapataje msaada wa kisheria?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Criminal Procedure Act, Cap. 20",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t174yxh6es8zkdw06n20q0w53d8fvx1p",
+      "titleEn": "A child has been arrested. What should the family do?",
+      "titleSw": "Mtoto amekamatwa. Familia ifanye nini?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17964sbzk76axtztvhjw5a7018fv12r",
+      "titleEn": "I have experienced sexual assault. What should I do first?",
+      "titleSw": "Nimefanyiwa ukatili wa kingono. Nifanye nini kwanza?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "THE PENAL CODE, CHAPTER 16, R.E 2023",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c545f591-bf5d-482f-ac11-bbdad280726e",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t178jddj4f6a5q408skzs0v0q98ft3jx",
+      "titleEn": "I am being harmed or threatened by my partner. Where can I get help?",
+      "titleSw": "Mwenzi ananiumiza au kunitishia. Napata msaada wapi?",
+      "category": "Safety, violence and criminal justice",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "National Guideline for Safe Homes",
+      "sourceUrl": "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md76sneqg4h8kj82bzn46y6jm98gxnxv",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179k19ag7w83dcnddtx85zyd58ftaa2",
+      "titleEn": "A contractor took payment but did not finish the work. What can I do?",
+      "titleSw": "Fundi au mkandarasi amelipwa lakini hajamaliza kazi. Nifanye nini?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of Contract Act, Cap. 345",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7enb3g8n89m1v9vzg1bhz1rs8gwdtd",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17bp3cddjkehpyj5cw1wgkf1x8fva47",
+      "titleEn": "Someone borrowed my money and will not repay it. Can I recover it?",
+      "titleSw": "Mtu amekopa fedha zangu na harudishi. Naweza kuzidai?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of Contract Act, Cap. 345",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7enb3g8n89m1v9vzg1bhz1rs8gwdtd",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t171k3ma6ewajr8m02wcp2fef98fv6fe",
+      "titleEn": "My water or electricity bill is wrong, or service was disconnected. Where do I go?",
+      "titleSw": "Bili ya maji au umeme si sahihi au huduma imekatwa. Niende wapi?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Water complaints and resolution",
+      "sourceUrl": "https://ewura.go.tz/index.php/pages/water-complaints-and-resolution",
+      "citationReachability": "unavailable",
+      "citedSourceKind": "publisher_web_page",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17dfhfd3wbx8254f2bw1m8wjd8fvyej",
+      "titleEn": "My phone company charged me incorrectly or suspended my service. What next?",
+      "titleSw": "Kampuni ya simu imenikata fedha kimakosa au kusitisha huduma. Nifanye nini?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Electronic and Postal Communications Consumer Protection Regulations",
+      "sourceUrl": "https://tcra.go.tz/uploads/documents/sw-1619087013-The%20Electronic%20and%20Postal%20Communications%20%28Consumer%20Protection%29%20Regulations%2C%202018.pdf",
+      "citationReachability": "unavailable",
+      "preparedCitationCorrection": {
+        "id": "t17dfhfd3wbx8254f2bw1m8wjd8fvyej",
+        "title": "My phone company charged me incorrectly or suspended my service. What next?",
+        "previousSourceUrl": "https://tcra.go.tz/uploads/documents/sw-1619087013-The%20Electronic%20and%20Postal%20Communications%20%28Consumer%20Protection%29%20Regulations%2C%202018.pdf",
+        "proposedSourceUrl": "https://www.tcra.go.tz/tcra-tovuti/2021/mamlaka-website/documents/regulations/en_1619087013_The_Electronic_and_Postal_Communications_Consumer_Protection_Regulations_2018_cc03743654.pdf",
+        "checkedAt": "2026-10-24T20:59:40.296Z",
+        "status": "prepared_for_author_correction"
+      },
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7cahnyfqmnd5wag69xnb13hn8gwg4h",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t172nsem01af0raevyfbqy8x1s8fv7fx",
+      "titleEn": "My lender is adding unexplained charges or threatening me. Where do I complain?",
+      "titleSw": "Mkopeshaji anaongeza gharama zisizoeleweka au kunitishia. Nilalamike wapi?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Bank of Tanzania Financial Consumer Protection Regulations",
+      "sourceUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md72xh6rbmm39xr7wc0efn2em18gwqfr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17dk9210th6cwnptqg577cjys8fv31w",
+      "titleEn": "Money disappeared from my bank or mobile-money account. What should I do?",
+      "titleSw": "Fedha zimepotea kwenye benki au akaunti ya fedha ya simu. Nifanye nini?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Bank of Tanzania financial consumer protection",
+      "sourceUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md72xh6rbmm39xr7wc0efn2em18gwqfr",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t170rrz6f8rqahq1zzrtqn50558ftfv6",
+      "titleEn": "An online seller took my money and did not deliver. What next?",
+      "titleSw": "Muuzaji wa mtandaoni amechukua fedha bila kuleta bidhaa. Nifanye nini?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of Contract Act, Cap. 345",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7enb3g8n89m1v9vzg1bhz1rs8gwdtd",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t172d6rvp4pmr6hwmebdkv96zn8fvtaf",
+      "titleEn": "I bought a faulty product and the seller refuses to help. What can I do?",
+      "titleSw": "Nimenunua bidhaa mbovu na muuzaji anakataa kusaidia. Nifanye nini?",
+      "category": "Consumer problems and money",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Fair Competition Act current catalogue copy",
+      "sourceUrl": "https://www.fcc.go.tz/en/legal-framework",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md76ekgnykez5h3ee6ykw4123h8gxjbv",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        },
+        {
+          "id": "md76vqrxk0m71s2k9wbdaqd8eh8gxmz3",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        },
+        {
+          "id": "md74by5nqdq32ma3typy40vwhd8gx85r",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        },
+        {
+          "id": "md726pjhd4bcy1cn35bpf4djas8gwxgv",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        },
+        {
+          "id": "md73ks2anjbgwjw8m8rn266vnx8gx8da",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17c84sa0604ktpfrhrs9dwdxd8fvsz6",
+      "titleEn": "The deceased left debts. Must the family pay them personally?",
+      "titleSw": "Marehemu ameacha madeni. Familia lazima ilipe binafsi?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t176w4tqwp6n4ghkc0d0971chn8ftkvx",
+      "titleEn": "I object to the proposed estate administrator. How do I respond?",
+      "titleSw": "Ninapinga msimamizi wa mirathi anayependekezwa. Nijibuje?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t173qsfmvmmfka17ydznkxwttd8ftyvm",
+      "titleEn": "The estate administrator will not explain how money was used. What next?",
+      "titleSw": "Msimamizi wa mirathi haelezi matumizi ya fedha. Nifanye nini?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179s3y24fmaz9ennd3y4m42pn8fvswf",
+      "titleEn": "I found a will. Is it valid and what should I do with it?",
+      "titleSw": "Nimepata wosia. Ni halali na niufanyie nini?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t177hy0jqapw4wt259zjjpn7fd8ft6dh",
+      "titleEn": "Children are being left out of an estate. What should we do?",
+      "titleSw": "Watoto wanatengwa kwenye mirathi. Tufanye nini?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17429bwg5tk98fsjshx8j449s8fvy3x",
+      "titleEn": "I am a widow or widower being excluded from inheritance. Where do I start?",
+      "titleSw": "Nimefiwa na mwenzi na ninatengwa kwenye mirathi. Nianzie wapi?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t177jqjs735j4v31y24dt9259d8fv5px",
+      "titleEn": "Someone is taking estate property before an administrator is appointed. What can I do?",
+      "titleSw": "Mtu anachukua mali za mirathi kabla ya msimamizi kuteuliwa. Nifanye nini?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t173wyf3shtas2r3j792g5pr3x8ft5z6",
+      "titleEn": "A relative has died. How do we begin administering the estate?",
+      "titleSw": "Ndugu amefariki. Tunaanzaje kusimamia mirathi?",
+      "category": "Inheritance and estates",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Probate and Administration of Estates Act, Cap. 352",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78ywq116ctysjm53pddyervh8gxn6z",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17b1kwt6dwz5nan2aj87pa8p18ftnkv",
+      "titleEn": "We cannot agree on paternity. How do we address it lawfully?",
+      "titleSw": "Hatuwezi kukubaliana kuhusu ubaba. Tunashughulikiaje kisheria?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17am0jn29v4845vc7kn72dzjh8ftygg",
+      "titleEn": "A child is being forced into marriage. What should we do?",
+      "titleSw": "Mtoto analazimishwa kuolewa au kuoa. Tufanye nini?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t176z3s1w03s9rf46vkc5mrf058fv2tc",
+      "titleEn": "A child is being abused or neglected. Where can I seek help?",
+      "titleSw": "Mtoto ananyanyaswa au kupuuzwa. Natafuta msaada wapi?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179sqd6ghjjz0qap82xfypc4n8fv1sk",
+      "titleEn": "We lived together without a marriage certificate. Do I have any rights?",
+      "titleSw": "Tumeishi pamoja bila cheti cha ndoa. Nina haki zozote?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of Marriage Act, Chapter 29",
+      "sourceUrl": "https://oagmis.oag.go.tz/public",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7d6ezk1h73zcqv7bhr4m4mt58gdrtz",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        },
+        {
+          "id": "md70agwc6cfav441vjjfgwrpm58gdkbe",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t173ad7zj781pj1wjr1qgfbmdd8ft062",
+      "titleEn": "My spouse wants to sell our home without consulting me. What can I do?",
+      "titleSw": "Mwenzi anataka kuuza nyumba yetu bila kunishirikisha. Nifanye nini?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of Marriage Act, Chapter 29",
+      "sourceUrl": "https://oagmis.oag.go.tz/public",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7d6ezk1h73zcqv7bhr4m4mt58gdrtz",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        },
+        {
+          "id": "md70agwc6cfav441vjjfgwrpm58gdkbe",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17bj48jc2w7ga5nh0n6zxtjrn8fvrzn",
+      "titleEn": "I want to separate or divorce. What is the first legal step?",
+      "titleSw": "Nataka kutengana au kuachana. Hatua ya kwanza ya kisheria ni ipi?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of Marriage Act, Chapter 29",
+      "sourceUrl": "https://oagmis.oag.go.tz/public",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7d6ezk1h73zcqv7bhr4m4mt58gdrtz",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        },
+        {
+          "id": "md70agwc6cfav441vjjfgwrpm58gdkbe",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17c9sh03tz7a9eeby3w3e9r618ftga6",
+      "titleEn": "We are separating. How is child custody decided?",
+      "titleSw": "Tunatengana. Malezi ya mtoto yanaamuliwaje?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17dqq1m7929x88n91bexw2wms8fv9ga",
+      "titleEn": "The other parent is not supporting our child. What can I do?",
+      "titleSw": "Mzazi mwenzangu hamhudumii mtoto. Nifanye nini?",
+      "category": "Family and children",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of the Child Act, Chapter 13",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1763bes6r2fkrgj9xh02qykj18fvvcp",
+      "titleEn": "Someone sold the same plot to two buyers. Where do we start?",
+      "titleSw": "Mtu ameuzia watu wawili kiwanja kimoja. Tunaanzia wapi?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17c5x759621e5smf2fqqztge18fv1kz",
+      "titleEn": "My land is being acquired for a public project. How do I question compensation?",
+      "titleSw": "Ardhi yangu inachukuliwa kwa mradi wa umma. Napinga fidia vipi?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Acquisition Act, Cap. 118",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/5f058cdc-869b-412f-ad68-15ecc2a9e018",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md70tpsw02hrywygkh04d6h81h8gwpb2",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t1739p2hbpyxg7yv2zvnggd1v58fvnb4",
+      "titleEn": "Village leaders allocated my land to someone else. How do I challenge it?",
+      "titleSw": "Viongozi wa kijiji wamempa mwingine ardhi yangu. Napinga vipi?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Village Land Act, Chapter 114",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/3a7a98e7-0e75-4c05-a7ba-26531a19cc9a",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md756vtyh8p5gzj4n4pz2qz49x8gd4ec",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17dkqp7vddjvgk2nnac9ema198fv0vb",
+      "titleEn": "My landlord will not return my deposit or my belongings. What next?",
+      "titleSw": "Mwenye nyumba harudishi amana au vitu vyangu. Nifanye nini?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Law of Contract Act, Cap. 345",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7enb3g8n89m1v9vzg1bhz1rs8gwdtd",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t174rwd4hxb51d52f5detd515s8ft6gn",
+      "titleEn": "My landlord is threatening to remove me immediately. What can I do?",
+      "titleSw": "Mwenye nyumba anatishia kuniondoa mara moja. Nifanye nini?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17cerdwy0zr7drnh08xs2n8z18ftv4k",
+      "titleEn": "Can a woman own or inherit land?",
+      "titleSw": "Mwanamke anaweza kumiliki au kurithi ardhi?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t171k77f94j9p7mm3j1rz71ttx8fv977",
+      "titleEn": "I want to buy a plot. What should I check before paying?",
+      "titleSw": "Nataka kununua kiwanja. Nikague nini kabla ya kulipa?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17427kz5b9t481ztm4zz8yb9h8fvqp2",
+      "titleEn": "My neighbour has moved the boundary or occupied my land. What should I do?",
+      "titleSw": "Jirani amehamisha mpaka au ameingia kwenye ardhi yangu. Nifanye nini?",
+      "category": "Land, renting and housing",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Land Act, Chapter 113",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md77xf5rtfwtma6nqdexsm0krs8gcjhq",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t170ff27ndvvqpd275bs424dcd8fvstk",
+      "titleEn": "I am being sexually harassed or discriminated against at work. Where do I report?",
+      "titleSw": "Ninanyanyaswa kingono au kubaguliwa kazini. Nitoe taarifa wapi?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17e2r0x7z2dap55z9qn2dwz2d8ftgfz",
+      "titleEn": "My employer refuses overtime or rest days. How do I check my rights?",
+      "titleSw": "Mwajiri anakataa malipo ya ziada au siku za mapumziko. Nachunguza haki zangu vipi?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17aagv2d166gce00bt2sjr10n8fvdec",
+      "titleEn": "My employer deducts pension contributions but they are missing. What next?",
+      "titleSw": "Mwajiri anakata michango ya pensheni lakini haionekani. Nifanye nini?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "THE NATIONAL SOCIAL SECURITY FUND ACT, CHAPTER 50 R.E. 2023.",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78sqck1wh5mc1kj6fn658dc18gwfw5",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17ekj3q62268wnb68csxvsyts8fvd5g",
+      "titleEn": "I was injured at work. Where do I seek compensation?",
+      "titleSw": "Nimeumia kazini. Naomba fidia wapi?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Workers Compensation Act, Cap. 263",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/367/download",
+      "citationReachability": "binary_source_requires_document_review",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md78neabmkhy9q6ne3n47cy1jd8gx7kj",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17cn2gsjv43x9ydf21j58z1eh8fvz8j",
+      "titleEn": "I am pregnant and facing dismissal or refusal of leave. What can I do?",
+      "titleSw": "Nina ujauzito na natishiwa kufukuzwa au kunyimwa likizo. Nifanye nini?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17bxxk2hx484ajjf7gzhfxsqd8fvptz",
+      "titleEn": "I work without a written contract. Can I still seek help?",
+      "titleSw": "Nafanya kazi bila mkataba wa maandishi. Naweza kupata msaada?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t179crz9rk8bw3zrsg10cnbbh18fvgg1",
+      "titleEn": "My employer has not paid my wages. How can I claim them?",
+      "titleSw": "Mwajiri hajanilipa mshahara. Naudai vipi?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    },
+    {
+      "id": "t17b09ey8zcmw9r0pbfwy8tre98ft029",
+      "titleEn": "I was dismissed from work. What should I do first?",
+      "titleSw": "Nimefukuzwa kazi. Nianzie wapi?",
+      "category": "Work and employment",
+      "jurisdiction": "tanzania_mainland",
+      "sourceTitle": "Employment and Labour Relations Act, Chapter 366",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "citationReachability": "page_observed_not_intake_verified",
+      "citedSourceKind": "pdf_or_catalogue",
+      "reviewDueAt": 1799312400000,
+      "editVersion": 1,
+      "structuralIssues": [],
+      "quantitativeClaimsToVerify": [],
+      "matchingSourceDocuments": [
+        {
+          "id": "md7c86t02spym3v7neffb0xtr18gd19x",
+          "indexingStatus": "ready",
+          "approvalStatus": "pending"
+        }
+      ],
+      "independentLegalReviewRequired": true,
+      "bilingualReviewRequired": true,
+      "publicEligible": false,
+      "nextSteps": [
+        "Check source identity, current amendments, commencement and jurisdiction",
+        "Verify each legal claim and action step against source passages and actual pathway",
+        "Check Kiswahili meaning against English and source; preserve distinctions",
+        "Use existing review form to record a reasoned independent decision"
+      ]
+    }
+  ],
+  "counts": {
+    "pending": 108,
+    "structurallyComplete": 108,
+    "withQuantitativeClaims": 0,
+    "withoutMatchingIndexedSource": 25
+  }
+}

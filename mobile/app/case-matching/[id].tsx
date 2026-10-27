@@ -1,13 +1,16 @@
+import { MatchingLocation, type MatchOrigin } from "../../src/components/MatchingLocation";
+import { BrandLoading } from '../../src/components/BrandLoading';
+import { plainError } from "../../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import type { Id } from "../../../convex/_generated/dataModel";
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
-import { Screen } from "../../src/components/Screen";
+import { AdminScreen as Screen } from "../../src/admin/AdminScreen";
 import { SectionHeading, Surface } from "../../src/components/Surface";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
@@ -23,7 +26,12 @@ export default function CaseMatchingScreen() {
   const allowed = access?.roles.some((role: string) => ["admin", "staff", "supervisor"].includes(role));
   const cases = useQuery(api.caseManagement.staffCaseQueue, allowed ? {} : "skip");
   const caseRecord = cases?.find((item) => item._id === caseId);
-  const recommendations = useQuery(api.caseManagement.providerRecommendations, allowed && caseRecord ? { caseId } : "skip");
+  const [origin,setOrigin]=useState<MatchOrigin>();
+  const [refresh,setRefresh]=useState(0);
+  useEffect(()=>{const timer=setInterval(()=>setRefresh(value=>value+1),30000);return ()=>clearInterval(timer);},[]);
+  useEffect(()=>{setOrigin(undefined);setSelected(null);setOverrideReason('');},[caseId]);
+  const [overrideReason,setOverrideReason]=useState('');
+  const recommendations = useQuery(api.caseManagement.providerRecommendations, allowed && caseRecord ? { caseId, origin, refresh } : "skip");
   const details = useQuery(api.caseManagement.getCase, allowed && caseRecord ? { caseId } : "skip");
   const offerAssignment = useMutation(api.caseManagement.offerAssignment);
   const reassignCase = useMutation(api.caseManagement.reassignCase);
@@ -35,7 +43,7 @@ export default function CaseMatchingScreen() {
   const [reason, setReason] = useState("");
   const hasOpenAssignment = details?.assignmentHistory.some((item) => ["offered", "accepted"].includes(item.assignment.status)) ?? false;
   const provider = recommendations?.find((item) => item.id === selected);
-  const eligible = provider && provider.remainingCapacity > 0 && !["paused", "unavailable"].includes(provider.availabilityStatus);
+  const eligible = provider && (provider.canOffer || overrideReason.trim().length >= 10);
 
   async function sendOffer() {
     if (!caseRecord || !provider || !eligible || busy) return;
@@ -44,18 +52,18 @@ export default function CaseMatchingScreen() {
     if (hasOpenAssignment && reason.trim().length < 10) { setError(sw ? "Eleza sababu ya kubadilisha mtoa msaada (angalau herufi 10)." : "Explain the reassignment (at least 10 characters)."); return; }
     setBusy(true); setError("");
     try {
-      if (hasOpenAssignment) await reassignCase({ caseId, newAssigneeId: provider.id, organizationId, reason: reason.trim() });
-      else await offerAssignment({ caseId, assigneeId: provider.id, organizationId });
+      if (hasOpenAssignment) await reassignCase({ caseId, newAssigneeId: provider.id, organizationId, availabilityOverrideReason: overrideReason.trim() || undefined, reason: reason.trim() });
+      else await offerAssignment({ caseId, assigneeId: provider.id, organizationId, availabilityOverrideReason: overrideReason.trim() || undefined });
       setSuccess(sw ? `Ofa imetumwa kwa ${provider.name}.` : `Offer sent to ${provider.name}.`);
       setSelected(null);
       setSelectedOrganizationId(null);
       setReason("");
-    } catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    } catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
 
-  if (access === undefined || (allowed && cases === undefined)) return <Screen><AppHeader back title={sw ? "Ulinganishaji" : "Case matching"} /><Text style={styles.muted}>{sw ? "Inapakia..." : "Loading case..."}</Text></Screen>;
-  if (!allowed || !caseRecord) return <Screen><AppHeader back title={sw ? "Ulinganishaji" : "Case matching"} /><Surface tone="orange"><Text style={styles.title}>{sw ? "Kesi haipatikani ndani ya ruhusa yako." : "This case is unavailable in your access scope."}</Text></Surface></Screen>;
+  if (access === undefined || (allowed && cases === undefined)) return <Screen><AppHeader back title={sw ? "Chagua msaidizi wa kesi" : "Case matching"} /><BrandLoading compact text={sw ? "Inapakia..." : "Loading case..."}/></Screen>;
+  if (!allowed || !caseRecord) return <Screen><AppHeader back title={sw ? "Chagua msaidizi wa kesi" : "Case matching"} /><Surface tone="orange"><Text style={styles.title}>{sw ? "Kesi haipatikani ndani ya ruhusa yako." : "This case is unavailable in your access scope."}</Text></Surface></Screen>;
 
   return <Screen>
     <AppHeader back title={sw ? "Pata mtoa msaada" : "Find the right match"} eyebrow="LSF · CASE MATCHING" />
@@ -63,16 +71,19 @@ export default function CaseMatchingScreen() {
     <Surface tone="pink" style={styles.context}><Text style={styles.title}>{sw ? "Muhtasari wa kesi" : "Case context"}</Text><Text style={styles.summary}>{caseRecord.summary}</Text><Text style={styles.muted}>{caseRecord.priority.replaceAll("_", " ")} · {caseRecord.status.replaceAll("_", " ")}</Text><Button variant="quiet" label={sw ? "Angalia kesi" : "View case"} onPress={() => router.push({ pathname: "/case/[id]", params: { id: caseId } })} /></Surface>
     {success ? <Surface tone="teal" style={styles.message}><Text style={styles.title}>{success}</Text><Text style={styles.muted}>{sw ? "Mtoa huduma atahitaji kukubali ofa kabla ya kupewa kesi." : "The provider must accept the offer before taking the case."}</Text></Surface> : null}
     {error ? <Surface tone="orange" style={styles.message}><Text style={styles.error}>{error}</Text></Surface> : null}
+    <MatchingLocation key={caseId} sw={sw} onChange={setOrigin} />
     <SectionHeading title={sw ? "Watoa msaada wanaopendekezwa" : "Recommended providers"} action={recommendations ? `${recommendations.length}` : undefined} />
-    {recommendations === undefined ? <Surface><Text style={styles.muted}>{sw ? "Inatafuta watoa msaada..." : "Finding eligible providers..."}</Text></Surface> : recommendations.length === 0 ? <Surface tone="orange"><Text style={styles.title}>{sw ? "Hakuna mtoa msaada anayepatikana sasa." : "No provider is available right now."}</Text><Text style={styles.muted}>{sw ? "Kesi ibaki katika foleni ya LSF kwa hatua inayofuata." : "Keep the case in the LSF queue for the next action."}</Text></Surface> : recommendations.map((item, index) => {
-      const unavailable = item.remainingCapacity <= 0 || ["paused", "unavailable"].includes(item.availabilityStatus);
-      return <Pressable key={item.id} accessibilityRole="button" accessibilityLabel={`${item.name}, ${item.score} percent fit`} onPress={() => { setSelected(item.id); setSelectedOrganizationId(null); }} style={[styles.provider, selected === item.id && styles.providerSelected]}>
-        <View style={styles.providerTop}><View style={styles.avatar}><Text style={styles.avatarText}>{item.name.trim().slice(0, 1).toUpperCase()}</Text></View><View style={styles.providerName}><Text style={styles.title}>{item.name}</Text><Text style={styles.muted}>{item.role.replaceAll("_", " ")} · {[item.district, item.region].filter(Boolean).join(", ") || (sw ? "Eneo halijabainishwa" : "Location not recorded")}</Text></View><View style={styles.score}><Text style={styles.scoreText}>{item.score}%</Text></View></View>
+    {recommendations === undefined ? <Surface><Text style={styles.muted}>{sw ? "Inatafuta watoa msaada..." : "Finding eligible providers..."}</Text></Surface> : recommendations.length === 0 ? <Surface tone="orange"><Text style={styles.title}>{sw ? "Hakuna mtoa msaada anayepatikana sasa." : "No provider is available right now."}</Text><Text style={styles.muted}>{sw ? "Kesi ibaki katika orodha ya LSF kwa hatua inayofuata." : "Keep the case in the LSF queue for the next action."}</Text></Surface> : recommendations.map((item, index) => {
+      const unavailable = !item.canOffer;
+      return <Pressable key={item.id} accessibilityRole="button" accessibilityLabel={`${item.name}, ${item.score} ranking points`} onPress={() => { setSelected(item.id); setSelectedOrganizationId(null); setOverrideReason(''); }} style={[styles.provider, selected === item.id && styles.providerSelected]}>
+        <View style={styles.providerTop}><View style={styles.avatar}><Text style={styles.avatarText}>{item.name.trim().slice(0, 1).toUpperCase()}</Text></View><View style={styles.providerName}><Text style={styles.title}>{item.name}</Text><Text style={styles.muted}>{item.role.replaceAll("_", " ")} · {[item.district, item.region].filter(Boolean).join(", ") || (sw ? "Eneo halijabainishwa" : "Location not recorded")}</Text></View><View style={styles.score}><Text style={styles.scoreText}>{item.score} pts</Text></View></View>
         <Text style={styles.rank}>{index === 0 ? (sw ? "PENDEKEZO LA KWANZA" : "TOP RECOMMENDATION") : (sw ? "SABABU ZA ULINGANISHI" : "WHY THIS MATCH")}</Text>
+        {item.distanceKm !== null && <Text style={styles.muted}>{sw ? "Umbali wa makadirio" : "Approximate distance"}: {item.distanceKm.toFixed(1)} km · {item.distanceSource === "current_location" ? (sw ? "eneo la sasa" : "current location") : (sw ? "ofisi" : "office")}</Text>}
         {item.reasons.slice(0, 4).map((reason) => <View key={reason} style={styles.reason}><Ionicons name="checkmark-circle" size={17} color={colors.teal} /><Text style={styles.reasonText}>{reason}</Text></View>)}
-        <View style={styles.footer}><Text style={[styles.availability, unavailable && styles.unavailable]}>{unavailable ? (sw ? "Hapatikani kwa ofa mpya" : "Unavailable for new offers") : `${item.remainingCapacity} ${sw ? "nafasi zilizobaki" : "capacity slots remaining"}`}</Text><Ionicons name={selected === item.id ? "radio-button-on" : "radio-button-off"} size={23} color={selected === item.id ? colors.burgundy : colors.inkMuted} /></View>
+        <View style={styles.footer}><Text style={[styles.availability, unavailable && styles.unavailable]}>{unavailable ? (sw ? "Thibitisha upatikanaji/uwezo kabla ya ofa" : "Confirm availability/capacity before an offer") : `${item.remainingCapacity} ${sw ? "nafasi zilizobaki" : "capacity slots remaining"}`}</Text><Ionicons name={selected === item.id ? "radio-button-on" : "radio-button-off"} size={23} color={selected === item.id ? colors.burgundy : colors.inkMuted} /></View>
       </Pressable>;
     })}
+    {provider && !provider.canOffer && <Surface tone="orange"><Text>{sw ? "Thibitisha upatikanaji na mtoa msaada. Andika sababu ya ubaguzi (angalau herufi 10)." : "Confirm with the provider and record an exception reason (at least 10 characters)."}</Text><TextInput accessibilityLabel={sw ? "Sababu ya ubaguzi" : "Availability exception reason"} value={overrideReason} onChangeText={setOverrideReason} multiline maxLength={500} style={{minHeight:80,borderWidth:1,borderColor:colors.line,padding:12}} /></Surface>}
     {provider ? <Surface tone="pink" style={styles.confirm}><Text style={styles.title}>{hasOpenAssignment ? (sw ? "Badili mtoa msaada?" : "Reassign this case?") : (sw ? "Tuma ofa ya kazi?" : "Send assignment offer?")}</Text><Text style={styles.muted}>{hasOpenAssignment ? (sw ? "Ofa au ufikiaji wa mtoa msaada wa awali utaisha. Mtoa mpya atahitaji kuikubali ofa." : "The previous offer or provider access will end. The new provider must accept the offer.") : (sw ? `Ofa itatumwa kwa ${provider.name}. Atahitaji kuikubali.` : `An offer will be sent to ${provider.name}. They must accept it.`)}</Text>{provider.affiliations.length ? <><Text style={styles.title}>{sw ? "Taasisi inayowakilishwa kwenye kesi" : "Organisation represented on this case"}</Text>{provider.affiliations.map((affiliation) => <Pressable key={affiliation.organizationId} accessibilityRole="radio" accessibilityState={{ checked: (provider.affiliations.length === 1 ? provider.affiliations[0].organizationId : selectedOrganizationId) === affiliation.organizationId }} aria-checked={(provider.affiliations.length === 1 ? provider.affiliations[0].organizationId : selectedOrganizationId) === affiliation.organizationId} onPress={() => setSelectedOrganizationId(affiliation.organizationId)} style={[styles.affiliation, (provider.affiliations.length === 1 ? provider.affiliations[0].organizationId : selectedOrganizationId) === affiliation.organizationId && styles.providerSelected]}><Ionicons name={(provider.affiliations.length === 1 ? provider.affiliations[0].organizationId : selectedOrganizationId) === affiliation.organizationId ? "radio-button-on" : "radio-button-off"} size={20} color={colors.burgundy} /><Text style={styles.summary}>{affiliation.organizationName} · {affiliation.role.replaceAll("_", " ")}</Text></Pressable>)}</> : <Text style={styles.muted}>{sw ? "Mtoa msaada binafsi; hakuna taasisi iliyothibitishwa iliyounganishwa." : "Independent worker; no verified organisation is linked."}</Text>}{hasOpenAssignment ? <TextInput value={reason} onChangeText={setReason} multiline maxLength={500} accessibilityLabel={sw ? "Sababu ya kubadilisha" : "Reassignment reason"} placeholder={sw ? "Sababu ya kubadilisha mtoa msaada" : "Reason for reassignment"} placeholderTextColor={colors.inkMuted} style={{ minHeight: 85, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.md, color: colors.ink, textAlignVertical: "top" }} /> : null}<Button label={hasOpenAssignment ? (sw ? "Tuma ofa kwa mtoa mpya" : "Offer to new provider") : (sw ? "Tuma ofa" : "Send offer")} loading={busy} disabled={!eligible || busy || details === undefined || provider.affiliations.length > 1 && !selectedOrganizationId} onPress={() => Alert.alert(sw ? "Thibitisha ofa" : "Confirm offer", hasOpenAssignment ? (sw ? "Hii itaondoa ufikiaji wa mtoa msaada wa sasa." : "This ends the current provider's access.") : (sw ? "Mtoa msaada atahitaji kuikubali." : "The provider must accept."), [{ text: sw ? "Ghairi" : "Cancel", style: "cancel" }, { text: sw ? "Endelea" : "Continue", onPress: () => void sendOffer() }])} />{!eligible ? <Text style={styles.error}>{sw ? "Mtoa msaada huyu hawezi kupewa ofa sasa." : "This provider cannot receive a new offer now."}</Text> : null}</Surface> : null}
   </Screen>;
 }

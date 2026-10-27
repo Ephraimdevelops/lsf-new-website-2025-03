@@ -43,9 +43,9 @@ export const designTokens = {
   // Typography Scale
   typography: {
     fontFamilies: {
-      heading: ['Ubuntu', 'system-ui', 'sans-serif'],
-      body: ['Roboto', 'Noto Sans', 'Product Sans', 'system-ui', 'sans-serif'],
-      display: ['Ubuntu', 'system-ui', 'sans-serif'],
+      heading: ['Onest', 'system-ui', 'sans-serif'],
+      body: ['Onest', 'system-ui', 'sans-serif'],
+      display: ['Onest', 'system-ui', 'sans-serif'],
     },
     fontSizes: {
       xs: '0.625rem',    // 10px
@@ -192,35 +192,35 @@ export const designTokens = {
     text: {
       variants: {
         heading: {
-          fontFamily: 'Ubuntu',
+          fontFamily: 'Onest',
           fontSize: '1.5rem',
           fontWeight: 600,
           lineHeight: 1.1,
           color: '#404040',
         },
         subheading: {
-          fontFamily: 'Ubuntu',
+          fontFamily: 'Onest',
           fontSize: '1.125rem',
           fontWeight: 500,
           lineHeight: 1.3,
           color: '#525252',
         },
         body: {
-          fontFamily: 'Roboto, Noto Sans, Product Sans',
+          fontFamily: 'Onest',
           fontSize: '0.875rem',
           fontWeight: 400,
           lineHeight: 1.5,
           color: '#525252',
         },
         caption: {
-          fontFamily: 'Roboto, Noto Sans, Product Sans',
+          fontFamily: 'Onest',
           fontSize: '0.75rem',
           fontWeight: 400,
           lineHeight: 1.4,
           color: '#737373',
         },
         display: {
-          fontFamily: 'Ubuntu',
+          fontFamily: 'Onest',
           fontSize: '2.25rem',
           fontWeight: 600,
           lineHeight: 1.1,

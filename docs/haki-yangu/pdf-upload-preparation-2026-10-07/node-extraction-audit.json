@@ -1,0 +1,1149 @@
+{
+  "auditedAt": "2026-10-07T20:22:06.949Z",
+  "complete": true,
+  "results": [
+    {
+      "researchSourceId": "PROC-CIVIL",
+      "sha256": "3b9c5dd74dcd11016fc2c93353337a7c9c30247eaef23d3a1b8b99552c52095c",
+      "bytes": 1892019,
+      "nativeTextCharacters": 539535,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "LAND-DISPUTES",
+      "sha256": "eb0eb9437c9526395035f0fad83dc15f7e5a5e852943d55c9eb67ead9d18ce51",
+      "bytes": 640736,
+      "nativeTextCharacters": 46388,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "LAND-TRIBUNAL-2023",
+      "sha256": "a6b99607249d8341d27c4065c8e24783e5b491e88db64689cb0c68020e44582a",
+      "bytes": 339928,
+      "nativeTextCharacters": 6109,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ESTATES-PROBATE",
+      "sha256": "eed7a6d29170c932b25eb42ee7a0d95138b103ff4f7ceae19c8f7fd316aec87e",
+      "bytes": 885814,
+      "nativeTextCharacters": 145881,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CRIM-PROCEDURE",
+      "sha256": "023b9da4adbe7b49e270741e5e1ff68ea2ba8f89cce385c26749f06bd0cae9f1",
+      "bytes": 1788583,
+      "nativeTextCharacters": 496768,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-EVIDENCE",
+      "sha256": "900e26d118c30eb6c00f8f6f5131cf35ff5555f17e474d9141caba066038baaa",
+      "bytes": 885952,
+      "nativeTextCharacters": 142341,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "DISABILITY-ACT",
+      "sha256": "98cc8cb37556d073eb49d5b57fde28dce6cd8805d9abfc7dd60b6f7c989b1c53",
+      "bytes": 750507,
+      "nativeTextCharacters": 97057,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CONTRACT-ACT",
+      "sha256": "e7cbaf3b266457d8f2809119d9230b6e801cd096ee6c2e3bccf7dc7887146aac",
+      "bytes": 840093,
+      "nativeTextCharacters": 129192,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CONSUMER-FAIR-COMPETITION",
+      "sha256": "9abb3196e38da5f3363d59102a995c8b9f1261012a9f6164451627781aeaf538",
+      "bytes": 991466,
+      "nativeTextCharacters": 191259,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FIN-BOT-GUIDELINES-EN",
+      "sha256": "2da211dee0acf959131dfb38f568122ed2f0a4f741123f1ca9abae5449e8d30f",
+      "bytes": 1113558,
+      "nativeTextCharacters": 32144,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FIN-BOT-REGULATIONS",
+      "sha256": "0b2c2bdc03f14a6a06a7488e08c0eb18174bfe5ab54a13deb47d978bf6c9189f",
+      "bytes": 590265,
+      "nativeTextCharacters": 58052,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PRIVACY-COMPLAINTS",
+      "sha256": "b478825c86acfddaa5f87c405d4d87d3132c563e33087732a6d2ae4dbdc9075d",
+      "bytes": 188831,
+      "nativeTextCharacters": 44040,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "TRAFFICKING-ACT",
+      "sha256": "c2bc29e39ed54df0de9c4f3d7a4ea91e92a07324b794e88d74e8fab159bff10c",
+      "bytes": 635809,
+      "nativeTextCharacters": 47919,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-SMALL-CLAIMS",
+      "sha256": "5b335a1b527ba227c7d86e365c26db5715f2034b6cbca8dcbf3c4bd46a44ac34",
+      "bytes": 408738,
+      "nativeTextCharacters": 25905,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FAMILY-GYUMI-APPEAL",
+      "sha256": "79d538dfe3260e8626a5ce7e1ef7d97f17f7c317788fab6e7eafdb96059f6ed2",
+      "bytes": 764866,
+      "nativeTextCharacters": 68164,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FAMILY-GYUMI-HIGH-COURT",
+      "sha256": "8ba6f79942dd799852b7268cddad23e0f6f7a1595d4d7792a92d9b2caeee6196",
+      "bytes": 729310,
+      "nativeTextCharacters": 46736,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-CONSTITUTION-EN",
+      "sha256": "43e5ea6305ef79df495ccb1f08d014b5d91b857e849ef0cd2b23fccd0962f56e",
+      "bytes": 1783311,
+      "nativeTextCharacters": 162374,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "LEGAL-AID-REGULATIONS",
+      "sha256": "dbeba356afb63d50f8d8a78634916f93c2e7681d838c6c1c5237f3503f84bdf9",
+      "bytes": 374247,
+      "nativeTextCharacters": 53626,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-LEGAL-AID-RULES",
+      "sha256": "1cffbcafb058b356a451557ed38131f4f02d5288de49512eb9a238ea7d1c2226",
+      "bytes": 358293,
+      "nativeTextCharacters": 24245,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-COURT-FEES",
+      "sha256": "bb7be9e1ba7d5c8ad000613a96d97aea29efdbe4773368f972435f6db35d96d7",
+      "bytes": 430431,
+      "nativeTextCharacters": 21863,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "WCF-NOTIFICATION",
+      "sha256": "800c06dbe1fe61429ab555ac896b858c32c07018e5c82f12ea23cb09450ea208",
+      "bytes": 229137,
+      "nativeTextCharacters": 5134,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "WCF-CLAIM",
+      "sha256": "5346b8609206156ad7d1da9703d1dd22ee1f7b2d45b90516f8c5ecdbb9226751",
+      "bytes": 571109,
+      "nativeTextCharacters": 7697,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SAFE-HOMES",
+      "sha256": "86af95d9aa4bb91ccc9d6668ba8540f57850d59d05ade81f59a0539df30ec822",
+      "bytes": 1126491,
+      "nativeTextCharacters": 135766,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "COURTS-MAGISTRATES",
+      "sha256": "189ac61a6af84a6e564c07f9b3f58aad91ed5a1a7ebe67f8793212b08f3d4a37",
+      "bytes": 930852,
+      "nativeTextCharacters": 168434,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-AMENDMENTS-2025",
+      "sha256": "8b936bb10b5ac0d3179cf3618d0e78ea9c4863f109a6de791d0118bc099de6d7",
+      "bytes": 163685,
+      "nativeTextCharacters": 20548,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CHILD-JUVENILE-RULES",
+      "sha256": "71a1a47f90227c85564d5a0a327b42cc884340a6dd2da73d0a655045e0ecb5e9",
+      "bytes": 1657737,
+      "nativeTextCharacters": 341546,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SAFE-NPA-II",
+      "sha256": "1fa125af2460f51307a4f306d5e1b09e444c2d3fd537d446e274857afd46eb68",
+      "bytes": 1670994,
+      "nativeTextCharacters": 371906,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SAFE-FGM-EN",
+      "sha256": "07597614697a057139991ca472e19cf4459b6498422bed60915c82ac08cf7396",
+      "bytes": 4471599,
+      "nativeTextCharacters": 304687,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SAFE-FGM-SW",
+      "sha256": "09b5db3d6cba3d22d19eeacd3de4977637bc057d6abf4b60654008b00d98e44f",
+      "bytes": 4037865,
+      "nativeTextCharacters": 257629,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-COURT-FEES-2018",
+      "sha256": "d87e3d11a06c8141d3886bdc3630c1ea8aec24beae8eb172eba4afc8db0ba365",
+      "bytes": 240229,
+      "nativeTextCharacters": 24094,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "RIGHTS-ENFORCEMENT",
+      "sha256": "34fe7dc16eaf75226ed2ef0cc08b5e533d2936653ef93df62dae649b477c3abd",
+      "bytes": 544065,
+      "nativeTextCharacters": 13715,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-GOVERNMENT",
+      "sha256": "5faed28b70df47979c9b1e27045481d1bbc32ff0dd47e53e76adaffdef86581d",
+      "bytes": 574289,
+      "nativeTextCharacters": 25303,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CIVIL-BIRTH-DEATH",
+      "sha256": "818dd7883b3c3dc37d9d170c6351722b0f85eb9367cdb3e5e8c45ee635a9852e",
+      "bytes": 591272,
+      "nativeTextCharacters": 30751,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CRIM-PROCEDURE-SUPPLEMENT-2025",
+      "sha256": "3215c18e37ceee7c55be5eb9961f941b93d82f88a8dccdd22de63c64d038d2e5",
+      "bytes": 1899008,
+      "nativeTextCharacters": 496670,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-INSTITUTIONS",
+      "sha256": "6c687a5f225cb99110df6abe28a22f7cc1a33bc115ee760ccd9c7ece93dd5593",
+      "bytes": 724788,
+      "nativeTextCharacters": 80020,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ESTATES-RULES",
+      "sha256": "3bc2bbeabc824a9d05deb289d5a1d18df2e1003fc59f572ac0e36a041c928df2",
+      "bytes": 989849,
+      "nativeTextCharacters": 168291,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-APPEAL-AMENDMENT-2025",
+      "sha256": "ab265b26887fa2615a4b6d7e79f5793ac7cc5335b600413b36af5651b7553147",
+      "bytes": 150697,
+      "nativeTextCharacters": 833,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FIN-BOT-AMENDMENT-2025",
+      "sha256": "4f4871240e6573ce02b8d5cf1e2fa5f6090fd9bad286aa3dec8cf531b8e9547f",
+      "bytes": 325749,
+      "nativeTextCharacters": 23237,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PRIVACY-PROCESSING",
+      "sha256": "f9adfdb2b956c8c9b4c6e4c10aecf8aa8a87909480b6f3c724b6d1a3b454a0aa",
+      "bytes": 260425,
+      "nativeTextCharacters": 58437,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ESTATES-AMENDMENT-2025",
+      "sha256": "536289083edba503f553c9393eb96897211dc4104e34e3ccb4b0176f104a7501",
+      "bytes": 523478,
+      "nativeTextCharacters": 43294,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ESTATES-PRIMARY-AMENDMENT-2025",
+      "sha256": "b23b294a09a6e62b01406f97f63d63e3750d02151b825aa2e15291cd707b7132",
+      "bytes": 473666,
+      "nativeTextCharacters": 25937,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-EFILING",
+      "sha256": "0b233b534323c25050bab3db4fe88fd4c4f34b659cd6b53bbca445b15487b3ab",
+      "bytes": 608414,
+      "nativeTextCharacters": 39028,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-ECMS-GUIDE",
+      "sha256": "5354d4562501788b9ee6ba9670212e581bf03a383a7a4ae5b4f3c472edd34065",
+      "bytes": 2427606,
+      "nativeTextCharacters": 42483,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CONSUMER-FCC-PROCEDURE",
+      "sha256": "a378de8a324f9324fa8efe5c914fc39d7bb126931823238f4cd633f0a675dea7",
+      "bytes": 749789,
+      "nativeTextCharacters": 191493,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "WORKERS-COMPENSATION",
+      "sha256": "8a7528905a06d1f1dac7744d46f9f9d2e65780561b343b398a54b217e035cb70",
+      "bytes": 869007,
+      "nativeTextCharacters": 134507,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "REFUGEES-ACT",
+      "sha256": "25f96ad86ba683c1debbcad3662650a5732ce5ea259eb48a600e58f033dd72f8",
+      "bytes": 671856,
+      "nativeTextCharacters": 62851,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CORRUPTION-ACT",
+      "sha256": "2150d0cc3ad7af1944a347116f0819be07b8c888555dfee978d918e57b54ea0f",
+      "bytes": 695661,
+      "nativeTextCharacters": 72774,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "LAND-ACQUISITION",
+      "sha256": "a7cef935eb70c42897019669e8944d93a92bef5be24c96869d58fa449f84935b",
+      "bytes": 628923,
+      "nativeTextCharacters": 49438,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "IMMIGRATION-ACT",
+      "sha256": "7f60d80ac9e8e199f0dc26b0372d1087f16a7cd87404d465277ecb6b372bf39f",
+      "bytes": 717284,
+      "nativeTextCharacters": 76480,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "HIV-RIGHTS",
+      "sha256": "50177c64c906f2e707528cb994bf7073a6b96a6514e7e457242118f5eb4d7d25",
+      "bytes": 655687,
+      "nativeTextCharacters": 54790,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ENVIRONMENT-ACT",
+      "sha256": "12a73786a078b645e593b9a3734d4bd0b99321b12e2001b7c9b29bb9ab8c1ff8",
+      "bytes": 1267357,
+      "nativeTextCharacters": 285487,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ENVIRONMENT-AMENDMENT",
+      "sha256": "924baaed560cb0b3577ac52b2ee704d40f547bd52e0b529b5a506caaaad89f00",
+      "bytes": 210481,
+      "nativeTextCharacters": 22176,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CMA-PROCEDURE",
+      "sha256": "04d7a0cb9eaf511c598909fc7d82268518d2a4bceada9bc3e20b1c529c6e4126",
+      "bytes": 16429038,
+      "nativeTextCharacters": 0,
+      "extractionSucceeded": true,
+      "requiresOCR": true,
+      "requiresSizePreparation": true
+    },
+    {
+      "researchSourceId": "CMA-FEES-2025",
+      "sha256": "1f06a9f5bbb54697876b1ce16406d5ba0d0697413b0c0083ff565f8360037e69",
+      "bytes": 201495,
+      "nativeTextCharacters": 3676,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "UTILITIES-COMPLAINT-RULES",
+      "sha256": "b21a141babc91b390c931f6f8817076432957b69a7956aa3621597c43ae253fd",
+      "bytes": 543540,
+      "nativeTextCharacters": 66462,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "TELECOM-COMMITTEE",
+      "sha256": "ad57ac61ee21de25c82ba3a66c9ff37dee37ff2dddde9ed4d9ad4ab1f864193b",
+      "bytes": 156747,
+      "nativeTextCharacters": 17089,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-APPEAL-PRINCIPAL",
+      "sha256": "d1235b521afea1dfd117b8aadf38b777044017c9e64660ff7ddeac9e1d1094aa",
+      "bytes": 284860,
+      "nativeTextCharacters": 189782,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CRIM-PENAL",
+      "sha256": "bb559f433ad8c580e74042f7802e4925045d202cbc3a27eb478496a4e607fefd",
+      "bytes": 1369688,
+      "nativeTextCharacters": 323976,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CMA-GUIDELINES",
+      "sha256": "0352b9a3dab7fad4fa25a6d88d3900416cc5ac03d40f59e60bfa369ddf6b5c81",
+      "bytes": 16429038,
+      "nativeTextCharacters": 0,
+      "extractionSucceeded": true,
+      "requiresOCR": true,
+      "requiresSizePreparation": true
+    },
+    {
+      "researchSourceId": "LABOUR-COURT-RULES",
+      "sha256": "5d8a54176148fdf8ed68f74da3f41c83d0909ed3dd2f6b136ed623eb842ce749",
+      "bytes": 7623563,
+      "nativeTextCharacters": 0,
+      "extractionSucceeded": true,
+      "requiresOCR": true,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-GENERAL-FORMS",
+      "sha256": "584fffbef3eb0383e4faff974e74bf5362f8085d05a387f1d8cf9b7d22e21d02",
+      "bytes": 14836253,
+      "nativeTextCharacters": 0,
+      "extractionSucceeded": true,
+      "requiresOCR": true,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "LABOUR-INSTITUTIONS-GENERAL",
+      "sha256": "fb8ec43376e8d4619a5735e72effdda221384195d5bfdfb034dcae3a17be204a",
+      "bytes": 369876,
+      "nativeTextCharacters": 21376,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-APPEAL-AMENDMENT-2024",
+      "sha256": "aad85aea8b6ab059f2c1746fe2139c8ac91d9246e3646e21b79235f25a3521e0",
+      "bytes": 444281,
+      "nativeTextCharacters": 29939,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-JUDICIAL-REVIEW",
+      "sha256": "67c4a947fd71d8a4c1f06316d8133d3a745014563a08fbad75a714763f635db6",
+      "bytes": 4261771,
+      "nativeTextCharacters": 12503,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SAFE-WITNESS-ACT",
+      "sha256": "e7523e2b5d1bd812da96e1a4bc97c6913406418257ae833572a7cf6a8c618fd4",
+      "bytes": 550518,
+      "nativeTextCharacters": 15306,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ADR-ARBITRATION-ACT",
+      "sha256": "e7d8263559a3d6ed2cd53e93c89b594765925c0f368445ce29ad70b4c2040157",
+      "bytes": 814537,
+      "nativeTextCharacters": 113992,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ADR-ARBITRATION-RULES",
+      "sha256": "8aa7aef85ee063084a71423cc54b194d05be901323bc0c1d4e1ab541887edd15",
+      "bytes": 2262748,
+      "nativeTextCharacters": 93406,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ADR-ACCREDITATION",
+      "sha256": "add4122ebd44795f916f359a04e76e86002cdfdc75db7db99c3f0f007a88f625",
+      "bytes": 1227471,
+      "nativeTextCharacters": 37351,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ADR-CONDUCT",
+      "sha256": "26aa1004b9bf42067aff1dd60fcc2d30fc1725b7d09d66fee5a36edfe3bd9f71",
+      "bytes": 925331,
+      "nativeTextCharacters": 29469,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SOCIAL-NSSF",
+      "sha256": "2a820e67ed109cd360595ab9c732b7006e94027e16e5a0d4b751ff5e197bec98",
+      "bytes": 773203,
+      "nativeTextCharacters": 95336,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SOCIAL-PSSSF-2025",
+      "sha256": "b5c92ea1a2663edf5b2f5b777be840710804f2085f06078cf9ad3d96f84ba447",
+      "bytes": 535618,
+      "nativeTextCharacters": 86222,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-APPLICABLE-LAWS",
+      "sha256": "e5a0335df213b1937e2d14670c1c066e01073ede9127499a0660850ad70769bd",
+      "bytes": 572043,
+      "nativeTextCharacters": 22378,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "RIGHTS-CHRAGG-ACT",
+      "sha256": "ef8d5791fec7ad5f769b8b065efa131f5ad4e3a8d538b0ccefc1a177cbe27362",
+      "bytes": 679798,
+      "nativeTextCharacters": 53647,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PROC-CIVIL-FORMS-2022",
+      "sha256": "b0b0a0cce7b9b35c4df451c15c655945054d9bf77f9a095905f5404ef1e676c0",
+      "bytes": 535086,
+      "nativeTextCharacters": 6028,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "AMENDMENTS-MISC-1-2025",
+      "sha256": "d279f62abda5a2ecd77be54778144d74b46adaafe55291c1624b6f8e26f53f90",
+      "bytes": 295174,
+      "nativeTextCharacters": 23860,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "AMENDMENTS-MISC-2-2025",
+      "sha256": "b92496b514b272665e7d9d0d738a973c7c3d868c282b4ee51f2c229b0aa56d46",
+      "bytes": 173901,
+      "nativeTextCharacters": 17067,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "AMENDMENTS-MISC-2024",
+      "sha256": "9532617fdbd294349b25ec90177f563f7ef5babb32897838e42a51fb9d4bca4d",
+      "bytes": 481463,
+      "nativeTextCharacters": 21353,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "LEGAL-AID-SUPPLEMENT-2025",
+      "sha256": "c542a3d7629541686b972ff6ced6de0c2d58e4680200c53bd2a9286d7d5bee42",
+      "bytes": 426193,
+      "nativeTextCharacters": 47027,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "AMENDMENTS-LEGAL-SECTOR-2023",
+      "sha256": "6ecfc75650da91624f467ca7cc0885be4ecb10f09fc96a5c10b8bc204127d3cc",
+      "bytes": 518396,
+      "nativeTextCharacters": 45466,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-EMPLOYMENT",
+      "sha256": "d7219598ab0b7c65b0b260ab4937f6065744f6d2e340db6c2aee4e2647082dbe",
+      "bytes": 9635173,
+      "nativeTextCharacters": 0,
+      "extractionSucceeded": true,
+      "requiresOCR": true,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-KADHIS-2024",
+      "sha256": "a38044f94dab972b70ff615cb9ac8b6fab8b89ef648cd616c15301b2477001c4",
+      "bytes": 251471,
+      "nativeTextCharacters": 30914,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-KADHIS-RULES-2021",
+      "sha256": "bbaf260133454d9c815fba35cd3077979d18aba6d81e1c83ddbfe2dc9108e49d",
+      "bytes": 519725,
+      "nativeTextCharacters": 105677,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-CRIMINAL-PROCEDURE",
+      "sha256": "04cf988baae4f3f9fe745af5098de4e54577aae17387bd7bd94a7e59851ee35c",
+      "bytes": 1388028,
+      "nativeTextCharacters": 379545,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-CRIMINAL-AMENDMENT-2021",
+      "sha256": "441ad73466ba45ebc1406d6bcac5dd7934c0f393500e5a920831cc9d83e3fa55",
+      "bytes": 208435,
+      "nativeTextCharacters": 10886,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-PENAL-2018",
+      "sha256": "9709c1cc810d417047705f6ce26c594376cab044f592d7634c9b81990e2274b3",
+      "bytes": 849476,
+      "nativeTextCharacters": 307760,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-LABOUR-RELATIONS",
+      "sha256": "6a7a96f583c7d8136e2132c0c032e5780f68f654f543f67d27ade508058db9e5",
+      "bytes": 493501,
+      "nativeTextCharacters": 106197,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-EMPLOYMENT-GAZETTE",
+      "sha256": "8d57076a9c177c08d41cb07771ed532a256ac4f5f432bd8030e74fd4144b0041",
+      "bytes": 548061,
+      "nativeTextCharacters": 164289,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-FORMS-READABLE",
+      "sha256": "c01776c927adead4393474d4889e3376158b69b23f95ee2e9bf74c6a8dbc55d5",
+      "bytes": 917982,
+      "nativeTextCharacters": 95867,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "LABOUR-COURT-READABLE",
+      "sha256": "39b7993d833203c2d09e8704f1449b14adc6b45754b8d77268b951467c8bf4c2",
+      "bytes": 935016,
+      "nativeTextCharacters": 165055,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FCC-CONSUMER-PROCEDURE",
+      "sha256": "33412744fb0cac260b751bd6f3d598589fefdde836803c1abe38be49ef973378",
+      "bytes": 1908818,
+      "nativeTextCharacters": 35069,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FCC-TRIBUNAL-RULES",
+      "sha256": "9b02d3993e89f49365f540c8f3043f43921afb000e93d58affcc6e2fea125421",
+      "bytes": 2773767,
+      "nativeTextCharacters": 38889,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FCC-AMENDMENT-2024",
+      "sha256": "af1f70230914d2960f5b936e26ec2d705eb35c3cbdbd0b40e0101e6c15293efd",
+      "bytes": 391097,
+      "nativeTextCharacters": 15826,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FCC-STANDARD-CONTRACTS",
+      "sha256": "677b00d839b6dbbf1efe9fd6e8ebec5ade9aaff4bf7fee455e250d9e2fae9a3b",
+      "bytes": 506990,
+      "nativeTextCharacters": 60080,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "FCC-DOMINANCE-2026",
+      "sha256": "0499c16902df2711af4285e557ccb95eac0f8a78035dfcb59884d465056b07b8",
+      "bytes": 349348,
+      "nativeTextCharacters": 14562,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-CHILD-GAZETTE",
+      "sha256": "2997c5168406851282abf2e3d75086f10192c613ab283c9e23c94e54c7ab6fce",
+      "bytes": 1050347,
+      "nativeTextCharacters": 176207,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "LAND-TRIBUNAL-PRINCIPAL",
+      "sha256": "5c89f0744e2c60fed7cd67285c6496aebdb54b534ea3744c750561ec29a639e1",
+      "bytes": 795181,
+      "nativeTextCharacters": 49091,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "WCF-REGULATIONS-2016",
+      "sha256": "e0571eafabf55e10958733155c33567cb00456b919aec6c83988bcee82aa6c8d",
+      "bytes": 692998,
+      "nativeTextCharacters": 98689,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "WCF-REGULATIONS-VERSION",
+      "sha256": "0000f4b9d011293181262b75a66bc43bf9b338e31a0ed43f111fece5ec111ecb",
+      "bytes": 413700,
+      "nativeTextCharacters": 80216,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "WCF-AMENDMENT-2021",
+      "sha256": "85863161e0197bff7613d486a6e14bae8d2de3b80b5e8564d8b16f5252887b5c",
+      "bytes": 217366,
+      "nativeTextCharacters": 17416,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-CHILD-COURT-RULES",
+      "sha256": "d1b1a81a71f6033bf2ce7ca17047da92ffbee831ad1bf39fbbb2d1318b820304",
+      "bytes": 778797,
+      "nativeTextCharacters": 214255,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "TELECOM-CONSUMER-REGULATIONS",
+      "sha256": "b830aafdb0e74ff11cfa65a26312beb45ddd77f6361e7971bcf6a514f112061c",
+      "bytes": 147623,
+      "nativeTextCharacters": 21293,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-PROVIDER-LIST",
+      "sha256": "b13c109b9a10341c0c30fd99f5762e2d53c5c39eac7f429e8ae8c19c2e80244d",
+      "bytes": 68629,
+      "nativeTextCharacters": 2363,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "TELECOM-GUIDELINE-2020",
+      "sha256": "bedd690627c2b55d4a2d493a75746c52ba111e80df5de6e0f942e6006e1ff3f6",
+      "bytes": 112345,
+      "nativeTextCharacters": 2448,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "TELECOM-GUIDELINE-UNDATED",
+      "sha256": "4c679a0beddfaa12931190e052a474e4da30fcb315eef1652aaaac5ec35f198e",
+      "bytes": 239896,
+      "nativeTextCharacters": 8745,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SOCIAL-BENEFITS-2018",
+      "sha256": "6d1341c6e626f38397b084250f5aad4533c204423b459c353c70288961720d00",
+      "bytes": 392618,
+      "nativeTextCharacters": 23613,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SOCIAL-BENEFITS-AMENDMENT-2022",
+      "sha256": "3e15eecd045a7cc3b95d7df368608bb9704a7f0b1cd11d05f3a4430da01b1baf",
+      "bytes": 684547,
+      "nativeTextCharacters": 5036,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SOCIAL-BENEFITS-AMENDMENT-2024",
+      "sha256": "5f3aa5a09da166e9b1de9d6570cb5cb4b66a6b76964900e38319f76e99284d2e",
+      "bytes": 231516,
+      "nativeTextCharacters": 9855,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PERSONAL-ISLAMIC-RESTATEMENT",
+      "sha256": "c9a5f197f2cb213ed3bc78ceb85078d6c03d2603ba3bb18b3ed981fc83bcba73",
+      "bytes": 520116,
+      "nativeTextCharacters": 2843,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CASE-LAND-SETH-2024",
+      "sha256": "79f2b948c9f1614c0a1d760d2110bf2d5dbe139cc46a6aa47615aa02fa3b30da",
+      "bytes": 222553,
+      "nativeTextCharacters": 13650,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CASE-ESTATE-LONYAMALI",
+      "sha256": "d14eaad983ab72aef20bb1dd8c2ca7c206d89960be46d620a20e8f513ee901d5",
+      "bytes": 269483,
+      "nativeTextCharacters": 2951,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CASE-LABOUR-OATH-2022",
+      "sha256": "27bc33ccb75e7ed21c8283af29f7defdcbc7f9b1c6ba4fa3703926c483b3fbdc",
+      "bytes": 238360,
+      "nativeTextCharacters": 10395,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CASE-INHERITANCE-LATIFA",
+      "sha256": "0ec63df67d997e99d83cf200240298daf52c2559f3de870f0abcacc212051f64",
+      "bytes": 247384,
+      "nativeTextCharacters": 2373,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "CASE-LAND-MABULA-2024",
+      "sha256": "678038faafd5478e68b485f3fe28a29fb64302225d2c09498911ef724606b2c7",
+      "bytes": 331923,
+      "nativeTextCharacters": 20259,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-DISABILITY-RULES-2022",
+      "sha256": "b35131a332162e53e1c2f6ce73759c4edd5468be1a737c7121fb74dd99a4ea0f",
+      "bytes": 298945,
+      "nativeTextCharacters": 33862,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PERSONAL-CUSTOMARY-NO2",
+      "sha256": "c6c256f9dbcd5f6cc236d6c0423196399440109749bf1a2c51101af386227244",
+      "bytes": 187362,
+      "nativeTextCharacters": 2864,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "PERSONAL-CUSTOMARY-NO4",
+      "sha256": "e3a772e37849d2c65461c9243cd23b7756a651952bf79ff0b5167ed80cf582a6",
+      "bytes": 240099,
+      "nativeTextCharacters": 25084,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-ENVIRONMENT-GAZETTE",
+      "sha256": "e6a5eddd4d1c8183920e93e86574744d5b4a6eb4ee2fe6bd87c07cec88c09128",
+      "bytes": 391715,
+      "nativeTextCharacters": 69632,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "ZNZ-KADHIS-SW-2024",
+      "sha256": "07242761e340a30d805f39cf01a01f2d5cd216223b8dfa893993813a8e0feefe",
+      "bytes": 295313,
+      "nativeTextCharacters": 31364,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "SOCIAL-NSSF-COMPLAINT-FORM",
+      "sha256": "abd52c8f8755e92d2efd530470d2927daf2aabdb30d8ff5c56c9c262300fce0a",
+      "bytes": 79998,
+      "nativeTextCharacters": 1954,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "BASE-CONSTITUTION",
+      "sha256": "d27a2826a8d18a55dd87365ad53c97df8b0f1a744ee905180487b339c8cfa1e6",
+      "bytes": 519689,
+      "nativeTextCharacters": 236162,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "BASE-LEGAL-AID",
+      "sha256": "8f08f04b92726d3253caac789228023a5e8f0dc06b09ffb06b4838e924743e70",
+      "bytes": 645709,
+      "nativeTextCharacters": 49606,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "BASE-ELRA",
+      "sha256": "16b46130dede13b77fd925a1208ddc340f4cf46fb8c65457e5f8655859442280",
+      "bytes": 945664,
+      "nativeTextCharacters": 164177,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "BASE-CHILD",
+      "sha256": "3f08c46fccf036c82853b2bfe379d42e4f3df2b2d339af326204e24b3ac44eb7",
+      "bytes": 865875,
+      "nativeTextCharacters": 140524,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "BASE-LAND",
+      "sha256": "a20814a7d879d3178bf749f78ebe2603c11a024e21f749f6d8df7438748538cf",
+      "bytes": 1492065,
+      "nativeTextCharacters": 384130,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "BASE-VILLAGE-LAND",
+      "sha256": "f78c163958b2e1ba878a01fef9d5e8a52811fab6011061f642789403920de931",
+      "bytes": 996321,
+      "nativeTextCharacters": 208251,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "BASE-MARRIAGE",
+      "sha256": "0230b8cc1997412f42a62d25e11fbf28c23c60616199ebbda668c73a2f1b5c12",
+      "bytes": 910582,
+      "nativeTextCharacters": 149927,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    },
+    {
+      "researchSourceId": "BASE-PRIVACY",
+      "sha256": "0c1ec2168bd30c95198eb70fee3db09052da83397100781df13e0bab8c77703f",
+      "bytes": 835674,
+      "nativeTextCharacters": 65876,
+      "extractionSucceeded": true,
+      "requiresOCR": false,
+      "requiresSizePreparation": false
+    }
+  ]
+}

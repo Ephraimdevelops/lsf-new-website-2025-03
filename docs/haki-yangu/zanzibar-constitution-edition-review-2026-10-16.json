@@ -1,0 +1,28 @@
+{
+  "retrievedOn": "2026-10-16",
+  "title": "Katiba ya Zanzibar ya 1984 \u2014 Toleo la 2020",
+  "publisherObserved": "Revolutionary Government of Zanzibar / Attorney General",
+  "officialHost": "Zanzibar Anti-Corruption and Economic Crimes Authority (ZAeCA)",
+  "sourceUrl": "https://zaeca.go.tz/static/media/Katiba-ya-Zanzibar-ya-1984-Toleo-la-2020.8562a79d9a4994a540fe.pdf",
+  "corroboratingCatalogue": "https://zanzibarassembly.go.tz/house-statistics.php/workingdocuments",
+  "language": "sw",
+  "jurisdiction": "zanzibar",
+  "observedEdition": "2020",
+  "observedConsolidationCoverage": "1985 through 2016, stated on cover",
+  "pagesFromOfficialWebExtraction": 108,
+  "sha256": "acb6be3aa47f56505cce2dfd50a14bee0a0aab97b9c84e6318b879e8cd5815d4",
+  "byteSize": 2243615,
+  "localPdf": "output/pdf/zanzibar-constitution-2020-sw.pdf",
+  "approvalStatus": "pending independent review, not approved by this preparation",
+  "remainingChecks": [
+    "Check later constitutional amendments after consolidation coverage",
+    "Verify commencement and topic-specific applicability",
+    "Review extraction, schedules and legal terminology",
+    "Confirm storage/indexing and quotation permissions before publication"
+  ],
+  "olderArchivedCopy": {
+    "researchSourceId": "ZNZ-CONSTITUTION-EN",
+    "observedEdition": "R.E. 2006",
+    "status": "Historical English copy, retained privately; not submitted as current evidence"
+  }
+}

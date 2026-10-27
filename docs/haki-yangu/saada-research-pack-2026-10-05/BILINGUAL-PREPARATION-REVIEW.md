@@ -24,7 +24,7 @@ To prepare for help with separation, divorce and matrimonial property, explain: 
 
 Eleza mahali pa ndoa na makazi, aina ya ndoa, watoto, mali na kama kuna ukatili. Andaa cheti au ushahidi wa ndoa, taarifa za mali na amri zilizopo ikiwa unazo. Njia ya talaka, matunzo au mali itachaguliwa baada ya kuthibitisha sheria na mamlaka husika.
 
-Reviewer source bundle: BASE-MARRIAGE, BASE-CHILD, PROC-CIVIL, ZNZ-KADHIS-2024, ZNZ-KADHIS-RULES-2021, ZNZ-CHILD-GAZETTE
+Reviewer source bundle: BASE-MARRIAGE, BASE-CHILD, PROC-CIVIL, ZNZ-KADHIS-2024, ZNZ-KADHIS-RULES-2021, ZNZ-CHILD-GAZETTE, CASE-LAND-MABULA-2024
 
 ## P04 — Child maintenance, custody and access
 
@@ -56,7 +56,7 @@ To prepare for help with boundary, ownership and village land dispute, explain: 
 
 Eleza eneo halisi la ardhi, kama ni ardhi ya kijiji, aina ya mgogoro na mashauri yaliyotangulia. Andaa hati, CCRO, makubaliano, ramani au maamuzi ikiwa unayo. Mamlaka ya baraza au mahakama itahitaji kuthibitishwa kabla ya kuelekezwa kufungua shauri.
 
-Reviewer source bundle: BASE-LAND, BASE-VILLAGE-LAND, LAND-DISPUTES, LAND-TRIBUNAL-2023, LAND-TRIBUNAL-PRINCIPAL, AMENDMENTS-LEGAL-SECTOR-2023
+Reviewer source bundle: BASE-LAND, BASE-VILLAGE-LAND, LAND-DISPUTES, LAND-TRIBUNAL-2023, ZNZ-LAND-TENURE, ZNZ-LAND-TRIBUNAL, ZNZ-LAND-TRIBUNAL-ASSEMBLY, ZNZ-LAND-AMENDMENT-2008, ZNZ-LAND-COMPILATION-2017, CASE-ZNZ-LAND-2025, LAND-TRIBUNAL-PRINCIPAL, AMENDMENTS-LEGAL-SECTOR-2023, CASE-LAND-SETH-2024
 
 ## P08 — Tenant, rent and eviction problems
 
@@ -64,7 +64,7 @@ To prepare for help with tenant, rent and eviction problems, explain: Location; 
 
 Eleza eneo, aina ya upangaji, notisi uliyopokea na tarehe ya kupokea. Taja kufungiwa nje au vitisho. Andaa mkataba, risiti na mawasiliano ikiwa yapo. Usalama na hatua zinazohitaji uharaka vitathminiwe kabla ya kuchagua njia ya mgogoro.
 
-Reviewer source bundle: BASE-LAND, LAND-DISPUTES, PROC-CIVIL, LAND-TRIBUNAL-PRINCIPAL
+Reviewer source bundle: BASE-LAND, LAND-DISPUTES, PROC-CIVIL, LAND-TRIBUNAL-PRINCIPAL, ZNZ-LAND-TENURE, ZNZ-LAND-TRIBUNAL
 
 ## P09 — Compulsory acquisition and compensation
 
@@ -72,7 +72,7 @@ To prepare for help with compulsory acquisition and compensation, explain: Who i
 
 Eleza mamlaka iliyotoa notisi, eneo la ardhi na hatua ya utwaaji. Andaa notisi, uthamini, ofa ya fidia na kumbukumbu za malipo ikiwa zipo. Tarehe za notisi na upokeaji zinahitaji kutofautishwa; mtaalamu atathibitisha njia na muda wa kupinga.
 
-Reviewer source bundle: LAND-ACQUISITION, BASE-LAND, BASE-VILLAGE-LAND, LAND-DISPUTES, LAND-TRIBUNAL-PRINCIPAL
+Reviewer source bundle: LAND-ACQUISITION, BASE-LAND, BASE-VILLAGE-LAND, LAND-DISPUTES, LAND-TRIBUNAL-PRINCIPAL, ZNZ-LAND-TENURE, ZNZ-LAND-TRIBUNAL
 
 ## P10 — Estate administration and inheritance
 
@@ -80,7 +80,7 @@ To prepare for help with estate administration and inheritance, explain: Mainlan
 
 Eleza eneo, tarehe ya kifo, wosia, mali, madeni, wategemezi na kama msimamizi ameteuliwa. Andaa ushahidi wa kifo na amri zilizopo ikiwa upo. Sheria ya mirathi, mamlaka na fomu zinazotumika zinahitaji kuthibitishwa kwa hali husika.
 
-Reviewer source bundle: ESTATES-PROBATE, ESTATES-RULES, ESTATES-AMENDMENT-2025, ESTATES-PRIMARY-AMENDMENT-2025, ZNZ-KADHIS-2024, ZNZ-KADHIS-RULES-2021, PROC-APPLICABLE-LAWS, AMENDMENTS-LEGAL-SECTOR-2023
+Reviewer source bundle: ESTATES-PROBATE, ESTATES-RULES, ESTATES-AMENDMENT-2025, ESTATES-PRIMARY-AMENDMENT-2025, PERSONAL-CUSTOMARY-NO2, PERSONAL-CUSTOMARY-NO4, ZNZ-KADHIS-SW-2024, ZNZ-KADHIS-2024, ZNZ-KADHIS-RULES-2021, PROC-APPLICABLE-LAWS, AMENDMENTS-LEGAL-SECTOR-2023, PERSONAL-ISLAMIC-RESTATEMENT, CASE-ESTATE-LONYAMALI, CASE-INHERITANCE-LATIFA
 
 ## P11 — Challenge an administrator or disputed estate
 
@@ -96,7 +96,7 @@ To prepare for help with dismissal, wages and workplace discrimination, explain:
 
 Eleza Tanzania Bara au Zanzibar, aina ya ajira, sekta na tarehe ya kufukuzwa au tukio. Andaa mkataba, hati ya kufukuzwa, mishahara na mawasiliano ikiwa yapo. Mtaalamu atathibitisha kama njia ni CMA, mahakama, utumishi wa umma au utaratibu wa Zanzibar pamoja na fomu na muda.
 
-Reviewer source bundle: BASE-ELRA, EMPLOYMENT-INSTITUTIONS, EMPLOYMENT-AMENDMENTS-2025, CMA-FAQ, CMA-RULES, CMA-PROCEDURE, CMA-GUIDELINES, CMA-FEES-2025, LABOUR-COURT-RULES, LABOUR-COURT-READABLE, EMPLOYMENT-GENERAL-FORMS, EMPLOYMENT-FORMS-READABLE, LABOUR-INSTITUTIONS-GENERAL, ZNZ-EMPLOYMENT, ZNZ-EMPLOYMENT-GAZETTE, ZNZ-LABOUR-RELATIONS
+Reviewer source bundle: BASE-ELRA, EMPLOYMENT-INSTITUTIONS, EMPLOYMENT-AMENDMENTS-2025, CMA-FAQ, CMA-RULES, CMA-PROCEDURE, CMA-GUIDELINES, CMA-FEES-2025, LABOUR-COURT-RULES, LABOUR-COURT-READABLE, EMPLOYMENT-GENERAL-FORMS, EMPLOYMENT-FORMS-READABLE, LABOUR-INSTITUTIONS-GENERAL, ZNZ-EMPLOYMENT, ZNZ-EMPLOYMENT-GAZETTE, ZNZ-LABOUR-RELATIONS, CASE-LABOUR-OATH-2022
 
 ## P13 — Work injury and occupational disease
 
@@ -112,7 +112,7 @@ To prepare for help with pension and social-security benefit dispute, explain: W
 
 Taja mfuko, aina ya mafao na uamuzi unaopingwa. Namba ya mwanachama ihifadhiwe katika njia salama. Andaa taarifa ya michango, mawasiliano na uamuzi ikiwa zipo. Mtaalamu atathibitisha sheria ya mfuko, utaratibu wa malalamiko na nyaraka za madai.
 
-Reviewer source bundle: EMPLOYMENT-INSTITUTIONS, CMA-RULES, SOCIAL-NSSF, SOCIAL-PSSSF-2025
+Reviewer source bundle: EMPLOYMENT-INSTITUTIONS, CMA-RULES, SOCIAL-NSSF-COMPLAINT-FORM, SOCIAL-NSSF-FORMS-CATALOGUE, SOCIAL-NSSF-REGISTRATION, ZNZ-ZSSF-CATALOGUE, SOCIAL-NSSF, SOCIAL-PSSSF-2025, SOCIAL-BENEFITS-2018, SOCIAL-BENEFITS-AMENDMENT-2022, SOCIAL-BENEFITS-AMENDMENT-2024
 
 ## P15 — Debt, contract and possible small claim
 
@@ -120,7 +120,7 @@ To prepare for help with debt, contract and possible small claim, explain: Juris
 
 Eleza mahali mtu alipozuiliwa, kituo au mahakama, tuhuma na tarehe inayofuata. Andaa notisi au namba ya shauri ikiwa ipo. Hatua za haraka na masharti ya dhamana yanahitaji mtaalamu; usiahidi kuachiwa au kiasi cha dhamana.
 
-Reviewer source bundle: CONTRACT-ACT, PROC-SMALL-CLAIMS, COURTS-MAGISTRATES, PROC-LIMITATION, PROC-EFILING, ZNZ-CRIMINAL-PROCEDURE, ZNZ-CRIMINAL-AMENDMENT-2021, CRIM-PENAL, ZNZ-PENAL-2018
+Reviewer source bundle: CONTRACT-ACT, PROC-SMALL-CLAIMS, COURTS-MAGISTRATES, PROC-LIMITATION, PROC-EFILING
 
 ## P16 — Defend a claim, summons or default decision
 
@@ -128,7 +128,7 @@ To prepare for help with defend a claim, summons or default decision, explain: W
 
 Eleza aina ya kosa, vitisho na kama taarifa imetolewa. Chagua njia salama ya mawasiliano. Hifadhi ushahidi uliopatikana kwa njia halali ikiwa ni salama. Ulinzi wa shahidi, usiri na hatua za taarifa lazima zitathminiwe; kutotambulika hakuahidiwi.
 
-Reviewer source bundle: PROC-CIVIL, PROC-SMALL-CLAIMS, PROC-LIMITATION, PROC-EFILING, ZNZ-CRIMINAL-PROCEDURE, ZNZ-CRIMINAL-AMENDMENT-2021, SAFE-WITNESS-ACT
+Reviewer source bundle: PROC-CIVIL, PROC-SMALL-CLAIMS, PROC-LIMITATION, PROC-EFILING
 
 ## P17 — Appeal, revision or enforcement of an order
 
@@ -152,7 +152,7 @@ To prepare for help with arrest, detention, bail and criminal defence, explain: 
 
 Eleza dai, upande unaodaiwa, kiasi, eneo na hatua zilizotangulia. Andaa makubaliano, risiti na mawasiliano ikiwa yapo. Mtaalamu atachunguza kama shauri linatimiza masharti ya madai madogo na halimo katika makundi yaliyotengwa.
 
-Reviewer source bundle: CRIM-PROCEDURE-SUPPLEMENT-2025, PROC-EVIDENCE, BASE-CHILD, CHILD-JUVENILE-RULES, BASE-LEGAL-AID
+Reviewer source bundle: CRIM-PROCEDURE-SUPPLEMENT-2025, PROC-EVIDENCE, BASE-CHILD, CHILD-JUVENILE-RULES, BASE-LEGAL-AID, ZNZ-CRIMINAL-PROCEDURE, ZNZ-CRIMINAL-AMENDMENT-2021, CRIM-PENAL, ZNZ-PENAL-2018
 
 ## P20 — Report crime and support a victim or witness
 
@@ -160,7 +160,7 @@ To prepare for help with report crime and support a victim or witness, explain: 
 
 Eleza aina ya madai, pande, eneo, kiasi na notisi au tarehe iliyopo. Andaa makubaliano, malipo, madai ya awali na majibu ikiwa yapo. Njia ya mahakama, nyaraka, uwasilishaji na muda zitathibitishwa kwa aina ya shauri.
 
-Reviewer source bundle: CRIM-PROCEDURE-SUPPLEMENT-2025, TRAFFICKING-ACT, SAFE-NPA-II, SAFE-HOMES
+Reviewer source bundle: CRIM-PROCEDURE-SUPPLEMENT-2025, TRAFFICKING-ACT, SAFE-NPA-II, SAFE-HOMES, ZNZ-CRIMINAL-PROCEDURE, ZNZ-CRIMINAL-AMENDMENT-2021, SAFE-WITNESS-ACT
 
 ## P21 — Trafficking or exploitation support
 
@@ -192,7 +192,7 @@ To prepare for help with water, electricity and regulated utility complaint, exp
 
 Eleza eneo, mtoa huduma wa maji au umeme, bili au notisi ya kukatiwa na hatua za malalamiko. Taja hatari ya usalama. Andaa risiti, notisi na majibu ikiwa yapo. Mamlaka ya mdhibiti, ikiwemo tofauti za Tanzania Bara na Zanzibar, lazima ithibitishwe.
 
-Reviewer source bundle: UTILITIES-CATALOGUE, UTILITIES-WATER, UTILITIES-COMPLAINT-RULES
+Reviewer source bundle: UTILITIES-CATALOGUE, UTILITIES-WATER, UTILITIES-COMPLAINT-RULES, ZNZ-ZURA-CATALOGUE
 
 ## P25 — Faulty goods, unfair terms and business complaint
 
@@ -224,7 +224,7 @@ To prepare for help with disability, discrimination and access to services, expl
 
 Eleza huduma au ajira, tukio la ubaguzi, eneo na marekebisho unayohitaji ili kupata huduma. Andaa uamuzi au mawasiliano ikiwa yapo bila kukusanya taarifa za matibabu zisizohitajika. Njia inayofikika na tiba ya kisheria zitathibitishwa.
 
-Reviewer source bundle: DISABILITY-ACT, RIGHTS-ENFORCEMENT, BASE-CONSTITUTION, BASE-ELRA, RIGHTS-CHRAGG-ACT, AMENDMENTS-MISC-2-2025
+Reviewer source bundle: DISABILITY-ACT, RIGHTS-ENFORCEMENT, BASE-CONSTITUTION, BASE-ELRA, ZNZ-DISABILITY-RULES-2022, RIGHTS-CHRAGG-ACT, AMENDMENTS-MISC-2-2025
 
 ## P29 — Public authority decision and constitutional rights
 
@@ -264,7 +264,7 @@ To prepare for help with environmental harm and community complaint, explain: Lo
 
 Eleza eneo, shughuli au uchafuzi, tarehe na madhara. Taja hatari ya sasa na malalamiko yaliyotolewa. Andaa picha zilizopatikana salama, notisi au kibali cha umma ikiwa kipo. Sheria ya mazingira, mamlaka na njia ya kupinga zitathibitishwa.
 
-Reviewer source bundle: ENVIRONMENT-ACT, ENVIRONMENT-AMENDMENT, PROC-GOVERNMENT
+Reviewer source bundle: ENVIRONMENT-ACT, ENVIRONMENT-AMENDMENT, PROC-GOVERNMENT, ZNZ-ENVIRONMENT-GAZETTE, ZNZ-ZEMA-CATALOGUE
 
 ## P34 — Mediation and alternative dispute resolution
 

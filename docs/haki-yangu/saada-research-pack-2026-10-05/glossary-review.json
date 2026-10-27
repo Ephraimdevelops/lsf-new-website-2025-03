@@ -1,0 +1,293 @@
+{
+  "status": "original_terminology_draft_not_authoritative_translation",
+  "terms": [
+    {
+      "id": "TERM-01",
+      "english": "Legal aid",
+      "kiswahiliDraft": "Msaada wa kisheria",
+      "explanationEnDraft": "Legal help under an applicable legal-aid scheme; eligibility and services depend on the scheme.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-02",
+      "english": "Jurisdiction",
+      "kiswahiliDraft": "Mamlaka ya kisheria",
+      "explanationEnDraft": "The legal power of a particular body to handle a particular matter.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-03",
+      "english": "Claimant",
+      "kiswahiliDraft": "Mdai",
+      "explanationEnDraft": "The person bringing a claim; terminology differs between proceedings.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-04",
+      "english": "Respondent",
+      "kiswahiliDraft": "Mjibu maombi au mjibu rufaa",
+      "explanationEnDraft": "The party responding to an application or appeal; use the term prescribed by that proceeding.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-05",
+      "english": "Defendant",
+      "kiswahiliDraft": "Mdaiwa au mshtakiwa",
+      "explanationEnDraft": "A responding party in civil proceedings or an accused person in criminal proceedings; these roles must be distinguished.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-06",
+      "english": "Summons",
+      "kiswahiliDraft": "Wito wa mahakama",
+      "explanationEnDraft": "A formal document requiring a response or attendance; inspect the actual document and service.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-07",
+      "english": "Service of documents",
+      "kiswahiliDraft": "Ufikishaji wa nyaraka kisheria",
+      "explanationEnDraft": "Delivering documents in the manner required by the applicable rules.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-08",
+      "english": "Hearing",
+      "kiswahiliDraft": "Usikilizaji wa shauri",
+      "explanationEnDraft": "A proceeding at which the relevant body hears the matter.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-09",
+      "english": "Judgment",
+      "kiswahiliDraft": "Hukumu",
+      "explanationEnDraft": "A court decision; its reasons, orders and available challenges must be read together.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-10",
+      "english": "Order",
+      "kiswahiliDraft": "Amri",
+      "explanationEnDraft": "A direction or decision made by a competent body.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-11",
+      "english": "Decree",
+      "kiswahiliDraft": "Decree — istilahi ya kuthibitishwa",
+      "explanationEnDraft": "A formal expression of a civil adjudication as defined by the applicable law; do not equate every order with a decree.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-12",
+      "english": "Appeal",
+      "kiswahiliDraft": "Rufaa",
+      "explanationEnDraft": "A challenge to a decision before an appellate body, subject to applicable conditions.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-13",
+      "english": "Revision",
+      "kiswahiliDraft": "Mapitio ya mamlaka ya juu — kuthibitishwa",
+      "explanationEnDraft": "Supervisory examination under the applicable law; distinguish it from review by the deciding court.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-14",
+      "english": "Review",
+      "kiswahiliDraft": "Kupitiwa upya kwa uamuzi — kuthibitishwa",
+      "explanationEnDraft": "Reconsideration under the applicable rules; distinguish it from an appeal or supervisory revision.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-15",
+      "english": "Limitation period",
+      "kiswahiliDraft": "Muda wa ukomo wa kuleta shauri",
+      "explanationEnDraft": "A legal time limit whose trigger, exceptions and extension rules require issue-specific checking.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-16",
+      "english": "Extension of time",
+      "kiswahiliDraft": "Kuongezewa muda",
+      "explanationEnDraft": "Permission to take a step after the usual time, where the applicable law allows it.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-17",
+      "english": "Stay",
+      "kiswahiliDraft": "Kusimamishwa kwa hatua au utekelezaji",
+      "explanationEnDraft": "A temporary suspension ordered under applicable law; filing an appeal does not automatically establish a stay.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-18",
+      "english": "Injunction",
+      "kiswahiliDraft": "Amri ya zuio",
+      "explanationEnDraft": "An order concerning doing or refraining from specified acts; conditions depend on the proceeding.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-19",
+      "english": "Affidavit",
+      "kiswahiliDraft": "Hati ya kiapo",
+      "explanationEnDraft": "A written statement sworn or affirmed in a legally recognised manner.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-20",
+      "english": "Witness",
+      "kiswahiliDraft": "Shahidi",
+      "explanationEnDraft": "A person providing evidence; safety and procedural requirements need separate consideration.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-21",
+      "english": "Consent",
+      "kiswahiliDraft": "Ridhaa",
+      "explanationEnDraft": "Agreement to a specified action; validity and required form depend on the action and person involved.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-22",
+      "english": "Confidentiality",
+      "kiswahiliDraft": "Usiri",
+      "explanationEnDraft": "Restrictions on sharing information; do not promise absolute secrecy without an approved policy and legal basis.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-23",
+      "english": "Referral",
+      "kiswahiliDraft": "Rufaa ya huduma",
+      "explanationEnDraft": "A handoff to a service provider; distinguish this service referral from a court appeal.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-24",
+      "english": "Mediation",
+      "kiswahiliDraft": "Usuluhishi",
+      "explanationEnDraft": "A facilitated attempt to reach agreement; suitability, voluntariness and safety must be assessed.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-25",
+      "english": "Arbitration",
+      "kiswahiliDraft": "Uamuzi wa mgogoro kwa usuluhishi wa kisheria — kuthibitishwa",
+      "explanationEnDraft": "An adjudicative dispute process under an agreement or law; distinguish it from facilitated mediation.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-26",
+      "english": "Probate",
+      "kiswahiliDraft": "Uthibitisho wa wosia — kuthibitishwa",
+      "explanationEnDraft": "A legal process or grant relating to a will under the applicable succession law.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-27",
+      "english": "Administrator of estate",
+      "kiswahiliDraft": "Msimamizi wa mirathi",
+      "explanationEnDraft": "A person appointed under the applicable law to administer an estate; family nomination alone must not be assumed to confer authority.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-28",
+      "english": "Beneficiary",
+      "kiswahiliDraft": "Mnufaika",
+      "explanationEnDraft": "A person entitled or potentially entitled under a scheme, estate or instrument; entitlement needs verification.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-29",
+      "english": "Fee remission",
+      "kiswahiliDraft": "Msamaha au upunguzaji wa ada — kuthibitishwa",
+      "explanationEnDraft": "Relief from a fee under the applicable rules; eligibility and procedure must be checked.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-30",
+      "english": "Reasonable accommodation",
+      "kiswahiliDraft": "Marekebisho yanayofaa kwa upatikanaji — kuthibitishwa",
+      "explanationEnDraft": "An accessibility adjustment whose legal definition and duties depend on the applicable disability law.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-31",
+      "english": "Commencement",
+      "kiswahiliDraft": "Kuanza kutumika kwa sheria",
+      "explanationEnDraft": "When legal provisions come into operation; assent, publication and appointed dates may differ.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    },
+    {
+      "id": "TERM-32",
+      "english": "Repeal and savings",
+      "kiswahiliDraft": "Kufutwa kwa sheria na masharti ya kuendeleza mambo yaliyotangulia",
+      "explanationEnDraft": "Provisions ending an earlier law while addressing some existing rights, actions or proceedings.",
+      "translationReviewed": false,
+      "legalAdviceApproved": false,
+      "productionEligible": false
+    }
+  ]
+}

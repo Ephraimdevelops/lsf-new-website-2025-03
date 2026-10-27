@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
+import { requirePublicMediaReference } from "./lib/managedUploads";
 import { resolveImageUrl } from "./lib/mediaHelpers";
 
 // Get all programs
@@ -63,6 +64,7 @@ export const create = mutation({
     handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin", "staff"]);
 
+        await requirePublicMediaReference(ctx, args.imageUrl);
         return await ctx.db.insert("programs", args);
     },
 });
@@ -83,6 +85,8 @@ export const update = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
+        const previous = await ctx.db.get(id);
+        await requirePublicMediaReference(ctx, fields.imageUrl, previous?.imageUrl);
         await ctx.db.patch(id, fields);
     },
 });

@@ -13,7 +13,7 @@ export function QuickExit({ locale }: { locale: Locale }) {
       style={styles.button}
     >
       <Ionicons name="exit-outline" size={16} color={colors.surface} />
-      <Text style={styles.text}>{locale === "sw" ? "Toka" : "Exit"}</Text>
+      <Text style={styles.text}>{locale === "sw" ? "Toka haraka" : "Quick exit"}</Text>
     </Pressable>
   );
 }

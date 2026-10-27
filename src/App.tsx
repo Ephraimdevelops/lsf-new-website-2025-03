@@ -1,3 +1,5 @@
+import BrandLoading from './components/shared/BrandLoading';
+import { LanguagePreferenceSync } from "@/components/auth/LanguagePreferenceSync";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +11,7 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { AccountSyncProvider } from "@/hooks/useStoreUserEffect";
 import CookieConsent from "@/components/CookieConsent";
+import WorkspaceFrame from "@/components/dashboard/WorkspaceFrame";
 
 import { lazyWithRetry } from "./utils/lazyRetry";
 
@@ -73,13 +76,18 @@ const Bookmarks = lazyWithRetry(() => import("./pages/Bookmarks"));
 const SuccessStories = lazyWithRetry(() => import("./pages/SuccessStories"));
 const Whistleblower = lazyWithRetry(() => import("./pages/Whistleblower"));
 const FAQ = lazyWithRetry(() => import("./pages/FAQ"));
+const PlatformExplainer = lazyWithRetry(() => import("./pages/PlatformExplainer"));
 const HakiYangu = lazyWithRetry(() => import("./pages/HakiYangu"));
 const SaraAI = lazyWithRetry(() => import("./pages/SaraAI"));
+const AccountDeletion = lazyWithRetry(() => import("./pages/AccountDeletion"));
 const Privacy = lazyWithRetry(() => import("./pages/Privacy"));
 const Terms = lazyWithRetry(() => import("./pages/Terms"));
 const Cookies = lazyWithRetry(() => import("./pages/Cookies"));
 const Accessibility = lazyWithRetry(() => import("./pages/Accessibility"));
-const StaffDashboard = lazyWithRetry(() => import("./pages/StaffDashboard"));
+const SupervisorCase = lazyWithRetry(() => import("./pages/SupervisorCase"));
+const SupervisorDashboard = lazyWithRetry(() => import("./pages/SupervisorDashboard"));
+const StaffDashboard = lazyWithRetry(() => import("./pages/StaffWorkspace"));
+const ParalegalSetup = lazyWithRetry(() => import("./pages/ParalegalSetup"));
 const ParalegalDashboard = lazyWithRetry(() => import("./pages/ParalegalDashboard"));
 const ParalegalLearning = lazyWithRetry(() => import("./pages/ParalegalLearning"));
 const TrainingManagement = lazyWithRetry(() => import("./pages/TrainingManagement"));
@@ -94,6 +102,7 @@ const ProfileSettings = lazyWithRetry(() => import("./pages/ProfileSettings"));
 const NotificationCenter = lazyWithRetry(() => import("./pages/NotificationCenter"));
 const Signup = lazyWithRetry(() => import("./pages/Signup"));
 const Login = lazyWithRetry(() => import("./pages/Login"));
+const WorkspacePreview = lazyWithRetry(() => import("./pages/WorkspacePreview"));
 const Join = lazyWithRetry(() => import("./pages/Join"));
 const LSFChatbotFullPage = lazyWithRetry(() => import("./components/shared/chatbot/LSFChatbotFullPage"));
 const Connect = lazyWithRetry(() => import("./pages/Connect"));
@@ -107,18 +116,11 @@ const ParalegalReviewDetail = lazyWithRetry(() => import("./pages/ParalegalRevie
 const SafeguardingDashboard = lazyWithRetry(() => import("./pages/SafeguardingDashboard"));
 
 // Loading component
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-white">
-    <div className="text-center">
-      <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent mb-4"></div>
-      <p className="text-neutral-600">Loading...</p>
-    </div>
-  </div>
-);
+const PageLoader = () => <BrandLoading task="app" fullScreen/>;
 
 // Auth sync wrapper - syncs Clerk users to Convex
 const AuthSync = ({ children }: { children: React.ReactNode }) => {
-  return <AccountSyncProvider>{children}</AccountSyncProvider>;
+  return <AccountSyncProvider><LanguagePreferenceSync />{children}</AccountSyncProvider>;
 };
 
 const queryClient = new QueryClient();
@@ -130,10 +132,12 @@ function App() {
         <TooltipProvider>
           <AuthSync>
             <Router>
+              <WorkspaceFrame>
               <div className="min-h-screen bg-white">
                 <ErrorBoundary>
                   <Suspense fallback={<PageLoader />}>
                     <Routes>
+                      {import.meta.env.DEV && <Route path="/workspace-preview" element={<WorkspacePreview />} />}
                       <Route path="/" element={<Index />} />
                       <Route path="/new-homepage" element={<NewHomepage />} />
                       <Route path="/new-homepage01" element={<HomepageConcept variant={1} />} />
@@ -189,6 +193,9 @@ function App() {
                           <LinksManager />
                         </ProtectedRoute>
                       } />
+                      <Route path="/dashboard/staff/cases/:id" element={<ProtectedRoute allowedRoles={["admin", "staff", "supervisor"]}><SupervisorCase /></ProtectedRoute>} />
+                      <Route path="/dashboard/supervisor/cases/:id" element={<ProtectedRoute allowedRoles={["admin", "supervisor"]}><SupervisorCase /></ProtectedRoute>} />
+                      <Route path="/dashboard/supervisor" element={<ProtectedRoute allowedRoles={["admin", "supervisor"]}><SupervisorDashboard /></ProtectedRoute>} />
                       <Route path="/dashboard/staff" element={
                         <ProtectedRoute allowedRoles={["admin", "supervisor", "staff"]}>
                           <StaffDashboard />
@@ -233,11 +240,13 @@ function App() {
                           <LegalGuideReview />
                         </ProtectedRoute>
                       } />
+                      <Route path="/dashboard/provider" element={<ProtectedRoute allowedRoles={["provider_staff"]}><ParalegalDashboard /></ProtectedRoute>} />
                       <Route path="/dashboard/paralegal" element={
                         <ProtectedRoute allowedRoles={["paralegal", "provider_staff"]}>
                           <ParalegalDashboard />
                         </ProtectedRoute>
                       } />
+                      <Route path="/dashboard/paralegal/onboarding" element={<ProtectedRoute allowedRoles={["paralegal"]}><ParalegalSetup /></ProtectedRoute>} />
                       <Route path="/dashboard/paralegal/learning" element={
                         <ProtectedRoute allowedRoles={["paralegal"]}>
                           <ParalegalLearning />
@@ -253,12 +262,12 @@ function App() {
                           <StakeholderDashboard />
                         </ProtectedRoute>
                       } />
-                      <Route path="/dashboard/user/cases/:id" element={<ProtectedRoute allowedRoles={["user"]}><BeneficiaryCase /></ProtectedRoute>} />
-                      <Route path="/dashboard/user/requests/:id" element={<ProtectedRoute allowedRoles={["user"]}><BeneficiaryRequest /></ProtectedRoute>} />
-                      <Route path="/dashboard/user/saved-help" element={<ProtectedRoute allowedRoles={["user"]}><SavedHelp /></ProtectedRoute>} />
-                      <Route path="/dashboard/user/documents" element={<ProtectedRoute allowedRoles={["user"]}><BeneficiaryDocuments /></ProtectedRoute>} />
+                      <Route path="/dashboard/user/cases/:id" element={<ProtectedRoute allowedRoles={["user", "paralegal", "provider_staff"]}><BeneficiaryCase /></ProtectedRoute>} />
+                      <Route path="/dashboard/user/requests/:id" element={<ProtectedRoute allowedRoles={["user", "paralegal", "provider_staff"]}><BeneficiaryRequest /></ProtectedRoute>} />
+                      <Route path="/dashboard/user/saved-help" element={<ProtectedRoute allowedRoles={["user", "paralegal", "provider_staff"]}><SavedHelp /></ProtectedRoute>} />
+                      <Route path="/dashboard/user/documents" element={<ProtectedRoute allowedRoles={["user", "paralegal", "provider_staff"]}><BeneficiaryDocuments /></ProtectedRoute>} />
                       <Route path="/dashboard/user" element={
-                        <ProtectedRoute allowedRoles={["user"]}>
+                        <ProtectedRoute allowedRoles={["user", "paralegal", "provider_staff"]}>
                           <UserDashboard />
                         </ProtectedRoute>
                       } />
@@ -269,6 +278,7 @@ function App() {
                       <Route path="/whistleblower" element={<Whistleblower />} />
                       <Route path="/faq" element={<FAQ />} />
                       <Route path="/haki-yangu" element={<HakiYangu />} />
+                      <Route path="/haki-yangu/how-it-works" element={<PlatformExplainer />} />
                       <Route path="/find-help" element={<FindHelp />} />
                       <Route path="/find-help/:id" element={<ServiceDetail />} />
                       <Route path="/know-your-rights" element={<KnowYourRights />} />
@@ -282,6 +292,7 @@ function App() {
                         </ProtectedRoute>
                       } />
                       <Route path="/privacy" element={<Privacy />} />
+                      <Route path="/account-deletion" element={<AccountDeletion />} />
                       <Route path="/terms" element={<Terms />} />
                       <Route path="/cookies" element={<Cookies />} />
                       <Route path="/accessibility" element={<Accessibility />} />
@@ -298,6 +309,7 @@ function App() {
                   </Suspense>
                 </ErrorBoundary>
               </div>
+              </WorkspaceFrame>
             </Router>
           </AuthSync>
           <Toaster />

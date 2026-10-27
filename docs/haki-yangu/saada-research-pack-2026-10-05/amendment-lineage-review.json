@@ -107,7 +107,47 @@
       "principalTitle": "Workers Compensation Regulations GN185/2016",
       "locator": "Repository edition notes and rule2",
       "observedVersion": "Version cutoff unverified",
-      "reviewAction": "Different repository files display different validity periods; acquire2021 and later amendments. Scope includes a conditional Zanzibar branch; do not route by island alone.",
+      "reviewAction": "Different repository files display different validity periods;2021 amendment acquired, later changes and incorporation need review. Scope includes a conditional Zanzibar branch; do not route by island alone.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "WCF-AMENDMENT-2021",
+      "principalSourceId": "WCF-REGULATIONS-2016",
+      "principalTitle": "Workers Compensation Regulations",
+      "locator": "GN668/2021 operative provisions",
+      "observedVersion": "2021",
+      "reviewAction": "Reconcile with original and repository edition; current benefits and scope not certified.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "SOCIAL-BENEFITS-AMENDMENT-2022",
+      "principalSourceId": "SOCIAL-BENEFITS-2018",
+      "principalTitle": "Social Security Schemes Benefits Regulations",
+      "locator": "GN357/2022",
+      "observedVersion": "2022",
+      "reviewAction": "Verify fund coverage, amendment effect and subsequent instruments.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "SOCIAL-BENEFITS-AMENDMENT-2024",
+      "principalSourceId": "SOCIAL-BENEFITS-2018",
+      "principalTitle": "Social Security Schemes Benefits Regulations",
+      "locator": "GN140/2024 PDF cover date discrepancy",
+      "observedVersion": "2024 candidate",
+      "reviewAction": "Resolve printed2023 publication versus2024 title/catalogue before effective-date approval.",
+      "incorporationVerified": false,
+      "productionEligible": false
+    },
+    {
+      "amendingOrLaterSourceId": "ZNZ-DISABILITY-RULES-2022",
+      "principalSourceId": "ZNZ-DISABILITY-ACT",
+      "principalTitle": "Persons with Disabilities Rights and Privileges Act9/2006",
+      "locator": "PDF p5 section1; p23 section53",
+      "observedVersion": "Act8/2022",
+      "reviewAction": "Research ID says RULES but document is an Act. Review repeal/savings and later amendments; do not retrieve2006 alone as current law.",
       "incorporationVerified": false,
       "productionEligible": false
     }

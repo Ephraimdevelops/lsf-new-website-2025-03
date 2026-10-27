@@ -1,3 +1,4 @@
+import { BrandLoading } from '../src/components/BrandLoading';
 import { useAuth } from "../src/auth";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useQuery } from "convex/react";
@@ -10,7 +11,7 @@ import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
 
 const categoryLabels: Record<string, { sw: string; en: string }> = {
-  evidence: { sw: "Ushahidi", en: "Evidence" },
+  evidence: { sw: "Hati au picha za tatizo", en: "Documents or photos" },
   identity: { sw: "Kitambulisho", en: "Identity" },
   contract: { sw: "Mkataba", en: "Contract" },
   letter: { sw: "Barua", en: "Letter" },
@@ -19,15 +20,15 @@ const categoryLabels: Record<string, { sw: string; en: string }> = {
 };
 
 const statusLabels: Record<string, { sw: string; en: string }> = {
-  pending_review: { sw: "Inasubiri mapitio", en: "Pending review" },
+  pending_review: { sw: "Inasubiri ukaguzi", en: "Waiting for review" },
   accepted: { sw: "Imekubaliwa", en: "Accepted" },
-  rejected: { sw: "Imekataliwa", en: "Rejected" },
+  rejected: { sw: "Haijakubaliwa", en: "Not accepted" },
 };
 
 export default function DocumentsScreen() {
   const { isSignedIn } = useAuth();
   const { locale } = useLanguage();
-  const documents = useQuery(api.caseManagement.myDocuments, isSignedIn ? {} : "skip");
+  const documents = useQuery(api.caseManagement.myDocuments, isSignedIn ? { context: "personal" } : "skip");
 
   return (
     <Screen>
@@ -47,15 +48,15 @@ export default function DocumentsScreen() {
           <Text style={styles.emptyTitle}>{locale === "sw" ? "Ingia kuona nyaraka zako" : "Sign in to view your documents"}</Text>
           <Text style={styles.emptyText}>
             {locale === "sw"
-              ? "Nyaraka na ushahidi huhifadhiwa kwenye akaunti yako salama, si kama data ya mfano."
-              : "Documents and evidence are stored in your secure account, not shown as demo records."}
+              ? "Ingia kuona nyaraka na ushahidi unaohusiana na kesi zako."
+              : "Sign in to see the documents and evidence linked to your cases."}
           </Text>
-          <Button label={locale === "sw" ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
+          <Button label={locale === "sw" ? "Ingia" : "Sign in"} onPress={() => router.push("/sign-in")} />
         </View>
       ) : documents === undefined ? (
         <View style={styles.empty}>
           <Ionicons name="hourglass-outline" size={32} color={colors.burgundy} />
-          <Text style={styles.emptyText}>{locale === "sw" ? "Tunapakua nyaraka zako..." : "Loading your documents..."}</Text>
+          <BrandLoading compact text={locale === "sw" ? "Inafungua nyaraka zako…" : "Loading your documents..."}/>
         </View>
       ) : documents.length ? (
         <>
@@ -97,14 +98,14 @@ export default function DocumentsScreen() {
           <Text style={styles.emptyTitle}>{locale === "sw" ? "Hakuna nyaraka bado" : "No documents yet"}</Text>
           <Text style={styles.emptyText}>
             {locale === "sw"
-              ? "Nyaraka utakazohifadhi au kushirikisha kwenye kesi zitaonekana hapa."
-              : "Documents you save or share with a case will appear here."}
+              ? "Nyaraka zilizoongezwa kwenye kesi zako zitaonekana hapa."
+              : "Documents added to your cases appear here."}
           </Text>
           <View style={styles.summaryCard}>
             <Text style={styles.summaryTitle}>0</Text>
             <Text style={styles.summaryText}>{locale === "sw" ? "nyaraka kwenye kesi zako" : "documents across your cases"}</Text>
           </View>
-          <Button label={locale === "sw" ? "Kagua hati kabla ya kusaini" : "Check a document before signing"} onPress={() => router.push("/document-checker")} />
+          <Button label={locale === "sw" ? "Elewa hati kabla ya kusaini" : "Check a document before signing"} onPress={() => router.push("/document-checker")} />
         </View>
       )}
     </Screen>

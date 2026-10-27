@@ -87,3 +87,34 @@ test('membership revoked after acceptance blocks approval but permits rejection'
   await access.decide._handler(context('reviewer'), { requestId, decision: 'rejected', decisionNote: 'Inviter no longer represents this organisation.' });
   assert.equal(records.get(requestId).status, 'rejected');
 });
+
+test('organisation sees review outcome separately from current membership without reviewer notes', async () => {
+  const { records, context } = fixture();
+  const id = await invitations.create._handler(context('provider'), { organizationId: 'org', email: 'recipient@example.test' });
+  const requestId = await invitations.respond._handler(context('recipient'), { id, accept: true });
+  const list = () => invitations.listForOrganisation._handler(context('provider'), { organizationId: 'org' });
+  let [item] = await list();
+  assert.equal(item.accessReviewStatus, 'pending');
+  assert.equal(item.hasActiveMembership, false);
+  await access.decide._handler(context('reviewer'), { requestId, decision: 'approved', decisionNote: 'Private reviewer evidence must not appear in invitation history.', organizationId: 'org' });
+  [item] = await list();
+  assert.equal(item.accessReviewStatus, 'approved');
+  assert.equal(item.hasActiveMembership, true);
+  assert.ok(!JSON.stringify(item).includes('Private reviewer evidence'));
+  const membership = [...records.values()].find(record => record._table === 'role_assignments' && record.userId === 'recipient');
+  membership.status = 'revoked';
+  [item] = await list();
+  assert.equal(item.accessReviewStatus, 'approved');
+  assert.equal(item.hasActiveMembership, false);
+  await assert.rejects(() => invitations.listForOrganisation._handler(context('outsider'), { organizationId: 'org' }));
+});
+
+test('rejected invitation review remains visible after access request organisation is cleared', async () => {
+  const { context } = fixture();
+  const id = await invitations.create._handler(context('provider'), { organizationId: 'org', email: 'recipient@example.test' });
+  const requestId = await invitations.respond._handler(context('recipient'), { id, accept: true });
+  await access.decide._handler(context('reviewer'), { requestId, decision: 'rejected', decisionNote: 'Membership could not be verified.' });
+  const [item] = await invitations.listForOrganisation._handler(context('provider'), { organizationId: 'org' });
+  assert.equal(item.accessReviewStatus, 'rejected');
+  assert.equal(item.hasActiveMembership, false);
+});

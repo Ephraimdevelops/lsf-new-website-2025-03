@@ -1,3 +1,4 @@
+import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
 
 import { useState, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -243,7 +244,7 @@ const FileUpload = ({
       >
         {isCompressing ? (
           <div className="flex flex-col items-center">
-            <Loader2 className="h-12 w-12 text-blue-500 mb-4 animate-spin" />
+            <BrandLoadingIcon className="h-12 w-12 text-blue-500 mb-4 " />
             <p className="text-sm text-gray-600">Optimizing images...</p>
           </div>
         ) : (

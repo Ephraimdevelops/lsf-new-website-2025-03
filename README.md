@@ -1,5 +1,22 @@
 # Legal Services Facility (LSF) Tanzania Website
 
+## Development checkpoint
+
+The `dev/haki-yangu-v2` branch preserves the web and mobile development work. Check out that branch explicitly when continuing development; `main` is the live website branch.
+
+```bash
+git clone --branch dev/haki-yangu-v2 https://github.com/Ephraimdevelops/lsf-new-website-2025-03.git
+cd lsf-new-website-2025-03
+npm ci
+npm ci --prefix mobile
+npm run typecheck
+npm run build
+```
+
+Install both dependency sets before building: the website currently imports shared labels from the mobile source folder. The mobile project's `.npmrc` preserves the existing lockfile's optional Mapbox peer resolution.
+
+Copy the root and mobile `.env.example` templates to their respective `.env.local` files and configure development services privately. Environment secrets, local account notes, review archives, and generated build outputs are intentionally excluded from Git. Pulling this branch does not configure or deploy backend services.
+
 ## Overview
 
 This is the official website for the Legal Services Facility (LSF) Tanzania — a comprehensive digital platform for legal empowerment and access to justice.

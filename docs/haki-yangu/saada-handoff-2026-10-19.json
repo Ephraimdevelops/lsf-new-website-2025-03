@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-19T10:45:52.202Z",
+  "environment": "authorised QA account; shared development",
+  "checks": [
+    {
+      "name": "case journey generated beneficiary in-app notifications",
+      "passed": true
+    },
+    {
+      "name": "Saada returned a factual reviewable response",
+      "passed": true
+    },
+    {
+      "name": "Saada used the governed draft tool",
+      "passed": true
+    },
+    {
+      "name": "Saada did not silently create a legal-help request",
+      "passed": true
+    },
+    {
+      "name": "another role cannot read beneficiary private Saada conversation",
+      "passed": true
+    }
+  ],
+  "sessionsRevoked": true,
+  "conversationId": "v576052nbc0z66peh9hcevgqfs8gjdzf",
+  "agentTools": [
+    "load_skill",
+    "prepare_help_draft"
+  ],
+  "answerCharacters": 730,
+  "legalEvidenceGate": "No approved legal sources exist; no sourced legal answer claimed."
+}

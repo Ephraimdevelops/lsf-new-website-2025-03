@@ -1,0 +1,17 @@
+{
+  "verifiedAt": "2026-10-07T20:42:44.065Z",
+  "environment": "configured development backend",
+  "remainingOriginalsStored": 127,
+  "totalOriginalsStoredIncludingEarlierSource": 128,
+  "originalBytesInArchive": 159810717,
+  "remainingOriginalsIndexed": 0,
+  "remainingOriginalsApproved": 0,
+  "archived": 0,
+  "focusedTestsPassed": 19,
+  "ocrFilesPreparedLocally": 5,
+  "ocrPages": 281,
+  "splitPDFsPreparedLocally": 4,
+  "splitPagesVisuallyVerified": 38,
+  "indexingBlocker": "Configured OpenAI API account has no credits remaining; metadata, OCR and independent legal review also remain",
+  "receipts": "server-final-verification.json"
+}

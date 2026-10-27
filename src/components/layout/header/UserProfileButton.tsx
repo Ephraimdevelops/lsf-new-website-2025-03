@@ -1,3 +1,4 @@
+import { useCopy } from "@/i18n/useCopy";
 import { useUser, useAuth, SignOutButton } from '@clerk/clerk-react';
 import { useQuery } from 'convex/react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -20,6 +21,7 @@ import { dashboardPath } from '@/components/auth/dashboardPath';
 import { cn } from '@/lib/utils';
 
 const UserProfileButton = () => {
+  const c = useCopy();
     const { isSignedIn, isLoaded } = useAuth();
     const { user: clerkUser } = useUser();
     const convexUser = useQuery(api.users.current);
@@ -43,7 +45,7 @@ const UserProfileButton = () => {
                     className="text-sm font-medium hover:text-primary flex items-center gap-2 px-3 group transition-all"
                 >
                     <User className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
-                    <span className="tracking-tight">Log in</span>
+                    <span className="tracking-tight">{c("Log in")}</span>
                 </Button>
             </Link>
         );
@@ -69,10 +71,10 @@ const UserProfileButton = () => {
             icon: Users,
             dashboardPath: '/dashboard/staff'
         },
-        supervisor: { label: 'Supervisor', color: 'bg-blue-100 text-blue-700 border-blue-200', icon: Shield, dashboardPath: '/dashboard/staff' },
+        supervisor: { label: 'Supervisor', color: 'bg-blue-100 text-blue-700 border-blue-200', icon: Shield, dashboardPath: '/dashboard/supervisor' },
         safeguarding_officer: { label: 'Safeguarding officer', color: 'bg-blue-100 text-blue-700 border-blue-200', icon: Shield, dashboardPath: '/dashboard/safeguarding' },
         content_editor: { label: 'Content editor', color: 'bg-purple-100 text-purple-700 border-purple-200', icon: Users, dashboardPath: '/dashboard/editorial' },
-        provider_staff: { label: 'Provider staff', color: 'bg-orange-100 text-orange-700 border-orange-200', icon: Scale, dashboardPath: '/dashboard/paralegal' },
+        provider_staff: { label: 'Provider staff', color: 'bg-orange-100 text-orange-700 border-orange-200', icon: Scale, dashboardPath: '/dashboard/provider' },
         donor: { label: 'Donor', color: 'bg-purple-100 text-purple-700 border-purple-200', icon: Users, dashboardPath: '/dashboard/stakeholder' },
         paralegal: {
             label: 'Paralegal',
@@ -102,7 +104,7 @@ const UserProfileButton = () => {
             <DropdownMenuTrigger asChild>
                 <Button
                     variant="ghost"
-                    aria-label="Open account menu"
+                    aria-label={c("Open account menu")}
                     className="relative h-10 w-10 rounded-full p-0 hover:bg-gray-100/80 transition-all group"
                 >
                     <Avatar className="h-9 w-9 border border-gray-200 shadow-sm group-hover:shadow-md transition-shadow">
@@ -159,7 +161,7 @@ const UserProfileButton = () => {
                     onClick={() => navigate('/notifications')}
                 >
                     <Bell className="mr-3 h-4 w-4 text-gray-500" />
-                    <span>Updates and notifications</span>
+                    <span>{c("Updates and notifications")}</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     className="p-3 cursor-pointer rounded-lg hover:bg-gray-100 focus:bg-gray-100"

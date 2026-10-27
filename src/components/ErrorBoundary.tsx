@@ -1,3 +1,4 @@
+import { useLanguage } from "@/providers/LanguageProvider";
 import * as Sentry from "@sentry/react";
 import React from 'react';
 import { Button } from '@/components/ui/button';
@@ -40,61 +41,16 @@ class ErrorBoundary extends React.Component<
       const isChunkError = this.state.error?.message?.includes('Loading chunk') ||
         this.state.error?.message?.includes('ChunkLoadError');
 
-      return (
-        <div className="min-h-screen flex items-center justify-center bg-neutral-light px-4">
-          <div className="max-w-md w-full text-center p-10 bg-white rounded-3xl shadow-xl border border-gray-100">
-            <div className="bg-red-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <AlertTriangle className="h-10 w-10 text-red-500" />
-            </div>
-
-            <h1 className="text-2xl font-bold text-gray-900 mb-3">
-              {isChunkError ? 'Update Available' : 'Something went wrong'}
-            </h1>
-
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              {isChunkError
-                ? "A new version of the website is available. We need to refresh your page to apply the latest updates."
-                : "We're sorry, but something unexpected happened. A quick refresh usually fixes this glitch."}
-            </p>
-
-            <Button
-              onClick={() => {
-                // Clear retry flag so lazyWithRetry can try again if needed after reload
-                window.sessionStorage.removeItem('chunk_retry_occurred');
-                window.location.reload();
-              }}
-              size="lg"
-              className="w-full h-14 rounded-2xl text-lg font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <RefreshCw className="h-5 w-5 mr-3" />
-              {isChunkError ? 'Update Now' : 'Refresh Page'}
-            </Button>
-
-            <p className="mt-6 text-xs text-gray-400">
-              If the problem persists, please contact our technical support.
-            </p>
-
-            {(process.env.NODE_ENV === 'development' || window.location.hostname.includes('lovable')) && this.state.error && (
-              <details className="mt-8 text-left">
-                <summary className="cursor-pointer text-[10px] text-gray-300 hover:text-gray-500 uppercase tracking-widest font-bold">
-                  Technical Diagnostics
-                </summary>
-                <div className="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-100 max-h-40 overflow-auto">
-                  <pre className="text-[10px] font-mono text-gray-500 whitespace-pre-wrap">
-                    {this.state.error.name}: {this.state.error.message}
-                    {"\n\n"}
-                    {this.state.error.stack}
-                  </pre>
-                </div>
-              </details>
-            )}
-          </div>
-        </div>
-      );
+      return <ErrorFallback chunk={Boolean(isChunkError)} error={this.state.error} />;
     }
 
     return this.props.children;
   }
+}
+
+function ErrorFallback({chunk,error}:{chunk:boolean;error:Error|null}) {
+ const {locale}=useLanguage();const sw=locale==='sw';
+ return <main role="alert" className="flex min-h-screen items-center justify-center bg-neutral-50 p-6"><div className="max-w-md space-y-5 rounded-3xl bg-white p-8 text-center shadow-sm"><AlertTriangle aria-hidden="true" className="mx-auto h-10 w-10 text-primary"/><h1 className="text-2xl font-semibold">{sw?'Ukurasa haujafunguka':'This page did not open'}</h1><p>{sw?(chunk?'Fungua ukurasa tena ili kupata taarifa za sasa.':'Jaribu kufungua ukurasa tena. Ikiwa tatizo linaendelea, wasiliana na LSF.'):(chunk?'Open the page again to get the current version.':'Try opening the page again. If the problem continues, contact LSF.')}</p><Button onClick={()=>{try{window.sessionStorage.removeItem('chunk_retry_occurred');}catch{/* Retry still works without storage. */}window.location.reload();}}><RefreshCw aria-hidden="true" className="mr-2 h-4 w-4"/>{sw?'Fungua tena':'Open again'}</Button><a href="mailto:info@lsftz.org" className="block text-primary underline">info@lsftz.org</a>{import.meta.env.DEV&&error&&<details className="text-left text-xs"><summary>Development diagnostics</summary><pre className="whitespace-pre-wrap">{error.message}</pre></details>}</div></main>;
 }
 
 export default ErrorBoundary;

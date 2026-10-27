@@ -5,6 +5,8 @@ import { useAuth } from "../auth";
 import { decodeDraft, draftStorageKey, transferGuestDraft } from "./draftStorage";
 
 export type IntakeDraft = {
+  issueDetail?: string;
+  evidence?: { uri: string; name: string; mimeType: string; size: number; storageId?: string; attachmentId?: string; requestId?: string }[];
   clientRequestId: string;
   locale: Locale;
   description: string;
@@ -15,6 +17,7 @@ export type IntakeDraft = {
   occurredOn: string;
   involvedParties: string;
   desiredHelp: string;
+  helpGoal?: string;
   safeContactMethod: "in_app" | "phone" | "sms" | "email" | "none";
   preferredLanguage: "sw" | "en" | "both" | "other";
   preferredLanguageOther: string;

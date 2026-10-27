@@ -1,0 +1,22 @@
+{
+  "total": 72,
+  "byCategory": {
+    "employment": 8,
+    "land_housing": 8,
+    "family_children": 8,
+    "inheritance": 8,
+    "consumer_money": 8,
+    "safety_criminal": 8,
+    "documents_services": 8,
+    "access_justice": 8,
+    "zanzibar": 8
+  },
+  "bilingualTitlePairs": 72,
+  "bilingualSummaryPairs": 72,
+  "stepsPerLanguagePerGuide": 4,
+  "distinctSources": 83,
+  "uploaded": 0,
+  "approved": 0,
+  "productionEligible": 0,
+  "scope": "Structural and provenance validation only; not a legal accuracy or language certification."
+}

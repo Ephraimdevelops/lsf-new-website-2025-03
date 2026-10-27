@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
+import { requirePublicMediaReference } from "./lib/managedUploads";
 import { normalizeText, sanitizeRichHtml } from "./lib/security";
 
 // Get all news
@@ -131,6 +132,8 @@ export const create = mutation({
     handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin", "staff"]);
 
+        await requirePublicMediaReference(ctx, args.storageId);
+        await requirePublicMediaReference(ctx, args.image);
         return await ctx.db.insert("news", {
             ...args,
             excerpt: sanitizeRichHtml(args.excerpt, 2000),
@@ -167,6 +170,7 @@ export const createForMigration = mutation({
             return existing._id;
         }
 
+        await requirePublicMediaReference(ctx, args.image);
         return await ctx.db.insert("news", {
             ...args,
             excerpt: sanitizeRichHtml(args.excerpt, 2000),
@@ -197,6 +201,9 @@ export const update = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
+        const previous = await ctx.db.get(id);
+        await requirePublicMediaReference(ctx, fields.storageId, previous?.storageId);
+        await requirePublicMediaReference(ctx, fields.image, previous?.image);
         await ctx.db.patch(id, {
             ...fields,
             excerpt: sanitizeRichHtml(fields.excerpt, 2000),

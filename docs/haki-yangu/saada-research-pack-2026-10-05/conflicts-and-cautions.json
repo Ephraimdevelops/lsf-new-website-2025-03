@@ -172,7 +172,94 @@
         "WCF-REGULATIONS-2016"
       ],
       "observation": "Repository editions show differing validity-period labels for the2016 regulations; original rule2 contains a conditional Zanzibar coverage branch.",
-      "resolutionOrRequiredAction": "Acquire2021 and later amendments and reconcile editions. Do not infer territorial coverage solely from client location.",
+      "resolutionOrRequiredAction": "The2021 amendment is now acquired. Reconcile it with principal editions and check later amendments. Do not infer territorial coverage solely from client location.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C18",
+      "sourceIds": [
+        "SOCIAL-BENEFITS-2018",
+        "SOCIAL-BENEFITS-AMENDMENT-2024"
+      ],
+      "observation": "OAG principal catalogue labels GN467 of2022 although PDF identifies2018. Amendment PDF p1 gives publication8/3/2023 while body/title/catalogue identify2024.",
+      "resolutionOrRequiredAction": "Preserve discrepancies; use actual instrument and authenticated Gazette/correction review before legal dates or benefit calculations.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C19",
+      "sourceIds": [
+        "CASE-ESTATE-LONYAMALI",
+        "CASE-INHERITANCE-LATIFA"
+      ],
+      "observation": "Selected OSG case downloads are two-page case summaries/headnotes rather than full judgments.",
+      "resolutionOrRequiredAction": "Classify as official summaries, not binding reasons. Acquire full judgments and actual CA delivered dates; summary outcomes cannot settle substantive inheritance questions.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C20",
+      "sourceIds": [
+        "CASE-LABOUR-OATH-2022",
+        "CASE-LAND-SETH-2024",
+        "CASE-LAND-MABULA-2024"
+      ],
+      "observation": "Catalogue/filename dates can differ from signed and delivered dates. Mabula is a matrimonial case despite being found during a broader catalogue search.",
+      "resolutionOrRequiredAction": "Use case-law-review.json identity notes; keep signed/delivered dates separate and match pathway to actual case subject. Later treatment still needs review.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C21",
+      "sourceIds": [
+        "TELECOM-COMMITTEE"
+      ],
+      "observation": "TCRA committee PDF heading2018 versus citation2008; migrated SW-prefixed link supplies English text.",
+      "resolutionOrRequiredAction": "Verify the actual GN and operative citation; directory and filename language are not authoritative.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C22",
+      "sourceIds": [
+        "LAND-TRIBUNAL-PRINCIPAL"
+      ],
+      "observation": "Principal district land regulations display heading2003 but citation2002.",
+      "resolutionOrRequiredAction": "Preserve actual wording and reconcile GN174/2003 and amendments; do not silently normalise the citation.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C23",
+      "sourceIds": [
+        "ZNZ-DISABILITY-RULES-2022",
+        "ZNZ-DISABILITY-ACT"
+      ],
+      "observation": "Gazette7067B contains Persons with Disabilities Act8/2022, not regulations. It addresses repeal of Act9/2006.",
+      "resolutionOrRequiredAction": "Stable RULES research ID retained with corrected title/kind; examine sections1 and53 and later amendments before current-law approval.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C24",
+      "sourceIds": [
+        "ZNZ-KADHIS-SW-2024",
+        "ZNZ-KADHIS-2024"
+      ],
+      "observation": "Swahili Gazette PDF p1 and URL contain2023 while running headings and assent identify2024; commencement requires appointed date.",
+      "resolutionOrRequiredAction": "Compare complete English/Kiswahili instruments, authenticate publication date and obtain appointed notice. No certified translation equivalence asserted.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C25",
+      "sourceIds": [
+        "PERSONAL-CUSTOMARY-NO4"
+      ],
+      "observation": "Repository cover labels No4 Order and GN436 as1967; commonly cited source references identify1963. Version cutoff is2002, despite file creation2024.",
+      "resolutionOrRequiredAction": "Authenticate original Gazette and consolidation lineage; do not infer current customary inheritance law or universal community applicability.",
+      "resolvedForProduction": false
+    },
+    {
+      "id": "C26",
+      "sourceIds": [
+        "GEO-NBS-WARDS-2022"
+      ],
+      "observation": "NBS boundary ZIP projection differs from webpage overview; five composite ward-code combinations repeat.",
+      "resolutionOrRequiredAction": "Retain original code strings and projection; no automatic merging, coordinates, current-boundary or service-catchment claims.",
       "resolvedForProduction": false
     }
   ]

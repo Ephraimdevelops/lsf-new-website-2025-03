@@ -70,9 +70,9 @@ export const shadow = {
 } as const;
 
 export const type = {
-  regular: "NotoSans_400Regular",
-  medium: "NotoSans_500Medium",
-  semibold: "NotoSans_600SemiBold",
-  bold: "NotoSans_700Bold",
-  editorial: "SourceSerif4_600SemiBold",
+  regular: "Onest-Regular",
+  medium: "Onest-Medium",
+  semibold: "Onest-SemiBold",
+  bold: "Onest-Bold",
+  editorial: "Onest-SemiBold",
 } as const;

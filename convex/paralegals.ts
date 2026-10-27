@@ -1,6 +1,10 @@
+import { workerMatchingPoint } from "./lib/workerMatching";
+import { hasCurrentServiceReview } from "./lib/directoryLifecycle";
+import { validPoint, distanceKm, requireNearbyInput } from "./lib/geography";
+import { visiblePresence } from "./lib/presence";
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
+import { requireAnyRole, requireAuthenticatedUser, getActiveRoles } from "./lib/auth";
 import { isParalegalReady } from "./lib/paralegalAccess";
 import { writeAudit } from "./lib/hakiYangu";
 import { createNotification } from "./lib/notifications";
@@ -12,11 +16,15 @@ import { createNotification } from "./lib/notifications";
 // Get all approved paralegals (from applications)
 export const listApprovedParalegals = query({
     args: {
+        origin: v.optional(v.object({ latitude: v.number(), longitude: v.number() })),
+        radiusKm: v.optional(v.number()),
+        refresh: v.optional(v.number()),
         region: v.optional(v.string()),
         verifiedOnly: v.optional(v.boolean()),
         includePrivate: v.optional(v.boolean()),
     },
     handler: async (ctx, args) => {
+        requireNearbyInput(args.origin, args.radiusKm);
         const includePrivate = args.includePrivate === true;
         if (includePrivate) {
             await requireAnyRole(ctx, ["admin", "staff"]);
@@ -36,11 +44,22 @@ export const listApprovedParalegals = query({
             paralegals = paralegals.filter((p) => p.isVerified === true);
         }
 
-        if (includePrivate) return paralegals;
+        if (includePrivate) return paralegals.map(p => ({ ...p, presence: "unavailable" as const, meetingPoint: null, distanceKm: null, distanceSource: "unknown" as const }));
 
-        paralegals = paralegals.filter(isParalegalReady);
+        paralegals = paralegals.filter(p => !p.syntheticDevelopmentFixture && isParalegalReady(p));
 
-        return paralegals.map((paralegal) => ({
+        return (await Promise.all(paralegals.map(async (paralegal) => {
+          const office = paralegal.publicMeetingServiceId ? await ctx.db.get(paralegal.publicMeetingServiceId) : null;
+          const meeting = office && office.active && office.visibility === "public" && office.verificationStatus === "verified" && office.servicePointType !== "safe_house" && hasCurrentServiceReview(office.nextReviewAt, Date.now()) ? office : null;
+          const account = await ctx.db.query("users").withIndex("by_email", q => q.eq("email", paralegal.email.toLowerCase())).first();
+          const active = account && (await getActiveRoles(ctx, account._id)).includes("paralegal");
+          const location = active ? await workerMatchingPoint(ctx, account!._id, paralegal.publicMeetingServiceId) : { point: validPoint(meeting) ? meeting : null, source: meeting && validPoint(meeting) ? "office" as const : "unknown" as const };
+          const matchingPoint = location.point;
+          return ({
+            distanceSource: location.source,
+            presence: account && (await getActiveRoles(ctx, account._id)).includes("paralegal") ? await visiblePresence(ctx, account) : "unavailable",
+            meetingPoint: meeting ? { id: meeting._id, name: meeting.name, latitude: meeting.latitude, longitude: meeting.longitude } : null,
+            distanceKm: args.origin && matchingPoint ? location.source === "current_location" ? Math.round(distanceKm(args.origin, matchingPoint)) : distanceKm(args.origin, matchingPoint) : null,
             _id: paralegal._id,
             _creationTime: paralegal._creationTime,
             fullName: paralegal.fullName,
@@ -53,8 +72,8 @@ export const listApprovedParalegals = query({
             specializations: paralegal.specializations ?? [],
             isVerified: paralegal.isVerified === true,
             languages: paralegal.languages ?? [],
-            availabilityStatus: paralegal.availabilityStatus ?? "accepting_cases",
-        }));
+            availabilityStatus: paralegal.availabilityStatus ?? "unknown",
+        }); }))).filter(item => args.radiusKm === undefined || item.distanceKm !== null && item.distanceKm <= args.radiusKm).sort((a, b) => (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity));
     },
 });
 
@@ -63,7 +82,7 @@ export const getParalegal = query({
     args: { id: v.id("paralegal_applications") },
     handler: async (ctx, args) => {
         const paralegal = await ctx.db.get(args.id);
-        if (!paralegal) return null;
+        if (!paralegal || paralegal.syntheticDevelopmentFixture) return null;
         if (paralegal.status === "approved" && !isParalegalReady(paralegal)) return null;
         if (paralegal.status !== "approved") {
             await requireAnyRole(ctx, ["admin", "staff"]);
@@ -82,7 +101,7 @@ export const getParalegal = query({
             specializations: paralegal.specializations ?? [],
             isVerified: paralegal.isVerified === true,
             languages: paralegal.languages ?? [],
-            availabilityStatus: paralegal.availabilityStatus ?? "accepting_cases",
+            availabilityStatus: paralegal.availabilityStatus ?? "unknown",
             workingHours: paralegal.workingHours,
         };
     },
@@ -127,7 +146,7 @@ export const getMyPerformance = query({
         const outcomes = await Promise.all(assignments.map((assignment) => ctx.db.query("case_outcomes").withIndex("by_case", (q) => q.eq("caseId", assignment.caseId)).unique()));
         const feedback = await Promise.all(assignments.map((assignment) => ctx.db.query("case_feedback").withIndex("by_case", (q) => q.eq("caseId", assignment.caseId)).unique()));
         const rated = feedback.filter((item): item is NonNullable<typeof item> => item !== null);
-        const resolved = cases.filter((item) => item?.status === "resolved" || item?.status === "closed").length;
+        const resolved = cases.filter((item, index) => item?.status === "resolved" || (item?.status === "closed" && outcomes[index]?.resolution !== "closed_unresolved")).length;
         return {
             casesHandled: assignments.length,
             activeCases: cases.filter((item) => item && !["resolved", "closed", "closed_unresolved"].includes(item.status)).length,
@@ -183,18 +202,35 @@ export const staffSupportQueue = query({
     },
 });
 
+export const getStaffSupportRequest = query({
+    args: { id: v.id("paralegal_support_requests") },
+    handler: async (ctx, args) => {
+        await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
+        const request = await ctx.db.get(args.id);
+        if (!request) return null;
+        return { request, user: await ctx.db.get(request.userId) };
+    },
+});
+
 export const respondToSupportRequest = mutation({
     args: {
         id: v.id("paralegal_support_requests"),
         status: v.union(v.literal("in_review"), v.literal("responded"), v.literal("closed")),
         responseNote: v.optional(v.string()),
+        expectedUpdatedAt: v.optional(v.number()),
     },
     handler: async (ctx, args) => {
         const { user } = await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
         const request = await ctx.db.get(args.id);
         if (!request) throw new Error("Support request not found.");
+        if (args.expectedUpdatedAt !== undefined && args.expectedUpdatedAt !== request.updatedAt) throw new Error("This request changed. Reload it before saving your reply.");
         const now = Date.now();
         const responseNote = args.responseNote?.trim();
+        if (responseNote && responseNote.length > 3000) throw new Error("Keep the reply within 3000 characters.");
+        if (args.status === "responded" && (!responseNote || responseNote.length < 10)) throw new Error("Write a useful reply of at least 10 characters before marking this request replied.");
+        if (args.status === "closed" && (request.status !== "responded" || (request.responseNote?.trim().length ?? 0) < 10)) throw new Error("Reply to the paralegal before closing this request.");
+        if (request.status === "closed") throw new Error("This support request is already closed.");
+        if (args.status === "in_review" && request.status !== "submitted") throw new Error("Only a new support request can start review.");
         await ctx.db.patch(args.id, { status: args.status, responseNote: responseNote || request.responseNote, updatedAt: now, respondedAt: args.status === "responded" || args.status === "closed" ? now : request.respondedAt });
         await writeAudit(ctx, user._id, "paralegal.support_updated", "paralegal_support_request", args.id, { status: args.status, changedFieldNames: ["status", "responseNote"] });
         await createNotification(ctx, { userId: request.userId, type: "paralegal.support_updated", titleKey: "notifications.update.title", bodyKey: "notifications.paralegalSupportUpdated.body", resourceType: "paralegal_support_request", resourceId: args.id });
@@ -515,3 +551,24 @@ export const importParalegalsBatch = mutation({
         return { imported, duplicates, errors };
     },
 });
+
+export const myMeetingPoint = query({ args: {}, handler: async ctx => {
+  const { user } = await requireAuthenticatedUser(ctx);
+  if (!(await getActiveRoles(ctx, user._id)).includes("paralegal")) return null;
+  const profile = await ctx.db.query("paralegal_applications").withIndex("by_email", q => q.eq("email", user.email.toLowerCase())).collect();
+  const ready = profile.find(p => !p.syntheticDevelopmentFixture && isParalegalReady(p));
+  return ready ? { profileId: ready._id, serviceId: ready.publicMeetingServiceId ?? null } : null;
+}});
+export const setMeetingPoint = mutation({ args: { serviceId: v.union(v.id("justice_services"), v.null()) }, handler: async (ctx, args) => {
+  const { user, identity } = await requireAuthenticatedUser(ctx);
+  if (identity.emailVerified !== true) throw new Error("Verify your email before choosing a public meeting point.");
+  const profiles = await ctx.db.query("paralegal_applications").withIndex("by_email", q => q.eq("email", user.email.toLowerCase())).collect();
+  const profile = profiles.find(p => !p.syntheticDevelopmentFixture && isParalegalReady(p));
+  if (!profile || !(await getActiveRoles(ctx, user._id)).includes("paralegal")) throw new Error("An active, verified paralegal profile is required.");
+  if (args.serviceId) {
+    const office = await ctx.db.get(args.serviceId);
+    if (!office || !office.active || office.visibility !== "public" || office.verificationStatus !== "verified" || office.servicePointType === "safe_house" || !hasCurrentServiceReview(office.nextReviewAt, Date.now()) || !validPoint(office)) throw new Error("Choose a current verified public office with valid coordinates.");
+  }
+  await ctx.db.patch(profile._id, { publicMeetingServiceId: args.serviceId ?? undefined });
+  await ctx.db.insert("audit_logs", { action: "paralegal.public_meeting_point_changed", entityType: "paralegal_application", entityId: profile._id, userId: user._id, timestamp: Date.now() });
+}});

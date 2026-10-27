@@ -1,9 +1,6 @@
+import { LanguageProvider } from "./providers/LanguageProvider";
 import * as Sentry from "@sentry/react";
 import { createRoot } from 'react-dom/client'
-import '@fontsource/ubuntu/300.css'
-import '@fontsource/ubuntu/400.css'
-import '@fontsource/ubuntu/500.css'
-import '@fontsource/ubuntu/700.css'
 import App from './App.tsx'
 import './index.css'
 
@@ -31,9 +28,9 @@ Sentry.init({
 import { HelmetProvider } from 'react-helmet-async';
 
 createRoot(document.getElementById("root")!).render(
-    <HelmetProvider>
+    <LanguageProvider><HelmetProvider>
         <ConvexClientProvider>
             <App />
         </ConvexClientProvider>
-    </HelmetProvider>
+    </HelmetProvider></LanguageProvider>
 );

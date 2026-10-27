@@ -69,9 +69,16 @@ export const PUBLIC_HELP_RESOURCES = [
   },
 ] as const;
 
+// Published business contact rechecked on the publisher's contact page, 16 October 2026.
+// This is not provider verification, current intake confirmation, or a referral agreement.
+const PUBLIC_HELP_CONTACT_POINTS = [{
+  resourceId: "lhrc", name: "Kinondoni Legal Aid Clinic", region: "Dar es Salaam", district: "Kinondoni",
+  address: "Isere St., House No. 660", phone: "+255 717 143 784",
+}] as const;
+
 export function publicHelpResourcesForIssue(issue?: string) {
   const selected = issue?.trim().toLowerCase();
   return PUBLIC_HELP_RESOURCES.filter((resource) =>
     !selected || resource.issues.length === 0 || (resource.issues as readonly string[]).includes(selected)
-  ).map((resource) => ({ ...resource, checkedOn: "2026-10-05", kind: "publisher_information_link" as const }));
+  ).map((resource) => ({ ...resource, contactPoints: PUBLIC_HELP_CONTACT_POINTS.filter(point => point.resourceId === resource.id), checkedOn: resource.id === "lhrc" ? "2026-10-16" : "2026-10-05", kind: "publisher_information_link" as const }));
 }

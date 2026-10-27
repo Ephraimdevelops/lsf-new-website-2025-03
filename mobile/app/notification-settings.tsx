@@ -14,7 +14,7 @@ const categories: Array<{ key: NotificationCategory; icon: keyof typeof Ionicons
   { key: "messages", icon: "chatbubble-outline", sw: "Ujumbe", en: "Messages", swHelp: "Ujumbe kutoka timu yako ya kesi.", enHelp: "Messages from your case team." },
   { key: "appointments", icon: "calendar-outline", sw: "Miadi", en: "Appointments", swHelp: "Miadi iliyopangwa au kuombwa.", enHelp: "Scheduled or requested appointments." },
   { key: "documents", icon: "document-text-outline", sw: "Nyaraka", en: "Documents", swHelp: "Mapitio na maombi kuhusu nyaraka.", enHelp: "Document reviews and document requests." },
-  { key: "service", icon: "megaphone-outline", sw: "Huduma", en: "Service", swHelp: "Taarifa za mfumo na usaidizi.", enHelp: "System and support notices." },
+  { key: "service", icon: "megaphone-outline", sw: "Huduma", en: "Service", swHelp: "Taarifa za akaunti na msaada.", enHelp: "Account and support updates." },
 ];
 
 export default function NotificationSettingsScreen() {
@@ -32,8 +32,8 @@ export default function NotificationSettingsScreen() {
     catch (caught) {
       const denied = caught instanceof Error && caught.message.includes("permission");
       setError(denied
-        ? (locale === "sw" ? "Ruhusa ya arifa haijatolewa kwenye kifaa. Unaweza kuibadilisha kwenye mipangilio ya kifaa." : "Device notification permission was not granted. You can change it in device settings.")
-        : (locale === "sw" ? "Imeshindikana kuwasha arifa. Jaribu tena ukiwa na mtandao." : "Could not enable alerts. Reconnect and try again."));
+        ? (locale === "sw" ? "Kifaa hakijaruhusu arifa. Badili ruhusa kwenye mipangilio ya kifaa." : "Notifications are not allowed. Change permission in your device settings.")
+        : (locale === "sw" ? "Hatukuweza kuthibitisha mabadiliko ya arifa. Angalia mipangilio kabla ya kujaribu tena." : "We could not confirm the alert changes. Check the settings before retrying."));
     }
     finally { setBusy(false); }
   }
@@ -54,8 +54,8 @@ export default function NotificationSettingsScreen() {
           <Text style={styles.title}>{locale === "sw" ? "Chagua arifa muhimu" : "Choose what matters"}</Text>
           <Text style={styles.body}>
             {locale === "sw"
-              ? "Taarifa zote zitaendelea kuonekana ndani ya app. Chagua hapa kama unataka arifa nje ya app kwenye kifaa hiki."
-              : "All updates remain in your private inbox. Choose here whether this device may receive alerts outside the app."}
+              ? "Taarifa zitaendelea kuonekana ndani ya programu. Chagua kama kifaa hiki kipokee arifa nje ya programu."
+              : "Updates remain in the app. Choose whether this device receives alerts outside it."}
           </Text>
         </View>
       </View>
@@ -65,17 +65,17 @@ export default function NotificationSettingsScreen() {
         <View style={styles.row}>
           <View style={styles.iconChip}><Ionicons name="phone-portrait-outline" size={21} color={colors.burgundy} /></View>
           <View style={styles.copy}>
-            <Text style={styles.rowTitle}>{locale === "sw" ? "Arifa nje ya app" : "Alerts outside the app"}</Text>
+            <Text style={styles.rowTitle}>{locale === "sw" ? "Arifa nje ya programu" : "Alerts outside the app"}</Text>
             <Text style={styles.rowHelp}>{!pushAvailable
-              ? (locale === "sw" ? "Hazipatikani kwenye toleo hili la app." : "Unavailable in this app build.")
-              : (locale === "sw" ? "Ukiziwasha, kifaa kitaomba ruhusa. Maombi ya msaada yenye mawasiliano salama ya ndani ya app hayatatumwa nje." : "Turning this on requests device permission. Requests marked in-app-only or do-not-contact will not trigger external alerts.")}</Text>
+              ? (locale === "sw" ? "Hazipatikani kwenye toleo hili la programu." : "Unavailable in this app build.")
+              : (locale === "sw" ? "Kifaa kitaomba ruhusa. Maombi yaliyowekwa “ndani ya programu pekee” au “usiwasiliane nami” hayataleta arifa nje ya programu." : "Your device will ask permission. In-app-only and do-not-contact requests will not trigger alerts outside the app.")}</Text>
           </View>
-          <Switch accessibilityLabel={locale === "sw" ? "Arifa nje ya app" : "Alerts outside the app"} value={pushEnabled} disabled={!isSignedIn || !hydrated || !pushAvailable || busy} onValueChange={(value) => void changePush(value)} trackColor={{ false: "#D8D8D8", true: "#E8B8CC" }} thumbColor={pushEnabled ? colors.burgundy : colors.surface} />
+          <Switch accessibilityLabel={locale === "sw" ? "Arifa nje ya programu" : "Alerts outside the app"} value={pushEnabled} disabled={!isSignedIn || !hydrated || !pushAvailable || busy} onValueChange={(value) => void changePush(value)} trackColor={{ false: "#D8D8D8", true: "#E8B8CC" }} thumbColor={pushEnabled ? colors.burgundy : colors.surface} />
         </View>
       </View>
       {error ? <Text accessibilityRole="alert" style={styles.rowHelp}>{error}</Text> : null}
 
-      <Text style={[styles.rowHelp, { marginTop: spacing.lg }]}>{locale === "sw" ? "Aina za arifa za nje ya app. Kuzima aina hakufuti taarifa kwenye kikasha chako." : "External alert categories. Turning one off does not remove updates from your inbox."}</Text>
+      <Text style={[styles.rowHelp, { marginTop: spacing.lg }]}>{locale === "sw" ? "Aina za arifa za nje ya programu. Kuzima aina hakufuti taarifa kwenye kikasha chako." : "External alert categories. Turning one off does not remove updates from your inbox."}</Text>
       <View style={styles.card}>
         {categories.map((category, index) => (
           <View key={category.key}>

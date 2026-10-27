@@ -1,0 +1,102 @@
+{
+  "checkedAt": "2026-10-19T10:36:30.206Z",
+  "authentication": "Genuine Clerk development sessions created through Backend API; not a browser password-login test",
+  "environment": "named shared development",
+  "checks": [
+    {
+      "name": "user genuine JWT resolves correct role",
+      "passed": true
+    },
+    {
+      "name": "staff genuine JWT resolves correct role",
+      "passed": true
+    },
+    {
+      "name": "paralegal genuine JWT resolves correct role",
+      "passed": true
+    },
+    {
+      "name": "provider_staff genuine JWT resolves correct role",
+      "passed": true
+    },
+    {
+      "name": "admin genuine JWT resolves correct role",
+      "passed": true
+    },
+    {
+      "name": "beneficiary submission is idempotent",
+      "passed": true
+    },
+    {
+      "name": "unassigned provider cannot see case",
+      "passed": true
+    },
+    {
+      "name": "offer alone grants no case access",
+      "passed": true
+    },
+    {
+      "name": "accepted assignment appears to beneficiary",
+      "passed": true
+    },
+    {
+      "name": "worker message reaches beneficiary",
+      "passed": true
+    },
+    {
+      "name": "appointment reaches beneficiary",
+      "passed": true
+    },
+    {
+      "name": "closure requirements satisfied",
+      "passed": true
+    },
+    {
+      "name": "beneficiary sees final closure",
+      "passed": true
+    },
+    {
+      "name": "Saada en app-help response returns",
+      "passed": true
+    },
+    {
+      "name": "Saada sw app-help response returns",
+      "passed": true
+    }
+  ],
+  "blocked": [
+    "No current approved public services; real consented referral requires independently verified service inventory.",
+    "No current independently approved Saada legal sources; sourced legal-answer acceptance requires legal review."
+  ],
+  "sessionsRevoked": true,
+  "readiness": {
+    "approvedCurrentGuides": 0,
+    "approvedCurrentSourceDocuments": 0,
+    "checkedAt": 1792406223141,
+    "countsAreLowerBounds": false,
+    "failedSourceDocuments": 0,
+    "hasAnyIndexedChunks": true,
+    "indexedSourceDocuments": 12,
+    "pendingGuides": 110,
+    "privateDirectoryResearch": 71,
+    "privatePdfOriginals": 127,
+    "sourceDocuments": 19
+  },
+  "publicEligible": {
+    "services": 0,
+    "paralegals": 0,
+    "guides": 0
+  },
+  "requestId": "q1715r1s9nz0sz044s2qvaxb2h8gkd5r",
+  "caseId": "pn72ph0b399qqnj7m7na301tk18gjpmq",
+  "assignmentId": "ns71w1164kxnbn52r0ky0fnc2x8gjm7t",
+  "saada_en": {
+    "returned": true,
+    "characters": 171
+  },
+  "saada_sw": {
+    "returned": true,
+    "characters": 80
+  },
+  "completedAt": "2026-10-19T10:37:52.013Z"
+}

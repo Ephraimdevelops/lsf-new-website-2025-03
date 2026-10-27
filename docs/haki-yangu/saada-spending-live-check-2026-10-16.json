@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-16T09:48:51.114Z",
+  "environment": "configured development backend",
+  "modelCalls": 0,
+  "recordWrites": 0,
+  "checks": [
+    {
+      "name": "Private cost status rejects guests",
+      "passed": true
+    },
+    {
+      "name": "Agent rejects guests before paid calls",
+      "passed": true
+    }
+  ],
+  "monthlyDollarLimitConfigured": false
+}

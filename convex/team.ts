@@ -2,6 +2,7 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { Id } from "./_generated/dataModel";
 import { requireAnyRole } from "./lib/auth";
+import { requirePublicMediaReference } from "./lib/managedUploads";
 import { resolveImageUrl } from "./lib/mediaHelpers";
 
 // Get all team members
@@ -63,6 +64,7 @@ export const create = mutation({
     handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin", "staff"]);
 
+        await requirePublicMediaReference(ctx, args.image);
         return await ctx.db.insert("team_members", args);
     },
 });
@@ -86,6 +88,8 @@ export const update = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
+        const previous = await ctx.db.get(id);
+        await requirePublicMediaReference(ctx, fields.image, previous?.image);
         await ctx.db.patch(id, fields);
     },
 });

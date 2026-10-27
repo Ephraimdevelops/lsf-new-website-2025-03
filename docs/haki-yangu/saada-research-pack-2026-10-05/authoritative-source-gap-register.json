@@ -1,0 +1,283 @@
+{
+  "researchDate": "2026-10-05",
+  "gaps": [
+    {
+      "sourceId": "FAMILY-MUSHI",
+      "title": "Mary Barnaba Mushi v Attorney General",
+      "url": "https://media.tanzlii.org/media/judgment/183213/source_file/mary-barnaba-mushi-vs-attorney-general-2023-tzhc-18309-14-june-2023.pdf",
+      "observedOutcome": "HTTPError: HTTP Error 404: Not Found",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-AG-CATALOGUE",
+      "title": "Zanzibar Attorney General special laws catalogue",
+      "url": "https://agcz.go.tz/rasilimali/sheria-mahsusi",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LABOUR-CATALOGUE",
+      "title": "Zanzibar House of Representatives 2005 Acts",
+      "url": "https://zanzibarassembly.go.tz/sw/acts/acts_2005/2005",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-JUDICIARY-GBV",
+      "title": "Zanzibar Judiciary strategy and action plans",
+      "url": "https://www.judiciaryzanzibar.go.tz/uploads/publications/698233db8c994_StrategyandActionPlans_2026.pdf",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LEGAL-AID-SW",
+      "title": "Zanzibar Legal Aid Act, Swahili copy",
+      "url": "https://zlsc.or.tz/wp-content/uploads/2024/08/ZNZ-Sheria-ya-Msaada-wa-Kisheria-2018-Sheria-Namba-13-ya-2018.pdf",
+      "observedOutcome": "HTTPError: HTTP Error 404: Not Found",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LEGAL-AID-EN",
+      "title": "Zanzibar Legal Aid Act, English labelled copy",
+      "url": "https://zlsc.or.tz/wp-content/uploads/2024/08/ZNZ-Legal-Aid-Act-2018-Act-No.-18-of-2018.pdf",
+      "observedOutcome": "HTTPError: HTTP Error 404: Not Found",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "TELECOM-GUIDELINE",
+      "title": "TCRA consumer complaint handling guideline",
+      "url": "https://www.tcra.go.tz/uploads/text-editor/files/Revised%20TCRA%20Guideline%20for%20Consumer%20Complaint%20handling%20with%20ISO%20requirements%20for%20control_1636465939.pdf",
+      "observedOutcome": "HTTPError: HTTP Error 404: Page not found: /uploads/text-editor/files/Revised%20TCRA%20Guideline%20for%20Consumer%20Complaint%20handling%20with%20ISO%20requirements%20for%20control_1636465939.pdf",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "UTILITIES-CATALOGUE",
+      "title": "EWURA complaint rules and public register",
+      "url": "https://www.ewura.go.tz/public-register",
+      "observedOutcome": "TimeoutError: The read operation timed out",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "PROC-APPEAL-CATALOGUE",
+      "title": "Court of Appeal principal and amendment rule catalogue",
+      "url": "https://elibrary.osg.go.tz/handle/123456789/139/browse?etal=-1&offset=175&order=ASC&rpp=20&sort_by=1&type=title",
+      "observedOutcome": "HTTPError: HTTP Error 404: Not found",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-CIVIL-STATUS",
+      "title": "Zanzibar Civil Status Registration Act",
+      "url": "https://zcsra.go.tz/Downloads/act_3.pdf",
+      "observedOutcome": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1010)>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-ASSEMBLY-2011",
+      "title": "Zanzibar Assembly2011 Acts catalogue",
+      "url": "https://www.zanzibarassembly.go.tz/sw/acts/acts_2011/2011",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-ASSEMBLY-2018",
+      "title": "Zanzibar Assembly2018 Acts catalogue",
+      "url": "https://www.zanzibarassembly.go.tz/sw/acts/acts_2018/2018",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-ASSEMBLY-2017",
+      "title": "Zanzibar Assembly2017 Acts catalogue",
+      "url": "https://www.zanzibarassembly.go.tz/sw/acts/acts_2017/2017",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-CHILD-RESOURCE",
+      "title": "Zanzibar children and succession document catalogue",
+      "url": "https://www.clr.africanchildforum.org/Pages_EN/Tanzania.html",
+      "observedOutcome": "HTTPError: HTTP Error 403: Forbidden",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-CIVIL-PROCEDURE",
+      "title": "Civil Procedure Decree AGCZ copy",
+      "url": "https://agcz.go.tz/storage/documents/NhzPX2whGEthQwmoc14TRzrwZ3AC6FwhCXpfXZ0C.pdf",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CMA-PROCEDURE-READABLE",
+      "title": "CMA-hosted Mediation and Arbitration Rules counterpart",
+      "url": "https://cma.go.tz/uploads/documents/sw-1742794755-2021%20LABOUR%20REGULATON_.pdf_Allen-min.pdf",
+      "observedOutcome": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'cma.go.tz'. (_ssl.c:1010)>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LAND-TENURE",
+      "title": "Zanzibar Land Tenure Act: Assembly-hosted source candidate",
+      "url": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674560129.pdf",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-DISABILITY-ACT",
+      "title": "Zanzibar Persons with Disabilities Rights and Privileges Act: source candidate",
+      "url": "https://www.zanzibarassembly.go.tz/storage/documents/acts/english/all/1674646269.pdf",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-ZNZ-LAND-2025",
+      "title": "Zanzibar land tribunal appeal: full source candidate, identity pending",
+      "url": "https://zanzibarlii.org/sw/akn/tz-znz/judgment/tzznzhc/2025/170/eng%402025-09-03/source.pdf",
+      "observedOutcome": "HTTPError: HTTP Error 403: Forbidden",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LAND-TRIBUNAL",
+      "title": "Zanzibar Land Tribunal Act7/1994: official Tribunal-hosted candidate",
+      "url": "https://landtribunalsmz.go.tz/Documents/1994-007%20THE%20LAND%20TRIBUNAL.pdf",
+      "observedOutcome": "URLError: <urlopen error timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LAND-COMPILATION-2017",
+      "title": "Zanzibar Land Laws 2017: Tribunal-hosted historical compilation",
+      "url": "https://www.landtribunalsmz.go.tz/Documents/Zanzibar%20Land%20Laws___2017.pdf",
+      "observedOutcome": "URLError: <urlopen error timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LAND-AMENDMENT-CATALOGUE",
+      "title": "Assembly 2008 Acts: Land Tribunal amendment1/2008",
+      "url": "https://zanzibarassembly.go.tz/administrative.php/acts/acts_2008/2008",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LAND-TRIBUNAL-ASSEMBLY",
+      "title": "Zanzibar Land Tribunal Act7/1994: Assembly copy",
+      "url": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674626468.pdf",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-LAND-AMENDMENT-2008",
+      "title": "Land Tribunal Amendment Act1/2008: Assembly copy",
+      "url": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674647722.pdf",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-ZSSF-CATALOGUE",
+      "title": "ZSSF Acts and Regulations public catalogue",
+      "url": "https://zssf.or.tz/publications/act-and-regulations",
+      "observedOutcome": "URLError: <urlopen error [Errno 61] Connection refused>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-ZURA-CATALOGUE",
+      "title": "ZURA official publications and complaint regulations catalogue",
+      "url": "https://zura.go.tz/publications/",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-ZEMA-CATALOGUE",
+      "title": "ZEMA official environmental instruments catalogue",
+      "url": "https://zema.go.tz/",
+      "observedOutcome": "URLError: <urlopen error _ssl.c:993: The handshake operation timed out>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    },
+    {
+      "sourceId": "SOCIAL-NSSF-REGISTRATION",
+      "title": "NSSF employee registration and missing NIN alternative guidance",
+      "url": "https://nssf.go.tz/index.php/pages/members",
+      "observedOutcome": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'nssf.go.tz'. (_ssl.c:1010)>",
+      "scope": "This retrieval attempt failed; not proof the instrument does not exist.",
+      "nextAction": "Obtain authenticated copy from issuing body or registry; verify exact identity and currency. Never substitute search snippets for full law.",
+      "productionEligible": false
+    }
+  ],
+  "focusedUnresolvedInstruments": [
+    {
+      "title": "Zanzibar Legal Aid Act",
+      "reason": "ZLSC English18/2018 and Kiswahili13/2018 labels conflict; both linked copies returned404. Gazette regulations refer to13/2018; a bar catalogue lists7/2018 as coming soon. Authenticated Act required."
+    },
+    {
+      "title": "Kadhi Courts2024 rules and appointed commencement notice",
+      "reason": "Later judicial material refers to2024 rules; full rules and appointed commencement notice not acquired.2021 rules and Act publication alone cannot establish current procedure."
+    },
+    {
+      "title": "Primary Courts Administration of Estates GN49/1971",
+      "reason": "Focused OSG/catalogue searches did not supply principal instrument.2025 amendment acquired. Commercial/student copies are not substituted or purchased."
+    },
+    {
+      "title": "Zanzibar land/current benefits/utility/environment procedures",
+      "reason": "Observed official Assembly/Tribunal/ZSSF/ZURA/ZEMA sources encountered transport failures. Search listings identify source candidates, not complete rules; counterpart Gazette environmental Act acquired."
+    },
+    {
+      "title": "Selected inheritance judgments",
+      "reason": "Two OSG downloads contain summaries only. Full judgments and actual appellate dates still required before using binding reasons."
+    },
+    {
+      "title": "Specialist and local procedure gaps",
+      "reason": "PF3 operational instructions, current scheme forms, non-Muslim Zanzibar succession, health/immigration complaint procedure, local practice and later treatment require issuing-body/specialist confirmation. The pack does not certify exhaustive legislative coverage."
+    }
+  ]
+}

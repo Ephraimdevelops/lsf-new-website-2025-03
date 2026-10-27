@@ -104,8 +104,8 @@ test("Saada does not invent an answer when approved evidence is absent", () => {
   assert.match(noSourceResponse("en", "services", 2), /No referral has been sent/);
   assert.match(noSourceResponse("en", "services", 0), /could not find a current verified public match/);
   const action = readFileSync(new URL("../convex/sara_actions.ts", import.meta.url), "utf8");
-  assert.match(action, /if \(retrievedSources\.length === 0 && !toolCallBuffer\)/);
-  assert.match(action, /if \(retrievedSources\.length === 0\)/);
+  assert.match(action, /runSaadaAgent/);
+  assert.match(action, /hasLegalEvidence: \(\) => retrievedSources\.length > 0/);
 });
 
 test("saved visit plans do not reveal retired service details or allow new plans when intake is closed", () => {
@@ -326,19 +326,20 @@ test("public paralegal directory uses a safe projection and governed matching UX
   const paralegals = readFileSync(new URL("../convex/paralegals.ts", import.meta.url), "utf8");
   const adminParalegals = readFileSync(new URL("../src/components/admin/AdminParalegals.tsx", import.meta.url), "utf8");
   const mobileFinder = readFileSync(new URL("../mobile/app/paralegals.tsx", import.meta.url), "utf8");
-  const projection = paralegals.slice(paralegals.indexOf("return paralegals.map"));
+  const projection = paralegals.slice(paralegals.indexOf("return (await Promise.all(paralegals.map"));
 
   assert.match(paralegals, /includePrivate:\s*v\.optional\(v\.boolean\(\)\)/);
   assert.match(paralegals, /if \(includePrivate\) \{/);
   assert.match(paralegals, /requireAnyRole\(ctx,\s*\["admin",\s*"staff"\]\)/);
-  assert.match(paralegals, /return paralegals\.map\(\(paralegal\) => \(\{/);
+  assert.match(paralegals, /Promise\.all\(paralegals\.map\(async \(paralegal\) => \{/);
   assert.doesNotMatch(projection, /email:\s*paralegal\.email/);
   assert.doesNotMatch(projection, /idDocumentUrl:\s*paralegal\.idDocumentUrl/);
   assert.doesNotMatch(projection, /resumeUrl:\s*paralegal\.resumeUrl/);
   assert.match(adminParalegals, /includePrivate:\s*true/);
-  assert.match(mobileFinder, /Need LSF to match you/);
+  assert.match(mobileFinder, /Help me find the right support/);
+  assert.match(mobileFinder, /Send a request for your location and needs to be reviewed/);
   assert.match(mobileFinder, /Why this may fit/);
-  assert.match(mobileFinder, /Let LSF match me/);
+  assert.match(mobileFinder, /style=\{styles\.match\} onPress=\{\(\) => router\.push\("\/intake"\)\}/);
   assert.match(mobileFinder, /For sensitive cases/);
 });
 
@@ -359,7 +360,7 @@ test("intake captures preferred support language for staff routing and matching"
   assert.match(legalHelp, /request\.preferredLanguage === "other" && !request\.preferredLanguageOther/);
   assert.match(intakeDraft, /preferredLanguage:\s*"sw" \| "en" \| "both" \| "other"/);
   assert.match(intakeDraft, /preferredLanguageOther:\s*string/);
-  assert.match(mobileIntake, /Preferred support language/);
+  assert.match(mobileIntake, /IntakeSelect label=\{sw \? "Lugha ya msaada" : "Support language"\} value=\{draft\.preferredLanguage\}/);
   assert.match(mobileIntake, /preferredLanguage:\s*draft\.preferredLanguage/);
   assert.match(mobileIntake, /preferredLanguageOther:\s*draft\.preferredLanguageOther/);
   assert.match(mobileIntake, /Enter language/);
@@ -400,9 +401,11 @@ test("submitted requests have an owner-scoped progress and withdrawal journey", 
   assert.match(legalHelp, /export const withdrawMyRequest = mutation/);
   assert.match(legalHelp, /help_request\.withdrawn/);
   assert.match(cases, /pathname: "\/request\/\[id\]"/);
-  assert.match(requestDetail, /Request progress/);
+  assert.match(requestDetail, /Progress so far/);
+  assert.match(requestDetail, /progressStages\.map/);
   assert.match(requestDetail, /withdrawMyRequest/);
-  assert.match(requestDetail, /More information needed/);
+  assert.match(requestDetail, /requestLabels/);
+  assert.match(requestDetail, /RequestConversation/);
 });
 
 test("provider availability informs assignment fit without exposing staff notes publicly", () => {
@@ -413,13 +416,13 @@ test("provider availability informs assignment fit without exposing staff notes 
   const staffDashboard = readFileSync(new URL("../src/pages/StaffDashboard.tsx", import.meta.url), "utf8");
   const providerDashboard = readFileSync(new URL("../src/pages/ParalegalDashboard.tsx", import.meta.url), "utf8");
   const mobileFinder = readFileSync(new URL("../mobile/app/paralegals.tsx", import.meta.url), "utf8");
-  const projection = paralegals.slice(paralegals.indexOf("return paralegals.map"));
+  const projection = paralegals.slice(paralegals.indexOf("return (await Promise.all(paralegals.map"));
 
   assert.match(schema, /availabilityStatus:\s*v\.optional\(v\.union\(/);
   assert.match(schema, /weeklyCapacity:\s*v\.optional\(v\.number\(\)\)/);
   assert.match(schema, /workingHours:\s*v\.optional\(v\.string\(\)\)/);
   assert.match(schema, /availabilityNotes:\s*v\.optional\(v\.string\(\)\)/);
-  assert.match(paralegals, /availabilityStatus:\s*paralegal\.availabilityStatus \?\? "accepting_cases"/);
+  assert.match(paralegals, /availabilityStatus:\s*paralegal\.availabilityStatus \?\? "unknown"/);
   assert.doesNotMatch(projection, /availabilityNotes:\s*paralegal\.availabilityNotes/);
   assert.match(paralegals, /Math\.max\(0,\s*Math\.min\(50,\s*Math\.floor\(updates\.weeklyCapacity\)\)\)/);
   assert.match(caseManagement, /remainingCapacity/);
@@ -429,9 +432,11 @@ test("provider availability informs assignment fit without exposing staff notes 
   assert.match(profileEdit, /weeklyCapacity/);
   assert.match(staffDashboard, /declared availability/);
   assert.match(staffDashboard, /availabilityNotes/);
-  assert.match(providerDashboard, /case\/week capacity/);
-  assert.match(mobileFinder, /availabilityLabel/);
-  assert.match(mobileFinder, /Accepting new requests/);
+  assert.match(providerDashboard, /paralegal\.weeklyCapacity/);
+  assert.match(mobileFinder, /paralegalAvailabilityLabel\(item\.availabilityStatus, locale\)/);
+  assert.match(mobileFinder, /Accepting requests now/);
+  assert.match(mobileFinder, /accessibilityState=\{\{ checked: acceptingOnly \}\}/);
+  assert.match(mobileFinder, /matchesParalegal\(item, query, region, acceptingOnly\)/);
 });
 
 test("paused provider assignment requires an audited staff override reason", () => {
@@ -441,8 +446,11 @@ test("paused provider assignment requires an audited staff override reason", () 
 
   assert.match(caseManagement, /requireAssignableAvailability/);
   assert.match(caseManagement, /availabilityOverrideReason:\s*v\.optional\(v\.string\(\)\)/);
-  assert.match(caseManagement, /availabilityStatus === "paused" \|\| availabilityStatus === "unavailable"/);
-  assert.match(caseManagement, /Record an override reason before sending the offer/);
+  assert.match(caseManagement, /!capacity\.canOffer && !normalizedOverrideReason/);
+  const capacityRules = readFileSync(new URL("../convex/lib/workerMatching.ts", import.meta.url), "utf8");
+  assert.match(capacityRules, /availabilityStatus.*\?\? "unknown"/);
+  assert.match(capacityRules, /remainingCapacity !== null && remainingCapacity > 0/);
+  assert.match(caseManagement, /record an override reason before sending the offer/i);
   assert.match(caseManagement, /metadata:\s*\{ assignmentId, assigneeId: args\.assigneeId, expiresAt, \.\.\.availability \}/);
   assert.match(caseManagement, /metadata:\s*\{ assignmentId, endedAssigneeIds: \[\.\.\.endedAssigneeIds\], \.\.\.availability \}/);
   assert.match(caseManagement, /assignment\.offered",\s*"case_assignment",\s*assignmentId,\s*\{ caseId: args\.caseId, \.\.\.availability \}/);
@@ -450,8 +458,8 @@ test("paused provider assignment requires an audited staff override reason", () 
   assert.match(staffDashboard, /assignmentOverrideReason/);
   assert.match(staffDashboard, /reassignmentOverrideReason/);
   assert.match(staffDashboard, /requiresAvailabilityOverride/);
-  assert.match(staffDashboard, /paused or unavailable provider/);
-  assert.match(staffDashboard, /availabilityStatus \?\? "accepting_cases"\)\.replaceAll/);
+  assert.match(staffDashboard, /unknown, paused, unavailable or full capacity/);
+  assert.match(staffDashboard, /statusLabel\(\(provider\.availabilityStatus \?\? "unknown"\)\)/);
   assert.match(phaseNote, /backend enforces the rule/i);
   assert.match(phaseNote, /audit records include/);
 });
@@ -542,7 +550,7 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   assert.match(providerDashboard, /Schedule selected time from request/);
   assert.match(providerDashboard, /Complete/);
   assert.match(providerDashboard, /No-show/);
-  assert.match(staffDashboard, /Appointment lifecycle/);
+  assert.match(staffDashboard, /caseDetail\.appointments\.map/);
   assert.match(staffDashboard, /Appointment requests awaiting confirmation/);
   assert.match(staffDashboard, /scheduleRequestedAppointment/);
   assert.match(staffDashboard, /statusUpdatedAt/);
@@ -612,7 +620,7 @@ test("staff reassignment ends current access and creates a replacement offer", (
   assert.match(lifecycle, /assigned:\s*\["assignment_pending"/);
   assert.match(staffDashboard, /reassignCase/);
   assert.match(staffDashboard, /Load matching evidence/);
-  assert.match(staffDashboard, /Staff resolution note/);
+  assert.match(staffDashboard, /resolutionNote:\s*note/);
   assert.match(staffDashboard, /Reassign and offer/);
 });
 
@@ -649,10 +657,10 @@ test("final case closure requires outcome, safe summary, document review, and fe
   assert.match(caseManagement, /feedbackRequested/);
   assert.match(caseManagement, /Case is not ready to close/);
   assert.match(caseManagement, /type:\s*"feedback_requested"/);
-  assert.match(staffDashboard, /Closure readiness/);
-  assert.match(staffDashboard, /Final close is blocked/);
-  assert.match(providerDashboard, /Closure readiness/);
-  assert.match(providerDashboard, /Final close is blocked/);
+  assert.match(staffDashboard, /caseDetail\.closureReadiness!\.requirements/);
+  assert.match(staffDashboard, /disabled=\{status === "closed" && !caseDetail\.closureReadiness\?\.canClose\}/);
+  assert.match(providerDashboard, /caseDetail\.closureReadiness/);
+  assert.match(providerDashboard, /caseDetail\.closureReadiness\?\.canClose/);
 });
 
 test("beneficiary mobile closure experience shows outcome, feedback request, and submitted feedback", () => {
@@ -683,10 +691,12 @@ test("mobile offline queue stores sensitive pending case actions securely", () =
   assert.match(pendingActions, /case_review_request/);
   assert.match(pendingActions, /case_feedback/);
   assert.match(pendingActions, /shouldQueueError/);
-  assert.match(mobileCase, /enqueuePendingAction/);
+  assert.match(mobileCase, /usePendingActions/);
+  assert.match(mobileCase, /pendingActions\.enqueue\(input\)/);
+  assert.match(pendingActions, /enqueuePendingAction\(owner, input\)/);
   assert.match(mobileCase, /clientMessageId/);
   assert.match(mobileCase, /Try syncing now/);
-  assert.match(offlineScreen, /Pending sync/);
+  assert.match(offlineScreen, /Waiting to send/);
   assert.match(offlineScreen, /Uploading documents/);
 });
 
@@ -714,15 +724,15 @@ test("mobile demand-letter builder provides an offline practical document tool",
   assert.match(letterBuilder, /Share\.share/);
   assert.match(letterBuilder, /expo-secure-store/);
   assert.match(letterBuilder, /WHEN_UNLOCKED_THIS_DEVICE_ONLY/);
-  assert.match(letterBuilder, /Save secure draft/);
+  assert.match(letterBuilder, /Save draft/);
   assert.match(letterBuilder, /Delete draft/);
   assert.match(letterBuilder, /Attach draft to case/);
   assert.match(letterBuilder, /api\.caseManagement\.myCases/);
   assert.match(letterBuilder, /addGeneratedLetterDocument/);
-  assert.match(letterBuilder, /ready to share it with your case team/);
+  assert.match(letterBuilder, /Your case team will see it/);
   assert.match(letterBuilder, /REQUEST TO RESOLVE A LEGAL ISSUE/);
   assert.match(letterBuilder, /I need help with this letter/);
-  assert.match(letterBuilder, /plain-language draft/);
+  assert.match(letterBuilder, /Review the draft before sending/);
   assert.match(phaseNote, /offline-capable/i);
   assert.match(phaseNote, /SecureStore/i);
 });
@@ -736,16 +746,18 @@ test("mobile document checker gives pre-signing guidance without silent upload",
   assert.match(layout, /document-checker/);
   assert.match(home, /route: "\/document-checker"/);
   assert.match(documentChecker, /expo-document-picker/);
-  assert.match(documentChecker, /copyToCacheDirectory:\s*false/);
-  assert.match(documentChecker, /The document is not uploaded unless you start a help request/);
+  assert.match(documentChecker, /copyToCacheDirectory:\s*true/);
+  assert.match(documentChecker, /Selecting a document does not send it to LSF/);
+  const selectionOnly = documentChecker.slice(documentChecker.indexOf("async function chooseFile"), documentChecker.indexOf("async function saveToLibrary"));
+  assert.doesNotMatch(selectionOnly, /generateDocumentUploadUrl|uploadEvidence|addDocument|generatePersonalUpload|savePersonalDocument/);
   assert.match(documentChecker, /generateDocumentUploadUrl/);
   assert.match(documentChecker, /addDocument/);
   assert.match(documentChecker, /Attach document to case/);
-  assert.match(documentChecker, /ready to share this file with your case team/);
+  assert.match(documentChecker, /When you tap Attach, this document is shared with the selected case team/);
   assert.match(documentChecker, /category:\s*"contract"/);
   assert.match(documentChecker, /Before signing, check/);
   assert.match(documentChecker, /Stop and ask if/);
-  assert.match(documentChecker, /Request document review help/);
+  assert.match(documentChecker, /Request help with your document/);
   assert.match(phaseNote, /no silent upload/i);
 });
 
@@ -773,7 +785,7 @@ test("mobile my-documents library is backed by scoped case documents", () => {
   assert.match(profile, /My documents/);
   assert.match(documents, /api\.caseManagement\.myDocuments/);
   assert.match(documents, /pathname: "\/document\/\[id\]"/);
-  assert.match(documentDetail, /api\.caseManagement\.myDocuments/);
+  assert.match(documentDetail, /api\.caseManagement\.getDocument/);
   assert.match(documentDetail, /Linking\.openURL/);
   assert.match(documentDetail, /pathname: "\/case\/\[id\]"/);
   assert.match(documents, /document\.textContent/);
@@ -804,7 +816,7 @@ test("mobile my-appointments list is backed by scoped case appointments", () => 
   assert.match(appointments, /upcomingCount/);
   assert.match(appointments, /statusNote/);
   assert.match(appointments, /pathname: "\/appointment\/\[id\]"/);
-  assert.match(appointmentDetail, /api\.caseManagement\.myAppointments/);
+  assert.match(appointmentDetail, /api\.caseManagement\.getAppointment/);
   assert.match(appointmentDetail, /pathname: "\/case\/\[id\]"/);
   assert.match(phaseNote, /standalone appointment list/i);
 });
@@ -861,7 +873,7 @@ test("mobile account recovery and role scope are visible without client-side pri
   assert.match(signIn, /Recover your account/);
   assert.match(signIn, /Set new password/);
   assert.match(profile, /api\.users\.currentAccess/);
-  assert.match(profile, /Guest access/);
+  assert.match(profile, /Without an account/);
   assert.match(profile, /Beneficiary access/);
   assert.match(profile, /Provider access/);
   assert.match(profile, /Operations access/);
@@ -918,8 +930,8 @@ test("donor and stakeholder reporting uses approved aggregate snapshots", () => 
   assert.match(security, /\["reporting\.listSnapshots",\s*"aggregate-reporting"\]/);
   assert.match(app, /allowedRoles=\{\["stakeholder",\s*"donor"\]\}/);
   assert.match(stakeholderDashboard, /api\.reporting\.listSnapshots/);
-  assert.match(stakeholderDashboard, /Donor-safe reporting/);
-  assert.match(stakeholderDashboard, /Approved aggregate metrics only/);
+  assert.match(stakeholderDashboard, /Approved summary figures only/);
+  assert.match(stakeholderDashboard, /Small groups are hidden/);
   assert.doesNotMatch(stakeholderDashboard, /Mock projects|Community Outreach Program|Legal Aid Clinic Expansion/);
   assert.match(roleMatrix, /donor-safe reporting snapshots/);
 });
@@ -934,7 +946,7 @@ test("beneficiary web dashboard is connected to scoped private Haki Yangu record
   assert.match(userDashboard, /api\.caseManagement\.myDocuments/);
   assert.match(userDashboard, /My Haki Yangu workspace/);
   assert.match(userDashboard, /Current legal-help status/);
-  assert.match(userDashboard, /Privacy-first access/);
+  assert.match(userDashboard, /Your information, your choices/);
   assert.match(userDashboard, /dashboardPath\(roles\)/);
   assert.doesNotMatch(userDashboard, /Recent Activity Placeholder|No recent activity yet|Community Member Dashboard/);
 });
@@ -965,7 +977,7 @@ test("production mobile private surfaces do not show demo backend records", () =
   for (const source of [cases, documents, notifications]) {
     assert.doesNotMatch(source, /demo[A-Z]|demo-|mock/i);
     assert.match(source, /router\.push\("\/sign-in"\)/);
-    assert.match(source, /No .* yet|Hakuna .* bado|Sign in to view|Ingia kuona/i);
+    assert.match(source, /No .* yet|Hakuna .* bado|Sign in to view|Ingia kuona|Sign in to follow your request/i);
   }
   assert.match(audit, /Private mobile demo fallback removal/);
 });
@@ -1022,7 +1034,7 @@ test("mobile Saada uses governed Convex AI with risk events and consent", () => 
   assert.match(mobileSara, /source:\s*"mobile"/);
   assert.match(mobileSara, /consentAccepted/);
   assert.doesNotMatch(mobileSara, /buildDemoReply/);
-  assert.match(adminAnalytics, /Saada Governance Events/);
+  assert.match(adminAnalytics, /Haki Yangu AI Governance Events/);
   assert.match(adminAnalytics, /api\.sara_chat\.getRiskEvents/);
   assert.match(adminAnalytics, /api\.sara_chat\.resolveRiskEvent/);
   assert.match(adminAnalytics, /Case follow-up/);
@@ -1040,7 +1052,9 @@ test("Saada restores governed history and only exposes verified public directory
   assert.match(mobileSaada, /api\.sara_chat\.getConversationMessages/);
   assert.match(mobileSaada, /api\.sara_chat\.getLegacyConversation/);
   assert.match(mobileSaada, /usePaginatedQuery/);
-  assert.match(actions, /name: "find_services"/);
+  const registry = readFileSync(new URL("../convex/lib/saadaAgent.ts", import.meta.url), "utf8");
+  assert.match(registry, /find_services:/);
+  assert.match(actions, /tools:\s*allowedTools as any/);
   assert.match(actions, /api\.justiceServices\.listPublicServices/);
   assert.match(actions, /do not claim a referral was sent/);
   assert.match(actions, /Police Emergency:\*\* \*\*112/);
@@ -1068,7 +1082,7 @@ test("Saada exposes real backend activity events instead of a generic spinner", 
   assert.match(saraActions, /knowledge_search_started/);
   assert.match(saraActions, /service_search_completed/);
   assert.match(saraActions, /human_review_requested/);
-  assert.match(webSara, /Saada activity/);
+  assert.match(webSara, /Haki Yangu AI activity/);
   assert.match(webSara, /api\.sara_chat\.getActivityEvents/);
   assert.match(mobileSara, /ChatActivity label=\{activityLabel\}/);
   assert.match(mobileSara, /api\.sara_chat\.getActivityEvents/);
@@ -1120,7 +1134,8 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(referrals, /staffConsentEvidenceQueue/);
   assert.match(referrals, /reviewConsentEvidence/);
   assert.match(referrals, /expireConsentEvidenceRetention/);
-  assert.match(referrals, /ctx\.storage\.generateUploadUrl\(\)/);
+  assert.match(referrals, /issueManagedUpload\(ctx, user\._id, "referral_consent", args\.caseId\)/);
+  assert.match(referrals, /requireCleanOwnedUpload\(ctx, args\.consentEvidenceStorageId, user\._id, "referral_consent", args\.caseId\)/);
   assert.match(referrals, /ctx\.storage\.getUrl\(consent\.evidenceStorageId\)/);
   assert.match(referrals, /destinationUserId:\s*v\.optional\(v\.id\("users"\)\)/);
   assert.match(referrals, /consentMethod:\s*v\.optional\(consentMethod\)/);
@@ -1158,7 +1173,7 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(security, /\["justiceServices\.reviewMatchingDecision",\s*"staff"\]/);
   assert.match(crons, /flag expired Haki Yangu consent evidence/);
   assert.match(crons, /internal\.referrals\.expireConsentEvidenceRetention/);
-  assert.match(staffDashboard, /Create service referral/);
+  assert.match(staffDashboard, /await createReferral\(\{/);
   assert.match(staffDashboard, /Partner organization/);
   assert.match(staffDashboard, /Organization accountability/);
   assert.match(staffDashboard, /Partner referral performance/);
@@ -1181,13 +1196,15 @@ test("referral graph connects staff creation, provider response, and beneficiary
   assert.match(staffDashboard, /Referral consent evidence/);
   assert.match(staffDashboard, /Accept consent evidence/);
   assert.match(staffDashboard, /Retention:/);
-  assert.match(providerDashboard, /Referral inbox/);
+  assert.match(providerDashboard, /api\.referrals\.myDestinationQueue/);
   assert.match(providerDashboard, /api\.referrals\.myDestinationQueue/);
   assert.match(providerDashboard, /api\.referrals\.respondAsDestination/);
-  assert.match(providerDashboard, /api\.referrals\.createOnwardReferral/);
-  assert.match(providerDashboard, /Accept referral/);
-  assert.match(providerDashboard, /Return to LSF/);
-  assert.match(providerDashboard, /Propose onward referral for beneficiary approval/);
+  assert.match(providerDashboard, /<ReferralProposal caseId=\{item\.referral\.caseId\} parentId=\{item\.referral\._id\}/);
+  const referralProposal = readFileSync(new URL("../src/components/paralegal/ReferralProposal.tsx", import.meta.url), "utf8");
+  assert.match(referralProposal, /api\.referrals\.createOnwardReferral/);
+  assert.match(providerDashboard, /destinationActions\[item\.referral\.status\]/);
+  assert.match(providerDashboard, /updateReferral\(item\.referral\._id, action\)/);
+  assert.match(providerDashboard, /!item\.onwardReferral/);
   assert.match(providerDashboard, /Consent proof/);
   assert.match(mobileCase, /Referrals/);
   assert.match(mobileCase, /api\.referrals\.listForCase/);
@@ -1222,7 +1239,7 @@ test("paralegal mobile case workspace connects worker tasks and document review"
   assert.match(mobileCase, /api\.caseManagement\.createTask/);
   assert.match(mobileCase, /Add task/);
   assert.match(mobileCase, /api\.caseManagement\.reviewDocument/);
-  assert.match(mobileCase, /Document reviewed and accepted/);
+  assert.match(mobileCase, /await reviewDocumentMutation\(\{ documentId, status, reviewNotes: reviewNote \|\| undefined \}\)/);
   assert.match(mobileWorkspace, /api\.caseManagement\.myTasks/);
   assert.match(mobileWorkspace, /api\.caseManagement\.completeTask/);
   assert.match(security, /\["caseManagement\.myTasks",\s*"service-provider"\]/);
@@ -1241,7 +1258,7 @@ test("paralegal mobile case workspace connects appointments, referrals, and outc
   assert.match(caseManagement, /export const scheduleAppointment/);
   assert.match(caseManagement, /Appointment must be in the future/);
   assert.match(caseManagement, /export const recordOutcome/);
-  assert.match(caseManagement, /assertCaseTransition\(caseRecord\.status, "resolved"\)/);
+  assert.match(caseManagement, /assertCaseTransition\(caseRecord\.status, resolution\)/);
   assert.match(referrals, /export const updateStatus/);
   assert.match(mobileCase, /api\.caseManagement\.scheduleAppointment/);
   assert.match(mobileCase, /Schedule beneficiary appointment/);
@@ -1314,7 +1331,7 @@ test("paralegal mobile performance is computed from assigned cases and beneficia
   assert.match(mobilePerformance, /api\.paralegals\.getMyPerformance/);
   assert.match(mobilePerformance, /Cases handled/);
   assert.match(mobilePerformance, /beneficiary feedback responses included/);
-  assert.match(mobilePerformance, /router\.push\("\/support"\)/);
+  assert.match(mobilePerformance, /router\.push\("\/paralegal-support"\)/);
   assert.match(mobileWorkspace, /router\.push\("\/paralegal-performance"\)/);
   assert.match(security, /\["paralegals\.getMyPerformance",\s*"service-provider"\]/);
 });
@@ -1446,9 +1463,9 @@ test("mobile LSF operations connects intake triage, case creation, matching and 
   assert.match(operations, /\/case-matching\/\[id\]/);
   assert.match(matching, /api\.caseManagement\.providerRecommendations/);
   assert.match(matching, /api\.caseManagement\.offerAssignment/);
-  assert.match(safeguarding, /useSensitiveScreenProtection\("safeguarding"\)/);
+  assert.match(safeguarding, /useSensitiveScreenProtection\(["']safeguarding["']\)/);
   assert.match(safeguarding, /api\.caseManagement\.staffReviewRequests/);
-  assert.match(safeguarding, /status: "under_review"/);
+  assert.match(safeguarding, /status:\s*["']under_review["']/);
   assert.match(safeguardingReview, /api\.caseManagement\.resolveCaseReviewRequest/);
   assert.match(workspace, /router\.push\("\/operations"\)/);
   assert.match(workspace, /router\.push\("\/safeguarding"\)/);

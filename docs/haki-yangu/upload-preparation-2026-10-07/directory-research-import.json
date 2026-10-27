@@ -1,0 +1,952 @@
+{
+  "entries": [
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:tawla-arusha",
+      "kind": "centre",
+      "title": "TAWLA Arusha",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.tawla.or.tz/",
+        "https://www.tawla.or.tz/contact-us/"
+      ],
+      "originalRecord": "{\"id\": \"tawla-arusha\", \"name\": \"TAWLA Arusha\", \"phone\": \"+255762973419\", \"email\": \"officearusha@tawla.or.tz\", \"address\": \"St. James Street, Kaloleni Furniture Collections Building, fourth floor, room 402\", \"sources\": [\"tawla\", \"tawla-contact\"], \"status\": \"public_source_observed\", \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "address": "St. James Street, Kaloleni Furniture Collections Building, fourth floor, room 402",
+      "phone": "+255762973419",
+      "email": "officearusha@tawla.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:tawla-dodoma",
+      "kind": "centre",
+      "title": "TAWLA Dodoma",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.tawla.or.tz/",
+        "https://www.tawla.or.tz/contact-us/"
+      ],
+      "originalRecord": "{\"id\": \"tawla-dodoma\", \"name\": \"TAWLA Dodoma\", \"phone\": \"+255719481794\", \"email\": \"officedodoma@tawla.or.tz\", \"address\": \"Ilazo East, Plot 25 Block C\", \"sources\": [\"tawla\", \"tawla-contact\"], \"status\": \"public_source_observed\", \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "address": "Ilazo East, Plot 25 Block C",
+      "phone": "+255719481794",
+      "email": "officedodoma@tawla.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:tawla-mbeya",
+      "kind": "centre",
+      "title": "TAWLA Mbeya",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.tawla.or.tz/",
+        "https://www.tawla.or.tz/contact-us/"
+      ],
+      "originalRecord": "{\"id\": \"tawla-mbeya\", \"name\": \"TAWLA Mbeya\", \"phone\": \"+255652392999\", \"email\": \"officembeya@tawla.or.tz\", \"address\": \"Sae, Plot 67 Block X\", \"sources\": [\"tawla\", \"tawla-contact\"], \"status\": \"public_source_observed\", \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "address": "Sae, Plot 67 Block X",
+      "phone": "+255652392999",
+      "email": "officembeya@tawla.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:tawla-mwanza",
+      "kind": "centre",
+      "title": "TAWLA Mwanza",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.tawla.or.tz/",
+        "https://www.tawla.or.tz/contact-us/"
+      ],
+      "originalRecord": "{\"id\": \"tawla-mwanza\", \"name\": \"TAWLA Mwanza\", \"phone\": null, \"email\": \"officemwanza@tawla.or.tz\", \"sources\": [\"tawla\", \"tawla-contact\"], \"status\": \"conflicting_phone\", \"observations\": [\"Homepage: +255688103222\", \"Contact page: +255756330323\"], \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "email": "officemwanza@tawla.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:tawla-tanga",
+      "kind": "centre",
+      "title": "TAWLA Tanga",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.tawla.or.tz/",
+        "https://www.tawla.or.tz/contact-us/"
+      ],
+      "originalRecord": "{\"id\": \"tawla-tanga\", \"name\": \"TAWLA Tanga\", \"phone\": null, \"email\": \"officetanga@tawla.or.tz\", \"sources\": [\"tawla\", \"tawla-contact\"], \"status\": \"country_code_and_address_conflict\", \"observations\": [\"Published phone starts +225; do not silently change to +255\", \"Homepage and contact page give different street numbers\"], \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "email": "officetanga@tawla.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:tawla-hq",
+      "kind": "centre",
+      "title": "TAWLA head office",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.tawla.or.tz/",
+        "https://www.tawla.or.tz/contact-us/"
+      ],
+      "originalRecord": "{\"id\": \"tawla-hq\", \"name\": \"TAWLA head office\", \"phone\": \"0800751010\", \"email\": \"info@tawla.or.tz\", \"address\": null, \"sources\": [\"tawla\", \"tawla-contact\"], \"status\": \"address_conflict_phone_source_observed\", \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "phone": "0800751010",
+      "email": "info@tawla.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:lhrc-kinondoni",
+      "kind": "centre",
+      "title": "LHRC Kinondoni Legal Aid Clinic",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://legalaid.humanrights.or.tz/en/contact"
+      ],
+      "originalRecord": "{\"id\": \"lhrc-kinondoni\", \"name\": \"LHRC Kinondoni Legal Aid Clinic\", \"phone\": \"+255717143784\", \"email\": \"lhrckinondoni@humanrights.or.tz\", \"address\": \"Isere Street, House 660, Kinondoni, Dar es Salaam\", \"sources\": [\"lhrc\"], \"status\": \"public_source_observed\", \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "address": "Isere Street, House 660, Kinondoni, Dar es Salaam",
+      "phone": "+255717143784",
+      "email": "lhrckinondoni@humanrights.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:lhrc-arusha",
+      "kind": "centre",
+      "title": "LHRC Arusha Legal Aid Clinic",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://legalaid.humanrights.or.tz/en/contact"
+      ],
+      "originalRecord": "{\"id\": \"lhrc-arusha\", \"name\": \"LHRC Arusha Legal Aid Clinic\", \"phone\": null, \"email\": \"lhrcarusha@humanrights.or.tz\", \"sources\": [\"lhrc\"], \"status\": \"multiple_phone_and_address_variants\", \"observations\": [\"Page body: +255782277569\", \"Footer: +255626281245 and +255626281244\"], \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "email": "lhrcarusha@humanrights.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:lhrc-dodoma",
+      "kind": "centre",
+      "title": "LHRC Dodoma Legal Aid Clinic",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://legalaid.humanrights.or.tz/en/contact"
+      ],
+      "originalRecord": "{\"id\": \"lhrc-dodoma\", \"name\": \"LHRC Dodoma Legal Aid Clinic\", \"phone\": null, \"email\": \"lhrcdodoma@humanrights.or.tz\", \"address\": \"Chimuli Street, Plot 20, Area D, Dodoma\", \"sources\": [\"lhrc\"], \"status\": \"multiple_phone_variants\", \"observations\": [\"Page body: +255262350050\", \"Footer: +255678933155 and +255655444828\"], \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "address": "Chimuli Street, Plot 20, Area D, Dodoma",
+      "email": "lhrcdodoma@humanrights.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:wlac",
+      "kind": "centre",
+      "title": "Women's Legal Aid Centre",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://wlac.or.tz/contact-feedback.php"
+      ],
+      "originalRecord": "{\"id\": \"wlac\", \"name\": \"Women's Legal Aid Centre\", \"phone\": \"+255222664051\", \"email\": \"wlac@wlac.or.tz\", \"sources\": [\"wlac\"], \"status\": \"public_source_observed\", \"openingHours\": \"Monday–Friday 08:00–17:00; weekend closed, as published\", \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "phone": "+255222664051",
+      "email": "wlac@wlac.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:wildaf",
+      "kind": "centre",
+      "title": "WiLDAF legal aid clinic",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://wildaftanzania.or.tz/legal-aid-clinic/"
+      ],
+      "originalRecord": "{\"id\": \"wildaf\", \"name\": \"WiLDAF legal aid clinic\", \"phone\": \"0800780070\", \"sources\": [\"wildaf\"], \"status\": \"public_source_observed\", \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "phone": "0800780070"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:wotesawa",
+      "kind": "centre",
+      "title": "WoteSawa public referral contact",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.wotesawa.or.tz/about-us"
+      ],
+      "originalRecord": "{\"id\": \"wotesawa\", \"name\": \"WoteSawa public referral contact\", \"phone\": \"0800710066\", \"email\": \"info@wotesawa.or.tz\", \"sources\": [\"wotesawa\"], \"status\": \"public_source_observed\", \"shelterLocation\": null, \"admissionConfirmed\": false, \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}",
+      "phone": "0800710066",
+      "email": "info@wotesawa.or.tz"
+    },
+    {
+      "externalKey": "research-20261007:earlierOfficeAndProgrammeRows:kiwohede",
+      "kind": "centre",
+      "title": "KIWOHEDE shelter programme lead",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://kiwohede.or.tz/kiota-uk-2/"
+      ],
+      "originalRecord": "{\"id\": \"kiwohede\", \"name\": \"KIWOHEDE shelter programme lead\", \"phone\": null, \"sources\": [\"kiwohede\"], \"status\": \"programme_source_identified_contact_not_acquired\", \"shelterLocation\": null, \"admissionConfirmed\": false, \"capacity\": null, \"productionEligible\": false, \"approvalStatus\": \"not_submitted\", \"availabilityConfirmed\": false, \"providerContacted\": false}"
+    },
+    {
+      "externalKey": "research-20261007:recentPublicCandidateRows:PROVIDER-LHRC-KINONDONI",
+      "kind": "centre",
+      "title": "LHRC Kinondoni",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://legalaid.humanrights.or.tz/en/contact"
+      ],
+      "originalRecord": "{\"id\": \"PROVIDER-LHRC-KINONDONI\", \"organisation\": \"LHRC\", \"officeDraft\": \"Kinondoni\", \"sourceIds\": [\"SERVICES-LHRC\"], \"sourceUrl\": \"https://legalaid.humanrights.or.tz/en/contact\", \"phonesObserved\": [\"+255717143784\", \"+255683169400\"], \"emailObserved\": \"lhrckinondoni@humanrights.or.tz\", \"addressObserved\": \"Isere Street House660\", \"observedOn\": \"2026-10-05\", \"caution\": \"Multiple numbers; provider confirmation required.\", \"registrationVerified\": false, \"providerContacted\": false, \"availabilityConfirmed\": false, \"verifiedServiceArea\": null, \"verifiedHours\": null, \"verifiedEligibility\": null, \"verifiedFees\": null, \"verifiedLanguages\": null, \"verifiedAccessibility\": null, \"referralAgreement\": null, \"verificationDate\": null, \"reviewDueAt\": null, \"approvalStatus\": \"not_submitted\", \"productionEligible\": false}",
+      "address": "Isere Street House660",
+      "email": "lhrckinondoni@humanrights.or.tz",
+      "phone": "+255717143784 / +255683169400"
+    },
+    {
+      "externalKey": "research-20261007:recentPublicCandidateRows:PROVIDER-LHRC-ARUSHA",
+      "kind": "centre",
+      "title": "LHRC Arusha",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://legalaid.humanrights.or.tz/en/contact"
+      ],
+      "originalRecord": "{\"id\": \"PROVIDER-LHRC-ARUSHA\", \"organisation\": \"LHRC\", \"officeDraft\": \"Arusha\", \"sourceIds\": [\"SERVICES-LHRC\"], \"sourceUrl\": \"https://legalaid.humanrights.or.tz/en/contact\", \"phonesObserved\": [\"+255782277569\", \"+255626281245\", \"+255626281244\"], \"emailObserved\": \"lhrcarusha@humanrights.or.tz\", \"addressObserved\": \"Sakina kwa Idd / Olerian Street / Olosiva Area\", \"observedOn\": \"2026-10-05\", \"caution\": \"Different phone/address variants within page; do not silently choose one.\", \"registrationVerified\": false, \"providerContacted\": false, \"availabilityConfirmed\": false, \"verifiedServiceArea\": null, \"verifiedHours\": null, \"verifiedEligibility\": null, \"verifiedFees\": null, \"verifiedLanguages\": null, \"verifiedAccessibility\": null, \"referralAgreement\": null, \"verificationDate\": null, \"reviewDueAt\": null, \"approvalStatus\": \"not_submitted\", \"productionEligible\": false}",
+      "address": "Sakina kwa Idd / Olerian Street / Olosiva Area",
+      "email": "lhrcarusha@humanrights.or.tz",
+      "phone": "+255782277569 / +255626281245 / +255626281244"
+    },
+    {
+      "externalKey": "research-20261007:recentPublicCandidateRows:PROVIDER-LHRC-DODOMA",
+      "kind": "centre",
+      "title": "LHRC Dodoma",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://legalaid.humanrights.or.tz/en/contact"
+      ],
+      "originalRecord": "{\"id\": \"PROVIDER-LHRC-DODOMA\", \"organisation\": \"LHRC\", \"officeDraft\": \"Dodoma\", \"sourceIds\": [\"SERVICES-LHRC\"], \"sourceUrl\": \"https://legalaid.humanrights.or.tz/en/contact\", \"phonesObserved\": [\"+255262350050\", \"+255678933155\", \"+255655444828\"], \"emailObserved\": \"lhrcdodoma@humanrights.or.tz\", \"addressObserved\": \"Chimuli Street Plot20 AreaD\", \"observedOn\": \"2026-10-05\", \"caution\": \"Different contact numbers in main and footer clinic sections.\", \"registrationVerified\": false, \"providerContacted\": false, \"availabilityConfirmed\": false, \"verifiedServiceArea\": null, \"verifiedHours\": null, \"verifiedEligibility\": null, \"verifiedFees\": null, \"verifiedLanguages\": null, \"verifiedAccessibility\": null, \"referralAgreement\": null, \"verificationDate\": null, \"reviewDueAt\": null, \"approvalStatus\": \"not_submitted\", \"productionEligible\": false}",
+      "address": "Chimuli Street Plot20 AreaD",
+      "email": "lhrcdodoma@humanrights.or.tz",
+      "phone": "+255262350050 / +255678933155 / +255655444828"
+    },
+    {
+      "externalKey": "research-20261007:recentPublicCandidateRows:PROVIDER-TAWLA",
+      "kind": "centre",
+      "title": "TAWLA Multiple offices",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.tawla.or.tz/contact-us/"
+      ],
+      "originalRecord": "{\"id\": \"PROVIDER-TAWLA\", \"organisation\": \"TAWLA\", \"officeDraft\": \"Multiple offices\", \"sourceIds\": [\"SERVICES-TAWLA-CONTACT\", \"SERVICES-TAWLA\"], \"sourceUrl\": \"https://www.tawla.or.tz/contact-us/\", \"phonesObserved\": [\"0800110017\", \"0800751010\", \"+255712343717\"], \"emailObserved\": null, \"addressObserved\": \"Dar es Salaam and regional offices\", \"observedOn\": \"2026-10-05\", \"caution\": \"Service page names five regions while contact page also names Mbeya; head-office address variants and Tanga +225 prefix require confirmation. Hotlines are public service-page candidates.\", \"registrationVerified\": false, \"providerContacted\": false, \"availabilityConfirmed\": false, \"verifiedServiceArea\": null, \"verifiedHours\": null, \"verifiedEligibility\": null, \"verifiedFees\": null, \"verifiedLanguages\": null, \"verifiedAccessibility\": null, \"referralAgreement\": null, \"verificationDate\": null, \"reviewDueAt\": null, \"approvalStatus\": \"not_submitted\", \"productionEligible\": false}",
+      "address": "Dar es Salaam and regional offices",
+      "phone": "0800110017 / 0800751010 / +255712343717"
+    },
+    {
+      "externalKey": "research-20261007:recentPublicCandidateRows:PROVIDER-WLAC",
+      "kind": "centre",
+      "title": "WLAC Dar es Salaam",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://www.wlac.or.tz/?lang=en"
+      ],
+      "originalRecord": "{\"id\": \"PROVIDER-WLAC\", \"organisation\": \"WLAC\", \"officeDraft\": \"Dar es Salaam\", \"sourceIds\": [\"SERVICES-WLAC\"], \"sourceUrl\": \"https://www.wlac.or.tz/?lang=en\", \"phonesObserved\": [\"+255222664051\"], \"emailObserved\": \"wlac@wlac.or.tz\", \"addressObserved\": null, \"observedOn\": \"2026-10-05\", \"caution\": \"Opening hours and programme claims need confirmation; testimonials are not proof of case acceptance or shelter availability.\", \"registrationVerified\": false, \"providerContacted\": false, \"availabilityConfirmed\": false, \"verifiedServiceArea\": null, \"verifiedHours\": null, \"verifiedEligibility\": null, \"verifiedFees\": null, \"verifiedLanguages\": null, \"verifiedAccessibility\": null, \"referralAgreement\": null, \"verificationDate\": null, \"reviewDueAt\": null, \"approvalStatus\": \"not_submitted\", \"productionEligible\": false}",
+      "email": "wlac@wlac.or.tz",
+      "phone": "+255222664051"
+    },
+    {
+      "externalKey": "research-20261007:recentPublicCandidateRows:PROVIDER-ZLSC",
+      "kind": "centre",
+      "title": "ZLSC Zanzibar",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/get-in-touch/"
+      ],
+      "originalRecord": "{\"id\": \"PROVIDER-ZLSC\", \"organisation\": \"ZLSC\", \"officeDraft\": \"Zanzibar\", \"sourceIds\": [\"SERVICES-ZLSC\"], \"sourceUrl\": \"https://zlsc.or.tz/get-in-touch/\", \"phonesObserved\": [\"+255654416250\"], \"emailObserved\": \"info@zlsc.or.tz\", \"addressObserved\": \"House33 Karume Road Kijangwani\", \"observedOn\": \"2026-10-05\", \"caution\": \"Public free-legal-aid statement; exact scope, current hours, Pemba office and registration require confirmation.\", \"registrationVerified\": false, \"providerContacted\": false, \"availabilityConfirmed\": false, \"verifiedServiceArea\": null, \"verifiedHours\": null, \"verifiedEligibility\": null, \"verifiedFees\": null, \"verifiedLanguages\": null, \"verifiedAccessibility\": null, \"referralAgreement\": null, \"verificationDate\": null, \"reviewDueAt\": null, \"approvalStatus\": \"not_submitted\", \"productionEligible\": false}",
+      "address": "House33 Karume Road Kijangwani",
+      "email": "info@zlsc.or.tz",
+      "phone": "+255654416250"
+    },
+    {
+      "externalKey": "research-20261007:recentPublicCandidateRows:PROVIDER-TLS",
+      "kind": "centre",
+      "title": "TLS Dar es Salaam / chapter offices",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://tls.or.tz/legal-aid"
+      ],
+      "originalRecord": "{\"id\": \"PROVIDER-TLS\", \"organisation\": \"TLS\", \"officeDraft\": \"Dar es Salaam / chapter offices\", \"sourceIds\": [\"SERVICES-TLS\"], \"sourceUrl\": \"https://tls.or.tz/legal-aid\", \"phonesObserved\": [], \"emailObserved\": null, \"addressObserved\": \"Wakili House\", \"observedOn\": \"2026-10-05\", \"caution\": \"Public legal-aid unit and chapter service description; obtain chapter-specific verified contacts, fees and capacity.\", \"registrationVerified\": false, \"providerContacted\": false, \"availabilityConfirmed\": false, \"verifiedServiceArea\": null, \"verifiedHours\": null, \"verifiedEligibility\": null, \"verifiedFees\": null, \"verifiedLanguages\": null, \"verifiedAccessibility\": null, \"referralAgreement\": null, \"verificationDate\": null, \"reviewDueAt\": null, \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"evidenceCaution\": \"Saved static HTML contains only the title; full service description was observed in web search. Require rendered-page capture or provider confirmation.\"}",
+      "address": "Wakili House"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:1",
+      "kind": "organisation",
+      "title": "CENTRAL DISTRICT PARALEGAL UNIT (CEPAU)",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 1, \"page\": 1, \"extractedRecordVerbatim\": \"CENTRAL DISTRICT PARALEGAL UNIT (CEPAU)\\nDUNGA\\nDUNGA BWENI\\nKATI\\nKUSINI\\nUNGUJA\\nLAP-2021-0002\", \"registrationNumberObserved\": \"LAP-2021-0002\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:2",
+      "kind": "organisation",
+      "title": "CHAKE CHAKE PARALEGAL ORGANIZATION",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 2, \"page\": 1, \"extractedRecordVerbatim\": \"CHAKE CHAKE PARALEGAL ORGANIZATION\\n(CHAPO)\\nKICHUNGWANI CHAKE\\nCHAKE P.O.BOX 239\\nKICHUNGWANI\\nCHAKE\\nCHAKE\\nKUSINI PEMBA\\nLAP-2021-0005\", \"registrationNumberObserved\": \"LAP-2021-0005\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:3",
+      "kind": "organisation",
+      "title": "IDARA YA MSAADA WA KISHERIA",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 3, \"page\": 1, \"extractedRecordVerbatim\": \"IDARA YA MSAADA WA KISHERIA\\n772\\nKIEMBESAMAKI\\nMGHARIBI\\n\\\"B\\\"\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2020-0001\", \"registrationNumberObserved\": \"LAP-2020-0001\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:4",
+      "kind": "organisation",
+      "title": "JUMUIYA YA WASAIDIZI WA SHERIA MAGHARIB 'A'",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 4, \"page\": 1, \"extractedRecordVerbatim\": \"JUMUIYA YA WASAIDIZI WA SHERIA MAGHARIB 'A'\\n(PAUWA)\\nCHUINI\\nCHUINI\\nMGHARIBI\\n\\\"A\\\"\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2021-0004\", \"registrationNumberObserved\": \"LAP-2021-0004\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:5",
+      "kind": "organisation",
+      "title": "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 5, \"page\": 1, \"extractedRecordVerbatim\": \"JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\\nKASKAZINI 'A' (NAPAC)\\nP. BOX. 4971 - GAMBA\\nGAMBA\\nKASKAZINI\\n'A'\\nKASKAZINI\\nUNGUJA\\nLAP-2021-0003\", \"registrationNumberObserved\": \"LAP-2021-0003\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:6",
+      "kind": "organisation",
+      "title": "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 6, \"page\": 1, \"extractedRecordVerbatim\": \"JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\\nMAGHARIBI 'B' (UWASHEMA)\\nJITIMAI\\nFUONI\\nMIGOMBANI\\nMGHARIBI\\n\\\"B\\\"\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2021-0006\", \"registrationNumberObserved\": \"LAP-2021-0006\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:7",
+      "kind": "organisation",
+      "title": "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 7, \"page\": 2, \"extractedRecordVerbatim\": \"JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\\nMICHEWENI(MIDIPAO)\\nWINGWI MAPOFU\\nWINGWI\\nMAPOFU\\nMICHEWENI\\nKASKAZINI\\nPEMBA\\nLAP-2021-0010\", \"registrationNumberObserved\": \"LAP-2021-0010\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:8",
+      "kind": "organisation",
+      "title": "JUMUIYA YA WATU WENYE ULEMAVU ZANZIBAR",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 8, \"page\": 2, \"extractedRecordVerbatim\": \"JUMUIYA YA WATU WENYE ULEMAVU ZANZIBAR\\n(UWZ)\\nS.L.P 2043 - ZANZIBAR\\nKIKWAJUNI\\nBONDENI\\nMJINI\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2022-0001\", \"registrationNumberObserved\": \"LAP-2022-0001\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:9",
+      "kind": "organisation",
+      "title": "MKOANI DISTRICT PARALEGAL ORGANIZATION",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 9, \"page\": 2, \"extractedRecordVerbatim\": \"MKOANI DISTRICT PARALEGAL ORGANIZATION\\nP.O.BOX 100 MKOANI PEMBA\\nNG'OMBENI\\nMKOANI\\nKUSINI PEMBA\\nLAP-2020-0002\", \"registrationNumberObserved\": \"LAP-2020-0002\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:10",
+      "kind": "organisation",
+      "title": "MKOANI DISTRICT PARALEGAL ORGANIZATION",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 10, \"page\": 2, \"extractedRecordVerbatim\": \"MKOANI DISTRICT PARALEGAL ORGANIZATION\\nP.O.BOX 100 MKOANI PEMBA\\nNG'OMBENI\\nMKOANI\\nKUSINI PEMBA\\nLAP-2022-0002\", \"registrationNumberObserved\": \"LAP-2022-0002\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:11",
+      "kind": "organisation",
+      "title": "NORTH B PARALEGAL ",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 11, \"page\": 2, \"extractedRecordVerbatim\": \"NORTH B PARALEGAL \\nORGANIZATION\\nMAHONDA \\n- ZANZIBAR\\nMAHONDA\\nKASKAZINI\\n'B'\\nKASKAZINI\\nUNGUJA\\nLAP-2021-0007\", \"registrationNumberObserved\": \"LAP-2021-0007\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:12",
+      "kind": "organisation",
+      "title": "URBAN PARALEGAL ORGANIZATION",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 12, \"page\": 2, \"extractedRecordVerbatim\": \"URBAN PARALEGAL ORGANIZATION\\nMAKADARA\\nMITIULAYA\\nMJINI\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2021-0008\", \"registrationNumberObserved\": \"LAP-2021-0008\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:13",
+      "kind": "organisation",
+      "title": "WETE PARALEGAL ORGANIZATION",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 13, \"page\": 2, \"extractedRecordVerbatim\": \"WETE PARALEGAL ORGANIZATION\\n92-WETE PEMBA\\nSELEM\\nWETE\\nKASKAZINI\\nPEMBA\\nLAP-2021-0009\", \"registrationNumberObserved\": \"LAP-2021-0009\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:14",
+      "kind": "organisation",
+      "title": "ZANZIBAR LAW SOCIETY (ZLS)",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 14, \"page\": 2, \"extractedRecordVerbatim\": \"ZANZIBAR LAW SOCIETY (ZLS)\\nP.O.BOX 3319,KIEMBE\\nSAMAKI -ZANZIBAR\\nKIEMBESAMAKI\\nMGHARIBI\\n\\\"B\\\"\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2020-0003\", \"registrationNumberObserved\": \"LAP-2020-0003\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:15",
+      "kind": "organisation",
+      "title": "ZANZIBAR LEGAL SERVICES CENTRE",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 15, \"page\": 2, \"extractedRecordVerbatim\": \"ZANZIBAR LEGAL SERVICES CENTRE\\n3360, KIJANGWANI\\nMIKUNGUNI\\nMJINI\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2022-0003\", \"registrationNumberObserved\": \"LAP-2022-0003\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:16",
+      "kind": "organisation",
+      "title": "ZANZIBAR PARALEGAL'S NETWORK ORGANIZATION",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 16, \"page\": 2, \"extractedRecordVerbatim\": \"ZANZIBAR PARALEGAL'S NETWORK ORGANIZATION\\nFUONI ZANZIBAR\\nFUONI\\nKIPUNGANI\\nMGHARIBI\\n\\\"B\\\"\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2022-0004\", \"registrationNumberObserved\": \"LAP-2022-0004\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:zanzibarRegistryRows:17",
+      "kind": "organisation",
+      "title": "ZAPAO",
+      "notes": "Unverified research lead. Confirm organisation identity, location, contacts, service coverage, eligibility, hours and intake before creating a verified public service. Overlapping source rows are intentionally retained.",
+      "sourceUrls": [
+        "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf"
+      ],
+      "originalRecord": "{\"registryRow\": 17, \"page\": 2, \"extractedRecordVerbatim\": \"ZAPAO\\nAMANI, SLP 4552\\nAMANI\\nMJINI\\nMJINI\\nMAGHARIB\\nUNGUJA\\nLAP-2021-0001\", \"registrationNumberObserved\": \"LAP-2021-0001\", \"currentRegistrationVerified\": false, \"sourceURL\": \"https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf\", \"productionEligible\": false}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P01",
+      "kind": "pathway",
+      "title": "Find legal aid and assess eligibility",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current registered-provider list; actual service areas, capacity and costs; LSF eligibility and referral SOP; appeals against refusal",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+        "https://media.tanzlii.org/media/legislation/854/source_file/a169326e8d6d71fe/2018-44.pdf",
+        "https://zlsc.or.tz/aid/",
+        "https://elibrary.osg.go.tz/items/844e0d81-aaad-49cb-bb18-dd3225004d39",
+        "https://elibrary.osg.go.tz/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c"
+      ],
+      "originalRecord": "{\"id\": \"P01\", \"topic\": \"legal_aid\", \"titleEn\": \"Find legal aid and assess eligibility\", \"titleSwDraft\": \"Kutafuta msaada wa kisheria\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Mainland or Zanzibar\", \"Location\", \"Legal problem\", \"Safe contact method\", \"Existing hearing date\", \"Income information only if needed for assessment\"], \"documentsIfAvailable\": [\"Short account of the problem\", \"notices or case reference if available\", \"safe contact preference\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Registered legal-aid provider\", \"eligibility assessment\", \"paralegal or lawyer referral\"], \"unresolvedReviewItems\": [\"Current registered-provider list\", \"actual service areas, capacity and costs\", \"LSF eligibility and referral SOP\", \"appeals against refusal\"], \"sourceIds\": [\"BASE-LEGAL-AID\", \"LEGAL-AID-REGULATIONS\", \"ZNZ-LEGAL-AID-RULES\", \"LEGAL-AID-SUPPLEMENT-2025\", \"AMENDMENTS-LEGAL-SECTOR-2023\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P02",
+      "kind": "pathway",
+      "title": "Violence, sexual abuse and immediate safety",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Approved emergency contacts and hours; survivor-centred consent SOP; current sexual-offences laws; PF3 guidance; Zanzibar strategy; confidentiality and mandatory reporting rules",
+      "sourceUrls": [
+        "https://www.jamii.go.tz/publications/strategic-plan",
+        "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+        "https://oagmis.oag.go.tz/portal/acts/revised/532/download",
+        "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+        "https://elibrary.osg.go.tz/items/c545f591-bf5d-482f-ac11-bbdad280726e",
+        "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-13-no-6691.pdf",
+        "https://elibrary.osg.go.tz/items/2a879887-a8e4-40d7-b539-6973db660512"
+      ],
+      "originalRecord": "{\"id\": \"P02\", \"topic\": \"safety\", \"titleEn\": \"Violence, sexual abuse and immediate safety\", \"titleSwDraft\": \"Ukatili na usalama wa haraka\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Is it safe to continue\", \"Safe device/contact\", \"Child involved\", \"Urgent injury\", \"Threatened retaliation\", \"Mainland or Zanzibar\"], \"documentsIfAvailable\": [\"Evidence only if safe to keep\", \"medical or police reference if already obtained\", \"no documents required to begin seeking help\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Verified emergency service\", \"survivor support\", \"health care\", \"police gender/children desk\", \"safe referral selected by trained staff\"], \"unresolvedReviewItems\": [\"Approved emergency contacts and hours\", \"survivor-centred consent SOP\", \"current sexual-offences laws\", \"PF3 guidance\", \"Zanzibar strategy\", \"confidentiality and mandatory reporting rules\"], \"sourceIds\": [\"SAFE-NPA-II\", \"SAFE-HOMES\", \"TRAFFICKING-ACT\", \"BASE-CHILD\", \"CRIM-PENAL\", \"ZNZ-PENAL-2018\", \"SAFE-WITNESS-ACT\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P03",
+      "kind": "pathway",
+      "title": "Separation, divorce and matrimonial property",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Marriage procedural rules; reconciliation requirements and exceptions; maintenance enforcement; Zanzibar Kadhis/Civil procedure; current property judgments; Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current.",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/public",
+        "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+        "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+        "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2021/tz-znz-government-gazette-legal-supplement-part-ii-dated-2021-12-10-no-6956.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+        "https://elibrary.osg.go.tz/items/303831cb-cba0-415a-979e-294642c2b2fc"
+      ],
+      "originalRecord": "{\"id\": \"P03\", \"topic\": \"family\", \"titleEn\": \"Separation, divorce and matrimonial property\", \"titleSwDraft\": \"Kutengana talaka na mali za ndoa\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Where is the marriage and residence\", \"Marriage type\", \"Children\", \"Violence\", \"Previous proceedings\", \"Property and debts\", \"Desired outcome\"], \"documentsIfAvailable\": [\"Marriage evidence if available\", \"property records\", \"existing orders\", \"concise timeline\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Qualified family-law provider\", \"applicable matrimonial process\", \"court or lawful reconciliation mechanism after safety screening\"], \"unresolvedReviewItems\": [\"Marriage procedural rules\", \"reconciliation requirements and exceptions\", \"maintenance enforcement\", \"Zanzibar Kadhis/Civil procedure\", \"current property judgments\", \"Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current.\"], \"sourceIds\": [\"BASE-MARRIAGE\", \"BASE-CHILD\", \"PROC-CIVIL\", \"ZNZ-KADHIS-2024\", \"ZNZ-KADHIS-RULES-2021\", \"ZNZ-CHILD-GAZETTE\", \"CASE-LAND-MABULA-2024\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P04",
+      "kind": "pathway",
+      "title": "Child maintenance, custody and access",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current maintenance forms and rules; enforcement; parentage tests; lawful child participation; Zanzibar Children Act and rules",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+        "https://media.tanzlii.org/media/legislation/47056/source_file/1abcf097768ffa13/2016-182.pdf",
+        "https://oagmis.oag.go.tz/public",
+        "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+        "https://www.warnathgroup.com/wp-content/uploads/2019/08/Zanzibar-2011-Childrens-Act.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P04\", \"topic\": \"children\", \"titleEn\": \"Child maintenance, custody and access\", \"titleSwDraft\": \"Matunzo malezi na mawasiliano ya mtoto\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Child age/location\", \"Care arrangement\", \"Safety risk\", \"Existing order\", \"Parentage dispute\", \"Cross-border movement\"], \"documentsIfAvailable\": [\"Birth/parentage evidence if available\", \"expense record\", \"existing court orders\", \"caregiver information\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Social welfare assessment\", \"child-law legal aid\", \"appropriate child/family court route after jurisdiction review\"], \"unresolvedReviewItems\": [\"Current maintenance forms and rules\", \"enforcement\", \"parentage tests\", \"lawful child participation\", \"Zanzibar Children Act and rules\"], \"sourceIds\": [\"BASE-CHILD\", \"CHILD-JUVENILE-RULES\", \"BASE-MARRIAGE\", \"ZNZ-CHILD-GAZETTE\", \"ZNZ-CHILD-COURT-RULES\", \"ZNZ-KADHIS-2024\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P05",
+      "kind": "pathway",
+      "title": "Child protection and exploitation",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Approved mandatory reporting and consent SOP; verified child helplines; current penal offences; Zanzibar protection rules",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+        "https://media.tanzlii.org/media/legislation/47056/source_file/1abcf097768ffa13/2016-182.pdf",
+        "https://oagmis.oag.go.tz/portal/acts/revised/532/download",
+        "https://www.jamii.go.tz/publications/strategic-plan",
+        "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+        "https://www.warnathgroup.com/wp-content/uploads/2019/08/Zanzibar-2011-Childrens-Act.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-13-no-6691.pdf",
+        "https://elibrary.osg.go.tz/items/c545f591-bf5d-482f-ac11-bbdad280726e"
+      ],
+      "originalRecord": "{\"id\": \"P05\", \"topic\": \"children\", \"titleEn\": \"Child protection and exploitation\", \"titleSwDraft\": \"Ulinzi wa mtoto dhidi ya unyanyasaji\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Immediate danger\", \"Safe adult\", \"Child's location and age\", \"Sexual exploitation, labour or trafficking\", \"Safe callback\"], \"documentsIfAvailable\": [\"Only records safe to preserve\", \"avoid collecting identifying child details in public chat\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Safeguarding officer\", \"verified child protection/social welfare service\", \"specialist legal aid\"], \"unresolvedReviewItems\": [\"Approved mandatory reporting and consent SOP\", \"verified child helplines\", \"current penal offences\", \"Zanzibar protection rules\"], \"sourceIds\": [\"BASE-CHILD\", \"CHILD-JUVENILE-RULES\", \"TRAFFICKING-ACT\", \"SAFE-NPA-II\", \"ZNZ-CHILD-GAZETTE\", \"ZNZ-CHILD-COURT-RULES\", \"ZNZ-PENAL-2018\", \"CRIM-PENAL\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P06",
+      "kind": "pathway",
+      "title": "Underage or forced marriage",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current effect of Gyumi decisions and later cases/amendments; distinguish coercion from age; Zanzibar law and safe referral",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/public",
+        "https://media.tanzlii.org/media/judgment/196547/source_file/rebeca-z-gyumi-vs-attorney-general-2016-tzhc-2023-3-march-2016.pdf",
+        "https://media.tanzlii.org/media/judgment/262749/source_file/attorney-general-vs-rebeca-z-gyumi-2019-tzca-348-23-october-2019.pdf",
+        "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+        "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P06\", \"topic\": \"family\", \"titleEn\": \"Underage or forced marriage\", \"titleSwDraft\": \"Ndoa ya utotoni au ya kulazimishwa\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Age\", \"Safe communication\", \"Planned or existing marriage\", \"Mainland or Zanzibar\", \"Immediate coercion\", \"Trusted support\"], \"documentsIfAvailable\": [\"Age evidence if available\", \"threat messages only if safe\", \"existing notices\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Safeguarding referral\", \"qualified constitutional/family lawyer\", \"appropriate protection route\"], \"unresolvedReviewItems\": [\"Current effect of Gyumi decisions and later cases/amendments\", \"distinguish coercion from age\", \"Zanzibar law and safe referral\"], \"sourceIds\": [\"BASE-MARRIAGE\", \"FAMILY-GYUMI-HIGH-COURT\", \"FAMILY-GYUMI-APPEAL\", \"BASE-CHILD\", \"ZNZ-CHILD-GAZETTE\", \"ZNZ-KADHIS-2024\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P07",
+      "kind": "pathway",
+      "title": "Boundary, ownership and village land dispute",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Acquired GN174/2003 principal tribunal regulations require amendment review; GN171/2023; later forum/value changes; village mediation role; survey/valuation evidence; Zanzibar land law",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+        "https://elibrary.osg.go.tz/items/3a7a98e7-0e75-4c05-a7ba-26531a19cc9a",
+        "https://oagmis.oag.go.tz/portal/acts/revised/320/download",
+        "https://oagmis.oag.go.tz/portal/legislation/1329",
+        "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674560129.pdf",
+        "https://landtribunalsmz.go.tz/Documents/1994-007%20THE%20LAND%20TRIBUNAL.pdf",
+        "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674626468.pdf",
+        "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674647722.pdf",
+        "https://www.landtribunalsmz.go.tz/Documents/Zanzibar%20Land%20Laws___2017.pdf",
+        "https://zanzibarlii.org/sw/akn/tz-znz/judgment/tzznzhc/2025/170/eng%402025-09-03/source.pdf",
+        "https://media.tanzlii.org/media/legislation/366834/source_file/a166ab37bd7fda6d/tz-act-gn-2003-174-publication-document.pdf",
+        "https://elibrary.osg.go.tz/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c",
+        "https://elibrary.osg.go.tz/items/d8fba85e-cf34-4ccf-b8a4-d9895fc569cb"
+      ],
+      "originalRecord": "{\"id\": \"P07\", \"topic\": \"land\", \"titleEn\": \"Boundary, ownership and village land dispute\", \"titleSwDraft\": \"Mgogoro wa mipaka umiliki na ardhi ya kijiji\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Exact location/jurisdiction\", \"Village or general land\", \"Occupier/owner\", \"Value\", \"Pending case or eviction\", \"Previous mediation\"], \"documentsIfAvailable\": [\"Allocation/title/CCRO if available\", \"map and boundary evidence\", \"agreement\", \"tribunal decisions\", \"notices\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Land-law legal aid\", \"applicable land dispute forum or mediation after jurisdiction review\"], \"unresolvedReviewItems\": [\"Acquired GN174/2003 principal tribunal regulations require amendment review\", \"GN171/2023\", \"later forum/value changes\", \"village mediation role\", \"survey/valuation evidence\", \"Zanzibar land law\"], \"sourceIds\": [\"BASE-LAND\", \"BASE-VILLAGE-LAND\", \"LAND-DISPUTES\", \"LAND-TRIBUNAL-2023\", \"ZNZ-LAND-TENURE\", \"ZNZ-LAND-TRIBUNAL\", \"ZNZ-LAND-TRIBUNAL-ASSEMBLY\", \"ZNZ-LAND-AMENDMENT-2008\", \"ZNZ-LAND-COMPILATION-2017\", \"CASE-ZNZ-LAND-2025\", \"LAND-TRIBUNAL-PRINCIPAL\", \"AMENDMENTS-LEGAL-SECTOR-2023\", \"CASE-LAND-SETH-2024\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P08",
+      "kind": "pathway",
+      "title": "Tenant, rent and eviction problems",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Landlord/tenant statutes; rent restriction applicability; lawful eviction procedure; current emergency remedy; Zanzibar tenancy law",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+        "https://oagmis.oag.go.tz/portal/acts/revised/320/download",
+        "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+        "https://media.tanzlii.org/media/legislation/366834/source_file/a166ab37bd7fda6d/tz-act-gn-2003-174-publication-document.pdf",
+        "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674560129.pdf",
+        "https://landtribunalsmz.go.tz/Documents/1994-007%20THE%20LAND%20TRIBUNAL.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P08\", \"topic\": \"housing\", \"titleEn\": \"Tenant, rent and eviction problems\", \"titleSwDraft\": \"Upangaji kodi na kufukuzwa\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Location\", \"Type of tenancy\", \"Notice/service date\", \"Lockout or threats\", \"Agreement\", \"Rent arrears\", \"Children/vulnerability\"], \"documentsIfAvailable\": [\"Lease if available\", \"receipts\", \"notice\", \"communication\", \"photos if safe\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Housing/land legal aid\", \"applicable tribunal/court\", \"urgent review where possession is threatened\"], \"unresolvedReviewItems\": [\"Landlord/tenant statutes\", \"rent restriction applicability\", \"lawful eviction procedure\", \"current emergency remedy\", \"Zanzibar tenancy law\"], \"sourceIds\": [\"BASE-LAND\", \"LAND-DISPUTES\", \"PROC-CIVIL\", \"LAND-TRIBUNAL-PRINCIPAL\", \"ZNZ-LAND-TENURE\", \"ZNZ-LAND-TRIBUNAL\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P09",
+      "kind": "pathway",
+      "title": "Compulsory acquisition and compensation",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current valuation/compensation regulations; challenge forum and deadlines; resettlement rights; Zanzibar framework",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/5f058cdc-869b-412f-ad68-15ecc2a9e018",
+        "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+        "https://elibrary.osg.go.tz/items/3a7a98e7-0e75-4c05-a7ba-26531a19cc9a",
+        "https://oagmis.oag.go.tz/portal/acts/revised/320/download",
+        "https://media.tanzlii.org/media/legislation/366834/source_file/a166ab37bd7fda6d/tz-act-gn-2003-174-publication-document.pdf",
+        "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674560129.pdf",
+        "https://landtribunalsmz.go.tz/Documents/1994-007%20THE%20LAND%20TRIBUNAL.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P09\", \"topic\": \"land\", \"titleEn\": \"Compulsory acquisition and compensation\", \"titleSwDraft\": \"Utwaaji wa ardhi na fidia\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Who issued notice\", \"Location\", \"Acquisition stage\", \"Occupancy/title\", \"Valuation offered\", \"Date served\", \"Objection already filed\"], \"documentsIfAvailable\": [\"Acquisition notice\", \"valuation\", \"title/CCRO\", \"compensation offer\", \"payment records\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Land/valuation specialist\", \"acquiring authority complaint or competent review forum\"], \"unresolvedReviewItems\": [\"Current valuation/compensation regulations\", \"challenge forum and deadlines\", \"resettlement rights\", \"Zanzibar framework\"], \"sourceIds\": [\"LAND-ACQUISITION\", \"BASE-LAND\", \"BASE-VILLAGE-LAND\", \"LAND-DISPUTES\", \"LAND-TRIBUNAL-PRINCIPAL\", \"ZNZ-LAND-TENURE\", \"ZNZ-LAND-TRIBUNAL\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P10",
+      "kind": "pathway",
+      "title": "Estate administration and inheritance",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Principal primary-court estates rules; customary/Islamic applicability; current fees; prescribed petitions and objections; Zanzibar succession/Kadhis law; Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current.",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+        "https://media.tanzlii.org/media/legislation/377715/source_file/5dcd75913f612b50/1963-10.pdf",
+        "https://oagmis.oag.go.tz/portal/legislation/4526",
+        "https://oagmis.oag.go.tz/portal/legislation/4525",
+        "https://media.tanzlii.org/media/legislation/309779/source_file/1963-303.pdf",
+        "https://media.tanzlii.org/media/legislation/316419/source_file/516c601d2d8e5ac7/1967-436.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2023/tz-znz-government-gazette-dated-2023-02-23-no-7203.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2021/tz-znz-government-gazette-legal-supplement-part-ii-dated-2021-12-10-no-6956.pdf",
+        "https://elibrary.osg.go.tz/items/d912b5c6-6f85-4591-b532-c2b7d3531f24",
+        "https://elibrary.osg.go.tz/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c",
+        "https://elibrary.osg.go.tz/items/a6900022-c231-4f7f-b127-33c7bdfc5ab9",
+        "https://elibrary.osg.go.tz/items/31b5573c-d662-4e27-9139-e834fa3b402c",
+        "https://elibrary.osg.go.tz/items/1616f7db-6198-48be-8004-18911e849a15"
+      ],
+      "originalRecord": "{\"id\": \"P10\", \"topic\": \"inheritance\", \"titleEn\": \"Estate administration and inheritance\", \"titleSwDraft\": \"Usimamizi wa mirathi\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Mainland or Zanzibar\", \"Death date\", \"Will\", \"Assets/location/value\", \"Dependants\", \"Existing administrator\", \"Applicable personal law\"], \"documentsIfAvailable\": [\"Death evidence\", \"will if any\", \"asset/debt list\", \"family information\", \"prior grants/orders\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Probate legal aid\", \"competent primary court or probate court after personal-law and forum review\"], \"unresolvedReviewItems\": [\"Principal primary-court estates rules\", \"customary/Islamic applicability\", \"current fees\", \"prescribed petitions and objections\", \"Zanzibar succession/Kadhis law\", \"Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current.\"], \"sourceIds\": [\"ESTATES-PROBATE\", \"ESTATES-RULES\", \"ESTATES-AMENDMENT-2025\", \"ESTATES-PRIMARY-AMENDMENT-2025\", \"PERSONAL-CUSTOMARY-NO2\", \"PERSONAL-CUSTOMARY-NO4\", \"ZNZ-KADHIS-SW-2024\", \"ZNZ-KADHIS-2024\", \"ZNZ-KADHIS-RULES-2021\", \"PROC-APPLICABLE-LAWS\", \"AMENDMENTS-LEGAL-SECTOR-2023\", \"PERSONAL-ISLAMIC-RESTATEMENT\", \"CASE-ESTATE-LONYAMALI\", \"CASE-INHERITANCE-LATIFA\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P11",
+      "kind": "pathway",
+      "title": "Challenge an administrator or disputed estate",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Standing; revocation/caveat forms; urgent asset preservation; appeal rules; personal-law rules",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+        "https://media.tanzlii.org/media/legislation/377715/source_file/5dcd75913f612b50/1963-10.pdf",
+        "https://oagmis.oag.go.tz/portal/legislation/4526",
+        "https://oagmis.oag.go.tz/portal/acts/revised/194/download",
+        "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+        "https://elibrary.osg.go.tz/items/8c987f44-10cd-4cd4-a6a6-9d39470a850c"
+      ],
+      "originalRecord": "{\"id\": \"P11\", \"topic\": \"inheritance\", \"titleEn\": \"Challenge an administrator or disputed estate\", \"titleSwDraft\": \"Kupinga usimamizi au mgawanyo wa mirathi\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Existing grant and court\", \"Alleged misuse\", \"Asset threatened\", \"Notice date\", \"Beneficiary status\", \"Prior objection\"], \"documentsIfAvailable\": [\"Grant\", \"inventory/accounts if available\", \"disputed transaction\", \"notices\", \"family relationship evidence\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Probate specialist\", \"appropriate objection, accounting or review process\"], \"unresolvedReviewItems\": [\"Standing\", \"revocation/caveat forms\", \"urgent asset preservation\", \"appeal rules\", \"personal-law rules\"], \"sourceIds\": [\"ESTATES-PROBATE\", \"ESTATES-RULES\", \"ESTATES-AMENDMENT-2025\", \"PROC-LIMITATION\", \"ZNZ-KADHIS-2024\", \"AMENDMENTS-LEGAL-SECTOR-2023\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P12",
+      "kind": "pathway",
+      "title": "Dismissal, wages and workplace discrimination",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Acquired CMA GN64/GN67 rules and GN47/2017 F1/F2 forms require page-level review; Labour Court rules; limitation/condonation; 2025 amendment commencement; public-service exclusions; Zanzibar labour law",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+        "https://elibrary.osg.go.tz/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc",
+        "https://oagmis.oag.go.tz/portal/acts/326",
+        "https://www.cma.go.tz/faqs",
+        "https://www.cma.go.tz/laws-and-rules",
+        "https://elibrary.osg.go.tz/items/691e334d-b69a-4e39-b831-7525b9318246",
+        "https://elibrary.osg.go.tz/items/cae67bc5-e406-4eda-8e6e-b2996be1fbe5",
+        "https://oagmis.oag.go.tz/portal/legislation/4336",
+        "https://elibrary.osg.go.tz/items/985d8e8f-39a7-42cf-8c0b-bca299bd2f4d",
+        "https://media.tanzlii.org/media/legislation/47113/source_file/7e915aacd4745c75/2007-106.pdf",
+        "https://elibrary.osg.go.tz/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892",
+        "https://media.tanzlii.org/media/legislation/47218/source_file/tz-act-gn-2017-47-publication-document.pdf",
+        "https://elibrary.osg.go.tz/items/acfc12db-a499-4e03-bb4f-88b3eb9d5902",
+        "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=82420",
+        "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-ii-dated-2005-10-07-no-6115.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-i-dated-2005-11-25-no-6125.pdf",
+        "https://elibrary.osg.go.tz/items/eed8acfc-e074-40b6-9c4e-92b56f0c8108"
+      ],
+      "originalRecord": "{\"id\": \"P12\", \"topic\": \"employment\", \"titleEn\": \"Dismissal, wages and workplace discrimination\", \"titleSwDraft\": \"Kufukuzwa mishahara na ubaguzi kazini\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Mainland or Zanzibar\", \"Private/public sector\", \"Worker status\", \"Dismissal/event date\", \"Internal process\", \"Existing CMA/court case\"], \"documentsIfAvailable\": [\"Contract if available\", \"payslips\", \"dismissal letter\", \"messages\", \"employment timeline\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Labour-law provider\", \"applicable employer/grievance process\", \"CMA or public-service route where legally applicable\"], \"unresolvedReviewItems\": [\"Acquired CMA GN64/GN67 rules and GN47/2017 F1/F2 forms require page-level review\", \"Labour Court rules\", \"limitation/condonation\", \"2025 amendment commencement\", \"public-service exclusions\", \"Zanzibar labour law\"], \"sourceIds\": [\"BASE-ELRA\", \"EMPLOYMENT-INSTITUTIONS\", \"EMPLOYMENT-AMENDMENTS-2025\", \"CMA-FAQ\", \"CMA-RULES\", \"CMA-PROCEDURE\", \"CMA-GUIDELINES\", \"CMA-FEES-2025\", \"LABOUR-COURT-RULES\", \"LABOUR-COURT-READABLE\", \"EMPLOYMENT-GENERAL-FORMS\", \"EMPLOYMENT-FORMS-READABLE\", \"LABOUR-INSTITUTIONS-GENERAL\", \"ZNZ-EMPLOYMENT\", \"ZNZ-EMPLOYMENT-GAZETTE\", \"ZNZ-LABOUR-RELATIONS\", \"CASE-LABOUR-OATH-2022\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P13",
+      "kind": "pathway",
+      "title": "Work injury and occupational disease",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current workers compensation regulations; benefit schedule; claim/appeal periods; coverage exclusions; employer reporting duties; Zanzibar scheme",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/367/download",
+        "https://www.wcf.go.tz/publications/forms",
+        "https://www.wcf.go.tz/online-services",
+        "https://media.tanzlii.org/media/legislation/47207/source_file/tz-act-gn-2016-185-publication-document.pdf",
+        "https://media.tanzlii.org/media/legislation/47207/source_file/131220f3ff93bd31/2016-185.pdf",
+        "https://www.wcf.go.tz/uploads/documents/sw-1666602336-sw1658489562-GN%20No.%20668%20WC%20Regulations%20Ammendment.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P13\", \"topic\": \"employment\", \"titleEn\": \"Work injury and occupational disease\", \"titleSwDraft\": \"Ajali kazini na ugonjwa unaotokana na kazi\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Injury date/location\", \"Employer\", \"Worker category\", \"Medical needs\", \"Notification made\", \"WCF registration\", \"Claim decision\"], \"documentsIfAvailable\": [\"Medical records\", \"incident information\", \"employment evidence\", \"WCN1/WCC1 if applicable\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Medical care\", \"WCF service/claims route if covered\", \"compensation specialist\"], \"unresolvedReviewItems\": [\"Current workers compensation regulations\", \"benefit schedule\", \"claim/appeal periods\", \"coverage exclusions\", \"employer reporting duties\", \"Zanzibar scheme\"], \"sourceIds\": [\"WORKERS-COMPENSATION\", \"WCF-NOTIFICATION\", \"WCF-CLAIM\", \"WCF-SERVICES\", \"WCF-REGULATIONS-2016\", \"WCF-REGULATIONS-VERSION\", \"WCF-AMENDMENT-2021\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P14",
+      "kind": "pathway",
+      "title": "Pension and social-security benefit dispute",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current NSSF/PSSSF/ZSSF Acts, regulations, benefit forms and appeal routes; no benefit calculation until rules checked",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc",
+        "https://www.cma.go.tz/laws-and-rules",
+        "https://www.nssf.go.tz/uploads/publications/en-1600174042-FOMU%20YA%20UTHIBITISHO%20WA%20UAMUZI%20WA%20MALALAMIKO%20YA%20MWANACHAMA.pdf",
+        "https://www.nssf.go.tz/index.php/publications/forms",
+        "https://nssf.go.tz/index.php/pages/members",
+        "https://zssf.or.tz/publications/act-and-regulations",
+        "https://elibrary.osg.go.tz/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61",
+        "https://elibrary.osg.go.tz/items/48f7955f-303f-47ed-a7ed-937c92bccfec",
+        "https://oagmis.oag.go.tz/portal/legislation/743",
+        "https://media.tanzlii.org/media/legislation/47330/source_file/tz-act-gn-2022-357-publication-document.pdf",
+        "https://oagmis.oag.go.tz/portal/legislation/2692"
+      ],
+      "originalRecord": "{\"id\": \"P14\", \"topic\": \"employment\", \"titleEn\": \"Pension and social-security benefit dispute\", \"titleSwDraft\": \"Pensheni na mafao ya hifadhi ya jamii\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Which fund/scheme\", \"Member number kept private\", \"Contributions\", \"Decision date\", \"Employer remittance\", \"Mainland or Zanzibar\"], \"documentsIfAvailable\": [\"Contribution statement\", \"benefit decision\", \"employment evidence\", \"grievance reference\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Applicable fund grievance service\", \"competent review body\", \"social-security legal aid\"], \"unresolvedReviewItems\": [\"Current NSSF/PSSSF/ZSSF Acts, regulations, benefit forms and appeal routes\", \"no benefit calculation until rules checked\"], \"sourceIds\": [\"EMPLOYMENT-INSTITUTIONS\", \"CMA-RULES\", \"SOCIAL-NSSF-COMPLAINT-FORM\", \"SOCIAL-NSSF-FORMS-CATALOGUE\", \"SOCIAL-NSSF-REGISTRATION\", \"ZNZ-ZSSF-CATALOGUE\", \"SOCIAL-NSSF\", \"SOCIAL-PSSSF-2025\", \"SOCIAL-BENEFITS-2018\", \"SOCIAL-BENEFITS-AMENDMENT-2022\", \"SOCIAL-BENEFITS-AMENDMENT-2024\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P15",
+      "kind": "pathway",
+      "title": "Debt, contract and possible small claim",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current monetary jurisdiction and amendments; limitation; form/service; e-filing reference discrepancy; no splitting claims without legal advice",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+        "https://oagmis.oag.go.tz/portal/legislation/1318",
+        "https://www.osg.go.tz/uploads/documents/sw-1763372651-Cap.%2011%20Magistrates%20Courts%20Act%2C%20R.E%202023%20-%20MD%2C%20Mendez.pdf",
+        "https://oagmis.oag.go.tz/portal/acts/revised/194/download",
+        "https://elibrary.osg.go.tz/items/b68ca9dc-efaf-481d-ab1f-59644847f5f3"
+      ],
+      "originalRecord": "{\"id\": \"P15\", \"topic\": \"civil\", \"titleEn\": \"Debt, contract and possible small claim\", \"titleSwDraft\": \"Deni mkataba na madai madogo\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Jurisdiction\", \"Claim type/value\", \"Defendant government\", \"Land/labour/probate/matrimonial issue\", \"Agreement/date\", \"Prior court case\"], \"documentsIfAvailable\": [\"Agreement\", \"invoice\", \"payment record\", \"demand/response\", \"chronology\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Contract legal aid\", \"negotiated settlement if safe\", \"small-claims or other civil route only after eligibility check\"], \"unresolvedReviewItems\": [\"Current monetary jurisdiction and amendments\", \"limitation\", \"form/service\", \"e-filing reference discrepancy\", \"no splitting claims without legal advice\"], \"sourceIds\": [\"CONTRACT-ACT\", \"PROC-SMALL-CLAIMS\", \"COURTS-MAGISTRATES\", \"PROC-LIMITATION\", \"PROC-EFILING\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P16",
+      "kind": "pathway",
+      "title": "Defend a claim, summons or default decision",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Exact rule, response period, service validity, extension and appeal options; Zanzibar Civil Procedure Decree",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+        "https://oagmis.oag.go.tz/portal/legislation/1318",
+        "https://oagmis.oag.go.tz/portal/acts/revised/194/download",
+        "https://elibrary.osg.go.tz/items/b68ca9dc-efaf-481d-ab1f-59644847f5f3"
+      ],
+      "originalRecord": "{\"id\": \"P16\", \"topic\": \"civil\", \"titleEn\": \"Defend a claim, summons or default decision\", \"titleSwDraft\": \"Kujibu madai wito au hukumu ya upande mmoja\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Which court\", \"Document type\", \"Service date\", \"Hearing date\", \"Is decision already issued\", \"Representation\", \"Jurisdiction\"], \"documentsIfAvailable\": [\"Full summons/claim\", \"service evidence\", \"orders\", \"defence documents\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Urgent civil-law review\", \"applicable response or set-aside process\"], \"unresolvedReviewItems\": [\"Exact rule, response period, service validity, extension and appeal options\", \"Zanzibar Civil Procedure Decree\"], \"sourceIds\": [\"PROC-CIVIL\", \"PROC-SMALL-CLAIMS\", \"PROC-LIMITATION\", \"PROC-EFILING\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P17",
+      "kind": "pathway",
+      "title": "Appeal, revision or enforcement of an order",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Principal Court of Appeal rules plus 2024/2025 amendments; leave requirements; stay; certified records; subject-specific appeals; no universal deadline; Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current.",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/1dfa91fc-3611-42cc-8c37-68419e88ac9d",
+        "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+        "https://elibrary.osg.go.tz/items/a6cbbec1-4895-464d-8636-76bf712ddf02",
+        "https://elibrary.osg.go.tz/items/a6814a06-c3f3-43a4-944d-d5b1da442b56",
+        "https://elibrary.osg.go.tz/items/5cb53706-9992-4c60-9b23-c8230baaa42c",
+        "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+        "https://media.tanzlii.org/media/legislation/47113/source_file/7e915aacd4745c75/2007-106.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P17\", \"topic\": \"procedure\", \"titleEn\": \"Appeal, revision or enforcement of an order\", \"titleSwDraft\": \"Rufaa mapitio na utekelezaji wa amri\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Court/tribunal\", \"Decision and service dates\", \"Final or interim\", \"Desired remedy\", \"Enforcement underway\", \"Reasons/proceedings available\"], \"documentsIfAvailable\": [\"Judgment/order\", \"decree\", \"notice\", \"case record\", \"earlier appeal papers\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Appropriate appellate/review or enforcement specialist\", \"forum-specific procedure\"], \"unresolvedReviewItems\": [\"Principal Court of Appeal rules plus 2024/2025 amendments\", \"leave requirements\", \"stay\", \"certified records\", \"subject-specific appeals\", \"no universal deadline\", \"Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current.\"], \"sourceIds\": [\"PROC-APPEAL-AMENDMENT-2025\", \"PROC-CIVIL\", \"CRIM-PROCEDURE-SUPPLEMENT-2025\", \"PROC-APPEAL-PRINCIPAL\", \"PROC-APPEAL-AMENDMENT-2024\", \"ZNZ-KADHIS-2024\", \"LABOUR-COURT-READABLE\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P18",
+      "kind": "pathway",
+      "title": "Court fees, remission and filing support",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current amendments and court-specific schedules; distinguish registry fee from advocate/transport costs; portal workflow confirmation",
+      "sourceUrls": [
+        "https://media.tanzlii.org/media/legislation/47231/source_file/6823f37b1e0eb688/tz-act-gn-2018-247-publication-document.pdf",
+        "https://elibrary.osg.go.tz/items/b68ca9dc-efaf-481d-ab1f-59644847f5f3",
+        "https://media.tanzlii.org/media/generic_document/350318/source_file/21da821ad0b70765/Electronic_Case_Management_System_E-Cms_User_Guide_for_External_Users-2024.pdf",
+        "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+        "https://oagmis.oag.go.tz/portal/legislation/4336"
+      ],
+      "originalRecord": "{\"id\": \"P18\", \"topic\": \"procedure\", \"titleEn\": \"Court fees, remission and filing support\", \"titleSwDraft\": \"Ada za mahakama msamaha na msaada wa kufungua shauri\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Which court and claim\", \"Relevant form\", \"Ability to pay\", \"Official fee assessment\", \"Access to device or service bureau\"], \"documentsIfAvailable\": [\"Case/form\", \"fee assessment or receipt\", \"financial evidence if legally needed\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Court registry/service bureau\", \"legal-aid provider\", \"applicable fee remission assessment\"], \"unresolvedReviewItems\": [\"Current amendments and court-specific schedules\", \"distinguish registry fee from advocate/transport costs\", \"portal workflow confirmation\"], \"sourceIds\": [\"PROC-COURT-FEES-2018\", \"PROC-EFILING\", \"PROC-ECMS-GUIDE\", \"BASE-LEGAL-AID\", \"CMA-FEES-2025\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P19",
+      "kind": "pathway",
+      "title": "Arrest, detention, bail and criminal defence",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Penal Code and current amendments; offence-specific bail law; legal-aid custody SOP; juvenile safeguards; Zanzibar Penal/Criminal Procedure law",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/a6cbbec1-4895-464d-8636-76bf712ddf02",
+        "https://elibrary.osg.go.tz/items/b4b0136e-c638-45ed-a81d-c8711eda714e",
+        "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+        "https://media.tanzlii.org/media/legislation/47056/source_file/1abcf097768ffa13/2016-182.pdf",
+        "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+        "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-06-no-6692.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2021/tz-znz-government-gazette-legal-supplement-part-i-dated-2021-03-12-no-6898.pdf",
+        "https://elibrary.osg.go.tz/items/c545f591-bf5d-482f-ac11-bbdad280726e",
+        "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-13-no-6691.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P19\", \"topic\": \"criminal\", \"titleEn\": \"Arrest, detention, bail and criminal defence\", \"titleSwDraft\": \"Kukamatwa kuwekwa kizuizini dhamana na utetezi\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Person's location\", \"Child/adult\", \"Arrest/charge details\", \"Court date\", \"Access to lawyer\", \"Safety/medical needs\", \"Mainland or Zanzibar\"], \"documentsIfAvailable\": [\"Charge sheet or case number if available\", \"custody/court information\", \"existing bail decision\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Criminal-defence legal aid\", \"verified custody/court access process\", \"specialist bail review\"], \"unresolvedReviewItems\": [\"Penal Code and current amendments\", \"offence-specific bail law\", \"legal-aid custody SOP\", \"juvenile safeguards\", \"Zanzibar Penal/Criminal Procedure law\"], \"sourceIds\": [\"CRIM-PROCEDURE-SUPPLEMENT-2025\", \"PROC-EVIDENCE\", \"BASE-CHILD\", \"CHILD-JUVENILE-RULES\", \"BASE-LEGAL-AID\", \"ZNZ-CRIMINAL-PROCEDURE\", \"ZNZ-CRIMINAL-AMENDMENT-2021\", \"CRIM-PENAL\", \"ZNZ-PENAL-2018\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P20",
+      "kind": "pathway",
+      "title": "Report crime and support a victim or witness",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current witness protection law; PF3 procedure; evidence-preservation guidance; retaliation and consent SOP; verified local service",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/a6cbbec1-4895-464d-8636-76bf712ddf02",
+        "https://oagmis.oag.go.tz/portal/acts/revised/532/download",
+        "https://www.jamii.go.tz/publications/strategic-plan",
+        "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-06-no-6692.pdf",
+        "https://archive.gazettes.africa/archive/tz-znz/2021/tz-znz-government-gazette-legal-supplement-part-i-dated-2021-03-12-no-6898.pdf",
+        "https://elibrary.osg.go.tz/items/2a879887-a8e4-40d7-b539-6973db660512"
+      ],
+      "originalRecord": "{\"id\": \"P20\", \"topic\": \"criminal\", \"titleEn\": \"Report crime and support a victim or witness\", \"titleSwDraft\": \"Kuripoti uhalifu na kusaidia mwathirika au shahidi\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Immediate danger\", \"Safe communication\", \"Crime already reported\", \"Reference\", \"Child or vulnerable witness\", \"Threats\", \"Location\"], \"documentsIfAvailable\": [\"Report/reference if any\", \"evidence only safe to preserve\", \"avoid posting witness identities\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Verified police/victim-support referral\", \"legal aid\", \"applicable protection support\"], \"unresolvedReviewItems\": [\"Current witness protection law\", \"PF3 procedure\", \"evidence-preservation guidance\", \"retaliation and consent SOP\", \"verified local service\"], \"sourceIds\": [\"CRIM-PROCEDURE-SUPPLEMENT-2025\", \"TRAFFICKING-ACT\", \"SAFE-NPA-II\", \"SAFE-HOMES\", \"ZNZ-CRIMINAL-PROCEDURE\", \"ZNZ-CRIMINAL-AMENDMENT-2021\", \"SAFE-WITNESS-ACT\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P21",
+      "kind": "pathway",
+      "title": "Trafficking or exploitation support",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current trafficking regulations, assistance fund and referral protocol; lawful reporting; shelter capacity must be verified privately",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/532/download",
+        "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+        "https://oagmis.oag.go.tz/portal/acts/revised/142/download",
+        "https://elibrary.osg.go.tz/items/502c651e-5f9e-4f73-9faa-07c75e06b695"
+      ],
+      "originalRecord": "{\"id\": \"P21\", \"topic\": \"trafficking\", \"titleEn\": \"Trafficking or exploitation support\", \"titleSwDraft\": \"Msaada kwa biashara haramu ya watu na unyonyaji\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Immediate safety\", \"Freedom to leave\", \"Documents controlled\", \"Child involved\", \"Location\", \"Safe contact\", \"Immigration vulnerability\"], \"documentsIfAvailable\": [\"Documents only if safe\", \"incident information without unnecessary identifying detail\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Specialist survivor support\", \"approved safe-home referral\", \"qualified trafficking/immigration legal aid\"], \"unresolvedReviewItems\": [\"Current trafficking regulations, assistance fund and referral protocol\", \"lawful reporting\", \"shelter capacity must be verified privately\"], \"sourceIds\": [\"TRAFFICKING-ACT\", \"SAFE-HOMES\", \"REFUGEES-ACT\", \"IMMIGRATION-ACT\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P22",
+      "kind": "pathway",
+      "title": "Bank, lender and payment-service complaint",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: 2019 principal regulations plus 2025 amendment/guideline; provider coverage; escalation conditions, periods and remedies; SW-labelled PDF is English",
+      "sourceUrls": [
+        "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+        "https://www.bot.go.tz/DFDI/Frameworks?lang=en",
+        "https://www.bot.go.tz/Publications/Filter/40?lang=en"
+      ],
+      "originalRecord": "{\"id\": \"P22\", \"topic\": \"consumer\", \"titleEn\": \"Bank, lender and payment-service complaint\", \"titleSwDraft\": \"Malalamiko ya benki mkopeshaji na huduma za malipo\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Provider/regulator\", \"Product\", \"Transaction/decision date\", \"Complaint reference\", \"Fraud risk\", \"Response received\", \"Court case\"], \"documentsIfAvailable\": [\"Account/transaction evidence redacted\", \"complaint/response\", \"disputed charges\", \"terms\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Provider complaints process\", \"applicable BOT consumer complaint route\", \"financial legal aid\"], \"unresolvedReviewItems\": [\"2019 principal regulations plus 2025 amendment/guideline\", \"provider coverage\", \"escalation conditions, periods and remedies\", \"SW-labelled PDF is English\"], \"sourceIds\": [\"FIN-BOT-REGULATIONS\", \"FIN-BOT-AMENDMENT-2025\", \"FIN-BOT-GUIDELINES-EN\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P23",
+      "kind": "pathway",
+      "title": "Phone, internet, airtime and postal complaint",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: 2018 regulations and current complaints guideline; later amendments; broadcast exceptions; deadlines and form; fraud authority distinction",
+      "sourceUrls": [
+        "https://tcra.go.tz/laws-and-guidelines/regulations/the-electronic-and-postal-communications-consumer-protection-regulations-2018-2",
+        "https://tcra.go.tz/resources/complaints",
+        "https://tcra.go.tz/resources/service-desk",
+        "https://www.tcra.go.tz/uploads/text-editor/files/GN-TCRA%20%28COMPLAINTS%20COMMITTEE%29%20RULES%202018%20%20%20GN%20203%20%2011-05-2018_1626960860_1626960969.pdf",
+        "https://tcra.go.tz/uploads/documents/sw-1619087013-The%20Electronic%20and%20Postal%20Communications%20%28Consumer%20Protection%29%20Regulations%2C%202018.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P23\", \"topic\": \"consumer\", \"titleEn\": \"Phone, internet, airtime and postal complaint\", \"titleSwDraft\": \"Malalamiko ya simu intaneti na posta\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Provider\", \"Account/transaction kept private\", \"Complaint reference\", \"Service/event date\", \"Provider response\", \"Fraud\"], \"documentsIfAvailable\": [\"Bills\", \"terms\", \"transaction receipt\", \"provider complaint and response\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Provider service channel\", \"applicable TCRA complaint route after current rules verified\"], \"unresolvedReviewItems\": [\"2018 regulations and current complaints guideline\", \"later amendments\", \"broadcast exceptions\", \"deadlines and form\", \"fraud authority distinction\"], \"sourceIds\": [\"TELECOM-RULES\", \"TELECOM-GUIDELINE\", \"TELECOM-SERVICE-DESK\", \"TELECOM-COMMITTEE\", \"TELECOM-CONSUMER-REGULATIONS\", \"TELECOM-GUIDELINE-2020\", \"TELECOM-GUIDELINE-UNDATED\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P24",
+      "kind": "pathway",
+      "title": "Water, electricity and regulated utility complaint",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: EWURA complaint rules GN428/2020 and current amendments; electricity/service standards; ZURA Zanzibar rules; emergency utility channels",
+      "sourceUrls": [
+        "https://www.ewura.go.tz/public-register",
+        "https://www.ewura.go.tz/index.php/pages/water-complaints-and-resolution",
+        "https://www.ewura.go.tz/uploads/documents/en-1764751868-The%20EWURA%20%28Consumer%20Complaints%20Settlement%29%20Rules%2C%202020_GN%20428.pdf",
+        "https://zura.go.tz/publications/"
+      ],
+      "originalRecord": "{\"id\": \"P24\", \"topic\": \"consumer\", \"titleEn\": \"Water, electricity and regulated utility complaint\", \"titleSwDraft\": \"Malalamiko ya maji umeme na huduma zinazodhibitiwa\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Mainland or Zanzibar\", \"Utility/provider\", \"Bill/disconnection\", \"Safety risk\", \"Complaint reference\", \"Decision date\"], \"documentsIfAvailable\": [\"Bill/receipt\", \"meter information\", \"notices\", \"provider response\", \"redacted account evidence\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Utility grievance process\", \"applicable regulator complaint route\"], \"unresolvedReviewItems\": [\"EWURA complaint rules GN428/2020 and current amendments\", \"electricity/service standards\", \"ZURA Zanzibar rules\", \"emergency utility channels\"], \"sourceIds\": [\"UTILITIES-CATALOGUE\", \"UTILITIES-WATER\", \"UTILITIES-COMPLAINT-RULES\", \"ZNZ-ZURA-CATALOGUE\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P25",
+      "kind": "pathway",
+      "title": "Faulty goods, unfair terms and business complaint",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: 2024 Fair Competition amendment; 2022 complaint procedures; current FCC forms/Tribunal rules; Zanzibar competition authority",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/389/download",
+        "https://www.fcc.go.tz/attachments/attachment-1719186751547-8732730352.%20FCC%20Procedure%20Rules%202018.pdf",
+        "https://www.fcc.go.tz/en/legal-framework"
+      ],
+      "originalRecord": "{\"id\": \"P25\", \"topic\": \"consumer\", \"titleEn\": \"Faulty goods, unfair terms and business complaint\", \"titleSwDraft\": \"Bidhaa zenye kasoro masharti yasiyo ya haki na malalamiko\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Product/service/provider\", \"Purchase date\", \"Contract/warranty\", \"Loss\", \"Remedy requested\", \"Sector-specific regulator\"], \"documentsIfAvailable\": [\"Receipt\", \"contract/warranty\", \"complaint\", \"product photos\", \"losses evidence\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Trader complaint\", \"FCC route if within mandate\", \"specialist civil or sector route\"], \"unresolvedReviewItems\": [\"2024 Fair Competition amendment\", \"2022 complaint procedures\", \"current FCC forms/Tribunal rules\", \"Zanzibar competition authority\"], \"sourceIds\": [\"CONSUMER-FAIR-COMPETITION\", \"CONSUMER-FCC-PROCEDURE\", \"CONSUMER-FCC-FRAMEWORK\", \"FCC-CONSUMER-PROCEDURE\", \"FCC-TRIBUNAL-RULES\", \"FCC-AMENDMENT-2024\", \"FCC-STANDARD-CONTRACTS\", \"FCC-CURRENT-ACT\", \"FCC-DOMINANCE-2026\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P26",
+      "kind": "pathway",
+      "title": "Personal-data misuse and privacy complaint",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Act scope and Zanzibar applicability; current forms, evidence and deadlines; processor/controller distinctions; later amendments",
+      "sourceUrls": [
+        "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+        "https://pdpc.go.tz/publications/complaints-settlement-procedures-regulations-2023/",
+        "https://pdpc.go.tz/publications/"
+      ],
+      "originalRecord": "{\"id\": \"P26\", \"topic\": \"privacy\", \"titleEn\": \"Personal-data misuse and privacy complaint\", \"titleSwDraft\": \"Matumizi mabaya ya taarifa binafsi na malalamiko\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Where/which controller\", \"What data\", \"Harm or immediate threat\", \"Child\", \"Complaint made\", \"Applicable jurisdiction\"], \"documentsIfAvailable\": [\"Redacted notice/message\", \"controller response\", \"consent/privacy notice if available\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Controller grievance\", \"applicable PDPC complaint process\", \"privacy legal aid\"], \"unresolvedReviewItems\": [\"Act scope and Zanzibar applicability\", \"current forms, evidence and deadlines\", \"processor/controller distinctions\", \"later amendments\"], \"sourceIds\": [\"BASE-PRIVACY\", \"PRIVACY-COMPLAINTS\", \"PRIVACY-PROCESSING\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P27",
+      "kind": "pathway",
+      "title": "Birth, death and registration correction",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current regulations, forms and fees; inconsistent older RITA FAQ fees; late registration and correction requirements; approved alternatives to unavailable documents",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/77b053ae-e411-448c-a36e-92375d07cf77",
+        "https://www.rita.go.tz/erita.php?lang=en",
+        "https://www.rita.go.tz/faq.php?lang=en",
+        "https://erita.rita.go.tz/",
+        "https://zcsra.go.tz/Downloads/act_3.pdf",
+        "https://ecrvs.zcsra.go.tz/Birth/Form"
+      ],
+      "originalRecord": "{\"id\": \"P27\", \"topic\": \"civil_registration\", \"titleEn\": \"Birth, death and registration correction\", \"titleSwDraft\": \"Usajili wa kuzaliwa kifo na marekebisho\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Mainland or Zanzibar\", \"New/late registration, copy or correction\", \"Age/date/location\", \"Existing record\", \"Missing evidence\"], \"documentsIfAvailable\": [\"Existing certificate if any\", \"birth/death notification\", \"supporting identity or relationship evidence where applicable\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"RITA/eRITA or Zanzibar ZCSRA service according to jurisdiction and record type\"], \"unresolvedReviewItems\": [\"Current regulations, forms and fees\", \"inconsistent older RITA FAQ fees\", \"late registration and correction requirements\", \"approved alternatives to unavailable documents\"], \"sourceIds\": [\"CIVIL-BIRTH-DEATH\", \"RITA-SERVICES\", \"RITA-FAQ\", \"RITA-PORTAL\", \"ZNZ-CIVIL-STATUS\", \"ZNZ-BIRTH-SERVICE\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P28",
+      "kind": "pathway",
+      "title": "Disability, discrimination and access to services",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current disability regulations; enforceable accommodation/remedy; Zanzibar disability law; accessible referral directory; discrimination-specific law",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/568/download",
+        "https://oagmis.oag.go.tz/portal/acts/revised/108/download",
+        "https://oagmis.oag.go.tz/public",
+        "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+        "https://archive.gazettes.africa/archive/tz-znz/2022/tz-znz-government-gazette-legal-supplement-part-ii-dated-2022-12-30-no-7067b.pdf",
+        "https://elibrary.osg.go.tz/items/676ba370-b108-4bb0-a0c6-9ea1645c989f",
+        "https://elibrary.osg.go.tz/items/93c3e881-027a-442f-af14-210d520c7695"
+      ],
+      "originalRecord": "{\"id\": \"P28\", \"topic\": \"rights\", \"titleEn\": \"Disability, discrimination and access to services\", \"titleSwDraft\": \"Ulemavu ubaguzi na upatikanaji wa huduma\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Jurisdiction\", \"Service/employer\", \"Accommodation needed\", \"Date/decision\", \"Safety\", \"Existing complaint\"], \"documentsIfAvailable\": [\"Service decision\", \"correspondence\", \"employment/service information\", \"no unnecessary medical records\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Accessible legal aid\", \"applicable service/grievance body\", \"rights specialist\"], \"unresolvedReviewItems\": [\"Current disability regulations\", \"enforceable accommodation/remedy\", \"Zanzibar disability law\", \"accessible referral directory\", \"discrimination-specific law\"], \"sourceIds\": [\"DISABILITY-ACT\", \"RIGHTS-ENFORCEMENT\", \"BASE-CONSTITUTION\", \"BASE-ELRA\", \"ZNZ-DISABILITY-RULES-2022\", \"RIGHTS-CHRAGG-ACT\", \"AMENDMENTS-MISC-2-2025\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P29",
+      "kind": "pathway",
+      "title": "Public authority decision and constitutional rights",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Judicial review rules; notices to government; standing, exhaustion, limitation and constitutional rules; CHRAGG Act/service process; Zanzibar counterpart",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/public",
+        "https://oagmis.oag.go.tz/portal/acts/revised/108/download",
+        "https://oagmis.oag.go.tz/portal/acts/revised/110/download",
+        "https://oagmis.oag.go.tz/portal/acts/revised/194/download",
+        "https://www.chragg.go.tz/uploads/documents/sw-1776415749-ZANZIBAR-CONSTITUTION.pdf",
+        "https://elibrary.osg.go.tz/items/96774d57-b86d-4b19-a3fd-5ab67fe44f97",
+        "https://elibrary.osg.go.tz/items/676ba370-b108-4bb0-a0c6-9ea1645c989f",
+        "https://elibrary.osg.go.tz/items/93c3e881-027a-442f-af14-210d520c7695"
+      ],
+      "originalRecord": "{\"id\": \"P29\", \"topic\": \"rights\", \"titleEn\": \"Public authority decision and constitutional rights\", \"titleSwDraft\": \"Uamuzi wa mamlaka ya umma na haki za kikatiba\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Which authority/jurisdiction\", \"Decision/date\", \"Ordinary remedy exhausted\", \"Harm\", \"Existing proceeding\", \"Desired outcome\"], \"documentsIfAvailable\": [\"Written decision\", \"notices\", \"correspondence\", \"prior complaints\", \"chronology\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Administrative/constitutional legal specialist\", \"applicable complaint or judicial route\"], \"unresolvedReviewItems\": [\"Judicial review rules\", \"notices to government\", \"standing, exhaustion, limitation and constitutional rules\", \"CHRAGG Act/service process\", \"Zanzibar counterpart\"], \"sourceIds\": [\"BASE-CONSTITUTION\", \"RIGHTS-ENFORCEMENT\", \"PROC-GOVERNMENT\", \"PROC-LIMITATION\", \"ZNZ-CONSTITUTION-EN\", \"PROC-JUDICIAL-REVIEW\", \"RIGHTS-CHRAGG-ACT\", \"AMENDMENTS-MISC-2-2025\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P30",
+      "kind": "pathway",
+      "title": "Corruption complaint and safe reporting",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current reporting routes, whistleblower protection and confidentiality; Zanzibar anti-corruption law; do not promise anonymity",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/432/download",
+        "https://oagmis.oag.go.tz/portal/acts/revised/110/download",
+        "https://elibrary.osg.go.tz/items/2a879887-a8e4-40d7-b539-6973db660512"
+      ],
+      "originalRecord": "{\"id\": \"P30\", \"topic\": \"public_accountability\", \"titleEn\": \"Corruption complaint and safe reporting\", \"titleSwDraft\": \"Malalamiko ya rushwa na kuripoti kwa usalama\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Mainland or Zanzibar\", \"Authority\", \"Immediate threat\", \"Reporting already done\", \"Safe contact\", \"Evidence safely held\"], \"documentsIfAvailable\": [\"Only evidence lawfully and safely retained\", \"anonymised incident timeline\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Applicable PCCB or ZAECA reporting channel verified independently\", \"legal aid where retaliation risk exists\"], \"unresolvedReviewItems\": [\"Current reporting routes, whistleblower protection and confidentiality\", \"Zanzibar anti-corruption law\", \"do not promise anonymity\"], \"sourceIds\": [\"CORRUPTION-ACT\", \"PROC-GOVERNMENT\", \"SAFE-WITNESS-ACT\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P31",
+      "kind": "pathway",
+      "title": "Immigration, refugee status and documentation",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current immigration regulations, asylum procedures, status/appeal deadlines, verified UNHCR/partner services; confidentiality and non-refoulement review",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/502c651e-5f9e-4f73-9faa-07c75e06b695",
+        "https://oagmis.oag.go.tz/portal/acts/revised/142/download",
+        "https://oagmis.oag.go.tz/portal/acts/revised/532/download"
+      ],
+      "originalRecord": "{\"id\": \"P31\", \"topic\": \"migration\", \"titleEn\": \"Immigration, refugee status and documentation\", \"titleSwDraft\": \"Uhamiaji hadhi ya ukimbizi na nyaraka\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Current location/status\", \"Detention/removal notice\", \"Date/hearing\", \"Child\", \"Nationality/disputed documents\", \"Safe contact\"], \"documentsIfAvailable\": [\"Status/notice documents if safe\", \"decision\", \"family information only needed for specialist assessment\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Qualified immigration/refugee legal support\", \"applicable authority process\"], \"unresolvedReviewItems\": [\"Current immigration regulations, asylum procedures, status/appeal deadlines, verified UNHCR/partner services\", \"confidentiality and non-refoulement review\"], \"sourceIds\": [\"IMMIGRATION-ACT\", \"REFUGEES-ACT\", \"TRAFFICKING-ACT\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P32",
+      "kind": "pathway",
+      "title": "Health-related privacy and discrimination",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: Current health-sector complaint and professional regulator process; HIV Act scope/amendments; informed-consent rules; Zanzibar health law",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/9c77f8a2-d304-4e9b-94b1-fb5126f17d85",
+        "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+        "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+        "https://oagmis.oag.go.tz/portal/acts/revised/568/download"
+      ],
+      "originalRecord": "{\"id\": \"P32\", \"topic\": \"health_rights\", \"titleEn\": \"Health-related privacy and discrimination\", \"titleSwDraft\": \"Faragha na ubaguzi unaohusiana na afya\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Legal complaint or urgent care\", \"Disclosure without consent\", \"Employment/service setting\", \"Jurisdiction\", \"Child\"], \"documentsIfAvailable\": [\"Redacted decision/correspondence\", \"avoid uploading diagnosis or full clinical records unless securely required\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Appropriate health-service grievance\", \"privacy/employment legal aid\", \"medical service for clinical needs\"], \"unresolvedReviewItems\": [\"Current health-sector complaint and professional regulator process\", \"HIV Act scope/amendments\", \"informed-consent rules\", \"Zanzibar health law\"], \"sourceIds\": [\"HIV-RIGHTS\", \"BASE-PRIVACY\", \"BASE-ELRA\", \"DISABILITY-ACT\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P33",
+      "kind": "pathway",
+      "title": "Environmental harm and community complaint",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: 2025 enacted amendment identity; tribunal rules and appeal forms; EIA/public participation regulations; Zanzibar environmental law",
+      "sourceUrls": [
+        "https://elibrary.osg.go.tz/items/2d2d3296-6ca2-4ac0-ac9e-f59f01fac061",
+        "https://oagmis.oag.go.tz/portal/acts/327",
+        "https://oagmis.oag.go.tz/portal/acts/revised/110/download",
+        "https://archive.gazettes.africa/archive/tz-znz/2015/tz-znz-government-gazette-legal-supplement-part-i-dated-2015-05-08-no-6564.pdf",
+        "https://zema.go.tz/"
+      ],
+      "originalRecord": "{\"id\": \"P33\", \"topic\": \"environment\", \"titleEn\": \"Environmental harm and community complaint\", \"titleSwDraft\": \"Madhara ya mazingira na malalamiko ya jamii\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Location/jurisdiction\", \"Pollution/activity\", \"Immediate danger\", \"Authority complaint\", \"Project/permit\", \"Community or individual harm\"], \"documentsIfAvailable\": [\"Location and dates\", \"photos taken safely/lawfully\", \"notices/permit if public\", \"complaint response\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Applicable environmental authority/local government complaint\", \"environmental legal specialist\"], \"unresolvedReviewItems\": [\"2025 enacted amendment identity\", \"tribunal rules and appeal forms\", \"EIA/public participation regulations\", \"Zanzibar environmental law\"], \"sourceIds\": [\"ENVIRONMENT-ACT\", \"ENVIRONMENT-AMENDMENT\", \"PROC-GOVERNMENT\", \"ZNZ-ENVIRONMENT-GAZETTE\", \"ZNZ-ZEMA-CATALOGUE\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    },
+    {
+      "externalKey": "research-20261007:pathway:P34",
+      "kind": "pathway",
+      "title": "Mediation and alternative dispute resolution",
+      "notes": "Draft pathway for independent legal and practical service review. Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route. Open items: LSF mediation manuals and safety exclusion SOP; Acquired Arbitration Act/rules require scope and amendment review; forum-specific mediation; enforceability and limitation effects; Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current.",
+      "sourceUrls": [
+        "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+        "https://oagmis.oag.go.tz/portal/acts/revised/320/download",
+        "https://elibrary.osg.go.tz/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc",
+        "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+        "https://elibrary.osg.go.tz/items/43b1540f-e955-49c3-9e19-a7da72d9b0f8",
+        "https://elibrary.osg.go.tz/items/c2f1e5d5-7015-40c5-a1fd-c31e4158de98",
+        "https://elibrary.osg.go.tz/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d",
+        "https://elibrary.osg.go.tz/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa",
+        "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf"
+      ],
+      "originalRecord": "{\"id\": \"P34\", \"topic\": \"adr\", \"titleEn\": \"Mediation and alternative dispute resolution\", \"titleSwDraft\": \"Usuluhishi na njia mbadala za kutatua migogoro\", \"status\": \"review_design_draft\", \"approvalStatus\": \"not_submitted\", \"productionEligible\": false, \"translationStatus\": \"not_reviewed\", \"applicability\": \"Ask location and verify Mainland/Zanzibar and subject-specific law before selecting a route.\", \"intakeQuestions\": [\"Issue/jurisdiction\", \"Voluntary and safe participation\", \"Violence/coercion\", \"Existing proceedings\", \"Enforceability wanted\"], \"documentsIfAvailable\": [\"Agreement\", \"dispute summary\", \"prior proceedings\", \"authorised representative if needed\"], \"missingDocumentsPolicy\": \"Do not make having these documents a condition of receiving initial help. A reviewer must specify lawful alternatives for each required filing.\", \"routeCandidatesForLegalReview\": [\"Appropriate statutory or voluntary mediation service after suitability screening\"], \"unresolvedReviewItems\": [\"LSF mediation manuals and safety exclusion SOP\", \"Acquired Arbitration Act/rules require scope and amendment review\", \"forum-specific mediation\", \"enforceability and limitation effects\", \"Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current.\"], \"sourceIds\": [\"PROC-CIVIL\", \"LAND-DISPUTES\", \"EMPLOYMENT-INSTITUTIONS\", \"BASE-LEGAL-AID\", \"ADR-ARBITRATION-ACT\", \"ADR-ARBITRATION-RULES\", \"ADR-ACCREDITATION\", \"ADR-CONDUCT\", \"ZNZ-KADHIS-2024\"], \"exactDeadline\": null, \"exactFee\": null, \"approvedForum\": null, \"approvedServiceId\": null, \"reviewRequirements\": [\"Verify each branch against exact sections/rules and current amendments.\", \"Record mandatory vs optional documents and lawful alternatives.\", \"Record deadline trigger, calculation, exceptions and extension route.\", \"Record current fees and remission; never infer from an old schedule.\", \"Confirm provider coverage/capacity and safe handoff with the service owner.\", \"Approve English and Kiswahili text independently, assign reviewer and review date.\"]}"
+    }
+  ],
+  "productionEligible": false,
+  "uploaded": 0
+}

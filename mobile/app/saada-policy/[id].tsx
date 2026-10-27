@@ -1,3 +1,5 @@
+import { plainError } from "../../../shared/plainLanguage";
+import { AdminIntro } from "../../src/admin/AdminIntro";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -6,7 +8,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
-import { Screen } from "../../src/components/Screen";
+import { AdminScreen as Screen } from "../../src/admin/AdminScreen";
 import { Surface } from "../../src/components/Surface";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
@@ -32,17 +34,17 @@ export default function SaadaPolicyReviewScreen() {
     if (!version || !decision || ownSubmission || note.trim().length < 10 || busy) return;
     setBusy(true); setError("");
     try { await review({ id: version._id, decision, reviewNote: note.trim() }); setSaved(true); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
 
   return <Screen>
-    <AppHeader back title={sw ? "Kagua sera ya Saada" : "Review Saada policy"} eyebrow="LSF · AI GOVERNANCE" />
-    {access === undefined ? <State text={sw ? "Inapakia ruhusa..." : "Loading access..."} /> : !isAdmin ? <State text={sw ? "Wasimamizi pekee wanaweza kuona maagizo ya Saada." : "Only administrators can view Saada instructions."} /> : versions === undefined ? <State text={sw ? "Inapakia toleo..." : "Loading version..."} /> : !version ? <State text={sw ? "Toleo halipatikani." : "Version not found."} /> : <>
-      <View style={styles.hero}><View style={styles.heroIcon}><Ionicons name="options-outline" size={29} color={colors.burgundy} /></View><Text style={styles.kicker}>SAADA · INSTRUCTIONS</Text><Text style={styles.heroTitle}>{sw ? "Toleo" : "Version"} {version.version}</Text><Text style={styles.heroBody}>{sw ? "Kagua maandishi kamili, mipaka na sababu ya mabadiliko kabla ya uamuzi." : "Read the complete instructions, safeguards and change reason before deciding."}</Text></View>
+    <AppHeader back title={sw ? "Kagua sera ya Haki Yangu AI" : "Review Haki Yangu AI policy"} eyebrow="LSF · AI GOVERNANCE" />
+    {access === undefined ? <State text={sw ? "Inapakia ruhusa..." : "Loading access..."} /> : !isAdmin ? <State text={sw ? "Wasimamizi pekee wanaweza kuona maagizo ya Haki Yangu AI." : "Only administrators can view Haki Yangu AI instructions."} /> : versions === undefined ? <State text={sw ? "Inapakia toleo..." : "Loading version..."} /> : !version ? <State text={sw ? "Toleo halipatikani." : "Version not found."} /> : <>
+      <AdminIntro icon="book-outline" eyebrow="LSF" title={`${sw ? "Toleo" : "Version"} ${version.version}`} description={sw ? "Kagua maandishi kamili, mipaka na sababu ya mabadiliko kabla ya uamuzi." : "Read the complete instructions, safeguards and change reason before deciding."} />
       <Surface tone={version.status === "approved" ? "teal" : "orange"} style={styles.card}><Text style={styles.title}>{sw ? "Hali ya toleo" : "Version status"}</Text><Text style={styles.status}>{version.status.replaceAll("_", " ")}</Text><Text style={styles.muted}>{sw ? "Liliwasilishwa" : "Submitted"}: {new Date(version.submittedAt).toLocaleString(sw ? "sw-TZ" : "en-TZ")}</Text></Surface>
       <Text style={styles.section}>{sw ? "Sababu ya mabadiliko" : "Reason for change"}</Text><Surface style={styles.card}><Text style={styles.body}>{version.changeNote}</Text></Surface>
-      <Text style={styles.section}>{sw ? "Maagizo kamili ya Saada" : "Full Saada instructions"}</Text><Surface style={styles.card}><Text selectable style={styles.prompt}>{version.prompt}</Text></Surface>
+      <Text style={styles.section}>{sw ? "Maagizo kamili ya Haki Yangu AI" : "Full Haki Yangu AI instructions"}</Text><Surface style={styles.card}><Text selectable style={styles.prompt}>{version.prompt}</Text></Surface>
       {version.reviewNote ? <Surface tone="pink" style={styles.card}><Text style={styles.title}>{sw ? "Sababu ya mkaguzi" : "Reviewer reason"}</Text><Text style={styles.body}>{version.reviewNote}</Text></Surface> : null}
       {saved ? <Surface tone="teal" style={styles.card}><Ionicons name="checkmark-circle" size={32} color={colors.teal} /><Text style={styles.title}>{sw ? "Uamuzi umehifadhiwa" : "Decision recorded"}</Text><Button label={sw ? "Rudi kwenye matoleo" : "Back to versions"} onPress={() => router.replace("/saada-governance")} /></Surface> : version.status !== "pending" ? <Surface tone="teal" style={styles.card}><Text style={styles.muted}>{sw ? "Toleo hili lina uamuzi uliorekodiwa." : "This version already has a recorded decision."}</Text></Surface> : ownSubmission ? <Surface tone="orange" style={styles.card}><Ionicons name="shield-outline" size={25} color={colors.orange} /><Text style={styles.title}>{sw ? "Uhakiki huru unahitajika" : "Independent review required"}</Text><Text style={styles.muted}>{sw ? "Huwezi kuidhinisha toleo ulilowasilisha." : "You cannot review the version you submitted."}</Text></Surface> : <>
         <Text style={styles.section}>{sw ? "Uamuzi huru" : "Independent decision"}</Text><Surface tone="pink" style={styles.card}><Text style={styles.muted}>{sw ? "Idhini itafanya toleo hili kuwa hai na kuondoa toleo lililokuwa hai." : "Approval activates this version and retires the currently active one."}</Text><View style={styles.choices}><Choice label={sw ? "Idhinisha" : "Approve"} active={decision === "approved"} onPress={() => setDecision("approved")} /><Choice label={sw ? "Kataa" : "Reject"} active={decision === "rejected"} onPress={() => setDecision("rejected")} /></View><TextInput multiline maxLength={1000} value={note} onChangeText={setNote} placeholder={sw ? "Usalama, usahihi, mipaka na sababu ya uamuzi..." : "Safety, accuracy, boundaries and decision reason..."} placeholderTextColor={colors.inkMuted} style={styles.input} /><Text style={styles.muted}>{note.trim().length}/1000 · {sw ? "Angalau herufi 10" : "At least 10 characters"}</Text>{decision ? <Button label={decision === "approved" ? (sw ? "Thibitisha idhini" : "Confirm approval") : (sw ? "Thibitisha kukataa" : "Confirm rejection")} loading={busy} disabled={busy || note.trim().length < 10} onPress={() => void save()} /> : null}</Surface>

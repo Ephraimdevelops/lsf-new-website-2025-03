@@ -4,6 +4,9 @@ import { mutation, query } from "./_generated/server";
 import type { MutationCtx } from "./_generated/server";
 import { internal } from "./_generated/api";
 import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
+import { issueManagedUpload, requireCleanOwnedUpload } from "./lib/managedUploads";
+import { enforceRateLimit } from "./lib/rateLimits";
+import { digestBytes } from "./lib/uploadPolicy";
 import {
     activateParalegalRoleForUser,
     markParalegalProfileJoined,
@@ -27,7 +30,8 @@ const MAX_SUBMISSIONS_PER_WINDOW = 3; // 3 submissions per hour
 // Helper: Check Rate Limit
 async function checkRateLimit(
     ctx: MutationCtx,
-    identifier: string
+    identifier: string,
+    maximum = MAX_SUBMISSIONS_PER_WINDOW,
 ): Promise<{ allowed: boolean; remaining: number; resetAt: number }> {
     const now = Date.now();
     const existing = await ctx.db
@@ -37,20 +41,20 @@ async function checkRateLimit(
 
     if (!existing) {
         await ctx.db.insert("rate_limits", { identifier, count: 1, windowStart: now });
-        return { allowed: true, remaining: MAX_SUBMISSIONS_PER_WINDOW - 1, resetAt: now + RATE_LIMIT_WINDOW };
+        return { allowed: true, remaining: maximum - 1, resetAt: now + RATE_LIMIT_WINDOW };
     }
 
-    if (now - existing.windowStart > RATE_LIMIT_WINDOW) {
+    if (now - existing.windowStart >= RATE_LIMIT_WINDOW) {
         await ctx.db.patch(existing._id, { count: 1, windowStart: now });
-        return { allowed: true, remaining: MAX_SUBMISSIONS_PER_WINDOW - 1, resetAt: now + RATE_LIMIT_WINDOW };
+        return { allowed: true, remaining: maximum - 1, resetAt: now + RATE_LIMIT_WINDOW };
     }
 
-    if (existing.count >= MAX_SUBMISSIONS_PER_WINDOW) {
+    if (existing.count >= maximum) {
         return { allowed: false, remaining: 0, resetAt: existing.windowStart + RATE_LIMIT_WINDOW };
     }
 
     await ctx.db.patch(existing._id, { count: existing.count + 1 });
-    return { allowed: true, remaining: MAX_SUBMISSIONS_PER_WINDOW - existing.count - 1, resetAt: existing.windowStart + RATE_LIMIT_WINDOW };
+    return { allowed: true, remaining: maximum - existing.count - 1, resetAt: existing.windowStart + RATE_LIMIT_WINDOW };
 }
 
 // Helper: Validate Honeypot
@@ -82,7 +86,8 @@ export const submitContact = mutation({
         }
 
         // 2. Rate Limit Check
-        const identifier = args.clientIdentifier || "anonymous_contact";
+        await enforceRateLimit(ctx, "public-contact:global", 100, 60 * 60 * 1000);
+        const identifier = await digestBytes(new TextEncoder().encode(normalizeEmail(args.email)));
         const rateCheck = await checkRateLimit(ctx, `contact:${identifier}`);
         if (!rateCheck.allowed) {
             throw new Error(`Rate limit exceeded. Try again in ${Math.ceil((rateCheck.resetAt - Date.now()) / 60000)} minutes.`);
@@ -196,11 +201,7 @@ export const submitWhistleblowerReport = mutation({
         // Honeypot check (redundant if using whistleblower.ts but good for safety)
         if (args.roleTitle && !validateHoneypot(args.roleTitle)) return { success: true, id: "rejected" };
 
-        const identifier = args.clientIdentifier || "anonymous_whistleblower";
-        const rateCheck = await checkRateLimit(ctx, `whistleblower:${identifier}`);
-        if (!rateCheck.allowed) {
-            throw new Error(`Rate limit exceeded. Try again in ${Math.ceil((rateCheck.resetAt - Date.now()) / 60000)} minutes.`);
-        }
+        await enforceRateLimit(ctx, "public-whistleblower:global", 60, 60 * 60 * 1000);
 
         const reportType = normalizeText(args.reportType, "Report type", 120);
         const description = normalizeText(args.description, "Description", 8000);
@@ -288,8 +289,8 @@ export const updateWhistleblowerReport = mutation({
 // ==========================================
 
 export const generateParalegalDocumentUploadUrl = mutation({ args: {}, handler: async (ctx) => {
-    await requireAuthenticatedUser(ctx);
-    return await ctx.storage.generateUploadUrl();
+    const { user } = await requireAuthenticatedUser(ctx);
+    return await issueManagedUpload(ctx, user._id, "application");
 } });
 
 export const submitParalegalApplication = mutation({
@@ -322,8 +323,7 @@ export const submitParalegalApplication = mutation({
         }
 
         // 2. Rate Limit Check
-        const identifier = args.clientIdentifier || "anonymous_paralegal";
-        const rateCheck = await checkRateLimit(ctx, `paralegal:${identifier}`);
+        const rateCheck = await checkRateLimit(ctx, `paralegal:${authenticated.user._id}`);
         if (!rateCheck.allowed) {
             throw new Error(`Rate limit exceeded. Try again in ${Math.ceil((rateCheck.resetAt - Date.now()) / 60000)} minutes.`);
         }
@@ -341,11 +341,13 @@ export const submitParalegalApplication = mutation({
         const languages = args.languages?.map((language) => normalizeText(language, "Language", 80));
         const resumeUrl = normalizeOptionalText(args.resumeUrl, "Resume URL", 1000);
         const idDocumentUrl = normalizeOptionalText(args.idDocumentUrl, "ID document URL", 1000);
+        if (resumeUrl || idDocumentUrl) throw new Error("Upload application documents through the secure upload form rather than external URLs.");
         for (const storageId of [args.resumeStorageId, args.idDocumentStorageId, args.certificateStorageId].filter(Boolean)) {
+            await requireCleanOwnedUpload(ctx, storageId!, authenticated.user._id, "application");
             const metadata = await ctx.db.system.get(storageId!);
-            if (!metadata || metadata.size > 10 * 1024 * 1024) throw new Error("Application files must exist and be 10MB or smaller.");
+            if (!metadata || metadata.size <= 0 || metadata.size > 10 * 1024 * 1024) throw new Error("Application files must exist and be 10MB or smaller.");
             const type = metadata.contentType?.toLowerCase() ?? "";
-            if (!type.includes("pdf") && !type.includes("image")) throw new Error("Application files must be PDF or image documents.");
+            if (!["application/pdf", "image/jpeg", "image/png"].includes(type)) throw new Error("Application files must be PDF, JPEG or PNG documents.");
         }
 
         // Check for duplicate applications

@@ -1,3 +1,4 @@
+import { usePresenceHeartbeat } from "./usePresenceHeartbeat";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { useConvexAuth, useMutation } from "convex/react";
@@ -45,6 +46,7 @@ export function AccountSyncProvider({ children }: { children: React.ReactNode })
         return () => { active = false; if (retryTimer) clearTimeout(retryTimer); };
     }, [isLoaded, isAuthenticated, userId, name, email, imageUrl, attempt, failures, storeUser]);
 
+  usePresenceHeartbeat(isAuthenticated && status === "ready" && !!userId);
     const value = useMemo(() => ({ status, retry }), [status, retry]);
     return <AccountSyncContext.Provider value={value}>{children}</AccountSyncContext.Provider>;
 }

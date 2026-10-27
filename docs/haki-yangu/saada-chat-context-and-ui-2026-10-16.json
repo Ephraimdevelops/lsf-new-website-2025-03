@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-16",
+  "provider": "OpenAI",
+  "scope": "Development backend and local web/mobile code. No production or store release.",
+  "promptVersion": "2026-10-16.3",
+  "changes": {
+    "conversation": [
+      "First-reply introduction as Saada, Haki Yangu AI at LSF",
+      "English and Kiswahili identity questions, one-character identity typos and recall of recent own user messages",
+      "Model-selectable conversation_reply tool for differently phrased conversational intents; server supplies fixed truthful wording",
+      "Retrieval includes recent own user issue and location instead of only the latest short follow-up",
+      "Recent context expanded within 24-turn/16000-character budget, empty placeholders removed before current-turn deduplication",
+      "Clarification skips already shared jurisdiction, issue or date; no invented legal evidence"
+    ],
+    "web": [
+      "Bounded viewport with independently scrolling messages and stationary composer",
+      "Single latest backend activity instead of duplicate placeholder and growing activity panel",
+      "Separate owned conversations, history navigation and nondestructive new conversation",
+      "Saada profile dialog and avatar; assistant identity shown with replies",
+      "Markdown and result cards rendered separately with no raw partial payloads",
+      "Composition-safe Enter key, duplicate-send lock, multiline input growth and recoverable error text",
+      "Phone width verified: document width430, footer bottom932 in430x932 viewport"
+    ],
+    "mobile": [
+      "Same Saada avatar in header, welcome and assistant replies",
+      "Accessible bilingual profile modal",
+      "Existing consent, history, handoff and language controls retained"
+    ]
+  },
+  "validation": {
+    "focusedConversationAndSafetyTests": {
+      "passed": 79,
+      "failed": 0
+    },
+    "saadaContractTests": {
+      "passed": 10,
+      "failed": 0
+    },
+    "widerContractSuite": "One unrelated existing assertion expects Pending sync in mobile offline UI; that source was not changed by this work.",
+    "webBuild": "passed; large chunk warning remains",
+    "webTypecheck": "passed",
+    "mobileTypecheck": "passed",
+    "backendStrictTypecheckAndDevelopmentDeploy": "passed",
+    "mobileVisual": "Compiled Expo web preview at430x932. Profile opened and screenshot saved; native installed iOS/Android runtime not claimed.",
+    "signedInLiveWeb": [
+      "Exact unaitwa nani returns truthful Saada identity instead of legal jurisdiction question",
+      "Fictional unpaid-salary Kinondoni question returns published clinic information with provenance and intake caveat",
+      "nilisema nini recalls prior own user wording without repeating jurisdiction question",
+      "Single real answering indicator visible",
+      "New conversation keeps earlier history",
+      "Please answer in English. What should I call you? returns Saada identity in English through semantic conversation tool",
+      "unaitwa nanui returns Saada identity in Kiswahili despite earlier support context"
+    ],
+    "developmentDeployCompleted": "19:58:54 Africa/Dar_es_Salaam"
+  },
+  "limitations": [
+    "Current legal evidence approval remains a separate prerequisite for full substantive legal answers",
+    "No reviewer identity or legal-source approval gate bypassed",
+    "Recent context is bounded; no indefinite or cross-conversation memory claimed"
+  ],
+  "proof": [
+    "saada-web-redesign-2026-10-16.png",
+    "saada-chat-answering-2026-10-16.png",
+    "saada-context-recall-2026-10-16.png",
+    "saada-web-phone-width-2026-10-16.png",
+    "saada-mobile-profile-2026-10-16.png",
+    "saada-semantic-identity-2026-10-16.png"
+  ]
+}

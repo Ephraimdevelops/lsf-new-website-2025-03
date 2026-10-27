@@ -1,3 +1,4 @@
+import { distanceKm, validPoint, requireNearbyInput } from "./lib/geography";
 import { ConvexError, v } from "convex/values";
 import { paginationOptsValidator } from "convex/server";
 import { hasCurrentServiceReview, isServiceReviewOverdue, referralStatusAfterOrganisationChange, requireActiveReferralReadiness, requireDirectoryDecisionReason, requireDraftOrganisation, requireDraftService, requireIndependentDirectoryReviewer, requireLinkedCorrectionUpdate } from "./lib/directoryLifecycle";
@@ -122,13 +123,14 @@ function normalize(value?: string) {
 }
 
 function isCurrentPublicService(service: {
+  syntheticDevelopmentFixture?: boolean;
   active: boolean;
   visibility: string;
   verificationStatus: string;
   servicePointType: string;
   nextReviewAt?: number;
 }) {
-  return service.active && service.visibility === "public" && service.verificationStatus === "verified"
+  return !service.syntheticDevelopmentFixture && service.active && service.visibility === "public" && service.verificationStatus === "verified"
     && service.servicePointType !== "safe_house"
     && hasCurrentServiceReview(service.nextReviewAt, Date.now());
 }
@@ -296,7 +298,7 @@ export const myOrganizations = query({
 export const myOrganization = query({
   args: { organizationId: v.optional(v.id("justice_service_organizations")) },
   handler: async (ctx, args) => {
-    const { assignments } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+    const { user, assignments } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
     const authorizedIds = assignments.filter((assignment) =>
       ["paralegal", "provider_staff"].includes(assignment.role) && assignment.organizationId,
     ).map((assignment) => assignment.organizationId);
@@ -309,7 +311,9 @@ export const myOrganization = query({
       .query("justice_services")
       .withIndex("by_organization", (q) => q.eq("organizationId", organization._id))
       .collect();
+    const corrections = await ctx.db.query("directory_correction_requests").withIndex("by_organization", q => q.eq("organizationId", organization._id)).collect();
     return {
+      corrections: corrections.filter(item => item.requestedBy === user._id).sort((a,b) => b.submittedAt - a.submittedAt).slice(0, 50).map(item => ({ _id: item._id, serviceId: item.serviceId, status: item.status, reason: item.reason, proposedDetails: item.proposedDetails, submittedAt: item.submittedAt, reviewedAt: item.reviewedAt })),
       organization: {
         _id: organization._id,
         name: organization.name,
@@ -567,6 +571,9 @@ export const listPublicInformationResources = query({
 
 export const listPublicServices = query({
   args: {
+    origin: v.optional(v.object({ latitude: v.number(), longitude: v.number() })),
+    radiusKm: v.optional(v.number()),
+    providerType: v.optional(servicePointType),
     region: v.optional(v.string()),
     district: v.optional(v.string()),
     issueCategory: v.optional(v.string()),
@@ -574,6 +581,7 @@ export const listPublicServices = query({
     search: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    requireNearbyInput(args.origin, args.radiusKm);
     const services = await ctx.db
       .query("justice_services")
       .withIndex("by_active_visibility", (q) => q.eq("active", true).eq("visibility", "public"))
@@ -587,12 +595,15 @@ export const listPublicServices = query({
 
     return services
       .filter(isCurrentPublicService)
+      .filter((service) => !args.providerType || service.servicePointType === args.providerType)
       .filter((service) => !search || [service.name, service.organizationName, service.region, service.district, service.ward, service.physicalLocation, ...service.issueCategories, ...service.serviceTypes].some((item) => normalize(item).includes(search)))
       .filter((service) => !region || service.region.toLowerCase().includes(region) || service.serviceCoverageRegions.some((item) => item.toLowerCase().includes(region)))
       .filter((service) => !district || service.district.toLowerCase().includes(district))
       .filter((service) => !issueCategory || service.issueCategories.some((item) => item.toLowerCase().includes(issueCategory)))
       .filter((service) => !serviceType || service.serviceTypes.some((item) => item.toLowerCase().includes(serviceType)))
-      .map(publicServiceProjection);
+      .map(service => ({ ...publicServiceProjection(service), distanceKm: args.origin && validPoint(service) ? distanceKm(args.origin, service) : null }))
+      .filter(service => args.radiusKm === undefined || service.distanceKm !== null && service.distanceKm <= args.radiusKm)
+      .sort((a, b) => (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity));
   },
 });
 
@@ -862,6 +873,7 @@ export const createService = mutation({
     if (args.servicePointType === "safe_house" && args.visibility === "public") {
       throw new ConvexError("Safe-house services cannot be public.");
     }
+    if ((args.latitude !== undefined || args.longitude !== undefined) && !validPoint(args)) throw new ConvexError("Provide valid latitude and longitude together.");
     const organization = args.organizationId ? await ctx.db.get(args.organizationId) : null;
     if (args.organizationId && !organization) throw new ConvexError("Linked organization not found.");
     const now = Date.now();
@@ -880,6 +892,7 @@ export const createService = mutation({
 export const updateService = mutation({
   args: {
     id: v.id("justice_services"),
+    clearCoordinates: v.optional(v.boolean()),
     decisionReason: v.optional(v.string()),
     correctionRequestId: v.optional(v.id("directory_correction_requests")),
     correctionLinkNote: v.optional(v.string()),
@@ -930,13 +943,15 @@ export const updateService = mutation({
     const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new ConvexError("Service not found.");
+    if ((args.updates.latitude !== undefined || args.updates.longitude !== undefined) && !validPoint({ latitude: args.updates.latitude ?? existing.latitude, longitude: args.updates.longitude ?? existing.longitude })) throw new ConvexError("Provide valid latitude and longitude together.");
     const correction = args.correctionRequestId ? await ctx.db.get(args.correctionRequestId) : null;
     if (args.correctionRequestId && (!correction || correction.status !== "pending" || correction.serviceId !== args.id)) throw new ConvexError("Pending correction does not belong to this service.");
     const correctionLinkNote = args.correctionLinkNote?.trim() ?? "";
     if (correction && (correctionLinkNote.length < 10 || correctionLinkNote.length > 1000)) throw new ConvexError("Describe how this edit addresses the correction in 10–1000 characters.");
-    if (correction && !Object.entries(args.updates).some(([key, value]) => value !== undefined && JSON.stringify(value) !== JSON.stringify(existing[key as keyof typeof existing]))) throw new ConvexError("Change at least one service detail before linking this correction.");
+    if (correction && !args.clearCoordinates && !Object.entries(args.updates).some(([key, value]) => value !== undefined && JSON.stringify(value) !== JSON.stringify(existing[key as keyof typeof existing]))) throw new ConvexError("Change at least one service detail before linking this correction.");
     const publicFields = ["name", "organizationId", "organizationName", "servicePointType", "classification", "visibility", "country", "region", "district", "council", "ward", "villageOrMtaa", "latitude", "longitude", "physicalLocation", "serviceCoverageRegions", "issueCategories", "serviceTypes", "jurisdiction", "referralCapability", "eligibility", "openingHours", "walkIn", "appointmentRequired", "remoteSupport", "phoneSupport", "phone", "emergencyCapability", "languages", "disabilityAccess", "privacyAvailable", "genderSensitive"] as const;
-    const materialChange = publicFields.some((key) => args.updates[key] !== undefined && JSON.stringify(args.updates[key]) !== JSON.stringify(existing[key]));
+    if (args.clearCoordinates && (args.updates.latitude !== undefined || args.updates.longitude !== undefined)) throw new ConvexError("Clear coordinates or provide a replacement, not both.");
+    const materialChange = Boolean(args.clearCoordinates && (existing.latitude !== undefined || existing.longitude !== undefined)) || publicFields.some((key) => args.updates[key] !== undefined && JSON.stringify(args.updates[key]) !== JSON.stringify(existing[key]));
     const needsReverification = materialChange && existing.verificationStatus === "verified";
     const safeUpdates = needsReverification ? { ...args.updates, verificationStatus: "expired" as const, active: false } : args.updates;
     if (safeUpdates.capacity !== undefined && (!Number.isInteger(safeUpdates.capacity) || safeUpdates.capacity < 0 || safeUpdates.capacity > 100000)) throw new ConvexError("Capacity must be a whole number between 0 and 100000.");
@@ -976,6 +991,7 @@ export const updateService = mutation({
     const changedAt = Date.now();
     await ctx.db.patch(args.id, {
       ...safeUpdates,
+      ...(args.clearCoordinates ? { latitude: undefined, longitude: undefined } : {}),
       ...(organization ? { organizationName: organization.name } : safeUpdates.organizationName !== undefined ? { organizationName: safeUpdates.organizationName } : {}),
       ...(materialChange ? { lastMaterialEditedBy: user._id } : {}),
       ...(verifies ? { verifiedBy: user._id } : {}),
@@ -989,6 +1005,10 @@ export const updateService = mutation({
 
 export const matchServices = mutation({
   args: {
+    providerType: v.optional(servicePointType),
+    serviceType: v.optional(v.string()),
+    origin: v.optional(v.object({ latitude: v.number(), longitude: v.number() })),
+    radiusKm: v.optional(v.number()),
     source: v.optional(v.union(v.literal("navigator"), v.literal("saada"), v.literal("staff"), v.literal("directory"))),
     ordinaryProblem: v.optional(v.string()),
     issueCategory: v.optional(v.string()),
@@ -999,6 +1019,7 @@ export const matchServices = mutation({
     caseId: v.optional(v.id("cases")),
   },
   handler: async (ctx, args) => {
+    requireNearbyInput(args.origin, args.radiusKm);
     const identity = await ctx.auth.getUserIdentity();
     const account = identity
       ? await ctx.db.query("users").withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject)).unique()
@@ -1043,6 +1064,8 @@ export const matchServices = mutation({
 
     const ranked = isRestricted ? [] : services
       .filter(isCurrentPublicService)
+      .filter((service) => !args.providerType || service.servicePointType === args.providerType)
+      .filter((service) => !args.serviceType || service.serviceTypes.some((item) => normalize(item) === normalize(args.serviceType)))
       .filter((service) => !issueCategory || service.issueCategories.some((item) => item.toLowerCase().includes(issueCategory) || issueCategory.includes(item.toLowerCase())))
       .filter((service) => !region || service.region.toLowerCase().includes(region) || service.serviceCoverageRegions.some((item) => item.toLowerCase().includes(region)))
       .filter((service) => !district || service.district.toLowerCase().includes(district) || service.remoteSupport)
@@ -1079,16 +1102,19 @@ export const matchServices = mutation({
           reasons.push("Has emergency support capability");
         }
         if (isCritical && !service.privacyAvailable) score -= 20;
-        return { service, score, reasons: reasons.length ? reasons : ["Verified public service"] };
+        return { service, score, distanceKm: args.origin && validPoint(service) ? distanceKm(args.origin, service) : null, reasons: reasons.length ? reasons : ["Verified public service"] };
       })
       .filter((item) => item.score > 0 || (!issueCategory && !region && !district))
-      .sort((a, b) => b.score - a.score)
+      .filter(item => args.radiusKm === undefined || item.distanceKm !== null && item.distanceKm <= args.radiusKm)
+      .sort((a, b) => b.score - a.score || (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity) || String(a.service._id).localeCompare(String(b.service._id)))
       .slice(0, 5);
 
     const explanation = isRestricted
       ? ["Immediate safety requests require LSF safeguarding review before service recommendations are shown."]
       : ranked.flatMap((item) => item.reasons.slice(0, 2));
     const decisionId = args.requestId || args.caseId || source === "staff" ? await ctx.db.insert("matching_decisions", {
+      providerType: args.providerType,
+      serviceType: args.serviceType,
       requesterId: user?._id,
       requestId: args.requestId,
       caseId: args.caseId,
@@ -1119,6 +1145,7 @@ export const matchServices = mutation({
       recommendations: ranked.map((item) => ({
         service: publicServiceProjection(item.service),
         score: item.score,
+        distanceKm: item.distanceKm,
         whySuitable: item.reasons,
         whatToPrepare: [
           "Brief description of what happened",
@@ -1133,13 +1160,15 @@ export const matchServices = mutation({
 export const staffMatchingDecisionQueue = query({
   args: {
     status: v.optional(matchingReviewStatus),
+    decisionId: v.optional(v.id("matching_decisions")),
   },
   handler: async (ctx, args) => {
     const actor = await requireAnyRole(ctx, matchingReviewRoles);
     const actorRoles = await getActiveRoles(ctx, actor.user._id);
     const safeguardingOnly = actorRoles.includes("safeguarding_officer") &&
       !actorRoles.some((role) => ["admin", "staff", "supervisor"].includes(role));
-    const decisions = args.status
+    const direct = args.decisionId ? await ctx.db.get(args.decisionId) : null;
+    const decisions = args.decisionId ? (direct ? [direct] : []) : args.status
       ? await ctx.db
           .query("matching_decisions")
           .withIndex("by_review_status", (q) => q.eq("reviewStatus", args.status))
@@ -1208,6 +1237,8 @@ export const reviewMatchingDecision = mutation({
     status: matchingReviewStatus,
     reviewNote: v.optional(v.string()),
     restrictionReason: v.optional(v.string()),
+    expectedReviewedAt: v.optional(v.number()),
+    expectedReviewStatus: v.optional(matchingReviewStatus),
   },
   handler: async (ctx, args) => {
     const { user } = await requireAnyRole(ctx, matchingReviewRoles);
@@ -1227,6 +1258,10 @@ export const reviewMatchingDecision = mutation({
       !actorRoles.some((role) => ["admin", "staff", "supervisor"].includes(role));
     if (safeguardingOnly && decision.urgency !== "immediate_safety" && decision.reviewStatus !== "restricted" && decision.reviewStatus !== "escalated") {
       throw new ConvexError("Safeguarding officers can review safety-sensitive matching decisions only.");
+    }
+    if ((args.expectedReviewedAt !== undefined && args.expectedReviewedAt !== (decision.reviewedAt ?? 0)) ||
+        (args.expectedReviewStatus !== undefined && args.expectedReviewStatus !== (decision.reviewStatus ?? "pending_review"))) {
+      throw new ConvexError("This matching review changed. Refresh it before saving a decision.");
     }
     const now = Date.now();
     await ctx.db.patch(args.decisionId, {

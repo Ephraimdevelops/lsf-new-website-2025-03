@@ -4,7 +4,25 @@ import type { Doc } from "./_generated/dataModel";
 import { getActiveRoles, requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 import { assertCaseTransition, getActorRoleSet, requireCaseAccess, requireCaseWorker, writeAudit } from "./lib/hakiYangu";
 import { createNotification } from "./lib/notifications";
-import { isReferralOrganisationBlocked } from "./lib/directoryLifecycle";
+import { hasCurrentServiceReview, isReferralOrganisationBlocked } from "./lib/directoryLifecycle";
+import { issueManagedUpload, requireCleanOwnedUpload } from "./lib/managedUploads";
+
+function destinationScopeValid(service: Doc<"justice_services"> | null, assignments: Doc<"role_assignments">[]) {
+  return !!service && (!service.organizationId || assignments.some(item => item.organizationId === service.organizationId && ["paralegal", "provider_staff"].includes(item.role)));
+}
+
+/** A referral consent permits only the listed information, not the full case file. */
+async function destinationCaseSummary(ctx: Parameters<typeof requireCaseAccess>[0], caseId: Doc<"cases">["_id"]) {
+  const caseRecord = await ctx.db.get(caseId);
+  let canOpenCase = false;
+  if (caseRecord) {
+    try { await requireCaseAccess(ctx, caseId); canOpenCase = true; }
+    catch (error) {
+      if (!(error instanceof ConvexError) || typeof error.data !== "object" || error.data?.code !== "FORBIDDEN") throw error;
+    }
+  }
+  return { case: caseRecord ? { _id: caseRecord._id, publicId: caseRecord.publicId, status: caseRecord.status, priority: caseRecord.priority } : null, canOpenCase };
+}
 
 const referralStatus = v.union(
   v.literal("draft"),
@@ -58,6 +76,7 @@ const destinationOpenStatuses = [
   "accepted",
   "scheduled",
   "service_delivered",
+  "referred_onward",
   "returned",
   "escalated",
 ] as const;
@@ -169,7 +188,7 @@ export const generateConsentUploadUrl = mutation({
   args: { caseId: v.id("cases") },
   handler: async (ctx, args) => {
     const { user } = await requireCaseWorker(ctx, args.caseId);
-    const uploadUrl = await ctx.storage.generateUploadUrl();
+    const uploadUrl = await issueManagedUpload(ctx, user._id, "referral_consent", args.caseId);
     await writeAudit(ctx, user._id, "referral.consent_upload_url_generated", "case", args.caseId, {
       caseId: args.caseId,
       changedFieldNames: ["consentEvidenceStorageId"],
@@ -189,7 +208,7 @@ export const listForCase = query({
       .query("referrals")
       .withIndex("by_case", (q) => q.eq("caseId", args.caseId))
       .collect();
-    const visibleReferrals = referrals.filter((referral) => referral.status !== "awaiting_beneficiary_consent" || isBeneficiary || roles.has("admin") || roles.has("staff") || roles.has("supervisor") || roles.has("safeguarding_officer"));
+    const visibleReferrals = referrals.filter((referral) => referral.status !== "awaiting_beneficiary_consent" || referral.createdBy === access.user._id || isBeneficiary || roles.has("admin") || roles.has("staff") || roles.has("supervisor") || roles.has("safeguarding_officer"));
     return await Promise.all(visibleReferrals.map(async (referral) => {
       const [destinationService, destinationUser, sourceService, parentReferral, onwardReferral, consent, events] = await Promise.all([
         ctx.db.get(referral.destinationServiceId),
@@ -325,7 +344,7 @@ export const staffConsentEvidenceQueue = query({
 export const myDestinationQueue = query({
   args: { status: v.optional(referralStatus) },
   handler: async (ctx, args) => {
-    const { user } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+    const { user, assignments } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
     const statuses = args.status ? [args.status] : destinationOpenStatuses;
     const records = (await Promise.all(statuses.map((status) =>
       ctx.db
@@ -335,12 +354,15 @@ export const myDestinationQueue = query({
     ))).flat();
 
     const visible = await Promise.all(records.filter((referral) => referral.status !== "awaiting_beneficiary_consent").map(async (referral) => {
+      const consent = referral.consentId ? await ctx.db.get(referral.consentId) : null;
+      if (!consent?.granted) return null;
       const destinationService = await ctx.db.get(referral.destinationServiceId);
+      if (!destinationScopeValid(destinationService, assignments)) return null;
       const destinationOrganisation = destinationService?.organizationId ? await ctx.db.get(destinationService.organizationId) : null;
       if (isReferralOrganisationBlocked(destinationOrganisation?.verificationStatus)) return null;
       return {
         referral,
-        case: await ctx.db.get(referral.caseId),
+        ...await destinationCaseSummary(ctx, referral.caseId),
         destinationService,
         onwardReferral: referral.onwardReferralId ? await ctx.db.get(referral.onwardReferralId) : null,
         consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
@@ -348,6 +370,26 @@ export const myDestinationQueue = query({
       };
     }));
     return visible.filter((item) => item !== null);
+  },
+});
+
+/** Destination access includes history; status alone never grants access. */
+export const getForDestination = query({
+  args: { referralId: v.id("referrals") },
+  handler: async (ctx, args) => {
+    const { user, assignments } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+    const referral = await ctx.db.get(args.referralId);
+    if (!referral || referral.destinationUserId !== user._id || referral.status === "awaiting_beneficiary_consent") return null;
+    const consent = referral.consentId ? await ctx.db.get(referral.consentId) : null;
+    if (!consent?.granted) return null;
+    const destinationService = await ctx.db.get(referral.destinationServiceId);
+    if (!destinationScopeValid(destinationService, assignments)) return null;
+    const organization = destinationService?.organizationId ? await ctx.db.get(destinationService.organizationId) : null;
+    if (isReferralOrganisationBlocked(organization?.verificationStatus)) return null;
+    return { referral, ...await destinationCaseSummary(ctx, referral.caseId), destinationService,
+      onwardReferral: referral.onwardReferralId ? await ctx.db.get(referral.onwardReferralId) : null,
+      consent: referral.consentId ? await ctx.db.get(referral.consentId) : null,
+      events: await ctx.db.query("referral_events").withIndex("by_referral_time", q => q.eq("referralId", referral._id)).collect() };
   },
 });
 
@@ -424,9 +466,51 @@ export const expireConsentEvidenceRetention = internalMutation({
   },
 });
 
+/** Referral options are case scoped; synthetic services never appear in the public directory. */
+export const destinations = query({
+  args: { caseId: v.id("cases"), parentReferralId: v.optional(v.id("referrals")) },
+  handler: async (ctx, args) => {
+    const actor = args.parentReferralId ? await requireAnyRole(ctx, ["paralegal", "provider_staff"]) : await requireCaseWorker(ctx, args.caseId);
+    if (args.parentReferralId) {
+      const parent = await ctx.db.get(args.parentReferralId);
+      if (!parent || parent.caseId !== args.caseId || parent.destinationUserId !== actor.user._id || !["accepted", "scheduled", "service_delivered"].includes(parent.status)) throw new ConvexError("Onward referral access is unavailable.");
+      const source = await ctx.db.get(parent.destinationServiceId);
+      const consent = parent.consentId ? await ctx.db.get(parent.consentId) : null;
+      const organisation = source?.organizationId ? await ctx.db.get(source.organizationId) : null;
+      const assignments = await ctx.db.query("role_assignments").withIndex("by_user_status", q => q.eq("userId", actor.user._id).eq("status", "active")).collect();
+      if (!destinationScopeValid(source, assignments) || !consent?.granted || isReferralOrganisationBlocked(organisation?.verificationStatus)) throw new ConvexError("Onward referral access is unavailable.");
+    }
+    const qa = process.env.CONVEX_SITE_URL === "https://joyous-spaniel-5.convex.site" && actor.user.email.startsWith("haki-qa-") && actor.user.email.endsWith("+clerk_test@example.com");
+    const services = await ctx.db.query("justice_services").withIndex("by_active_visibility", q => q.eq("active", true).eq("visibility", "public")).collect();
+    return services.filter(service => service.verificationStatus === "verified" && service.referralCapability && service.servicePointType !== "safe_house" && (!service.nextReviewAt || service.nextReviewAt > Date.now()) && (!service.syntheticDevelopmentFixture || qa)).map(service => ({ _id: service._id, name: service.name, district: service.district, referralCapability: service.referralCapability }));
+  },
+});
+
+export const destinationProviders = query({
+  args: { caseId: v.id("cases"), destinationServiceId: v.id("justice_services"), parentReferralId: v.optional(v.id("referrals")) },
+  handler: async (ctx, args) => {
+    if (args.parentReferralId) {
+      const { user, assignments } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+      const parent = await ctx.db.get(args.parentReferralId);
+      if (!parent || parent.caseId !== args.caseId || parent.destinationUserId !== user._id || !["accepted", "scheduled", "service_delivered"].includes(parent.status)) throw new ConvexError("Onward referral access is unavailable.");
+      const source = await ctx.db.get(parent.destinationServiceId);
+      const consent = parent.consentId ? await ctx.db.get(parent.consentId) : null;
+      const sourceOrganisation = source?.organizationId ? await ctx.db.get(source.organizationId) : null;
+      if (isReferralOrganisationBlocked(sourceOrganisation?.verificationStatus) || !destinationScopeValid(source, assignments) || !consent?.granted) throw new ConvexError("Onward referral access is unavailable.");
+    } else await requireCaseWorker(ctx, args.caseId);
+    const service = await ctx.db.get(args.destinationServiceId);
+    if (!service?.organizationId || !service.active || service.verificationStatus !== "verified" || service.visibility !== "public" || !service.referralCapability) return [];
+    const assignments = await ctx.db.query("role_assignments").filter(q => q.and(q.eq(q.field("organizationId"), service.organizationId), q.eq(q.field("status"), "active"))).collect();
+    const ids = [...new Set(assignments.filter(item => ["paralegal", "provider_staff"].includes(item.role)).map(item => item.userId))];
+    const users = await Promise.all(ids.map(id => ctx.db.get(id)));
+    return users.filter(user => user && !user.isDeleted).map(user => ({ _id: user!._id, name: user!.name }));
+  },
+});
+
 export const createForCase = mutation({
   args: {
     caseId: v.id("cases"),
+    clientActionId: v.optional(v.string()),
     requestId: v.optional(v.id("legal_help_requests")),
     sourceServiceId: v.optional(v.id("justice_services")),
     destinationServiceId: v.id("justice_services"),
@@ -443,6 +527,18 @@ export const createForCase = mutation({
   },
   handler: async (ctx, args) => {
     const { user, caseRecord } = await requireCaseWorker(ctx, args.caseId);
+    const clientActionId = args.clientActionId?.trim();
+    if (clientActionId && (clientActionId.length > 100 || !/^[A-Za-z0-9:_-]+$/.test(clientActionId))) throw new ConvexError("Invalid referral action identity.");
+    if (clientActionId) {
+      const prior = await ctx.db.query("referrals").withIndex("by_case", q => q.eq("caseId",args.caseId))
+        .filter(q => q.eq(q.field("createdBy"),user._id)).filter(q => q.eq(q.field("clientActionId"),clientActionId)).unique();
+      if (prior) {
+        if (prior.destinationServiceId !== args.destinationServiceId || prior.destinationUserId !== args.destinationUserId || prior.reason !== args.reason.trim() || JSON.stringify(prior.informationShared) !== JSON.stringify(args.informationShared.map(item=>item.trim())) || prior.requestId !== args.requestId || prior.sourceServiceId !== args.sourceServiceId) throw new ConvexError("Referral retry must match the original request.");
+        return { referralId:prior._id,publicId:prior.publicId,consentId:prior.consentId };
+      }
+    }
+    if (["resolved", "closed_unresolved", "closed"].includes(caseRecord.status)) throw new ConvexError("A referral cannot be created after a case outcome or closure.");
+    if (args.consentEvidenceStorageId) await requireCleanOwnedUpload(ctx, args.consentEvidenceStorageId, user._id, "referral_consent", args.caseId);
     const destination = await ctx.db.get(args.destinationServiceId);
     if (!destination || !destination.active || destination.verificationStatus !== "verified") {
       throw new ConvexError("Referral destination must be an active verified service.");
@@ -453,11 +549,21 @@ export const createForCase = mutation({
     if (!destination.referralCapability) {
       throw new ConvexError("Destination is not configured to receive referrals.");
     }
+    // Recheck AI destination readiness in the committing transaction, after the review step.
+    if (clientActionId?.startsWith("saada:")) {
+      const organisation = destination.organizationId ? await ctx.db.get(destination.organizationId) : null;
+      if (destination.servicePointType === "safe_house" || !hasCurrentServiceReview(destination.nextReviewAt, Date.now()) || !organisation || organisation.verificationStatus !== "verified" || organisation.referralAgreementStatus !== "active" || !organisation.safeguardingReady || !organisation.dataSharingAgreementVersion?.trim()) throw new ConvexError("This destination is no longer ready for AI referrals.");
+      const qa = process.env.CONVEX_SITE_URL === "https://joyous-spaniel-5.convex.site" && user.email.startsWith("haki-qa-") && user.email.endsWith("+clerk_test@example.com");
+      if (destination.syntheticDevelopmentFixture && !qa) throw new ConvexError("Development service unavailable.");
+    }
     const existingProposals = await ctx.db.query("referrals").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).collect();
     if (existingProposals.some((item) => item.destinationServiceId === args.destinationServiceId && item.status === "awaiting_beneficiary_consent")) {
       throw new ConvexError("A referral to this service already awaits the beneficiary's decision.");
     }
     if (args.destinationUserId) {
+      if (!destination.organizationId) throw new ConvexError("The destination must have an organisation before a provider can be selected.");
+      const memberships = await ctx.db.query("role_assignments").withIndex("by_user_status", q => q.eq("userId", args.destinationUserId!).eq("status", "active")).collect();
+      if (!memberships.some(item => item.organizationId === destination.organizationId && ["paralegal", "provider_staff"].includes(item.role))) throw new ConvexError("Select a provider from the destination organisation.");
       const destinationUser = await ctx.db.get(args.destinationUserId);
       if (!destinationUser || destinationUser.isDeleted) {
         throw new ConvexError("Destination provider account is unavailable.");
@@ -518,6 +624,7 @@ export const createForCase = mutation({
       destinationUserId: args.destinationUserId,
       parentReferralId: undefined,
       createdBy: user._id,
+      ...(clientActionId ? {clientActionId} : {}),
       beneficiaryId: caseRecord.beneficiaryId,
       reason: normalize(args.reason, "Referral reason", 2000),
       informationShared: normalizedInformationShared,
@@ -625,9 +732,9 @@ export const decideBeneficiaryConsent = mutation({
       metadata: { referralId: referral._id }, occurredAt: now,
     });
     if (approved && referral.destinationUserId) {
-      await createNotification(ctx, { userId: referral.destinationUserId, type: "referral.created", titleKey: "notifications.update.title", bodyKey: "notifications.referralCreated.body", resourceType: "case", resourceId: referral.caseId });
+      await createNotification(ctx, { userId: referral.destinationUserId, type: "referral.created", titleKey: "notifications.update.title", bodyKey: "notifications.referralCreated.body", resourceType: "referral", resourceId: referral._id });
     }
-    await createNotification(ctx, { userId: referral.createdBy, type: "referral.updated", titleKey: "notifications.update.title", bodyKey: "notifications.referralUpdated.body", resourceType: "case", resourceId: referral.caseId });
+    await createNotification(ctx, { userId: referral.createdBy, type: "referral.updated", titleKey: "notifications.update.title", bodyKey: "notifications.referralUpdated.body", resourceType: parent ? "referral" : "case", resourceId: parent ? parent._id : referral.caseId });
     await writeAudit(ctx, user._id, approved ? "referral.consent_approved" : "referral.consent_declined", "referral", referral._id, { caseId: referral.caseId, destinationServiceId: referral.destinationServiceId, changedFieldNames: ["status", "consentCollectedAt"] });
     return { status: approved ? "created" as const : "declined" as const };
   },
@@ -653,6 +760,13 @@ export const createOnwardReferral = mutation({
     if (!isStaff && parent.destinationUserId !== actor.user._id) {
       throw new ConvexError("Only the assigned destination provider can create an onward referral.");
     }
+    if (!isStaff) {
+      const source = await ctx.db.get(parent.destinationServiceId);
+      const consent = parent.consentId ? await ctx.db.get(parent.consentId) : null;
+      if (!destinationScopeValid(source, actor.assignments) || !consent?.granted) throw new ConvexError("Onward referral access is no longer active.");
+      const organisation = source?.organizationId ? await ctx.db.get(source.organizationId) : null;
+      if (isReferralOrganisationBlocked(organisation?.verificationStatus)) throw new ConvexError("The source organisation cannot refer onward.");
+    }
     if (!["accepted", "scheduled", "service_delivered"].includes(parent.status)) {
       throw new ConvexError("Only accepted, scheduled, or delivered referrals can be referred onward.");
     }
@@ -674,6 +788,9 @@ export const createOnwardReferral = mutation({
       throw new ConvexError("Destination is not configured to receive referrals.");
     }
     if (args.destinationUserId) {
+      if (!destination.organizationId) throw new ConvexError("The destination must have an organisation before a provider can be selected.");
+      const memberships = await ctx.db.query("role_assignments").withIndex("by_user_status", q => q.eq("userId", args.destinationUserId!).eq("status", "active")).collect();
+      if (!memberships.some(item => item.organizationId === destination.organizationId && ["paralegal", "provider_staff"].includes(item.role))) throw new ConvexError("Select a provider from the destination organisation.");
       const destinationUser = await ctx.db.get(args.destinationUserId);
       if (!destinationUser || destinationUser.isDeleted) {
         throw new ConvexError("Destination provider account is unavailable.");
@@ -785,18 +902,23 @@ export const respondAsDestination = mutation({
       v.literal("returned"),
       v.literal("closed"),
     ),
+    expectedUpdatedAt: v.optional(v.number()),
     note: v.optional(v.string()),
     declineReason: v.optional(v.string()),
     finalDisposition: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const { user } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
+    const { user, assignments } = await requireAnyRole(ctx, ["paralegal", "provider_staff"]);
     const referral = await ctx.db.get(args.referralId);
     if (!referral) throw new ConvexError("Referral not found.");
     if (referral.destinationUserId !== user._id) {
       throw new ConvexError("Referral destination access denied.");
     }
+    if (args.expectedUpdatedAt !== undefined && args.expectedUpdatedAt !== referral.updatedAt) throw new ConvexError("This referral has changed. Review its latest status before saving.");
     const destinationService = await ctx.db.get(referral.destinationServiceId);
+    if (!destinationScopeValid(destinationService, assignments)) throw new ConvexError("Your destination organisation access is no longer active.");
+    const consent = referral.consentId ? await ctx.db.get(referral.consentId) : null;
+    if (!consent?.granted) throw new ConvexError("Beneficiary approval is required before a destination response.");
     const destinationOrganisation = destinationService?.organizationId ? await ctx.db.get(destinationService.organizationId) : null;
     if (isReferralOrganisationBlocked(destinationOrganisation?.verificationStatus)) {
       throw new ConvexError("This organisation is suspended or retired. LSF must review this referral before further provider action.");

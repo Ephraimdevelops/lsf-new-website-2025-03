@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { QuickExit } from "../src/components/QuickExit";
 import { Screen } from "../src/components/Screen";
+import { CivicIllustration } from "../src/components/CivicIllustration";
 import { useLanguage } from "../src/i18n";
 import { colors, spacing, type } from "../src/theme";
 import { useSensitiveScreenProtection } from "../src/useSensitiveScreenProtection";
@@ -35,13 +36,13 @@ export default function SafetyScreen() {
   const [showPlan, setShowPlan] = useState(false);
   return <Screen>
     <View style={styles.header}>
-      <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Go back"} onPress={() => router.back()}><Ionicons name="chevron-back" size={26} color={colors.burgundy} /></Pressable>
+      <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Go back"} style={{ width: 48, height: 48, justifyContent: "center" }} onPress={() => router.canGoBack() ? router.back() : router.replace("/(tabs)")}><Ionicons name="chevron-back" size={26} color={colors.burgundy} /></Pressable>
       <Text style={styles.headerTitle}>{locale === "sw" ? "Usalama na dharura" : "Safety and emergencies"}</Text>
       <QuickExit locale={locale} />
     </View>
     <View style={styles.hero}>
       <Text style={styles.eyebrow}>{locale === "sw" ? "MSAADA WA HARAKA" : "IMMEDIATE HELP"}</Text>
-      <Text style={styles.title}>{locale === "sw" ? "Je, uko kwenye hatari sasa?" : "Are you in danger now?"}</Text>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}><Text style={[styles.title, { flex: 1 }]}>{locale === "sw" ? "Je, uko kwenye hatari sasa?" : "Are you in danger now?"}</Text><CivicIllustration pose="safety" size={88} /></View>
       <Text style={styles.body}>{locale === "sw" ? "Piga huduma ya dharura. Haki Yangu haipokei simu za dharura, na ombi la mtandaoni linaweza kuchelewa." : "Call an emergency service. Haki Yangu does not receive emergency calls, and an online request may be delayed."}</Text>
       <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Piga polisi 112" : "Call police 112"} style={styles.mainCall} onPress={() => void Linking.openURL("tel:112")}><Ionicons name="call" size={21} color={colors.surface} /><Text style={styles.mainCallText}>{locale === "sw" ? "Piga 112 sasa" : "Call 112 now"}</Text><Ionicons name="arrow-forward" size={18} color={colors.surface} /></Pressable>
     </View>
@@ -50,18 +51,18 @@ export default function SafetyScreen() {
     <Pressable accessibilityRole="button" accessibilityState={{ expanded: showMore }} style={styles.moreButton} onPress={() => setShowMore(!showMore)}><Text style={styles.moreText}>{showMore ? (locale === "sw" ? "Onyesha chache" : "Show fewer") : (locale === "sw" ? "Namba zaidi" : "More numbers")}</Text><Ionicons name={showMore ? "chevron-up" : "chevron-down"} size={18} color={colors.burgundy} /></Pressable>
     <Pressable accessibilityRole="button" accessibilityState={{ expanded: showPlan }} style={styles.planHead} onPress={() => setShowPlan(!showPlan)}><View><Text style={styles.sectionTitle}>{locale === "sw" ? "Hatua za usalama" : "Safety steps"}</Text><Text style={styles.sectionNote}>{locale === "sw" ? "Mwongozo mfupi wa kujilinda" : "A short plan for staying safe"}</Text></View><Ionicons name={showPlan ? "chevron-up" : "chevron-down"} size={20} color={colors.burgundy} /></Pressable>
     {showPlan ? <View style={styles.steps}>{steps[locale].map((step, index) => <View key={step} style={styles.step}><Text style={styles.stepNumber}>{index + 1}</Text><Text style={styles.stepText}>{step}</Text></View>)}</View> : null}
-    <View style={styles.footer}><Ionicons name="eye-off-outline" size={20} color={colors.teal} /><Text style={styles.footerText}>{locale === "sw" ? "Ikiwa simu yako inaangaliwa, tumia kitufe cha kutoka haraka juu au kifaa salama." : "If your phone is monitored, use Quick Exit above or a safer device."}</Text></View>
+    <View style={styles.footer}><Ionicons name="eye-off-outline" size={20} color={colors.teal} /><Text style={styles.footerText}>{locale === "sw" ? "Toka haraka inakurudisha nyumbani kwenye programu. Haifuti historia ya matumizi. Ikiwa simu yako inaangaliwa, tumia kifaa salama zaidi." : "Quick exit returns to the app home. It does not erase your history. If your phone is monitored, use a safer device."}</Text></View>
     <Pressable accessibilityRole="button" style={styles.requestLink} onPress={() => router.push("/intake")}><Text style={styles.requestText}>{locale === "sw" ? "Si dharura? Omba msaada wa kisheria" : "Not an emergency? Request legal help"}</Text><Ionicons name="arrow-forward" size={17} color={colors.burgundy} /></Pressable>
   </Screen>;
 }
 
 const styles = StyleSheet.create({
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  headerTitle: { fontFamily: type.semibold, color: colors.charcoal, fontSize: 17 },
-  hero: { marginTop: 22, backgroundColor: "#173F3C", borderRadius: 18, padding: 21 },
-  eyebrow: { fontFamily: type.semibold, fontSize: 11, color: "#9EE0D8" },
-  title: { marginTop: 10, fontFamily: type.editorial, fontSize: 27, lineHeight: 32, color: colors.surface },
-  body: { marginTop: 8, fontFamily: type.regular, fontSize: 14, lineHeight: 21, color: "#DFEFED" },
+  headerTitle: { flex: 1, fontFamily: type.semibold, color: colors.charcoal, fontSize: 16, lineHeight: 22 },
+  hero: { marginTop: 22, paddingBottom: 8 },
+  eyebrow: { fontFamily: type.medium, fontSize: 12, color: colors.teal },
+  title: { fontFamily: type.editorial, fontSize: 26, lineHeight: 33, color: colors.ink },
+  body: { marginTop: 8, fontFamily: type.regular, fontSize: 15, lineHeight: 23, color: colors.inkMuted },
   mainCall: { marginTop: 20, backgroundColor: colors.burgundy, minHeight: 52, borderRadius: 12, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10 },
   mainCallText: { fontFamily: type.semibold, fontSize: 16, color: colors.surface },
   sectionHead: { marginTop: 26, marginBottom: 10, flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },

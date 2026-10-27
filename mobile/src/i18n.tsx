@@ -59,7 +59,7 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
+export function LanguageProvider({ children, fallback = null }: { children: ReactNode; fallback?: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("sw");
   const [hydrated, setHydrated] = useState(false);
 
@@ -68,17 +68,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       .then((stored) => {
         if (stored === "sw" || stored === "en") setLocaleState(stored);
       })
+      .catch(() => { /* Keep Kiswahili available if device storage cannot be read. */ })
       .finally(() => setHydrated(true));
   }, []);
 
   async function setLocale(nextLocale: Locale) {
     setLocaleState(nextLocale);
-    await AsyncStorage.setItem("haki-yangu:locale", nextLocale);
+    try { await AsyncStorage.setItem("haki-yangu:locale", nextLocale); } catch { /* The current language still works without persistence. */ }
   }
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t: (key) => copy[locale][key], hydrated }}>
-      {children}
+      {hydrated ? children : fallback}
     </LanguageContext.Provider>
   );
 }
@@ -88,3 +89,6 @@ export function useLanguage() {
   if (!value) throw new Error("useLanguage must be used inside LanguageProvider");
   return value;
 }
+
+// Startup loaders also render before the language provider is ready.
+export function useLoadingLocale() { return useContext(LanguageContext)?.locale ?? "sw"; }

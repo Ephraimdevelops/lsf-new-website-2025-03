@@ -1,9 +1,13 @@
+import { useIsFocused } from "expo-router";
+import { useWorkMode } from "../../src/work/WorkMode";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useQuery } from "convex/react";
-import { router } from "expo-router";
+import { Redirect, router, useLocalSearchParams } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import { Image, ImageBackground, Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useAuth, useUser } from "../../src/auth";
+import { ImageBackground, Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useAuth } from "../../src/auth";
+import { PersonalAvatar } from "../../src/components/PersonalIntro";
+import { usePersonalIdentity } from "../../src/usePersonalIdentity";
 import { api } from "../../src/backend/api";
 import { caseStatusLabels } from "../../src/caseLabels";
 import { Screen } from "../../src/components/Screen";
@@ -15,7 +19,7 @@ const primaryActions = [
   { sw: "Tafuta msaada", en: "Find help", subSw: "Anza na tatizo lako", subEn: "Start with your issue", route: "/find-services", icon: "search-outline", palette: civic.actionCards.find },
   { sw: "Omba msaada", en: "Request help", subSw: "Tuambie kilichotokea", subEn: "Tell us what happened", route: "/intake", icon: "document-text-outline", palette: civic.actionCards.request },
   { sw: "Haki Yangu AI", en: "Haki Yangu AI", subSw: "Pata maelezo rahisi", subEn: "Get simple guidance", route: "/sara", icon: "chatbubble-ellipses-outline", palette: civic.actionCards.saada },
-  { sw: "Jua haki zako", en: "Know your rights", subSw: "Miongozo ya kila siku", subEn: "Everyday guides", route: "/(tabs)/learn?view=all", icon: "book-outline", palette: civic.actionCards.rights },
+  { sw: "Jua haki zako", en: "Know your rights", subSw: "Miongozo ya kila siku", subEn: "Everyday guides", route: "/rights", icon: "book-outline", palette: civic.actionCards.rights },
 ] as const;
 
 const homeSlides = [
@@ -25,7 +29,7 @@ const homeSlides = [
 ] as const;
 
 const quickTools = [
-  { icon: "document-text-outline", sw: "Kagua hati", en: "Check document", subSw: "Elewa hati yako", subEn: "Understand a document", route: "/document-checker", color: "#2476C8", tint: "#EAF3FD" },
+  { icon: "document-text-outline", sw: "Elewa hati yako", en: "Check document", subSw: "Elewa hati yako", subEn: "Understand a document", route: "/document-checker", color: "#2476C8", tint: "#EAF3FD" },
   { icon: "location-outline", sw: "Msaada karibu", en: "Nearby help", subSw: "Huduma katika eneo lako", subEn: "Services in your area", route: "/nearby-help", color: "#048E83", tint: "#E7F6F3" },
   { icon: "shield-checkmark-outline", sw: "Usalama", en: "Safety", subSw: "Namba za dharura", subEn: "Emergency numbers", route: "/safety", color: "#D89400", tint: "#FFF5D8" },
   { icon: "call-outline", sw: "Piga LSF", en: "Call LSF", subSw: "Msaada wa moja kwa moja", subEn: "Talk to our team", route: "tel:+255222601534", color: "#9A1744", tint: "#F9ECF1" },
@@ -44,20 +48,24 @@ const requestStatusLabels = {
 } as const;
 
 export default function HomeScreen() {
+  const isFocused = useIsFocused();
+  const { mode } = useWorkMode();
+  const { context } = useLocalSearchParams<{ context?: string }>();
   const [slideWidth, setSlideWidth] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
   const slideRef = useRef<ScrollView>(null);
   const { isSignedIn } = useAuth();
   const { ready: accountReady } = useAccountSync();
-  const { user } = useUser();
+  const { greeting } = usePersonalIdentity();
   const { locale } = useLanguage();
-  const cases = useQuery(api.caseManagement.myCases, isSignedIn && accountReady ? {} : "skip");
+  const allCases = useQuery(api.caseManagement.myCases, isSignedIn && accountReady ? {} : "skip");
   const requests = useQuery(api.legalHelp.myRequests, isSignedIn && accountReady ? {} : "skip");
+  const workAccess = useQuery(api.users.currentAccess, isSignedIn && accountReady ? {} : "skip");
+  const cases = allCases?.filter(item => item.beneficiaryId === workAccess?.user._id);
   const invitations = useQuery(api.providerInvitations.mine, isSignedIn && accountReady ? {} : "skip");
-  const activeCase = cases?.find((item) => !["closed", "closed_unresolved"].includes(item.status));
-  const activeRequest = requests?.find((item) => !["converted_to_case", "withdrawn", "closed"].includes(item.status));
+  const activeRequest = requests?.find(item => item.status === "waiting_for_information") ?? requests?.find(item => ["submitted", "under_review"].includes(item.status));
+  const activeCase = activeRequest?.status === "waiting_for_information" ? undefined : cases?.find(item => !["closed", "closed_unresolved", "resolved"].includes(item.status));
   const isLoadingJourney = isSignedIn && (cases === undefined || requests === undefined);
-  const firstName = user?.firstName;
   const journeyTitle = activeCase ? (locale === "sw" ? "Kesi yangu" : "My case") : activeRequest ? (locale === "sw" ? "Ombi langu" : "My request") : (locale === "sw" ? "Kesi yangu" : "My case");
   const journeyStatus = activeCase
     ? `${activeCase.publicId} · ${caseStatusLabels[locale][activeCase.status]}`
@@ -66,7 +74,9 @@ export default function HomeScreen() {
       : isLoadingJourney
         ? (locale === "sw" ? "Tunapakua taarifa zako..." : "Loading your progress...")
         : (locale === "sw" ? "Bado hakuna kesi" : "No case yet");
-  const journeyHint = activeCase || activeRequest
+  const journeyHint = activeRequest?.status === "waiting_for_information"
+    ? (locale === "sw" ? "LSF inahitaji jibu lako. Soma swali na ujibu." : "LSF needs your reply. Read the question and respond.")
+    : activeCase || activeRequest
     ? (locale === "sw" ? "Fungua kuona hatua inayofuata" : "Open to see your next step")
     : (locale === "sw" ? "Ukiomba msaada, litaonekana hapa." : "Your request will appear here when you ask for help.");
   const openJourney = () => {
@@ -87,13 +97,16 @@ export default function HomeScreen() {
     return () => clearInterval(timer);
   }, [slideWidth]);
 
+  if (isFocused && workAccess?.roles.includes("admin")) return <Redirect href="/workspace" />;
+  if (isFocused && mode === "work" && context !== "personal" && workAccess?.roles.some(role => ["paralegal", "provider_staff"].includes(role)) && !workAccess.roles.some(role => ["admin", "staff", "supervisor"].includes(role))) return <Redirect href="/workspace" />;
+
   return (
     <Screen scroll={false} style={styles.screen}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Fungua wasifu" : "Open profile"} onPress={() => router.push("/(tabs)/profile")}>{user?.imageUrl ? <Image source={{ uri: user.imageUrl }} style={styles.avatar} /> : <View style={styles.avatarFallback}><Text style={styles.avatarInitial}>{firstName?.slice(0, 1).toUpperCase() ?? "H"}</Text></View>}</Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Fungua wasifu" : "Open profile"} onPress={() => router.push("/(tabs)/profile")}><PersonalAvatar size={48} /></Pressable>
         <View style={styles.greeting}>
           <Text style={styles.greetingEyebrow}>HAKI YANGU</Text>
-          <Text style={styles.greetingTitle}>{firstName ? (locale === "sw" ? `Karibu, ${firstName}` : `Welcome, ${firstName}`) : (locale === "sw" ? "Karibu" : "Welcome")}</Text>
+          <Text style={styles.greetingTitle}>{greeting}</Text>
           <Text style={styles.greetingBody}>{locale === "sw" ? "Haki yako, hatua inayofuata" : "Your rights, your next step"}</Text>
         </View>
         <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Arifa" : "Notifications"} style={styles.bell} onPress={() => router.push("/notifications")}>

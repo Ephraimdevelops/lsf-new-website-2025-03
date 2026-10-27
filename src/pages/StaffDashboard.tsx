@@ -1,3 +1,20 @@
+import MatchingLocation, { type MatchOrigin } from "@/components/location/MatchingLocation";
+import BrandLoading from '@/components/shared/BrandLoading';
+import { WorkHeader } from "@/components/dashboard/WorkArea";
+import { displayLabel, type Locale } from "../../shared/plainLanguage";
+import { usePlainError } from "@/i18n/usePlainError";
+import { useLanguage } from "@/providers/LanguageProvider";
+import { useDateFormat } from "@/i18n/useDateFormat";
+import { useStatusLabel } from "@/i18n/useStatusLabel";
+import { useCopy } from "@/i18n/useCopy";
+import RequestConversation from "@/components/haki-yangu/RequestConversation";
+import CaseReferralRequests from "@/components/paralegal/CaseReferralRequests";
+import CasePresence from "@/components/location/CasePresence";
+import { WorkConfirmation } from "@/components/dashboard/WorkConfirmation";
+import { workCaseJourney, finalChecks } from "../../shared/workCaseJourney";
+import SearchFilterBar from "@/components/shared/SearchFilterBar";
+import ParalegalIllustration from "@/components/paralegal/ParalegalIllustration";
+import DirectoryResearchQueue from "@/components/haki-yangu/DirectoryResearchQueue";
 import { useAuth } from "@clerk/clerk-react";
 import type { FunctionReturnType } from "convex/server";
 import { useMutation, useQuery } from "convex/react";
@@ -18,7 +35,7 @@ import {
   ShieldCheck,
   UserRoundCheck,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../../convex/_generated/api";
 import type { Id } from "../../convex/_generated/dataModel";
@@ -29,14 +46,14 @@ type TriageDetail = FunctionReturnType<typeof api.legalHelp.openForTriage>;
 type WorkspaceTab = "requests" | "cases" | "documents" | "reviews" | "assignments" | "matching" | "referrals" | "services";
 const workspaceTabs: WorkspaceTab[] = ["requests", "cases", "documents", "reviews", "assignments", "matching", "referrals", "services"];
 const workspaceDescriptions: Record<WorkspaceTab, string> = {
-  requests: "Review incoming requests and establish the next safe step.",
-  cases: "Coordinate assigned case work and follow progress through closure.",
-  documents: "Review documents and consent evidence with the right case context.",
-  reviews: "Resolve beneficiary review and reassignment requests.",
+  requests: "Read new requests and choose the next safe step.",
+  cases: "Follow the work on each case through to completion.",
+  documents: "Check documents and proof of consent alongside the case.",
+  reviews: "Read concerns and decide whether a case needs another helper.",
   assignments: "Track assignment offers and provider responses.",
-  matching: "Review recommended matches and record accountable decisions.",
-  referrals: "Track consent-gated referrals and destination responses.",
-  services: "Maintain and verify organisations and public service points.",
+  matching: "Check suggested helpers and record why you choose them.",
+  referrals: "Check consent, service replies and the help provided.",
+  services: "Check organisations, services and proposed corrections.",
 };
 type ReferralQueueStatus =
   | "awaiting_beneficiary_consent"
@@ -79,6 +96,11 @@ type ServiceFormState = {
   issueCategories: string;
   serviceTypes: string;
   phone: string;
+  latitude: string;
+  longitude: string;
+  physicalLocation: string;
+  serviceCoverageRegions: string;
+  eligibility: string;
   openingHours: string;
   currentIntakeState: "open" | "limited" | "closed" | "emergency_only";
   capacity: string;
@@ -115,23 +137,28 @@ const initialServiceForm: ServiceFormState = {
   classification: "community",
   visibility: "public",
   verificationStatus: "draft",
-  region: "Dar es Salaam",
+  region: "",
   district: "",
-  issueCategories: "employment, land, family",
-  serviceTypes: "legal_information, referral",
+  issueCategories: "",
+  serviceTypes: "",
   phone: "",
+  latitude: "",
+  longitude: "",
+  physicalLocation: "",
+  serviceCoverageRegions: "",
+  eligibility: "",
   openingHours: "",
-  currentIntakeState: "open",
-  capacity: "10",
-  languages: "Swahili, English",
-  referralCapability: true,
-  walkIn: true,
+  currentIntakeState: "closed",
+  capacity: "",
+  languages: "",
+  referralCapability: false,
+  walkIn: false,
   appointmentRequired: false,
-  remoteSupport: true,
-  phoneSupport: true,
+  remoteSupport: false,
+  phoneSupport: false,
   emergencyCapability: false,
-  privacyAvailable: true,
-  genderSensitive: true,
+  privacyAvailable: false,
+  genderSensitive: false,
 };
 
 const initialOrganizationForm: OrganizationFormState = {
@@ -142,7 +169,7 @@ const initialOrganizationForm: OrganizationFormState = {
   focalPersonName: "",
   focalPersonEmail: "",
   focalPersonPhone: "",
-  slaHours: "48",
+  slaHours: "",
   safeguardingReady: false,
   dataSharingAgreementVersion: "",
   notes: "",
@@ -222,15 +249,11 @@ function languageLabel(language?: string, otherLanguage?: string) {
   return language ? labels[language] ?? language : "Not provided";
 }
 
-function eventTitle(event: { publicLabelKey?: string; type: string }) {
-  if (event.type === "appointment_requested") return "Appointment requested";
-  return (
-    event.publicLabelKey?.split(".").pop()?.replaceAll("_", " ") ??
-    event.type.replaceAll("_", " ")
-  );
+function eventTitle(event: { publicLabelKey?: string; type: string }, locale: Locale) {
+  return displayLabel(event.type, locale);
 }
 
-function eventDetail(event: { type: string; metadata?: unknown }) {
+function eventDetail(event: { type: string; metadata?: unknown }, locale: Locale) {
   if (
     event.type !== "appointment_requested" ||
     !event.metadata ||
@@ -245,10 +268,10 @@ function eventDetail(event: { type: string; metadata?: unknown }) {
   };
   const detail = [
     metadata.preferredMode
-      ? `Mode: ${metadata.preferredMode.replaceAll("_", " ")}`
+      ? `${locale === "sw" ? "Njia" : "Method"}: ${displayLabel(metadata.preferredMode, locale)}`
       : null,
-    metadata.preferredTime ? `Preferred time: ${metadata.preferredTime}` : null,
-    metadata.note ? `Note: ${metadata.note}` : null,
+    metadata.preferredTime ? `${locale === "sw" ? "Muda anaopendelea" : "Preferred time"}: ${metadata.preferredTime}` : null,
+    metadata.note ? `${locale === "sw" ? "Maelezo" : "Note"}: ${metadata.note}` : null,
   ].filter(Boolean);
   return detail.length ? detail.join(" · ") : null;
 }
@@ -260,16 +283,27 @@ function StatusPill({
   value: string;
   urgent?: boolean;
 }) {
+  const c = useCopy();
   return (
     <span
       className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${urgent ? "bg-orange-100 text-orange-800" : "bg-primary/10 text-primary"}`}
     >
-      {value}
+      {c(value)}
     </span>
   );
 }
 
+import { usePersonalGreeting } from '@/hooks/usePersonalGreeting';
+import PersonalAvatar from '@/components/dashboard/PersonalAvatar';
+
 const StaffDashboard = () => {
+  const readError = usePlainError();
+  const { locale } = useLanguage();
+  const formatDate = useDateFormat();
+  const statusLabel = useStatusLabel();
+  const c = useCopy();
+  const { greeting: greetingEn, greetingSw } = usePersonalGreeting();
+  const greeting = locale === "sw" ? greetingSw : greetingEn;
   const { signOut } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const requestedTab = searchParams.get("tab");
@@ -303,6 +337,10 @@ const StaffDashboard = () => {
   const [selectedCaseId, setSelectedCaseId] = useState<Id<"cases"> | null>(
     null,
   );
+  const [evidenceReview, setEvidenceReview] = useState(false);
+  const [caseArea, setCaseArea] = useState("next");
+  const [statusReview, setStatusReview] = useState<string | null>(null);
+  useEffect(() => { setCaseArea("next"); setStatusReview(null); setEvidenceReview(false); setReferralServiceId(""); setReferralDestinationUserId(""); setReferralReason(""); setReferralConsentEvidenceNote(""); setReferralConsentFile(null); }, [selectedCaseId]);
   const [summary, setSummary] = useState("");
   const [priority, setPriority] = useState<
     "standard" | "urgent" | "safeguarding"
@@ -324,6 +362,17 @@ const StaffDashboard = () => {
   const [referralConsentEvidenceNote, setReferralConsentEvidenceNote] = useState("");
   const [referralConsentFile, setReferralConsentFile] = useState<File | null>(null);
   const [serviceForm, setServiceForm] = useState<ServiceFormState>(initialServiceForm);
+  const [editingOrganizationId, setEditingOrganizationId] = useState<Id<"justice_service_organizations"> | null>(null);
+  const directoryAccess = useQuery(api.users.currentAccess);
+  const isSupervisor = directoryAccess?.roles.includes("supervisor") && !directoryAccess.roles.includes("admin");
+  const compactWorkspace = true; // One focused queue layout for every operational role.
+  const [reviewDecision, setReviewDecision] = useState<{id:string;status:string;note:string}|null>(null);
+  const [workSearch, setWorkSearch] = useState("");
+  useEffect(() => { setWorkSearch(""); }, [tab]);
+  const matchesWork = (values: (string | undefined)[]) => values.join(" ").toLowerCase().includes(workSearch.trim().toLowerCase());
+  const directoryCanManage = directoryAccess?.roles.some(role => role === "admin" || role === "staff") ?? false;
+  const [serviceEditReason, setServiceEditReason] = useState("");
+  const [editingServiceId, setEditingServiceId] = useState<Id<"justice_services"> | null>(null);
   const [organizationForm, setOrganizationForm] = useState<OrganizationFormState>(initialOrganizationForm);
   const [serviceDecisionReasons, setServiceDecisionReasons] = useState<Record<string, string>>({});
   const [serviceEvidence, setServiceEvidence] = useState<Record<string, { source: string; authority: string }>>({});
@@ -337,15 +386,30 @@ const StaffDashboard = () => {
     api.legalHelp.staffQueue,
     requestStatus === "all" ? {} : { status: requestStatus },
   );
+  useEffect(() => {
+    setDetail(current => {
+      if (!current) return current;
+      const latest = requests?.find(item => item._id === current.request._id);
+      if (!latest || !["under_review", "waiting_for_information"].includes(latest.status) || (latest.version === current.request.version && latest.status === current.request.status)) return current;
+      return { ...current, request: { ...current.request, status: latest.status as "under_review" | "waiting_for_information", version: latest.version, updatedAt: latest.updatedAt } };
+    });
+  }, [requests]);
   const cases = useQuery(api.caseManagement.staffCaseQueue);
+  const linkedCase = searchParams.get("case");
+  useEffect(() => { if (linkedCase && cases?.some(item => item._id === linkedCase)) setSelectedCaseId(linkedCase as Id<"cases">); }, [linkedCase, cases]);
   const providers = useQuery(api.caseManagement.serviceProviders);
+  const receivingProviders = useQuery(api.referrals.destinationProviders, selectedCaseId && referralServiceId && caseArea === "referral" ? { caseId: selectedCaseId, destinationServiceId: referralServiceId as Id<"justice_services"> } : "skip");
   const caseDetail = useQuery(
     api.caseManagement.getCase,
     selectedCaseId ? { caseId: selectedCaseId } : "skip",
   );
+  const [matchingOrigin,setMatchingOrigin]=useState<MatchOrigin>();
+  const [matchingRefresh,setMatchingRefresh]=useState(0);
+  useEffect(()=>{const timer=setInterval(()=>setMatchingRefresh(value=>value+1),30000);return ()=>clearInterval(timer);},[]);
+  useEffect(()=>{setMatchingOrigin(undefined);},[selectedCaseId]);
   const recommendations = useQuery(
     api.caseManagement.providerRecommendations,
-    selectedCaseId ? { caseId: selectedCaseId } : "skip",
+    selectedCaseId ? { caseId: selectedCaseId, origin: matchingOrigin, refresh: matchingRefresh } : "skip",
   );
   const documentQueue = useQuery(api.caseManagement.staffDocumentQueue, {
     status: documentStatus,
@@ -353,15 +417,21 @@ const StaffDashboard = () => {
   const consentEvidenceQueue = useQuery(api.referrals.staffConsentEvidenceQueue, {
     status: consentEvidenceStatus,
   });
-  const reviewQueue = useQuery(api.caseManagement.staffReviewRequests, {
+  const reviewQueueFiltered = useQuery(api.caseManagement.staffReviewRequests, {
     status: reviewStatus,
   });
-  const assignmentOffers = useQuery(api.caseManagement.staffAssignmentOffers, {
+  const assignmentOffersFiltered = useQuery(api.caseManagement.staffAssignmentOffers, {
     status: assignmentStatus,
   });
-  const referralQueue = useQuery(api.referrals.staffQueue, {
+  const referralQueueFiltered = useQuery(api.referrals.staffQueue, {
     status: referralStatus,
   });
+  const linkedReviews = useQuery(api.caseManagement.staffReviewRequests, searchParams.get("review") ? {reviewRequestId: searchParams.get("review") as Id<"case_review_requests">} : "skip");
+  const linkedOffers = useQuery(api.caseManagement.staffAssignmentOffers, searchParams.get("offer") ? {} : "skip");
+  const linkedReferrals = useQuery(api.referrals.staffQueue, searchParams.get("referral") ? {} : "skip");
+  const reviewQueue = searchParams.get("review") ? linkedReviews : reviewQueueFiltered;
+  const assignmentOffers = searchParams.get("offer") ? linkedOffers : assignmentOffersFiltered;
+  const referralQueue = searchParams.get("referral") ? linkedReferrals : referralQueueFiltered;
   const matchingDecisionQueue = useQuery(api.justiceServices.staffMatchingDecisionQueue, {
     status: matchingReviewStatus,
   });
@@ -384,6 +454,8 @@ const StaffDashboard = () => {
   );
   const createJusticeOrganization = useMutation(api.justiceServices.createOrganization);
   const createJusticeService = useMutation(api.justiceServices.createService);
+  const updateJusticeOrganization = useMutation(api.justiceServices.updateOrganization);
+  const [organisationRemovalReasons, setOrganisationRemovalReasons] = useState<Record<string, string>>({});
   const updateJusticeService = useMutation(api.justiceServices.updateService);
   const createReferral = useMutation(api.referrals.createForCase);
   const generateReferralConsentUploadUrl = useMutation(api.referrals.generateConsentUploadUrl);
@@ -406,8 +478,8 @@ const StaffDashboard = () => {
         service.referralCapability,
     ) ?? [];
 
-  function requiresAvailabilityOverride(provider?: { availabilityStatus?: string }) {
-    return provider?.availabilityStatus === "paused" || provider?.availabilityStatus === "unavailable";
+  function requiresAvailabilityOverride(provider?: { availabilityStatus?: string; canOffer?: boolean }) {
+    return !!provider && (provider.canOffer !== true || !["accepting_cases", "limited"].includes(provider.availabilityStatus ?? "unknown"));
   }
 
   async function run(action: () => Promise<void>) {
@@ -416,7 +488,7 @@ const StaffDashboard = () => {
     try {
       await action();
     } catch (error) {
-      setNotice({ type: "error", text: errorMessage(error) });
+      setNotice({ type: "error", text: readError(error) });
     } finally {
       setPending(false);
     }
@@ -444,10 +516,17 @@ const StaffDashboard = () => {
     status: "under_review" | "waiting_for_information",
   ) {
     if (!detail) return;
+    if (status === "waiting_for_information") {
+      const composer = document.getElementById(`reply-${detail.request._id}`);
+      composer?.scrollIntoView({ behavior: "smooth", block: "center" });
+      composer?.focus();
+      setNotice({ type: "success", text: "Write and send your question below. The request will wait for a reply after the question is sent." });
+      return;
+    }
     void run(async () => {
       const result = await setReviewStatus({
         requestId: detail.request._id,
-        expectedVersion: detail.request.version,
+        expectedVersion: requests?.find(item => item._id === detail.request._id)?.version ?? detail.request.version,
         status,
       });
       setDetail({
@@ -491,7 +570,7 @@ const StaffDashboard = () => {
     if (requiresAvailabilityOverride(selectedAssignmentProvider) && assignmentOverrideReason.trim().length < 10) {
       setNotice({
         type: "error",
-        text: "Add an override reason of at least 10 characters before assigning a paused or unavailable provider.",
+        text: "Add an override reason of at least 10 characters before assigning a provider with unknown, paused, unavailable or full capacity.",
       });
       return;
     }
@@ -511,6 +590,7 @@ const StaffDashboard = () => {
   }
 
   function changeCaseStatus(status: string) {
+    if (statusReview !== status) { setStatusReview(status); return; }
     if (!selectedCaseId || !caseDetail) return;
     void run(async () => {
       await updateCaseStatus({
@@ -518,7 +598,8 @@ const StaffDashboard = () => {
         status: status as Parameters<typeof updateCaseStatus>[0]["status"],
         expectedVersion: caseDetail.case.version,
       });
-      setNotice({ type: "success", text: "Case timeline updated." });
+      setStatusReview(null);
+      setNotice({ type: "success", text: "Case updated. The person will receive an update." });
     });
   }
 
@@ -545,14 +626,19 @@ const StaffDashboard = () => {
   function decideReviewRequest(
     reviewRequestId: Id<"case_review_requests">,
     status: "under_review" | "resolved" | "declined",
+    confirmed = false,
   ) {
+    if (status !== "under_review" && (reviewNotesById[reviewRequestId]?.trim().length ?? 0) < 10) { setNotice({type:"error",text:"Record the reason for this decision in at least 10 characters."}); return; }
+    if (status !== "under_review" && !confirmed) { setReviewDecision({id:reviewRequestId,status,note:reviewNotesById[reviewRequestId]?.trim() ?? ""}); return; }
     void run(async () => {
       const note = reviewNotesById[reviewRequestId]?.trim();
       await resolveCaseReviewRequest({
         reviewRequestId,
         status,
         resolutionNote: note || undefined,
+        expectedUpdatedAt: reviewQueue?.find(item => item.review._id === reviewRequestId)?.review.updatedAt,
       });
+      setReviewDecision(null);
       setReviewNotesById((current) => ({ ...current, [reviewRequestId]: "" }));
       setNotice({ type: "success", text: `Review request marked ${status.replaceAll("_", " ")}.` });
     });
@@ -570,7 +656,7 @@ const StaffDashboard = () => {
     if (requiresAvailabilityOverride(selectedReassignmentProvider) && reassignmentOverrideReason.trim().length < 10) {
       setNotice({
         type: "error",
-        text: "Add an override reason of at least 10 characters before reassigning to a paused or unavailable provider.",
+        text: "Add an override reason of at least 10 characters before reassigning to a provider with unknown, paused, unavailable or full capacity.",
       });
       return;
     }
@@ -629,19 +715,26 @@ const StaffDashboard = () => {
       return;
     }
     void run(async () => {
-      const result = await createJusticeOrganization({
+      const organizationContent = {
         name: organizationForm.name.trim(),
         organizationType: organizationForm.organizationType,
-        verificationStatus: "draft",
-        referralAgreementStatus: "none",
+        verificationStatus: editingOrganizationId ? organizationForm.verificationStatus : "draft" as const,
+        referralAgreementStatus: editingOrganizationId ? organizationForm.referralAgreementStatus : "none" as const,
         focalPersonName: organizationForm.focalPersonName.trim() || undefined,
         focalPersonEmail: organizationForm.focalPersonEmail.trim() || undefined,
         focalPersonPhone: organizationForm.focalPersonPhone.trim() || undefined,
-        slaHours: Number.isFinite(Number(organizationForm.slaHours)) ? Number(organizationForm.slaHours) : undefined,
+        slaHours: organizationForm.slaHours.trim() && Number.isFinite(Number(organizationForm.slaHours)) ? Number(organizationForm.slaHours) : undefined,
         safeguardingReady: organizationForm.safeguardingReady,
         dataSharingAgreementVersion: organizationForm.dataSharingAgreementVersion.trim() || undefined,
         notes: organizationForm.notes.trim() || undefined,
-      });
+      };
+      if (editingOrganizationId) {
+        await updateJusticeOrganization({ id: editingOrganizationId, updates: organizationContent });
+        setEditingOrganizationId(null); setOrganizationForm(initialOrganizationForm);
+        setNotice({ type: "success", text: "Organisation updated. Material changes require renewed verification." });
+        return;
+      }
+      const result = await createJusticeOrganization(organizationContent);
       setOrganizationForm(initialOrganizationForm);
       setServiceForm((current) => ({ ...current, organizationId: result.id, organizationName: "" }));
       setNotice({ type: "success", text: "Justice service organization created and selected for the service form." });
@@ -649,8 +742,8 @@ const StaffDashboard = () => {
   }
 
   function createServicePoint() {
-    if (!serviceForm.name.trim() || !serviceForm.district.trim()) {
-      setNotice({ type: "error", text: "Add at least a service name and district." });
+    if (!serviceForm.name.trim() || !serviceForm.region.trim() || !serviceForm.district.trim()) {
+      setNotice({ type: "error", text: "Add a service name, region and district." });
       return;
     }
     if (serviceForm.servicePointType === "protection_service" && !serviceForm.privacyAvailable) {
@@ -661,20 +754,23 @@ const StaffDashboard = () => {
       setNotice({ type: "error", text: "Safe houses must be saved as restricted or confidential entries." });
       return;
     }
+    if ((serviceForm.latitude.trim() || serviceForm.longitude.trim()) && (!serviceForm.latitude.trim() || !serviceForm.longitude.trim() || !Number.isFinite(Number(serviceForm.latitude)) || !Number.isFinite(Number(serviceForm.longitude)) || Math.abs(Number(serviceForm.latitude)) > 90 || Math.abs(Number(serviceForm.longitude)) > 180)) { setNotice({ type: "error", text: "Enter valid latitude and longitude together." }); return; }
     void run(async () => {
-      await createJusticeService({
+      const serviceContent = {
         name: serviceForm.name.trim(),
         organizationId: serviceForm.organizationId ? serviceForm.organizationId as Id<"justice_service_organizations"> : undefined,
         organizationName: serviceForm.organizationName.trim() || undefined,
         servicePointType: serviceForm.servicePointType,
         classification: serviceForm.classification,
         visibility: serviceForm.visibility,
-        verificationStatus: "draft",
-        active: false,
         country: "Tanzania",
         region: serviceForm.region.trim(),
         district: serviceForm.district.trim(),
-        serviceCoverageRegions: splitList(serviceForm.region),
+        serviceCoverageRegions: splitList(serviceForm.serviceCoverageRegions),
+        latitude: serviceForm.latitude.trim() ? Number(serviceForm.latitude) : undefined,
+        longitude: serviceForm.longitude.trim() ? Number(serviceForm.longitude) : undefined,
+        physicalLocation: serviceForm.physicalLocation.trim(),
+        eligibility: serviceForm.eligibility.trim(),
         issueCategories: splitList(serviceForm.issueCategories),
         serviceTypes: splitList(serviceForm.serviceTypes),
         referralCapability: serviceForm.referralCapability,
@@ -685,14 +781,18 @@ const StaffDashboard = () => {
         phoneSupport: serviceForm.phoneSupport,
         phone: serviceForm.phone.trim() || undefined,
         currentIntakeState: serviceForm.currentIntakeState,
-        capacity: Number.isFinite(Number(serviceForm.capacity)) ? Number(serviceForm.capacity) : undefined,
+        capacity: serviceForm.capacity.trim() && Number.isFinite(Number(serviceForm.capacity)) ? Number(serviceForm.capacity) : undefined,
         emergencyCapability: serviceForm.emergencyCapability,
         languages: splitList(serviceForm.languages),
         privacyAvailable: serviceForm.privacyAvailable,
         genderSensitive: serviceForm.genderSensitive,
-      });
+      };
+      if (editingServiceId) {
+        await updateJusticeService({ id: editingServiceId, decisionReason: serviceEditReason.trim(), clearCoordinates: !serviceForm.latitude.trim() && !serviceForm.longitude.trim(), updates: serviceContent });
+        setEditingServiceId(null);
+      } else await createJusticeService({ ...serviceContent, verificationStatus: "draft", active: false });
       setServiceForm(initialServiceForm);
-      setNotice({ type: "success", text: "Justice service point created." });
+      setNotice({ type: "success", text: editingServiceId ? "Service updated. Material changes require renewed verification." : "Justice service point created." });
     });
   }
 
@@ -763,9 +863,13 @@ const StaffDashboard = () => {
   ) {
     void run(async () => {
       const note = reviewNotesById[decisionId]?.trim();
+      const current = matchingDecisionQueue?.find(item=>item.decision._id===decisionId)?.decision;
+      if(!current) throw new Error("Refresh this matching review before saving.");
       await reviewMatchingDecision({
         decisionId,
         status,
+        expectedReviewedAt: current.reviewedAt ?? 0,
+        expectedReviewStatus: current.reviewStatus ?? "pending_review",
         reviewNote: note || undefined,
         restrictionReason:
           status === "restricted"
@@ -801,7 +905,7 @@ const StaffDashboard = () => {
     });
   }
 
-  function createCaseReferral() {
+  function createCaseReferral(confirmed = false) {
     if (!selectedCaseId || !referralServiceId) {
       setNotice({ type: "error", text: "Select a case and referral destination." });
       return;
@@ -823,6 +927,7 @@ const StaffDashboard = () => {
       setNotice({ type: "error", text: "Attach the signed consent file before creating this referral." });
       return;
     }
+    if (!confirmed) { setEvidenceReview(true); return; }
     void run(async () => {
       let consentUpload:
         | {
@@ -867,6 +972,7 @@ const StaffDashboard = () => {
         consentEvidenceFileType: consentUpload?.fileType,
         consentEvidenceFileSize: consentUpload?.fileSize,
       });
+      setEvidenceReview(false);
       setReferralServiceId("");
       setReferralDestinationUserId("");
       setReferralReason("");
@@ -916,175 +1022,173 @@ const StaffDashboard = () => {
       return !metadata || typeof metadata !== "object" || !("scheduledAppointmentId" in metadata);
     }) ?? [];
 
+  const shownCount = tab === "reviews" ? reviewQueue?.filter(item => matchesWork([item.case?.publicId,item.review.note,item.requester?.name]) && (!searchParams.get("review") || item.review._id === searchParams.get("review"))).length : tab === "assignments" ? assignmentOffers?.filter(item => matchesWork([item.case?.publicId,item.assignee?.name]) && (!searchParams.get("offer") || item.assignment._id === searchParams.get("offer"))).length : tab === "referrals" ? referralQueue?.filter(item => matchesWork([item.referral.publicId,item.referral.reason,item.case?.publicId]) && (!searchParams.get("referral") || item.referral._id === searchParams.get("referral"))).length : tab === "cases" ? cases?.filter(item => matchesWork([item.publicId,item.summary,item.status])).length : tab === "requests" ? requests?.filter(item => matchesWork([item.publicId,item.description,item.district]) && (!searchParams.get("request") || item._id === searchParams.get("request"))).length : undefined;
   return (
-    <div className="min-h-screen bg-[#f7f4f2] text-neutral-900">
-      <header className="border-b border-black/5 bg-white">
+    <div className="workspace-page text-neutral-900">
+      <header className="workspace-legacy-header border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-[1500px] items-center justify-between px-4 py-4 sm:px-8">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary font-heading text-sm font-black text-white">
               LSF
             </div>
             <div>
-              <p className="mb-0 font-heading text-base font-bold leading-tight">
-                Haki Yangu Operations
-              </p>
-              <p className="mb-0 text-xs text-neutral-500">
-                Legal assistance workspace
-              </p>
+              <p className="mb-0 font-heading text-base font-bold leading-tight">{c("Haki Yangu Operations")}</p>
+              <p className="mb-0 text-xs text-neutral-500">{c("Legal assistance workspace")}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link to="/notifications" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Updates</Link>
-            <Link to="/dashboard/paralegal-reviews" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Paralegal reviews</Link>
-            <Link to="/dashboard/training-management" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Training</Link>
-            <Link to="/dashboard/reporting" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">Reporting</Link>
+            <Link to="/notifications" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">{c("Updates")}</Link>
+            <Link to="/dashboard/paralegal-reviews" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">{c("Paralegal reviews")}</Link>
+            <Link to="/dashboard/training-management" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">{c("Training")}</Link>
+            <Link to="/dashboard/reporting" className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">{c("Reporting")}</Link>
             <Link
               to="/"
               className="hidden rounded-lg px-3 py-2 text-sm font-semibold text-neutral-600 hover:bg-neutral-100 sm:block"
-            >
-              Public website
-            </Link>
+            >{c("Public website")}</Link>
             <Button variant="outline" size="sm" onClick={() => signOut({ redirectUrl: '/' })}>
-              <LogOut className="mr-2 h-4 w-4" />
-              Sign out
-            </Button>
+              <LogOut className="mr-2 h-4 w-4" />{c("Sign out")}</Button>
           </div>
         </div>
       </header>
 
-      <main className="mx-auto max-w-[1500px] px-4 py-6 sm:px-8 sm:py-8">
-        <div className="mb-7 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
-          <div>
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
-              Human-supported justice
-            </p>
-            <h1 className="text-3xl sm:text-4xl">{tab === "requests" ? "Triage and case operations" : `${tab[0].toUpperCase()}${tab.slice(1)} workspace`}</h1>
-            <p className="mb-0 max-w-2xl text-base text-neutral-600">
-              {workspaceDescriptions[tab]}
-            </p>
-          </div>
-          <nav aria-label="LSF operations areas" className="flex w-full flex-wrap gap-1 rounded-xl border bg-white p-1 shadow-sm lg:w-auto">
-            <button
-              onClick={() => setTab("requests")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "requests" ? "bg-primary text-white" : "text-neutral-600"}`}
-            >
-              Requests
-            </button>
-            <button
-              onClick={() => setTab("cases")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "cases" ? "bg-primary text-white" : "text-neutral-600"}`}
-            >
-              Cases
-            </button>
-            <button
-              onClick={() => setTab("documents")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "documents" ? "bg-primary text-white" : "text-neutral-600"}`}
-            >
-              Documents
-            </button>
-            <button
-              onClick={() => setTab("reviews")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "reviews" ? "bg-primary text-white" : "text-neutral-600"}`}
-            >
-              Reviews
-            </button>
-            <button
-              onClick={() => setTab("assignments")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "assignments" ? "bg-primary text-white" : "text-neutral-600"}`}
-            >
-              Assignments
-            </button>
-            <button
-              onClick={() => setTab("matching")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "matching" ? "bg-primary text-white" : "text-neutral-600"}`}
-            >
-              Matching
-            </button>
-            <button
-              onClick={() => setTab("referrals")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "referrals" ? "bg-primary text-white" : "text-neutral-600"}`}
-            >
-              Referrals
-            </button>
-            <button
-              onClick={() => setTab("services")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold ${tab === "services" ? "bg-primary text-white" : "text-neutral-600"}`}
-            >
-              Services
-            </button>
-          </nav>
-        </div>
+      <main className="work-page mx-auto max-w-[1500px] px-4 py-6 sm:px-8 sm:py-8">
+        <WorkHeader eyebrow={greeting} title={c(({requests:'Requests',cases:'Cases',documents:'Documents',reviews:'Case reviews',assignments:'Cases to accept',matching:'Find a helper',referrals:'Referrals',services:'Service records'})[tab])} description={c(workspaceDescriptions[tab])}/>
 
-        <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-8">
+        {!compactWorkspace && <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-8">
           <button type="button" onClick={() => setTab("requests")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <FileSearch className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{newCount}</p>
-            <p className="mb-0 text-sm text-neutral-500">New requests</p>
+            <p className="mb-0 text-sm text-neutral-500">{c("New requests")}</p>
           </button>
           <button type="button" onClick={() => { setTab("requests"); setRequestStatus("all"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-orange-100 text-orange-700">
               <AlertTriangle className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{urgentCount}</p>
-            <p className="mb-0 text-sm text-neutral-500">
-              Urgent or safeguarding
-            </p>
+            <p className="mb-0 text-sm text-neutral-500">{c("Urgent or safeguarding")}</p>
           </button>
           <button type="button" onClick={() => setTab("cases")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-teal-100 text-teal-700">
               <BriefcaseBusiness className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{activeCases}</p>
-            <p className="mb-0 text-sm text-neutral-500">
-              Active cases in scope
-            </p>
+            <p className="mb-0 text-sm text-neutral-500">{c("Active cases in scope")}</p>
           </button>
           <button type="button" onClick={() => { setTab("documents"); setDocumentStatus("pending_review"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <FileText className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{pendingDocumentCount}</p>
-            <p className="mb-0 text-sm text-neutral-500">Documents to review</p>
+            <p className="mb-0 text-sm text-neutral-500">{c("Documents to review")}</p>
           </button>
           <button type="button" onClick={() => { setTab("reviews"); setReviewQueueStatus("submitted"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{pendingReviewCount}</p>
-            <p className="mb-0 text-sm text-neutral-500">Case review requests</p>
+            <p className="mb-0 text-sm text-neutral-500">{c("Case review requests")}</p>
           </button>
           <button type="button" onClick={() => { setTab("assignments"); setAssignmentStatus("offered"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-orange-100 text-orange-700">
               <Clock3 className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{openAssignmentOfferCount}</p>
-            <p className="mb-0 text-sm text-neutral-500">Open assignment offers</p>
+            <p className="mb-0 text-sm text-neutral-500">{c("Open assignment offers")}</p>
           </button>
           <button type="button" onClick={() => { setTab("matching"); setMatchingReviewStatus("pending_review"); }} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <UserRoundCheck className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{matchingDecisionCount}</p>
-            <p className="mb-0 text-sm text-neutral-500">Matching reviews</p>
+            <p className="mb-0 text-sm text-neutral-500">{c("Matching reviews")}</p>
           </button>
           <button type="button" onClick={() => setTab("referrals")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-teal-100 text-teal-700">
               <ChevronRight className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{activeReferralCount}</p>
-            <p className="mb-0 text-sm text-neutral-500">Referrals in selected queue</p>
+            <p className="mb-0 text-sm text-neutral-500">{c("Referrals in selected queue")}</p>
           </button>
           <button type="button" onClick={() => setTab("services")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
             <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <Building2 className="h-5 w-5" />
             </div>
             <p className="mb-1 text-2xl font-bold">{verifiedServiceCount}</p>
-            <p className="mb-0 text-sm text-neutral-500">Verified services</p>
+            <p className="mb-0 text-sm text-neutral-500">{c("Verified services")}</p>
           </button>
-        </section>
+        </section>}
 
+        {compactWorkspace && <div className="mb-5 space-y-4"><Link to={isSupervisor ? "/dashboard/supervisor" : "/dashboard/staff"} className="inline-block min-h-11 py-3 text-sm font-semibold text-primary">{c("← LSF workspace")}</Link><SearchFilterBar value={workSearch} onChange={setWorkSearch} placeholder={c("Find a case, request or name")} label={c("Show")} title={c("Work area and status")} summary={workspaceDescriptions[tab]} count={Number(!!workSearch)} onReset={() => setWorkSearch("")}><label className="block text-sm font-medium">{c("Work area")}<select className="mt-2 min-h-12 w-full rounded-xl border p-3" value={tab} onChange={event => setTab(event.target.value as WorkspaceTab)}>{workspaceTabs.map(value => <option key={value} value={value}>{{requests:"Requests",cases:"Cases",documents:"Documents",reviews:"Case reviews",assignments:"Cases to accept",matching:"Find a helper",referrals:"Referrals",services:"Service records"}[value]}</option>)}</select></label>{tab === "requests" && <label className="block text-sm font-medium">{c("Status")}<select className="mt-2 min-h-12 w-full rounded-xl border p-3" value={requestStatus} onChange={event=>setRequestStatus(event.target.value as typeof requestStatus)}>{[["all","All"],["submitted","New"],["under_review","Being reviewed"],["waiting_for_information","Waiting for details"]].map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>}{tab === "documents" && <label className="block text-sm font-medium">{c("Status")}<select
+                value={documentStatus}
+                onChange={(event) =>
+                  setDocumentStatus(event.target.value as typeof documentStatus)
+                }
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="pending_review">{c("Pending review")}</option>
+                <option value="accepted">{c("Accepted")}</option>
+                <option value="rejected">{c("Rejected")}</option>
+              </select></label>}{tab === "documents" && <label className="block text-sm font-medium">{c("Consent evidence status")}<select
+                value={consentEvidenceStatus}
+                onChange={(event) =>
+                  setConsentEvidenceStatus(event.target.value as typeof consentEvidenceStatus)
+                }
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="pending_review">{c("Pending review")}</option>
+                <option value="accepted">{c("Accepted")}</option>
+                <option value="rejected">{c("Rejected")}</option>
+              </select></label>}{tab === "reviews" && <label className="block text-sm font-medium">{c("Status")}<select
+                value={reviewStatus}
+                onChange={(event) =>
+                  setReviewQueueStatus(event.target.value as typeof reviewStatus)
+                }
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="submitted">{c("Submitted")}</option>
+                <option value="under_review">{c("Under review")}</option>
+                <option value="resolved">{c("Resolved")}</option>
+                <option value="declined">{c("Declined")}</option>
+              </select></label>}{tab === "assignments" && <label className="block text-sm font-medium">{c("Status")}<select
+                  value={assignmentStatus}
+                  onChange={(event) =>
+                    setAssignmentStatus(event.target.value as typeof assignmentStatus)
+                  }
+                  className="h-11 rounded-xl border bg-white px-3 text-sm"
+                >
+                  <option value="offered">{c("Offered")}</option>
+                  <option value="accepted">{c("Accepted")}</option>
+                  <option value="declined">{c("Declined")}</option>
+                  <option value="expired">{c("Expired")}</option>
+                  <option value="ended">{c("Ended")}</option>
+                </select></label>}{tab === "matching" && <label className="block text-sm font-medium">{c("Status")}<select
+                value={matchingReviewStatus}
+                onChange={(event) => setMatchingReviewStatus(event.target.value as MatchingReviewStatus)}
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="pending_review">{c("Pending review")}</option>
+                <option value="restricted">{c("Restricted")}</option>
+                <option value="escalated">{c("Escalated")}</option>
+                <option value="needs_changes">{c("Needs changes")}</option>
+                <option value="approved">{c("Approved")}</option>
+              </select></label>}{tab === "referrals" && <label className="block text-sm font-medium">{c("Status")}<select
+                value={referralStatus}
+                onChange={(event) => setReferralStatus(event.target.value as ReferralQueueStatus)}
+                className="h-11 rounded-xl border bg-white px-3 text-sm"
+              >
+                <option value="awaiting_beneficiary_consent">{c("Awaiting beneficiary consent")}</option>
+                <option value="created">{c("Created")}</option>
+                <option value="destination_notified">{c("Destination notified")}</option>
+                <option value="accepted">{c("Accepted")}</option>
+                <option value="declined">{c("Declined")}</option>
+                <option value="scheduled">{c("Scheduled")}</option>
+                <option value="service_delivered">{c("Service delivered")}</option>
+                <option value="returned">{c("Returned")}</option>
+                <option value="escalated">{c("Escalated")}</option>
+                <option value="closed">{c("Closed")}</option>
+              </select></label>}</SearchFilterBar>{(searchParams.get("review") || searchParams.get("offer") || searchParams.get("referral") || searchParams.get("request")) && <button className="min-h-11 text-sm font-semibold text-primary" onClick={() => setSearchParams(current => {const next=new URLSearchParams(current);["review","offer","referral","request"].forEach(key=>next.delete(key));return next;})}>{c("Show all in this queue")}</button>}{shownCount === 0 && <p role="status" className="rounded-xl bg-[#e7f4f1] p-4 text-sm">{c("No matches in this queue. Clear the search or choose another status.")}</p>}</div>}
         {notice && (
           <div
             role="status"
@@ -1094,57 +1198,54 @@ const StaffDashboard = () => {
           </div>
         )}
 
+        <WorkConfirmation open={evidenceReview} title={c("Create a request with permission evidence?")} busy={pending} onConfirm={() => createCaseReferral(true)} onEdit={() => setEvidenceReview(false)}><p>{referralCapableServices.find(service => service._id === referralServiceId)?.name} · {receivingProviders?.find(person => person._id === referralDestinationUserId)?.name ?? "Receiving person not chosen"}</p><p className="whitespace-pre-wrap">{referralReason}</p><p>{c("Details to share: ")}{referralInformationShared}</p><p className="whitespace-pre-wrap">{c("Permission statement: ")}{referralConsentStatement}</p><p>{c("Evidence: ")}{statusLabel(referralConsentMethod)} · {referralConsentFile?.name ?? "No file"}</p><p>{c("The person must still agree before the receiving service is notified.")}</p>{notice?.type === "error" && <p role="alert" className="text-red-800">{notice.text}</p>}</WorkConfirmation>
+        <WorkConfirmation open={Boolean(reviewDecision)} title={reviewDecision?.status === "resolved" ? "Complete this review?" : "Decline this review?"} busy={pending} onConfirm={() => { if (reviewDecision) decideReviewRequest(reviewDecision.id as Id<"case_review_requests">, reviewDecision.status as "resolved" | "declined", true); }} onEdit={() => setReviewDecision(null)}><p className="whitespace-pre-wrap">{reviewDecision?.note}</p><p>{c("This saves the decision and reason. It does not close the case.")}</p></WorkConfirmation>
+
         {tab === "referrals" ? (
           <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
             <div className="flex flex-col justify-between gap-3 border-b p-5 lg:flex-row lg:items-center">
               <div>
-                <h2 className="text-xl">Referral coordination</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Propose a handoff, wait for beneficiary consent, then track where the case moved, what was shared,
-                  and whether the destination accepted responsibility.
-                </p>
+                <h2 className="text-xl">{c("Referral coordination")}</h2>
+                <p className="mb-0 text-sm text-neutral-500">{c("Propose a handoff, wait for beneficiary consent, then track where the case moved, what was shared, and whether the destination accepted responsibility.")}</p>
               </div>
-              <select
+              {!compactWorkspace && (<select
                 value={referralStatus}
                 onChange={(event) => setReferralStatus(event.target.value as ReferralQueueStatus)}
                 className="h-11 rounded-xl border bg-white px-3 text-sm"
               >
-                <option value="awaiting_beneficiary_consent">Awaiting beneficiary consent</option>
-                <option value="created">Created</option>
-                <option value="destination_notified">Destination notified</option>
-                <option value="accepted">Accepted</option>
-                <option value="declined">Declined</option>
-                <option value="scheduled">Scheduled</option>
-                <option value="service_delivered">Service delivered</option>
-                <option value="returned">Returned</option>
-                <option value="escalated">Escalated</option>
-                <option value="closed">Closed</option>
-              </select>
+                <option value="awaiting_beneficiary_consent">{c("Awaiting beneficiary consent")}</option>
+                <option value="created">{c("Created")}</option>
+                <option value="destination_notified">{c("Destination notified")}</option>
+                <option value="accepted">{c("Accepted")}</option>
+                <option value="declined">{c("Declined")}</option>
+                <option value="scheduled">{c("Scheduled")}</option>
+                <option value="service_delivered">{c("Service delivered")}</option>
+                <option value="returned">{c("Returned")}</option>
+                <option value="escalated">{c("Escalated")}</option>
+                <option value="closed">{c("Closed")}</option>
+              </select>)}
             </div>
             <div className="divide-y">
               {referralQueue === undefined && (
-                <p className="p-5 text-sm text-neutral-500">Loading referrals...</p>
+                <BrandLoading compact text={c("Loading referrals...")}/>
               )}
               {referralQueue?.length === 0 && (
                 <div className="p-10 text-center">
                   <ChevronRight className="mx-auto mb-3 h-9 w-9 text-primary/40" />
-                  <p className="mb-1 font-bold">No referrals in this queue</p>
-                  <p className="mb-0 text-sm text-neutral-500">
-                    Referrals created from cases will appear here with their
-                    destination service and beneficiary-safe status trail.
-                  </p>
+                  <p className="mb-1 font-bold">{c("No referrals in this queue")}</p>
+                  <p className="mb-0 text-sm text-neutral-500">{c("Referrals created from cases will appear here with their destination service and beneficiary-safe status trail.")}</p>
                 </div>
               )}
-              {referralQueue?.map((item) => (
-                <div key={item.referral._id} className="grid gap-4 p-5 lg:grid-cols-[1fr_270px]">
+              {referralQueue?.filter(item => matchesWork([item.referral.publicId, item.referral.reason, item.case?.publicId]) && (!searchParams.get("referral") || item.referral._id === searchParams.get("referral"))).map((item) => (
+                <div key={item.referral._id} className="work-decision-row">
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
                       <h3 className="mb-0 text-lg">
                         {item.referral.publicId}
                       </h3>
-                      <StatusPill value={item.referral.status.replaceAll("_", " ")} urgent={["created", "returned", "escalated"].includes(item.referral.status)} />
+                      <StatusPill value={statusLabel(item.referral.status)} urgent={["created", "returned", "escalated"].includes(item.referral.status)} />
                       {item.case && (
-                        <StatusPill value={item.case.status.replaceAll("_", " ")} urgent={item.case.priority !== "standard"} />
+                        <StatusPill value={statusLabel(item.case.status)} urgent={item.case.priority !== "standard"} />
                       )}
                     </div>
                     <p className="mb-2 text-sm text-neutral-600">
@@ -1156,7 +1257,7 @@ const StaffDashboard = () => {
                     </p>
                     <div className="grid gap-2 text-xs text-neutral-600 sm:grid-cols-2">
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                        <p className="mb-1 font-bold text-neutral-800">Destination</p>
+                        <p className="mb-1 font-bold text-neutral-800">{c("Destination")}</p>
                         <p className="mb-0">
                           {item.destinationService
                             ? `${item.destinationService.district}, ${item.destinationService.region}`
@@ -1165,43 +1266,40 @@ const StaffDashboard = () => {
                       </div>
                       {item.parentReferral && (
                         <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                          <p className="mb-1 font-bold text-neutral-800">Parent referral</p>
+                          <p className="mb-1 font-bold text-neutral-800">{c("Parent referral")}</p>
                           <p className="mb-0">{item.parentReferral.publicId}</p>
                         </div>
                       )}
                       {item.onwardReferral && (
                         <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                          <p className="mb-1 font-bold text-neutral-800">Onward referral</p>
+                          <p className="mb-1 font-bold text-neutral-800">{c("Onward referral")}</p>
                           <p className="mb-0">{item.onwardReferral.publicId}</p>
                         </div>
                       )}
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                        <p className="mb-1 font-bold text-neutral-800">{item.referral.status === "awaiting_beneficiary_consent" ? "Information proposed for sharing" : "Information shared"}</p>
+                        <p className="mb-1 font-bold text-neutral-800">{item.referral.status === "awaiting_beneficiary_consent" ? c("Information proposed for sharing") : c("Information shared")}</p>
                         <p className="mb-0">
                           {item.referral.informationShared.join(", ") || "Not recorded"}
                         </p>
                       </div>
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                        <p className="mb-1 font-bold text-neutral-800">Consent status</p>
+                        <p className="mb-1 font-bold text-neutral-800">{c("Consent status")}</p>
                         <p className="mb-0 capitalize">
-                          {item.consent?.granted ? item.consent.method?.replaceAll("_", " ") ?? "Recorded" : "Awaiting beneficiary decision"}
+                          {item.consent?.granted ? statusLabel(item.consent.method) ?? "Recorded" : "Awaiting beneficiary decision"}
                         </p>
                         {item.consent?.evidenceNote && (
                           <p className="mb-0 mt-1 text-neutral-500">{item.consent.evidenceNote}</p>
                         )}
                         {item.consent?.evidenceFileName && (
-                          <p className="mb-0 mt-1 text-neutral-500">
-                            File: {item.consent.evidenceFileName}
+                          <p className="mb-0 mt-1 text-neutral-500">{c("File: ")}{item.consent.evidenceFileName}
                           </p>
                         )}
                         {item.consent?.reviewStatus && (
-                          <p className="mb-0 mt-1 text-neutral-500 capitalize">
-                            Review: {item.consent.reviewStatus.replaceAll("_", " ")}
+                          <p className="mb-0 mt-1 text-neutral-500 capitalize">{c("Review: ")}{statusLabel(item.consent.reviewStatus)}
                           </p>
                         )}
                         {item.consent?.retentionStatus && (
-                          <p className="mb-0 mt-1 text-neutral-500 capitalize">
-                            Retention: {item.consent.retentionStatus}
+                          <p className="mb-0 mt-1 text-neutral-500 capitalize">{c("Retention: ")}{item.consent.retentionStatus}
                           </p>
                         )}
                         {item.consentEvidenceUrl && (
@@ -1210,25 +1308,20 @@ const StaffDashboard = () => {
                             href={item.consentEvidenceUrl}
                             target="_blank"
                             rel="noreferrer"
-                          >
-                            Open consent file
-                            <ExternalLink className="h-3 w-3" />
+                          >{c("Open consent file")}<ExternalLink className="h-3 w-3" />
                           </a>
                         )}
                       </div>
                     </div>
                     {item.referral.declineReason && (
                       <p className="mt-3 rounded-xl border border-orange-200 bg-orange-50 p-3 text-sm text-orange-900">
-                        <span className="font-bold">Decline reason:</span>{" "}
+                        <span className="font-bold">{c("Decline reason:")}</span>{" "}
                         {item.referral.declineReason}
                       </p>
                     )}
                   </div>
                   <div className="flex flex-col gap-2">
-                    <p className="mb-0 rounded-xl bg-[#fbf7f8] p-3 text-xs text-neutral-600">
-                      Created {formatDate(item.referral.createdAt)}. Update only
-                      when there is evidence from the destination service.
-                    </p>
+                    <p className="mb-0 rounded-xl bg-[#fbf7f8] p-3 text-xs text-neutral-600">{c("Created ")}{formatDate(item.referral.createdAt)}{c(". Update only when there is evidence from the destination service.")}</p>
                     {item.case && (
                       <Button
                         variant="outline"
@@ -1236,55 +1329,33 @@ const StaffDashboard = () => {
                           setSelectedCaseId(item.case!._id);
                           setTab("cases");
                         }}
-                      >
-                        Open case
-                      </Button>
+                      >{c("Open case")}</Button>
                     )}
                     {item.referral.status === "created" && (
                       <>
-                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "destination_notified", "Destination service notified by LSF.")}>
-                          Mark notified
-                        </Button>
-                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "accepted", "Destination accepted the referral.")}>
-                          Mark accepted
-                        </Button>
-                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "declined", "Destination cannot accept this referral.")}>
-                          Mark declined
-                        </Button>
+                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "destination_notified", "Destination service notified by LSF.")}>{c("Mark notified")}</Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "accepted", "Destination accepted the referral.")}>{c("Mark accepted")}</Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "declined", "Destination cannot accept this referral.")}>{c("Mark declined")}</Button>
                       </>
                     )}
                     {item.referral.status === "destination_notified" && (
                       <>
-                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "accepted", "Destination accepted the referral.")}>
-                          Mark accepted
-                        </Button>
-                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "returned", "Destination returned the referral for LSF follow-up.")}>
-                          Mark returned
-                        </Button>
-                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "declined", "Destination cannot accept this referral.")}>
-                          Mark declined
-                        </Button>
+                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "accepted", "Destination accepted the referral.")}>{c("Mark accepted")}</Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "returned", "Destination returned the referral for LSF follow-up.")}>{c("Mark returned")}</Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "declined", "Destination cannot accept this referral.")}>{c("Mark declined")}</Button>
                       </>
                     )}
                     {item.referral.status === "accepted" && (
                       <>
-                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "scheduled", "Destination scheduled support with the beneficiary.")}>
-                          Mark scheduled
-                        </Button>
-                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "service_delivered", "Destination delivered the referred service.")}>
-                          Service delivered
-                        </Button>
+                        <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "scheduled", "Destination scheduled support with the beneficiary.")}>{c("Mark scheduled")}</Button>
+                        <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "service_delivered", "Destination delivered the referred service.")}>{c("Service delivered")}</Button>
                       </>
                     )}
                     {item.referral.status === "scheduled" && (
-                      <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "service_delivered", "Destination delivered the referred service.")}>
-                        Service delivered
-                      </Button>
+                      <Button disabled={pending} onClick={() => moveReferral(item.referral._id, "service_delivered", "Destination delivered the referred service.")}>{c("Service delivered")}</Button>
                     )}
                     {["accepted", "scheduled", "service_delivered", "returned", "escalated"].includes(item.referral.status) && (
-                      <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "closed", "Referral closed by LSF operations.")}>
-                        Close referral
-                      </Button>
+                      <Button disabled={pending} variant="outline" onClick={() => moveReferral(item.referral._id, "closed", "Referral closed by LSF operations.")}>{c("Close referral")}</Button>
                     )}
                   </div>
                 </div>
@@ -1295,57 +1366,50 @@ const StaffDashboard = () => {
           <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
             <div className="flex flex-col justify-between gap-3 border-b p-5 lg:flex-row lg:items-center">
               <div>
-                <h2 className="text-xl">Matching decision review</h2>
-                <p className="mb-0 max-w-3xl text-sm text-neutral-500">
-                  Review Haki Yangu service matches before they become operational evidence.
-                  Immediate-safety matches are restricted until LSF safeguarding staff approves
-                  the route.
-                </p>
+                <h2 className="text-xl">{c("Matching decision review")}</h2>
+                <p className="mb-0 max-w-3xl text-sm text-neutral-500">{c("Review Haki Yangu service matches before they become operational evidence. Immediate-safety matches are restricted until LSF safeguarding staff approves the route.")}</p>
               </div>
-              <select
+              {!compactWorkspace && (<select
                 value={matchingReviewStatus}
                 onChange={(event) => setMatchingReviewStatus(event.target.value as MatchingReviewStatus)}
                 className="h-11 rounded-xl border bg-white px-3 text-sm"
               >
-                <option value="pending_review">Pending review</option>
-                <option value="restricted">Restricted</option>
-                <option value="escalated">Escalated</option>
-                <option value="needs_changes">Needs changes</option>
-                <option value="approved">Approved</option>
-              </select>
+                <option value="pending_review">{c("Pending review")}</option>
+                <option value="restricted">{c("Restricted")}</option>
+                <option value="escalated">{c("Escalated")}</option>
+                <option value="needs_changes">{c("Needs changes")}</option>
+                <option value="approved">{c("Approved")}</option>
+              </select>)}
             </div>
             <div className="divide-y">
               {matchingDecisionQueue === undefined && (
-                <p className="p-5 text-sm text-neutral-500">Loading matching decisions...</p>
+                <BrandLoading compact text={c("Loading matching decisions...")}/>
               )}
               {matchingDecisionQueue?.length === 0 && (
                 <div className="p-10 text-center">
                   <UserRoundCheck className="mx-auto mb-3 h-9 w-9 text-primary/40" />
-                  <p className="mb-1 font-bold">No matching decisions in this queue</p>
-                  <p className="mb-0 text-sm text-neutral-500">
-                    Service directory and app matching decisions will appear here for staff governance.
-                  </p>
+                  <p className="mb-1 font-bold">{c("No matching decisions in this queue")}</p>
+                  <p className="mb-0 text-sm text-neutral-500">{c("Service directory and app matching decisions will appear here for staff governance.")}</p>
                 </div>
               )}
-              {matchingDecisionQueue?.map((item) => (
+              {matchingDecisionQueue?.filter(item => matchesWork([item.decision?._id, item.case?.publicId])).map((item) => (
                 <div key={item.decision._id} className="grid gap-4 p-5 xl:grid-cols-[1fr_300px]">
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
                       <h3 className="mb-0 text-lg">
                         {item.decision.issueCategory || item.decision.ordinaryProblem || "Uncategorized match"}
                       </h3>
-                      <StatusPill value={(item.decision.reviewStatus ?? "pending_review").replaceAll("_", " ")} urgent={["restricted", "escalated"].includes(item.decision.reviewStatus ?? "")} />
+                      <StatusPill value={statusLabel((item.decision.reviewStatus ?? "pending_review"))} urgent={["restricted", "escalated"].includes(item.decision.reviewStatus ?? "")} />
                       {item.decision.urgency && (
-                        <StatusPill value={item.decision.urgency.replaceAll("_", " ")} urgent={item.decision.urgency === "immediate_safety"} />
+                        <StatusPill value={statusLabel(item.decision.urgency)} urgent={item.decision.urgency === "immediate_safety"} />
                       )}
                     </div>
-                    <p className="mb-3 text-sm text-neutral-600">
-                      Source: {item.decision.source} · {item.decision.region || "region unknown"}
-                      {item.decision.district ? `, ${item.decision.district}` : ""} · Created {formatDate(item.decision.createdAt)}
+                    <p className="mb-3 text-sm text-neutral-600">{c("Source: ")}{item.decision.source} · {item.decision.region || "region unknown"}
+                      {item.decision.district ? `, ${item.decision.district}` : ""}{c(" · Created ")}{formatDate(item.decision.createdAt)}
                     </p>
                     <div className="grid gap-3 lg:grid-cols-2">
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                        <p className="mb-1 font-bold text-neutral-800">Linked record</p>
+                        <p className="mb-1 font-bold text-neutral-800">{c("Linked record")}</p>
                         <p className="mb-0 text-sm text-neutral-600">
                           {item.request?.publicId ?? item.case?.publicId ?? "No request or case linked"}
                         </p>
@@ -1356,7 +1420,7 @@ const StaffDashboard = () => {
                         )}
                       </div>
                       <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                        <p className="mb-1 font-bold text-neutral-800">Safety controls</p>
+                        <p className="mb-1 font-bold text-neutral-800">{c("Safety controls")}</p>
                         <p className="mb-0 text-sm text-neutral-600">
                           {item.decision.safetyFlags.length > 0 ? item.decision.safetyFlags.join(", ") : "No safety flags"}
                         </p>
@@ -1366,23 +1430,21 @@ const StaffDashboard = () => {
                       </div>
                     </div>
                     <div className="mt-3 rounded-xl border bg-white p-3">
-                      <p className="mb-2 font-bold text-neutral-800">Why this match happened</p>
+                      <p className="mb-2 font-bold text-neutral-800">{c("Why this match happened")}</p>
                       <div className="flex flex-wrap gap-2">
                         {item.decision.explanation.length > 0 ? item.decision.explanation.map((reason) => (
                           <span key={reason} className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                             {reason}
                           </span>
                         )) : (
-                          <span className="text-sm text-neutral-500">No explanation recorded.</span>
+                          <span className="text-sm text-neutral-500">{c("No explanation recorded.")}</span>
                         )}
                       </div>
                     </div>
                     <div className="mt-3 rounded-xl border bg-white p-3">
-                      <p className="mb-2 font-bold text-neutral-800">Recommended services</p>
+                      <p className="mb-2 font-bold text-neutral-800">{c("Recommended services")}</p>
                       {item.recommendedServices.length === 0 ? (
-                        <p className="mb-0 text-sm text-neutral-500">
-                          No service recommendations are shown. This is expected for restricted safeguarding matches.
-                        </p>
+                        <p className="mb-0 text-sm text-neutral-500">{c("No service recommendations are shown. This is expected for restricted safeguarding matches.")}</p>
                       ) : (
                         <div className="grid gap-2 md:grid-cols-2">
                           {item.recommendedServices.map((service) => (
@@ -1391,8 +1453,7 @@ const StaffDashboard = () => {
                               <p className="mb-1 text-xs text-neutral-600">
                                 {service.organizationName || "Organization not linked"} · {service.district}, {service.region}
                               </p>
-                              <p className="mb-0 text-xs text-neutral-500">
-                                Intake: {service.currentIntakeState.replaceAll("_", " ")} · Referral: {service.referralCapability ? "yes" : "no"} · Emergency: {service.emergencyCapability ? "yes" : "no"}
+                              <p className="mb-0 text-xs text-neutral-500">{c("Intake: ")}{statusLabel(service.currentIntakeState)}{c(" · Referral: ")}{service.referralCapability ? "yes" : "no"}{c(" · Emergency: ")}{service.emergencyCapability ? "yes" : "no"}
                               </p>
                             </div>
                           ))}
@@ -1409,21 +1470,13 @@ const StaffDashboard = () => {
                           [item.decision._id]: event.target.value,
                         }))
                       }
-                      placeholder="Staff review note, safety reason, or route correction"
+                      placeholder={c("Staff review note, safety reason, or route correction")}
                       rows={5}
                     />
-                    <Button disabled={pending} onClick={() => reviewMatchDecision(item.decision._id, "approved")}>
-                      Approve match
-                    </Button>
-                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "needs_changes")}>
-                      Needs changes
-                    </Button>
-                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "escalated")}>
-                      Escalate to safeguarding lead
-                    </Button>
-                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "restricted")}>
-                      Restrict recommendations
-                    </Button>
+                    <Button disabled={pending} onClick={() => reviewMatchDecision(item.decision._id, "approved")}>{c("Approve match")}</Button>
+                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "needs_changes")}>{c("Needs changes")}</Button>
+                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "escalated")}>{c("Escalate to safeguarding lead")}</Button>
+                    <Button disabled={pending} variant="outline" onClick={() => reviewMatchDecision(item.decision._id, "restricted")}>{c("Restrict recommendations")}</Button>
                   </div>
                 </div>
               ))}
@@ -1431,19 +1484,18 @@ const StaffDashboard = () => {
           </section>
         ) : tab === "services" ? (
           <section className="grid gap-5 xl:grid-cols-[420px_1fr]">
+            <DirectoryResearchQueue />
             <div className="rounded-2xl border bg-white p-5 shadow-sm">
               <div className="mb-5">
-                <h2 className="text-xl">Partner organization</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Create accountable organizations before linking their service points.
-                </p>
+                <h2 className="text-xl">{editingOrganizationId ? c("Edit organisation") : "Partner organization"}</h2>{editingOrganizationId && <button className="text-sm underline" onClick={() => { setEditingOrganizationId(null); setOrganizationForm(initialOrganizationForm); }}>{c("Cancel editing")}</button>}
+                <p className="mb-0 text-sm text-neutral-500">{c("Create accountable organizations before linking their service points.")}</p>
               </div>
               <div className="space-y-3">
                 <input
                   value={organizationForm.name}
                   onChange={(event) => updateOrganizationForm({ name: event.target.value })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                  placeholder="Organization name"
+                  placeholder={c("Organization name")}
                 />
                 <div className="grid gap-3 sm:grid-cols-2">
                   <select
@@ -1451,100 +1503,91 @@ const StaffDashboard = () => {
                     onChange={(event) => updateOrganizationForm({ organizationType: event.target.value as OrganizationFormState["organizationType"] })}
                     className="h-11 rounded-xl border bg-white px-3 text-sm"
                   >
-                    <option value="legal_aid_provider">Legal aid provider</option>
-                    <option value="government">Government</option>
-                    <option value="cso">CSO</option>
-                    <option value="community_paralegal_network">Paralegal network</option>
-                    <option value="private_provider">Private provider</option>
-                    <option value="donor_partner">Donor partner</option>
+                    <option value="legal_aid_provider">{c("Legal aid provider")}</option>
+                    <option value="government">{c("Government")}</option>
+                    <option value="cso">{c("CSO")}</option>
+                    <option value="community_paralegal_network">{c("Paralegal network")}</option>
+                    <option value="private_provider">{c("Private provider")}</option>
+                    <option value="donor_partner">{c("Donor partner")}</option>
                     <option value="lsf">LSF</option>
-                    <option value="other">Other</option>
+                    <option value="other">{c("Other")}</option>
                   </select>
-                  <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">New organisation: draft until independent LSF review.</p>
+                  <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">{c("New organisation: draft until independent LSF review.")}</p>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">Referral agreement: none until separately reviewed.</p>
+                  <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">{c("Referral agreement: none until separately reviewed.")}</p>
                   <input
                     value={organizationForm.slaHours}
                     onChange={(event) => updateOrganizationForm({ slaHours: event.target.value })}
                     className="h-11 rounded-xl border bg-white px-3 text-sm"
-                    placeholder="SLA hours"
+                    placeholder={c("SLA hours")}
                   />
                 </div>
                 <input
                   value={organizationForm.focalPersonName}
                   onChange={(event) => updateOrganizationForm({ focalPersonName: event.target.value })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                  placeholder="Focal person"
+                  placeholder={c("Focal person")}
                 />
                 <div className="grid gap-3 sm:grid-cols-2">
                   <input
                     value={organizationForm.focalPersonEmail}
                     onChange={(event) => updateOrganizationForm({ focalPersonEmail: event.target.value })}
                     className="h-11 rounded-xl border bg-white px-3 text-sm"
-                    placeholder="Focal email"
+                    placeholder={c("Focal email")}
                   />
                   <input
                     value={organizationForm.focalPersonPhone}
                     onChange={(event) => updateOrganizationForm({ focalPersonPhone: event.target.value })}
                     className="h-11 rounded-xl border bg-white px-3 text-sm"
-                    placeholder="Focal phone"
+                    placeholder={c("Focal phone")}
                   />
                 </div>
                 <input
                   value={organizationForm.dataSharingAgreementVersion}
                   onChange={(event) => updateOrganizationForm({ dataSharingAgreementVersion: event.target.value })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                  placeholder="Data sharing agreement version"
+                  placeholder={c("Data sharing agreement version")}
                 />
                 <label className="flex items-center gap-2 rounded-xl border bg-[#fbf7f8] p-3 text-sm font-semibold text-neutral-700">
                   <input
                     type="checkbox"
                     checked={organizationForm.safeguardingReady}
                     onChange={(event) => updateOrganizationForm({ safeguardingReady: event.target.checked })}
-                  />
-                  Safeguarding ready
-                </label>
+                  />{c("Safeguarding ready")}</label>
                 <Textarea
                   value={organizationForm.notes}
                   onChange={(event) => updateOrganizationForm({ notes: event.target.value })}
                   className="min-h-[72px]"
-                  placeholder="Operational notes, coverage limits, escalation contacts..."
+                  placeholder={c("Operational notes, coverage limits, escalation contacts...")}
                 />
-                <Button disabled={pending} onClick={createOrganization} className="w-full">
-                  Create organization
+                <Button onClick={createOrganization} disabled={pending || !directoryCanManage} className="w-full">
+                  {editingOrganizationId ? "Save organisation changes" : "Create organization"}
                 </Button>
               </div>
             </div>
 
             <div className="rounded-2xl border bg-white p-5 shadow-sm">
               <div className="mb-5">
-                <h2 className="text-xl">Justice Service Management</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Add and verify service points for Haki Yangu matching. Public
-                  mobile discovery only shows active, verified, public records.
-                </p>
+                <h2 className="text-xl">{c("Justice Service Management")}</h2>{editingServiceId && <button className="text-sm underline" onClick={() => { setEditingServiceId(null); setServiceForm(initialServiceForm); }}>{c("Cancel editing")}</button>}
+                <p className="mb-0 text-sm text-neutral-500">{c("Add and verify service points for Haki Yangu matching. Public mobile discovery only shows active, verified, public records.")}</p>
               </div>
               <div className="space-y-3">
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-500">
-                  Service name
-                </label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-500">{c("Service name")}</label>
                 <input
                   value={serviceForm.name}
                   onChange={(event) => updateServiceForm({ name: event.target.value })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                  placeholder="Kinondoni Community Paralegal Desk"
+                  placeholder={c("Kinondoni Community Paralegal Desk")}
                 />
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-500">
-                  Organisation
-                </label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-500">{c("Organisation")}</label>
                 <select
                   value={serviceForm.organizationId}
                   onChange={(event) => updateServiceForm({ organizationId: event.target.value, organizationName: "" })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
                 >
-                  <option value="">No linked organization</option>
-                  {justiceOrganizations?.map((organization) => (
+                  <option value="">{c("No linked organization")}</option>
+                  {justiceOrganizations?.filter(organization => matchesWork([organization.name, organization.organizationType])).map((organization) => (
                     <option key={organization._id} value={organization._id}>
                       {organization.name} · {organization.verificationStatus}
                     </option>
@@ -1554,41 +1597,37 @@ const StaffDashboard = () => {
                   value={serviceForm.organizationName}
                   onChange={(event) => updateServiceForm({ organizationName: event.target.value })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                  placeholder="Fallback organization name if not linked"
+                  placeholder={c("Fallback organization name if not linked")}
                   disabled={Boolean(serviceForm.organizationId)}
                 />
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div>
-                    <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
-                      Type
-                    </label>
+                    <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">{c("Type")}</label>
                     <select
                       value={serviceForm.servicePointType}
                       onChange={(event) => updateServiceForm({ servicePointType: event.target.value as ServiceFormState["servicePointType"] })}
                       className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
                     >
-                      <option value="paralegal">Paralegal</option>
-                      <option value="legal_aid_provider">Legal aid provider</option>
-                      <option value="partner_organisation">Partner organisation</option>
-                      <option value="government_office">Government office</option>
-                      <option value="local_government">Local government</option>
-                      <option value="police_gender_children_desk">Police gender / children desk</option>
-                      <option value="social_welfare">Social welfare office</option>
-                      <option value="court_or_tribunal">Court or tribunal</option>
-                      <option value="labour_service">Labour service</option>
-                      <option value="land_service">Land service</option>
-                      <option value="mediation">Mediation service</option>
-                      <option value="protection_service">Protection service</option>
-                      <option value="safe_house">Safe house / shelter</option>
-                      <option value="cso">CSO</option>
-                      <option value="other">Other</option>
+                      <option value="paralegal">{c("Paralegal")}</option>
+                      <option value="legal_aid_provider">{c("Legal aid provider")}</option>
+                      <option value="partner_organisation">{c("Partner organisation")}</option>
+                      <option value="government_office">{c("Government office")}</option>
+                      <option value="local_government">{c("Local government")}</option>
+                      <option value="police_gender_children_desk">{c("Police gender / children desk")}</option>
+                      <option value="social_welfare">{c("Social welfare office")}</option>
+                      <option value="court_or_tribunal">{c("Court or tribunal")}</option>
+                      <option value="labour_service">{c("Labour service")}</option>
+                      <option value="land_service">{c("Land service")}</option>
+                      <option value="mediation">{c("Mediation service")}</option>
+                      <option value="protection_service">{c("Protection service")}</option>
+                      <option value="safe_house">{c("Safe house / shelter")}</option>
+                      <option value="cso">{c("CSO")}</option>
+                      <option value="other">{c("Other")}</option>
                     </select>
                   </div>
                   <div>
-                    <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
-                      Verification
-                    </label>
-                    <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">New service: inactive draft until source and contact verification.</p>
+                    <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">{c("Verification")}</label>
+                    <p className="rounded-xl border bg-[#fbf7f8] p-3 text-sm text-neutral-600">{c("New service: inactive draft until source and contact verification.")}</p>
                   </div>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -1596,53 +1635,55 @@ const StaffDashboard = () => {
                     value={serviceForm.region}
                     onChange={(event) => updateServiceForm({ region: event.target.value })}
                     className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                    placeholder="Region"
+                    placeholder={c("Region")}
                   />
                   <input
                     value={serviceForm.district}
                     onChange={(event) => updateServiceForm({ district: event.target.value })}
                     className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                    placeholder="District"
+                    placeholder={c("District")}
                   />
                 </div>
                 <Textarea
                   value={serviceForm.issueCategories}
                   onChange={(event) => updateServiceForm({ issueCategories: event.target.value })}
                   className="min-h-[72px]"
-                  placeholder="employment, land, family"
+                  placeholder={c("employment, land, family")}
                 />
                 <Textarea
                   value={serviceForm.serviceTypes}
                   onChange={(event) => updateServiceForm({ serviceTypes: event.target.value })}
                   className="min-h-[72px]"
-                  placeholder="legal_information, referral, appointment"
+                  placeholder={c("legal_information, referral, appointment")}
                 />
                 <div className="grid gap-3 sm:grid-cols-2">
                   <input
                     value={serviceForm.phone}
                     onChange={(event) => updateServiceForm({ phone: event.target.value })}
                     className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                    placeholder="+255..."
+                    placeholder={c("+255...")}
                   />
                   <input
                     value={serviceForm.capacity}
                     onChange={(event) => updateServiceForm({ capacity: event.target.value })}
                     className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                    placeholder="Capacity"
+                    placeholder={c("Capacity")}
                   />
                 </div>
                 <input
                   value={serviceForm.languages}
                   onChange={(event) => updateServiceForm({ languages: event.target.value })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                  placeholder="Swahili, English"
+                  placeholder={c("Swahili, English")}
                 />
                 <input
                   value={serviceForm.openingHours}
                   onChange={(event) => updateServiceForm({ openingHours: event.target.value })}
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                  placeholder="Mon - Fri, 9:00 AM - 5:00 PM"
+                  placeholder={c("Mon - Fri, 9:00 AM - 5:00 PM")}
                 />
+                <label className="block text-sm">{c("Intake availability")}<select aria-label={c("Intake availability")} value={serviceForm.currentIntakeState} onChange={event => updateServiceForm({currentIntakeState: event.target.value as ServiceFormState['currentIntakeState']})} className="mt-1 block w-full rounded-lg border p-3"><option value="closed">{c("Unavailable for matching")}</option><option value="open">{c("Confirmed open")}</option><option value="limited">{c("Confirmed limited intake")}</option><option value="emergency_only">{c("Confirmed emergency intake only")}</option></select></label>
+                <p className="text-xs text-neutral-500">{c("New drafts start unavailable for matching. Record only confirmed capacity, languages and capabilities; unchecked capabilities have not been established. Independent verification is still required before publication.")}</p>
                 <div className="grid gap-2 text-sm sm:grid-cols-2">
                   {[
                     ["Referral capable", "referralCapability"],
@@ -1664,9 +1705,11 @@ const StaffDashboard = () => {
                     </label>
                   ))}
                 </div>
+                {editingServiceId && <label className="block text-sm">{c("Reason for service changes")}<textarea value={serviceEditReason} onChange={event => setServiceEditReason(event.target.value)} className="mt-1 block w-full rounded-lg border p-3" placeholder={c("Explain any intake or lifecycle change (10–1000 characters)")} /></label>}
+                {([['latitude', 'Office latitude (verified pin)'], ['longitude', 'Office longitude (verified pin)'], ['physicalLocation', 'Public address or meeting location'], ['serviceCoverageRegions', 'Coverage regions (comma separated)'], ['eligibility', 'Who can use this service']] as const).map(([key,label]) => <label className="block text-sm" key={key}>{label}<input value={serviceForm[key]} onChange={event => updateServiceForm({ [key]: event.target.value })} className="mt-1 block w-full rounded-lg border p-3" /></label>)}
                 <div className="flex flex-col gap-2 sm:flex-row">
-                  <Button disabled={pending} onClick={createServicePoint}>
-                    Create service
+                  <Button onClick={createServicePoint} disabled={pending || !directoryCanManage}>
+                    {editingServiceId ? "Save service changes" : "Create service"}
                   </Button>
                 </div>
               </div>
@@ -1674,58 +1717,52 @@ const StaffDashboard = () => {
 
             <div className="overflow-hidden rounded-2xl border bg-white shadow-sm xl:col-span-2">
               <div className="border-b p-5">
-                <h2 className="text-xl">Verified service ecosystem</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Review active services, visibility, verification and intake state.
-                  Confidential locations must not be made public.
-                </p>
+                <h2 className="text-xl">{c("Verified service ecosystem")}</h2>
+                <p className="mb-0 text-sm text-neutral-500">{c("Review active services, visibility, verification and intake state. Confidential locations must not be made public.")}</p>
               </div>
               <div className="border-b bg-[#fbf7f8] p-5">
-                <h3 className="mb-3 text-base">Organization accountability</h3>
+                <h3 className="mb-3 text-base">{c("Organization accountability")}</h3>
                 <div className="grid gap-3 lg:grid-cols-2">
-                  {justiceOrganizations?.slice(0, 6).map((organization) => (
+                  {justiceOrganizations?.filter(organization => matchesWork([organization.name, organization.organizationType])).map((organization) => (
                     <div key={organization._id} className="rounded-xl border bg-white p-4">
                       <div className="mb-2 flex flex-wrap items-center gap-2">
                         <p className="mb-0 font-bold">{organization.name}</p>
                         <StatusPill value={organization.verificationStatus} urgent={organization.verificationStatus !== "verified"} />
-                        <StatusPill value={organization.referralAgreementStatus.replaceAll("_", " ")} urgent={organization.referralAgreementStatus !== "active"} />
+                        <StatusPill value={statusLabel(organization.referralAgreementStatus)} urgent={organization.referralAgreementStatus !== "active"} />
                       </div>
                       <p className="mb-1 text-sm capitalize text-neutral-600">
-                        {organization.organizationType.replaceAll("_", " ")} · {organization.focalPersonName ?? "No focal person"}
+                        {statusLabel(organization.organizationType)} · {organization.focalPersonName ?? "No focal person"}
                       </p>
-                      <p className="mb-0 text-xs text-neutral-500">
-                        SLA: {organization.slaHours ? `${organization.slaHours}h` : "not set"} · Services: {organization.serviceCount} · Referral capable: {organization.activeReferralServiceCount}
-                      </p>
+                      <p className="mb-0 text-xs text-neutral-500">{c("SLA: ")}{organization.slaHours ? `${organization.slaHours}h` : "not set"}{c(" · Services: ")}{organization.serviceCount}{c(" · Referral capable: ")}{organization.activeReferralServiceCount}
+                      </p><Button disabled={!directoryCanManage} variant="outline" className="mt-3" onClick={() => { setEditingOrganizationId(organization._id); setOrganizationForm({ ...initialOrganizationForm, name: organization.name, organizationType: organization.organizationType, verificationStatus: organization.verificationStatus, referralAgreementStatus: organization.referralAgreementStatus, focalPersonName: organization.focalPersonName ?? "", focalPersonEmail: organization.focalPersonEmail ?? "", focalPersonPhone: organization.focalPersonPhone ?? "", slaHours: organization.slaHours === undefined ? "" : String(organization.slaHours), safeguardingReady: organization.safeguardingReady, dataSharingAgreementVersion: organization.dataSharingAgreementVersion ?? "", notes: organization.notes ?? "" }); }}>{c("Edit organisation")}</Button>{<div className="mt-3 space-y-2">{organization.verificationStatus !== "verified" && organization.verificationStatus !== "inactive" && <Button disabled={pending || !directoryCanManage || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { verificationStatus: "verified", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: "Organisation independently verified. Service records still require their own review." }); })}>{c("Verify organisation")}</Button>}{organization.verificationStatus === "verified" && organization.referralAgreementStatus !== "active" && <Button disabled={pending || !directoryCanManage || !organization.safeguardingReady || !organization.dataSharingAgreementVersion || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { referralAgreementStatus: "active", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: "Reviewed referral agreement activated." }); })}>{c("Activate reviewed referral agreement")}</Button>}<p className="text-xs text-neutral-500">{c("A different reviewer must verify this organisation. Activate referrals only after confirming safeguarding readiness and the agreement.")}</p><label className="block text-xs">{c("Review, removal or restoration reason")}<input value={organisationRemovalReasons[organization._id] ?? ""} onChange={event => setOrganisationRemovalReasons(current => ({ ...current, [organization._id]: event.target.value }))} className="mt-1 block w-full rounded-lg border p-2" /></label><Button disabled={pending || !directoryCanManage || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} variant="outline" onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { verificationStatus: organization.verificationStatus === "inactive" ? "draft" : "inactive", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: organization.verificationStatus === "inactive" ? "Organisation restored as a draft. Services require verification before public use." : "Organisation removed from active use. Linked services are deactivated; history is retained." }); })}>{organization.verificationStatus === "inactive" ? "Restore to review" : c("Remove from active directory")}</Button></div>}
                     </div>
                   ))}
                   {justiceOrganizations?.length === 0 && (
-                    <p className="mb-0 text-sm text-neutral-500">No organizations created yet.</p>
+                    <p className="mb-0 text-sm text-neutral-500">{c("No organizations created yet.")}</p>
                   )}
                 </div>
               </div>
               <div className="border-b p-5">
                 <div className="mb-4 flex flex-col justify-between gap-2 lg:flex-row lg:items-end">
                   <div>
-                    <h3 className="mb-1 text-base">Partner referral performance</h3>
-                    <p className="mb-0 text-sm text-neutral-500">
-                      Last 30 days: SLA compliance, first response speed, overdue open referrals, delivery and onward referrals.
-                    </p>
+                    <h3 className="mb-1 text-base">{c("Partner referral performance")}</h3>
+                    <p className="mb-0 text-sm text-neutral-500">{c("Last 30 days: SLA compliance, first response speed, overdue open referrals, delivery and onward referrals.")}</p>
                   </div>
                   {partnerPerformance && (
                     <div className="grid gap-2 text-xs text-neutral-600 sm:grid-cols-5">
-                      <span className="rounded-full bg-primary/10 px-3 py-1 font-bold text-primary">{partnerPerformance.totals.referrals} referrals</span>
-                      <span className="rounded-full bg-primary/10 px-3 py-1 font-bold text-primary">{partnerPerformance.totals.responded} responded</span>
-                      <span className="rounded-full bg-orange-100 px-3 py-1 font-bold text-orange-800">{partnerPerformance.totals.overdueOpen} overdue</span>
-                      <span className="rounded-full bg-teal-100 px-3 py-1 font-bold text-teal-800">{partnerPerformance.totals.delivered} delivered</span>
-                      <span className="rounded-full bg-[#f8eaf0] px-3 py-1 font-bold text-primary">{partnerPerformance.totals.onward} onward</span>
+                      <span className="rounded-full bg-primary/10 px-3 py-1 font-bold text-primary">{partnerPerformance.totals.referrals}{c(" referrals")}</span>
+                      <span className="rounded-full bg-primary/10 px-3 py-1 font-bold text-primary">{partnerPerformance.totals.responded}{c(" responded")}</span>
+                      <span className="rounded-full bg-orange-100 px-3 py-1 font-bold text-orange-800">{partnerPerformance.totals.overdueOpen}{c(" overdue")}</span>
+                      <span className="rounded-full bg-teal-100 px-3 py-1 font-bold text-teal-800">{partnerPerformance.totals.delivered}{c(" delivered")}</span>
+                      <span className="rounded-full bg-[#f8eaf0] px-3 py-1 font-bold text-primary">{partnerPerformance.totals.onward}{c(" onward")}</span>
                     </div>
                   )}
                 </div>
                 {partnerPerformance === undefined && (
-                  <p className="mb-0 text-sm text-neutral-500">Loading partner performance...</p>
+                  <BrandLoading compact text={c("Loading partner performance...")}/>
                 )}
                 {partnerPerformance?.partners.length === 0 && (
-                  <p className="mb-0 text-sm text-neutral-500">No referral performance data for this period yet.</p>
+                  <p className="mb-0 text-sm text-neutral-500">{c("No referral performance data for this period yet.")}</p>
                 )}
                 <div className="grid gap-3 xl:grid-cols-2">
                   {partnerPerformance?.partners.slice(0, 8).map((partner) => (
@@ -1735,14 +1772,11 @@ const StaffDashboard = () => {
                         <StatusPill value={`${partner.slaComplianceRate}% SLA`} urgent={partner.slaComplianceRate < 80 && partner.respondedCount > 0} />
                         {partner.overdueOpenCount > 0 && <StatusPill value={`${partner.overdueOpenCount} overdue`} urgent />}
                       </div>
-                      <p className="mb-2 text-sm text-neutral-600">
-                        Response: {partner.responseRate}% · Avg response: {partner.averageResponseHours ?? "n/a"}h · SLA: {partner.slaHours}h
+                      <p className="mb-2 text-sm text-neutral-600">{c("Response: ")}{partner.responseRate}{c("% · Avg response: ")}{partner.averageResponseHours ?? "n/a"}{c("h · SLA: ")}{partner.slaHours}h
                       </p>
-                      <p className="mb-2 text-xs text-neutral-500">
-                        Delivered: {partner.deliveredCount} · Closed: {partner.closedCount} · Onward: {partner.onwardCount}
+                      <p className="mb-2 text-xs text-neutral-500">{c("Delivered: ")}{partner.deliveredCount}{c(" · Closed: ")}{partner.closedCount}{c(" · Onward: ")}{partner.onwardCount}
                       </p>
-                      <p className="mb-0 text-xs text-neutral-500">
-                        Services: {partner.serviceNames.join(", ") || "No linked service names"}
+                      <p className="mb-0 text-xs text-neutral-500">{c("Services: ")}{partner.serviceNames.join(", ") || "No linked service names"}
                       </p>
                     </div>
                   ))}
@@ -1750,18 +1784,16 @@ const StaffDashboard = () => {
               </div>
               <div className="divide-y">
                 {justiceServices === undefined && (
-                  <p className="p-5 text-sm text-neutral-500">Loading services...</p>
+                  <BrandLoading compact text={c("Loading services...")}/>
                 )}
                 {justiceServices?.length === 0 && (
                   <div className="p-10 text-center">
                     <Building2 className="mx-auto mb-3 h-9 w-9 text-primary/40" />
-                    <p className="mb-1 font-bold">No services yet</p>
-                    <p className="mb-0 text-sm text-neutral-500">
-                      Add a service manually or seed QA services for mobile testing.
-                    </p>
+                    <p className="mb-1 font-bold">{c("No services yet")}</p>
+                    <p className="mb-0 text-sm text-neutral-500">{c("Add a service manually or seed QA services for mobile testing.")}</p>
                   </div>
                 )}
-                {justiceServices?.map((service) => (
+                {justiceServices?.filter(service => matchesWork([service.name, service.region, service.district])).map((service) => (
                   <div key={service._id} className="grid gap-4 p-5 lg:grid-cols-[1fr_220px]">
                     <div>
                       <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -1771,15 +1803,13 @@ const StaffDashboard = () => {
                         {!service.active && <StatusPill value="inactive" urgent />}
                       </div>
                       <p className="mb-2 text-sm text-neutral-600">
-                        {service.organizationName ?? "No organisation"} · {service.servicePointType.replaceAll("_", " ")} · {service.district}, {service.region}
+                        {service.organizationName ?? "No organisation"} · {statusLabel(service.servicePointType)} · {service.district}, {service.region}
                       </p>
                       {service.organization && (
-                        <p className="mb-2 text-sm text-neutral-500">
-                          Owner status: {service.organization.verificationStatus} · Agreement: {service.organization.referralAgreementStatus} · SLA: {service.organization.slaHours ? `${service.organization.slaHours}h` : "not set"}
+                        <p className="mb-2 text-sm text-neutral-500">{c("Owner status: ")}{service.organization.verificationStatus}{c(" · Agreement: ")}{service.organization.referralAgreementStatus}{c(" · SLA: ")}{service.organization.slaHours ? `${service.organization.slaHours}h` : "not set"}
                         </p>
                       )}
-                      <p className="mb-3 text-sm text-neutral-500">
-                        Intake: {service.currentIntakeState.replaceAll("_", " ")} · Capacity: {service.capacity ?? "not set"} · Languages: {service.languages.join(", ") || "not set"}
+                      <p className="mb-3 text-sm text-neutral-500">{c("Intake: ")}{statusLabel(service.currentIntakeState)}{c(" · Capacity: ")}{service.capacity ?? "not set"}{c(" · Languages: ")}{service.languages.join(", ") || "not set"}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {service.issueCategories.slice(0, 6).map((category) => (
@@ -1790,21 +1820,16 @@ const StaffDashboard = () => {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <textarea value={serviceDecisionReasons[service._id] ?? ""} onChange={(event) => setServiceDecisionReasons((current) => ({ ...current, [service._id]: event.target.value }))} className="min-h-[72px] rounded-xl border bg-white p-3 text-sm" placeholder="Verification or deactivation reason (10+ characters)" aria-label={`Decision reason for ${service.name}`} />
-                      {service.verificationStatus !== "verified" ? <><input value={serviceEvidence[service._id]?.source ?? service.source ?? ""} onChange={(event) => setServiceEvidence((current) => ({ ...current, [service._id]: { source: event.target.value, authority: current[service._id]?.authority ?? service.verifyingAuthority ?? "" } }))} className="h-11 rounded-xl border bg-white px-3 text-sm" placeholder="Checked source (official URL or named contact)" aria-label={`Checked source for ${service.name}`} /><input value={serviceEvidence[service._id]?.authority ?? service.verifyingAuthority ?? ""} onChange={(event) => setServiceEvidence((current) => ({ ...current, [service._id]: { source: current[service._id]?.source ?? service.source ?? "", authority: event.target.value } }))} className="h-11 rounded-xl border bg-white px-3 text-sm" placeholder="Verifying authority" aria-label={`Verifying authority for ${service.name}`} /><p className="text-xs text-neutral-500">A different LSF reviewer must confirm this source and the service contact.</p></> : null}
+                      <Button disabled={!directoryCanManage} variant="outline" onClick={() => { setEditingServiceId(service._id); setServiceEditReason(""); setServiceForm({ ...initialServiceForm, name: service.name, organizationId: service.organizationId ?? "", organizationName: service.organizationName ?? "", servicePointType: service.servicePointType, classification: service.classification, visibility: service.visibility, verificationStatus: service.verificationStatus, region: service.region, district: service.district, latitude: service.latitude?.toString() ?? "", longitude: service.longitude?.toString() ?? "", physicalLocation: service.physicalLocation ?? "", serviceCoverageRegions: service.serviceCoverageRegions.join(", "), eligibility: service.eligibility ?? "", issueCategories: service.issueCategories.join(", "), serviceTypes: service.serviceTypes.join(", "), phone: service.phone ?? "", openingHours: service.openingHours ?? "", currentIntakeState: service.currentIntakeState, capacity: service.capacity === undefined ? "" : String(service.capacity), languages: service.languages.join(", "), referralCapability: service.referralCapability, walkIn: service.walkIn, appointmentRequired: service.appointmentRequired, remoteSupport: service.remoteSupport, phoneSupport: service.phoneSupport, emergencyCapability: service.emergencyCapability, privacyAvailable: service.privacyAvailable, genderSensitive: service.genderSensitive }); }}>{c("Edit service")}</Button>
+                      <textarea value={serviceDecisionReasons[service._id] ?? ""} onChange={(event) => setServiceDecisionReasons((current) => ({ ...current, [service._id]: event.target.value }))} className="min-h-[72px] rounded-xl border bg-white p-3 text-sm" placeholder={c("Verification or deactivation reason (10+ characters)")} aria-label={`Decision reason for ${service.name}`} />
+                      {service.verificationStatus !== "verified" ? <><input value={serviceEvidence[service._id]?.source ?? service.source ?? ""} onChange={(event) => setServiceEvidence((current) => ({ ...current, [service._id]: { source: event.target.value, authority: current[service._id]?.authority ?? service.verifyingAuthority ?? "" } }))} className="h-11 rounded-xl border bg-white px-3 text-sm" placeholder={c("Checked source (official URL or named contact)")} aria-label={`Checked source for ${service.name}`} /><input value={serviceEvidence[service._id]?.authority ?? service.verifyingAuthority ?? ""} onChange={(event) => setServiceEvidence((current) => ({ ...current, [service._id]: { source: current[service._id]?.source ?? service.source ?? "", authority: event.target.value } }))} className="h-11 rounded-xl border bg-white px-3 text-sm" placeholder={c("Verifying authority")} aria-label={`Verifying authority for ${service.name}`} /><p className="text-xs text-neutral-500">{c("A different LSF reviewer must confirm this source and the service contact.")}</p></> : null}
                       {service.verificationStatus !== "verified" && (
-                        <Button disabled={pending} onClick={() => setServiceVerified(service._id)}>
-                          Verify
-                        </Button>
+                        <Button disabled={pending || !directoryCanManage} onClick={() => setServiceVerified(service._id)}>{c("Verify")}</Button>
                       )}
-                      {service.active ? (
-                        <Button disabled={pending} variant="outline" onClick={() => deactivateService(service._id)}>
-                          Deactivate
-                        </Button>
+                      {service.verificationStatus !== "inactive" ? (
+                        <Button disabled={pending || !directoryCanManage} variant="outline" onClick={() => deactivateService(service._id)}>{c("Remove from active directory")}</Button>
                       ) : null}
-                      <p className="mb-0 rounded-xl bg-[#fbf7f8] p-3 text-xs text-neutral-600">
-                        Public app can only show active, verified, public service records.
-                      </p>
+                      <p className="mb-0 rounded-xl bg-[#fbf7f8] p-3 text-xs text-neutral-600">{c("Public app can only show active, verified, public service records.")}</p>
                     </div>
                   </div>
                 ))}
@@ -1815,57 +1840,48 @@ const StaffDashboard = () => {
           <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
             <div className="flex flex-col justify-between gap-3 border-b p-5 lg:flex-row lg:items-center">
               <div>
-                <h2 className="text-xl">Assignment offer monitor</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Track provider offers, expiry windows, and stalled assignment
-                  handoffs.
-                </p>
+                <h2 className="text-xl">{c("Assignment offer monitor")}</h2>
+                <p className="mb-0 text-sm text-neutral-500">{c("Track provider offers, expiry windows, and stalled assignment handoffs.")}</p>
               </div>
               <div className="flex flex-col gap-2 sm:flex-row">
-                <select
+                {!compactWorkspace && (<select
                   value={assignmentStatus}
                   onChange={(event) =>
                     setAssignmentStatus(event.target.value as typeof assignmentStatus)
                   }
                   className="h-11 rounded-xl border bg-white px-3 text-sm"
                 >
-                  <option value="offered">Offered</option>
-                  <option value="accepted">Accepted</option>
-                  <option value="declined">Declined</option>
-                  <option value="expired">Expired</option>
-                  <option value="ended">Ended</option>
-                </select>
+                  <option value="offered">{c("Offered")}</option>
+                  <option value="accepted">{c("Accepted")}</option>
+                  <option value="declined">{c("Declined")}</option>
+                  <option value="expired">{c("Expired")}</option>
+                  <option value="ended">{c("Ended")}</option>
+                </select>)}
                 <Button
                   disabled={pending}
                   variant="outline"
                   onClick={expireStaleOffersNow}
-                >
-                  Expire stale offers now
-                </Button>
+                >{c("Expire stale offers now")}</Button>
               </div>
             </div>
             <div className="divide-y">
               {assignmentOffers === undefined && (
-                <p className="p-5 text-sm text-neutral-500">
-                  Loading assignment offers...
-                </p>
+                <BrandLoading compact text={c("Loading assignment offers...")}/>
               )}
               {assignmentOffers?.length === 0 && (
                 <div className="p-10 text-center">
                   <UserRoundCheck className="mx-auto mb-3 h-9 w-9 text-primary/40" />
-                  <p className="mb-1 font-bold">No assignment offers in this status</p>
-                  <p className="mb-0 text-sm text-neutral-500">
-                    New provider offers and expired handoffs will appear here.
-                  </p>
+                  <p className="mb-1 font-bold">{c("No assignment offers in this status")}</p>
+                  <p className="mb-0 text-sm text-neutral-500">{c("New provider offers and expired handoffs will appear here.")}</p>
                 </div>
               )}
-              {assignmentOffers?.map((item) => {
+              {assignmentOffers?.filter(item => matchesWork([item.case?.publicId, item.assignee?.name]) && (!searchParams.get("offer") || item.assignment._id === searchParams.get("offer"))).map((item) => {
                 const expiresAt = item.history.expiresAt;
                 const isStale = item.history.isOverdue;
                 return (
                   <div
                     key={item.assignment._id}
-                    className="grid gap-4 p-5 lg:grid-cols-[1fr_270px]"
+                    className="work-decision-row"
                   >
                     <div>
                       <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -1878,13 +1894,12 @@ const StaffDashboard = () => {
                         />
                         {item.case && (
                           <StatusPill
-                            value={item.case.status.replaceAll("_", " ")}
+                            value={statusLabel(item.case.status)}
                             urgent={item.case.priority !== "standard"}
                           />
                         )}
                       </div>
-                      <p className="mb-2 text-sm text-neutral-600">
-                        Offered to {item.assignee?.name ?? "Unknown provider"} by{" "}
+                      <p className="mb-2 text-sm text-neutral-600">{c("Offered to ")}{item.assignee?.name ?? "Unknown provider"} by{" "}
                         {item.offeredBy?.name ?? "LSF staff"}
                       </p>
                       {item.case?.summary && (
@@ -1899,13 +1914,13 @@ const StaffDashboard = () => {
                       )}
                       <div className="mt-3 grid gap-2 text-xs text-neutral-600 sm:grid-cols-2">
                         <div className="rounded-xl border bg-white p-3">
-                          <p className="mb-1 font-bold text-neutral-800">Availability at offer</p>
+                          <p className="mb-1 font-bold text-neutral-800">{c("Availability at offer")}</p>
                           <p className="mb-0 capitalize">
-                            {item.history.availabilityStatus.replaceAll("_", " ")}
+                            {statusLabel(item.history.availabilityStatus)}
                           </p>
                         </div>
                         <div className="rounded-xl border bg-white p-3">
-                          <p className="mb-1 font-bold text-neutral-800">Response evidence</p>
+                          <p className="mb-1 font-bold text-neutral-800">{c("Response evidence")}</p>
                           <p className="mb-0">
                             {item.history.responseHours !== null
                               ? `${item.history.responseHours} hours after offer`
@@ -1915,32 +1930,28 @@ const StaffDashboard = () => {
                       </div>
                       {item.history.availabilityOverrideReason && (
                         <p className="mt-3 rounded-xl border border-orange-200 bg-orange-50 p-3 text-sm text-orange-900">
-                          <span className="font-bold">Availability override:</span>{" "}
+                          <span className="font-bold">{c("Availability override:")}</span>{" "}
                           {item.history.availabilityOverrideReason}
                         </p>
                       )}
                     </div>
                     <div className="rounded-xl border bg-[#fbf7f8] p-4 text-sm">
-                      <p className="mb-2 font-bold">Offer timing</p>
-                      <p className="mb-1 text-neutral-600">
-                        Offered: {formatDate(item.assignment.offeredAt)}
+                      <p className="mb-2 font-bold">{c("Offer timing")}</p>
+                      <p className="mb-1 text-neutral-600">{c("Offered: ")}{formatDate(item.assignment.offeredAt)}
                       </p>
-                      <p className={`mb-3 ${isStale ? "font-bold text-orange-700" : "text-neutral-600"}`}>
-                        Expires: {formatDate(expiresAt)}
+                      <p className={`mb-3 ${isStale ? "font-bold text-orange-700" : "text-neutral-600"}`}>{c("Expires: ")}{formatDate(expiresAt)}
                       </p>
                       {item.assignment.respondedAt && (
-                        <p className="mb-1 text-neutral-600">
-                          Responded: {formatDate(item.assignment.respondedAt)}
+                        <p className="mb-1 text-neutral-600">{c("Responded: ")}{formatDate(item.assignment.respondedAt)}
                         </p>
                       )}
                       {item.assignment.endedAt && (
-                        <p className="mb-3 text-neutral-600">
-                          Ended: {formatDate(item.assignment.endedAt)}
+                        <p className="mb-3 text-neutral-600">{c("Ended: ")}{formatDate(item.assignment.endedAt)}
                         </p>
                       )}
                       {item.assignment.reason && (
                         <p className="mb-3 rounded-lg bg-white p-2 text-xs text-neutral-700">
-                          <span className="font-bold">Reason:</span>{" "}
+                          <span className="font-bold">{c("Reason:")}</span>{" "}
                           {item.assignment.reason}
                         </p>
                       )}
@@ -1952,9 +1963,7 @@ const StaffDashboard = () => {
                             setSelectedCaseId(item.case!._id);
                             setTab("cases");
                           }}
-                        >
-                          Open case
-                        </Button>
+                        >{c("Open case")}</Button>
                       )}
                     </div>
                   </div>
@@ -1966,45 +1975,37 @@ const StaffDashboard = () => {
           <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
             <div className="flex flex-col justify-between gap-3 border-b p-5 sm:flex-row sm:items-center">
               <div>
-                <h2 className="text-xl">Case review and reassignment requests</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Review beneficiary concerns without exposing details directly
-                  to the assigned provider.
-                </p>
+                <h2 className="text-xl">{c("Case review and reassignment requests")}</h2>
+                <p className="mb-0 text-sm text-neutral-500">{c("Review beneficiary concerns without exposing details directly to the assigned provider.")}</p>
               </div>
-              <select
+              {!compactWorkspace && (<select
                 value={reviewStatus}
                 onChange={(event) =>
                   setReviewQueueStatus(event.target.value as typeof reviewStatus)
                 }
                 className="h-11 rounded-xl border bg-white px-3 text-sm"
               >
-                <option value="submitted">Submitted</option>
-                <option value="under_review">Under review</option>
-                <option value="resolved">Resolved</option>
-                <option value="declined">Declined</option>
-              </select>
+                <option value="submitted">{c("Submitted")}</option>
+                <option value="under_review">{c("Under review")}</option>
+                <option value="resolved">{c("Resolved")}</option>
+                <option value="declined">{c("Declined")}</option>
+              </select>)}
             </div>
             <div className="divide-y">
               {reviewQueue === undefined && (
-                <p className="p-5 text-sm text-neutral-500">
-                  Loading review requests...
-                </p>
+                <BrandLoading compact text={c("Loading review requests...")}/>
               )}
               {reviewQueue?.length === 0 && (
                 <div className="p-10 text-center">
                   <ShieldCheck className="mx-auto mb-3 h-9 w-9 text-primary/40" />
-                  <p className="mb-1 font-bold">No review requests in this queue</p>
-                  <p className="mb-0 text-sm text-neutral-500">
-                    Beneficiary concerns and reassignment requests will appear
-                    here.
-                  </p>
+                  <p className="mb-1 font-bold">{c("No review requests in this queue")}</p>
+                  <p className="mb-0 text-sm text-neutral-500">{c("Beneficiary concerns and reassignment requests will appear here.")}</p>
                 </div>
               )}
-              {reviewQueue?.map((item) => (
+              {reviewQueue?.filter(item => matchesWork([item.case?.publicId, item.review.note, item.requester?.name]) && (!searchParams.get("review") || item.review._id === searchParams.get("review"))).map((item) => (
                 <div
                   key={item.review._id}
-                  className="grid gap-4 p-5 lg:grid-cols-[1fr_260px]"
+                  className="work-decision-row"
                 >
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -2012,16 +2013,15 @@ const StaffDashboard = () => {
                         {item.case?.publicId ?? "Case unavailable"}
                       </h3>
                       <StatusPill
-                        value={item.review.status.replaceAll("_", " ")}
+                        value={statusLabel(item.review.status)}
                         urgent={item.review.reason === "safety_concern"}
                       />
                       <StatusPill
-                        value={item.review.reason.replaceAll("_", " ")}
+                        value={statusLabel(item.review.reason)}
                         urgent={item.review.reason === "safety_concern"}
                       />
                     </div>
-                    <p className="mb-2 text-sm text-neutral-600">
-                      Requested by {item.requester?.name ?? "Beneficiary"} on{" "}
+                    <p className="mb-2 text-sm text-neutral-600">{c("Requested by ")}{item.requester?.name ?? "Beneficiary"} on{" "}
                       {formatDate(item.review.createdAt)}
                     </p>
                     {item.review.note && (
@@ -2030,30 +2030,22 @@ const StaffDashboard = () => {
                       </p>
                     )}
                     {item.review.resolutionNote && (
-                      <p className="mt-3 whitespace-pre-wrap rounded-xl border p-3 text-sm text-neutral-700">
-                        Resolution: {item.review.resolutionNote}
+                      <p className="mt-3 whitespace-pre-wrap rounded-xl border p-3 text-sm text-neutral-700">{c("Resolution: ")}{item.review.resolutionNote}
                       </p>
                     )}
                     {["submitted", "under_review"].includes(item.review.status) && (
                       <div className="mt-3">
-                        <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
-                          Staff resolution note
-                        </label>
+                        <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">{c("Decision and next step")}</label>
                         <Textarea
                           value={reviewNotesById[item.review._id] ?? ""}
-                          onChange={(event) =>
-                            setReviewNotesById((current) => ({
-                              ...current,
-                              [item.review._id]: event.target.value,
-                            }))
-                          }
-                          placeholder="Record what LSF reviewed, the decision, and the safe next step for the beneficiary."
+                          onChange={(event) => {
+                            setReviewDecision(null);
+                            setReviewNotesById((current) => ({ ...current, [item.review._id]: event.target.value }));
+                          }}
+                          placeholder={c("What did you review? What should happen next?")}
                           className="min-h-[92px]"
                         />
-                        <p className="mb-0 mt-2 text-xs text-neutral-500">
-                          Keep this beneficiary-safe. Do not include internal
-                          disciplinary details or sensitive provider-side notes.
-                        </p>
+                        <p className="mb-0 mt-2 text-xs text-neutral-500">{c("Keep this beneficiary-safe. Do not include internal disciplinary details or sensitive provider-side notes.")}</p>
                       </div>
                     )}
                   </div>
@@ -2065,23 +2057,17 @@ const StaffDashboard = () => {
                           setSelectedCaseId(item.case!._id);
                           setTab("cases");
                         }}
-                      >
-                        Open case
-                      </Button>
+                      >{c("Open case")}</Button>
                     )}
                     {item.case && ["submitted", "under_review"].includes(item.review.status) && (
-                      <div className="rounded-xl border bg-[#fbf7f8] p-3">
-                        <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500">
-                          Replacement provider
-                        </label>
+                      <details className="rounded-xl border bg-[#fbf7f8] p-3"><summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold text-primary">{c("Review another helper")}</summary>
+                        <p className="text-sm text-neutral-600">{c("Check the matching reasons before offering the case to another helper.")}</p>
                         <Button
                           type="button"
                           variant="outline"
                           className="mb-2 w-full"
                           onClick={() => setSelectedCaseId(item.case!._id)}
-                        >
-                          Load matching evidence
-                        </Button>
+                        >{c("Load matching evidence")}</Button>
                         {selectedCaseId === item.case._id && recommendations && (
                           <div className="mb-2 space-y-2">
                             {recommendations.slice(0, 3).map((provider) => (
@@ -2095,18 +2081,17 @@ const StaffDashboard = () => {
                                   <span className="font-bold text-neutral-800">
                                     {provider.name}
                                   </span>
-                                  <span className="rounded-full bg-primary/10 px-2 py-0.5 font-bold text-primary">
-                                    Score {provider.score}
+                                  <span className="rounded-full bg-primary/10 px-2 py-0.5 font-bold text-primary">{c("Score ")}{provider.score}
                                   </span>
                                 </div>
                                 <p className="mb-1 capitalize text-neutral-500">
-                                  {provider.role.replaceAll("_", " ")}
+                                  {statusLabel(provider.role)}
                                   {provider.district ? ` · ${provider.district}` : ""}
                                   {provider.region ? `, ${provider.region}` : ""}
                                   {` · ${provider.activeLoad} active case${provider.activeLoad === 1 ? "" : "s"}`}
                                 </p>
                                 <p className="mb-0 text-neutral-600">
-                                  {provider.reasons.slice(0, 3).join(" · ")}
+                                  {provider.reasons.slice(0, 3).join(" · ")}{provider.distanceKm !== null ? ` · ${provider.distanceKm.toFixed(1)} km (${provider.distanceSource === "current_location" ? "current location" : "office"})` : ""}
                                 </p>
                               </button>
                             ))}
@@ -2119,12 +2104,12 @@ const StaffDashboard = () => {
                           }
                           className="mb-2 h-10 w-full rounded-lg border bg-white px-3 text-sm"
                         >
-                          <option value="">Select provider</option>
+                          <option value="">{c("Select provider")}</option>
                           {providers?.map((provider) => (
                             <option key={provider.id} value={provider.id}>
                               {provider.name} ·{" "}
-                              {provider.role.replaceAll("_", " ")} ·{" "}
-                              {(provider.availabilityStatus ?? "accepting_cases").replaceAll("_", " ")}
+                              {statusLabel(provider.role)} ·{" "}
+                              {statusLabel((provider.availabilityStatus ?? "unknown"))}
                             </option>
                           ))}
                         </select>
@@ -2132,7 +2117,7 @@ const StaffDashboard = () => {
                           <Textarea
                             value={reassignmentOverrideReason}
                             onChange={(event) => setReassignmentOverrideReason(event.target.value)}
-                            placeholder="Required: explain why staff is assigning a paused or unavailable provider."
+                            placeholder={c("Required: confirm provider availability and explain this capacity exception.")}
                             className="mb-2 min-h-[78px] bg-white text-sm"
                           />
                         )}
@@ -2146,10 +2131,8 @@ const StaffDashboard = () => {
                             )
                           }
                           className="w-full"
-                        >
-                          Reassign and offer
-                        </Button>
-                      </div>
+                        >{c("Reassign and offer")}</Button>
+                      </details>
                     )}
                     {item.review.status === "submitted" && (
                       <Button
@@ -2157,9 +2140,7 @@ const StaffDashboard = () => {
                         onClick={() =>
                           decideReviewRequest(item.review._id, "under_review")
                         }
-                      >
-                        Mark under review
-                      </Button>
+                      >{c("Mark under review")}</Button>
                     )}
                     {["submitted", "under_review"].includes(item.review.status) && (
                       <>
@@ -2168,18 +2149,14 @@ const StaffDashboard = () => {
                           onClick={() =>
                             decideReviewRequest(item.review._id, "resolved")
                           }
-                        >
-                          Mark resolved
-                        </Button>
+                        >{c("Mark resolved")}</Button>
                         <Button
                           disabled={pending}
                           variant="outline"
                           onClick={() =>
                             decideReviewRequest(item.review._id, "declined")
                           }
-                        >
-                          Decline request
-                        </Button>
+                        >{c("Decline request")}</Button>
                       </>
                     )}
                   </div>
@@ -2192,60 +2169,51 @@ const StaffDashboard = () => {
           <section className="mb-6 overflow-hidden rounded-2xl border bg-white shadow-sm">
             <div className="flex flex-col justify-between gap-3 border-b p-5 sm:flex-row sm:items-center">
               <div>
-                <h2 className="text-xl">Document review</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Review private case documents uploaded by beneficiaries and
-                  case workers.
-                </p>
+                <h2 className="text-xl">{c("Document review")}</h2>
+                <p className="mb-0 text-sm text-neutral-500">{c("Review private case documents uploaded by beneficiaries and case workers.")}</p>
               </div>
-              <select
+              {!compactWorkspace && (<select
                 value={documentStatus}
                 onChange={(event) =>
                   setDocumentStatus(event.target.value as typeof documentStatus)
                 }
                 className="h-11 rounded-xl border bg-white px-3 text-sm"
               >
-                <option value="pending_review">Pending review</option>
-                <option value="accepted">Accepted</option>
-                <option value="rejected">Rejected</option>
-              </select>
+                <option value="pending_review">{c("Pending review")}</option>
+                <option value="accepted">{c("Accepted")}</option>
+                <option value="rejected">{c("Rejected")}</option>
+              </select>)}
             </div>
             <div className="divide-y">
               {documentQueue === undefined && (
-                <p className="p-5 text-sm text-neutral-500">
-                  Loading documents...
-                </p>
+                <BrandLoading compact text={c("Loading documents...")}/>
               )}
               {documentQueue?.length === 0 && (
                 <div className="p-10 text-center">
                   <FileText className="mx-auto mb-3 h-9 w-9 text-primary/40" />
-                  <p className="mb-1 font-bold">No documents in this queue</p>
-                  <p className="mb-0 text-sm text-neutral-500">
-                    Uploaded files will appear here after case access is
-                    created.
-                  </p>
+                  <p className="mb-1 font-bold">{c("No documents in this queue")}</p>
+                  <p className="mb-0 text-sm text-neutral-500">{c("Uploaded files will appear here after case access is created.")}</p>
                 </div>
               )}
-              {documentQueue?.map((item) => (
+              {documentQueue?.filter(item => matchesWork([item.document.name, item.case?.publicId, item.uploader?.name])).map((item) => (
                 <div
                   key={item.document._id}
-                  className="grid gap-4 p-5 lg:grid-cols-[1fr_260px]"
+                  className="work-decision-row"
                 >
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
                       <h3 className="mb-0 text-lg">{item.document.name}</h3>
                       <StatusPill
-                        value={item.document.status.replaceAll("_", " ")}
+                        value={statusLabel(item.document.status)}
                         urgent={item.document.status === "pending_review"}
                       />
                     </div>
                     <p className="mb-2 text-sm text-neutral-600">
                       {item.case?.publicId ?? "Case unavailable"} ·{" "}
-                      {item.document.category.replaceAll("_", " ")} ·{" "}
+                      {statusLabel(item.document.category)} ·{" "}
                       {(item.document.size / 1024 / 1024).toFixed(2)} MB
                     </p>
-                    <p className="mb-0 text-sm text-neutral-500">
-                      Uploaded by {item.uploader?.name ?? "Unknown"} on{" "}
+                    <p className="mb-0 text-sm text-neutral-500">{c("Uploaded by ")}{item.uploader?.name ?? "Unknown"} on{" "}
                       {formatDate(item.document.createdAt)}
                     </p>
                     {item.document.note && (
@@ -2262,9 +2230,7 @@ const StaffDashboard = () => {
                         rel="noreferrer"
                         className="inline-flex h-10 items-center justify-center rounded-lg border px-3 text-sm font-bold text-primary hover:bg-primary/5"
                       >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Open document
-                      </a>
+                        <ExternalLink className="mr-2 h-4 w-4" />{c("Open document")}</a>
                     )}
                     {item.document.status === "pending_review" && (
                       <>
@@ -2273,18 +2239,14 @@ const StaffDashboard = () => {
                           onClick={() =>
                             decideDocument(item.document._id, "accepted")
                           }
-                        >
-                          Accept document
-                        </Button>
+                        >{c("Accept document")}</Button>
                         <Button
                           disabled={pending}
                           variant="outline"
                           onClick={() =>
                             decideDocument(item.document._id, "rejected")
                           }
-                        >
-                          Reject document
-                        </Button>
+                        >{c("Reject document")}</Button>
                       </>
                     )}
                   </div>
@@ -2295,42 +2257,36 @@ const StaffDashboard = () => {
           <section className="overflow-hidden rounded-2xl border bg-white shadow-sm">
             <div className="flex flex-col justify-between gap-3 border-b p-5 sm:flex-row sm:items-center">
               <div>
-                <h2 className="text-xl">Referral consent evidence</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Review signed consent files attached to service referrals before they become accepted audit evidence.
-                </p>
+                <h2 className="text-xl">{c("Referral consent evidence")}</h2>
+                <p className="mb-0 text-sm text-neutral-500">{c("Review signed consent files attached to service referrals before they become accepted audit evidence.")}</p>
               </div>
-              <select
+              {!compactWorkspace && (<select
                 value={consentEvidenceStatus}
                 onChange={(event) =>
                   setConsentEvidenceStatus(event.target.value as typeof consentEvidenceStatus)
                 }
                 className="h-11 rounded-xl border bg-white px-3 text-sm"
               >
-                <option value="pending_review">Pending review</option>
-                <option value="accepted">Accepted</option>
-                <option value="rejected">Rejected</option>
-              </select>
+                <option value="pending_review">{c("Pending review")}</option>
+                <option value="accepted">{c("Accepted")}</option>
+                <option value="rejected">{c("Rejected")}</option>
+              </select>)}
             </div>
             <div className="divide-y">
               {consentEvidenceQueue === undefined && (
-                <p className="p-5 text-sm text-neutral-500">
-                  Loading consent evidence...
-                </p>
+                <BrandLoading compact text={c("Loading consent evidence...")}/>
               )}
               {consentEvidenceQueue?.length === 0 && (
                 <div className="p-10 text-center">
                   <ShieldCheck className="mx-auto mb-3 h-9 w-9 text-primary/40" />
-                  <p className="mb-1 font-bold">No consent evidence in this queue</p>
-                  <p className="mb-0 text-sm text-neutral-500">
-                    Signed referral consent files appear here after staff create referrals.
-                  </p>
+                  <p className="mb-1 font-bold">{c("No consent evidence in this queue")}</p>
+                  <p className="mb-0 text-sm text-neutral-500">{c("Signed referral consent files appear here after staff create referrals.")}</p>
                 </div>
               )}
-              {consentEvidenceQueue?.map((item) => (
+              {consentEvidenceQueue?.filter(item => matchesWork([item.referral.publicId, item.case?.publicId])).map((item) => (
                 <div
                   key={item.consent._id}
-                  className="grid gap-4 p-5 lg:grid-cols-[1fr_260px]"
+                  className="work-decision-row"
                 >
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -2338,7 +2294,7 @@ const StaffDashboard = () => {
                         {item.consent.evidenceFileName ?? "Signed consent evidence"}
                       </h3>
                       <StatusPill
-                        value={(item.consent.reviewStatus ?? "pending_review").replaceAll("_", " ")}
+                        value={statusLabel((item.consent.reviewStatus ?? "pending_review"))}
                         urgent={(item.consent.reviewStatus ?? "pending_review") === "pending_review"}
                       />
                     </div>
@@ -2347,8 +2303,7 @@ const StaffDashboard = () => {
                       {item.case?.publicId ?? "Case unavailable"} ·{" "}
                       {item.destinationService?.name ?? "Destination unavailable"}
                     </p>
-                    <p className="mb-2 text-sm text-neutral-500">
-                      Recorded by {item.recordedBy?.name ?? "Unknown"} for{" "}
+                    <p className="mb-2 text-sm text-neutral-500">{c("Recorded by ")}{item.recordedBy?.name ?? "Unknown"}{c(" for")}{" "}
                       {item.beneficiary?.name ?? "Unknown beneficiary"} on{" "}
                       {formatDate(item.consent.recordedAt)}
                     </p>
@@ -2362,12 +2317,11 @@ const StaffDashboard = () => {
                     )}
                     {item.consent.reviewNotes && (
                       <p className="mt-3 rounded-xl border bg-white p-3 text-sm text-neutral-700">
-                        <span className="font-bold">Review note:</span>{" "}
+                        <span className="font-bold">{c("Review note:")}</span>{" "}
                         {item.consent.reviewNotes}
                       </p>
                     )}
-                    <p className="mt-3 text-xs text-neutral-500">
-                      Retention: {(item.consent.retentionStatus ?? "active").replaceAll("_", " ")}
+                    <p className="mt-3 text-xs text-neutral-500">{c("Retention: ")}{statusLabel((item.consent.retentionStatus ?? "active"))}
                       {item.consent.retentionUntil ? ` until ${formatDate(item.consent.retentionUntil)}` : ""}
                     </p>
                   </div>
@@ -2379,9 +2333,7 @@ const StaffDashboard = () => {
                         rel="noreferrer"
                         className="inline-flex h-10 items-center justify-center rounded-lg border px-3 text-sm font-bold text-primary hover:bg-primary/5"
                       >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Open consent file
-                      </a>
+                        <ExternalLink className="mr-2 h-4 w-4" />{c("Open consent file")}</a>
                     )}
                     {(item.consent.reviewStatus ?? "pending_review") === "pending_review" && (
                       <>
@@ -2390,18 +2342,14 @@ const StaffDashboard = () => {
                           onClick={() =>
                             decideConsentEvidence(item.consent._id, "accepted")
                           }
-                        >
-                          Accept consent evidence
-                        </Button>
+                        >{c("Accept consent evidence")}</Button>
                         <Button
                           disabled={pending}
                           variant="outline"
                           onClick={() =>
                             decideConsentEvidence(item.consent._id, "rejected")
                           }
-                        >
-                          Reject consent evidence
-                        </Button>
+                        >{c("Reject consent evidence")}</Button>
                       </>
                     )}
                   </div>
@@ -2411,17 +2359,15 @@ const StaffDashboard = () => {
           </section>
           </>
         ) : tab === "requests" ? (
-          <section className="grid min-h-[600px] overflow-hidden rounded-2xl border bg-white shadow-sm lg:grid-cols-[390px_1fr]">
+          <section className={`work-record-browser ${selectedCaseId ? "has-record" : ""}`}>
             <div
               className={`${detail ? "hidden lg:block" : "block"} border-r border-neutral-200`}
             >
-              <div className="border-b p-4">
+              {!compactWorkspace && <div className="border-b p-4">
                 <label
                   className="mb-2 block text-xs font-bold uppercase tracking-wider text-neutral-500"
                   htmlFor="request-status"
-                >
-                  Queue
-                </label>
+                >{c("Queue")}</label>
                 <select
                   id="request-status"
                   value={requestStatus}
@@ -2430,30 +2376,24 @@ const StaffDashboard = () => {
                   }
                   className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
                 >
-                  <option value="all">Open requests</option>
-                  <option value="submitted">New</option>
-                  <option value="under_review">Under review</option>
-                  <option value="waiting_for_information">
-                    Waiting for information
-                  </option>
+                  <option value="all">{c("Open requests")}</option>
+                  <option value="submitted">{c("New")}</option>
+                  <option value="under_review">{c("Under review")}</option>
+                  <option value="waiting_for_information">{c("Waiting for information")}</option>
                 </select>
-              </div>
+              </div>}
               <div className="max-h-[680px] overflow-y-auto">
                 {requests === undefined && (
-                  <p className="p-5 text-sm text-neutral-500">
-                    Loading secure queue...
-                  </p>
+                  <BrandLoading compact text={c("Loading secure queue...")}/>
                 )}
                 {requests?.length === 0 && (
                   <div className="p-8 text-center">
                     <CheckCircle2 className="mx-auto mb-3 h-8 w-8 text-teal-600" />
-                    <p className="mb-1 font-bold">Queue clear</p>
-                    <p className="mb-0 text-sm text-neutral-500">
-                      No requests match this filter.
-                    </p>
+                    <p className="mb-1 font-bold">{c("Queue clear")}</p>
+                    <p className="mb-0 text-sm text-neutral-500">{c("No requests match this filter.")}</p>
                   </div>
                 )}
-                {requests?.map((request) => (
+                {requests?.filter(request => matchesWork([request.publicId, request.description, request.district]) && (!searchParams.get("request") || request._id === searchParams.get("request"))).map((request) => (
                   <button
                     key={request._id}
                     onClick={() => selectRequest(request)}
@@ -2488,16 +2428,13 @@ const StaffDashboard = () => {
             </div>
 
             <div
-              className={`${detail ? "block" : "hidden lg:flex"} min-w-0 flex-col`}
+              className={`${detail ? "block" : "hidden"} min-w-0 flex-col`}
             >
               {!detail ? (
                 <div className="m-auto max-w-sm p-8 text-center">
                   <ShieldCheck className="mx-auto mb-4 h-12 w-12 text-primary/40" />
-                  <h2 className="mb-2 text-xl">Select a request</h2>
-                  <p className="mb-0 text-sm text-neutral-500">
-                    Opening a request is recorded in the audit trail. Only use
-                    information necessary to coordinate assistance.
-                  </p>
+                  <h2 className="mb-2 text-xl">{c("Select a request")}</h2>
+                  <p className="mb-0 text-sm text-neutral-500">{c("Opening a request is recorded in the audit trail. Only use information necessary to coordinate assistance.")}</p>
                 </div>
               ) : (
                 <div className="p-4 sm:p-7">
@@ -2505,9 +2442,7 @@ const StaffDashboard = () => {
                     onClick={() => setDetail(null)}
                     className="mb-5 flex items-center gap-2 text-sm font-bold text-primary lg:hidden"
                   >
-                    <ArrowLeft className="h-4 w-4" />
-                    Back to queue
-                  </button>
+                    <ArrowLeft className="h-4 w-4" />{c("Back to queue")}</button>
                   <div className="mb-6 flex flex-col justify-between gap-3 border-b pb-5 sm:flex-row sm:items-start">
                     <div>
                       <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -2522,8 +2457,7 @@ const StaffDashboard = () => {
                           urgent={detail.request.urgency === "immediate_safety"}
                         />
                       </div>
-                      <p className="mb-0 text-sm text-neutral-500">
-                        Submitted {formatDate(detail.request.submittedAt)}
+                      <p className="mb-0 text-sm text-neutral-500">{c("Submitted ")}{formatDate(detail.request.submittedAt)}
                       </p>
                     </div>
                     <select
@@ -2538,83 +2472,75 @@ const StaffDashboard = () => {
                       }
                       className="h-10 rounded-xl border bg-white px-3 text-sm"
                     >
-                      <option value="under_review">Under review</option>
-                      <option value="waiting_for_information">
-                        Waiting for information
-                      </option>
+                      <option value="under_review">{c("Under review")}</option>
+                      <option value="waiting_for_information">{c("Waiting for information")}</option>
                     </select>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                     <Info
-                      label="Beneficiary"
+                      label={c("Beneficiary")}
                       value={detail.beneficiary?.name ?? "Account unavailable"}
                     />
                     <Info
-                      label="Safe contact"
-                      value={(
+                      label={c("Safe contact")}
+                      value={statusLabel((
                         detail.request.safeContactMethod ?? "Not provided"
-                      ).replaceAll("_", " ")}
+                      ))}
                     />
                     <Info
-                      label="Support language"
+                      label={c("Support language")}
                       value={languageLabel(detail.request.preferredLanguage, detail.request.preferredLanguageOther)}
                     />
                     <Info
-                      label="Location"
+                      label={c("Location")}
                       value={`${detail.request.district ?? "-"}, ${detail.request.region ?? "-"}`}
                     />
                     <Info
-                      label="Urgency"
-                      value={(detail.request.urgency ?? "standard").replaceAll(
-                        "_",
-                        " ",
-                      )}
+                      label={c("Urgency")}
+                      value={statusLabel((detail.request.urgency ?? "standard"))}
                     />
                   </div>
                   <div className="mt-6 rounded-2xl bg-[#f8f2f4] p-5">
-                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-primary">
-                      What happened
-                    </p>
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-primary">{c("What happened")}</p>
                     <p className="mb-0 whitespace-pre-wrap text-base leading-7">
                       {detail.request.description}
                     </p>
                   </div>
                   <div className="mt-5 grid gap-4 md:grid-cols-2">
                     <Info
-                      label="Issue selected"
-                      value={detail.request.issueCategory?.replaceAll("_", " ") ?? "Not selected"}
+                      label={c("Issue selected")}
+                      value={statusLabel(detail.request.issueCategory) ?? "Not selected"}
                     />
                     <Info
-                      label="Find Help service"
+                      label={c("Find Help service")}
                       value={detail.sourceService ? `${detail.sourceService.name} · ${detail.sourceService.district}, ${detail.sourceService.region}${!detail.sourceService.active || detail.sourceService.verificationStatus !== "verified" ? " (verify before referral)" : ""}` : "None selected"}
                     />
                     <Info
-                      label="Help requested"
+                      label={c("Help requested")}
                       value={detail.request.desiredHelp ?? "Not provided"}
                     />
                     <Info
-                      label="When it happened"
-                      value={detail.request.occurredAt ? formatDate(detail.request.occurredAt) : "Not provided"}
+                      label={c("When it happened")}
+                      value={detail.request.occurredAt ? formatDate(detail.request.occurredAt) : c("Not provided")}
                     />
                     <Info
-                      label="People or organisations involved"
+                      label={c("People or organisations involved")}
                       value={detail.request.involvedParties ?? "Not provided"}
                     />
                     <Info
-                      label="Documents available"
-                      value={detail.request.hasDocuments ? "Yes" : "No"}
+                      label={c("Documents available")}
+                      value={detail.request.hasDocuments ? c("Yes") : c("No")}
                     />
                   </div>
+                  <div className="mt-6"><RequestConversation key={detail.request._id} requestId={detail.request._id} /></div>
                   {detail.answers.length > 0 && (
                     <div className="mt-6">
-                      <h3 className="mb-3 text-lg">
-                        Additional intake answers
-                      </h3>
+                      <h3 className="mb-3 text-lg">{c("Additional intake answers")}</h3>
                       <div className="grid gap-3 sm:grid-cols-2">
                         {detail.answers.map((answer) => (
                           <Info
                             key={answer._id}
-                            label={answer.questionKey.replaceAll("_", " ")}
+                            label={statusLabel(answer.questionKey)}
                             value={answer.value}
                           />
                         ))}
@@ -2623,18 +2549,15 @@ const StaffDashboard = () => {
                   )}
                   <div className="mt-7 border-t pt-6">
                     <div className="mb-4">
-                      <h3 className="mb-1 text-lg">Create accountable case</h3>
-                      <p className="mb-0 text-sm text-neutral-500">
-                        Use a factual minimum-necessary summary. Do not copy
-                        unrelated sensitive details.
-                      </p>
+                      <h3 className="mb-1 text-lg">{c("Create accountable case")}</h3>
+                      <p className="mb-0 text-sm text-neutral-500">{c("Use a factual minimum-necessary summary. Do not copy unrelated sensitive details.")}</p>
                     </div>
                     <Textarea
                       value={summary}
                       onChange={(event) => setSummary(event.target.value)}
                       maxLength={3000}
                       className="min-h-28"
-                      aria-label="Case summary"
+                      aria-label={c("Case summary")}
                     />
                     <div className="mt-3 flex flex-col gap-3 sm:flex-row">
                       <select
@@ -2644,16 +2567,16 @@ const StaffDashboard = () => {
                         }
                         className="h-11 rounded-xl border bg-white px-3 text-sm sm:w-52"
                       >
-                        <option value="standard">Standard priority</option>
-                        <option value="urgent">Urgent</option>
-                        <option value="safeguarding">Safeguarding</option>
+                        <option value="standard">{c("Standard priority")}</option>
+                        <option value="urgent">{c("Urgent")}</option>
+                        <option value="safeguarding">{c("Safeguarding")}</option>
                       </select>
                       <Button
                         disabled={pending}
                         onClick={convertToCase}
                         className="sm:ml-auto"
                       >
-                        {pending ? "Working..." : "Create case"}
+                        {pending ? "Working..." : c("Create case")}
                       </Button>
                     </div>
                   </div>
@@ -2662,17 +2585,15 @@ const StaffDashboard = () => {
             </div>
           </section>
         ) : (
-          <section className="grid min-h-[600px] overflow-hidden rounded-2xl border bg-white shadow-sm lg:grid-cols-[390px_1fr]">
+          <section className={`work-record-browser ${selectedCaseId ? "has-record" : ""}`}>
             <div
               className={`${selectedCaseId ? "hidden lg:block" : "block"} border-r border-neutral-200`}
             >
               <div className="border-b p-5">
-                <h2 className="text-xl">Cases in your scope</h2>
-                <p className="mb-0 text-sm text-neutral-500">
-                  Ordered by latest activity
-                </p>
+                <h2 className="text-xl">{c("Cases in your scope")}</h2>
+                <p className="mb-0 text-sm text-neutral-500">{c("Ordered by latest activity")}</p>
               </div>
-              {cases?.map((record) => (
+              {cases?.filter(record => matchesWork([record.publicId, record.summary, record.status])).map((record) => (
                 <button
                   key={record._id}
                   onClick={() => setSelectedCaseId(record._id)}
@@ -2690,23 +2611,19 @@ const StaffDashboard = () => {
                   <p className="mb-2 line-clamp-2 text-sm text-neutral-600">
                     {record.summary}
                   </p>
-                  <p className="mb-0 text-xs text-neutral-400">
-                    Updated {formatDate(record.updatedAt)}
+                  <p className="mb-0 text-xs text-neutral-400">{c("Updated ")}{formatDate(record.updatedAt)}
                   </p>
                 </button>
               ))}
             </div>
             <div
-              className={`${selectedCaseId ? "block" : "hidden lg:flex"} min-w-0 flex-col`}
+              className={`${selectedCaseId ? "block" : "hidden"} min-w-0 flex-col`}
             >
               {!selectedCaseId || !caseDetail ? (
                 <div className="m-auto p-8 text-center">
                   <BriefcaseBusiness className="mx-auto mb-4 h-12 w-12 text-primary/40" />
-                  <h2 className="mb-2 text-xl">Select a case</h2>
-                  <p className="mb-0 text-sm text-neutral-500">
-                    Review its accountable timeline and coordinate the next
-                    action.
-                  </p>
+                  <h2 className="mb-2 text-xl">{c("Select a case")}</h2>
+                  <p className="mb-0 text-sm text-neutral-500">{c("Review its accountable timeline and coordinate the next action.")}</p>
                 </div>
               ) : (
                 <div className="p-4 sm:p-7">
@@ -2714,9 +2631,8 @@ const StaffDashboard = () => {
                     onClick={() => setSelectedCaseId(null)}
                     className="mb-5 flex items-center gap-2 text-sm font-bold text-primary lg:hidden"
                   >
-                    <ArrowLeft className="h-4 w-4" />
-                    Back to cases
-                  </button>
+                    <ArrowLeft className="h-4 w-4" />{c("Back to cases")}</button>
+                  <div className="mb-5"><CasePresence caseId={selectedCaseId} /></div>
                   <div className="mb-6 flex flex-wrap items-start justify-between gap-3 border-b pb-5">
                     <div>
                       <div className="mb-2 flex items-center gap-2">
@@ -2726,11 +2642,11 @@ const StaffDashboard = () => {
                           urgent={caseDetail.case.priority !== "standard"}
                         />
                       </div>
-                      <p className="mb-0 text-sm text-neutral-500">
-                        Opened {formatDate(caseDetail.case.createdAt)}
+                      <p className="mb-0 text-sm text-neutral-500">{c("Opened ")}{formatDate(caseDetail.case.createdAt)}
                       </p>
                     </div>
-                    {nextStatuses[caseDetail.case.status]?.length > 0 && (
+                    {caseArea === "finish" && caseDetail.closureReadiness?.canClose && ["resolved", "closed_unresolved"].includes(caseDetail.case.status) && <Button disabled={pending} onClick={() => changeCaseStatus("closed")}>{c("Close case")}</Button>}
+                    {caseArea === "assign" && nextStatuses[caseDetail.case.status]?.length > 0 && (
                       <select
                         defaultValue=""
                         disabled={pending}
@@ -2741,9 +2657,7 @@ const StaffDashboard = () => {
                         }}
                         className="h-10 rounded-xl border bg-white px-3 text-sm"
                       >
-                        <option value="" disabled>
-                          Update status...
-                        </option>
+                        <option value="" disabled>{c("Update status...")}</option>
                         {nextStatuses[caseDetail.case.status].map((status) => (
                           <option
                             key={status}
@@ -2756,39 +2670,31 @@ const StaffDashboard = () => {
                       </select>
                     )}
                   </div>
+                  <nav aria-label={c("Case tasks")} className="work-tabs">{[["next", "Next step"], ["assign", "Choose a helper"], ["meetings", "Meetings"], ["referral", "Other service"], ["finish", "Finish case"], ["history", "History"]].map(([value,label]) => <button key={value} aria-current={caseArea === value ? "page" : undefined} onClick={() => { setCaseArea(value); setStatusReview(null); }} className={`min-h-11 rounded-xl px-3 py-2 text-sm font-semibold ${caseArea === value ? "bg-primary text-white" : "border bg-white"}`}>{label}</button>)}</nav>
+                  {statusReview && <section className="mb-5 rounded-xl bg-teal-50 p-4"><h3>{c("Confirm: ")}{caseLabels[statusReview]}</h3><p>{statusReview === "closed" ? "This ends case work. No new work can be added." : "The person will see this update."}</p><div className="flex gap-2"><Button disabled={pending} onClick={() => changeCaseStatus(statusReview)}>{c("Confirm and save")}</Button><Button variant="outline" disabled={pending} onClick={() => setStatusReview(null)}>{c("Cancel")}</Button></div></section>}
+                  {caseArea === "next" && <section className="mb-5 rounded-2xl bg-teal-50 p-5"><h3>{workCaseJourney(caseDetail.case.status, Boolean(caseDetail.outcome), caseDetail.closureReadiness?.canClose, locale === "sw").title}</h3><p>{workCaseJourney(caseDetail.case.status, Boolean(caseDetail.outcome), caseDetail.closureReadiness?.canClose, locale === "sw").description}</p><Link className="font-bold text-primary" to={`/dashboard/${isSupervisor ? "supervisor" : "staff"}/cases/${caseDetail.case._id}?section=${caseDetail.outcome ? "outcome" : "messages"}`}>{caseDetail.outcome ? "Open the result" : "Open case messages"} →</Link></section>}
+                  {compactWorkspace && <Link to={`/dashboard/${isSupervisor ? "supervisor" : "staff"}/cases/${caseDetail.case._id}`} className="inline-block min-h-12 rounded-xl bg-[#e7f4f1] px-4 py-3 font-semibold text-primary">{c("Open case tools: messages, documents, tasks and appointments →")}</Link>}
                   <div className="rounded-2xl bg-[#f8f2f4] p-5">
-                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-primary">
-                      Case summary
-                    </p>
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-primary">{c("Case summary")}</p>
                     <p className="mb-0 whitespace-pre-wrap leading-7">
                       {caseDetail.case.summary}
                     </p>
                   </div>
-                  {caseDetail.closureReadiness && (
+                  {caseArea === "finish" && caseDetail.closureReadiness && (
                     <div className={`mt-5 rounded-xl border p-4 ${caseDetail.closureReadiness.canClose ? "border-emerald-200 bg-emerald-50" : "border-orange-200 bg-orange-50"}`}>
                       <h3 className="mb-3 flex items-center gap-2 text-base">
-                        <ShieldCheck className="h-5 w-5 text-primary" />
-                        Closure readiness
-                      </h3>
-                      <div className="grid gap-2 sm:grid-cols-2">
-                        <ClosureItem label="Outcome recorded" ready={caseDetail.closureReadiness.requirements.outcomeRecorded} />
-                        <ClosureItem label="Beneficiary-safe summary" ready={caseDetail.closureReadiness.requirements.beneficiarySafeSummary} />
-                        <ClosureItem label="Documents reviewed" ready={caseDetail.closureReadiness.requirements.documentsReviewed} detail={`${caseDetail.closureReadiness.pendingDocumentCount} pending`} />
-                        <ClosureItem label="Feedback requested" ready={caseDetail.closureReadiness.requirements.feedbackRequested} />
-                      </div>
+                        <ShieldCheck className="h-5 w-5 text-primary" />{c("Before you close the case")}</h3>
+                      <div className="grid gap-2 sm:grid-cols-2">{finalChecks.map(check => <Link key={check.key} to={check.key === "reviewRequestsResolved" ? "/dashboard/staff?tab=reviews" : `/dashboard/${isSupervisor ? "supervisor" : "staff"}/cases/${caseDetail.case._id}?section=${check.area}`} className="flex min-h-12 items-center gap-2 rounded-xl border bg-white p-3 text-sm"><span>{caseDetail.closureReadiness!.requirements[check.key] ? "✓" : "○"}</span>{caseDetail.closureReadiness!.requirements[check.key] ? (locale === "sw" ? check.doneSw : check.doneLabel) : (locale === "sw" ? check.sw : check.label)}<span className="ml-auto text-primary">→</span></Link>)}</div>
+                      <p className="mt-3 text-sm">{c("Saving the result asks for feedback. The person does not need to reply before closure.")}</p>
                       {!caseDetail.closureReadiness.canClose && (
-                        <p className="mb-0 mt-3 text-sm font-semibold text-orange-800">
-                          Final close is blocked until every closure requirement is complete.
-                        </p>
+                        <p className="mb-0 mt-3 text-sm font-semibold text-orange-800">{c("Final close is blocked until every closure requirement is complete.")}</p>
                       )}
                     </div>
                   )}
-                  {caseDetail.assignmentHistory.length > 0 && (
+                  {caseArea === "history" && caseDetail.assignmentHistory.length > 0 && (
                     <div className="mt-5 rounded-xl border bg-white p-4">
                       <h3 className="mb-3 flex items-center gap-2 text-base">
-                        <UserRoundCheck className="h-5 w-5 text-primary" />
-                        Assignment history
-                      </h3>
+                        <UserRoundCheck className="h-5 w-5 text-primary" />{c("Assignment history")}</h3>
                       <div className="grid gap-3">
                         {caseDetail.assignmentHistory.map((item) => (
                           <div key={item.assignment._id} className="rounded-xl border bg-[#fbf7f8] p-3">
@@ -2796,23 +2702,19 @@ const StaffDashboard = () => {
                               <span className="font-bold">{item.assigneeName}</span>
                               <StatusPill value={item.assignment.status} urgent={item.history.isOverdue || item.assignment.status === "expired"} />
                               <span className="rounded-full bg-white px-2 py-1 text-xs font-semibold capitalize text-neutral-600">
-                                {item.history.availabilityStatus.replaceAll("_", " ")}
+                                {statusLabel(item.history.availabilityStatus)}
                               </span>
                             </div>
-                            <p className="mb-1 text-sm text-neutral-600">
-                              Offered by {item.offeredByName} on {formatDate(item.assignment.offeredAt)}
+                            <p className="mb-1 text-sm text-neutral-600">{c("Offered by ")}{item.offeredByName} on {formatDate(item.assignment.offeredAt)}
                             </p>
-                            <p className="mb-1 text-xs text-neutral-500">
-                              Expires {formatDate(item.history.expiresAt)} · {item.history.responseHours !== null ? `responded after ${item.history.responseHours}h` : `${item.history.offerAgeHours}h open`}
+                            <p className="mb-1 text-xs text-neutral-500">{c("Expires ")}{formatDate(item.history.expiresAt)} · {item.history.responseHours !== null ? `responded after ${item.history.responseHours}h` : `${item.history.offerAgeHours}h open`}
                             </p>
                             {item.assignment.reason && (
-                              <p className="mb-1 text-xs text-neutral-600">
-                                Reason: {item.assignment.reason}
+                              <p className="mb-1 text-xs text-neutral-600">{c("Reason: ")}{item.assignment.reason}
                               </p>
                             )}
                             {item.history.availabilityOverrideReason && (
-                              <p className="mb-0 rounded-lg border border-orange-200 bg-orange-50 p-2 text-xs text-orange-900">
-                                Override: {item.history.availabilityOverrideReason}
+                              <p className="mb-0 rounded-lg border border-orange-200 bg-orange-50 p-2 text-xs text-orange-900">{c("Override: ")}{item.history.availabilityOverrideReason}
                               </p>
                             )}
                           </div>
@@ -2820,15 +2722,11 @@ const StaffDashboard = () => {
                       </div>
                     </div>
                   )}
-                  {appointmentRequests.length > 0 && (
+                  {caseArea === "meetings" && appointmentRequests.length > 0 && (
                     <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-4">
                       <h3 className="mb-2 flex items-center gap-2 text-base">
-                        <Clock3 className="h-5 w-5 text-primary" />
-                        Appointment requests awaiting confirmation
-                      </h3>
-                      <p className="mb-3 text-sm text-neutral-600">
-                        Choose a final date/time and confirm directly from the beneficiary request.
-                      </p>
+                        <Clock3 className="h-5 w-5 text-primary" />{c("Appointment requests awaiting confirmation")}</h3>
+                      <p className="mb-3 text-sm text-neutral-600">{c("Choose a final date/time and confirm directly from the beneficiary request.")}</p>
                       <div className="mb-3 grid gap-3 md:grid-cols-3">
                         <input
                           type="datetime-local"
@@ -2841,37 +2739,33 @@ const StaffDashboard = () => {
                           onChange={(event) => setAppointmentMode(event.target.value as typeof appointmentMode)}
                           className="h-11 rounded-xl border bg-white px-3 text-sm"
                         >
-                          <option value="phone">Phone</option>
-                          <option value="remote">Remote</option>
-                          <option value="in_person">In person</option>
+                          <option value="phone">{c("Phone")}</option>
+                          <option value="remote">{c("Remote")}</option>
+                          <option value="in_person">{c("In person")}</option>
                         </select>
                         <input
                           value={appointmentLocation}
                           onChange={(event) => setAppointmentLocation(event.target.value)}
                           maxLength={300}
-                          placeholder="Location or call note"
+                          placeholder={c("Location or call note")}
                           className="h-11 rounded-xl border bg-white px-3 text-sm"
                         />
                       </div>
                       <div className="grid gap-3 lg:grid-cols-2">
                         {appointmentRequests.map((event) => (
                           <div key={event._id} className="rounded-xl border bg-white p-3">
-                            <p className="mb-1 text-sm font-bold">{eventDetail(event) ?? "Appointment requested"}</p>
-                            <p className="mb-3 text-xs text-neutral-500">Requested {formatDate(event.occurredAt)}</p>
-                            <Button disabled={pending} size="sm" onClick={() => scheduleRequestedAppointment(event._id)}>
-                              Confirm selected slot
-                            </Button>
+                            <p className="mb-1 text-sm font-bold">{eventDetail(event, locale) ?? c("Appointment requested")}</p>
+                            <p className="mb-3 text-xs text-neutral-500">{c("Requested ")}{formatDate(event.occurredAt)}</p>
+                            <Button disabled={pending} size="sm" onClick={() => scheduleRequestedAppointment(event._id)}>{c("Confirm selected slot")}</Button>
                           </div>
                         ))}
                       </div>
                     </div>
                   )}
-                  {caseDetail.appointments.length > 0 && (
+                  {caseArea === "meetings" && caseDetail.appointments.length > 0 && (
                     <div className="mt-5 rounded-xl border bg-white p-4">
                       <h3 className="mb-3 flex items-center gap-2 text-base">
-                        <Clock3 className="h-5 w-5 text-primary" />
-                        Appointment lifecycle
-                      </h3>
+                        <Clock3 className="h-5 w-5 text-primary" />{c("Meeting results")}</h3>
                       <div className="grid gap-3 sm:grid-cols-2">
                         {caseDetail.appointments.map((appointment) => (
                           <div key={appointment._id} className="rounded-xl border bg-[#fbf7f8] p-3">
@@ -2880,7 +2774,7 @@ const StaffDashboard = () => {
                               <StatusPill value={appointment.status} urgent={appointment.status === "missed" || appointment.status === "cancelled"} />
                             </div>
                             <p className="mb-0 text-sm capitalize text-neutral-600">
-                              {appointment.mode.replaceAll("_", " ")}
+                              {statusLabel(appointment.mode)}
                               {appointment.location ? ` · ${appointment.location}` : ""}
                             </p>
                             {appointment.statusNote && (
@@ -2889,8 +2783,7 @@ const StaffDashboard = () => {
                               </p>
                             )}
                             {appointment.statusUpdatedAt && (
-                              <p className="mb-0 mt-2 text-xs text-neutral-500">
-                                Updated {formatDate(appointment.statusUpdatedAt)}
+                              <p className="mb-0 mt-2 text-xs text-neutral-500">{c("Updated ")}{formatDate(appointment.statusUpdatedAt)}
                               </p>
                             )}
                           </div>
@@ -2898,12 +2791,10 @@ const StaffDashboard = () => {
                       </div>
                     </div>
                   )}
-                  <div className="mt-6 grid gap-6 xl:grid-cols-2">
-                    <div>
+                  <div className="mt-6">
+                    {caseArea === "history" && <div>
                       <h3 className="mb-3 flex items-center gap-2 text-lg">
-                        <Clock3 className="h-5 w-5 text-primary" />
-                        Accountable timeline
-                      </h3>
+                        <Clock3 className="h-5 w-5 text-primary" />{c("Case history")}</h3>
                       <div className="space-y-3">
                         {caseDetail.events.map((event) => (
                           <div
@@ -2914,11 +2805,11 @@ const StaffDashboard = () => {
                               <div className="h-2 w-2 rounded-full bg-primary" />
                             </div>
                             <p className="mb-1 text-sm font-bold">
-                              {eventTitle(event)}
+                              {eventTitle(event, locale)}
                             </p>
-                            {eventDetail(event) && (
+                            {eventDetail(event, locale) && (
                               <p className="mb-1 text-sm text-neutral-600">
-                                {eventDetail(event)}
+                                {eventDetail(event, locale)}
                               </p>
                             )}
                             <p className="mb-0 text-xs text-neutral-500">
@@ -2927,19 +2818,13 @@ const StaffDashboard = () => {
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </div>}
                     <div>
-                      <h3 className="mb-3 flex items-center gap-2 text-lg">
-                        <UserRoundCheck className="h-5 w-5 text-primary" />
-                        Offer assignment
-                      </h3>
+                      {caseArea === "assign" && <><h3 className="mb-3 flex items-center gap-2 text-lg">
+                        <UserRoundCheck className="h-5 w-5 text-primary" />{c("Offer assignment")}</h3>
                       <div className="rounded-xl border p-4">
-                        <p className="mb-4 text-sm text-neutral-600">
-                          Recommended providers are ranked by location, issue
-                          fit, verification, language fit, declared availability,
-                          and current accepted caseload. The provider must accept
-                          before receiving case access.
-                        </p>
+                        <p className="mb-4 text-sm text-neutral-600">{c("Recommended providers are ranked by location, issue fit, verification, language fit, declared availability, and current accepted caseload. The provider must accept before receiving case access.")}</p>
+                        <MatchingLocation key={selectedCaseId} onChange={setMatchingOrigin} />
                         {recommendations && recommendations.length > 0 && (
                           <div className="mb-4 space-y-2">
                             {recommendations.slice(0, 3).map((provider) => (
@@ -2957,7 +2842,7 @@ const StaffDashboard = () => {
                                   </span>
                                 </div>
                                 <p className="mb-1 text-xs capitalize text-neutral-500">
-                                  {provider.role.replaceAll("_", " ")}
+                                  {statusLabel(provider.role)}
                                   {provider.district
                                     ? ` · ${provider.district}`
                                     : ""}
@@ -2967,11 +2852,10 @@ const StaffDashboard = () => {
                                 </p>
                                 <div className="mb-2 flex flex-wrap gap-2 text-[11px] font-semibold">
                                   <span className="rounded-full bg-[#f8f2f4] px-2 py-1 text-primary">
-                                    {(provider.availabilityStatus ?? "accepting_cases").replaceAll("_", " ")}
+                                    {statusLabel((provider.availabilityStatus ?? "unknown"))}
                                   </span>
                                   <span className="rounded-full bg-emerald-50 px-2 py-1 text-emerald-800">
-                                    {provider.remainingCapacity ?? 0}/{provider.weeklyCapacity ?? 0} slots
-                                  </span>
+                                    {provider.weeklyCapacity === null ? c("Capacity not declared") : `${provider.remainingCapacity}/${provider.weeklyCapacity}` + c(" slots")}</span>
                                   {provider.workingHours && (
                                     <span className="rounded-full bg-neutral-100 px-2 py-1 text-neutral-700">
                                       {provider.workingHours}
@@ -2979,11 +2863,10 @@ const StaffDashboard = () => {
                                   )}
                                 </div>
                                 <p className="mb-0 text-xs text-neutral-600">
-                                  {provider.reasons.slice(0, 3).join(" · ")}
+                                  {provider.reasons.slice(0, 3).join(" · ")}{provider.distanceKm !== null ? ` · ${provider.distanceKm.toFixed(1)} km (${provider.distanceSource === "current_location" ? "current location" : "office"})` : ""}
                                 </p>
                                 {provider.availabilityNotes && (
-                                  <p className="mb-0 mt-1 text-xs text-neutral-500">
-                                    Note: {provider.availabilityNotes}
+                                  <p className="mb-0 mt-1 text-xs text-neutral-500">{c("Note: ")}{provider.availabilityNotes}
                                   </p>
                                 )}
                               </button>
@@ -2997,12 +2880,12 @@ const StaffDashboard = () => {
                           }
                           className="h-11 w-full rounded-xl border bg-white px-3 text-sm"
                         >
-                          <option value="">Select service provider</option>
+                          <option value="">{c("Select service provider")}</option>
                           {providers?.map((provider) => (
                             <option key={provider.id} value={provider.id}>
                               {provider.name} ·{" "}
-                              {provider.role.replaceAll("_", " ")} ·{" "}
-                              {(provider.availabilityStatus ?? "accepting_cases").replaceAll("_", " ")}
+                              {statusLabel(provider.role)} ·{" "}
+                              {statusLabel((provider.availabilityStatus ?? "unknown"))}
                             </option>
                           ))}
                         </select>
@@ -3010,7 +2893,7 @@ const StaffDashboard = () => {
                           <Textarea
                             value={assignmentOverrideReason}
                             onChange={(event) => setAssignmentOverrideReason(event.target.value)}
-                            placeholder="Required: explain why staff is assigning a paused or unavailable provider."
+                            placeholder={c("Required: confirm provider availability and explain this capacity exception.")}
                             className="mt-3 min-h-[82px] text-sm"
                           />
                         )}
@@ -3025,120 +2908,18 @@ const StaffDashboard = () => {
                           }
                           onClick={assignProvider}
                           className="mt-3 w-full"
-                        >
-                          Send assignment offer
-                        </Button>
+                        >{c("Send assignment offer")}</Button>
                       </div>
-                      <div className="mt-5 rounded-xl border p-4">
+                      </>}
+                      {caseArea === "referral" && <><CaseReferralRequests key={caseDetail.case._id} caseId={caseDetail.case._id} status={caseDetail.case.status} operations supportHref={isSupervisor ? "/dashboard/supervisor?view=support" : "/dashboard/staff?view=support"} />
+                      {!['resolved','closed_unresolved','closed'].includes(caseDetail.case.status) && <details className="mt-5 rounded-2xl border bg-white p-4"><summary className="cursor-pointer font-semibold text-primary">{c("Add a request with existing permission evidence")}</summary><div className="mt-4 grid gap-3"><p className="text-sm">{c("Use this if you already have a permission statement or signed file. The person still needs to agree before the service is notified.")}</p><label className="grid gap-2 text-sm font-semibold">{c("Which service can help?")}<select value={referralServiceId} onChange={event => { setReferralServiceId(event.target.value); setReferralDestinationUserId(""); }} className="min-h-12 rounded-xl border p-3"><option value="">{c("Choose a service")}</option>{referralCapableServices.map(service => <option key={service._id} value={service._id}>{service.name} · {service.district}</option>)}</select></label><label className="grid gap-2 text-sm font-semibold">{c("Who will receive it? (optional)")}<select value={referralDestinationUserId} onChange={event => setReferralDestinationUserId(event.target.value)} disabled={!referralServiceId || receivingProviders === undefined} className="min-h-12 rounded-xl border p-3"><option value="">{c("Choose a receiving person")}</option>{receivingProviders?.map(person => <option key={person._id} value={person._id}>{person.name}</option>)}</select></label><label className="grid gap-2 text-sm font-semibold">{c("Why is this help needed?")}<Textarea value={referralReason} maxLength={2000} onChange={event => setReferralReason(event.target.value)} /></label><label className="grid gap-2 text-sm font-semibold">{c("Details needed for this help (separate with commas)")}<Textarea value={referralInformationShared} maxLength={1000} onChange={event => setReferralInformationShared(event.target.value)} /></label><label className="grid gap-2 text-sm font-semibold">{c("How was permission recorded?")}<select value={referralConsentMethod} onChange={event => setReferralConsentMethod(event.target.value as typeof referralConsentMethod)} className="min-h-12 rounded-xl border p-3">{[['documented_verbal','Spoken permission, written down'],['written','Written statement'],['sms','Text message'],['email','Email'],['signed_document','Signed document']].map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select></label><label className="grid gap-2 text-sm font-semibold">{c("Permission statement")}<Textarea value={referralConsentStatement} maxLength={2000} onChange={event => setReferralConsentStatement(event.target.value)} /></label><label className="grid gap-2 text-sm font-semibold">{c("Evidence note (optional)")}<Textarea value={referralConsentEvidenceNote} maxLength={1200} onChange={event => setReferralConsentEvidenceNote(event.target.value)} /></label><label className="grid gap-2 text-sm font-semibold">{c("Permission file (required for signed documents)")}<input type="file" accept="application/pdf,image/jpeg,image/png,image/webp" onChange={event => setReferralConsentFile(event.target.files?.[0] ?? null)} className="min-h-12 rounded-xl border p-3" /></label><Button disabled={pending || !referralServiceId || referralReason.trim().length < 12 || referralConsentStatement.trim().length < 20} onClick={() => createCaseReferral()}>{c("Review this request")}</Button></div></details>}
+                      </>}
+
+                      {caseArea === "next" && <div className="mt-5 rounded-xl border p-4">
                         <h3 className="mb-2 flex items-center gap-2 text-base">
-                          <ChevronRight className="h-5 w-5 text-primary" />
-                          Create service referral
-                        </h3>
-                        <p className="mb-4 text-sm text-neutral-600">
-                          Use this when the beneficiary needs support beyond
-                          the current case team. Record the minimum information
-                          proposed for sharing. Only verified public destinations are available. The provider will not be notified until the beneficiary approves.
-                        </p>
-                        <select
-                          value={referralServiceId}
-                          onChange={(event) => setReferralServiceId(event.target.value)}
-                          className="mb-3 h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                        >
-                          <option value="">Select referral destination</option>
-                          {referralCapableServices.map((service) => (
-                            <option key={service._id} value={service._id}>
-                              {service.name} · {service.district}, {service.region} · {service.currentIntakeState.replaceAll("_", " ")}
-                            </option>
-                          ))}
-                        </select>
-                        <select
-                          value={referralDestinationUserId}
-                          onChange={(event) => setReferralDestinationUserId(event.target.value)}
-                          className="mb-3 h-11 w-full rounded-xl border bg-white px-3 text-sm"
-                        >
-                          <option value="">Assign receiving provider account</option>
-                          {providers?.map((provider) => (
-                            <option key={provider.id} value={provider.id}>
-                              {provider.name} · {provider.role.replaceAll("_", " ")} · {(provider.availabilityStatus ?? "accepting_cases").replaceAll("_", " ")}
-                            </option>
-                          ))}
-                        </select>
-                        <Textarea
-                          value={referralReason}
-                          onChange={(event) => setReferralReason(event.target.value)}
-                          placeholder="Why is this referral needed? Include only beneficiary-safe operational context."
-                          className="mb-3 min-h-[92px] text-sm"
-                        />
-                        <Textarea
-                          value={referralInformationShared}
-                          onChange={(event) => setReferralInformationShared(event.target.value)}
-                          placeholder="Comma-separated minimum information shared"
-                          className="mb-3 min-h-[78px] text-sm"
-                        />
-                        <div className="mb-3 rounded-xl border border-orange-200 bg-orange-50 p-3">
-                          <p className="mb-2 text-xs font-bold uppercase tracking-wider text-orange-900">
-                            Prior consent contact (for audit; does not replace in-app approval)
-                          </p>
-                          <select
-                            value={referralConsentMethod}
-                            onChange={(event) => setReferralConsentMethod(event.target.value as typeof referralConsentMethod)}
-                            className="mb-3 h-10 w-full rounded-lg border bg-white px-3 text-sm"
-                          >
-                            <option value="documented_verbal">Documented verbal consent</option>
-                            <option value="written">Written consent</option>
-                            <option value="sms">SMS consent</option>
-                            <option value="email">Email consent</option>
-                            <option value="signed_document">Signed document</option>
-                          </select>
-                          <Textarea
-                            value={referralConsentStatement}
-                            onChange={(event) => setReferralConsentStatement(event.target.value)}
-                            placeholder="Describe the consent discussion; the beneficiary will make the final decision in the app"
-                            className="mb-3 min-h-[86px] bg-white text-sm"
-                          />
-                          <Textarea
-                            value={referralConsentEvidenceNote}
-                            onChange={(event) => setReferralConsentEvidenceNote(event.target.value)}
-                            placeholder="Evidence note: who collected it, when, channel used, and where supporting proof is stored."
-                            className="mb-3 min-h-[76px] bg-white text-sm"
-                          />
-                          <label className="block rounded-lg border border-dashed border-orange-300 bg-white p-3 text-xs text-orange-900">
-                            <span className="mb-1 block font-bold">Signed consent file</span>
-                            <span className="mb-2 block text-neutral-600">
-                              Required when method is signed document. PDF, JPG, or PNG up to 10MB.
-                            </span>
-                            <input
-                              type="file"
-                              accept=".pdf,image/jpeg,image/png"
-                              onChange={(event) => setReferralConsentFile(event.target.files?.[0] ?? null)}
-                              className="block w-full text-xs"
-                            />
-                            {referralConsentFile && (
-                              <span className="mt-2 block text-neutral-600">
-                                Selected: {referralConsentFile.name}
-                              </span>
-                            )}
-                          </label>
-                        </div>
-                        <Button
-                          disabled={pending || !referralServiceId || referralReason.trim().length < 12 || referralConsentStatement.trim().length < 20}
-                          onClick={createCaseReferral}
-                          className="w-full"
-                        >
-                          Propose referral for beneficiary approval
-                        </Button>
-                      </div>
-                      <div className="mt-5 rounded-xl border p-4">
-                        <h3 className="mb-2 flex items-center gap-2 text-base">
-                          <MessageSquareText className="h-5 w-5 text-primary" />
-                          Case communication
-                        </h3>
-                        <p className="mb-0 text-sm text-neutral-500">
-                          Messages remain case-scoped. Staff conversation
-                          controls will follow the participant and safeguarding
-                          workflow.
-                        </p>
-                      </div>
+                          <MessageSquareText className="h-5 w-5 text-primary" />{c("Case communication")}</h3>
+                        <p className="mb-0 text-sm text-neutral-500">{c("Talk to the person and team in the case messages. Use the case tools to add documents, tasks or meeting results.")}</p>
+                      </div>}
                     </div>
                   </div>
                 </div>
@@ -3173,11 +2954,12 @@ function ClosureItem({
   ready: boolean;
   detail?: string;
 }) {
+  const c = useCopy();
   return (
     <div className="rounded-lg border bg-white/80 p-3">
       <div className="flex items-center justify-between gap-2">
         <span className="text-sm font-bold text-neutral-800">{label}</span>
-        <StatusPill value={ready ? "Ready" : "Missing"} urgent={!ready} />
+        <StatusPill value={ready ? c("Ready") : c("Missing")} urgent={!ready} />
       </div>
       {detail && <p className="mb-0 mt-1 text-xs text-neutral-500">{detail}</p>}
     </div>

@@ -1,0 +1,1194 @@
+{
+  "checkedAt": "2026-10-08T06:37:12.129Z",
+  "production": "https://dusty-ox-781.convex.cloud",
+  "development": "https://joyous-spaniel-5.convex.cloud",
+  "removedPublicFunctions": [
+    "admin.js:updateUserRole"
+  ],
+  "changedPublicSignatures": [
+    {
+      "identifier": "formSubmissions.js:submitParalegalApplication",
+      "oldType": "Mutation",
+      "newType": "Mutation",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "clientIdentifier": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "district": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "education": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "email": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "experience": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "fullName": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "idDocumentUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "languages": {
+            "fieldType": {
+              "type": "array",
+              "value": {
+                "type": "string"
+              }
+            },
+            "optional": true
+          },
+          "motivation": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "phone": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "region": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "resumeUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "roleTitle": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "ward": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "certificateStorageId": {
+            "fieldType": {
+              "tableName": "_storage",
+              "type": "id"
+            },
+            "optional": true
+          },
+          "clientIdentifier": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "district": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "education": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "email": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "experience": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "fullName": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "idDocumentStorageId": {
+            "fieldType": {
+              "tableName": "_storage",
+              "type": "id"
+            },
+            "optional": true
+          },
+          "idDocumentUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "languages": {
+            "fieldType": {
+              "type": "array",
+              "value": {
+                "type": "string"
+              }
+            },
+            "optional": true
+          },
+          "motivation": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "phone": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "region": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "resumeStorageId": {
+            "fieldType": {
+              "tableName": "_storage",
+              "type": "id"
+            },
+            "optional": true
+          },
+          "resumeUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "roleTitle": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "ward": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          }
+        }
+      }
+    },
+    {
+      "identifier": "media.js:saveMedia",
+      "oldType": "Mutation",
+      "newType": "Mutation",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "name": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "size": {
+            "fieldType": {
+              "type": "number"
+            },
+            "optional": false
+          },
+          "storageId": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "type": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "name": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "size": {
+            "fieldType": {
+              "type": "number"
+            },
+            "optional": false
+          },
+          "storageId": {
+            "fieldType": {
+              "tableName": "_storage",
+              "type": "id"
+            },
+            "optional": false
+          },
+          "type": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      }
+    },
+    {
+      "identifier": "paralegals.js:listApprovedParalegals",
+      "oldType": "Query",
+      "newType": "Query",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "region": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "verifiedOnly": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "includePrivate": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          },
+          "region": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "verifiedOnly": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          }
+        }
+      }
+    },
+    {
+      "identifier": "paralegals.js:updateParalegalProfile",
+      "oldType": "Mutation",
+      "newType": "Mutation",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "bio": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "district": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "fullName": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "hasJoinedHakiYangu": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          },
+          "id": {
+            "fieldType": {
+              "tableName": "paralegal_applications",
+              "type": "id"
+            },
+            "optional": false
+          },
+          "onboardingCompleted": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          },
+          "phone": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "photoUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "region": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "specializations": {
+            "fieldType": {
+              "type": "array",
+              "value": {
+                "type": "string"
+              }
+            },
+            "optional": true
+          },
+          "ward": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "availabilityNotes": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "availabilityStatus": {
+            "fieldType": {
+              "type": "union",
+              "value": [
+                {
+                  "type": "literal",
+                  "value": "accepting_cases"
+                },
+                {
+                  "type": "literal",
+                  "value": "limited"
+                },
+                {
+                  "type": "literal",
+                  "value": "paused"
+                },
+                {
+                  "type": "literal",
+                  "value": "unavailable"
+                }
+              ]
+            },
+            "optional": true
+          },
+          "bio": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "district": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "fullName": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "hasJoinedHakiYangu": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          },
+          "id": {
+            "fieldType": {
+              "tableName": "paralegal_applications",
+              "type": "id"
+            },
+            "optional": false
+          },
+          "onboardingCompleted": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          },
+          "phone": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "photoUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "region": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "specializations": {
+            "fieldType": {
+              "type": "array",
+              "value": {
+                "type": "string"
+              }
+            },
+            "optional": true
+          },
+          "ward": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "weeklyCapacity": {
+            "fieldType": {
+              "type": "number"
+            },
+            "optional": true
+          },
+          "workingHours": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          }
+        }
+      }
+    },
+    {
+      "identifier": "resend.js:sendTransactionalEmail",
+      "oldType": "Action",
+      "newType": "Action",
+      "oldVisibility": "public",
+      "newVisibility": "internal",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "html": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "replyTo": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "subject": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "to": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "html": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "replyTo": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "subject": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "to": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      }
+    },
+    {
+      "identifier": "sara_actions.js:ask",
+      "oldType": "Action",
+      "newType": "Action",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "history": {
+            "fieldType": {
+              "type": "array",
+              "value": {
+                "type": "object",
+                "value": {
+                  "content": {
+                    "fieldType": {
+                      "type": "string"
+                    },
+                    "optional": false
+                  },
+                  "role": {
+                    "fieldType": {
+                      "type": "union",
+                      "value": [
+                        {
+                          "type": "literal",
+                          "value": "user"
+                        },
+                        {
+                          "type": "literal",
+                          "value": "assistant"
+                        }
+                      ]
+                    },
+                    "optional": false
+                  }
+                }
+              }
+            },
+            "optional": false
+          },
+          "message": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "clientRequestId": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "conversationId": {
+            "fieldType": {
+              "tableName": "sara_conversations",
+              "type": "id"
+            },
+            "optional": true
+          },
+          "locale": {
+            "fieldType": {
+              "type": "union",
+              "value": [
+                {
+                  "type": "literal",
+                  "value": "sw"
+                },
+                {
+                  "type": "literal",
+                  "value": "en"
+                }
+              ]
+            },
+            "optional": true
+          },
+          "message": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "source": {
+            "fieldType": {
+              "type": "union",
+              "value": [
+                {
+                  "type": "literal",
+                  "value": "web"
+                },
+                {
+                  "type": "literal",
+                  "value": "mobile"
+                },
+                {
+                  "type": "literal",
+                  "value": "unknown"
+                }
+              ]
+            },
+            "optional": true
+          }
+        }
+      }
+    },
+    {
+      "identifier": "sara_actions.js:ingestDocument",
+      "oldType": "Action",
+      "newType": "Action",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "storageId": {
+            "fieldType": {
+              "tableName": "_storage",
+              "type": "id"
+            },
+            "optional": false
+          },
+          "title": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "contentCategory": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "effectiveDate": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "jurisdiction": {
+            "fieldType": {
+              "type": "union",
+              "value": [
+                {
+                  "type": "literal",
+                  "value": "tanzania_mainland"
+                },
+                {
+                  "type": "literal",
+                  "value": "zanzibar"
+                },
+                {
+                  "type": "literal",
+                  "value": "national"
+                },
+                {
+                  "type": "literal",
+                  "value": "other"
+                }
+              ]
+            },
+            "optional": false
+          },
+          "language": {
+            "fieldType": {
+              "type": "union",
+              "value": [
+                {
+                  "type": "literal",
+                  "value": "sw"
+                },
+                {
+                  "type": "literal",
+                  "value": "en"
+                },
+                {
+                  "type": "literal",
+                  "value": "bilingual"
+                },
+                {
+                  "type": "literal",
+                  "value": "other"
+                }
+              ]
+            },
+            "optional": false
+          },
+          "publisher": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "replacesDocumentId": {
+            "fieldType": {
+              "tableName": "documents",
+              "type": "id"
+            },
+            "optional": true
+          },
+          "reviewDueAt": {
+            "fieldType": {
+              "type": "number"
+            },
+            "optional": false
+          },
+          "sourceUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "storageId": {
+            "fieldType": {
+              "tableName": "_storage",
+              "type": "id"
+            },
+            "optional": false
+          },
+          "title": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "versionLabel": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      }
+    },
+    {
+      "identifier": "sara_chat.js:sendMessage",
+      "oldType": "Mutation",
+      "newType": "Mutation",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "content": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "content": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "conversationId": {
+            "fieldType": {
+              "tableName": "sara_conversations",
+              "type": "id"
+            },
+            "optional": true
+          }
+        }
+      }
+    },
+    {
+      "identifier": "testimonials.js:create",
+      "oldType": "Mutation",
+      "newType": "Mutation",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "category": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "content": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "featured": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": false
+          },
+          "imageUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "location": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "name": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "rating": {
+            "fieldType": {
+              "type": "number"
+            },
+            "optional": false
+          },
+          "role": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "category": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "content": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "featured": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": false
+          },
+          "imageStorageId": {
+            "fieldType": {
+              "tableName": "_storage",
+              "type": "id"
+            },
+            "optional": false
+          },
+          "location": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "name": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "rating": {
+            "fieldType": {
+              "type": "number"
+            },
+            "optional": false
+          },
+          "role": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      }
+    },
+    {
+      "identifier": "testimonials.js:update",
+      "oldType": "Mutation",
+      "newType": "Mutation",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "category": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "content": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "featured": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          },
+          "id": {
+            "fieldType": {
+              "tableName": "testimonials",
+              "type": "id"
+            },
+            "optional": false
+          },
+          "imageUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "location": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "name": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "rating": {
+            "fieldType": {
+              "type": "number"
+            },
+            "optional": true
+          },
+          "role": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "category": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "content": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "featured": {
+            "fieldType": {
+              "type": "boolean"
+            },
+            "optional": true
+          },
+          "id": {
+            "fieldType": {
+              "tableName": "testimonials",
+              "type": "id"
+            },
+            "optional": false
+          },
+          "imageStorageId": {
+            "fieldType": {
+              "tableName": "_storage",
+              "type": "id"
+            },
+            "optional": true
+          },
+          "imageUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "location": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "name": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "rating": {
+            "fieldType": {
+              "type": "number"
+            },
+            "optional": true
+          },
+          "role": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          }
+        }
+      }
+    },
+    {
+      "identifier": "users.js:syncUser",
+      "oldType": "Mutation",
+      "newType": "Mutation",
+      "oldVisibility": "public",
+      "newVisibility": "public",
+      "oldArgs": {
+        "type": "object",
+        "value": {
+          "clerkId": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "email": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "imageUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "name": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "role": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          }
+        }
+      },
+      "newArgs": {
+        "type": "object",
+        "value": {
+          "clerkId": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          },
+          "imageUrl": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": true
+          },
+          "name": {
+            "fieldType": {
+              "type": "string"
+            },
+            "optional": false
+          }
+        }
+      }
+    }
+  ],
+  "caveat": "Metadata-only compatibility audit. Does not prove response-shape or behavior compatibility."
+}

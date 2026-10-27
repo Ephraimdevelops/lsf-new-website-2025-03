@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-16",
+  "deployment": "development only, succeeded",
+  "provider": "OpenAI retained",
+  "mode": "monitoring; no monthly USD amount chosen or configured",
+  "implemented": [
+    "Persistent aggregate monthly ledger separate from conversation history",
+    "Per-provider-call reservations before chat, embeddings/indexing, document briefs, transcription and classifier requests",
+    "Successful calls reconcile returned token usage at full-input list-rate estimates",
+    "Failed/interrupted calls retain their reservation; unresolved or underestimated costs remain visible",
+    "Atomic Convex mutation checks committed plus reserved amounts against a configured allowance",
+    "Owner-scoped idempotent settlement; only admin/staff may read aggregate status",
+    "Unknown-price models and audio without a prevalidated duration bound fail closed when a monthly cap is enabled",
+    "Current-month alert status at 80% and 100%; no external notifications sent",
+    "Automatic SDK retries disabled for metered calls to avoid invisible repeated spending",
+    "Classifier input bounded and admission rate-limited"
+  ],
+  "configuration": {
+    "serverVariable": "SAADA_MONTHLY_BUDGET_USD",
+    "empty": "monitoring",
+    "positiveUsdWithAtMostTwoDecimalPlaces": "enforce estimated application allowance",
+    "invalidValue": "reject paid requests",
+    "actualValue": "not configured"
+  },
+  "limitations": [
+    "Prices are a dated standard-rate snapshot, not the provider invoice; future model/pricing changes require review",
+    "Metering starts with this deployment, not retroactively",
+    "Direct use of the same key outside these application paths is outside this ledger",
+    "An estimate-based application allowance does not guarantee an exact provider invoice ceiling",
+    "Voice duration is measured after transcription in monitoring mode; cap mode blocks audio until its duration is bounded before submission",
+    "Unknown cost or estimate overrun can require administrative reconciliation before cap mode proceeds",
+    "Stalled reservations remain held rather than automatically refunded",
+    "Alert status is available through the staff query; no email/SMS/notification automation added",
+    "Authenticated full app test remains pending because browser sign-in expired"
+  ],
+  "tests": {
+    "focusedPassed": 154,
+    "backendTypecheck": "passed",
+    "webTypecheck": "passed",
+    "productionWebBuild": "passed",
+    "securityScan": "passed: 404 public functions classified",
+    "hostedGuestDenial": "passed for agent and private aggregate cost status"
+  },
+  "evidence": {
+    "liveGuestChecks": "saada-spending-live-check-2026-10-16.json",
+    "earlierProviderConnection": "saada-provider-live-check-2026-10-16.json",
+    "signInScreen": "saada-sign-in-needed-2026-10-16.png"
+  },
+  "nextInputs": [
+    "Sign in at localhost:8080/sara for the authenticated end-to-end test",
+    "Choose a monthly USD allowance before activating enforcement"
+  ],
+  "pricingReference": "https://developers.openai.com/api/docs/pricing"
+}

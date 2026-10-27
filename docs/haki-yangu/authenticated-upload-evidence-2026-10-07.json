@@ -1,0 +1,58 @@
+{
+  "recordedAt": "2026-10-07T20:11:58.084671+00:00",
+  "environment": "configured development backend, localhost:8080, signed-in Chrome admin UI",
+  "directoryResearch": {
+    "confirmedCreated": 71,
+    "initialSkipped": 0,
+    "retryCreated": 0,
+    "retrySkipped": 71,
+    "publishedServicesCreated": 0,
+    "searchVerified": "TAWLA returned seven office/source rows with management controls"
+  },
+  "legalGuides": {
+    "confirmedSubmitted": 108,
+    "categories": 9,
+    "skipped": 0,
+    "published": 0,
+    "nextSourceReviewDate": "2027-01-07"
+  },
+  "pdfSources": {
+    "confirmedStored": 1,
+    "title": "Law of Limitation Act, Cap. 89",
+    "version": "R.E. 2023 \u2014 research copy; currentness unverified",
+    "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/194/download",
+    "jurisdiction": "tanzania_mainland",
+    "language": "en",
+    "independentApproval": "pending",
+    "indexingStatus": "failed",
+    "initialParserError": "DOMMatrix is not defined",
+    "parserFix": "Node-compatible PDF.js build, externally installed package, worker resolution, document/page cleanup and disabled eval",
+    "parserFixDeployed": true,
+    "extractionConfirmed": true,
+    "remainingIndexingBlocker": "OpenAI API 429: You have no credits remaining",
+    "otherPreparedPDFsNotUploaded": 0,
+    "privateResearchArchiveStored": 127,
+    "totalOriginalsStored": 128,
+    "archiveIndexed": 0,
+    "archiveApproved": 0,
+    "finalArchiveReceipt": "pdf-upload-preparation-2026-10-07/server-final-verification.json"
+  },
+  "verification": {
+    "parserTestsPassed": 2,
+    "managementAndProviderHandlerTestsPassed": 13,
+    "strictBackendTypecheckAndDevDeployment": "passed"
+  },
+  "evidenceScreenshots": [
+    "/tmp/haki-directory-import-receipt.png",
+    "/tmp/haki-guide-import-receipt.png",
+    "/tmp/haki-pdf-indexing-blocker.png"
+  ],
+  "remaining": [
+    "Add credits to the configured OpenAI API account, then retry indexing the saved source",
+    "Review source identity, applicability and provenance metadata; verify the five local machine OCR outputs before indexing. Four smaller PDF copies are prepared locally.",
+    "Independent reviewer approval before guides or sources become available publicly",
+    "Verify organisation contacts, locations, coverage and intake before creating approved service listings",
+    "No provider invitations or access grants made"
+  ],
+  "updatedAt": "2026-10-07T20:42:44.065Z"
+}

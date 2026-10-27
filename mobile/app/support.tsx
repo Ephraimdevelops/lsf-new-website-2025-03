@@ -9,7 +9,7 @@ const supportActions = [
   { key: "request", icon: "document-text-outline", route: "/intake", sw: "Omba msaada", en: "Request help", swHelp: "Tuma maelezo ya tatizo lako kwa LSF.", enHelp: "Send your issue details to LSF." },
   { key: "sara", icon: "sparkles-outline", route: "/sara", sw: "Haki Yangu AI", en: "Haki Yangu AI", swHelp: "Pata taarifa rahisi na hatua zinazofuata.", enHelp: "Get simple information and next steps." },
   { key: "safety", icon: "warning-outline", route: "/safety", sw: "Mpango wa usalama", en: "Safety plan", swHelp: "Anza hapa kama hali ni nyeti au hatari.", enHelp: "Start here if the situation is sensitive or unsafe." },
-  { key: "learn", icon: "book-outline", route: "/(tabs)/learn", sw: "Soma miongozo", en: "Read guides", swHelp: "Elewa haki zako kwa lugha rahisi.", enHelp: "Understand your rights in plain language." },
+  { key: "learn", icon: "book-outline", route: "/rights", sw: "Soma miongozo", en: "Read guides", swHelp: "Elewa haki zako kwa lugha rahisi.", enHelp: "Understand your rights in plain language." },
 ] as const;
 
 export default function SupportScreen() {
@@ -17,19 +17,19 @@ export default function SupportScreen() {
   return (
     <Screen>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={() => router.back()}><Ionicons name="chevron-back" size={26} color={colors.burgundy} /></Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Back"} onPress={() => router.back()}><Ionicons name="chevron-back" size={26} color={colors.burgundy} /></Pressable>
         <Text style={styles.headerTitle}>{locale === "sw" ? "Msaada" : "Support"}</Text>
         <View style={styles.headerSpacer} />
       </View>
       <Text style={styles.title}>{locale === "sw" ? "Unahitaji nini sasa?" : "What do you need now?"}</Text>
       <Text style={styles.body}>
         {locale === "sw"
-          ? "Chagua njia inayofaa. Kama kuna hatari ya haraka, tafuta huduma rasmi ya dharura kwanza."
-          : "Choose the right path. If there is immediate danger, contact official emergency help first."}
+          ? "Ukiwa hatarini sasa, tafuta huduma rasmi ya dharura kwanza."
+          : "If you are in immediate danger, contact official emergency help first."}
       </Text>
       <View style={styles.list}>
         {supportActions.map((action) => (
-          <Pressable key={action.key} style={styles.card} onPress={() => router.push(action.route)}>
+          <Pressable key={action.key} accessibilityRole="button" accessibilityLabel={`${action[locale]}. ${locale === "sw" ? action.swHelp : action.enHelp}`} style={styles.card} onPress={() => router.push(action.route)}>
             <View style={styles.iconChip}><Ionicons name={action.icon} size={23} color={colors.burgundy} /></View>
             <View style={styles.copy}>
               <Text style={styles.cardTitle}>{action[locale]}</Text>

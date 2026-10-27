@@ -1396,6 +1396,162 @@
       "productionEligible": false
     },
     {
+      "sourceId": "SOCIAL-BENEFITS-2018",
+      "nativeCharacters": 23534,
+      "pages": 14,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "SOCIAL-BENEFITS-AMENDMENT-2022",
+      "nativeCharacters": 5291,
+      "pages": 4,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "SOCIAL-BENEFITS-AMENDMENT-2024",
+      "nativeCharacters": 9432,
+      "pages": 8,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "PERSONAL-ISLAMIC-RESTATEMENT",
+      "nativeCharacters": 2785,
+      "pages": 4,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-LAND-SETH-2024",
+      "nativeCharacters": 13275,
+      "pages": 11,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-ESTATE-LONYAMALI",
+      "nativeCharacters": 2963,
+      "pages": 2,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-LABOUR-OATH-2022",
+      "nativeCharacters": 10356,
+      "pages": 9,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-INHERITANCE-LATIFA",
+      "nativeCharacters": 2380,
+      "pages": 2,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "CASE-LAND-MABULA-2024",
+      "nativeCharacters": 19196,
+      "pages": 16,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-DISABILITY-RULES-2022",
+      "nativeCharacters": 32811,
+      "pages": 28,
+      "lowTextPages": [
+        27,
+        28
+      ],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "PERSONAL-CUSTOMARY-NO2",
+      "nativeCharacters": 2846,
+      "pages": 3,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "PERSONAL-CUSTOMARY-NO4",
+      "nativeCharacters": 24675,
+      "pages": 10,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-ENVIRONMENT-GAZETTE",
+      "nativeCharacters": 66651,
+      "pages": 48,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "ZNZ-KADHIS-SW-2024",
+      "nativeCharacters": 31933,
+      "pages": 20,
+      "lowTextPages": [
+        19,
+        20
+      ],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
+      "sourceId": "SOCIAL-NSSF-COMPLAINT-FORM",
+      "nativeCharacters": 2046,
+      "pages": 1,
+      "lowTextPages": [],
+      "searchableTextStatus": "unverified_native_extraction",
+      "readableCounterpartCandidate": null,
+      "ocrStatus": null,
+      "productionEligible": false
+    },
+    {
       "sourceId": "BASE-CONSTITUTION",
       "nativeCharacters": 240605,
       "pages": 91,

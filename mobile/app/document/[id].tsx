@@ -1,10 +1,14 @@
+import type { Id } from "../../../convex/_generated/dataModel";
+import { ParalegalIntro } from "../../src/components/ParalegalIntro";
+import { ParalegalNavigation } from "../../src/components/ParalegalNavigation";
+import { useSensitiveScreenProtection } from "../../src/useSensitiveScreenProtection";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
 import { Linking, StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
-import { AppHeader } from "../../src/components/AppHeader";
+import { CivicPageHeader as AppHeader } from "../../src/components/CivicPageHeader";
 import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
@@ -17,25 +21,27 @@ const categories: Record<string, { sw: string; en: string }> = {
 };
 
 export default function DocumentDetailScreen() {
+  useSensitiveScreenProtection("document-details");
   const { id } = useLocalSearchParams<{ id: string }>();
   const { isSignedIn } = useAuth();
   const { locale } = useLanguage();
   const sw = locale === "sw";
-  const documents = useQuery(api.caseManagement.myDocuments, isSignedIn ? {} : "skip");
-  const document = documents?.find((item) => item._id === id);
-  return <Screen>
-    <AppHeader back title={sw ? "Maelezo ya hati" : "Document details"} eyebrow="HAKI YANGU" />
+  const document = useQuery(api.caseManagement.getDocument, isSignedIn && id ? { documentId: id as Id<"case_documents"> } : "skip");
+  const workCase = document?.context === "work";
+  return <Screen footer={workCase ? <ParalegalNavigation current="cases" /> : undefined}>
+    <AppHeader back title={sw ? "Maelezo ya hati" : "Document details"} compact />
     {!isSignedIn ? <State title={sw ? "Hati yako inalindwa" : "Your document is private"} body={sw ? "Ingia kwa usalama ili kuiona." : "Sign in securely to view it."} label={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
-    : documents === undefined ? <State title={sw ? "Tunapakia hati" : "Loading document"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
+    : document === undefined ? <State title={sw ? "Tunapakia hati" : "Loading document"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
     : !document ? <State title={sw ? "Hati haipatikani" : "Document not found"} body={sw ? "Huenda imeondolewa au huna ruhusa ya kuiona." : "It may have been removed, or you may not have access."} label={sw ? "Nyaraka zangu" : "My documents"} onPress={() => router.replace("/documents")} />
     : <>
+      {workCase && <ParalegalIntro pose="direction" title={sw ? "Pitia hati kwa uangalifu." : "Review the document with care."} body={sw ? "Angalia maelezo ya ukaguzi na hatua inayofuata kwenye kesi." : "Check the review notes and the next step inside the case."} />}
       <View style={styles.hero}><View style={styles.icon}><Ionicons name="document-text-outline" size={32} color={colors.surface} /></View><Text style={styles.heroTitle}>{document.name}</Text><Text style={styles.heroMeta}>{categories[document.category]?.[locale] ?? document.category} · {document.casePublicId}</Text></View>
       <View style={styles.statusCard}><Ionicons name={document.status === "accepted" ? "checkmark-circle-outline" : document.status === "rejected" ? "alert-circle-outline" : "time-outline"} size={25} color={document.status === "accepted" ? colors.teal : colors.burgundy} /><View style={styles.flex}><Text style={styles.statusTitle}>{document.status === "accepted" ? (sw ? "Imekubaliwa" : "Accepted") : document.status === "rejected" ? (sw ? "Inahitaji hatua nyingine" : "Needs another step") : (sw ? "Inasubiri mapitio" : "Pending review")}</Text><Text style={styles.statusBody}>{document.status === "pending_review" ? (sw ? "Timu ya kesi bado haijathibitisha hati hii." : "The case team has not reviewed this document yet.") : document.status === "accepted" ? (sw ? "Timu ya kesi imeikagua hati hii." : "The case team has reviewed this document.") : (sw ? "Angalia maelezo ya mapitio hapa chini." : "Read the review note below.")}</Text></View></View>
       {document.reviewNotes ? <View style={styles.note}><Text style={styles.sectionTitle}>{sw ? "Ujumbe wa mapitio" : "Review note"}</Text><Text style={styles.body}>{document.reviewNotes}</Text></View> : null}
       {document.textContent ? <View style={styles.note}><Text style={styles.sectionTitle}>{sw ? "Maandishi ya hati" : "Document text"}</Text><Text style={styles.body}>{document.textContent}</Text></View> : null}
       <View style={styles.actions}>
         {document.url ? <Button label={sw ? "Fungua faili" : "Open file"} onPress={() => void Linking.openURL(document.url!)} /> : null}
-        <Button label={sw ? "Fungua kesi husika" : "Open related case"} variant={document.url ? "secondary" : "primary"} onPress={() => router.push({ pathname: "/case/[id]", params: { id: document.caseId } })} />
+        <Button label={sw ? "Fungua kesi husika" : "Open related case"} variant={document.url ? "secondary" : "primary"} onPress={() => router.push({ pathname: "/case/[id]", params: { id: document.caseId, section: "documents" } })} />
       </View>
       <Text style={styles.privacy}>{sw ? "Hati hii inaonekana tu kwa watu wenye ruhusa ya kesi yako." : "Only people authorised for your case can see this document."}</Text>
     </>}

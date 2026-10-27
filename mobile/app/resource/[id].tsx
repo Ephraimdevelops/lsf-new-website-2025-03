@@ -3,6 +3,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
+import { CivicPageHeader } from "../../src/components/CivicPageHeader";
 import { useLanguage } from "../../src/i18n";
 import { getResource } from "../../src/resources";
 import { useSavedResources } from "../../src/useSavedResources";
@@ -20,10 +21,7 @@ export default function ResourceDetailScreen() {
 
   return (
     <Screen>
-      <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={() => router.back()}><Ionicons name="chevron-back" size={26} color={colors.burgundy} /></Pressable>
-        <Pressable accessibilityRole="button" accessibilityLabel={isSaved(resource.id) ? (locale === "sw" ? "Ondoa orodha iliyohifadhiwa" : "Remove saved checklist") : (locale === "sw" ? "Hifadhi orodha" : "Save checklist")} onPress={() => void toggleSaved(resource.id)}><Ionicons name={isSaved(resource.id) ? "bookmark" : "bookmark-outline"} size={24} color={colors.burgundy} /></Pressable>
-      </View>
+      <CivicPageHeader back title={locale === "sw" ? "Maandalizi" : "Preparation"} actionIcon={isSaved(resource.id) ? "bookmark" : "bookmark-outline"} actionLabel={isSaved(resource.id) ? (locale === "sw" ? "Ondoa orodha iliyohifadhiwa" : "Remove saved checklist") : (locale === "sw" ? "Hifadhi orodha" : "Save checklist")} onAction={() => void toggleSaved(resource.id)} />
       <Text style={styles.kicker}>{locale === "sw" ? "ORODHA YA MAANDALIZI" : "PREPARATION CHECKLIST"}</Text>
       <Text style={styles.title}>{resource.title[locale]}</Text>
       <Text style={styles.summary}>{resource.summary[locale]}</Text>
@@ -59,11 +57,11 @@ export default function ResourceDetailScreen() {
 const styles = StyleSheet.create({
   center: { justifyContent: "center", gap: spacing.lg },
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  kicker: { fontFamily: type.semibold, color: colors.burgundy, fontSize: 11, marginTop: spacing.xl },
-  title: { fontFamily: type.editorial, color: colors.ink, fontSize: 29, lineHeight: 35, marginTop: spacing.sm },
+  kicker: { fontFamily: type.medium, color: colors.teal, fontSize: 12, marginTop: spacing.sm },
+  title: { fontFamily: type.editorial, color: colors.ink, fontSize: 27, lineHeight: 35, marginTop: spacing.sm },
   meta: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 12, marginTop: spacing.sm },
   summary: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 16, lineHeight: 24, marginTop: spacing.md },
-  notice: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm, borderTopWidth: 1, borderColor: colors.line, paddingTop: spacing.md, marginBottom: spacing.xl },
+  notice: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm, paddingTop: spacing.md, marginBottom: spacing.xl },
   noticeText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 18 },
   panel: { marginTop: spacing.xxl },
   panelTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 19, marginBottom: spacing.sm },

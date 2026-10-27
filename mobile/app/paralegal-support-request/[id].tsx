@@ -1,10 +1,12 @@
+import { ParalegalIntro } from "../../src/components/ParalegalIntro";
+import { ParalegalNavigation } from "../../src/components/ParalegalNavigation";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
-import { AppHeader } from "../../src/components/AppHeader";
+import { CivicPageHeader as AppHeader } from "../../src/components/CivicPageHeader";
 import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
@@ -30,15 +32,15 @@ export default function ParalegalSupportRequestScreen() {
   const requests = useQuery(api.paralegals.mySupportRequests, allowed ? {} : "skip");
   const request = requests?.find((item) => item._id === id);
 
-  return <Screen>
-    <AppHeader back title={sw ? "Ombi langu la msaada" : "My support request"} eyebrow="HAKI YANGU · PARALEGAL" />
+  return <Screen footer={allowed ? <ParalegalNavigation current="profile" /> : undefined}>
+    <AppHeader compact back title={sw ? "Ombi langu la msaada" : "My support request"} />
     {!isSignedIn ? <State icon="lock-closed-outline" title={sw ? "Ombi lako ni la siri" : "Your request is private"} body={sw ? "Ingia kuona maendeleo yake." : "Sign in to view its progress."} action={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
       : access === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ruhusa" : "Loading access"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
-      : !allowed ? <State icon="shield-outline" title={sw ? "Idhini inahitajika" : "Approval required"} body={sw ? "Akaunti iliyoidhinishwa ya paralegal inahitajika." : "An approved paralegal account is required."} />
+      : !allowed ? <State icon="shield-outline" title={sw ? "Idhini inahitajika" : "Approval required"} body={sw ? "Akaunti iliyoidhinishwa ya msaidizi wa kisheria inahitajika." : "An approved paralegal account is required."} />
       : requests === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ombi" : "Loading request"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !request ? <State icon="search-outline" title={sw ? "Ombi halipatikani" : "Request not found"} body={sw ? "Huenda limeondolewa au huna ruhusa ya kuliona." : "It may have been removed, or you may not have access to it."} action={sw ? "Rudi kwenye msaada" : "Back to support"} onPress={() => router.replace("/paralegal-support")} />
       : <>
-        <View style={styles.hero}><View style={styles.heroIcon}><Ionicons name="heart-outline" size={32} color={colors.surface} /></View><Text style={styles.heroKicker}>{sw ? "MSAADA WA PARALEGAL" : "PARALEGAL SUPPORT"}</Text><Text style={styles.heroTitle}>{kinds[request.type]?.[locale] ?? request.type.replaceAll("_", " ")}</Text><Text style={styles.heroBody}>{sw ? "Timu ya LSF inaona ombi lako na hali yake inaonekana hapa." : "The LSF team can see your request and its status appears here."}</Text></View>
+        <ParalegalIntro pose="contact" title={kinds[request.type]?.[locale] ?? request.type.replaceAll("_", " ")} body={sw ? "Timu ya LSF inaona ombi lako na hali yake inaonekana hapa." : "The LSF team can see your request and its status appears here."} />
         <View style={styles.statusCard}><Ionicons name={request.status === "responded" || request.status === "closed" ? "checkmark-circle-outline" : "time-outline"} size={26} color={colors.burgundy} /><View style={styles.flex}><Text style={styles.label}>{sw ? "Hali ya ombi" : "Request status"}</Text><Text style={styles.status}>{request.status === "submitted" ? (sw ? "Limepokelewa" : "Received") : request.status === "in_review" ? (sw ? "Linapitiwa" : "In review") : request.status === "responded" ? (sw ? "Limejibiwa" : "Responded") : (sw ? "Limefungwa" : "Closed")}</Text></View></View>
         <Text style={styles.sectionTitle}>{sw ? "Ulichotuma" : "What you sent"}</Text><View style={styles.card}><Text style={styles.body}>{request.note}</Text><Text style={styles.date}>{new Date(request.createdAt).toLocaleString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}</Text></View>
         <Text style={styles.sectionTitle}>{sw ? "Jibu la LSF" : "LSF response"}</Text><View style={[styles.card, styles.response]}>{request.responseNote ? <><Text style={styles.body}>{request.responseNote}</Text>{request.respondedAt ? <Text style={styles.date}>{new Date(request.respondedAt).toLocaleString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}</Text> : null}</> : <Text style={styles.body}>{request.status === "responded" || request.status === "closed" ? (sw ? "Hakuna maelezo ya jibu yaliyorekodiwa hapa. Wasiliana na LSF ikiwa unahitaji ufafanuzi." : "No response details are recorded here. Contact LSF if you need clarification.") : (sw ? "Bado hakuna jibu lililoandikwa. Angalia tena baada ya timu kupitia ombi." : "No written response yet. Check back after the team reviews your request.")}</Text>}</View>

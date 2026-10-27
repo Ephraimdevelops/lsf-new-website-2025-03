@@ -1,7 +1,39 @@
+import { sourceUploadMetadata } from "./lib/saadaUploadMetadata";
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
+  ai_usage_months: defineTable({ month: v.string(), committedMicroUsd: v.number(), reservedMicroUsd: v.number(), callCount: v.number(), unpricedCalls: v.number() }).index("by_month", ["month"]),
+  ai_usage_calls: defineTable({ month: v.string(), ownerClerkId: v.string(), feature: v.string(), model: v.string(), reservationMicroUsd: v.number(), priced: v.boolean(), status: v.union(v.literal("reserved"), v.literal("settled"), v.literal("uncertain")), costMicroUsd: v.optional(v.number()), inputTokens: v.optional(v.number()), outputTokens: v.optional(v.number()), createdAt: v.number(), finishedAt: v.optional(v.number()) }).index("by_month", ["month"]),
+  paralegal_locations: defineTable({ userId: v.id("users"), latitude: v.number(), longitude: v.number(), capturedAt: v.number(), expiresAt: v.number() }).index("by_user", ["userId"]).index("by_expiry", ["expiresAt"]),
+  presence_sessions: defineTable({ userId: v.id("users"), sessionId: v.string(), surface: v.union(v.literal("web"), v.literal("mobile")), foreground: v.boolean(), sequence: v.optional(v.number()), updatedAt: v.number() }).index("by_user_session", ["userId", "sessionId"]).index("by_user_updated", ["userId", "updatedAt"]),
+  personal_documents: defineTable({
+    ownerId: v.id("users"), storageId: v.id("_storage"), name: v.string(), type: v.string(), size: v.number(), createdAt: v.number(),
+    brief: v.optional(v.string()), briefLocale: v.optional(v.union(v.literal("sw"), v.literal("en"))),
+  }).index("by_owner", ["ownerId"]).index("by_storage", ["storageId"]),
+  managed_uploads: defineTable({
+    tokenHash: v.string(), ownerId: v.id("users"), purpose: v.string(), entityId: v.optional(v.string()),
+    researchSourceId: v.optional(v.id("saada_research_pdfs")), expectedSha256: v.optional(v.string()), expectedByteSize: v.optional(v.number()),
+    createdAt: v.number(), expiresAt: v.number(),
+    status: v.union(v.literal("issued"), v.literal("scanning"), v.literal("clean"), v.literal("rejected"), v.literal("failed")),
+    storageId: v.optional(v.id("_storage")), sha256: v.optional(v.string()), type: v.optional(v.string()), size: v.optional(v.number()),
+    scanReservedAt: v.optional(v.number()), diagnosticCode: v.optional(v.string()), scannerHttpStatus: v.optional(v.number()),
+    quarantineStorageId: v.optional(v.id("_storage")), scanTokenHash: v.optional(v.string()),
+    scanTokenExpiresAt: v.optional(v.number()), scanFetchClaimedAt: v.optional(v.number()),
+    cleanupPending: v.optional(v.boolean()),
+    scannerVersion: v.optional(v.string()), definitionsUpdatedAt: v.optional(v.number()),
+  }).index("by_token", ["tokenHash"]).index("by_storage", ["storageId"]).index("by_owner", ["ownerId"])
+    .index("by_scan_token", ["scanTokenHash"])
+    .index("by_cleanup_pending", ["cleanupPending"])
+    .index("by_status_created", ["status", "createdAt"])
+    .index("by_research_source", ["researchSourceId", "createdAt"]),
+  directory_research: defineTable({
+    externalKey: v.string(), kind: v.union(v.literal("organisation"), v.literal("centre"), v.literal("pathway")),
+    title: v.string(), region: v.optional(v.string()), district: v.optional(v.string()), address: v.optional(v.string()),
+    phone: v.optional(v.string()), email: v.optional(v.string()), notes: v.string(), sourceUrls: v.array(v.string()), originalRecord: v.string(),
+    searchText: v.string(), archived: v.boolean(), createdBy: v.id("users"), updatedBy: v.id("users"), updatedAt: v.number(),
+  }).index("by_external_key", ["externalKey"]).index("by_archived", ["archived"])
+    .searchIndex("search_research", { searchField: "searchText", filterFields: ["archived"] }),
   // Users (Synced from Clerk) - GDPR compliant with soft delete
   users: defineTable({
     name: v.string(),
@@ -13,9 +45,11 @@ export default defineSchema({
     imageStorageId: v.optional(v.string()), // For Convex Storage
     bio: v.optional(v.string()), // User biography
     lastLogin: v.optional(v.number()),
+    sharePresence: v.optional(v.boolean()),
     // GDPR: Soft delete support for audit trails
     isDeleted: v.optional(v.boolean()),
     deletedAt: v.optional(v.number()),
+    loginDeletionStatus: v.optional(v.union(v.literal("pending"), v.literal("complete"), v.literal("failed"))),
   }).index("by_clerk_id", ["clerkId"])
     .index("by_email", ["email"])
     .index("by_role", ["role"])
@@ -239,6 +273,17 @@ export default defineSchema({
     .index("by_submitted_at", ["submittedAt"])
     .index("by_status", ["status"]),
 
+  request_messages: defineTable({
+    requestId: v.id("legal_help_requests"),
+    senderId: v.id("users"),
+    senderKind: v.union(v.literal("beneficiary"), v.literal("staff")),
+    clientMessageId: v.string(),
+    body: v.string(),
+    requestsInformation: v.boolean(),
+    createdAt: v.number(),
+  }).index("by_request", ["requestId"])
+    .index("by_request_sender_client", ["requestId", "senderId", "clientMessageId"]),
+
   intake_answers: defineTable({
     requestId: v.id("legal_help_requests"),
     ownerId: v.id("users"),
@@ -368,13 +413,15 @@ export default defineSchema({
   case_events: defineTable({
     caseId: v.id("cases"),
     type: v.string(),
+    clientActionId: v.optional(v.string()),
     actorId: v.id("users"),
     audience: v.union(v.literal("beneficiary"), v.literal("workers"), v.literal("all")),
     publicLabelKey: v.optional(v.string()),
     metadata: v.optional(v.any()),
     occurredAt: v.number(),
   }).index("by_case", ["caseId"])
-    .index("by_case_time", ["caseId", "occurredAt"]),
+    .index("by_case_time", ["caseId", "occurredAt"])
+    .index("by_actor_client", ["actorId", "clientActionId"]),
 
   case_conversations: defineTable({
     caseId: v.id("cases"),
@@ -445,6 +492,7 @@ export default defineSchema({
     caseId: v.id("cases"),
     recordedBy: v.id("users"),
     outcomeCode: v.string(),
+    resolution: v.optional(v.union(v.literal("resolved"), v.literal("closed_unresolved"))),
     summary: v.string(),
     beneficiaryAgrees: v.optional(v.boolean()),
     recordedAt: v.number(),
@@ -462,6 +510,7 @@ export default defineSchema({
   case_review_requests: defineTable({
     caseId: v.id("cases"),
     requestedBy: v.id("users"),
+    clientActionId: v.optional(v.string()),
     reason: v.union(
       v.literal("reassignment"),
       v.literal("service_concern"),
@@ -482,7 +531,8 @@ export default defineSchema({
     updatedAt: v.number(),
   }).index("by_case", ["caseId"])
     .index("by_status", ["status"])
-    .index("by_requester", ["requestedBy"]),
+    .index("by_requester", ["requestedBy"])
+    .index("by_requester_client", ["requestedBy", "clientActionId"]),
 
   notifications: defineTable({
     userId: v.id("users"),
@@ -498,6 +548,7 @@ export default defineSchema({
 
   notification_preferences: defineTable({
     userId: v.id("users"),
+    locale: v.optional(v.union(v.literal("sw"), v.literal("en"))),
     pushEnabled: v.optional(v.boolean()),
     cases: v.boolean(),
     messages: v.boolean(),
@@ -563,6 +614,7 @@ export default defineSchema({
     .searchIndex("search_name", { searchField: "name" }),
 
   justice_services: defineTable({
+    syntheticDevelopmentFixture: v.optional(v.boolean()),
     name: v.string(),
     organizationId: v.optional(v.id("justice_service_organizations")),
     organizationName: v.optional(v.string()),
@@ -663,6 +715,8 @@ export default defineSchema({
     .index("by_checked_in_at", ["checkedInAt"]),
 
   matching_decisions: defineTable({
+    providerType: v.optional(v.string()),
+    serviceType: v.optional(v.string()),
     requesterId: v.optional(v.id("users")),
     requestId: v.optional(v.id("legal_help_requests")),
     caseId: v.optional(v.id("cases")),
@@ -747,6 +801,7 @@ export default defineSchema({
     destinationUserId: v.optional(v.id("users")),
     parentReferralId: v.optional(v.id("referrals")),
     createdBy: v.id("users"),
+    clientActionId: v.optional(v.string()),
     beneficiaryId: v.id("users"),
     reason: v.string(),
     informationShared: v.array(v.string()),
@@ -858,7 +913,8 @@ export default defineSchema({
     stepsSw: v.array(v.string()), stepsEn: v.array(v.string()),
     category: v.string(), jurisdiction: v.union(v.literal("tanzania_mainland"), v.literal("zanzibar"), v.literal("national")),
     sourceTitle: v.string(), sourceUrl: v.string(), publisher: v.string(),
-    reviewDueAt: v.number(), version: v.number(),
+    coverImageUrl: v.optional(v.string()), coverImageAltSw: v.optional(v.string()), coverImageAltEn: v.optional(v.string()),
+    reviewDueAt: v.number(), version: v.number(), editVersion: v.optional(v.number()), importKey: v.optional(v.string()),
     replacesGuideId: v.optional(v.id("legal_guides")),
     resubmitsGuideId: v.optional(v.id("legal_guides")),
     status: v.union(v.literal("pending"), v.literal("approved"), v.literal("rejected"), v.literal("retired")),
@@ -868,7 +924,8 @@ export default defineSchema({
     .index("by_status_review_due", ["status", "reviewDueAt"])
     .index("by_submitter_status_review_due", ["submittedBy", "status", "reviewDueAt"])
     .index("by_replaces_status", ["replacesGuideId", "status"])
-    .index("by_resubmits_status", ["resubmitsGuideId", "status"]),
+    .index("by_resubmits_status", ["resubmitsGuideId", "status"])
+    .index("by_import_key", ["importKey"]),
 
   paralegal_training_modules: defineTable({
     titleSw: v.string(), titleEn: v.string(), contentSw: v.string(), contentEn: v.string(),
@@ -1093,6 +1150,7 @@ export default defineSchema({
 
   // Paralegal Applications
   paralegal_applications: defineTable({
+    syntheticDevelopmentFixture: v.optional(v.boolean()),
     intakeOrigin: v.optional(v.union(v.literal("manual_invitation"), v.literal("csv_invitation"))),
     fullName: v.string(),
     email: v.string(),
@@ -1127,6 +1185,7 @@ export default defineSchema({
       v.literal("paused"),
       v.literal("unavailable"),
     )),
+    publicMeetingServiceId: v.optional(v.id("justice_services")),
     weeklyCapacity: v.optional(v.number()),
     workingHours: v.optional(v.string()),
     availabilityNotes: v.optional(v.string()),
@@ -1145,6 +1204,9 @@ export default defineSchema({
   // ==========================================
 
   // Documents (Sources)
+  saada_research_pdfs: defineTable({ storageId: v.id('_storage'), indexingStorageId: v.optional(v.id('_storage')), indexingDerivative: v.optional(v.object({ kind: v.literal('machine_ocr'), sha256: v.string(), byteSize: v.number(), pageCount: v.number(), preparedBy: v.id('users'), reviewStatus: v.union(v.literal('pending'),v.literal('verified'),v.literal('rejected')), reviewedBy: v.optional(v.id('users')), reviewNote: v.optional(v.string()) })), researchSourceId: v.string(), filename: v.string(), sha256: v.string(), byteSize: v.number(), title: v.string(), provenance: v.string(), uploadedByClerkId: v.string(), uploadedAt: v.number(), archived: v.boolean() }).index('by_sha256', ['sha256']).index('by_archived', ['archived']).index('by_indexing_storage', ['indexingStorageId']),
+  saada_upload_receipts: defineTable({ storageId: v.id("_storage"), uploadedByClerkId: v.string(), metadata: v.object(sourceUploadMetadata), createdAt: v.number() }).index("by_storage", ["storageId"]).index("by_uploader", ["uploadedByClerkId"]),
+
   documents: defineTable({
     title: v.string(),
     text: v.optional(v.string()), // extracted text
@@ -1164,6 +1226,8 @@ export default defineSchema({
     processedAt: v.optional(v.number()),
     indexingStatus: v.optional(v.union(v.literal("processing"), v.literal("ready"), v.literal("failed"))),
     indexingError: v.optional(v.string()),
+    indexingGeneration: v.optional(v.number()),
+    indexingUpdatedAt: v.optional(v.number()),
     lastReviewedAt: v.optional(v.number()), // For content freshness alerts
     approvalStatus: v.optional(v.union(v.literal("pending"), v.literal("approved"), v.literal("rejected"), v.literal("withdrawn"))),
     uploadedByClerkId: v.optional(v.string()),
@@ -1185,6 +1249,19 @@ export default defineSchema({
     vectorField: "embedding",
     dimensions: 1536,
   }).index("by_documentId", ["documentId"]),
+
+  // User-reviewed AI action drafts. The model can prepare, never confirm.
+  saada_action_drafts: defineTable({
+    ownerId: v.id("users"), assistantMessageId: v.id("sara_chats"), caseId: v.id("cases"), caseReference: v.string(),
+    kind: v.union(v.literal("appointment"),v.literal("referral")),
+    payload: v.union(
+      v.object({ kind:v.literal("appointment"), preferredMode:v.union(v.literal("phone"),v.literal("remote"),v.literal("in_person")), preferredTime:v.optional(v.string()), note:v.optional(v.string()) }),
+      v.object({ kind:v.literal("referral"), destinationServiceId:v.id("justice_services"), destinationUserId:v.id("users"), destinationName:v.string(), providerName:v.string(), reason:v.string(), information:v.string() })
+    ),
+    status:v.union(v.literal("pending"),v.literal("confirming"),v.literal("submitted"),v.literal("cancelled")),
+    createdAt:v.number(), expiresAt:v.number(),
+    result:v.optional(v.object({ id:v.string(), reference:v.string(), status:v.string() })),
+  }).index("by_message",["assistantMessageId"]).index("by_created",["createdAt"]).index("by_status_created",["status","createdAt"]),
 
   // SARA Chat History
   sara_conversations: defineTable({

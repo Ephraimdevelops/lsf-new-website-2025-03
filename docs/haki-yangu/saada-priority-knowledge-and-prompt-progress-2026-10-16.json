@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-16",
+  "environment": "Configured development backend and localhost web preview; no production or Play Store release",
+  "prompt": {
+    "version": "2026-10-16.1",
+    "active": "Application default, verified in authenticated admin UI",
+    "files": [
+      "convex/lib/saadaPrompt.ts",
+      "convex/lib/saadaSkills.ts"
+    ],
+    "corrections": [
+      "District-only search accepted; no demand for already known region",
+      "Only server renders verified UI cards",
+      "Clear AI role, proportional follow-up and evidence requirements",
+      "Explicit language preferences applied to fixed responses",
+      "General app-help questions use a deterministic route without model calls"
+    ],
+    "adminPreview": "/sara/train \u2192 System Instructions \u2192 Read the current system instructions",
+    "customization": "Existing version submission and independent administrator approval retained"
+  },
+  "architecture": {
+    "agents": 1,
+    "tools": 13,
+    "workflowSkills": 8,
+    "mcpIntegration": false,
+    "subagents": false,
+    "provider": "OpenAI"
+  },
+  "knowledge": {
+    "privateArchivedOriginals": 127,
+    "indexedSourceDocuments": 12,
+    "approvedCurrentSourceDocuments": 0,
+    "pendingGuides": 110,
+    "approvedCurrentGuides": 0,
+    "privateDirectoryResearchRecords": 71,
+    "eligiblePublicServices": 0,
+    "eligiblePublicParalegals": 0,
+    "indexedArchiveEntries": 10,
+    "archivedOriginalsStillUnindexed": 117,
+    "additionalSourceIndexed": "Katiba ya Zanzibar ya 1984 \u2014 Toleo la 2020 (ZAeCA government-hosted PDF)",
+    "existingIndexedSourceRetained": "Law of Limitation Act, Cap. 89",
+    "indexedArchiveSourceIds": [
+      "BASE-CONSTITUTION",
+      "BASE-LEGAL-AID",
+      "BASE-LAND",
+      "BASE-ELRA",
+      "EMPLOYMENT-AMENDMENTS-2025",
+      "BASE-MARRIAGE",
+      "BASE-CHILD",
+      "BASE-VILLAGE-LAND",
+      "BASE-PRIVACY",
+      "LAND-DISPUTES"
+    ],
+    "allNewSourceApprovalStatuses": "pending",
+    "editionFinding": "Archived English Zanzibar Constitution is R.E. 2006; retained as historical reference, not indexed as current law. The 2020 Kiswahili edition states amendment coverage through 2016; later changes require review.",
+    "reviewQueue": "saada-source-review-queue-2026-10-16.json"
+  },
+  "directory": {
+    "organisationDraftCreated": "Legal and Human Rights Centre (LHRC)",
+    "serviceDraftCreated": "LHRC Kinondoni Legal Aid Clinic",
+    "source": "https://legalaid.humanrights.or.tz/en/contact",
+    "phone": "+255717143784",
+    "address": "Isere Street, House No. 660, Kinondoni, Dar es Salaam",
+    "state": "Inactive draft; organisation draft; no referral agreement or profile access granted",
+    "intake": "Unconfirmed and unavailable for matching (stored closed until reviewed)",
+    "defaultsCorrected": [
+      "No default open intake",
+      "No invented capacity 10",
+      "No assumed languages, capability flags or region",
+      "No assumed 48-hour organisation SLA",
+      "Physical region no longer silently becomes service coverage"
+    ],
+    "remainingVerification": [
+      "Provider registration and independent organisation review",
+      "Current intake and eligibility",
+      "Hours, capacity, languages and capabilities",
+      "Coverage and independent service verification",
+      "Safeguarding and referral/data-sharing agreements if needed"
+    ]
+  },
+  "validation": {
+    "focusedTestsPassed": 145,
+    "focusedTestsFailed": 0,
+    "backendTypecheck": "passed during successful development deployment",
+    "webTypecheck": "passed",
+    "webBuild": "passed",
+    "publicFunctionSecurityClassification": {
+      "functions": 406,
+      "result": "passed"
+    },
+    "liveChecks": [
+      "Active system prompt visible in admin UI",
+      "Archived-original security-scan migration and indexing completed for ten source records",
+      "Government-hosted 2020 Zanzibar Constitution uploaded and indexed",
+      "General app-help question returned useful English guidance after earlier live failure was corrected",
+      "LHRC organisation and clinic saved as inactive drafts without unconfirmed capabilities",
+      "Aggregate readiness shows 12 indexed documents and zero approved legal sources"
+    ],
+    "liveMobileAfterThisPromptChange": "Not rerun; prior tenant clarification test passed before this turn"
+  },
+  "cost": {
+    "providerRetained": "OpenAI",
+    "configuredAppMonthlyBudgetUSD": 5,
+    "newCapChanges": false,
+    "appHelpModelTokens": 0
+  },
+  "openWork": [
+    "Independent legal review and approval remain required before legal-answer availability",
+    "117 archived originals still require source-specific preparation; historical or unsuitable documents must not be activated merely to increase counts",
+    "Review queue flags 20 PDFs with low-text pages and 2 originals over ingestion size limit; inspect existing OCR/split derivatives before indexing",
+    "110 guides remain pending review",
+    "Directory research requires verification/publication; no eligible public provider matches claimed",
+    "Production and installed mobile backend/version still require release validation"
+  ],
+  "evidence": [
+    "saada-system-instructions-live-2026-10-16.png",
+    "saada-readiness-after-priority-indexing-2026-10-16.png",
+    "lhrc-kinondoni-private-draft-2026-10-16.png",
+    "saada-app-help-fixed-live-2026-10-16.png"
+  ]
+}

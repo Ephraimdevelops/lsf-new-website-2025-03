@@ -1,5 +1,6 @@
+import { BrandLoadingMark } from './BrandLoading';
 import type { ComponentProps } from "react";
-import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 import { colors, radius, spacing, type } from "../theme";
 
 type Props = ComponentProps<typeof Pressable> & {
@@ -12,6 +13,7 @@ export function Button({ label, variant = "primary", loading, disabled, style, .
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityState={{disabled: Boolean(disabled || loading), busy: Boolean(loading)}}
       disabled={disabled || loading}
       style={({ pressed }) => [
         styles.base,
@@ -22,9 +24,8 @@ export function Button({ label, variant = "primary", loading, disabled, style, .
       ]}
       {...props}
     >
-      {loading ? <ActivityIndicator color={variant === "primary" ? colors.surface : colors.burgundy} /> : (
-        <Text style={[styles.label, variant !== "primary" && styles.altLabel]}>{label}</Text>
-      )}
+      {loading ? <BrandLoadingMark small light={variant === "primary"}/> : null}
+      <Text style={[styles.label, variant !== "primary" && styles.altLabel]}>{label}</Text>
     </Pressable>
   );
 }
@@ -32,6 +33,8 @@ export function Button({ label, variant = "primary", loading, disabled, style, .
 const styles = StyleSheet.create({
   base: {
     minHeight: 52,
+    flexDirection: "row",
+    gap: 10,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 18,

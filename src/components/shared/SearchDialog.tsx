@@ -1,3 +1,4 @@
+import { useCopy } from "@/i18n/useCopy";
 
 import { useState, useEffect, useMemo } from "react";
 import {
@@ -40,6 +41,7 @@ import { Button } from "@/components/ui/button";
 
 // Redesigned Search Component - CLEAN, FAST, INTUITIVE
 export default function SearchDialog() {
+  const c = useCopy();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -115,7 +117,7 @@ export default function SearchDialog() {
         onClick={() => setOpen(true)}
       >
         <Search className="h-5 w-5" />
-        <span className="sr-only">Search</span>
+        <span className="sr-only">{c("Search")}</span>
       </Button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>

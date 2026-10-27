@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-24T20:57:49.379Z",
+  "results": [
+    {
+      "researchSourceId": "PROC-CIVIL",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+      "checkedAt": "2026-10-24T20:57:49.379Z",
+      "byteSize": 1892019,
+      "sha256": "3b9c5dd74dcd11016fc2c93353337a7c9c30247eaef23d3a1b8b99552c52095c",
+      "sameAsArchived": true,
+      "securityStatus": "Not accepted into index; archived scanner refusal retained."
+    },
+    {
+      "researchSourceId": "CRIM-PROCEDURE",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "checkedAt": "2026-10-24T20:57:47.871Z",
+      "byteSize": 1788583,
+      "sha256": "023b9da4adbe7b49e270741e5e1ff68ea2ba8f89cce385c26749f06bd0cae9f1",
+      "sameAsArchived": true,
+      "securityStatus": "Not accepted into index; archived scanner refusal retained."
+    },
+    {
+      "researchSourceId": "CRIM-PENAL",
+      "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/24895072-4453-4e53-9b85-55f8a4d36115/download",
+      "checkedAt": "2026-10-24T20:57:48.291Z",
+      "byteSize": 1369688,
+      "sha256": "bb559f433ad8c580e74042f7802e4925045d202cbc3a27eb478496a4e607fefd",
+      "sameAsArchived": true,
+      "securityStatus": "Not accepted into index; archived scanner refusal retained."
+    }
+  ]
+}

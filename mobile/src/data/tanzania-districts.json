@@ -1,0 +1,220 @@
+{
+  "source": "https://www.nbs.go.tz/uploads/statistics/documents/en-1714652282-TANZANIA_2022PHC_WARD_SHAPEFILES.zip",
+  "catalogue": "https://www.nbs.go.tz/statistics/topic/gis",
+  "vintage": "2022 census; published 2024",
+  "archiveSha256": "a81eecf5021d1904d2d57a3c5ea40b8c3f538cd5b227e8d68a302653a6d1466e",
+  "districtsByRegion": {
+    "Arusha": [
+      "Arumeru",
+      "Arusha",
+      "Karatu",
+      "Longido",
+      "Monduli",
+      "Ngorongoro"
+    ],
+    "Dar es Salaam": [
+      "Ilala",
+      "Kigamboni",
+      "Kinondoni",
+      "Temeke",
+      "Ubungo"
+    ],
+    "Dodoma": [
+      "Bahi",
+      "Chamwino",
+      "Chemba",
+      "Dodoma",
+      "Kondoa",
+      "Kongwa",
+      "Mpwapwa"
+    ],
+    "Geita": [
+      "Bukombe",
+      "Chato",
+      "Geita",
+      "Mbogwe",
+      "Nyang'hwale"
+    ],
+    "Iringa": [
+      "Iringa",
+      "Kilolo",
+      "Mufindi"
+    ],
+    "Kagera": [
+      "Biharamulo",
+      "Bukoba",
+      "Karagwe",
+      "Kyerwa",
+      "Missenyi",
+      "Muleba",
+      "Ngara"
+    ],
+    "Kaskazini Pemba": [
+      "Micheweni",
+      "Wete"
+    ],
+    "Kaskazini Unguja": [
+      "Kaskazini A",
+      "Kaskazini B"
+    ],
+    "Katavi": [
+      "Mlele",
+      "Mpanda",
+      "Tanganyika"
+    ],
+    "Kigoma": [
+      "Buhigwe",
+      "Kakonko",
+      "Kasulu",
+      "Kibondo",
+      "Kigoma",
+      "Uvinza"
+    ],
+    "Kilimanjaro": [
+      "Hai",
+      "Moshi",
+      "Mwanga",
+      "Rombo",
+      "Same",
+      "Siha"
+    ],
+    "Kusini Pemba": [
+      "Chake Chake",
+      "Mkoani"
+    ],
+    "Kusini Unguja": [
+      "Kati",
+      "Kusini"
+    ],
+    "Lindi": [
+      "Kilwa",
+      "Lindi",
+      "Liwale",
+      "Nachingwea",
+      "Ruangwa"
+    ],
+    "Manyara": [
+      "Babati",
+      "Hanang",
+      "Kiteto",
+      "Mbulu",
+      "Simanjiro"
+    ],
+    "Mara": [
+      "Bunda",
+      "Butiama",
+      "Musoma",
+      "Rorya",
+      "Serengeti",
+      "Tarime"
+    ],
+    "Mbeya": [
+      "Chunya",
+      "Kyela",
+      "Mbarali",
+      "Mbeya",
+      "Rungwe"
+    ],
+    "Mjini Magharibi": [
+      "Magharibi A",
+      "Magharibi B",
+      "Mjini"
+    ],
+    "Morogoro": [
+      "Gairo",
+      "Kilombero",
+      "Kilosa",
+      "Malinyi",
+      "Morogoro",
+      "Mvomero",
+      "Ulanga"
+    ],
+    "Mtwara": [
+      "Masasi",
+      "Mtwara",
+      "Nanyumbu",
+      "Newala",
+      "Tandahimba"
+    ],
+    "Mwanza": [
+      "Ilemela",
+      "Kwimba",
+      "Magu",
+      "Misungwi",
+      "Nyamagana",
+      "Sengerema",
+      "Ukerewe"
+    ],
+    "Njombe": [
+      "Ludewa",
+      "Makete",
+      "Njombe",
+      "Wanging'ombe"
+    ],
+    "Pwani": [
+      "Bagamoyo",
+      "Kibaha",
+      "Kibiti",
+      "Kisarawe",
+      "Mafia",
+      "Mkuranga",
+      "Rufiji"
+    ],
+    "Rukwa": [
+      "Kalambo",
+      "Nkasi",
+      "Sumbawanga"
+    ],
+    "Ruvuma": [
+      "Mbinga",
+      "Namtumbo",
+      "Nyasa",
+      "Songea",
+      "Tunduru"
+    ],
+    "Shinyanga": [
+      "Kahama",
+      "Kishapu",
+      "Shinyanga"
+    ],
+    "Simiyu": [
+      "Bariadi",
+      "Busega",
+      "Itilima",
+      "Maswa",
+      "Meatu"
+    ],
+    "Singida": [
+      "Ikungi",
+      "Iramba",
+      "Manyoni",
+      "Mkalama",
+      "Singida"
+    ],
+    "Songwe": [
+      "Ileje",
+      "Mbozi",
+      "Momba",
+      "Songwe"
+    ],
+    "Tabora": [
+      "Igunga",
+      "Kaliua",
+      "Nzega",
+      "Sikonge",
+      "Tabora",
+      "Urambo",
+      "Uyui"
+    ],
+    "Tanga": [
+      "Handeni",
+      "Kilindi",
+      "Korogwe",
+      "Lushoto",
+      "Mkinga",
+      "Muheza",
+      "Pangani",
+      "Tanga"
+    ]
+  }
+}

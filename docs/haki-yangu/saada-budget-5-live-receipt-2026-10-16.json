@@ -1,0 +1,33 @@
+{
+  "environment": "configured development backend",
+  "monthlyLimitUSD": 5,
+  "ledger": [
+    {
+      "month": "2026-10",
+      "committedMicroUsd": 9137,
+      "reservedMicroUsd": 0,
+      "callCount": 3,
+      "unpricedCalls": 0
+    }
+  ],
+  "authenticatedWebTest": "passed: app_help response visibly rendered",
+  "privateRecordsReadByTest": false,
+  "requestsSubmittedByTest": false,
+  "allowanceScope": "US$5 per UTC calendar month, shared across application AI features on the configured development backend; not per user",
+  "enforcement": "enabled for priced operations; conservative application estimates, not an exact provider invoice cap",
+  "estimatedCommittedUSD": 0.009137,
+  "remainingEstimateUSD": 4.990863,
+  "webProof": "saada-budget-5-web-test-2026-10-16.png",
+  "mobile": {
+    "assistantName": "Haki Yangu AI",
+    "callsSameAction": "api.sara_actions.ask",
+    "localDevelopmentBackendMatchesWeb": true,
+    "runningPreviewObserved": "Haki Yangu AI screen opens; Sign in to start a conversation shown",
+    "authenticatedReplyTest": "pending separate mobile sign-in",
+    "newApiKeyRequired": false,
+    "installedPlayStoreBackend": "not verified",
+    "proof": "haki-ai-mobile-sign-in-2026-10-16.png"
+  },
+  "testBoundary": "Synthetic app-help workflow only; not a legal accuracy, indexing or production deployment verification",
+  "voiceNote": "Strict allowance mode blocks transcription until its duration can be bounded before submission."
+}

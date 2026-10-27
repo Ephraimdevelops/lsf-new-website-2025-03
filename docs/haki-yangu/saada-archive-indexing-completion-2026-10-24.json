@@ -1,0 +1,2212 @@
+{
+  "startedAt": "2026-10-24T20:08:38.200Z",
+  "updatedAt": "2026-10-24T21:01:13.308Z",
+  "environment": "dev:joyous-spaniel-5",
+  "approved": 0,
+  "receipts": [
+    {
+      "researchSourceId": "LAND-DISPUTES",
+      "status": "already_ready",
+      "archiveId": "vs7b53kmc167pr10sktm3sx7ax8fvew7",
+      "documentId": "md7btrgh6r4jhammzedbwtvktx8gc9bc"
+    },
+    {
+      "researchSourceId": "LAND-TRIBUNAL-2023",
+      "status": "already_ready",
+      "archiveId": "vs7crtw8fdg0mpamafw1b9kr7x8fv1sg",
+      "storageId": "kg2276mxczf31zx3wjk49pcd558gxkaa",
+      "documentId": "md7asjkwrakgcrnnab41q9z5ys8gwzsp",
+      "metadata": {
+        "title": "District Land and Housing Tribunal Amendment Regulations",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/legislation/1329/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "land",
+        "versionLabel": "GN 171 of 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ESTATES-PROBATE",
+      "status": "already_ready",
+      "archiveId": "vs7bk5kk0cm1naxfeyq9seks6h8ft0j9",
+      "storageId": "kg20gj94xdppm50c8nyn8pvgbs8gx5d4",
+      "documentId": "md78ywq116ctysjm53pddyervh8gxn6z",
+      "metadata": {
+        "title": "Probate and Administration of Estates Act, Cap. 352",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "inheritance",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-EVIDENCE",
+      "status": "already_ready",
+      "archiveId": "vs7dxg10sz3ed81y0y5xganp2x8fvwb6",
+      "storageId": "kg28vmf4cp2tbyccceb5qqtsnh8gx3d4",
+      "documentId": "md7dmxrk5v2gcc3dypnfr6k8md8gw2p1",
+      "metadata": {
+        "title": "Evidence Act, Cap. 6",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/0ba2f312-8d0c-4521-a5e4-1ee54d926eef/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "DISABILITY-ACT",
+      "status": "already_ready",
+      "archiveId": "vs7ek5jc0y7bk66cwwbyctwdxs8fvg2d",
+      "storageId": "kg2anem9f3z2dpxtn9asrzw37d8gxx9d",
+      "documentId": "md7dmymkckvjxf3y82kxqf9g398gxgzy",
+      "metadata": {
+        "title": "Persons with Disabilities Act, Cap. 183",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/568/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "tanzania_mainland",
+        "language": "en",
+        "contentCategory": "disability",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": false
+    },
+    {
+      "researchSourceId": "CONTRACT-ACT",
+      "status": "already_ready",
+      "archiveId": "vs74779v4m7nd7zdmn5b4760t98fvy9j",
+      "storageId": "kg2d6kbe7ftkz3v8ebx6dehkh98gwf77",
+      "documentId": "md7enb3g8n89m1v9vzg1bhz1rs8gwdtd",
+      "metadata": {
+        "title": "Law of Contract Act, Cap. 345",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "contracts",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CONSUMER-FAIR-COMPETITION",
+      "status": "already_ready",
+      "archiveId": "vs74bq77kc06a3jvxzna8td7h98ft09f",
+      "storageId": "kg2fbtx43m0qmj1h0s4afezx7s8gwzxc",
+      "documentId": "md74d71d5bjtcmbzbmyr89w7js8gwhhv",
+      "metadata": {
+        "title": "Fair Competition Act, Cap. 285",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/389/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FIN-BOT-GUIDELINES-EN",
+      "status": "already_ready",
+      "archiveId": "vs7dcja6s8bcegms5qpemkyp4x8fvbty",
+      "storageId": "kg22hwd5antj0hj7xexfp98m218gw7c2",
+      "documentId": "md7ess9e87qtty6099j95hr3d58gxnr5",
+      "metadata": {
+        "title": "Guidelines for Handling Financial Consumer Complaints",
+        "sourceUrl": "https://www.bot.go.tz/Publications/Acts%2C%20Regulations%2C%20Circulars%2C%20Guidelines/Guidelines/en/2025111212295368.pdf",
+        "publisher": "Repository: www.bot.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "financial_consumer",
+        "versionLabel": "2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FIN-BOT-REGULATIONS",
+      "status": "already_ready",
+      "archiveId": "vs73bbdkq8recgycpt1g4ganad8ft4f5",
+      "storageId": "kg2em8wfycy1qfa2bpcg7rwhbx8gxc38",
+      "documentId": "md72xh6rbmm39xr7wc0efn2em18gwqfr",
+      "metadata": {
+        "title": "Bank of Tanzania Financial Consumer Protection Regulations",
+        "sourceUrl": "https://www.bot.go.tz/Publications/Acts%2C%20Regulations%2C%20Circulars%2C%20Guidelines/Regulations/en/2020031802343226.pdf",
+        "publisher": "Repository: www.bot.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "financial_consumer",
+        "versionLabel": "2019",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PRIVACY-COMPLAINTS",
+      "status": "already_ready",
+      "archiveId": "vs7bkaef2vf6t8cntr8j7153e58ftrtr",
+      "storageId": "kg2dpxjax9wyxtb7ew7ehfmdhn8gx01e",
+      "documentId": "md7c795wxdwwm8xnjk1mm2j0p58gw5b2",
+      "metadata": {
+        "title": "Personal Data Protection Complaints Settlement Procedures Regulations",
+        "sourceUrl": "https://pdpc.go.tz/documents/5/PERSONAL_DATA_PROTECTION_COMPLAINTS_SETTLEMENT_PROCEDURES_REGULATIONS_2023.pdf",
+        "publisher": "Repository: pdpc.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "privacy",
+        "versionLabel": "GN 449B of 2023; English translated version",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "TRAFFICKING-ACT",
+      "status": "already_ready",
+      "archiveId": "vs73be8z5swhme9mfyr3gtqe8h8fvdrw",
+      "storageId": "kg21fxj83enjxtj5gn8kwh89a18gwaf4",
+      "documentId": "md71xf1h34gja5k2wx1276dee58gwdkw",
+      "metadata": {
+        "title": "Anti-Trafficking in Persons Act, Cap. 432",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/532/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "safeguarding",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-SMALL-CLAIMS",
+      "status": "already_ready",
+      "archiveId": "vs735eh0va58c7tzcm75yc6g9d8ft2pv",
+      "storageId": "kg270pss74fg31p86dhp6qmg958gxpmq",
+      "documentId": "md7cv3v5ky0f2s5y6eexbekq2n8gwbnd",
+      "metadata": {
+        "title": "Magistrates Courts Small Claims Procedure Rules",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/legislation/1318/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "Title 2022; GN 159 of 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FAMILY-GYUMI-APPEAL",
+      "status": "already_ready",
+      "archiveId": "vs773dnywj2c9bmvkz6xnzayt18fth3w",
+      "storageId": "kg20dycv2hbnp2xrzdas7ke3gd8gw63q",
+      "documentId": "md7akytat0h8ed0y6ap672y8858gxqq0",
+      "metadata": {
+        "title": "Attorney General v Rebeca Z. Gyumi, Civil Appeal 204 of 2017",
+        "sourceUrl": "https://media.tanzlii.org/media/judgment/262749/source_file/attorney-general-vs-rebeca-z-gyumi-2019-tzca-348-23-october-2019.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "family",
+        "versionLabel": "Court of Appeal, 23 October 2019",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FAMILY-GYUMI-HIGH-COURT",
+      "status": "already_ready",
+      "archiveId": "vs79xa3g05cdyydkacg4s8cm798fvgb9",
+      "storageId": "kg21ygk1npaghqhnx5gbnqj3858gx0rq",
+      "documentId": "md77rx7mb1gtvamawdg87kq1fh8gxfzh",
+      "metadata": {
+        "title": "Rebeca Z. Gyumi v Attorney General, Misc Civil Cause 5 of 2016",
+        "sourceUrl": "https://media.tanzlii.org/media/judgment/196547/source_file/rebeca-z-gyumi-vs-attorney-general-2016-tzhc-2023-3-march-2016.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "family",
+        "versionLabel": "2016; date conflict requires inspection",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-CONSTITUTION-EN",
+      "status": "already_ready",
+      "archiveId": "vs70y2szt29r8rfh3azccjp28d8fvy5t",
+      "storageId": "kg272xsnrmwwg6qqads3yqjqn18gwn1d",
+      "documentId": "md78h0gg5343j71bq3dt6epjzn8gw6dr",
+      "metadata": {
+        "title": "Constitution of Zanzibar, English government-hosted copy",
+        "sourceUrl": "https://www.chragg.go.tz/uploads/documents/sw-1776415749-ZANZIBAR-CONSTITUTION.pdf",
+        "publisher": "Repository: www.chragg.go.tz; publisher review pending",
+        "jurisdiction": "zanzibar",
+        "language": "en",
+        "contentCategory": "zanzibar",
+        "versionLabel": "Edition unresolved",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": false
+    },
+    {
+      "researchSourceId": "LEGAL-AID-REGULATIONS",
+      "status": "already_ready",
+      "archiveId": "vs79y25b02x79exj562edzjqhd8fvpd8",
+      "storageId": "kg28p8hqvaxqhd9f4zamt0w8118gxc3k",
+      "documentId": "md7bks3vwt7xeshdebmcntz0t18gw1jn",
+      "metadata": {
+        "title": "Legal Aid Regulations, original instrument mirror",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/854/source_file/a169326e8d6d71fe/2018-44.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "legal_aid",
+        "versionLabel": "GN 44 of 2018",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-LEGAL-AID-RULES",
+      "status": "already_ready",
+      "archiveId": "vs74mvabz481thqkpse0txfzp18ft7a6",
+      "storageId": "kg222wqdz9rjjr409p2ngw7mjs8gw5vy",
+      "documentId": "md7dj03tddxv3bgvdwyn5amges8gxc90",
+      "metadata": {
+        "title": "Zanzibar Legal Aid Regulations",
+        "sourceUrl": "https://zlsc.or.tz/wp-content/uploads/2024/08/ZNZ-SMZ-Kanuni-za-Msaada-wa-Kisheria-2019.pdf",
+        "publisher": "Repository: zlsc.or.tz; publisher review pending",
+        "jurisdiction": "zanzibar",
+        "language": "sw",
+        "contentCategory": "zanzibar",
+        "versionLabel": "LN 118 of 2019, Gazette 23 August 2019",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": false
+    },
+    {
+      "researchSourceId": "PROC-COURT-FEES",
+      "status": "already_ready",
+      "archiveId": "vs79jnmypngehww86ewsm42dyh8ftn9q",
+      "storageId": "kg2apx9skjp0n0srnky9avacrd8gw7kh",
+      "documentId": "md7bhzswdnknm6c2syv9qmpyqh8gx65e",
+      "metadata": {
+        "title": "Court Fees Rules",
+        "sourceUrl": "https://elibrary.osg.go.tz/server/api/core/bitstreams/9161d28c-ed08-45f5-8cc5-cbff01b7ab15/content",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "GN 187 of 2015",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "WCF-NOTIFICATION",
+      "status": "already_ready",
+      "archiveId": "vs73xf35n7qhe4kxybtvrraaj58fvx8v",
+      "storageId": "kg272586wg4y4v3ss7bm68h53x8gx20g",
+      "documentId": "md731233ts2m9z987mm2qcn4bh8gwc96",
+      "metadata": {
+        "title": "WCF WCN-1 occupational accident disease death notification",
+        "sourceUrl": "https://www.wcf.go.tz/uploads/documents/sw-1666784555-Notification%20Form%20-%20WCN%201.pdf",
+        "publisher": "Repository: www.wcf.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "work_injury",
+        "versionLabel": "Website form listed 2022",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "WCF-CLAIM",
+      "status": "already_ready",
+      "archiveId": "vs79n8hqkshnj2kjjrwkc8vvd98fvky6",
+      "storageId": "kg284qabke4ac1xcq54k0xrrah8gxeq2",
+      "documentId": "md747cqffxnqkx3mnqq6ezpsfh8gxn7c",
+      "metadata": {
+        "title": "WCF WCC-1 compensation claim",
+        "sourceUrl": "https://www.wcf.go.tz/uploads/documents/sw-1715868914-Compensation%20Claim%20Form%20WCC-1.pdf",
+        "publisher": "Repository: www.wcf.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "work_injury",
+        "versionLabel": "Version date unresolved",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SAFE-HOMES",
+      "status": "already_ready",
+      "archiveId": "vs7dha0g0ndwa5fq327jtwbg098fvwee",
+      "storageId": "kg2dtc51mwn4y8nns2rgwt4vb58gx1yd",
+      "documentId": "md76sneqg4h8kj82bzn46y6jm98gxnxv",
+      "metadata": {
+        "title": "National Guideline for Safe Homes",
+        "sourceUrl": "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+        "publisher": "Repository: www.jamii.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "other",
+        "contentCategory": "safeguarding",
+        "versionLabel": "Edition to inspect",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "COURTS-MAGISTRATES",
+      "status": "already_ready",
+      "archiveId": "vs714900vnxbkq5msx86bcn4eh8fv7ez",
+      "storageId": "kg20vkchkk6qf4wngfwc2zqg0x8gw8zy",
+      "documentId": "md7bq1jqn7zsk43bq6ab268rq98gw394",
+      "metadata": {
+        "title": "Magistrates Courts Act, Cap. 11",
+        "sourceUrl": "https://www.osg.go.tz/uploads/documents/sw-1763372651-Cap.%2011%20Magistrates%20Courts%20Act%2C%20R.E%202023%20-%20MD%2C%20Mendez.pdf",
+        "publisher": "Repository: www.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-AMENDMENTS-2025",
+      "status": "already_ready",
+      "archiveId": "vs79mzdksmsap4cp8xffgr60tn8ft9h7",
+      "documentId": "md73ynyj4fxp5kg3wd1dzqwvf98gdy8e"
+    },
+    {
+      "researchSourceId": "CHILD-JUVENILE-RULES",
+      "status": "already_ready",
+      "archiveId": "vs7cywdxx89mnktxkjt2b48kd58fttx1",
+      "storageId": "kg22at5xphzeygdn1mfn1m6qq98gwfcx",
+      "documentId": "md7fandy1qxsjgcef40708cp818gxa5g",
+      "metadata": {
+        "title": "Law of the Child Juvenile Court Procedure Rules",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/47056/source_file/1abcf097768ffa13/2016-182.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "children",
+        "versionLabel": "GN 182 of 2016",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SAFE-NPA-II",
+      "status": "already_ready",
+      "archiveId": "vs7dey3e4zz6t3nv5jm584epjn8ftdfg",
+      "storageId": "kg2dvr2mvmx73r6y85r9jdtsbs8gx3gd",
+      "documentId": "md79613wwrb45zj34p1skyt8c98gxj6v",
+      "metadata": {
+        "title": "National Plan of Action to End Violence Against Women and Children II",
+        "sourceUrl": "https://www.jamii.go.tz/uploads/documents/sw-1739175592-NPA-VAWC-II.24.25.pdf",
+        "publisher": "Repository: www.jamii.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "other",
+        "contentCategory": "safeguarding",
+        "versionLabel": "2024/25-2028/29",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SAFE-FGM-EN",
+      "status": "already_ready",
+      "archiveId": "vs71t1b8x4jmbyk2drd0k8sry58ft3se",
+      "storageId": "kg2amgsx8kmpvcm6cgjbgwrc2h8gxkmz",
+      "documentId": "md79knhddyxb6g0kgpy1r9hvwn8gxfk8",
+      "metadata": {
+        "title": "National Multisectoral Strategy to End FGM",
+        "sourceUrl": "https://www.jamii.go.tz/uploads/documents/sw-1779274822-National%20Multsectoral%20Strategy%20to%20End%20FGM_2025.pdf",
+        "publisher": "Repository: www.jamii.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "safeguarding",
+        "versionLabel": "2025, exact plan period to inspect",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SAFE-FGM-SW",
+      "status": "already_ready",
+      "archiveId": "vs7dhfsnrdr3tvfzx5dp00a2wd8fvtxr",
+      "storageId": "kg2d70g26zs9dwts2xs9m5yhdn8gxpbt",
+      "documentId": "md71yzg2va71asyw7q2yz38ed18gx8sv",
+      "metadata": {
+        "title": "Mkakati wa Taifa wa Kisekta wa Kutokomeza Ukeketaji",
+        "sourceUrl": "https://www.jamii.go.tz/uploads/documents/sw-1779274602-Mkakati%20wa%20Taifa%20wa%20Kisekta%20wa%20Kutokomeza%20Ukeketaji_2025.pdf",
+        "publisher": "Repository: www.jamii.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "sw",
+        "contentCategory": "safeguarding",
+        "versionLabel": "2025, exact plan period to inspect",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-COURT-FEES-2018",
+      "status": "already_ready",
+      "archiveId": "vs73ay3qm944kgt47paa0eshqd8ftvyg",
+      "storageId": "kg2dspgvzvx6vpzx6gvdka46n58gw9sq",
+      "documentId": "md7d6mbjwqgjzcxfpf1t6575c58gxc5g",
+      "metadata": {
+        "title": "Court Fees Rules, original Gazette mirror",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/47231/source_file/6823f37b1e0eb688/tz-act-gn-2018-247-publication-document.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "GN 247 of 2018",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "RIGHTS-ENFORCEMENT",
+      "status": "already_ready",
+      "archiveId": "vs722dvscjk5t81peb87x15m5x8ftbkm",
+      "storageId": "kg25r8vgft3w5wb976aaya5zed8gxs8f",
+      "documentId": "md76n8cemgc1x0qyk3smbnr7c98gwmtz",
+      "metadata": {
+        "title": "Basic Rights and Duties Enforcement Act, Cap. 3",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/108/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "human_rights",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-GOVERNMENT",
+      "status": "already_ready",
+      "archiveId": "vs723brt30s5pp6mnm71yp2pe98ftbkb",
+      "storageId": "kg264sgna0y7f0az8dm9gedga98gwfex",
+      "documentId": "md7efhbs1f6vt0by4zaz147ar58gxc0n",
+      "metadata": {
+        "title": "Government Proceedings Act, Cap. 5",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/110/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CIVIL-BIRTH-DEATH",
+      "status": "already_ready",
+      "archiveId": "vs728ys2cb73es40czyfvc6s3n8fv2tm",
+      "storageId": "kg2e7a1p00d2xxme2fzjx4a46n8gxnpx",
+      "documentId": "md7dhhharemc11q251gg4a0pzs8gwwqw",
+      "metadata": {
+        "title": "Births and Deaths Registration Act, Cap. 108",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/572e10f1-d5d6-44d9-a820-08512f86ce31/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "civil_registration",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CRIM-PROCEDURE-SUPPLEMENT-2025",
+      "status": "already_ready",
+      "archiveId": "vs7a75eerj9g2vdf6xb72d36e18fvyw6",
+      "storageId": "kg24et4btf5sg9ar2e9v1yxxvx8gxpcg",
+      "documentId": "md782jb8c6dhckw74gk76fr6td8gwfzv",
+      "metadata": {
+        "title": "Criminal Procedure Act annual supplement",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/2fb44385-0abe-4f58-ac95-7246c72f337b/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "criminal",
+        "versionLabel": "Annual supplement incorporates amendments through 31 July 2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-INSTITUTIONS",
+      "status": "already_ready",
+      "archiveId": "vs70sfctwc0ncpx8zddb9aa4r18fvkw4",
+      "storageId": "kg24vgrq3knmf7ypjx96g0hbq18gw7z8",
+      "documentId": "md78krj88g9y06kzyrjyt9eeh18gwnjf",
+      "metadata": {
+        "title": "Labour Institutions Act, Cap. 300",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/dee81a24-bbca-4adc-95c1-2e99fc8ca45d/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ESTATES-RULES",
+      "status": "already_ready",
+      "archiveId": "vs77dkrfnpjvfr67tns3b2dp418ftp64",
+      "storageId": "kg2c9efsqewr8tt1hk7nrqmwqs8gx250",
+      "documentId": "md764fv03gr8ynmp7xkavfjavh8gwkgt",
+      "metadata": {
+        "title": "Probate Rules consolidated mirror",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/377715/source_file/5dcd75913f612b50/1963-10.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "inheritance",
+        "versionLabel": "GN 10 of 1963, version 11 July 2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-APPEAL-AMENDMENT-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs70r9sr9frgszhzwdtvfnrxks8ft2jr",
+      "storageId": "kg27b3peq6e97487zr1z7qhpz58gwmch",
+      "documentId": "md77x5dgzxwj1wm90c76dczsf58gxgkz",
+      "metadata": {
+        "title": "Tanzania Court of Appeal Amendment Rules",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/legislation/3923/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "GN 49 of 2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FIN-BOT-AMENDMENT-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs77ge8dhmqh6d1jpycdqk3mks8ftx4m",
+      "storageId": "kg2a7gx1n7eep1xqdpccjwy1cs8gx765",
+      "documentId": "md79yc92r17jer1xckk83phyth8gxk1b",
+      "metadata": {
+        "title": "Bank of Tanzania Financial Consumer Protection Amendment Regulations",
+        "sourceUrl": "https://www.bot.go.tz/Publications/Acts%2C%20Regulations%2C%20Circulars%2C%20Guidelines/Regulations/en/2025061918261266.pdf",
+        "publisher": "Repository: www.bot.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "financial_consumer",
+        "versionLabel": "2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PRIVACY-PROCESSING",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs78w0edwfjsaz4pk5em6yckhn8ft5m9",
+      "storageId": "kg2d1pa57knandd8643szx2r0h8gwgar",
+      "documentId": "md74wdvem94fzgv7v1bzr3bghs8gx37h",
+      "metadata": {
+        "title": "Personal Data Protection Personal Data Collection and Processing Regulations",
+        "sourceUrl": "https://pdpc.go.tz/documents/4/THE_PERSONAL_DATA_PROTECTION_PERSONAL_DATA_COLLECTION_AND_PROCESSING_REGULATIONS_2023.pdf",
+        "publisher": "Repository: pdpc.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "other",
+        "contentCategory": "privacy",
+        "versionLabel": "2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ESTATES-AMENDMENT-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs79gy72yjtc3zmhz0hrrr0p3n8fv7fv",
+      "storageId": "kg2c5sbrp5txgxhehj92n170wx8gwms5",
+      "documentId": "md774rhn11hegnjjm8prz0nvn58gx5v4",
+      "metadata": {
+        "title": "Probate (Amendment) Rules, 2025",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/legislation/4526/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "inheritance",
+        "versionLabel": "GN 429 of 2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ESTATES-PRIMARY-AMENDMENT-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7de42yjeaxsvb8ns52r26b8s8ftn30",
+      "storageId": "kg2e821b0ce09gp3144n86285s8gxcnh",
+      "documentId": "md7896mwqadsyvq0m1zemdwf9s8gwt00",
+      "metadata": {
+        "title": "Primary Courts (Administration of Estates) Amendment Rules, 2025",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/legislation/4525/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "inheritance",
+        "versionLabel": "GN 428 of 2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-EFILING",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7bt5m1ff2g4dcsgtcg6nanmh8ftkfd",
+      "storageId": "kg256qknt3wq9nng4b57nnkayn8gx0zf",
+      "documentId": "md70svxp2zhb05csm9dkht0vws8gwxgj",
+      "metadata": {
+        "title": "Electronic Filing Rules, 2018",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/4e0c9dd6-af98-429b-8039-14eb8f9f7ba6/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "GN 148 of 2018",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-ECMS-GUIDE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs77b89v827xk9snr1j693pzbh8fv7vm",
+      "storageId": "kg2e672gj0bg4msf3je8vmd8n18gxqwy",
+      "documentId": "md7b6ey6cqrx4gjzsa6cyqpc498gwfmn",
+      "metadata": {
+        "title": "Electronic Case Management System external user guide",
+        "sourceUrl": "https://media.tanzlii.org/media/generic_document/350318/source_file/21da821ad0b70765/Electronic_Case_Management_System_E-Cms_User_Guide_for_External_Users-2024.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "2024",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CONSUMER-FCC-PROCEDURE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7289b2336hf0rs7yaz7yfs858fvdhz",
+      "storageId": "kg2b5sakyzyd4b7g472257f3718gx2fz",
+      "documentId": "md7f3c8ae5a5f56yy9750gj2as8gxx1n",
+      "metadata": {
+        "title": "Fair Competition Commission Procedure Rules",
+        "sourceUrl": "https://www.fcc.go.tz/attachments/attachment-1719186751547-8732730352.%20FCC%20Procedure%20Rules%202018.pdf",
+        "publisher": "Repository: www.fcc.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "2018",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "WORKERS-COMPENSATION",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs79se51t8ke8hmesm3ej11hjs8fv9aq",
+      "storageId": "kg2et6e9d8t185jg9yab1ym52x8gw3va",
+      "documentId": "md78neabmkhy9q6ne3n47cy1jd8gx7kj",
+      "metadata": {
+        "title": "Workers Compensation Act, Cap. 263",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/367/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "REFUGEES-ACT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs75286ka44q48vmn90c8dsreh8fvcds",
+      "storageId": "kg2bqgqkrn3sgr6md1975c7cf58gx20a",
+      "documentId": "md76fr49en71n2ahkhjp9dpp1n8gxnam",
+      "metadata": {
+        "title": "Refugees Act, Cap. 37",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/142/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "migration",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CORRUPTION-ACT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs74ndhasynt56pwkhahp9mkz58fvwr4",
+      "storageId": "kg21c6rn83ekxxstj0j18gy9v98gwzzj",
+      "documentId": "md73qb077cte57smt20ycnn3g18gw4pe",
+      "metadata": {
+        "title": "Prevention and Combating of Corruption Act, Cap. 329",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/432/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "public_accountability",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "LAND-ACQUISITION",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7793w6ryjvx3zr1dk9b579518ftqjb",
+      "storageId": "kg228m89pxveyyh6wbr90spk158gxq80",
+      "documentId": "md70tpsw02hrywygkh04d6h81h8gwpb2",
+      "metadata": {
+        "title": "Land Acquisition Act, Cap. 118",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/1e6d3de8-66ed-44e7-af2d-fbded102b75b/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "land",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "IMMIGRATION-ACT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs72930pg5pvmxt9c0kehx1k5x8fttw4",
+      "storageId": "kg2ca6hypsq3wvp7ewm3asd6jh8gw9pw",
+      "documentId": "md7frrnecy8sqwds3kqa7w7a2n8gwddw",
+      "metadata": {
+        "title": "Immigration Act, Cap. 54",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/b97cece2-cede-4099-9903-a6fe8fd7decd/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "migration",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "HIV-RIGHTS",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs74hhvprmn39ank2ayfmzsrgn8fv0n2",
+      "storageId": "kg2cdf0zxqdw1n71rjtw4kc2458gw22b",
+      "documentId": "md76662pzgmg5bty4grtjzt43x8gwdf7",
+      "metadata": {
+        "title": "HIV and AIDS Prevention and Control Act, Cap. 431",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/7c77b686-6a66-4cca-8145-cb7cb0b00931/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "health_rights",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ENVIRONMENT-ACT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs73zjfe15swbtmjj1dfwssmzn8fvb3c",
+      "storageId": "kg29wzxvf9gh8kz5j9nqngt9hn8gw2h7",
+      "documentId": "md76fcknpyebx9taaegsm7t0wx8gxd38",
+      "metadata": {
+        "title": "Environmental Management Act, Cap. 191",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/17a8e629-cba5-4a50-8c45-b45d3c3b0c0d/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "environment",
+        "versionLabel": "R.E. 2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ENVIRONMENT-AMENDMENT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7bxtatmjz5t2r8fqzemqtrjh8fvz0r",
+      "storageId": "kg29vtvdn096s8bjhe64zvn3d18gx31q",
+      "documentId": "md76f8drer5b2qvg9ejhq2p3xd8gwmzp",
+      "metadata": {
+        "title": "Environmental Management Amendment Act",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/327/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "environment",
+        "versionLabel": "Act 5 of 2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CMA-PROCEDURE",
+      "status": "already_ready",
+      "archiveId": "vs703zm602x5ak7p3ngf0e5sb18ft1ep",
+      "documentId": "md7esm8ajtmzzy7tvxv2tkmryh8gx8yt"
+    },
+    {
+      "researchSourceId": "CMA-FEES-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs70605va98xmwfy4v3028zh898ftsjp",
+      "storageId": "kg2dmgrb33srf5mfbzabzf8nsd8gwv83",
+      "documentId": "md70h26e5mzdsgj7ph7qypf4ys8gxcxt",
+      "metadata": {
+        "title": "Kanuni za Ada za Tume ya Usuluhishi na Uamuzi za Mwaka2025",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/legislation/4336/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "sw",
+        "contentCategory": "employment",
+        "versionLabel": "GN60/2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "UTILITIES-COMPLAINT-RULES",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7409w1emdfyw9wcxrc24g2a18fv642",
+      "storageId": "kg215nbkxp38st2s79c7ywseah8gx7vw",
+      "documentId": "md72zjy3kthx4q4ke2180qvds18gw59v",
+      "metadata": {
+        "title": "EWURA Consumer Complaints Settlement Procedure Rules",
+        "sourceUrl": "https://www.ewura.go.tz/uploads/documents/en-1764751868-The%20EWURA%20%28Consumer%20Complaints%20Settlement%29%20Rules%2C%202020_GN%20428.pdf",
+        "publisher": "Repository: www.ewura.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "GN428 of2020",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "TELECOM-COMMITTEE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs77vxzxfzt8m9jkh18a9mbt6s8ftqd5",
+      "storageId": "kg26kd8s9p1p4ymvb4j61njt458gxazc",
+      "documentId": "md78m65gvy85xhs6f8rtrrr4th8gxvpz",
+      "metadata": {
+        "title": "TCRA Complaints Committee Rules",
+        "sourceUrl": "https://www.tcra.go.tz/tcra-tovuti/2026/mamlaka-website/documents/rules/SW_The_Tanzania_Communications_Regulatory_Authority_Complaints_Commitee_Rules_2018_57da026c60.pdf",
+        "publisher": "Repository: www.tcra.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "GN203 of2018",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-APPEAL-PRINCIPAL",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs73p6d81zxzjfyxs4s5t824wd8ftcv0",
+      "storageId": "kg26848jfhq9q7h48rq3mw5fms8gwg30",
+      "documentId": "md75e1z9f86ycqkwqb83j66qhn8gw7fm",
+      "metadata": {
+        "title": "Tanzania Court of Appeal Rules",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/131d7ef9-24e0-49f6-8f4f-5a1b289a8062/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "R.E.2019 subsidiary legislation",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CMA-GUIDELINES",
+      "status": "already_ready",
+      "archiveId": "vs7aq4g8hafrft2bp6z0wkbh758ft589",
+      "documentId": "md733z36b98d39644ghwk452dh8gwx5w"
+    },
+    {
+      "researchSourceId": "LABOUR-COURT-RULES",
+      "status": "already_ready",
+      "archiveId": "vs75q35t32kn8d52c40jz0et3x8ft3jc",
+      "documentId": "md765dbtqvm32njhe2jmpgpm2n8gxthf"
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-GENERAL-FORMS",
+      "status": "already_ready",
+      "archiveId": "vs75zp2m4ha28r85vxtrbwsqz98ft0xg",
+      "documentId": "md7es79y89wzc0fv5n1f75h52s8gxxyc"
+    },
+    {
+      "researchSourceId": "LABOUR-INSTITUTIONS-GENERAL",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs74f84ybhh6vf68petwt4p6558fvrvm",
+      "storageId": "kg24kff57jqn2jz63k94z50fg58gxe7f",
+      "documentId": "md75xd3s48ja3xm74d7g2fqshn8gwxgp",
+      "metadata": {
+        "title": "THE LABOUR INSTITUTIONS (GENERAL) REGULATIONS, GN NO. 45 OF 2017",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/aca1403c-1945-46fa-ad0b-fb81555567e6/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN45/2017",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-APPEAL-AMENDMENT-2024",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs73v6ybntdy2jjhb9e3q3mwp18fvb74",
+      "storageId": "kg2dkv5bxy7r2097bp1eq971bx8gwh22",
+      "documentId": "md78djm1kznpkc06103jrr4gad8gwj6t",
+      "metadata": {
+        "title": "THE TANZANIA COURT OF APPEAL (AMENDMENT) RULES, GN 188 OF 2024",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/6b8356d4-8756-4e54-9430-8e7f9a1c0146/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "GN188/2024",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-JUDICIAL-REVIEW",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7esym3ergxay7zsdv1v44gsn8ft406",
+      "storageId": "kg29s3gjfz23dskh4dwtq868a18gw2kx",
+      "documentId": "md78xc7m4pmej7nmezj18gwwcx8gxfw0",
+      "metadata": {
+        "title": "THE LAW REFORM (FATAL ACCIDENTS AND MISCELLANEOUS PROVISIONS) (JUDICIAL REVIEW PROCEDURE AND FEES) RULES, GN NO. 324 OF 2014",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/351f501c-f4c0-4a4a-bb72-4164f9197113/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "GN324/2014",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SAFE-WITNESS-ACT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs76w1vsre2cmnhyxm81pjy1yx8ft9vq",
+      "storageId": "kg25ev82kwzzfmkh56ccgm8ma18gw6x1",
+      "documentId": "md7ce1tyv6qzmbec329ajavsk58gx1vg",
+      "metadata": {
+        "title": "THE WHISTLEBLOWER AND  WITNESS PROTECTION ACT, CHAPTER 446, R.E. 2023",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/35cc4442-0ace-4711-a404-510d2242c3d0/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "safety",
+        "versionLabel": "R.E.2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ADR-ARBITRATION-ACT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs74kxrwdfaha5y9rx279ccq358fvth9",
+      "storageId": "kg2051y8avjmwqdnj7qe0b0bnd8gwb5b",
+      "documentId": "md78rz2bkxjj5cpvwkahqga89s8gx0e2",
+      "metadata": {
+        "title": "THE ARBITRATION ACT, CHAPTER 15, R.E 2023",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/6886fb83-059c-4bbb-871a-bc08c1b413be/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "adr",
+        "versionLabel": "R.E.2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ADR-ARBITRATION-RULES",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs78bd7pfexc8ks1j13wtb138n8ftjef",
+      "storageId": "kg28sx1mqfkkqpf06pe3t7gxn18gwek2",
+      "documentId": "md76tvc7mcxsmsbshph5t25xmd8gxyye",
+      "metadata": {
+        "title": "THE ARBITRATION (RULES OF PROCEDURE) REGULATIONS,  GN NO 146 OF 2021",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/fcc53669-4b2c-4e09-9525-b5791a1629dc/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "adr",
+        "versionLabel": "GN146/2021",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ADR-ACCREDITATION",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs747pct0hz7gwdmdynmyy91y58ftgkf",
+      "storageId": "kg2etze3h21wka0m2hhw5y37t18gw93h",
+      "documentId": "md7a5mjh1npzj44eyz3689qgkn8gxygn",
+      "metadata": {
+        "title": "RECONCILIATION, NEGOTIATION, MEDIATION AND ARBITRATION (PRACTITIONERS ACCREDITATION) REGULATIONS, 2021. G.N 147 OF 2021.",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/8a86862b-9841-4cd9-8b9c-a369351c8c1b/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "adr",
+        "versionLabel": "GN147/2021",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ADR-CONDUCT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7ddwwa718md49yrq2mkja88n8fv4sb",
+      "storageId": "kg24rnmtn306v9gwe1hsavpdzn8gwwpn",
+      "documentId": "md75fnee5y02476kwe7ptcjgzn8gwt4z",
+      "metadata": {
+        "title": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, GN NO. 148  OF 2021",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/20374742-858b-4e49-b666-9391fad309bc/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "adr",
+        "versionLabel": "GN148/2021",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SOCIAL-NSSF",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs71twxa0wjvw3vkhd9ybm33jx8fvb3y",
+      "storageId": "kg2ddh54eecf9yaq8v2xtk1c2x8gw0se",
+      "documentId": "md78sqck1wh5mc1kj6fn658dc18gwfw5",
+      "metadata": {
+        "title": "THE NATIONAL SOCIAL SECURITY FUND ACT, CHAPTER 50 R.E. 2023.",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/ace82c08-8bea-4d91-81da-126eb439ddda/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "social_security",
+        "versionLabel": "R.E.2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SOCIAL-PSSSF-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7fg2kdac9zn04r59b6nrbqzh8fv7qz",
+      "storageId": "kg2cdbrfp1tqsdxzpbbtb0r8px8gw2gz",
+      "documentId": "md70qy38h5jhzfxgpezzzra56h8gw0p8",
+      "metadata": {
+        "title": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT, CHAPTER 371 (R.E 2023 A.S. 2025)",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/cf923cdc-b36a-4a5b-88f8-21818597c3a2/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "social_security",
+        "versionLabel": "R.E.2023 A.S.2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-APPLICABLE-LAWS",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs753jhptdqscj7srn8dx7wan18fv9zp",
+      "storageId": "kg200v564gqeynnyzdfdwhn9ts8gwrp1",
+      "documentId": "md72ajr8cmdj97km5dtxdnjgt18gxtgq",
+      "metadata": {
+        "title": "THE JUDICATURE AND APPLICATION OF LAWS ACT, CHAPTER 358 R.E. 2023",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/a7a5234d-df38-4b24-a51e-94d2942edc41/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "R.E.2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "RIGHTS-CHRAGG-ACT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs73m9ddnw3j1y8cebjqswdehn8ftqsm",
+      "storageId": "kg20fcqfdej9s94vw7z4c3kdfd8gxb4k",
+      "documentId": "md72kwa29z1391nnt1p6apw7818gxvr4",
+      "metadata": {
+        "title": "THE COMMISSION FOR HUMAN RIGHTS AND GOOD GOVERNANCE ACT, CHAPTER 391 R.E 2023",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/98acaed6-6977-485e-966b-d9438f0e1cdb/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "rights",
+        "versionLabel": "R.E.2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PROC-CIVIL-FORMS-2022",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs78dw3fmjcgh32mtsy09kcrex8fvd8z",
+      "storageId": "kg20hjk55mk7bgv6xn5qt7brnd8gw779",
+      "documentId": "md72n1svskad5bfgndrxdm2bhh8gxs7e",
+      "metadata": {
+        "title": "THE CIVIL PROCEDURE CODE (APPROVED FORMS) (AMENDMENT) NOTICE, 2022 G.N 355 OF 2022",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/b3cb3170-a7c2-45b1-9705-1914c3baf669/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "procedure",
+        "versionLabel": "GN355/2022",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "AMENDMENTS-MISC-1-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7a22yq52qjsh09ckstcez9q58fv9mp",
+      "storageId": "kg2a5cytbrqp1knvz9wycvyprx8gw2c9",
+      "documentId": "md73hk53d5h40aw78stas0r5vx8gx0bg",
+      "metadata": {
+        "title": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) ACT, NO. 1 OF  2025",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/b6d45f4b-5f5b-4131-a65b-9ed70aca86ca/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "amendments",
+        "versionLabel": "Act1/2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "AMENDMENTS-MISC-2-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs70g7zweh6pjw6h7bexypg2nx8ft218",
+      "storageId": "kg20kb9qeg4rfq7hf4352ywdm58gwdh5",
+      "documentId": "md7fwjknfvqpsr5f93ym6st5cx8gw40y",
+      "metadata": {
+        "title": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) ACT NO. 2, 2025",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/dac09022-2d3e-4e4a-9990-9975383082c5/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "amendments",
+        "versionLabel": "Act2/2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "AMENDMENTS-MISC-2024",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs72s7mvrc89604wf8nnkwnh758fvemk",
+      "storageId": "kg29br56d6dqasw76hkn5nbwyn8gxd1a",
+      "documentId": "md7bnbfp4enh144swzt9c12reh8gxx9z",
+      "metadata": {
+        "title": "THE WRITTEN LAWS (MISCELLANEOUS AMENDMENTS) ACT,  2024",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/405cf59e-c8b3-4c98-9daf-7a30280171af/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "amendments",
+        "versionLabel": "2024; exact number to inspect",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "LEGAL-AID-SUPPLEMENT-2025",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs710rsgsb23tg9adq1tmdk7nx8fty2s",
+      "storageId": "kg26mw1hfm42bbjcwhs02ag4r58gxx7v",
+      "documentId": "md7fe119wa84maf7neb46s20t58gweea",
+      "metadata": {
+        "title": "THE LEGAL AID ACT, CHAPTER 21",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/18113afa-1306-4e8d-adcb-d4c0e40df33a/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "legal_aid",
+        "versionLabel": "annual supplement through31 July2025",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "AMENDMENTS-LEGAL-SECTOR-2023",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs75ppvtd5dfket7khdp3e6ky18ftekw",
+      "storageId": "kg2an97kj2bah36cg4cgz3g3418gxg79",
+      "documentId": "md7d30nwb6qqk1mfrkv0txkxqh8gwtrq",
+      "metadata": {
+        "title": "THE LEGAL SECTOR LAWS (MISCELLANEOUS AMENDMENTS) ACT NO. 11 OF 2023",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/ac742b27-5513-489c-a85b-71246d477e09/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "amendments",
+        "versionLabel": "Act11/2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-EMPLOYMENT",
+      "status": "already_ready",
+      "archiveId": "vs75qf8hjt0t3ktabh3v9bb2z58fvmht",
+      "documentId": "md794bcb0vcp5jw7gksd2jhg1s8gxz0e"
+    },
+    {
+      "researchSourceId": "ZNZ-KADHIS-2024",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs704afz413zkm0jfmwk036dg58ft9ek",
+      "storageId": "kg259v6tbqw3n4jrd08jck9skd8gwmk0",
+      "documentId": "md77jna5ez7v8ry8dgzxdmvc458gwtan",
+      "metadata": {
+        "title": "Kadhi’s Courts Act 2023, published February 2024",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "family",
+        "versionLabel": "Act8/2023; assent1February2024; Gazette23February2024; appointed commencement un",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-KADHIS-RULES-2021",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs70hbanrxmm0k77q2wmawy8ax8ftvjz",
+      "storageId": "kg29xnqetdshs3st73rf4rq2zh8gxsnb",
+      "documentId": "md7f3bd31rtjafjk406gy9c6nx8gw814",
+      "metadata": {
+        "title": "Kadhis Court Rules of Procedure Gazette",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2021/tz-znz-government-gazette-legal-supplement-part-ii-dated-2021-12-10-no-6956.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "family",
+        "versionLabel": "LN185/2021",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-CRIMINAL-PROCEDURE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7a15jdhz4kr8s6dmqe5ebpb98fvqyq",
+      "storageId": "kg2apkm4ka66zaragk3vvpstm18gx0x3",
+      "documentId": "md7e3hg3f2yzv80mpvd5g4w80d8gwshd",
+      "metadata": {
+        "title": "Criminal Procedure Act Gazette",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-06-no-6692.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "criminal",
+        "versionLabel": "Act7/2018",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-CRIMINAL-AMENDMENT-2021",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs78azg9vmawbwssfx9dz7qfk98ftfyj",
+      "storageId": "kg2e3wk491nxjwcbexbxz7j8gn8gxng6",
+      "documentId": "md77mm1pr65zk5gy27njsh2h2h8gx6pq",
+      "metadata": {
+        "title": "Criminal Procedure amendment Gazette",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2021/tz-znz-government-gazette-legal-supplement-part-i-dated-2021-03-12-no-6898.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "criminal",
+        "versionLabel": "2021",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-PENAL-2018",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs78fx93g20nnfe0mpghxm1qex8fvmhw",
+      "storageId": "kg268qnnrm94db9m6ravjx23e58gx821",
+      "documentId": "md7dp6m3z2rvm7pjz9sk8ke7vn8gxbc5",
+      "metadata": {
+        "title": "Penal Act Gazette",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-13-no-6691.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "criminal",
+        "versionLabel": "Act6/2018",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-LABOUR-RELATIONS",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7bd0fsq3kectpkt8f9rn7gax8fv4fr",
+      "storageId": "kg28700hv3xkndngvwnxee61cx8gxhwg",
+      "documentId": "md762tr5y5aa6z7d35e4qxevxd8gxvae",
+      "metadata": {
+        "title": "Labour Relations Act Gazette",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-i-dated-2005-11-25-no-6125.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "Act1/2005",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-EMPLOYMENT-GAZETTE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7axgjzb185jsb37grv3h98tx8fvwxa",
+      "storageId": "kg24d32r03m9geths56rd878rx8gw83v",
+      "documentId": "md794bkqq0hvc275xtp49tzj3h8gxq22",
+      "metadata": {
+        "title": "Employment Act Gazette counterpart",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-ii-dated-2005-10-07-no-6115.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "Act11/2005",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-FORMS-READABLE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs751hc9g65fmxr9748b8hb6dx8fvcyr",
+      "storageId": "kg263pbn1z9fq2bvs9bc9kcwmn8gx06c",
+      "documentId": "md7bz27b6apmew5hpgrxnyk07d8gw7c8",
+      "metadata": {
+        "title": "Employment General Regulations Gazette counterpart",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/47218/source_file/tz-act-gn-2017-47-publication-document.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN47/2017",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "LABOUR-COURT-READABLE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs783kpb89hn94y5f3jyds8ed58fv0sv",
+      "storageId": "kg22f3nhg30p22dybfnfta9csh8gwc98",
+      "documentId": "md7ax3a42vsy7n1f1y4g39peq98gx1a2",
+      "metadata": {
+        "title": "Labour Court Rules readable counterpart",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/47113/source_file/7e915aacd4745c75/2007-106.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN106/2007 version to reconcile",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FCC-CONSUMER-PROCEDURE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs76w3cyqp5738gcctmw8mt7j58fvxhf",
+      "storageId": "kg2077zpexgbsgksqtr8792b8h8gx2ak",
+      "documentId": "md76ekgnykez5h3ee6ykw4123h8gxjbv",
+      "metadata": {
+        "title": "Consumer Complaint Handling Procedure",
+        "sourceUrl": "https://www.fcc.go.tz/attachments/attachment-1719187483387-79208651Consumer%20Complaint%20Handling%20Procedure%202022%20(1).pdf",
+        "publisher": "Repository: www.fcc.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "2022",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FCC-TRIBUNAL-RULES",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs76mhrr4amy3yjyh39yr4q0vs8ftqf4",
+      "storageId": "kg2f0q418ksxcmcxkbdc02vmvd8gwnfn",
+      "documentId": "md76vqrxk0m71s2k9wbdaqd8eh8gxmz3",
+      "metadata": {
+        "title": "Fair Competition Tribunal Rules",
+        "sourceUrl": "https://www.fcc.go.tz/attachments/attachment-1719187402182-4255617346.%20Tribunal%20Rules%202012.pdf",
+        "publisher": "Repository: www.fcc.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "2012",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FCC-AMENDMENT-2024",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs71ebgjknrj0n9e5wn7xrdmes8ftrt3",
+      "storageId": "kg2fs3xep4jq1ejznz44vxbmrx8gx2v1",
+      "documentId": "md74by5nqdq32ma3typy40vwhd8gx85r",
+      "metadata": {
+        "title": "Fair Competition Amendment Act",
+        "sourceUrl": "https://www.fcc.go.tz/attachments/attachment-1731140940830-448623484Fair%20Competition%20Amendment%20Act%202024.pdf",
+        "publisher": "Repository: www.fcc.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "2024",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FCC-STANDARD-CONTRACTS",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7cb930ngxp6qatvcmem3nkz58fvtm9",
+      "storageId": "kg23kzw2px6dby3fjz1dcycv3s8gwpaf",
+      "documentId": "md726pjhd4bcy1cn35bpf4djas8gwxgv",
+      "metadata": {
+        "title": "Standard Form Consumer Contracts Regulations",
+        "sourceUrl": "https://www.fcc.go.tz/attachments/attachment-1719186970334-2762257834.%20Standard%20Form%20CONSUMER%20CONTRACTS%20Regulations%202014.pdf",
+        "publisher": "Repository: www.fcc.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "2014",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "FCC-DOMINANCE-2026",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7e2rpdm46fj1xvpaa6na6jqs8fvpcp",
+      "storageId": "kg2fgffnn8m36m7tr90gzqmv5h8gwbvs",
+      "documentId": "md73ks2anjbgwjw8m8rn266vnx8gx8da",
+      "metadata": {
+        "title": "Abuse of Dominant Position Regulations",
+        "sourceUrl": "https://www.fcc.go.tz/attachments/attachment-1787333403896-224555423",
+        "publisher": "Repository: www.fcc.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "2026 catalogue label",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-CHILD-GAZETTE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs74hrvx5skakhyfb4vdz0r2gd8fttgm",
+      "storageId": "kg28v552kabd7s86t4gr59nh8s8gxgd6",
+      "documentId": "md79mem0327105gn3wrxnzgyc98gwbc2",
+      "metadata": {
+        "title": "Children Act Gazette",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "children",
+        "versionLabel": "Act6/2011",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "LAND-TRIBUNAL-PRINCIPAL",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs71097qs7hy3aj93krynhy6z98fv8mt",
+      "storageId": "kg2fj3am3ckn6n7e3a6n3fn74x8gxd4s",
+      "documentId": "md77xcjztestpx02sdhy51s71s8gwmn4",
+      "metadata": {
+        "title": "District Land and Housing Tribunal Regulations original Gazette",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/366834/source_file/a166ab37bd7fda6d/tz-act-gn-2003-174-publication-document.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "land",
+        "versionLabel": "GN174/2003",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "WCF-REGULATIONS-2016",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs775bp3pc6tn7kjw47tkcdrqd8fv4vz",
+      "storageId": "kg24jx9sy9wnjp74j2zajz22qn8gwt05",
+      "documentId": "md7apq92ceaptbcaja7xz5vsdx8gw5br",
+      "metadata": {
+        "title": "Workers Compensation Regulations original Gazette",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/47207/source_file/tz-act-gn-2016-185-publication-document.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN185/2016",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "WCF-REGULATIONS-VERSION",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs72mtkprsk4s5yp9g4mx0cbw58fvy7y",
+      "storageId": "kg2ab5dtq883je9yzhdv606pdx8gxf34",
+      "documentId": "md70mvn7wt7ava3dmqw5vxr6ds8gw2g5",
+      "metadata": {
+        "title": "Workers Compensation Regulations repository consolidated candidate",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/47207/source_file/131220f3ff93bd31/2016-185.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "2016 version cutoff must verify",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "WCF-AMENDMENT-2021",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7a7zyzrppgbnc96s5fw9evrd8ft429",
+      "storageId": "kg2crp1q0e3revjczz6hggtxbs8gw1rp",
+      "documentId": "md76vfv22km09prtt1r7zn2z718gxz8b",
+      "metadata": {
+        "title": "Workers Compensation Amendment Regulations",
+        "sourceUrl": "https://www.wcf.go.tz/uploads/documents/sw-1666602336-sw1658489562-GN%20No.%20668%20WC%20Regulations%20Ammendment.pdf",
+        "publisher": "Repository: www.wcf.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN668/2021",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-CHILD-COURT-RULES",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs72gwrh8day828k4zdgqg4zb98fv0w7",
+      "storageId": "kg208bcykh8ejwe1ktexq3haf98gw7ce",
+      "documentId": "md72pehfsd1b46qq6r1bx4v2hn8gwb7w",
+      "metadata": {
+        "title": "Zanzibar Children Court Rules Gazette reproduction",
+        "sourceUrl": "https://www.warnathgroup.com/wp-content/uploads/2019/08/Zanzibar-2011-Childrens-Act.pdf",
+        "publisher": "Repository: www.warnathgroup.com; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "children",
+        "versionLabel": "LN87/2015; filename incorrectly calls it Children Act",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "TELECOM-CONSUMER-REGULATIONS",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7c0yqj8rep2agdap1ktc3n2n8ftvx5",
+      "storageId": "kg2ekrj2j0pscbh0b739zzz7qs8gw3yx",
+      "documentId": "md7cahnyfqmnd5wag69xnb13hn8gwg4h",
+      "metadata": {
+        "title": "Electronic and Postal Communications Consumer Protection Regulations",
+        "sourceUrl": "https://www.tcra.go.tz/tcra-tovuti/2021/mamlaka-website/documents/regulations/en_1619087013_The_Electronic_and_Postal_Communications_Consumer_Protection_Regulations_2018_cc03743654.pdf",
+        "publisher": "Repository: www.tcra.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "consumer",
+        "versionLabel": "GN61/2018",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-PROVIDER-LIST",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs72qfa77b2fd9qe0jknpkf2kh8ft0aa",
+      "storageId": "kg273hn9ba141b2eadtcrwa2ns8gxtc7",
+      "documentId": "md753pje0me66qt5556ycpt3ts8gxgbz",
+      "metadata": {
+        "title": "Registered Legal Aid Provider Organisations public list",
+        "sourceUrl": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+        "publisher": "Repository: zlsc.or.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "services",
+        "versionLabel": "publication date/registration currency unresolved",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "TELECOM-GUIDELINE-2020",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7bhq1kdcdszg6je22g2a6ss18fvdnc",
+      "storageId": "kg2dp9nzx8f05j75f0gnf2y4wd8gx656",
+      "documentId": "md74jjcmz24t8mxbeh0yhze6498gw6yt",
+      "metadata": {
+        "title": "Complaints Handling Guideline updated December2020",
+        "sourceUrl": "https://www.tcra.go.tz/tcra-tovuti/2021/mamlaka-website/sector-resources/consumer-affairs/attachments/Complaints_Handling_Guideline_updated_December_2020_converted_1622545809_13eea21420.pdf",
+        "publisher": "Repository: www.tcra.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "telecom",
+        "versionLabel": "updatedDecember2020 catalogue label",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "TELECOM-GUIDELINE-UNDATED",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs768f8zqx6h902qj8nv079kzh8fvtam",
+      "storageId": "kg28qngmzhn40jk0j9bxa3cvrx8gxwfq",
+      "documentId": "md78ssvhtpy0rew2cvd2pr8ff98gxrw7",
+      "metadata": {
+        "title": "Guidelines for Consumer Complaint Handling",
+        "sourceUrl": "https://www.tcra.go.tz/tcra-tovuti/2021/mamlaka-website/sector-resources/consumer-affairs/attachments/Guidelines_for_Consumer_Complaint_handling_1622546032_3548c214b0.pdf",
+        "publisher": "Repository: www.tcra.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "telecom",
+        "versionLabel": "edition to inspect",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SOCIAL-BENEFITS-2018",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7d3bwhy8fwcgby4rre7t1dxn8ftpxk",
+      "storageId": "kg253807pksah0ensba9031nks8gxa2z",
+      "documentId": "md7eqmn18ptgnyww18n55a891h8gx3ec",
+      "metadata": {
+        "title": "Social Security Schemes Benefits Regulations",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/legislation/743/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "social_security",
+        "versionLabel": "GN467/2018; catalogue incorrectly says2022",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SOCIAL-BENEFITS-AMENDMENT-2022",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7ar4ffmm72xcgj5nypvr7c2d8fvg3v",
+      "storageId": "kg253fy6sdhq89tzp24yxe084x8gw2yd",
+      "documentId": "md7f64wz8z1pcra8qwe9a6v33h8gw637",
+      "metadata": {
+        "title": "Social Security Schemes Benefits Amendment Regulations",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/47330/source_file/tz-act-gn-2022-357-publication-document.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "social_security",
+        "versionLabel": "GN357/2022",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SOCIAL-BENEFITS-AMENDMENT-2024",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs784x3ene0bj7rbp1vzwq3s4h8ft2b3",
+      "storageId": "kg2cnxj9rv97vyv84rerw5t3t98gwzfk",
+      "documentId": "md70gmkmrhc5tx1fjbe9kbgbgx8gx0cd",
+      "metadata": {
+        "title": "Social Security Schemes Benefits Amendment Regulations",
+        "sourceUrl": "https://oagmis.oag.go.tz/portal/legislation/2692/download",
+        "publisher": "Repository: oagmis.oag.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "social_security",
+        "versionLabel": "GN140/2024; OSG issued-date conflicts with OAG publication metadata",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PERSONAL-ISLAMIC-RESTATEMENT",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs725ctc14xx3y6qfyww3102ns8fvayj",
+      "storageId": "kg270yhszv0t5sk2srwynfdbkn8gxg9n",
+      "documentId": "md7bhd9snsx3nhpwjtvcfth7698gwm19",
+      "metadata": {
+        "title": "Islamic Law Restatement Act",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/0a0023cc-55cd-4e0f-ac5f-42150b5f6f1a/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "inheritance",
+        "versionLabel": "RE2023",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CASE-LAND-SETH-2024",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs74943vx4n9xvmkfdkccfggr18fvbyv",
+      "storageId": "kg258gvgttt3ktb5tp7ytgp5818gxbyy",
+      "documentId": "md72qzdky9n94d565tj2ezkyp98gx6k1",
+      "metadata": {
+        "title": "Seth Japhet v Nicholas Mero",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/482fef48-9cf6-483d-b5f7-f51f8daf4b9f/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "land",
+        "versionLabel": "TZCA1261/2024",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CASE-ESTATE-LONYAMALI",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7bd5wtjkfqe3zqmd7r9tz0n18fteee",
+      "storageId": "kg2d8ag63xp4j5ep1e02f1yf798gw133",
+      "documentId": "md7bsvkqea353cr6nqjz4q9qdh8gxxwh",
+      "metadata": {
+        "title": "Eliahu Lonyamali v Mosses Lonyamali",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/a48f5f1d-467a-467c-89c8-437e98b71d8e/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "inheritance",
+        "versionLabel": "CivilAppeal269/2023; decision date to inspect",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CASE-LABOUR-OATH-2022",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7dk4s440gz3xaswn69a2b8gs8fthpz",
+      "storageId": "kg20zrxm62mcyqgjv01yw6b7gh8gx2cj",
+      "documentId": "md73k1ejv84nc887dqyx5ngxhh8gxz39",
+      "metadata": {
+        "title": "Capital Drilling v Alex Kabendera",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/f1bd2ed7-fe8f-40ce-9c46-8269d85af9e7/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "CivilAppeal370/2019; judgment dated13July2022, delivered14July2022; catalogue13J",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CASE-INHERITANCE-LATIFA",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7bdby08cq4c7w1560f2nkevn8ftc23",
+      "storageId": "kg2e8gsm07vsh29hp9w1zc37bn8gwrf2",
+      "documentId": "md7a47xtzvcpqhdm0558470q2h8gx6k0",
+      "metadata": {
+        "title": "Latifa Awadh Saleh and others v Mariam Mbarak Ahmed",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/6c6c9454-9308-474a-aa28-3a2482e9c60e/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "inheritance",
+        "versionLabel": "CivilAppeal607/2025; actual date to verify",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "CASE-LAND-MABULA-2024",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7c72kznffq9y0vdsmgkyq0298ft8ky",
+      "storageId": "kg230zg8er0mj80xv348eaey698gw4kd",
+      "documentId": "md72n168fh3nrn9m7f5kt1egpn8gwex5",
+      "metadata": {
+        "title": "Mabula Sayi v Kalekwa Malahya",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/e9dc5eda-0a71-4c3f-a238-0f32e9d50e58/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "family",
+        "versionLabel": "TZCA1235/2024",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-DISABILITY-RULES-2022",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs7frw96hvvr61r5fe92jht5jd8ftxdm",
+      "storageId": "kg283r84svd87gtmnq3y4hxpsn8gxhrb",
+      "documentId": "md716ysynv4rbmse4w5af0zy1h8gwzg5",
+      "metadata": {
+        "title": "Zanzibar Persons with Disabilities Act8/2022, Gazette7067B",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2022/tz-znz-government-gazette-legal-supplement-part-ii-dated-2022-12-30-no-7067b.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "rights",
+        "versionLabel": "Act8/2022, assent22December2022, Gazette30December2022",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PERSONAL-CUSTOMARY-NO2",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs72wz23nynyk5ryng1wqqa5518ft8h7",
+      "storageId": "kg2243k1k1nzcyjc9va2c5gd6d8gxva5",
+      "documentId": "md75yj3h54eh6hgavk7qbvq9m58gxabp",
+      "metadata": {
+        "title": "Local Customary Law Declaration No2 GN303/1963",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/309779/source_file/1963-303.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "family",
+        "versionLabel": "Identity and current applicability pending review",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "PERSONAL-CUSTOMARY-NO4",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs75pa04gxq9pexk9f1wf6ve3n8ftyas",
+      "storageId": "kg2f66j6ezcwc1qfncp8jzz9hd8gxc2m",
+      "documentId": "md7cr257ex3dxhm5hebvvsp4f18gxcph",
+      "metadata": {
+        "title": "Local Customary Law Declaration No4 GN436: repository1967 versus cited1963",
+        "sourceUrl": "https://media.tanzlii.org/media/legislation/316419/source_file/516c601d2d8e5ac7/1967-436.pdf",
+        "publisher": "Repository: media.tanzlii.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "family",
+        "versionLabel": "Identity and current applicability pending review",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-ENVIRONMENT-GAZETTE",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs74dgjz2ehqb2tnm738cazxv18fvp2d",
+      "storageId": "kg2782njchkycx36tqjz2ytdq98gxsy0",
+      "documentId": "md72j5gxn05kjc04bfv3xmb7bh8gxvrj",
+      "metadata": {
+        "title": "Zanzibar Environmental Management Act3/2015 Gazette source",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2015/tz-znz-government-gazette-legal-supplement-part-i-dated-2015-05-08-no-6564.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "environment",
+        "versionLabel": "Act3/2015; Gazette6564,8May2015; later amendment review required",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "ZNZ-KADHIS-SW-2024",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs75efwbsgby5zfzwzqgew5c0x8ftpr1",
+      "storageId": "kg28nh4h4n0y1fk753w11yf9rs8gw8e9",
+      "documentId": "md76rg092ng6wywnsad9w3x4ah8gw0ds",
+      "metadata": {
+        "title": "Sheria ya Mahakama za Kadhi Nam8/2023: Swahili Gazette counterpart candidate",
+        "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2023/tz-znz-government-gazette-dated-2023-02-23-no-7203.pdf",
+        "publisher": "Repository: archive.gazettes.africa; publisher review pending",
+        "jurisdiction": "other",
+        "language": "sw",
+        "contentCategory": "family",
+        "versionLabel": "Act8/2023; assent1February2024; Gazette/date conflict",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "SOCIAL-NSSF-COMPLAINT-FORM",
+      "status": "ready_pending_independent_review",
+      "archiveId": "vs75v30wc3d6sqvz818x8564sn8fv376",
+      "storageId": "kg2fhsmydmda2qdvsp1v9zg8k58gwqm1",
+      "documentId": "md7aq0v6fnpndw1q07mc7vn0fh8gw0a7",
+      "metadata": {
+        "title": "NSSF-hosted fund complaint decision confirmation form",
+        "sourceUrl": "https://www.nssf.go.tz/uploads/publications/en-1600174042-FOMU%20YA%20UTHIBITISHO%20WA%20UAMUZI%20WA%20MALALAMIKO%20YA%20MWANACHAMA.pdf",
+        "publisher": "Repository: www.nssf.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "sw",
+        "contentCategory": "employment",
+        "versionLabel": "Public2020 catalogue form/current page; legal currency unverified",
+        "reviewDueAt": 1800608400000
+      },
+      "publisherNeedsReview": true,
+      "jurisdictionNeedsReview": true
+    },
+    {
+      "researchSourceId": "BASE-CONSTITUTION",
+      "status": "already_ready",
+      "archiveId": "vs73dbfsbybw9ctdrpp5esvqv98fv3z1",
+      "documentId": "md7d6ezk1h73zcqv7bhr4m4mt58gdrtz"
+    },
+    {
+      "researchSourceId": "BASE-LEGAL-AID",
+      "status": "already_ready",
+      "archiveId": "vs7a0n0gp4ryphknfeww5961th8ftd4n",
+      "documentId": "md7c1dsb40fh8hdveccvzhymy18gc4tr"
+    },
+    {
+      "researchSourceId": "BASE-ELRA",
+      "status": "already_ready",
+      "archiveId": "vs75dbps8d50sgr5xc61mry56h8ft97c",
+      "documentId": "md7c86t02spym3v7neffb0xtr18gd19x"
+    },
+    {
+      "researchSourceId": "BASE-CHILD",
+      "status": "already_ready",
+      "archiveId": "vs70qhxh8cex102dsqrpkptaa58fv5nd",
+      "documentId": "md75fx6rmsbnm2p0xbw6xxhvr98gdkr8"
+    },
+    {
+      "researchSourceId": "BASE-LAND",
+      "status": "already_ready",
+      "archiveId": "vs724w9hgha7gn9rg3dv50x0yd8ftffv",
+      "documentId": "md77xf5rtfwtma6nqdexsm0krs8gcjhq"
+    },
+    {
+      "researchSourceId": "BASE-VILLAGE-LAND",
+      "status": "already_ready",
+      "archiveId": "vs7crjxmkeq4wftzbf7127fyjx8ftse0",
+      "documentId": "md756vtyh8p5gzj4n4pz2qz49x8gd4ec"
+    },
+    {
+      "researchSourceId": "BASE-MARRIAGE",
+      "status": "already_ready",
+      "archiveId": "vs750vnw1txxc72jyjxfvxa3hd8ftvq1",
+      "documentId": "md70agwc6cfav441vjjfgwrpm58gdkbe"
+    },
+    {
+      "researchSourceId": "BASE-PRIVACY",
+      "status": "already_ready",
+      "archiveId": "vs78he1g3e4v7ymvwnvm75x0rn8ftw5z",
+      "documentId": "md75fd0f8gq5t6jgqa7z1n28sh8gdf4a"
+    }
+  ],
+  "exceptions": [
+    {
+      "researchSourceId": "PROC-CIVIL",
+      "archiveId": "vs752zk32eva7ggey0y5z1bkh58fvwsk",
+      "title": "Civil Procedure Code Act, Cap. 33",
+      "reason": "scanner_rejected_original_requires_security_review"
+    },
+    {
+      "researchSourceId": "CRIM-PROCEDURE",
+      "archiveId": "vs76gcwqmrskm4kgkt594meqe18fv4kx",
+      "title": "Criminal Procedure Act, Cap. 20",
+      "reason": "scanner_rejected_original_requires_security_review"
+    },
+    {
+      "researchSourceId": "CRIM-PENAL",
+      "archiveId": "vs7933a4m5gwmfdxpxvwwmkkhn8fvvxt",
+      "title": "THE PENAL CODE, CHAPTER 16, R.E 2023",
+      "reason": "scanner_rejected_original_requires_security_review"
+    }
+  ],
+  "usageBefore": {
+    "alert": "within_limit",
+    "calls": 460,
+    "committedEstimateUSD": 0.296537,
+    "limitUSD": 5,
+    "mode": "enforcing",
+    "month": "2026-10",
+    "note": "Application estimates since metering started; not the OpenAI invoice. Failed or interrupted calls retain reservations. Audio without a server-validated duration bound and unpriced models are blocked in enforcing mode.",
+    "reservedEstimateUSD": 0,
+    "unpricedCalls": 0
+  },
+  "usageAfter": {
+    "alert": "within_limit",
+    "calls": 569,
+    "committedEstimateUSD": 0.323907,
+    "limitUSD": 5,
+    "mode": "enforcing",
+    "month": "2026-10",
+    "note": "Application estimates since metering started; not the OpenAI invoice. Failed or interrupted calls retain reservations. Audio without a server-validated duration bound and unpriced models are blocked in enforcing mode.",
+    "reservedEstimateUSD": 0,
+    "unpricedCalls": 0
+  },
+  "finishedAt": "2026-10-24T21:01:12.865Z"
+}

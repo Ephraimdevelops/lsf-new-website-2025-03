@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -22,8 +23,8 @@ const Connect = () => {
     if (links === undefined) {
         return (
             <Layout>
-                <div className="min-h-[80vh] flex items-center justify-center bg-primary">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                <div className="min-h-[80vh] flex items-center justify-center bg-[#fbfaf8]">
+                    <BrandLoading task="content"/>
                 </div>
             </Layout>
         );

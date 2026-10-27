@@ -2,18 +2,21 @@
   "checkedOn": "2026-10-05",
   "status": "passed",
   "checks": [
-    "34 bilingual drafts and7 provider source references resolve",
-    "All candidates remain unapproved and ineligible",
-    "Every deduplicated upload candidate PDF hash matches",
-    "NBS ZIP and attribute file hashes match",
-    "4344 geography row IDs unique; original codes preserved"
+    "All source files and OCR outputs match recorded hashes",
+    "PDF-page markers complete and in order",
+    "34 pathway and bilingual source bundles resolve; criminal/family topic mappings checked",
+    "Form candidate pages within actual source bounds",
+    "Amendment relationships resolve and remain uncertified",
+    "Upload candidates deduplicated and unapproved; summaries excluded from binding reasons",
+    "4344 geography row IDs unique; original code strings and source hashes preserved",
+    "Review queue and28 requirements unique;49 evaluations present"
   ],
   "notValidated": [
-    "Legal correctness/currency",
-    "Translation accuracy",
-    "Provider contacts or availability",
-    "Current geographical boundaries",
-    "Spatial topology and coordinates",
-    "Live app retrieval/integrations"
+    "Legal currency/completeness, holdings or applicability",
+    "Kiswahili correctness and accessibility",
+    "Provider registration, contact, hours or capacity",
+    "Reuse permission",
+    "Current geographic boundaries or GIS topology",
+    "Live backend, retrieval, bookings or referral integrations"
   ]
 }

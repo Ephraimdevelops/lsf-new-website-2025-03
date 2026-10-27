@@ -1,3 +1,4 @@
+import { AdminIntro } from "../src/admin/AdminIntro";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { usePaginatedQuery, useQuery } from "convex/react";
 import { router } from "expo-router";
@@ -6,7 +7,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { api } from "../src/backend/api";
 import { AppHeader } from "../src/components/AppHeader";
 import { Button } from "../src/components/Button";
-import { Screen } from "../src/components/Screen";
+import { AdminScreen as Screen } from "../src/admin/AdminScreen";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
 import { useSensitiveScreenProtection } from "../src/useSensitiveScreenProtection";
@@ -26,9 +27,10 @@ export default function ParalegalReviewQueueScreen() {
   const visible = applications?.filter((item) => filter === "all" || item.status === filter);
 
   return <Screen>
-    <AppHeader back title={sw ? "Maombi ya paralegal" : "Paralegal applications"} eyebrow="LSF · APPROVALS" />
+    <AppHeader back title={sw ? "Maombi ya msaidizi wa kisheria" : "Paralegal applications"} eyebrow="LSF · APPROVALS" />
+    <AdminIntro icon="people-outline" eyebrow="LSF" title={sw ? "Kagua watu wanaotaka kusaidia." : "Review the people ready to help."} description={sw ? "Soma maombi na nyaraka kabla ya kurekodi uamuzi." : "Read the application and documents before recording a decision."} />
     {access === undefined ? <State text={sw ? "Tunapakia ruhusa..." : "Loading access..."} />
-      : !allowed ? <State text={sw ? "Jukumu la LSF linahitajika kufungua foleni hii." : "An LSF review role is required to open this queue."} />
+      : !allowed ? <State text={sw ? "Jukumu la LSF linahitajika kufungua orodha hii." : "An LSF review role is required to open this queue."} />
       : <>
         <View style={styles.intro}>
           <Text style={styles.title}>{sw ? "Kagua mtu mmoja kwa wakati." : "Review one person at a time."}</Text>

@@ -1,3 +1,4 @@
+import { useCopy } from "@/i18n/useCopy";
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Users, Target, Heart, Newspaper, BookOpen, Award, TrendingUp, FileText, Shield } from 'lucide-react';
@@ -90,6 +91,7 @@ const subItemIcons: Record<string, React.ReactNode> = {
 };
 
 const NavigationDropdown = ({ item, isActive, onMouseEnter, onMouseLeave, className }: NavigationDropdownProps) => {
+  const c = useCopy();
   const location = useLocation();
   const data = sectionData[item.name] || sectionData['About'];
 
@@ -125,7 +127,7 @@ const NavigationDropdown = ({ item, isActive, onMouseEnter, onMouseLeave, classN
 
             {/* Section info */}
             <div>
-              <h3 className="text-lg font-bold mb-2 font-heading drop-shadow-lg">{item.name}</h3>
+              <h3 className="text-lg font-bold mb-2 font-heading drop-shadow-lg">{c(item.name)}</h3>
               <p className="text-sm text-white leading-relaxed mb-4 drop-shadow-md">{data.tagline}</p>
 
               {/* CTA Button */}
@@ -143,7 +145,7 @@ const NavigationDropdown = ({ item, isActive, onMouseEnter, onMouseLeave, classN
         {/* Right side - Menu items */}
         <div className="flex-1 p-5">
           <div className="mb-3 pb-3 border-b border-neutral-100">
-            <p className="text-xs font-bold text-primary uppercase tracking-wider">Explore {item.name}</p>
+            <p className="text-xs font-bold text-primary uppercase tracking-wider">Explore {c(item.name)}</p>
           </div>
 
           <div className="space-y-1">
@@ -153,7 +155,7 @@ const NavigationDropdown = ({ item, isActive, onMouseEnter, onMouseLeave, classN
 
               return (
                 <Link
-                  key={subItem.name}
+                  key={c(subItem.name)}
                   to={subItem.href}
                   className={cn(
                     "flex items-start gap-4 p-3 rounded-xl transition-all duration-200 group",
@@ -175,10 +177,10 @@ const NavigationDropdown = ({ item, isActive, onMouseEnter, onMouseLeave, classN
                   {/* Text content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-sm">{subItem.name}</span>
+                      <span className="font-semibold text-sm">{c(subItem.name)}</span>
                       <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
                     </div>
-                    <p className="text-xs text-neutral-500 mt-0.5">{subItem.description}</p>
+                    <p className="text-xs text-neutral-500 mt-0.5">{c(subItem.description)}</p>
                   </div>
                 </Link>
               );

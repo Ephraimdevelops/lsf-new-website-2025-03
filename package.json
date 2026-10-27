@@ -20,12 +20,15 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test:intake-drafts": "node --test scripts/intake-draft-storage.test.mjs",
-    "test:intake-submission": "node --test scripts/intake-submission.test.mjs"
+    "test:intake-submission": "node --test scripts/intake-submission.test.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",
+    "test:release": "node --experimental-strip-types --test scripts/*.test.mjs"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.57.0",
     "@clerk/elements": "^0.24.10",
     "@fontsource/inter": "^5.2.6",
+    "@fontsource/onest": "^5.3.1",
     "@fontsource/playfair-display": "^5.2.6",
     "@fontsource/ubuntu": "^5.2.6",
     "@hookform/resolvers": "^3.9.0",
@@ -74,6 +77,7 @@
     "helmet": "^8.1.0",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
+    "mapbox-gl": "^3.32.0",
     "morgan": "^1.10.1",
     "next-themes": "^0.3.0",
     "openai": "^6.15.0",

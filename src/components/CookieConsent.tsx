@@ -1,3 +1,4 @@
+import { useLanguage } from "@/providers/LanguageProvider";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X, Check } from 'lucide-react';
@@ -18,7 +19,9 @@ interface CookieConsentProps {
     language?: 'en' | 'sw';
 }
 
-const CookieConsent = ({ language = 'en' }: CookieConsentProps) => {
+const CookieConsent = ({ language: overrideLanguage }: CookieConsentProps) => {
+    const { locale } = useLanguage();
+    const language = overrideLanguage ?? locale;
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -91,7 +94,7 @@ const CookieConsent = ({ language = 'en' }: CookieConsentProps) => {
                             <button
                                 onClick={handleDecline}
                                 className="text-gray-400 hover:text-gray-600 transition-colors"
-                                aria-label="Close"
+                                aria-label={language === "sw" ? "Funga" : "Close"}
                             >
                                 <X className="w-5 h-5" />
                             </button>

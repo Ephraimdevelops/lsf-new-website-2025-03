@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-19T16:42:52.017Z",
+  "environment": "named development; genuine temporary Clerk sessions",
+  "checks": [
+    {
+      "name": "signed-in beneficiary notification inbox loads",
+      "passed": true
+    },
+    {
+      "name": "another account cannot resolve a beneficiary notification",
+      "passed": true
+    }
+  ],
+  "open": [
+    "No referral notification in latest 100 beneficiary entries; live consent/referral routing still requires an eligible reviewed service.",
+    "External push delivery/tap acceptance still requires configured project credentials and the actual native build."
+  ],
+  "sessionsRevoked": true
+}

@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import { ArrowLeft, Mail, Linkedin, Twitter, Users, Crown, ArrowRight, Quote, Gavel } from 'lucide-react';
@@ -26,8 +27,7 @@ const TeamDetail = () => {
       <Layout>
         <div className="min-h-screen bg-gradient-to-b from-secondary-teal/5 to-white flex items-center justify-center">
           <div className="text-center">
-            <div className="w-10 h-10 border-3 border-secondary-teal border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-            <p className="text-neutral-500 text-sm">Loading...</p>
+            <BrandLoading compact text={"Loading..."}/>
           </div>
         </div>
       </Layout>

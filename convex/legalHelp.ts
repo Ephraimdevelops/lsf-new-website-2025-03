@@ -1,9 +1,11 @@
 import { ConvexError, v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { internalMutation, mutation, query } from "./_generated/server";
 import { requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
 import { normalizeOptionalText, normalizeText } from "./lib/security";
 import { writeAudit } from "./lib/hakiYangu";
 import { createNotification } from "./lib/notifications";
+import { issueManagedUpload, requireCleanOwnedUpload } from "./lib/managedUploads";
+import { enforceRateLimit } from "./lib/rateLimits";
 
 const localeValidator = v.union(v.literal("sw"), v.literal("en"));
 const safeContactValidator = v.union(
@@ -66,6 +68,8 @@ export const saveDraft = mutation({
     if (existing && existing.status !== "draft") {
       return { requestId: existing._id, publicId: existing.publicId, version: existing.version, status: existing.status };
     }
+    await enforceRateLimit(ctx, `intake-save:${user._id}`, 60, 60 * 1000);
+    if (!existing) await enforceRateLimit(ctx, `intake-create:${user._id}`, 10, 60 * 60 * 1000);
     if (args.sourceServiceId) {
       const source = await ctx.db.get(args.sourceServiceId);
       if (!source || !source.active || source.visibility !== "public" || source.verificationStatus !== "verified") {
@@ -156,8 +160,29 @@ export const saveAnswer = mutation({
 export const generateAttachmentUploadUrl = mutation({
   args: {},
   handler: async (ctx) => {
-    await requireAuthenticatedUser(ctx);
-    return await ctx.storage.generateUploadUrl();
+    const { user } = await requireAuthenticatedUser(ctx);
+    return await issueManagedUpload(ctx, user._id, "request_attachment");
+  },
+});
+
+export const reserveTranscription = internalMutation({
+  args: { requestId: v.id("legal_help_requests"), attachmentId: v.id("request_attachments") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const request = await ctx.db.get(args.requestId);
+    const attachment = await ctx.db.get(args.attachmentId);
+    if (!request || request.ownerId !== user._id || request.status !== "draft" || !attachment || attachment.requestId !== request._id || attachment.ownerId !== user._id) {
+      throw new ConvexError("Recording access denied");
+    }
+    const metadata = await ctx.db.system.get(attachment.storageId);
+    await requireCleanOwnedUpload(ctx, attachment.storageId, user._id, "request_attachment");
+    if (!metadata || metadata.size <= 0 || metadata.size > 10 * 1024 * 1024 || !/^audio\/(mp4|m4a|mpeg|webm|wav|x-wav)$/.test(metadata.contentType ?? "")) throw new ConvexError("Unsupported recording");
+    const recent = await ctx.db.query("audit_logs").withIndex("by_user", q => q.eq("userId", user._id))
+      .filter(q => q.and(q.eq(q.field("action"), "help_request.transcription"), q.gt(q.field("timestamp"), Date.now() - 10 * 60 * 1000))).take(5);
+    if (recent.length >= 5) throw new ConvexError("Please wait before transcribing another recording");
+    await enforceRateLimit(ctx, `transcription-day:${user._id}`, 20, 24 * 60 * 60 * 1000);
+    await writeAudit(ctx, user._id, "help_request.transcription", "request_attachment", attachment._id);
+    return { url: await ctx.storage.getUrl(attachment.storageId), name: attachment.name, type: metadata.contentType };
   },
 });
 
@@ -187,6 +212,8 @@ export const attachToDraft = mutation({
       return { attachmentId: existing._id, version: request.version };
     }
     if (request.status !== "draft") throw new ConvexError({ code: "CONFLICT", message: "Submitted requests cannot be changed" });
+    const receipt = await requireCleanOwnedUpload(ctx, args.storageId, user._id, "request_attachment");
+    if (receipt.size !== args.size || receipt.type !== type) throw new ConvexError("Attachment metadata does not match the scanned file.");
     const attachmentId = await ctx.db.insert("request_attachments", {
       requestId: request._id, ownerId: user._id, storageId: args.storageId,
       name, type, size: args.size, note, createdAt: Date.now(),
@@ -276,8 +303,12 @@ export const getMyRequest = query({
     const source = request.sourceServiceId ? await ctx.db.get(request.sourceServiceId) : null;
     const attachments = await ctx.db.query("request_attachments")
       .withIndex("by_request", (q) => q.eq("requestId", request._id)).collect();
+    const caseRecord = request.status === "converted_to_case"
+      ? await ctx.db.query("cases").withIndex("by_source_request", q => q.eq("sourceRequestId", request._id)).unique()
+      : null;
     return {
       request,
+      caseId: caseRecord?.beneficiaryId === user._id ? caseRecord._id : null,
       attachments: await Promise.all(attachments.map(async (attachment) => ({
         _id: attachment._id,
         name: attachment.name,
@@ -351,7 +382,8 @@ export const staffQueue = query({
     }
     const submitted = await ctx.db.query("legal_help_requests").withIndex("by_status", (q) => q.eq("status", "submitted")).collect();
     const reviewing = await ctx.db.query("legal_help_requests").withIndex("by_status", (q) => q.eq("status", "under_review")).collect();
-    return [...submitted, ...reviewing].sort((a, b) => a.createdAt - b.createdAt);
+    const waiting = await ctx.db.query("legal_help_requests").withIndex("by_status", q => q.eq("status", "waiting_for_information")).collect();
+    return [...submitted, ...reviewing, ...waiting].sort((a, b) => a.createdAt - b.createdAt);
   },
 });
 
@@ -415,6 +447,7 @@ export const setReviewStatus = mutation({
       throw new ConvexError({ code: "CONFLICT", message: "Request changed; refresh before updating" });
     }
     if (request.status === args.status) return { status: request.status, version: request.version };
+    if (args.status === "waiting_for_information") throw new ConvexError("Send the question in request messages before waiting for information.");
     const now = Date.now();
     await ctx.db.patch(request._id, { status: args.status, version: request.version + 1, updatedAt: now });
     await writeAudit(ctx, user._id, "help_request.review_status_changed", "legal_help_request", request._id, {

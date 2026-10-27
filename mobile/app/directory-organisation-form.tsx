@@ -1,3 +1,5 @@
+import { BrandLoading } from '../src/components/BrandLoading';
+import { plainError } from "../../shared/plainLanguage";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
@@ -6,7 +8,7 @@ import type { Id } from "../../convex/_generated/dataModel";
 import { api } from "../src/backend/api";
 import { AppHeader } from "../src/components/AppHeader";
 import { Button } from "../src/components/Button";
-import { Screen } from "../src/components/Screen";
+import { AdminScreen as Screen } from "../src/admin/AdminScreen";
 import { Surface } from "../src/components/Surface";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
@@ -38,12 +40,12 @@ export default function OrganisationForm() {
       const fields = { name: name.trim(), organizationType: kind, focalPersonName: focalName.trim() || undefined, focalPersonEmail: focalEmail.trim() || undefined, focalPersonPhone: focalPhone.trim() || undefined, notes: notes.trim() || undefined };
       if (existing) { await update({ id: existing._id as Id<"justice_service_organizations">, updates: fields }); router.back(); }
       else { const result = await create({ ...fields, verificationStatus: "draft", referralAgreementStatus: "none", safeguardingReady: false }); router.replace({ pathname: "/directory-organisation/[id]", params: { id: result.id } }); }
-    } catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    } catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
   return <Screen>
     <AppHeader back title={existing ? (sw ? "Hariri taasisi" : "Edit organisation") : (sw ? "Ongeza taasisi" : "Add organisation")} eyebrow="LSF · DIRECTORY" />
-    {access === undefined ? <Surface><Text style={styles.copy}>{sw ? "Inapakia..." : "Loading..."}</Text></Surface> : !allowed ? <Surface tone="orange"><Text style={styles.title}>{sw ? "Ruhusa ya LSF inahitajika." : "LSF access is required."}</Text></Surface> : id && existing === undefined ? <Surface><Text style={styles.copy}>{sw ? "Inapakia rekodi..." : "Loading record..."}</Text></Surface> : id && !existing ? <Surface><Text style={styles.copy}>{sw ? "Taasisi haipatikani." : "Organisation not found."}</Text></Surface> : <>
+    {access === undefined ? <Surface><BrandLoading compact text={sw ? "Inapakia..." : "Loading..."}/></Surface> : !allowed ? <Surface tone="orange"><Text style={styles.title}>{sw ? "Ruhusa ya LSF inahitajika." : "LSF access is required."}</Text></Surface> : id && existing === undefined ? <Surface><BrandLoading compact text={sw ? "Inapakia rekodi..." : "Loading record..."}/></Surface> : id && !existing ? <Surface><Text style={styles.copy}>{sw ? "Taasisi haipatikani." : "Organisation not found."}</Text></Surface> : <>
       <View style={styles.hero}><Text style={styles.heroTitle}>{existing ? (sw ? "Sahihisha taarifa za taasisi." : "Keep organisation details accurate.") : (sw ? "Anza na rekodi ya rasimu." : "Start with a draft record.")}</Text><Text style={styles.heroCopy}>{sw ? "Mawasiliano ya mhusika ni ya ndani. Rekodi mpya inahitaji ukaguzi kabla ya kuthibitishwa." : "Focal-person contacts stay internal. New records need review before verification."}</Text></View>
       {existing?.verificationStatus === "verified" ? <Surface tone="orange"><Text style={styles.copy}>{sw ? "Kubadili jina au aina ya taasisi kutaondoa uthibitisho wake na kuzima huduma zake mpaka zikaguliwe tena." : "Changing a verified organisation's name or type removes its verification and pauses linked services until they are reviewed again."}</Text></Surface> : null}
       <Surface><Text style={styles.title}>{sw ? "Utambulisho" : "Identity"}</Text><Field label={sw ? "Jina la taasisi *" : "Organisation name *"} value={name} onChange={setName} /><Text style={styles.label}>{sw ? "Aina ya taasisi" : "Organisation type"}</Text><View style={styles.options}>{kinds.map((item) => <Pressable key={item} accessibilityRole="radio" accessibilityState={{ checked: kind === item }} aria-checked={kind === item} onPress={() => setKind(item)} style={[styles.option, kind === item && styles.optionOn]}><Text style={[styles.optionText, kind === item && styles.optionTextOn]}>{directoryLabel(item, sw)}</Text></Pressable>)}</View></Surface>

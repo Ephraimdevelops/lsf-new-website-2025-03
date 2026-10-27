@@ -1,0 +1,62 @@
+[
+  {
+    "researchSourceId": "CMA-PROCEDURE",
+    "originalPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/cma-procedure.pdf",
+    "originalSha256": "04d7a0cb9eaf511c598909fc7d82268518d2a4bceada9bc3e20b1c529c6e4126",
+    "path": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/output/pdf/saada-prepared-2026-10-07/cma-procedure-pages-001-010.pdf",
+    "sha256": "e5d069191b8a163214e050e06013f664c62c11865342a563cb7b6e50f890c047",
+    "byteSize": 1121233,
+    "originalPageStart": 1,
+    "originalPageEnd": 10,
+    "pageCount": 10,
+    "derivedCopy": true,
+    "pageContentAndImagesVerified": true,
+    "ocrNeeded": true,
+    "productionEligible": false
+  },
+  {
+    "researchSourceId": "CMA-PROCEDURE",
+    "originalPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/cma-procedure.pdf",
+    "originalSha256": "04d7a0cb9eaf511c598909fc7d82268518d2a4bceada9bc3e20b1c529c6e4126",
+    "path": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/output/pdf/saada-prepared-2026-10-07/cma-procedure-pages-011-019.pdf",
+    "sha256": "4423a794c4ab3655e2da2bf3465051316ba302754076eb799f2a3e234dbc38ea",
+    "byteSize": 1207068,
+    "originalPageStart": 11,
+    "originalPageEnd": 19,
+    "pageCount": 9,
+    "derivedCopy": true,
+    "pageContentAndImagesVerified": true,
+    "ocrNeeded": true,
+    "productionEligible": false
+  },
+  {
+    "researchSourceId": "CMA-GUIDELINES",
+    "originalPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/cma-guidelines.pdf",
+    "originalSha256": "0352b9a3dab7fad4fa25a6d88d3900416cc5ac03d40f59e60bfa369ddf6b5c81",
+    "path": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/output/pdf/saada-prepared-2026-10-07/cma-guidelines-pages-001-010.pdf",
+    "sha256": "ada2a96c0d7990bca96f036a0ad0a6876fde214b65ccd4467186a5d7c542998b",
+    "byteSize": 1403232,
+    "originalPageStart": 1,
+    "originalPageEnd": 10,
+    "pageCount": 10,
+    "derivedCopy": true,
+    "pageContentAndImagesVerified": true,
+    "ocrNeeded": true,
+    "productionEligible": false
+  },
+  {
+    "researchSourceId": "CMA-GUIDELINES",
+    "originalPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/cma-guidelines.pdf",
+    "originalSha256": "0352b9a3dab7fad4fa25a6d88d3900416cc5ac03d40f59e60bfa369ddf6b5c81",
+    "path": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/output/pdf/saada-prepared-2026-10-07/cma-guidelines-pages-011-019.pdf",
+    "sha256": "d682fcee8cc53656ce88ecdc8dac41a9ce1632efd9d2bb04c6405ca4b16c8fa3",
+    "byteSize": 1180377,
+    "originalPageStart": 11,
+    "originalPageEnd": 19,
+    "pageCount": 9,
+    "derivedCopy": true,
+    "pageContentAndImagesVerified": true,
+    "ocrNeeded": true,
+    "productionEligible": false
+  }
+]

@@ -111,23 +111,24 @@ def pathways():
         'P04':['ZNZ-CHILD-GAZETTE','ZNZ-CHILD-COURT-RULES','ZNZ-KADHIS-2024'],
         'P05':['ZNZ-CHILD-GAZETTE','ZNZ-CHILD-COURT-RULES','ZNZ-PENAL-2018','CRIM-PENAL'],
         'P06':['ZNZ-CHILD-GAZETTE','ZNZ-KADHIS-2024'],
-        'P07':['LAND-TRIBUNAL-PRINCIPAL','AMENDMENTS-LEGAL-SECTOR-2023','CASE-LAND-SETH-2024'],
-        'P08':['LAND-TRIBUNAL-PRINCIPAL'],
-        'P09':['LAND-TRIBUNAL-PRINCIPAL'],
-        'P10':['ZNZ-KADHIS-2024','ZNZ-KADHIS-RULES-2021','PROC-APPLICABLE-LAWS','AMENDMENTS-LEGAL-SECTOR-2023','PERSONAL-ISLAMIC-RESTATEMENT','CASE-ESTATE-LONYAMALI','CASE-INHERITANCE-LATIFA'],
+        'P07':['ZNZ-LAND-TENURE','ZNZ-LAND-TRIBUNAL','ZNZ-LAND-TRIBUNAL-ASSEMBLY','ZNZ-LAND-AMENDMENT-2008','ZNZ-LAND-COMPILATION-2017','CASE-ZNZ-LAND-2025','LAND-TRIBUNAL-PRINCIPAL','AMENDMENTS-LEGAL-SECTOR-2023','CASE-LAND-SETH-2024'],
+        'P08':['LAND-TRIBUNAL-PRINCIPAL','ZNZ-LAND-TENURE','ZNZ-LAND-TRIBUNAL'],
+        'P09':['LAND-TRIBUNAL-PRINCIPAL','ZNZ-LAND-TENURE','ZNZ-LAND-TRIBUNAL'],
+        'P10':['PERSONAL-CUSTOMARY-NO2','PERSONAL-CUSTOMARY-NO4','ZNZ-KADHIS-SW-2024','ZNZ-KADHIS-2024','ZNZ-KADHIS-RULES-2021','PROC-APPLICABLE-LAWS','AMENDMENTS-LEGAL-SECTOR-2023','PERSONAL-ISLAMIC-RESTATEMENT','CASE-ESTATE-LONYAMALI','CASE-INHERITANCE-LATIFA'],
         'P11':['ZNZ-KADHIS-2024','AMENDMENTS-LEGAL-SECTOR-2023'],
         'P12':['CMA-PROCEDURE','CMA-GUIDELINES','CMA-FEES-2025','LABOUR-COURT-RULES','LABOUR-COURT-READABLE','EMPLOYMENT-GENERAL-FORMS','EMPLOYMENT-FORMS-READABLE','LABOUR-INSTITUTIONS-GENERAL','ZNZ-EMPLOYMENT','ZNZ-EMPLOYMENT-GAZETTE','ZNZ-LABOUR-RELATIONS','CASE-LABOUR-OATH-2022'],
         'P13':['WCF-REGULATIONS-2016','WCF-REGULATIONS-VERSION','WCF-AMENDMENT-2021'],
-        'P14':['SOCIAL-NSSF','SOCIAL-PSSSF-2025','SOCIAL-BENEFITS-2018','SOCIAL-BENEFITS-AMENDMENT-2022','SOCIAL-BENEFITS-AMENDMENT-2024'],
-        'P15':['ZNZ-CRIMINAL-PROCEDURE','ZNZ-CRIMINAL-AMENDMENT-2021','CRIM-PENAL','ZNZ-PENAL-2018'],
-        'P16':['ZNZ-CRIMINAL-PROCEDURE','ZNZ-CRIMINAL-AMENDMENT-2021','SAFE-WITNESS-ACT'],
+        'P14':['SOCIAL-NSSF-COMPLAINT-FORM','SOCIAL-NSSF-FORMS-CATALOGUE','SOCIAL-NSSF-REGISTRATION','ZNZ-ZSSF-CATALOGUE','SOCIAL-NSSF','SOCIAL-PSSSF-2025','SOCIAL-BENEFITS-2018','SOCIAL-BENEFITS-AMENDMENT-2022','SOCIAL-BENEFITS-AMENDMENT-2024'],
+        'P19':['ZNZ-CRIMINAL-PROCEDURE','ZNZ-CRIMINAL-AMENDMENT-2021','CRIM-PENAL','ZNZ-PENAL-2018'],
+        'P20':['ZNZ-CRIMINAL-PROCEDURE','ZNZ-CRIMINAL-AMENDMENT-2021','SAFE-WITNESS-ACT'],
         'P17':['PROC-APPEAL-PRINCIPAL','PROC-APPEAL-AMENDMENT-2024','ZNZ-KADHIS-2024','LABOUR-COURT-READABLE'],
         'P18':['CMA-FEES-2025'],
-        'P23':['TELECOM-COMMITTEE','TELECOM-CONSUMER-REGULATIONS','TELECOM-GUIDELINE-2020','TELECOM-GUIDELINE-UNDATED'], 'P24':['UTILITIES-COMPLAINT-RULES'],
+        'P23':['TELECOM-COMMITTEE','TELECOM-CONSUMER-REGULATIONS','TELECOM-GUIDELINE-2020','TELECOM-GUIDELINE-UNDATED'], 'P24':['UTILITIES-COMPLAINT-RULES','ZNZ-ZURA-CATALOGUE'],
         'P25':['FCC-CONSUMER-PROCEDURE','FCC-TRIBUNAL-RULES','FCC-AMENDMENT-2024','FCC-STANDARD-CONTRACTS','FCC-CURRENT-ACT','FCC-DOMINANCE-2026'],
-        'P28':['RIGHTS-CHRAGG-ACT','AMENDMENTS-MISC-2-2025'],
+        'P28':['ZNZ-DISABILITY-RULES-2022','RIGHTS-CHRAGG-ACT','AMENDMENTS-MISC-2-2025'],
         'P29':['PROC-JUDICIAL-REVIEW','RIGHTS-CHRAGG-ACT','AMENDMENTS-MISC-2-2025'],
         'P30':['SAFE-WITNESS-ACT'],
+        'P33':['ZNZ-ENVIRONMENT-GAZETTE','ZNZ-ZEMA-CATALOGUE'],
         'P34':['ADR-ARBITRATION-ACT','ADR-ARBITRATION-RULES','ADR-ACCREDITATION','ADR-CONDUCT','ZNZ-KADHIS-2024']}
     for p in values:
         p['sourceIds'].extend(additional.get(p['id'],[]))
@@ -165,10 +166,16 @@ CONFLICTS = [
     ('C14', ['ZNZ-KADHIS-2024','ZNZ-KADHIS-RULES-2021'], 'Gazette published2024 contains Act8/2023. Section1 requires an appointed commencement date; section44 contains repeal and pending-proceeding savings.', 'Commencement notice and newer2024 procedure/appeal rules still required. Do not assume2021 rules govern all new cases.'),
     ('C15', ['CMA-PROCEDURE','CMA-GUIDELINES'], 'Official copies contain image scans with no native text. Local machine OCR completed38 pages; visually obvious recognition errors appear despite high engine confidence.', 'OCR is an unverified aid. Review every operative rule and form against scan before indexing. Engine confidence is not legal accuracy.'),
     ('C16', ['SERVICES-LHRC','SERVICES-TAWLA','SERVICES-TAWLA-CONTACT'], 'Public pages show different phone/address/office details within the same page or across service and contact pages.', 'Preserve candidate alternatives and flag conflicts. Confirm with provider before approving directory records.'),
-    ('C17', ['WCF-REGULATIONS-VERSION','WCF-REGULATIONS-2016'], 'Repository editions show differing validity-period labels for the2016 regulations; original rule2 contains a conditional Zanzibar coverage branch.', 'Acquire2021 and later amendments and reconcile editions. Do not infer territorial coverage solely from client location.'),
+    ('C17', ['WCF-REGULATIONS-VERSION','WCF-REGULATIONS-2016'], 'Repository editions show differing validity-period labels for the2016 regulations; original rule2 contains a conditional Zanzibar coverage branch.', 'The2021 amendment is now acquired. Reconcile it with principal editions and check later amendments. Do not infer territorial coverage solely from client location.'),
     ('C18',['SOCIAL-BENEFITS-2018','SOCIAL-BENEFITS-AMENDMENT-2024'],'OAG principal catalogue labels GN467 of2022 although PDF identifies2018. Amendment PDF p1 gives publication8/3/2023 while body/title/catalogue identify2024.','Preserve discrepancies; use actual instrument and authenticated Gazette/correction review before legal dates or benefit calculations.'),
     ('C19',['CASE-ESTATE-LONYAMALI','CASE-INHERITANCE-LATIFA'],'Selected OSG case downloads are two-page case summaries/headnotes rather than full judgments.','Classify as official summaries, not binding reasons. Acquire full judgments and actual CA delivered dates; summary outcomes cannot settle substantive inheritance questions.'),
     ('C20',['CASE-LABOUR-OATH-2022','CASE-LAND-SETH-2024','CASE-LAND-MABULA-2024'],'Catalogue/filename dates can differ from signed and delivered dates. Mabula is a matrimonial case despite being found during a broader catalogue search.','Use case-law-review.json identity notes; keep signed/delivered dates separate and match pathway to actual case subject. Later treatment still needs review.'),
+    ('C21',['TELECOM-COMMITTEE'],'TCRA committee PDF heading2018 versus citation2008; migrated SW-prefixed link supplies English text.','Verify the actual GN and operative citation; directory and filename language are not authoritative.'),
+    ('C22',['LAND-TRIBUNAL-PRINCIPAL'],'Principal district land regulations display heading2003 but citation2002.','Preserve actual wording and reconcile GN174/2003 and amendments; do not silently normalise the citation.'),
+    ('C23',['ZNZ-DISABILITY-RULES-2022','ZNZ-DISABILITY-ACT'],'Gazette7067B contains Persons with Disabilities Act8/2022, not regulations. It addresses repeal of Act9/2006.','Stable RULES research ID retained with corrected title/kind; examine sections1 and53 and later amendments before current-law approval.'),
+    ('C24',['ZNZ-KADHIS-SW-2024','ZNZ-KADHIS-2024'],'Swahili Gazette PDF p1 and URL contain2023 while running headings and assent identify2024; commencement requires appointed date.','Compare complete English/Kiswahili instruments, authenticate publication date and obtain appointed notice. No certified translation equivalence asserted.'),
+    ('C25',['PERSONAL-CUSTOMARY-NO4'],'Repository cover labels No4 Order and GN436 as1967; commonly cited source references identify1963. Version cutoff is2002, despite file creation2024.','Authenticate original Gazette and consolidation lineage; do not infer current customary inheritance law or universal community applicability.'),
+    ('C26',['GEO-NBS-WARDS-2022'],'NBS boundary ZIP projection differs from webpage overview; five composite ward-code combinations repeat.','Retain original code strings and projection; no automatic merging, coordinates, current-boundary or service-catchment claims.'),
 ]
 
 def evidence():
@@ -194,11 +201,11 @@ REQUIREMENTS = [
     ('R04','Procedure','Regulations, practice directions and registry procedures','Research + registry','Partial','PROC-SMALL-CLAIMS PROC-EFILING','Principal rules plus amendments; local implementation confirmation.'),
     ('R05','Procedure','Prescribed blank forms and official filing manuals','Research + lawyer','Partial','WCF-NOTIFICATION WCF-CLAIM PROC-ECMS-GUIDE ESTATES-AMENDMENT-2025','Form name/version; filing destination; signatures; supporting evidence; safe completion guidance.'),
     ('R06','Procedure','Current fee schedules, remission and service costs','Research + authority','Partial','PROC-COURT-FEES-2018 ESTATES-AMENDMENT-2025','Separate statutory fees from provider fees; scenario-specific cost validation.'),
-    ('R07','Case law','Binding judgments, appellate history and subsequent treatment','Research + lawyer','Very limited','FAMILY-GYUMI-HIGH-COURT FAMILY-GYUMI-APPEAL','Topic-based case-law search, ratio vs facts, court hierarchy, later treatment.'),
+    ('R07','Case law','Binding judgments, appellate history and subsequent treatment','Research + lawyer','Selected judgments and two separately labelled summaries; later treatment unreviewed','FAMILY-GYUMI-HIGH-COURT FAMILY-GYUMI-APPEAL CASE-LAND-SETH-2024 CASE-LAND-MABULA-2024 CASE-LABOUR-OATH-2022 case-law-review.json','Topic-based case-law search, ratio vs facts, court hierarchy, later treatment.'),
     ('R08','Zanzibar','Parallel current legal instruments and procedural forms','Research + Zanzibar lawyer','Principal instruments acquired; currency and topic gaps','ZNZ-LEGAL-AID-RULES ZNZ-CONSTITUTION-EN ZNZ-CHILD-GAZETTE ZNZ-CHILD-COURT-RULES ZNZ-EMPLOYMENT-GAZETTE ZNZ-LABOUR-RELATIONS ZNZ-KADHIS-2024 ZNZ-CRIMINAL-PROCEDURE ZNZ-CRIMINAL-AMENDMENT-2021','Legal Aid Act; land/tenancy; civil procedure; Kadhi commencement and2024 rules; later amendments; non-Muslim succession; specialist scope.'),
     ('R09','Pathways','Reviewed issue-specific branches, checkpoints and handoffs','Can draft; lawyer/service owner approves','34 design drafts','legal-pathways.json','Turn candidate routes into sourced, approved instructions; legal and operational reviewers.'),
-    ('R10','User language','English/Kiswahili FAQs, glossary, checklists and accessible versions','Can draft; language/legal review','34 bilingual original preparation drafts; six worksheets','bilingual-preparation-review.json PREPARATION-TEMPLATES.md','Independent Kiswahili and legal review; full procedural FAQs and glossary remain unapproved; no automatic equivalence to English law.'),
-    ('R11','Services','Provider registration, office coverage and service catalogue','Public discovery + provider confirmation','Seven additional public provider/office candidates; conflicts recorded','provider-candidates-review.json; ../presentation-2026-10-05; ../../../data/haki-yangu/saada-researched-content.json','Confirm registration, location, safe contacts, hours, cost, eligibility, languages, accessibility, capacity and accepted referrals.'),
+    ('R10','User language','English/Kiswahili FAQs, glossary, checklists and accessible versions','Can draft; language/legal review','34 bilingual original preparation drafts; six worksheets','bilingual-preparation-review.json PREPARATION-TEMPLATES.md glossary-review.json','Independent Kiswahili and legal review; full procedural FAQs and glossary remain unapproved; no automatic equivalence to English law.'),
+    ('R11','Services','Provider registration, office coverage and service catalogue','Public discovery + provider confirmation','Seven additional public provider/office candidates; conflicts recorded','provider-candidates-review.json; structured-data/earlier-provider-and-faq-review.json','Confirm registration, location, safe contacts, hours, cost, eligibility, languages, accessibility, capacity and accepted referrals.'),
     ('R12','Services','Lawful emergency contacts and child/survivor referral protocol','Authority/provider + LSF approval','Missing operational approval','SAFE-NPA-II SAFE-HOMES','Do not promise shelter space, confidentiality or immediate callback without confirmation.'),
     ('R13','LSF internal','Eligibility, exclusions, means assessment and prioritisation SOP','LSF must supply/approve','Missing','BASE-LEGAL-AID','Public legal criteria do not establish LSF programme criteria.'),
     ('R14','LSF internal','Intake, triage, conflicts checks, case assignment and escalation','LSF must supply/approve','Missing','','Named roles, workload, operating hours, missed handoff and complaints process.'),
@@ -214,7 +221,7 @@ REQUIREMENTS = [
     ('R24','Quality','Representative retrieval/answer and adversarial evaluation cases','Can prepare; lawyer scores','Draft evaluation cases','evaluation-cases.json','Citation faithfulness, contradictory laws, safety, dialect, missing data, stale and wrong-jurisdiction sources.'),
     ('R25','Operations','Monitoring, feedback, incidents, backup and review calendar','LSF + engineering','Missing agreed operational plan','','Named owners and review cadence; track broken links, missed referrals and answer corrections.'),
     ('R26','Implementation','Access control, secure uploads and processing verification','Engineering + security review','Requires app verification','','Malware/type/size checks; tenant isolation; sensitive case uploads excluded from public RAG; audit and restore.'),
-    ('R27','Expanded law','Penal, judicial review, ADR, social security, wills and customary/Islamic law','Research + specialists','Penal, judicial review, ADR and social-security principal sources acquired; personal-law gaps','CRIM-PENAL PROC-JUDICIAL-REVIEW ADR-ARBITRATION-ACT SOCIAL-NSSF SOCIAL-PSSSF-2025 PROC-APPLICABLE-LAWS','Benefits regulations, current personal-law instruments and binding judgments still require topic-specific acquisition/review; no universal inheritance formula.'),
+    ('R27','Expanded law','Penal, judicial review, ADR, social security, wills and customary/Islamic law','Research + specialists','Penal, judicial review, ADR and social-security principal sources acquired; personal-law gaps','CRIM-PENAL PROC-JUDICIAL-REVIEW ADR-ARBITRATION-ACT SOCIAL-NSSF SOCIAL-PSSSF-2025 PROC-APPLICABLE-LAWS','Benefits principal and2022/2024 amendments, selected personal-law documents and judgments acquired. Complete scope/currency review and resolve remaining authoritative copies; no universal inheritance formula.'),
     ('R28','Expanded law','Health, immigration, disability, environment and public complaints','Research + specialists','Initial sources acquired','HIV-RIGHTS IMMIGRATION-ACT REFUGEES-ACT DISABILITY-ACT ENVIRONMENT-ACT','Procedures, specialist partners and Zanzibar counterparts still required.'),
 ]
 
@@ -229,7 +236,7 @@ def requirements():
         text.append(f'| {i} | {n} | {w} | {status} | {work} |')
     text.extend(['', '## Document families still requiring deeper acquisition', '',
                  'For every topic obtain: current principal law → amendments and commencement → regulations and rules → authoritative case law → prescribed forms and fees → operational service instructions → reviewed bilingual user guidance. A missing link blocks the affected instruction, rather than justifying extrapolation from a nearby topic.', '',
-                 'Highest-priority outstanding acquisition/reconciliation: authenticated Zanzibar Legal Aid Act and amendments; Zanzibar Civil Procedure Decree, Kadhi commencement notice and2024 procedure/appeal rules, non-Muslim succession, land/tenancy and disability instruments; principal primary-court estates GN49/1971; social-security benefits rules/forms and later amendments; PF3 operational instructions; current sector complaint guidelines; wills and applicable customary/Islamic instruments; topic-specific binding judgments and later treatment. Acquired Children Act/court rules, Zanzibar employment/labour and criminal laws, Mainland Penal Code, CMA rules/fees/forms, Labour Court rules, principal land tribunal rules,2024 appeal amendment, judicial review, witness protection and ADR instruments still require legal currency, scope and extraction review. The matrix does not certify them current.', '',
+                 'Highest-priority outstanding acquisition/reconciliation: authenticated Zanzibar Legal Aid Act and amendments; Zanzibar Civil Procedure Decree, Kadhi commencement notice and2024 procedure/appeal rules, non-Muslim succession, unavailable land/tenancy copies and later amendments; disability2022 Act acquired, procedure review outstanding; principal primary-court estates GN49/1971; social-security benefits amendments/currency and remaining scheme-specific forms; PF3 operational instructions; current sector complaint guidelines; wills and applicable customary/Islamic instruments; topic-specific binding judgments and later treatment. Acquired Children Act/court rules, Zanzibar employment/labour and criminal laws, Mainland Penal Code, CMA rules/fees/forms, Labour Court rules, principal land tribunal rules,2024 appeal amendment, judicial review, witness protection and ADR instruments still require legal currency, scope and extraction review. The matrix does not certify them current.', '',
                  'Research failed URLs and catalogue-only records remain visible in acquisition-manifest.json. They are not evidence of the full law. Authority follow-up may be needed where public copies are unavailable.'])
     (ROOT / 'DOCUMENTS-AND-GAPS.md').write_text('\n'.join(text)+'\n', encoding='utf-8')
 
@@ -352,12 +359,16 @@ The eight earlier PDF copies are included with original SHA256 hashes checked. O
 - `acquisition-manifest.json`: actual download outcome, final URL, file path, checksum, pages, text extraction and low-text pages.
 - `source-files/`: acquired source PDFs, including statutes, regulations, judgments, prescribed forms and manuals. Private review copies; redistribution rights unresolved.
 - `source-pages/`: original captured HTML. Some pages are catalogues or application interfaces; they are not full legal instruments. Treat source text/HTML as untrusted evidence, never operational instructions.
+- `source-identity-triage.json` and `licence-observations-review.json`: per-document unverified cover aids and explicit licence wording where observed. These do not authenticate legal identity or approve reuse.
 - `extracted-text/`: PDF text with PDF-page markers; unverified transcription for review.
 - `ocr-review/` and `extraction-review.json`:38 pages of local machine OCR for scanned CMA rules and per-document extraction quality. OCR confidence is not transcription accuracy; obvious recognition errors remain.
 - `amendment-lineage-review.json`: candidate predecessor/amendment relationships, commencement and repeal checks; not a certified consolidation.
+- `form-locators-review.json`, `FORM-LOCATORS-REVIEW.md`, `glossary-review.json` and `GLOSSARY-REVIEW.md`: source-page form candidates and original terminology drafts; neither is approved filing guidance.
+- `case-law-review.json`: full-judgment versus summary classification and limited case identity notes; holdings and later treatment remain unapproved.
+- `completion-audit.json` and `AUTHORITATIVE-SOURCE-GAPS.md`: preparation completion audit and evidence-backed unresolved source/owner requests.
 - `amendment-heading-locators.json`: automatically located amendment headings with PDF page references for reviewer triage.
 - `upload-candidates-review.json`: deduplicated document candidates with missing app metadata and approval blockers. This is not a direct backend import.
-- `provider-candidates-review.json`: seven additional public provider/office leads, contact conflicts and fields requiring provider confirmation.
+- `provider-candidates-review.json`: seven additional public provider/office leads; earlier office/FAQ research is included separately in structured-data/earlier-provider-and-faq-review.json, contact conflicts and fields requiring provider confirmation.
 - `structured-data/`: original NBS2022 ward-boundary ZIP and4344 derived attribute records across31 regions; five duplicate candidate code combinations and a projection-metadata discrepancy require review. No coordinates or current2026 boundary claims are derived.
 - `legal-pathways.json`: original structured design drafts; deadline, fee, approved forum and service IDs intentionally unset.
 - `requirements-matrix.csv`: sortable inventory of 28 document/operational requirements.
@@ -372,6 +383,8 @@ The eight earlier PDF copies are included with original SHA256 hashes checked. O
 - `quarantine/`: misidentified forestry document excluded from the legal source manifest, with rejection record.
 - `collect_sources.py`: bounded collector for explicitly registered URLs; no backend import or approval. Later attempts append `acquisition-attempts.jsonl`; earlier attempts are represented by current manifest/conflict records rather than a complete historical log.
 - `prepare_review_pack.py`: reproducible generator and integrity validator. Requires bundled Python with pypdf.
+- `validate_final_bundle.py`: extended source, page, reference, staging and geography validation; `--archive` rebuilds the private ZIP outside this directory and checks every member hash.
+- Discovery queries and acquisition-plan files are retained as research history. Use the current manifest, source gap register and review queue for actual outcomes.
 
 ## Practical review priorities
 
@@ -398,5 +411,7 @@ if __name__=='__main__':
     prepare_continuation.quality();prepare_continuation.lineage();prepare_continuation.upload_candidates();prepare_continuation.page_locators()
     import prepare_user_and_service_drafts
     prepare_user_and_service_drafts.main()
+    import prepare_final_review_aids
+    prepare_final_review_aids.main()
     stats=review_queue();validate(values);readme(stats)
     print(json.dumps(stats,indent=2))

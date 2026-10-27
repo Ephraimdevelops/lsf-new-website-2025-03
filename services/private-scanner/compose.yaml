@@ -1,0 +1,44 @@
+services:
+  scanner:
+    build: .
+    environment:
+      PRIVATE_SCANNER_TOKEN: ${PRIVATE_SCANNER_TOKEN:?Set a secret token of at least 32 characters}
+      CLAMD_HOST: clamav
+    ports:
+      - "127.0.0.1:8088:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, node, -e, 'fetch("http://127.0.0.1:8080/scan").then(r=>process.exit(r.status===401?0:1)).catch(()=>process.exit(1))']
+      interval: 3s
+      timeout: 5s
+      retries: 10
+    depends_on:
+      clamav:
+        condition: service_healthy
+    networks: [scan, ingress]
+    mem_limit: 256m
+  clamav:
+    image: clamav/clamav:stable@sha256:ebec5bc138401b36ae987caa1a3fa3c3b2a21ed3d51f0bfa5852825e663e67b0
+    platform: linux/amd64
+    healthcheck:
+      test: [CMD-SHELL, 'test "$(printf "PING\n" | nc -w 3 127.0.0.1 3310)" = "PONG"']
+      interval: 5s
+      timeout: 5s
+      start_period: 180s
+      retries: 30
+    volumes:
+      - definitions:/var/lib/clamav
+      - ./clamd.conf:/etc/clamav/clamd.conf:ro
+    restart: unless-stopped
+    networks: [scan, updates]
+    mem_limit: 2g
+networks:
+  scan:
+    internal: true
+  ingress: {}
+  updates: {}
+volumes:
+  definitions: {}

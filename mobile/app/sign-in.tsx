@@ -1,3 +1,5 @@
+import { securityMethod } from "../../shared/plainLanguage";
+import { plainError } from "../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router, useLocalSearchParams } from "expo-router";
 import * as Linking from "expo-linking";
@@ -8,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Alert, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { BrandMark } from "../src/components/BrandMark";
 import { AuthVisual } from "../src/components/AuthVisual";
+import { CivicIllustration } from "../src/components/CivicIllustration";
 import { Button } from "../src/components/Button";
 import { Screen } from "../src/components/Screen";
 import { useAuth, useSignIn, useSignUp } from "../src/auth";
@@ -102,7 +105,7 @@ function ConfiguredSignInScreen() {
       return;
     }
     if (!secondFactor && (mode === "signIn" || mode === "signUp" && !pendingVerification || mode === "reset" && pendingReset) && !password) {
-      setErrorMessage(locale === "sw" ? "Weka neno siri." : "Enter your password.");
+      setErrorMessage(locale === "sw" ? "Weka neno la siri." : "Enter your password.");
       return;
     }
     if (mode === "signUp" && pendingVerification && !code.trim()) {
@@ -110,7 +113,7 @@ function ConfiguredSignInScreen() {
       return;
     }
     if (mode === "reset" && pendingReset && (!code.trim() || !password.trim())) {
-      setErrorMessage(locale === "sw" ? "Weka msimbo na neno siri jipya." : "Enter the code and your new password.");
+      setErrorMessage(locale === "sw" ? "Weka msimbo na neno la siri jipya." : "Enter the code and your new password.");
       return;
     }
     setSubmitting(true);
@@ -184,7 +187,7 @@ function ConfiguredSignInScreen() {
       }
       setErrorMessage(locale === "sw" ? "Uthibitisho haujakamilika. Angalia msimbo na ujaribu tena." : "Verification is incomplete. Check the code and try again.");
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : String(error));
+      setErrorMessage(plainError(error, locale));
     } finally {
       setSubmitting(false);
     }
@@ -208,7 +211,7 @@ function ConfiguredSignInScreen() {
         Alert.alert(locale === "sw" ? "Hatua ya ziada" : "More steps required", locale === "sw" ? "Kamilisha uthibitisho wa akaunti yako." : "Complete the additional account verification step.");
       }
     } catch (error) {
-      Alert.alert(locale === "sw" ? "Kuingia hakukufaulu" : "Social sign-in failed", error instanceof Error ? error.message : String(error));
+      Alert.alert(locale === "sw" ? "Kuingia hakukufaulu" : "Social sign-in failed", plainError(error, locale));
     } finally { setSubmitting(false); }
   }
 
@@ -230,7 +233,7 @@ function ConfiguredSignInScreen() {
       setResendSeconds(30);
       setErrorMessage("");
     } catch (error) {
-      Alert.alert(locale === "sw" ? "Msimbo haukutumwa" : "Code not sent", error instanceof Error ? error.message : String(error));
+      Alert.alert(locale === "sw" ? "Msimbo haukutumwa" : "Code not sent", plainError(error, locale));
     } finally { setSubmitting(false); }
   }
 
@@ -265,7 +268,7 @@ function ConfiguredSignInScreen() {
   const contact = identifierMethod === "phone" ? phone.trim() : email.trim();
   const title = secondFactor ? (locale === "sw" ? "Thibitisha kuingia" : "Verify sign in")
     : mode === "signUp" && pendingVerification ? (locale === "sw" ? "Thibitisha akaunti yako" : "Verify your account")
-    : mode === "reset" && pendingReset ? (locale === "sw" ? "Weka neno siri jipya" : "Set a new password")
+    : mode === "reset" && pendingReset ? (locale === "sw" ? "Weka neno la siri jipya" : "Set a new password")
     : mode === "reset" ? (locale === "sw" ? "Rejesha akaunti" : "Recover your account")
     : mode === "signUp" ? (locale === "sw" ? "Tengeneza akaunti" : "Create your account")
     : (locale === "sw" ? "Karibu tena" : "Welcome back");
@@ -274,8 +277,8 @@ function ConfiguredSignInScreen() {
     : secondFactor === "backup_code" ? (locale === "sw" ? "Weka msimbo wako wa akiba." : "Enter one of your backup codes.")
     : (locale === "sw" ? `Weka msimbo wa tarakimu sita uliotumwa kwa ${contact || "akaunti yako"}.` : `Enter the six-digit code sent to ${contact || "your account"}.`)
     : isRecovery ? (locale === "sw" ? "Weka barua pepe yako tupate kukutumia msimbo wa kurejesha." : "Enter your email to receive a recovery code.")
-    : mode === "signUp" ? (locale === "sw" ? "Tumia barua pepe na neno siri. Tutakuuliza jina na jukumu baadaye." : "Start with email and a password. Name and role come next.")
-    : (locale === "sw" ? "Ingia na akaunti ile ile unayotumia kwenye tovuti." : "Use the same account you use on the website.");
+    : mode === "signUp" ? (locale === "sw" ? "Tumia barua pepe na neno la siri. Tutakuuliza jina na jukumu baadaye." : "Start with email and a password. Name and role come next.")
+    : (locale === "sw" ? "Tumia akaunti yako ya Haki Yangu." : "Use the same account you use on the website.");
 
   return (
     <Screen style={styles.screen}>
@@ -288,10 +291,17 @@ function ConfiguredSignInScreen() {
           <View style={styles.backButton} />
         </View>
         {mode === "signUp" && !secondFactor ? <View style={styles.progress}><View style={styles.progressActive} /><View style={[styles.progressBar, pendingVerification && styles.progressActive]} /><View style={styles.progressBar} /></View> : null}
-        {isCodeStep || isRecovery ? <AuthVisual variant={isRecovery ? "recover" : "verify"} /> : <View style={styles.brandSymbol}><Ionicons name="shield-checkmark-outline" size={31} color={colors.surface} /></View>}
-        <Text style={styles.kicker}>HAKI YANGU · LSF</Text>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.body}>{description}</Text>
+        {isCodeStep || isRecovery ? <>
+          <AuthVisual variant={isRecovery ? "recover" : "verify"} />
+          <Text style={styles.kicker}>HAKI YANGU · LSF</Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.body}>{description}</Text>
+        </> : <View style={styles.welcomeIntro}>
+          <CivicIllustration pose="welcome" size={120} />
+          <Text style={styles.kicker}>HAKI YANGU · LSF</Text>
+          <Text accessibilityRole="header" style={[styles.title, styles.welcomeTitle]}>{title}</Text>
+          <Text style={[styles.body, styles.welcomeBody]}>{description}</Text>
+        </View>}
 
         {!isCodeStep && !isRecovery ? <View style={styles.segment}>
           <Pressable accessibilityRole="tab" accessibilityState={{ selected: mode === "signIn" }} style={[styles.segmentButton, mode === "signIn" && styles.segmentButtonActive]} onPress={() => switchMode("signIn")}><Text style={[styles.segmentText, mode === "signIn" && styles.segmentTextActive]}>{locale === "sw" ? "Ingia" : "Sign in"}</Text></Pressable>
@@ -303,20 +313,20 @@ function ConfiguredSignInScreen() {
         </View> : null}
 
         {!isCodeStep && (identifierMethod === "email" ? <Field label={locale === "sw" ? "Barua pepe" : "Email address"} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" placeholder="asha@example.com" icon="mail-outline" /> : <Field label={locale === "sw" ? "Namba ya simu" : "Phone number"} value={phone} onChangeText={setPhone} keyboardType="phone-pad" autoCapitalize="none" placeholder="+255712345678" icon="call-outline" />)}
-        {!isCodeStep && !isRecovery ? <Field label={locale === "sw" ? "Neno siri" : "Password"} value={password} onChangeText={setPassword} secureTextEntry placeholder={locale === "sw" ? "Weka neno siri" : "Enter your password"} icon="lock-closed-outline" /> : null}
+        {!isCodeStep && !isRecovery ? <Field label={locale === "sw" ? "Neno la siri" : "Password"} value={password} onChangeText={setPassword} secureTextEntry placeholder={locale === "sw" ? "Weka neno la siri" : "Enter your password"} icon="lock-closed-outline" /> : null}
         {isCodeStep ? <Field label={secondFactor === "backup_code" ? (locale === "sw" ? "Msimbo wa akiba" : "Backup code") : (locale === "sw" ? "Msimbo wa uthibitisho" : "Verification code")} value={code} onChangeText={setCode} keyboardType={secondFactor === "backup_code" ? "default" : "number-pad"} placeholder="••••••" icon="keypad-outline" maxLength={secondFactor === "backup_code" ? undefined : 6} oneTimeCode /> : null}
-        {mode === "reset" && pendingReset && !secondFactor ? <Field label={locale === "sw" ? "Neno siri jipya" : "New password"} value={password} onChangeText={setPassword} secureTextEntry placeholder={locale === "sw" ? "Weka neno siri jipya" : "Enter a new password"} icon="lock-closed-outline" /> : null}
-        {mode === "signUp" && !pendingVerification ? <Text style={styles.helper}>{locale === "sw" ? "Tumia angalau herufi 8 kwa neno siri imara." : "Use at least 8 characters for a strong password."}</Text> : null}
+        {mode === "reset" && pendingReset && !secondFactor ? <Field label={locale === "sw" ? "Neno la siri jipya" : "New password"} value={password} onChangeText={setPassword} secureTextEntry placeholder={locale === "sw" ? "Weka neno la siri jipya" : "Enter a new password"} icon="lock-closed-outline" /> : null}
+        {mode === "signUp" && !pendingVerification ? <Text style={styles.helper}>{locale === "sw" ? "Tumia angalau herufi 8 kwa neno la siri imara." : "Use at least 8 characters for a strong password."}</Text> : null}
         {isCodeStep && (secondFactor === "email_code" || secondFactor === "phone_code" || !secondFactor) ? <View style={styles.resendPanel}><Ionicons name="time-outline" size={22} color={colors.teal} /><Text style={styles.resendCopy}>{resendSeconds > 0 ? (locale === "sw" ? `Unaweza kutuma tena baada ya sekunde ${resendSeconds}.` : `You can resend in ${resendSeconds} seconds.`) : (locale === "sw" ? "Msimbo haujafika?" : "Didn't receive the code?")}</Text></View> : null}
-        {secondFactor && factorOptions.length > 1 ? <View style={styles.factorList}>{factorOptions.map((factor) => <Pressable key={factor} accessibilityRole="button" disabled={submitting} onPress={() => { if (signIn) void chooseSecondFactor(signIn, factor).catch((error) => setErrorMessage(error instanceof Error ? error.message : String(error))); }} style={[styles.factorButton, factor === secondFactor && styles.factorSelected]}><Text style={styles.factorText}>{factor.replaceAll("_", " ")}</Text></Pressable>)}</View> : null}
+        {secondFactor && factorOptions.length > 1 ? <View style={styles.factorList}>{factorOptions.map((factor) => <Pressable key={factor} accessibilityRole="button" disabled={submitting} onPress={() => { if (signIn) void chooseSecondFactor(signIn, factor).catch((error) => setErrorMessage(plainError(error, locale))); }} style={[styles.factorButton, factor === secondFactor && styles.factorSelected]}><Text style={styles.factorText}>{securityMethod(factor, locale)}</Text></Pressable>)}</View> : null}
         {errorMessage ? <View style={styles.errorPanel} accessibilityRole="alert"><Ionicons name="information-circle-outline" size={20} color={colors.danger} /><Text style={styles.errorText}>{errorMessage}</Text></View> : null}
 
-        <Button label={secondFactor ? (locale === "sw" ? "Thibitisha" : "Verify") : mode === "signIn" ? (locale === "sw" ? "Ingia" : "Sign in") : mode === "reset" ? pendingReset ? (locale === "sw" ? "Weka neno siri jipya" : "Set new password") : (locale === "sw" ? "Tuma msimbo" : "Send recovery code") : pendingVerification ? (locale === "sw" ? "Thibitisha" : "Verify account") : (locale === "sw" ? "Tengeneza akaunti" : "Create account")} loading={submitting} disabled={submitting || !signInLoaded || !signUpLoaded} onPress={() => void submit()} style={styles.primaryButton} />
-        {isCodeStep && (secondFactor === "email_code" || secondFactor === "phone_code" || !secondFactor) ? <View style={styles.codeActions}><Pressable accessibilityRole="button" disabled={resendSeconds > 0 || submitting} onPress={() => void resendCode()}><Text style={[styles.link, resendSeconds > 0 && styles.linkDisabled]}>{locale === "sw" ? "Tuma tena" : "Resend code"}</Text></Pressable><Text style={styles.actionDivider}>|</Text><Pressable accessibilityRole="button" onPress={() => secondFactor ? switchMode("signIn") : switchMode(mode)}><Text style={styles.link}>{locale === "sw" ? "Badilisha anuani" : "Change address"}</Text></Pressable></View> : null}
-        {!isCodeStep && mode === "signIn" ? <Pressable accessibilityRole="button" onPress={() => switchMode("reset")}><Text style={styles.linkCenter}>{locale === "sw" ? "Umesahau neno siri?" : "Forgot password?"}</Text></Pressable> : null}
+        <Button label={secondFactor ? (locale === "sw" ? "Thibitisha" : "Verify") : mode === "signIn" ? (locale === "sw" ? "Ingia" : "Sign in") : mode === "reset" ? pendingReset ? (locale === "sw" ? "Weka neno la siri jipya" : "Set new password") : (locale === "sw" ? "Tuma msimbo" : "Send recovery code") : pendingVerification ? (locale === "sw" ? "Thibitisha" : "Verify account") : (locale === "sw" ? "Tengeneza akaunti" : "Create account")} loading={submitting} disabled={submitting || !signInLoaded || !signUpLoaded} onPress={() => void submit()} style={styles.primaryButton} />
+        {isCodeStep && (secondFactor === "email_code" || secondFactor === "phone_code" || !secondFactor) ? <View style={styles.codeActions}><Pressable accessibilityRole="button" disabled={resendSeconds > 0 || submitting} onPress={() => void resendCode()}><Text style={[styles.link, resendSeconds > 0 && styles.linkDisabled]}>{locale === "sw" ? "Tuma tena" : "Resend code"}</Text></Pressable><Text style={styles.actionDivider}>|</Text><Pressable accessibilityRole="button" onPress={() => secondFactor ? switchMode("signIn") : switchMode(mode)}><Text style={styles.link}>{locale === "sw" ? "Badili mawasiliano" : "Change address"}</Text></Pressable></View> : null}
+        {!isCodeStep && mode === "signIn" ? <Pressable accessibilityRole="button" onPress={() => switchMode("reset")}><Text style={styles.linkCenter}>{locale === "sw" ? "Umesahau neno la siri?" : "Forgot password?"}</Text></Pressable> : null}
         {!isCodeStep && mode === "reset" ? <Pressable accessibilityRole="button" onPress={() => switchMode("signIn")}><Text style={styles.linkCenter}>{locale === "sw" ? "Rudi kuingia" : "Back to sign in"}</Text></Pressable> : null}
         {!isCodeStep && mode !== "reset" && (appConfig.googleSsoEnabled || Platform.OS === "ios" && appConfig.appleSsoEnabled) ? <View style={styles.socialGroup}><Text style={styles.socialDivider}>{locale === "sw" ? "AU" : "OR"}</Text>{appConfig.googleSsoEnabled ? <Pressable accessibilityRole="button" disabled={submitting} style={styles.socialButton} onPress={() => void socialSignIn("google")}><Ionicons name="logo-google" size={20} color={colors.burgundy} /><Text style={styles.socialText}>{locale === "sw" ? "Endelea kwa Google" : "Continue with Google"}</Text></Pressable> : null}{Platform.OS === "ios" && appConfig.appleSsoEnabled ? <Pressable accessibilityRole="button" disabled={submitting} style={styles.socialButton} onPress={() => void socialSignIn("apple")}><Ionicons name="logo-apple" size={20} color={colors.ink} /><Text style={styles.socialText}>{locale === "sw" ? "Endelea kwa Apple" : "Continue with Apple"}</Text></Pressable> : null}</View> : null}
-        {!isCodeStep && mode !== "reset" ? <View style={styles.trustNote}><Ionicons name="shield-checkmark-outline" size={21} color={colors.teal} /><Text style={styles.trustText}>{locale === "sw" ? "Akaunti moja salama kwa tovuti na app ya Haki Yangu." : "One secure account for the Haki Yangu website and app."}</Text></View> : null}
+        {!isCodeStep && mode !== "reset" ? <View style={styles.trustNote}><Ionicons name="shield-checkmark-outline" size={21} color={colors.teal} /><Text style={styles.trustText}>{locale === "sw" ? "Akaunti moja salama kwa tovuti na programu ya Haki Yangu." : "One secure account for the Haki Yangu website and app."}</Text></View> : null}
       </KeyboardAvoidingView>
     </Screen>
   );
@@ -364,7 +374,9 @@ const styles = StyleSheet.create({
   progress: { flexDirection: "row", justifyContent: "center", gap: 8, marginBottom: spacing.sm },
   progressBar: { width: 42, height: 5, borderRadius: 4, backgroundColor: colors.line },
   progressActive: { width: 42, height: 5, borderRadius: 4, backgroundColor: colors.burgundy },
-  brandSymbol: { width: 64, height: 64, borderRadius: 20, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center", marginTop: spacing.sm },
+  welcomeIntro: { alignItems: "center", gap: spacing.sm, paddingTop: spacing.sm, paddingBottom: spacing.sm },
+  welcomeTitle: { textAlign: "center", alignSelf: "stretch" },
+  welcomeBody: { textAlign: "center", maxWidth: 320 },
   kicker: { fontFamily: type.bold, color: colors.burgundy, fontSize: 13, letterSpacing: 1.8 },
   title: { fontFamily: type.bold, fontWeight: "700", color: colors.ink, fontSize: 34, lineHeight: 40, letterSpacing: -1 },
   body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 16, lineHeight: 24 },

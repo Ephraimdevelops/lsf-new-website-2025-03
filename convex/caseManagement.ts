@@ -1,3 +1,5 @@
+import { declaredCapacity, workerMatchingPoint, workerCapacity } from "./lib/workerMatching";
+import { distanceKm, requireNearbyInput } from "./lib/geography";
 import { ConvexError, v } from "convex/values";
 import { paginationOptsValidator } from "convex/server";
 import type { Doc, Id } from "./_generated/dataModel";
@@ -17,6 +19,8 @@ import { assertAllowedUpload, normalizeOptionalText, normalizeText } from "./lib
 import { canClassifyIndependentParalegal, requireIndependentLegacyScopeReview } from "./lib/caseParticipantAccess";
 import { isParalegalReady } from "./lib/paralegalAccess";
 import { isSameCaseRetry } from "./lib/caseRetry";
+import { issueManagedUpload, requireCleanOwnedUpload } from "./lib/managedUploads";
+import { enforceRateLimit } from "./lib/rateLimits";
 
 const caseStatusValidator = v.union(
   v.literal("under_review"),
@@ -99,6 +103,7 @@ async function addEvent(
     type: string;
     audience: "beneficiary" | "workers" | "all";
     publicLabelKey?: string;
+    clientActionId?: string;
     metadata?: Record<string, unknown>;
   },
 ) {
@@ -263,6 +268,7 @@ export const myConversations = query({
       const sender = lastMessage ? await ctx.db.get(lastMessage.senderId) : null;
       return {
         caseId: record._id,
+        context: record.beneficiaryId === user._id ? "personal" as const : "work" as const,
         publicId: record.publicId,
         summary: record.summary,
         status: record.status,
@@ -326,7 +332,7 @@ export const serviceProviders = query({
         email: provider.email,
         role: roles.has("provider_staff") ? "provider_staff" as const : "paralegal" as const,
         imageUrl: provider.imageUrl,
-        availabilityStatus: profile?.availabilityStatus ?? "accepting_cases",
+        ...await workerCapacity(ctx, provider._id, profile),
       };
     }));
     return providers.filter((provider) => provider !== null).sort((a, b) => a.name.localeCompare(b.name));
@@ -503,7 +509,7 @@ async function expireAssignmentOffer(
 }
 
 async function getClosureReadiness(ctx: MutationCtx | QueryCtx, caseId: Id<"cases">) {
-  const [outcome, documents, feedbackRequestedEvent] = await Promise.all([
+  const [outcome, documents, feedbackRequestedEvent, appointments, reviewRequests] = await Promise.all([
     ctx.db.query("case_outcomes").withIndex("by_case", (q) => q.eq("caseId", caseId)).unique(),
     ctx.db.query("case_documents").withIndex("by_case", (q) => q.eq("caseId", caseId)).collect(),
     ctx.db
@@ -511,6 +517,8 @@ async function getClosureReadiness(ctx: MutationCtx | QueryCtx, caseId: Id<"case
       .withIndex("by_case", (q) => q.eq("caseId", caseId))
       .filter((q) => q.eq(q.field("type"), "feedback_requested"))
       .first(),
+    ctx.db.query("case_appointments").withIndex("by_case", q => q.eq("caseId", caseId)).collect(),
+    ctx.db.query("case_review_requests").withIndex("by_case", q => q.eq("caseId", caseId)).collect(),
   ]);
   const pendingDocuments = documents.filter((document) => document.status === "pending_review");
   const outcomeSummary = outcome?.summary.trim() ?? "";
@@ -518,13 +526,17 @@ async function getClosureReadiness(ctx: MutationCtx | QueryCtx, caseId: Id<"case
     outcomeRecorded: outcome !== null,
     beneficiarySafeSummary: outcomeSummary.length >= 20,
     documentsReviewed: pendingDocuments.length === 0,
+    appointmentsRecorded: appointments.every(item => item.status !== "scheduled"),
+    reviewRequestsResolved: reviewRequests.every(item => !["submitted", "under_review"].includes(item.status)),
     feedbackRequested: feedbackRequestedEvent !== null || outcome !== null,
   };
   const missing = [
     requirements.outcomeRecorded ? null : "Record the case outcome.",
     requirements.beneficiarySafeSummary ? null : "Add a beneficiary-safe outcome summary of at least 20 characters.",
     requirements.documentsReviewed ? null : "Accept or reject every pending case document.",
+    requirements.appointmentsRecorded ? null : "Record a result or cancel every scheduled appointment.",
     requirements.feedbackRequested ? null : "Request beneficiary feedback before closure.",
+    requirements.reviewRequestsResolved ? null : "Ask LSF to respond to every open beneficiary review request.",
   ].filter((item): item is string => item !== null);
   return {
     canClose: missing.length === 0,
@@ -542,16 +554,13 @@ async function requireAssignableAvailability(
 ) {
   const assignee = await ctx.db.get(assigneeId);
   const profile = assignee
-    ? await ctx.db.query("paralegal_applications").withIndex("by_email", (q) => q.eq("email", assignee.email.toLowerCase())).first()
+    ? await ctx.db.query("paralegal_applications").withIndex("by_email", (q) => q.eq("email", assignee.email.toLowerCase())).order("desc").first()
     : null;
-  const availabilityStatus = profile?.availabilityStatus ?? "accepting_cases";
+  const capacity = await workerCapacity(ctx, assigneeId, profile);
+  const availabilityStatus = capacity.availabilityStatus;
   const normalizedOverrideReason = normalizeOptionalText(overrideReason, "Availability override reason", 500);
-  if ((availabilityStatus === "paused" || availabilityStatus === "unavailable") && !normalizedOverrideReason) {
-    throw new ConvexError({
-      code: "VALIDATION",
-      message: "Provider is paused or unavailable. Record an override reason before sending the offer.",
-    });
-  }
+  if (normalizedOverrideReason && normalizedOverrideReason.length < 10) throw new ConvexError("Record an availability override reason of at least 10 characters.");
+  if (!capacity.canOffer && !normalizedOverrideReason) throw new ConvexError({ code: "VALIDATION", message: "Provider availability or capacity is unknown, paused, unavailable or full. Confirm with the provider and record an override reason before sending the offer." });
   return {
     availabilityStatus,
     availabilityOverrideReason: normalizedOverrideReason,
@@ -605,9 +614,10 @@ async function requireParalegalReadiness(ctx: MutationCtx, userId: Id<"users">) 
 }
 
 export const providerRecommendations = query({
-  args: { caseId: v.id("cases") },
+  args: { caseId: v.id("cases"), origin: v.optional(v.object({ latitude: v.number(), longitude: v.number() })), radiusKm: v.optional(v.number()), refresh: v.optional(v.number()) },
   handler: async (ctx, args) => {
     await requireCaseWorker(ctx, args.caseId);
+    requireNearbyInput(args.origin, args.radiusKm);
     const caseRecord = await ctx.db.get(args.caseId);
     if (!caseRecord) throw new ConvexError({ code: "NOT_FOUND", message: "Case not found" });
     const request = await ctx.db.get(caseRecord.sourceRequestId);
@@ -638,9 +648,9 @@ export const providerRecommendations = query({
         return assignedCase && !["resolved", "closed_unresolved", "closed"].includes(assignedCase.status) ? assignedCase : null;
       }));
       const activeLoad = activeAssignments.filter(Boolean).length;
-      const availabilityStatus = profile?.availabilityStatus ?? "accepting_cases";
-      const weeklyCapacity = Math.max(0, Math.floor(profile?.weeklyCapacity ?? 3));
-      const remainingCapacity = Math.max(weeklyCapacity - activeLoad, 0);
+      const { availabilityStatus, weeklyCapacity, remainingCapacity, canOffer } = declaredCapacity(profile, activeLoad);
+      const location = roles.has("paralegal") && isParalegalReady(profile) ? await workerMatchingPoint(ctx, provider._id, profile?.publicMeetingServiceId) : { point: null, source: "unknown" as const };
+      const distance = args.origin && location.point ? distanceKm(args.origin, location.point) : null;
       const reasons: string[] = [];
       let score = 0;
       if (profile?.isVerified) {
@@ -671,7 +681,9 @@ export const providerRecommendations = query({
         score -= Math.min(20, activeLoad * 5);
         reasons.push(`${activeLoad} active case${activeLoad === 1 ? "" : "s"}`);
       }
-      if (availabilityStatus === "accepting_cases") {
+      if (remainingCapacity === null) {
+        score -= 30; reasons.push("capacity not declared; confirm before offer");
+      } else if (availabilityStatus === "accepting_cases") {
         score += remainingCapacity > 0 ? 12 : -10;
         reasons.push(remainingCapacity > 0 ? `${remainingCapacity} capacity slot${remainingCapacity === 1 ? "" : "s"}` : "capacity full");
       } else if (availabilityStatus === "limited") {
@@ -710,6 +722,9 @@ export const providerRecommendations = query({
         availabilityStatus,
         weeklyCapacity,
         remainingCapacity,
+        canOffer,
+        distanceKm: distance === null ? null : location.source === "current_location" ? Math.round(distance) : distance,
+        distanceSource: location.source,
         workingHours: profile?.workingHours,
         availabilityNotes: profile?.availabilityNotes,
         activeLoad,
@@ -720,7 +735,8 @@ export const providerRecommendations = query({
 
     return providers
       .filter((provider) => provider !== null)
-      .sort((a, b) => b.score - a.score || a.activeLoad - b.activeLoad || a.name.localeCompare(b.name))
+      .filter(provider => args.radiusKm === undefined || provider.distanceKm !== null && provider.distanceKm <= args.radiusKm)
+      .sort((a, b) => Number(b.canOffer) - Number(a.canOffer) || b.score - a.score || (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity) || a.activeLoad - b.activeLoad || a.name.localeCompare(b.name))
       .slice(0, 8);
   },
 });
@@ -868,6 +884,7 @@ export const offerAssignment = mutation({
     }
 
     const scope = await resolveAssignmentScope(ctx, args.assigneeId, args.organizationId);
+    if (args.availabilityOverrideReason) await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
     const availability = await requireAssignableAvailability(ctx, args.assigneeId, args.availabilityOverrideReason);
     const now = Date.now();
     const expiresAt = assignmentOfferExpiresAt(now);
@@ -940,6 +957,7 @@ export const reassignCase = mutation({
       throw new ConvexError({ code: "CONFLICT", message: "New assignee already has an open assignment on this case" });
     }
     const scope = await resolveAssignmentScope(ctx, args.newAssigneeId, args.organizationId);
+    if (args.availabilityOverrideReason) await requireAnyRole(ctx, ["admin", "staff", "supervisor"]);
     const availability = await requireAssignableAvailability(ctx, args.newAssigneeId, args.availabilityOverrideReason);
 
     const endedAssigneeIds = new Set<Id<"users">>();
@@ -1086,6 +1104,8 @@ export const createTask = mutation({
     const access = await requireCaseWorker(ctx, args.caseId);
     const roles = await getActorRoleSet(ctx, access.user._id);
     if (!["paralegal", "provider_staff", "admin", "supervisor"].some((role) => roles.has(role as never))) throw new ConvexError({ code: "FORBIDDEN", message: "Only case workers can create tasks" });
+    if (args.dueAt !== undefined && !Number.isFinite(args.dueAt)) throw new ConvexError("Choose a valid task due date.");
+    if (["closed", "resolved", "closed_unresolved"].includes(access.caseRecord.status)) throw new ConvexError("New tasks cannot be added after a case outcome or closure.");
     const taskId = await ctx.db.insert("case_tasks", { caseId: args.caseId, assigneeId: access.user._id, createdBy: access.user._id, title: normalizeText(args.title, "Task", 180), note: normalizeOptionalText(args.note, "Task note", 500), status: "open", dueAt: args.dueAt, createdAt: Date.now() });
     await addEvent(ctx, { caseId: args.caseId, actorId: access.user._id, type: "task_created", audience: "workers", publicLabelKey: "case.timeline.taskCreated", metadata: { taskId } });
     return taskId;
@@ -1145,6 +1165,7 @@ export const respondToAssignment = mutation({
     if (args.response === "accepted" && !assignment.organizationId && (assignment.assigneeRole !== "paralegal" || user.role !== "paralegal" || await hasProfessionalOrganisationMembership(ctx, user._id))) {
       throw new ConvexError("This independent paralegal offer is no longer eligible. Ask LSF for reassignment.");
     }
+    if (args.response === "accepted") await requireAssignableAvailability(ctx, user._id, assignment.availabilityOverrideReason);
     const now = Date.now();
     if ((assignment.expiresAt ?? assignmentOfferExpiresAt(assignment.offeredAt)) <= now) {
       await expireAssignmentOffer(ctx, {
@@ -1183,9 +1204,10 @@ export const respondToAssignment = mutation({
           addedAt: now,
         });
       }
-      assertCaseTransition(caseRecord.status, "assigned");
+      const nextStatus = ["referred", "assistance_underway", "appointment_scheduled"].includes(caseRecord.status) ? caseRecord.status : "assigned";
+      if (caseRecord.status !== nextStatus) assertCaseTransition(caseRecord.status, nextStatus);
       await ctx.db.patch(caseRecord._id, {
-        status: "assigned",
+        status: nextStatus,
         version: caseRecord.version + 1,
         updatedAt: now,
       });
@@ -1341,16 +1363,17 @@ export const listMessages = query({
 export const generateVoiceMessageUploadUrl = mutation({
   args: { caseId: v.id("cases") },
   handler: async (ctx, args) => {
-    await requireCaseAccess(ctx, args.caseId);
-    return await ctx.storage.generateUploadUrl();
+    const { user } = await requireCaseAccess(ctx, args.caseId);
+    return await issueManagedUpload(ctx, user._id, "case_voice", args.caseId);
   },
 });
 
 export const generateDocumentUploadUrl = mutation({
   args: { caseId: v.id("cases") },
   handler: async (ctx, args) => {
-    await requireCaseAccess(ctx, args.caseId);
-    return await ctx.storage.generateUploadUrl();
+    const { user, caseRecord } = await requireCaseAccess(ctx, args.caseId);
+    if (caseRecord.status === "closed") throw new ConvexError("This case is closed. No new documents can be added.");
+    return await issueManagedUpload(ctx, user._id, "case_document", args.caseId);
   },
 });
 
@@ -1366,7 +1389,7 @@ export const addDocument = mutation({
     note: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const { user } = await requireCaseAccess(ctx, args.caseId);
+    const { user, caseRecord } = await requireCaseAccess(ctx, args.caseId);
     const clientDocumentId = normalizeText(args.clientDocumentId, "Client document ID", 100);
     const existing = await ctx.db
       .query("case_documents")
@@ -1377,6 +1400,8 @@ export const addDocument = mutation({
       return existing._id;
     }
 
+    if (caseRecord.status === "closed") throw new ConvexError("This case is closed. No new documents can be added.");
+    await requireCleanOwnedUpload(ctx, args.storageId, user._id, "case_document", args.caseId);
     const metadata = await ctx.db.system.get(args.storageId);
     if (!metadata) throw new ConvexError({ code: "NOT_FOUND", message: "Uploaded file not found" });
     const file = assertAllowedUpload({
@@ -1443,7 +1468,7 @@ export const addGeneratedLetterDocument = mutation({
     note: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const { user } = await requireCaseAccess(ctx, args.caseId);
+    const { user, caseRecord } = await requireCaseAccess(ctx, args.caseId);
     const clientDocumentId = normalizeText(args.clientDocumentId, "Client document ID", 100);
     const existing = await ctx.db
       .query("case_documents")
@@ -1454,6 +1479,7 @@ export const addGeneratedLetterDocument = mutation({
       return existing._id;
     }
 
+    if (caseRecord.status === "closed") throw new ConvexError("This case is closed. No new documents can be added.");
     const textContent = normalizeText(args.textContent, "Letter content", 12000);
     const now = Date.now();
     const documentId = await ctx.db.insert("case_documents", {
@@ -1485,9 +1511,22 @@ export const addGeneratedLetterDocument = mutation({
   },
 });
 
+export const getDocument = query({
+  args: { documentId: v.id("case_documents") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const document = await ctx.db.get(args.documentId);
+    if (!document) return null;
+    const { caseRecord } = await requireCaseAccess(ctx, document.caseId);
+    return { ...document, casePublicId: caseRecord.publicId, caseSummary: caseRecord.summary,
+      context: caseRecord.beneficiaryId === user._id ? "personal" as const : "work" as const,
+      url: document.storageId ? await ctx.storage.getUrl(document.storageId) : null };
+  },
+});
+
 export const myDocuments = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { context: v.optional(v.union(v.literal("personal"), v.literal("work"))) },
+  handler: async (ctx, args) => {
     const { user } = await requireAuthenticatedUser(ctx);
     const owned = await ctx.db
       .query("cases")
@@ -1510,12 +1549,13 @@ export const myDocuments = query({
         .collect();
       return await Promise.all(documents.map(async (document) => ({
         ...document,
+        context: caseRecord.beneficiaryId === user._id ? "personal" as const : "work" as const,
         casePublicId: caseRecord.publicId,
         caseSummary: caseRecord.summary,
         url: document.storageId ? await ctx.storage.getUrl(document.storageId) : null,
       })));
     }));
-    return rows.flat().sort((a, b) => b.createdAt - a.createdAt).slice(0, 100);
+    return rows.flat().filter(item => !args.context || item.context === args.context).sort((a, b) => b.createdAt - a.createdAt).slice(0, 100);
   },
 });
 
@@ -1554,6 +1594,7 @@ export const reviewDocument = mutation({
     if (args.status === "pending_review") {
       throw new ConvexError({ code: "VALIDATION", message: "Choose accepted or rejected" });
     }
+    if (args.status === "rejected" && (args.reviewNotes?.trim().length ?? 0) < 10) throw new ConvexError("Explain what needs changing before rejecting the document.");
     const now = Date.now();
     await ctx.db.patch(document._id, {
       status: args.status,
@@ -1596,6 +1637,7 @@ export const sendMessage = mutation({
       return existing._id;
     }
 
+    await enforceRateLimit(ctx, `case-message:${user._id}`, 20, 60 * 1000);
     const conversation = await ctx.db
       .query("case_conversations")
       .withIndex("by_case", (q) => q.eq("caseId", args.caseId))
@@ -1651,7 +1693,9 @@ export const sendVoiceMessage = mutation({
       if (!isSameCaseRetry({ caseId: existing.caseId, kind: existing.type }, { caseId: args.caseId, kind: "voice" })) throw new ConvexError({ code: "CONFLICT", message: "Message retry key belongs to another case or message type" });
       return existing._id;
     }
-    if (args.durationMs < 500 || args.durationMs > 120_000) throw new ConvexError({ code: "VALIDATION", message: "Voice notes must be between 1 second and 2 minutes" });
+    if (!Number.isFinite(args.durationMs) || args.durationMs < 500 || args.durationMs > 120_000) throw new ConvexError({ code: "VALIDATION", message: "Voice notes must be between 1 second and 2 minutes" });
+    await enforceRateLimit(ctx, `case-message:${user._id}`, 20, 60 * 1000);
+    await requireCleanOwnedUpload(ctx, args.storageId, user._id, "case_voice", args.caseId);
     const metadata = await ctx.db.system.get(args.storageId);
     if (!metadata) throw new ConvexError({ code: "NOT_FOUND", message: "Uploaded voice note not found" });
     const mimeType = (metadata.contentType || args.mimeType).toLowerCase();
@@ -1680,7 +1724,8 @@ export const scheduleAppointment = mutation({
   },
   handler: async (ctx, args) => {
     const { user, caseRecord } = await requireCaseWorker(ctx, args.caseId);
-    if (args.startsAt <= Date.now()) throw new ConvexError({ code: "VALIDATION", message: "Appointment must be in the future" });
+    if (["resolved", "closed_unresolved", "closed"].includes(caseRecord.status)) throw new ConvexError("Appointments cannot be scheduled after a case outcome or closure.");
+    if (!Number.isFinite(args.startsAt) || args.startsAt <= Date.now()) throw new ConvexError({ code: "VALIDATION", message: "Appointment must be in the future" });
     const now = Date.now();
     const appointmentId = await ctx.db.insert("case_appointments", {
       caseId: args.caseId,
@@ -1820,7 +1865,7 @@ export const updateAppointmentStatus = mutation({
     const appointment = await ctx.db.get(args.appointmentId);
     if (!appointment) throw new ConvexError({ code: "NOT_FOUND", message: "Appointment not found" });
     const { user, caseRecord } = await requireCaseWorker(ctx, appointment.caseId);
-    if (["resolved", "closed_unresolved", "closed"].includes(caseRecord.status)) {
+    if (caseRecord.status === "closed") {
       throw new ConvexError({ code: "CONFLICT", message: "Closed cases cannot update appointments" });
     }
     if (appointment.status !== "scheduled") {
@@ -1869,9 +1914,21 @@ export const updateAppointmentStatus = mutation({
   },
 });
 
+export const getAppointment = query({
+  args: { appointmentId: v.id("case_appointments") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const appointment = await ctx.db.get(args.appointmentId);
+    if (!appointment) return null;
+    const { caseRecord } = await requireCaseAccess(ctx, appointment.caseId);
+    return { ...appointment, casePublicId: caseRecord.publicId, caseSummary: caseRecord.summary,
+      context: caseRecord.beneficiaryId === user._id ? "personal" as const : "work" as const };
+  },
+});
+
 export const myAppointments = query({
-  args: {},
-  handler: async (ctx) => {
+  args: { context: v.optional(v.union(v.literal("personal"), v.literal("work"))) },
+  handler: async (ctx, args) => {
     const { user } = await requireAuthenticatedUser(ctx);
     const owned = await ctx.db
       .query("cases")
@@ -1894,11 +1951,12 @@ export const myAppointments = query({
         .collect();
       return appointments.map((appointment) => ({
         ...appointment,
+        context: caseRecord.beneficiaryId === user._id ? "personal" as const : "work" as const,
         casePublicId: caseRecord.publicId,
         caseSummary: caseRecord.summary,
       }));
     }));
-    return rows.flat().sort((a, b) => {
+    return rows.flat().filter(item => !args.context || item.context === args.context).sort((a, b) => {
       if (a.status === "scheduled" && b.status !== "scheduled") return -1;
       if (a.status !== "scheduled" && b.status === "scheduled") return 1;
       return a.status === "scheduled" ? a.startsAt - b.startsAt : b.startsAt - a.startsAt;
@@ -1953,18 +2011,30 @@ export const sendUpcomingAppointmentReminders = internalMutation({
 export const requestAppointment = mutation({
   args: {
     caseId: v.id("cases"),
+    clientActionId: v.optional(v.string()),
     preferredMode: v.union(v.literal("in_person"), v.literal("phone"), v.literal("remote")),
     preferredTime: v.optional(v.string()),
     note: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const { user, caseRecord } = await requireCaseAccess(ctx, args.caseId);
+    const clientActionId = normalizeOptionalText(args.clientActionId, "Action identity", 100);
+    const preferredTime = normalizeOptionalText(args.preferredTime, "Preferred time", 160);
+    const note = normalizeOptionalText(args.note, "Appointment note", 800);
+    if (clientActionId) {
+      const prior = await ctx.db.query("case_events").withIndex("by_actor_client", q => q.eq("actorId", user._id).eq("clientActionId", clientActionId)).unique();
+      if (prior) {
+        if (prior.caseId !== args.caseId || prior.type !== "appointment_requested" || prior.metadata?.preferredMode !== args.preferredMode || prior.metadata?.preferredTime !== preferredTime || prior.metadata?.note !== note) throw new ConvexError("Appointment retry must match the original request");
+        return prior._id;
+      }
+    }
     if (["resolved", "closed_unresolved", "closed"].includes(caseRecord.status)) {
       throw new ConvexError({ code: "CONFLICT", message: "Closed cases cannot receive appointment requests" });
     }
-
+    await enforceRateLimit(ctx, `appointment-request:${user._id}`, 5, 60 * 60 * 1000);
     const now = Date.now();
-    await addEvent(ctx, {
+    const eventId = await addEvent(ctx, {
+      ...(clientActionId ? { clientActionId } : {}),
       caseId: args.caseId,
       actorId: user._id,
       type: "appointment_requested",
@@ -1972,8 +2042,8 @@ export const requestAppointment = mutation({
       publicLabelKey: "case.timeline.appointmentRequested",
       metadata: {
         preferredMode: args.preferredMode,
-        preferredTime: normalizeOptionalText(args.preferredTime, "Preferred time", 160),
-        note: normalizeOptionalText(args.note, "Appointment note", 800),
+        preferredTime,
+        note,
       },
     });
 
@@ -1997,6 +2067,7 @@ export const requestAppointment = mutation({
     await writeAudit(ctx, user._id, "appointment.requested", "case", args.caseId, {
       preferredMode: args.preferredMode,
     });
+    return eventId;
   },
 });
 
@@ -2005,31 +2076,37 @@ export const recordOutcome = mutation({
     caseId: v.id("cases"),
     outcomeCode: v.string(),
     summary: v.string(),
+    resolution: v.optional(v.union(v.literal("resolved"), v.literal("closed_unresolved"))),
   },
   handler: async (ctx, args) => {
     const { user, caseRecord } = await requireCaseWorker(ctx, args.caseId);
     const existing = await ctx.db.query("case_outcomes").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).unique();
     if (existing) return existing._id;
-    assertCaseTransition(caseRecord.status, "resolved");
+    const resolution = args.resolution ?? "resolved";
+    if (["resolved", "closed_unresolved"].includes(caseRecord.status)) {
+      if (resolution !== caseRecord.status) throw new ConvexError("Keep the case’s recorded disposition when adding a missing outcome.");
+    } else assertCaseTransition(caseRecord.status, resolution);
+    if (args.summary.trim().length < 20) throw new ConvexError("Describe the help provided and next step in at least 20 characters.");
     const now = Date.now();
     const outcomeId = await ctx.db.insert("case_outcomes", {
       caseId: args.caseId,
       recordedBy: user._id,
+      resolution,
       outcomeCode: normalizeText(args.outcomeCode, "Outcome", 100),
       summary: normalizeText(args.summary, "Outcome summary", 3000),
       recordedAt: now,
     });
     await ctx.db.patch(caseRecord._id, {
-      status: "resolved",
+      status: resolution,
       version: caseRecord.version + 1,
       updatedAt: now,
     });
     await addEvent(ctx, {
       caseId: args.caseId,
       actorId: user._id,
-      type: "case_resolved",
+      type: resolution === "resolved" ? "case_resolved" : "case_closed_unresolved",
       audience: "all",
-      publicLabelKey: "case.timeline.resolved",
+      publicLabelKey: resolution === "resolved" ? "case.timeline.resolved" : "case.status.closed_unresolved",
     });
     await createNotification(ctx, {
       userId: caseRecord.beneficiaryId,
@@ -2064,7 +2141,7 @@ export const submitFeedback = mutation({
       throw new ConvexError({ code: "VALIDATION", message: "Rating must be between 1 and 5" });
     }
     const outcome = await ctx.db.query("case_outcomes").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).unique();
-    if (!outcome || !["resolved", "closed"].includes(caseRecord.status)) {
+    if (!outcome || !["resolved", "closed_unresolved", "closed"].includes(caseRecord.status)) {
       throw new ConvexError({ code: "CONFLICT", message: "Feedback opens after a case outcome is recorded" });
     }
     const existing = await ctx.db.query("case_feedback").withIndex("by_case", (q) => q.eq("caseId", args.caseId)).unique();
@@ -2090,6 +2167,7 @@ export const submitFeedback = mutation({
 export const requestCaseReview = mutation({
   args: {
     caseId: v.id("cases"),
+    clientActionId: v.optional(v.string()),
     reason: reviewRequestReasonValidator,
     note: v.optional(v.string()),
   },
@@ -2097,6 +2175,15 @@ export const requestCaseReview = mutation({
     const { user, caseRecord } = await requireCaseAccess(ctx, args.caseId);
     if (caseRecord.beneficiaryId !== user._id) {
       throw new ConvexError({ code: "FORBIDDEN", message: "Only the beneficiary can request a case review" });
+    }
+    const clientActionId = normalizeOptionalText(args.clientActionId, "Action identity", 100);
+    const note = normalizeOptionalText(args.note, "Review request note", 1200);
+    if (clientActionId) {
+      const prior = await ctx.db.query("case_review_requests").withIndex("by_requester_client", q => q.eq("requestedBy", user._id).eq("clientActionId", clientActionId)).unique();
+      if (prior) {
+        if (prior.caseId !== args.caseId || prior.reason !== args.reason || prior.note !== note) throw new ConvexError("Review retry must match the original request");
+        return prior._id;
+      }
     }
     if (["closed", "closed_unresolved"].includes(caseRecord.status)) {
       throw new ConvexError({ code: "CONFLICT", message: "Closed cases cannot receive new review requests" });
@@ -2107,14 +2194,19 @@ export const requestCaseReview = mutation({
       .withIndex("by_case", (q) => q.eq("caseId", args.caseId))
       .filter((q) => q.or(q.eq(q.field("status"), "submitted"), q.eq(q.field("status"), "under_review")))
       .collect();
-    if (openRequests.length > 0) return openRequests[0]._id;
+    if (openRequests.length > 0) {
+      if (clientActionId) throw new ConvexError("A case review is already open. Read its progress before sending another request.");
+      return openRequests[0]._id;
+    }
+    await enforceRateLimit(ctx, `case-review:${user._id}`, 3, 60 * 60 * 1000);
 
     const now = Date.now();
     const reviewRequestId = await ctx.db.insert("case_review_requests", {
       caseId: args.caseId,
       requestedBy: user._id,
+      ...(clientActionId ? { clientActionId } : {}),
       reason: args.reason,
-      note: normalizeOptionalText(args.note, "Review request note", 1200),
+      note,
       status: "submitted",
       createdAt: now,
       updatedAt: now,
@@ -2140,14 +2232,15 @@ export const requestCaseReview = mutation({
 });
 
 export const staffReviewRequests = query({
-  args: { status: v.optional(reviewRequestStatusValidator) },
+  args: { status: v.optional(reviewRequestStatusValidator), reviewRequestId: v.optional(v.id("case_review_requests")) },
   handler: async (ctx, args) => {
     const actor = await requireAnyRole(ctx, operationalReviewRoles);
     const actorRoles = await getActorRoleSet(ctx, actor.user._id);
     const safeguardingOnly = actorRoles.has("safeguarding_officer") &&
       !["admin", "staff", "supervisor"].some((role) => actorRoles.has(role));
     const status = args.status ?? "submitted";
-    const reviews = await ctx.db
+    const directReview = args.reviewRequestId ? await ctx.db.get(args.reviewRequestId) : null;
+    const reviews = args.reviewRequestId ? (directReview ? [directReview] : []) : await ctx.db
       .query("case_review_requests")
       .withIndex("by_status", (q) => q.eq("status", status))
       .order("desc")
@@ -2176,6 +2269,7 @@ export const resolveCaseReviewRequest = mutation({
     reviewRequestId: v.id("case_review_requests"),
     status: v.union(v.literal("under_review"), v.literal("resolved"), v.literal("declined")),
     resolutionNote: v.optional(v.string()),
+    expectedUpdatedAt: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const { user } = await requireAnyRole(ctx, operationalReviewRoles);
@@ -2192,6 +2286,12 @@ export const resolveCaseReviewRequest = mutation({
       return { status: review.status };
     }
 
+    if (args.expectedUpdatedAt !== undefined && args.expectedUpdatedAt !== review.updatedAt) {
+      throw new ConvexError("This review changed. Refresh it before recording a decision.");
+    }
+    if (args.status !== "under_review" && (args.resolutionNote?.trim().length ?? 0) < 10) {
+      throw new ConvexError("Record a decision reason of at least 10 characters.");
+    }
     const now = Date.now();
     await ctx.db.patch(review._id, {
       status: args.status,

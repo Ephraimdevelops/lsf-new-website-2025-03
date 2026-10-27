@@ -1,3 +1,4 @@
+import { BrandLoading, LoadingText } from '../src/components/BrandLoading';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Redirect, router } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -15,21 +16,21 @@ export default function AuthCompleteScreen() {
   const { user, isLoaded } = useUser();
   const { ready, status, retry } = useAccountSync();
   const sw = locale === "sw";
-  if (!isLoaded) return <Screen><Text style={styles.body}>{sw ? "Akaunti inaandaliwa…" : "Preparing your account…"}</Text></Screen>;
+  if (!isLoaded) return <BrandLoading task="account" locale={locale} fullScreen/>;
   if (!user) return <Redirect href="/sign-in" />;
-  if (!ready) return <Screen><Text style={styles.body}>{status === "error" ? (sw ? "Akaunti haijaunganishwa. Jaribu tena." : "Your account could not connect. Please retry.") : (sw ? "Tunaunganisha akaunti yako…" : "Connecting your account…")}</Text>{status === "error" ? <Button label={sw ? "Jaribu tena" : "Retry"} onPress={retry} /> : null}</Screen>;
+  if (!ready) return <Screen><LoadingText style={styles.body}>{status === "error" ? (sw ? "Akaunti haijaunganishwa. Jaribu tena." : "Your account could not connect. Please retry.") : (sw ? "Tunaunganisha akaunti yako…" : "Connecting your account…")}</LoadingText>{status === "error" ? <Button label={sw ? "Jaribu tena" : "Retry"} onPress={retry} /> : null}</Screen>;
   return <Screen style={styles.screen}>
     <View style={styles.header}><View /><BrandMark size="large" /></View>
     <AuthVisual variant="success" />
     <Text style={styles.title}>{sw ? "Umefanikiwa!" : "You're all set!"}</Text>
     <Text style={styles.lead}>{sw ? "Akaunti yako iko tayari kutumika." : "Your account is ready to use."}</Text>
-    <Text style={styles.body}>{sw ? "Sasa unaweza kutafuta msaada, kuuliza Saada na kufuatilia maombi yako." : "Find help, ask Saada, and follow your requests in one place."}</Text>
+    <Text style={styles.body}>{sw ? "Sasa unaweza kutafuta msaada, kuuliza Haki Yangu AI na kufuatilia maombi yako." : "Find help, ask Haki Yangu AI, and follow your requests in one place."}</Text>
     <View style={styles.actions}>
       <Action icon="search-outline" tone="burgundy" title={sw ? "Anza kutafuta msaada" : "Find help"} body={sw ? "Tafuta huduma zilizothibitishwa karibu nawe." : "Explore verified services near you."} onPress={() => router.replace("/find-services")} />
-      <Action icon="chatbubble-ellipses-outline" tone="teal" title={sw ? "Uliza Saada" : "Ask Saada"} body={sw ? "Pata mwongozo wa hatua inayofuata." : "Get guidance for your next step."} onPress={() => router.replace("/sara")} />
+      <Action icon="chatbubble-ellipses-outline" tone="teal" title={sw ? "Uliza Haki Yangu AI" : "Ask Haki Yangu AI"} body={sw ? "Pata mwongozo wa hatua inayofuata." : "Get guidance for your next step."} onPress={() => router.replace("/sara")} />
       <Action icon="person-outline" tone="gold" title={sw ? "Angalia wasifu wako" : "View your profile"} body={sw ? "Taarifa za akaunti yako ziko hapa." : "Your account details are here."} onPress={() => router.replace("/(tabs)/profile")} />
     </View>
-    <Button label={sw ? "Ingia kwenye app" : "Continue to the app"} onPress={() => router.replace("/(tabs)")} style={styles.primary} />
+    <Button label={sw ? "Ingia kwenye programu" : "Continue to the app"} onPress={() => router.replace("/(tabs)")} style={styles.primary} />
   </Screen>;
 }
 

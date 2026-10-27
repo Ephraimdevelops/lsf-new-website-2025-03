@@ -1,3 +1,5 @@
+import { LoadingText } from '@/components/shared/BrandLoading';
+import BrandLoading from '@/components/shared/BrandLoading';
 
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
@@ -115,7 +117,7 @@ const LinksManager = () => {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <label className="text-sm font-medium">Title</label>
-                                            <Input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g. Chat with Saada" />
+                                            <Input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g. Chat with Haki Yangu AI" />
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-sm font-medium">Subtitle (Optional)</label>
@@ -187,7 +189,7 @@ const LinksManager = () => {
                 </div>
 
                 {/* Links List */}
-                <div className="space-y-3">
+                <LoadingText as="div" className="space-y-3">
                     {links ? (
                         links.map((link, index) => {
 
@@ -249,9 +251,9 @@ const LinksManager = () => {
                             );
                         })
                     ) : (
-                        <div className="text-center py-20">Loading...</div>
+                        <BrandLoading compact text={"Loading..."}/>
                     )}
-                </div>
+                </LoadingText>
 
             </div>
         </div>

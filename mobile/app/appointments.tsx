@@ -1,8 +1,11 @@
+import { BrandLoading } from "../src/components/BrandLoading";
+import { displayLabel } from "../../shared/plainLanguage";
+import { plainError } from "../../shared/plainLanguage";
 import { useAuth } from "../src/auth";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import type { Id } from "../../convex/_generated/dataModel";
 import { api } from "../src/backend/api";
@@ -16,18 +19,28 @@ const statusLabels: Record<string, { sw: string; en: string }> = {
   scheduled: { sw: "Imepangwa", en: "Scheduled" },
   completed: { sw: "Imekamilika", en: "Completed" },
   cancelled: { sw: "Imefutwa", en: "Cancelled" },
-  missed: { sw: "Haikufanyika", en: "No-show" },
+  missed: { sw: "Haikufanyika", en: "Did not take place" },
 };
 
 function formatDate(timestamp: number, locale: "sw" | "en") {
   return new Date(timestamp).toLocaleString(locale === "sw" ? "sw-TZ" : "en-TZ", {
+    timeZone: "Africa/Dar_es_Salaam",
     dateStyle: "medium",
     timeStyle: "short",
   });
 }
 
 export default function AppointmentsScreen() {
-  const { isSignedIn } = useAuth();
+  const { userId } = useAuth();
+  return <AccountAppointmentsScreen key={userId ?? "signed-out"} />;
+}
+
+function AccountAppointmentsScreen() {
+  const { isLoaded, isSignedIn } = useAuth();
+  const active = useRef(true);
+  useLayoutEffect(() => { active.current = true; return () => { active.current = false; }; }, []);
+  const submissionLock = useRef(false);
+  const attempts = useRef(new Map<string, string>());
   const { locale } = useLanguage();
   const params = useLocalSearchParams<{ providerName?: string; providerDistrict?: string; providerPhone?: string }>();
   const [selectedCaseId, setSelectedCaseId] = useState<Id<"cases"> | "">("");
@@ -36,47 +49,66 @@ export default function AppointmentsScreen() {
   const [note, setNote] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [notice, setNotice] = useState<{ type: "success" | "error"; text: string } | null>(null);
-  const myCases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
-  const appointments = useQuery(api.caseManagement.myAppointments, isSignedIn ? {} : "skip");
+  const access = useQuery(api.users.currentAccess, isSignedIn ? {} : "skip");
+  const allCases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
+  const myCases = allCases?.filter(item => item.beneficiaryId === access?.user._id);
+  const appointments = useQuery(api.caseManagement.myAppointments, isSignedIn ? { context: "personal" } : "skip");
   const requestAppointment = useMutation(api.caseManagement.requestAppointment);
   const upcomingCount = appointments?.filter((appointment) => appointment.status === "scheduled").length ?? 0;
   const openCases = myCases?.filter((record) => !["resolved", "closed_unresolved", "closed"].includes(record.status)) ?? [];
 
+  const casesLoading = access === undefined || allCases === undefined;
+
   async function submitAppointmentRequest() {
-    if (!selectedCaseId) {
+    if (!active.current || submissionLock.current || !isSignedIn || casesLoading) return;
+    if (!selectedCaseId || !openCases.some(record => record._id === selectedCaseId)) {
       setNotice({
         type: "error",
-        text: locale === "sw" ? "Chagua kesi au ombi lililofunguliwa kwanza." : "Choose an open case first.",
+        text: locale === "sw" ? "Chagua kesi iliyo wazi kwanza." : "Choose an open case first.",
       });
       return;
     }
+    const payload = {
+      caseId: selectedCaseId,
+      preferredMode,
+      preferredTime: preferredTime.trim() || undefined,
+      note: [
+        params.providerName ? `Preferred provider: ${params.providerName}` : "",
+        params.providerDistrict ? `Provider district: ${params.providerDistrict}` : "",
+        params.providerPhone ? `Provider phone: ${params.providerPhone}` : "",
+        note.trim(),
+      ].filter(Boolean).join("\n") || undefined,
+    };
+    const payloadKey = JSON.stringify(payload);
+    // Keep uncertain attempts, including when someone edits and returns to a draft.
+    let clientActionId = attempts.current.get(payloadKey);
+    if (!clientActionId) {
+      clientActionId = `appointment-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      attempts.current.set(payloadKey, clientActionId);
+    }
+    submissionLock.current = true;
     setSubmitting(true);
     setNotice(null);
     try {
-      await requestAppointment({
-        caseId: selectedCaseId,
-        preferredMode,
-        preferredTime: preferredTime.trim() || undefined,
-        note: [
-          params.providerName ? `Preferred provider: ${params.providerName}` : "",
-          params.providerDistrict ? `Provider district: ${params.providerDistrict}` : "",
-          params.providerPhone ? `Provider phone: ${params.providerPhone}` : "",
-          note.trim(),
-        ].filter(Boolean).join("\n") || undefined,
-      });
-      setPreferredTime("");
-      setNote("");
+      await requestAppointment({ ...payload, clientActionId });
+      if (!active.current) return;
+      attempts.current.delete(payloadKey);
+      // Do not erase edits made while the request was in flight.
+      setPreferredTime(current => current.trim() === preferredTime.trim() ? "" : current);
+      setNote(current => current.trim() === note.trim() ? "" : current);
       setNotice({
         type: "success",
         text: locale === "sw" ? "Ombi la miadi limetumwa kwa timu ya kesi." : "Appointment request sent to the case team.",
       });
     } catch (error) {
+      if (!active.current) return;
       setNotice({
         type: "error",
-        text: error instanceof Error ? error.message : locale === "sw" ? "Ombi halijatumwa." : "Request was not sent.",
+        text: plainError(error, locale, locale === "sw" ? "Hatukuweza kuthibitisha ombi. Angalia taarifa kwenye kesi kabla ya kujaribu tena." : "We could not confirm the request. Check your case updates before retrying."),
       });
     } finally {
-      setSubmitting(false);
+      submissionLock.current = false;
+      if (active.current) setSubmitting(false);
     }
   }
 
@@ -90,14 +122,14 @@ export default function AppointmentsScreen() {
         <View style={styles.headerSpacer} />
       </View>
       <View style={styles.bookingHero}>
-        <Text style={styles.heroKicker}>{locale === "sw" ? "WEKA MIADI KWA UHAKIKA" : "BOOK WITH CONFIDENCE"}</Text>
-        <Text style={styles.bookingTitle}>{locale === "sw" ? "Chagua aina ya msaada unaohitaji." : "Choose the kind of help you need."}</Text>
-        <Text style={styles.heroBody}>{locale === "sw" ? "Kutana na paralegal, jiunge na kliniki ya kisheria, au panga ushauri kwa simu." : "Meet a verified paralegal, join a legal clinic, or get a phone consultation."}</Text>
+        <Text style={styles.heroKicker}>{locale === "sw" ? "OMBA MIADI" : "REQUEST AN APPOINTMENT"}</Text>
+        <Text style={styles.bookingTitle}>{locale === "sw" ? "Ungependa kuzungumza vipi?" : "How would you like to meet?"}</Text>
+        <Text style={styles.heroBody}>{locale === "sw" ? "Chagua njia na muda unaopendelea. Timu ya kesi itakujibu; miadi bado haijathibitishwa." : "Choose your preferred method and time. Your case team will reply; the appointment is not yet confirmed."}</Text>
       </View>
       <View style={styles.options}>
-        <BookingOption icon="call-outline" title={locale === "sw" ? "Ushauri kwa simu" : "Phone consultation"} meta={locale === "sw" ? "Zungumza na paralegal" : "Talk to a paralegal"} active={preferredMode === "phone"} onPress={() => setPreferredMode("phone")} />
-        <BookingOption icon="videocam-outline" title={locale === "sw" ? "Msaada mtandaoni" : "Virtual support"} meta={locale === "sw" ? "Mazungumzo salama ya video" : "Secure remote session"} active={preferredMode === "remote"} onPress={() => setPreferredMode("remote")} />
-        <BookingOption icon="people-outline" title={locale === "sw" ? "Kukutana ana kwa ana" : "In-person meeting"} meta={locale === "sw" ? "Kliniki au ofisi ya LSF" : "Clinic or LSF office"} active={preferredMode === "in_person"} onPress={() => setPreferredMode("in_person")} />
+        <BookingOption icon="call-outline" title={locale === "sw" ? "Ushauri kwa simu" : "Phone consultation"} meta={locale === "sw" ? "Zungumza na msaidizi wa kisheria" : "Talk to a paralegal"} active={preferredMode === "phone"} onPress={() => setPreferredMode("phone")} />
+        <BookingOption icon="videocam-outline" title={locale === "sw" ? "Msaada mtandaoni" : "Virtual support"} meta={locale === "sw" ? "Omba kuzungumza mtandaoni" : "Request an online meeting"} active={preferredMode === "remote"} onPress={() => setPreferredMode("remote")} />
+        <BookingOption icon="people-outline" title={locale === "sw" ? "Kukutana ana kwa ana" : "In-person meeting"} meta={locale === "sw" ? "Mahali patakubaliwa na timu yako" : "Location to be agreed with your team"} active={preferredMode === "in_person"} onPress={() => setPreferredMode("in_person")} />
       </View>
 
       {params.providerName ? (
@@ -110,16 +142,16 @@ export default function AppointmentsScreen() {
         </View>
       ) : null}
 
-      {!isSignedIn ? (
+      {!isLoaded ? <BrandLoading compact task="account" /> : !isSignedIn ? (
         <View style={styles.empty}>
           <Ionicons name="lock-closed-outline" size={38} color={colors.burgundy} />
           <Text style={styles.emptyTitle}>{locale === "sw" ? "Ingia kuona miadi yako" : "Sign in to view appointments"}</Text>
           <Text style={styles.emptyText}>
             {locale === "sw"
-              ? "Miadi inahusishwa na ombi, kesi, au mtoa huduma. Akaunti inalinda taarifa hizo."
-              : "Appointments are linked to a request, case, or service provider. Your account protects those details."}
+              ? "Ingia kwenye akaunti yako kuona au kuomba miadi ya kesi."
+              : "Sign in to view or request a case appointment."}
           </Text>
-          <Button label={locale === "sw" ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
+          <Button label={locale === "sw" ? "Ingia" : "Sign in"} onPress={() => router.push("/sign-in")} />
         </View>
       ) : (
         <>
@@ -127,14 +159,14 @@ export default function AppointmentsScreen() {
             <Text style={styles.panelTitle}>{locale === "sw" ? "Omba miadi" : "Request an appointment"}</Text>
             <Text style={styles.panelText}>
               {locale === "sw"
-                ? "Miadi inaunganishwa na kesi ili timu ya LSF iweze kufuatilia kwa usalama."
-                : "Appointments are tied to a case so the LSF team can follow up safely."}
+                ? "Chagua kesi unayoomba miadi."
+                : "Choose the case for this appointment request."}
             </Text>
-            {openCases.length === 0 ? (
+            {casesLoading ? <BrandLoading compact task="cases" /> : openCases.length === 0 ? (
               <View style={styles.inlineEmpty}>
                 <Text style={styles.emptyTitle}>{locale === "sw" ? "Hakuna kesi iliyo wazi" : "No open case yet"}</Text>
                 <Text style={styles.emptyText}>
-                  {locale === "sw" ? "Anza ombi la msaada kwanza, kisha unaweza kuomba miadi." : "Start a help request first, then you can request an appointment."}
+                  {locale === "sw" ? "Anza ombi la msaada. Kesi ikifunguliwa, unaweza kuomba miadi." : "Start a help request. Once a case is opened, you can request an appointment."}
                 </Text>
                 <Button label={locale === "sw" ? "Anza ombi" : "Start request"} onPress={() => router.push("/intake")} />
               </View>
@@ -153,15 +185,15 @@ export default function AppointmentsScreen() {
                     </Pressable>
                   ))}
                 </View>
-                <Text style={styles.inputLabel}>{locale === "sw" ? "Muda unaopendelea" : "Preferred time"}</Text>
+                <Text style={styles.inputLabel}>{locale === "sw" ? "Muda unaopendelea (hiari)" : "Preferred time (optional)"}</Text>
                 <TextInput
                   value={preferredTime}
                   onChangeText={setPreferredTime}
-                  placeholder={locale === "sw" ? "Mfano: Jumatatu asubuhi au 20 Mei saa 10:00" : "Example: Monday morning or 20 May at 10:00"}
+                  placeholder={locale === "sw" ? "Mfano: Jumatatu asubuhi" : "Example: Monday morning"}
                   placeholderTextColor={colors.inkMuted}
                   style={styles.input}
                 />
-                <Text style={styles.inputLabel}>{locale === "sw" ? "Ujumbe kwa timu" : "Note for the team"}</Text>
+                <Text style={styles.inputLabel}>{locale === "sw" ? "Ujumbe kwa timu (hiari)" : "Note for the team (optional)"}</Text>
                 <TextInput
                   value={note}
                   onChangeText={setNote}
@@ -177,7 +209,7 @@ export default function AppointmentsScreen() {
             )}
           </View>
 
-          {appointments?.length ? (
+          {appointments === undefined ? <BrandLoading compact text={locale === "sw" ? "Inafungua miadi yako…" : "Loading your appointments…"} /> : appointments.length ? (
             <>
           <View style={styles.summaryCard}>
             <View style={styles.summaryIcon}><Ionicons name="calendar-outline" size={22} color={colors.burgundy} /></View>
@@ -204,7 +236,7 @@ export default function AppointmentsScreen() {
               </View>
               <View style={styles.metaRow}>
                 <Ionicons name={appointment.mode === "phone" ? "call-outline" : appointment.mode === "remote" ? "videocam-outline" : "location-outline"} size={18} color={colors.burgundy} />
-                <Text style={styles.meta}>{appointment.mode.replaceAll("_", " ")}{appointment.location ? ` · ${appointment.location}` : ""}</Text>
+                <Text style={styles.meta}>{displayLabel(appointment.mode, locale)}{appointment.location ? ` · ${appointment.location}` : ""}</Text>
               </View>
               <Text style={styles.caseRef}>{appointment.casePublicId}</Text>
               {appointment.statusNote ? <Text style={styles.note}>{appointment.statusNote}</Text> : null}
@@ -216,7 +248,7 @@ export default function AppointmentsScreen() {
               <Ionicons name="calendar-outline" size={30} color={colors.burgundy} />
               <Text style={styles.emptyTitle}>{locale === "sw" ? "Hakuna miadi iliyopangwa bado" : "No scheduled appointments yet"}</Text>
               <Text style={styles.emptyText}>
-                {locale === "sw" ? "Ukiomba miadi, timu ya kesi itaithibitisha hapa." : "After you request one, your case team can confirm it here."}
+                {locale === "sw" ? "Timu ikipanga miadi, itaonekana hapa." : "Appointments appear here when your case team schedules them."}
               </Text>
             </View>
           )}

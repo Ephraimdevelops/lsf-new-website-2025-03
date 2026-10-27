@@ -1,73 +1,8 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import type { MutationCtx } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
-
-// ==========================================
-// RATE LIMITING CONFIGURATION
-// ==========================================
-
-const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
-const MAX_SUBMISSIONS_PER_WINDOW = 3; // 3 submissions per IP per hour
-
-// ==========================================
-// HELPER: Check Rate Limit
-// ==========================================
-
-async function checkRateLimit(
-    ctx: MutationCtx,
-    identifier: string
-): Promise<{ allowed: boolean; remaining: number; resetAt: number }> {
-    const now = Date.now();
-
-    // Query existing rate limit entry
-    const existing = await ctx.db
-        .query("rate_limits")
-        .withIndex("by_identifier", (q) => q.eq("identifier", identifier))
-        .first();
-
-    if (!existing) {
-        // First request - allow and create entry
-        await ctx.db.insert("rate_limits", {
-            identifier,
-            count: 1,
-            windowStart: now,
-        });
-        return {
-            allowed: true,
-            remaining: MAX_SUBMISSIONS_PER_WINDOW - 1,
-            resetAt: now + RATE_LIMIT_WINDOW
-        };
-    }
-
-    // Check if window expired
-    if (now - existing.windowStart > RATE_LIMIT_WINDOW) {
-        // Reset window
-        await ctx.db.patch(existing._id, { count: 1, windowStart: now });
-        return {
-            allowed: true,
-            remaining: MAX_SUBMISSIONS_PER_WINDOW - 1,
-            resetAt: now + RATE_LIMIT_WINDOW
-        };
-    }
-
-    // Check if limit exceeded
-    if (existing.count >= MAX_SUBMISSIONS_PER_WINDOW) {
-        return {
-            allowed: false,
-            remaining: 0,
-            resetAt: existing.windowStart + RATE_LIMIT_WINDOW
-        };
-    }
-
-    // Increment count
-    await ctx.db.patch(existing._id, { count: existing.count + 1 });
-    return {
-        allowed: true,
-        remaining: MAX_SUBMISSIONS_PER_WINDOW - existing.count - 1,
-        resetAt: existing.windowStart + RATE_LIMIT_WINDOW
-    };
-}
+import { enforceRateLimit } from "./lib/rateLimits";
+import { normalizeText, normalizeOptionalEmail, normalizeOptionalText } from "./lib/security";
 
 // ==========================================
 // HELPER: Validate Honeypot
@@ -91,7 +26,7 @@ export const submit = mutation({
         contactEmail: v.optional(v.string()),
         contactPhone: v.optional(v.string()),
         isAnonymous: v.boolean(),
-        // Rate limiting identifier (hashed IP or session)
+        // Retained for client compatibility; never trusted for admission control.
         clientIdentifier: v.optional(v.string()),
         // Honeypot field (should always be empty)
         roleTitle: v.optional(v.string()),
@@ -105,24 +40,20 @@ export const submit = mutation({
         }
 
         // SECURITY: Rate limiting
-        const identifier = args.clientIdentifier || "anonymous";
-        const rateCheck = await checkRateLimit(ctx, `whistleblower:${identifier}`);
-
-        if (!rateCheck.allowed) {
-            const resetTime = new Date(rateCheck.resetAt).toLocaleTimeString();
-            throw new Error(
-                `Rate limit exceeded. You can submit again after ${resetTime}. ` +
-                `Mpaka wa mawasiliano umefikiwa. Jaribu tena baada ya ${resetTime}.`
-            );
-        }
+        await enforceRateLimit(ctx, "public-whistleblower:global", 60, 60 * 60 * 1000);
+        if ((args.evidenceUrls?.length ?? 0) > 10) throw new Error("Include at most ten evidence links.");
 
         // Create the report
         const id = await ctx.db.insert("whistleblower_reports", {
-            reportType: args.reportType,
-            description: args.description,
-            evidenceUrls: args.evidenceUrls,
-            contactEmail: args.contactEmail,
-            contactPhone: args.contactPhone,
+            reportType: normalizeText(args.reportType, "Report type", 120),
+            description: normalizeText(args.description, "Description", 8000),
+            evidenceUrls: args.evidenceUrls?.map(value => {
+                const url = new URL(normalizeText(value, "Evidence URL", 1000));
+                if (url.protocol !== "https:") throw new Error("Evidence links must use HTTPS.");
+                return url.href;
+            }),
+            contactEmail: normalizeOptionalEmail(args.contactEmail),
+            contactPhone: normalizeOptionalText(args.contactPhone, "Contact phone", 40),
             isAnonymous: args.isAnonymous,
             submittedAt: Date.now(),
             status: "new",
@@ -132,7 +63,7 @@ export const submit = mutation({
         return {
             success: true,
             id,
-            remaining: rateCheck.remaining,
+            remaining: undefined,
             message: "Report submitted successfully. Ripoti yako imepokelewa."
         };
     },

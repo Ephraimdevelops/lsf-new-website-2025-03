@@ -14,13 +14,13 @@ const ChatHeader = ({ isOnline, onClose }: ChatHeaderProps) => {
         <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center overflow-hidden">
           <img
             src="/sara-avatar-v2.png"
-            alt="Saada"
+            alt="Haki Yangu AI"
             className="w-full h-full object-cover"
           />
         </div>
         <div>
           <div className="flex items-center space-x-2">
-            <h3 className="font-semibold text-sm">Saada</h3>
+            <h3 className="font-semibold text-sm">Haki Yangu AI</h3>
             <div className={cn(
               "w-2 h-2 rounded-full",
               isOnline ? "bg-green-400" : "bg-red-400"

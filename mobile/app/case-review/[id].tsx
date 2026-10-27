@@ -1,7 +1,8 @@
+import { plainError } from "../../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import type { Id } from "../../../convex/_generated/dataModel";
 import { useAuth } from "../../src/auth";
@@ -34,20 +35,27 @@ export default function CaseReviewScreen() {
   const [note, setNote] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const submitting = useRef(false);
+  const attempt = useRef<{ payload: string; id: string } | null>(null);
   const isBeneficiary = Boolean(details && access && details.case.beneficiaryId === access.user._id);
   const openReview = details?.reviewRequests.find((item) => item.status === "submitted" || item.status === "under_review");
   const closed = details && ["closed", "closed_unresolved"].includes(details.case.status);
 
   async function submit() {
-    if (sending || !note.trim()) return;
+    if (submitting.current || !note.trim() || !isBeneficiary || closed || openReview) return;
+    submitting.current = true;
+    const payload = JSON.stringify([caseId, reason, note.trim()]);
+    if (attempt.current?.payload !== payload) attempt.current = { payload, id: `review-${Date.now()}-${Math.random().toString(36).slice(2, 10)}` };
     setSending(true);
     setError("");
     try {
-      await requestReview({ caseId, reason, note: note.trim() });
+      await requestReview({ caseId, clientActionId: attempt.current.id, reason, note: note.trim() });
+      attempt.current = null;
       setNote("");
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : sw ? "Ombi halijatumwa. Jaribu tena." : "Request was not sent. Please try again.");
+      setError(plainError(caught, locale, sw ? "Ombi halijatumwa. Jaribu tena." : "Request was not sent. Please try again."));
     } finally {
+      submitting.current = false;
       setSending(false);
     }
   }
@@ -62,13 +70,13 @@ export default function CaseReviewScreen() {
         <Text style={styles.caseRef}>{details.case.publicId}</Text>
         {!isBeneficiary ? <View style={styles.received}><Ionicons name="lock-closed-outline" size={32} color={colors.burgundy} /><Text style={styles.sectionTitle}>{sw ? "Mnufaika pekee" : "Beneficiary only"}</Text><Text style={styles.body}>{sw ? "Ni mnufaika wa kesi hii pekee anayeweza kuomba mapitio." : "Only the beneficiary of this case can request a review."}</Text></View>
           : openReview ? <View style={styles.received}><Ionicons name="checkmark-circle" size={34} color={colors.success} /><Text style={styles.sectionTitle}>{sw ? "Ombi lako limepokelewa" : "Your review request was received"}</Text><Text style={styles.body}>{sw ? "LSF inapitia ombi lako. Fuatilia arifa na kesi yako kwa hatua zinazofuata." : "LSF is reviewing your request. Watch your notifications and case for the next step."}</Text><Text style={styles.status}>{openReview.status.replaceAll("_", " ")}</Text></View>
-          : closed ? <View style={styles.received}><Ionicons name="information-circle-outline" size={32} color={colors.burgundy} /><Text style={styles.sectionTitle}>{sw ? "Kesi hii imefungwa" : "This case is closed"}</Text><Text style={styles.body}>{sw ? "Ombi la kupitia kesi iliyofungwa haliwezi kutumwa hapa. Wasiliana na LSF au anza ombi jipya." : "A review request cannot be sent for a closed case here. Contact LSF or start a new request."}</Text><Button label={sw ? "Wasiliana na LSF" : "Contact LSF"} variant="secondary" onPress={() => router.push("/support")} /><Button label={sw ? "Omba msaada mpya" : "Start a new request"} variant="quiet" onPress={() => router.push("/intake")} /></View>
+          : closed ? <View style={styles.received}><Ionicons name="information-circle-outline" size={32} color={colors.burgundy} /><Text style={styles.sectionTitle}>{sw ? "Kesi hii imefungwa" : "This case is closed"}</Text><Text style={styles.body}>{sw ? "Ombi la kupitia kesi iliyofungwa haliwezi kutumwa hapa. Wasiliana na LSF au anza ombi jipya." : "A review request cannot be sent for a closed case here. Contact LSF or start a new request."}</Text><Button label={sw ? "Angalia njia za msaada" : "Explore support options"} variant="secondary" onPress={() => router.push("/support")} /><Button label={sw ? "Omba msaada mpya" : "Start a new request"} variant="quiet" onPress={() => router.push("/intake")} /></View>
           : <>
             <Text style={styles.sectionTitle}>{sw ? "Tunaweza kusaidia vipi?" : "What should LSF review?"}</Text>
             <View style={styles.options}>{reasons.map((item) => <Pressable key={item.value} accessibilityRole="radio" accessibilityState={{ checked: reason === item.value }} aria-checked={reason === item.value} onPress={() => setReason(item.value)} style={[styles.option, reason === item.value && styles.optionSelected]}><View style={styles.optionIcon}><Ionicons name={item.icon} size={22} color={colors.burgundy} /></View><Text style={styles.optionText}>{item[locale]}</Text><Ionicons name={reason === item.value ? "radio-button-on" : "radio-button-off"} size={22} color={colors.burgundy} /></Pressable>)}</View>
             <Text style={styles.sectionTitle}>{sw ? "Eleza kwa ufupi" : "Tell us what happened"}</Text>
             <Text style={styles.body}>{sw ? "Maelezo haya huenda kwa timu ya LSF, si moja kwa moja kwa msaidizi wako." : "These details go to LSF, not directly to your assigned helper."}</Text>
-            <TextInput value={note} onChangeText={setNote} multiline maxLength={1200} placeholder={sw ? "Ungependa LSF ipitie nini?" : "What would you like LSF to review?"} placeholderTextColor={colors.inkMuted} style={styles.input} />
+            <TextInput accessibilityLabel={sw ? "Eleza unachotaka LSF ipitie" : "Describe what LSF should review"} value={note} onChangeText={setNote} multiline maxLength={1200} placeholder={sw ? "Ungependa LSF ipitie nini?" : "What would you like LSF to review?"} placeholderTextColor={colors.inkMuted} style={styles.input} />
             {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
             <Button label={sw ? "Tuma ombi kwa LSF" : "Send request to LSF"} disabled={!note.trim() || sending} loading={sending} onPress={() => void submit()} />
           </>}

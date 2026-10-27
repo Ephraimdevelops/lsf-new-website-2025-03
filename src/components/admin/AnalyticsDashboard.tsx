@@ -1,3 +1,4 @@
+import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import {
@@ -157,7 +158,7 @@ export default function AnalyticsDashboard() {
         return (
             <div className="p-6 space-y-8">
                 <div className="flex items-center justify-center py-12">
-                    <Loader2 className="w-8 h-8 animate-spin text-[#931E5C]" />
+                    <BrandLoadingIcon className="w-8 h-8  text-[#931E5C]" />
                     <span className="ml-3 text-gray-600">Loading Mission Control...</span>
                 </div>
             </div>
@@ -311,7 +312,7 @@ export default function AnalyticsDashboard() {
           ========================================== */}
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                 <SectionHeader
-                    title="Saada Intelligence"
+                    title="Haki Yangu AI Intelligence"
                     icon={Brain}
                     description="AI Performance & Cost Analytics"
                 />

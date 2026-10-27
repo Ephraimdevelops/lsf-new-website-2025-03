@@ -9,7 +9,7 @@ const quickLinks = [
   { name: 'Get Legal Help', href: '/legal-help' },
   { name: 'Contact Us', href: '/contact' },
   { name: 'Sign Up', href: '/signup' },
-  { name: 'Sara AI Assistant', href: '/sara-ai' }, // Sara AI legal assistant
+  { name: 'Haki Yangu AI Assistant', href: '/sara-ai' }, // Sara AI legal assistant
 ];
 
 const resources = [

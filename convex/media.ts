@@ -2,6 +2,7 @@ import { ConvexError, v } from "convex/values";
 import { mutation } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
 import { assertAllowedUpload } from "./lib/security";
+import { issueManagedUpload, requireCleanOwnedUpload } from "./lib/managedUploads";
 
 // ==========================================
 // MEDIA LIBRARY MUTATIONS (SECURED + OPTIMIZED)
@@ -13,9 +14,8 @@ const MAX_FILE_SIZE_BYTES = 20 * 1024 * 1024; // 20MB
 export const generateUploadUrl = mutation({
     args: {},
     handler: async (ctx) => {
-        await requireAnyRole(ctx, ["admin", "staff"]);
-
-        return await ctx.storage.generateUploadUrl();
+        const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+        return await issueManagedUpload(ctx, user._id, "public_media");
     },
 });
 
@@ -27,7 +27,8 @@ export const saveMedia = mutation({
         size: v.number(),
     },
     handler: async (ctx, args) => {
-        const { identity } = await requireAnyRole(ctx, ["admin", "staff"]);
+        const { identity, user } = await requireAnyRole(ctx, ["admin", "staff"]);
+        await requireCleanOwnedUpload(ctx, args.storageId, user._id, "public_media");
         const metadata = await ctx.db.system.get(args.storageId);
         if (!metadata) {
             throw new ConvexError("The uploaded file no longer exists. Please upload it again.");

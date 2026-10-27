@@ -1,6 +1,8 @@
 import { v } from "convex/values";
 import { internalQuery, mutation, query } from "./_generated/server";
 import { getActiveRoles, requireAnyRole, requireAuthenticatedUser } from "./lib/auth";
+import type { Id } from "./_generated/dataModel";
+import { issueManagedUpload, requireCleanOwnedUpload } from "./lib/managedUploads";
 import {
     activateParalegalRoleForUser,
     getApprovedParalegalProfileByEmail,
@@ -218,6 +220,7 @@ export const updateProfile = mutation({
 
         // If a new image is uploaded, update storage ID and generate URL
         if (args.imageStorageId) {
+            await requireCleanOwnedUpload(ctx, args.imageStorageId as Id<"_storage">, user._id, "profile_photo");
             const imageUrl = await ctx.storage.getUrl(args.imageStorageId);
             if (!imageUrl) throw new Error("Uploaded image not found");
             updateFields.imageStorageId = args.imageStorageId;
@@ -257,6 +260,6 @@ export const deactivateMyProfile = mutation({
 
 // Generate upload URL for profile pictures
 export const generateUploadUrl = mutation(async (ctx) => {
-    await requireAuthenticatedUser(ctx);
-    return await ctx.storage.generateUploadUrl();
+    const { user } = await requireAuthenticatedUser(ctx);
+    return await issueManagedUpload(ctx, user._id, "profile_photo");
 });

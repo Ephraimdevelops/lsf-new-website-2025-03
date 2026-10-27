@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar } from 'lucide-react';
@@ -13,7 +14,7 @@ const NewsSection = () => {
   if (featuredNews === undefined) {
     return (
       <div className="flex-1 min-h-[400px] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <BrandLoading task="content"/>
       </div>
     );
   }

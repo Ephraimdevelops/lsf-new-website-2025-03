@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { query, mutation, internalMutation } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
+import { requirePublicMediaReference } from "./lib/managedUploads";
 import { isConvexStorageId } from "./lib/mediaHelpers";
 import type { Id } from "./_generated/dataModel";
 
@@ -44,6 +45,7 @@ export const create = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         await assertUploadedImage(ctx, args.imageStorageId);
+        await requirePublicMediaReference(ctx, args.imageStorageId);
         return await ctx.db.insert("testimonials", { ...args, imageUrl: "" });
     },
 });
@@ -66,6 +68,8 @@ export const update = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...rest } = args;
+        const previous = await ctx.db.get(id);
+        await requirePublicMediaReference(ctx, rest.imageStorageId, previous?.imageStorageId);
         if (rest.imageStorageId) await assertUploadedImage(ctx, rest.imageStorageId);
         if (rest.imageUrl && !rest.imageStorageId) throw new Error("Upload a new testimonial image instead of entering an image URL.");
         await ctx.db.patch(id, rest.imageStorageId ? { ...rest, imageUrl: "" } : rest);

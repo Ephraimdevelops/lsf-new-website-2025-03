@@ -1,14 +1,14 @@
 export const caseStatusLabels = {
   sw: {
-    under_review: "Inapitiwa",
-    waiting_for_information: "Taarifa zaidi zinahitajika",
+    under_review: "LSF inakagua kesi",
+    waiting_for_information: "LSF inasubiri jibu lako",
     assignment_pending: "Inatafutiwa msaidizi",
     assigned: "Msaidizi amepatikana",
     appointment_scheduled: "Miadi imepangwa",
     referred: "Imeelekezwa sehemu nyingine",
     assistance_underway: "Msaada unaendelea",
-    resolved: "Imetatuliwa",
-    closed_unresolved: "Imefungwa bila kutatuliwa",
+    resolved: "Tatizo limetatuliwa",
+    closed_unresolved: "Imefungwa; tatizo halijatatuliwa",
     closed: "Imefungwa",
   },
   en: {

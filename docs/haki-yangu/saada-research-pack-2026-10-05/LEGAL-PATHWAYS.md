@@ -44,7 +44,7 @@ Kiswahili draft: Kutengana talaka na mali za ndoa
 
 **Missing checks/documents:** Marriage procedural rules; reconciliation requirements and exceptions; maintenance enforcement; Zanzibar Kadhis/Civil procedure; current property judgments; Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current..
 
-**Research sources:** BASE-MARRIAGE, BASE-CHILD, PROC-CIVIL, ZNZ-KADHIS-2024, ZNZ-KADHIS-RULES-2021, ZNZ-CHILD-GAZETTE (see source-register.json and acquisition-manifest.json).
+**Research sources:** BASE-MARRIAGE, BASE-CHILD, PROC-CIVIL, ZNZ-KADHIS-2024, ZNZ-KADHIS-RULES-2021, ZNZ-CHILD-GAZETTE, CASE-LAND-MABULA-2024 (see source-register.json and acquisition-manifest.json).
 
 ## P04 — Child maintenance, custody and access
 
@@ -100,7 +100,7 @@ Kiswahili draft: Mgogoro wa mipaka umiliki na ardhi ya kijiji
 
 **Missing checks/documents:** Acquired GN174/2003 principal tribunal regulations require amendment review; GN171/2023; later forum/value changes; village mediation role; survey/valuation evidence; Zanzibar land law.
 
-**Research sources:** BASE-LAND, BASE-VILLAGE-LAND, LAND-DISPUTES, LAND-TRIBUNAL-2023, LAND-TRIBUNAL-PRINCIPAL, AMENDMENTS-LEGAL-SECTOR-2023 (see source-register.json and acquisition-manifest.json).
+**Research sources:** BASE-LAND, BASE-VILLAGE-LAND, LAND-DISPUTES, LAND-TRIBUNAL-2023, ZNZ-LAND-TENURE, ZNZ-LAND-TRIBUNAL, ZNZ-LAND-TRIBUNAL-ASSEMBLY, ZNZ-LAND-AMENDMENT-2008, ZNZ-LAND-COMPILATION-2017, CASE-ZNZ-LAND-2025, LAND-TRIBUNAL-PRINCIPAL, AMENDMENTS-LEGAL-SECTOR-2023, CASE-LAND-SETH-2024 (see source-register.json and acquisition-manifest.json).
 
 ## P08 — Tenant, rent and eviction problems
 
@@ -114,7 +114,7 @@ Kiswahili draft: Upangaji kodi na kufukuzwa
 
 **Missing checks/documents:** Landlord/tenant statutes; rent restriction applicability; lawful eviction procedure; current emergency remedy; Zanzibar tenancy law.
 
-**Research sources:** BASE-LAND, LAND-DISPUTES, PROC-CIVIL, LAND-TRIBUNAL-PRINCIPAL (see source-register.json and acquisition-manifest.json).
+**Research sources:** BASE-LAND, LAND-DISPUTES, PROC-CIVIL, LAND-TRIBUNAL-PRINCIPAL, ZNZ-LAND-TENURE, ZNZ-LAND-TRIBUNAL (see source-register.json and acquisition-manifest.json).
 
 ## P09 — Compulsory acquisition and compensation
 
@@ -128,7 +128,7 @@ Kiswahili draft: Utwaaji wa ardhi na fidia
 
 **Missing checks/documents:** Current valuation/compensation regulations; challenge forum and deadlines; resettlement rights; Zanzibar framework.
 
-**Research sources:** LAND-ACQUISITION, BASE-LAND, BASE-VILLAGE-LAND, LAND-DISPUTES, LAND-TRIBUNAL-PRINCIPAL (see source-register.json and acquisition-manifest.json).
+**Research sources:** LAND-ACQUISITION, BASE-LAND, BASE-VILLAGE-LAND, LAND-DISPUTES, LAND-TRIBUNAL-PRINCIPAL, ZNZ-LAND-TENURE, ZNZ-LAND-TRIBUNAL (see source-register.json and acquisition-manifest.json).
 
 ## P10 — Estate administration and inheritance
 
@@ -142,7 +142,7 @@ Kiswahili draft: Usimamizi wa mirathi
 
 **Missing checks/documents:** Principal primary-court estates rules; customary/Islamic applicability; current fees; prescribed petitions and objections; Zanzibar succession/Kadhis law; Kadhi’s Courts Act8/2023 published2024: verify appointed commencement, pending-proceeding savings and later procedural rules; acquired2021 rules cannot be presumed current..
 
-**Research sources:** ESTATES-PROBATE, ESTATES-RULES, ESTATES-AMENDMENT-2025, ESTATES-PRIMARY-AMENDMENT-2025, ZNZ-KADHIS-2024, ZNZ-KADHIS-RULES-2021, PROC-APPLICABLE-LAWS, AMENDMENTS-LEGAL-SECTOR-2023 (see source-register.json and acquisition-manifest.json).
+**Research sources:** ESTATES-PROBATE, ESTATES-RULES, ESTATES-AMENDMENT-2025, ESTATES-PRIMARY-AMENDMENT-2025, PERSONAL-CUSTOMARY-NO2, PERSONAL-CUSTOMARY-NO4, ZNZ-KADHIS-SW-2024, ZNZ-KADHIS-2024, ZNZ-KADHIS-RULES-2021, PROC-APPLICABLE-LAWS, AMENDMENTS-LEGAL-SECTOR-2023, PERSONAL-ISLAMIC-RESTATEMENT, CASE-ESTATE-LONYAMALI, CASE-INHERITANCE-LATIFA (see source-register.json and acquisition-manifest.json).
 
 ## P11 — Challenge an administrator or disputed estate
 
@@ -170,7 +170,7 @@ Kiswahili draft: Kufukuzwa mishahara na ubaguzi kazini
 
 **Missing checks/documents:** Acquired CMA GN64/GN67 rules and GN47/2017 F1/F2 forms require page-level review; Labour Court rules; limitation/condonation; 2025 amendment commencement; public-service exclusions; Zanzibar labour law.
 
-**Research sources:** BASE-ELRA, EMPLOYMENT-INSTITUTIONS, EMPLOYMENT-AMENDMENTS-2025, CMA-FAQ, CMA-RULES, CMA-PROCEDURE, CMA-GUIDELINES, CMA-FEES-2025, LABOUR-COURT-RULES, LABOUR-COURT-READABLE, EMPLOYMENT-GENERAL-FORMS, EMPLOYMENT-FORMS-READABLE, LABOUR-INSTITUTIONS-GENERAL, ZNZ-EMPLOYMENT, ZNZ-EMPLOYMENT-GAZETTE, ZNZ-LABOUR-RELATIONS (see source-register.json and acquisition-manifest.json).
+**Research sources:** BASE-ELRA, EMPLOYMENT-INSTITUTIONS, EMPLOYMENT-AMENDMENTS-2025, CMA-FAQ, CMA-RULES, CMA-PROCEDURE, CMA-GUIDELINES, CMA-FEES-2025, LABOUR-COURT-RULES, LABOUR-COURT-READABLE, EMPLOYMENT-GENERAL-FORMS, EMPLOYMENT-FORMS-READABLE, LABOUR-INSTITUTIONS-GENERAL, ZNZ-EMPLOYMENT, ZNZ-EMPLOYMENT-GAZETTE, ZNZ-LABOUR-RELATIONS, CASE-LABOUR-OATH-2022 (see source-register.json and acquisition-manifest.json).
 
 ## P13 — Work injury and occupational disease
 
@@ -198,7 +198,7 @@ Kiswahili draft: Pensheni na mafao ya hifadhi ya jamii
 
 **Missing checks/documents:** Current NSSF/PSSSF/ZSSF Acts, regulations, benefit forms and appeal routes; no benefit calculation until rules checked.
 
-**Research sources:** EMPLOYMENT-INSTITUTIONS, CMA-RULES, SOCIAL-NSSF, SOCIAL-PSSSF-2025 (see source-register.json and acquisition-manifest.json).
+**Research sources:** EMPLOYMENT-INSTITUTIONS, CMA-RULES, SOCIAL-NSSF-COMPLAINT-FORM, SOCIAL-NSSF-FORMS-CATALOGUE, SOCIAL-NSSF-REGISTRATION, ZNZ-ZSSF-CATALOGUE, SOCIAL-NSSF, SOCIAL-PSSSF-2025, SOCIAL-BENEFITS-2018, SOCIAL-BENEFITS-AMENDMENT-2022, SOCIAL-BENEFITS-AMENDMENT-2024 (see source-register.json and acquisition-manifest.json).
 
 ## P15 — Debt, contract and possible small claim
 
@@ -212,7 +212,7 @@ Kiswahili draft: Deni mkataba na madai madogo
 
 **Missing checks/documents:** Current monetary jurisdiction and amendments; limitation; form/service; e-filing reference discrepancy; no splitting claims without legal advice.
 
-**Research sources:** CONTRACT-ACT, PROC-SMALL-CLAIMS, COURTS-MAGISTRATES, PROC-LIMITATION, PROC-EFILING, ZNZ-CRIMINAL-PROCEDURE, ZNZ-CRIMINAL-AMENDMENT-2021, CRIM-PENAL, ZNZ-PENAL-2018 (see source-register.json and acquisition-manifest.json).
+**Research sources:** CONTRACT-ACT, PROC-SMALL-CLAIMS, COURTS-MAGISTRATES, PROC-LIMITATION, PROC-EFILING (see source-register.json and acquisition-manifest.json).
 
 ## P16 — Defend a claim, summons or default decision
 
@@ -226,7 +226,7 @@ Kiswahili draft: Kujibu madai wito au hukumu ya upande mmoja
 
 **Missing checks/documents:** Exact rule, response period, service validity, extension and appeal options; Zanzibar Civil Procedure Decree.
 
-**Research sources:** PROC-CIVIL, PROC-SMALL-CLAIMS, PROC-LIMITATION, PROC-EFILING, ZNZ-CRIMINAL-PROCEDURE, ZNZ-CRIMINAL-AMENDMENT-2021, SAFE-WITNESS-ACT (see source-register.json and acquisition-manifest.json).
+**Research sources:** PROC-CIVIL, PROC-SMALL-CLAIMS, PROC-LIMITATION, PROC-EFILING (see source-register.json and acquisition-manifest.json).
 
 ## P17 — Appeal, revision or enforcement of an order
 
@@ -268,7 +268,7 @@ Kiswahili draft: Kukamatwa kuwekwa kizuizini dhamana na utetezi
 
 **Missing checks/documents:** Penal Code and current amendments; offence-specific bail law; legal-aid custody SOP; juvenile safeguards; Zanzibar Penal/Criminal Procedure law.
 
-**Research sources:** CRIM-PROCEDURE-SUPPLEMENT-2025, PROC-EVIDENCE, BASE-CHILD, CHILD-JUVENILE-RULES, BASE-LEGAL-AID (see source-register.json and acquisition-manifest.json).
+**Research sources:** CRIM-PROCEDURE-SUPPLEMENT-2025, PROC-EVIDENCE, BASE-CHILD, CHILD-JUVENILE-RULES, BASE-LEGAL-AID, ZNZ-CRIMINAL-PROCEDURE, ZNZ-CRIMINAL-AMENDMENT-2021, CRIM-PENAL, ZNZ-PENAL-2018 (see source-register.json and acquisition-manifest.json).
 
 ## P20 — Report crime and support a victim or witness
 
@@ -282,7 +282,7 @@ Kiswahili draft: Kuripoti uhalifu na kusaidia mwathirika au shahidi
 
 **Missing checks/documents:** Current witness protection law; PF3 procedure; evidence-preservation guidance; retaliation and consent SOP; verified local service.
 
-**Research sources:** CRIM-PROCEDURE-SUPPLEMENT-2025, TRAFFICKING-ACT, SAFE-NPA-II, SAFE-HOMES (see source-register.json and acquisition-manifest.json).
+**Research sources:** CRIM-PROCEDURE-SUPPLEMENT-2025, TRAFFICKING-ACT, SAFE-NPA-II, SAFE-HOMES, ZNZ-CRIMINAL-PROCEDURE, ZNZ-CRIMINAL-AMENDMENT-2021, SAFE-WITNESS-ACT (see source-register.json and acquisition-manifest.json).
 
 ## P21 — Trafficking or exploitation support
 
@@ -338,7 +338,7 @@ Kiswahili draft: Malalamiko ya maji umeme na huduma zinazodhibitiwa
 
 **Missing checks/documents:** EWURA complaint rules GN428/2020 and current amendments; electricity/service standards; ZURA Zanzibar rules; emergency utility channels.
 
-**Research sources:** UTILITIES-CATALOGUE, UTILITIES-WATER, UTILITIES-COMPLAINT-RULES (see source-register.json and acquisition-manifest.json).
+**Research sources:** UTILITIES-CATALOGUE, UTILITIES-WATER, UTILITIES-COMPLAINT-RULES, ZNZ-ZURA-CATALOGUE (see source-register.json and acquisition-manifest.json).
 
 ## P25 — Faulty goods, unfair terms and business complaint
 
@@ -394,7 +394,7 @@ Kiswahili draft: Ulemavu ubaguzi na upatikanaji wa huduma
 
 **Missing checks/documents:** Current disability regulations; enforceable accommodation/remedy; Zanzibar disability law; accessible referral directory; discrimination-specific law.
 
-**Research sources:** DISABILITY-ACT, RIGHTS-ENFORCEMENT, BASE-CONSTITUTION, BASE-ELRA, RIGHTS-CHRAGG-ACT, AMENDMENTS-MISC-2-2025 (see source-register.json and acquisition-manifest.json).
+**Research sources:** DISABILITY-ACT, RIGHTS-ENFORCEMENT, BASE-CONSTITUTION, BASE-ELRA, ZNZ-DISABILITY-RULES-2022, RIGHTS-CHRAGG-ACT, AMENDMENTS-MISC-2-2025 (see source-register.json and acquisition-manifest.json).
 
 ## P29 — Public authority decision and constitutional rights
 
@@ -464,7 +464,7 @@ Kiswahili draft: Madhara ya mazingira na malalamiko ya jamii
 
 **Missing checks/documents:** 2025 enacted amendment identity; tribunal rules and appeal forms; EIA/public participation regulations; Zanzibar environmental law.
 
-**Research sources:** ENVIRONMENT-ACT, ENVIRONMENT-AMENDMENT, PROC-GOVERNMENT (see source-register.json and acquisition-manifest.json).
+**Research sources:** ENVIRONMENT-ACT, ENVIRONMENT-AMENDMENT, PROC-GOVERNMENT, ZNZ-ENVIRONMENT-GAZETTE, ZNZ-ZEMA-CATALOGUE (see source-register.json and acquisition-manifest.json).
 
 ## P34 — Mediation and alternative dispute resolution
 

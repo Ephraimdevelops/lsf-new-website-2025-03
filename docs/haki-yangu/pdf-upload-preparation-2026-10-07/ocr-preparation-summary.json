@@ -1,0 +1,72 @@
+{
+  "files": [
+    {
+      "researchSourceId": "CMA-GUIDELINES",
+      "jsonPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/cma-guidelines.json",
+      "textPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/cma-guidelines.txt",
+      "pageCount": 19,
+      "textCharacters": 28342,
+      "emptyOCRPages": [],
+      "lowConfidenceLines": 19,
+      "status": "machine_ocr_unverified",
+      "sourceSha256": "0352b9a3dab7fad4fa25a6d88d3900416cc5ac03d40f59e60bfa369ddf6b5c81",
+      "textSha256": "f86767ebd5c9e9e2b5cfdb59c7ceeb025bdac7d49586e1097b5ab7d2033b9f6f",
+      "productionEligible": false
+    },
+    {
+      "researchSourceId": "CMA-PROCEDURE",
+      "jsonPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/cma-procedure.json",
+      "textPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/cma-procedure.txt",
+      "pageCount": 19,
+      "textCharacters": 28724,
+      "emptyOCRPages": [],
+      "lowConfidenceLines": 10,
+      "status": "machine_ocr_unverified",
+      "sourceSha256": "04d7a0cb9eaf511c598909fc7d82268518d2a4bceada9bc3e20b1c529c6e4126",
+      "textSha256": "fcb143b4cedd24e40ef4c9d0f72706b0334424f44dc0062515d8560842f83ea6",
+      "productionEligible": false
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-GENERAL-FORMS",
+      "jsonPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/employment-general-forms.json",
+      "textPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/employment-general-forms.txt",
+      "pageCount": 72,
+      "textCharacters": 68103,
+      "emptyOCRPages": [],
+      "lowConfidenceLines": 62,
+      "status": "machine_ocr_unverified",
+      "sourceSha256": "584fffbef3eb0383e4faff974e74bf5362f8085d05a387f1d8cf9b7d22e21d02",
+      "textSha256": "53ef1408cba00c30568a2df12c4abd31d6c1c2759ed7e8b1f3161a015da3e1e7",
+      "productionEligible": false
+    },
+    {
+      "researchSourceId": "LABOUR-COURT-RULES",
+      "jsonPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/labour-court-rules.json",
+      "textPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/labour-court-rules.txt",
+      "pageCount": 57,
+      "textCharacters": 85294,
+      "emptyOCRPages": [],
+      "lowConfidenceLines": 40,
+      "status": "machine_ocr_unverified",
+      "sourceSha256": "5d8a54176148fdf8ed68f74da3f41c83d0909ed3dd2f6b136ed623eb842ce749",
+      "textSha256": "db38c556fcbcec442d800d82c6f129891a3d0041649fe01d8b83507b69af16d0",
+      "productionEligible": false
+    },
+    {
+      "researchSourceId": "ZNZ-EMPLOYMENT",
+      "jsonPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/znz-employment.json",
+      "textPath": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/pdf-upload-preparation-2026-10-07/ocr-sidecars/znz-employment.txt",
+      "pageCount": 114,
+      "textCharacters": 150927,
+      "emptyOCRPages": [],
+      "lowConfidenceLines": 354,
+      "status": "machine_ocr_unverified",
+      "sourceSha256": "d7219598ab0b7c65b0b260ab4937f6065744f6d2e340db6c2aee4e2647082dbe",
+      "textSha256": "f94cb9663c68b48151a69b5200016be103da1af79e0ed4757acc22fb3ca76d2b",
+      "productionEligible": false
+    }
+  ],
+  "totalPages": 281,
+  "totalTextCharacters": 361390,
+  "originalsModified": false
+}

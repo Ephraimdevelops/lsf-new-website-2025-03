@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-18",
+  "scope": "Development backend plus local web and mobile source; no production or app-store release",
+  "provider": "OpenAI",
+  "promptVersion": "2026-10-18.1",
+  "architecture": {
+    "agents": 1,
+    "tools": [
+      "my_work",
+      "staff_workload",
+      "knowledge_readiness",
+      "ai_spending",
+      "programme_results",
+      "my_saved_documents",
+      "read_my_document_summary",
+      "conversation_reply",
+      "ask_clarification",
+      "find_information_resources",
+      "load_skill",
+      "search_knowledge",
+      "find_guides",
+      "find_services",
+      "find_paralegals",
+      "my_requests",
+      "my_cases",
+      "my_appointments",
+      "my_documents",
+      "prepare_help_draft",
+      "app_help"
+    ],
+    "workflowSkills": 8,
+    "mcp": false,
+    "subagents": false
+  },
+  "roleAccess": {
+    "my_work": [
+      "paralegal",
+      "provider_staff"
+    ],
+    "staff_workload": [
+      "admin",
+      "staff",
+      "supervisor"
+    ],
+    "knowledge_readiness": [
+      "admin",
+      "staff"
+    ],
+    "ai_spending": [
+      "admin",
+      "staff"
+    ],
+    "programme_results": [
+      "admin",
+      "staff",
+      "supervisor",
+      "stakeholder",
+      "donor"
+    ],
+    "enforcement": "Tools filtered using active server-side roles; each existing query also retains its own ownership/role/scope checks. Conversation claims cannot grant access."
+  },
+  "voice": {
+    "flow": "Record or choose audio; consent to OpenAI transcription; review/edit transcript; explicitly send; receive text reply in chat",
+    "model": "whisper-1",
+    "maxSeconds": 120,
+    "maxBytes": 10485760,
+    "durationValidation": "PCM WAV sample counts or native MPEG-4 media duration parsed on server; malformed, empty and overlong recordings rejected. Native codec/device quality still needs verification.",
+    "accounting": "Reserve the full two-minute estimated allowance before transcription, reconcile returned duration; existing application usage and spending guards retained",
+    "privacy": "Owned, purpose-bound, malware-checked upload. No user-selected URL fetch. Successful chat transcription requests deletion of the app recording; failed web attempts can be retried or discarded.",
+    "intake": "Existing form transcription now uses bounded audio reservation; browser recordings converted to PCM for validation."
+  },
+  "documents": {
+    "flow": "Photo/capture or upload to private document library; explicit consent to AI description; selected summary passed to the same chat",
+    "evidence": "An AI description is not original full document text, legal authority or authentication. Private uploads are not indexed into public legal RAG.",
+    "mobile": "Existing camera/file capture and saved-document description now link to the chat with a selected owned document",
+    "web": "File/photo chooser and saved-summary selection in composer; failed summary preparation reuses the saved document on retry"
+  },
+  "verification": {
+    "automatedTests": {
+      "passed": 111,
+      "failed": 0
+    },
+    "securityClassification": "passed: 410 public functions",
+    "backendStrictTypecheckAndDevelopmentDeployment": "passed",
+    "webTypecheck": "passed",
+    "mobileTypecheck": "passed",
+    "webBuild": "passed; existing chunk-size warning",
+    "expoWebExport": "passed",
+    "liveSignedInWeb": [
+      {
+        "test": "Synthetic speech file to transcript",
+        "result": "Hello Sada, what can you help me do in this app?",
+        "note": "Proper noun Saada was transcribed as Sada; transcript was editable and not automatically sent."
+      },
+      {
+        "test": "Explicitly send transcript to chat",
+        "result": "Assistant replied in selected Kiswahili with app-help guidance."
+      },
+      {
+        "test": "Upload fictional PDF, consent to summary and select it in chat",
+        "result": "Passed; named synthetic document selected."
+      },
+      {
+        "test": "Ask meeting date/time from selected summary",
+        "result": "Correctly returned 20 October 2026 at 10:00 in Kiswahili and labelled it a training document."
+      }
+    ],
+    "negativeChecks": [
+      "Malformed/empty/overlong audio rejected",
+      "Audio ownership, purpose, scan and consent checks",
+      "Role-spoofed spending request did not read spending data",
+      "Authorised admin aggregate query allowed",
+      "Document description usable without calling it approved law"
+    ]
+  },
+  "remaining": [
+    "Real iOS/Android camera and microphone tests, including Kiswahili accents and mixed speech",
+    "Native release or an authorised compatible update deployment",
+    "Full verbatim OCR and long/scanned multi-page PDF reading are not implemented by the short-summary workflow",
+    "Confirmed case updates, referrals, appointments and other privileged write workflows are still handled by existing review forms, not the new read-only tools",
+    "Current independently approved legal sources and verified public services are still required for substantive legal answers and matching"
+  ],
+  "testData": "Only non-sensitive synthetic speech and a fictional training PDF were used. The synthetic PDF and chat remain in the signed-in development account.",
+  "proof": [
+    "saada-voice-transcript-2026-10-18.png",
+    "saada-voice-chat-reply-2026-10-18.png",
+    "saada-document-chat-reply-2026-10-18.png"
+  ]
+}

@@ -1,3 +1,4 @@
+import { notificationCopy } from "../shared/notificationCopy";
 import { ConvexError, v } from "convex/values";
 import { internalAction, internalMutation, internalQuery, mutation, query } from "./_generated/server";
 import { internal } from "./_generated/api";
@@ -15,6 +16,7 @@ const preferencesValidator = v.object({
 });
 
 const defaultPreferences = {
+  locale: "sw" as const,
   pushEnabled: false,
   cases: true,
   messages: true,
@@ -24,6 +26,7 @@ const defaultPreferences = {
 };
 
 const pushCopy: Record<string, { title: string; body: string }> = {
+  "request.message": { title: "Haki Yangu update", body: "There is a new message in Haki Yangu. Open the app to read it." },
   "request.submitted": { title: "Haki Yangu update", body: "Your request was received." },
   "case.created": { title: "Haki Yangu update", body: "Your request is being reviewed." },
   "assignment.offered": { title: "Haki Yangu assignment", body: "You have a new assignment to review." },
@@ -72,6 +75,21 @@ export const inbox = query({
       .withIndex("by_user_created", (q) => q.eq("userId", user._id))
       .order("desc")
       .take(limit);
+  },
+});
+
+// Resolve only the beneficiary's own referral context; notification payloads grant no access.
+export const referralContext = query({
+  args: { notificationId: v.id("notifications") },
+  handler: async (ctx, args) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const notification = await ctx.db.get(args.notificationId);
+    if (!notification || notification.userId !== user._id) throw new ConvexError("Notification access denied.");
+    if (notification.resourceType !== "referral" || !notification.resourceId) throw new ConvexError("This notification does not refer to a referral.");
+    const referral = await ctx.db.get(notification.resourceId as Id<"referrals">);
+    if (!referral) throw new ConvexError("Referral is unavailable.");
+    const caseRecord = referral.beneficiaryId === user._id ? await ctx.db.get(referral.caseId) : null;
+    return { beneficiaryCaseId: caseRecord?.beneficiaryId === user._id ? caseRecord._id : null };
   },
 });
 
@@ -138,6 +156,17 @@ export const updatePreferences = mutation({
   },
 });
 
+/** Saves only the caller's language; it never enables alerts or changes categories. */
+export const setLanguage = mutation({
+  args: { locale: v.union(v.literal("sw"), v.literal("en")) },
+  handler: async (ctx, { locale }) => {
+    const { user } = await requireAuthenticatedUser(ctx);
+    const existing = await ctx.db.query("notification_preferences").withIndex("by_user", q => q.eq("userId", user._id)).unique();
+    if (existing) { if (existing.locale !== locale) await ctx.db.patch(existing._id, { locale, updatedAt: Date.now() }); }
+    else await ctx.db.insert("notification_preferences", { userId: user._id, ...defaultPreferences, locale, updatedAt: Date.now() });
+  },
+});
+
 export const setPushEnabled = mutation({
   args: { enabled: v.boolean() },
   handler: async (ctx, args) => {
@@ -169,7 +198,7 @@ export const registerPushToken = mutation({
       .withIndex("by_user", (q) => q.eq("userId", user._id)).unique();
     if (args.enabled && preferences?.pushEnabled !== true) throw new ConvexError("Turn on external alerts before registering a push token.");
     const token = normalizeText(args.token, "Push token", 300);
-    if (!token.startsWith("ExponentPushToken[")) {
+    if (!/^(?:ExponentPushToken|ExpoPushToken)\[[^\s[\]]+\]$/.test(token)) {
       throw new ConvexError({ code: "VALIDATION", message: "Unsupported push token" });
     }
     const now = Date.now();
@@ -264,6 +293,15 @@ export const pushDeliveryPayload = internalQuery({
         missingContext = !request;
       }
     }
+    if (notification.resourceId && notification.resourceType === "referral") {
+      const referral = await ctx.db.get(notification.resourceId as Id<"referrals">);
+      const caseRecord = referral ? await ctx.db.get(referral.caseId) : null;
+      missingContext = !referral || !caseRecord;
+      if (caseRecord?.beneficiaryId === notification.userId) {
+        request = await ctx.db.get(caseRecord.sourceRequestId);
+        missingContext = !request;
+      }
+    }
     if (missingContext) return { notification, subscriptions: [], skippedReason: "case-context-unavailable" };
     if (request?.ownerId === notification.userId && !allowsCasePushToBeneficiary(request.safeContactMethod)) {
       return { notification, subscriptions: [], skippedReason: "safe-contact-in-app-only" };
@@ -287,7 +325,7 @@ export const pushDeliveryPayload = internalQuery({
       .withIndex("by_user", (q) => q.eq("userId", notification.userId))
       .filter((q) => q.eq(q.field("enabled"), true))
       .collect();
-    return { notification, subscriptions, skippedReason: subscriptions.length ? undefined : "no-enabled-subscriptions" };
+    return { notification, subscriptions, locale: preferences?.locale ?? "sw", skippedReason: subscriptions.length ? undefined : "no-enabled-subscriptions" };
   },
 });
 
@@ -311,12 +349,12 @@ export const recordPushAttempt = internalMutation({
       ticketId: normalizeOptionalText(args.ticketId, "Push ticket", 120),
       createdAt: Date.now(),
     });
-    if (args.status === "failed" && args.error && /DeviceNotRegistered|InvalidCredentials/.test(args.error)) {
+    if (args.status === "failed" && args.error && /DeviceNotRegistered/.test(args.error)) {
       const subscription = await ctx.db
         .query("push_subscriptions")
         .withIndex("by_token", (q) => q.eq("token", args.token))
         .unique();
-      if (subscription) await ctx.db.patch(subscription._id, { enabled: false, updatedAt: Date.now() });
+      if (subscription?.userId === args.userId) await ctx.db.patch(subscription._id, { enabled: false, updatedAt: Date.now() });
     }
   },
 });
@@ -341,7 +379,7 @@ export const deliverPushForNotification = internalAction({
       return { sent: 0, skipped: 1, failed: 0 };
     }
 
-    const copy = pushCopy[notification.type] ?? { title: "Haki Yangu update", body: "You have a new Haki Yangu update." };
+    const copy = notificationCopy(notification.type, "locale" in payload && payload.locale === "en" ? "en" : "sw", pushCopy[notification.type] ?? { title: "Haki Yangu update", body: "You have a new Haki Yangu update." });
     let sent = 0;
     let failed = 0;
     const receiptTickets: Array<{
@@ -360,6 +398,7 @@ export const deliverPushForNotification = internalAction({
             "Accept-Encoding": "gzip, deflate",
             "Content-Type": "application/json",
           },
+          signal: AbortSignal.timeout(15000),
           body: JSON.stringify({
             to: subscription.token,
             title: copy.title,
@@ -376,14 +415,14 @@ export const deliverPushForNotification = internalAction({
           errors?: Array<{ message?: string }>;
         };
         const error = result.data?.details?.error ?? result.data?.message ?? result.errors?.[0]?.message;
-        if (!response.ok || result.data?.status === "error" || error) {
+        if (!response.ok || result.data?.status !== "ok" || !result.data?.id || error) {
           failed += 1;
           await ctx.runMutation(internal.notifications.recordPushAttempt, {
             notificationId: notification._id,
             userId: notification.userId,
             token: subscription.token,
             status: "failed",
-            error: error ?? `Expo push HTTP ${response.status}`,
+            error: error ?? (response.ok ? "Expo returned an invalid push ticket; delivery unconfirmed" : `Expo push HTTP ${response.status}`),
           });
         } else {
           sent += 1;
@@ -436,6 +475,7 @@ export const checkExpoPushReceipts = internalAction({
         "Accept-Encoding": "gzip, deflate",
         "Content-Type": "application/json",
       },
+      signal: AbortSignal.timeout(15000),
       body: JSON.stringify({ ids: args.tickets.map((ticket) => ticket.ticketId) }),
     });
     const result = await response.json() as {
@@ -449,7 +489,7 @@ export const checkExpoPushReceipts = internalAction({
     for (const ticket of args.tickets) {
       const receipt = result.data?.[ticket.ticketId];
       const error = topLevelError ?? receipt?.details?.error ?? receipt?.message;
-      if (!response.ok || receipt?.status === "error" || error) {
+      if (!response.ok || receipt?.status !== "ok" || error) {
         failed += 1;
         await ctx.runMutation(internal.notifications.recordPushAttempt, {
           notificationId: ticket.notificationId,
@@ -457,7 +497,7 @@ export const checkExpoPushReceipts = internalAction({
           token: ticket.token,
           status: "failed",
           ticketId: ticket.ticketId,
-          error: error ?? `Expo receipt HTTP ${response.status}`,
+          error: error ?? (response.ok ? "Expo receipt unavailable or invalid; delivery unconfirmed" : `Expo receipt HTTP ${response.status}`),
         });
       } else if (receipt?.status === "ok") {
         ok += 1;

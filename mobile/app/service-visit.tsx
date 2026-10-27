@@ -1,3 +1,5 @@
+import { BrandLoading } from '../src/components/BrandLoading';
+import { plainError } from "../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -64,7 +66,7 @@ export default function ServiceVisitScreen() {
       await planVisit({ serviceId: serviceId as Id<"justice_services">, plannedFor, channel: chosenChannel });
       Alert.alert(sw ? "Mpango umehifadhiwa" : "Plan saved", sw ? "Huu ni mpango wako binafsi. Thibitisha upatikanaji moja kwa moja na huduma." : "This is your personal plan. Confirm availability directly with the service.");
     } catch (caught) {
-      Alert.alert(sw ? "Haikuhifadhiwa" : "Not saved", caught instanceof Error ? caught.message : String(caught));
+      Alert.alert(sw ? "Haikuhifadhiwa" : "Not saved", plainError(caught, locale));
     } finally {
       setBusy(false);
     }
@@ -76,7 +78,7 @@ export default function ServiceVisitScreen() {
     try {
       await checkIn({ visitId, outcome, note: notes[visitId] });
     } catch (caught) {
-      Alert.alert(sw ? "Haikutumwa" : "Not submitted", caught instanceof Error ? caught.message : String(caught));
+      Alert.alert(sw ? "Haikutumwa" : "Not submitted", plainError(caught, locale));
     } finally {
       setBusy(false);
     }
@@ -88,14 +90,14 @@ export default function ServiceVisitScreen() {
     try {
       await cancelVisit({ visitId });
     } catch (caught) {
-      Alert.alert(sw ? "Haijaghairiwa" : "Could not cancel", caught instanceof Error ? caught.message : String(caught));
+      Alert.alert(sw ? "Haijaghairiwa" : "Could not cancel", plainError(caught, locale));
     } finally {
       setBusy(false);
     }
   }
 
   return <Screen>
-    <AppHeader back title={sw ? "Ziara na ufuatiliaji" : "Visits & follow-up"} eyebrow="Haki Yangu · Find Help" />
+    <AppHeader back title={sw ? "Ziara na ufuatiliaji" : "Visits & follow-up"} eyebrow={locale === "sw" ? "Haki Yangu · Tafuta msaada" : "Haki Yangu · Find help"} />
     <View style={styles.hero}>
       <View style={styles.heroIcon}><Ionicons name="calendar-outline" size={26} color={colors.surface} /></View>
       <Text style={styles.kicker}>{sw ? "PANGA · TEMBELEA · FUATILIA" : "PLAN · VISIT · FOLLOW UP"}</Text>
@@ -140,13 +142,13 @@ export default function ServiceVisitScreen() {
     </Surface> : null}
     {isSignedIn ? <>
       <Text style={styles.sectionTitle}>{sw ? "Mipango yako" : "Your plans"}</Text>
-      {visits === undefined ? <Surface><Text style={styles.muted}>{sw ? "Inapakia mipango..." : "Loading plans..."}</Text></Surface> : visits.length ? visits.map(({ visit, service: linkedService }) => {
+      {visits === undefined ? <Surface><BrandLoading compact text={sw ? "Inapakia mipango..." : "Loading plans..."}/></Surface> : visits.length ? visits.map(({ visit, service: linkedService }) => {
         const canCheckIn = Date.now() >= visit.plannedFor - 30 * 60 * 1000;
         return <Surface key={visit._id} tone={visit.outcome === "not_helpful" ? "orange" : undefined} style={styles.visitCard}>
           <View style={styles.serviceRow}><View style={styles.serviceIcon}><Ionicons name={visit.status === "completed" ? "checkmark-circle-outline" : "calendar-outline"} size={22} color={colors.burgundy} /></View><View style={styles.flex}><Text style={styles.title}>{linkedService?.name ?? (sw ? "Huduma" : "Service")}</Text><Text style={styles.muted}>{new Date(visit.plannedFor).toLocaleString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}</Text></View></View>
           <Text style={styles.visitMeta}>{visit.channel === "in_person" ? (sw ? "Kutembelea" : "Visit") : visit.channel === "phone" ? (sw ? "Simu" : "Phone") : (sw ? "Kwa mbali" : "Remote")}</Text>
           {visit.status === "planned" ? <>
-            <Text style={styles.question}>{canCheckIn ? (sw ? "Je, ulipata msaada uliohitaji?" : "Did you get the help you needed?") : (sw ? "Unaweza kutoa mrejesho baada ya muda uliopanga." : "You can record the result after your planned time.")}</Text>
+            <Text style={styles.question}>{canCheckIn ? (sw ? "Je, ulipata msaada uliohitaji?" : "Did you get the help you needed?") : (sw ? "Unaweza kutoa maoni baada ya muda uliopanga." : "You can record the result after your planned time.")}</Text>
             {canCheckIn ? <><TextInput accessibilityLabel={sw ? "Maelezo ya ziara" : "Visit notes"} value={notes[visit._id] ?? ""} onChangeText={(value) => setNotes((current) => ({ ...current, [visit._id]: value }))} multiline maxLength={1000} style={styles.note} placeholder={sw ? "Maelezo ya hiari" : "Optional details"} placeholderTextColor={colors.inkMuted} /><View style={styles.stack}><Button label={sw ? "Ndiyo, nilisaidika" : "Yes, it helped"} disabled={busy} onPress={() => void recordOutcome(visit._id, "helpful")} /><Button label={sw ? "Kwa kiasi" : "Partly helped"} variant="secondary" disabled={busy} onPress={() => void recordOutcome(visit._id, "partly_helpful")} /><Button label={sw ? "Sikupata msaada" : "I did not get help"} variant="quiet" disabled={busy} onPress={() => void recordOutcome(visit._id, "not_helpful")} /></View></> : null}
             <Button label={sw ? "Ghairi mpango" : "Cancel plan"} variant="quiet" disabled={busy} onPress={() => void cancel(visit._id)} />
           </> : <Text style={styles.outcome}>{visit.status === "cancelled" ? (sw ? "Mpango ulighairiwa" : "Plan cancelled") : `${sw ? "Matokeo" : "Outcome"}: ${visit.outcome?.replaceAll("_", " ")}`}</Text>}

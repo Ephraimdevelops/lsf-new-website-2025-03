@@ -1,17 +1,15 @@
+import SearchFilterBar from '@/components/shared/SearchFilterBar';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import LoadingState from '../components/shared/LoadingState';
 import ErrorState from '../components/shared/ErrorState';
-import EnhancedSearch from '../components/shared/EnhancedSearch';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
 import {
   Newspaper,
   Calendar,
   Clock,
-  Filter,
-  ChevronDown,
   Tag,
   ArrowRight,
   Target,
@@ -21,18 +19,6 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 import { useNews } from '@/hooks/useNews';
 
 // Sliding News Hero Component
@@ -227,7 +213,6 @@ const News = () => {
   const { news, featuredNews, loading, error } = useNews(searchTerm, selectedCategory);
 
   const [isSearching, setIsSearching] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Handle search input with debounce could be added here, but for now direct update
   const handleSearch = (term: string) => {
@@ -276,56 +261,10 @@ const News = () => {
       {/* Hero Section with Sliding News */}
       <SlidingNewsHero featuredNews={featuredNews} />
 
-      {/* Enhanced Filters Section */}
-      <section className="py-10 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200/50">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-            <div className="relative flex-grow lg:max-w-md">
-              <Newspaper className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-              <input
-                type="search"
-                placeholder="Search news, topics, or keywords..."
-                className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary-teal transition-colors shadow-sm"
-                value={searchTerm}
-                onChange={(e) => handleSearch(e.target.value)}
-              />
-            </div>
-
-            <div className="lg:ml-auto">
-              <Collapsible
-                open={isFilterOpen}
-                onOpenChange={setIsFilterOpen}
-                className="w-full lg:w-auto"
-              >
-                <CollapsibleTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-full lg:w-auto flex items-center justify-between gap-2 rounded-xl border-2 border-gray-200 hover:border-secondary-teal transition-colors px-6 py-3"
-                  >
-                    <Filter size={16} />
-                    <span>Filter by Category</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} />
-                  </Button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="mt-4 lg:mt-0">
-                  <div className="flex flex-wrap gap-2">
-                    {categories.map((category) => (
-                      <Button
-                        key={category}
-                        variant={selectedCategory === category ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => setSelectedCategory(category)}
-                        className="rounded-full"
-                      >
-                        {category === 'all' ? 'All Categories' : category}
-                      </Button>
-                    ))}
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
-            </div>
-          </div>
-        </div>
+      <section className="border-b border-[#E8E2E5] bg-[#FCFBFA] py-4">
+        <div className="container mx-auto px-4"><SearchFilterBar value={searchTerm} onChange={handleSearch} placeholder="Find news" label="Topic" title="Choose a news topic" count={Number(selectedCategory !== 'all')} summary={selectedCategory !== 'all' ? selectedCategory : undefined} onReset={() => setSelectedCategory('all')}>
+          <label className="block text-sm font-semibold">Topic<select className="mt-2 min-h-12 w-full rounded-xl border bg-white px-3" value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)}>{categories.map(category => <option key={category} value={category}>{category === 'all' ? 'All topics' : category}</option>)}</select></label>
+        </SearchFilterBar></div>
       </section>
 
       {/* News Content Section */}

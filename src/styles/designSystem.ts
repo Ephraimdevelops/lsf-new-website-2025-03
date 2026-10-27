@@ -39,9 +39,9 @@ export const designTokens = {
   // Typography Scale
   typography: {
     fontFamily: {
-      sans: ['Roboto', 'Noto Sans', 'Product Sans', 'system-ui', 'sans-serif'],
-      heading: ['Ubuntu', 'system-ui', 'sans-serif'],
-      display: ['Ubuntu', 'system-ui', 'sans-serif'],
+      sans: ['Onest', 'system-ui', 'sans-serif'],
+      heading: ['Onest', 'system-ui', 'sans-serif'],
+      display: ['Onest', 'system-ui', 'sans-serif'],
     },
     fontSize: {
       xs: '0.625rem',

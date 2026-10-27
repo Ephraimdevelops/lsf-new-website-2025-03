@@ -1,0 +1,5 @@
+import { useSearchParams } from 'react-router-dom';
+import BrandLoading from './BrandLoading';
+import { LanguageSwitch, useLanguage } from '@/providers/LanguageProvider';
+import { loadingCopy, type LoadingTask } from '../../../shared/loadingCopy';
+export default function LoadingPreview(){const [params,setParams]=useSearchParams();const {locale}=useLanguage();const raw=params.get('loading')??'account';const task:LoadingTask=raw in loadingCopy?raw as LoadingTask:'account';const compact=params.get('compact')==='1';return <><div style={{position:'absolute',top:16,left:16,right:16,zIndex:10,display:'flex',flexWrap:'wrap',alignItems:'center',justifyContent:'space-between',gap:12}}><label style={{fontSize:12,color:'#6d6370'}}> {locale==='sw'?'Mfano wa kusubiri':'Loading preview'} <select aria-label="Loading task" value={task} onChange={e=>setParams({loading:e.target.value,...(compact?{compact:'1'}:{})})}>{Object.keys(loadingCopy).map(key=><option key={key}>{key}</option>)}</select></label><LanguageSwitch/></div>{compact?<div style={{padding:'130px 20px',maxWidth:640,margin:'auto'}}><BrandLoading task={task} compact/></div>:<BrandLoading task={task} fullScreen/>}</>;}

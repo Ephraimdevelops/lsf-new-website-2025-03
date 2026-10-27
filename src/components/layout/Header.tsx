@@ -1,3 +1,4 @@
+import { LanguageSwitch } from "@/providers/LanguageProvider";
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -48,6 +49,7 @@ const Header = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 md:h-20">
             <Logo />
+            <LanguageSwitch />
 
             <DesktopNavigation
               activeDropdown={activeDropdown}

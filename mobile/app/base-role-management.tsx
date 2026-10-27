@@ -1,3 +1,4 @@
+import { plainError } from "../../shared/plainLanguage";
 import { useMutation, usePaginatedQuery, useQuery } from "convex/react";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -6,8 +7,8 @@ import type { Id } from "../../convex/_generated/dataModel";
 import { api } from "../src/backend/api";
 import { AppHeader } from "../src/components/AppHeader";
 import { Button } from "../src/components/Button";
-import { CivicPageIntro } from "../src/components/CivicPageIntro";
-import { Screen } from "../src/components/Screen";
+import { AdminIntro as CivicPageIntro } from "../src/admin/AdminIntro";
+import { AdminScreen as Screen } from "../src/admin/AdminScreen";
 import { SectionHeading, Surface } from "../src/components/Surface";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
@@ -36,18 +37,18 @@ export default function BaseRoleManagementScreen() {
   async function submit(targetUserId: Id<"users">) {
     if (busy) return; setBusy(true); setError("");
     try { await requestChange({ targetUserId, reason: reason.trim() }); setReason(""); setSelectedPerson(null); setNotice(sw ? "Ombi limepelekwa kwa msimamizi mwingine." : "Request sent for independent admin review."); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
   async function decide(id: Id<"base_role_change_requests">, decision: "approved" | "rejected") {
     if (busy) return; setBusy(true); setError("");
     try { await reviewChange({ id, decision, note: note.trim() }); setNote(""); setSelectedRequest(null); setNotice(sw ? "Uamuzi umehifadhiwa." : "Decision recorded."); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
 
   return <Screen>
-    <AppHeader back title={sw ? "Majukumu ya msingi" : "Base role review"} eyebrow="LSF · TWO-PERSON ACCESS REVIEW" />
+    <AppHeader back title={sw ? "Kagua ruhusa za akaunti" : "Base role review"} eyebrow="LSF · TWO-PERSON ACCESS REVIEW" />
     {access === undefined ? <State text={sw ? "Inapakia ruhusa..." : "Loading access..."} /> : !admin ? <State text={sw ? "Ruhusa ya msimamizi inahitajika." : "Administrator access required."} /> : <>
       <CivicPageIntro icon="shield-checkmark-outline" eyebrow="LSF · INDEPENDENT REVIEW" title={sw ? "Kagua kabla ya kuondoa jukumu." : "Review before removing a role."} description={sw ? "Idhini huondoa ruhusa za jukumu hili. Akaunti na historia hubaki." : "Approval removes this role's access. The account and its history remain."} />
       {error ? <Surface tone="orange"><Text accessibilityRole="alert" style={styles.error}>{error}</Text></Surface> : null}

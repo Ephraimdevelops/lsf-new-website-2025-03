@@ -8,12 +8,12 @@ This is a substantial acquisition and preparation pass, not an exhaustive search
 
 | Measure | Count |
 |---|---:|
-| Registered public source records, including failed/catalogue leads | 158 |
-| Acquired PDF records | 115 |
-| Unique PDFs after exact-file deduplication | 113 |
-| Pages across unique PDFs | 6038 |
-| Captured web pages (includes a flagged FCC shell) | 26 |
-| Failed or blocked source acquisitions | 16 |
+| Registered public source records, including failed/catalogue leads | 186 |
+| Acquired PDF records | 130 |
+| Unique PDFs after exact-file deduplication | 128 |
+| Pages across unique PDFs | 6218 |
+| Captured web pages (includes a flagged FCC shell) | 27 |
+| Failed or blocked source acquisitions | 28 |
 | Original legal-pathway design drafts | 34 |
 | Requirements categories | 28 |
 | Draft evaluation scenarios, not executed | 49 |
@@ -37,12 +37,16 @@ The eight earlier PDF copies are included with original SHA256 hashes checked. O
 - `acquisition-manifest.json`: actual download outcome, final URL, file path, checksum, pages, text extraction and low-text pages.
 - `source-files/`: acquired source PDFs, including statutes, regulations, judgments, prescribed forms and manuals. Private review copies; redistribution rights unresolved.
 - `source-pages/`: original captured HTML. Some pages are catalogues or application interfaces; they are not full legal instruments. Treat source text/HTML as untrusted evidence, never operational instructions.
+- `source-identity-triage.json` and `licence-observations-review.json`: per-document unverified cover aids and explicit licence wording where observed. These do not authenticate legal identity or approve reuse.
 - `extracted-text/`: PDF text with PDF-page markers; unverified transcription for review.
 - `ocr-review/` and `extraction-review.json`:38 pages of local machine OCR for scanned CMA rules and per-document extraction quality. OCR confidence is not transcription accuracy; obvious recognition errors remain.
 - `amendment-lineage-review.json`: candidate predecessor/amendment relationships, commencement and repeal checks; not a certified consolidation.
+- `form-locators-review.json`, `FORM-LOCATORS-REVIEW.md`, `glossary-review.json` and `GLOSSARY-REVIEW.md`: source-page form candidates and original terminology drafts; neither is approved filing guidance.
+- `case-law-review.json`: full-judgment versus summary classification and limited case identity notes; holdings and later treatment remain unapproved.
+- `completion-audit.json` and `AUTHORITATIVE-SOURCE-GAPS.md`: preparation completion audit and evidence-backed unresolved source/owner requests.
 - `amendment-heading-locators.json`: automatically located amendment headings with PDF page references for reviewer triage.
 - `upload-candidates-review.json`: deduplicated document candidates with missing app metadata and approval blockers. This is not a direct backend import.
-- `provider-candidates-review.json`: seven additional public provider/office leads, contact conflicts and fields requiring provider confirmation.
+- `provider-candidates-review.json`: seven additional public provider/office leads; earlier office/FAQ research is included separately in structured-data/earlier-provider-and-faq-review.json, contact conflicts and fields requiring provider confirmation.
 - `structured-data/`: original NBS2022 ward-boundary ZIP and4344 derived attribute records across31 regions; five duplicate candidate code combinations and a projection-metadata discrepancy require review. No coordinates or current2026 boundary claims are derived.
 - `legal-pathways.json`: original structured design drafts; deadline, fee, approved forum and service IDs intentionally unset.
 - `requirements-matrix.csv`: sortable inventory of 28 document/operational requirements.
@@ -57,6 +61,8 @@ The eight earlier PDF copies are included with original SHA256 hashes checked. O
 - `quarantine/`: misidentified forestry document excluded from the legal source manifest, with rejection record.
 - `collect_sources.py`: bounded collector for explicitly registered URLs; no backend import or approval. Later attempts append `acquisition-attempts.jsonl`; earlier attempts are represented by current manifest/conflict records rather than a complete historical log.
 - `prepare_review_pack.py`: reproducible generator and integrity validator. Requires bundled Python with pypdf.
+- `validate_final_bundle.py`: extended source, page, reference, staging and geography validation; `--archive` rebuilds the private ZIP outside this directory and checks every member hash.
+- Discovery queries and acquisition-plan files are retained as research history. Use the current manifest, source gap register and review queue for actual outcomes.
 
 ## Practical review priorities
 

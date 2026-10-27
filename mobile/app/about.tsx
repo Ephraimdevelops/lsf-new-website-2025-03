@@ -24,18 +24,22 @@ export default function AboutScreen() {
         <Text style={styles.cardTitle}>{locale === "sw" ? "Tunachofanya" : "What this app does"}</Text>
         <Text style={styles.body}>
           {locale === "sw"
-            ? "Haki Yangu hukusaidia kuelewa haki zako, kutuma ombi la msaada, kupata msaidizi wa kisheria, kufuatilia kesi, kuhifadhi nyaraka, na kuuliza Haki kwa taarifa rahisi."
-            : "Haki Yangu helps you understand your rights, request support, find legal helpers, track cases, store documents, and ask Haki for simple information."}
+            ? "Elewa haki zako, omba msaada na fuatilia kesi. Unaweza pia kuhifadhi hati na kuuliza Haki Yangu AI."
+            : "Understand your rights, request help and track cases. You can also save documents and ask Haki Yangu AI."}
         </Text>
       </View>
       <View style={styles.card}>
         <Text style={styles.cardTitle}>{locale === "sw" ? "Mipaka muhimu" : "Important limits"}</Text>
         <Text style={styles.body}>
           {locale === "sw"
-            ? "App hii si huduma ya dharura, si wakili wako, na Haki haitoi ushauri wa kisheria unaobadilisha mtaalamu. Kwa hatari ya haraka, tafuta huduma rasmi ya dharura."
-            : "This app is not an emergency service, is not your lawyer, and Haki does not replace professional legal advice. For immediate danger, contact official emergency help."}
+            ? "Haki Yangu si huduma ya dharura. Majibu ya AI yanaweza kukosea na hayachukui nafasi ya wakili. Ukiwa hatarini sasa, tafuta huduma ya dharura."
+            : "Haki Yangu is not an emergency service. AI answers can be wrong and do not replace a lawyer. For immediate danger, contact official emergency help."}
         </Text>
       </View>
+      <Pressable accessibilityRole="link" onPress={() => router.push("/font-license")} style={styles.licenseLink}>
+        <Text style={styles.licenseLinkText}>{locale === "sw" ? "Leseni ya fonti ya Onest" : "Onest font license"}</Text>
+        <Ionicons name="chevron-forward" size={18} color={colors.burgundy} />
+      </Pressable>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Version 1.0.0</Text>
         <Text style={styles.footerText}>© Legal Services Facility</Text>
@@ -54,6 +58,8 @@ const styles = StyleSheet.create({
   card: { marginTop: spacing.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, gap: spacing.sm },
   cardTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
   body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 22 },
+  licenseLink: { minHeight: 48, marginTop: spacing.lg, paddingHorizontal: spacing.lg, flexDirection: "row", justifyContent: "space-between", alignItems: "center", borderWidth: 1, borderColor: colors.line, borderRadius: radius.md },
+  licenseLinkText: { fontFamily: type.medium, color: colors.burgundy, fontSize: 14 },
   footer: { marginTop: spacing.xl, marginBottom: spacing.xl, gap: spacing.xs },
   footerText: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, textAlign: "center" },
 });

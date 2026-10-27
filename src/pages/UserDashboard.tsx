@@ -1,5 +1,15 @@
+import BrandLoading from '@/components/shared/BrandLoading';
+import { useState } from "react";
+import SearchFilterBar from "@/components/shared/SearchFilterBar";
+import { WorkAction, WorkDashboard, WorkList, WorkPanel, WorkState } from "@/components/dashboard/WorkArea";
+import { displayLabel } from "../../shared/plainLanguage";
+import { useLanguage } from "@/providers/LanguageProvider";
+import { useCopy } from "@/i18n/useCopy";
+import { requestNextStep } from "../../mobile/src/requestProgress";
 import type React from "react";
-import { useAuth, useUser } from "@clerk/clerk-react";
+import { usePersonalGreeting } from '@/hooks/usePersonalGreeting';
+import PersonalAvatar from '@/components/dashboard/PersonalAvatar';
+import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "convex/react";
 import { Navigate, Link } from "react-router-dom";
 import {
@@ -19,39 +29,43 @@ import Layout from "../components/layout/Layout";
 import Container from "@/components/shared/Container";
 import { dashboardPath } from "@/components/auth/dashboardPath";
 import { ProviderInviteInbox } from "@/components/auth/ProviderInvitations";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-function formatDate(value?: number) {
-  if (!value) return "Not scheduled";
-  return new Date(value).toLocaleDateString("en-TZ", {
+function formatDate(value: number | undefined, locale: 'sw' | 'en') {
+  if (!value) return locale === 'sw' ? 'Haijapangwa' : 'Not scheduled';
+  return new Date(value).toLocaleDateString((locale === "sw" ? "sw-TZ" : "en-TZ"), {
     day: "2-digit",
     month: "short",
     year: "numeric",
   });
 }
 
-function humanStatus(value?: string) {
-  return value ? value.replaceAll("_", " ") : "pending";
-}
+
 
 function latestTimestamp(record: { updatedAt?: number; createdAt?: number; submittedAt?: number }) {
   return record.updatedAt ?? record.submittedAt ?? record.createdAt ?? 0;
 }
 
 const UserDashboard = () => {
-  const { isSignedIn, isLoaded, signOut } = useAuth();
-  const { user: clerkUser } = useUser();
+  const [activitySearch, setActivitySearch] = useState("");
+  const [activityType, setActivityType] = useState("all");
+  const [activityLimit, setActivityLimit] = useState(8);
+  const c = useCopy();
+  const { locale } = useLanguage();
+  const { greeting: greetingEn, greetingSw } = usePersonalGreeting();
+  const greeting = locale === "sw" ? greetingSw : greetingEn;
+  const { isSignedIn, isLoaded } = useAuth();
   const access = useQuery(api.users.currentAccess);
   const requests = useQuery(api.legalHelp.myRequests, isSignedIn ? {} : "skip");
-  const cases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
-  const appointments = useQuery(api.caseManagement.myAppointments, isSignedIn ? {} : "skip");
-  const documents = useQuery(api.caseManagement.myDocuments, isSignedIn ? {} : "skip");
+  const allCases = useQuery(api.caseManagement.myCases, isSignedIn ? {} : "skip");
+  const appointments = useQuery(api.caseManagement.myAppointments, isSignedIn ? { context: "personal" } : "skip");
+  const cases = access === undefined ? undefined : allCases?.filter(item => item.beneficiaryId === access.user._id);
+  const documents = useQuery(api.caseManagement.myDocuments, isSignedIn ? { context: "personal" } : "skip");
   const savedServices = useQuery(api.justiceServices.mySavedServices, isSignedIn ? {} : "skip");
 
   if (!isLoaded) {
-    return <div className="flex min-h-screen items-center justify-center text-sm text-neutral-500">Verifying access...</div>;
+    return <BrandLoading compact text={c("Verifying access...")}/>;
   }
 
   if (!isSignedIn) {
@@ -60,255 +74,54 @@ const UserDashboard = () => {
 
   const roles = access?.roles ?? [];
   const destination = dashboardPath(roles);
-  if (access && destination !== "/dashboard/user") return <Navigate to={destination} replace />;
+  if (access && !roles.some(role => ["paralegal", "provider_staff"].includes(role)) && destination !== "/dashboard/user") return <Navigate to={destination} replace />;
 
-  const userName = access?.user?.name || clerkUser?.firstName || "User";
-  const userInitials = userName.split(" ").map((part) => part[0]).join("").toUpperCase().slice(0, 2);
-  const userImage = access?.user?.imageUrl || clerkUser?.imageUrl;
   const activeCases = cases?.filter((record) => !["closed", "closed_unresolved", "resolved"].includes(record.status)).length ?? 0;
   const submittedRequests = requests?.filter((record) => record.status !== "draft").length ?? 0;
   const upcomingAppointments = appointments?.filter((record) => record.status === "scheduled" && record.startsAt >= Date.now()) ?? [];
-  const latestCase = cases?.[0];
-  const latestRequest = requests?.filter((record) => record.status !== "draft")[0];
+  const latestCase = cases?.filter(item => !["closed", "closed_unresolved", "resolved"].includes(item.status)).sort((a, b) => latestTimestamp(b) - latestTimestamp(a))[0] ?? cases?.[0];
+  const openRequests = requests?.filter(record => ["submitted", "under_review", "waiting_for_information"].includes(record.status)).sort((a, b) => Number(b.status === "waiting_for_information") - Number(a.status === "waiting_for_information") || latestTimestamp(b) - latestTimestamp(a));
+  const latestRequest = openRequests?.[0] ?? requests?.find(record => record.status !== "draft");
   const recentItems = [
-    ...(cases ?? []).slice(0, 3).map((record) => ({
+    ...(cases ?? []).map((record) => ({
       key: `case-${record._id}`,
       title: record.publicId,
       subtitle: record.summary,
       status: record.status,
       when: latestTimestamp(record),
     })),
-    ...(requests ?? []).filter((record) => record.status !== "draft").slice(0, 3).map((record) => ({
+    ...(requests ?? []).filter((record) => record.status !== "draft").map((record) => ({
       key: `request-${record._id}`,
       title: record.publicId,
       subtitle: `${record.region ?? "Tanzania"}${record.district ? ` · ${record.district}` : ""}`,
       status: record.status,
       when: latestTimestamp(record),
     })),
-  ].sort((a, b) => b.when - a.when).slice(0, 5);
+  ].sort((a, b) => b.when - a.when);
 
   const loadingPrivateData = [requests, cases, appointments, documents].some((value) => value === undefined);
 
-  return (
-    <Layout>
-      <section className="border-b bg-white py-8">
-        <Container>
-          <ProviderInviteInbox hideWhenEmpty />
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-4">
-              <Avatar className="h-16 w-16 border border-neutral-200">
-                <AvatarImage src={userImage} alt={userName} />
-                <AvatarFallback className="bg-primary/10 text-xl font-bold text-primary">{userInitials}</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="mb-1 text-sm font-bold uppercase tracking-wide text-primary">My Haki Yangu workspace</p>
-                <h1 className="mb-1 text-2xl font-bold text-neutral-900">{userName}</h1>
-                <p className="mb-0 text-sm text-neutral-500">Cases, requests, appointments, and documents from your secure account.</p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <Link to="/profile">
-                <Button variant="outline" size="sm">
-                  <Settings className="mr-2 h-4 w-4" />
-                  Settings
-                </Button>
-              </Link>
-              <Button variant="outline" size="sm" className="border-red-100 text-red-600 hover:bg-red-50 hover:text-red-700" onClick={() => signOut({ redirectUrl: '/' })}>
-                <LogOut className="mr-2 h-4 w-4" />
-                Sign Out
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-neutral-50 py-8">
-        <Container>
-          <div className="mb-6 grid gap-4 md:grid-cols-4">
-            <MetricCard title="Active cases" value={activeCases} description="Cases still in progress" icon={<Scale className="h-5 w-5" />} />
-            <MetricCard title="Submitted requests" value={submittedRequests} description="Requests sent to LSF" icon={<MessageCircle className="h-5 w-5" />} />
-            <MetricCard title="Upcoming appointments" value={upcomingAppointments.length} description="Scheduled meetings" icon={<CalendarDays className="h-5 w-5" />} />
-            <MetricCard title="Case documents" value={documents?.length ?? 0} description="Documents in your cases" icon={<FileText className="h-5 w-5" />} />
-          </div>
-          <nav aria-label="My Haki Yangu" className="mb-6 flex flex-wrap gap-3 rounded-3xl border border-[#EFDFE3] bg-white p-4">
-            <Link to="/request-help"><Button>Request help</Button></Link>
-            <Link to="/find-help"><Button variant="outline">Find help</Button></Link>
-            <Link to="/dashboard/user/saved-help"><Button variant="outline">Saved help {savedServices ? `(${savedServices.length})` : ''}</Button></Link>
-            <Link to="/dashboard/user/documents"><Button variant="outline">My documents {documents ? `(${documents.length})` : ''}</Button></Link>
-            <Link to="/sara"><Button variant="outline">Ask Saada</Button></Link>
-          </nav>
-
-          <div className="grid gap-6 lg:grid-cols-3">
-            <div className="space-y-6 lg:col-span-2">
-              <Card className="border-neutral-100 shadow-sm">
-                <CardHeader className="border-b border-neutral-100">
-                  <CardTitle className="text-base">Current legal-help status</CardTitle>
-                </CardHeader>
-                <CardContent className="p-5">
-                  {loadingPrivateData ? (
-                    <p className="text-sm text-neutral-500">Loading your protected records...</p>
-                  ) : latestCase ? (
-                    <div className="rounded-2xl border border-primary/10 bg-primary/5 p-5">
-                      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-                        <div>
-                          <p className="mb-1 text-xs font-bold uppercase tracking-wide text-primary">Latest case</p>
-                          <h2 className="mb-0 text-xl font-bold text-neutral-900">{latestCase.publicId}</h2>
-                        </div>
-                        <span className="rounded-full bg-white px-3 py-1 text-xs font-bold capitalize text-primary shadow-sm">
-                          {humanStatus(latestCase.status)}
-                        </span>
-                      </div>
-                      <p className="mb-4 text-sm leading-6 text-neutral-700">{latestCase.summary}</p>
-                      <Link className="mb-4 inline-block font-semibold text-primary underline" to={`/dashboard/user/cases/${latestCase._id}`}>Open case workspace</Link>
-                      <nav aria-label="My cases" className="mb-4 flex flex-wrap gap-3">{cases?.filter(item => item._id !== latestCase._id).map(item => <Link className="text-sm text-primary underline" key={item._id} to={`/dashboard/user/cases/${item._id}`}>{item.publicId}</Link>)}</nav>
-                      <div className="grid gap-3 text-sm md:grid-cols-3">
-                        <Info label="Priority" value={humanStatus(latestCase.priority)} />
-                        <Info label="Updated" value={formatDate(latestCase.updatedAt)} />
-                        <Info label="Documents" value={`${documents?.filter((doc) => doc.caseId === latestCase._id).length ?? 0}`} />
-                      </div>
-                    </div>
-                  ) : latestRequest ? (
-                    <div className="rounded-2xl border border-blue-100 bg-blue-50 p-5">
-                      <p className="mb-1 text-xs font-bold uppercase tracking-wide text-blue-700">Latest request</p>
-                      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-                        <h2 className="mb-0 text-xl font-bold text-neutral-900">{latestRequest.publicId}</h2>
-                        <span className="rounded-full bg-white px-3 py-1 text-xs font-bold capitalize text-blue-700 shadow-sm">
-                          {humanStatus(latestRequest.status)}
-                        </span>
-                      </div>
-                      <p className="mb-0 text-sm text-neutral-700">LSF will review the request and create a case when it is accepted for support.</p>
-                      <Link className="mt-3 inline-block font-semibold text-primary underline" to={`/dashboard/user/requests/${latestRequest._id}`}>View request progress</Link>
-                    </div>
-                  ) : (
-                    <div className="rounded-2xl border border-dashed border-neutral-200 bg-white p-6">
-                      <AlertCircle className="mb-3 h-6 w-6 text-primary" />
-                      <h2 className="mb-2 text-lg font-bold text-neutral-900">No private case yet</h2>
-                      <p className="mb-4 text-sm leading-6 text-neutral-600">
-                        Start a legal-help request when you are ready. Your private records will appear here after sign-in.
-                      </p>
-                      <Link to="/request-help">
-                        <Button>
-                          Start legal-help request
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-
-              <Card className="border-neutral-100 shadow-sm">
-                <CardHeader className="border-b border-neutral-100">
-                  <CardTitle className="text-base">Recent account activity</CardTitle>
-                </CardHeader>
-                <CardContent className="divide-y divide-neutral-100 p-0">
-                  {loadingPrivateData ? (
-                    <p className="p-5 text-sm text-neutral-500">Loading activity...</p>
-                  ) : recentItems.length ? (
-                    recentItems.map((item) => (
-                      <div key={item.key} className="flex flex-col gap-2 p-5 md:flex-row md:items-center md:justify-between">
-                        <div>
-                          <p className="mb-1 font-bold text-neutral-900">{item.key.startsWith('request-') ? <Link className="text-primary underline" to={`/dashboard/user/requests/${item.key.slice(8)}`}>{item.title}</Link> : <Link className="text-primary underline" to={`/dashboard/user/cases/${item.key.slice(5)}`}>{item.title}</Link>}</p>
-                          <p className="mb-0 text-sm text-neutral-500">{item.subtitle}</p>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-bold capitalize text-neutral-700">{humanStatus(item.status)}</span>
-                          <span className="text-xs text-neutral-400">{formatDate(item.when)}</span>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <p className="p-5 text-sm text-neutral-500">No case or request activity yet.</p>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="space-y-6">
-              <Card className="border-primary/10 bg-white shadow-sm">
-                <CardContent className="p-5">
-                  <ShieldCheck className="mb-3 h-6 w-6 text-primary" />
-                  <h3 className="mb-2 font-bold text-neutral-900">Privacy-first access</h3>
-                  <p className="mb-0 text-sm leading-6 text-neutral-600">
-                    This web dashboard reads only records linked to your account. Case details, documents, and appointment records stay scoped by Convex access rules.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-neutral-100 bg-white shadow-sm">
-                <CardHeader className="border-b border-neutral-100">
-                  <CardTitle className="text-base">Next actions</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 p-5">
-                  <ActionLink to="/request-help" icon={<Scale className="h-4 w-4" />} title="Request legal help" />
-                  <ActionLink to="/find-help" icon={<Scale className="h-4 w-4" />} title="Find nearby help" />
-                  <ActionLink to="/dashboard/user/saved-help" icon={<BookOpen className="h-4 w-4" />} title="Saved help and visit plans" />
-                  <ActionLink to="/dashboard/user/documents" icon={<FileText className="h-4 w-4" />} title="My case documents" />
-                  <ActionLink to="/sara" icon={<MessageCircle className="h-4 w-4" />} title="Ask Saada for guidance" />
-                  <ActionLink to="/know-your-rights" icon={<BookOpen className="h-4 w-4" />} title="Know your rights" />
-                  <ActionLink to="/contact" icon={<MessageCircle className="h-4 w-4" />} title="Contact LSF" />
-                </CardContent>
-              </Card>
-
-              <Card className="border-neutral-100 bg-white shadow-sm">
-                <CardHeader className="border-b border-neutral-100">
-                  <CardTitle className="text-base">Upcoming appointments</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 p-5">
-                  {loadingPrivateData ? (
-                    <p className="text-sm text-neutral-500">Loading appointments...</p>
-                  ) : upcomingAppointments.length ? (
-                    upcomingAppointments.slice(0, 3).map((appointment) => (
-                      <div key={appointment._id} className="rounded-xl border border-neutral-100 p-3">
-                        <p className="mb-1 text-sm font-bold text-neutral-900">{formatDate(appointment.startsAt)}</p>
-                        <p className="mb-0 text-xs capitalize text-neutral-500">
-                          {appointment.mode.replaceAll("_", " ")} · {appointment.location ?? "Location to be confirmed"}
-                        </p>
-                      </div>
-                    ))
-                  ) : (
-                    <p className="text-sm text-neutral-500">No upcoming appointments.</p>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </Container>
-      </section>
-    </Layout>
-  );
+  const sw = locale === 'sw';
+  const t = (swahili: string, english: string) => sw ? swahili : english;
+  const visibleActivity = recentItems.filter(item => (activityType === 'all' || item.key.startsWith(activityType)) && `${item.title} ${item.subtitle} ${displayLabel(item.status,locale)}`.toLowerCase().includes(activitySearch.trim().toLowerCase()));
+  const needsReply = openRequests?.find(item => item.status === 'waiting_for_information');
+  const nextRequest = needsReply ?? (!latestCase ? latestRequest : undefined);
+  return <Layout><main className="work-page"><ProviderInviteInbox hideWhenEmpty />
+    <WorkDashboard eyebrow={greeting} title={c("My Haki Yangu workspace")} description={t('Fuatilia maombi yako na ujue hatua inayofuata.','Follow your requests and see what happens next.')} action={<WorkAction to={needsReply ? `/dashboard/user/requests/${needsReply._id}` : '/request-help'}>{needsReply ? c("Reply to LSF") : c("Request help")}</WorkAction>}
+      metrics={[
+        {label:c("Submitted requests"),value:requests===undefined?undefined:submittedRequests,icon:MessageCircle},
+        {label:c("Active cases"),value:cases===undefined?undefined:activeCases,icon:Scale},
+        {label:c("Upcoming appointments"),value:appointments===undefined?undefined:upcomingAppointments.length,icon:CalendarDays},
+      ]}
+      aside={<><WorkPanel title={c("Upcoming appointments")}><WorkList loading={appointments===undefined} emptyTitle={c("No upcoming appointments.")} items={upcomingAppointments.sort((a,b)=>a.startsAt-b.startsAt).slice(0,3).map(item=>({key:item._id,title:formatDate(item.startsAt,locale),description:`${displayLabel(item.mode,locale)} · ${item.location ?? c("Location to be confirmed")}`,href:`/dashboard/user/cases/${item.caseId}`,icon:CalendarDays}))}/></WorkPanel>
+        <WorkPanel title={t('Njia za haraka','Quick actions')}><div className="work-quiet-links">{[['/find-help',c("Find nearby help")],['/dashboard/user/documents',c("My case documents")],['/dashboard/user/saved-help',c("Saved help and visit plans")],['/sara',c("Ask Haki Yangu AI for guidance")],['/know-your-rights',c("Know your rights")]].map(([href,label])=><Link key={href} to={href}>{label}<ArrowRight size={16}/></Link>)}</div></WorkPanel>
+        <WorkPanel title={c("Your information, your choices")}><p className="work-note">{c("Your requests and case records stay linked to your account. Choose a safe way to receive updates in your notification settings.")}</p></WorkPanel></>}
+    >
+      <WorkPanel title={c("Current legal-help status")} description={needsReply ? t('LSF inasubiri jibu lako.','LSF is waiting for your reply.') : t('Fungua ombi au kesi ili kuona taarifa zake.','Open a request or case to see its details.')}>
+        {loadingPrivateData ? <WorkState loading title={c("Loading your protected records...")}/> : nextRequest ? <WorkList items={[{key:nextRequest._id,title:nextRequest.publicId,description:requestNextStep(nextRequest.status,locale),status:displayLabel(nextRequest.status,locale),href:`/dashboard/user/requests/${nextRequest._id}`,action:needsReply?c("Reply to LSF"):c("View request progress"),attention:!!needsReply,icon:MessageCircle}]}/> : latestCase ? <><WorkList items={[{key:latestCase._id,title:latestCase.publicId,description:latestCase.summary,status:displayLabel(latestCase.status,locale),meta:`${c("Updated")} · ${formatDate(latestCase.updatedAt,locale)}`,href:`/dashboard/user/cases/${latestCase._id}`,action:c("Open case workspace"),icon:Scale}]}/><div className="work-case-facts"><span>{c("Priority")}<strong>{displayLabel(latestCase.priority,locale)}</strong></span><span>{c("Documents")}<strong>{documents?.filter(doc=>doc.caseId===latestCase._id).length??0}</strong></span></div></> : <WorkState title={c("No private case yet")} description={c("Start a legal-help request when you are ready. Your private records will appear here after sign-in.")} action={<WorkAction to="/request-help">{c("Start legal-help request")}</WorkAction>}/>}</WorkPanel>
+      <WorkPanel title={t('Maombi na kesi zangu','My requests and cases')} description={t('Taarifa zilizobadilika karibuni zinaonekana kwanza.','Recently updated records appear first.')}><div className="work-list-controls"><div className="work-tabs" role="group" aria-label={t('Aina ya taarifa','Record type')}>{[['all',t('Zote','All')],['request',t('Maombi','Requests')],['case',t('Kesi','Cases')]].map(([value,label])=><button key={value} onClick={()=>{setActivityType(value);setActivityLimit(8);}} aria-current={activityType===value?'page':undefined}>{label}</button>)}</div><SearchFilterBar value={activitySearch} onChange={value=>{setActivitySearch(value);setActivityLimit(8);}} placeholder={t('Tafuta ombi au kesi','Find a request or case')}/></div><WorkList loading={loadingPrivateData} emptyTitle={c("No case or request activity yet.")} items={visibleActivity.slice(0,activityLimit).map(item=>({key:item.key,title:item.title,description:item.subtitle,status:displayLabel(item.status,locale),meta:formatDate(item.when,locale),href:item.key.startsWith('request-')?`/dashboard/user/requests/${item.key.slice(8)}`:`/dashboard/user/cases/${item.key.slice(5)}`,icon:item.key.startsWith('request-')?MessageCircle:Scale}))}/>{visibleActivity.length>activityLimit&&<div className="work-list-more"><button className="work-action is-secondary" onClick={()=>setActivityLimit(limit=>limit+8)}>{t('Onyesha zaidi','Show more')}</button></div>}</WorkPanel>
+    </WorkDashboard>
+  </main></Layout>;
 };
-
-function MetricCard({ title, value, description, icon }: { title: string; value: number; description: string; icon: React.ReactNode }) {
-  return (
-    <Card className="border-neutral-100 bg-white shadow-sm">
-      <CardContent className="p-5">
-        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">{icon}</div>
-        <p className="mb-1 text-2xl font-bold text-neutral-900">{value.toLocaleString()}</p>
-        <p className="mb-1 text-sm font-bold text-neutral-800">{title}</p>
-        <p className="mb-0 text-xs text-neutral-500">{description}</p>
-      </CardContent>
-    </Card>
-  );
-}
-
-function Info({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-xl bg-white p-3">
-      <p className="mb-1 text-xs font-bold uppercase tracking-wide text-neutral-400">{label}</p>
-      <p className="mb-0 font-bold capitalize text-neutral-900">{value}</p>
-    </div>
-  );
-}
-
-function ActionLink({ to, icon, title }: { to: string; icon: React.ReactNode; title: string }) {
-  return (
-    <Link to={to} className="flex items-center justify-between rounded-xl border border-neutral-100 px-3 py-3 text-sm font-bold text-neutral-700 transition hover:border-primary/30 hover:bg-primary/5 hover:text-primary">
-      <span className="flex items-center gap-2">{icon}{title}</span>
-      <ArrowRight className="h-4 w-4" />
-    </Link>
-  );
-}
 
 export default UserDashboard;

@@ -1,9 +1,16 @@
+import { SaadaSpeechPlayer } from "../src/chat/SaadaSpeechPlayer";
+import { BrandLoading, BrandLoadingMark } from '../src/components/BrandLoading';
+import { IntakeVoice } from "../src/intake/IntakeVoice";
+import { uploadEvidence } from "../src/intake/uploadEvidence";
+import * as FileSystem from "expo-file-system/legacy";
+import { recordingBlobToWav } from "../../shared/voiceAudio";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAction, useMutation, usePaginatedQuery, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Alert, Animated, Keyboard, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View, useWindowDimensions } from "react-native";
+import { Alert, Animated, Image, Keyboard, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View, useWindowDimensions } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import type { Id } from "../../convex/_generated/dataModel";
 import { api } from "../src/backend/api";
@@ -15,9 +22,10 @@ import { useLanguage } from "../src/i18n";
 import { useIntakeDraft } from "../src/intake/IntakeDraftContext";
 import { colors, type } from "../src/theme";
 import { useSensitiveScreenProtection } from "../src/useSensitiveScreenProtection";
+import type { ReplyLanguage } from "../../convex/lib/saadaLanguage";
 
 type ConversationId = Id<"sara_conversations"> | "legacy" | null;
-type Message = { id: string; role: "user" | "assistant"; content: string; sources?: ChatSource[]; failed?: boolean };
+type Message = { id: string; role: "user" | "assistant"; content: string; sources?: ChatSource[]; failed?: boolean; completed?: boolean };
 const prompts = {
   sw: ["Sijalipwa mshahara. Nianzie wapi?", "Nipate msaada wa kisheria karibu nami", "Nielewe haki zangu kama mpangaji"],
   en: ["I haven't been paid. Where do I start?", "Find legal support near me", "Help me understand my rights as a tenant"],
@@ -45,9 +53,28 @@ export default function SaraScreen() {
   const insets = useSafeAreaInsets();
   const { height: windowHeight } = useWindowDimensions();
   const reducedMotion = useReducedMotion();
-  const { evaluationQuestion } = useLocalSearchParams<{ evaluationQuestion?: string }>();
+  const { evaluationQuestion, documentId } = useLocalSearchParams<{ evaluationQuestion?: string; documentId?: string }>();
+  const [selectedDocumentId,setSelectedDocumentId] = useState<string|undefined>(documentId);
+  const selectedDocument = useQuery(api.personalDocuments.get,isSignedIn && selectedDocumentId ? {id:selectedDocumentId as Id<"personal_documents">} : "skip");
   const { draft, hasSavedDraft, updateDraft, resetDraft } = useIntakeDraft();
   const ask = useAction(api.sara_actions.ask);
+  const issueAudio = useMutation(api.saadaMedia.generateAudioUploadUrl);
+  const discardAudio = useMutation(api.saadaMedia.discardAudio);
+  const transcribeAudio = useAction(api.saadaMediaActions.transcribe);
+  const [voiceOpen, setVoiceOpen] = useState(false);
+  async function transcribeQuestion(uri: string) {
+    if (!isSignedIn) throw new Error(sw ? "Ingia kunukuu sauti." : "Sign in to transcribe.");
+    let uploadUri = uri;
+    let mimeType = "audio/mp4";
+    let size = 0;
+    if (Platform.OS === "web") { const wav = await recordingBlobToWav(await (await fetch(uri)).blob()); uploadUri = URL.createObjectURL(wav); mimeType = "audio/wav"; size = wav.size; }
+    else { const info = await FileSystem.getInfoAsync(uri); size = info.exists ? info.size : 0; }
+    let id: Id<"_storage"> | undefined;
+    try {
+      id = await uploadEvidence(await issueAudio({}), {uri:uploadUri,mimeType,size}, () => {}) as Id<"_storage">;
+      return await transcribeAudio({storageId:id,consent:true});
+    } finally { if (id) await discardAudio({storageId:id}).catch(() => undefined); if (uploadUri !== uri) URL.revokeObjectURL(uploadUri); }
+  }
   const createConversation = useMutation(api.sara_chat.createConversation);
   const saveMessage = useMutation(api.sara_chat.sendMessage);
   const deleteConversation = useMutation(api.sara_chat.deleteConversation);
@@ -58,15 +85,30 @@ export default function SaraScreen() {
   const [optimistic, setOptimistic] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
+  const [replyLanguage, setReplyLanguage] = useState<ReplyLanguage>("auto");
+  useEffect(() => {
+    let active = true;
+    void AsyncStorage.getItem("haki-yangu:ai-reply-language").then(saved => {
+      if (active && (saved === "en" || saved === "sw" || saved === "auto")) setReplyLanguage(saved);
+    }).catch(() => undefined);
+    return () => { active = false; };
+  }, []);
+  function chooseReplyLanguage(next: ReplyLanguage) {
+    setReplyLanguage(next);
+    void AsyncStorage.setItem("haki-yangu:ai-reply-language", next).catch(() => undefined);
+  }
   const [requestId, setRequestId] = useState<string>();
   const [error, setError] = useState("");
   const [historyOpen, setHistoryOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [historySearch, setHistorySearch] = useState("");
   const [consentOpen, setConsentOpen] = useState(false);
   const [handoffStory, setHandoffStory] = useState<string | null>(null);
   const [consentAccepted, setConsentAccepted] = useState(false);
   const [keyboardVisible, setKeyboardVisible] = useState(false);
   const [atBottom, setAtBottom] = useState(true);
+  const [speechId, setSpeechId] = useState<string | null>(null);
+  useEffect(() => { setSpeechId(null); }, [userId, conversationId, pending]);
   const [rated, setRated] = useState<Record<string, "positive" | "negative">>({});
   const [previewMode, setPreviewMode] = useState<"reply" | "working" | null>(null);
   const preview = __DEV__ && previewMode !== null;
@@ -75,6 +117,7 @@ export default function SaraScreen() {
   const followBottom = useRef(true);
   const sending = useRef(false);
   const session = useRef(0);
+  const documentOwner = useRef(userId);
   const consentBody = useRef("");
   const entrance = useRef(new Animated.Value(1)).current;
 
@@ -85,7 +128,7 @@ export default function SaraScreen() {
     { initialNumItems: 30 });
   const events = useQuery(api.sara_chat.getActivityEvents, isSignedIn && pending && requestId ? { requestId, limit: 1 } : "skip");
   const serverMessages: Message[] = conversationId ? [...history.results].reverse().map(message => ({
-    id: String(message._id), role: message.role, content: message.content,
+    id: String(message._id), completed: Boolean(message.metadata?.completedAt), role: message.role, content: message.content,
     sources: Array.isArray(message.metadata?.retrievedSources) ? message.metadata.retrievedSources : undefined,
     failed: Boolean(message.metadata?.failureCode),
   })) : [];
@@ -99,6 +142,7 @@ export default function SaraScreen() {
   const filteredThreads = threads.results.filter(thread => thread.title.toLocaleLowerCase().includes(historySearch.toLocaleLowerCase()));
 
   useEffect(() => {
+    if(documentOwner.current !== userId) { setSelectedDocumentId(undefined);setVoiceOpen(false);documentOwner.current=userId; }
     session.current += 1;
     setConversationId(null); setOptimistic([]); setInput(""); setError(""); setPending(false);
     setConsentAccepted(false); setHistoryOpen(false); setConsentOpen(false); setHandoffStory(null); setRated({});
@@ -122,7 +166,7 @@ export default function SaraScreen() {
   function selectConversation(id: ConversationId) {
     if (sending.current) return;
     setPreviewMode(null);
-    setConversationId(id); setOptimistic([]); setInput(""); setError(""); setHistoryOpen(false);
+    setConversationId(id); setSelectedDocumentId(undefined); setOptimistic([]); setInput(""); setError(""); setHistoryOpen(false);
     followBottom.current = true; setAtBottom(true);
   }
 
@@ -178,7 +222,7 @@ export default function SaraScreen() {
       setOptimistic(current => current.map(message => message.id === temporaryId ? { ...message, id: String(savedId) } : message));
       await ask({
         message: body,
-        source: "mobile", clientRequestId: request, locale,
+        source: "mobile", clientRequestId: request, locale, responseLanguage: replyLanguage, documentId:selectedDocumentId as Id<"personal_documents">|undefined,
         conversationId: target === "legacy" ? undefined : target,
       });
     } catch {
@@ -201,22 +245,22 @@ export default function SaraScreen() {
 
   const iconButton = (icon: keyof typeof Ionicons.glyphMap, label: string, onPress: () => void, disabled = false) => (
     <Pressable accessibilityRole="button" accessibilityLabel={label} disabled={disabled} onPress={onPress} style={({ pressed }) => [styles.headerButton, pressed && styles.pressed, disabled && styles.disabled]}>
-      <Ionicons name={icon} size={21} color="#FFF9F5" />
+      <Ionicons name={icon} size={22} color={colors.burgundy} />
     </Pressable>
   );
 
   return <SafeAreaView edges={["top"]} style={styles.screen}>
-    <StatusBar style="light" />
+    <StatusBar style="dark" />
     <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <View style={styles.header}>
         {iconButton("chevron-back", sw ? "Rudi" : "Back", () => router.back())}
-        <View style={styles.identity}><Text style={styles.title}>Haki Yangu <Text style={styles.aiLabel}>AI</Text></Text><Text numberOfLines={1} style={styles.subtitle}>{currentTitle || (sw ? "Tuko pamoja, hatua kwa hatua" : "Together, one step at a time")}</Text></View>
+        <Pressable accessibilityRole="button" accessibilityLabel={sw ? "Kuhusu Haki Yangu AI" : "About Haki Yangu AI"} onPress={() => { Keyboard.dismiss(); setProfileOpen(true); }} style={styles.profileIdentity}><Image source={require("../assets/saada-avatar.jpg")} accessibilityLabel="Haki Yangu AI" style={styles.headerAvatar} /><View style={styles.identity}><Text style={styles.title}>Haki Yangu <Text style={styles.aiLabel}>AI</Text></Text><Text numberOfLines={1} style={styles.subtitle}>{currentTitle || "Haki Yangu"}</Text></View></Pressable>
         {iconButton("time-outline", sw ? "Mazungumzo ya awali" : "Past conversations", () => { Keyboard.dismiss(); setHistorySearch(""); setHistoryOpen(true); }, pending)}
         {iconButton("create-outline", sw ? "Mazungumzo mapya" : "New conversation", () => selectConversation(null), pending)}
       </View>
 
       <View style={styles.canvas}>
-        <View style={styles.contextBar}><View style={styles.lsfMark}><Text style={styles.lsfText}>LSF</Text></View><Text style={styles.contextText}>{sw ? "Msaidizi wako wa haki" : "Your rights companion"}</Text><Pressable accessibilityRole="button" accessibilityLabel={sw ? "Ondoka haraka" : "Quick exit"} onPress={() => router.replace("/(tabs)")} style={styles.exit}><Ionicons name="exit-outline" size={15} color={colors.inkMuted} /><Text style={styles.exitText}>{sw ? "Toka" : "Exit"}</Text></Pressable></View>
+        <View style={styles.contextBar}>{started ? <Image source={require("../assets/lsf-official.png")} resizeMode="contain" accessibilityLabel="LSF" style={{ width: 42, height: 24 }} /> : null}<Text style={styles.contextText}>{sw ? "Msaidizi wako wa haki" : "Your rights companion"}</Text><Pressable accessibilityRole="button" accessibilityLabel={sw ? "Ondoka haraka" : "Quick exit"} onPress={() => router.replace("/(tabs)")} style={styles.exit}><Ionicons name="exit-outline" size={15} color={colors.inkMuted} /><Text style={styles.exitText}>{sw ? "Toka" : "Exit"}</Text></Pressable></View>
         {preview ? <View style={styles.previewBar}><Text style={styles.previewLabel}>Design preview</Text>{(["reply", "working"] as const).map(mode => <Pressable key={mode} onPress={() => { setPreviewMode(mode); followBottom.current = false; scroll.current?.scrollTo({ y: 0, animated: false }); }} style={[styles.previewOption, previewMode === mode && styles.previewSelected]}><Text style={styles.previewLabel}>{mode === "reply" ? "Reply" : "Working"}</Text></Pressable>)}<Pressable accessibilityLabel="Close preview" style={styles.toolButton} onPress={() => selectConversation(null)}><Ionicons name="close" size={17} color={colors.inkMuted} /></Pressable></View> : null}
         <ScrollView ref={scroll} style={styles.flex} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive"
           contentContainerStyle={[styles.chatContent, !started && styles.emptyContent]}
@@ -226,25 +270,24 @@ export default function SaraScreen() {
             followBottom.current = bottom; setAtBottom(bottom);
           }} scrollEventThrottle={80}
           onContentSizeChange={() => { if (started && followBottom.current) scroll.current?.scrollToEnd({ animated: false }); }}>
-          {loadingMessages ? <View style={styles.loading}><ActivityIndicator color={colors.burgundy} /><Text style={styles.smallText}>{sw ? "Inafungua mazungumzo" : "Opening conversation"}</Text></View> : null}
+          {loadingMessages ? <View style={styles.loading}><BrandLoading compact text={sw ? "Inafungua mazungumzo" : "Opening conversation"}/></View> : null}
 
           {!started && !loadingMessages ? <Animated.View style={[styles.welcome, { opacity: entrance, transform: [{ translateY: entrance.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }] }]}>
-            <View style={styles.welcomeMark}><Ionicons name="chatbubble-ellipses-outline" size={27} color={colors.burgundy} /></View>
-            <Text style={styles.greeting}>{sw ? "Karibu. Tuanzie hapa." : "Hello. Let's start here."}</Text>
-            <Text style={styles.welcomeBody}>{sw ? "Niambie kinachoendelea. Tutafute hatua inayokufaa." : "Tell me what's happening. Let's find your next step."}</Text>
+            <Pressable accessibilityRole="button" accessibilityLabel={sw ? "Kuhusu Haki Yangu AI" : "About Haki Yangu AI"} onPress={() => setProfileOpen(true)} style={styles.welcomeProfile}><Image source={require("../assets/saada-avatar.jpg")} accessibilityLabel="Haki Yangu AI" style={styles.welcomeAvatar} /><Text style={styles.emptyTitle}>{sw ? "Nikusaidie nini?" : "How can I help?"}</Text></Pressable>
+            <Text style={styles.welcomeBody}>{sw ? "Ninaweza kueleza haki na hatua za kufuata." : "I can explain rights and possible next steps."}</Text>
             <View style={styles.topicRow}>
-              {[{ icon: "book-outline" as const, sw: "Haki zangu", en: "My rights", color: "#A67927", prompt: prompts[locale][2] }, { icon: "location-outline" as const, sw: "Msaada karibu", en: "Nearby help", color: colors.teal, prompt: prompts[locale][1] }, { icon: "compass-outline" as const, sw: "Hatua inayofuata", en: "Next steps", color: colors.burgundy, prompt: prompts[locale][0] }].map(topic => <Pressable key={topic.en} style={styles.topic} onPress={() => { setInput(topic.prompt); inputRef.current?.focus(); }}><Ionicons name={topic.icon} size={20} color={topic.color} /><Text style={styles.topicText}>{sw ? topic.sw : topic.en}</Text></Pressable>)}
+              {[{ icon: "book-outline" as const, sw: "Elewa haki zako", en: "Understand your rights", color: "#A67927", prompt: prompts[locale][2] }, { icon: "location-outline" as const, sw: "Pata msaada karibu", en: "Find nearby support", color: colors.teal, prompt: prompts[locale][1] }, { icon: "compass-outline" as const, sw: "Jua hatua inayofuata", en: "Work out your next step", color: colors.burgundy, prompt: prompts[locale][0] }].map(topic => <Pressable accessibilityRole="button" key={topic.en} style={({ pressed }) => [styles.topic, pressed && styles.pressed]} onPress={() => { setInput(topic.prompt); inputRef.current?.focus(); }}><View style={styles.topicIcon}><Ionicons name={topic.icon} size={23} color={topic.color} /></View><View style={styles.flex}><Text style={styles.topicText}>{sw ? topic.sw : topic.en}</Text><Text style={styles.topicDetail}>{topic.prompt}</Text></View><Ionicons name="arrow-forward" size={18} color={colors.inkMuted} /></Pressable>)}
             </View>
-            <View style={styles.suggestions}>{prompts[locale].slice(0, 2).map(prompt => <Pressable key={prompt} onPress={() => { setInput(prompt); inputRef.current?.focus(); }} style={styles.suggestion}><Text style={styles.suggestionText}>{prompt}</Text><Ionicons name="arrow-forward" size={16} color="#8C898B" /></Pressable>)}</View>
             {isSignedIn && threads.results[0] ? <Pressable style={styles.resume} onPress={() => selectConversation(threads.results[0]._id)}><Ionicons name="time-outline" size={17} color={colors.inkMuted} /><View style={styles.flex}><Text style={styles.resumeLabel}>{sw ? "Endelea ulipoishia" : "Pick up where you left off"}</Text><Text numberOfLines={1} style={styles.resumeTitle}>{threads.results[0].title}</Text></View><Ionicons name="chevron-forward" size={15} color={colors.inkMuted} /></Pressable> : null}
           </Animated.View> : null}
 
           {conversationId && history.status === "CanLoadMore" ? <Pressable style={styles.loadMore} onPress={() => { followBottom.current = false; history.loadMore(30); }}><Text style={styles.smallText}>{sw ? "Ujumbe wa awali" : "Earlier messages"}</Text></Pressable> : null}
-          {history.status === "LoadingMore" ? <ActivityIndicator color={colors.teal} /> : null}
+          {history.status === "LoadingMore" ? <BrandLoading compact task="messages"/> : null}
           <View style={styles.messageList}>{messages.map(message => <View key={message.id} style={message.role === "user" ? styles.userRow : styles.assistantRow}>
             {message.role === "user" ? <View style={styles.userBubble}><Text selectable style={styles.userText}>{message.content}</Text></View> : <>
-              <View style={styles.answerIdentity}><Ionicons name={message.failed ? "information-circle-outline" : "sparkles-outline"} size={14} color={colors.burgundy} /><Text style={styles.answerIdentityText}>{message.failed ? (sw ? "Haipatikani kwa sasa" : "Temporarily unavailable") : "Haki Yangu AI"}</Text></View>
+              <Pressable accessibilityRole="button" accessibilityLabel={sw ? "Kuhusu Haki Yangu AI" : "About Haki Yangu AI"} onPress={() => setProfileOpen(true)} style={styles.answerIdentity}><Image source={require("../assets/saada-avatar.jpg")} accessibilityLabel="Haki Yangu AI" style={styles.answerAvatar} /><Text style={styles.answerIdentityText}>{message.failed ? (sw ? "Haipatikani kwa sasa" : "Temporarily unavailable") : "Haki Yangu AI"}</Text></Pressable>
               <ChatResponse content={message.content} sources={message.sources} sw={sw} preview={preview} />
+              {isSignedIn && !pending && !preview && message.completed && !message.failed ? speechId === message.id ? <SaadaSpeechPlayer key={`${userId}:${conversationId}:${message.id}`} messageId={message.id as Id<"sara_chats">} sw={sw} onClose={() => setSpeechId(null)}/> : <Pressable accessibilityRole="button" accessibilityLabel={sw ? "Sikiliza jibu" : "Listen to answer"} style={{minHeight:48,flexDirection:'row',alignItems:'center',gap:8}} onPress={() => setSpeechId(message.id)}><Ionicons name="volume-medium-outline" size={18} color={colors.burgundy}/><Text style={[styles.smallText,{color:colors.burgundy}]}>{sw ? "Sikiliza · Sauti ya AI (OpenAI)" : "Listen · AI voice (OpenAI)"}</Text></Pressable> : null}
               {!pending && !preview && !message.failed ? <View style={styles.answerTools}><Pressable style={styles.toolButton} accessibilityLabel={sw ? "Jibu limesaidia" : "Helpful response"} onPress={() => void rate(message.id, "positive")}><Ionicons name={rated[message.id] === "positive" ? "thumbs-up" : "thumbs-up-outline"} size={16} color={rated[message.id] === "positive" ? colors.teal : "#939094"} /></Pressable><Pressable style={styles.toolButton} accessibilityLabel={sw ? "Jibu halijasaidia" : "Unhelpful response"} onPress={() => void rate(message.id, "negative")}><Ionicons name={rated[message.id] === "negative" ? "thumbs-down" : "thumbs-down-outline"} size={16} color={rated[message.id] === "negative" ? colors.burgundy : "#939094"} /></Pressable>{rated[message.id] ? <Text style={styles.smallText}>{sw ? "Asante" : "Thank you"}</Text> : null}</View> : null}
             </>}
           </View>)}</View>
@@ -258,27 +301,44 @@ export default function SaraScreen() {
 
         {!atBottom && started ? <Pressable accessibilityLabel={sw ? "Ujumbe mpya zaidi" : "Latest message"} style={styles.jumpButton} onPress={() => toBottom()}><Ionicons name="arrow-down" size={19} color={colors.charcoal} /></Pressable> : null}
         <View style={[styles.composerArea, { paddingBottom: keyboardVisible ? 8 : Math.max(insets.bottom, 12) }]}>
-          {!isSignedIn ? <Pressable style={styles.signIn} onPress={() => router.push({ pathname: "/sign-in", params: { returnTo: "sara" } })}><Ionicons name="lock-closed-outline" size={12} color={colors.inkMuted} /><Text style={styles.signInText}>{sw ? "Ingia ili kuhifadhi na kuendelea na mazungumzo" : "Sign in to save and continue your conversations"}</Text><Ionicons name="arrow-forward" size={13} color={colors.burgundy} /></Pressable> : null}
+          <View style={styles.replyLanguageRow} accessibilityRole="radiogroup" accessibilityLabel={sw ? "Lugha ya majibu" : "Reply language"}>
+            <Text style={styles.replyLanguageLabel}>{sw ? "Majibu:" : "Replies:"}</Text>
+            {([['auto', 'Auto'], ['en', 'English'], ['sw', 'Kiswahili']] as const).map(([value,label]) => <Pressable key={value} accessibilityRole="radio" accessibilityLabel={value === 'auto' ? (sw ? 'Fuata lugha ya swali' : 'Follow the message language') : label} accessibilityState={{checked:replyLanguage === value, disabled:pending}} disabled={pending} onPress={() => chooseReplyLanguage(value)} style={[styles.replyLanguageOption, replyLanguage === value && styles.replyLanguageSelected]}><Text style={[styles.replyLanguageText, replyLanguage === value && styles.replyLanguageSelectedText]}>{label}</Text></Pressable>)}
+          </View>
+          {!isSignedIn ? <Pressable style={styles.signIn} onPress={() => router.push({ pathname: "/sign-in", params: { returnTo: "sara" } })}><Ionicons name="lock-closed-outline" size={14} color={colors.inkMuted} /><Text style={styles.signInText}>{sw ? "Ingia kuanza mazungumzo" : "Sign in to start a conversation"}</Text><Ionicons name="arrow-forward" size={15} color={colors.burgundy} /></Pressable> : null}
+          {selectedDocument ? <View style={styles.contextBar}><Text numberOfLines={1} style={[styles.contextText,{flex:1}]}>{selectedDocument.name}</Text><Pressable accessibilityRole="button" accessibilityLabel={sw ? "Ondoa hati kwenye swali" : "Remove document from question"} style={styles.lightIcon} onPress={() => setSelectedDocumentId(undefined)}><Ionicons name="close" size={18} color={colors.inkMuted} /></Pressable></View> : null}
+          <Pressable accessibilityRole="button" disabled={pending} onPress={() => router.push("/document-checker")} style={styles.voiceToggle}><Ionicons name="camera-outline" size={18} color={colors.burgundy}/><Text style={styles.replyLanguageText}>{sw ? "Piga picha au ongeza hati" : "Take a photo or add a document"}</Text></Pressable>
+          {isSignedIn ? <><Pressable accessibilityRole="button" accessibilityState={{expanded:voiceOpen}} disabled={pending} onPress={() => { Keyboard.dismiss(); setVoiceOpen(value => !value); }} style={styles.voiceToggle}><Ionicons name="mic-outline" size={18} color={colors.burgundy} /><Text style={styles.replyLanguageText}>{sw ? "Uliza kwa sauti" : "Ask by voice"}</Text></Pressable>{voiceOpen ? <ScrollView style={{maxHeight:200}} keyboardShouldPersistTaps="handled"><IntakeVoice key={userId} sw={sw} disabled={pending} consentMessage={sw ? "Rekodi hii itatumwa kwa OpenAI kwa unukuzi. Kagua na uhariri maandishi kabla ya kutuma swali kwa Haki Yangu AI." : "This recording will be sent to OpenAI for transcription. Review and edit the text before sending your question to Haki Yangu AI."} onTranscribe={transcribeQuestion} onText={text => {setInput(current => [current.trim(),text].filter(Boolean).join("\n").slice(0,5000));setVoiceOpen(false);inputRef.current?.focus();}} /></ScrollView> : null}</> : null}
           <View style={styles.composer}>
-            <TextInput ref={inputRef} accessibilityLabel={sw ? "Ujumbe kwa Haki Yangu AI" : "Message Haki Yangu AI"} value={input} editable={!preview} autoCorrect={!sw} spellCheck={!sw} onChangeText={setInput} multiline maxLength={1200} style={styles.input} placeholder={sw ? "Uliza chochote kuhusu haki zako..." : "Ask about your rights..."} placeholderTextColor="#989397" textAlignVertical="top" onFocus={() => { if (followBottom.current) toBottom(false); }} />
-            <Pressable accessibilityRole="button" accessibilityLabel={sw ? "Tuma ujumbe" : "Send message"} accessibilityState={{ disabled: pending || preview || !input.trim() }} disabled={pending || preview || !input.trim()} onPress={() => void send()} style={({ pressed }) => [styles.send, !input.trim() && styles.sendIdle, pressed && styles.pressed]}>{pending ? <ActivityIndicator size="small" color="#FFFFFF" /> : <Ionicons name="arrow-up" size={21} color={input.trim() ? "#FFFFFF" : "#827A7E"} />}</Pressable>
+            <TextInput ref={inputRef} accessibilityLabel={sw ? "Ujumbe kwa Haki Yangu AI" : "Message Haki Yangu AI"} value={input} editable={!preview} autoCorrect={false} spellCheck={false} onChangeText={setInput} multiline maxLength={5000} style={styles.input} placeholder={sw ? "Uliza chochote kuhusu haki zako..." : "Ask about your rights..."} placeholderTextColor="#989397" textAlignVertical="top" onFocus={() => { if (followBottom.current) toBottom(false); }} />
+            <Pressable accessibilityRole="button" accessibilityLabel={sw ? "Tuma ujumbe" : "Send message"} accessibilityState={{ disabled: pending || preview || !input.trim() }} disabled={pending || preview || !input.trim()} onPress={() => void send()} style={({ pressed }) => [styles.send, !input.trim() && styles.sendIdle, pressed && styles.pressed]}>{pending ? <BrandLoadingMark small/> : <Ionicons name="arrow-up" size={21} color={input.trim() ? "#FFFFFF" : "#827A7E"} />}</Pressable>
           </View>
           <Text style={styles.disclaimer}>{sw ? "Mwongozo wa jumla. Hakiki taarifa muhimu." : "General guidance. Check important information."}</Text>
         </View>
       </View>
     </KeyboardAvoidingView>
 
+    <Modal visible={profileOpen} transparent animationType={reducedMotion ? "none" : "fade"} onRequestClose={() => setProfileOpen(false)}>
+      <View style={styles.modalBackdrop}><View accessibilityViewIsModal style={[styles.consentSheet, { maxHeight: Math.max(200, windowHeight - insets.top - insets.bottom - 48) }]}><ScrollView contentContainerStyle={{ gap: 16 }}>
+        <View style={styles.consentHeader}><Image source={require("../assets/saada-avatar.jpg")} accessibilityLabel="Haki Yangu AI" style={styles.welcomeAvatar} /><Pressable accessibilityRole="button" accessibilityLabel={sw ? "Funga" : "Close profile"} onPress={() => setProfileOpen(false)} style={styles.lightIcon}><Ionicons name="close" size={22} color={colors.inkMuted} /></Pressable></View>
+        <Text accessibilityRole="header" style={styles.emptyTitle}>{sw ? "Kuhusu Haki Yangu AI" : "About Haki Yangu AI"}</Text>
+        <Text style={styles.consentBody}>{sw ? "Msaidizi wako wa Haki Yangu AI wa LSF. Unaweza kuzungumza nami kwa Kiswahili au Kiingereza." : "Your Haki Yangu AI assistant at LSF. You can talk with me in English or Kiswahili."}</Text>
+        <Text style={styles.consentBody}>{sw ? "Naweza kukusaidia kueleza hali yako, kutafuta mwongozo na mawasiliano ya msaada, na kuandaa rasimu ya ombi. Mimi ni AI; sipigi simu wala kutuma rufaa kupitia mazungumzo haya." : "I can help you talk through a situation, look for guidance and support contacts, and prepare a draft request. I’m an AI; I don’t make calls or send referrals through this chat."}</Text>
+        <Pressable accessibilityRole="button" onPress={() => setProfileOpen(false)} style={styles.modalPrimary}><Text style={styles.modalPrimaryText}>{sw ? "Tuendelee" : "Let’s talk"}</Text><Ionicons name="arrow-forward" size={18} color="#FFFFFF" /></Pressable>
+      </ScrollView></View></View>
+    </Modal>
+
     <Modal visible={historyOpen} animationType={reducedMotion ? "none" : "slide"} onRequestClose={() => setHistoryOpen(false)}>
       <View style={[styles.historyScreen, { paddingTop: insets.top, paddingBottom: insets.bottom }]}><StatusBar style="dark" />
         <View style={styles.historyHeader}><Pressable style={styles.lightIcon} accessibilityLabel={sw ? "Funga historia" : "Close history"} onPress={() => setHistoryOpen(false)}><Ionicons name="chevron-back" size={23} color={colors.charcoal} /></Pressable><Text style={styles.historyTitle}>{sw ? "Mazungumzo yako" : "Your conversations"}</Text><Pressable style={styles.lightIcon} accessibilityLabel={sw ? "Mazungumzo mapya" : "New conversation"} onPress={() => selectConversation(null)}><Ionicons name="create-outline" size={22} color={colors.burgundy} /></Pressable></View>
         <View style={styles.search}><Ionicons name="search-outline" size={18} color={colors.inkMuted} /><TextInput value={historySearch} onChangeText={setHistorySearch} style={styles.searchInput} placeholder={sw ? "Tafuta mazungumzo" : "Search conversations"} placeholderTextColor={colors.inkMuted} accessibilityLabel={sw ? "Tafuta mazungumzo" : "Search conversations"} /></View>
         {!isSignedIn ? <View style={styles.historyEmpty}><Ionicons name="chatbubbles-outline" size={34} color={colors.teal} /><Text style={styles.emptyTitle}>{sw ? "Mazungumzo yako, pamoja." : "Your conversations, together."}</Text><Text style={styles.emptyBody}>{sw ? "Ingia ili kuhifadhi mazungumzo na kuyarudia baadaye." : "Sign in to keep your conversations and return to them later."}</Text><Pressable style={styles.modalPrimary} onPress={() => { setHistoryOpen(false); router.push({ pathname: "/sign-in", params: { returnTo: "sara" } }); }}><Text style={styles.modalPrimaryText}>{sw ? "Ingia" : "Sign in"}</Text></Pressable></View> : <ScrollView contentContainerStyle={styles.historyList} keyboardShouldPersistTaps="handled">
-          {threads.status === "LoadingFirstPage" ? <ActivityIndicator color={colors.burgundy} /> : null}
-          {filteredThreads.map(thread => <View key={thread._id} style={[styles.historyItem, conversationId === thread._id && styles.historyItemActive]}><Pressable onPress={() => selectConversation(thread._id)} style={styles.historyOpenRow}><Ionicons name="chatbubble-outline" size={19} color={colors.inkMuted} /><View style={styles.flex}><Text numberOfLines={2} style={styles.historyItemTitle}>{thread.title}</Text><Text style={styles.historyDate}>{new Date(thread.updatedAt).toLocaleDateString(sw ? "sw-TZ" : "en-GB", { day: "numeric", month: "short" })}</Text></View></Pressable><Pressable disabled={Boolean(deleting)} style={styles.lightIcon} accessibilityLabel={(sw ? "Futa mazungumzo: " : "Delete conversation: ") + thread.title} onPress={() => confirmDelete(thread._id, thread.title)}>{deleting === thread._id ? <ActivityIndicator size="small" color={colors.burgundy} /> : <Ionicons name="trash-outline" size={17} color="#A1949B" />}</Pressable></View>)}
+          {threads.status === "LoadingFirstPage" ? <BrandLoading compact task="messages"/> : null}
+          {filteredThreads.map(thread => <View key={thread._id} style={[styles.historyItem, conversationId === thread._id && styles.historyItemActive]}><Pressable onPress={() => selectConversation(thread._id)} style={styles.historyOpenRow}><Ionicons name="chatbubble-outline" size={19} color={colors.inkMuted} /><View style={styles.flex}><Text numberOfLines={2} style={styles.historyItemTitle}>{thread.title}</Text><Text style={styles.historyDate}>{new Date(thread.updatedAt).toLocaleDateString(sw ? "sw-TZ" : "en-GB", { day: "numeric", month: "short" })}</Text></View></Pressable><Pressable disabled={Boolean(deleting)} style={styles.lightIcon} accessibilityLabel={(sw ? "Futa mazungumzo: " : "Delete conversation: ") + thread.title} onPress={() => confirmDelete(thread._id, thread.title)}>{deleting === thread._id ? <BrandLoading compact task="messages"/> : <Ionicons name="trash-outline" size={17} color="#A1949B" />}</Pressable></View>)}
           {legacy && !historySearch ? <View style={styles.historyItem}><Pressable style={styles.historyOpenRow} onPress={() => selectConversation("legacy")}><Ionicons name="archive-outline" size={19} color={colors.inkMuted} /><View style={styles.flex}><Text style={styles.historyItemTitle}>{sw ? "Mazungumzo ya awali" : "Earlier conversation"}</Text><Text style={styles.historyDate}>{sw ? "Historia yako iliyohifadhiwa" : "Your existing saved history"}</Text></View></Pressable><Pressable disabled={Boolean(deleting)} style={styles.lightIcon} accessibilityLabel={sw ? "Futa mazungumzo ya awali" : "Delete earlier conversation"} onPress={() => confirmDelete("legacy", sw ? "Mazungumzo ya awali" : "Earlier conversation")}><Ionicons name="trash-outline" size={17} color="#A1949B" /></Pressable></View> : null}
           {!filteredThreads.length && (historySearch || !legacy) && threads.status !== "LoadingFirstPage" ? <View style={styles.historyEmpty}><Ionicons name="chatbubbles-outline" size={30} color={colors.teal} /><Text style={styles.emptyTitle}>{historySearch ? (sw ? "Hakuna matokeo" : "No matches") : (sw ? "Mwanzo mpya" : "A fresh start")}</Text><Text style={styles.emptyBody}>{historySearch ? (sw ? "Jaribu maneno mengine." : "Try another search.") : (sw ? "Mazungumzo utakayoanza yataonekana hapa." : "Conversations you start will appear here.")}</Text></View> : null}
           {threads.status === "CanLoadMore" ? <Pressable style={styles.loadMore} onPress={() => threads.loadMore(20)}><Text style={styles.smallText}>{sw ? "Mazungumzo zaidi" : "More conversations"}</Text></Pressable> : null}
-          {threads.status === "LoadingMore" ? <ActivityIndicator color={colors.teal} /> : null}
+          {threads.status === "LoadingMore" ? <BrandLoading compact task="messages"/> : null}
         </ScrollView>}
         {__DEV__ ? <Pressable style={styles.previewEntry} onPress={() => { setHistoryOpen(false); setPreviewMode("reply"); setConversationId(null); setOptimistic([]); setError(""); setInput(""); followBottom.current = false; }}><Ionicons name="color-palette-outline" size={18} color={colors.teal} /><Text style={styles.smallText}>Design preview</Text><Ionicons name="arrow-forward" size={16} color={colors.inkMuted} /></Pressable> : null}
       </View>
@@ -316,29 +376,31 @@ const styles = StyleSheet.create({
   previewOption: { paddingHorizontal: 10, paddingVertical: 9, borderRadius: 6 },
   previewSelected: { backgroundColor: "#E1ECE7" },
   previewEntry: { flexDirection: "row", alignItems: "center", gap: 12, padding: 24, borderTopWidth: 1, borderTopColor: "#EEE9EC" },
-  screen: { flex: 1, backgroundColor: "#321D27" },
-  header: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 12, paddingTop: 6, paddingBottom: 22 },
-  headerButton: { width: 42, height: 44, alignItems: "center", justifyContent: "center" },
+  screen: { flex: 1, backgroundColor: "#FFFFFF" },
+  header: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 12, paddingTop: 6, paddingBottom: 12 },
+  headerButton: { width: 48, height: 48, alignItems: "center", justifyContent: "center" },
   identity: { flex: 1, paddingLeft: 5 },
-  title: { fontFamily: type.medium, fontSize: 18, color: "#FFF9F5", lineHeight: 24 },
-  aiLabel: { fontFamily: type.regular, color: "#DAC0CB" },
-  subtitle: { fontFamily: type.regular, fontSize: 11, color: "#C5AEB9", marginTop: 3 },
+  title: { fontFamily: type.semibold, fontSize: 20, color: colors.charcoal, lineHeight: 27 },
+  aiLabel: { fontFamily: type.regular, color: colors.burgundy },
+  subtitle: { fontFamily: type.regular, fontSize: 12, color: colors.inkMuted, marginTop: 3 },
   canvas: { flex: 1, backgroundColor: "#FFFFFF", borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: "hidden" },
   contextBar: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 24, paddingTop: 13, paddingBottom: 8 },
   lsfMark: { width: 27, height: 23, borderRadius: 5, backgroundColor: "#F6F0DF", alignItems: "center", justifyContent: "center" },
   lsfText: { fontFamily: type.medium, fontSize: 9, color: "#806321" },
-  contextText: { flex: 1, fontFamily: type.regular, fontSize: 11, color: "#969094" },
-  exit: { minHeight: 36, flexDirection: "row", alignItems: "center", gap: 5 },
+  contextText: { flex: 1, fontFamily: type.regular, fontSize: 12, color: colors.inkMuted },
+  exit: { minHeight: 48, flexDirection: "row", alignItems: "center", gap: 5 },
   exitText: { fontFamily: type.regular, fontSize: 11, color: colors.inkMuted },
   chatContent: { paddingHorizontal: 24, paddingTop: 18, paddingBottom: 24 },
   emptyContent: { flexGrow: 1 },
-  welcome: { paddingTop: 28 },
+  welcome: { paddingTop: 14 },
   welcomeMark: { width: 54, height: 54, borderRadius: 18, backgroundColor: "#F6EFF2", alignItems: "center", justifyContent: "center", marginBottom: 24 },
-  greeting: { fontFamily: type.medium, fontSize: 29, lineHeight: 37, color: "#34272E", maxWidth: 290 },
-  welcomeBody: { fontFamily: type.regular, fontSize: 15, lineHeight: 23, color: "#8A8287", marginTop: 12, maxWidth: 300 },
-  topicRow: { flexDirection: "row", gap: 10, marginTop: 30 },
-  topic: { flex: 1, minHeight: 76, paddingVertical: 12, paddingHorizontal: 7, alignItems: "center", justifyContent: "center", gap: 10, borderRadius: 8, backgroundColor: "#F8F8F6" },
-  topicText: { fontFamily: type.regular, fontSize: 11, textAlign: "center", color: "#655E62", lineHeight: 16 },
+  greeting: { fontFamily: type.semibold, fontSize: 26, lineHeight: 34, color: colors.charcoal },
+  welcomeBody: { fontFamily: type.regular, fontSize: 16, lineHeight: 24, color: colors.inkMuted, marginTop: 10 },
+  topicRow: { gap: 10, marginTop: 28 },
+  topic: { minHeight: 88, paddingVertical: 14, paddingHorizontal: 14, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 8, backgroundColor: "#F5F7F6" },
+  topicIcon: { width: 36, alignItems: "center", justifyContent: "center" },
+  topicText: { fontFamily: type.medium, fontSize: 15, color: colors.charcoal, lineHeight: 22 },
+  topicDetail: { fontFamily: type.regular, fontSize: 13, color: colors.inkMuted, lineHeight: 20, marginTop: 4 },
   suggestions: { marginTop: 23 },
   suggestion: { flexDirection: "row", alignItems: "center", gap: 20, paddingVertical: 17, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: "#EAE7E8" },
   suggestionText: { flex: 1, fontFamily: type.regular, fontSize: 14, lineHeight: 21, color: "#756D72" },
@@ -350,21 +412,33 @@ const styles = StyleSheet.create({
   userBubble: { maxWidth: "87%", backgroundColor: "#F2EDF0", borderRadius: 20, borderTopRightRadius: 5, paddingHorizontal: 17, paddingVertical: 13 },
   userText: { fontFamily: type.regular, fontSize: 15, lineHeight: 23, color: "#4F3946" },
   assistantRow: { gap: 12 },
+  profileIdentity: { flex: 1, minWidth: 0, flexDirection: "row", alignItems: "center", gap: 10 },
+  headerAvatar: { width: 40, height: 40, borderRadius: 20 },
+  welcomeProfile: { gap: 18, alignItems: "flex-start" },
+  welcomeAvatar: { width: 72, height: 72, borderRadius: 36 },
+  answerAvatar: { width: 30, height: 30, borderRadius: 15 },
   answerIdentity: { flexDirection: "row", alignItems: "center", gap: 7 },
-  answerIdentityText: { fontFamily: type.regular, fontSize: 11, color: "#9C7C8A" },
+  answerIdentityText: { fontFamily: type.medium, fontSize: 12, color: colors.burgundy },
   answerTools: { flexDirection: "row", alignItems: "center", gap: 3 },
   toolButton: { width: 42, height: 42, alignItems: "center", justifyContent: "center" },
   nextSteps: { flexDirection: "row", flexWrap: "wrap", gap: 10, marginTop: 14 },
   nextStep: { flexDirection: "row", alignItems: "center", gap: 7, minHeight: 42, borderRadius: 8, paddingHorizontal: 11, backgroundColor: "#F5F7F5" },
   nextStepText: { fontFamily: type.regular, fontSize: 12, color: "#696568" },
+  voiceToggle: { minHeight: 40, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 4 },
   composerArea: { paddingHorizontal: 16, paddingTop: 10, backgroundColor: "#FFFFFF" },
-  composer: { flexDirection: "row", alignItems: "flex-end", gap: 8, padding: 7, backgroundColor: "#F8F6F7", borderRadius: 27, borderWidth: 1, borderColor: "#EEE9EC" },
+  replyLanguageRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 6, marginBottom: 8 },
+  replyLanguageLabel: { fontFamily: type.regular, fontSize: 12, color: colors.inkMuted, marginRight: 2 },
+  replyLanguageOption: { minHeight: 44, justifyContent: "center", paddingHorizontal: 12, borderRadius: 12, borderWidth: 1, borderColor: "#E6E1E4" },
+  replyLanguageSelected: { borderColor: colors.burgundy, backgroundColor: "#F8F0F4" },
+  replyLanguageText: { fontFamily: type.regular, fontSize: 12, color: colors.inkMuted },
+  replyLanguageSelectedText: { fontFamily: type.bold, color: colors.burgundy },
+  composer: { flexDirection: "row", alignItems: "flex-end", gap: 8, padding: 7, backgroundColor: "#F3F4F4", borderRadius: 18 },
   input: { flex: 1, minHeight: 42, maxHeight: 130, paddingVertical: 11, paddingLeft: 13, fontFamily: type.regular, fontSize: 14, lineHeight: 21, color: "#3F353B" },
-  send: { width: 42, height: 42, borderRadius: 21, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
+  send: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
   sendIdle: { backgroundColor: "#EAE2E6" },
-  disclaimer: { textAlign: "center", fontFamily: type.regular, fontSize: 10, lineHeight: 16, color: "#A49CA1", marginTop: 9 },
-  signIn: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 6, paddingBottom: 12 },
-  signInText: { flexShrink: 1, fontFamily: type.regular, fontSize: 11, color: "#81757C" },
+  disclaimer: { textAlign: "center", fontFamily: type.regular, fontSize: 11, lineHeight: 17, color: colors.inkMuted, marginTop: 9 },
+  signIn: { minHeight: 48, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, paddingBottom: 8 },
+  signInText: { flexShrink: 1, fontFamily: type.regular, fontSize: 13, color: colors.inkMuted },
   jumpButton: { position: "absolute", bottom: 155, right: 23, width: 38, height: 38, borderRadius: 19, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#E6E0E3", alignItems: "center", justifyContent: "center" },
   errorRow: { flexDirection: "row", alignItems: "center", gap: 8, marginTop: 16 },
   errorText: { flex: 1, fontFamily: type.regular, fontSize: 13, lineHeight: 20, color: colors.burgundy },
@@ -381,7 +455,7 @@ const styles = StyleSheet.create({
   searchInput: { flex: 1, minHeight: 48, fontFamily: type.regular, fontSize: 14, color: colors.charcoal },
   historyList: { paddingHorizontal: 16, paddingBottom: 30 },
   historyOpenRow: { flex: 1, flexDirection: "row", alignItems: "center", gap: 13, minHeight: 48 },
-  historyItem: { flexDirection: "row", alignItems: "center", gap: 13, paddingHorizontal: 12, paddingVertical: 18, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: "#EEE9EC" },
+  historyItem: { flexDirection: "row", alignItems: "center", gap: 13, paddingHorizontal: 12, paddingVertical: 18 },
   historyItemActive: { backgroundColor: "#F8F2F5", borderRadius: 8 },
   historyItemTitle: { fontFamily: type.medium, fontSize: 15, lineHeight: 22, color: "#4D3C46" },
   historyDate: { fontFamily: type.regular, fontSize: 11, color: "#A0969C", marginTop: 5 },

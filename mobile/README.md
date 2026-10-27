@@ -193,3 +193,7 @@ Use at least one iOS device and one Android device. Simulators are not enough fo
 ## Security status
 
 Clerk Expo is pinned outside the disclosed authorization-bypass advisory range. Current npm audit output still reports Expo/Metro/React Native toolchain advisories whose proposed automatic fix is an incompatible Expo downgrade. Do not run `npm audit fix --force`; review compatible upstream patches when Expo publishes them.
+
+## October 2026 release guard
+
+Production EAS builds now require explicit production Convex, live Clerk and valid EAS UUID configuration. They do not inherit the parent development environment. `npm run release:config` applies the same guard locally; failure is expected until production values are configured. The Android production profile emits an app bundle. See `../docs/haki-yangu/release-2026-10-19/README.md` for the release gates and evidence; JavaScript export alone is not a signed native release.

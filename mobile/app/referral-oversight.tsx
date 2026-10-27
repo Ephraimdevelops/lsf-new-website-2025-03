@@ -1,3 +1,7 @@
+import { LoadingText } from '../src/components/BrandLoading';
+import { BrandLoading } from '../src/components/BrandLoading';
+import { SearchFilters } from "../src/components/SearchFilters";
+import { AdminIntro } from "../src/admin/AdminIntro";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useQuery } from "convex/react";
 import { router } from "expo-router";
@@ -6,7 +10,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { api } from "../src/backend/api";
 import { AppHeader } from "../src/components/AppHeader";
 import { Button } from "../src/components/Button";
-import { Screen } from "../src/components/Screen";
+import { AdminScreen as Screen } from "../src/admin/AdminScreen";
 import { Surface } from "../src/components/Surface";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
@@ -36,16 +40,15 @@ export default function ReferralOversightScreen() {
     });
   }, [queue, filter, search]);
 
-  if (access === undefined) return <Screen><AppHeader back title={sw ? "Usimamizi wa rufaa" : "Referral oversight"} /><Text style={styles.muted}>{sw ? "Inapakia ruhusa..." : "Loading access..."}</Text></Screen>;
+  if (access === undefined) return <Screen><AppHeader back title={sw ? "Usimamizi wa rufaa" : "Referral oversight"} /><BrandLoading compact text={sw ? "Inapakia ruhusa..." : "Loading access..."}/></Screen>;
   if (!allowed) return <Screen><AppHeader back title={sw ? "Usimamizi wa rufaa" : "Referral oversight"} /><Surface tone="orange"><Text style={styles.title}>{sw ? "Ruhusa ya timu ya LSF inahitajika." : "An authorised LSF role is required."}</Text></Surface></Screen>;
 
   return <Screen>
     <AppHeader back title={sw ? "Usimamizi wa rufaa" : "Referral oversight"} eyebrow="LSF · RESTRICTED" />
-    <View style={styles.hero}><Ionicons name="git-compare-outline" size={29} color={colors.peach} /><Text style={styles.heroTitle}>{sw ? "Fuatilia kila uelekezaji." : "Track every handoff."}</Text><Text style={styles.heroBody}>{sw ? "Angalia ridhaa inayosubiriwa, majibu ya watoa huduma, rufaa zilizorudishwa na ushahidi unaohitaji ukaguzi." : "See pending consent, provider responses, returned referrals and evidence awaiting review."}</Text></View>
+    <AdminIntro icon="book-outline" eyebrow="LSF" title={sw ? "Fuatilia kila uelekezaji." : "Track every handoff."} description={sw ? "Angalia ridhaa inayosubiriwa, majibu ya watoa huduma, rufaa zilizorudishwa na ushahidi unaohitaji ukaguzi." : "See pending consent, provider responses, returned referrals and evidence awaiting review."} />
     <View style={styles.metrics}><Metric value={queue?.filter(({ referral }) => referral.status === "awaiting_beneficiary_consent").length ?? 0} label={sw ? "Ridhaa" : "Consent"} /><Metric value={queue?.filter(({ referral, destinationUnavailable }) => attention.has(referral.status) || destinationUnavailable && !["closed", "declined", "returned"].includes(referral.status)).length ?? 0} label={sw ? "Zihitaji hatua" : "Need action"} /><Metric value={evidence?.length ?? 0} label={sw ? "Ushahidi" : "Evidence"} /></View>
-    <TextInput value={search} onChangeText={setSearch} style={styles.search} placeholder={sw ? "Tafuta namba ya rufaa, kesi au huduma" : "Search referral, case or service"} placeholderTextColor={colors.inkMuted} accessibilityLabel={sw ? "Tafuta rufaa" : "Search referrals"} />
-    <View style={styles.filters}>{(["attention", "consent", "provider", "all"] as Filter[]).map((item) => <Pressable key={item} accessibilityRole="tab" accessibilityState={{ selected: filter === item }} style={[styles.filter, filter === item && styles.filterActive]} onPress={() => setFilter(item)}><Text style={[styles.filterText, filter === item && styles.filterTextActive]}>{item === "attention" ? (sw ? "Hatua" : "Action") : item === "consent" ? (sw ? "Ridhaa" : "Consent") : item === "provider" ? (sw ? "Mtoa huduma" : "Provider") : (sw ? "Zote" : "All")}</Text></Pressable>)}</View>
-    <Text style={styles.count}>{queue === undefined ? (sw ? "Inapakia rufaa..." : "Loading referrals...") : `${visible.length} ${sw ? "rufaa" : "referrals"}`}</Text>
+    <SearchFilters value={search} onChange={setSearch} sw={sw} placeholder={sw ? "Tafuta rufaa, kesi au huduma" : "Find a referral, case or service"} label={sw ? "Onyesha" : "Show"} title={sw ? "Rufaa unazotaka kuona" : "Referrals to show"} count={Number(filter !== "attention")} onReset={() => setFilter("attention")}><View style={{gap:8}}>{(["attention","consent","provider","all"] as Filter[]).map(item => <Button key={item} label={item === "attention" ? (sw ? "Zinahitaji hatua" : "Need attention") : item === "consent" ? (sw ? "Zinasubiri ridhaa" : "Awaiting consent") : item === "provider" ? (sw ? "Zinasubiri mtoa huduma" : "Awaiting provider") : (sw ? "Zote" : "All")} variant={filter === item ? "primary" : "secondary"} onPress={() => setFilter(item)} />)}</View></SearchFilters>
+    <LoadingText style={styles.count}>{queue === undefined ? (sw ? "Inapakia rufaa..." : "Loading referrals...") : `${visible.length} ${sw ? "rufaa" : "referrals"}`}</LoadingText>
     {queue !== undefined && visible.length === 0 ? <Surface tone="teal"><Text style={styles.title}>{sw ? "Hakuna rufaa inayolingana." : "No matching referrals."}</Text><Text style={styles.body}>{sw ? "Badili kichujio au utafutaji kuona hali nyingine." : "Change the filter or search to see another status."}</Text></Surface> : visible.map(({ referral, case: record, destinationService, destinationUnavailable, consent }) => <Pressable key={referral._id} accessibilityRole="button" style={styles.card} onPress={() => router.push({ pathname: "/referral-oversight/[id]", params: { id: referral._id } })}>
       <View style={styles.row}><View style={styles.icon}><Ionicons name={attention.has(referral.status) ? "alert-circle-outline" : "paper-plane-outline"} size={22} color={attention.has(referral.status) ? colors.orange : colors.burgundy} /></View><View style={styles.flex}><Text style={styles.title}>{referral.publicId}</Text><Text style={styles.muted}>{record?.publicId ?? "—"} · {referral.status.replaceAll("_", " ")}</Text></View><Ionicons name="chevron-forward" size={19} color={colors.inkMuted} /></View>
       <Text style={styles.body} numberOfLines={2}>{destinationService?.name ?? (sw ? "Huduma haipatikani" : "Service unavailable")}</Text>

@@ -1,59 +1,62 @@
-import { useState } from "react";
-import { useMutation, useQuery } from "convex/react";
-import Layout from "@/components/layout/Layout";
-import { api } from "../../convex/_generated/api";
-import type { Id } from "../../convex/_generated/dataModel";
+import { LoadingText } from '@/components/shared/BrandLoading';
+import BrandLoading from '@/components/shared/BrandLoading';
+import { WorkHeader, WorkAction, WorkStats } from "@/components/dashboard/WorkArea";
+import { useLanguage } from "@/providers/LanguageProvider";
+import { usePlainError } from "@/i18n/usePlainError";
+import { useCopy } from "@/i18n/useCopy";
+import { useEffect, useState } from 'react';
+import { useMutation, useQuery } from 'convex/react';
+import { Link, useSearchParams } from 'react-router-dom';
+import Layout from '@/components/layout/Layout';
+import { api } from '../../convex/_generated/api';
+import type { Id } from '../../convex/_generated/dataModel';
+import { usePersonalGreeting } from '@/hooks/usePersonalGreeting';
+import PersonalAvatar from '@/components/dashboard/PersonalAvatar';
+import ParalegalIllustration from '@/components/paralegal/ParalegalIllustration';
+import SearchFilterBar from '@/components/shared/SearchFilterBar';
+import { Button } from '@/components/ui/button';
+type MatchStatus = 'approved' | 'needs_changes' | 'escalated' | 'restricted';
+type Confirmation = {id:string;kind:'case';status:'resolved'|'declined';note:string;updatedAt:number} | {id:string;kind:'match';status:MatchStatus;note:string;reviewedAt:number;previousStatus:'pending_review'|MatchStatus};
+const labels:Record<string,string>={submitted:'New',under_review:'Being reviewed',resolved:'Review completed',declined:'Review declined',pending_review:'Needs review',approved:'Match approved',needs_changes:'Needs changes',escalated:'Needs senior review',restricted:'Keep protected',safety_concern:'Safety concern',service_concern:'Service concern',reassignment:'Change of helper',no_response:'No reply',other:'Other concern'};
+const actionLabels: Record<string,string> = { approved: 'Approve this match', needs_changes: 'Ask for changes', escalated: 'Ask for senior review', restricted: 'Keep this match on hold' };
+const date=(value:number)=>new Date(value).toLocaleString('en-TZ',{timeZone:'Africa/Dar_es_Salaam',dateStyle:'medium',timeStyle:'short'})+' · EAT';
+const isSafety=(item:{review:{reason:string};case:{priority:string}|null})=>item.review.reason==='safety_concern'||item.case?.priority==='safeguarding';
+export default function SafeguardingDashboard(){
+  const readError = usePlainError();
+  const c = useCopy();
+  const {locale} = useLanguage();
+ const {greeting}=usePersonalGreeting();const [params,setParams]=useSearchParams();const view=params.get('view')==='matches'?'matches':params.get('view')==='history'?'history':'cases';
+ const access=useQuery(api.users.currentAccess);const allowed=access?.roles.some(role=>['admin','staff','supervisor','safeguarding_officer'].includes(role));
+ const submitted=useQuery(api.caseManagement.staffReviewRequests,allowed?{status:'submitted'}:'skip');
+ const reviewing=useQuery(api.caseManagement.staffReviewRequests,allowed?{status:'under_review'}:'skip');
+ const resolved=useQuery(api.caseManagement.staffReviewRequests,allowed&&view==='history'?{status:'resolved'}:'skip');
+ const declined=useQuery(api.caseManagement.staffReviewRequests,allowed&&view==='history'?{status:'declined'}:'skip');
+ const linked=useQuery(api.caseManagement.staffReviewRequests,allowed&&params.get('review')?{reviewRequestId:params.get('review') as Id<'case_review_requests'>}:'skip');
+ const matches=useQuery(api.justiceServices.staffMatchingDecisionQueue,allowed?params.get('decision')?{decisionId:params.get('decision') as Id<'matching_decisions'>}:{}:'skip');
+ const resolve=useMutation(api.caseManagement.resolveCaseReviewRequest);const reviewMatch=useMutation(api.justiceServices.reviewMatchingDecision);
+ const [search,setSearch]=useState('');const [selected,setSelected]=useState<string|null>(null);const [note,setNote]=useState('');const [confirmation,setConfirmation]=useState<Confirmation|null>(null);const [busy,setBusy]=useState(false);const [error,setError]=useState('');const [notice,setNotice]=useState('');
+ useEffect(()=>{setSelected(params.get('review')??params.get('decision'));setNote('');setConfirmation(null);setError('');setNotice('');},[view,params.get('review'),params.get('decision')]);
+ const open=submitted&&reviewing?[...submitted,...reviewing].filter(isSafety):undefined;
+ const history=resolved&&declined?[...resolved,...declined].filter(isSafety).sort((a,b)=>b.review.updatedAt-a.review.updatedAt):undefined;
+ const reviews=params.get('review')?linked?.filter(isSafety):view==='history'?history:open;
+ const needle=search.trim().toLowerCase();const visibleReviews=reviews?.filter(item=>[item.case?.publicId,item.review.note,labels[item.review.status]].join(' ').toLowerCase().includes(needle));
+ const safetyMatches=matches?.filter(({decision})=>decision.urgency==='immediate_safety'||['restricted','escalated'].includes(decision.reviewStatus??''));
+ const visibleMatches=safetyMatches?.filter(item=>(params.get('decision')?true:view==='history'?!!item.decision.reviewedAt:['pending_review','restricted','escalated','needs_changes'].includes(item.decision.reviewStatus??'pending_review'))&&[item.case?.publicId,item.request?.publicId,...item.recommendedServices.map(service=>service.name)].join(' ').toLowerCase().includes(needle));
+ async function perform(action:()=>Promise<unknown>,message:string){if(busy)return;setBusy(true);setError('');setNotice('');try{await action();setSelected(null);setNote('');setConfirmation(null);setNotice(message);}catch(cause){setError(readError(cause, 'Could not save. Refresh and try again.'));}finally{setBusy(false);}}
+ function choose(value:Confirmation){if(note.trim().length<10){setError('Write a clear reason of at least 10 characters.');return;}setError('');setConfirmation(value);}
+ function confirm(){if(!confirmation)return;const value=confirmation;void perform(()=>value.kind==='case'?resolve({reviewRequestId:value.id as Id<'case_review_requests'>,status:value.status,resolutionNote:value.note,expectedUpdatedAt:value.updatedAt}):reviewMatch({decisionId:value.id as Id<'matching_decisions'>,status:value.status,reviewNote:value.note,restrictionReason:value.status==='restricted'?value.note:undefined,expectedReviewedAt:value.reviewedAt,expectedReviewStatus:value.previousStatus}),'Decision recorded. Open history to read the saved reason.');}
+ return <Layout><main className="work-page mx-auto max-w-5xl space-y-6 px-4 py-6 sm:px-8">
+ <WorkHeader eyebrow={c("Haki Yangu")} title={view==='history'?c('Safety history'):view==='matches'?c('Suggested services'):c('Safety concerns')} description={c("Check the concern. Protect the person. Record the next step.")} action={undefined}/>
+ <nav aria-label={c("Safety work areas")} className="work-tabs">{[['cases','Safety concerns'],['matches','Suggested services'],['history','History']].map(([value,label])=><Link key={value} aria-current={view===value?'page':undefined} to={`/dashboard/safeguarding${value==='cases'?'':`?view=${value}`}`} className={`min-h-11 rounded-xl px-4 py-3 text-sm font-semibold ${view===value?'bg-primary text-white':'border bg-white text-neutral-600'}`}>{c(label)}</Link>)}</nav>
 
-export default function SafeguardingDashboard() {
-  const submitted = useQuery(api.caseManagement.staffReviewRequests, { status: "submitted" });
-  const inReview = useQuery(api.caseManagement.staffReviewRequests, { status: "under_review" });
-  const matches = useQuery(api.justiceServices.staffMatchingDecisionQueue, {});
-  const resolve = useMutation(api.caseManagement.resolveCaseReviewRequest);
-  const reviewMatch = useMutation(api.justiceServices.reviewMatchingDecision);
-  const [selected, setSelected] = useState<string | null>(null);
-  const [note, setNote] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const [notice, setNotice] = useState("");
-  const reviews = [...(submitted ?? []), ...(inReview ?? [])].sort((a, b) => b.review.updatedAt - a.review.updatedAt);
-  const safetyMatches = matches?.filter(({ decision }) =>
-    (decision.urgency === "immediate_safety" || decision.reviewStatus === "restricted" || decision.reviewStatus === "escalated") &&
-    ["pending_review", "restricted", "escalated"].includes(decision.reviewStatus),
-  );
-
-  async function updateReview(id: Id<"case_review_requests">, status: "under_review" | "resolved" | "declined") {
-    if (status !== "under_review" && note.trim().length < 10) { setError("Record a decision reason of at least 10 characters."); return; }
-    setBusy(true); setError(""); setNotice("");
-    try {
-      await resolve({ reviewRequestId: id, status, resolutionNote: note.trim() || undefined });
-      setSelected(null); setNote(""); setNotice("Review decision recorded.");
-    } catch (caught) { setError(caught instanceof Error ? caught.message : "Could not update the review."); }
-    finally { setBusy(false); }
-  }
-
-  async function updateMatch(id: Id<"matching_decisions">, status: "approved" | "needs_changes" | "escalated" | "restricted") {
-    if (note.trim().length < 10) { setError("Record a review reason of at least 10 characters."); return; }
-    setBusy(true); setError(""); setNotice("");
-    try {
-      await reviewMatch({ decisionId: id, status, reviewNote: note.trim(), restrictionReason: status === "restricted" ? note.trim() : undefined });
-      setSelected(null); setNote(""); setNotice("Matching decision recorded.");
-    } catch (caught) { setError(caught instanceof Error ? caught.message : "Could not update the matching decision."); }
-    finally { setBusy(false); }
-  }
-
-  return <Layout><main className="mx-auto max-w-5xl space-y-8 px-4 py-10">
-    <header><p className="text-sm font-semibold text-primary">LSF · RESTRICTED</p><h1 className="mt-2 text-3xl font-bold">Safeguarding workspace</h1><p className="mt-2 text-gray-600">Review safety-sensitive case requests and matching decisions within your server-approved scope.</p></header>
-    {error && <p role="alert" className="rounded-lg bg-red-50 p-4 text-red-800">{error}</p>}
-    {notice && <p role="status" className="rounded-lg bg-green-50 p-4 text-green-800">{notice}</p>}
-    <section><h2 className="mb-3 text-xl font-semibold">Case review requests</h2>
-      {submitted === undefined || inReview === undefined ? <p role="status">Loading reviews…</p> : reviews.length === 0 ? <p>No open safeguarding reviews.</p> : <div className="space-y-4">{reviews.map(({ review, case: caseRecord }) => <article key={review._id} className="rounded-xl border bg-white p-5"><h3 className="font-semibold">{caseRecord?.publicId ?? "Protected case"}</h3><p className="mt-1 text-sm text-gray-600">{review.reason.replaceAll("_", " ")} · {review.status.replaceAll("_", " ")}</p><p className="mt-2 text-sm">{review.note || "No additional note."}</p><button type="button" onClick={() => { setSelected(selected === review._id ? null : review._id); setNote(""); }} className="mt-3 font-semibold text-primary">{selected === review._id ? "Close" : "Review"}</button>{selected === review._id && <div className="mt-4 space-y-3"><textarea aria-label="Decision reason" value={note} onChange={(event) => setNote(event.target.value)} rows={3} maxLength={1200} className="w-full rounded-lg border p-3" placeholder="Findings and decision reason" /><div className="flex flex-wrap gap-2">{review.status === "submitted" && <Action label="Start review" busy={busy} onClick={() => void updateReview(review._id, "under_review")} />}<Action label="Resolve" busy={busy} onClick={() => void updateReview(review._id, "resolved")} /><Action label="Decline" busy={busy} onClick={() => void updateReview(review._id, "declined")} /></div></div>}</article>)}</div>}
-    </section>
-    <section><h2 className="mb-3 text-xl font-semibold">Safety-sensitive matching decisions</h2>
-      {safetyMatches === undefined ? <p role="status">Loading matching decisions…</p> : safetyMatches.length === 0 ? <p>No matching decisions need attention.</p> : <div className="space-y-4">{safetyMatches.map(({ decision, request, case: caseRecord }) => <article key={decision._id} className="rounded-xl border bg-white p-5"><h3 className="font-semibold">{caseRecord?.publicId ?? request?.publicId ?? "Protected request"}</h3><p className="mt-1 text-sm text-gray-600">{decision.urgency.replaceAll("_", " ")} · {decision.reviewStatus.replaceAll("_", " ")}</p><button type="button" onClick={() => { setSelected(selected === decision._id ? null : decision._id); setNote(""); }} className="mt-3 font-semibold text-primary">{selected === decision._id ? "Close" : "Review match"}</button>{selected === decision._id && <div className="mt-4 space-y-3"><textarea aria-label="Matching review reason" value={note} onChange={(event) => setNote(event.target.value)} rows={3} maxLength={2000} className="w-full rounded-lg border p-3" placeholder="Document the decision and any safety restriction" /><div className="flex flex-wrap gap-2"><Action label="Approve" busy={busy} onClick={() => void updateMatch(decision._id, "approved")} /><Action label="Needs changes" busy={busy} onClick={() => void updateMatch(decision._id, "needs_changes")} /><Action label="Escalate" busy={busy} onClick={() => void updateMatch(decision._id, "escalated")} /><Action label="Restrict" busy={busy} onClick={() => void updateMatch(decision._id, "restricted")} /></div></div>}</article>)}</div>}
-    </section>
-  </main></Layout>;
-}
-
-function Action({ label, busy, onClick }: { label: string; busy: boolean; onClick: () => void }) {
-  return <button type="button" disabled={busy} onClick={onClick} className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">{label}</button>;
+ {!allowed?<LoadingText as="p" role="status">{access===undefined?c("Loading access…"):c("LSF safety access is required.")}</LoadingText>:<>
+ <SearchFilterBar value={search} onChange={setSearch} placeholder={c("Find a case or concern")} />
+ {(params.get('review')||params.get('decision'))&&<Button variant="outline" onClick={()=>setParams({view})}>{c("Show all in this area")}</Button>}
+ {error&&<p role="alert" className="rounded-xl bg-red-50 p-4 text-red-800">{error}</p>}{notice&&<p role="status" className="rounded-xl bg-[#e7f4f1] p-4">{notice}</p>}
+ {confirmation&&<section aria-label={c("Confirm safety decision")} className="space-y-3 rounded-2xl bg-[#f8eaf0] p-5"><h2 className="text-lg font-semibold">{c("Confirm: ")}{labels[confirmation.status]}</h2><p className="whitespace-pre-wrap">{confirmation.note}</p><p className="text-sm">{c("The decision and reason will be saved to the record.")}</p><div className="flex gap-2"><Button disabled={busy} onClick={confirm}>{c("Confirm and save")}</Button><Button variant="outline" disabled={busy} onClick={()=>setConfirmation(null)}>{c("Edit")}</Button></div></section>}
+ {view!=='matches'&&<section className="space-y-4"><h2 className="text-xl font-semibold">{view==='history'?c("Completed case reviews"):c("Safety concerns")}</h2>{visibleReviews===undefined?<BrandLoading compact text={c("Loading reviews…")}/>:!visibleReviews.length?<div className="rounded-2xl bg-[#e7f4f1] p-5">{search?'No reviews match your search.':c("No reviews in this area.")}</div>:visibleReviews.map(({review,case:record})=><article key={review._id} className="work-form-panel space-y-4"><h3 className="text-lg font-semibold">{record?.publicId??'Protected case'}</h3><p className="text-sm text-neutral-600">{labels[review.reason]??'Case concern'} · {labels[review.status]} · {date(review.updatedAt)}</p><p className="whitespace-pre-wrap">{review.note||'No additional note.'}</p>{review.resolutionNote&&<p className="rounded-xl bg-[#e7f4f1] p-3">{c("Recorded reason: ")}{review.resolutionNote}</p>}{!['resolved','declined'].includes(review.status)&&<><Button variant="outline" onClick={()=>{setSelected(selected===review._id?null:review._id);setNote('');setConfirmation(null);}}>{c("Review concern")}</Button>{selected===review._id&&<div className="space-y-3"><label className="block text-sm font-medium">{c("Decision reason")}<textarea value={note} onChange={event=>{setNote(event.target.value);setConfirmation(null);}} rows={4} maxLength={1200} placeholder={c("What did you check, and what should happen next?")} className="mt-2 w-full rounded-xl border p-3"/></label><div className="work-tabs">{review.status==='submitted'&&<Button variant="outline" disabled={busy} onClick={()=>void perform(()=>resolve({reviewRequestId:review._id,status:'under_review',expectedUpdatedAt:review.updatedAt}),'Review started. The concern stays visible until a decision is saved.')}>{c("Start review")}</Button>}{(['resolved','declined'] as const).map(status=><Button key={status} disabled={busy||note.trim().length<10} variant={status==='declined'?'outline':'default'} onClick={()=>choose({id:review._id,kind:'case',status,note:note.trim(),updatedAt:review.updatedAt})}>{status==='resolved'?'Review completion':'Review decline'}</Button>)}</div></div>}</>}</article>)}</section>}
+ {view!=='cases'&&<section className="space-y-4"><h2 className="text-xl font-semibold">{view==='history'?c("Recorded service decisions"):'Safety-sensitive suggested services'}</h2>{visibleMatches===undefined?<BrandLoading compact text={c("Loading suggested services…")}/>:!visibleMatches.length?<div className="rounded-2xl bg-[#e7f4f1] p-5">{c("No suggested services in this area.")}</div>:visibleMatches.map(({decision,request,case:record,recommendedServices})=><article key={decision._id} className="work-form-panel space-y-4"><h3 className="text-lg font-semibold">{record?.publicId??request?.publicId??'Protected request'}</h3><p className="text-sm text-neutral-600">{labels[decision.reviewStatus??'pending_review']}{decision.reviewedAt?` · ${date(decision.reviewedAt)}`:''}</p>{decision.reviewNote&&<p className="rounded-xl bg-[#e7f4f1] p-3">{c("Recorded reason: ")}{decision.reviewNote}</p>}{decision.restrictionReason&&decision.restrictionReason!==decision.reviewNote&&<p className="rounded-xl bg-orange-50 p-3">{c("Protection reason: ")}{decision.restrictionReason}</p>}<Button variant="outline" onClick={()=>{setSelected(selected===decision._id?null:decision._id);setNote('');setConfirmation(null);}}>{c("Read match details")}</Button>{selected===decision._id&&<div className="space-y-3"><h4 className="font-semibold">{c("Why this match")}</h4>{decision.explanation.map((reason,index)=><p key={index} className="text-sm">{reason}</p>)}{decision.safetyFlags.length>0&&<p className="rounded-xl bg-orange-50 p-3 text-sm">{c("Safety review is required before proceeding.")}</p>}<h4 className="font-semibold">{c("Suggested services")}</h4>{recommendedServices.length?recommendedServices.map(service=><p key={service._id} className="text-sm">{service.name} · {[service.district,service.region].filter(Boolean).join(', ')}</p>):<p className="text-sm">{c("No service is currently recommended.")}</p>}{view!=='history'&&<><label className="block text-sm font-medium">{c("Matching decision reason")}<textarea value={note} onChange={event=>{setNote(event.target.value);setConfirmation(null);}} rows={4} maxLength={2000} placeholder={c("Explain the decision and next safe step.")} className="mt-2 w-full rounded-xl border p-3"/></label><div className="work-tabs">{(['approved','needs_changes','escalated','restricted'] as const).map(status=><Button key={status} variant="outline" disabled={busy||note.trim().length<10} onClick={()=>choose({id:decision._id,kind:'match',status,note:note.trim(),reviewedAt:decision.reviewedAt??0,previousStatus:decision.reviewStatus??'pending_review'})}>{actionLabels[status]}</Button>)}</div><p className="text-sm text-neutral-600">{c("This saves a review decision. The operations team coordinates any referral.")}</p></>}</div>}</article>)}</section>}
+ <p className="text-xs text-neutral-500">{c("Recent reviews only: up to 100 per status and 100 suggested services. Case access follows your role.")}</p>
+ </>}
+ </main></Layout>;
 }

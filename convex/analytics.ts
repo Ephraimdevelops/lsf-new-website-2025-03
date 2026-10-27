@@ -4,6 +4,7 @@ import { internal } from "./_generated/api";
 import type { Doc, Id } from "./_generated/dataModel";
 import type { MutationCtx } from "./_generated/server";
 import OpenAI from "openai";
+import { meteredAi } from "./lib/meteredAi";
 import { requireAnyRole } from "./lib/auth";
 
 // ==========================================
@@ -478,13 +479,15 @@ export const classifyChat = action({
             throw new Error("Unauthorized");
         }
 
+        if (!args.transcript.trim() || args.transcript.length > 12000) throw new Error("Transcript must be 12000 characters or fewer.");
+        await ctx.runMutation(internal.managedUploads.reserveAiRequest, {});
         const openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
+            apiKey: process.env.OPENAI_API_KEY, timeout: 20000, maxRetries: 0,
         });
 
         try {
-            const response = await openai.chat.completions.create({
-                model: "gpt-4o-mini",
+            const response = await meteredAi(ctx, { feature: "analytics_classification", model: "gpt-4o-mini", input: args.transcript, maxOutputTokens: 10 }, () => openai.chat.completions.create({
+                model: "gpt-4o-mini", store: false,
                 messages: [
                     {
                         role: "system",
@@ -506,7 +509,7 @@ Respond with ONLY the category name, nothing else.`,
                 ],
                 temperature: 0,
                 max_tokens: 10,
-            });
+            }));
 
             const topic = response.choices[0]?.message?.content?.trim() || "Other";
 

@@ -1,0 +1,9 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import {runDevelopment as run} from './test-support/named-development.mjs';
+const checks={};const pass=(name)=>{checks[name]=true;console.log(`PASS: ${name}`);};
+for(const role of ['stakeholder','donor']){
+ const reports=run('reporting:listSnapshots',{status:'draft'},role);assert.ok(reports.every(x=>x.approvalStatus==='approved'));assert.ok(reports.every(x=>!x.generatedBy&&!x.approvedBy&&!x.reviewNote));const allowed=new Set(['periodDays','requestsSubmitted','casesCreated','openCases','resolvedCases','assignmentAcceptanceRate','averageAssignmentResponseHours','appointmentsKeptRate','referralAcceptanceRate','averageReferralResponseHours','referralCompletionCount','feedbackAverageRating','feedbackCount']);assert.ok(reports.every(x=>Object.keys(x.values).every(k=>allowed.has(k))));pass(`${role}: approved-only private-field projection`);
+ for(const fn of ['reporting:generateDonorSafeSnapshot','caseManagement:staffCaseQueue','admin:listPlatformAudit']){let denied=false;try{run(fn,fn.includes('generate')?{days:30}:{},role);}catch(e){denied=/Forbidden/.test(e.message);}assert.ok(denied,fn);pass(`${role}: ${fn} blocked`);}
+}
+// Leave a private draft for operations review; do not publish unreviewed live aggregates.
+const created=run('reporting:generateDonorSafeSnapshot',{days:30},'staff');assert.equal(created.approvalStatus,'draft');for(const role of ['stakeholder','donor'])assert.ok(!run('reporting:listSnapshots',{},role).some(x=>x._id===created.snapshotId));pass('new staff draft is invisible to both external roles');
+fs.mkdirSync('output/stakeholder-revamp',{recursive:true});fs.writeFileSync('output/stakeholder-revamp/development-journey.json',JSON.stringify({deployment:'joyous-spaniel-5',checkedAt:new Date().toISOString(),checks,privateDraftId:created.snapshotId},null,2));

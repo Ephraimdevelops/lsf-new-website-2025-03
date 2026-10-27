@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-10-24T20:32:13.540Z",
+  "approved": 0,
+  "receipts": [
+    {
+      "researchSourceId": "CMA-GUIDELINES",
+      "archiveId": "vs7aq4g8hafrft2bp6z0wkbh758ft589",
+      "storageId": "kg2f52hqdqcy2x3abs75vr1t4d8gxzdq",
+      "status": "ready_pending_transcription_and_legal_review",
+      "metadata": {
+        "title": "THE LABOUR INSTITUTIONS (MEDIATION AND ARBITRATION GUIDELINES) GN NO. 67 OF 2007",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/9078ab7c-9bd5-4890-b702-efed3545b444/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN67/2007; unverified OCR",
+        "reviewDueAt": 1800608400000
+      },
+      "documentId": "md733z36b98d39644ghwk452dh8gwx5w"
+    },
+    {
+      "researchSourceId": "CMA-PROCEDURE",
+      "archiveId": "vs703zm602x5ak7p3ngf0e5sb18ft1ep",
+      "storageId": "kg2erdgk3mtde8ccyd1temhjns8gw67z",
+      "status": "ready_pending_transcription_and_legal_review",
+      "metadata": {
+        "title": "THE LABOUR INSTITUTIONS (MEDIATION AND ARBITRATION) RULES, GN NO. 64 OF 2007",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/e6214f3f-b616-4824-95d2-b355b24c6e5d/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN64/2007; unverified OCR",
+        "reviewDueAt": 1800608400000
+      },
+      "documentId": "md7esm8ajtmzzy7tvxv2tkmryh8gx8yt"
+    },
+    {
+      "researchSourceId": "EMPLOYMENT-GENERAL-FORMS",
+      "archiveId": "vs75zp2m4ha28r85vxtrbwsqz98ft0xg",
+      "storageId": "kg2bz82jegfa3hr7qdm3f8jn098gw13j",
+      "status": "ready_pending_transcription_and_legal_review",
+      "metadata": {
+        "title": "THE EMPLOYMENT AND LABOUR RELATIONS (GENERAL) REGULATIONS, GN NO. 47 OF 2017",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/9cb0042d-bdca-42e6-b41e-75f38e58777e/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN47/2017; unverified OCR",
+        "reviewDueAt": 1800608400000
+      },
+      "documentId": "md7es79y89wzc0fv5n1f75h52s8gxxyc"
+    },
+    {
+      "researchSourceId": "LABOUR-COURT-RULES",
+      "archiveId": "vs75q35t32kn8d52c40jz0et3x8ft3jc",
+      "storageId": "kg2dtme78npme186ps2r3z92hs8gw89b",
+      "status": "ready_pending_transcription_and_legal_review",
+      "metadata": {
+        "title": "LABOUR COURT RULES, GN NO. 106 OF 2007",
+        "sourceUrl": "https://elibrary.osg.go.tz/bitstreams/7ec8fc7f-69f9-4ea6-92cf-defdf990eda0/download",
+        "publisher": "Repository: elibrary.osg.go.tz; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "GN106/2007; unverified OCR",
+        "reviewDueAt": 1800608400000
+      },
+      "documentId": "md765dbtqvm32njhe2jmpgpm2n8gxthf"
+    },
+    {
+      "researchSourceId": "ZNZ-EMPLOYMENT",
+      "archiveId": "vs75qf8hjt0t3ktabh3v9bb2z58fvmht",
+      "storageId": "kg2dqj8py8w294714a22xgs2ax8gx25j",
+      "status": "ready_pending_transcription_and_legal_review",
+      "metadata": {
+        "title": "Zanzibar Employment Act",
+        "sourceUrl": "https://zanzibar.eregulations.org/media/Employment-act-2005.pdf",
+        "publisher": "Repository: zanzibar.eregulations.org; publisher review pending",
+        "jurisdiction": "other",
+        "language": "en",
+        "contentCategory": "employment",
+        "versionLabel": "Act11/2005; unverified OCR",
+        "reviewDueAt": 1800608400000
+      },
+      "documentId": "md794bcb0vcp5jw7gksd2jhg1s8gxz0e"
+    }
+  ],
+  "finishedAt": "2026-10-24T20:34:20.660Z"
+}

@@ -1,8 +1,10 @@
+import { ParalegalIntro } from "../src/components/ParalegalIntro";
+import { ParalegalNavigation } from "../src/components/ParalegalNavigation";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { AppHeader } from "../src/components/AppHeader";
+import { CivicPageHeader as AppHeader } from "../src/components/CivicPageHeader";
 import { Button } from "../src/components/Button";
 import { Screen } from "../src/components/Screen";
 import { Surface } from "../src/components/Surface";
@@ -18,9 +20,9 @@ const choices = [
 export default function ParalegalWellbeingScreen() {
   const { locale } = useLanguage();
   const [selected, setSelected] = useState<(typeof choices)[number]["id"]>("wellbeing");
-  return <Screen>
-    <AppHeader back title={locale === "sw" ? "Ustawi na usimamizi" : "Wellbeing and supervision"} eyebrow="HAKI YANGU · PARALEGAL" />
-    <View style={styles.hero}><View style={styles.icon}><Ionicons name="heart-outline" size={32} color={colors.surface} /></View><Text style={styles.title}>{locale === "sw" ? "Wewe ni muhimu pia." : "Your wellbeing matters too."}</Text><Text style={styles.heroBody}>{locale === "sw" ? "Kazi ya kusaidia wengine inaweza kuwa ngumu. Chagua aina ya msaada unaohitaji, kisha uamue kama utatuma ombi kwa LSF." : "Supporting others can be difficult. Choose the help you need, then decide whether to send a request to LSF."}</Text></View>
+  return <Screen footer={true ? <ParalegalNavigation current="profile" /> : undefined}>
+    <AppHeader compact back title={locale === "sw" ? "Ustawi na usimamizi" : "Wellbeing and supervision"} />
+    <ParalegalIntro pose="contact" title={locale === "sw" ? "Wewe ni muhimu pia." : "Your wellbeing matters too."} body={locale === "sw" ? "Kazi ya kusaidia wengine inaweza kuwa ngumu. Chagua aina ya msaada unaohitaji, kisha uamue kama utatuma ombi kwa LSF." : "Supporting others can be difficult. Choose the help you need, then decide whether to send a request to LSF."} />
     <Text style={styles.sectionTitle}>{locale === "sw" ? "Ungependa msaada gani?" : "What support would help?"}</Text>
     {choices.map((choice) => <Pressable key={choice.id} accessibilityRole="radio" accessibilityState={{ checked: selected === choice.id }} aria-checked={selected === choice.id} onPress={() => setSelected(choice.id)} style={[styles.choice, selected === choice.id && styles.selected]}><View style={styles.choiceIcon}><Ionicons name={choice.icon} size={24} color={colors.burgundy} /></View><View style={styles.flex}><Text style={styles.choiceTitle}>{locale === "sw" ? choice.sw : choice.en}</Text><Text style={styles.choiceBody}>{locale === "sw" ? choice.detailSw : choice.detailEn}</Text></View><Ionicons name={selected === choice.id ? "radio-button-on" : "radio-button-off"} size={22} color={colors.burgundy} /></Pressable>)}
     <Surface tone="pink"><Text style={styles.noticeTitle}>{locale === "sw" ? "Unabaki na udhibiti" : "You stay in control"}</Text><Text style={styles.choiceBody}>{locale === "sw" ? "Hakuna taarifa ya ustawi inayotumwa kwa kuchagua hapa. Utakagua na kutuma ombi lako mwenyewe kwenye ukurasa unaofuata." : "Selecting an option here sends no wellbeing information. You will review and submit your own request on the next screen."}</Text></Surface>
@@ -39,6 +41,6 @@ const styles = StyleSheet.create({
   selected: { borderColor: colors.burgundy, backgroundColor: colors.burgundySoft },
   choiceIcon: { width: 46, height: 46, borderRadius: 16, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
   flex: { flex: 1 }, choiceTitle: { color: colors.ink, fontFamily: type.bold, fontWeight: "700", fontSize: 14 },
-  choiceBody: { marginTop: 4, color: colors.inkMuted, fontFamily: type.regular, fontSize: 13, lineHeight: 19 },
+  choiceBody: { marginTop: 4, color: colors.inkMuted, fontFamily: type.regular, fontSize: 15, lineHeight: 23 },
   noticeTitle: { color: colors.ink, fontFamily: type.bold, fontWeight: "700", fontSize: 15 },
 });

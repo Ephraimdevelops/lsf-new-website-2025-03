@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 import { useMutation, useQuery } from "convex/react";
 import { useState } from "react";
 import { api } from "../../../convex/_generated/api";
@@ -33,7 +34,7 @@ const AdminSaraAnalytics = () => {
     if (!analytics) {
         return (
             <div className="flex h-[500px] items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                <BrandLoading task="content"/>
             </div>
         );
     }
@@ -61,7 +62,7 @@ const AdminSaraAnalytics = () => {
         <div className="space-y-8 animate-fade-in">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">Saada AI Overview</h2>
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">Haki Yangu AI Overview</h2>
                     <p className="text-muted-foreground mt-1">Real-time performance metrics for the legal assistant.</p>
                 </div>
                 <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border ${inventoryLoading ? "bg-gray-50 text-gray-700 border-gray-200" : approvedSources === 0 ? "bg-amber-50 text-amber-800 border-amber-200" : "bg-blue-50 text-blue-800 border-blue-200"}`}>
@@ -87,7 +88,7 @@ const AdminSaraAnalytics = () => {
                 </Card>
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">People who used Saada</CardTitle>
+                        <CardTitle className="text-sm font-medium">People who used Haki Yangu AI</CardTitle>
                         <Users className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
@@ -145,7 +146,7 @@ const AdminSaraAnalytics = () => {
                         <div>
                             <CardTitle className="flex items-center gap-2">
                                 <ShieldAlert className="h-5 w-5 text-primary" />
-                                Saada Governance Events
+                                Haki Yangu AI Governance Events
                             </CardTitle>
                             <CardDescription>
                                 Latest policy blocks, emergency keyword bypasses, low-confidence retrievals, and tool-routing events.
@@ -166,7 +167,7 @@ const AdminSaraAnalytics = () => {
                 </CardHeader>
                 <CardContent>
                     {riskEvents === undefined ? (
-                        <p className="text-sm text-muted-foreground">Loading risk events...</p>
+                        <BrandLoading compact text={"Loading risk events..."}/>
                     ) : riskEvents.length === 0 ? (
                         <p className="text-sm text-muted-foreground">No governance events recorded yet.</p>
                     ) : (

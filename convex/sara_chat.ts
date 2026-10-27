@@ -66,7 +66,7 @@ export const getRecentHistoryInternal = internalQuery({
         }
         const messages = await ctx.db.query("sara_chats")
             .withIndex("by_user_conversation", (q) => q.eq("userId", args.userId).eq("conversationId", args.conversationId))
-            .order("desc").take(12);
+            .order("desc").take(26);
         return messages.reverse().filter((message) => message.content.trim())
             .map((message) => ({ role: message.role, content: message.content }));
     },

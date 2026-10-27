@@ -40,7 +40,7 @@ const ChatInput = ({
       </div>
       {!isOnline && (
         <p className="text-xs text-red-500 mt-2 text-center">
-          Saada is currently offline. Please try again later.
+          Haki Yangu AI is currently offline. Please try again later.
         </p>
       )}
     </div>

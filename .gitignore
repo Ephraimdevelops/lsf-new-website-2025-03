@@ -25,3 +25,30 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local deployment project linkage
+.vercel/
+
+# Local review evidence and generated build artifacts
+/output/
+**/__pycache__/
+*.py[cod]
+*.tsbuildinfo
+*.apk
+*.aab
+*.ipa
+
+# Private review bundles and development account notes (keep locally)
+/docs/**/*private-review*.zip
+/docs/**/*private-draft*
+/docs/haki-yangu/development-role-test-accounts.md
+
+# Signing material and private keys
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision

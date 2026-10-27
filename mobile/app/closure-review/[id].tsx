@@ -1,3 +1,6 @@
+import { plainError } from "../../../shared/plainLanguage";
+import { finalChecks } from "../../../shared/workCaseJourney";
+import { AdminIntro } from "../../src/admin/AdminIntro";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -7,7 +10,7 @@ import { useState } from "react";
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
-import { Screen } from "../../src/components/Screen";
+import { AdminScreen as Screen } from "../../src/admin/AdminScreen";
 import { Surface } from "../../src/components/Surface";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
@@ -27,20 +30,17 @@ export default function ClosureReviewScreen() {
     if (!details || busy || !eligible || !details.closureReadiness?.canClose) return;
     setBusy(true); setError("");
     try { await updateStatus({ caseId, status: "closed", expectedVersion: details.case.version }); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
   return <Screen>
-    <AppHeader back title={sw ? "Utayari wa kufunga kesi" : "Closure readiness"} eyebrow="LSF · QUALITY REVIEW" />
+    <AppHeader back title={sw ? "Kagua kabla ya kufunga kesi" : "Finish case"} eyebrow="LSF · QUALITY REVIEW" />
     {access === undefined ? <State text={sw ? "Inapakia ruhusa..." : "Loading access..."} /> : !allowed ? <State text={sw ? "Ruhusa ya LSF inahitajika." : "LSF access is required."} /> : details === undefined ? <State text={sw ? "Inapakia kesi..." : "Loading case..."} /> : !details ? <State text={sw ? "Kesi haipatikani." : "Case not found."} /> : <>
-      <View style={styles.hero}><Ionicons name="shield-checkmark-outline" size={30} color={colors.peach} /><Text style={styles.heroTitle}>{details.case.publicId}</Text><Text style={styles.heroBody}>{sw ? "Kagua matokeo, nyaraka na mrejesho kabla ya kufunga." : "Check outcome, documents and feedback before closing."}</Text></View>
+      <AdminIntro icon="book-outline" eyebrow="LSF" title={details.case.publicId} description={sw ? "Kagua matokeo, nyaraka na maoni kabla ya kufunga." : "Check outcome, documents and feedback before closing."} />
       <Surface tone={details.closureReadiness?.canClose ? "teal" : "orange"}><Text style={styles.title}>{terminal ? (sw ? "Kesi imefungwa" : "Case is closed") : details.closureReadiness?.canClose ? (sw ? "Vigezo vimekamilika" : "Checks are complete") : (sw ? "Kuna hatua ambazo hazijakamilika" : "There are outstanding steps")}</Text><Text style={styles.body}>{sw ? "Hali" : "Status"}: {details.case.status.replaceAll("_", " ")}</Text></Surface>
       <Surface><Text style={styles.section}>{sw ? "Orodha ya uhakiki" : "Closure checklist"}</Text>{details.closureReadiness ? <>
-        <Check ok={details.closureReadiness.requirements.outcomeRecorded} label={sw ? "Matokeo yamerekodiwa" : "Outcome recorded"} />
-        <Check ok={details.closureReadiness.requirements.beneficiarySafeSummary} label={sw ? "Muhtasari salama umeandikwa" : "Beneficiary-safe summary recorded"} />
-        <Check ok={details.closureReadiness.requirements.documentsReviewed} label={sw ? "Nyaraka zote zimepitiwa" : "All documents reviewed"} />
-        <Check ok={details.closureReadiness.requirements.feedbackRequested} label={sw ? "Maoni ya mnufaika yameombwa" : "Beneficiary feedback requested"} />
-        {details.closureReadiness.missing.map((message, index) => <Text key={index} style={styles.warning}>• {message}</Text>)}
+        <Text style={styles.body}>{sw ? "Gusa hatua ili kuikamilisha. Si lazima mtu ajibu maoni kabla ya kufunga." : "Tap a check to complete it. The person does not need to reply to feedback before closure."}</Text>
+        {finalChecks.map(check => <Button key={check.key} variant="quiet" label={`${details.closureReadiness!.requirements[check.key] ? '✓' : '○'} ${sw ? check.sw : check.label}`} onPress={() => check.key === 'reviewRequestsResolved' ? router.push('/supervision') : router.push({ pathname: '/case/[id]', params: { id: caseId, section: check.area === 'outcome' ? 'feedback' : check.area } })} />)}
       </> : <Text style={styles.body}>{sw ? "Orodha haipatikani kwa akaunti hii." : "Checklist is unavailable for this account."}</Text>}</Surface>
       {details.outcome ? <Surface><Text style={styles.section}>{sw ? "Matokeo" : "Outcome"}</Text><Text style={styles.title}>{details.outcome.outcomeCode.replaceAll("_", " ")}</Text><Text style={styles.body}>{details.outcome.summary}</Text></Surface> : null}
       <Surface><Text style={styles.section}>{sw ? "Hatua zinazofuata" : "Next actions"}</Text><Button label={sw ? "Pitia kesi na nyaraka" : "Review case and documents"} variant="secondary" onPress={() => router.push({ pathname: "/case/[id]", params: { id: caseId } })} />{!terminal ? <Button label={sw ? "Pitia mtoa msaada" : "Review provider assignment"} variant="quiet" onPress={() => router.push({ pathname: "/case-matching/[id]", params: { id: caseId } })} /> : null}</Surface>

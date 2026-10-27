@@ -1,157 +1,35 @@
-import { useAuth } from "@clerk/clerk-react";
-import { useQuery } from "convex/react";
-import { Navigate } from "react-router-dom";
-import { BarChart3, CalendarDays, CheckCircle2, ShieldCheck, TrendingUp } from "lucide-react";
-import { api } from "../../convex/_generated/api";
-import Layout from "../components/layout/Layout";
-import Container from "@/components/shared/Container";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import BrandLoading from '@/components/shared/BrandLoading';
+import { WorkHeader, WorkAction, WorkStats } from "@/components/dashboard/WorkArea";
+import { useLanguage } from "@/providers/LanguageProvider";
+import { useCopy } from "@/i18n/useCopy";
+import { useState } from 'react';
+import { useQuery } from 'convex/react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { api } from '../../convex/_generated/api';
+import Layout from '@/components/layout/Layout';
+import { usePersonalGreeting } from '@/hooks/usePersonalGreeting';
+import PersonalAvatar from '@/components/dashboard/PersonalAvatar';
+import ParalegalIllustration from '@/components/paralegal/ParalegalIllustration';
+import SearchFilterBar from '@/components/shared/SearchFilterBar';
+import { impactMetrics, formatImpactValue, impactPeriod, qualityLabel, type ImpactValues } from '../../shared/impactReporting';
 
-type SnapshotValues = {
-  periodDays?: number;
-  requestsSubmitted?: number | null;
-  casesCreated?: number | null;
-  openCases?: number | null;
-  resolvedCases?: number | null;
-  assignmentAcceptanceRate?: number | null;
-  averageAssignmentResponseHours?: number | null;
-  appointmentsKeptRate?: number | null;
-  referralAcceptanceRate?: number | null;
-  averageReferralResponseHours?: number | null;
-  referralCompletionCount?: number | null;
-  feedbackAverageRating?: number | null;
-  feedbackCount?: number | null;
-};
-
-function formatDate(value: number) {
-  return new Date(value).toLocaleDateString("en-TZ", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
+export default function StakeholderDashboard(){
+  const c = useCopy();
+  const {locale} = useLanguage();
+ const access=useQuery(api.users.currentAccess);const allowed=access?.roles.some(role=>['stakeholder','donor'].includes(role));
+ const reports=useQuery(api.reporting.listSnapshots,allowed?{status:'approved'}:'skip');const {greeting}=usePersonalGreeting();
+ const [params]=useSearchParams();const view=params.get('view')||'overview';const [search,setSearch]=useState('');const [days,setDays]=useState('all');
+ const latest=reports?.[0];const selected=reports?.find(report=>report._id===params.get('id'));
+ const visible=(reports??[]).filter(report=>(days==='all'||report.values.periodDays===Number(days))&&`${impactPeriod(report.periodStart,report.periodEnd)} ${report.values.periodDays} days ${report.definitionVersion}`.toLowerCase().includes(search.trim().toLowerCase()));
+ const base='/dashboard/stakeholder';
+ const reportLink=(id:string)=>`${base}?view=report&id=${id}`;
+ const metrics=(values:ImpactValues,limit:number=impactMetrics.length)=><WorkStats items={impactMetrics.slice(0,limit).map(metric=>({label:locale==='sw'?metric.sw:metric.en,value:formatImpactValue(values[metric.key],metric.unit,locale==='sw')}))}/>;
+ return <Layout><main className="work-page mx-auto max-w-5xl space-y-6 px-4 py-8">
+  <WorkHeader eyebrow={c("Haki Yangu")} title={view==='reports'?c('Reports'):view==='meaning'?c('What the figures mean'):c('Overview')} description={c("See the work done. Understand what the figures mean.")} action={undefined}/>
+  <nav aria-label={c("Partner work areas")} className="work-tabs">{[['overview','Overview'],['reports','Reports'],['meaning','What the figures mean']].map(([key,label])=><Link key={key} to={`${base}${key==='overview'?'':`?view=${key}`}`} aria-current={view===key?'page':undefined} className={`rounded-xl border px-4 py-3 text-sm font-semibold ${view===key?'bg-primary text-white':'bg-white text-primary'}`}>{c(label)}</Link>)}<Link className="rounded-xl border bg-white px-4 py-3 text-sm font-semibold text-primary" to="/profile">{c("Account")}</Link></nav>
+  {access===undefined?<BrandLoading compact text={c("Loading access…")}/>:!allowed?<p role="alert">{c("An approved donor or stakeholder role is required.")}</p>:<>
+  <p className="work-subtle">{c("Approved summary figures only. Small groups are hidden to protect people’s privacy.")}</p>
+  {view==='meaning'?<section className="space-y-4"><div className="rounded-2xl border bg-[#FFF4E8] p-5"><h3 className="font-semibold">{c("Hidden does not mean zero.")}</h3><p className="mt-2 text-sm leading-6">{c("“Hidden for privacy” means a figure cannot be shown safely. “Not available” means there is no usable figure. A displayed 0 means none were counted. Counts from 1 to 4 are hidden. Rates and averages are also hidden when the groups are too small.")}</p></div><p className="text-sm text-neutral-600">{c("These are service records, not a count of unique people or proof of legal outcomes. Report periods can overlap: do not add them together. The open-case figure includes older cases.")}</p>{impactMetrics.map(metric=><article key={metric.key} className="rounded-2xl border bg-white p-5"><h3 className="font-semibold">{locale==='sw'?metric.sw:metric.en}</h3><p className="mt-2 text-sm leading-6 text-neutral-600">{locale==='sw'?metric.meaningSw:metric.meaning}</p></article>)}<p className="text-sm text-neutral-600">{c("Current calculation version: 2026-09-09.v1. Check the version shown on each report before comparing figures.")}</p></section>:reports===undefined?<BrandLoading compact text={c("Loading approved reports…")}/>:view==='reports'?<section className="space-y-4"><SearchFilterBar value={search} onChange={setSearch} placeholder={c("Find a report by date or version")} label={c("Period")} title={c("Reporting period")} count={days==='all'?0:1} onReset={()=>{setSearch('');setDays('all');}}><label className="text-sm font-medium">{c("Period length")}<select className="mt-2 block min-h-12 w-full rounded-xl border p-3" value={days} onChange={event=>setDays(event.target.value)}><option value="all">{c("All periods")}</option>{[7,30,90,365].map(n=><option key={n} value={n}>{n}{c(" days")}</option>)}</select></label></SearchFilterBar><p className="text-xs text-neutral-500">{c("The 12 most recent approved reports. Search covers this list.")}</p>{visible.length?visible.map(report=><article key={report._id} className="rounded-2xl border bg-white p-5"><div className="flex flex-wrap items-center justify-between gap-2"><h3 className="font-semibold">{impactPeriod(report.periodStart,report.periodEnd)}</h3><span className="rounded-full bg-[#E9F5F1] px-3 py-1 text-xs text-[#176A67]">{c("Approved")}</span></div><p className="mt-2 text-sm text-neutral-600">{report.values.periodDays}{c(" days · Calculation ")}{report.definitionVersion}</p><Link className="mt-3 inline-block min-h-11 py-3 font-semibold text-primary underline" to={reportLink(report._id)}>{c("Read report")}</Link></article>):<p>{c("No approved reports match these choices.")}</p>}</section>:view==='report'&&!selected?<section className="rounded-2xl border bg-white p-5"><h3 className="font-semibold">{c("This report is not in the recent approved list.")}</h3><Link className="mt-3 inline-block text-primary underline" to={`${base}?view=reports`}>{c("Choose an available report")}</Link></section>:!latest?<section className="rounded-2xl border bg-white p-6"><h3 className="text-lg font-semibold">{c("The first report is still being prepared.")}</h3><p className="mt-2 text-sm text-neutral-600">{c("An LSF reviewer must approve a report before it appears here. You can already read what the figures mean.")}</p><Link className="mt-3 inline-block text-primary underline" to={`${base}?view=meaning`}>{c("What the figures mean")}</Link></section>:(()=>{const report=view==='report'?selected!:latest;return <section className="space-y-5"><div className="rounded-2xl border bg-white p-5"><p className="text-xs font-semibold uppercase text-primary">{c("Approved · ")}{report.values.periodDays}{c(" days")}</p><h3 className="mt-2 text-lg font-semibold">{impactPeriod(report.periodStart,report.periodEnd)}</h3><p className="mt-2 text-sm text-neutral-600">{c("Prepared ")}{new Date(report.generatedAt).toLocaleDateString('en-TZ')}{report.approvedAt?` · Approved ${new Date(report.approvedAt).toLocaleDateString('en-TZ')}`:''}</p><p className="mt-1 text-xs text-neutral-500">{c("Calculation ")}{report.definitionVersion}</p></div>{metrics(report.values,view==='report'?undefined:4)}{view!=='report'&&<Link className="inline-block rounded-xl bg-primary px-5 py-3 font-semibold text-white" to={reportLink(report._id)}>{c("Read full report")}</Link>}<div className="rounded-2xl border bg-[#FFF4E8] p-5"><h3 className="font-semibold">{c("Read these figures with care.")}</h3><p className="mt-2 text-sm leading-6">{c("Hidden figures are not zero. These periods may overlap, so do not add reports together.")}</p>{report.qualityFlags.length?<ul className="mt-3 list-disc space-y-2 pl-5 text-sm">{report.qualityFlags.map(flag=><li key={flag}>{qualityLabel(flag)}</li>)}</ul>:<p className="mt-2 text-sm">{c("No automatic quality flags were recorded. This does not guarantee complete data.")}</p>}<Link className="mt-3 inline-block py-2 font-semibold text-primary underline" to={`${base}?view=meaning`}>{c("What the figures mean")}</Link></div></section>;})()}
+  </>}
+ </main></Layout>;
 }
-
-function metricValue(value: number | null | undefined, suffix = "") {
-  if (value === null) return "Suppressed";
-  if (value === undefined) return "Pending";
-  return `${value.toLocaleString()}${suffix}`;
-}
-
-const StakeholderDashboard = () => {
-  const { isLoaded, isSignedIn } = useAuth();
-  const snapshots = useQuery(api.reporting.listSnapshots, { status: "approved" });
-
-  if (!isLoaded) {
-    return <div className="flex min-h-screen items-center justify-center text-sm text-neutral-500">Verifying access...</div>;
-  }
-
-  if (!isSignedIn) {
-    return <Navigate to="/login" replace />;
-  }
-
-  const latest = snapshots?.[0];
-  const values = (latest?.values ?? {}) as SnapshotValues;
-  const cards = [
-    { label: "Requests submitted", value: metricValue(values.requestsSubmitted), icon: BarChart3 },
-    { label: "Cases created", value: metricValue(values.casesCreated), icon: CheckCircle2 },
-    { label: "Open cases", value: metricValue(values.openCases), icon: TrendingUp },
-    { label: "Resolved cases", value: metricValue(values.resolvedCases), icon: CheckCircle2 },
-    { label: "Assignment acceptance", value: metricValue(values.assignmentAcceptanceRate, "%"), icon: TrendingUp },
-    { label: "Referral acceptance", value: metricValue(values.referralAcceptanceRate, "%"), icon: TrendingUp },
-    { label: "Appointments kept", value: metricValue(values.appointmentsKeptRate, "%"), icon: CalendarDays },
-    { label: "Feedback responses", value: metricValue(values.feedbackCount), icon: BarChart3 },
-  ];
-
-  return (
-    <Layout>
-      <section className="border-b bg-white py-8">
-        <Container>
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="mb-2 text-sm font-bold uppercase tracking-wide text-primary">Donor-safe reporting</p>
-              <h1 className="mb-2 text-3xl font-bold text-neutral-900">Haki Yangu Impact Snapshot</h1>
-              <p className="mb-0 max-w-3xl text-sm leading-6 text-neutral-600">
-                Approved aggregate metrics only. This dashboard does not expose beneficiary names,
-                case descriptions, message text, document names, phone numbers, emails, or exact locations.
-              </p>
-            </div>
-            {latest && (
-              <div className="rounded-xl border bg-[#fbf7f8] px-4 py-3 text-sm text-neutral-700">
-                {formatDate(latest.periodStart)} - {formatDate(latest.periodEnd)}
-              </div>
-            )}
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-[#f8f5f6] py-8">
-        <Container>
-          {snapshots === undefined ? (
-            <div className="rounded-2xl border bg-white p-8 text-sm text-neutral-500">Loading approved reporting snapshots...</div>
-          ) : !latest ? (
-            <div className="rounded-2xl border bg-white p-8 text-center">
-              <ShieldCheck className="mx-auto mb-3 h-10 w-10 text-primary/50" />
-              <h2 className="mb-2 text-xl font-bold text-neutral-900">No approved snapshot yet</h2>
-              <p className="mx-auto mb-0 max-w-xl text-sm leading-6 text-neutral-600">
-                LSF staff or supervisors must generate and approve a donor-safe reporting snapshot
-                before stakeholder or donor accounts can view platform metrics.
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {cards.map((item) => (
-                  <Card key={item.label} className="border bg-white shadow-sm">
-                    <CardContent className="p-5">
-                      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                        <item.icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <p className="mb-1 text-2xl font-bold text-neutral-900">{item.value}</p>
-                      <p className="mb-0 text-sm text-neutral-500">{item.label}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
-                <Card className="border bg-white shadow-sm">
-                  <CardHeader>
-                    <CardTitle>Quality and Privacy Controls</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <p className="text-sm leading-6 text-neutral-600">{latest.publicSummary}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {latest.qualityFlags.length ? latest.qualityFlags.map((flag) => (
-                        <span key={flag} className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
-                          {flag.replaceAll("_", " ")}
-                        </span>
-                      )) : (
-                        <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
-                          No quality flags
-                        </span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border bg-white shadow-sm">
-                  <CardHeader>
-                    <CardTitle>Operational Rates</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3 text-sm text-neutral-600">
-                    <p>Average assignment response: {metricValue(values.averageAssignmentResponseHours, "h")}</p>
-                    <p>Average referral response: {metricValue(values.averageReferralResponseHours, "h")}</p>
-                    <p>Referral completions: {metricValue(values.referralCompletionCount)}</p>
-                    <p>Average feedback rating: {metricValue(values.feedbackAverageRating)}</p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          )}
-        </Container>
-      </section>
-    </Layout>
-  );
-};
-
-export default StakeholderDashboard;

@@ -1,0 +1,6 @@
+README.md
+compose.yaml
+Dockerfile
+clamd.conf
+.env*
+node_modules

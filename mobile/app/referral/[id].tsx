@@ -1,3 +1,4 @@
+import { plainError } from "../../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -46,7 +47,7 @@ export default function ReferralDetailScreen() {
     try {
       await decide({ referralId: referral._id, decision });
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : sw ? "Uamuzi haujahifadhiwa. Jaribu tena." : "Your decision was not saved. Please try again.");
+      setError(plainError(caught, locale, sw ? "Uamuzi haujahifadhiwa. Jaribu tena." : "Your decision was not saved. Please try again."));
     } finally {
       setSaving(false);
     }
@@ -66,7 +67,7 @@ export default function ReferralDetailScreen() {
   }
 
   return <Screen>
-    <AppHeader back title={sw ? "Rufaa yangu" : "My referral"} eyebrow="HAKI YANGU" />
+    <AppHeader back title={sw ? "Msaada kutoka huduma nyingine" : "My referral"} eyebrow="HAKI YANGU" />
     {!isSignedIn ? <State icon="lock-closed-outline" title={sw ? "Rufaa yako inalindwa" : "Your referral is private"} body={sw ? "Ingia kuona taarifa na kutoa uamuzi wako." : "Sign in to view details and make your decision."} action={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
       : referrals === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia rufaa" : "Loading referral"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !referral ? <State icon="search-outline" title={sw ? "Rufaa haipatikani" : "Referral not found"} body={sw ? "Huenda imebadilika au huna ruhusa ya kuiona." : "It may have changed, or you may not have access to it."} action={sw ? "Rudi kwenye kesi" : "Return to case"} onPress={() => router.back()} />

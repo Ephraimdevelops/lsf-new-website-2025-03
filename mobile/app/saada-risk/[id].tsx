@@ -1,3 +1,4 @@
+import { plainError } from "../../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -7,8 +8,8 @@ import { Alert, Pressable, StyleSheet, Text, TextInput, View } from "react-nativ
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
-import { CivicPageIntro } from "../../src/components/CivicPageIntro";
-import { Screen } from "../../src/components/Screen";
+import { AdminIntro as CivicPageIntro } from "../../src/admin/AdminIntro";
+import { AdminScreen as Screen } from "../../src/admin/AdminScreen";
 import { Surface } from "../../src/components/Surface";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
@@ -39,7 +40,7 @@ export default function SaadaRiskReviewScreen() {
     if (!risk || !decision || note.trim().length < 10 || busy) return;
     setBusy(true); setError("");
     try { await resolve({ eventId: risk._id, dispositionStatus: decision, reviewNote: note.trim() }); setSaved(true); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
 
@@ -47,34 +48,34 @@ export default function SaadaRiskReviewScreen() {
     if (!risk || busy) return;
     setBusy(true); setError("");
     try { await claimFollowUp({ eventId: risk._id }); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
   async function complete() {
     if (!risk || busy || outcome.trim().length < 10) return;
     setBusy(true); setError("");
     try { await completeFollowUp({ eventId: risk._id, outcome: outcome.trim() }); setOutcome(""); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
   async function release() {
     if (!risk || busy || releaseReason.trim().length < 10) return;
     setBusy(true); setError("");
     try { await releaseFollowUp({ eventId: risk._id, reason: releaseReason.trim() }); setReleaseReason(""); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
 
   return <Screen>
-    <AppHeader back title={sw ? "Kagua alama ya Saada" : "Review Saada flag"} eyebrow="LSF · AI GOVERNANCE" />
+    <AppHeader back title={sw ? "Kagua jibu la AI lililotiwa alama" : "Review Haki Yangu AI flag"} eyebrow="LSF · AI GOVERNANCE" />
     {access === undefined ? <State text={sw ? "Inapakia ruhusa..." : "Loading access..."} /> : !allowed ? <State text={sw ? "Ufikiaji haujaruhusiwa" : "Access not authorised"} /> : risk === undefined ? <State text={sw ? "Inapakia alama..." : "Loading flagged response..."} /> : !risk ? <State text={sw ? "Alama hii haipatikani." : "This flag is unavailable."} /> : <>
-      <CivicPageIntro icon="shield-half-outline" eyebrow="SAADA · HUMAN REVIEW" title={sw ? "Pitia kabla ya hatua inayofuata." : "Review before the next step."} description={sw ? "Alama ya AI si uamuzi wa kisheria wala tathmini ya dharura." : "An AI flag is not a legal decision or an emergency assessment."} tone="orange" />
+      <CivicPageIntro icon="shield-half-outline" eyebrow="HAKI YANGU AI · HUMAN REVIEW" title={sw ? "Pitia kabla ya hatua inayofuata." : "Review before the next step."} description={sw ? "Alama ya AI si uamuzi wa kisheria wala tathmini ya dharura." : "An AI flag is not a legal decision or an emergency assessment."} tone="orange" />
       <Surface tone={risk.eventType === "emergency_keyword" ? "orange" : "pink"} style={styles.card}><Text style={styles.label}>{sw ? "MUHTASARI WA TUKIO" : "EVENT SUMMARY"}</Text><Text style={styles.title}>{risk.eventType.replaceAll("_", " ")}</Text><Text style={styles.body}>{risk.messagePreview || (sw ? "Hakuna muhtasari uliorekodiwa." : "No preview was recorded.")}</Text><Text style={styles.muted}>{sw ? "Hali" : "Status"}: {(risk.dispositionStatus ?? "open").replaceAll("_", " ")}</Text><Text style={styles.muted}>{new Date(risk.createdAt).toLocaleString(sw ? "sw-TZ" : "en-TZ")}</Text></Surface>
       {risk.reviewNote ? <Surface style={styles.card}><Text style={styles.label}>{sw ? "SABABU ILIYOREKODIWA" : "RECORDED REVIEW NOTE"}</Text><Text style={styles.body}>{risk.reviewNote}</Text></Surface> : null}
-      {saved ? <Surface tone="teal" style={styles.card}><Ionicons name="checkmark-circle" size={32} color={colors.teal} /><Text style={styles.title}>{sw ? "Uamuzi umehifadhiwa" : "Decision recorded"}</Text><Button label={sw ? "Rudi kwenye foleni" : "Back to review queue"} onPress={() => router.replace("/saada-risk-queue")} /></Surface> : (risk.dispositionStatus ?? "open") !== "open" ? <Surface tone="teal" style={styles.card}><Text style={styles.title}>{sw ? "Tukio hili tayari limepitiwa." : "This event has already been reviewed."}</Text><Text style={styles.muted}>{sw ? "Mabadiliko zaidi yanahitaji mchakato wa ufuatiliaji." : "Further action needs a follow-up process."}</Text></Surface> : <>
+      {saved ? <Surface tone="teal" style={styles.card}><Ionicons name="checkmark-circle" size={32} color={colors.teal} /><Text style={styles.title}>{sw ? "Uamuzi umehifadhiwa" : "Decision recorded"}</Text><Button label={sw ? "Rudi kwenye orodha" : "Back to review queue"} onPress={() => router.replace("/saada-risk-queue")} /></Surface> : (risk.dispositionStatus ?? "open") !== "open" ? <Surface tone="teal" style={styles.card}><Text style={styles.title}>{sw ? "Tukio hili tayari limepitiwa." : "This event has already been reviewed."}</Text><Text style={styles.muted}>{sw ? "Mabadiliko zaidi yanahitaji mchakato wa ufuatiliaji." : "Further action needs a follow-up process."}</Text></Surface> : <>
         <Text style={styles.sectionTitle}>{sw ? "Hatua ya ukaguzi" : "Review disposition"}</Text>
         <View style={styles.options}><Option active={decision === "escalated"} title={sw ? "Weka alama ya kupandisha" : "Mark for escalation"} icon="arrow-up-circle-outline" onPress={() => setDecision("escalated")} /><Option active={decision === "case_follow_up"} title={sw ? "Weka alama ya ufuatiliaji wa kesi" : "Mark for case follow-up"} icon="folder-open-outline" onPress={() => setDecision("case_follow_up")} /><Option active={decision === "reviewed"} title={sw ? "Imepitiwa" : "Reviewed"} icon="checkmark-circle-outline" onPress={() => setDecision("reviewed")} /><Option active={decision === "false_positive"} title={sw ? "Alama isiyo sahihi" : "False positive"} icon="close-circle-outline" onPress={() => setDecision("false_positive")} /></View>
-        {decision === "escalated" || decision === "case_follow_up" ? <Surface tone="orange" style={styles.card}><Text style={styles.muted}>{sw ? "Hii itaweka tukio kwenye foleni ya ufuatiliaji ya LSF. Mfanyakazi atalichukua na kurekodi matokeo. Mawasiliano ya nje bado yafanyike kwa utaratibu wa LSF." : "This places the event in LSF's follow-up queue. A staff member claims it and records the outcome. External contact still follows LSF procedure."}</Text></Surface> : null}
+        {decision === "escalated" || decision === "case_follow_up" ? <Surface tone="orange" style={styles.card}><Text style={styles.muted}>{sw ? "Hii itaweka tukio kwenye orodha ya ufuatiliaji ya LSF. Mfanyakazi atalichukua na kurekodi matokeo. Mawasiliano ya nje bado yafanyike kwa utaratibu wa LSF." : "This places the event in LSF's follow-up queue. A staff member claims it and records the outcome. External contact still follows LSF procedure."}</Text></Surface> : null}
         <Surface tone="pink" style={styles.card}><Text style={styles.title}>{sw ? "Andika sababu ya uamuzi" : "Record the decision reason"}</Text><TextInput multiline maxLength={1000} value={note} onChangeText={setNote} placeholder={sw ? "Ulichokagua na hatua inayohitajika..." : "What you checked and what should happen next..."} placeholderTextColor={colors.inkMuted} style={styles.input} /><Text style={styles.muted}>{note.trim().length}/1000 · {sw ? "Angalau herufi 10" : "At least 10 characters"}</Text>{decision ? <Button label={sw ? "Thibitisha na hifadhi" : "Confirm and record"} loading={busy} disabled={busy || note.trim().length < 10} onPress={() => void save()} /> : null}</Surface>
       </>}
       {risk.dispositionStatus === "escalated" || risk.dispositionStatus === "case_follow_up" ? <Surface tone="orange" style={styles.card}>
@@ -91,8 +92,8 @@ export default function SaadaRiskReviewScreen() {
         </> : null}
         {risk.followUpStatus === "in_progress" && access?.roles.includes("admin") ? <>
           <Text style={styles.label}>{sw ? "Sababu ya kuachia kazi" : "Reason to release assignment"}</Text>
-          <TextInput accessibilityLabel={sw ? "Sababu ya kuachia kazi" : "Release reason"} multiline maxLength={1000} value={releaseReason} onChangeText={setReleaseReason} placeholder={sw ? "Kwa nini irudi kwenye foleni?" : "Why should this return to the queue?"} placeholderTextColor={colors.inkMuted} style={styles.input} />
-          <Button label={sw ? "Rudisha kwenye foleni" : "Return to queue"} variant="secondary" disabled={busy || releaseReason.trim().length < 10} onPress={() => Alert.alert(sw ? "Rudisha kwenye foleni?" : "Return to queue?", sw ? "Mfanyakazi mwingine ataweza kuchukua ufuatiliaji huu." : "Another staff member will be able to claim this follow-up.", [{ text: sw ? "Ghairi" : "Cancel", style: "cancel" }, { text: sw ? "Rudisha" : "Return", onPress: () => void release() }])} />
+          <TextInput accessibilityLabel={sw ? "Sababu ya kuachia kazi" : "Release reason"} multiline maxLength={1000} value={releaseReason} onChangeText={setReleaseReason} placeholder={sw ? "Kwa nini irudi kwenye orodha?" : "Why should this return to the queue?"} placeholderTextColor={colors.inkMuted} style={styles.input} />
+          <Button label={sw ? "Rudisha kwenye orodha" : "Return to queue"} variant="secondary" disabled={busy || releaseReason.trim().length < 10} onPress={() => Alert.alert(sw ? "Rudisha kwenye orodha?" : "Return to queue?", sw ? "Mfanyakazi mwingine ataweza kuchukua ufuatiliaji huu." : "Another staff member will be able to claim this follow-up.", [{ text: sw ? "Ghairi" : "Cancel", style: "cancel" }, { text: sw ? "Rudisha" : "Return", onPress: () => void release() }])} />
         </> : null}
         {risk.followUpStatus === "completed" ? <><Text style={styles.label}>{sw ? "Matokeo yaliyorekodiwa" : "Recorded outcome"}</Text><Text style={styles.body}>{risk.followUpOutcome}</Text>{risk.followUpCompletedAt ? <Text style={styles.muted}>{new Date(risk.followUpCompletedAt).toLocaleString(sw ? "sw-TZ" : "en-TZ")}</Text> : null}</> : null}
       </Surface> : null}

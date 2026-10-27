@@ -1,3 +1,5 @@
+import { useLanguage } from "../src/i18n";
+import { useIsFocused } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Redirect } from "expo-router";
@@ -9,16 +11,20 @@ import { colors, spacing, type } from "../src/theme";
 const logoWhite = require("../assets/lsf-logo-white.png");
 
 export default function Index() {
+  const isFocused = useIsFocused();
   const [destination, setDestination] = useState<"/onboarding" | "/(tabs)" | null>(null);
   useEffect(() => {
     AsyncStorage.getItem("haki-yangu:onboarded")
       .then((value) => setDestination(value === "yes" ? "/(tabs)" : "/onboarding"));
   }, []);
+  if (!isFocused) return null;
   if (!destination) return <LoadingScreen />;
   return <Redirect href={destination} />;
 }
 
 function LoadingScreen() {
+  const { locale } = useLanguage();
+  const sw = locale === "sw";
   return (
     <ImageBackground source={logoWhite} resizeMode="cover" imageStyle={styles.watermark} style={styles.loading}>
       <View style={styles.skyBand} />
@@ -39,13 +45,13 @@ function LoadingScreen() {
       <View style={styles.logoBadge}><BrandMark light markOnly /></View>
       <View style={styles.copy}>
         <Text style={styles.eyebrow}>Legal Services Facility</Text>
-        <Text style={styles.title}>Rights within reach.</Text>
-        <Text style={styles.body}>Support for GBV rights, land justice, social justice, and climate resilience.</Text>
+        <Text style={styles.title}>{sw ? "Jua haki zako. Pata msaada." : "Know your rights. Find help."}</Text>
+        <Text style={styles.body}>{sw ? "Pata taarifa na msaada kuhusu haki zako." : "Find information and help with your rights."}</Text>
       </View>
       <View style={styles.tags}>
-        <View style={styles.tag}><Ionicons name="shield-checkmark-outline" size={15} color={colors.surface} /><Text style={styles.tagText}>GBV rights</Text></View>
-        <View style={styles.tag}><Ionicons name="leaf-outline" size={15} color={colors.surface} /><Text style={styles.tagText}>Climate justice</Text></View>
-        <View style={styles.tag}><Ionicons name="map-outline" size={15} color={colors.surface} /><Text style={styles.tagText}>Land rights</Text></View>
+        <View style={styles.tag}><Ionicons name="shield-checkmark-outline" size={15} color={colors.surface} /><Text style={styles.tagText}>{sw ? "Usalama na ukatili" : "Safety and violence"}</Text></View>
+        <View style={styles.tag}><Ionicons name="leaf-outline" size={15} color={colors.surface} /><Text style={styles.tagText}>{sw ? "Haki na tabianchi" : "Rights and climate"}</Text></View>
+        <View style={styles.tag}><Ionicons name="map-outline" size={15} color={colors.surface} /><Text style={styles.tagText}>{sw ? "Haki za ardhi" : "Land rights"}</Text></View>
       </View>
     </ImageBackground>
   );

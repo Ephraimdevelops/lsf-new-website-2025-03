@@ -1,3 +1,4 @@
+import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
@@ -380,7 +381,7 @@ const ContactPage = () => {
                     >
                       {isSubmitting ? (
                         <span className="flex items-center gap-2">
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <BrandLoadingIcon size={18}/>
                           Sending...
                         </span>
                       ) : (

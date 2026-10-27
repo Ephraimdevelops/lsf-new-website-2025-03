@@ -1,3 +1,4 @@
+import { plainError } from "../../shared/plainLanguage";
 import { useAuth } from "../src/auth";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as SecureStore from "expo-secure-store";
@@ -141,7 +142,7 @@ export default function LetterBuilderScreen() {
       });
       Alert.alert(locale === "sw" ? "Imewekwa kwenye kesi" : "Attached to case");
     } catch (error) {
-      Alert.alert(locale === "sw" ? "Haijawekwa" : "Not attached", error instanceof Error ? error.message : String(error));
+      Alert.alert(locale === "sw" ? "Haijawekwa" : "Not attached", plainError(error, locale));
     } finally {
       setAttaching(false);
     }
@@ -179,17 +180,17 @@ export default function LetterBuilderScreen() {
         <Pressable accessibilityRole="button" onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={26} color={colors.burgundy} />
         </Pressable>
-        <Text style={styles.headerTitle}>{locale === "sw" ? "Tengeneza barua" : "Letter builder"}</Text>
+        <Text style={styles.headerTitle}>{locale === "sw" ? "Andaa barua" : "Draft a letter"}</Text>
         <View style={styles.headerSpacer} />
       </View>
 
       <View style={styles.hero}>
         <View style={styles.heroIcon}><Ionicons name="document-text-outline" size={28} color={colors.burgundy} /></View>
-        <Text style={styles.title}>{locale === "sw" ? "Andaa barua ya madai kwa hatua rahisi" : "Draft a demand letter step by step"}</Text>
+        <Text style={styles.title}>{locale === "sw" ? "Andaa rasimu ya barua ya madai" : "Draft a demand letter"}</Text>
         <Text style={styles.body}>
           {locale === "sw"
-            ? "Hii ni rasimu ya lugha rahisi. Kagua kabla ya kuituma na omba msaada kama suala ni la hatari au lina utata."
-            : "This creates a plain-language draft. Review it before sending and request help if the matter is risky or complex."}
+            ? "Kagua rasimu kabla ya kutuma. Omba msaada ikiwa kuna hatari au jambo haliko wazi."
+            : "Review the draft before sending. Ask for help if there is a risk or anything is unclear."}
         </Text>
         {draftSavedAt ? (
           <Text style={styles.savedText}>
@@ -209,7 +210,7 @@ export default function LetterBuilderScreen() {
       <View style={styles.draftActions}>
         <Pressable style={styles.secondaryAction} onPress={() => void saveDraft()}>
           <Ionicons name="save-outline" size={18} color={colors.burgundy} />
-          <Text style={styles.secondaryText}>{locale === "sw" ? "Hifadhi rasimu salama" : "Save secure draft"}</Text>
+          <Text style={styles.secondaryText}>{locale === "sw" ? "Hifadhi rasimu" : "Save draft"}</Text>
         </Pressable>
         {draftSavedAt ? (
           <Pressable style={styles.secondaryAction} onPress={() => void deleteDraft()}>
@@ -229,8 +230,8 @@ export default function LetterBuilderScreen() {
         <Text style={styles.previewTitle}>{locale === "sw" ? "Weka kwenye kesi" : "Attach to a case"}</Text>
         <Text style={styles.body}>
           {locale === "sw"
-            ? "Hii itahifadhi rasimu kama nyaraka ya kesi inayosubiri mapitio. Chagua kesi tu ukiwa tayari kushiriki na timu yako ya kesi."
-            : "This saves the draft as a pending case document. Choose a case only when you are ready to share it with your case team."}
+            ? "Rasimu itawekwa kwenye kesi ikisubiri ukaguzi. Timu ya kesi itaiona."
+            : "The draft will be attached to the case for review. Your case team will see it."}
         </Text>
         {!isSignedIn ? (
           <Button label={locale === "sw" ? "Ingia ili kuweka kwenye kesi" : "Sign in to attach to a case"} onPress={() => router.push("/sign-in")} />

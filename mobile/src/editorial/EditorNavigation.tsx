@@ -1,0 +1,8 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import {router,useLocalSearchParams,usePathname,type Href} from 'expo-router';
+import {Pressable,StyleSheet,Text,View} from 'react-native';
+import {useLanguage} from '../i18n';
+import {colors,type} from '../theme';
+const links=[{key:'queue',route:'/editorial-workspace',en:'Guides',sw:'Miongozo',icon:'book-outline'},{key:'author',route:'/editorial-workspace?view=author',en:'Write',sw:'Andika',icon:'create-outline'},{key:'history',route:'/editorial-workspace?view=history',en:'History',sw:'Historia',icon:'time-outline'},{key:'account',route:'/editor-profile',en:'Account',sw:'Akaunti',icon:'person-outline'}] as const;
+export function EditorNavigation(){const {view}=useLocalSearchParams<{view?:string}>();const path=usePathname();const active=path==='/editor-profile'?'account':view==='author'?'author':view==='history'?'history':'queue';const sw=useLanguage().locale==='sw';return <View style={styles.nav}>{links.map(item=><Pressable key={item.key} accessibilityRole="button" accessibilityLabel={sw?item.sw:item.en} accessibilityState={{selected:active===item.key}} style={styles.item} onPress={()=>router.replace(item.route as Href)}><Ionicons name={item.icon} size={22} color={active===item.key?colors.burgundy:colors.inkMuted}/><Text style={[styles.label,active===item.key&&styles.active]}>{sw?item.sw:item.en}</Text></Pressable>)}</View>}
+const styles=StyleSheet.create({nav:{flexDirection:'row'},item:{flex:1,minHeight:56,alignItems:'center',justifyContent:'center',gap:4},label:{fontFamily:type.medium,fontSize:11,color:colors.inkMuted},active:{fontFamily:type.semibold,color:colors.burgundy}});

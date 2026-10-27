@@ -1,3 +1,4 @@
+import { useCopy } from "@/i18n/useCopy";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, Phone, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,17 +19,18 @@ const DesktopNavigation = ({
   setActiveDropdown,
   setLegalAidDialogOpen,
 }: DesktopNavigationProps) => {
+  const c = useCopy();
   const location = useLocation();
 
   return (
-    <nav className="hidden lg:flex items-center space-x-1">
+    <nav className="hidden 2xl:flex items-center space-x-1">
       {navigationItems.map((item) => {
         const isActive =
           location.pathname === item.href ||
           location.pathname.startsWith(`${item.href}/`);
 
         return (
-          <div key={item.name} className="relative group">
+          <div key={c(item.name)} className="relative group">
             {item.subItems.length > 0 ? (
               <button
                 className={cn(
@@ -44,12 +46,12 @@ const DesktopNavigation = ({
                 {(item as any).icon && (
                   <img
                     src={(item as any).icon}
-                    alt={item.name}
+                    alt={c(item.name)}
                     className="w-5 h-5 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-glow"
                   />
                 )}
                 <span className="relative">
-                  {item.name}
+                  {c(item.name)}
                   {/* underline animation */}
                   <span
                     className={cn(
@@ -81,12 +83,12 @@ const DesktopNavigation = ({
                 {(item as any).icon && (
                   <img
                     src={(item as any).icon}
-                    alt={item.name}
+                    alt={c(item.name)}
                     className="w-5 h-5 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-glow"
                   />
                 )}
                 <span className="relative">
-                  {item.name}
+                  {c(item.name)}
                   <span
                     className={cn(
                       "absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-primary to-secondary-teal transition-all duration-300",
@@ -125,7 +127,7 @@ const DesktopNavigation = ({
             className="bg-primary hover:bg-primary/90 flex items-center space-x-2 rounded-lg px-4 shadow-md hover:shadow-lg transition"
           >
             <Phone className="h-4 w-4" />
-            <span>Get Legal Help</span>
+            <span>{c("Get Legal Help")}</span>
           </Button>
         </Link>
 

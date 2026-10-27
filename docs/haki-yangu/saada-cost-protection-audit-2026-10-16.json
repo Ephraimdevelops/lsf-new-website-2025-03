@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-16",
+  "providerConnection": "passed: embedding + forced tool call + streamed continuation",
+  "liveCheckReceipt": "saada-provider-live-check-2026-10-16.json",
+  "authenticatedFullApplicationFlow": "not tested in this provider-only check",
+  "keyHandling": "Existing development backend secret retrieved only in process memory; not printed, stored in report or bundled into frontend",
+  "existingProtections": {
+    "authenticatedAiRequestsPerUserPerMinute": 10,
+    "authenticatedAiRequestsPerUserPerRollingDay": 100,
+    "modelRounds": 6,
+    "toolCalls": 10,
+    "outputTokensPerModelRound": 1800,
+    "runtimeMs": 80000,
+    "observedAgentTokensStopThreshold": 12000,
+    "providerTimeoutMs": 20000,
+    "providerRetries": 1,
+    "perRunDuplicateReadCaching": true,
+    "maintenanceSwitch": true
+  },
+  "changesDeployedToDevelopment": [
+    "Correct monthly recorded-assistant token calculation to UTC calendar month; exclude older/future/user/invalid usage records",
+    "Remove misleading fixed token-to-dollar budget comment",
+    "Explicitly disable optional provider response storage for Saada chat"
+  ],
+  "focusedTestsPassed": 111,
+  "backendTypecheck": "passed",
+  "developmentDeployment": "passed",
+  "remainingCostGaps": [
+    "No complete atomic monetary spending cap across all AI features",
+    "Current monthly token guard depends on saved chat history and omits embedding, failed/interrupted and other AI feature charges",
+    "Deleting chat history can remove records used for this guard",
+    "Concurrent requests can pass the token check before other requests complete",
+    "Per-turn observed token threshold is checked after provider usage is returned; it is not an exact pre-request spending reservation",
+    "Dollar budget and alert thresholds require a business-selected amount",
+    "OpenAI dashboard project-level billing settings were not inspected or modified"
+  ],
+  "noProductionDeployment": true
+}

@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-15T19:59:44.656Z",
+  "environment": "configured development backend",
+  "identity": "guest_no_token",
+  "checks": [
+    {
+      "name": "Guest cannot invoke Saada agent",
+      "passed": true
+    }
+  ],
+  "modelCallsPerformed": 0,
+  "recordWritesPerformed": 0
+}

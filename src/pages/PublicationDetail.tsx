@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
@@ -71,7 +72,7 @@ const PublicationDetail = () => {
     return (
       <Layout>
         <div className="container mx-auto py-16 px-4">
-          <div className="animate-pulse text-primary">Loading publication details...</div>
+          <BrandLoading compact text={"Loading publication details..."}/>
         </div>
       </Layout>
     );

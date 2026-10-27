@@ -1,3 +1,5 @@
+import { plainError } from "../../../shared/plainLanguage";
+import { AdminIntro } from "../../src/admin/AdminIntro";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -7,7 +9,7 @@ import type { Id } from "../../../convex/_generated/dataModel";
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
-import { Screen } from "../../src/components/Screen";
+import { AdminScreen as Screen } from "../../src/admin/AdminScreen";
 import { Surface } from "../../src/components/Surface";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
@@ -39,7 +41,7 @@ export default function DirectoryServiceDetailScreen() {
     if (!item || busy) return;
     setBusy(true); setError("");
     try { await update({ id: item._id as Id<"justice_services">, updates, decisionReason: reason }); if (reason) setDecisionReason(""); setNotice(sw ? "Mabadiliko yamehifadhiwa kwenye rekodi." : "Change saved to the record."); }
-    catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
   function verify() {
@@ -64,7 +66,7 @@ export default function DirectoryServiceDetailScreen() {
   return <Screen>
     <AppHeader back title={sw ? "Pitia huduma" : "Review service"} eyebrow="LSF · DIRECTORY" />
     {access === undefined ? <State text={sw ? "Inapakia ruhusa..." : "Loading access..."} /> : !allowed ? <State text={sw ? "Ruhusa ya LSF inahitajika." : "LSF access is required."} /> : item === undefined ? <State text={sw ? "Inapakia huduma..." : "Loading service..."} /> : !item ? <State text={sw ? "Huduma haipatikani." : "Service not found."} /> : <>
-      <View style={styles.hero}><Ionicons name={item.servicePointType === "safe_house" ? "shield-checkmark-outline" : "business-outline"} size={30} color={colors.peach} /><Text style={styles.heroTitle}>{item.name}</Text><Text style={styles.heroBody}>{item.organization?.name ?? item.organizationName ?? "—"} · {directoryLabel(item.servicePointType, sw)}</Text></View>
+      <AdminIntro icon="book-outline" eyebrow="LSF" title={item.name} description={`${item.organization?.name ?? item.organizationName ?? "—"} · ${directoryLabel(item.servicePointType, sw)}`} />
       {item.servicePointType === "safe_house" || item.visibility === "confidential" ? <Surface tone="orange"><Text style={styles.title}>{sw ? "Eneo la siri" : "Confidential location"}</Text><Text style={styles.body}>{sw ? "Usiweke anwani au mawasiliano ya eneo hili hadharani. Unaweza kushughulikia taarifa zake kwa ruhusa ya ndani tu." : "Never publish this location or its contact details. Handle it within authorised staff access only."}</Text></Surface> : null}
       <Surface><Text style={styles.section}>{sw ? "Hali ya rekodi" : "Record state"}</Text><Line label={sw ? "Uthibitisho" : "Verification"} value={directoryLabel(item.verificationStatus, sw)} /><Line label={sw ? "Mwonekano" : "Visibility"} value={directoryLabel(item.visibility, sw)} /><Line label={sw ? "Inaonekana" : "Active"} value={item.active ? (sw ? "Ndiyo" : "Yes") : (sw ? "Hapana" : "No")} /><Line label={sw ? "Upatikanaji" : "Intake"} value={directoryLabel(item.currentIntakeState, sw)} /><Line label={sw ? "Rufaa" : "Referrals"} value={item.referralCapability ? (sw ? "Ndiyo" : "Yes") : (sw ? "Hapana" : "No")} /></Surface>
       {reviewOverdue ? <Surface tone="orange"><Text style={styles.title}>{sw ? "Ukaguzi wa huduma umechelewa" : "Service review overdue"}</Text><Text style={styles.body}>{sw ? "Huduma hii imeondolewa kwenye matokeo ya umma hadi mfanyakazi mwingine wa LSF athibitishe tena chanzo, mawasiliano na upatikanaji wake." : "This service is excluded from public results until another LSF reviewer checks its source, contact details and current availability."}</Text></Surface> : null}

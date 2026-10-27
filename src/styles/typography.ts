@@ -1,8 +1,8 @@
 export const typography = {
   fonts: {
-    heading: ['Ubuntu', 'system-ui', 'sans-serif'],
-    body: ['Ubuntu', 'system-ui', 'sans-serif'],
-    display: ['Ubuntu', 'system-ui', 'sans-serif'],
+    heading: ['Onest', 'system-ui', 'sans-serif'],
+    body: ['Onest', 'system-ui', 'sans-serif'],
+    display: ['Onest', 'system-ui', 'sans-serif'],
   },
 
   sizes: {

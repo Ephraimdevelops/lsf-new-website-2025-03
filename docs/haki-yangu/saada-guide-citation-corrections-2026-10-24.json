@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-24T21:00:22.002Z",
+  "approved": 0,
+  "receipts": [
+    {
+      "id": "t17c82mv6pempnsqnapcajy7798fvshs",
+      "title": "My marriage certificate is lost, or I need my divorce registered. What next?",
+      "previousSourceUrl": "https://rita.go.tz/erita.php?lang=en",
+      "proposedSourceUrl": "https://www.rita.go.tz/erita.php?lang=en",
+      "checkedAt": "2026-10-24T20:59:37.860Z",
+      "status": "prepared_for_author_correction"
+    },
+    {
+      "id": "t179b3d1g27yr1769ck24qbyt98ftmyf",
+      "title": "A relative died without a death certificate. How do we obtain one?",
+      "previousSourceUrl": "https://rita.go.tz/erita.php?lang=en",
+      "proposedSourceUrl": "https://www.rita.go.tz/erita.php?lang=en",
+      "checkedAt": "2026-10-24T20:59:38.946Z",
+      "status": "prepared_for_author_correction"
+    },
+    {
+      "id": "t17dfhfd3wbx8254f2bw1m8wjd8fvyej",
+      "title": "My phone company charged me incorrectly or suspended my service. What next?",
+      "previousSourceUrl": "https://tcra.go.tz/uploads/documents/sw-1619087013-The%20Electronic%20and%20Postal%20Communications%20%28Consumer%20Protection%29%20Regulations%2C%202018.pdf",
+      "proposedSourceUrl": "https://www.tcra.go.tz/tcra-tovuti/2021/mamlaka-website/documents/regulations/en_1619087013_The_Electronic_and_Postal_Communications_Consumer_Protection_Regulations_2018_cc03743654.pdf",
+      "checkedAt": "2026-10-24T20:59:40.296Z",
+      "status": "prepared_for_author_correction"
+    }
+  ]
+}

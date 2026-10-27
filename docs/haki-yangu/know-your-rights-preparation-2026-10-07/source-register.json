@@ -1,0 +1,3526 @@
+{
+  "checkedOn": "2026-10-07",
+  "note": "Web observations and existing acquired law copies are distinguished. Sources support review; currentness is not certified.",
+  "sources": [
+    {
+      "id": "BASE-ELRA",
+      "title": "Employment and Labour Relations Act, Chapter 366",
+      "url": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/base-elra.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/base-elra.pdf",
+      "sha256": "16b46130dede13b77fd925a1208ddc340f4cf46fb8c65457e5f8655859442280",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "termination",
+            "unfair"
+          ]
+        },
+        {
+          "pdfPage": 31,
+          "matchedKeywords": [
+            "termination",
+            "unfair"
+          ]
+        },
+        {
+          "pdfPage": 32,
+          "matchedKeywords": [
+            "termination",
+            "unfair"
+          ]
+        },
+        {
+          "pdfPage": 34,
+          "matchedKeywords": [
+            "termination",
+            "unfair"
+          ]
+        },
+        {
+          "pdfPage": 35,
+          "matchedKeywords": [
+            "termination",
+            "unfair"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-01",
+        "KYR-EMPLOYMENT-02",
+        "KYR-EMPLOYMENT-03",
+        "KYR-EMPLOYMENT-04",
+        "KYR-EMPLOYMENT-07",
+        "KYR-EMPLOYMENT-08"
+      ]
+    },
+    {
+      "id": "EMPLOYMENT-AMENDMENTS-2025",
+      "title": "Labour Laws Amendments Act",
+      "url": "https://oagmis.oag.go.tz/portal/acts/326",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/employment-amendments-2025.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/employment-amendments-2025.pdf",
+      "sha256": "8b936bb10b5ac0d3179cf3618d0e78ea9c4863f109a6de791d0118bc099de6d7",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Act 4 of 2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "termination",
+            "unfair"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "termination",
+            "unfair"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-01",
+        "KYR-EMPLOYMENT-04"
+      ]
+    },
+    {
+      "id": "WEB-CMA",
+      "title": "CMA frequently asked questions",
+      "url": "https://cma.go.tz/faqs",
+      "publisher": "Commission for Mediation and Arbitration",
+      "checkedOn": "2026-10-07",
+      "observation": "Search result; direct open timed out",
+      "caution": "Published termination referral question mentions CMA F.1 and 30 days; draft does not generalise that period to all disputes.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-EMPLOYMENT-01",
+        "KYR-EMPLOYMENT-02"
+      ]
+    },
+    {
+      "id": "CMA-PROCEDURE",
+      "title": "THE LABOUR INSTITUTIONS (MEDIATION AND ARBITRATION) RULES, GN NO. 64 OF 2007",
+      "url": "https://elibrary.osg.go.tz/items/691e334d-b69a-4e39-b831-7525b9318246",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/cma-procedure.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/cma-procedure.pdf",
+      "sha256": "04d7a0cb9eaf511c598909fc7d82268518d2a4bceada9bc3e20b1c529c6e4126",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN64/2007",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-01",
+        "KYR-ACCESS_JUSTICE-05"
+      ]
+    },
+    {
+      "id": "EMPLOYMENT-INSTITUTIONS",
+      "title": "Labour Institutions Act, Cap. 300",
+      "url": "https://elibrary.osg.go.tz/items/e24c1752-942a-43a6-8fb3-2bfe2e9dfebc",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/employment-institutions.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/employment-institutions.pdf",
+      "sha256": "6c687a5f225cb99110df6abe28a22f7cc1a33bc115ee760ccd9c7ece93dd5593",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 27,
+          "matchedKeywords": [
+            "remuneration",
+            "wages"
+          ]
+        },
+        {
+          "pdfPage": 17,
+          "matchedKeywords": [
+            "remuneration"
+          ]
+        },
+        {
+          "pdfPage": 22,
+          "matchedKeywords": [
+            "remuneration"
+          ]
+        },
+        {
+          "pdfPage": 24,
+          "matchedKeywords": [
+            "remuneration"
+          ]
+        },
+        {
+          "pdfPage": 25,
+          "matchedKeywords": [
+            "remuneration"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-02",
+        "KYR-EMPLOYMENT-07",
+        "KYR-ACCESS_JUSTICE-02"
+      ]
+    },
+    {
+      "id": "EMPLOYMENT-GENERAL-FORMS",
+      "title": "THE EMPLOYMENT AND LABOUR RELATIONS (GENERAL) REGULATIONS, GN NO. 47 OF 2017",
+      "url": "https://elibrary.osg.go.tz/items/4bef80c9-6b3e-4913-83ca-03ba5bb7c892",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/employment-general-forms.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/employment-general-forms.pdf",
+      "sha256": "584fffbef3eb0383e4faff974e74bf5362f8085d05a387f1d8cf9b7d22e21d02",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN47/2017",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-03"
+      ]
+    },
+    {
+      "id": "WORKERS-COMPENSATION",
+      "title": "Workers Compensation Act, Cap. 263",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/367/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/workers-compensation.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/workers-compensation.pdf",
+      "sha256": "8a7528905a06d1f1dac7744d46f9f9d2e65780561b343b398a54b217e035cb70",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 26,
+          "matchedKeywords": [
+            "injury",
+            "notice",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 27,
+          "matchedKeywords": [
+            "injury",
+            "notice",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 38,
+          "matchedKeywords": [
+            "injury",
+            "notice",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 56,
+          "matchedKeywords": [
+            "injury",
+            "notice",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "injury",
+            "compensation"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-05"
+      ]
+    },
+    {
+      "id": "WCF-REGULATIONS-2016",
+      "title": "Workers Compensation Regulations original Gazette",
+      "url": "https://media.tanzlii.org/media/legislation/47207/source_file/tz-act-gn-2016-185-publication-document.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/wcf-regulations-2016.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/wcf-regulations-2016.pdf",
+      "sha256": "e0571eafabf55e10958733155c33567cb00456b919aec6c83988bcee82aa6c8d",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN185/2016",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "injury",
+            "notice",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 17,
+          "matchedKeywords": [
+            "injury",
+            "notice",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "notice",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "injury",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 13,
+          "matchedKeywords": [
+            "notice",
+            "compensation"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-05"
+      ]
+    },
+    {
+      "id": "WCF-AMENDMENT-2021",
+      "title": "Workers Compensation Amendment Regulations",
+      "url": "https://www.wcf.go.tz/uploads/documents/sw-1666602336-sw1658489562-GN%20No.%20668%20WC%20Regulations%20Ammendment.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/wcf-amendment-2021.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/wcf-amendment-2021.pdf",
+      "sha256": "85863161e0197bff7613d486a6e14bae8d2de3b80b5e8564d8b16f5252887b5c",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN668/2021",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "notice",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "injury",
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "compensation"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-05"
+      ]
+    },
+    {
+      "id": "SOCIAL-NSSF",
+      "title": "THE NATIONAL SOCIAL SECURITY FUND ACT, CHAPTER 50 R.E. 2023.",
+      "url": "https://elibrary.osg.go.tz/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/social-nssf.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/social-nssf.pdf",
+      "sha256": "2a820e67ed109cd360595ab9c732b7006e94027e16e5a0d4b751ff5e197bec98",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E.2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        },
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        },
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-06"
+      ]
+    },
+    {
+      "id": "SOCIAL-PSSSF-2025",
+      "title": "THE PUBLIC SERVICE SOCIAL SECURITY FUND ACT, CHAPTER 371 (R.E 2023 A.S. 2025)",
+      "url": "https://elibrary.osg.go.tz/items/48f7955f-303f-47ed-a7ed-937c92bccfec",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/social-psssf-2025.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/social-psssf-2025.pdf",
+      "sha256": "b5c92ea1a2663edf5b2f5b777be840710804f2085f06078cf9ad3d96f84ba447",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E.2023 A.S.2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        },
+        {
+          "pdfPage": 15,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        },
+        {
+          "pdfPage": 16,
+          "matchedKeywords": [
+            "contribution",
+            "employer"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-06"
+      ]
+    },
+    {
+      "id": "SOCIAL-NSSF-COMPLAINT-FORM",
+      "title": "NSSF-hosted fund complaint decision confirmation form",
+      "url": "https://www.nssf.go.tz/uploads/publications/en-1600174042-FOMU%20YA%20UTHIBITISHO%20WA%20UAMUZI%20WA%20MALALAMIKO%20YA%20MWANACHAMA.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/social-nssf-complaint-form.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/social-nssf-complaint-form.pdf",
+      "sha256": "abd52c8f8755e92d2efd530470d2927daf2aabdb30d8ff5c56c9c262300fce0a",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Public2020 catalogue form/current page; legal currency unverified",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-06"
+      ]
+    },
+    {
+      "id": "CRIM-PENAL",
+      "title": "THE PENAL CODE, CHAPTER 16, R.E 2023",
+      "url": "https://elibrary.osg.go.tz/items/c545f591-bf5d-482f-ac11-bbdad280726e",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/crim-penal.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/crim-penal.pdf",
+      "sha256": "bb559f433ad8c580e74042f7802e4925045d202cbc3a27eb478496a4e607fefd",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E.2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "harassment",
+            "sexual"
+          ]
+        },
+        {
+          "pdfPage": 72,
+          "matchedKeywords": [
+            "harassment",
+            "sexual"
+          ]
+        },
+        {
+          "pdfPage": 24,
+          "matchedKeywords": [
+            "sexual"
+          ]
+        },
+        {
+          "pdfPage": 64,
+          "matchedKeywords": [
+            "sexual"
+          ]
+        },
+        {
+          "pdfPage": 66,
+          "matchedKeywords": [
+            "sexual"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-08",
+        "KYR-LAND_HOUSING-08",
+        "KYR-FAMILY_CHILDREN-06",
+        "KYR-INHERITANCE-02",
+        "KYR-CONSUMER_MONEY-02",
+        "KYR-CONSUMER_MONEY-04",
+        "KYR-SAFETY_CRIMINAL-01",
+        "KYR-SAFETY_CRIMINAL-02",
+        "KYR-SAFETY_CRIMINAL-08"
+      ]
+    },
+    {
+      "id": "SAFE-HOMES",
+      "title": "National Guideline for Safe Homes",
+      "url": "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/safe-homes.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/safe-homes.pdf",
+      "sha256": "86af95d9aa4bb91ccc9d6668ba8540f57850d59d05ade81f59a0539df30ec822",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Edition to inspect",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "discrimination",
+            "sexual"
+          ]
+        },
+        {
+          "pdfPage": 27,
+          "matchedKeywords": [
+            "discrimination",
+            "sexual"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "sexual"
+          ]
+        },
+        {
+          "pdfPage": 12,
+          "matchedKeywords": [
+            "sexual"
+          ]
+        },
+        {
+          "pdfPage": 13,
+          "matchedKeywords": [
+            "sexual"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-EMPLOYMENT-08",
+        "KYR-FAMILY_CHILDREN-06",
+        "KYR-SAFETY_CRIMINAL-01",
+        "KYR-SAFETY_CRIMINAL-02",
+        "KYR-SAFETY_CRIMINAL-07"
+      ]
+    },
+    {
+      "id": "BASE-LAND",
+      "title": "Land Act, Chapter 113",
+      "url": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/base-land.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/base-land.pdf",
+      "sha256": "a20814a7d879d3178bf749f78ebe2603c11a024e21f749f6d8df7438748538cf",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023, Annual Supplement 2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 14,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 70,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 182,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 183,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "dispute"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-LAND_HOUSING-01",
+        "KYR-LAND_HOUSING-02",
+        "KYR-LAND_HOUSING-03",
+        "KYR-LAND_HOUSING-04",
+        "KYR-LAND_HOUSING-05",
+        "KYR-LAND_HOUSING-07",
+        "KYR-LAND_HOUSING-08",
+        "KYR-FAMILY_CHILDREN-04"
+      ]
+    },
+    {
+      "id": "BASE-VILLAGE-LAND",
+      "title": "Village Land Act, Chapter 114",
+      "url": "https://elibrary.osg.go.tz/items/3a7a98e7-0e75-4c05-a7ba-26531a19cc9a",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/base-village-land.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/base-village-land.pdf",
+      "sha256": "f78c163958b2e1ba878a01fef9d5e8a52811fab6011061f642789403920de931",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 25,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 32,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 35,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 48,
+          "matchedKeywords": [
+            "boundary",
+            "jurisdiction"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-LAND_HOUSING-01",
+        "KYR-LAND_HOUSING-02",
+        "KYR-LAND_HOUSING-03",
+        "KYR-LAND_HOUSING-06"
+      ]
+    },
+    {
+      "id": "LAND-DISPUTES",
+      "title": "Land Disputes Courts Act, Cap. 216",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/320/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/land-disputes.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/land-disputes.pdf",
+      "sha256": "eb0eb9437c9526395035f0fad83dc15f7e5a5e852943d55c9eb67ead9d18ce51",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "jurisdiction",
+            "dispute"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-LAND_HOUSING-01",
+        "KYR-LAND_HOUSING-04",
+        "KYR-LAND_HOUSING-06",
+        "KYR-ACCESS_JUSTICE-02"
+      ]
+    },
+    {
+      "id": "CONTRACT-ACT",
+      "title": "Law of Contract Act, Cap. 345",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/contract-act.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/contract-act.pdf",
+      "sha256": "e7cbaf3b266457d8f2809119d9230b6e801cd096ee6c2e3bccf7dc7887146aac",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "consent"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "consent"
+          ]
+        },
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "consent"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "consent"
+          ]
+        },
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "consent"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-LAND_HOUSING-02",
+        "KYR-LAND_HOUSING-04",
+        "KYR-LAND_HOUSING-05",
+        "KYR-LAND_HOUSING-08",
+        "KYR-INHERITANCE-08",
+        "KYR-CONSUMER_MONEY-01",
+        "KYR-CONSUMER_MONEY-02",
+        "KYR-CONSUMER_MONEY-04",
+        "KYR-CONSUMER_MONEY-07",
+        "KYR-CONSUMER_MONEY-08"
+      ]
+    },
+    {
+      "id": "ESTATES-PROBATE",
+      "title": "Probate and Administration of Estates Act, Cap. 352",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/estates-probate.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/estates-probate.pdf",
+      "sha256": "eed7a6d29170c932b25eb42ee7a0d95138b103ff4f7ceae19c8f7fd316aec87e",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "equal"
+          ]
+        },
+        {
+          "pdfPage": 21,
+          "matchedKeywords": [
+            "equal"
+          ]
+        },
+        {
+          "pdfPage": 41,
+          "matchedKeywords": [
+            "inheritance"
+          ]
+        },
+        {
+          "pdfPage": 42,
+          "matchedKeywords": [
+            "inheritance"
+          ]
+        },
+        {
+          "pdfPage": 47,
+          "matchedKeywords": [
+            "equal"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-LAND_HOUSING-03",
+        "KYR-INHERITANCE-01",
+        "KYR-INHERITANCE-02",
+        "KYR-INHERITANCE-03",
+        "KYR-INHERITANCE-04",
+        "KYR-INHERITANCE-05",
+        "KYR-INHERITANCE-06",
+        "KYR-INHERITANCE-07",
+        "KYR-INHERITANCE-08"
+      ]
+    },
+    {
+      "id": "WEB-TAWLA",
+      "title": "TAWLA legal aid services",
+      "url": "https://www.tawla.or.tz/portfolio/legal-aid-services/",
+      "publisher": "Tanzania Women Lawyers Association",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "Women/children legal aid; family, succession, land and voluntary mediation service leads, not confirmed intake.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-LAND_HOUSING-03",
+        "KYR-FAMILY_CHILDREN-01",
+        "KYR-FAMILY_CHILDREN-03",
+        "KYR-INHERITANCE-03",
+        "KYR-ACCESS_JUSTICE-01",
+        "KYR-ACCESS_JUSTICE-05"
+      ]
+    },
+    {
+      "id": "PROC-CIVIL",
+      "title": "Civil Procedure Code Act, Cap. 33",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-civil.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-civil.pdf",
+      "sha256": "3b9c5dd74dcd11016fc2c93353337a7c9c30247eaef23d3a1b8b99552c52095c",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 221,
+          "matchedKeywords": [
+            "agreement",
+            "lease",
+            "damages"
+          ]
+        },
+        {
+          "pdfPage": 100,
+          "matchedKeywords": [
+            "lease",
+            "damages"
+          ]
+        },
+        {
+          "pdfPage": 196,
+          "matchedKeywords": [
+            "agreement",
+            "damages"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "lease"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "agreement"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-LAND_HOUSING-05",
+        "KYR-CONSUMER_MONEY-08",
+        "KYR-ACCESS_JUSTICE-04",
+        "KYR-ACCESS_JUSTICE-07"
+      ]
+    },
+    {
+      "id": "LAND-ACQUISITION",
+      "title": "Land Acquisition Act, Cap. 118",
+      "url": "https://elibrary.osg.go.tz/items/5f058cdc-869b-412f-ad68-15ecc2a9e018",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/land-acquisition.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/land-acquisition.pdf",
+      "sha256": "a7cef935eb70c42897019669e8944d93a92bef5be24c96869d58fa449f84935b",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "compensation",
+            "notice",
+            "acquisition"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "compensation",
+            "notice",
+            "acquisition"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "compensation",
+            "notice",
+            "acquisition"
+          ]
+        },
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "compensation",
+            "notice",
+            "acquisition"
+          ]
+        },
+        {
+          "pdfPage": 12,
+          "matchedKeywords": [
+            "compensation",
+            "notice",
+            "acquisition"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-LAND_HOUSING-07"
+      ]
+    },
+    {
+      "id": "PROC-LIMITATION",
+      "title": "Law of Limitation Act, Cap. 89",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/194/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-limitation.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-limitation.pdf",
+      "sha256": "f92e1ee5e6057e6c4f04dac3194190bd22f647a2089dd94d3dbca39648c22f88",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "acquisition"
+          ]
+        },
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "compensation"
+          ]
+        },
+        {
+          "pdfPage": 21,
+          "matchedKeywords": [
+            "acquisition"
+          ]
+        },
+        {
+          "pdfPage": 24,
+          "matchedKeywords": [
+            "acquisition"
+          ]
+        },
+        {
+          "pdfPage": 25,
+          "matchedKeywords": [
+            "notice"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-LAND_HOUSING-07",
+        "KYR-CONSUMER_MONEY-07",
+        "KYR-ACCESS_JUSTICE-06"
+      ]
+    },
+    {
+      "id": "BASE-CHILD",
+      "title": "Law of the Child Act, Chapter 13",
+      "url": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/base-child.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/base-child.pdf",
+      "sha256": "3f08c46fccf036c82853b2bfe379d42e4f3df2b2d339af326204e24b3ac44eb7",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 18,
+          "matchedKeywords": [
+            "maintenance",
+            "parentage",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 20,
+          "matchedKeywords": [
+            "maintenance",
+            "parentage",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 21,
+          "matchedKeywords": [
+            "maintenance",
+            "parentage",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 23,
+          "matchedKeywords": [
+            "maintenance",
+            "parentage",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "maintenance",
+            "child"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-FAMILY_CHILDREN-01",
+        "KYR-FAMILY_CHILDREN-02",
+        "KYR-FAMILY_CHILDREN-05",
+        "KYR-FAMILY_CHILDREN-06",
+        "KYR-FAMILY_CHILDREN-07",
+        "KYR-FAMILY_CHILDREN-08",
+        "KYR-INHERITANCE-04",
+        "KYR-SAFETY_CRIMINAL-02",
+        "KYR-SAFETY_CRIMINAL-03"
+      ]
+    },
+    {
+      "id": "BASE-MARRIAGE",
+      "title": "Law of Marriage Act, Chapter 29",
+      "url": "https://oagmis.oag.go.tz/public",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/base-marriage.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/base-marriage.pdf",
+      "sha256": "0230b8cc1997412f42a62d25e11fbf28c23c60616199ebbda668c73a2f1b5c12",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "maintenance",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 35,
+          "matchedKeywords": [
+            "maintenance",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 36,
+          "matchedKeywords": [
+            "maintenance",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 39,
+          "matchedKeywords": [
+            "maintenance",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 40,
+          "matchedKeywords": [
+            "maintenance",
+            "child"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-FAMILY_CHILDREN-01",
+        "KYR-FAMILY_CHILDREN-02",
+        "KYR-FAMILY_CHILDREN-03",
+        "KYR-FAMILY_CHILDREN-04",
+        "KYR-FAMILY_CHILDREN-05",
+        "KYR-FAMILY_CHILDREN-07",
+        "KYR-INHERITANCE-03",
+        "KYR-SAFETY_CRIMINAL-01",
+        "KYR-DOCUMENTS_SERVICES-05",
+        "KYR-ACCESS_JUSTICE-07"
+      ]
+    },
+    {
+      "id": "FAMILY-GYUMI-APPEAL",
+      "title": "Attorney General v Rebeca Z. Gyumi, Civil Appeal 204 of 2017",
+      "url": "https://media.tanzlii.org/media/judgment/262749/source_file/attorney-general-vs-rebeca-z-gyumi-2019-tzca-348-23-october-2019.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/family-gyumi-appeal.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/family-gyumi-appeal.pdf",
+      "sha256": "79d538dfe3260e8626a5ce7e1ef7d97f17f7c317788fab6e7eafdb96059f6ed2",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Court of Appeal, 23 October 2019",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "marriage",
+            "child",
+            "age"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "marriage",
+            "child",
+            "age"
+          ]
+        },
+        {
+          "pdfPage": 15,
+          "matchedKeywords": [
+            "marriage",
+            "child",
+            "age"
+          ]
+        },
+        {
+          "pdfPage": 17,
+          "matchedKeywords": [
+            "marriage",
+            "child",
+            "age"
+          ]
+        },
+        {
+          "pdfPage": 18,
+          "matchedKeywords": [
+            "marriage",
+            "child",
+            "age"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-FAMILY_CHILDREN-07"
+      ]
+    },
+    {
+      "id": "PROC-EVIDENCE",
+      "title": "Evidence Act, Cap. 6",
+      "url": "https://elibrary.osg.go.tz/items/b4b0136e-c638-45ed-a81d-c8711eda714e",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-evidence.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-evidence.pdf",
+      "sha256": "900e26d118c30eb6c00f8f6f5131cf35ff5555f17e474d9141caba066038baaa",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "evidence"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "evidence"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "evidence"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "evidence"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "evidence"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-FAMILY_CHILDREN-08",
+        "KYR-INHERITANCE-05",
+        "KYR-ACCESS_JUSTICE-03"
+      ]
+    },
+    {
+      "id": "ESTATES-RULES",
+      "title": "Probate Rules consolidated mirror",
+      "url": "https://media.tanzlii.org/media/legislation/377715/source_file/5dcd75913f612b50/1963-10.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/estates-rules.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/estates-rules.pdf",
+      "sha256": "3bc2bbeabc824a9d05deb289d5a1d18df2e1003fc59f572ac0e36a041c928df2",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN 10 of 1963, version 11 July 2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 15,
+          "matchedKeywords": [
+            "administration",
+            "probate",
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 35,
+          "matchedKeywords": [
+            "administration",
+            "probate",
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 40,
+          "matchedKeywords": [
+            "administration",
+            "probate",
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "administration",
+            "probate"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "probate",
+            "jurisdiction"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-INHERITANCE-01",
+        "KYR-INHERITANCE-02",
+        "KYR-INHERITANCE-05",
+        "KYR-INHERITANCE-06",
+        "KYR-INHERITANCE-07"
+      ]
+    },
+    {
+      "id": "PROC-APPLICABLE-LAWS",
+      "title": "THE JUDICATURE AND APPLICATION OF LAWS ACT, CHAPTER 358 R.E. 2023",
+      "url": "https://elibrary.osg.go.tz/items/d912b5c6-6f85-4591-b532-c2b7d3531f24",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-applicable-laws.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-applicable-laws.pdf",
+      "sha256": "e5a0335df213b1937e2d14670c1c066e01073ede9127499a0660850ad70769bd",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E.2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-INHERITANCE-01",
+        "KYR-INHERITANCE-03",
+        "KYR-INHERITANCE-04"
+      ]
+    },
+    {
+      "id": "ESTATES-AMENDMENT-2025",
+      "title": "Probate (Amendment) Rules, 2025",
+      "url": "https://oagmis.oag.go.tz/portal/legislation/4526",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/estates-amendment-2025.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/estates-amendment-2025.pdf",
+      "sha256": "536289083edba503f553c9393eb96897211dc4104e34e3ccb4b0176f104a7501",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN 429 of 2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "caveat",
+            "notice"
+          ]
+        },
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "caveat",
+            "objection"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "notice"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "notice"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "caveat"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-INHERITANCE-07"
+      ]
+    },
+    {
+      "id": "ESTATES-PRIMARY-AMENDMENT-2025",
+      "title": "Primary Courts (Administration of Estates) Amendment Rules, 2025",
+      "url": "https://oagmis.oag.go.tz/portal/legislation/4525",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/estates-primary-amendment-2025.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/estates-primary-amendment-2025.pdf",
+      "sha256": "b23b294a09a6e62b01406f97f63d63e3750d02151b825aa2e15291cd707b7132",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN 428 of 2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "notice"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "objection"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "objection"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-INHERITANCE-07"
+      ]
+    },
+    {
+      "id": "FCC-CURRENT-ACT",
+      "title": "Fair Competition Act current catalogue copy",
+      "url": "https://www.fcc.go.tz/en/legal-framework",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/fcc-current-act.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/fcc-current-act.pdf",
+      "sha256": "9abb3196e38da5f3363d59102a995c8b9f1261012a9f6164451627781aeaf538",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "version to inspect",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "consumer",
+            "misleading",
+            "goods"
+          ]
+        },
+        {
+          "pdfPage": 41,
+          "matchedKeywords": [
+            "consumer",
+            "misleading",
+            "goods"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "misleading",
+            "goods"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "consumer",
+            "goods"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "consumer",
+            "misleading"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-01",
+        "KYR-CONSUMER_MONEY-02",
+        "KYR-CONSUMER_MONEY-08"
+      ]
+    },
+    {
+      "id": "FCC-CONSUMER-PROCEDURE",
+      "title": "Consumer Complaint Handling Procedure",
+      "url": "https://www.fcc.go.tz/en/legal-framework",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/fcc-consumer-procedure.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/fcc-consumer-procedure.pdf",
+      "sha256": "33412744fb0cac260b751bd6f3d598589fefdde836803c1abe38be49ef973378",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "2022",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "consumer",
+            "goods"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "consumer",
+            "misleading"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "consumer"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "consumer"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "consumer"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-01"
+      ]
+    },
+    {
+      "id": "WEB-BOT",
+      "title": "Bank of Tanzania financial consumer protection",
+      "url": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "publisher": "Bank of Tanzania",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "Internal provider complaint precedes escalation. Reconcile current regulations/guidelines before quoting precise time limits.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-02",
+        "KYR-CONSUMER_MONEY-03",
+        "KYR-CONSUMER_MONEY-04"
+      ]
+    },
+    {
+      "id": "WEB-BOT-2025",
+      "title": "Guidelines for Handling Financial Consumer Complaints, 2025",
+      "url": "https://www.bot.go.tz/Publications/Acts%2C%20Regulations%2C%20Circulars%2C%20Guidelines/Guidelines/sw/2025111212295369.pdf",
+      "publisher": "Bank of Tanzania",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher search result",
+      "caution": "Newer complaint guidance exists; check alongside 2019 rules and amendments.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-03"
+      ]
+    },
+    {
+      "id": "FIN-BOT-REGULATIONS",
+      "title": "Bank of Tanzania Financial Consumer Protection Regulations",
+      "url": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/fin-bot-regulations.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/fin-bot-regulations.pdf",
+      "sha256": "0b2c2bdc03f14a6a06a7488e08c0eb18174bfe5ab54a13deb47d978bf6c9189f",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "2019",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "complaint",
+            "financial"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "complaint",
+            "financial"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "complaint",
+            "financial"
+          ]
+        },
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "complaint",
+            "financial"
+          ]
+        },
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "financial",
+            "transaction"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-03",
+        "KYR-CONSUMER_MONEY-04"
+      ]
+    },
+    {
+      "id": "TELECOM-CONSUMER-REGULATIONS",
+      "title": "Electronic and Postal Communications Consumer Protection Regulations",
+      "url": "https://tcra.go.tz/uploads/documents/sw-1619087013-The%20Electronic%20and%20Postal%20Communications%20%28Consumer%20Protection%29%20Regulations%2C%202018.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/telecom-consumer-regulations.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/telecom-consumer-regulations.pdf",
+      "sha256": "b830aafdb0e74ff11cfa65a26312beb45ddd77f6361e7971bcf6a514f112061c",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN61/2018",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "complaint",
+            "billing"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "complaint",
+            "billing"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "billing",
+            "suspension"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "complaint"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-05"
+      ]
+    },
+    {
+      "id": "WEB-TCRA",
+      "title": "TCRA consumer complaint information",
+      "url": "https://www.tcra.go.tz/sw/resources/complaints",
+      "publisher": "Tanzania Communications Regulatory Authority",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher search result",
+      "caution": "Consumer complaint information; do not treat every mobile-money issue as telecom-only.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-05"
+      ]
+    },
+    {
+      "id": "TELECOM-GUIDELINE-2020",
+      "title": "Complaints Handling Guideline updated December2020",
+      "url": "https://tcra.go.tz/resources/complaints",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/telecom-guideline-2020.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/telecom-guideline-2020.pdf",
+      "sha256": "bedd690627c2b55d4a2d493a75746c52ba111e80df5de6e0f942e6006e1ff3f6",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "updatedDecember2020 catalogue label",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "complaint"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-05"
+      ]
+    },
+    {
+      "id": "WEB-EWURA-WATER",
+      "title": "Water complaints and resolution",
+      "url": "https://ewura.go.tz/index.php/pages/water-complaints-and-resolution",
+      "publisher": "Energy and Water Utilities Regulatory Authority",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "Regulated water-service complaints; limitation period depends on type.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-06"
+      ]
+    },
+    {
+      "id": "WEB-EWURA-POWER",
+      "title": "Electricity complaints and dispute resolution",
+      "url": "https://www.ewura.go.tz/index.php/pages/electricity-complaints-and-dispute-resolution",
+      "publisher": "Energy and Water Utilities Regulatory Authority",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "Electricity complaint portal and regulator route.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-06"
+      ]
+    },
+    {
+      "id": "UTILITIES-COMPLAINT-RULES",
+      "title": "EWURA Consumer Complaints Settlement Procedure Rules",
+      "url": "https://www.ewura.go.tz/uploads/documents/en-1764751868-The%20EWURA%20%28Consumer%20Complaints%20Settlement%29%20Rules%2C%202020_GN%20428.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/utilities-complaint-rules.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/utilities-complaint-rules.pdf",
+      "sha256": "b21a141babc91b390c931f6f8817076432957b69a7956aa3621597c43ae253fd",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN428 of2020",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 44,
+          "matchedKeywords": [
+            "complaint",
+            "disconnection",
+            "billing"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "complaint"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-06"
+      ]
+    },
+    {
+      "id": "PROC-SMALL-CLAIMS",
+      "title": "Magistrates Courts Small Claims Procedure Rules",
+      "url": "https://oagmis.oag.go.tz/portal/legislation/1318",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-small-claims.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-small-claims.pdf",
+      "sha256": "5b335a1b527ba227c7d86e365c26db5715f2034b6cbca8dcbf3c4bd46a44ac34",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Title 2022; GN 159 of 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "claim",
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "debt",
+            "claim"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "claim"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "claim"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "claim"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-CONSUMER_MONEY-07"
+      ]
+    },
+    {
+      "id": "CHILD-JUVENILE-RULES",
+      "title": "Law of the Child Juvenile Court Procedure Rules",
+      "url": "https://media.tanzlii.org/media/legislation/47056/source_file/1abcf097768ffa13/2016-182.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/child-juvenile-rules.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/child-juvenile-rules.pdf",
+      "sha256": "71a1a47f90227c85564d5a0a327b42cc884340a6dd2da73d0a655045e0ecb5e9",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN 182 of 2016",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 39,
+          "matchedKeywords": [
+            "juvenile",
+            "arrest",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 40,
+          "matchedKeywords": [
+            "juvenile",
+            "arrest",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 41,
+          "matchedKeywords": [
+            "juvenile",
+            "arrest",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 43,
+          "matchedKeywords": [
+            "juvenile",
+            "arrest",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 45,
+          "matchedKeywords": [
+            "juvenile",
+            "arrest",
+            "child"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-03"
+      ]
+    },
+    {
+      "id": "CRIM-PROCEDURE",
+      "title": "Criminal Procedure Act, Cap. 20",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/crim-procedure.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/crim-procedure.pdf",
+      "sha256": "023b9da4adbe7b49e270741e5e1ff68ea2ba8f89cce385c26749f06bd0cae9f1",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "arrest",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "juvenile",
+            "arrest"
+          ]
+        },
+        {
+          "pdfPage": 215,
+          "matchedKeywords": [
+            "arrest",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 217,
+          "matchedKeywords": [
+            "arrest",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 220,
+          "matchedKeywords": [
+            "arrest",
+            "child"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-03",
+        "KYR-SAFETY_CRIMINAL-04",
+        "KYR-SAFETY_CRIMINAL-05",
+        "KYR-SAFETY_CRIMINAL-06",
+        "KYR-SAFETY_CRIMINAL-07",
+        "KYR-ACCESS_JUSTICE-04"
+      ]
+    },
+    {
+      "id": "CRIM-PROCEDURE-SUPPLEMENT-2025",
+      "title": "Criminal Procedure Act annual supplement",
+      "url": "https://elibrary.osg.go.tz/items/a6cbbec1-4895-464d-8636-76bf712ddf02",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/crim-procedure-supplement-2025.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/crim-procedure-supplement-2025.pdf",
+      "sha256": "3215c18e37ceee7c55be5eb9961f941b93d82f88a8dccdd22de63c64d038d2e5",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Annual supplement incorporates amendments through 31 July 2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "arrest",
+            "detention"
+          ]
+        },
+        {
+          "pdfPage": 19,
+          "matchedKeywords": [
+            "arrest",
+            "detention"
+          ]
+        },
+        {
+          "pdfPage": 42,
+          "matchedKeywords": [
+            "arrest",
+            "detention"
+          ]
+        },
+        {
+          "pdfPage": 68,
+          "matchedKeywords": [
+            "arrest",
+            "advocate"
+          ]
+        },
+        {
+          "pdfPage": 74,
+          "matchedKeywords": [
+            "arrest",
+            "advocate"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-04",
+        "KYR-SAFETY_CRIMINAL-05"
+      ]
+    },
+    {
+      "id": "BASE-LEGAL-AID",
+      "title": "Legal Aid Act, Chapter 21",
+      "url": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/base-legal-aid.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/base-legal-aid.pdf",
+      "sha256": "8f08f04b92726d3253caac789228023a5e8f0dc06b09ffb06b4838e924743e70",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "advocate"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "advocate"
+          ]
+        },
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "advocate"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "advocate"
+          ]
+        },
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "advocate"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-04",
+        "KYR-ACCESS_JUSTICE-01",
+        "KYR-ACCESS_JUSTICE-02",
+        "KYR-ACCESS_JUSTICE-03",
+        "KYR-ACCESS_JUSTICE-08"
+      ]
+    },
+    {
+      "id": "CORRUPTION-ACT",
+      "title": "Prevention and Combating of Corruption Act, Cap. 329",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/432/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/corruption-act.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/corruption-act.pdf",
+      "sha256": "2150d0cc3ad7af1944a347116f0819be07b8c888555dfee978d918e57b54ea0f",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-05",
+        "KYR-DOCUMENTS_SERVICES-07"
+      ]
+    },
+    {
+      "id": "RIGHTS-CHRAGG-ACT",
+      "title": "THE COMMISSION FOR HUMAN RIGHTS AND GOOD GOVERNANCE ACT, CHAPTER 391 R.E 2023",
+      "url": "https://elibrary.osg.go.tz/items/676ba370-b108-4bb0-a0c6-9ea1645c989f",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/rights-chragg-act.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/rights-chragg-act.pdf",
+      "sha256": "ef8d5791fec7ad5f769b8b065efa131f5ad4e3a8d538b0ccefc1a177cbe27362",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E.2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "investigation",
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 13,
+          "matchedKeywords": [
+            "investigation",
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 14,
+          "matchedKeywords": [
+            "investigation",
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 18,
+          "matchedKeywords": [
+            "investigation",
+            "complaint"
+          ]
+        },
+        {
+          "pdfPage": 20,
+          "matchedKeywords": [
+            "investigation",
+            "complaint"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-06",
+        "KYR-DOCUMENTS_SERVICES-08"
+      ]
+    },
+    {
+      "id": "WEB-CHRAGG",
+      "title": "CHRAGG complaint page",
+      "url": "https://www.chragg.go.tz/index.php/complaints",
+      "publisher": "Commission for Human Rights and Good Governance",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher search result",
+      "caution": "Official complaint page; mandate and admissibility must be checked case by case.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-06",
+        "KYR-DOCUMENTS_SERVICES-08"
+      ]
+    },
+    {
+      "id": "SAFE-WITNESS-ACT",
+      "title": "THE WHISTLEBLOWER AND  WITNESS PROTECTION ACT, CHAPTER 446, R.E. 2023",
+      "url": "https://elibrary.osg.go.tz/items/2a879887-a8e4-40d7-b539-6973db660512",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/safe-witness-act.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/safe-witness-act.pdf",
+      "sha256": "e7523e2b5d1bd812da96e1a4bc97c6913406418257ae833572a7cf6a8c618fd4",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E.2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "witness",
+            "protection"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "witness",
+            "protection"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "witness",
+            "protection"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "witness",
+            "protection"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "witness",
+            "protection"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-07",
+        "KYR-DOCUMENTS_SERVICES-07"
+      ]
+    },
+    {
+      "id": "BASE-PRIVACY",
+      "title": "Personal Data Protection Act, 2022",
+      "url": "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/base-privacy.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/base-privacy.pdf",
+      "sha256": "0c1ec2168bd30c95198eb70fee3db09052da83397100781df13e0bab8c77703f",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "2022; English translated publication",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "complaint",
+            "personal data",
+            "disclosure"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "complaint",
+            "personal data"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "personal data",
+            "disclosure"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "personal data",
+            "disclosure"
+          ]
+        },
+        {
+          "pdfPage": 12,
+          "matchedKeywords": [
+            "complaint",
+            "personal data"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-08",
+        "KYR-DOCUMENTS_SERVICES-06",
+        "KYR-ACCESS_JUSTICE-03",
+        "KYR-ACCESS_JUSTICE-08"
+      ]
+    },
+    {
+      "id": "PRIVACY-COMPLAINTS",
+      "title": "Personal Data Protection Complaints Settlement Procedures Regulations",
+      "url": "https://pdpc.go.tz/publications/complaints-settlement-procedures-regulations-2023/",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/privacy-complaints.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/privacy-complaints.pdf",
+      "sha256": "b478825c86acfddaa5f87c405d4d87d3132c563e33087732a6d2ae4dbdc9075d",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN 449B of 2023; English translated version",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "complaint",
+            "personal data"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "complaint",
+            "personal data"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "complaint",
+            "personal data"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "complaint",
+            "personal data"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "complaint",
+            "personal data"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-SAFETY_CRIMINAL-08"
+      ]
+    },
+    {
+      "id": "WEB-RITA-FAQ",
+      "title": "RITA frequently asked questions",
+      "url": "https://www.rita.go.tz/faq.php?lang=en",
+      "publisher": "Registration, Insolvency and Trusteeship Agency",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "Late registration, replacement certificates, corrections and name changes; fee amounts conflict with newer portal.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-DOCUMENTS_SERVICES-01",
+        "KYR-DOCUMENTS_SERVICES-02",
+        "KYR-DOCUMENTS_SERVICES-03",
+        "KYR-DOCUMENTS_SERVICES-04",
+        "KYR-DOCUMENTS_SERVICES-05"
+      ]
+    },
+    {
+      "id": "WEB-RITA-PORTAL",
+      "title": "eRITA official portal",
+      "url": "https://erita.rita.go.tz/",
+      "publisher": "Registration, Insolvency and Trusteeship Agency",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher portal content via search",
+      "caution": "Portal shows different replacement/correction fees from old FAQ; exact prices intentionally omitted.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-DOCUMENTS_SERVICES-01",
+        "KYR-DOCUMENTS_SERVICES-02",
+        "KYR-DOCUMENTS_SERVICES-03"
+      ]
+    },
+    {
+      "id": "CIVIL-BIRTH-DEATH",
+      "title": "Births and Deaths Registration Act, Cap. 108",
+      "url": "https://elibrary.osg.go.tz/items/77b053ae-e411-448c-a36e-92375d07cf77",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/civil-birth-death.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/civil-birth-death.pdf",
+      "sha256": "818dd7883b3c3dc37d9d170c6351722b0f85eb9367cdb3e5e8c45ee635a9852e",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "birth",
+            "registration",
+            "late"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "birth",
+            "registration",
+            "late"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "birth",
+            "registration",
+            "late"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "birth",
+            "registration"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "birth",
+            "registration"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-DOCUMENTS_SERVICES-01",
+        "KYR-DOCUMENTS_SERVICES-02",
+        "KYR-DOCUMENTS_SERVICES-03",
+        "KYR-DOCUMENTS_SERVICES-04"
+      ]
+    },
+    {
+      "id": "WEB-RITA-SERVICES",
+      "title": "RITA online services",
+      "url": "https://rita.go.tz/erita.php?lang=en",
+      "publisher": "Registration, Insolvency and Trusteeship Agency",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "Birth, death, marriage and divorce online service categories.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-DOCUMENTS_SERVICES-04",
+        "KYR-DOCUMENTS_SERVICES-05"
+      ]
+    },
+    {
+      "id": "WEB-NIDA",
+      "title": "NIDA online services",
+      "url": "https://services.nida.go.tz/",
+      "publisher": "National Identification Authority",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher search result",
+      "caution": "Official portal lead; precise replacement requirements not acquired.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-DOCUMENTS_SERVICES-06"
+      ]
+    },
+    {
+      "id": "WEB-PCCB",
+      "title": "Tanzania submission on public participation and corruption reporting",
+      "url": "https://www.unodc.org/documents/corruption/WG-Prevention/Art_13_Participation_of_society/Tanzania.pdf",
+      "publisher": "United Nations Office on Drugs and Crime / Tanzania submission",
+      "checkedOn": "2026-10-07",
+      "observation": "Official submission search result",
+      "caution": "PCCB reporting mechanisms described; not proof of current hotline or emergency response.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-DOCUMENTS_SERVICES-07"
+      ]
+    },
+    {
+      "id": "DISABILITY-ACT",
+      "title": "Persons with Disabilities Act, Cap. 183",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/568/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/disability-act.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/disability-act.pdf",
+      "sha256": "98cc8cb37556d073eb49d5b57fde28dce6cd8805d9abfc7dd60b6f7c989b1c53",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "accessibility",
+            "discrimination",
+            "public"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "accessibility",
+            "discrimination",
+            "public"
+          ]
+        },
+        {
+          "pdfPage": 16,
+          "matchedKeywords": [
+            "accessibility",
+            "discrimination",
+            "public"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "accessibility",
+            "public"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "accessibility",
+            "public"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-DOCUMENTS_SERVICES-08"
+      ]
+    },
+    {
+      "id": "LEGAL-AID-SUPPLEMENT-2025",
+      "title": "THE LEGAL AID ACT, CHAPTER 21",
+      "url": "https://elibrary.osg.go.tz/items/844e0d81-aaad-49cb-bb18-dd3225004d39",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/legal-aid-supplement-2025.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/legal-aid-supplement-2025.pdf",
+      "sha256": "c542a3d7629541686b972ff6ced6de0c2d58e4680200c53bd2a9286d7d5bee42",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "annual supplement through31 July2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "legal aid",
+            "registration"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "legal aid",
+            "registration"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "legal aid",
+            "registration"
+          ]
+        },
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "legal aid",
+            "registration"
+          ]
+        },
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "legal aid",
+            "registration"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ACCESS_JUSTICE-01",
+        "KYR-ACCESS_JUSTICE-08"
+      ]
+    },
+    {
+      "id": "COURTS-MAGISTRATES",
+      "title": "Magistrates Courts Act, Cap. 11",
+      "url": "https://www.osg.go.tz/uploads/documents/sw-1763372651-Cap.%2011%20Magistrates%20Courts%20Act%2C%20R.E%202023%20-%20MD%2C%20Mendez.pdf",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/courts-magistrates.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/courts-magistrates.pdf",
+      "sha256": "189ac61a6af84a6e564c07f9b3f58aad91ed5a1a7ebe67f8793212b08f3d4a37",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 31,
+          "matchedKeywords": [
+            "jurisdiction",
+            "court",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 32,
+          "matchedKeywords": [
+            "jurisdiction",
+            "court",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 46,
+          "matchedKeywords": [
+            "jurisdiction",
+            "court",
+            "dispute"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "jurisdiction",
+            "court"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "jurisdiction",
+            "court"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ACCESS_JUSTICE-02",
+        "KYR-ACCESS_JUSTICE-04"
+      ]
+    },
+    {
+      "id": "ADR-ACCREDITATION",
+      "title": "RECONCILIATION, NEGOTIATION, MEDIATION AND ARBITRATION (PRACTITIONERS ACCREDITATION) REGULATIONS, 2021. G.N 147 OF 2021.",
+      "url": "https://elibrary.osg.go.tz/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/adr-accreditation.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/adr-accreditation.pdf",
+      "sha256": "add4122ebd44795f916f359a04e76e86002cdfdc75db7db99c3f0f007a88f625",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN147/2021",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "mediation",
+            "consent",
+            "settlement"
+          ]
+        },
+        {
+          "pdfPage": 16,
+          "matchedKeywords": [
+            "mediation",
+            "consent"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "mediation"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "mediation"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "mediation"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ACCESS_JUSTICE-05"
+      ]
+    },
+    {
+      "id": "ADR-CONDUCT",
+      "title": "CODE OF CONDUCT AND PRACTICE FOR RECONCILIATORS, NEGOTIATORS, MEDIATORS AND ARBITRATORS REGULATIONS, GN NO. 148  OF 2021",
+      "url": "https://elibrary.osg.go.tz/items/fdb4e69e-1ff3-4e3c-b659-9110182900fa",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/adr-conduct.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/adr-conduct.pdf",
+      "sha256": "26aa1004b9bf42067aff1dd60fcc2d30fc1725b7d09d66fee5a36edfe3bd9f71",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN148/2021",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "mediation",
+            "settlement"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "mediation",
+            "consent"
+          ]
+        },
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "mediation",
+            "settlement"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "mediation"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "mediation"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ACCESS_JUSTICE-05"
+      ]
+    },
+    {
+      "id": "PROC-APPEAL-PRINCIPAL",
+      "title": "Tanzania Court of Appeal Rules",
+      "url": "https://elibrary.osg.go.tz/items/a6814a06-c3f3-43a4-944d-d5b1da442b56",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-appeal-principal.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-appeal-principal.pdf",
+      "sha256": "d1235b521afea1dfd117b8aadf38b777044017c9e64660ff7ddeac9e1d1094aa",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E.2019 subsidiary legislation",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "appeal",
+            "extension",
+            "time"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "appeal",
+            "extension",
+            "time"
+          ]
+        },
+        {
+          "pdfPage": 12,
+          "matchedKeywords": [
+            "appeal",
+            "extension",
+            "time"
+          ]
+        },
+        {
+          "pdfPage": 34,
+          "matchedKeywords": [
+            "appeal",
+            "extension",
+            "time"
+          ]
+        },
+        {
+          "pdfPage": 35,
+          "matchedKeywords": [
+            "appeal",
+            "extension",
+            "time"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ACCESS_JUSTICE-06"
+      ]
+    },
+    {
+      "id": "PROC-APPEAL-AMENDMENT-2024",
+      "title": "THE TANZANIA COURT OF APPEAL (AMENDMENT) RULES, GN 188 OF 2024",
+      "url": "https://elibrary.osg.go.tz/items/5cb53706-9992-4c60-9b23-c8230baaa42c",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-appeal-amendment-2024.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-appeal-amendment-2024.pdf",
+      "sha256": "aad85aea8b6ab059f2c1746fe2139c8ac91d9246e3646e21b79235f25a3521e0",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN188/2024",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "appeal",
+            "extension",
+            "time"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "appeal",
+            "time"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "appeal",
+            "time"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "appeal",
+            "time"
+          ]
+        },
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "appeal",
+            "time"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ACCESS_JUSTICE-06"
+      ]
+    },
+    {
+      "id": "PROC-APPEAL-AMENDMENT-2025",
+      "title": "Tanzania Court of Appeal Amendment Rules",
+      "url": "https://elibrary.osg.go.tz/items/1dfa91fc-3611-42cc-8c37-68419e88ac9d",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-appeal-amendment-2025.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-appeal-amendment-2025.pdf",
+      "sha256": "ab265b26887fa2615a4b6d7e79f5793ac7cc5335b600413b36af5651b7553147",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "GN 49 of 2025",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "appeal"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ACCESS_JUSTICE-06"
+      ]
+    },
+    {
+      "id": "PROC-GOVERNMENT",
+      "title": "Government Proceedings Act, Cap. 5",
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/110/download",
+      "publisher": "United Republic of Tanzania",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/proc-government.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/proc-government.pdf",
+      "sha256": "5faed28b70df47979c9b1e27045481d1bbc32ff0dd47e53e76adaffdef86581d",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "R.E. 2023",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "execution",
+            "decree",
+            "order"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "execution",
+            "order"
+          ]
+        },
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "execution",
+            "order"
+          ]
+        },
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "execution",
+            "order"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "execution"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ACCESS_JUSTICE-07"
+      ]
+    },
+    {
+      "id": "ZNZ-CIVIL-STATUS",
+      "title": "Zanzibar Civil Status Registration Act",
+      "url": "https://zcsra.go.tz/Downloads/act_3.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": null,
+      "localPDF": null,
+      "sha256": null,
+      "acquisitionStatus": "fetch_failed",
+      "versionObserved": "Act 3; year to inspect",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-01"
+      ]
+    },
+    {
+      "id": "WEB-ZCSRA",
+      "title": "Zanzibar civil status online registration",
+      "url": "https://ecrvs.zcsra.go.tz/",
+      "publisher": "Zanzibar Civil Status Registration Agency",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "Birth/death registration, including late-registration service categories.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-ZANZIBAR-01"
+      ]
+    },
+    {
+      "id": "ZNZ-LAND-TRIBUNAL-ASSEMBLY",
+      "title": "Zanzibar Land Tribunal Act7/1994: Assembly copy",
+      "url": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674626468.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": null,
+      "localPDF": null,
+      "sha256": null,
+      "acquisitionStatus": "fetch_failed",
+      "versionObserved": "Identity and current applicability pending review",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-02"
+      ]
+    },
+    {
+      "id": "ZNZ-LAND-AMENDMENT-2008",
+      "title": "Land Tribunal Amendment Act1/2008: Assembly copy",
+      "url": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674647722.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": null,
+      "localPDF": null,
+      "sha256": null,
+      "acquisitionStatus": "fetch_failed",
+      "versionObserved": "Identity and current applicability pending review",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-02"
+      ]
+    },
+    {
+      "id": "ZNZ-LAND-TENURE",
+      "title": "Zanzibar Land Tenure Act: Assembly-hosted source candidate",
+      "url": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674560129.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": null,
+      "localPDF": null,
+      "sha256": null,
+      "acquisitionStatus": "fetch_failed",
+      "versionObserved": "Identity and current applicability pending review",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-02"
+      ]
+    },
+    {
+      "id": "WEB-ZNZ-LAND",
+      "title": "Zanzibar Land Tribunal official information",
+      "url": "https://landtribunalsmz.go.tz/",
+      "publisher": "Land Tribunal Zanzibar",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "Tribunal establishment statement; www hostname returned directory listing in search, so current access needs confirmation.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-ZANZIBAR-02"
+      ]
+    },
+    {
+      "id": "ZNZ-EMPLOYMENT-GAZETTE",
+      "title": "Employment Act Gazette counterpart",
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-ii-dated-2005-10-07-no-6115.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/znz-employment-gazette.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/znz-employment-gazette.pdf",
+      "sha256": "8d57076a9c177c08d41cb07771ed532a256ac4f5f432bd8030e74fd4144b0041",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Act11/2005",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 25,
+          "matchedKeywords": [
+            "dispute",
+            "commission"
+          ]
+        },
+        {
+          "pdfPage": 39,
+          "matchedKeywords": [
+            "termination",
+            "commission"
+          ]
+        },
+        {
+          "pdfPage": 41,
+          "matchedKeywords": [
+            "termination",
+            "commission"
+          ]
+        },
+        {
+          "pdfPage": 42,
+          "matchedKeywords": [
+            "termination",
+            "commission"
+          ]
+        },
+        {
+          "pdfPage": 47,
+          "matchedKeywords": [
+            "dispute",
+            "commission"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-03"
+      ]
+    },
+    {
+      "id": "ZNZ-LABOUR-RELATIONS",
+      "title": "Labour Relations Act Gazette",
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-i-dated-2005-11-25-no-6125.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/znz-labour-relations.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/znz-labour-relations.pdf",
+      "sha256": "6a7a96f583c7d8136e2132c0c032e5780f68f654f543f67d27ade508058db9e5",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Act1/2005",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 7,
+          "matchedKeywords": [
+            "dispute",
+            "commission"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "dispute",
+            "commission"
+          ]
+        },
+        {
+          "pdfPage": 43,
+          "matchedKeywords": [
+            "dispute",
+            "termination"
+          ]
+        },
+        {
+          "pdfPage": 46,
+          "matchedKeywords": [
+            "dispute",
+            "termination"
+          ]
+        },
+        {
+          "pdfPage": 52,
+          "matchedKeywords": [
+            "dispute",
+            "commission"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-03"
+      ]
+    },
+    {
+      "id": "WEB-ZLS",
+      "title": "Zanzibar Law Society public information",
+      "url": "https://zls.or.tz/",
+      "publisher": "Zanzibar Law Society",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher search result",
+      "caution": "Public legal aid/access to justice, family/succession and land assistance leads.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-ZANZIBAR-03",
+        "KYR-ZANZIBAR-04",
+        "KYR-ZANZIBAR-05",
+        "KYR-ZANZIBAR-08"
+      ]
+    },
+    {
+      "id": "ZNZ-KADHIS-2024",
+      "title": "Kadhi’s Courts Act 2023, published February 2024",
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/znz-kadhis-2024.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/znz-kadhis-2024.pdf",
+      "sha256": "a38044f94dab972b70ff615cb9ac8b6fab8b89ef648cd616c15301b2477001c4",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Act8/2023; assent1February2024; Gazette23February2024; appointed commencement unverified",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 22,
+          "matchedKeywords": [
+            "jurisdiction",
+            "marriage",
+            "divorce"
+          ]
+        },
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "marriage"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "marriage"
+          ]
+        },
+        {
+          "pdfPage": 6,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-04",
+        "KYR-ZANZIBAR-05"
+      ]
+    },
+    {
+      "id": "ZNZ-CHILD-GAZETTE",
+      "title": "Children Act Gazette",
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/znz-child-gazette.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/znz-child-gazette.pdf",
+      "sha256": "2997c5168406851282abf2e3d75086f10192c613ab283c9e23c94e54c7ab6fce",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Act6/2011",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 23,
+          "matchedKeywords": [
+            "jurisdiction",
+            "marriage",
+            "divorce"
+          ]
+        },
+        {
+          "pdfPage": 60,
+          "matchedKeywords": [
+            "jurisdiction",
+            "marriage"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        },
+        {
+          "pdfPage": 15,
+          "matchedKeywords": [
+            "marriage"
+          ]
+        },
+        {
+          "pdfPage": 53,
+          "matchedKeywords": [
+            "jurisdiction"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-04",
+        "KYR-ZANZIBAR-06",
+        "KYR-ZANZIBAR-07"
+      ]
+    },
+    {
+      "id": "WEB-ZLSC",
+      "title": "ZLSC legal aid and legislation information",
+      "url": "https://zlsc.or.tz/aid/",
+      "publisher": "Zanzibar Legal Services Centre",
+      "checkedOn": "2026-10-07",
+      "observation": "Publisher page content via search",
+      "caution": "English/Swahili Legal Aid Act numbers differ on catalogue; do not infer correct Act number from label.",
+      "pageCandidates": [],
+      "sourcePassageManuallyVerified": false,
+      "usedBy": [
+        "KYR-ZANZIBAR-05",
+        "KYR-ZANZIBAR-06",
+        "KYR-ZANZIBAR-07",
+        "KYR-ZANZIBAR-08"
+      ]
+    },
+    {
+      "id": "ZNZ-CHILD-COURT-RULES",
+      "title": "Zanzibar Children Court Rules Gazette reproduction",
+      "url": "https://www.warnathgroup.com/wp-content/uploads/2019/08/Zanzibar-2011-Childrens-Act.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/znz-child-court-rules.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/znz-child-court-rules.pdf",
+      "sha256": "d1b1a81a71f6033bf2ce7ca17047da92ffbee831ad1bf39fbbb2d1318b820304",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "LN87/2015; filename incorrectly calls it Children Act",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 9,
+          "matchedKeywords": [
+            "maintenance",
+            "protection",
+            "children"
+          ]
+        },
+        {
+          "pdfPage": 10,
+          "matchedKeywords": [
+            "maintenance",
+            "protection",
+            "children"
+          ]
+        },
+        {
+          "pdfPage": 5,
+          "matchedKeywords": [
+            "maintenance",
+            "protection"
+          ]
+        },
+        {
+          "pdfPage": 8,
+          "matchedKeywords": [
+            "protection",
+            "children"
+          ]
+        },
+        {
+          "pdfPage": 11,
+          "matchedKeywords": [
+            "protection",
+            "children"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-06"
+      ]
+    },
+    {
+      "id": "ZNZ-PENAL-2018",
+      "title": "Penal Act Gazette",
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-13-no-6691.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/znz-penal-2018.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/znz-penal-2018.pdf",
+      "sha256": "9709c1cc810d417047705f6ce26c594376cab044f592d7634c9b81990e2274b3",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "Act6/2018",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 77,
+          "matchedKeywords": [
+            "violence",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 98,
+          "matchedKeywords": [
+            "violence",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 107,
+          "matchedKeywords": [
+            "violence",
+            "child"
+          ]
+        },
+        {
+          "pdfPage": 3,
+          "matchedKeywords": [
+            "violence"
+          ]
+        },
+        {
+          "pdfPage": 4,
+          "matchedKeywords": [
+            "violence"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-07"
+      ]
+    },
+    {
+      "id": "ZNZ-PROVIDER-LIST",
+      "title": "Registered Legal Aid Provider Organisations public list",
+      "url": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "publisher": "Revolutionary Government of Zanzibar",
+      "localText": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/extracted-text/znz-provider-list.txt",
+      "localPDF": "/Users/ednangowi/Documents/New project/lsf-new-website-2025-03-main/docs/haki-yangu/saada-research-pack-2026-10-05/source-files/znz-provider-list.pdf",
+      "sha256": "b13c109b9a10341c0c30fd99f5762e2d53c5c39eac7f429e8ae8c19c2e80244d",
+      "acquisitionStatus": "pdf_acquired_and_extracted",
+      "versionObserved": "publication date/registration currency unresolved",
+      "checkedOn": "2026-10-07",
+      "pageCandidates": [
+        {
+          "pdfPage": 1,
+          "matchedKeywords": [
+            "registration"
+          ]
+        },
+        {
+          "pdfPage": 2,
+          "matchedKeywords": [
+            "registration"
+          ]
+        }
+      ],
+      "sourcePassageManuallyVerified": false,
+      "caution": "Keyword locators are review aids, not verified sections. Reconcile amendments, commencement and applicability.",
+      "usedBy": [
+        "KYR-ZANZIBAR-08"
+      ]
+    }
+  ],
+  "selectionEvidence": {
+    "id": "WEB-LHRC-DEMAND",
+    "title": "LHRC 2024 Legal Aid Report announcement",
+    "url": "https://lhrc.humanrights.or.tz/sw/news-events/LHRC_2024_LEGAL_AID",
+    "publisher": "Legal and Human Rights Centre",
+    "checkedOn": "2026-10-07",
+    "observation": "Search result and publisher page content",
+    "caution": "Land 58%, family 14%, labour 10% of reported LHRC cases; provider-specific demand, not national ranking.",
+    "pageCandidates": [],
+    "sourcePassageManuallyVerified": false
+  }
+}

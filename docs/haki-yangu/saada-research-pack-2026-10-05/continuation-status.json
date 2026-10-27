@@ -1,19 +1,13 @@
 {
-  "goalStatus": "active",
-  "lastProgress": "Acquired and linked additional Mainland and Zanzibar instruments; completed unverified CMA OCR; prepared34 bilingual drafts,7 provider candidates, LSF information requests and4344 geography records.",
-  "publicPreparationStillRequired": [
-    "Remaining accessible benefits/personal-law/procedure instruments and selected binding case-law candidates",
-    "Complete source identity and form/page locator inventory",
-    "Resolve/record outstanding authoritative-source acquisition gaps",
-    "Expand and validate evidence-linked review records and metadata",
-    "Rebuild final private review archive and audit all deliverables"
-  ],
+  "researchPreparationStatus": "completed",
+  "publicPreparationStatus": "Private review bundle prepared and integrity validated; remaining legal coverage/owner dependencies explicitly recorded.",
   "externalDecisionsRequired": [
-    "Qualified legal currency/applicability review",
-    "Independent Kiswahili review",
-    "LSF policies and operational decisions",
-    "Provider registration/contact/capacity confirmation",
-    "Reuse permissions and current geography approval"
+    "Authenticated unavailable source copies and topic-specific procedural gaps listed in AUTHORITATIVE-SOURCE-GAPS.md",
+    "Qualified legal currency, applicability and case-law review",
+    "Independent language/accessibility review",
+    "LSF policies, roles, eligibility, safeguarding and privacy decisions",
+    "Provider confirmation and real referral/booking integrations",
+    "Source permissions, current place-code validation and app evaluation"
   ],
   "noPublicUploadOrContact": true
 }

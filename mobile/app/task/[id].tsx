@@ -1,3 +1,6 @@
+import { plainError } from "../../../shared/plainLanguage";
+import { ParalegalIntro } from "../../src/components/ParalegalIntro";
+import { ParalegalNavigation } from "../../src/components/ParalegalNavigation";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -5,7 +8,7 @@ import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
-import { AppHeader } from "../../src/components/AppHeader";
+import { CivicPageHeader as AppHeader } from "../../src/components/CivicPageHeader";
 import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
@@ -36,21 +39,21 @@ export default function TaskDetailScreen() {
       await completeTask({ taskId: row.task._id });
       setConfirming(false);
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : sw ? "Kazi haijahifadhiwa. Jaribu tena." : "Task was not saved. Please try again.");
+      setError(plainError(caught, locale, sw ? "Kazi haijahifadhiwa. Jaribu tena." : "Task was not saved. Please try again."));
     } finally {
       setSaving(false);
     }
   }
 
-  return <Screen>
-    <AppHeader back title={sw ? "Maelezo ya kazi" : "Task details"} eyebrow="HAKI YANGU · PARALEGAL" />
+  return <Screen footer={allowed ? <ParalegalNavigation current="home" /> : undefined}>
+    <AppHeader compact back title={sw ? "Maelezo ya kazi" : "Task details"} />
     {!isSignedIn ? <State icon="lock-closed-outline" title={sw ? "Kazi za kesi ni za siri" : "Case tasks are private"} body={sw ? "Ingia kuona kazi zako." : "Sign in to view your tasks."} action={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
       : access === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ruhusa" : "Loading access"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
-      : !allowed ? <State icon="shield-outline" title={sw ? "Idhini inahitajika" : "Approval required"} body={sw ? "Jukumu la paralegal lazima liidhinishwe kabla ya kuona kazi." : "Your paralegal role must be approved before you can see tasks."} />
+      : !allowed ? <State icon="shield-outline" title={sw ? "Idhini inahitajika" : "Approval required"} body={sw ? "Jukumu la msaidizi wa kisheria lazima liidhinishwe kabla ya kuona kazi." : "Your paralegal role must be approved before you can see tasks."} />
       : openTasks === undefined || doneTasks === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia kazi" : "Loading task"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !row ? <State icon="search-outline" title={sw ? "Kazi haipatikani" : "Task not found"} body={sw ? "Huenda imeondolewa au huna ruhusa ya kuiona." : "It may have been removed, or you may not have access to it."} action={sw ? "Rudi kwenye kazi" : "Back to tasks"} onPress={() => router.replace("/paralegal-tasks")} />
       : <>
-        <View style={[styles.hero, row.task.status === "done" && styles.heroDone]}><View style={styles.heroIcon}><Ionicons name={row.task.status === "done" ? "checkmark-circle" : "checkbox-outline"} size={32} color={colors.surface} /></View><Text style={styles.heroKicker}>{row.case?.publicId ?? (sw ? "Kesi inalindwa" : "Protected case")}</Text><Text style={styles.heroTitle}>{row.task.title}</Text><Text style={styles.heroBody}>{row.task.status === "done" ? (sw ? "Kazi hii imekamilika." : "This task is complete.") : (sw ? "Kagua muktadha wa kesi kabla ya kukamilisha hatua hii." : "Review the case context before completing this step.")}</Text></View>
+        <ParalegalIntro pose="direction" title={row.task.title} body={row.task.status === "done" ? (sw ? "Kazi hii imekamilika." : "This task is complete.") : (sw ? "Kagua maelezo wa kesi kabla ya kukamilisha hatua hii." : "Review the case context before completing this step.")} />
         <View style={styles.card}><Info icon="flag-outline" label={sw ? "Hali" : "Status"} value={row.task.status === "done" ? (sw ? "Imekamilika" : "Completed") : (sw ? "Inasubiri" : "To do")} />{row.task.dueAt ? <Info icon="calendar-outline" label={sw ? "Tarehe ya mwisho" : "Due date"} value={new Date(row.task.dueAt).toLocaleDateString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "long" })} /> : null}{row.task.note ? <Info icon="document-text-outline" label={sw ? "Maelezo" : "Details"} value={row.task.note} /> : null}</View>
         <Text style={styles.sectionTitle}>{sw ? "Fungua kesi kwanza" : "Open the case first"}</Text><Text style={styles.body}>{sw ? "Taarifa za mnufaika, ujumbe, nyaraka na miadi hukaa kwenye sehemu ya kesi iliyoidhinishwa." : "Beneficiary details, messages, documents and appointments stay in the authorised case workspace."}</Text>
         <Button label={sw ? "Fungua kazi kwenye kesi" : "Open tasks in case"} variant="secondary" onPress={() => router.push({ pathname: "/case/[id]", params: { id: row.task.caseId, section: "tasks" } })} />

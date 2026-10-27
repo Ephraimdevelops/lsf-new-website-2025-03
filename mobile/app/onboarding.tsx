@@ -1,7 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image } from "expo-image";
 import { BrandMark } from "../src/components/BrandMark";
 import { Button } from "../src/components/Button";
 import { Screen } from "../src/components/Screen";
@@ -22,22 +23,22 @@ export default function OnboardingScreen() {
       <View style={styles.hero}>
         <View style={styles.illustration}>
           <View style={styles.artGlow} />
-          <Image source={require("../assets/saada-paralegal.png")} style={styles.artImage} resizeMode="cover" accessible={false} />
+          <Image source={require("../assets/saada-paralegal.webp")} style={styles.artImage} contentFit="cover" accessible={false} />
           <View style={styles.artStatement}><Text style={styles.artStatementTitle}>{locale === "sw" ? "Hauko peke yako." : "You are not alone."}</Text><Text style={styles.artStatementBody}>{locale === "sw" ? "Taarifa. Msaada. Hatua wazi." : "Information. Support. Clear next steps."}</Text></View>
-          <View style={styles.artCard}><Ionicons name="shield-checkmark" size={22} color={colors.teal} /><Text style={styles.artCardText}>{locale === "sw" ? "Salama na ya kuaminika" : "Safe and trusted"}</Text></View>
+          <View style={styles.artCard}><Ionicons name="shield-checkmark" size={22} color={colors.teal} /><Text style={styles.artCardText}>{locale === "sw" ? "Chagua taarifa utakazoshiriki" : "Choose what to share"}</Text></View>
         </View>
-        <Text style={styles.kicker}>{locale === "sw" ? "WATU · HAKI · USAIDIZI" : "PEOPLE · RIGHTS · SUPPORT"}</Text>
+        <Text style={styles.kicker}>{locale === "sw" ? "WATU · HAKI · MSAADA" : "PEOPLE · RIGHTS · SUPPORT"}</Text>
         <Text style={styles.title}>{locale === "sw" ? "Haki zako, mikononi mwako" : "Your rights, in your hands"}</Text>
         <Text style={styles.body}>
           {locale === "sw"
-            ? "Haki Yangu hukusaidia kuelewa haki zako, kupata msaada unaofaa na kufuatilia hatua zinazofuata."
-            : "Haki Yangu helps you understand your rights, reach the right support and follow what happens next."}
+            ? "Elewa haki zako, omba msaada na fuatilia hatua inayofuata."
+            : "Understand your rights, request help and follow the next step."}
         </Text>
       </View>
       <View style={styles.pathPreview}>
-        <View style={styles.previewItem}><View style={styles.previewIcon}><Ionicons name="chatbubbles" size={20} color={colors.burgundy} /></View><View style={styles.previewCopy}><Text style={styles.previewTitle}>{locale === "sw" ? "Omba msaada" : "Ask for help"}</Text><Text style={styles.previewBody}>{locale === "sw" ? "Eleza tatizo lako na uunganishwe." : "Tell us your problem and get connected."}</Text></View></View>
+        <View style={styles.previewItem}><View style={styles.previewIcon}><Ionicons name="chatbubbles" size={20} color={colors.burgundy} /></View><View style={styles.previewCopy}><Text style={styles.previewTitle}>{locale === "sw" ? "Omba msaada" : "Ask for help"}</Text><Text style={styles.previewBody}>{locale === "sw" ? "Eleza tatizo lako kwa LSF." : "Tell LSF about your problem."}</Text></View></View>
         <View style={styles.previewDivider} />
-        <View style={styles.previewItem}><View style={[styles.previewIcon, styles.previewIconTeal]}><Ionicons name="search" size={20} color={colors.teal} /></View><View style={styles.previewCopy}><Text style={styles.previewTitle}>{locale === "sw" ? "Tafuta huduma" : "Find help"}</Text><Text style={styles.previewBody}>{locale === "sw" ? "Gundua huduma zilizothibitishwa." : "Explore verified services near you."}</Text></View></View>
+        <View style={styles.previewItem}><View style={[styles.previewIcon, styles.previewIconTeal]}><Ionicons name="search" size={20} color={colors.teal} /></View><View style={styles.previewCopy}><Text style={styles.previewTitle}>{locale === "sw" ? "Tafuta huduma" : "Find services"}</Text><Text style={styles.previewBody}>{locale === "sw" ? "Gundua huduma zilizothibitishwa." : "Explore verified services near you."}</Text></View></View>
         <View style={styles.previewDivider} />
         <View style={styles.previewItem}><View style={[styles.previewIcon, styles.previewIconGold]}><Ionicons name="document-text-outline" size={20} color={colors.warning} /></View><View style={styles.previewCopy}><Text style={styles.previewTitle}>{locale === "sw" ? "Fuatilia kesi yako" : "Follow your case"}</Text><Text style={styles.previewBody}>{locale === "sw" ? "Ona hatua zinazofuata kwa urahisi." : "See your next steps clearly."}</Text></View></View>
       </View>

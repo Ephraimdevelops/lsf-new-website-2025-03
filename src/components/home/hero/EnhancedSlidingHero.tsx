@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Phone, ArrowRight, PlayCircle, Target } from 'lucide-react';
@@ -82,8 +83,7 @@ const EnhancedSlidingHero = () => {
     return (
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary-teal/10">
         <div className="flex flex-col items-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-          <p className="text-primary font-medium">Loading...</p>
+          <BrandLoading compact text={"Loading..."}/>
         </div>
       </section>
     );

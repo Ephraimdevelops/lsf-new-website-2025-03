@@ -1,10 +1,10 @@
 {
-  "registeredSources": 158,
-  "acquiredPDFRecords": 115,
-  "uniquePDFs": 113,
-  "uniquePDFPages": 6038,
-  "acquiredWebPages": 26,
-  "acquisitionFailures": 16,
+  "registeredSources": 186,
+  "acquiredPDFRecords": 130,
+  "uniquePDFs": 128,
+  "uniquePDFPages": 6218,
+  "acquiredWebPages": 27,
+  "acquisitionFailures": 28,
   "approvedSources": 0,
   "uploadedByThisResearch": 0
 }

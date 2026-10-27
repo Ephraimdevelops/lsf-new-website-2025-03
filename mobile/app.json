@@ -19,7 +19,11 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "org.lsftz.hakiyangu"
+      "package": "org.lsftz.hakiyangu",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,11 +34,20 @@
       "expo-localization",
       "expo-font",
       [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow Haki Yangu to record an answer you choose to transcribe.",
+          "enableBackgroundRecording": false,
+          "recordAudioAndroid": true,
+          "enableBackgroundPlayback": false
+        }
+      ],
+      [
         "expo-image-picker",
         {
-          "photosPermission": "Allow Haki Yangu to select your profile and cover photos.",
-          "cameraPermission": false,
-          "microphonePermission": false,
+          "photosPermission": "Allow Haki Yangu to select documents and profile photos.",
+          "cameraPermission": "Allow Haki Yangu to photograph a document when you choose.",
+          "microphonePermission": "Allow Haki Yangu to record an answer you choose to transcribe.",
           "colors": {
             "cropToolbarColor": "#8A1538",
             "cropToolbarIconColor": "#FFFFFF",
@@ -49,7 +62,22 @@
           "defaultChannel": "case-updates",
           "enableBackgroundRemoteNotifications": false
         }
-      ]
-    ]
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Use your location to find nearby public legal help when you choose.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false
+        }
+      ],
+      "@rnmapbox/maps"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bc4f59f4-7366-439c-b24b-2c418807122b"
+      }
+    },
+    "owner": "ephraimngowi"
   }
 }

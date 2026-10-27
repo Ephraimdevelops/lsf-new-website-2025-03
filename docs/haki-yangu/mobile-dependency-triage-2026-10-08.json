@@ -1,0 +1,438 @@
+{
+  "generatedAt": "2026-10-07T23:12:23.032Z",
+  "status": "triaged-not-zero-advisories",
+  "initialAffectedPackages": 35,
+  "remaining": {
+    "info": 0,
+    "low": 0,
+    "moderate": 7,
+    "high": 22,
+    "critical": 0,
+    "total": 29
+  },
+  "lockfileSha256": "d01e736a74b4be383d68973e546cde1baad1d950104d04baff608ec9d1814e24",
+  "patches": [
+    "@xmldom/xmldom 0.8.15 and 0.9.12",
+    "brace-expansion 5.0.12",
+    "source-map-js 1.2.2",
+    "decode-uri-component 0.5.0 (query-string override with mandatory CJS/ESM postinstall compatibility patch)"
+  ],
+  "roots": {
+    "braces": {
+      "advisory": "GHSA-vfj7-8cjw-p6xm",
+      "severity": "high",
+      "decision": "No upstream patch. Exclude from shipped bundles; use trusted build inputs and do not publicly expose Metro.",
+      "reviewBy": "2026-10-15"
+    },
+    "node-forge": {
+      "advisory": "GHSA-86w9-cpqp-85rv",
+      "severity": "high",
+      "decision": "No upstream patch. Build-only signing tooling; require trusted signing certificates and keys. Do not accept attacker-supplied certificates.",
+      "reviewBy": "2026-10-15"
+    },
+    "uuid": {
+      "advisory": "GHSA-w5hq-g745-h8pq",
+      "severity": "moderate",
+      "decision": "xcode uses v4() without a caller buffer; affected v3/v5/v6 paths not called. Exclude xcode/uuid from shipped bundles; avoid breaking native tooling with a forced major override.",
+      "reviewBy": "2026-10-15"
+    }
+  },
+  "bundleEvidence": [
+    {
+      "file": "_expo/static/js/android/entry-0c46de76235bef24d0c6129c18068f23.js.map",
+      "sha256": "c63dafdaf209418d3a7ee50cb20a9b006f29c03b62f829eef31430222c62b24f",
+      "sourceCount": 1861,
+      "occurrences": {
+        "braces": 0,
+        "node-forge": 0,
+        "uuid": 0
+      },
+      "decoderInterop": "verified"
+    },
+    {
+      "file": "_expo/static/js/ios/entry-448bcfddf8cb2b2f6e97579a9d36119f.js.map",
+      "sha256": "644d6a8ed0014211f36b8b021b1f05d2b4eda4545c7ea509251563bd972ec4b7",
+      "sourceCount": 1779,
+      "occurrences": {
+        "braces": 0,
+        "node-forge": 0,
+        "uuid": 0
+      },
+      "decoderInterop": "verified"
+    },
+    {
+      "file": "_expo/static/js/web/entry-2e491deb1e69bf6521a984161d3bcaaa.js.map",
+      "sha256": "68417480eb5d543a2483cd554f179ab3816159fb6a82a8f611edc1d4fceb229d",
+      "sourceCount": 1398,
+      "occurrences": {
+        "braces": 0,
+        "node-forge": 0,
+        "uuid": 0
+      },
+      "decoderInterop": "verified"
+    }
+  ],
+  "affectedPackages": [
+    {
+      "package": "@clerk/clerk-expo",
+      "severity": "high",
+      "isDirect": true,
+      "nodes": [
+        "node_modules/@clerk/clerk-expo"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/cli",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/expo/node_modules/@expo/cli"
+      ],
+      "underlying": [
+        "node-forge",
+        "uuid",
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/code-signing-certificates",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/code-signing-certificates"
+      ],
+      "underlying": [
+        "node-forge"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/config",
+      "severity": "moderate",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/local-build-cache-provider/node_modules/@expo/config",
+        "node_modules/@expo/metro-config/node_modules/@expo/config",
+        "node_modules/@expo/prebuild-config/node_modules/@expo/config",
+        "node_modules/expo/node_modules/@expo/config"
+      ],
+      "underlying": [
+        "uuid"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/config-plugins",
+      "severity": "moderate",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/inline-modules/node_modules/@expo/config-plugins",
+        "node_modules/@expo/local-build-cache-provider/node_modules/@expo/config-plugins",
+        "node_modules/@expo/metro-config/node_modules/@expo/config-plugins",
+        "node_modules/@expo/prebuild-config/node_modules/@expo/config-plugins",
+        "node_modules/expo/node_modules/@expo/config-plugins"
+      ],
+      "underlying": [
+        "uuid"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/inline-modules",
+      "severity": "moderate",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/inline-modules"
+      ],
+      "underlying": [
+        "uuid"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/local-build-cache-provider",
+      "severity": "moderate",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/local-build-cache-provider"
+      ],
+      "underlying": [
+        "uuid"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/metro",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/metro"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/metro-config",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/metro-config"
+      ],
+      "underlying": [
+        "uuid",
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/metro-file-map",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/metro-file-map"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@expo/prebuild-config",
+      "severity": "moderate",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@expo/prebuild-config"
+      ],
+      "underlying": [
+        "uuid"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@react-native/community-cli-plugin",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@react-native/community-cli-plugin"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@react-native/virtualized-lists",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@react-native/virtualized-lists"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@solana-mobile/mobile-wallet-adapter-protocol",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@solana-mobile/mobile-wallet-adapter-protocol"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@solana-mobile/mobile-wallet-adapter-protocol-web3js",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@solana-mobile/mobile-wallet-adapter-protocol-web3js"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@solana-mobile/wallet-adapter-mobile",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@solana-mobile/wallet-adapter-mobile"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "@solana-mobile/wallet-standard-mobile",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/@solana-mobile/wallet-standard-mobile"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "braces",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/braces"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "expo",
+      "severity": "high",
+      "isDirect": true,
+      "nodes": [
+        "node_modules/expo"
+      ],
+      "underlying": [
+        "node-forge",
+        "uuid",
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "metro",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/metro"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "metro-config",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/metro-config"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "metro-file-map",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/metro-file-map"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "metro-transform-worker",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/metro-transform-worker"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "micromatch",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/micromatch"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "node-forge",
+      "severity": "high",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/node-forge"
+      ],
+      "underlying": [
+        "node-forge"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "react-native",
+      "severity": "high",
+      "isDirect": true,
+      "nodes": [
+        "node_modules/react-native"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "react-native-marked",
+      "severity": "high",
+      "isDirect": true,
+      "nodes": [
+        "node_modules/react-native-marked"
+      ],
+      "underlying": [
+        "braces"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "uuid",
+      "severity": "moderate",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/xcode/node_modules/uuid"
+      ],
+      "underlying": [
+        "uuid"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    },
+    {
+      "package": "xcode",
+      "severity": "moderate",
+      "isDirect": false,
+      "nodes": [
+        "node_modules/xcode"
+      ],
+      "underlying": [
+        "uuid"
+      ],
+      "disposition": "Build-tool exposure only in verified release exports; retained advisory requires upstream monitoring."
+    }
+  ],
+  "caveat": "Source-map absence establishes shipped JS reachability, not safety of CI or all future imports. Re-run after dependency or build changes. Risk acceptance and build isolation remain release decisions."
+}

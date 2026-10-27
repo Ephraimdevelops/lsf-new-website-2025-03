@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-07T20:39:44.867Z",
+  "deploymentType": "dev",
+  "identity": "guest_no_token",
+  "checks": [
+    {
+      "name": "Guest cannot read PDF archive",
+      "passed": true,
+      "denied": true
+    },
+    {
+      "name": "Guest cannot inspect stored PDF receipts",
+      "passed": true,
+      "denied": true
+    },
+    {
+      "name": "Public approved guides",
+      "passed": true,
+      "count": 0
+    },
+    {
+      "name": "Public verified services",
+      "passed": true,
+      "count": 0
+    }
+  ],
+  "recordMutationsPerformed": 0
+}

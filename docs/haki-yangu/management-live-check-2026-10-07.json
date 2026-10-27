@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-07T18:25:24.827Z",
+  "deploymentType": "dev",
+  "identity": "guest_no_token",
+  "checks": [
+    {
+      "name": "Current public guides are queryable",
+      "passed": true,
+      "count": 0
+    },
+    {
+      "name": "Approved guide search is deployed",
+      "passed": true,
+      "count": 0
+    },
+    {
+      "name": "Public service directory is queryable",
+      "passed": true,
+      "count": 0
+    },
+    {
+      "name": "Guest cannot read private research",
+      "passed": true,
+      "denied": true
+    },
+    {
+      "name": "Guest cannot read editorial queue",
+      "passed": true,
+      "denied": true
+    },
+    {
+      "name": "Guest cannot read provider membership",
+      "passed": true,
+      "denied": true
+    }
+  ],
+  "recordMutationsPerformed": 0
+}

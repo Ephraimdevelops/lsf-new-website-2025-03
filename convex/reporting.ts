@@ -1,6 +1,7 @@
 import { ConvexError, v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { getActiveRoles, requireAnyRole } from "./lib/auth";
+import { externalImpactValues } from "../shared/impactReporting";
 
 const MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
 const DEFAULT_SUPPRESSION_THRESHOLD = 5;
@@ -206,9 +207,9 @@ export const listSnapshots = query({
       generatedAt: snapshot.generatedAt,
       approvalStatus: snapshot.approvalStatus,
       definitionVersion: snapshot.definitionVersion,
-      values: snapshot.values,
-      qualityFlags: snapshot.qualityFlags,
-      publicSummary: snapshot.publicSummary,
+      values: externalReportingOnly ? externalImpactValues(snapshot.values) : snapshot.values,
+      qualityFlags: externalReportingOnly ? snapshot.qualityFlags.filter(flag => ["request_count_below_public_threshold", "case_count_below_public_threshold", "no_feedback_in_period"].includes(flag)) : snapshot.qualityFlags,
+      publicSummary: externalReportingOnly ? "Approved summary figures. Small groups are hidden to protect people’s privacy." : snapshot.publicSummary,
       generatedBy: externalReportingOnly ? undefined : snapshot.generatedBy,
       approvedBy: externalReportingOnly ? undefined : snapshot.approvedBy,
       approvedAt: snapshot.approvedAt,

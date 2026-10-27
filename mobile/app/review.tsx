@@ -11,7 +11,7 @@ const screens = [
   { id: "case-detail", icon: "git-branch-outline", en: "Case details", sw: "Maelezo ya kesi" },
   { id: "request-detail", icon: "file-tray-full-outline", en: "Request progress", sw: "Maendeleo ya ombi" },
   { id: "messages", icon: "chatbubbles-outline", en: "Messages", sw: "Ujumbe" },
-  { id: "saved", icon: "bookmark-outline", en: "Saved help", sw: "Msaada uliohifadhiwa" },
+  { id: "saved", icon: "bookmark-outline", en: "Saved help", sw: "Huduma nilizohifadhiwa" },
   { id: "documents", icon: "document-text-outline", en: "Documents", sw: "Nyaraka" },
   { id: "appointments", icon: "calendar-outline", en: "Appointments", sw: "Miadi" },
   { id: "notifications", icon: "notifications-outline", en: "Notifications", sw: "Arifa" },
@@ -185,7 +185,7 @@ function MessagesPage({ sw }: { sw: boolean }) {
 
 function SavedPage({ sw, view, setView }: { sw: boolean; view: "services" | "guides"; setView: (view: "services" | "guides") => void }) {
   return <>
-    <PageTitle eyebrow={sw ? "MAHALI ULIPOHIFADHI" : "YOUR SHORTLIST"} title={sw ? "Msaada uliohifadhiwa" : "Saved help"} detail={sw ? "Rudi kwenye huduma na miongozo uliyochagua." : "Keep useful services and guides close at hand."} />
+    <PageTitle eyebrow={sw ? "MAHALI ULIPOHIFADHI" : "YOUR SHORTLIST"} title={sw ? "Huduma nilizohifadhiwa" : "Saved help"} detail={sw ? "Rudi kwenye huduma na miongozo uliyochagua." : "Keep useful services and guides close at hand."} />
     <View style={styles.segment}><Pressable onPress={() => setView("services")} style={[styles.segmentOption, view === "services" && styles.segmentOptionActive]}><Text style={[styles.segmentText, view === "services" && styles.segmentTextActive]}>{sw ? "Huduma 2" : "Services 2"}</Text></Pressable><Pressable onPress={() => setView("guides")} style={[styles.segmentOption, view === "guides" && styles.segmentOptionActive]}><Text style={[styles.segmentText, view === "guides" && styles.segmentTextActive]}>{sw ? "Miongozo 3" : "Guides 3"}</Text></Pressable></View>
     {view === "services" ? <>
       <View style={styles.serviceSaved}><View style={styles.serviceSavedTop}><IconBox name="business-outline" tone="teal" /><Text style={styles.verified}><Ionicons name="checkmark-circle" size={13} color={colors.teal} /> {sw ? "Imethibitishwa" : "Verified"}</Text></View><Text style={styles.serviceName}>{sw ? "Kituo cha msaada wa kisheria" : "Legal aid service"}</Text><Text style={styles.serviceLocation}><Ionicons name="location-outline" size={14} color={colors.inkMuted} /> Ilala · Dar es Salaam</Text><View style={styles.serviceTags}><Text style={styles.serviceTag}>{sw ? "Ajira" : "Employment"}</Text><Text style={styles.serviceTag}>{sw ? "Familia" : "Family"}</Text></View><View style={styles.serviceFooter}><Text style={styles.savedWhen}>{sw ? "Imehifadhiwa 19 Septemba" : "Saved 19 September"}</Text><Ionicons name="bookmark" size={19} color={colors.burgundy} /></View></View>

@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { useQuery, useMutation } from "convex/react";
@@ -52,8 +53,7 @@ const OpportunityDetail = () => {
       <Layout>
         <div className="min-h-screen bg-gradient-to-b from-secondary-teal/5 to-white flex items-center justify-center">
           <div className="text-center">
-            <div className="w-12 h-12 border-4 border-secondary-teal border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-neutral-600 font-light">Loading opportunity...</p>
+            <BrandLoading compact text={"Loading opportunity..."}/>
           </div>
         </div>
       </Layout>

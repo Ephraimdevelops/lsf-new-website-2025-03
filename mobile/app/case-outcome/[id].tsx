@@ -1,3 +1,4 @@
+import { plainError } from "../../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -6,7 +7,9 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import type { Id } from "../../../convex/_generated/dataModel";
 import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
-import { AppHeader } from "../../src/components/AppHeader";
+import { CivicPageHeader as AppHeader } from "../../src/components/CivicPageHeader";
+import { ParalegalIntro } from "../../src/components/ParalegalIntro";
+import { ParalegalNavigation } from "../../src/components/ParalegalNavigation";
 import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
@@ -37,6 +40,7 @@ export default function CaseOutcomeScreen() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const isBeneficiary = Boolean(details && access && details.case.beneficiaryId === access.user._id);
+  const workCase = Boolean(details?.closureReadiness && access?.roles.some(role => ["paralegal", "provider_staff"].includes(role)) && !isBeneficiary);
   const canGiveFeedback = isBeneficiary && details?.outcome && ["resolved", "closed"].includes(details.case.status) && !details.feedback;
 
   async function sendFeedback() {
@@ -46,23 +50,23 @@ export default function CaseOutcomeScreen() {
     try {
       await submitFeedback({ caseId, rating, comment: comment.trim() || undefined });
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : sw ? "Maoni hayajatumwa. Jaribu tena." : "Feedback was not sent. Please try again.");
+      setError(plainError(caught, locale, sw ? "Maoni hayajatumwa. Jaribu tena." : "Feedback was not sent. Please try again."));
     } finally {
       setSending(false);
     }
   }
 
-  return <Screen>
-    <AppHeader back title={sw ? "Matokeo ya kesi" : "Case outcome"} eyebrow="HAKI YANGU" />
+  return <Screen footer={workCase ? <ParalegalNavigation current="cases" /> : undefined}>
+    <AppHeader back title={sw ? "Matokeo ya kesi" : "Case outcome"} compact />
     {!isSignedIn ? <State icon="lock-closed-outline" title={sw ? "Matokeo yako yanalindwa" : "Your outcome is private"} body={sw ? "Ingia kuona matokeo ya kesi." : "Sign in to see your case outcome."} action={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
       : details === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia matokeo" : "Loading outcome"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !details ? <State icon="folder-outline" title={sw ? "Kesi haipatikani" : "Case not found"} body={sw ? "Huenda imebadilika au huna ruhusa ya kuiona." : "It may have changed, or you may not have access to it."} />
       : <>
-        <View style={[styles.hero, !details.outcome && styles.heroPending]}>
+        {workCase ? <ParalegalIntro pose="review" title={details.outcome ? (sw ? "Matokeo yamerekodiwa." : "Outcome recorded.") : (sw ? "Rekodi msaada uliotolewa." : "Record the help provided.")} body={sw ? "Pitia kilichofanyika na ukubaliane hatua inayofuata na mnufaika." : "Review what happened and agree the next step with the beneficiary."} /> : <View style={[styles.hero, !details.outcome && styles.heroPending]}>
           <View style={styles.heroIcon}><Ionicons name={details.outcome ? "checkmark-circle" : "time-outline"} size={37} color={details.outcome ? colors.surface : colors.burgundy} /></View>
           <Text style={[styles.heroTitle, !details.outcome && styles.pendingText]}>{details.outcome ? (sw ? "Matokeo yamerekodiwa" : "An outcome is recorded") : (sw ? "Msaada bado unaendelea" : "Support is still in progress")}</Text>
           <Text style={[styles.heroBody, !details.outcome && styles.pendingText]}>{details.outcome ? (sw ? "Hivi ndivyo timu ya kesi ilivyorekodi msaada uliotolewa." : "This is how your case team recorded the support provided.") : (sw ? "Matokeo yataonekana hapa baada ya timu ya kesi kuyarekodi." : "Your outcome will appear here when the case team records it.")}</Text>
-        </View>
+        </View>}
 
         <Text style={styles.reference}>{details.case.publicId}</Text>
         {details.outcome ? <View style={styles.outcomeCard}>
@@ -73,7 +77,7 @@ export default function CaseOutcomeScreen() {
         </View> : null}
 
         <Text style={styles.sectionTitle}>{sw ? "Hatua inayofuata" : "Your next step"}</Text>
-        <View style={styles.nextCard}><Ionicons name="shield-checkmark-outline" size={25} color={colors.burgundy} /><Text style={[styles.body, styles.flex]}>{details.case.status === "closed_unresolved" ? (sw ? "Ikiwa bado unahitaji msaada, wasiliana na LSF au anza ombi jipya." : "If you still need help, contact LSF or start a new request.") : details.outcome ? (sw ? "Hifadhi nyaraka muhimu. Ikiwa tatizo linaendelea, unaweza kuomba LSF ipitie kesi yako." : "Keep important documents. If the problem continues, you can ask LSF to review your case.") : (sw ? "Fuatilia kesi yako kwa taarifa kutoka kwa timu ya msaada." : "Follow your case for updates from your support team.")}</Text></View>
+        <View style={styles.nextCard}><Ionicons name="shield-checkmark-outline" size={25} color={colors.burgundy} /><Text style={[styles.body, styles.flex]}>{workCase ? (sw ? "Fuatilia hatua zilizobaki, rekodi matokeo kwenye kesi, na omba ukaguzi wa LSF panapohitajika." : "Follow up on remaining tasks, record the outcome in the case, and ask LSF for review when needed.") : details.case.status === "closed_unresolved" ? (sw ? "Ikiwa bado unahitaji msaada, wasiliana na LSF au anza ombi jipya." : "If you still need help, contact LSF or start a new request.") : details.outcome ? (sw ? "Hifadhi nyaraka muhimu. Ikiwa tatizo linaendelea, unaweza kuomba LSF ipitie kesi yako." : "Keep important documents. If the problem continues, you can ask LSF to review your case.") : (sw ? "Fuatilia kesi yako kwa taarifa kutoka kwa timu ya msaada." : "Follow your case for updates from your support team.")}</Text></View>
 
         {details.feedback ? <View style={styles.received}><Ionicons name="heart-outline" size={30} color={colors.burgundy} /><Text style={styles.sectionTitle}>{sw ? "Asante kwa maoni yako" : "Thanks for your feedback"}</Text><Text style={styles.body}>{sw ? `Uliipa huduma alama ${details.feedback.rating} kati ya 5.` : `You rated the support ${details.feedback.rating} out of 5.`}</Text>{details.feedback.comment ? <Text style={styles.quote}>{details.feedback.comment}</Text> : null}</View>
           : canGiveFeedback ? <View style={styles.feedback}>
@@ -85,7 +89,7 @@ export default function CaseOutcomeScreen() {
             <Button label={sw ? "Tuma maoni" : "Submit feedback"} disabled={!rating || sending} loading={sending} onPress={() => void sendFeedback()} />
           </View> : null}
 
-        <View style={styles.actions}>{isBeneficiary ? <><Button label={sw ? "Angalia hatua za ufuatiliaji" : "See follow-up steps"} onPress={() => router.push({ pathname: "/case-follow-up/[id]", params: { id } })} /><Button label={sw ? "Nahitaji msaada zaidi" : "I need more help"} variant="secondary" onPress={() => router.push({ pathname: "/case-review/[id]", params: { id } })} /></> : null}<Button label={sw ? "Fungua kesi yangu" : "Open my case"} variant="quiet" onPress={() => router.push({ pathname: "/case/[id]", params: { id } })} /></View>
+        <View style={styles.actions}>{isBeneficiary ? <><Button label={sw ? "Angalia hatua za ufuatiliaji" : "See follow-up steps"} onPress={() => router.push({ pathname: "/case-follow-up/[id]", params: { id } })} /><Button label={sw ? "Nahitaji msaada zaidi" : "I need more help"} variant="secondary" onPress={() => router.push({ pathname: "/case-review/[id]", params: { id } })} /></> : null}<Button label={sw ? "Fungua kesi yangu" : "Open my case"} variant="quiet" onPress={() => router.push({ pathname: "/case/[id]", params: { id, ...(workCase ? { section: "feedback" } : {}) } })} /></View>
       </>}
   </Screen>;
 }

@@ -1,0 +1,1029 @@
+{
+  "checkedAt": "2026-10-24T21:02:13.693Z",
+  "status": "citation_reachability_not_legal_approval",
+  "sources": [
+    {
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2022/tz-znz-government-gazette-legal-supplement-part-ii-dated-2022-12-30-no-7067b.pdf",
+      "checkedAt": "2026-10-24T20:16:29.227Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://archive.gazettes.africa/archive/tz-znz/2022/tz-znz-government-gazette-legal-supplement-part-ii-dated-2022-12-30-no-7067b.pdf",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-06-no-6692.pdf",
+      "checkedAt": "2026-10-24T20:16:16.666Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-06-no-6692.pdf",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": true
+    },
+    {
+      "url": "https://zlsc.or.tz/aid/",
+      "checkedAt": "2026-10-24T20:15:08.179Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://zlsc.or.tz/aid/",
+      "pageTitle": "Legal Aid &#8211; ZLSC | 2024",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://zura.go.tz/filling-a-complaint/",
+      "checkedAt": "2026-10-24T21:01:59.631Z",
+      "status": "unavailable",
+      "error": "Source could not be retrieved within bounded check; no conclusion about service availability."
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "checkedAt": "2026-10-24T20:15:06.319Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "pageTitle": "THE LEGAL AID ACT, CHAPTER 21 R.E. 2023",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://www.rita.go.tz/faq.php?lang=en",
+      "checkedAt": "2026-10-24T20:16:26.129Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "pageTitle": "Frequently Asked Question",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "checkedAt": "2026-10-24T21:02:10.189Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "contentType": "application/pdf",
+      "truncated": true,
+      "observedBytesSha256": "0d83d06046e16c04d96669806a319efc91399343082f42db9df395e28250d5ee"
+    },
+    {
+      "url": "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+      "checkedAt": "2026-10-24T20:16:24.040Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+      "pageTitle": "THE PERSONAL DATA PROTECTION ACT, 2022 — PDPC Publications",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "checkedAt": "2026-10-24T20:16:18.314Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "pageTitle": "ConsumerProtection - Bank of Tanzania",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://www.tira.go.tz/index.php/news/the-insurance-claims-and-complaints-managment-guidelines",
+      "checkedAt": "2026-10-24T21:02:12.066Z",
+      "status": "page_observed_requires_legal_review",
+      "httpStatus": 200,
+      "finalUrl": "https://www.tira.go.tz/index.php/news/the-insurance-claims-and-complaints-managment-guidelines",
+      "contentType": "text/html; charset=UTF-8",
+      "observedBytesSha256": "b912f8564abcee560bc73edf43009ee0c5cbd93b906ffddbce97ac5bef3ecde4",
+      "pageTitle": "TIRA | The Insurance Claims and Complaints Management Guidelines"
+    },
+    {
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "checkedAt": "2026-10-24T20:15:44.944Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "checkedAt": "2026-10-24T20:15:12.922Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "pageTitle": "THE LAW OF THE CHILD ACT",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "checkedAt": "2026-10-24T20:15:26.077Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "pageTitle": "THE LAND ACT, CHAPTER 113 (R.E 2023 A.S. 2025)",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "checkedAt": "2026-10-24T20:15:53.273Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "pageTitle": "THE EMPLOYMENT AND LABOUR RELATIONS ACT, CHAPTER 366 R.E. 2023",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "checkedAt": "2026-10-24T20:15:05.602Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+      "checkedAt": "2026-10-24T20:15:19.496Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": true
+    },
+    {
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+      "checkedAt": "2026-10-24T20:15:18.508Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-ii-dated-2005-10-07-no-6115.pdf",
+      "checkedAt": "2026-10-24T20:16:02.245Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-ii-dated-2005-10-07-no-6115.pdf",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674626468.pdf",
+      "checkedAt": "2026-10-24T20:15:28.904Z",
+      "status": "unavailable",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://zcsra.go.tz/Downloads/act_3.pdf",
+      "checkedAt": "2026-10-24T20:16:26.409Z",
+      "status": "unavailable",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+      "checkedAt": "2026-10-24T20:15:17.142Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": true
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/a6814a06-c3f3-43a4-944d-d5b1da442b56",
+      "checkedAt": "2026-10-24T20:16:11.214Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/a6814a06-c3f3-43a4-944d-d5b1da442b56",
+      "pageTitle": "THE TANZANIA COURT OF APPEAL RULES, CHAPTER 141 R.E. 2019 SUBSIDIARY LEGISLATION",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d",
+      "checkedAt": "2026-10-24T20:16:36.595Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d",
+      "pageTitle": "RECONCILIATION, NEGOTIATION, MEDIATION AND ARBITRATION (PRACTITIONERS ACCREDITATION) REGULATIONS, 2021. G.N 147 OF 2021.",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/568/download",
+      "checkedAt": "2026-10-24T20:16:27.441Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://oagmis.oag.go.tz/portal/acts/revised/568/download",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/432/download",
+      "checkedAt": "2026-10-24T20:16:32.382Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://oagmis.oag.go.tz/portal/acts/revised/432/download",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://services.nida.go.tz/",
+      "checkedAt": "2026-10-24T21:02:12.454Z",
+      "status": "page_observed_requires_legal_review",
+      "httpStatus": 200,
+      "finalUrl": "https://services.nida.go.tz/",
+      "contentType": "text/html; charset=utf-8",
+      "observedBytesSha256": "abf3f97e52ee22159c09a6f122e5b3af21308abde9a9eb4c302571df811adc5d",
+      "pageTitle": "Welcome to NIDA Online Services"
+    },
+    {
+      "url": "https://rita.go.tz/erita.php?lang=en",
+      "checkedAt": "2026-10-24T21:02:13.293Z",
+      "status": "unavailable",
+      "error": "Source could not be retrieved within bounded check; no conclusion about service availability."
+    },
+    {
+      "url": "https://erita.rita.go.tz/",
+      "checkedAt": "2026-10-24T20:16:26.405Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://erita.rita.go.tz/",
+      "pageTitle": "",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/2a879887-a8e4-40d7-b539-6973db660512",
+      "checkedAt": "2026-10-24T20:15:15.715Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/2a879887-a8e4-40d7-b539-6973db660512",
+      "pageTitle": "THE WHISTLEBLOWER AND WITNESS PROTECTION ACT, CHAPTER 446, R.E. 2023",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/c545f591-bf5d-482f-ac11-bbdad280726e",
+      "checkedAt": "2026-10-24T20:15:13.875Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/c545f591-bf5d-482f-ac11-bbdad280726e",
+      "pageTitle": "THE PENAL CODE, CHAPTER 16, R.E 2023",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+      "checkedAt": "2026-10-24T20:15:12.008Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": true
+    },
+    {
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "checkedAt": "2026-10-24T20:16:07.684Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://ewura.go.tz/index.php/pages/water-complaints-and-resolution",
+      "checkedAt": "2026-10-24T21:02:13.504Z",
+      "status": "unavailable",
+      "error": "Source could not be retrieved within bounded check; no conclusion about service availability."
+    },
+    {
+      "url": "https://tcra.go.tz/uploads/documents/sw-1619087013-The%20Electronic%20and%20Postal%20Communications%20%28Consumer%20Protection%29%20Regulations%2C%202018.pdf",
+      "checkedAt": "2026-10-24T20:16:21.076Z",
+      "status": "unavailable",
+      "httpStatus": 404,
+      "finalUrl": "https://tcra.go.tz/uploads/documents/sw-1619087013-The%20Electronic%20and%20Postal%20Communications%20%28Consumer%20Protection%29%20Regulations%2C%202018.pdf",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://www.fcc.go.tz/en/legal-framework",
+      "checkedAt": "2026-10-24T20:16:23.840Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://www.fcc.go.tz/en/legal-framework",
+      "pageTitle": "FCC",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://oagmis.oag.go.tz/public",
+      "checkedAt": "2026-10-24T20:15:16.648Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://oagmis.oag.go.tz/public",
+      "pageTitle": "OAG MIS | Home - Online Laws Catalogue",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/5f058cdc-869b-412f-ad68-15ecc2a9e018",
+      "checkedAt": "2026-10-24T20:15:43.388Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/5f058cdc-869b-412f-ad68-15ecc2a9e018",
+      "pageTitle": "THE LAND ACQUISITION ACT, CHAPTER 118 R.E. 2023.",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/3a7a98e7-0e75-4c05-a7ba-26531a19cc9a",
+      "checkedAt": "2026-10-24T20:15:26.312Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/3a7a98e7-0e75-4c05-a7ba-26531a19cc9a",
+      "pageTitle": "THE VILLAGE LAND ACT, CHAPTER 114 R.E. 2023.",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://elibrary.osg.go.tz/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61",
+      "checkedAt": "2026-10-24T20:16:06.225Z",
+      "status": "page_observed_not_intake_verified",
+      "httpStatus": 200,
+      "finalUrl": "https://elibrary.osg.go.tz/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61",
+      "pageTitle": "THE NATIONAL SOCIAL SECURITY FUND ACT, CHAPTER 50 R.E. 2023.",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    },
+    {
+      "url": "https://oagmis.oag.go.tz/portal/acts/revised/367/download",
+      "checkedAt": "2026-10-24T20:16:03.619Z",
+      "status": "binary_source_requires_document_review",
+      "httpStatus": 200,
+      "finalUrl": "https://oagmis.oag.go.tz/portal/acts/revised/367/download",
+      "evidenceOrigin": "Same-day directory source check",
+      "truncated": false
+    }
+  ],
+  "counts": {
+    "realGuideDrafts": 108,
+    "uniqueCitedUrls": 40,
+    "unavailable": 6
+  },
+  "guideCitations": [
+    {
+      "id": "t174p895g07jrfx69qneae2cc58fv78b",
+      "title": "I need disability access to a justice service in Zanzibar. What can I request?",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2022/tz-znz-government-gazette-legal-supplement-part-ii-dated-2022-12-30-no-7067b.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t171jfepw0w5rrhpve7x3gde218ftqa4",
+      "title": "A relative has been detained in Zanzibar. How can we ask about bail?",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2018/tz-znz-government-gazette-legal-supplement-part-i-dated-2018-04-06-no-6692.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17feaznkq40etqsj39k7byq3s8fv2z9",
+      "title": "My Zanzibar social-security contributions appear missing. What should I check?",
+      "sourceUrl": "https://zlsc.or.tz/aid/",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t179jvc1d1myhdt0v59wvg11ph8ftc1s",
+      "title": "I have an electricity or water complaint in Zanzibar. Where do I start?",
+      "sourceUrl": "https://zura.go.tz/filling-a-complaint/",
+      "sourceStatus": "unavailable"
+    },
+    {
+      "id": "t1784s84d3nqa2c6pxzsd48abd8ftvym",
+      "title": "My lawyer will not return my documents. Where can I complain?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t176qfkdft1yxtvvq0c1fxzj658ftnwr",
+      "title": "How can I check the progress of my court case?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17deah4yskh9dyps792fcqkjd8fv20j",
+      "title": "I need an interpreter to use the court. How do I request one?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17evmk863d3j14p703zdrz57h8fva1e",
+      "title": "I cannot afford court fees. What help can I ask about?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1788f5wd3z7x72718wvcf1p658ftjk2",
+      "title": "My public-service application has stalled. How can I follow up?",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t179yhex8thh84f95z7nt50xnd8ftpmd",
+      "title": "I married abroad. What proof might I need in Tanzania?",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t173nygbr0hfwchaxsexevsrq98ftt9s",
+      "title": "I want to object to a proposed marriage. Where can I ask for advice?",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17912dav6emf7dj1191e1dxa98fvfwv",
+      "title": "I have changed my name. Which records should I update?",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17dzmx9rg4mvz0q1zjtjt2dm58fvsgw",
+      "title": "I found my stolen property with someone else. What should I do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t1731fes4zn2aqzfbema5wr2k58fvt6h",
+      "title": "Someone controls my movement or forces me to work. How can I seek help safely?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17dygsehthp962wenmp3bamw98ftsj2",
+      "title": "I am asked to sign a police statement I do not understand. What should I do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t1787kqa22rhwzqjnk907d46k98ftjq7",
+      "title": "Police took my property during a search. What records should I request?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t178k3n9n9bp55dxyt65j0k44s8fthwm",
+      "title": "An organisation has incorrect personal information about me. What can I do?",
+      "sourceUrl": "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17aj6b7hvqt7ndbmf7vqgjm0n8ftz10",
+      "title": "A seller’s advertisement misled me. How do I complain?",
+      "sourceUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1734z1zmc6jg0ws9mygnbcxhx8fte9c",
+      "title": "I sent mobile money to the wrong recipient. What should I do?",
+      "sourceUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17ew44jdh2qgfhnbp0n8t3s1s8fve6x",
+      "title": "My insurance claim was refused. How can I challenge it?",
+      "sourceUrl": "https://www.tira.go.tz/index.php/news/the-insurance-claims-and-complaints-managment-guidelines",
+      "sourceStatus": "page_observed_requires_legal_review"
+    },
+    {
+      "id": "t1779r22sgycvdy7kgw02jkpvd8fvh6g",
+      "title": "I received an inheritance payment. What records should I keep?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17699m9k50yk8bskwxs3hes298fvxng",
+      "title": "The estate administrator can no longer act. How can we replace them?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t179zx146yh4cn0ppnmx2dmtn18ft4qd",
+      "title": "We believe there was a will but cannot find it. What should we do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17aa3hbs7t96zkrz6eqg0j61s8fvwsg",
+      "title": "An estate has property in several regions. Where should we start?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t170sybvpzp4vp598ea98v4wss8fv78s",
+      "title": "I cannot find my marriage certificate. How can I prove the marriage?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t173acpfh3n457mzz7nhtehvkd8fv8sp",
+      "title": "I am caring for a child whose parents are unavailable. How do I formalise this?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17c5qvdk0eygktf5fnfbn6swx8ftmhm",
+      "title": "The other parent plans to move away with our child. What can I do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1774nvxqvhjpze2w6qtsjcxgx8fvs90",
+      "title": "A child maintenance order is not being followed. What next?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1794jjer3zt5v14fdns2qgy2x8ft409",
+      "title": "My rented home needs urgent repairs. Where do I start?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1725rkqayeysjhbxrn64jk4618ft4rh",
+      "title": "My land lease is ending. How can I prepare?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t170pvmqsty7kz30frg9r7srqh8ft9x7",
+      "title": "A co-owner wants to sell our land without my agreement. What should I check?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t178dqqnmdarpc8vpxqwpmz8dx8ftbjv",
+      "title": "My land title document is lost. What should I do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t172pyv051mnj2rbe1hfsad2y98ftz79",
+      "title": "My fixed-term contract is ending. How do I check my position?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17ddrx3ybpsqhhngccn9bnmvx8ftv9w",
+      "title": "I am being pressured to sign a workplace settlement. What can I do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17e7gfkk835dghdrzpjn92w2h8fvpdr",
+      "title": "I want to resign. What should I check first?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17fxwmg9py7ad4115ynqb4hd58fv9at",
+      "title": "I have been called to a disciplinary hearing. How do I prepare?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17f33nvps76m5czkk4cfpx7298fv1qz",
+      "title": "I cannot afford a lawyer in Zanzibar. How do I find the right legal-aid provider?",
+      "sourceUrl": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t177mh2c9rzjwe3a9k8q00pm4d8ftp3q",
+      "title": "I need emergency protection or shelter in Zanzibar. How do I seek it safely?",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17dfgg5rh9ystbpxmr0e62zm18fv9kh",
+      "title": "My child needs maintenance or protection in Zanzibar. Where do I start?",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2011/tz-znz-government-gazette-legal-supplement-part-i-dated-2011-07-29-no-6419.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t173h58x3vjykrvv0v0eagyt4x8fv3nc",
+      "title": "A relative died in Zanzibar. How do we identify the inheritance process?",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t171yxaszq1bx3jycz101ymc6n8fv9a0",
+      "title": "I need divorce or marriage guidance in Zanzibar. Does the Kadhi court apply?",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2024/tz-znz-government-gazette-legal-supplement-part-i-dated-2024-02-23-no-7202.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17b7bg9yd7t91easmwq8nekgx8ftcz7",
+      "title": "I was dismissed or not paid in Zanzibar. Where do I seek labour help?",
+      "sourceUrl": "https://archive.gazettes.africa/archive/tz-znz/2005/tz-znz-government-gazette-legal-supplement-part-ii-dated-2005-10-07-no-6115.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t178ef1vf8ka2sbmstbbp2zps98ftvex",
+      "title": "I have a land dispute in Zanzibar. Which route should I use?",
+      "sourceUrl": "https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1674626468.pdf",
+      "sourceStatus": "unavailable"
+    },
+    {
+      "id": "t17eg5yebdkyrtb8rpmxhkg5ts8fv9jm",
+      "title": "I live in Zanzibar and need a birth or death certificate. Where do I apply?",
+      "sourceUrl": "https://zcsra.go.tz/Downloads/act_3.pdf",
+      "sourceStatus": "unavailable"
+    },
+    {
+      "id": "t17ceek27mxb97mkzak3bx4dcn8fvsa0",
+      "title": "My legal-aid referral was ignored or the service asked for an unexplained fee. What next?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17fq87e4xedfwnzz4xdqy1fws8ft6qr",
+      "title": "I won a case but the other side has not complied. What can I do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t179p2q834b12vv9x7hkjn1x618fvnkb",
+      "title": "I lost my case or missed a filing deadline. Is there any next step?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/a6814a06-c3f3-43a4-944d-d5b1da442b56",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17dcwk72qqgwq2ygr83ka7bvx8ft9v7",
+      "title": "Can mediation resolve my dispute without a full court case?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/ca5ffa18-6bb0-4d26-aa8f-eac50414f53d",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1798801k557ts6xhm0yzbadsd8ft0z1",
+      "title": "I received a court summons or notice. What should I do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/138/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17a5sra0w8wzh9gznwzarzcb18fvv5a",
+      "title": "What documents should I bring when asking for legal help?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1766y2zh1m1qbv1ngp2xgythx8fvwmh",
+      "title": "I have a dispute but do not know which office or court handles it. How do I choose?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17axeka2p8mxe4d8mg6v9vcps8ft484",
+      "title": "I cannot afford a lawyer. How do I ask for legal aid?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/81117a6c-fde1-499b-89c7-d2ce8c7440d4",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17aqdjcw6nkax7p7nsn9y6c418ftat0",
+      "title": "A public service is refusing reasonable disability access. How can I complain?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/568/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t171exz3e91pr9kwq4b2srybhx8fvntt",
+      "title": "An official asks for an unofficial payment to provide a service. What can I do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/432/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t174bzdm9z7x15srvpybdh8wfd8fvjfn",
+      "title": "My NIDA card is lost or the details do not match. Where do I start?",
+      "sourceUrl": "https://services.nida.go.tz/",
+      "sourceStatus": "page_observed_requires_legal_review"
+    },
+    {
+      "id": "t17c82mv6pempnsqnapcajy7798fvshs",
+      "title": "My marriage certificate is lost, or I need my divorce registered. What next?",
+      "sourceUrl": "https://rita.go.tz/erita.php?lang=en",
+      "sourceStatus": "unavailable"
+    },
+    {
+      "id": "t179b3d1g27yr1769ck24qbyt98ftmyf",
+      "title": "A relative died without a death certificate. How do we obtain one?",
+      "sourceUrl": "https://rita.go.tz/erita.php?lang=en",
+      "sourceStatus": "unavailable"
+    },
+    {
+      "id": "t174gy64n7r3b911z3741sd6yh8ft1s7",
+      "title": "My certificate has a spelling error or wrong detail. What can I do?",
+      "sourceUrl": "https://erita.rita.go.tz/",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17b04k2v8ysb4hfz1fh3xspms8ftdz1",
+      "title": "My birth or death certificate is lost. How do I replace it?",
+      "sourceUrl": "https://erita.rita.go.tz/",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17fccdd3my08799qmcx417za18fvqdb",
+      "title": "I was born at home and have no birth certificate. How do I begin?",
+      "sourceUrl": "https://www.rita.go.tz/faq.php?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17fwx6v4ztv572w58pt28at7s8ftbwt",
+      "title": "My photos or personal information are being shared to threaten me. Where do I start?",
+      "sourceUrl": "https://pdpc.go.tz/the-personal-data-protection-act-2022/",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t174x8z93qpwyhxbfr0566yphh8ftqhy",
+      "title": "Someone is threatening me because I reported an offence. What can I do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/2a879887-a8e4-40d7-b539-6973db660512",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t170xmh01myga0rnb32jw06jhn8ftz0p",
+      "title": "Police did not act on my report. How do I follow up?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t173gx3tf4rxxhdmhy644axkbn8ftaqp",
+      "title": "How do I ask about bail, and must I pay someone privately?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t175eq049mt3kant0fdd8svxb18ftbbp",
+      "title": "I or a relative has been arrested. How do we get legal help?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/125/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t174yxh6es8zkdw06n20q0w53d8fvx1p",
+      "title": "A child has been arrested. What should the family do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17964sbzk76axtztvhjw5a7018fv12r",
+      "title": "I have experienced sexual assault. What should I do first?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c545f591-bf5d-482f-ac11-bbdad280726e",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t178jddj4f6a5q408skzs0v0q98ft3jx",
+      "title": "I am being harmed or threatened by my partner. Where can I get help?",
+      "sourceUrl": "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t179k19ag7w83dcnddtx85zyd58ftaa2",
+      "title": "A contractor took payment but did not finish the work. What can I do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17bp3cddjkehpyj5cw1wgkf1x8fva47",
+      "title": "Someone borrowed my money and will not repay it. Can I recover it?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t171k3ma6ewajr8m02wcp2fef98fv6fe",
+      "title": "My water or electricity bill is wrong, or service was disconnected. Where do I go?",
+      "sourceUrl": "https://ewura.go.tz/index.php/pages/water-complaints-and-resolution",
+      "sourceStatus": "unavailable"
+    },
+    {
+      "id": "t17dfhfd3wbx8254f2bw1m8wjd8fvyej",
+      "title": "My phone company charged me incorrectly or suspended my service. What next?",
+      "sourceUrl": "https://tcra.go.tz/uploads/documents/sw-1619087013-The%20Electronic%20and%20Postal%20Communications%20%28Consumer%20Protection%29%20Regulations%2C%202018.pdf",
+      "sourceStatus": "unavailable"
+    },
+    {
+      "id": "t172nsem01af0raevyfbqy8x1s8fv7fx",
+      "title": "My lender is adding unexplained charges or threatening me. Where do I complain?",
+      "sourceUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17dk9210th6cwnptqg577cjys8fv31w",
+      "title": "Money disappeared from my bank or mobile-money account. What should I do?",
+      "sourceUrl": "https://www.bot.go.tz/DFDI/ConsumerProtection?lang=en",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t170rrz6f8rqahq1zzrtqn50558ftfv6",
+      "title": "An online seller took my money and did not deliver. What next?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t172d6rvp4pmr6hwmebdkv96zn8fvtaf",
+      "title": "I bought a faulty product and the seller refuses to help. What can I do?",
+      "sourceUrl": "https://www.fcc.go.tz/en/legal-framework",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17c84sa0604ktpfrhrs9dwdxd8fvsz6",
+      "title": "The deceased left debts. Must the family pay them personally?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t176w4tqwp6n4ghkc0d0971chn8ftkvx",
+      "title": "I object to the proposed estate administrator. How do I respond?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t173qsfmvmmfka17ydznkxwttd8ftyvm",
+      "title": "The estate administrator will not explain how money was used. What next?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t179s3y24fmaz9ennd3y4m42pn8fvswf",
+      "title": "I found a will. Is it valid and what should I do with it?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t177hy0jqapw4wt259zjjpn7fd8ft6dh",
+      "title": "Children are being left out of an estate. What should we do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17429bwg5tk98fsjshx8j449s8fvy3x",
+      "title": "I am a widow or widower being excluded from inheritance. Where do I start?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t177jqjs735j4v31y24dt9259d8fv5px",
+      "title": "Someone is taking estate property before an administrator is appointed. What can I do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t173wyf3shtas2r3j792g5pr3x8ft5z6",
+      "title": "A relative has died. How do we begin administering the estate?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/456/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17b1kwt6dwz5nan2aj87pa8p18ftnkv",
+      "title": "We cannot agree on paternity. How do we address it lawfully?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17am0jn29v4845vc7kn72dzjh8ftygg",
+      "title": "A child is being forced into marriage. What should we do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t176z3s1w03s9rf46vkc5mrf058fv2tc",
+      "title": "A child is being abused or neglected. Where can I seek help?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t179sqd6ghjjz0qap82xfypc4n8fv1sk",
+      "title": "We lived together without a marriage certificate. Do I have any rights?",
+      "sourceUrl": "https://oagmis.oag.go.tz/public",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t173ad7zj781pj1wjr1qgfbmdd8ft062",
+      "title": "My spouse wants to sell our home without consulting me. What can I do?",
+      "sourceUrl": "https://oagmis.oag.go.tz/public",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17bj48jc2w7ga5nh0n6zxtjrn8fvrzn",
+      "title": "I want to separate or divorce. What is the first legal step?",
+      "sourceUrl": "https://oagmis.oag.go.tz/public",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17c9sh03tz7a9eeby3w3e9r618ftga6",
+      "title": "We are separating. How is child custody decided?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17dqq1m7929x88n91bexw2wms8fv9ga",
+      "title": "The other parent is not supporting our child. What can I do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/c620a9e5-6995-4c09-a164-8e37b46847ae",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1763bes6r2fkrgj9xh02qykj18fvvcp",
+      "title": "Someone sold the same plot to two buyers. Where do we start?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17c5x759621e5smf2fqqztge18fv1kz",
+      "title": "My land is being acquired for a public project. How do I question compensation?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/5f058cdc-869b-412f-ad68-15ecc2a9e018",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t1739p2hbpyxg7yv2zvnggd1v58fvnb4",
+      "title": "Village leaders allocated my land to someone else. How do I challenge it?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/3a7a98e7-0e75-4c05-a7ba-26531a19cc9a",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17dkqp7vddjvgk2nnac9ema198fv0vb",
+      "title": "My landlord will not return my deposit or my belongings. What next?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/448/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t174rwd4hxb51d52f5detd515s8ft6gn",
+      "title": "My landlord is threatening to remove me immediately. What can I do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17cerdwy0zr7drnh08xs2n8z18ftv4k",
+      "title": "Can a woman own or inherit land?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t171k77f94j9p7mm3j1rz71ttx8fv977",
+      "title": "I want to buy a plot. What should I check before paying?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17427kz5b9t481ztm4zz8yb9h8fvqp2",
+      "title": "My neighbour has moved the boundary or occupied my land. What should I do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/7a47fbef-0f7c-4091-9383-342cdaa0b4c5",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t170ff27ndvvqpd275bs424dcd8fvstk",
+      "title": "I am being sexually harassed or discriminated against at work. Where do I report?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17e2r0x7z2dap55z9qn2dwz2d8ftgfz",
+      "title": "My employer refuses overtime or rest days. How do I check my rights?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17aagv2d166gce00bt2sjr10n8fvdec",
+      "title": "My employer deducts pension contributions but they are missing. What next?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/f4b3485e-b14f-4be1-be42-bc13e10e1d61",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17ekj3q62268wnb68csxvsyts8fvd5g",
+      "title": "I was injured at work. Where do I seek compensation?",
+      "sourceUrl": "https://oagmis.oag.go.tz/portal/acts/revised/367/download",
+      "sourceStatus": "binary_source_requires_document_review"
+    },
+    {
+      "id": "t17cn2gsjv43x9ydf21j58z1eh8fvz8j",
+      "title": "I am pregnant and facing dismissal or refusal of leave. What can I do?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17bxxk2hx484ajjf7gzhfxsqd8fvptz",
+      "title": "I work without a written contract. Can I still seek help?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t179crz9rk8bw3zrsg10cnbbh18fvgg1",
+      "title": "My employer has not paid my wages. How can I claim them?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    },
+    {
+      "id": "t17b09ey8zcmw9r0pbfwy8tre98ft029",
+      "title": "I was dismissed from work. What should I do first?",
+      "sourceUrl": "https://elibrary.osg.go.tz/items/fbdcc00a-2c5d-465b-80a9-805531baa9c2",
+      "sourceStatus": "page_observed_not_intake_verified"
+    }
+  ]
+}

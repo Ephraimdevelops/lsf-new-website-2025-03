@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-24",
+  "scope": "Continue voice QA and Android preparation",
+  "fixed": [
+    {
+      "problem": "expo-image-picker microphonePermission:false globally removed RECORD_AUDIO even though expo-audio requested it",
+      "change": "Use matching user-initiated microphone consent text in both plugins; explicitly declare Android RECORD_AUDIO"
+    },
+    {
+      "problem": "cameraPermission:false removed the document-camera permission",
+      "change": "Restore user-initiated document-camera consent; explicitly declare Android CAMERA"
+    },
+    {
+      "problem": "expo-audio default enabled background playback capability despite chat stopping when backgrounded",
+      "change": "Disable background playback and recording in native configuration"
+    }
+  ],
+  "verification": {
+    "focusedTestsPassed": 31,
+    "focusedTestsFailed": 0,
+    "webTypecheck": "passed",
+    "mobileTypecheck": "passed",
+    "freshExpoPluginComposition": "passed Android mic/camera, iOS purpose strings, absence of background audio services",
+    "regeneratedAndroidManifest": [
+      {
+        "name": "android.permission.ACCESS_COARSE_LOCATION",
+        "removed": false
+      },
+      {
+        "name": "android.permission.ACCESS_FINE_LOCATION",
+        "removed": false
+      },
+      {
+        "name": "android.permission.CAMERA",
+        "removed": false
+      },
+      {
+        "name": "android.permission.INTERNET",
+        "removed": false
+      },
+      {
+        "name": "android.permission.MODIFY_AUDIO_SETTINGS",
+        "removed": false
+      },
+      {
+        "name": "android.permission.READ_EXTERNAL_STORAGE",
+        "removed": false
+      },
+      {
+        "name": "android.permission.RECORD_AUDIO",
+        "removed": false
+      },
+      {
+        "name": "android.permission.SYSTEM_ALERT_WINDOW",
+        "removed": false
+      },
+      {
+        "name": "android.permission.VIBRATE",
+        "removed": false
+      },
+      {
+        "name": "android.permission.WRITE_EXTERNAL_STORAGE",
+        "removed": false
+      }
+    ],
+    "androidEmulator": "Pixel_10_Pro_XL booted and detected by ADB",
+    "nativeAndroidRuntime": "not verified; emulator executable is unavailable through current native UI automation",
+    "nativeAndroidBuild": "passed: BUILD SUCCESSFUL in 4m18s, arm64-v8a, 339 tasks, after a resource-limited retry",
+    "generatedManifestCheckedAfterRegeneration": true,
+    "finalMergedAndroidManifest": "passed: camera and microphone survive dependency manifest merging; background recording/playback permissions absent",
+    "apkArchive": "passed ZIP integrity and native ABI checks",
+    "apkSignature": "passed Android apksigner verification; APK Signature Scheme v2"
+  },
+  "release": {
+    "requiresNewMobileBinary": true,
+    "configurationOpen": [
+      "Production Clerk authentication key",
+      "EAS build project ID"
+    ],
+    "published": false
+  },
+  "paidAiCallsThisContinuation": 0,
+  "sources": [
+    "https://docs.expo.dev/versions/v57.0.0/",
+    "https://docs.expo.dev/versions/v57.0.0/sdk/audio/"
+  ],
+  "evidence": [
+    "output/saada-voice-qa-2026-10-24/AndroidManifest.xml",
+    "scripts/mobile-voice-permissions.test.mjs",
+    "output/saada-voice-qa-2026-10-24/AndroidManifest-merged.xml"
+  ],
+  "cleanup": {
+    "emulator": "Stopped the emulator started for this check without saving over its original snapshot",
+    "build": "Stopped this test Gradle daemon",
+    "cache": "Removed only 1661 Gradle transform cache directories whose birth time was after this test began; pre-existing transform directories preserved",
+    "bytesRecoveredFromNewTransforms": 432724556
+  },
+  "remaining": [
+    "Test recording, reviewable transcription, spoken replies, Stop/replay and document camera on a native Android device",
+    "Rebuild iOS to apply its updated native camera/microphone configuration",
+    "Human listening review of Tanzanian Kiswahili pronunciation",
+    "Configure production authentication and EAS project identity before store release"
+  ],
+  "androidArtifact": {
+    "path": "output/saada-voice-qa-2026-10-24/haki-yangu-voice-android-arm64-debug.apk",
+    "sizeBytes": 103911009,
+    "sha256": "b7e068496c2f8e4385fdf0e4b5936d9fec2757d005f62605cd45d5819a9db091",
+    "nativeABIs": [
+      "arm64-v8a"
+    ],
+    "dexPresent": true,
+    "archiveIntegrity": "passed",
+    "type": "Development debug APK; requires local Metro development server, not a standalone store release"
+  },
+  "diskSpaceAfterBuildGiB": 5.56,
+  "buildNotes": [
+    "Initial online compile hit disk exhaustion; emulator stopped and only newly created transform cache directories were removed",
+    "Final retry used two workers and in-process Kotlin compilation; emulator remains stopped",
+    "Generated Android project is ignored by Git; native configuration source and regression test are saved"
+  ]
+}

@@ -1,3 +1,4 @@
+import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
 
 import { useState, useEffect, useCallback } from 'react';
 import { Search, X, Clock, TrendingUp, Loader2 } from 'lucide-react';
@@ -89,7 +90,7 @@ const EnhancedSearch = ({
       )}>
         <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex items-center">
           {isLoading ? (
-            <Loader2 className="animate-spin text-gray-400" size={20} />
+            <BrandLoadingIcon className=" text-gray-400" size={20} />
           ) : (
             <Search className="text-gray-400 transition-colors duration-200" size={20} />
           )}

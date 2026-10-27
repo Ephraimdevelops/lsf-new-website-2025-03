@@ -1,6 +1,10 @@
+import { displayLabel } from "../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useState } from "react";
+import { useSensitiveScreenProtection } from "../src/useSensitiveScreenProtection";
+import { useIntakeDraft } from "../src/intake/IntakeDraftContext";
 import { router } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
 import { usePendingActions } from "../src/pendingActions";
@@ -9,6 +13,9 @@ import { useSavedResources } from "../src/useSavedResources";
 import { colors, radius, spacing, type } from "../src/theme";
 
 export default function OfflineScreen() {
+  useSensitiveScreenProtection("offline-recovery");
+  const [error,setError] = useState("");
+  const { hasSavedDraft } = useIntakeDraft();
   const { locale } = useLanguage();
   const { savedIds } = useSavedResources();
   const pendingActions = usePendingActions();
@@ -21,7 +28,7 @@ export default function OfflineScreen() {
   return (
     <Screen>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Go back"} onPress={() => router.back()}>
+        <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Rudi" : "Go back"} onPress={() => router.canGoBack() ? router.back() : router.replace("/(tabs)/profile")}>
           <Ionicons name="chevron-back" size={26} color={colors.burgundy} />
         </Pressable>
         <Text style={styles.headerTitle}>{locale === "sw" ? "Nje ya mtandao" : "Offline mode"}</Text>
@@ -33,31 +40,29 @@ export default function OfflineScreen() {
         <Text style={styles.title}>{locale === "sw" ? "Unaweza kuendelea kusoma" : "You can keep reading"}</Text>
         <Text style={styles.heroBody}>
           {locale === "sw"
-            ? "Orodha za maandalizi zilizopo ndani ya app zinafunguka bila mtandao. Si miongozo ya sheria iliyopitiwa. Baadhi ya hatua za kesi huhifadhiwa kwenye kifaa na kutumwa mtandao ukirudi."
-            : "Built-in preparation checklists open without network. They are not reviewed legal guides. Some case actions are saved on this device and sent when your connection returns."}
+            ? "Soma orodha za maandalizi bila mtandao; si miongozo ya sheria iliyokaguliwa na LSF. Baadhi ya hatua huhifadhiwa kwenye simu. Mtandao ukirudi, fungua kesi, kagua na ujaribu kutuma. Hazitumwi zenyewe."
+            : "Read preparation checklists offline; they are not LSF-reviewed legal guides. Some actions are saved on this device. When connected, open the case, review and retry. They are not sent automatically."}
         </Text>
       </View>
 
       <View style={styles.syncCard}>
         <View style={styles.syncHeader}>
-          <Text style={styles.sectionKicker}>{locale === "sw" ? "Vinavyosubiri kutumwa" : "Pending sync"}</Text>
-          <Text style={styles.syncCount}>{pendingActions.pendingCount}</Text>
+          <Text style={styles.sectionKicker}>{locale === "sw" ? "Vinavyosubiri kutumwa" : "Waiting to send"}</Text>
+          <Text style={styles.syncCount}>{!pendingActions.hydrated || pendingActions.error ? "—" : pendingActions.pendingCount}</Text>
         </View>
-        {pendingActions.pendingCount ? (
-          pendingActions.actions.slice(0, 5).map((action) => (
-            <View key={action.id} style={styles.checkRow}>
-              <Ionicons name="time-outline" size={18} color={colors.burgundy} />
-              <Text style={styles.checkText}>
-                {action.type.replaceAll("_", " ")} · {new Date(action.createdAt).toLocaleString(locale === "sw" ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}
-              </Text>
-            </View>
-          ))
-        ) : (
-          <View style={styles.checkRow}>
-            <Ionicons name="checkmark-circle-outline" size={18} color={colors.success} />
-            <Text style={styles.checkText}>{locale === "sw" ? "Hakuna hatua inayosubiri kutumwa." : "No pending actions are waiting to sync."}</Text>
+        {!pendingActions.hydrated ? <Text style={styles.checkText}>{locale === "sw" ? "Inasoma hatua zilizohifadhiwa…" : "Reading saved actions…"}</Text> : pendingActions.error ? <Text accessibilityRole="alert" style={styles.checkText}>{locale === "sw" ? "Hatua hazijasomeka. Taarifa zilizohifadhiwa hazijafutwa. Jaribu kusoma tena." : "Saved actions could not be read. Stored data has not been deleted. Try reading again."}</Text> : pendingActions.pendingCount ? pendingActions.actions.map(action => (
+          <View key={action.id} style={{paddingVertical:12,borderBottomWidth:1,borderBottomColor:colors.line,gap:8}}>
+            <Text style={styles.checkText}>{displayLabel(action.type, locale)} · {new Date(action.createdAt).toLocaleString(locale === "sw" ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}</Text>
+            {action.type === "case_message" && <Text numberOfLines={3} style={styles.checkText}>{action.body}</Text>}
+            {action.attempts > 0 && <Text style={styles.checkText}>{locale === "sw" ? "Jaribio lilishindwa; bado haijathibitishwa kutumwa." : "A previous attempt failed; delivery is not confirmed."}</Text>}
+            <Pressable accessibilityRole="button" style={{minHeight:48,justifyContent:"center"}} onPress={() => router.push({pathname:"/case/[id]",params:{id:action.caseId}})}><Text style={{...styles.checkText,color:colors.burgundy}}>{locale === "sw" ? "Fungua kesi · kagua na ujaribu tena" : "Open case · review and retry"}</Text></Pressable>
+            <Pressable accessibilityRole="button" style={{minHeight:48,justifyContent:"center"}} onPress={() => Alert.alert(locale === "sw" ? "Ondoa hatua iliyohifadhiwa?" : "Remove saved action?",locale === "sw" ? "Hatua hii itaondolewa kwenye simu hii. Haitajaribiwa tena. Kilichopokelewa kwenye kesi hakitaondolewa." : "This removes the saved action from this device and stops retries. Anything already received on the case remains.",[{text:locale === "sw" ? "Ghairi" : "Cancel",style:"cancel"},{text:locale === "sw" ? "Ondoa" : "Remove",style:"destructive",onPress:()=>{void pendingActions.remove(action.id).then(()=>pendingActions.refresh()).catch(()=>setError(locale === "sw" ? "Haijaondolewa. Jaribu tena." : "Could not remove. Please retry."));}}])}><Text style={styles.checkText}>{locale === "sw" ? "Ondoa hatua iliyohifadhiwa" : "Remove saved action"}</Text></Pressable>
           </View>
-        )}
+        )) : <Text style={styles.checkText}>{locale === "sw" ? "Hakuna hatua inayosubiri kutumwa." : "Nothing is waiting to send."}</Text>}
+        <Pressable accessibilityRole="button" style={{minHeight:48,justifyContent:"center"}} onPress={()=>{setError("");void pendingActions.refresh().catch(()=>setError(locale === "sw" ? "Haijasomeka. Jaribu tena." : "Could not read saved actions. Retry."));}}><Text style={styles.checkText}>{locale === "sw" ? "Soma orodha tena" : "Read list again"}</Text></Pressable>
+        {!!error && <Text accessibilityRole="alert" style={styles.checkText}>{error}</Text>}
+        {hasSavedDraft && <Pressable accessibilityRole="button" style={{minHeight:48,justifyContent:"center"}} onPress={()=>router.push("/intake")}><Text style={{...styles.checkText,color:colors.burgundy}}>{locale === "sw" ? "Fungua ombi · rejesha rasimu uliyohifadhi" : "Open request · restore your saved draft"}</Text></Pressable>}
+
       </View>
 
       <View style={styles.syncCard}>

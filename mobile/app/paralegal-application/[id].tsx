@@ -1,3 +1,5 @@
+import { plainError } from "../../../shared/plainLanguage";
+import { AdminIntro } from "../../src/admin/AdminIntro";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -8,7 +10,7 @@ import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
-import { Screen } from "../../src/components/Screen";
+import { AdminScreen as Screen } from "../../src/admin/AdminScreen";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
 import { useSensitiveScreenProtection } from "../../src/useSensitiveScreenProtection";
@@ -37,7 +39,7 @@ export default function ParalegalApplicationReviewScreen() {
       await review({ id: application._id, status, reviewNotes: note.trim() || undefined });
       setDecision(null);
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : sw ? "Uamuzi haujahifadhiwa. Jaribu tena." : "Decision was not saved. Please try again.");
+      setError(plainError(caught, locale, sw ? "Uamuzi haujahifadhiwa. Jaribu tena." : "Decision was not saved. Please try again."));
     } finally { setSaving(false); }
   }
 
@@ -47,27 +49,27 @@ export default function ParalegalApplicationReviewScreen() {
   }
 
   return <Screen>
-    <AppHeader back title={sw ? "Kagua paralegal" : "Review paralegal"} eyebrow="LSF · APPROVALS" />
+    <AppHeader back title={sw ? "Kagua msaidizi wa kisheria" : "Review paralegal"} eyebrow="LSF · APPROVALS" />
     {!isSignedIn ? <State icon="lock-closed-outline" title={sw ? "Maombi ni ya siri" : "Applications are private"} body={sw ? "Ingia kwa akaunti ya LSF." : "Sign in with an LSF account."} action={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
       : access === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ruhusa" : "Loading access"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !canReview ? <State icon="shield-outline" title={sw ? "Ufikiaji haujaruhusiwa" : "Access not authorised"} body={sw ? "Jukumu la LSF linahitajika kuona maombi haya." : "An LSF review role is required to view applications."} />
       : application === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ombi" : "Loading application"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !application ? <State icon="search-outline" title={sw ? "Ombi halipatikani" : "Application not found"} body={sw ? "Huenda limeondolewa au huna ruhusa ya kuliona." : "It may have been removed, or you may not have access to it."} action={sw ? "Rudi kwenye utawala" : "Back to governance"} onPress={() => router.replace("/governance")} />
       : <>
-        <View style={styles.hero}><View style={styles.heroIcon}><Ionicons name="ribbon-outline" size={32} color={colors.surface} /></View><Text style={styles.heroKicker}>{sw ? "UTHIBITISHO WA PARALEGAL" : "PARALEGAL VERIFICATION"}</Text><Text style={styles.heroTitle}>{application.fullName}</Text><Text style={styles.heroBody}>{sw ? "Kagua utambulisho, uzoefu na cheti kabla ya idhini." : "Review identity, experience and credentials before approval."}</Text></View>
+        <AdminIntro icon="book-outline" eyebrow="LSF" title={application.fullName} description={sw ? "Kagua utambulisho, uzoefu na cheti kabla ya idhini." : "Review identity, experience and credentials before approval."} />
         <View style={styles.status}><Ionicons name={application.status === "approved" ? "checkmark-circle" : "time-outline"} size={23} color={colors.burgundy} /><Text style={styles.statusText}>{application.status.replaceAll("_", " ")}</Text></View>
         <Text style={styles.sectionTitle}>{sw ? "Wasifu wa mwombaji" : "Applicant profile"}</Text><View style={styles.card}><Info label={sw ? "Barua pepe" : "Email"} value={application.email} /><Info label={sw ? "Simu" : "Phone"} value={application.phone} /><Info label={sw ? "Eneo" : "Location"} value={[application.ward, application.district, application.region].filter(Boolean).join(", ")} /><Info label={sw ? "Elimu" : "Education"} value={application.education} /><Info label={sw ? "Uzoefu" : "Experience"} value={application.experience} /><Info label={sw ? "Kwa nini anajiunga" : "Motivation"} value={application.motivation} />{application.languages?.length ? <Info label={sw ? "Lugha" : "Languages"} value={application.languages.join(", ")} /> : null}</View>
-        <Text style={styles.sectionTitle}>{sw ? "Nyaraka za uthibitisho" : "Verification documents"}</Text><View style={styles.documents}><Document label={sw ? "Kitambulisho" : "Identity document"} url={application.identityDocumentUrl} onOpen={openFile} sw={sw} /><Document label={sw ? "Cheti cha paralegal" : "Paralegal certificate"} url={application.certificateDocumentUrl} onOpen={openFile} sw={sw} /><Document label={sw ? "Wasifu / CV" : "Resume / CV"} url={application.resumeDocumentUrl} onOpen={openFile} sw={sw} /></View>
+        <Text style={styles.sectionTitle}>{sw ? "Nyaraka za uthibitisho" : "Verification documents"}</Text><View style={styles.documents}><Document label={sw ? "Kitambulisho" : "Identity document"} url={application.identityDocumentUrl} onOpen={openFile} sw={sw} /><Document label={sw ? "Cheti cha msaidizi wa kisheria" : "Paralegal certificate"} url={application.certificateDocumentUrl} onOpen={openFile} sw={sw} /><Document label={sw ? "Wasifu / CV" : "Resume / CV"} url={application.resumeDocumentUrl} onOpen={openFile} sw={sw} /></View>
         {ownApplication ? <View style={styles.notice}><Ionicons name="shield-outline" size={22} color={colors.burgundy} /><Text style={styles.body}>{sw ? "Huwezi kufanya uamuzi wa ombi lako mwenyewe." : "You cannot make a decision on your own application."}</Text></View> : ["approved", "rejected"].includes(application.status) ? <View style={styles.notice}><Ionicons name="checkmark-circle-outline" size={22} color={colors.burgundy} /><Text style={styles.body}>{sw ? "Uamuzi wa mwisho umerekodiwa. Mabadiliko yanahitaji utaratibu wa usimamizi." : "A final decision is recorded. Changes require a separate supervised process."}</Text></View> : <>
           <Text style={styles.sectionTitle}>{sw ? "Hatua ya ukaguzi" : "Review decision"}</Text><Text style={styles.body}>{sw ? "Anza ukaguzi kwanza; idhini ya mwisho inahitaji msimamizi na nyaraka zinazotakiwa." : "Start review first; final approval requires an administrator and the required documents."}</Text>
           {application.intakeOrigin ? <View style={styles.notice}><Ionicons name="mail-outline" size={22} color={colors.burgundy} /><Text style={styles.body}>{sw ? "Mwombaji lazima akamilishe mwaliko na kupakia nyaraka kabla ya ukaguzi." : "The applicant must complete the invitation and upload evidence before review can begin."}</Text></View> : application.status === "pending" ? <Button label={sw ? "Anza ukaguzi" : "Start review"} loading={saving} disabled={saving} onPress={() => void save("under_review")} /> : <>
             <TextInput value={note} onChangeText={setNote} multiline maxLength={1000} placeholder={sw ? "Sababu ya uamuzi na matokeo ya ukaguzi..." : "Decision reason and review findings..."} placeholderTextColor={colors.inkMuted} style={styles.input} />
             <View style={styles.choices}>{isAdmin ? <Choice label={sw ? "Idhinisha" : "Approve"} icon="checkmark-circle-outline" selected={decision === "approved"} onPress={() => setDecision("approved")} /> : null}<Choice label={sw ? "Kataa" : "Reject"} icon="close-circle-outline" selected={decision === "rejected"} onPress={() => setDecision("rejected")} /></View>
-            {decision ? <View style={styles.confirm}><Text style={styles.confirmTitle}>{decision === "approved" ? (sw ? "Thibitisha idhini" : "Confirm approval") : (sw ? "Thibitisha kukataa" : "Confirm rejection")}</Text><Text style={styles.body}>{decision === "approved" ? (sw ? "Jukumu la paralegal linaweza kuanza kutumika baada ya hatua hii." : "The paralegal role may become active after this step.") : (sw ? "Ombi litafungwa na sababu itawekwa kwenye rekodi." : "The application will close and the reason will be recorded.")}</Text><Button label={decision === "approved" ? (sw ? "Idhinisha paralegal" : "Approve paralegal") : (sw ? "Kataa maombi" : "Reject application")} loading={saving} disabled={saving || note.trim().length < 10 || (decision === "approved" && (!application.identityDocumentUrl || !application.certificateStorageId))} onPress={() => void save(decision)} /></View> : null}
+            {decision ? <View style={styles.confirm}><Text style={styles.confirmTitle}>{decision === "approved" ? (sw ? "Thibitisha idhini" : "Confirm approval") : (sw ? "Thibitisha kukataa" : "Confirm rejection")}</Text><Text style={styles.body}>{decision === "approved" ? (sw ? "Jukumu la msaidizi wa kisheria linaweza kuanza kutumika baada ya hatua hii." : "The paralegal role may become active after this step.") : (sw ? "Ombi litafungwa na sababu itawekwa kwenye rekodi." : "The application will close and the reason will be recorded.")}</Text><Button label={decision === "approved" ? (sw ? "Idhinisha msaidizi wa kisheria" : "Approve paralegal") : (sw ? "Kataa maombi" : "Reject application")} loading={saving} disabled={saving || note.trim().length < 10 || (decision === "approved" && (!application.identityDocumentUrl || !application.certificateStorageId))} onPress={() => void save(decision)} /></View> : null}
           </>}
         </>}
         {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
-        <Button label={sw ? "Rudi kwenye foleni" : "Back to queue"} variant="quiet" onPress={() => router.push("/paralegal-review-queue")} />
+        <Button label={sw ? "Rudi kwenye orodha" : "Back to queue"} variant="quiet" onPress={() => router.push("/paralegal-review-queue")} />
       </>}
   </Screen>;
 }

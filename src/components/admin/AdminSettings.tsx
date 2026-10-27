@@ -1,3 +1,5 @@
+import BrandLoading from '@/components/shared/BrandLoading';
+import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
@@ -76,8 +78,7 @@ const AdminSettings = () => {
   if (!dbSettings) {
     return (
       <div className="flex items-center justify-center py-20">
-        <RefreshCw className="w-6 h-6 animate-spin text-gray-400" />
-        <span className="ml-2 text-gray-500">Loading settings...</span>
+        <BrandLoading compact text="Loading settings..."/>
       </div>
     );
   }
@@ -273,7 +274,7 @@ const AdminSettings = () => {
             >
               {isSubmitting ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <BrandLoadingIcon size={16}/>
                   Saving...
                 </>
               ) : (

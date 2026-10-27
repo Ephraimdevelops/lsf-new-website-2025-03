@@ -1,3 +1,5 @@
+import BrandLoading from '@/components/shared/BrandLoading';
+import { useCopy } from "@/i18n/useCopy";
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +10,7 @@ import { api } from "../../convex/_generated/api";
 import { useToast } from '@/hooks/use-toast';
 
 const Admin = () => {
+  const c = useCopy();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { isLoaded, isSignedIn, signOut } = useAuth();
@@ -40,8 +43,7 @@ const Admin = () => {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading admin panel...</p>
+          <BrandLoading compact text={c("Loading admin panel...")}/>
         </div>
       </div>
     );
@@ -51,7 +53,7 @@ const Admin = () => {
     return null;
   }
 
-  return <AdminDashboard onLogout={() => signOut({ redirectUrl: '/' })} />;
+  return <AdminDashboard />;
 };
 
 export default Admin;

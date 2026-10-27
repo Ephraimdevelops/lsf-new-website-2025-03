@@ -1,8 +1,11 @@
 import { v } from "convex/values";
 import { paginationOptsValidator } from "convex/server";
 import { requireGuideResubmission } from "./lib/guideLifecycle";
-import { mutation, query } from "./_generated/server";
+import { guideImportKey, requireEditableGuide, validateGuideContent, type GuideContent } from "./lib/legalGuideContent";
+import { searchCurrentGuides } from "./lib/guideSearch";
+import { mutation, query, type MutationCtx } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
+import { requirePublicMediaReference } from "./lib/managedUploads";
 import { Id } from "./_generated/dataModel";
 
 // Get all publications
@@ -147,6 +150,7 @@ export const create = mutation({
     handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin", "staff"]);
 
+        for (const value of [args.coverImageStorageId, args.coverImageUrl, args.pdfStorageId, args.pdfUrl]) await requirePublicMediaReference(ctx, value);
         return await ctx.db.insert("publications", args);
     },
 });
@@ -176,6 +180,8 @@ export const createForMigration = mutation({
             return existing._id;
         }
 
+        await requirePublicMediaReference(ctx, args.coverImageUrl);
+        await requirePublicMediaReference(ctx, args.pdfUrl);
         return await ctx.db.insert("publications", args);
     },
 });
@@ -200,6 +206,8 @@ export const update = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
+        const previous = await ctx.db.get(id);
+        for (const key of ["coverImageStorageId", "coverImageUrl", "pdfStorageId", "pdfUrl"] as const) await requirePublicMediaReference(ctx, fields[key], previous?.[key]);
         await ctx.db.patch(id, fields);
     },
 });
@@ -311,30 +319,33 @@ export const seed = mutation({
     },
 });
 
+function requireCurrentGuide(guide: {editVersion?: number} | null, expectedEditVersion?: number) {
+    if (guide && expectedEditVersion !== undefined && expectedEditVersion !== (guide.editVersion ?? 0)) {
+        throw new Error("This guide changed. Reload it and check the current text before saving.");
+    }
+}
+
 // Governed practical guides for the mobile Learn journey. Drafts cannot appear in the public list.
 const guideInput = {
     titleSw: v.string(), titleEn: v.string(), summarySw: v.string(), summaryEn: v.string(),
     stepsSw: v.array(v.string()), stepsEn: v.array(v.string()), category: v.string(),
     jurisdiction: v.union(v.literal("tanzania_mainland"), v.literal("zanzibar"), v.literal("national")),
     sourceTitle: v.string(), sourceUrl: v.string(), publisher: v.string(), reviewDueAt: v.number(),
+    coverImageUrl: v.optional(v.string()), coverImageAltSw: v.optional(v.string()), coverImageAltEn: v.optional(v.string()),
 };
 
-export const submitLegalGuide = mutation({
-    args: { ...guideInput, replacesGuideId: v.optional(v.id("legal_guides")), resubmitsGuideId: v.optional(v.id("legal_guides")) },
-    handler: async (ctx, args) => {
-        const { user } = await requireAnyRole(ctx, ["content_editor", "admin"]);
-        const fields = [args.titleSw, args.titleEn, args.summarySw, args.summaryEn, args.category, args.sourceTitle, args.publisher];
-        if (fields.some((field) => field.trim().length < 3)) throw new Error("Complete both languages and source metadata.");
-        if (args.stepsSw.length < 1 || args.stepsEn.length < 1 || args.stepsSw.length > 12 || args.stepsEn.length > 12) throw new Error("Provide 1–12 practical steps per language.");
-        if ([...args.stepsSw, ...args.stepsEn].some((step) => step.trim().length < 8)) throw new Error("Each practical step must be at least 8 characters.");
-        let source: URL;
-        try { source = new URL(args.sourceUrl); } catch { throw new Error("Provide a valid source URL."); }
-        if (source.protocol !== "https:" || !source.hostname.includes(".")) throw new Error("The source must have a public HTTPS URL.");
-        if (args.reviewDueAt <= Date.now() || args.reviewDueAt > Date.now() + 3 * 365 * 24 * 60 * 60 * 1000) throw new Error("Choose a review date within three years.");
+type GuideSubmission = GuideContent & { importKey?: string; replacesGuideId?: Id<"legal_guides">; resubmitsGuideId?: Id<"legal_guides"> };
+async function submitGuide(ctx: MutationCtx, args: GuideSubmission, userId: Id<"users">) {
+        const media = validateGuideContent(args);
+        if (args.importKey !== undefined) {
+            if (args.replacesGuideId || args.resubmitsGuideId || args.importKey !== guideImportKey(args)) throw new Error("Invalid guide import reference.");
+            const existing = await ctx.db.query("legal_guides").withIndex("by_import_key", q => q.eq("importKey", args.importKey)).first();
+            if (existing) return { id: existing._id, created: false };
+        }
         const prior = args.replacesGuideId ? await ctx.db.get(args.replacesGuideId) : null;
         if (args.replacesGuideId && (!prior || prior.status !== "approved")) throw new Error("Only an approved guide can be replaced.");
         const rejectedDraft = args.resubmitsGuideId ? await ctx.db.get(args.resubmitsGuideId) : null;
-        if (args.resubmitsGuideId) requireGuideResubmission(rejectedDraft, user._id, args.replacesGuideId);
+        if (args.resubmitsGuideId) requireGuideResubmission(rejectedDraft, userId, args.replacesGuideId);
         if (rejectedDraft) {
             const pendingResubmission = await ctx.db.query("legal_guides")
                 .withIndex("by_resubmits_status", (q) => q.eq("resubmitsGuideId", rejectedDraft._id).eq("status", "pending")).first();
@@ -350,11 +361,43 @@ export const submitLegalGuide = mutation({
         const id = await ctx.db.insert("legal_guides", {
             ...args, titleSw: args.titleSw.trim(), titleEn: args.titleEn.trim(), summarySw: args.summarySw.trim(), summaryEn: args.summaryEn.trim(),
             stepsSw: args.stepsSw.map((step) => step.trim()), stepsEn: args.stepsEn.map((step) => step.trim()),
-            sourceTitle: args.sourceTitle.trim(), sourceUrl: source.toString(), publisher: args.publisher.trim(), category: args.category.trim(),
-            version: rejectedDraft ? rejectedDraft.version : prior ? prior.version + 1 : 1, replacesGuideId: prior?._id, resubmitsGuideId: rejectedDraft?._id, status: "pending", submittedBy: user._id, submittedAt: now,
+            ...media, sourceTitle: args.sourceTitle.trim(), publisher: args.publisher.trim(), category: args.category.trim(),
+            editVersion: 1, version: rejectedDraft ? rejectedDraft.version : prior ? prior.version + 1 : 1, replacesGuideId: prior?._id, resubmitsGuideId: rejectedDraft?._id, status: "pending", submittedBy: userId, submittedAt: now,
         });
-        await ctx.db.insert("audit_logs", { action: "content.legal_guide_submitted", entityType: "legal_guide", entityId: id, userId: user._id, timestamp: now, metadata: { category: args.category, jurisdiction: args.jurisdiction, replacesGuideId: prior?._id, resubmitsGuideId: rejectedDraft?._id } });
-        return id;
+        await ctx.db.insert("audit_logs", { action: "content.legal_guide_submitted", entityType: "legal_guide", entityId: id, userId: userId, timestamp: now, metadata: { category: args.category, jurisdiction: args.jurisdiction, replacesGuideId: prior?._id, resubmitsGuideId: rejectedDraft?._id } });
+        return { id, created: true };
+}
+export const submitLegalGuide = mutation({
+    args: { ...guideInput, importKey: v.optional(v.string()), replacesGuideId: v.optional(v.id("legal_guides")), resubmitsGuideId: v.optional(v.id("legal_guides")) },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["content_editor", "admin"]);
+        return (await submitGuide(ctx, args, user._id)).id;
+    },
+});
+export const importPreparedLegalGuide = mutation({
+    args: guideInput,
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["content_editor", "admin"]);
+        return submitGuide(ctx, { ...args, importKey: guideImportKey(args) }, user._id);
+    },
+});
+
+export const updatePendingLegalGuide = mutation({
+    args: { id: v.id("legal_guides"), expectedEditVersion: v.optional(v.number()), ...guideInput },
+    handler: async (ctx, { id, expectedEditVersion, ...args }) => {
+        const { user } = await requireAnyRole(ctx, ["content_editor", "admin"]);
+        const guide = await ctx.db.get(id);
+        requireEditableGuide(guide, user._id);
+        requireCurrentGuide(guide, expectedEditVersion);
+        const media = validateGuideContent(args);
+        await ctx.db.patch(id, {
+            ...args, ...media, editVersion: (guide!.editVersion ?? 0) + 1, titleSw: args.titleSw.trim(), titleEn: args.titleEn.trim(),
+            summarySw: args.summarySw.trim(), summaryEn: args.summaryEn.trim(),
+            stepsSw: args.stepsSw.map(step => step.trim()), stepsEn: args.stepsEn.map(step => step.trim()),
+            category: args.category.trim(), sourceTitle: args.sourceTitle.trim(), publisher: args.publisher.trim(),
+        });
+        await ctx.db.insert("audit_logs", { action: "content.legal_guide_pending_updated", entityType: "legal_guide", entityId: id, userId: user._id, timestamp: Date.now(), metadata: { version: guide!.version, sourceUrl: media.sourceUrl } });
+        return { success: true };
     },
 });
 
@@ -364,7 +407,7 @@ export const listLegalGuidesForReview = query({
         const { user } = await requireAnyRole(ctx, ["content_editor", "admin"]);
         const roles = await ctx.db.query("role_assignments").withIndex("by_user_status", (q) => q.eq("userId", user._id).eq("status", "active")).collect();
         const isAdmin = user.role === "admin" || roles.some((item) => item.role === "admin");
-        const guides = await ctx.db.query("legal_guides").order("desc").take(100);
+        const guides = await ctx.db.query("legal_guides").order("desc").collect();
         return isAdmin ? guides : guides.filter((guide) => guide.submittedBy === user._id);
     },
 });
@@ -410,11 +453,12 @@ export const getLegalGuideForReview = query({
 });
 
 export const reviewLegalGuide = mutation({
-    args: { id: v.id("legal_guides"), decision: v.union(v.literal("approved"), v.literal("rejected")), note: v.string() },
+    args: { id: v.id("legal_guides"), decision: v.union(v.literal("approved"), v.literal("rejected")), note: v.string(), expectedEditVersion: v.optional(v.number()) },
     handler: async (ctx, args) => {
         const { user } = await requireAnyRole(ctx, ["admin"]);
         const guide = await ctx.db.get(args.id);
         if (!guide) throw new Error("Guide not found.");
+        requireCurrentGuide(guide, args.expectedEditVersion);
         if (guide.status !== "pending") throw new Error("Only pending guides can be reviewed.");
         if (guide.submittedBy === user._id) throw new Error("A different administrator must review this guide.");
         const note = args.note.trim();
@@ -424,9 +468,9 @@ export const reviewLegalGuide = mutation({
         if (args.decision === "approved" && guide.replacesGuideId) {
             const prior = await ctx.db.get(guide.replacesGuideId);
             if (!prior || prior.status !== "approved") throw new Error("The previous version is no longer active; review this revision again.");
-            await ctx.db.patch(prior._id, { status: "retired", reviewNote: `Replaced by version ${guide.version}`, reviewedBy: user._id, reviewedAt: now });
+            await ctx.db.patch(prior._id, { status: "retired", editVersion: (prior.editVersion ?? 0) + 1, reviewNote: `Replaced by version ${guide.version}`, reviewedBy: user._id, reviewedAt: now });
         }
-        await ctx.db.patch(args.id, { status: args.decision, reviewNote: note, reviewedBy: user._id, reviewedAt: now });
+        await ctx.db.patch(args.id, { status: args.decision, editVersion: (guide.editVersion ?? 0) + 1, reviewNote: note, reviewedBy: user._id, reviewedAt: now });
         await ctx.db.insert("audit_logs", { action: `content.legal_guide_${args.decision}`, entityType: "legal_guide", entityId: args.id, userId: user._id, timestamp: now, metadata: { previousStatus: guide.status, sourceUrl: guide.sourceUrl } });
         return { success: true };
     },
@@ -440,21 +484,55 @@ export const listPublicLegalGuides = query({
             _id: guide._id, titleSw: guide.titleSw, titleEn: guide.titleEn, summarySw: guide.summarySw, summaryEn: guide.summaryEn,
             stepsSw: guide.stepsSw, stepsEn: guide.stepsEn, category: guide.category, jurisdiction: guide.jurisdiction,
             sourceTitle: guide.sourceTitle, sourceUrl: guide.sourceUrl, publisher: guide.publisher, reviewDueAt: guide.reviewDueAt, version: guide.version,
+            coverImageUrl: guide.coverImageUrl, coverImageAltSw: guide.coverImageAltSw, coverImageAltEn: guide.coverImageAltEn,
         }));
     },
 });
 
 export const retireLegalGuide = mutation({
-    args: { id: v.id("legal_guides"), reason: v.string() },
+    args: { id: v.id("legal_guides"), reason: v.string(), expectedEditVersion: v.optional(v.number()) },
     handler: async (ctx, args) => {
         const { user } = await requireAnyRole(ctx, ["admin"]);
         const guide = await ctx.db.get(args.id);
         if (!guide || guide.status !== "approved") throw new Error("Only an approved guide can be retired.");
+        requireCurrentGuide(guide, args.expectedEditVersion);
         const reason = args.reason.trim();
         if (reason.length < 10 || reason.length > 2000) throw new Error("Record a 10–2000 character retirement reason.");
         const now = Date.now();
-        await ctx.db.patch(args.id, { status: "retired", reviewNote: reason, reviewedBy: user._id, reviewedAt: now });
+        await ctx.db.patch(args.id, { status: "retired", editVersion: (guide.editVersion ?? 0) + 1, reviewNote: reason, reviewedBy: user._id, reviewedAt: now });
         await ctx.db.insert("audit_logs", { action: "content.legal_guide_retired", entityType: "legal_guide", entityId: args.id, userId: user._id, timestamp: now, metadata: { reason, version: guide.version } });
+        return { success: true };
+    },
+});
+
+export const searchPublicLegalGuides = query({
+    args: { search: v.optional(v.string()), jurisdiction: v.optional(v.union(v.literal("national"), v.literal("tanzania_mainland"), v.literal("zanzibar"))) },
+    handler: async (ctx, args) => {
+        if ((args.search?.length ?? 0) > 300) throw new Error("Use a shorter guide search.");
+        const records = await ctx.db.query("legal_guides").withIndex("by_status", q => q.eq("status", "approved")).collect();
+        return searchCurrentGuides(records, args.search, args.jurisdiction).map(guide => ({
+            _id: guide._id, titleEn: guide.titleEn, titleSw: guide.titleSw,
+            summaryEn: guide.summaryEn, summarySw: guide.summarySw, stepsEn: guide.stepsEn, stepsSw: guide.stepsSw,
+            category: guide.category, jurisdiction: guide.jurisdiction, sourceTitle: guide.sourceTitle,
+            sourceUrl: guide.sourceUrl, publisher: guide.publisher, reviewDueAt: guide.reviewDueAt,
+        }));
+    },
+});
+
+// Recoverable removal keeps review and case references intact.
+export const archiveLegalGuide = mutation({
+    args: { id: v.id("legal_guides"), reason: v.string(), expectedEditVersion: v.optional(v.number()) },
+    handler: async (ctx, args) => {
+        const { user, assignments } = await requireAnyRole(ctx, ["content_editor", "admin"]);
+        const guide = await ctx.db.get(args.id);
+        const admin = user.role === "admin" || assignments.some(role => role.role === "admin");
+        if (!guide || (!admin && guide.submittedBy !== user._id)) throw new Error("Guide access denied.");
+        requireCurrentGuide(guide, args.expectedEditVersion);
+        if (guide.status === "approved" && !admin) throw new Error("An administrator must retire published guidance.");
+        const reason = args.reason.trim();
+        if (reason.length < 10 || reason.length > 2000) throw new Error("Record a 10–2000 character removal reason.");
+        await ctx.db.patch(guide._id, { status: "retired", editVersion: (guide.editVersion ?? 0) + 1, reviewNote: reason });
+        await ctx.db.insert("audit_logs", { action: "content.legal_guide_archived", entityType: "legal_guide", entityId: guide._id, userId: user._id, timestamp: Date.now(), metadata: { previousStatus: guide.status, reason } });
         return { success: true };
     },
 });

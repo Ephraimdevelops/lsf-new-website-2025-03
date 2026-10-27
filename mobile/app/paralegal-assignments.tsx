@@ -1,59 +1,48 @@
+import { BrandLoading } from '../src/components/BrandLoading';
+import { workCaseJourney } from "../../shared/workCaseJourney";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useMutation, useQuery } from "convex/react";
-import { router } from "expo-router";
-import { useState } from "react";
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { useQuery } from "convex/react";
+import { router, useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../src/auth";
 import { api } from "../src/backend/api";
-import { AppHeader } from "../src/components/AppHeader";
+import { caseStatusLabels } from "../src/caseLabels";
+import { CivicPageHeader } from "../src/components/CivicPageHeader";
+import { CivicObject } from "../src/components/CivicObject";
+import { ParalegalIntro } from "../src/components/ParalegalIntro";
+import { ParalegalNavigation } from "../src/components/ParalegalNavigation";
+import { SearchFilters } from "../src/components/SearchFilters";
 import { Button } from "../src/components/Button";
 import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
-import { colors, radius, spacing, type } from "../src/theme";
-
+import { colors, type } from "../src/theme";
+const completed = ["closed"];
 export default function ParalegalAssignmentsScreen() {
-  const { isSignedIn } = useAuth();
-  const { locale } = useLanguage();
-  const sw = locale === "sw";
-  const [tab, setTab] = useState<"offers" | "active">("offers");
-  const [busyId, setBusyId] = useState<string | null>(null);
+  const { isSignedIn } = useAuth(); const { locale } = useLanguage(); const sw = locale === "sw";
+  const { view } = useLocalSearchParams<{ view?: string }>();
+  const [tab, setTab] = useState<"offers" | "active">(view === "active" ? "active" : "offers");
+  useEffect(() => { setTab(view === "active" ? "active" : "offers"); }, [view]);
+  const [search, setSearch] = useState(""); const [history, setHistory] = useState(false);
   const access = useQuery(api.users.currentAccess, isSignedIn ? {} : "skip");
-  const allowed = access?.roles.some((role) => ["paralegal", "provider_staff"].includes(role)) ?? false;
+  const allowed = access?.roles.some(role => ["paralegal", "provider_staff"].includes(role)) ?? false;
   const offers = useQuery(api.caseManagement.assignmentInbox, allowed ? {} : "skip");
   const cases = useQuery(api.caseManagement.myCases, allowed ? {} : "skip");
-  const respond = useMutation(api.caseManagement.respondToAssignment);
-  const assignedCases = cases?.filter((record) => record.beneficiaryId !== access?.user._id) ?? [];
-
-  async function decide(assignmentId: Parameters<typeof respond>[0]["assignmentId"], response: "accepted" | "declined") {
-    setBusyId(assignmentId);
-    try { await respond({ assignmentId, response }); }
-    catch (error) { Alert.alert(sw ? "Hatua haijahifadhiwa" : "Could not save", error instanceof Error ? error.message : String(error)); }
-    finally { setBusyId(null); }
-  }
-
-  const header = <AppHeader back title={sw ? "Kesi nilizopewa" : "My assignments"} eyebrow="HAKI YANGU · PARALEGAL" />;
-  if (!isSignedIn) return <Screen>{header}<Hero sw={sw} /><AccessCard sw={sw} signedOut /></Screen>;
-  if (access === undefined) return <Screen>{header}<Text style={styles.muted}>{sw ? "Tunapakia ruhusa..." : "Loading access..."}</Text></Screen>;
-  if (!allowed) return <Screen>{header}<Hero sw={sw} /><AccessCard sw={sw} /></Screen>;
-
-  return <Screen>{header}<Hero sw={sw} />
-    <View style={styles.tabs}>{(["offers", "active"] as const).map((item) => <Pressable key={item} accessibilityRole="tab" accessibilityState={{ selected: tab === item }} onPress={() => setTab(item)} style={[styles.tab, tab === item && styles.activeTab]}><Text style={[styles.tabText, tab === item && styles.activeTabText]}>{item === "offers" ? (sw ? "Ofa mpya" : "New offers") : (sw ? "Kesi zangu" : "My cases")}</Text></Pressable>)}</View>
-    {tab === "offers" ? offers === undefined ? <Text style={styles.muted}>{sw ? "Tunapakia ofa..." : "Loading offers..."}</Text> : offers.length ? offers.map(({ assignment, case: record }) => <View key={assignment._id} style={styles.card}>
-      <View style={styles.row}><View style={styles.icon}><Ionicons name="briefcase-outline" size={22} color={colors.burgundy} /></View><View style={styles.flex}><Text style={styles.cardTitle}>{record?.publicId ?? (sw ? "Kesi inalindwa" : "Protected case")}</Text><Text style={styles.meta}>{record?.priority ? record.priority.replaceAll("_", " ") : (sw ? "Ofa ya kazi" : "Work offer")}</Text></View></View>
-      <Text style={styles.summary} numberOfLines={3}>{record?.summary ?? (sw ? "Maelezo yatapatikana baada ya idhini ya kazi." : "Details become available after accepting the offer.")}</Text>
-      {assignment.expiresAt ? <Text style={styles.meta}>{sw ? "Jibu kabla ya" : "Respond by"} {new Date(assignment.expiresAt).toLocaleString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}</Text> : null}
-      <Button label={sw ? "Kagua ofa na maelezo" : "Review offer details"} variant="secondary" onPress={() => router.push({ pathname: "/assignment/[id]", params: { id: assignment._id } })} />
-      <View style={styles.actions}><Pressable accessibilityRole="button" disabled={busyId === assignment._id} style={styles.decline} onPress={() => Alert.alert(sw ? "Kataa ofa?" : "Decline offer?", sw ? "Ombi hili litarudi kwa timu ya LSF." : "The request will return to the LSF team.", [{ text: sw ? "Ghairi" : "Cancel", style: "cancel" }, { text: sw ? "Kataa" : "Decline", onPress: () => void decide(assignment._id, "declined") }])}><Text style={styles.declineText}>{sw ? "Kataa" : "Decline"}</Text></Pressable><Pressable accessibilityRole="button" disabled={busyId === assignment._id} style={styles.accept} onPress={() => Alert.alert(sw ? "Kubali kazi?" : "Accept assignment?", sw ? "Utakuwa sehemu ya timu ya kesi hii." : "You will join this case team.", [{ text: sw ? "Ghairi" : "Cancel", style: "cancel" }, { text: sw ? "Kubali" : "Accept", onPress: () => void decide(assignment._id, "accepted") }])}><Text style={styles.acceptText}>{busyId === assignment._id ? (sw ? "Inahifadhi..." : "Saving...") : (sw ? "Kubali" : "Accept")}</Text></Pressable></View>
-    </View>) : <Empty sw={sw} kind="offers" />
-    : cases === undefined ? <Text style={styles.muted}>{sw ? "Tunapakia kesi..." : "Loading cases..."}</Text> : assignedCases.length ? assignedCases.map((record) => <Pressable key={record._id} accessibilityRole="button" style={styles.caseCard} onPress={() => router.push({ pathname: "/case/[id]", params: { id: record._id } })}><View style={styles.icon}><Ionicons name="folder-open-outline" size={22} color={colors.burgundy} /></View><View style={styles.flex}><Text style={styles.cardTitle}>{record.publicId}</Text><Text style={styles.summary} numberOfLines={2}>{record.summary}</Text><Text style={styles.meta}>{record.status.replaceAll("_", " ")}</Text></View><Ionicons name="chevron-forward" size={19} color={colors.inkMuted} /></Pressable>) : <Empty sw={sw} kind="cases" />}
+  const term = search.trim().toLocaleLowerCase();
+  const matches = (record: { publicId?: string; summary?: string } | null) => !term || [record?.publicId, record?.summary].join(" ").toLocaleLowerCase().includes(term);
+  const visibleOffers = offers?.filter(item => matches(item.case));
+  const assigned = cases?.filter(record => record.beneficiaryId !== access?.user._id && completed.includes(record.status) === history && matches(record));
+  return <Screen footer={allowed ? <ParalegalNavigation current="cases" /> : undefined}>
+    <CivicPageHeader compact back title={sw ? "Kesi za kazi" : "Your work cases"} />
+    <ParalegalIntro pose="review" title={sw ? "Pitia. Kubali. Saidia." : "Review. Accept. Help."} body={sw ? "Angalia kesi kabla ya kuamua. Kesi ulizopokea hukaa hapa." : "Read the case before deciding. Accepted cases stay here."} />
+    {!isSignedIn ? <Button label={sw ? "Ingia kuona kesi" : "Sign in to see cases"} onPress={() => router.push("/sign-in")} /> : access === undefined ? <BrandLoading compact text={sw ? "Tunapakia ruhusa…" : "Loading access…"}/> : !allowed ? <><Text style={styles.muted}>{sw ? "Idhini ya kazi inahitajika." : "Work access requires approval."}</Text><Button label={sw ? "Angalia kujiunga" : "View setup"} onPress={() => router.push("/paralegal-onboarding")} /></> : <>
+      <View style={styles.tabs}>{(["offers", "active"] as const).map(item => <Pressable key={item} accessibilityRole="tab" accessibilityState={{ selected: tab === item }} onPress={() => setTab(item)} style={[styles.tab, tab === item && styles.selected]}><Text style={[styles.tabText, tab === item && styles.selectedText]}>{item === "offers" ? (sw ? "Kesi za kupokea" : "Cases to accept") : (sw ? "Kesi nilizopokea" : "Accepted cases")}</Text></Pressable>)}</View>
+      <SearchFilters value={search} onChange={setSearch} placeholder={sw ? "Tafuta kesi" : "Search cases"} sw={sw} label={sw ? "Hali" : "Status"} title={sw ? "Kesi gani?" : "Which cases?"} count={history ? 1 : 0} onReset={() => setHistory(false)} summary={tab === "offers" ? (offers === undefined ? "" : `${visibleOffers?.length ?? 0} ${sw ? "ofa" : "offers"}`) : (cases === undefined ? "" : `${assigned?.length ?? 0} ${sw ? "kesi" : "cases"}`)}>{tab === "active" ? <View>{[false, true].map(value => <Pressable key={String(value)} accessibilityRole="radio" accessibilityState={{ checked: history === value }} aria-checked={history === value} style={styles.option} onPress={() => setHistory(value)}><Text style={styles.rowTitle}>{value ? (sw ? "Zilizofungwa" : "Closed") : (sw ? "Zinaendelea" : "In progress")}</Text><Ionicons name={history === value ? "radio-button-on" : "radio-button-off"} size={22} color={colors.burgundy} /></Pressable>)}</View> : null}</SearchFilters>
+      {tab === "offers" ? offers === undefined ? <BrandLoading compact text={sw ? "Tunapakia ofa…" : "Loading offers…"}/> : visibleOffers?.length ? visibleOffers.map(({ assignment, case: record }) => <Pressable key={assignment._id} accessibilityRole="button" style={styles.card} onPress={() => router.push({ pathname: "/assignment/[id]", params: { id: assignment._id } })}><View style={styles.top}><Text style={styles.reference}>{record?.publicId ?? (sw ? "Kesi inalindwa" : "Protected case")}</Text><Ionicons name="arrow-forward" size={20} color={colors.teal} /></View><Text style={styles.rowTitle} numberOfLines={3}>{record?.summary ?? (sw ? "Kagua maelezo yanayopatikana" : "Review available details")}</Text>{assignment.expiresAt ? <Text style={styles.muted}>{sw ? "Jibu kabla ya" : "Respond by"} {new Date(assignment.expiresAt).toLocaleString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "medium", timeStyle: "short" })}</Text> : null}<Text style={styles.action}>{sw ? "Kagua kabla ya kujibu" : "Review before responding"}</Text></Pressable>) : <Empty sw={sw} searching={!!term} offers />
+      : cases === undefined ? <BrandLoading compact text={sw ? "Tunapakia kesi…" : "Loading cases…"}/> : assigned?.length ? assigned.map(record => <Pressable key={record._id} accessibilityRole="button" style={styles.card} onPress={() => router.push({ pathname: "/case/[id]", params: { id: record._id } })}><View style={styles.top}><Text style={styles.reference}>{record.publicId}</Text><Ionicons name="arrow-forward" size={20} color={colors.teal} /></View><Text style={styles.rowTitle} numberOfLines={2}>{record.summary}</Text><Text style={styles.muted}>{workCaseJourney(record.status, false, false, sw).title}</Text><Text style={styles.action}>{sw ? "Angalia hatua inayofuata" : "See the next step"}</Text></Pressable>) : <Empty sw={sw} searching={!!term} />}
+      {!!term && (tab === "offers" ? visibleOffers?.length === 0 : assigned?.length === 0) ? <Button variant="quiet" label={sw ? "Futa utafutaji" : "Clear search"} onPress={() => setSearch("")} /> : null}
+    </>}
   </Screen>;
 }
-
-function Hero({ sw }: { sw: boolean }) { return <View style={styles.hero}><Ionicons name="people-outline" size={30} color={colors.peach} /><Text style={styles.heroTitle}>{sw ? "Pokea kazi. Saidia watu." : "Take work. Support people."}</Text><Text style={styles.heroBody}>{sw ? "Pitia ofa, kubali au kataa, kisha fuatilia kesi ulizopokea." : "Review offers, accept or decline, then follow your active cases."}</Text></View>; }
-function Empty({ sw, kind }: { sw: boolean; kind: "offers" | "cases" }) { return <View style={styles.empty}><Ionicons name="folder-open-outline" size={33} color={colors.burgundy} /><Text style={styles.emptyTitle}>{kind === "offers" ? (sw ? "Hakuna ofa mpya" : "No new offers") : (sw ? "Hakuna kesi ulizopewa" : "No assigned cases")}</Text><Text style={styles.muted}>{sw ? "Timu ya LSF itakuarifu kunapokuwa na hatua mpya." : "The LSF team will notify you when there is a new step."}</Text></View>; }
-function AccessCard({ sw, signedOut = false }: { sw: boolean; signedOut?: boolean }) { return <View style={styles.empty}><Ionicons name="lock-closed-outline" size={33} color={colors.burgundy} /><Text style={styles.emptyTitle}>{signedOut ? (sw ? "Ingia kuona kazi zako" : "Sign in to see assignments") : (sw ? "Idhini ya paralegal inahitajika" : "Paralegal approval required")}</Text><Text style={styles.muted}>{sw ? "Kesi na ofa zake ni za siri." : "Cases and offers are private."}</Text><Button label={signedOut ? (sw ? "Ingia salama" : "Sign in securely") : (sw ? "Angalia kujiunga" : "View onboarding")} onPress={() => router.push(signedOut ? "/sign-in" : "/paralegal-onboarding")} /></View>; }
-
-const styles = StyleSheet.create({
-  hero: { borderRadius: radius.xl, backgroundColor: colors.ink, padding: spacing.xl, gap: spacing.sm }, heroTitle: { fontFamily: type.bold, color: colors.surface, fontSize: 25 }, heroBody: { fontFamily: type.regular, color: "#E6DCE1", fontSize: 13, lineHeight: 20 }, tabs: { flexDirection: "row", gap: spacing.sm, marginVertical: spacing.lg }, tab: { flex: 1, minHeight: 45, borderRadius: radius.pill, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" }, activeTab: { borderColor: colors.burgundy, backgroundColor: colors.burgundy }, tabText: { fontFamily: type.bold, color: colors.inkMuted, fontSize: 13 }, activeTabText: { color: colors.surface },
-  card: { gap: spacing.md, marginBottom: spacing.md, padding: spacing.lg, borderWidth: 1, borderColor: colors.line, borderRadius: radius.lg, backgroundColor: colors.surface }, row: { flexDirection: "row", alignItems: "center", gap: spacing.md }, icon: { width: 43, height: 43, borderRadius: 14, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" }, flex: { flex: 1 }, cardTitle: { fontFamily: type.bold, color: colors.ink, fontSize: 15 }, meta: { marginTop: 4, fontFamily: type.medium, color: colors.inkMuted, fontSize: 12 }, summary: { fontFamily: type.regular, color: colors.ink, fontSize: 13, lineHeight: 19 }, actions: { flexDirection: "row", gap: spacing.sm }, decline: { flex: 1, minHeight: 44, borderRadius: radius.pill, borderWidth: 1, borderColor: colors.burgundy, alignItems: "center", justifyContent: "center" }, declineText: { fontFamily: type.bold, color: colors.burgundy, fontSize: 13 }, accept: { flex: 1, minHeight: 44, borderRadius: radius.pill, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" }, acceptText: { fontFamily: type.bold, color: colors.surface, fontSize: 13 }, caseCard: { minHeight: 82, marginBottom: spacing.sm, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md }, empty: { marginTop: spacing.md, alignItems: "center", gap: spacing.md, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, padding: spacing.xl }, emptyTitle: { fontFamily: type.bold, color: colors.ink, fontSize: 18, textAlign: "center" }, muted: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20, textAlign: "center" },
-});
+function Empty({ sw, searching, offers }: { sw: boolean; searching: boolean; offers?: boolean }) { return <View style={styles.empty}><CivicObject kind="empty" size={96} /><Text style={styles.rowTitle}>{searching ? (sw ? "Hakuna kesi inayolingana." : "No matching cases.") : offers ? (sw ? "Hakuna ofa mpya kwa sasa." : "No new offers right now.") : (sw ? "Kesi zako zitaonekana hapa." : "Your cases will appear here.")}</Text><Text style={styles.muted}>{searching ? (sw ? "Jaribu maneno mengine au futa utafutaji." : "Try another word or clear your search.") : (sw ? "Baada ya kupokea kesi, fungua kuona ujumbe na hatua zinazofuata." : "Once you accept a case, open it for messages and next steps.")}</Text></View>; }
+const styles = StyleSheet.create({ tabs: { flexDirection: "row", backgroundColor: "#F4F2F3", padding: 4, borderRadius: 12, marginBottom: 20 }, tab: { flex: 1, minHeight: 48, alignItems: "center", justifyContent: "center", borderRadius: 9, padding: 6 }, selected: { backgroundColor: colors.surface }, tabText: { fontFamily: type.medium, fontSize: 13, color: colors.inkMuted }, selectedText: { color: colors.burgundy }, top: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 }, reference: { flex: 1, fontFamily: type.medium, fontSize: 12, color: colors.teal }, card: { backgroundColor: "#F4F6F5", borderRadius: 12, padding: 18, marginBottom: 12, gap: 10 }, rowTitle: { fontFamily: type.semibold, fontSize: 16, lineHeight: 23, color: colors.ink }, muted: { fontFamily: type.regular, fontSize: 14, lineHeight: 22, color: colors.inkMuted }, action: { fontFamily: type.medium, fontSize: 14, color: colors.burgundy }, empty: { alignItems: "center", gap: 12, paddingVertical: 24 }, option: { minHeight: 56, flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 12 } });

@@ -2,6 +2,7 @@ import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 import { requireAnyRole, requireAuthenticatedUser } from './lib/auth';
 import { paginationOptsValidator } from 'convex/server';
+import { enforceRateLimit } from './lib/rateLimits';
 
 const requestedRole = v.union(v.literal('staff'), v.literal('content_editor'), v.literal('provider_staff'), v.literal('stakeholder'), v.literal('donor'));
 
@@ -17,6 +18,7 @@ export const request = mutation({
     const pending = await ctx.db.query('access_requests')
       .withIndex('by_user_status', (q) => q.eq('userId', user._id).eq('status', 'pending')).first();
     if (pending) throw new Error('You already have an access request awaiting review.');
+    await enforceRateLimit(ctx, `access-request:${user._id}`, 3, 60 * 60 * 1000);
     const id = await ctx.db.insert('access_requests', {
       userId: user._id, requestedRole: args.requestedRole, organizationName, statement,
       status: 'pending', submittedAt: Date.now(),

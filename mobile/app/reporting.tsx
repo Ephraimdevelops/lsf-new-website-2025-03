@@ -1,3 +1,6 @@
+import { BrandLoading } from '../src/components/BrandLoading';
+import { plainError } from "../../shared/plainLanguage";
+import StakeholderWorkspace from './stakeholder-workspace';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { useState } from "react";
@@ -6,8 +9,8 @@ import type { Id } from "../../convex/_generated/dataModel";
 import { api } from "../src/backend/api";
 import { AppHeader } from "../src/components/AppHeader";
 import { Button } from "../src/components/Button";
-import { CivicPageIntro } from "../src/components/CivicPageIntro";
-import { Screen } from "../src/components/Screen";
+import { AdminIntro as CivicPageIntro } from "../src/admin/AdminIntro";
+import { AdminScreen as Screen } from "../src/admin/AdminScreen";
 import { Surface } from "../src/components/Surface";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
@@ -26,11 +29,12 @@ export default function ReportingScreen() {
   const shareEvents = useQuery(api.reporting.listShareEvents, selected && canGenerate ? { snapshotId: selected } : "skip");
   const generate = useMutation(api.reporting.generateDonorSafeSnapshot); const approve = useMutation(api.reporting.approveSnapshot);
   const reject = useMutation(api.reporting.rejectSnapshot); const recordShare = useMutation(api.reporting.recordShareInitiated);
-  if (access === undefined) return <Screen><Text style={styles.muted}>{sw ? "Inapakia..." : "Loading..."}</Text></Screen>;
+  if (allowed && !canGenerate) return <StakeholderWorkspace />;
+  if (access === undefined) return <Screen><BrandLoading compact text={sw ? "Inapakia..." : "Loading..."}/></Screen>;
   if (!allowed) return <Screen><AppHeader back title={sw ? "Taarifa" : "Reporting"} /><Surface tone="orange"><Text style={styles.title}>{sw ? "Ufikiaji haujaruhusiwa" : "Access is not authorised"}</Text></Surface></Screen>;
-  async function generateSnapshot() { setBusy(true); try { await generate({ days: 30 }); setStatus("draft"); } catch (error) { Alert.alert(sw ? "Haikuundwa" : "Not generated", error instanceof Error ? error.message : String(error)); } finally { setBusy(false); } }
-  async function decideSnapshot(id: Id<"metric_snapshots">, decision: "approve" | "reject") { if (reviewNote.trim().length < 10) { Alert.alert(sw ? "Sababu inahitajika" : "Review reason required", sw ? "Andika sababu na matokeo ya ukaguzi wa ufichuaji." : "Record your reason and disclosure check."); return; } setBusy(true); try { if (decision === "approve") await approve({ snapshotId: id, note: reviewNote.trim() }); else await reject({ snapshotId: id, reason: reviewNote.trim() }); setSelected(null); setReviewNote(""); setStatus(decision === "approve" ? "approved" : "rejected"); } catch (error) { Alert.alert(sw ? "Uamuzi haujahifadhiwa" : "Decision not saved", error instanceof Error ? error.message : String(error)); } finally { setBusy(false); } }
-  async function shareSnapshot(id: Id<"metric_snapshots">, message: string) { try { await recordShare({ snapshotId: id }); await Share.share({ message }); } catch (error) { Alert.alert(sw ? "Imeshindikana" : "Could not open sharing", error instanceof Error ? error.message : String(error)); } }
+  async function generateSnapshot() { setBusy(true); try { await generate({ days: 30 }); setStatus("draft"); } catch (error) { Alert.alert(sw ? "Haikuundwa" : "Not generated", plainError(error, locale)); } finally { setBusy(false); } }
+  async function decideSnapshot(id: Id<"metric_snapshots">, decision: "approve" | "reject") { if (reviewNote.trim().length < 10) { Alert.alert(sw ? "Sababu inahitajika" : "Review reason required", sw ? "Andika kwa nini unahitaji ripoti hii. Kagua kama inaweza kumtambulisha mtu." : "Record your reason and disclosure check."); return; } setBusy(true); try { if (decision === "approve") await approve({ snapshotId: id, note: reviewNote.trim() }); else await reject({ snapshotId: id, reason: reviewNote.trim() }); setSelected(null); setReviewNote(""); setStatus(decision === "approve" ? "approved" : "rejected"); } catch (error) { Alert.alert(sw ? "Uamuzi haujahifadhiwa" : "Decision not saved", plainError(error, locale)); } finally { setBusy(false); } }
+  async function shareSnapshot(id: Id<"metric_snapshots">, message: string) { try { await recordShare({ snapshotId: id }); await Share.share({ message }); } catch (error) { Alert.alert(sw ? "Imeshindikana" : "Could not open sharing", plainError(error, locale)); } }
   function safeText(snapshot: NonNullable<typeof snapshots>[number]) { const v = snapshot.values; const hidden = sw ? "imefichwa" : "suppressed"; return `${sw ? "Muhtasari wa athari" : "Impact summary"}\n${new Date(snapshot.periodStart).toLocaleDateString()} – ${new Date(snapshot.periodEnd).toLocaleDateString()}\n${sw ? "Maombi" : "Requests"}: ${v.requestsSubmitted ?? hidden}\n${sw ? "Kesi zilizotatuliwa" : "Resolved cases"}: ${v.resolvedCases ?? hidden}\n${sw ? "Kukubaliwa kwa rufaa" : "Referral acceptance"}: ${v.referralAcceptanceRate == null ? hidden : `${v.referralAcceptanceRate}%`}\n${sw ? "Wastani wa maoni" : "Feedback average"}: ${v.feedbackAverageRating ?? hidden}\n${snapshot.publicSummary}`; }
   return <Screen>
     <AppHeader back title={sw ? "Taarifa salama kwa wafadhili" : "Donor-safe reporting"} eyebrow="LSF · AGGREGATE ONLY" />

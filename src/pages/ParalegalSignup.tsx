@@ -1,3 +1,4 @@
+import { useCopy } from "@/i18n/useCopy";
 import { useEffect } from 'react';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
@@ -13,6 +14,7 @@ import ParalegalApplicationForm from '@/components/ParalegalApplicationForm';
 import { useVisitorId } from '@/hooks/useVisitorId';
 
 const ParalegalSignup = () => {
+  const c = useCopy();
     const logEvent = useMutation(api.analytics.logEvent);
     const visitorId = useVisitorId();
 
@@ -44,16 +46,13 @@ const ParalegalSignup = () => {
                     <div className="max-w-4xl mx-auto text-center text-white">
                         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full mb-8">
                             <Scale className="h-5 w-5 text-secondary-orange" />
-                            <span className="text-sm font-medium">Join Our Network</span>
+                            <span className="text-sm font-medium">{c("Join Our Network")}</span>
                         </div>
 
-                        <Typography variant="h1" className="text-4xl md:text-6xl font-black mb-6">
-                            Become a <span className="text-secondary-orange">Community Paralegal</span>
+                        <Typography variant="h1" className="text-4xl md:text-6xl font-black mb-6">{c("Become a ")}<span className="text-secondary-orange">{c("Community Paralegal")}</span>
                         </Typography>
 
-                        <Typography variant="body" className="text-xl text-white/80 max-w-2xl mx-auto">
-                            Help bridge the justice gap in your community. Apply for LSF review and use one account across the website and mobile app.
-                        </Typography>
+                        <Typography variant="body" className="text-xl text-white/80 max-w-2xl mx-auto">{c("Help bridge the justice gap in your community. Apply for LSF review and use one account across the website and mobile app.")}</Typography>
                     </div>
                 </Container>
             </section>
@@ -68,8 +67,8 @@ const ParalegalSignup = () => {
                                     <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                                         <benefit.icon className="h-7 w-7 text-primary" />
                                     </div>
-                                    <h3 className="font-bold text-lg mb-2">{benefit.title}</h3>
-                                    <p className="text-sm text-neutral-600">{benefit.desc}</p>
+                                    <h3 className="font-bold text-lg mb-2">{c(benefit.title)}</h3>
+                                    <p className="text-sm text-neutral-600">{c(benefit.desc)}</p>
                                 </CardContent>
                             </Card>
                         ))}
@@ -82,12 +81,8 @@ const ParalegalSignup = () => {
                 <Container>
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-12">
-                            <Typography variant="h2" className="text-3xl md:text-4xl mb-4">
-                                Apply to Become a Paralegal
-                            </Typography>
-                            <Typography variant="body" className="text-neutral-600">
-                                Complete the form and attach your verification documents. LSF will review your application and show the decision in your account.
-                            </Typography>
+                            <Typography variant="h2" className="text-3xl md:text-4xl mb-4">{c("Apply to Become a Paralegal")}</Typography>
+                            <Typography variant="body" className="text-neutral-600">{c("Complete the form and attach your verification documents. LSF will review your application and show the decision in your account.")}</Typography>
                         </div>
 
                         {/* THE SECURED FORM COMPONENT */}
@@ -101,10 +96,8 @@ const ParalegalSignup = () => {
             <section className="py-16 bg-white">
                 <Container>
                     <div className="max-w-2xl mx-auto text-center">
-                        <Typography variant="h3" className="text-2xl mb-4">Have Questions?</Typography>
-                        <Typography variant="body" className="text-neutral-600 mb-6">
-                            Contact our paralegal recruitment team for more information.
-                        </Typography>
+                        <Typography variant="h3" className="text-2xl mb-4">{c("Have Questions?")}</Typography>
+                        <Typography variant="body" className="text-neutral-600 mb-6">{c("Contact our paralegal recruitment team for more information.")}</Typography>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button asChild variant="outline" className="gap-2"><a href="tel:+255222601534">
                                 <Phone className="h-4 w-4" />

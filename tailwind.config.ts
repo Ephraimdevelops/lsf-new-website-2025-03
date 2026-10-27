@@ -107,12 +107,11 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				// Ubuntu + Avenir Font Pairing
-				'display': ['Ubuntu', 'system-ui', 'sans-serif'],
-				'heading': ['Ubuntu', 'system-ui', 'sans-serif'],
-				'body': ['Avenir', 'Avenir Next', '-apple-system', 'Helvetica Neue', 'sans-serif'],
-				'sans': ['Avenir', 'Avenir Next', '-apple-system', 'Helvetica Neue', 'sans-serif'],
-				'serif': ['Ubuntu', 'system-ui', 'sans-serif'],
+				'display': ['Onest', 'system-ui', 'sans-serif'],
+				'heading': ['Onest', 'system-ui', 'sans-serif'],
+				'body': ['Onest', 'system-ui', 'sans-serif'],
+				'sans': ['Onest', 'system-ui', 'sans-serif'],
+				'serif': ['Onest', 'system-ui', 'sans-serif'],
 			},
 			fontSize: {
 				'xs': ['0.75rem', { lineHeight: '1rem' }],

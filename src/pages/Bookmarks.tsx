@@ -1,3 +1,4 @@
+import { useCopy } from "@/i18n/useCopy";
 
 import Layout from '@/components/layout/Layout';
 import Container from '@/components/shared/Container';
@@ -8,27 +9,22 @@ import { Bookmark, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Bookmarks = () => {
+  const c = useCopy();
   const { bookmarks, removeBookmark } = useBookmarks();
 
   return (
     <Layout>
       <Container size="lg" className="py-20">
         <div className="text-center mb-12">
-          <Typography variant="h1" className="mb-4">
-            Your Bookmarks
-          </Typography>
-          <Typography variant="body" className="text-neutral-gray">
-            Pages you've saved for later reading
-          </Typography>
+          <Typography variant="h1" className="mb-4">{c("Your Bookmarks")}</Typography>
+          <Typography variant="body" className="text-neutral-gray">{c("Pages you've saved for later reading")}</Typography>
         </div>
 
         {bookmarks.length === 0 ? (
           <div className="text-center py-12">
             <Bookmark className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-            <Typography variant="h3" className="mb-2">No bookmarks yet</Typography>
-            <Typography variant="body" className="text-neutral-gray">
-              Start exploring and bookmark pages you want to revisit
-            </Typography>
+            <Typography variant="h3" className="mb-2">{c("No bookmarks yet")}</Typography>
+            <Typography variant="body" className="text-neutral-gray">{c("Start exploring and bookmark pages you want to revisit")}</Typography>
           </div>
         ) : (
           <div className="space-y-4">

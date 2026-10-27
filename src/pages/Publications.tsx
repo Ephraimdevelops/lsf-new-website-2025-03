@@ -1,8 +1,8 @@
+import SearchFilterBar from '@/components/shared/SearchFilterBar';
 import { useState } from 'react';
 import Layout from '../components/layout/Layout';
-import { Download, Calendar, Search, BookOpen, Eye, X, Pause, Play, CheckCircle2 } from 'lucide-react';
+import { Download, Calendar, BookOpen, Eye, X, Pause, Play, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from "@/components/ui/input";
 import { usePublications } from '@/hooks/usePublications';
 import LoadingState from '@/components/shared/LoadingState';
 import ErrorState from '@/components/shared/ErrorState';
@@ -106,37 +106,10 @@ const Publications = () => {
         brandPattern="/lovable-uploads/brand-pattern.png"
       />
 
-      {/* Search & Filters */}
-      <section className="py-8 bg-neutral-50 border-b border-neutral-200 sticky top-[72px] z-30 backdrop-blur-md bg-white/80">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative w-full md:w-1/3">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-400" size={18} />
-              <Input
-                type="search"
-                placeholder="Search publications..."
-                className="pl-12 pr-4 py-3 rounded-full border-2 border-neutral-200 focus:border-primary w-full bg-white shadow-sm"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-
-            <div className="flex gap-2 text-nowrap overflow-x-auto pb-2 md:pb-0 w-full md:w-auto scrollbar-hide py-1">
-              {types.map((type) => (
-                <button
-                  key={type}
-                  onClick={() => setSelectedType(type)}
-                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all whitespace-nowrap ${selectedType === type
-                    ? 'bg-primary text-white shadow-md transform scale-105'
-                    : 'bg-white text-neutral-600 hover:bg-neutral-100 border-2 border-neutral-100 hover:border-neutral-200'
-                    }`}
-                >
-                  {type === 'all' ? 'All Publications' : type.charAt(0).toUpperCase() + type.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+      <section className="border-b border-[#E8E2E5] bg-[#FCFBFA] py-4">
+        <div className="container mx-auto px-4"><SearchFilterBar value={searchTerm} onChange={setSearchTerm} placeholder="Find a document" label="Type" title="Choose a document type" count={Number(selectedType !== 'all')} summary={selectedType !== 'all' ? selectedType.charAt(0).toUpperCase() + selectedType.slice(1) : undefined} onReset={() => setSelectedType('all')}>
+          <label className="block text-sm font-semibold">Document type<select className="mt-2 min-h-12 w-full rounded-xl border bg-white px-3" value={selectedType} onChange={e => setSelectedType(e.target.value)}>{types.map(type => <option key={type} value={type}>{type === 'all' ? 'All documents' : type.charAt(0).toUpperCase() + type.slice(1)}</option>)}</select></label>
+        </SearchFilterBar></div>
       </section>
 
       {/* Publications Horizontal List Area */}
@@ -155,7 +128,7 @@ const Publications = () => {
                 </p>
                 {(searchTerm || selectedType !== 'all') && (
                   <Button onClick={() => { setSearchTerm(''); setSelectedType('all'); }} className="rounded-full px-8">
-                    Clear All Filters
+                    Clear search
                   </Button>
                 )}
               </div>

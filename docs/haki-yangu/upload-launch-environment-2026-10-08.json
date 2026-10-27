@@ -1,0 +1,185 @@
+{
+  "checkedAt": "2026-10-08T06:44:01.864Z",
+  "deployment": "dev:joyous-spaniel-5",
+  "site": "https://joyous-spaniel-5.convex.site",
+  "gatewayStatus": 400,
+  "transport": "fetch",
+  "deployedControls": [
+    {
+      "handler": "authorizeSource",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "claim",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "finish",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "reserveAiRequest",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "reserveScan",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "expireStaleTickets",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "stageForScan",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "claimScanSource",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "rejectedQuarantine",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "cleanupQuarantine",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "acknowledgeQuarantineCleanup",
+      "internal": true,
+      "correctType": true
+    },
+    {
+      "handler": "retryQuarantineCleanup",
+      "internal": true,
+      "correctType": true
+    }
+  ],
+  "hostedRehearsal": {
+    "passed": true,
+    "results": [
+      {
+        "byteSize": 61,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "application",
+        "replayDenied": true
+      },
+      {
+        "byteSize": 33,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "request_attachment",
+        "replayDenied": true
+      },
+      {
+        "byteSize": 61,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "case_document",
+        "replayDenied": true
+      },
+      {
+        "byteSize": 44,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "case_voice",
+        "replayDenied": true
+      },
+      {
+        "byteSize": 61,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "referral_consent",
+        "replayDenied": true
+      },
+      {
+        "byteSize": 68,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "profile_photo",
+        "replayDenied": true
+      },
+      {
+        "byteSize": 68,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "public_media",
+        "replayDenied": true
+      },
+      {
+        "byteSize": 61,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "ai_source",
+        "replayDenied": true
+      },
+      {
+        "byteSize": 16777216,
+        "otherCaseDenied": true,
+        "otherOwnerDenied": true,
+        "passed": true,
+        "purpose": "ai_source",
+        "replayDenied": true
+      },
+      {
+        "passed": true,
+        "purpose": "harmless-EICAR",
+        "rejectedReceipt": true,
+        "status": 400
+      }
+    ],
+    "scope": "Named development only; synthetic gateway/binding rehearsal, not authenticated mobile UI or production verification."
+  },
+  "checks": [
+    {
+      "name": "Private HTTPS scanner configured",
+      "passed": true
+    },
+    {
+      "name": "Private scanner credential configured",
+      "passed": true
+    },
+    {
+      "name": "Upload lifecycle controls deployed as internal transactional handlers",
+      "passed": true
+    },
+    {
+      "name": "Development upload route deployed",
+      "passed": true
+    },
+    {
+      "name": "Configured gateway rejects an invalid one-use ticket",
+      "passed": true
+    },
+    {
+      "name": "Hosted fetch-based gateway rehearsal passes all purposes, owner/case/replay denials and EICAR rejection",
+      "passed": true
+    },
+    {
+      "name": "Hosted scanner rejects an incorrect credential",
+      "passed": true
+    }
+  ],
+  "ready": true,
+  "caveat": "Synthetic development checks only. Does not prove production deployment, cross-account UI upload completion, legacy rescanning or release approval."
+}

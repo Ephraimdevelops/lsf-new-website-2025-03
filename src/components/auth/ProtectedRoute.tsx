@@ -1,3 +1,5 @@
+import BrandLoading from '@/components/shared/BrandLoading';
+import { useCopy } from "@/i18n/useCopy";
 
 import { useAuth } from "@clerk/clerk-react";
 import { useConvexAuth, useQuery } from "convex/react";
@@ -13,6 +15,7 @@ interface ProtectedRouteProps {
 }
 
 export const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
+  const c = useCopy();
     const location = useLocation();
     const { isLoaded, isSignedIn } = useAuth();
     const { isAuthenticated } = useConvexAuth();
@@ -28,22 +31,22 @@ export const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) 
         return () => window.clearTimeout(timer);
     }, [isLoaded, isSignedIn, isAuthenticated, status, access]);
 
-    if (!isLoaded && !waitedTooLong) return <div role="status" className="flex min-h-screen items-center justify-center">Verifying access...</div>;
+    if (!isLoaded && !waitedTooLong) return <BrandLoading task="access" fullScreen/>;
     if (isLoaded && !isSignedIn) return <Navigate to={location.pathname === "/notifications" ? "/login?returnTo=%2Fnotifications" : "/login"} replace />;
 
     if (status === "error" || waitedTooLong) {
         return (
             <div role="alert" className="flex min-h-screen flex-col items-center justify-center gap-3 p-6 text-center">
-                <h1 className="text-xl font-semibold">Your account could not be connected</h1>
-                <p className="max-w-md text-sm text-gray-600">Check your connection and try again. If your account was deactivated, contact LSF support.</p>
-                <button type="button" onClick={() => { setWaitedTooLong(false); retry(); }} className="rounded-lg bg-primary px-5 py-2 font-semibold text-white">Retry</button>
-                <button type="button" onClick={() => window.location.reload()} className="text-sm font-semibold text-primary underline">Reload app</button>
+                <h1 className="text-xl font-semibold">{c("Your account could not be connected")}</h1>
+                <p className="max-w-md text-sm text-gray-600">{c("Check your connection and try again. If your account was deactivated, contact LSF support.")}</p>
+                <button type="button" onClick={() => { setWaitedTooLong(false); retry(); }} className="rounded-lg bg-primary px-5 py-2 font-semibold text-white">{c("Retry")}</button>
+                <button type="button" onClick={() => window.location.reload()} className="text-sm font-semibold text-primary underline">{c("Reload app")}</button>
             </div>
         );
     }
 
     if (!isAuthenticated || status !== "ready" || !access) {
-        return <div role="status" className="flex min-h-screen items-center justify-center">Connecting your secure account...</div>;
+        return <BrandLoading task="account" fullScreen/>;
     }
 
     if (allowedRoles && !allowedRoles.some((role) => access.roles.includes(role as typeof access.roles[number]))) {

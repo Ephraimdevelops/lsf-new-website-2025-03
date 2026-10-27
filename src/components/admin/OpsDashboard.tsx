@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,7 +33,7 @@ const OpsDashboard = () => {
     };
 
     if (!budget || !staleDocs || !systemStatus) {
-        return <div className="p-4 flex gap-2"><RefreshCw className="animate-spin" /> Loading Mission Control...</div>;
+        return <BrandLoading task="work"/>;
     }
 
     return (
@@ -69,7 +70,7 @@ const OpsDashboard = () => {
             <Card className={`border-l-4 ${systemStatus.isMaintenance ? 'border-l-red-500 bg-red-100' : 'border-l-gray-300'}`}>
                 <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-bold uppercase text-gray-500 flex items-center justify-between">
-                        Saada AI Status
+                        Haki Yangu AI Status
                         <Power className="h-4 w-4" />
                     </CardTitle>
                 </CardHeader>
@@ -85,7 +86,7 @@ const OpsDashboard = () => {
                             onClick={handleKillSwitch}
                             className="w-full font-bold"
                         >
-                            {systemStatus.isMaintenance ? "ENABLE SAADA" : "PAUSE SAADA"}
+                            {systemStatus.isMaintenance ? "ENABLE HAKI YANGU AI" : "PAUSE HAKI YANGU AI"}
                         </Button>
                         <p className="text-xs text-gray-600">This switch does not approve sources or confirm model uptime.</p>
                     </div>

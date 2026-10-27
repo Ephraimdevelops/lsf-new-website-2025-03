@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 import { useState } from 'react';
 import {
   Users,
@@ -108,7 +109,7 @@ const EnhancedAnalyticsDashboard = () => {
           <p className="text-sm text-gray-600">Public click counts are approximate and can be inflated by repeated or automated calls. Submitted requests, visit check-ins and referral transitions come from backend records; these figures are not a conversion rate or a count of unique people.</p>
         </CardHeader>
         <CardContent>
-          {journey === undefined ? <p role="status">Loading journey counts…</p> : (
+          {journey === undefined ? <BrandLoading compact text={"Loading journey counts\u2026"}/> : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {(['web', 'mobile'] as const).map((surface) => <div key={surface} className="rounded-xl border p-4">
                 <h3 className="font-semibold capitalize">{surface}</h3>
@@ -152,7 +153,7 @@ const EnhancedAnalyticsDashboard = () => {
               </div>
               <div className="rounded-xl border p-4 sm:col-span-2 lg:col-span-4">
                 <h3 className="font-semibold">Provider response timeliness</h3>
-                {partnerPerformance === undefined ? <p role="status" className="mt-2 text-sm">Loading response measures…</p> : <>
+                {partnerPerformance === undefined ? <BrandLoading compact text={"Loading response measures\u2026"}/> : <>
                   <p className="mt-2 text-sm">Responded: <strong>{partnerPerformance.totals.responded}</strong> · Open beyond provider response target: <strong>{partnerPerformance.totals.overdueOpen}</strong></p>
                   <p className="mt-2 text-xs text-gray-600">Each provider uses its configured response target, or 72 hours when none is set. The first recorded provider response determines timeliness; a response does not establish service delivery.</p>
                 </>}

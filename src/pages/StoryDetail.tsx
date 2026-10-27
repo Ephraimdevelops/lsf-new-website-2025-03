@@ -1,3 +1,4 @@
+import BrandLoading from '@/components/shared/BrandLoading';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useMemo, useRef } from 'react';
 import { useQuery, useMutation } from "convex/react";
@@ -61,8 +62,8 @@ const StoryDetail = () => {
             <Layout>
                 <section className="min-h-screen flex items-center justify-center bg-neutral-50">
                     <div className="text-center">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-                        <Typography variant="body" className="text-neutral-600">Loading story...</Typography>
+                        <BrandLoading task="content"/>
+
                     </div>
                 </section>
             </Layout>

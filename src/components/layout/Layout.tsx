@@ -7,6 +7,7 @@ import Footer from './Footer';
 import LSFChatbot from '@/components/shared/LSFChatbot';
 import SaraFloatingWidget from '@/components/SaraFloatingWidget';
 import { useVisitorId } from '@/hooks/useVisitorId';
+import { isWorkspacePath } from '@/components/dashboard/workspacePaths';
 
 interface LayoutProps {
   children: ReactNode;
@@ -62,10 +63,12 @@ const Layout = ({ children }: LayoutProps) => {
 
   const isHomePage = location.pathname === '/';
 
+  if (isWorkspacePath(location.pathname)) return <>{children}</>;
+
   return (
     <div className="flex flex-col min-h-screen bg-white w-full">
       <Header />
-      <main className={`flex-grow w-full overflow-x-hidden ${!isHomePage ? 'pt-24' : ''}`}>
+      <main className={`flex-grow w-full overflow-x-hidden ${!isHomePage ? 'pt-40 sm:pt-36' : ''}`}>
         {children}
       </main>
       <Footer />

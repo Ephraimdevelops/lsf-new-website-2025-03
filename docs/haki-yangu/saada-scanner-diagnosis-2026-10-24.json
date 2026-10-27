@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-24T20:16:00.722Z",
+  "project": {
+    "id": "prj_7ojzytpOBeuMjnnhvp2p7ENRaARR",
+    "name": "haki-yangu-private-scanner-dev"
+  },
+  "deployments": [
+    {
+      "id": "dpl_79hKLPAhXELaAxTDMzxTcJR4cKUY",
+      "state": "READY",
+      "created": 1791441439409,
+      "target": "production"
+    },
+    {
+      "id": "dpl_BMRBqhN3c7WYKXuF1vUsK6QEhBWc",
+      "state": "READY",
+      "created": 1791440438350,
+      "target": "production"
+    }
+  ],
+  "productionEnvironmentNames": [
+    "SCAN_SOURCE_URL",
+    "PRIVATE_SCANNER_TOKEN"
+  ],
+  "errors": []
+}

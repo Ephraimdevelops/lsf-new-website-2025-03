@@ -11,6 +11,8 @@
 
 **Full journeys complete under the agreed working rule: 0 of 11 user types.** Several screen-to-screen paths are connected in code. No role journey has yet passed the full cross-account, verified-data, device, accessibility, privacy, and legal/safeguarding release gate. Do not turn this into a percentage.
 
+**19 October evidence update:** a genuine-JWT QA rehearsal now passes request submission → LSF case creation → assignment acceptance → messages → appointment → outcome → beneficiary feedback → closure, with unauthorised provider access rejected. Saada app-help in English/Swahili, the governed unsaved draft tool, no silent request creation, conversation privacy and in-app notification generation also passed. See `connected-journey-2026-10-19.json` and `saada-handoff-2026-10-19.json`. These used actual development backend records and temporary Clerk Backend-API-created sessions for the owner's QA accounts, not browser password login or native UI automation. Verified public service/legal inventory is still empty, and device/accessibility/offline/push/legal/safeguarding acceptance remains open; the full-release count above is unchanged.
+
 ## 1. Guest / public visitor
 
 ```mermaid

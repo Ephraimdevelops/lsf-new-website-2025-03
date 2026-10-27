@@ -1,0 +1,52 @@
+recordType,field,required,validator,evidenceStatus
+organizationInput,name,True,v.string(),Names available in public research; identity and aliases need review.
+organizationInput,organizationType,True,organizationType,Not verified from current research; provider/owner confirmation or reviewer decision required.
+organizationInput,verificationStatus,True,organizationVerificationStatus,Local records remain research drafts; no provider verification performed.
+organizationInput,referralAgreementStatus,True,referralAgreementStatus,Unknown; no agreement has been obtained or verified.
+organizationInput,focalPersonName,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+organizationInput,focalPersonEmail,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+organizationInput,focalPersonPhone,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+organizationInput,slaHours,False,v.optional(v.number()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+organizationInput,safeguardingReady,True,v.boolean(),Unknown; requires organisation confirmation and governance evidence.
+organizationInput,dataSharingAgreementVersion,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+organizationInput,notes,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,name,True,v.string(),Names available in public research; identity and aliases need review.
+serviceInput,organizationId,False,"v.optional(v.id(""justice_service_organizations""))",Requires authenticated creation/linking to actual backend IDs.
+serviceInput,organizationName,False,v.optional(v.string()),Public names available; links to backend IDs not created.
+serviceInput,servicePointType,True,servicePointType,Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,classification,True,classification,Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,visibility,True,visibility,Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,verificationStatus,True,verificationStatus,Local records remain research drafts; no provider verification performed.
+serviceInput,verifyingAuthority,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,source,False,v.optional(v.string()),Source URLs and locally retained documents available.
+serviceInput,lastVerifiedAt,False,v.optional(v.number()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,nextReviewAt,False,v.optional(v.number()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,active,True,v.boolean(),No service activated by this preparation.
+serviceInput,country,True,v.string(),Research concerns Tanzania; individual service scope needs review.
+serviceInput,region,True,v.string(),Some registry regions observed; current service area unconfirmed.
+serviceInput,district,True,v.string(),Some registry districts observed; current service area unconfirmed.
+serviceInput,council,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,ward,False,v.optional(v.string()),Some Zanzibar registry wards observed; current locations unconfirmed.
+serviceInput,villageOrMtaa,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,latitude,False,v.optional(v.number()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,longitude,False,v.optional(v.number()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,physicalLocation,False,v.optional(v.string()),Some public addresses observed; registry locations not service coverage.
+serviceInput,serviceCoverageRegions,True,v.array(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,issueCategories,True,v.array(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,serviceTypes,True,v.array(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,jurisdiction,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,referralCapability,True,v.boolean(),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,eligibility,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,openingHours,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,walkIn,True,v.boolean(),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,appointmentRequired,True,v.boolean(),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,remoteSupport,True,v.boolean(),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,phoneSupport,True,v.boolean(),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,phone,False,v.optional(v.string()),Some public numbers observed; conflicts and current availability unconfirmed.
+serviceInput,currentIntakeState,True,intakeState,Unknown. Backend enum has no unknown option; do not invent open/closed.
+serviceInput,capacity,False,v.optional(v.number()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,emergencyCapability,True,v.boolean(),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,languages,True,v.array(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,disabilityAccess,False,v.optional(v.string()),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,privacyAvailable,True,v.boolean(),Not verified from current research; provider/owner confirmation or reviewer decision required.
+serviceInput,genderSensitive,True,v.boolean(),Not verified from current research; provider/owner confirmation or reviewer decision required.

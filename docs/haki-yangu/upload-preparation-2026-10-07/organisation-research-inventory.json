@@ -1,0 +1,696 @@
+{
+  "preparedOn": "2026-10-07",
+  "directBackendImport": false,
+  "note": "Overlapping research rows are retained with provenance. Null means unknown. Not a verified provider register.",
+  "earlierSources": {
+    "cma-faq": "https://cma.go.tz/faqs",
+    "legal-aid": "https://oagmis.oag.go.tz/portal/acts/revised/126/download",
+    "constitutions": "https://oagmis.oag.go.tz/public",
+    "privacy": "https://www.pdpc.go.tz/media/media/THE_PERSONAL_DATA_PROTECTION_ACT.pdf",
+    "safe-home-guideline": "https://www.jamii.go.tz/uploads/documents/sw-1721825362-sw1695200377-NATIONAL%20GUIDELINE%20FOR%20SAFE%20HOMES.pdf",
+    "tawla": "https://www.tawla.or.tz/",
+    "tawla-contact": "https://www.tawla.or.tz/contact-us/",
+    "lhrc": "https://legalaid.humanrights.or.tz/en/contact",
+    "wlac": "https://wlac.or.tz/contact-feedback.php",
+    "wildaf": "https://wildaftanzania.or.tz/legal-aid-clinic/",
+    "wotesawa": "https://www.wotesawa.or.tz/about-us",
+    "kiwohede": "https://kiwohede.or.tz/kiota-uk-2/",
+    "rita": "https://rita.go.tz/erita.php"
+  },
+  "earlierOfficeAndProgrammeRows": [
+    {
+      "id": "tawla-arusha",
+      "name": "TAWLA Arusha",
+      "phone": "+255762973419",
+      "email": "officearusha@tawla.or.tz",
+      "address": "St. James Street, Kaloleni Furniture Collections Building, fourth floor, room 402",
+      "sources": [
+        "tawla",
+        "tawla-contact"
+      ],
+      "status": "public_source_observed",
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "tawla-dodoma",
+      "name": "TAWLA Dodoma",
+      "phone": "+255719481794",
+      "email": "officedodoma@tawla.or.tz",
+      "address": "Ilazo East, Plot 25 Block C",
+      "sources": [
+        "tawla",
+        "tawla-contact"
+      ],
+      "status": "public_source_observed",
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "tawla-mbeya",
+      "name": "TAWLA Mbeya",
+      "phone": "+255652392999",
+      "email": "officembeya@tawla.or.tz",
+      "address": "Sae, Plot 67 Block X",
+      "sources": [
+        "tawla",
+        "tawla-contact"
+      ],
+      "status": "public_source_observed",
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "tawla-mwanza",
+      "name": "TAWLA Mwanza",
+      "phone": null,
+      "email": "officemwanza@tawla.or.tz",
+      "sources": [
+        "tawla",
+        "tawla-contact"
+      ],
+      "status": "conflicting_phone",
+      "observations": [
+        "Homepage: +255688103222",
+        "Contact page: +255756330323"
+      ],
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "tawla-tanga",
+      "name": "TAWLA Tanga",
+      "phone": null,
+      "email": "officetanga@tawla.or.tz",
+      "sources": [
+        "tawla",
+        "tawla-contact"
+      ],
+      "status": "country_code_and_address_conflict",
+      "observations": [
+        "Published phone starts +225; do not silently change to +255",
+        "Homepage and contact page give different street numbers"
+      ],
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "tawla-hq",
+      "name": "TAWLA head office",
+      "phone": "0800751010",
+      "email": "info@tawla.or.tz",
+      "address": null,
+      "sources": [
+        "tawla",
+        "tawla-contact"
+      ],
+      "status": "address_conflict_phone_source_observed",
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "lhrc-kinondoni",
+      "name": "LHRC Kinondoni Legal Aid Clinic",
+      "phone": "+255717143784",
+      "email": "lhrckinondoni@humanrights.or.tz",
+      "address": "Isere Street, House 660, Kinondoni, Dar es Salaam",
+      "sources": [
+        "lhrc"
+      ],
+      "status": "public_source_observed",
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "lhrc-arusha",
+      "name": "LHRC Arusha Legal Aid Clinic",
+      "phone": null,
+      "email": "lhrcarusha@humanrights.or.tz",
+      "sources": [
+        "lhrc"
+      ],
+      "status": "multiple_phone_and_address_variants",
+      "observations": [
+        "Page body: +255782277569",
+        "Footer: +255626281245 and +255626281244"
+      ],
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "lhrc-dodoma",
+      "name": "LHRC Dodoma Legal Aid Clinic",
+      "phone": null,
+      "email": "lhrcdodoma@humanrights.or.tz",
+      "address": "Chimuli Street, Plot 20, Area D, Dodoma",
+      "sources": [
+        "lhrc"
+      ],
+      "status": "multiple_phone_variants",
+      "observations": [
+        "Page body: +255262350050",
+        "Footer: +255678933155 and +255655444828"
+      ],
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "wlac",
+      "name": "Women's Legal Aid Centre",
+      "phone": "+255222664051",
+      "email": "wlac@wlac.or.tz",
+      "sources": [
+        "wlac"
+      ],
+      "status": "public_source_observed",
+      "openingHours": "Monday–Friday 08:00–17:00; weekend closed, as published",
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "wildaf",
+      "name": "WiLDAF legal aid clinic",
+      "phone": "0800780070",
+      "sources": [
+        "wildaf"
+      ],
+      "status": "public_source_observed",
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "wotesawa",
+      "name": "WoteSawa public referral contact",
+      "phone": "0800710066",
+      "email": "info@wotesawa.or.tz",
+      "sources": [
+        "wotesawa"
+      ],
+      "status": "public_source_observed",
+      "shelterLocation": null,
+      "admissionConfirmed": false,
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    },
+    {
+      "id": "kiwohede",
+      "name": "KIWOHEDE shelter programme lead",
+      "phone": null,
+      "sources": [
+        "kiwohede"
+      ],
+      "status": "programme_source_identified_contact_not_acquired",
+      "shelterLocation": null,
+      "admissionConfirmed": false,
+      "capacity": null,
+      "productionEligible": false,
+      "approvalStatus": "not_submitted",
+      "availabilityConfirmed": false,
+      "providerContacted": false
+    }
+  ],
+  "recentPublicCandidateRows": [
+    {
+      "id": "PROVIDER-LHRC-KINONDONI",
+      "organisation": "LHRC",
+      "officeDraft": "Kinondoni",
+      "sourceIds": [
+        "SERVICES-LHRC"
+      ],
+      "sourceUrl": "https://legalaid.humanrights.or.tz/en/contact",
+      "phonesObserved": [
+        "+255717143784",
+        "+255683169400"
+      ],
+      "emailObserved": "lhrckinondoni@humanrights.or.tz",
+      "addressObserved": "Isere Street House660",
+      "observedOn": "2026-10-05",
+      "caution": "Multiple numbers; provider confirmation required.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-LHRC-ARUSHA",
+      "organisation": "LHRC",
+      "officeDraft": "Arusha",
+      "sourceIds": [
+        "SERVICES-LHRC"
+      ],
+      "sourceUrl": "https://legalaid.humanrights.or.tz/en/contact",
+      "phonesObserved": [
+        "+255782277569",
+        "+255626281245",
+        "+255626281244"
+      ],
+      "emailObserved": "lhrcarusha@humanrights.or.tz",
+      "addressObserved": "Sakina kwa Idd / Olerian Street / Olosiva Area",
+      "observedOn": "2026-10-05",
+      "caution": "Different phone/address variants within page; do not silently choose one.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-LHRC-DODOMA",
+      "organisation": "LHRC",
+      "officeDraft": "Dodoma",
+      "sourceIds": [
+        "SERVICES-LHRC"
+      ],
+      "sourceUrl": "https://legalaid.humanrights.or.tz/en/contact",
+      "phonesObserved": [
+        "+255262350050",
+        "+255678933155",
+        "+255655444828"
+      ],
+      "emailObserved": "lhrcdodoma@humanrights.or.tz",
+      "addressObserved": "Chimuli Street Plot20 AreaD",
+      "observedOn": "2026-10-05",
+      "caution": "Different contact numbers in main and footer clinic sections.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-TAWLA",
+      "organisation": "TAWLA",
+      "officeDraft": "Multiple offices",
+      "sourceIds": [
+        "SERVICES-TAWLA-CONTACT",
+        "SERVICES-TAWLA"
+      ],
+      "sourceUrl": "https://www.tawla.or.tz/contact-us/",
+      "phonesObserved": [
+        "0800110017",
+        "0800751010",
+        "+255712343717"
+      ],
+      "emailObserved": null,
+      "addressObserved": "Dar es Salaam and regional offices",
+      "observedOn": "2026-10-05",
+      "caution": "Service page names five regions while contact page also names Mbeya; head-office address variants and Tanga +225 prefix require confirmation. Hotlines are public service-page candidates.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-WLAC",
+      "organisation": "WLAC",
+      "officeDraft": "Dar es Salaam",
+      "sourceIds": [
+        "SERVICES-WLAC"
+      ],
+      "sourceUrl": "https://www.wlac.or.tz/?lang=en",
+      "phonesObserved": [
+        "+255222664051"
+      ],
+      "emailObserved": "wlac@wlac.or.tz",
+      "addressObserved": null,
+      "observedOn": "2026-10-05",
+      "caution": "Opening hours and programme claims need confirmation; testimonials are not proof of case acceptance or shelter availability.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-ZLSC",
+      "organisation": "ZLSC",
+      "officeDraft": "Zanzibar",
+      "sourceIds": [
+        "SERVICES-ZLSC"
+      ],
+      "sourceUrl": "https://zlsc.or.tz/get-in-touch/",
+      "phonesObserved": [
+        "+255654416250"
+      ],
+      "emailObserved": "info@zlsc.or.tz",
+      "addressObserved": "House33 Karume Road Kijangwani",
+      "observedOn": "2026-10-05",
+      "caution": "Public free-legal-aid statement; exact scope, current hours, Pemba office and registration require confirmation.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false
+    },
+    {
+      "id": "PROVIDER-TLS",
+      "organisation": "TLS",
+      "officeDraft": "Dar es Salaam / chapter offices",
+      "sourceIds": [
+        "SERVICES-TLS"
+      ],
+      "sourceUrl": "https://tls.or.tz/legal-aid",
+      "phonesObserved": [],
+      "emailObserved": null,
+      "addressObserved": "Wakili House",
+      "observedOn": "2026-10-05",
+      "caution": "Public legal-aid unit and chapter service description; obtain chapter-specific verified contacts, fees and capacity.",
+      "registrationVerified": false,
+      "providerContacted": false,
+      "availabilityConfirmed": false,
+      "verifiedServiceArea": null,
+      "verifiedHours": null,
+      "verifiedEligibility": null,
+      "verifiedFees": null,
+      "verifiedLanguages": null,
+      "verifiedAccessibility": null,
+      "referralAgreement": null,
+      "verificationDate": null,
+      "reviewDueAt": null,
+      "approvalStatus": "not_submitted",
+      "productionEligible": false,
+      "evidenceCaution": "Saved static HTML contains only the title; full service description was observed in web search. Require rendered-page capture or provider confirmation."
+    }
+  ],
+  "zanzibarRegistryRows": [
+    {
+      "registryRow": 1,
+      "page": 1,
+      "extractedRecordVerbatim": "CENTRAL DISTRICT PARALEGAL UNIT (CEPAU)\nDUNGA\nDUNGA BWENI\nKATI\nKUSINI\nUNGUJA\nLAP-2021-0002",
+      "registrationNumberObserved": "LAP-2021-0002",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 2,
+      "page": 1,
+      "extractedRecordVerbatim": "CHAKE CHAKE PARALEGAL ORGANIZATION\n(CHAPO)\nKICHUNGWANI CHAKE\nCHAKE P.O.BOX 239\nKICHUNGWANI\nCHAKE\nCHAKE\nKUSINI PEMBA\nLAP-2021-0005",
+      "registrationNumberObserved": "LAP-2021-0005",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 3,
+      "page": 1,
+      "extractedRecordVerbatim": "IDARA YA MSAADA WA KISHERIA\n772\nKIEMBESAMAKI\nMGHARIBI\n\"B\"\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2020-0001",
+      "registrationNumberObserved": "LAP-2020-0001",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 4,
+      "page": 1,
+      "extractedRecordVerbatim": "JUMUIYA YA WASAIDIZI WA SHERIA MAGHARIB 'A'\n(PAUWA)\nCHUINI\nCHUINI\nMGHARIBI\n\"A\"\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2021-0004",
+      "registrationNumberObserved": "LAP-2021-0004",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 5,
+      "page": 1,
+      "extractedRecordVerbatim": "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\nKASKAZINI 'A' (NAPAC)\nP. BOX. 4971 - GAMBA\nGAMBA\nKASKAZINI\n'A'\nKASKAZINI\nUNGUJA\nLAP-2021-0003",
+      "registrationNumberObserved": "LAP-2021-0003",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 6,
+      "page": 1,
+      "extractedRecordVerbatim": "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\nMAGHARIBI 'B' (UWASHEMA)\nJITIMAI\nFUONI\nMIGOMBANI\nMGHARIBI\n\"B\"\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2021-0006",
+      "registrationNumberObserved": "LAP-2021-0006",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 7,
+      "page": 2,
+      "extractedRecordVerbatim": "JUMUIYA YA WASAIDIZI WA SHERIA WILAYA YA\nMICHEWENI(MIDIPAO)\nWINGWI MAPOFU\nWINGWI\nMAPOFU\nMICHEWENI\nKASKAZINI\nPEMBA\nLAP-2021-0010",
+      "registrationNumberObserved": "LAP-2021-0010",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 8,
+      "page": 2,
+      "extractedRecordVerbatim": "JUMUIYA YA WATU WENYE ULEMAVU ZANZIBAR\n(UWZ)\nS.L.P 2043 - ZANZIBAR\nKIKWAJUNI\nBONDENI\nMJINI\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2022-0001",
+      "registrationNumberObserved": "LAP-2022-0001",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 9,
+      "page": 2,
+      "extractedRecordVerbatim": "MKOANI DISTRICT PARALEGAL ORGANIZATION\nP.O.BOX 100 MKOANI PEMBA\nNG'OMBENI\nMKOANI\nKUSINI PEMBA\nLAP-2020-0002",
+      "registrationNumberObserved": "LAP-2020-0002",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 10,
+      "page": 2,
+      "extractedRecordVerbatim": "MKOANI DISTRICT PARALEGAL ORGANIZATION\nP.O.BOX 100 MKOANI PEMBA\nNG'OMBENI\nMKOANI\nKUSINI PEMBA\nLAP-2022-0002",
+      "registrationNumberObserved": "LAP-2022-0002",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 11,
+      "page": 2,
+      "extractedRecordVerbatim": "NORTH B PARALEGAL \nORGANIZATION\nMAHONDA \n- ZANZIBAR\nMAHONDA\nKASKAZINI\n'B'\nKASKAZINI\nUNGUJA\nLAP-2021-0007",
+      "registrationNumberObserved": "LAP-2021-0007",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 12,
+      "page": 2,
+      "extractedRecordVerbatim": "URBAN PARALEGAL ORGANIZATION\nMAKADARA\nMITIULAYA\nMJINI\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2021-0008",
+      "registrationNumberObserved": "LAP-2021-0008",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 13,
+      "page": 2,
+      "extractedRecordVerbatim": "WETE PARALEGAL ORGANIZATION\n92-WETE PEMBA\nSELEM\nWETE\nKASKAZINI\nPEMBA\nLAP-2021-0009",
+      "registrationNumberObserved": "LAP-2021-0009",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 14,
+      "page": 2,
+      "extractedRecordVerbatim": "ZANZIBAR LAW SOCIETY (ZLS)\nP.O.BOX 3319,KIEMBE\nSAMAKI -ZANZIBAR\nKIEMBESAMAKI\nMGHARIBI\n\"B\"\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2020-0003",
+      "registrationNumberObserved": "LAP-2020-0003",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 15,
+      "page": 2,
+      "extractedRecordVerbatim": "ZANZIBAR LEGAL SERVICES CENTRE\n3360, KIJANGWANI\nMIKUNGUNI\nMJINI\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2022-0003",
+      "registrationNumberObserved": "LAP-2022-0003",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 16,
+      "page": 2,
+      "extractedRecordVerbatim": "ZANZIBAR PARALEGAL'S NETWORK ORGANIZATION\nFUONI ZANZIBAR\nFUONI\nKIPUNGANI\nMGHARIBI\n\"B\"\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2022-0004",
+      "registrationNumberObserved": "LAP-2022-0004",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    },
+    {
+      "registryRow": 17,
+      "page": 2,
+      "extractedRecordVerbatim": "ZAPAO\nAMANI, SLP 4552\nAMANI\nMJINI\nMJINI\nMAGHARIB\nUNGUJA\nLAP-2021-0001",
+      "registrationNumberObserved": "LAP-2021-0001",
+      "currentRegistrationVerified": false,
+      "sourceURL": "https://zlsc.or.tz/wp-content/uploads/2024/08/Registered-Legal-Aid-Provider-Organizations.pdf",
+      "productionEligible": false
+    }
+  ],
+  "identityConflicts": [
+    "Mkoani District Paralegal Organization appears twice with different registration numbers (rows 9 and 10).",
+    "Zanzibar Legal Services Centre may overlap ZLSC candidate; confirm identity and address before merging.",
+    "Earlier and recent LHRC, TAWLA and WLAC entries overlap; do not count every row as a distinct organisation."
+  ],
+  "organisationFieldTemplateUnknowns": {
+    "name": null,
+    "organizationType": null,
+    "verificationStatus": null,
+    "referralAgreementStatus": null,
+    "focalPersonName": null,
+    "focalPersonEmail": null,
+    "focalPersonPhone": null,
+    "slaHours": null,
+    "safeguardingReady": null,
+    "dataSharingAgreementVersion": null,
+    "notes": null
+  },
+  "serviceFieldTemplateUnknowns": {
+    "name": null,
+    "organizationId": null,
+    "organizationName": null,
+    "servicePointType": null,
+    "classification": null,
+    "visibility": null,
+    "verificationStatus": null,
+    "verifyingAuthority": null,
+    "source": null,
+    "lastVerifiedAt": null,
+    "nextReviewAt": null,
+    "active": null,
+    "country": null,
+    "region": null,
+    "district": null,
+    "council": null,
+    "ward": null,
+    "villageOrMtaa": null,
+    "latitude": null,
+    "longitude": null,
+    "physicalLocation": null,
+    "serviceCoverageRegions": null,
+    "issueCategories": null,
+    "serviceTypes": null,
+    "jurisdiction": null,
+    "referralCapability": null,
+    "eligibility": null,
+    "openingHours": null,
+    "walkIn": null,
+    "appointmentRequired": null,
+    "remoteSupport": null,
+    "phoneSupport": null,
+    "phone": null,
+    "currentIntakeState": null,
+    "capacity": null,
+    "emergencyCapability": null,
+    "languages": null,
+    "disabilityAccess": null,
+    "privacyAvailable": null,
+    "genderSensitive": null
+  },
+  "systemManagedFields": [
+    "_id",
+    "_creationTime",
+    "createdBy",
+    "lastMaterialEditedBy",
+    "verifiedBy",
+    "createdAt",
+    "updatedAt"
+  ],
+  "schemaGaps": [
+    "Service email and website are not serviceInput fields.",
+    "Fees are not a dedicated serviceInput field.",
+    "Unknown intake state and unknown required capability booleans cannot be represented honestly by current validators."
+  ]
+}

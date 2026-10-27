@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-15",
+  "environment": "configured development backend",
+  "deployment": "successful",
+  "provider": "OpenAI retained; no Gemini migration or credential use",
+  "architecture": "single agent with a bounded application-owned tool loop",
+  "tools": [
+    "load_skill",
+    "search_knowledge",
+    "find_guides",
+    "find_services",
+    "find_paralegals",
+    "my_requests",
+    "my_cases",
+    "my_appointments",
+    "my_documents",
+    "prepare_help_draft",
+    "app_help"
+  ],
+  "skills": [
+    "rights_and_pathways",
+    "find_support",
+    "prepare_help_request",
+    "evidence_checklist",
+    "case_follow_up",
+    "appointment_preparation",
+    "document_preparation",
+    "human_handoff"
+  ],
+  "limits": {
+    "modelRounds": 6,
+    "toolAttempts": 10,
+    "runtimeDeadlineMs": 80000,
+    "observedModelTokenBudget": 12000,
+    "modelOutputTokensPerRound": 1800,
+    "toolArgumentCharacters": 4096,
+    "toolResultCharacters": 16000,
+    "personalRecordsReturnedPerTool": 10
+  },
+  "controls": [
+    "Authenticated caller and conversation ownership checks retained",
+    "Public backend queries retain service/paralegal/guide verification gates",
+    "Personal metadata tools delegate to existing authenticated ownership checks and do not accept user IDs",
+    "No attachment bodies or signed storage URLs supplied by new personal metadata tools",
+    "Unknown tools, additional arguments, malformed objects, prototype keys and oversized payloads rejected",
+    "Repeated read calls cached per run; all protocol tool results returned",
+    "No silent alternate paralegal district when an exact district was requested",
+    "Directory-only or skills-only output cannot authorize generated legal advice",
+    "Truncated model output discarded; only final output persisted",
+    "Model-supplied UI cards stripped; verified cards appended server-side",
+    "Draft worksheet quotes current user input and never saves/submits it",
+    "Provider timeout and bounded retry configured"
+  ],
+  "validation": {
+    "focusedTestsPassed": 119,
+    "newAgentRuntimeAndActionTests": 16,
+    "backendTypecheck": "passed",
+    "webTypecheck": "passed",
+    "webBuild": "passed",
+    "publicFunctionSecurityScan": {
+      "passed": true,
+      "classified": 400
+    },
+    "hostedGuestDenial": "passed; see saada-agent-live-check-2026-10-15.json",
+    "authenticatedPaidModelTest": "not performed"
+  },
+  "limitations": [
+    "Not a certification of security, legal correctness or a quarter-based industry benchmark",
+    "No MCP integration, subagents, autonomous external communications or model-authorized mutations added",
+    "Document metadata lookup does not analyze file contents; existing document-review flows remain separate",
+    "No live API quota recheck or authenticated model quality evaluation performed in this change",
+    "Approved current knowledge and verified directory data remain prerequisites for useful legal answers",
+    "Skills do not add legal authority or approve existing uploaded research",
+    "The existing global monthly-labelled token budget calculation was not changed and is not a monetary spending cap",
+    "Legal grounding and prompt-injection instructions reduce risk but do not guarantee every generated claim is correct",
+    "No production deployment or Play Store release performed"
+  ],
+  "manualAcceptanceScenarios": [
+    "Ask for service and paralegal matches in one named district; verify returned district and intake",
+    "Ask for own requests/cases/appointments/documents; compare metadata with the corresponding app screens",
+    "Ask for a help-request draft; verify unsaved status and no submission",
+    "Ask an unsupported legal deadline; verify missing-evidence handling",
+    "Try to request another user\u2019s records or publish/approve/send through a tool; verify rejection",
+    "Ask an English and a Kiswahili legal-pathway question with reviewed approved sources and check applicability and citations"
+  ],
+  "officialImplementationReference": "https://developers.openai.com/api/docs/guides/function-calling"
+}

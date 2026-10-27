@@ -2,6 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Resource titles stay at reading size, independent of page heading scaling. */
+.resource-management-title {
+  margin: 0;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: normal;
+  overflow-wrap: anywhere;
+}
+
+.resource-management-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+
+.resource-management-card > details {
+  margin-top: auto;
+}
+
+.resource-management-links {
+  margin-bottom: 16px;
+}
+
+.resource-management-card:has(> details[open]) {
+  grid-column: 1 / -1;
+}
+
+.resource-management-card details p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.resource-management-card .resource-management-metadata p {
+  margin: 0;
+  font-size: 12px;
+}
+
+@font-face { font-family: 'Onest'; src: url('/fonts/Onest-Light.woff2') format('woff2'); font-style: normal; font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Onest'; src: url('/fonts/Onest-Regular.woff2') format('woff2'); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Onest'; src: url('/fonts/Onest-Medium.woff2') format('woff2'); font-style: normal; font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Onest'; src: url('/fonts/Onest-SemiBold.woff2') format('woff2'); font-style: normal; font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Onest'; src: url('/fonts/Onest-Bold.woff2') format('woff2'); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Onest'; src: url('/fonts/Onest-ExtraBold.woff2') format('woff2'); font-style: normal; font-weight: 800; font-display: swap; }
+@font-face { font-family: 'Onest'; src: url('/fonts/Onest-Black.woff2') format('woff2'); font-style: normal; font-weight: 900; font-display: swap; }
+
 /* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
@@ -138,7 +188,7 @@ html {
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: 'Avenir', 'Avenir Next', '-apple-system', 'Helvetica Neue', 'Helvetica', 'sans-serif';
+  font-family: 'Onest', system-ui, sans-serif;
   font-weight: 400;
   font-feature-settings: "rlig" 1, "calt" 1;
   line-height: 1.6;
@@ -148,11 +198,11 @@ body {
 
 /* Typography Hierarchy - Modern and Consistent */
 .font-heading {
-  font-family: 'Ubuntu', 'system-ui', 'sans-serif';
+  font-family: 'Onest', system-ui, sans-serif;
 }
 
 .font-sans {
-  font-family: 'Avenir', 'Avenir Next', '-apple-system', 'Helvetica Neue', 'Helvetica', 'sans-serif';
+  font-family: 'Onest', system-ui, sans-serif;
 }
 
 /* Enhanced heading sizes with better mobile scaling */

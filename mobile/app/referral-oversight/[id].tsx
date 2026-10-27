@@ -1,3 +1,5 @@
+import { plainError } from "../../../shared/plainLanguage";
+import { AdminIntro } from "../../src/admin/AdminIntro";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -7,7 +9,7 @@ import type { Id } from "../../../convex/_generated/dataModel";
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
-import { Screen } from "../../src/components/Screen";
+import { AdminScreen as Screen } from "../../src/admin/AdminScreen";
 import { Surface } from "../../src/components/Surface";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
@@ -37,7 +39,7 @@ export default function StaffReferralDetailScreen() {
     try {
       await reviewEvidence({ consentId: detail.consent._id, status: decision, reviewNotes: note.trim() || undefined });
       setCompleted(true);
-    } catch (caught) { setError(caught instanceof Error ? caught.message : String(caught)); }
+    } catch (caught) { setError(plainError(caught, locale)); }
     finally { setBusy(false); }
   }
 
@@ -62,7 +64,7 @@ export default function StaffReferralDetailScreen() {
       : detail === undefined ? <State title={sw ? "Inapakia rufaa..." : "Loading referral..."} />
       : !detail ? <State title={sw ? "Rufaa haipatikani." : "Referral not found."} />
       : <>
-        <View style={styles.hero}><View style={styles.heroIcon}><Ionicons name="git-compare-outline" size={27} color={colors.burgundy} /></View><Text style={styles.kicker}>{detail.referral.publicId}</Text><Text style={styles.heroTitle}>{sw ? "Angalia ridhaa na hatua ya huduma." : "Check consent and the service handoff."}</Text><Text style={styles.heroBody}>{sw ? "Taarifa hizi ni kwa timu yenye ruhusa. Uamuzi wa ushahidi haupaswi kutuma rufaa kimya kimya." : "These details are for authorised staff. Reviewing evidence must not silently send a referral."}</Text></View>
+        <AdminIntro icon="book-outline" eyebrow="LSF" title={sw ? "Angalia ridhaa na hatua ya huduma." : "Check consent and the service handoff."} description={sw ? "Taarifa hizi ni kwa timu yenye ruhusa. Uamuzi wa ushahidi haupaswi kutuma rufaa kimya kimya." : "These details are for authorised staff. Reviewing evidence must not silently send a referral."} />
         <Surface tone={detail.referral.status === "awaiting_beneficiary_consent" ? "orange" : "pink"} style={styles.block}><Text style={styles.label}>{sw ? "HALI YA SASA" : "CURRENT STATUS"}</Text><Text style={styles.title}>{detail.referral.status.replaceAll("_", " ")}</Text><Info label={sw ? "Kesi" : "Case"} value={detail.case?.publicId ?? "—"} /><Info label={sw ? "Huduma inayopelekewa" : "Destination service"} value={detail.destinationService?.name ?? "—"} /><Info label={sw ? "Mtoa huduma" : "Provider"} value={detail.destinationUser?.name ?? (sw ? "Hajatajwa" : "Not assigned")} /></Surface>
         {detail.destinationUnavailable && !["closed", "declined", "returned"].includes(detail.referral.status) ? <Surface tone="orange" style={styles.block}><Text accessibilityRole="alert" style={styles.title}>{sw ? "Mahali pa rufaa hapokei tena" : "Referral destination unavailable"}</Text><Text style={styles.body}>{sw ? "Huduma au taasisi imezimwa. Usitume taarifa nyingine. Kagua kesi na mpange msaada mwingine pamoja na mnufaika." : "The service or organisation is no longer active. Do not share more information. Review the case and arrange another option with the beneficiary."}</Text></Surface> : null}
         <Surface style={styles.block}><Text style={styles.title}>{sw ? "Sababu na taarifa" : "Reason and sharing scope"}</Text><Text style={styles.body}>{detail.referral.reason}</Text>{detail.referral.informationShared.map((item, index) => <View key={`${index}-${item}`} style={styles.listRow}><Ionicons name="checkmark-circle-outline" size={19} color={colors.burgundy} /><Text style={styles.listText}>{item}</Text></View>)}</Surface>
@@ -73,7 +75,7 @@ export default function StaffReferralDetailScreen() {
         </Surface> : null}
         {detail.events.length ? <Surface style={styles.block}><Text style={styles.title}>{sw ? "Historia ya rufaa" : "Referral timeline"}</Text>{detail.events.slice(-8).map((event) => <View key={event._id} style={styles.event}><View style={styles.dot} /><View style={styles.flex}><Text style={styles.listText}>{event.type.replaceAll("_", " ")}</Text><Text style={styles.meta}>{new Date(event.occurredAt).toLocaleString(sw ? "sw-TZ" : "en-TZ")}</Text></View></View>)}</Surface> : null}
         {detail.case ? <Button label={sw ? "Angalia kesi ndani ya ruhusa yangu" : "Open case within my access"} variant="secondary" onPress={() => router.push({ pathname: "/case/[id]", params: { id: detail.case!._id } })} /> : null}
-        <Button label={sw ? "Rudi kwenye foleni ya rufaa" : "Back to referral queue"} variant="quiet" onPress={() => router.push("/referral-oversight")} />
+        <Button label={sw ? "Rudi kwenye orodha ya rufaa" : "Back to referral queue"} variant="quiet" onPress={() => router.push("/referral-oversight")} />
       </>}
   </Screen>;
 }

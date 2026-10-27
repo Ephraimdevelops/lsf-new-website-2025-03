@@ -5,7 +5,9 @@ import { StyleSheet, Text, View } from "react-native";
 import type { Id } from "../../../convex/_generated/dataModel";
 import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
-import { AppHeader } from "../../src/components/AppHeader";
+import { CivicPageHeader as AppHeader } from "../../src/components/CivicPageHeader";
+import { ParalegalIntro } from "../../src/components/ParalegalIntro";
+import { ParalegalNavigation } from "../../src/components/ParalegalNavigation";
 import { Button } from "../../src/components/Button";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
@@ -19,13 +21,16 @@ export default function CaseFollowUpScreen() {
   const { locale } = useLanguage();
   const sw = locale === "sw";
   const details = useQuery(api.caseManagement.getCase, isSignedIn && id ? { caseId: id as Id<"cases"> } : "skip");
+  const access = useQuery(api.users.currentAccess, isSignedIn ? {} : "skip");
+  const workCase = Boolean(details?.closureReadiness && access?.roles.some(role => ["paralegal", "provider_staff"].includes(role)) && details?.case.beneficiaryId !== access?.user._id);
   const appointments = details?.appointments.filter((item) => item.status === "scheduled").sort((a, b) => a.startsAt - b.startsAt) ?? [];
 
-  return <Screen>
-    <AppHeader back title={sw ? "Hatua zinazofuata" : "Next steps"} eyebrow="HAKI YANGU" />
+  return <Screen footer={workCase ? <ParalegalNavigation current="cases" /> : undefined}>
+    <AppHeader back title={sw ? "Hatua zinazofuata" : "Next steps"} compact />
     {!isSignedIn ? <State icon="lock-closed-outline" title={sw ? "Hatua zako zinalindwa" : "Your next steps are private"} body={sw ? "Ingia kuona hali ya kesi yako." : "Sign in to see your case progress."} action={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
       : details === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia hatua" : "Loading next steps"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !details ? <State icon="folder-outline" title={sw ? "Kesi haipatikani" : "Case not found"} body={sw ? "Huenda imebadilika au huna ruhusa ya kuiona." : "It may have changed, or you may not have access to it."} />
+      : workCase ? <><ParalegalIntro pose="direction" title={sw ? "Fuata hatua ulizoahidi." : "Follow through on your next steps."} body={sw ? "Kagua kazi, miadi na matokeo pamoja na mnufaika." : "Check tasks, appointments and outcomes with the beneficiary."} /><Text style={styles.reference}>{details.case.publicId}</Text><Step number="1" icon="checkbox-outline" title={sw ? "Kazi za kufuatilia" : "Follow-up tasks"} body={sw ? "Kagua kazi zilizosalia na tarehe zake." : "Review remaining tasks and their dates."} action={sw ? "Fungua kazi" : "Open tasks"} onPress={() => router.push({ pathname: "/case/[id]", params: { id, section: "tasks" } })} /><Step number="2" icon="calendar-outline" title={sw ? "Miadi na mawasiliano" : "Appointments and contact"} body={appointments.length ? new Date(appointments[0].startsAt).toLocaleString(sw ? "sw-TZ" : "en-TZ") : (sw ? "Thibitisha muda unaofaa na mnufaika." : "Agree a suitable time with the beneficiary.")} action={sw ? "Angalia miadi" : "View appointments"} onPress={() => router.push({ pathname: "/case/[id]", params: { id, section: "appointments" } })} /><Step number="3" icon="reader-outline" title={sw ? "Matokeo na ukaguzi" : "Outcome and review"} body={sw ? "Rekodi msaada uliotolewa na angalia hatua zilizobaki." : "Record the help provided and check any remaining steps."} action={sw ? "Fungua matokeo" : "Open outcome"} onPress={() => router.push({ pathname: "/case/[id]", params: { id, section: "feedback" } })} /></>
       : <>
         <View style={styles.hero}><View style={styles.heroIcon}><Ionicons name="arrow-forward" size={29} color={colors.surface} /></View><Text style={styles.heroTitle}>{sw ? "Tuko nawe hatua kwa hatua." : "We are with you, step by step."}</Text><Text style={styles.heroBody}>{sw ? "Angalia mambo yanayohusiana na kesi yako na chagua unachohitaji sasa." : "See what relates to your case and choose what you need now."}</Text></View>
         <Text style={styles.reference}>{details.case.publicId}</Text>

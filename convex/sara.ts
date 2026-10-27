@@ -2,12 +2,16 @@ import { mutation, query, internalMutation, internalQuery } from "./_generated/s
 import { v } from "convex/values";
 import { paginationOptsValidator } from "convex/server";
 import { requireAnyRole } from "./lib/auth";
+import { sourceUploadMetadata } from "./lib/saadaUploadMetadata";
+import { canRetrySourceIndex, isStalledSourceIndex } from "./lib/saadaIndexRecovery";
 import { requireReadySourceForApproval } from "./lib/saadaSourceLifecycle";
+import { issueManagedUpload, requireCleanOwnedUpload } from "./lib/managedUploads";
+import { normalizeSourceMetadata, sourceMetadataSnapshot } from "./lib/saadaSourceMetadata";
 
 // Generate upload URL for PDF files
 export const generateUploadUrl = mutation(async (ctx) => {
-    await requireAnyRole(ctx, ["admin", "staff"]);
-    return await ctx.storage.generateUploadUrl();
+    const { user } = await requireAnyRole(ctx, ["admin", "staff"]);
+    return await issueManagedUpload(ctx, user._id, "ai_source");
 });
 
 // Internal mutation to create the document record
@@ -29,6 +33,14 @@ export const createDocument = internalMutation({
         replacesDocumentId: v.optional(v.id("documents")),
     },
     handler: async (ctx, args) => {
+        const uploader = await ctx.db.query("users").withIndex("by_clerk_id", q => q.eq("clerkId", args.uploadedByClerkId)).unique();
+        if (!uploader || uploader.isDeleted) throw new Error("Uploader access denied.");
+        await requireCleanOwnedUpload(ctx, args.storageId, uploader._id, "ai_source");
+        const receipt = await ctx.db.query("saada_upload_receipts").withIndex("by_storage", q => q.eq("storageId", args.storageId)).first();
+        if (receipt) {
+            const normalize = (value: unknown) => typeof value === "string" ? value.trim() : value;
+            if (receipt.uploadedByClerkId !== args.uploadedByClerkId || Object.keys(sourceUploadMetadata).some(key => normalize(receipt.metadata[key as keyof typeof receipt.metadata]) !== normalize(args[key as keyof typeof args]))) throw new Error("Upload metadata changed. Refresh the recovery list before resuming ingestion.");
+        }
         // A storage reference is the retry identity. Claim it atomically so two
         // ingestion actions cannot create and index separate copies of one upload.
         const existing = await ctx.db.query("documents")
@@ -37,7 +49,7 @@ export const createDocument = internalMutation({
             const fields = ["title", "uploadedByClerkId", "sourceUrl", "publisher", "jurisdiction", "language", "contentCategory", "versionLabel", "effectiveDate", "reviewDueAt", "replacesDocumentId", "type"] as const;
             if (fields.some((field) => existing[field] !== args[field])) throw new Error("An ingestion retry must match the original uploader and source metadata.");
             if (existing.approvalStatus === "withdrawn" || existing.approvalStatus === "rejected") throw new Error("This source was withdrawn or rejected. Upload a corrected source for review.");
-            return { documentId: existing._id, created: false, indexingStatus: existing.indexingStatus };
+            return { documentId: existing._id, created: false, indexingStatus: existing.indexingStatus, generation: existing.indexingGeneration ?? 0 };
         }
         if (args.replacesDocumentId) {
             const previous = await ctx.db.get(args.replacesDocumentId);
@@ -64,17 +76,19 @@ export const createDocument = internalMutation({
             replacesDocumentId: args.replacesDocumentId,
             approvalStatus: "pending",
             indexingStatus: "processing",
+            indexingGeneration: 1,
+            indexingUpdatedAt: Date.now(),
             uploadedAt: Date.now(),
         });
-        return { documentId, created: true, indexingStatus: "processing" as const };
+        return { documentId, created: true, indexingStatus: "processing" as const, generation: 1 };
     },
 });
 
 export const markDocumentProcessed = internalMutation({
-    args: { id: v.id("documents") },
+    args: { id: v.id("documents"), generation: v.number() },
     handler: async (ctx, args) => {
         const doc = await ctx.db.get(args.id);
-        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "processing") throw new Error("This source is no longer being indexed.");
+        if (!doc || doc.indexingGeneration !== args.generation || doc.approvalStatus !== "pending" || doc.indexingStatus !== "processing") throw new Error("This source is no longer being indexed.");
         const firstChunk = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).first();
         if (!firstChunk) throw new Error("No searchable content was indexed.");
         await ctx.db.patch(args.id, { processedAt: Date.now(), indexingStatus: "ready", indexingError: undefined });
@@ -82,10 +96,10 @@ export const markDocumentProcessed = internalMutation({
 });
 
 export const markDocumentIndexFailed = internalMutation({
-    args: { id: v.id("documents"), error: v.string() },
+    args: { id: v.id("documents"), error: v.string(), generation: v.number() },
     handler: async (ctx, args) => {
         const doc = await ctx.db.get(args.id);
-        if (doc && doc.approvalStatus === "pending") await ctx.db.patch(args.id, { indexingStatus: "failed", indexingError: args.error.slice(0, 500) });
+        if (doc && doc.indexingGeneration === args.generation && doc.indexingStatus === "processing" && doc.approvalStatus === "pending") await ctx.db.patch(args.id, { indexingStatus: "failed", indexingError: args.error.slice(0, 500) });
     },
 });
 
@@ -93,7 +107,7 @@ export const getDocumentForReindex = internalQuery({
     args: { id: v.id("documents") },
     handler: async (ctx, args) => {
         const doc = await ctx.db.get(args.id);
-        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "failed") throw new Error("Only failed, pending sources can be reindexed.");
+        if (!doc || !canRetrySourceIndex(doc)) throw new Error("Only failed or stalled pending sources can be reindexed.");
         return { text: doc.text ?? "" };
     },
 });
@@ -102,10 +116,12 @@ export const beginDocumentReindex = internalMutation({
     args: { id: v.id("documents") },
     handler: async (ctx, args) => {
         const doc = await ctx.db.get(args.id);
-        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "failed") throw new Error("Source is no longer eligible for retry.");
+        if (!doc || !canRetrySourceIndex(doc)) throw new Error("Source is no longer eligible for retry.");
         const chunks = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).collect();
         for (const chunk of chunks) await ctx.db.delete(chunk._id);
-        await ctx.db.patch(args.id, { indexingStatus: "processing", indexingError: undefined, processedAt: undefined });
+        const generation = (doc.indexingGeneration ?? 0) + 1;
+        await ctx.db.patch(args.id, { indexingStatus: "processing", indexingError: undefined, processedAt: undefined, indexingGeneration: generation, indexingUpdatedAt: Date.now() });
+        return generation;
     },
 });
 
@@ -113,6 +129,7 @@ export const beginDocumentReindex = internalMutation({
 export const addEmbeddings = internalMutation({
     args: {
         documentId: v.id("documents"),
+        generation: v.number(),
         chunks: v.array(
             v.object({
                 text: v.string(),
@@ -123,7 +140,8 @@ export const addEmbeddings = internalMutation({
     },
     handler: async (ctx, args) => {
         const doc = await ctx.db.get(args.documentId);
-        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "processing") throw new Error("This source is no longer being indexed.");
+        if (!doc || doc.indexingGeneration !== args.generation || doc.approvalStatus !== "pending" || doc.indexingStatus !== "processing") throw new Error("This source is no longer being indexed.");
+        await ctx.db.patch(args.documentId, { indexingUpdatedAt: Date.now() });
         for (const chunk of args.chunks) {
             await ctx.db.insert("embeddings", {
                 documentId: args.documentId,
@@ -244,9 +262,9 @@ export const getDocumentForReview = query({
         if (!document) return null;
         const previous = document.replacesDocumentId ? await ctx.db.get(document.replacesDocumentId) : null;
         const { text: _text, ...doc } = document;
-        if (!previous) return { doc: { ...doc, sourcePdfUrl: await ctx.storage.getUrl(doc.storageId) }, previous: null };
+        if (!previous) return { doc: { ...doc, canRetryIndex: canRetrySourceIndex(doc), indexStalled: isStalledSourceIndex(doc), sourcePdfUrl: await ctx.storage.getUrl(doc.storageId) }, previous: null };
         const { text: _previousText, ...prior } = previous;
-        return { doc: { ...doc, sourcePdfUrl: await ctx.storage.getUrl(doc.storageId) }, previous: { ...prior, sourcePdfUrl: await ctx.storage.getUrl(prior.storageId) } };
+        return { doc: { ...doc, canRetryIndex: canRetrySourceIndex(doc), indexStalled: isStalledSourceIndex(doc), sourcePdfUrl: await ctx.storage.getUrl(doc.storageId) }, previous: { ...prior, sourcePdfUrl: await ctx.storage.getUrl(prior.storageId) } };
     },
 });
 
@@ -268,6 +286,27 @@ export const listSourceEvidence = query({
     },
 });
 
+export const updatePendingSourceMetadata = mutation({
+    args: { id: v.id("documents"), expectedSnapshot: v.string(), reason: v.string(), metadata: v.object({
+        title: sourceUploadMetadata.title, publisher: sourceUploadMetadata.publisher, sourceUrl: sourceUploadMetadata.sourceUrl,
+        jurisdiction: sourceUploadMetadata.jurisdiction, language: sourceUploadMetadata.language,
+        contentCategory: sourceUploadMetadata.contentCategory, versionLabel: sourceUploadMetadata.versionLabel,
+        effectiveDate: sourceUploadMetadata.effectiveDate, reviewDueAt: sourceUploadMetadata.reviewDueAt,
+    }) },
+    handler: async (ctx, args) => {
+        const { user } = await requireAnyRole(ctx, ["admin"]);
+        const doc = await ctx.db.get(args.id);
+        if (!doc || doc.approvalStatus !== "pending" || doc.indexingStatus !== "ready") throw new Error("Only an indexed pending source can have draft metadata corrected.");
+        if (sourceMetadataSnapshot(doc) !== args.expectedSnapshot) throw new Error("Source metadata changed. Reload it before saving your corrections.");
+        const reason = args.reason.trim();
+        if (reason.length < 10 || reason.length > 2000) throw new Error("Record a 10–2000 character correction reason.");
+        const metadata = normalizeSourceMetadata(args.metadata, Date.now());
+        await ctx.db.patch(doc._id, metadata);
+        await ctx.db.insert("audit_logs", { action: "saada.source_metadata_corrected", entityType: "document", entityId: doc._id, userId: user._id, timestamp: Date.now(), metadata: { before: sourceMetadataSnapshot(doc), after: sourceMetadataSnapshot(metadata), reason } });
+        return { success: true };
+    },
+});
+
 export const reviewDocument = mutation({
     args: { id: v.id("documents"), decision: v.union(v.literal("approved"), v.literal("rejected")), note: v.string() },
     handler: async (ctx, args) => {
@@ -277,6 +316,8 @@ export const reviewDocument = mutation({
         if (doc.approvalStatus !== "pending") throw new Error("Only a pending source can be reviewed. Upload a new version for replacement.");
         if (doc.uploadedByClerkId === identity.subject) throw new Error("A different administrator must review this source.");
         if (args.decision === "approved") {
+            const archive = await ctx.db.query("saada_research_pdfs").withIndex("by_indexing_storage",q=>q.eq("indexingStorageId",doc.storageId)).first();
+            if (archive?.indexingDerivative && archive.indexingDerivative.reviewStatus !== "verified") throw new Error("Complete independent OCR transcription review before approving this source.");
             const indexedChunk = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).first();
             requireReadySourceForApproval(doc, Boolean(indexedChunk), Date.now());
         }
@@ -479,5 +520,35 @@ export const getAllChats = internalQuery({
     args: {},
     handler: async (ctx) => {
         return await ctx.db.query("sara_chats").collect();
+    },
+});
+
+// Bounded, aggregate diagnostics only. Never returns source text, people or conversations.
+export const getReadiness = query({
+    args: {},
+    handler: async (ctx) => {
+        await requireAnyRole(ctx, ["admin", "staff"]);
+        const [originals, sources, guides, research, chunks] = await Promise.all([
+            ctx.db.query("saada_research_pdfs").take(201),
+            ctx.db.query("documents").take(201),
+            ctx.db.query("legal_guides").take(201),
+            ctx.db.query("directory_research").take(201),
+            ctx.db.query("embeddings").take(1),
+        ]);
+        const now = Date.now();
+        const bounded = <T,>(rows: T[]) => rows.slice(0, 200);
+        return {
+            checkedAt: now,
+            countsAreLowerBounds: [originals, sources, guides, research].some(rows => rows.length > 200),
+            privatePdfOriginals: bounded(originals).filter(row => !row.archived).length,
+            sourceDocuments: bounded(sources).length,
+            indexedSourceDocuments: bounded(sources).filter(row => row.indexingStatus === "ready").length,
+            failedSourceDocuments: bounded(sources).filter(row => row.indexingStatus === "failed").length,
+            approvedCurrentSourceDocuments: bounded(sources).filter(row => row.approvalStatus === "approved" && (row.reviewDueAt ?? 0) > now).length,
+            hasAnyIndexedChunks: chunks.length > 0,
+            pendingGuides: bounded(guides).filter(row => row.status === "pending").length,
+            approvedCurrentGuides: bounded(guides).filter(row => row.status === "approved" && row.reviewDueAt > now).length,
+            privateDirectoryResearch: bounded(research).filter(row => !row.archived).length,
+        };
     },
 });

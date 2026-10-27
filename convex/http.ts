@@ -1,8 +1,12 @@
 import { httpRouter } from "convex/server";
 import { api } from "./_generated/api";
 import { httpAction } from "./_generated/server";
+import { receive, preflight, scanSource } from "./managedUploads";
 
 const http = httpRouter();
+http.route({ path: "/secure-upload", method: "POST", handler: receive });
+http.route({ path: "/secure-upload", method: "OPTIONS", handler: preflight });
+http.route({ path: "/secure-scan-source", method: "POST", handler: scanSource });
 
 http.route({
     path: "/sitemap.xml",

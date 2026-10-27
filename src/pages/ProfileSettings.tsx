@@ -1,3 +1,7 @@
+import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
+import { WorkHeader } from "@/components/dashboard/WorkArea";
+import { useCopy } from "@/i18n/useCopy";
+import PresenceSettings from "@/components/location/PresenceSettings";
 
 import { useState, useRef, useEffect } from "react";
 import { useQuery, useMutation } from "convex/react";
@@ -14,8 +18,13 @@ import { Loader2, Upload, User, Shield, CheckCircle } from "lucide-react";
 import DesktopNavigation from "@/components/layout/header/DesktopNavigation";
 import MobileNavigation from "@/components/layout/header/MobileNavigation";
 import Footer from "@/components/layout/Footer";
+import { usePersonalGreeting } from '@/hooks/usePersonalGreeting';
+import { DeleteAccount } from '@/components/dashboard/DeleteAccount';
 
 const ProfileSettings = () => {
+  const c = useCopy();
+    const [profileArea, setProfileArea] = useState("profile");
+    const { name: savedName, imageUrl, initials } = usePersonalGreeting();
     const { user: clerkUser } = useUser();
     const convexUser = useQuery(api.users.current);
     const access = useQuery(api.users.currentAccess);
@@ -99,7 +108,6 @@ const ProfileSettings = () => {
         }
     };
 
-    const userInitials = (name || clerkUser?.firstName || "U").slice(0, 2).toUpperCase();
     const userRole = access?.roles.filter((role) => role !== "user").join(" · ") || convexUser?.role || "user";
 
     // Navigation state management (reused from dashboard layouts)
@@ -108,9 +116,9 @@ const ProfileSettings = () => {
     const [legalAidDialogOpen, setLegalAidDialogOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="workspace-page flex flex-col">
             {/* Navigation Wrapper */}
-            <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
+            <header className="workspace-legacy-header sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
                 <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                     {/* Logo */}
                     <div className="flex-shrink-0">
@@ -147,12 +155,12 @@ const ProfileSettings = () => {
             </header>
 
 
-            <main className="flex-grow container mx-auto px-4 py-8">
-                <div className="max-w-4xl mx-auto">
-                    <div className="mb-8">
-                        <h1 className="text-3xl font-bold text-gray-900">Profile Settings</h1>
-                        <p className="text-gray-600 mt-2">Manage your account information and preferences.</p>
-                    </div>
+            <main className="work-page">
+                <WorkHeader title={c("My profile")} description={c("Your profile and account preferences.")}/>
+                <nav className="work-tabs" aria-label={c("Account settings")}>{[['profile',c('My profile')],['preferences',c('Privacy and availability')],['account',c('Account actions')]].map(([value,label])=><button key={value} type="button" aria-current={profileArea===value?'page':undefined} onClick={()=>setProfileArea(value)}>{label}</button>)}</nav>
+                <div hidden={profileArea!=='preferences'} className="work-account-area"><PresenceSettings /></div>
+                <div hidden={profileArea!=='profile'} className="work-account-area">
+
 
                     <div className="grid gap-8 md:grid-cols-[1fr_2fr]">
 
@@ -162,12 +170,12 @@ const ProfileSettings = () => {
                                 <CardContent className="pt-6 flex flex-col items-center text-center">
                                     <div className="relative group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
                                         <Avatar className="h-32 w-32 border-4 border-white shadow-lg">
-                                            <AvatarImage src={convexUser?.imageUrl || clerkUser?.imageUrl} className="object-cover" />
-                                            <AvatarFallback className="text-4xl bg-primary text-white">{userInitials}</AvatarFallback>
+                                            <AvatarImage src={imageUrl} alt={savedName ? `${savedName}'s profile` : 'Your profile'} className="object-cover" />
+                                            <AvatarFallback className="text-4xl bg-primary text-white">{initials || <User size={32} />}</AvatarFallback>
                                         </Avatar>
                                         <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                             {isUploading ? (
-                                                <Loader2 className="h-8 w-8 text-white animate-spin" />
+                                                <BrandLoadingIcon className="h-8 w-8 text-white " />
                                             ) : (
                                                 <Upload className="h-8 w-8 text-white" />
                                             )}
@@ -181,10 +189,10 @@ const ProfileSettings = () => {
                                         onChange={handleImageUpload}
                                         disabled={isUploading}
                                     />
-                                    <p className="text-xs text-gray-500 mt-2">Click to change avatar</p>
+                                    <p className="text-xs text-gray-500 mt-2">{c("Click to change avatar")}</p>
 
                                     <div className="mt-4">
-                                        <h2 className="text-xl font-semibold">{name}</h2>
+                                        <h2 className="text-xl font-semibold">{savedName || 'My account'}</h2>
                                         <p className="text-sm text-gray-500">{clerkUser?.primaryEmailAddress?.emailAddress}</p>
 
                                         <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary capitalize">
@@ -200,57 +208,55 @@ const ProfileSettings = () => {
                         <div className="space-y-6">
                             <Card>
                                 <CardHeader>
-                                    <CardTitle>General Information</CardTitle>
-                                    <CardDescription>Update your public profile details.</CardDescription>
+                                    <CardTitle>{c("General Information")}</CardTitle>
+                                    <CardDescription>{c("Update your public profile details.")}</CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                     <div className="space-y-2">
-                                        <Label htmlFor="name">Full Name</Label>
+                                        <Label htmlFor="name">{c("Full Name")}</Label>
                                         <Input
                                             id="name"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
-                                            placeholder="Your full name"
+                                            placeholder={c("Your full name")}
                                         />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <Label htmlFor="bio">Bio</Label>
+                                        <Label htmlFor="bio">{c("Bio")}</Label>
                                         <Textarea
                                             id="bio"
                                             value={bio}
                                             onChange={(e) => setBio(e.target.value)}
-                                            placeholder="Tell us a little about yourself"
+                                            placeholder={c("Tell us a little about yourself")}
                                             rows={4}
                                         />
-                                        <p className="text-xs text-gray-500">Brief description for your profile.</p>
+                                        <p className="text-xs text-gray-500">{c("Brief description for your profile.")}</p>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <Label htmlFor="email">Email Address</Label>
+                                        <Label htmlFor="email">{c("Email Address")}</Label>
                                         <Input
                                             id="email"
                                             value={clerkUser?.primaryEmailAddress?.emailAddress || ""}
                                             disabled
                                             className="bg-gray-50 text-gray-500"
                                         />
-                                        <p className="text-xs text-gray-500">Email is managed via your secure login provider.</p>
+                                        <p className="text-xs text-gray-500">{c("Email is managed via your secure login provider.")}</p>
                                     </div>
                                 </CardContent>
                                 <CardFooter className="flex justify-end border-t pt-6">
                                     <Button onClick={handleSaveProfile} disabled={isSaving}>
-                                        {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        Save Changes
-                                    </Button>
+                                        {isSaving && <BrandLoadingIcon className="mr-2 h-4 w-4 " />}{c("Save Changes")}</Button>
                                 </CardFooter>
                             </Card>
                         </div>
 
                     </div>
                 </div>
+                <div hidden={profileArea!=="account"} className="work-account-area"><DeleteAccount /></div>
             </main>
 
-            <Footer />
         </div>
     );
 };

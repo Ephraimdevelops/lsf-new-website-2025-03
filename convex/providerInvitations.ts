@@ -27,7 +27,17 @@ export const create = mutation({
 });
 export const listForOrganisation = query({
   args: { organizationId: v.id("justice_service_organizations") },
-  handler: async (ctx, args) => { await requireOrganisation(ctx, args.organizationId); return ctx.db.query("provider_invitations").withIndex("by_organization", q => q.eq("organizationId", args.organizationId)).order("desc").take(100); },
+  handler: async (ctx, args) => {
+    await requireOrganisation(ctx, args.organizationId);
+    const invitations = await ctx.db.query("provider_invitations").withIndex("by_organization", q => q.eq("organizationId", args.organizationId)).order("desc").take(100);
+    return Promise.all(invitations.map(async invitation => {
+      const request = invitation.accessRequestId ? await ctx.db.get(invitation.accessRequestId) : null;
+      // Expose only the status of the review attached to this invitation, never review notes.
+      const linked = request?.invitationId === invitation._id && (!request.organizationId || request.organizationId === args.organizationId) && request.requestedRole === "provider_staff";
+      const memberships = linked ? await ctx.db.query("role_assignments").withIndex("by_user_status", q => q.eq("userId", request.userId).eq("status", "active")).collect() : [];
+      return { ...invitation, accessReviewStatus: linked ? request.status : null, hasActiveMembership: memberships.some(item => item.role === "provider_staff" && item.organizationId === args.organizationId) };
+    }));
+  },
 });
 export const mine = query({
   args: {},

@@ -1,3 +1,5 @@
+import { plainError } from "../../../shared/plainLanguage";
+import { AdminIntro } from "../../src/admin/AdminIntro";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useMutation, usePaginatedQuery, useQuery } from "convex/react";
 import { router, useLocalSearchParams } from "expo-router";
@@ -8,7 +10,7 @@ import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
 import { AppHeader } from "../../src/components/AppHeader";
 import { Button } from "../../src/components/Button";
-import { Screen } from "../../src/components/Screen";
+import { AdminScreen as Screen } from "../../src/admin/AdminScreen";
 import { useLanguage } from "../../src/i18n";
 import { colors, radius, spacing, type } from "../../src/theme";
 import { useSensitiveScreenProtection } from "../../src/useSensitiveScreenProtection";
@@ -44,7 +46,7 @@ export default function AccessRequestScreen() {
       await decide({ requestId: request._id, decision: choice, decisionNote: note.trim(), organizationId: choice === "approved" ? organizationId! : undefined });
       setCompleted(choice);
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : sw ? "Uamuzi haujahifadhiwa. Jaribu tena." : "Decision was not saved. Please try again.");
+      setError(plainError(caught, locale, sw ? "Uamuzi haujahifadhiwa. Jaribu tena." : "Decision was not saved. Please try again."));
     } finally { setBusy(false); }
   }
 
@@ -62,15 +64,15 @@ export default function AccessRequestScreen() {
   }
 
   return <Screen>
-    <AppHeader back title={sw ? "Kagua ufikiaji" : "Review access"} eyebrow="LSF · GOVERNANCE" />
+    <AppHeader back title={sw ? "Kagua ombi la ruhusa" : "Review access"} eyebrow="LSF · GOVERNANCE" />
     {!isSignedIn ? <State icon="lock-closed-outline" title={sw ? "Maombi ni ya siri" : "Applications are private"} body={sw ? "Ingia kwa akaunti ya msimamizi." : "Sign in with an administrator account."} action={sw ? "Ingia salama" : "Sign in securely"} onPress={() => router.push("/sign-in")} />
       : access === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ruhusa" : "Loading access"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
       : !isAdmin ? <State icon="shield-outline" title={sw ? "Idhini ya msimamizi inahitajika" : "Administrator approval required"} body={sw ? "Ni msimamizi wa jukwaa pekee anayeweza kufanya uamuzi wa ufikiaji." : "Only a platform administrator can decide access requests."} />
       : completed ? <View style={styles.done}><Ionicons name="checkmark-circle" size={57} color={colors.success} /><Text style={styles.heroTitleDone}>{completed === "approved" ? (sw ? "Ufikiaji umeidhinishwa" : "Access approved") : (sw ? "Ombi limekataliwa" : "Request rejected")}</Text><Text style={styles.body}>{sw ? "Uamuzi umehifadhiwa kwenye kumbukumbu ya ukaguzi." : "The decision is saved in the audit trail."}</Text><Button label={sw ? "Rudi kwenye utawala" : "Back to governance"} onPress={() => router.replace("/governance")} /></View>
       : request === undefined || organizations === undefined ? <State icon="hourglass-outline" title={sw ? "Tunapakia ombi" : "Loading request"} body={sw ? "Subiri kidogo." : "Please wait a moment."} />
-      : !request || request.status !== "pending" ? <State icon="search-outline" title={sw ? "Ombi halisubiri tena" : "Request is no longer pending"} body={sw ? "Huenda uamuzi umefanywa. Rudi kwenye foleni." : "A decision may already have been made. Return to the queue."} action={sw ? "Rudi kwenye utawala" : "Back to governance"} onPress={() => router.replace("/governance")} />
+      : !request || request.status !== "pending" ? <State icon="search-outline" title={sw ? "Ombi halisubiri tena" : "Request is no longer pending"} body={sw ? "Huenda uamuzi umefanywa. Rudi kwenye orodha." : "A decision may already have been made. Return to the queue."} action={sw ? "Rudi kwenye utawala" : "Back to governance"} onPress={() => router.replace("/governance")} />
       : <>
-        <View style={styles.hero}><View style={styles.heroIcon}><Ionicons name="person-add-outline" size={31} color={colors.surface} /></View><Text style={styles.heroKicker}>{sw ? "OMBI LA UFIKIAJI" : "ACCESS APPLICATION"}</Text><Text style={styles.heroTitle}>{request.applicant?.name ?? (sw ? "Mwombaji" : "Applicant")}</Text><Text style={styles.heroBody}>{sw ? "Kagua jukumu, taasisi na sababu kabla ya kutoa ruhusa." : "Review the role, organisation and reason before granting access."}</Text></View>
+        <AdminIntro icon="book-outline" eyebrow="LSF" title={request.applicant?.name ?? (sw ? "Mwombaji" : "Applicant")} description={sw ? "Kagua jukumu, taasisi na sababu kabla ya kutoa ruhusa." : "Review the role, organisation and reason before granting access."} />
         <View style={styles.card}><Info label={sw ? "Jukumu analoomba" : "Requested role"} value={request.requestedRole.replaceAll("_", " ")} /><Info label={sw ? "Taasisi aliyotaja" : "Organisation stated"} value={request.organizationName} />{request.applicant?.email ? <Info label={sw ? "Barua pepe" : "Email"} value={request.applicant.email} /> : null}<Info label={sw ? "Sababu ya kuomba" : "Reason for applying"} value={request.statement} /><Info label={sw ? "Aliomba tarehe" : "Submitted"} value={new Date(request.submittedAt).toLocaleDateString(sw ? "sw-TZ" : "en-TZ", { dateStyle: "long" })} /></View>
         {request.invitationEvidence && <View style={styles.card}><Info label={sw ? "Aliyealika" : "Invited by"} value={request.invitationEvidence.inviterName} /><Info label={sw ? "Hali ya uanachama wa aliyealika" : "Inviter membership"} value={request.invitationEvidence.inviterStillMember ? (sw ? "Bado hai" : "Currently active") : (sw ? "Hauko hai; idhini imezuiwa" : "No longer active; approval blocked")} /></View>}
         {selfReview ? <View style={styles.warning}><Ionicons name="shield-outline" size={22} color={colors.burgundy} /><Text style={styles.body}>{sw ? "Huwezi kuidhinisha ombi lako mwenyewe. Msimamizi mwingine lazima alikague." : "You cannot decide your own application. Another administrator must review it."}</Text></View> : <>
@@ -83,7 +85,7 @@ export default function AccessRequestScreen() {
           <View style={styles.choices}><Pressable accessibilityRole="radio" accessibilityState={{ checked: choice === "approved" }} aria-checked={choice === "approved"} onPress={() => setChoice("approved")} style={[styles.choice, choice === "approved" && styles.choiceActive]}><Ionicons name="checkmark-circle-outline" size={22} color={colors.success} /><Text style={styles.choiceText}>{sw ? "Idhinisha" : "Approve"}</Text></Pressable><Pressable accessibilityRole="radio" accessibilityState={{ checked: choice === "rejected" }} aria-checked={choice === "rejected"} onPress={() => setChoice("rejected")} style={[styles.choice, choice === "rejected" && styles.choiceActive]}><Ionicons name="close-circle-outline" size={22} color={colors.danger} /><Text style={styles.choiceText}>{sw ? "Kataa" : "Reject"}</Text></Pressable></View>
           {choice ? <View style={styles.confirm}><Text style={styles.confirmTitle}>{choice === "approved" ? (sw ? "Thibitisha ufikiaji" : "Confirm access grant") : (sw ? "Thibitisha kukataa" : "Confirm rejection")}</Text><Text style={styles.body}>{choice === "approved" ? (sw ? "Jukumu litaanza kutumika baada ya uamuzi huu." : "The role becomes active after this decision.") : (sw ? "Ombi litafungwa bila kutoa ruhusa." : "The request will close without granting access.")}</Text>{error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}<Button label={choice === "approved" ? (sw ? "Idhinisha ufikiaji" : "Grant access") : (sw ? "Kataa ombi" : "Reject request")} disabled={busy || note.trim().length < 10 || (choice === "approved" && !organizationId)} loading={busy} onPress={confirmDecision} /></View> : null}
         </>}
-        <Button label={sw ? "Rudi kwenye foleni" : "Back to queue"} variant="quiet" onPress={() => router.push("/governance")} />
+        <Button label={sw ? "Rudi kwenye orodha" : "Back to queue"} variant="quiet" onPress={() => router.push("/governance")} />
       </>}
   </Screen>;
 }

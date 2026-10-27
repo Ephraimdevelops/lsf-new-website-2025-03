@@ -1,0 +1,35 @@
+import { useMutation } from "convex/react";
+import type { FunctionReturnType } from "convex/server";
+import { useState } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import { api } from "../backend/api";
+import { Button } from "../components/Button";
+import { ParalegalIntro } from "../components/ParalegalIntro";
+import { IntakeSelect } from "../intake/IntakeSelect";
+import { WorkDateTime, workTimestamp } from "./WorkDateTime";
+import { colors, type } from "../theme";
+type Details = FunctionReturnType<typeof api.caseManagement.getCase>;
+export function CaseAppointments({ details, sw }: { details: Details; sw: boolean }) {
+  const schedule = useMutation(api.caseManagement.scheduleAppointment); const fromRequest = useMutation(api.caseManagement.scheduleAppointmentFromRequest); const update = useMutation(api.caseManagement.updateAppointmentStatus);
+  const [when, setWhen] = useState(""); const [mode, setMode] = useState<"phone" | "remote" | "in_person">("phone"); const [location, setLocation] = useState(""); const [request, setRequest] = useState(""); const [busy, setBusy] = useState(false); const [notice, setNotice] = useState("");
+  const [decision, setDecision] = useState<{ id: Details["appointments"][number]["_id"]; status: "completed" | "cancelled" | "missed" } | null>(null); const [note, setNote] = useState("");
+  const closed = details.case.status === "closed";
+  const outcomeRecorded = ["resolved", "closed_unresolved", "closed"].includes(details.case.status);
+  const requests = details.events.filter(event => event.type === "appointment_requested" && !(event.metadata && typeof event.metadata === "object" && "scheduledAppointmentId" in event.metadata));
+  const method = { phone: sw ? "Kwa simu" : "Phone", remote: sw ? "Mtandaoni" : "Online", in_person: sw ? "Ana kwa ana" : "In person" };
+  const resultLabels = { completed: sw ? "Imekamilika" : "Completed", cancelled: sw ? "Imefutwa" : "Cancelled", missed: sw ? "Haikufanyika" : "Missed", scheduled: sw ? "Imepangwa" : "Scheduled" };
+  async function save() { const startsAt = workTimestamp(when); if (!Number.isFinite(startsAt) || startsAt <= Date.now()) { setNotice(sw ? "Chagua tarehe na muda wa baadaye." : "Choose a future date and time."); return; } setBusy(true); setNotice(""); try { const args = { caseId: details.case._id, startsAt, mode, location: location.trim() || undefined }; if (request) await fromRequest({ ...args, requestEventId: request as Details["events"][number]["_id"] }); else await schedule(args); setWhen(""); setLocation(""); setRequest(""); setNotice(sw ? "Miadi imepangwa. Mnufaika ataarifiwa." : "Appointment scheduled. The beneficiary will be notified."); } catch (error) { setNotice(error instanceof Error ? error.message : "Could not schedule."); } finally { setBusy(false); } }
+  async function saveResult() { if (!decision) return; setBusy(true); setNotice(""); try { await update({ appointmentId: decision.id, status: decision.status, statusNote: note.trim() || undefined }); setDecision(null); setNote(""); setNotice(sw ? "Hali ya miadi imehifadhiwa." : "Appointment result saved."); } catch (error) { setNotice(error instanceof Error ? error.message : "Could not save."); } finally { setBusy(false); } }
+  return <View style={styles.wrap}><ParalegalIntro pose="contact" title={sw ? "Panga muda wa kusaidia." : "Make time to help."} body={sw ? "Kubalianeni tarehe na namna ya kukutana. Miadi itaonekana kwa mnufaika." : "Agree the date and meeting method. The beneficiary will see the appointment."} />
+    {!outcomeRecorded && <View style={styles.card}><Text style={styles.title}>{sw ? "Panga miadi" : "Schedule an appointment"}</Text>{requests.length > 0 && <IntakeSelect sw={sw} label={sw ? "Ombi la mnufaika" : "Beneficiary request"} value={request} onChange={setRequest} options={[{ value: "", label: sw ? "Miadi mpya" : "New appointment" }, ...requests.map(event => ({ value: event._id, label: Object.values((event.metadata ?? {}) as Record<string, unknown>).filter(value => typeof value === "string").join(" · ") || new Date(event.occurredAt).toLocaleDateString() }))]} />}
+      <WorkDateTime value={when} onChange={setWhen} sw={sw} /><IntakeSelect sw={sw} label={sw ? "Namna ya kukutana" : "Meeting method"} value={mode} onChange={value => setMode(value as typeof mode)} options={Object.entries(method).map(([value,label]) => ({ value,label }))} />
+      <Text style={styles.body}>{sw ? "Mahali au kiungo (si lazima)" : "Location or meeting link (optional)"}</Text><TextInput accessibilityLabel={sw ? "Mahali au kiungo" : "Location or meeting link"} value={location} onChangeText={setLocation} maxLength={300} style={styles.input} /><Button label={sw ? "Thibitisha miadi" : "Confirm appointment"} disabled={busy || !when} loading={busy} onPress={() => void save()} />
+    </View>}
+    {details.appointments.length === 0 && <Text style={styles.body}>{sw ? "Hakuna miadi bado." : "No appointments yet."}</Text>}
+    {[...details.appointments].sort((a,b) => b.startsAt-a.startsAt).map(item => <View key={item._id} style={styles.card}><Text style={styles.title}>{new Date(item.startsAt).toLocaleString(sw ? "sw-TZ" : "en-TZ", { timeZone: "Africa/Dar_es_Salaam", dateStyle: "medium", timeStyle: "short" })} · EAT</Text><Text style={styles.body}>{method[item.mode]} · {resultLabels[item.status]}</Text>{item.location && <Text style={styles.body}>{item.location}</Text>}{item.statusNote && <Text style={styles.body}>{item.statusNote}</Text>}
+      {!closed && item.status === "scheduled" && <><IntakeSelect sw={sw} label={sw ? "Rekodi kilichotokea" : "Record what happened"} value={decision?.id === item._id ? decision.status : ""} onChange={status => { setDecision({ id: item._id, status: status as "completed" | "cancelled" | "missed" }); setNote(""); }} options={["completed", "cancelled", "missed"].map(status => ({ value: status, label: resultLabels[status as keyof typeof resultLabels] }))} />{decision?.id === item._id && <><Text style={styles.body}>{sw ? "Maelezo ya hatua (si lazima)" : "Action note (optional)"}</Text><TextInput accessibilityLabel={sw ? "Maelezo ya hatua" : "Appointment action note"} value={note} onChangeText={setNote} multiline maxLength={800} style={styles.input} /><Text style={styles.body}>{sw ? "Hifadhi hali sahihi tu. Mnufaika atapata taarifa." : "Save only the accurate result. The beneficiary will receive an update."}</Text><Button label={sw ? "Thibitisha na hifadhi" : "Confirm and save"} disabled={busy} loading={busy} onPress={() => void saveResult()} /></>}</>}
+    </View>)}
+    {!!notice && <Text accessibilityRole="alert" style={styles.body}>{notice}</Text>}
+  </View>;
+}
+const styles = StyleSheet.create({ wrap: { gap: 16 }, card: { backgroundColor: colors.tealSoft, borderRadius: 16, padding: 16, gap: 12 }, title: { fontFamily: type.semibold, fontSize: 19, color: colors.ink }, body: { fontFamily: type.regular, fontSize: 16, lineHeight: 23, color: colors.inkMuted }, input: { minHeight: 52, backgroundColor: colors.surface, borderRadius: 10, padding: 12, fontFamily: type.regular, fontSize: 16, color: colors.ink } });

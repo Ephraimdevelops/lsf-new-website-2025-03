@@ -1,6 +1,7 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { requireAnyRole } from "./lib/auth";
+import { requirePublicMediaReference } from "./lib/managedUploads";
 import { resolveImageUrl } from "./lib/mediaHelpers";
 
 /**
@@ -19,6 +20,7 @@ export const create = mutation({
     handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin", "staff"]);
 
+        await requirePublicMediaReference(ctx, args.image);
         const heroId = await ctx.db.insert("heros", {
             title: args.title,
             slug: args.slug,
@@ -114,6 +116,8 @@ export const update = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...updates } = args;
+        const previous = await ctx.db.get(id);
+        await requirePublicMediaReference(ctx, updates.image, previous?.image);
         const filteredUpdates = Object.fromEntries(
             Object.entries(updates).filter(([_, value]) => value !== undefined)
         );

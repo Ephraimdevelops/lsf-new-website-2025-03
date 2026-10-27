@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import Container from '@/components/shared/Container';
 import Typography from '@/components/shared/Typography';
@@ -27,6 +28,11 @@ const Privacy = () => {
               </Typography>
             </div>
 
+            <section className="mb-8 rounded-2xl border border-primary/20 bg-primary/5 p-6" aria-labelledby="deletion-heading">
+              <h2 id="deletion-heading" className="text-xl font-semibold">Haki Yangu account and data deletion</h2>
+              <p className="mt-3">Find the steps to delete your login or request deletion of your personal data, including what the current account deletion process retains.</p>
+              <Link to="/account-deletion" className="mt-3 inline-block min-h-11 py-2 font-semibold text-primary underline">Manage account and data deletion</Link>
+            </section>
             {/* Content */}
             <div className="prose prose-lg max-w-none">
               <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-neutral-100">

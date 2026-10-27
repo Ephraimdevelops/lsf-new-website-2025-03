@@ -5,11 +5,13 @@ import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
+import { paralegalAvailabilityLabel } from "../src/paralegalDirectory";
+import { ProviderThumbnail } from "../src/components/ProviderThumbnail";
 
 export default function ParalegalProfileScreen() {
   const { locale } = useLanguage();
-  const params = useLocalSearchParams<{ name?: string; district?: string; region?: string; phone?: string; specialties?: string; languages?: string; bio?: string; availability?: string; verified?: string }>();
-  const name = params.name || (locale === "sw" ? "Paralegal wa LSF" : "LSF paralegal");
+  const params = useLocalSearchParams<{ name?: string; photoUri?: string; district?: string; region?: string; phone?: string; specialties?: string; languages?: string; bio?: string; availability?: string; verified?: string }>();
+  const name = params.name || (locale === "sw" ? "Msaidizi wa kisheria wa LSF" : "LSF paralegal");
   const district = params.district || "";
   const region = params.region || "";
   const location = [district, region].filter(Boolean).join(", ");
@@ -17,7 +19,7 @@ export default function ParalegalProfileScreen() {
   const languages = (params.languages || "").split(",").filter(Boolean);
   const phone = params.phone || "";
   const isVerified = params.verified === "true";
-  const availability = availabilityLabel(params.availability, locale);
+  const availability = paralegalAvailabilityLabel(params.availability, locale);
 
   async function call() {
     if (phone) await Linking.openURL(`tel:${phone.replace(/\s+/g, "")}`);
@@ -33,20 +35,18 @@ export default function ParalegalProfileScreen() {
         <Pressable accessibilityRole="button" onPress={() => router.back()} style={styles.circleButton}>
           <Ionicons name="chevron-back" size={22} color={colors.burgundy} />
         </Pressable>
-        <Text style={styles.headerTitle}>{locale === "sw" ? "Wasifu wa paralegal" : "Paralegal Profile"}</Text>
+        <Text style={styles.headerTitle}>{locale === "sw" ? "Wasifu wa msaidizi wa kisheria" : "Paralegal Profile"}</Text>
         <View style={styles.circleButtonSpacer} />
       </View>
 
       <View style={styles.hero}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>{name.split(" ").map((part) => part[0]).join("").slice(0, 2)}</Text>
-        </View>
+        <ProviderThumbnail kind="paralegal" name={name} photoUri={params.photoUri} size={80} />
         <View style={styles.heroCopy}>
           <View style={styles.nameRow}>
             <Text style={styles.name}>{name}</Text>
             {isVerified ? <Ionicons name="checkmark-circle" size={19} color={colors.surface} /> : null}
           </View>
-          <Text style={styles.verified}>{isVerified ? (locale === "sw" ? "Paralegal aliyethibitishwa na LSF" : "LSF verified paralegal") : (locale === "sw" ? "Wasifu wa mtandao wa LSF" : "LSF network profile")}</Text>
+          <Text style={styles.verified}>{isVerified ? (locale === "sw" ? "Msaidizi wa kisheria aliyethibitishwa na LSF" : "LSF verified paralegal") : (locale === "sw" ? "Wasifu wa mtandao wa LSF" : "LSF network profile")}</Text>
           <Text style={styles.location}>{location || (locale === "sw" ? "Eneo halijaonyeshwa" : "Location not listed")}</Text>
         </View>
       </View>
@@ -106,23 +106,6 @@ export default function ParalegalProfileScreen() {
   );
 }
 
-function availabilityLabel(status: string | undefined, locale: "sw" | "en") {
-  const labels = {
-    sw: {
-      accepting_cases: "Anapokea maombi mapya",
-      limited: "Upatikanaji mdogo",
-      paused: "Amesitisha kupokea maombi mapya",
-      unavailable: "Hayupo kwa sasa",
-    },
-    en: {
-      accepting_cases: "Accepting new requests",
-      limited: "Limited availability",
-      paused: "Paused for new requests",
-      unavailable: "Unavailable now",
-    },
-  };
-  return labels[locale][(status ?? "accepting_cases") as keyof typeof labels.en] ?? labels[locale].accepting_cases;
-}
 
 function InfoRow({ icon, label, value, children }: { icon: keyof typeof Ionicons.glyphMap; label: string; value?: string; children?: React.ReactNode }) {
   return (

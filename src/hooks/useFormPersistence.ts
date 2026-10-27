@@ -1,89 +1,124 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef, type SetStateAction } from 'react';
+
+type StorageKind = 'local' | 'session';
+type Snapshot<T> = { scope: string | null; value: T; edited: boolean };
+
+function browserStorage(kind: StorageKind): Storage | null {
+    try {
+        if (typeof window === 'undefined') return null;
+        return kind === 'session' ? window.sessionStorage : window.localStorage;
+    } catch {
+        return null;
+    }
+}
+
+function matchesShape(value: unknown, initial: unknown): boolean {
+    if (initial === null) return value === null;
+    if (Array.isArray(initial)) return Array.isArray(value);
+    if (typeof initial !== 'object') return typeof value === typeof initial;
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+    return Object.keys(initial).every(key =>
+        Object.prototype.hasOwnProperty.call(value, key) &&
+        matchesShape((value as Record<string, unknown>)[key], (initial as Record<string, unknown>)[key])
+    );
+}
+
+function readDraft<T>(storage: Storage | null, key: string | null, owner: string | null, initial: T): T {
+    if (!storage || !key) return initial;
+    try {
+        const raw = storage.getItem(key);
+        if (!raw) return initial;
+        const saved = JSON.parse(raw);
+        // Legacy unowned drafts are deliberately not migrated to an account.
+        if (saved?.version !== 2 || saved.owner !== owner || !matchesShape(saved.value, initial)) return initial;
+        return saved.value as T;
+    } catch {
+        return initial;
+    }
+}
 
 /**
- * useFormPersistence Hook (SECURED)
- * 
- * Automatically saves and restores form state from localStorage.
- * Critical for rural users with unstable internet connections.
- * 
- * SECURITY: Now supports user-scoped storage to prevent cross-user data leaks.
- * 
- * Usage:
- * ```tsx
- * // Without user ID (uses sessionStorage - clears on close)
- * const [formData, setFormData, clearStorage] = useFormPersistence('my-form', initialData);
- * 
- * // With user ID (uses localStorage - persists per user)
- * const [formData, setFormData, clearStorage] = useFormPersistence('my-form', initialData, userId);
- * ```
+ * undefined owner: optional guest draft in sessionStorage.
+ * null owner: private form is signed out/loading; do not restore or save.
+ * user ID: owner-checked draft, with an optional session-only lifetime.
+ * Storage is browser storage, not encryption or a substitute for authentication.
  */
 export function useFormPersistence<T>(
     baseKey: string,
     initialValue: T,
-    userId?: string | null
+    userId?: string | null,
+    storageKind: StorageKind = 'local'
 ) {
-    // Generate a user-scoped key if userId is provided
-    const storageKey = userId ? `form_${baseKey}_${userId}` : `form_${baseKey}`;
+    const initial = useRef(initialValue);
+    const owner = userId || null;
+    const kind = owner ? storageKind : 'session';
+    const key = userId === null ? null : owner
+        ? `form:v2:${encodeURIComponent(baseKey)}:user:${encodeURIComponent(owner)}`
+        : `form:v2:${encodeURIComponent(baseKey)}:guest`;
+    const scope = key ? `${kind}:${key}` : null;
+    const storage = browserStorage(kind);
+    const currentScope = useRef(scope);
+    currentScope.current = scope;
+    const [snapshot, setSnapshot] = useState<Snapshot<T>>(() => ({
+        scope, value: readDraft(storage, key, owner, initial.current), edited: false,
+    }));
 
-    // Use sessionStorage for anonymous users (clears on browser close)
-    // Use localStorage for authenticated users (persists per user)
-    const storage = typeof window !== 'undefined'
-        ? (userId ? window.localStorage : window.sessionStorage)
-        : null;
-
-    // Initialize state with stored value or default
-    const [value, setValue] = useState<T>(() => {
-        try {
-            if (!storage) return initialValue;
-
-            const item = storage.getItem(storageKey);
-            return item ? JSON.parse(item) : initialValue;
-        } catch (error) {
-            console.warn(`Error reading storage key "${storageKey}":`, error);
-            return initialValue;
-        }
-    });
-
-    // Update storage when state changes
+    // Return blank data immediately on an identity change, before effects run.
+    const value = snapshot.scope === scope ? snapshot.value : initial.current;
     useEffect(() => {
-        try {
-            if (storage) {
-                storage.setItem(storageKey, JSON.stringify(value));
-            }
-        } catch (error) {
-            console.warn(`Error saving to storage key "${storageKey}":`, error);
-        }
-    }, [storageKey, value, storage]);
+        if (currentScope.current !== scope) return;
+        setSnapshot(previous => previous.scope === scope ? previous : {
+            scope, value: readDraft(storage, key, owner, initial.current), edited: false,
+        });
+    }, [scope, storage, key, owner]);
 
-    // Clear storage helper (call this on successful submission)
+    useEffect(() => {
+        if (!storage || !key || !snapshot.edited || snapshot.scope !== scope || currentScope.current !== scope) return;
+        try {
+            storage.setItem(key, JSON.stringify({ version: 2, owner, value: snapshot.value }));
+        } catch {
+            console.warn('Could not save the form draft in this browser.');
+        }
+    }, [storage, key, scope, owner, snapshot]);
+
+    const setValue = useCallback((update: SetStateAction<T>) => {
+        // Ignore callbacks retained by the previous signed-in account.
+        if (!scope || currentScope.current !== scope) return;
+        setSnapshot(previous => {
+            if (currentScope.current !== scope) return previous;
+            const previousValue = previous.scope === scope ? previous.value : readDraft(storage, key, owner, initial.current);
+            return { scope, value: typeof update === 'function'
+                ? (update as (previous: T) => T)(previousValue) : update, edited: true };
+        });
+    }, [scope, storage, key, owner]);
+
     const clearStorage = useCallback(() => {
+        if (currentScope.current !== scope) return;
         try {
-            if (storage) {
-                storage.removeItem(storageKey);
-                setValue(initialValue);
-            }
-        } catch (error) {
-            console.warn(`Error clearing storage key "${storageKey}":`, error);
+            if (storage && key) storage.removeItem(key);
+        } catch {
+            console.warn('Could not remove the form draft from this browser.');
+        } finally {
+            setSnapshot({ scope, value: initial.current, edited: false });
         }
-    }, [storage, storageKey, initialValue]);
+    }, [scope, storage, key]);
 
-    // Clear ALL form data for this user (for logout cleanup)
     const clearAllUserForms = useCallback(() => {
+        if (!owner || !storage || currentScope.current !== scope) return;
         try {
-            if (!storage || !userId) return;
-
-            const keysToRemove: string[] = [];
+            const suffix = `:user:${encodeURIComponent(owner)}`;
+            const keys: string[] = [];
             for (let i = 0; i < storage.length; i++) {
-                const key = storage.key(i);
-                if (key?.includes(`_${userId}`)) {
-                    keysToRemove.push(key);
-                }
+                const candidate = storage.key(i);
+                if (candidate?.startsWith('form:v2:') && candidate.endsWith(suffix)) keys.push(candidate);
             }
-            keysToRemove.forEach(key => storage.removeItem(key));
-        } catch (error) {
-            console.warn(`Error clearing all user forms:`, error);
+            keys.forEach(candidate => storage.removeItem(candidate));
+        } catch {
+            console.warn('Could not remove saved form drafts from this browser.');
+        } finally {
+            clearStorage();
         }
-    }, [storage, userId]);
+    }, [owner, storage, scope, clearStorage]);
 
     return [value, setValue, clearStorage, clearAllUserForms] as const;
 }

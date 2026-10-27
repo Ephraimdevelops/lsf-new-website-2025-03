@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-10-24T16:39:27Z",
+  "environment": "existing configured Convex development backend and localhost:8085 preview",
+  "productionPublished": false,
+  "implemented": {
+    "agent": "Single bounded OpenAI coordinator, 24 role-filtered tools, 8 versioned workflows; model cannot confirm actions",
+    "appointments": "Accessible open-case request draft, user reviews exact stored fields, explicit confirmation, existing case-team appointment-request workflow, receipt; not a scheduled booking",
+    "referrals": "Authorised case-worker draft, current eligible public service and active organisation provider, explicit worker confirmation, existing beneficiary-consent workflow; provider is not notified before beneficiary consent",
+    "directory": "District or service-name referral searches; direct eligible service selection beyond the first page; bounded results disclose that more results may exist",
+    "management": "Owner-bound query and cancellation of pending drafts, 15-minute pending expiry, atomic claim, stable downstream idempotency keys, retry receipt, hourly retention cleanup",
+    "interface": "Web and mobile review cards in English/Kiswahili, genuine backend result states, partial/forged marker handling; phone-width web header fixed",
+    "sourceReviewPacket": "Paginated metadata audit, source prerequisites, all pending guide IDs, archive storage linkage and private directory review queue"
+  },
+  "verification": {
+    "regressionTests": {
+      "passed": 474,
+      "failed": 0,
+      "command": "npm run test:release",
+      "note": "Local scanner tests require loopback permission; full final suite passed with this permission"
+    },
+    "security": "418 public Convex functions classified; checks passed",
+    "backend": "convex dev --once completed with TypeScript checks; latest deployment 2026-10-24 19:38:57 Africa/Dar_es_Salaam",
+    "webBuild": "npm run build:dev passed; existing large-chunk warnings remain",
+    "mobileTypes": "tsc --noEmit -p mobile/tsconfig.json passed",
+    "liveWebTest": {
+      "account": "existing synthetic development beneficiary",
+      "caseReference": "HYC-20261009-8FZR8E",
+      "steps": [
+        "Real OpenAI answer listed accessible test cases in English",
+        "Real agent prepared phone appointment request for Monday afternoon",
+        "Review card showed request, preferred time and synthetic note; no submission yet",
+        "Clicked Confirm in web UI",
+        "Backend accepted request and card displayed case-team request receipt",
+        "Reload preserved receipt"
+      ],
+      "scheduledAppointment": false
+    },
+    "referralLiveTest": "Handler-level end-to-end workflow tests passed, including beneficiary consent and replay; no real provider contacted and no production referral created",
+    "nativeMobileTest": "Action-card implementation typechecked; no fresh native UI end-to-end test or new mobile release in this pass",
+    "screenshots": [
+      "output/saada-wider-ai-2026-10-24/appointment-request-desktop.png",
+      "output/saada-wider-ai-2026-10-24/appointment-request-phone.png"
+    ]
+  },
+  "liveData": {
+    "publicEligible": {
+      "services": 0,
+      "paralegals": 0,
+      "guides": 0
+    },
+    "privateAggregates": {
+      "documents": {
+        "count": 19,
+        "possiblyTruncated": false,
+        "indexed": 12,
+        "approvedCurrent": 0
+      },
+      "legal_guides": {
+        "count": 114,
+        "possiblyTruncated": false,
+        "statuses": {
+          "pending": 110,
+          "rejected": 1,
+          "retired": 3
+        }
+      },
+      "saada_research_pdfs": {
+        "count": 127,
+        "possiblyTruncated": false
+      },
+      "directory_research": {
+        "count": 71,
+        "possiblyTruncated": false
+      }
+    },
+    "archiveLinkage": {
+      "linkedToSourceDocument": 10,
+      "linkedReady": 10,
+      "noLinkedSourceDocument": 117
+    },
+    "sourcePrerequisitesComplete": 12
+  },
+  "remaining": [
+    {
+      "priority": 1,
+      "work": "Independent substantive source review of 12 indexed pending sources, including Mainland and Zanzibar constitutions; check applicability, amendments, extraction and indexed passages. Seven legacy records need provenance/indexing classification.",
+      "enforcedBy": "convex/sara.ts reviewDocument: uploader cannot approve their own source; only pending sources with complete provenance and searchable content can be approved"
+    },
+    {
+      "priority": 1,
+      "work": "Review 110 pending bilingual legal guides, including source links, jurisdiction, pathway steps, dates and language quality; none are public-approved yet"
+    },
+    {
+      "priority": 1,
+      "work": "Verify 71 private directory research records with organisations, including actual intake, contacts, coverage, eligibility, hours, accessibility and review dates; separately verify paralegal profiles. Source publisher contacts alone do not establish verified intake"
+    },
+    {
+      "priority": 2,
+      "work": "117 archived originals have no linked RAG source document. Check candidate identity matches before preparing scanned indexing copies and complete provenance; preserve independent review"
+    },
+    {
+      "priority": 2,
+      "work": "Run new native mobile action-card scenarios and ship the updated app through the existing release process; current earlier Android voice APK predates these changes"
+    },
+    {
+      "priority": 2,
+      "work": "Run live eligible referral scenario with isolated verified development fixtures and beneficiary consent; do not treat synthetic providers as real help"
+    },
+    {
+      "priority": 3,
+      "work": "Publish backend/frontend/mobile changes to production after the existing release checks; this pass deployed development only"
+    }
+  ],
+  "readinessConclusion": "Case-aware AI and explicit action confirmation work in development. The legal guidance and real service-matching data remain unavailable until source and directory review is completed. Stored PDFs are not equivalent to approved searchable legal evidence."
+}

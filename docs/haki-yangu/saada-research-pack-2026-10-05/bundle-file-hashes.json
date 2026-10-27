@@ -1,0 +1,2235 @@
+{
+  "algorithm": "SHA256",
+  "files": [
+    {
+      "file": "AUTHORITATIVE-SOURCE-GAPS.md",
+      "sha256": "8252287b2451a52ac7cb33378fedb97c227a26be31179166d7369bf60a1d501e",
+      "bytes": 7142
+    },
+    {
+      "file": "BILINGUAL-PREPARATION-REVIEW.md",
+      "sha256": "0aa1d9f312342886e65512311a2c4352cee40253d015ae22d3a7d0ab3c0a35b7",
+      "bytes": 32207
+    },
+    {
+      "file": "DOCUMENTS-AND-GAPS.md",
+      "sha256": "2390c6215bd948bc7aa46c84788d430ee6071cd1074c5d999ff384c8146fb4fe",
+      "bytes": 8368
+    },
+    {
+      "file": "FORM-LOCATORS-REVIEW.md",
+      "sha256": "282e084b6e0edaeeb1ce6e15b7e5ff4bac4729ac3f983f9f5cd44e4f4f126a6d",
+      "bytes": 8743
+    },
+    {
+      "file": "GLOSSARY-REVIEW.md",
+      "sha256": "d5d4ce88c6aab9bf0ef0d571444958c3c172b00efe4a2e304edc9d8c9a699694",
+      "bytes": 4785
+    },
+    {
+      "file": "LEGAL-PATHWAYS.md",
+      "sha256": "5ab6db6e53eec7950cfc7d0381e921570f67ad1803b329f2aa9fbe74e7f22f02",
+      "bytes": 30922
+    },
+    {
+      "file": "LSF-AND-PARTNER-INFORMATION-REQUEST.md",
+      "sha256": "7af37fe397b281029aca02f593742b741212d64a075b40e25713df0fc4a0fefe",
+      "bytes": 7105
+    },
+    {
+      "file": "PREPARATION-TEMPLATES.md",
+      "sha256": "24aa79eb1dbe5301661711c996c262af20c570c63aaea088282c2f4c5aa3f08a",
+      "bytes": 4961
+    },
+    {
+      "file": "README.md",
+      "sha256": "26edd74d9510ffe51cf27d913f3fbe79fa5425198c7c0815c2d80bd64494f1b1",
+      "bytes": 9711
+    },
+    {
+      "file": "UPLOAD-AND-APP-READINESS.md",
+      "sha256": "89f8ffdb1fa9d33d4852f33e148b28def3baea27d23eaa72deec6dafa3b8980d",
+      "bytes": 6428
+    },
+    {
+      "file": "acquisition-attempts.jsonl",
+      "sha256": "fb320eca8e293290f0d25aab1f01393f66ad310530d3020a8a7516d7f4d4ad9c",
+      "bytes": 93900
+    },
+    {
+      "file": "acquisition-manifest.json",
+      "sha256": "b8919416b1100643cd8bdc3b937a7dfc277d73c7e28d0a6863c63a49327190c4",
+      "bytes": 176977
+    },
+    {
+      "file": "amendment-heading-locators.json",
+      "sha256": "930609a6799a7e0618004d946a9a7bf5b94abddcaba560cc376f7a7c9f768735",
+      "bytes": 14226
+    },
+    {
+      "file": "amendment-lineage-review.json",
+      "sha256": "55e4af41b8f064e853e64b3f894fb0cd304e06feaccaa15a796ee6b1042c1879",
+      "bytes": 7386
+    },
+    {
+      "file": "authoritative-source-gap-register.json",
+      "sha256": "b8e19e56269654314828c00131fd97abaa405540acb78dc1be3fb676485850ee",
+      "bytes": 18600
+    },
+    {
+      "file": "bilingual-preparation-review.json",
+      "sha256": "b9034e31c1603e940e7f97f72aca21408a0dfe9c14192fa4d21101ef8f446eb8",
+      "bytes": 51580
+    },
+    {
+      "file": "case-acquisition-plan.json",
+      "sha256": "d6042b0914d2c953309e984c97ab69234e67d8b3b23ec34760867f977cbd9b2c",
+      "bytes": 172
+    },
+    {
+      "file": "case-law-review.json",
+      "sha256": "8ea2599b622f1b2d305d2535077cd4e95ebee57b1efa8244398dea097411fa1e",
+      "bytes": 2353
+    },
+    {
+      "file": "catalogue-discovery/\"islamic-law\".json",
+      "sha256": "0cba3df528dc48c1e631b3fb12849e4d6e258acf8db478398c72ac559cb82658",
+      "bytes": 70168
+    },
+    {
+      "file": "catalogue-discovery/\"kadhi\".json",
+      "sha256": "9285e7bbb5dd62dba457143e333a56f7d53aa23b321a22e0374cf765991c91a3",
+      "bytes": 42279
+    },
+    {
+      "file": "catalogue-discovery/\"local-customary-law\".json",
+      "sha256": "09ee32913aeb08166c55bdf63e16efb251607a74b709eea68a0f98da8d33d7ba",
+      "bytes": 27841
+    },
+    {
+      "file": "catalogue-discovery/\"primary-courts\"-\"administration\"-\"estates\".json",
+      "sha256": "96bdffc585926d51a2946c81e6ceea89300906ae427c81d593429d93c29c9735",
+      "bytes": 104418
+    },
+    {
+      "file": "catalogue-discovery/\"probate\"-\"administration\"-\"rules\".json",
+      "sha256": "4f79a6877a46a5f2bcb2a83f91252d40641db1746334726cedcdf4a9e0e50e2c",
+      "bytes": 85413
+    },
+    {
+      "file": "catalogue-discovery/\"rent-restriction\".json",
+      "sha256": "04b084d8801c54cb0cd977855d72275e7859e29b64be0639ebc6172cdf3bc0eb",
+      "bytes": 27246
+    },
+    {
+      "file": "catalogue-discovery/\"social-security\"-\"benefits\".json",
+      "sha256": "12555e44c5f9c536f926ee268c8a7587a6c0bd178c1c8b8cdd1f0f0b7507bd3a",
+      "bytes": 93683
+    },
+    {
+      "file": "catalogue-discovery/arbitration-act.json",
+      "sha256": "67e29af37e63d1e2921bf06bd6175ad7753f2bfe1ae37f71de2c900325654254",
+      "bytes": 94289
+    },
+    {
+      "file": "catalogue-discovery/arbitration-rules-procedure.json",
+      "sha256": "8ac7e30c113ca9506a2ad0cd8d811380ee884840b1c15150e4977fc4ae9b61a7",
+      "bytes": 108775
+    },
+    {
+      "file": "catalogue-discovery/civil-procedure-amendment-2025.json",
+      "sha256": "f1257d9464161bff1b05e295f95700f7e82ee20bbc09f8286a0b4f902073ce9d",
+      "bytes": 100446
+    },
+    {
+      "file": "catalogue-discovery/civil-procedure-appeal-primary-courts.json",
+      "sha256": "1318055cd9b6cc00dbe8c2daf09150e0e195e306f265732efa0e8d6cbc1045c5",
+      "bytes": 118006
+    },
+    {
+      "file": "catalogue-discovery/commission-mediation-fees-2025.json",
+      "sha256": "3c1732b8330a745eb62038245a64ecec207386ff0ad3fa43c79c157b87a05abe",
+      "bytes": 89174
+    },
+    {
+      "file": "catalogue-discovery/court-appeal-amendment-2024.json",
+      "sha256": "148e2642fa86f1b079cf80d5cb9b421c2f95a7354482006ec0be2f93139422a8",
+      "bytes": 92138
+    },
+    {
+      "file": "catalogue-discovery/district-land-housing-tribunal-regulations.json",
+      "sha256": "cf26303a315c8db5141cc151f3fac2182bfd8cf58394ee09ac7338bcccbaff61",
+      "bytes": 93762
+    },
+    {
+      "file": "catalogue-discovery/employment-labour-general-regulations.json",
+      "sha256": "26c8d0b1443972c08a7928db13490e8c5a72a88e5051b0729315dff51b2c85e4",
+      "bytes": 92618
+    },
+    {
+      "file": "catalogue-discovery/human-rights-good-governance.json",
+      "sha256": "f76561f99cce14b8e93821fe414c9446b4c51550ce07a644f1b0858a53c8953e",
+      "bytes": 93642
+    },
+    {
+      "file": "catalogue-discovery/judicial-review-rules.json",
+      "sha256": "13dad680dd731feeeeaf6832963c1f75cb06af63c91fe49e5ec806c250761500",
+      "bytes": 122425
+    },
+    {
+      "file": "catalogue-discovery/labour-court-rules.json",
+      "sha256": "11772e4b477cb0ac1dcdaa80019488b7a5cd8b082a9e66b2dbce193179a2d342",
+      "bytes": 112218
+    },
+    {
+      "file": "catalogue-discovery/legal-aid-code-conduct.json",
+      "sha256": "3b2ecf77f06c3378144ca50a7e952ab057b938da157ed4a5b6c6742ec352f8fe",
+      "bytes": 99062
+    },
+    {
+      "file": "catalogue-discovery/legal-aid-remuneration-advocates.json",
+      "sha256": "00c4a599f01e2b3ed73c8ca88cc55e01d02b86d6f91dd8fd74ba18cadd860787",
+      "bytes": 89875
+    },
+    {
+      "file": "catalogue-discovery/local-customary-law-declaration.json",
+      "sha256": "0e80f5208bb0a6b23a7adf2b0e03b16157bd0389202186c8ef00eb342fd3ef01",
+      "bytes": 92565
+    },
+    {
+      "file": "catalogue-discovery/mediation-and-arbitration.json",
+      "sha256": "8f0f9e15656cc1ea6e5cf7837e3d1b6f77c328e30e318ac9e357ddd17ff4a7df",
+      "bytes": 108561
+    },
+    {
+      "file": "catalogue-discovery/national-social-security-fund.json",
+      "sha256": "545f1669d486f7a415327af298d8440da107402f9390f283b7d64013a52b352c",
+      "bytes": 93214
+    },
+    {
+      "file": "catalogue-discovery/penal-code.json",
+      "sha256": "ed7314a3808b06186c8bbe3847eb40002514d75099c0a613143703afc18b0f11",
+      "bytes": 89707
+    },
+    {
+      "file": "catalogue-discovery/persons-disabilities-regulations.json",
+      "sha256": "ae2834dfaec7557cbda7dce1d018020932d28e68778571bec2a178c1614fe621",
+      "bytes": 92051
+    },
+    {
+      "file": "catalogue-discovery/primary-courts-administration-estates.json",
+      "sha256": "2f3e56d836916752e9adb8b831d3b26ee9a63786abd1c59a8b7ae9c03480b305",
+      "bytes": 105389
+    },
+    {
+      "file": "catalogue-discovery/primary-courts-approved-forms-2025.json",
+      "sha256": "ef64303e6163f88ce1f0e45d488caac47e0b99de5157ac47e97669a359afed73",
+      "bytes": 90494
+    },
+    {
+      "file": "catalogue-discovery/public-service-social-security-fund.json",
+      "sha256": "0636b0a9d4ddd773381a5f779d195dda9fa08bb0555ac8244363beec9fea4585",
+      "bytes": 95028
+    },
+    {
+      "file": "catalogue-discovery/rent-restriction.json",
+      "sha256": "dc687193a9ce5142094d7873f4492e42a49b3481c627c475e61e23732afdf81b",
+      "bytes": 89758
+    },
+    {
+      "file": "catalogue-discovery/social-security-benefits-2025.json",
+      "sha256": "e296f1f981bc819ab34a8a0d43e56fcf2436a5eb8b8fefe8235f2ae9549d919b",
+      "bytes": 91615
+    },
+    {
+      "file": "catalogue-discovery/whistleblower-witness-protection.json",
+      "sha256": "b17e78ecd8720ab49f58f7d2854b355c72e9d83163d1cdb70010dc62abe45c2b",
+      "bytes": 95786
+    },
+    {
+      "file": "catalogue-discovery/workers-compensation-regulations.json",
+      "sha256": "e1340de3ae6b8a535b3edbec2baee96c3c3cb4a4e1c82e1bca841ac42d1b57da",
+      "bytes": 97544
+    },
+    {
+      "file": "catalogue-discovery/written-laws-miscellaneous-amendments-2025.json",
+      "sha256": "505c3816ce50c6503ec3e561784d1141bafec1db9c7e485a649f0d01953508cc",
+      "bytes": 90052
+    },
+    {
+      "file": "catalogue-discovery/written-laws-miscellaneous-amendments-2026.json",
+      "sha256": "117a31ada1c3a8f744ec7c25ea2957e00c0f05030e2559940673f84effe35a34",
+      "bytes": 86740
+    },
+    {
+      "file": "catalogue-link-review.json",
+      "sha256": "b635930bd336a64319091daafdcd5ca1a20c7f01e4b767cef58941145bf2e2d6",
+      "bytes": 9844
+    },
+    {
+      "file": "collect_sources.py",
+      "sha256": "3072c6270802a90300d303744ec3396f47d7df20e9d64679f363f6d722377a84",
+      "bytes": 6259
+    },
+    {
+      "file": "completion-audit.json",
+      "sha256": "f4816c53013021a4f99403f36a54abc9a1ceb3af4b3c4d2daecb8ee5f00bcba6",
+      "bytes": 2908
+    },
+    {
+      "file": "conflicts-and-cautions.json",
+      "sha256": "6f5d687610e04ab70b56b9ccc01d79397b3f2c15eddf18aa7fe1d515fe87d0c0",
+      "bytes": 12146
+    },
+    {
+      "file": "continuation-acquisition-ids.json",
+      "sha256": "4093797b33a1275a4a167afc4c496fe8e831f189748f4637b68b1f5578c6e40c",
+      "bytes": 749
+    },
+    {
+      "file": "continuation-status.json",
+      "sha256": "e27f3a3f0606b00ebac35eb5d964e3dbfce20d3900110ba2e781611f1ff2d617",
+      "bytes": 729
+    },
+    {
+      "file": "continuation-validation.json",
+      "sha256": "7fde62ac8aed686d8bd2762376559cf95d17bfc07b9231a50b34d78c3b50f1af",
+      "bytes": 977
+    },
+    {
+      "file": "continue_acquisition.py",
+      "sha256": "a7e69540d63bf7ebe905b6d629b1ad21dd5e08c9318b86f1118e37662b641855",
+      "bytes": 6799
+    },
+    {
+      "file": "discover_official_catalogue.py",
+      "sha256": "43728535254a46abd2075fceb36b9d4dc6e945bb4bf1391e9231c4218e5b700e",
+      "bytes": 2635
+    },
+    {
+      "file": "duplicate-files.json",
+      "sha256": "ea16bbfff603d956d57eb977e563b8d1274cb82285aa0d7478c3804d2f242c24",
+      "bytes": 355
+    },
+    {
+      "file": "evaluation-cases.json",
+      "sha256": "2555bf7e16bd7ea7662d761126a36ae414850c6b51f717dad348ac4ab5f9d511",
+      "bytes": 29274
+    },
+    {
+      "file": "evidence-notes.json",
+      "sha256": "f980ff5b9a3990111d73b4340458f25fe791600b12b18d8372395c02bec55992",
+      "bytes": 4066
+    },
+    {
+      "file": "extracted-text/adr-accreditation.txt",
+      "sha256": "cb13dd9cf8cac4340bb35a7b3e69b8d208939137f5d29ebdf4f0e72bd0a2cba6",
+      "bytes": 38955
+    },
+    {
+      "file": "extracted-text/adr-arbitration-act.txt",
+      "sha256": "95b86a0b024a14ed52c94f09ba657052a7880553b8b7eb33d310bc10c436eb6b",
+      "bytes": 112733
+    },
+    {
+      "file": "extracted-text/adr-arbitration-rules.txt",
+      "sha256": "b7a1180fd41765fa6e4ade089e037f5009b207d9bf52586cda201fa31c0d1c9f",
+      "bytes": 97713
+    },
+    {
+      "file": "extracted-text/adr-conduct.txt",
+      "sha256": "198def79fedf8cd28d6e7595081c34f315803f8175a34e5211b138c9a25c27bc",
+      "bytes": 30469
+    },
+    {
+      "file": "extracted-text/amendments-legal-sector-2023.txt",
+      "sha256": "0e168d09745441c538f9cad5c8bf3099d12dfeb30ee755584c15ef5583677479",
+      "bytes": 46553
+    },
+    {
+      "file": "extracted-text/amendments-misc-1-2025.txt",
+      "sha256": "12071a2f53f77bba358392ae2e96ea7cdfe11c995d5193f87ce2a3d388f90d17",
+      "bytes": 25031
+    },
+    {
+      "file": "extracted-text/amendments-misc-2-2025.txt",
+      "sha256": "f9f4853065e6fd4da0a402cc8bf8b0c09bc65ae35ec1a2d302f9e91220629b33",
+      "bytes": 17777
+    },
+    {
+      "file": "extracted-text/amendments-misc-2024.txt",
+      "sha256": "d73096bb2416e0496b5101896e732b308ab6696418c0a50c483afbc36051765c",
+      "bytes": 21926
+    },
+    {
+      "file": "extracted-text/base-child.txt",
+      "sha256": "79c5ffe7c67e51229b286a611f6731ceefa1b2e911f8e925f86666357c47bab6",
+      "bytes": 139379
+    },
+    {
+      "file": "extracted-text/base-constitution.txt",
+      "sha256": "c5a11041dcc00b93a1ed8a8556bb6588d8782993a71d36af17fabea2e36720c6",
+      "bytes": 242732
+    },
+    {
+      "file": "extracted-text/base-elra.txt",
+      "sha256": "aa21a4b825f46b558e69ddb2519f051b443b5caffea0c99cd2b871d839efce01",
+      "bytes": 161457
+    },
+    {
+      "file": "extracted-text/base-land.txt",
+      "sha256": "cc922c58c82f056cb66b437233ce1cee6a21be45f7224d6846f5b0c94cde7061",
+      "bytes": 386594
+    },
+    {
+      "file": "extracted-text/base-legal-aid.txt",
+      "sha256": "af36fea0ec54f1489597c7f46d9179e3b2f6e5ab2832dceffac619540109a87f",
+      "bytes": 49035
+    },
+    {
+      "file": "extracted-text/base-marriage.txt",
+      "sha256": "8109979de74b33d322ed81b2d4f758db0367a909eb2b6ca858bf3f8eada164cf",
+      "bytes": 149289
+    },
+    {
+      "file": "extracted-text/base-privacy.txt",
+      "sha256": "28c72ab01c13aef2ff4b9ba5290b9609c48a748588b35143fcbb6eae546f423c",
+      "bytes": 65963
+    },
+    {
+      "file": "extracted-text/base-village-land.txt",
+      "sha256": "ac4dddf2b74e161265a4da181a768880470963b8f4bc7a5cfc580565dcbda1a6",
+      "bytes": 206532
+    },
+    {
+      "file": "extracted-text/case-estate-lonyamali.txt",
+      "sha256": "33aaa15d4bceda3cf67e999c97456cb4e588c70fb1b2935acb708488dce3199c",
+      "bytes": 3013
+    },
+    {
+      "file": "extracted-text/case-inheritance-latifa.txt",
+      "sha256": "19521ec877d6a0d4adfff7549dc2c6417efcb0c0dfab77aaeb5e082865971c05",
+      "bytes": 2424
+    },
+    {
+      "file": "extracted-text/case-labour-oath-2022.txt",
+      "sha256": "f64d8113e06f9103af7ca43df8e8daf044986b39923a8114df33778b3520ddf2",
+      "bytes": 10502
+    },
+    {
+      "file": "extracted-text/case-land-mabula-2024.txt",
+      "sha256": "abdd3bc51c1bed268df3c6f1419955e453238612a21c262534a233fdd5c7e4de",
+      "bytes": 19457
+    },
+    {
+      "file": "extracted-text/case-land-seth-2024.txt",
+      "sha256": "3cdcda077f075bd31763e61f9fec631309bb34649c0684f1deb84af26d9efa39",
+      "bytes": 13451
+    },
+    {
+      "file": "extracted-text/child-juvenile-rules.txt",
+      "sha256": "c9a11d6b5574e041a11488d5170122b0972e6f33560d4e56febb2bbfea9716b2",
+      "bytes": 341462
+    },
+    {
+      "file": "extracted-text/civil-birth-death.txt",
+      "sha256": "79e76a6774bf350c46750d0aad2d9e4b64b4f8c1670fa87bd72a881b4b8f7b51",
+      "bytes": 30403
+    },
+    {
+      "file": "extracted-text/cma-fees-2025.txt",
+      "sha256": "1e692b4f6ac776693e5b2429472904850e1bbbbd8f21169349813aaa79d7bbea",
+      "bytes": 3611
+    },
+    {
+      "file": "extracted-text/cma-guidelines.ocr-unverified.txt",
+      "sha256": "4237e3dd1a75f75c11e7e18c7861b698a31b226c03310c6256606500e5ff551c",
+      "bytes": 28179
+    },
+    {
+      "file": "extracted-text/cma-guidelines.txt",
+      "sha256": "f27eff035f58c47462463f1c777785935df4be7f710869fef9a2b00b128359a7",
+      "bytes": 293
+    },
+    {
+      "file": "extracted-text/cma-procedure.ocr-unverified.txt",
+      "sha256": "17fa5da8130450f10c4e9e040ec6e89629bf99150a4f8248236de4e9a29a0cb7",
+      "bytes": 28561
+    },
+    {
+      "file": "extracted-text/cma-procedure.txt",
+      "sha256": "f27eff035f58c47462463f1c777785935df4be7f710869fef9a2b00b128359a7",
+      "bytes": 293
+    },
+    {
+      "file": "extracted-text/consumer-fair-competition.txt",
+      "sha256": "f5d95e349d0ca885c5ba72cdd4348a35665c8af0880b387b94edd15bd88bb9ad",
+      "bytes": 189046
+    },
+    {
+      "file": "extracted-text/consumer-fcc-procedure.txt",
+      "sha256": "89c16a930c1cc3b3375fe332819fe450180e5a72080b25f4c073df1486f96ee4",
+      "bytes": 191940
+    },
+    {
+      "file": "extracted-text/contract-act.txt",
+      "sha256": "a8f64997ed8474f82b88a89178e3a08a3e4a5636b9c541a95501eea8a4b029ad",
+      "bytes": 128359
+    },
+    {
+      "file": "extracted-text/corruption-act.txt",
+      "sha256": "52a6b314f6edc09b93cbfa0cbee8c576069300a07ba810602e10da5037a0447e",
+      "bytes": 72113
+    },
+    {
+      "file": "extracted-text/courts-magistrates.txt",
+      "sha256": "75751e79bf0a26e2a5c2e1f836beba40fa528a7f45d56625cce4e84a5a52f918",
+      "bytes": 167351
+    },
+    {
+      "file": "extracted-text/crim-penal.txt",
+      "sha256": "b1bdbddccc745f6b003cbc946bc693bb27ce5e5f00362e137aa3abdeacf82c28",
+      "bytes": 320742
+    },
+    {
+      "file": "extracted-text/crim-procedure-supplement-2025.txt",
+      "sha256": "0b53c9dbbf8aa5dd79f305d77532c3f050d981a7664cce3ec3bffedea669a720",
+      "bytes": 512792
+    },
+    {
+      "file": "extracted-text/crim-procedure.txt",
+      "sha256": "d415bf615e8b25f3d220d0208fd7aa339dab0f1f06f87dd51f2bf63c629316ca",
+      "bytes": 492639
+    },
+    {
+      "file": "extracted-text/disability-act.txt",
+      "sha256": "036c3075e14df7915dc804a2742bbd76396b9c51b608f250b2b34253dfc1f4ef",
+      "bytes": 96293
+    },
+    {
+      "file": "extracted-text/employment-amendments-2025.txt",
+      "sha256": "b3e4630c1b728397bcb4f9edc26cb728bddd39edbebf1605984fb6ddb09a9db6",
+      "bytes": 21862
+    },
+    {
+      "file": "extracted-text/employment-forms-readable.txt",
+      "sha256": "c475cfeb2c6169da0ac2e0747d1413fe6c0a9ba2cc4876f2fcfaca43ec50b14c",
+      "bytes": 104183
+    },
+    {
+      "file": "extracted-text/employment-general-forms.txt",
+      "sha256": "468f6ec5a4ec1af69550c3747e3cd4258055949dc00d866e42d938e0fd3a212a",
+      "bytes": 1141
+    },
+    {
+      "file": "extracted-text/employment-institutions.txt",
+      "sha256": "697bdc75547e1b927b44fe099d691f385375fdf3f718b046b82b725710971aa5",
+      "bytes": 78423
+    },
+    {
+      "file": "extracted-text/environment-act.txt",
+      "sha256": "41f90a5e4cdea92899f37fe3a032dfdb7501f55819f8e29de98b753dc6d77dd8",
+      "bytes": 283147
+    },
+    {
+      "file": "extracted-text/environment-amendment.txt",
+      "sha256": "39a3731fcb75670a6dc5aa80852fd7ac7367cff614ead9dc7f1957c9cde10a0b",
+      "bytes": 23422
+    },
+    {
+      "file": "extracted-text/estates-amendment-2025.txt",
+      "sha256": "19b48e32206164967cbed119209a89458215162179a1c58fb1e65981924da416",
+      "bytes": 46038
+    },
+    {
+      "file": "extracted-text/estates-primary-amendment-2025.txt",
+      "sha256": "12ec51a4c45d4feb0ffdf8a3cf980fd9485b84a70963ce0fc290021d284e6be2",
+      "bytes": 30334
+    },
+    {
+      "file": "extracted-text/estates-probate.txt",
+      "sha256": "992ba7db751dd9c7d4b08ffd9b1d56e41c3caa1a77ae7c1d3530c5447ea04275",
+      "bytes": 144996
+    },
+    {
+      "file": "extracted-text/estates-rules.txt",
+      "sha256": "c3a86409816b1006989ca80d19ec2cee909d3ef0f7120a9e7ca577c4d1c64f49",
+      "bytes": 168457
+    },
+    {
+      "file": "extracted-text/family-gyumi-appeal.txt",
+      "sha256": "7e6246228b03e107d1a783b0a66b8499556b38be45db673ac4caf9a55ae4723a",
+      "bytes": 68030
+    },
+    {
+      "file": "extracted-text/family-gyumi-high-court.txt",
+      "sha256": "022ea1d7d46ca176dc6391bc3b4ff949a1f06a0260c92dd8be7a2bfe8f9eec84",
+      "bytes": 42091
+    },
+    {
+      "file": "extracted-text/fcc-amendment-2024.txt",
+      "sha256": "f4cc12c44353a68a713f4cfd04df1c55674ce17b5ae14727b1f5df10f45de402",
+      "bytes": 22827
+    },
+    {
+      "file": "extracted-text/fcc-consumer-procedure.txt",
+      "sha256": "624fe8119c975da7d696a560dfe25b6862b1f692370f44068e974d2735c289bc",
+      "bytes": 34116
+    },
+    {
+      "file": "extracted-text/fcc-current-act.txt",
+      "sha256": "f5d95e349d0ca885c5ba72cdd4348a35665c8af0880b387b94edd15bd88bb9ad",
+      "bytes": 189046
+    },
+    {
+      "file": "extracted-text/fcc-dominance-2026.txt",
+      "sha256": "ccd2c9d6d953d7332d143f443230cea04c34cb1d38e9f3e453cf4e81099f6490",
+      "bytes": 14177
+    },
+    {
+      "file": "extracted-text/fcc-standard-contracts.txt",
+      "sha256": "e89ce6b2c0326dd260ed824838bc2d56c3cb87c4c0dcec1a0982c004c81ccbbc",
+      "bytes": 90314
+    },
+    {
+      "file": "extracted-text/fcc-tribunal-rules.txt",
+      "sha256": "6c6d224f21c2477e20ca8254f5248a3c714279b0c4ff40070c7916fe71fbe57c",
+      "bytes": 38504
+    },
+    {
+      "file": "extracted-text/fin-bot-amendment-2025.txt",
+      "sha256": "1c6efdf30b899106b0721baaed2662b40788228bee7a231b23f6c66af854db2c",
+      "bytes": 22649
+    },
+    {
+      "file": "extracted-text/fin-bot-guidelines-en.txt",
+      "sha256": "05da7a6c2bcc9f18a23283abb565458eb036875f526d111aa91003928a092750",
+      "bytes": 31935
+    },
+    {
+      "file": "extracted-text/fin-bot-guidelines-sw.txt",
+      "sha256": "05da7a6c2bcc9f18a23283abb565458eb036875f526d111aa91003928a092750",
+      "bytes": 31935
+    },
+    {
+      "file": "extracted-text/fin-bot-regulations.txt",
+      "sha256": "95be2dd7d64a4a08d53414ade8d080a22069dae2418a733eb7bfadb4e51a18fe",
+      "bytes": 60115
+    },
+    {
+      "file": "extracted-text/hiv-rights.txt",
+      "sha256": "13b94ac3285fed2c748f94044d9a7180129a4e17443d1bb485b43cf3d8aa4443",
+      "bytes": 54044
+    },
+    {
+      "file": "extracted-text/immigration-act.txt",
+      "sha256": "a4b47618de347c209c8e399e7497ad46a98a11a24db8ba5031f65d091a09c713",
+      "bytes": 75503
+    },
+    {
+      "file": "extracted-text/labour-court-readable.txt",
+      "sha256": "ef9bb6312e3ae3f09ff6da674f251f25579604f9414b9a0890c1309a66a5a58d",
+      "bytes": 165252
+    },
+    {
+      "file": "extracted-text/labour-court-rules.txt",
+      "sha256": "e418b365dce723ff7b798505354712313671d4c5ecb9cf8b11c2157c7d1a3a60",
+      "bytes": 901
+    },
+    {
+      "file": "extracted-text/labour-institutions-general.txt",
+      "sha256": "03689b823fff3e6ab57ebd2d82023751676ef8466c41d254ed7795d9729204ee",
+      "bytes": 24386
+    },
+    {
+      "file": "extracted-text/land-acquisition.txt",
+      "sha256": "a8f6a4a2fc07d1fe0bde256e6178932dbb41ebcb7781ce4d310a6c2b0bff10cc",
+      "bytes": 49197
+    },
+    {
+      "file": "extracted-text/land-disputes.txt",
+      "sha256": "872b6b5a139205439f0edaaaf3d3be8727f22be1b8821a0a87b8a40502a237b5",
+      "bytes": 45710
+    },
+    {
+      "file": "extracted-text/land-tribunal-2023.txt",
+      "sha256": "f91f1bd40cbd534d5ebd2a9f2881b3815b7b1747d0d6c98034e92171a1ff6bf1",
+      "bytes": 7363
+    },
+    {
+      "file": "extracted-text/land-tribunal-principal.txt",
+      "sha256": "bf08170d7daa103715469d4c430e26e004a7a877decb141feb7c270dd18ca314",
+      "bytes": 48188
+    },
+    {
+      "file": "extracted-text/legal-aid-regulations.txt",
+      "sha256": "eacbedfb5de10599cf8b9f4178cf22715e6eca7b1a9c1690e490199c76d7f2de",
+      "bytes": 53937
+    },
+    {
+      "file": "extracted-text/legal-aid-supplement-2025.txt",
+      "sha256": "d9062d7c6622ca89dcc489981f8f2bfb74d0e4e3ed9ee6b77597b301528a0d8a",
+      "bytes": 48448
+    },
+    {
+      "file": "extracted-text/personal-customary-no2.txt",
+      "sha256": "a280b7a22519be5a9861f31efddc5cb44150c207d293519438e43ba75e7e631f",
+      "bytes": 2898
+    },
+    {
+      "file": "extracted-text/personal-customary-no4.txt",
+      "sha256": "66c33c8d91b0482e396ab3d4a19ae162d04843f5c49fc06e1e20c58231ed0f12",
+      "bytes": 24866
+    },
+    {
+      "file": "extracted-text/personal-islamic-restatement.txt",
+      "sha256": "da79ca8f37bc8275d0bcf21cab15ec8a7d8b6958d53dbaf21e66562a921f4564",
+      "bytes": 2850
+    },
+    {
+      "file": "extracted-text/privacy-complaints.txt",
+      "sha256": "6af0ede88411e94af0ecc1374035f897cc392a05879515a9fb66ea5ddf4d0e2b",
+      "bytes": 45654
+    },
+    {
+      "file": "extracted-text/privacy-processing.txt",
+      "sha256": "d41f49681fdcf5d8816652b831a822c1805a9912d262888a62ef242ec0b2895e",
+      "bytes": 61217
+    },
+    {
+      "file": "extracted-text/proc-appeal-amendment-2024.txt",
+      "sha256": "9ac497688156c8fac2c46f31fefd23ddd64e16c0293e46d6e4155ed936f4e060",
+      "bytes": 29612
+    },
+    {
+      "file": "extracted-text/proc-appeal-amendment-2025.txt",
+      "sha256": "21ed21378a32f97560ce92d94afd3c4c7c2dbeef1bd02cf4a7edb08f673a95e4",
+      "bytes": 864
+    },
+    {
+      "file": "extracted-text/proc-appeal-principal.txt",
+      "sha256": "9c9428ae50bdbb9f04e5695dde1d5375bf0855df67b990ea3bc18b89fd96825e",
+      "bytes": 198155
+    },
+    {
+      "file": "extracted-text/proc-applicable-laws.txt",
+      "sha256": "74c264ab40d22be9a661a697ecb50e66f599c2335b8fdb34578c93d09a33c76e",
+      "bytes": 22176
+    },
+    {
+      "file": "extracted-text/proc-civil-forms-2022.txt",
+      "sha256": "d3e7b9ae418c84b7045060b5d383136562ab53004d091c666b7903ba06a0b759",
+      "bytes": 6981
+    },
+    {
+      "file": "extracted-text/proc-civil.txt",
+      "sha256": "c66577453c31425b23eac48fa0277e6200550af5072e18b426abb7007a93f788",
+      "bytes": 536027
+    },
+    {
+      "file": "extracted-text/proc-court-fees-2018.txt",
+      "sha256": "b14a59128c1be5a3fb747c9c4ac4902105f7aad7f66f9cb1234a4290ae37c4b9",
+      "bytes": 23096
+    },
+    {
+      "file": "extracted-text/proc-court-fees.txt",
+      "sha256": "dabf28911432aeb951fabcc25ea9ea16396fb52fcdb393edd494b78cb6eff4af",
+      "bytes": 22681
+    },
+    {
+      "file": "extracted-text/proc-ecms-guide.txt",
+      "sha256": "facc7019e0bb88c37dd57dc8d7f341b928d93e7f26b30562ccfcf59666d4ca69",
+      "bytes": 41520
+    },
+    {
+      "file": "extracted-text/proc-efiling.txt",
+      "sha256": "6707d2631746378e59caab00e398f69721159bb5bc6bcfccde7f4da0aa93a5de",
+      "bytes": 39518
+    },
+    {
+      "file": "extracted-text/proc-evidence.txt",
+      "sha256": "8d93c5c6bd518de57a8cc29cee22734f4136698975e06bc8bc255a2232f8adcf",
+      "bytes": 140973
+    },
+    {
+      "file": "extracted-text/proc-government.txt",
+      "sha256": "8aad9e01f7947172859b0bc833e2ba8750dbd46619e0c817e27e9eebf98c5ace",
+      "bytes": 25117
+    },
+    {
+      "file": "extracted-text/proc-judicial-review.txt",
+      "sha256": "95709e65a9fe9f258963041bc86359b2ac1c65dda08be99b53db4aa3ffd19aff",
+      "bytes": 11521
+    },
+    {
+      "file": "extracted-text/proc-limitation.txt",
+      "sha256": "12c4e4354b2a28d735d8ce5db30f714af0b20a100f3e7a750f88d9ae699ec0f0",
+      "bytes": 64906
+    },
+    {
+      "file": "extracted-text/proc-small-claims.txt",
+      "sha256": "e7891d0c3f5731fe1ce9368258584d04ce2398e9faaa80feb056be3926139229",
+      "bytes": 29703
+    },
+    {
+      "file": "extracted-text/refugees-act.txt",
+      "sha256": "b2aec46729a4d0cfb6c3473996c0d5865279e1bb2b1cb827b3411464d735f1e3",
+      "bytes": 62531
+    },
+    {
+      "file": "extracted-text/rights-chragg-act.txt",
+      "sha256": "cf4caa81ea81bd5f0ef41b1e59d2d3664216f34a48119395d9a28d4deabfa53e",
+      "bytes": 52899
+    },
+    {
+      "file": "extracted-text/rights-enforcement.txt",
+      "sha256": "69c7d1767aae33f512ccee410ebf92f58ea1e1e5410374691d81fea1aa66c1fd",
+      "bytes": 13670
+    },
+    {
+      "file": "extracted-text/safe-fgm-en.txt",
+      "sha256": "7de5dd47cccec62eb7e44d086a162d7c545444a156f8dbff515a23c04ca0ada2",
+      "bytes": 310766
+    },
+    {
+      "file": "extracted-text/safe-fgm-sw.txt",
+      "sha256": "97ee12f86a012326d5d2c09b3664ce551985e27196df7f90c95ffa93328cb88d",
+      "bytes": 261437
+    },
+    {
+      "file": "extracted-text/safe-homes.txt",
+      "sha256": "9364ed7876a98a3a586abcd970919d9dd78e08f7d9510f764cd826c3c620faa4",
+      "bytes": 148133
+    },
+    {
+      "file": "extracted-text/safe-npa-ii.txt",
+      "sha256": "8bef2e1f8206912539c67e175c7f7ce76207717b33826f188d361bd8af92aede",
+      "bytes": 379438
+    },
+    {
+      "file": "extracted-text/safe-witness-act.txt",
+      "sha256": "5186f137a457bc3c8a4012a257dfe70038b6fd7c011932cb745b622da86f14bc",
+      "bytes": 15086
+    },
+    {
+      "file": "extracted-text/social-benefits-2018.txt",
+      "sha256": "de47ebd9d9b79637c5c1db56460711667a9d8a85409d1213bce39a3246fc91ed",
+      "bytes": 23822
+    },
+    {
+      "file": "extracted-text/social-benefits-amendment-2022.txt",
+      "sha256": "70fd1941fa1de615298f16a72593a37ba4f0fb9e655c4f0c8bbdaf84953d4072",
+      "bytes": 5397
+    },
+    {
+      "file": "extracted-text/social-benefits-amendment-2024.txt",
+      "sha256": "cc6d78145c856c52e9d3fdf312cf35c14d819b09af6c132bc134e52a6dc08079",
+      "bytes": 9649
+    },
+    {
+      "file": "extracted-text/social-nssf-complaint-form.txt",
+      "sha256": "3a55b8931b9cea37d90880be5ae9027fa853b0b5376af06edeb5074c255d7cc1",
+      "bytes": 2061
+    },
+    {
+      "file": "extracted-text/social-nssf.txt",
+      "sha256": "ce72fa692269d5dd0c9abec06706bc555664c194f5cbaa5dd25b2a39bcd46112",
+      "bytes": 94051
+    },
+    {
+      "file": "extracted-text/social-psssf-2025.txt",
+      "sha256": "f8e127e759a239e945555206fc3889578aa526f3a50b9ade9e913094e199185c",
+      "bytes": 86067
+    },
+    {
+      "file": "extracted-text/telecom-committee.txt",
+      "sha256": "94d2971088c2ff7882cce210e34776c067ab6604174dd39c49be9dc2e34a6d9a",
+      "bytes": 17127
+    },
+    {
+      "file": "extracted-text/telecom-consumer-regulations.txt",
+      "sha256": "231257e101e8ffdddf9b71ded76b38dbd8d8d787efae17e0bdeaf57db5c317f5",
+      "bytes": 22076
+    },
+    {
+      "file": "extracted-text/telecom-guideline-2020.txt",
+      "sha256": "be69de970a65f21d1b892c0b764fe6273c255810d28160a153721c13448c7b79",
+      "bytes": 2468
+    },
+    {
+      "file": "extracted-text/telecom-guideline-undated.txt",
+      "sha256": "ca722ab55fcb427e27e24ba5f17b47e5b29748625996a27fb7797fcb7c771ae0",
+      "bytes": 8702
+    },
+    {
+      "file": "extracted-text/trafficking-act.txt",
+      "sha256": "ee201741b4b2bbbcdb436af5114b6b98c87401cd4de461ce8ea17692fe602032",
+      "bytes": 47105
+    },
+    {
+      "file": "extracted-text/utilities-complaint-rules.txt",
+      "sha256": "b8aa5df5921c390e7612bd0d86ae5ae7f270325a4444c93c3713a03cf81384f3",
+      "bytes": 70423
+    },
+    {
+      "file": "extracted-text/wcf-amendment-2021.txt",
+      "sha256": "4e09c2b466e249a3ac2e1efccda5be66853304ffaf9e9586e32d1a590c22db09",
+      "bytes": 21750
+    },
+    {
+      "file": "extracted-text/wcf-claim.txt",
+      "sha256": "29a7676e6d031942c159479ceea5c0c97654d5d145760a9770226b12f5c1a12e",
+      "bytes": 12065
+    },
+    {
+      "file": "extracted-text/wcf-notification.txt",
+      "sha256": "17978fa1f9210e159d0cf3e2b529170f52cdefca577fcc0652dacf362bc5eb77",
+      "bytes": 7809
+    },
+    {
+      "file": "extracted-text/wcf-regulations-2016.txt",
+      "sha256": "995f4924846830d7865c041cc7470bdec2bc9027e8211bfafd8260b21a978b11",
+      "bytes": 116390
+    },
+    {
+      "file": "extracted-text/wcf-regulations-version.txt",
+      "sha256": "d03b1130726e886a53d9388d9447a20404c6223275622ba1299dd18dcb2638bc",
+      "bytes": 80038
+    },
+    {
+      "file": "extracted-text/workers-compensation.txt",
+      "sha256": "c8a933b85418954c6058bd3a6235de0817da1b851956c288c3202d8f43c1cfea",
+      "bytes": 133291
+    },
+    {
+      "file": "extracted-text/znz-child-court-rules.txt",
+      "sha256": "6c694312b7a920879fa03cd0f3f2fc2159b32489337244ca346dddd7a8e2fd8c",
+      "bytes": 218178
+    },
+    {
+      "file": "extracted-text/znz-child-gazette.txt",
+      "sha256": "0d95fd204f10e8ed0257319bbf495250ab2502b99c3d63356424099a3cc829b5",
+      "bytes": 171634
+    },
+    {
+      "file": "extracted-text/znz-constitution-en.txt",
+      "sha256": "fce5dfba1bc35ea32b22a1e7d44d49f7e3775f1a61c026ccaf14d7ff2f2053f9",
+      "bytes": 162232
+    },
+    {
+      "file": "extracted-text/znz-criminal-amendment-2021.txt",
+      "sha256": "cd4db8a5f3f1387ec0039ca19a90ba6e8f39c5827828b73f71ad0c0541ccbc63",
+      "bytes": 11039
+    },
+    {
+      "file": "extracted-text/znz-criminal-procedure.txt",
+      "sha256": "5b51dfa6adbed846c2a507766a624b56cfef29d062e1eca831a778afc81a80b5",
+      "bytes": 398624
+    },
+    {
+      "file": "extracted-text/znz-disability-rules-2022.txt",
+      "sha256": "9e5e34e73d91d4007360600c881f45a178375b808496199ebfbe7e885da3c74b",
+      "bytes": 33332
+    },
+    {
+      "file": "extracted-text/znz-employment-gazette.txt",
+      "sha256": "243303d9405a158656916033f36b2dfcbf8b929b467be3e19604b19956aa4d95",
+      "bytes": 161382
+    },
+    {
+      "file": "extracted-text/znz-employment.txt",
+      "sha256": "172b7a050f0e67271a89829d93b9e4677eace35b3e4c54831eaceebfb5f6842b",
+      "bytes": 1828
+    },
+    {
+      "file": "extracted-text/znz-environment-gazette.txt",
+      "sha256": "dc35cecbe6141de1151ca789926509cad659e4bf7c94af76c133d656a42850ac",
+      "bytes": 67621
+    },
+    {
+      "file": "extracted-text/znz-kadhis-2024.txt",
+      "sha256": "fabf56f95c61c5bfcc17a94a9a75a93103b1214768c82bab305a5de892495dc9",
+      "bytes": 30837
+    },
+    {
+      "file": "extracted-text/znz-kadhis-rules-2021.txt",
+      "sha256": "289e09f538e6ba5457d679046618b39c99c25c646708f1ad697e968cbaab2a03",
+      "bytes": 103055
+    },
+    {
+      "file": "extracted-text/znz-kadhis-sw-2024.txt",
+      "sha256": "4105017b1f360e4adb2330d638890f8a917ffa996861b039b08d843bbbec9b37",
+      "bytes": 32448
+    },
+    {
+      "file": "extracted-text/znz-labour-relations.txt",
+      "sha256": "d67bad32bb8ae8bedb45d2f1a60e9980b9db2587ae595fcb77606046348823ce",
+      "bytes": 106725
+    },
+    {
+      "file": "extracted-text/znz-legal-aid-rules.txt",
+      "sha256": "a0857d8f81fd5e8de63e619c29f6b852d150544f9762ab20ffb98dc71ad3e8e9",
+      "bytes": 28855
+    },
+    {
+      "file": "extracted-text/znz-penal-2018.txt",
+      "sha256": "5697728d8d46f5b40765cdb72796332eb686a49eb36bf73d992467181ab7e407",
+      "bytes": 300513
+    },
+    {
+      "file": "extracted-text/znz-provider-list.txt",
+      "sha256": "7f1046823bcb7edc326f5cc371570ad1f8e98f1191c6f38916b42ce11ac9c13b",
+      "bytes": 2205
+    },
+    {
+      "file": "extraction-review.json",
+      "sha256": "a00286d33c5bee213bc4a868012deafef1a1b37ff53b93956dc251097b58f2c0",
+      "bytes": 42584
+    },
+    {
+      "file": "follow_catalogue_pdfs.py",
+      "sha256": "ba6d34bc8592cbb5402157a5947bb2ed4bac28e35ec56e1908aab7f1145bc8c7",
+      "bytes": 1663
+    },
+    {
+      "file": "form-locators-review.json",
+      "sha256": "315549eb907bdb36c9b064380b5b97db88573a7eb1ca5c19e82de8c66949220f",
+      "bytes": 87586
+    },
+    {
+      "file": "glossary-review.json",
+      "sha256": "8d19024c03df6d58e64e979d9bed4affa7e1ef6466691c5c5216489907b67972",
+      "bytes": 11277
+    },
+    {
+      "file": "legal-pathways.json",
+      "sha256": "a2b4411bd559bc0fbd60e41f7a104a94ca02e103fd8bf26716534359469856e0",
+      "bytes": 79051
+    },
+    {
+      "file": "licence-observations-review.json",
+      "sha256": "d66eb061f36b67bc57afbe471784f04a83477aa7db3829aab8f98e95500bf399",
+      "bytes": 898389
+    },
+    {
+      "file": "next-acquisition-ids.json",
+      "sha256": "7659b028245342c51959291ff987ba6bae18258da2a2170ba10d38ef29bd00e3",
+      "bytes": 383
+    },
+    {
+      "file": "ocr-review/cma-guidelines.json",
+      "sha256": "945cd3a8e20f38b1e725ce189ff4f3c461c3d8ee47f3eb447511f01665eb7391",
+      "bytes": 31747
+    },
+    {
+      "file": "ocr-review/cma-procedure-sample.json",
+      "sha256": "a08618a6e1bec0eb2cd19ddaab32db64f4a72993e2b1916b2a64b1fc00312323",
+      "bytes": 1163
+    },
+    {
+      "file": "ocr-review/cma-procedure.json",
+      "sha256": "861e76d7ce87807cdd14e44b0c328e061fbf8444f1806e18790ca1f9970a3828",
+      "bytes": 32064
+    },
+    {
+      "file": "ocr_scanned_pdf.swift",
+      "sha256": "5137cbf315fdab41ffad3aa370b7c939f690784e7eef6342787964e5e394e8d3",
+      "bytes": 2643
+    },
+    {
+      "file": "official-catalogue-discovery.json",
+      "sha256": "fbed70869a55d7ba4cada4923f5cde50b9a88590802170e3a6a0985b4a385abd",
+      "bytes": 1180653
+    },
+    {
+      "file": "pack-statistics.json",
+      "sha256": "53a972086fe03029c2ab8868ca20ef4209fc547c0d93438a647731d6c1199a2f",
+      "bytes": 217
+    },
+    {
+      "file": "pathway-approval-workbook.json",
+      "sha256": "2e93a87df600f08a8fe43a1cdef8dca81132dced0e3d43779b5c3268f16d4a95",
+      "bytes": 30251
+    },
+    {
+      "file": "prepare_continuation.py",
+      "sha256": "3594aa7a86f22959bed0d7ab27ec3bbfaf349824de15aea2b836eccc1e8230c7",
+      "bytes": 8929
+    },
+    {
+      "file": "prepare_final_review_aids.py",
+      "sha256": "e2b55a0fdf5f373a34f826ffb26b1ccc418b43afbe76958a221d855ebd671b9d",
+      "bytes": 13742
+    },
+    {
+      "file": "prepare_geography.py",
+      "sha256": "60345cf522ff6808c5eeb226314c1ca787d0412451dec2b8867b8c1b81af9b8b",
+      "bytes": 3456
+    },
+    {
+      "file": "prepare_review_pack.py",
+      "sha256": "63c6d65191e58078d1be59473032ec7af1920f056623cb266c319b5d2f5d4211",
+      "bytes": 72475
+    },
+    {
+      "file": "prepare_user_and_service_drafts.py",
+      "sha256": "e2665745fac92de59c0b1b4981609401c06e542141de789d79289dcfc9dfc943",
+      "bytes": 13551
+    },
+    {
+      "file": "provider-candidates-review.json",
+      "sha256": "18ca9af46b1bcf2fc39903b4928a4b2fec99bc91f7b8635b95fe2530bb13bfc4",
+      "bytes": 7539
+    },
+    {
+      "file": "quarantine/proc-small-claims.pdf",
+      "sha256": "52d501d83683e020f5796fcfaf37413edfbd9bd71a727f0ebd28fbb4828dccca",
+      "bytes": 260822
+    },
+    {
+      "file": "quarantine/proc-small-claims.txt",
+      "sha256": "fbade5e85f8ce2640848ad5c86bbb7e91a37f637aec6bd3112c47a968f612bee",
+      "bytes": 2803
+    },
+    {
+      "file": "quarantine/rejected-small-claims-download.json",
+      "sha256": "de8da7ccb2fe066adf70747cf4e9cc5644611bd5d7059cce4f659433d2732466",
+      "bytes": 913
+    },
+    {
+      "file": "requirements-matrix.csv",
+      "sha256": "aab102181212f49ac690d6af595f5a566f83b1b75faa1ba75196d6a80cacd123",
+      "bytes": 7853
+    },
+    {
+      "file": "review-queue.csv",
+      "sha256": "f6e5b3d9ed059343e7bd081e5d8126b7e05952ad3bddac2466d679a05162c791",
+      "bytes": 40982
+    },
+    {
+      "file": "source-files/adr-accreditation.pdf",
+      "sha256": "add4122ebd44795f916f359a04e76e86002cdfdc75db7db99c3f0f007a88f625",
+      "bytes": 1227471
+    },
+    {
+      "file": "source-files/adr-arbitration-act.pdf",
+      "sha256": "e7d8263559a3d6ed2cd53e93c89b594765925c0f368445ce29ad70b4c2040157",
+      "bytes": 814537
+    },
+    {
+      "file": "source-files/adr-arbitration-rules.pdf",
+      "sha256": "8aa7aef85ee063084a71423cc54b194d05be901323bc0c1d4e1ab541887edd15",
+      "bytes": 2262748
+    },
+    {
+      "file": "source-files/adr-conduct.pdf",
+      "sha256": "26aa1004b9bf42067aff1dd60fcc2d30fc1725b7d09d66fee5a36edfe3bd9f71",
+      "bytes": 925331
+    },
+    {
+      "file": "source-files/amendments-legal-sector-2023.pdf",
+      "sha256": "6ecfc75650da91624f467ca7cc0885be4ecb10f09fc96a5c10b8bc204127d3cc",
+      "bytes": 518396
+    },
+    {
+      "file": "source-files/amendments-misc-1-2025.pdf",
+      "sha256": "d279f62abda5a2ecd77be54778144d74b46adaafe55291c1624b6f8e26f53f90",
+      "bytes": 295174
+    },
+    {
+      "file": "source-files/amendments-misc-2-2025.pdf",
+      "sha256": "b92496b514b272665e7d9d0d738a973c7c3d868c282b4ee51f2c229b0aa56d46",
+      "bytes": 173901
+    },
+    {
+      "file": "source-files/amendments-misc-2024.pdf",
+      "sha256": "9532617fdbd294349b25ec90177f563f7ef5babb32897838e42a51fb9d4bca4d",
+      "bytes": 481463
+    },
+    {
+      "file": "source-files/base-child.pdf",
+      "sha256": "3f08c46fccf036c82853b2bfe379d42e4f3df2b2d339af326204e24b3ac44eb7",
+      "bytes": 865875
+    },
+    {
+      "file": "source-files/base-constitution.pdf",
+      "sha256": "d27a2826a8d18a55dd87365ad53c97df8b0f1a744ee905180487b339c8cfa1e6",
+      "bytes": 519689
+    },
+    {
+      "file": "source-files/base-elra.pdf",
+      "sha256": "16b46130dede13b77fd925a1208ddc340f4cf46fb8c65457e5f8655859442280",
+      "bytes": 945664
+    },
+    {
+      "file": "source-files/base-land.pdf",
+      "sha256": "a20814a7d879d3178bf749f78ebe2603c11a024e21f749f6d8df7438748538cf",
+      "bytes": 1492065
+    },
+    {
+      "file": "source-files/base-legal-aid.pdf",
+      "sha256": "8f08f04b92726d3253caac789228023a5e8f0dc06b09ffb06b4838e924743e70",
+      "bytes": 645709
+    },
+    {
+      "file": "source-files/base-marriage.pdf",
+      "sha256": "0230b8cc1997412f42a62d25e11fbf28c23c60616199ebbda668c73a2f1b5c12",
+      "bytes": 910582
+    },
+    {
+      "file": "source-files/base-privacy.pdf",
+      "sha256": "0c1ec2168bd30c95198eb70fee3db09052da83397100781df13e0bab8c77703f",
+      "bytes": 835674
+    },
+    {
+      "file": "source-files/base-village-land.pdf",
+      "sha256": "f78c163958b2e1ba878a01fef9d5e8a52811fab6011061f642789403920de931",
+      "bytes": 996321
+    },
+    {
+      "file": "source-files/case-estate-lonyamali.pdf",
+      "sha256": "d14eaad983ab72aef20bb1dd8c2ca7c206d89960be46d620a20e8f513ee901d5",
+      "bytes": 269483
+    },
+    {
+      "file": "source-files/case-inheritance-latifa.pdf",
+      "sha256": "0ec63df67d997e99d83cf200240298daf52c2559f3de870f0abcacc212051f64",
+      "bytes": 247384
+    },
+    {
+      "file": "source-files/case-labour-oath-2022.pdf",
+      "sha256": "27bc33ccb75e7ed21c8283af29f7defdcbc7f9b1c6ba4fa3703926c483b3fbdc",
+      "bytes": 238360
+    },
+    {
+      "file": "source-files/case-land-mabula-2024.pdf",
+      "sha256": "678038faafd5478e68b485f3fe28a29fb64302225d2c09498911ef724606b2c7",
+      "bytes": 331923
+    },
+    {
+      "file": "source-files/case-land-seth-2024.pdf",
+      "sha256": "79f2b948c9f1614c0a1d760d2110bf2d5dbe139cc46a6aa47615aa02fa3b30da",
+      "bytes": 222553
+    },
+    {
+      "file": "source-files/child-juvenile-rules.pdf",
+      "sha256": "71a1a47f90227c85564d5a0a327b42cc884340a6dd2da73d0a655045e0ecb5e9",
+      "bytes": 1657737
+    },
+    {
+      "file": "source-files/civil-birth-death.pdf",
+      "sha256": "818dd7883b3c3dc37d9d170c6351722b0f85eb9367cdb3e5e8c45ee635a9852e",
+      "bytes": 591272
+    },
+    {
+      "file": "source-files/cma-fees-2025.pdf",
+      "sha256": "1f06a9f5bbb54697876b1ce16406d5ba0d0697413b0c0083ff565f8360037e69",
+      "bytes": 201495
+    },
+    {
+      "file": "source-files/cma-guidelines.pdf",
+      "sha256": "0352b9a3dab7fad4fa25a6d88d3900416cc5ac03d40f59e60bfa369ddf6b5c81",
+      "bytes": 16429038
+    },
+    {
+      "file": "source-files/cma-procedure.pdf",
+      "sha256": "04d7a0cb9eaf511c598909fc7d82268518d2a4bceada9bc3e20b1c529c6e4126",
+      "bytes": 16429038
+    },
+    {
+      "file": "source-files/consumer-fair-competition.pdf",
+      "sha256": "9abb3196e38da5f3363d59102a995c8b9f1261012a9f6164451627781aeaf538",
+      "bytes": 991466
+    },
+    {
+      "file": "source-files/consumer-fcc-procedure.pdf",
+      "sha256": "a378de8a324f9324fa8efe5c914fc39d7bb126931823238f4cd633f0a675dea7",
+      "bytes": 749789
+    },
+    {
+      "file": "source-files/contract-act.pdf",
+      "sha256": "e7cbaf3b266457d8f2809119d9230b6e801cd096ee6c2e3bccf7dc7887146aac",
+      "bytes": 840093
+    },
+    {
+      "file": "source-files/corruption-act.pdf",
+      "sha256": "2150d0cc3ad7af1944a347116f0819be07b8c888555dfee978d918e57b54ea0f",
+      "bytes": 695661
+    },
+    {
+      "file": "source-files/courts-magistrates.pdf",
+      "sha256": "189ac61a6af84a6e564c07f9b3f58aad91ed5a1a7ebe67f8793212b08f3d4a37",
+      "bytes": 930852
+    },
+    {
+      "file": "source-files/crim-penal.pdf",
+      "sha256": "bb559f433ad8c580e74042f7802e4925045d202cbc3a27eb478496a4e607fefd",
+      "bytes": 1369688
+    },
+    {
+      "file": "source-files/crim-procedure-supplement-2025.pdf",
+      "sha256": "3215c18e37ceee7c55be5eb9961f941b93d82f88a8dccdd22de63c64d038d2e5",
+      "bytes": 1899008
+    },
+    {
+      "file": "source-files/crim-procedure.pdf",
+      "sha256": "023b9da4adbe7b49e270741e5e1ff68ea2ba8f89cce385c26749f06bd0cae9f1",
+      "bytes": 1788583
+    },
+    {
+      "file": "source-files/disability-act.pdf",
+      "sha256": "98cc8cb37556d073eb49d5b57fde28dce6cd8805d9abfc7dd60b6f7c989b1c53",
+      "bytes": 750507
+    },
+    {
+      "file": "source-files/employment-amendments-2025.pdf",
+      "sha256": "8b936bb10b5ac0d3179cf3618d0e78ea9c4863f109a6de791d0118bc099de6d7",
+      "bytes": 163685
+    },
+    {
+      "file": "source-files/employment-forms-readable.pdf",
+      "sha256": "c01776c927adead4393474d4889e3376158b69b23f95ee2e9bf74c6a8dbc55d5",
+      "bytes": 917982
+    },
+    {
+      "file": "source-files/employment-general-forms.pdf",
+      "sha256": "584fffbef3eb0383e4faff974e74bf5362f8085d05a387f1d8cf9b7d22e21d02",
+      "bytes": 14836253
+    },
+    {
+      "file": "source-files/employment-institutions.pdf",
+      "sha256": "6c687a5f225cb99110df6abe28a22f7cc1a33bc115ee760ccd9c7ece93dd5593",
+      "bytes": 724788
+    },
+    {
+      "file": "source-files/environment-act.pdf",
+      "sha256": "12a73786a078b645e593b9a3734d4bd0b99321b12e2001b7c9b29bb9ab8c1ff8",
+      "bytes": 1267357
+    },
+    {
+      "file": "source-files/environment-amendment.pdf",
+      "sha256": "924baaed560cb0b3577ac52b2ee704d40f547bd52e0b529b5a506caaaad89f00",
+      "bytes": 210481
+    },
+    {
+      "file": "source-files/estates-amendment-2025.pdf",
+      "sha256": "536289083edba503f553c9393eb96897211dc4104e34e3ccb4b0176f104a7501",
+      "bytes": 523478
+    },
+    {
+      "file": "source-files/estates-primary-amendment-2025.pdf",
+      "sha256": "b23b294a09a6e62b01406f97f63d63e3750d02151b825aa2e15291cd707b7132",
+      "bytes": 473666
+    },
+    {
+      "file": "source-files/estates-probate.pdf",
+      "sha256": "eed7a6d29170c932b25eb42ee7a0d95138b103ff4f7ceae19c8f7fd316aec87e",
+      "bytes": 885814
+    },
+    {
+      "file": "source-files/estates-rules.pdf",
+      "sha256": "3bc2bbeabc824a9d05deb289d5a1d18df2e1003fc59f572ac0e36a041c928df2",
+      "bytes": 989849
+    },
+    {
+      "file": "source-files/family-gyumi-appeal.pdf",
+      "sha256": "79d538dfe3260e8626a5ce7e1ef7d97f17f7c317788fab6e7eafdb96059f6ed2",
+      "bytes": 764866
+    },
+    {
+      "file": "source-files/family-gyumi-high-court.pdf",
+      "sha256": "8ba6f79942dd799852b7268cddad23e0f6f7a1595d4d7792a92d9b2caeee6196",
+      "bytes": 729310
+    },
+    {
+      "file": "source-files/fcc-amendment-2024.pdf",
+      "sha256": "af1f70230914d2960f5b936e26ec2d705eb35c3cbdbd0b40e0101e6c15293efd",
+      "bytes": 391097
+    },
+    {
+      "file": "source-files/fcc-consumer-procedure.pdf",
+      "sha256": "33412744fb0cac260b751bd6f3d598589fefdde836803c1abe38be49ef973378",
+      "bytes": 1908818
+    },
+    {
+      "file": "source-files/fcc-current-act.pdf",
+      "sha256": "9abb3196e38da5f3363d59102a995c8b9f1261012a9f6164451627781aeaf538",
+      "bytes": 991466
+    },
+    {
+      "file": "source-files/fcc-dominance-2026.pdf",
+      "sha256": "0499c16902df2711af4285e557ccb95eac0f8a78035dfcb59884d465056b07b8",
+      "bytes": 349348
+    },
+    {
+      "file": "source-files/fcc-standard-contracts.pdf",
+      "sha256": "677b00d839b6dbbf1efe9fd6e8ebec5ade9aaff4bf7fee455e250d9e2fae9a3b",
+      "bytes": 506990
+    },
+    {
+      "file": "source-files/fcc-tribunal-rules.pdf",
+      "sha256": "9b02d3993e89f49365f540c8f3043f43921afb000e93d58affcc6e2fea125421",
+      "bytes": 2773767
+    },
+    {
+      "file": "source-files/fin-bot-amendment-2025.pdf",
+      "sha256": "4f4871240e6573ce02b8d5cf1e2fa5f6090fd9bad286aa3dec8cf531b8e9547f",
+      "bytes": 325749
+    },
+    {
+      "file": "source-files/fin-bot-guidelines-en.pdf",
+      "sha256": "2da211dee0acf959131dfb38f568122ed2f0a4f741123f1ca9abae5449e8d30f",
+      "bytes": 1113558
+    },
+    {
+      "file": "source-files/fin-bot-guidelines-sw.pdf",
+      "sha256": "2da211dee0acf959131dfb38f568122ed2f0a4f741123f1ca9abae5449e8d30f",
+      "bytes": 1113558
+    },
+    {
+      "file": "source-files/fin-bot-regulations.pdf",
+      "sha256": "0b2c2bdc03f14a6a06a7488e08c0eb18174bfe5ab54a13deb47d978bf6c9189f",
+      "bytes": 590265
+    },
+    {
+      "file": "source-files/hiv-rights.pdf",
+      "sha256": "50177c64c906f2e707528cb994bf7073a6b96a6514e7e457242118f5eb4d7d25",
+      "bytes": 655687
+    },
+    {
+      "file": "source-files/immigration-act.pdf",
+      "sha256": "7f60d80ac9e8e199f0dc26b0372d1087f16a7cd87404d465277ecb6b372bf39f",
+      "bytes": 717284
+    },
+    {
+      "file": "source-files/labour-court-readable.pdf",
+      "sha256": "39b7993d833203c2d09e8704f1449b14adc6b45754b8d77268b951467c8bf4c2",
+      "bytes": 935016
+    },
+    {
+      "file": "source-files/labour-court-rules.pdf",
+      "sha256": "5d8a54176148fdf8ed68f74da3f41c83d0909ed3dd2f6b136ed623eb842ce749",
+      "bytes": 7623563
+    },
+    {
+      "file": "source-files/labour-institutions-general.pdf",
+      "sha256": "fb8ec43376e8d4619a5735e72effdda221384195d5bfdfb034dcae3a17be204a",
+      "bytes": 369876
+    },
+    {
+      "file": "source-files/land-acquisition.pdf",
+      "sha256": "a7cef935eb70c42897019669e8944d93a92bef5be24c96869d58fa449f84935b",
+      "bytes": 628923
+    },
+    {
+      "file": "source-files/land-disputes.pdf",
+      "sha256": "eb0eb9437c9526395035f0fad83dc15f7e5a5e852943d55c9eb67ead9d18ce51",
+      "bytes": 640736
+    },
+    {
+      "file": "source-files/land-tribunal-2023.pdf",
+      "sha256": "a6b99607249d8341d27c4065c8e24783e5b491e88db64689cb0c68020e44582a",
+      "bytes": 339928
+    },
+    {
+      "file": "source-files/land-tribunal-principal.pdf",
+      "sha256": "5c89f0744e2c60fed7cd67285c6496aebdb54b534ea3744c750561ec29a639e1",
+      "bytes": 795181
+    },
+    {
+      "file": "source-files/legal-aid-regulations.pdf",
+      "sha256": "dbeba356afb63d50f8d8a78634916f93c2e7681d838c6c1c5237f3503f84bdf9",
+      "bytes": 374247
+    },
+    {
+      "file": "source-files/legal-aid-supplement-2025.pdf",
+      "sha256": "c542a3d7629541686b972ff6ced6de0c2d58e4680200c53bd2a9286d7d5bee42",
+      "bytes": 426193
+    },
+    {
+      "file": "source-files/personal-customary-no2.pdf",
+      "sha256": "c6c256f9dbcd5f6cc236d6c0423196399440109749bf1a2c51101af386227244",
+      "bytes": 187362
+    },
+    {
+      "file": "source-files/personal-customary-no4.pdf",
+      "sha256": "e3a772e37849d2c65461c9243cd23b7756a651952bf79ff0b5167ed80cf582a6",
+      "bytes": 240099
+    },
+    {
+      "file": "source-files/personal-islamic-restatement.pdf",
+      "sha256": "c9a5f197f2cb213ed3bc78ceb85078d6c03d2603ba3bb18b3ed981fc83bcba73",
+      "bytes": 520116
+    },
+    {
+      "file": "source-files/privacy-complaints.pdf",
+      "sha256": "b478825c86acfddaa5f87c405d4d87d3132c563e33087732a6d2ae4dbdc9075d",
+      "bytes": 188831
+    },
+    {
+      "file": "source-files/privacy-processing.pdf",
+      "sha256": "f9adfdb2b956c8c9b4c6e4c10aecf8aa8a87909480b6f3c724b6d1a3b454a0aa",
+      "bytes": 260425
+    },
+    {
+      "file": "source-files/proc-appeal-amendment-2024.pdf",
+      "sha256": "aad85aea8b6ab059f2c1746fe2139c8ac91d9246e3646e21b79235f25a3521e0",
+      "bytes": 444281
+    },
+    {
+      "file": "source-files/proc-appeal-amendment-2025.pdf",
+      "sha256": "ab265b26887fa2615a4b6d7e79f5793ac7cc5335b600413b36af5651b7553147",
+      "bytes": 150697
+    },
+    {
+      "file": "source-files/proc-appeal-principal.pdf",
+      "sha256": "d1235b521afea1dfd117b8aadf38b777044017c9e64660ff7ddeac9e1d1094aa",
+      "bytes": 284860
+    },
+    {
+      "file": "source-files/proc-applicable-laws.pdf",
+      "sha256": "e5a0335df213b1937e2d14670c1c066e01073ede9127499a0660850ad70769bd",
+      "bytes": 572043
+    },
+    {
+      "file": "source-files/proc-civil-forms-2022.pdf",
+      "sha256": "b0b0a0cce7b9b35c4df451c15c655945054d9bf77f9a095905f5404ef1e676c0",
+      "bytes": 535086
+    },
+    {
+      "file": "source-files/proc-civil.pdf",
+      "sha256": "3b9c5dd74dcd11016fc2c93353337a7c9c30247eaef23d3a1b8b99552c52095c",
+      "bytes": 1892019
+    },
+    {
+      "file": "source-files/proc-court-fees-2018.pdf",
+      "sha256": "d87e3d11a06c8141d3886bdc3630c1ea8aec24beae8eb172eba4afc8db0ba365",
+      "bytes": 240229
+    },
+    {
+      "file": "source-files/proc-court-fees.pdf",
+      "sha256": "bb7be9e1ba7d5c8ad000613a96d97aea29efdbe4773368f972435f6db35d96d7",
+      "bytes": 430431
+    },
+    {
+      "file": "source-files/proc-ecms-guide.pdf",
+      "sha256": "5354d4562501788b9ee6ba9670212e581bf03a383a7a4ae5b4f3c472edd34065",
+      "bytes": 2427606
+    },
+    {
+      "file": "source-files/proc-efiling.pdf",
+      "sha256": "0b233b534323c25050bab3db4fe88fd4c4f34b659cd6b53bbca445b15487b3ab",
+      "bytes": 608414
+    },
+    {
+      "file": "source-files/proc-evidence.pdf",
+      "sha256": "900e26d118c30eb6c00f8f6f5131cf35ff5555f17e474d9141caba066038baaa",
+      "bytes": 885952
+    },
+    {
+      "file": "source-files/proc-government.pdf",
+      "sha256": "5faed28b70df47979c9b1e27045481d1bbc32ff0dd47e53e76adaffdef86581d",
+      "bytes": 574289
+    },
+    {
+      "file": "source-files/proc-judicial-review.pdf",
+      "sha256": "67c4a947fd71d8a4c1f06316d8133d3a745014563a08fbad75a714763f635db6",
+      "bytes": 4261771
+    },
+    {
+      "file": "source-files/proc-limitation.pdf",
+      "sha256": "f92e1ee5e6057e6c4f04dac3194190bd22f647a2089dd94d3dbca39648c22f88",
+      "bytes": 673620
+    },
+    {
+      "file": "source-files/proc-small-claims.pdf",
+      "sha256": "5b335a1b527ba227c7d86e365c26db5715f2034b6cbca8dcbf3c4bd46a44ac34",
+      "bytes": 408738
+    },
+    {
+      "file": "source-files/refugees-act.pdf",
+      "sha256": "25f96ad86ba683c1debbcad3662650a5732ce5ea259eb48a600e58f033dd72f8",
+      "bytes": 671856
+    },
+    {
+      "file": "source-files/rights-chragg-act.pdf",
+      "sha256": "ef8d5791fec7ad5f769b8b065efa131f5ad4e3a8d538b0ccefc1a177cbe27362",
+      "bytes": 679798
+    },
+    {
+      "file": "source-files/rights-enforcement.pdf",
+      "sha256": "34fe7dc16eaf75226ed2ef0cc08b5e533d2936653ef93df62dae649b477c3abd",
+      "bytes": 544065
+    },
+    {
+      "file": "source-files/safe-fgm-en.pdf",
+      "sha256": "07597614697a057139991ca472e19cf4459b6498422bed60915c82ac08cf7396",
+      "bytes": 4471599
+    },
+    {
+      "file": "source-files/safe-fgm-sw.pdf",
+      "sha256": "09b5db3d6cba3d22d19eeacd3de4977637bc057d6abf4b60654008b00d98e44f",
+      "bytes": 4037865
+    },
+    {
+      "file": "source-files/safe-homes.pdf",
+      "sha256": "86af95d9aa4bb91ccc9d6668ba8540f57850d59d05ade81f59a0539df30ec822",
+      "bytes": 1126491
+    },
+    {
+      "file": "source-files/safe-npa-ii.pdf",
+      "sha256": "1fa125af2460f51307a4f306d5e1b09e444c2d3fd537d446e274857afd46eb68",
+      "bytes": 1670994
+    },
+    {
+      "file": "source-files/safe-witness-act.pdf",
+      "sha256": "e7523e2b5d1bd812da96e1a4bc97c6913406418257ae833572a7cf6a8c618fd4",
+      "bytes": 550518
+    },
+    {
+      "file": "source-files/social-benefits-2018.pdf",
+      "sha256": "6d1341c6e626f38397b084250f5aad4533c204423b459c353c70288961720d00",
+      "bytes": 392618
+    },
+    {
+      "file": "source-files/social-benefits-amendment-2022.pdf",
+      "sha256": "3e15eecd045a7cc3b95d7df368608bb9704a7f0b1cd11d05f3a4430da01b1baf",
+      "bytes": 684547
+    },
+    {
+      "file": "source-files/social-benefits-amendment-2024.pdf",
+      "sha256": "5f3aa5a09da166e9b1de9d6570cb5cb4b66a6b76964900e38319f76e99284d2e",
+      "bytes": 231516
+    },
+    {
+      "file": "source-files/social-nssf-complaint-form.pdf",
+      "sha256": "abd52c8f8755e92d2efd530470d2927daf2aabdb30d8ff5c56c9c262300fce0a",
+      "bytes": 79998
+    },
+    {
+      "file": "source-files/social-nssf.pdf",
+      "sha256": "2a820e67ed109cd360595ab9c732b7006e94027e16e5a0d4b751ff5e197bec98",
+      "bytes": 773203
+    },
+    {
+      "file": "source-files/social-psssf-2025.pdf",
+      "sha256": "b5c92ea1a2663edf5b2f5b777be840710804f2085f06078cf9ad3d96f84ba447",
+      "bytes": 535618
+    },
+    {
+      "file": "source-files/telecom-committee.pdf",
+      "sha256": "ad57ac61ee21de25c82ba3a66c9ff37dee37ff2dddde9ed4d9ad4ab1f864193b",
+      "bytes": 156747
+    },
+    {
+      "file": "source-files/telecom-consumer-regulations.pdf",
+      "sha256": "b830aafdb0e74ff11cfa65a26312beb45ddd77f6361e7971bcf6a514f112061c",
+      "bytes": 147623
+    },
+    {
+      "file": "source-files/telecom-guideline-2020.pdf",
+      "sha256": "bedd690627c2b55d4a2d493a75746c52ba111e80df5de6e0f942e6006e1ff3f6",
+      "bytes": 112345
+    },
+    {
+      "file": "source-files/telecom-guideline-undated.pdf",
+      "sha256": "4c679a0beddfaa12931190e052a474e4da30fcb315eef1652aaaac5ec35f198e",
+      "bytes": 239896
+    },
+    {
+      "file": "source-files/trafficking-act.pdf",
+      "sha256": "c2bc29e39ed54df0de9c4f3d7a4ea91e92a07324b794e88d74e8fab159bff10c",
+      "bytes": 635809
+    },
+    {
+      "file": "source-files/utilities-complaint-rules.pdf",
+      "sha256": "b21a141babc91b390c931f6f8817076432957b69a7956aa3621597c43ae253fd",
+      "bytes": 543540
+    },
+    {
+      "file": "source-files/wcf-amendment-2021.pdf",
+      "sha256": "85863161e0197bff7613d486a6e14bae8d2de3b80b5e8564d8b16f5252887b5c",
+      "bytes": 217366
+    },
+    {
+      "file": "source-files/wcf-claim.pdf",
+      "sha256": "5346b8609206156ad7d1da9703d1dd22ee1f7b2d45b90516f8c5ecdbb9226751",
+      "bytes": 571109
+    },
+    {
+      "file": "source-files/wcf-notification.pdf",
+      "sha256": "800c06dbe1fe61429ab555ac896b858c32c07018e5c82f12ea23cb09450ea208",
+      "bytes": 229137
+    },
+    {
+      "file": "source-files/wcf-regulations-2016.pdf",
+      "sha256": "e0571eafabf55e10958733155c33567cb00456b919aec6c83988bcee82aa6c8d",
+      "bytes": 692998
+    },
+    {
+      "file": "source-files/wcf-regulations-version.pdf",
+      "sha256": "0000f4b9d011293181262b75a66bc43bf9b338e31a0ed43f111fece5ec111ecb",
+      "bytes": 413700
+    },
+    {
+      "file": "source-files/workers-compensation.pdf",
+      "sha256": "8a7528905a06d1f1dac7744d46f9f9d2e65780561b343b398a54b217e035cb70",
+      "bytes": 869007
+    },
+    {
+      "file": "source-files/znz-child-court-rules.pdf",
+      "sha256": "d1b1a81a71f6033bf2ce7ca17047da92ffbee831ad1bf39fbbb2d1318b820304",
+      "bytes": 778797
+    },
+    {
+      "file": "source-files/znz-child-gazette.pdf",
+      "sha256": "2997c5168406851282abf2e3d75086f10192c613ab283c9e23c94e54c7ab6fce",
+      "bytes": 1050347
+    },
+    {
+      "file": "source-files/znz-constitution-en.pdf",
+      "sha256": "43e5ea6305ef79df495ccb1f08d014b5d91b857e849ef0cd2b23fccd0962f56e",
+      "bytes": 1783311
+    },
+    {
+      "file": "source-files/znz-criminal-amendment-2021.pdf",
+      "sha256": "441ad73466ba45ebc1406d6bcac5dd7934c0f393500e5a920831cc9d83e3fa55",
+      "bytes": 208435
+    },
+    {
+      "file": "source-files/znz-criminal-procedure.pdf",
+      "sha256": "04cf988baae4f3f9fe745af5098de4e54577aae17387bd7bd94a7e59851ee35c",
+      "bytes": 1388028
+    },
+    {
+      "file": "source-files/znz-disability-rules-2022.pdf",
+      "sha256": "b35131a332162e53e1c2f6ce73759c4edd5468be1a737c7121fb74dd99a4ea0f",
+      "bytes": 298945
+    },
+    {
+      "file": "source-files/znz-employment-gazette.pdf",
+      "sha256": "8d57076a9c177c08d41cb07771ed532a256ac4f5f432bd8030e74fd4144b0041",
+      "bytes": 548061
+    },
+    {
+      "file": "source-files/znz-employment.pdf",
+      "sha256": "d7219598ab0b7c65b0b260ab4937f6065744f6d2e340db6c2aee4e2647082dbe",
+      "bytes": 9635173
+    },
+    {
+      "file": "source-files/znz-environment-gazette.pdf",
+      "sha256": "e6a5eddd4d1c8183920e93e86574744d5b4a6eb4ee2fe6bd87c07cec88c09128",
+      "bytes": 391715
+    },
+    {
+      "file": "source-files/znz-kadhis-2024.pdf",
+      "sha256": "a38044f94dab972b70ff615cb9ac8b6fab8b89ef648cd616c15301b2477001c4",
+      "bytes": 251471
+    },
+    {
+      "file": "source-files/znz-kadhis-rules-2021.pdf",
+      "sha256": "bbaf260133454d9c815fba35cd3077979d18aba6d81e1c83ddbfe2dc9108e49d",
+      "bytes": 519725
+    },
+    {
+      "file": "source-files/znz-kadhis-sw-2024.pdf",
+      "sha256": "07242761e340a30d805f39cf01a01f2d5cd216223b8dfa893993813a8e0feefe",
+      "bytes": 295313
+    },
+    {
+      "file": "source-files/znz-labour-relations.pdf",
+      "sha256": "6a7a96f583c7d8136e2132c0c032e5780f68f654f543f67d27ade508058db9e5",
+      "bytes": 493501
+    },
+    {
+      "file": "source-files/znz-legal-aid-rules.pdf",
+      "sha256": "1cffbcafb058b356a451557ed38131f4f02d5288de49512eb9a238ea7d1c2226",
+      "bytes": 358293
+    },
+    {
+      "file": "source-files/znz-penal-2018.pdf",
+      "sha256": "9709c1cc810d417047705f6ce26c594376cab044f592d7634c9b81990e2274b3",
+      "bytes": 849476
+    },
+    {
+      "file": "source-files/znz-provider-list.pdf",
+      "sha256": "b13c109b9a10341c0c30fd99f5762e2d53c5c39eac7f429e8ae8c19c2e80244d",
+      "bytes": 68629
+    },
+    {
+      "file": "source-followups.csv",
+      "sha256": "e30d72ed506d94beb8e5bf0d21377368305fb56bb039fc0550af0c4ba63110c7",
+      "bytes": 18083
+    },
+    {
+      "file": "source-identity-triage.json",
+      "sha256": "eb447629a80b053467ac6dd3954e7bc479427330402e4bde68b08e64f0899873",
+      "bytes": 122641
+    },
+    {
+      "file": "source-pages/adr-accreditation.html",
+      "sha256": "d74f85c7563751e7282535b456382ccccce189bcc1472ffd6320e782455b7233",
+      "bytes": 486406
+    },
+    {
+      "file": "source-pages/adr-arbitration-act.html",
+      "sha256": "1e3eaeb2004b56be0beb1f6317d3e94f88fe41693a5a36d399f0612bd818217a",
+      "bytes": 485459
+    },
+    {
+      "file": "source-pages/adr-arbitration-rules.html",
+      "sha256": "d3b9c382468bfc74136989f67167b5381f5d8ba85ad8235430d81c7adb25fd26",
+      "bytes": 484670
+    },
+    {
+      "file": "source-pages/adr-conduct.html",
+      "sha256": "31702e870ffa54054bfead800c6a9dfe6d525022e048ca458b01ba8af06cdeda",
+      "bytes": 485597
+    },
+    {
+      "file": "source-pages/amendments-legal-sector-2023.html",
+      "sha256": "a5bb4178bb201106d6babd83745d1f668f867812dfce0c3a02c51e6dabb9d34a",
+      "bytes": 480363
+    },
+    {
+      "file": "source-pages/amendments-misc-1-2025.html",
+      "sha256": "d336b94e08bd78df5d1811d5bef4905828dd2ab2c912413e4b099cfc6c542af8",
+      "bytes": 479308
+    },
+    {
+      "file": "source-pages/amendments-misc-2-2025.html",
+      "sha256": "62e4d03a4a647473e99c2edb051a29264d3fd53e83459f6fcfc3b6eb787d7bfc",
+      "bytes": 479378
+    },
+    {
+      "file": "source-pages/amendments-misc-2024.html",
+      "sha256": "5e98d53df2eee59dc6ac9037a1f0815c9e9c591d96f1cdad50dde9fb28d3bcd6",
+      "bytes": 479175
+    },
+    {
+      "file": "source-pages/case-estate-lonyamali.html",
+      "sha256": "2d203625511844a35f5666490d2466ca31fe08af33d261c3cf834070602dc7da",
+      "bytes": 477154
+    },
+    {
+      "file": "source-pages/case-inheritance-latifa.html",
+      "sha256": "028f7bf40899cfa1b72c5fe8969a7fd8e53e479d95cf175ca578a0b98ddee319",
+      "bytes": 477683
+    },
+    {
+      "file": "source-pages/case-labour-oath-2022.html",
+      "sha256": "7c5c12aee962b5eda7eef940ea086e280c145cb7b18c4ac76e46b51b8073dc9a",
+      "bytes": 488766
+    },
+    {
+      "file": "source-pages/case-land-mabula-2024.html",
+      "sha256": "147bb586c852fc96a26bac46a34cee1e1bd9475a2a8a8692f016ba7de1614492",
+      "bytes": 483997
+    },
+    {
+      "file": "source-pages/case-land-seth-2024.html",
+      "sha256": "8feec2cce797c60859c96ddc72f50c51c5f0a0dcb4ce5cfcbd892217c027c304",
+      "bytes": 485245
+    },
+    {
+      "file": "source-pages/civil-birth-death.html",
+      "sha256": "7ed4598d0b3ba49e39c3f6db118607471fb7ea07355b9f1885dae75932118914",
+      "bytes": 489087
+    },
+    {
+      "file": "source-pages/cma-faq.html",
+      "sha256": "7cfb927bcd6d7ff3017943f4116c0e29b26c73e513405478ab7429d08f39a697",
+      "bytes": 31792
+    },
+    {
+      "file": "source-pages/cma-guidelines.html",
+      "sha256": "bb184540c903322df8e433e13178795d6cfecfb7a6b624e54349dc6d37e6f06f",
+      "bytes": 485245
+    },
+    {
+      "file": "source-pages/cma-procedure.html",
+      "sha256": "5047eda3d650b75b8c7bac491c9851315fff86ec8fcfbc81b18bc499a10df6ed",
+      "bytes": 483869
+    },
+    {
+      "file": "source-pages/cma-rules.html",
+      "sha256": "1d37776e7b03b16ac9bf55ad0fc69190ddd089dda5727feb5a44cc7f871b22cb",
+      "bytes": 25470
+    },
+    {
+      "file": "source-pages/consumer-fcc-framework.html",
+      "sha256": "927b537119560f31f8d4fe926fbc5e5d843c714a2d0e6ee990372b4a015a2dbb",
+      "bytes": 846
+    },
+    {
+      "file": "source-pages/crim-penal.html",
+      "sha256": "7f50c87f055d74e5f7ccf71da3c79482ac12c362bceae915afea9d1575ac20a1",
+      "bytes": 485491
+    },
+    {
+      "file": "source-pages/crim-procedure-supplement-2025.html",
+      "sha256": "da6d3532ad7673442e5815e1d4965f674843b2a4f9d09460175fb5d8871efc5e",
+      "bytes": 482984
+    },
+    {
+      "file": "source-pages/crim-supplement-discovery.html",
+      "sha256": "bac2a73e8408e067f3245b33d83beaedbc176b150fa2a67fb54251d4350b2de4",
+      "bytes": 463620
+    },
+    {
+      "file": "source-pages/employment-general-forms.html",
+      "sha256": "8a40dda665a1e3a864aab6fdae280ef05c1304e5652e5a60c5325351f10cceeb",
+      "bytes": 484751
+    },
+    {
+      "file": "source-pages/employment-institutions.html",
+      "sha256": "e657cc24e9a65b62011093101c2ae64e3c71b1a5de8b44f84d639d8a5b3c31b9",
+      "bytes": 488823
+    },
+    {
+      "file": "source-pages/environment-act.html",
+      "sha256": "7d214a1584b31cccc869b2f0a220d01051dc56e6174602c57d1a5ca6df825eac",
+      "bytes": 490807
+    },
+    {
+      "file": "source-pages/environment-amendment.html",
+      "sha256": "768a8d49321bebd6db4f0082f78e790f5f518f64c95754ba3e7e5fb13568d584",
+      "bytes": 9431
+    },
+    {
+      "file": "source-pages/fin-bot-amendment-discovery.html",
+      "sha256": "3cb97f340cc82513dfb483f19f0a5075346f8737b066907dd075b4d008570e43",
+      "bytes": 115227
+    },
+    {
+      "file": "source-pages/geo-nbs-metadata.html",
+      "sha256": "20dbdd1e4c6a53172ec5d7ed07fc43784cc37b21437b55242ca315952d122d03",
+      "bytes": 49642
+    },
+    {
+      "file": "source-pages/geo-nbs.html",
+      "sha256": "1cb0018bab59ff7f361fac8ee38548d61d0bc899c0c90db94db1235a9bb8dc62",
+      "bytes": 49818
+    },
+    {
+      "file": "source-pages/hiv-rights.html",
+      "sha256": "f7824d5aae826d643281ce22fc8b749ea588f4174905004f896ba3b0b79faf4d",
+      "bytes": 488952
+    },
+    {
+      "file": "source-pages/immigration-act.html",
+      "sha256": "b0e7b90e08a4cbb18f4b403e3fb01e6c6b999e6fb5cd48b27918e80420b0aff1",
+      "bytes": 486539
+    },
+    {
+      "file": "source-pages/labour-court-rules.html",
+      "sha256": "fca32dfb127bf600b2bc0b500ef5a39d5a9c840e3fcbfdc3444535d4f8849cbe",
+      "bytes": 484778
+    },
+    {
+      "file": "source-pages/labour-institutions-general.html",
+      "sha256": "c525d4296e4881246bd41e3e782d8007dc5f53698dafffc7bed70b0880b51dc8",
+      "bytes": 484726
+    },
+    {
+      "file": "source-pages/land-acquisition.html",
+      "sha256": "b8c6da1ce0ce7cc506c21d72a10b807dfed8efc56340f85ebd0d0731ecb153b8",
+      "bytes": 488641
+    },
+    {
+      "file": "source-pages/land-tribunal-2023.html",
+      "sha256": "0217ec3ed7f5b53a5fe21272f8e7a96e544e067bc28307955dc5524f3f6135a2",
+      "bytes": 7700
+    },
+    {
+      "file": "source-pages/legal-aid-supplement-2025.html",
+      "sha256": "113de8a6102057ee23ad5d147a7732776bbf24d0fc9ac5aa3a6f8f6aede7b373",
+      "bytes": 482803
+    },
+    {
+      "file": "source-pages/personal-islamic-restatement.html",
+      "sha256": "16596975db0a6578fb9696774687d10e3fb8bbc915980570f7d1ff21c3f58650",
+      "bytes": 488550
+    },
+    {
+      "file": "source-pages/privacy-processing-discovery.html",
+      "sha256": "b3b9731cd8905cd41124141724fff48f16e8589abc72cceed410d220aef99247",
+      "bytes": 156500
+    },
+    {
+      "file": "source-pages/proc-appeal-amendment-2024.html",
+      "sha256": "ad4abf0a0e09dab4b3bec5c282146397b701434b398f4419ea01efd6feffdf82",
+      "bytes": 484898
+    },
+    {
+      "file": "source-pages/proc-appeal-principal.html",
+      "sha256": "bf4995c6aa619f2ac7edf33956548c59ebc10d381a59d0b987a1ea4d7f1a7e1c",
+      "bytes": 484624
+    },
+    {
+      "file": "source-pages/proc-applicable-laws.html",
+      "sha256": "8ba43df08c1a29b6f0d39535e7b06dda4d1def63c20207d427a98083ad5d9a5a",
+      "bytes": 488987
+    },
+    {
+      "file": "source-pages/proc-civil-forms-2022.html",
+      "sha256": "79dfccf3418967851eb106058df66d32c4d6163351e490742cfd30822590d782",
+      "bytes": 485409
+    },
+    {
+      "file": "source-pages/proc-evidence.html",
+      "sha256": "defe7864d5e1515ca28d6db9822c6231304f21afd20a1a50083620d145af06ab",
+      "bytes": 488861
+    },
+    {
+      "file": "source-pages/proc-judicial-review.html",
+      "sha256": "51204c069922cdd91478df388940eb02ea9f797aad1fceeac11a8df2ee487b4c",
+      "bytes": 485626
+    },
+    {
+      "file": "source-pages/rights-chragg-act.html",
+      "sha256": "28701fa2a7349b38368db63b3c38b07b485a3a9605a5f9b91bda9952755bc68e",
+      "bytes": 489410
+    },
+    {
+      "file": "source-pages/rita-faq.html",
+      "sha256": "24e058261c50e9a5449be244530a1ecf58da88bbc813c1e30187c0647852f363",
+      "bytes": 89523
+    },
+    {
+      "file": "source-pages/rita-portal.html",
+      "sha256": "b9c016560e654170f68464d25be7f046f826024939c6b7b91d96a0104bbf3385",
+      "bytes": 40804
+    },
+    {
+      "file": "source-pages/rita-services.html",
+      "sha256": "539c48b82464c300d595d6857b35625ce21df7ff3b7b61e1155f954049710ca6",
+      "bytes": 95874
+    },
+    {
+      "file": "source-pages/safe-npa-discovery.html",
+      "sha256": "81197d70142cf0ac2851c037f442c8cf6878a9ce1bcbec0f95a33ae3ecd3c511",
+      "bytes": 39238
+    },
+    {
+      "file": "source-pages/safe-witness-act.html",
+      "sha256": "fae054218fd5fcd73ce8d757fa42ab9b79680f41aa41ccf275de8821c0a5aaad",
+      "bytes": 489194
+    },
+    {
+      "file": "source-pages/services-lhrc.html",
+      "sha256": "1473641f5de62694af5792befab48131e82dc32ed567b19179eda9650c4f0124",
+      "bytes": 25271
+    },
+    {
+      "file": "source-pages/services-tawla-contact.html",
+      "sha256": "56049d88084e6f0fb1350279f9d847aa15420199629dbc732b6c80c840dc3943",
+      "bytes": 81575
+    },
+    {
+      "file": "source-pages/services-tawla.html",
+      "sha256": "002439d82f915a25b5638475f5b974bb5e2a5c62abd018e28176bce5789ed0d5",
+      "bytes": 71502
+    },
+    {
+      "file": "source-pages/services-tls.html",
+      "sha256": "00c923da9d1e849158c7afac5e1fba6d4f4b84d95c23a0893a9e43099bf08675",
+      "bytes": 691
+    },
+    {
+      "file": "source-pages/services-wlac-scope.html",
+      "sha256": "65cb13687d463e4506c60627aa7ac54b0b87f76cc28b66b47296b1604e7760b7",
+      "bytes": 25564
+    },
+    {
+      "file": "source-pages/services-wlac.html",
+      "sha256": "c14e497fb358082c5300a81975d24dca1bccb41de7456d539306846e6804d9ca",
+      "bytes": 43970
+    },
+    {
+      "file": "source-pages/services-zls.html",
+      "sha256": "2b997cb3a0fd8887249cd6919e2aba1d070f4bc8121925d1415d932baf430bf8",
+      "bytes": 550912
+    },
+    {
+      "file": "source-pages/services-zlsc.html",
+      "sha256": "8bbb9aa7d00d512acc3dd9c359f7ff33c6695c4b5fbdd6a95cbf29901f8157b6",
+      "bytes": 93056
+    },
+    {
+      "file": "source-pages/social-nssf-forms-catalogue.html",
+      "sha256": "13a050303dc4ddfa1ad914e473b5fb6014b8ef5a7ab9a465f15064cc9e5cf1e4",
+      "bytes": 32222
+    },
+    {
+      "file": "source-pages/social-nssf.html",
+      "sha256": "9581bb2f0af6645698373685db131d66caa3731b7938ebc5b10ec302be2e5494",
+      "bytes": 488903
+    },
+    {
+      "file": "source-pages/social-psssf-2025.html",
+      "sha256": "2c06dce632327067d8907dc55879331ac2bf82fe14a64319a6fdd3827c757029",
+      "bytes": 484734
+    },
+    {
+      "file": "source-pages/telecom-rules.html",
+      "sha256": "e1cddf391f860d07b4ff918866c60b340ca43b10aa88a12013ce29cc23aff3af",
+      "bytes": 120818
+    },
+    {
+      "file": "source-pages/telecom-service-desk.html",
+      "sha256": "3c18f4ff8628069a92d51a5f664002188a3d3a5007ab31088588c6b2af650695",
+      "bytes": 131810
+    },
+    {
+      "file": "source-pages/utilities-water.html",
+      "sha256": "4d88932ffe07cf506a32ae8d1f87ab73401b04c4566f0b28e706e24282c04d6d",
+      "bytes": 65545
+    },
+    {
+      "file": "source-pages/wcf-services.html",
+      "sha256": "c3c7d1a9d156169a4b5d07c6677c9de232c51b4cc7c32a1c7ff54249abe066ff",
+      "bytes": 100697
+    },
+    {
+      "file": "source-pages/znz-birth-service.html",
+      "sha256": "4d84ecdde7f3dc65552644c7f76b86c44e7a4ef7c07dacb1fdc276f98d1a1b7a",
+      "bytes": 614122
+    },
+    {
+      "file": "source-pages/znz-legal-aid-catalogue.html",
+      "sha256": "b3e4bfe4a0ccbbd855da51853bc6c657592a1834f7e7c5cd7d4fec205323557c",
+      "bytes": 102752
+    },
+    {
+      "file": "source-register.json",
+      "sha256": "03df7feaa7f211ab049d5afeffab829f2ec34a364fceb4bb92117e33eab09ec8",
+      "bytes": 198490
+    },
+    {
+      "file": "specific-catalogue-discovery.json",
+      "sha256": "0d695d4bdd79bfb42ac9acc607bd6ab2f2a27cae164403081c70db60be5cc111",
+      "bytes": 187470
+    },
+    {
+      "file": "structured-data/earlier-provider-and-faq-review.json",
+      "sha256": "be95bc42478cc02989f67a7d86f70ebdcf106b5e96382fe6b555690c509093a1",
+      "bytes": 10526
+    },
+    {
+      "file": "structured-data/geography-acquisition.json",
+      "sha256": "59144bf199232523c5e574b415e1eadcd69ce3e9a92f7463b656409bde67a178",
+      "bytes": 1369
+    },
+    {
+      "file": "structured-data/geography-validation-review.json",
+      "sha256": "aa793409b25598e7c09e4e75fe12d4746bf2761b3616d896e7dac4c721586e62",
+      "bytes": 4367
+    },
+    {
+      "file": "structured-data/nbs-2022-ward-attributes-review.json",
+      "sha256": "52a494e9f2986fb18564bfee3cb076c6f134c872ffc94fb60251b7bb7a9d7f8d",
+      "bytes": 2789394
+    },
+    {
+      "file": "structured-data/nbs-2022-ward-shapefiles.zip",
+      "sha256": "a81eecf5021d1904d2d57a3c5ea40b8c3f538cd5b227e8d68a302653a6d1466e",
+      "bytes": 10419963
+    },
+    {
+      "file": "structured-data/nbs-2022-wards/TANZANIA_2022PHC_WARDS_SHAPEFILES.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "bytes": 5
+    },
+    {
+      "file": "structured-data/nbs-2022-wards/TANZANIA_2022PHC_WARDS_SHAPEFILES.dbf",
+      "sha256": "9087bd383e9e03678da24d9798fec23ce31fa35ccc8dd029bf8a9e65afef016a",
+      "bytes": 2945810
+    },
+    {
+      "file": "structured-data/nbs-2022-wards/TANZANIA_2022PHC_WARDS_SHAPEFILES.prj",
+      "sha256": "cff1c1763dd47707d0f59447c952f2c850b2cf31446d81b3bacd06f76574f794",
+      "bytes": 354
+    },
+    {
+      "file": "structured-data/nbs-2022-wards/TANZANIA_2022PHC_WARDS_SHAPEFILES.sbn",
+      "sha256": "0fbf734a7571d6cda35cac26127291c4f21f2a7b4024a83cbfbe33b0b16f9767",
+      "bytes": 46092
+    },
+    {
+      "file": "structured-data/nbs-2022-wards/TANZANIA_2022PHC_WARDS_SHAPEFILES.sbx",
+      "sha256": "80bb1b6cd0ea1a12ffedb943116a4490dfeae359c20a4f70e3de869d8a4a6d09",
+      "bytes": 3564
+    },
+    {
+      "file": "structured-data/nbs-2022-wards/TANZANIA_2022PHC_WARDS_SHAPEFILES.shp",
+      "sha256": "6ac12dea674e1983dd1984b991a803cab65ef6c8602dc22f3b5e947742c40eda",
+      "bytes": 18035048
+    },
+    {
+      "file": "structured-data/nbs-2022-wards/TANZANIA_2022PHC_WARDS_SHAPEFILES.shp.xml",
+      "sha256": "783534722ea066a0fa18bb1a94771f5768116ee9de1d28e29be44a6908bfbcec",
+      "bytes": 11997
+    },
+    {
+      "file": "structured-data/nbs-2022-wards/TANZANIA_2022PHC_WARDS_SHAPEFILES.shx",
+      "sha256": "99175bbca37d2e80b093fd5c2da6e92a1891ede3a1d2220085bf9bc554708590",
+      "bytes": 34852
+    },
+    {
+      "file": "upload-candidates-review.json",
+      "sha256": "6a42b20a4c2e09b8a07883702d8e1ada207c7edca9442dfdb02bab57ae210366",
+      "bytes": 177010
+    },
+    {
+      "file": "validate_final_bundle.py",
+      "sha256": "f841b4c7cf96f26c82c4dae895c66b65133c9ed7efc881663a43727aa63c8e3a",
+      "bytes": 9340
+    },
+    {
+      "file": "validation-report.json",
+      "sha256": "f9a5451de832da713063f20c6d08fdf2bd91c9048f90825eeffe76e3b4495cb9",
+      "bytes": 566
+    },
+    {
+      "file": "visual-qa/benefits-2024-date-check.png",
+      "sha256": "a2a29b9b56165e730927c7109f5b5724bf78ae1cc4db54b90d43051222d9fff1",
+      "bytes": 96994
+    },
+    {
+      "file": "visual-qa/environment-amendment.png",
+      "sha256": "8a5d9174191559cf711a784af7a8fff54206f3e7de91701e2e55fcbde5c448ef",
+      "bytes": 140617
+    },
+    {
+      "file": "visual-qa/probate-amendment.png",
+      "sha256": "0ed9eea6b95eb4a182f71fa19fb28f102e1b1e2bc0072cccd893069b79c21f18",
+      "bytes": 135100
+    },
+    {
+      "file": "visual-qa/small-claims.png",
+      "sha256": "f4af2ac4d98e61e54cfd0c59c04101ae8434e227bf44c892f846882ed2801d0c",
+      "bytes": 85291
+    },
+    {
+      "file": "visual-qa/zanzibar-rules.png",
+      "sha256": "b1fc3edb6849a65b2d81fe2ec9a7e20a0e755c8e6a1d85708651aebca315739b",
+      "bytes": 144005
+    },
+    {
+      "file": "visual-qa/znz-disability-2022-p5.png",
+      "sha256": "f0349e2f8d37889fb80279159284c948581206f2c3d5916bc562c43af08d0e90",
+      "bytes": 199959
+    },
+    {
+      "file": "visual-qa/znz-kadhis-act-identity.png",
+      "sha256": "d3461a74c1f5fe1257527262deb2e5096ddb3bb07949ce0f409e4a3aa7661290",
+      "bytes": 180405
+    },
+    {
+      "file": "visual-qa/znz-kadhis-sw-p4.png",
+      "sha256": "e68ac6228bb6540e94c7f22385cb61bc0f7deddfda6c9bffa5d779cbe1d8962e",
+      "bytes": 183024
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-24T20:36:12.043Z",
+  "records": [
+    {
+      "id": "PROC-CIVIL",
+      "url": "https://elibrary.osg.go.tz/bitstreams/e77a343c-f3a3-4f09-af6f-6dd55ac06212/download",
+      "recordUrl": "https://elibrary.osg.go.tz/items/b1a390a4-9582-4dee-b612-ed5770aefe8b",
+      "sha256": "3b9c5dd74dcd11016fc2c93353337a7c9c30247eaef23d3a1b8b99552c52095c",
+      "bytes": 1892019,
+      "identicalToRejectedOriginal": true,
+      "file": "docs/haki-yangu/source-recovery-2026-10-24/proc-civil-official-alternative.pdf",
+      "status": "downloaded_unscanned_unapproved"
+    },
+    {
+      "id": "CRIM-PROCEDURE",
+      "url": "https://elibrary.osg.go.tz/bitstreams/f1256db6-999b-40ee-bf4a-327e794f14ae/download",
+      "recordUrl": "https://elibrary.osg.go.tz/items/7b3e64f1-ae1d-4c4f-95d3-c37c67053923",
+      "sha256": "023b9da4adbe7b49e270741e5e1ff68ea2ba8f89cce385c26749f06bd0cae9f1",
+      "bytes": 1788583,
+      "identicalToRejectedOriginal": true,
+      "file": "docs/haki-yangu/source-recovery-2026-10-24/crim-procedure-official-alternative.pdf",
+      "status": "downloaded_unscanned_unapproved"
+    }
+  ]
+}

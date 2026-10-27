@@ -471,7 +471,7 @@ const AdminAnalytics = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-panton flex items-center gap-2">
                   <Activity size={18} className="text-indigo-500" />
-                  Saada AI
+                  Haki Yangu AI
                 </CardTitle>
               </CardHeader>
               <CardContent>
