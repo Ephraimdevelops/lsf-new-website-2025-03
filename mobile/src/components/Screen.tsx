@@ -1,10 +1,11 @@
+import type { ScrollViewInstance } from "react-native";
 import { useLanguage } from "../i18n";
 import type { ReactNode, Ref } from "react";
 import { ScrollView, StyleSheet, View, type ViewStyle } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors, spacing } from "../theme";
 
-export function Screen({ children, scroll = true, style, footer, scrollRef }: { children: ReactNode; scroll?: boolean; style?: ViewStyle; footer?: ReactNode; scrollRef?: Ref<ScrollView> }) {
+export function Screen({ children, scroll = true, style, footer, scrollRef }: { children: ReactNode; scroll?: boolean; style?: ViewStyle; footer?: ReactNode; scrollRef?: Ref<ScrollViewInstance> }) {
   const { locale } = useLanguage();
   const content = <View accessibilityLanguage={locale === "sw" ? "sw-TZ" : "en-TZ"} style={[styles.content, footer ? styles.contentWithFooter : null, style]}>{children}</View>;
   return (

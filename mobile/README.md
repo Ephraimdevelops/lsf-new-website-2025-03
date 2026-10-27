@@ -2,6 +2,20 @@
 
 Expo/React Native client for the shared LSF digital justice platform.
 
+## Testing on a physical iPhone
+
+This project uses Expo SDK 58. Use Expo Go for SDK 58 on your iPhone.
+
+From `mobile/`, install dependencies with `npm ci`, then run:
+
+```bash
+npx expo start --go --clear
+```
+
+Stop any previous Metro server with Ctrl+C first. Keep the iPhone and computer on the same network, then scan the new QR code with the iPhone camera. For a network that blocks local connections, restart with `npx expo start --go --tunnel --clear`.
+
+Expo Go uses the service-list fallback for native Mapbox maps. Full native-feature testing requires a new development build. Generated native folders from SDK 57 must be regenerated for SDK 58 before the next native build; existing build outputs are not upgraded by changing JavaScript dependencies.
+
 ## Architecture
 
 - Expo Router and TypeScript

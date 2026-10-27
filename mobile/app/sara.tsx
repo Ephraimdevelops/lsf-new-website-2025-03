@@ -1,3 +1,4 @@
+import type { ScrollViewInstance, TextInputInstance } from "react-native";
 import { SaadaSpeechPlayer } from "../src/chat/SaadaSpeechPlayer";
 import { BrandLoading, BrandLoadingMark } from '../src/components/BrandLoading';
 import { IntakeVoice } from "../src/intake/IntakeVoice";
@@ -112,8 +113,8 @@ export default function SaraScreen() {
   const [rated, setRated] = useState<Record<string, "positive" | "negative">>({});
   const [previewMode, setPreviewMode] = useState<"reply" | "working" | null>(null);
   const preview = __DEV__ && previewMode !== null;
-  const scroll = useRef<ScrollView>(null);
-  const inputRef = useRef<TextInput>(null);
+  const scroll = useRef<ScrollViewInstance>(null);
+  const inputRef = useRef<TextInputInstance>(null);
   const followBottom = useRef(true);
   const sending = useRef(false);
   const session = useRef(0);

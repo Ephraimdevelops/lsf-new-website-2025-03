@@ -1,3 +1,4 @@
+import type { ScrollViewInstance } from "react-native";
 import { useIsFocused } from "expo-router";
 import { useWorkMode } from "../../src/work/WorkMode";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -53,7 +54,7 @@ export default function HomeScreen() {
   const { context } = useLocalSearchParams<{ context?: string }>();
   const [slideWidth, setSlideWidth] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
-  const slideRef = useRef<ScrollView>(null);
+  const slideRef = useRef<ScrollViewInstance>(null);
   const { isSignedIn } = useAuth();
   const { ready: accountReady } = useAccountSync();
   const { greeting } = usePersonalIdentity();

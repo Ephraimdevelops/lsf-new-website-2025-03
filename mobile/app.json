@@ -26,10 +26,12 @@
       ]
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "output": "single"
     },
     "plugins": [
       "expo-router",
+      "expo-asset",
       "expo-secure-store",
       "expo-localization",
       "expo-font",

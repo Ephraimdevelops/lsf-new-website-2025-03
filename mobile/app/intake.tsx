@@ -1,3 +1,4 @@
+import type { ScrollViewInstance } from "react-native";
 import { recordingBlobToWav } from "../../shared/voiceAudio";
 import { plainError } from "../../shared/plainLanguage";
 import { useAuth } from "../src/auth";
@@ -59,7 +60,7 @@ export default function IntakeScreen() {
   const uploadLock = useRef(false);
   const [uploadState, setUploadState] = useState<Record<string, { percent: number; error?: string }>>({});
   const [moreIssues, setMoreIssues] = useState(false);
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ScrollViewInstance>(null);
   const [cleanupFailed, setCleanupFailed] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");

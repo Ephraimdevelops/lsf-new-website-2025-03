@@ -1,3 +1,4 @@
+import type { ScrollViewInstance } from "react-native";
 import { BrandLoading } from '../src/components/BrandLoading';
 import { plainError } from "../../shared/plainLanguage";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -29,7 +30,7 @@ export default function SaadaGovernanceScreen() {
   const allowed = roles.some((role) => ["admin", "staff"].includes(role));
   const isAdmin = roles.includes("admin");
   const [tab, setTab] = useState<Tab>("sources");
-  const screenRef = useRef<ScrollView>(null);
+  const screenRef = useRef<ScrollViewInstance>(null);
   const [sourceTab, setSourceTab] = useState<"pending" | "due" | "approved" | "history">(initialSourceTab === "due" ? "due" : "pending");
   const documentPage = usePaginatedQuery(api.sara.listDocumentsPage, allowed ? { status: sourceTab } : "skip", { initialNumItems: 20 });
   const documents = documentPage.status === "LoadingFirstPage" ? undefined : documentPage.results;
