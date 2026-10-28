@@ -1,82 +1,82 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Image } from "expo-image";
+import { useState } from "react";
+import { Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { BrandMark } from "../src/components/BrandMark";
 import { Button } from "../src/components/Button";
+import { CivicIllustration } from "../src/components/CivicIllustration";
 import { Screen } from "../src/components/Screen";
 import { useLanguage } from "../src/i18n";
 import { colors, radius, spacing, type } from "../src/theme";
 
 export default function OnboardingScreen() {
   const { locale, setLocale } = useLanguage();
+  const { height } = useWindowDimensions();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState(false);
+  const sw = locale === "sw";
 
   async function continueToApp() {
-    await AsyncStorage.setItem("haki-yangu:onboarded", "yes");
-    router.replace("/(tabs)");
+    if (busy) return;
+    setBusy(true);
+    setError(false);
+    try {
+      await AsyncStorage.setItem("haki-yangu:onboarded", "yes");
+      router.replace("/(tabs)");
+    } catch {
+      setError(true);
+      setBusy(false);
+    }
   }
 
-  return (
-    <Screen style={styles.screen}>
-      <BrandMark />
-      <View style={styles.hero}>
-        <View style={styles.illustration}>
-          <View style={styles.artGlow} />
-          <Image source={require("../assets/saada-paralegal.webp")} style={styles.artImage} contentFit="cover" accessible={false} />
-          <View style={styles.artStatement}><Text style={styles.artStatementTitle}>{locale === "sw" ? "Hauko peke yako." : "You are not alone."}</Text><Text style={styles.artStatementBody}>{locale === "sw" ? "Taarifa. Msaada. Hatua wazi." : "Information. Support. Clear next steps."}</Text></View>
-          <View style={styles.artCard}><Ionicons name="shield-checkmark" size={22} color={colors.teal} /><Text style={styles.artCardText}>{locale === "sw" ? "Chagua taarifa utakazoshiriki" : "Choose what to share"}</Text></View>
-        </View>
-        <Text style={styles.kicker}>{locale === "sw" ? "WATU · HAKI · MSAADA" : "PEOPLE · RIGHTS · SUPPORT"}</Text>
-        <Text style={styles.title}>{locale === "sw" ? "Haki zako, mikononi mwako" : "Your rights, in your hands"}</Text>
-        <Text style={styles.body}>
-          {locale === "sw"
-            ? "Elewa haki zako, omba msaada na fuatilia hatua inayofuata."
-            : "Understand your rights, request help and follow the next step."}
-        </Text>
+  return <Screen style={styles.screen} footer={<View style={styles.actions}>
+    {error ? <Text accessibilityRole="alert" style={styles.error}>{sw ? "Imeshindikana kuendelea. Jaribu tena." : "Couldn't continue. Please try again."}</Text> : null}
+    <Button label={sw ? "Anza hapa" : "Get started"} loading={busy} disabled={busy} onPress={() => void continueToApp()} />
+    <Pressable accessibilityRole="button" disabled={busy} onPress={() => router.push("/sign-in")} style={styles.signInButton}>
+      <Text style={styles.signIn}>{sw ? "Una akaunti? " : "Have an account? "}<Text style={styles.signInLink}>{sw ? "Ingia" : "Sign in"}</Text></Text>
+    </Pressable>
+  </View>}>
+    <View style={styles.header}><BrandMark /><Text style={styles.appName}>Haki Yangu</Text></View>
+    <View accessibilityRole="radiogroup" accessibilityLabel={sw ? "Chagua lugha" : "Choose language"} style={styles.languages}>
+      {(["sw", "en"] as const).map(language => <Pressable key={language} accessibilityRole="radio" aria-checked={locale === language} accessibilityState={{ checked: locale === language }} onPress={() => void setLocale(language)} style={[styles.language, locale === language && styles.languageSelected]}>
+        <Text style={[styles.languageText, locale === language && styles.languageTextSelected]}>{language === "sw" ? "Kiswahili" : "English"}</Text>
+      </Pressable>)}
+    </View>
+    <View style={styles.hero}>
+      <View style={styles.art}>
+        <View style={styles.orbit} />
+        <View style={styles.goldDot} />
+        <View style={styles.tealDot} />
+        <CivicIllustration pose="welcome" size={height < 700 ? 144 : height < 750 ? 180 : 224} />
       </View>
-      <View style={styles.pathPreview}>
-        <View style={styles.previewItem}><View style={styles.previewIcon}><Ionicons name="chatbubbles" size={20} color={colors.burgundy} /></View><View style={styles.previewCopy}><Text style={styles.previewTitle}>{locale === "sw" ? "Omba msaada" : "Ask for help"}</Text><Text style={styles.previewBody}>{locale === "sw" ? "Eleza tatizo lako kwa LSF." : "Tell LSF about your problem."}</Text></View></View>
-        <View style={styles.previewDivider} />
-        <View style={styles.previewItem}><View style={[styles.previewIcon, styles.previewIconTeal]}><Ionicons name="search" size={20} color={colors.teal} /></View><View style={styles.previewCopy}><Text style={styles.previewTitle}>{locale === "sw" ? "Tafuta huduma" : "Find services"}</Text><Text style={styles.previewBody}>{locale === "sw" ? "Gundua huduma zilizothibitishwa." : "Explore verified services near you."}</Text></View></View>
-        <View style={styles.previewDivider} />
-        <View style={styles.previewItem}><View style={[styles.previewIcon, styles.previewIconGold]}><Ionicons name="document-text-outline" size={20} color={colors.warning} /></View><View style={styles.previewCopy}><Text style={styles.previewTitle}>{locale === "sw" ? "Fuatilia kesi yako" : "Follow your case"}</Text><Text style={styles.previewBody}>{locale === "sw" ? "Ona hatua zinazofuata kwa urahisi." : "See your next steps clearly."}</Text></View></View>
-      </View>
-      <View>
-        <Text style={styles.languageLabel}>{locale === "sw" ? "Chagua lugha" : "Choose your language"}</Text>
-        <View style={styles.languageRow}>
-          <Button label="Kiswahili" variant={locale === "sw" ? "primary" : "secondary"} onPress={() => void setLocale("sw")} style={styles.languageButton} />
-          <Button label="English" variant={locale === "en" ? "primary" : "secondary"} onPress={() => void setLocale("en")} style={styles.languageButton} />
-        </View>
-        <Button label={locale === "sw" ? "Anza" : "Get started"} onPress={() => void continueToApp()} />
-        <Pressable onPress={() => router.push("/sign-in")}><Text style={styles.signIn}>{locale === "sw" ? "Una akaunti tayari? Ingia" : "Already have an account? Sign in"}</Text></Pressable>
-      </View>
-    </Screen>
-  );
+      <Text style={styles.eyebrow}>{sw ? "HAUKO PEKE YAKO" : "YOU ARE NOT ALONE"}</Text>
+      <Text accessibilityRole="header" style={[styles.title, height < 700 && styles.compactTitle]}>{sw ? "Haki zako.\nHatua yako inayofuata." : "Your rights.\nYour next step."}</Text>
+      <Text style={styles.body}>{sw ? "Elewa haki zako na upate msaada wa kisheria, hatua kwa hatua." : "Understand your rights and find legal help, one step at a time."}</Text>
+    </View>
+  </Screen>;
 }
 
 const styles = StyleSheet.create({
-  screen: { paddingTop: spacing.lg, justifyContent: "space-between" },
-  hero: { gap: spacing.lg },
-  illustration: { height: 270, borderRadius: radius.xl, backgroundColor: colors.burgundySoft, marginTop: spacing.xl, overflow: "hidden" },
-  artGlow: { position: "absolute", width: 240, height: 240, borderRadius: 120, right: -40, top: -45, backgroundColor: "#F5B7C9", opacity: 0.55 },
-  artImage: { position: "absolute", width: 178, height: 270, right: 0, bottom: 0, borderTopLeftRadius: 90 },
-  artStatement: { position: "absolute", left: spacing.lg, top: spacing.xl, width: 150 },
-  artStatementTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 22, lineHeight: 25 },
-  artStatementBody: { marginTop: spacing.sm, fontFamily: type.medium, fontWeight: "500", color: colors.ink, fontSize: 13, lineHeight: 18 },
-  artCard: { position: "absolute", left: spacing.lg, bottom: spacing.lg, flexDirection: "row", alignItems: "center", gap: spacing.sm, borderRadius: radius.md, backgroundColor: colors.surface, padding: spacing.md },
-  artCardText: { fontFamily: type.bold, fontWeight: "700", color: colors.ink, fontSize: 13 },
-  kicker: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 11, letterSpacing: 1.5 },
-  title: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 34, lineHeight: 38, letterSpacing: -0.8 },
-  body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 16, lineHeight: 24 },
-  pathPreview: { marginVertical: spacing.xl, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, padding: spacing.md },
-  previewItem: { flexDirection: "row", alignItems: "center", gap: spacing.md, paddingVertical: spacing.sm },
-  previewIcon: { width: 42, height: 42, borderRadius: 15, backgroundColor: colors.burgundySoft, alignItems: "center", justifyContent: "center" },
-  previewIconTeal: { backgroundColor: colors.tealSoft }, previewIconGold: { backgroundColor: colors.goldSoft }, previewCopy: { flex: 1 },
-  previewTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.ink, fontSize: 14 }, previewBody: { marginTop: 2, fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, lineHeight: 17 },
-  previewDivider: { height: 1, backgroundColor: colors.line, marginVertical: spacing.xs },
-  languageLabel: { marginBottom: spacing.sm, fontFamily: type.bold, fontWeight: "700", color: colors.ink, fontSize: 13 },
-  languageRow: { flexDirection: "row", gap: spacing.md, marginBottom: spacing.lg },
-  languageButton: { flex: 1 },
-  signIn: { paddingVertical: spacing.lg, textAlign: "center", fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 13 },
+  screen: { paddingTop: spacing.lg, paddingBottom: spacing.lg, width: "100%", maxWidth: 560, alignSelf: "center" },
+  header: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: spacing.md },
+  appName: { fontFamily: type.semibold, fontSize: 17, color: colors.burgundy },
+  languages: { flexDirection: "row", alignSelf: "center", backgroundColor: colors.warmBackground, borderWidth: 1, borderColor: colors.line, borderRadius: radius.pill, padding: 4, marginTop: spacing.xl },
+  language: { minHeight: 44, paddingHorizontal: 24, borderRadius: radius.pill, alignItems: "center", justifyContent: "center" },
+  languageSelected: { backgroundColor: colors.burgundySoft },
+  languageText: { fontFamily: type.medium, fontSize: 14, lineHeight: 21, color: colors.inkMuted },
+  languageTextSelected: { color: colors.burgundy, fontFamily: type.semibold },
+  hero: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: spacing.xl, gap: spacing.md },
+  art: { alignItems: "center", justifyContent: "center", padding: 12, marginBottom: spacing.sm },
+  orbit: { position: "absolute", width: "100%", height: "100%", borderRadius: 150, borderWidth: 1, borderColor: colors.line, transform: [{ rotate: "-12deg" }] },
+  goldDot: { position: "absolute", width: 16, height: 16, borderRadius: 8, backgroundColor: colors.gold, left: 0, top: 38 },
+  tealDot: { position: "absolute", width: 10, height: 10, borderRadius: 5, backgroundColor: colors.teal, right: 4, bottom: 38 },
+  eyebrow: { fontFamily: type.semibold, fontSize: 11, lineHeight: 17, letterSpacing: 1.8, color: colors.burgundy, textAlign: "center" },
+  title: { fontFamily: type.semibold, fontSize: 32, lineHeight: 39, letterSpacing: -0.8, color: colors.ink, textAlign: "center" },
+  compactTitle: { fontSize: 28, lineHeight: 34 },
+  body: { fontFamily: type.regular, fontSize: 16, lineHeight: 24, color: colors.inkMuted, textAlign: "center", maxWidth: 340 },
+  actions: { width: "100%", maxWidth: 512, alignSelf: "center", paddingTop: spacing.sm },
+  signInButton: { minHeight: 52, alignItems: "center", justifyContent: "center", paddingVertical: spacing.md },
+  signIn: { fontFamily: type.regular, fontSize: 14, lineHeight: 22, color: colors.inkMuted, textAlign: "center" },
+  signInLink: { fontFamily: type.semibold, color: colors.burgundy },
+  error: { fontFamily: type.medium, fontSize: 14, lineHeight: 21, color: colors.danger, textAlign: "center", marginBottom: spacing.md },
 });
