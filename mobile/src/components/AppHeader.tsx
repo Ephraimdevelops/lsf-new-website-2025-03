@@ -3,7 +3,7 @@ import { router } from "expo-router";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useUser } from "../auth";
 import { useLanguage } from "../i18n";
-import { colors, spacing, type } from "../theme";
+import { typography, colors, spacing, type } from "../theme";
 
 export function AppHeader({ title, eyebrow, avatarUrl, initial = "H", back = false, onBell, showAvatar = true }: {
   title: string;
@@ -24,7 +24,7 @@ export function AppHeader({ title, eyebrow, avatarUrl, initial = "H", back = fal
     </Pressable> : null}
     <View style={styles.copy}>
       {eyebrow ? <Text style={styles.eyebrow}>{eyebrow}</Text> : null}
-      <Text style={styles.title} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.82}>{title}</Text>
+      <Text accessibilityRole="header" style={styles.title}>{title}</Text>
     </View>
     {onBell ? <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? "Arifa" : "Notifications"} onPress={onBell} style={styles.iconButton}><Ionicons name="notifications-outline" size={22} color={colors.ink} /></Pressable> : null}
   </View>;
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
   initial: { fontFamily: type.semibold, color: colors.burgundy, fontSize: 18 },
   copy: { flex: 1, gap: 2 },
   eyebrow: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 12 },
-  title: { fontFamily: type.semibold, color: colors.ink, fontSize: 21 },
+  title: { ...typography.compactTitle },
   iconButton: { width: 46, height: 46, alignItems: "center", justifyContent: "center" },
 });

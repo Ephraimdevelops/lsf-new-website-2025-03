@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-28",
+  "status": "Development checkpoint, not product or release acceptance",
+  "branch": "dev/haki-yangu-v2",
+  "scope": {
+    "date": "2026-10-28",
+    "changes": [
+      "Shared mobile heading levels and wrapping",
+      "Intake progress and checked accessibility state",
+      "Destructive button variant",
+      "Task-based Admin review headings",
+      "Shorter directory counters",
+      "Plain Swahili AI source preparation labels and translated approval status",
+      "Password visibility accessibility label translated",
+      "Development README corrected"
+    ],
+    "renderedChecks": [
+      "Kiswahili intake steps 1 and 2 at 320 and 390 widths",
+      "English onboarding and beneficiary profile/case",
+      "Admin password sign-in and workspace",
+      "Kiswahili guide, directory and AI review queues at 390px",
+      "Directory review opens; no records approved"
+    ],
+    "knownLimitations": [
+      "Expo web case preview cannot load SecureStore pending actions; native offline acceptance outstanding",
+      "Research category metadata remains partly English; content review outstanding",
+      "Full bilingual screen and enlarged-text audit remains open",
+      "Physical-device and signed-build acceptance remains open"
+    ]
+  },
+  "checks": {
+    "releaseRegression": {
+      "passed": 544,
+      "failed": 0
+    },
+    "websiteBuild": "passed",
+    "websiteTypecheck": "passed",
+    "mobileWebExport": "passed before final label-only edits",
+    "mobileTypecheck": "passed"
+  },
+  "approvalOwner": "LSF Admin",
+  "remainingAcceptance": [
+    "Complete all launch-screen bilingual and enlarged-text reviews",
+    "Complete cross-role release rehearsal against chosen source revision",
+    "Build and test SDK 58 native binaries on physical iPhone and Android",
+    "Admin review and approval of current legal sources, guides and verified services",
+    "Confirm support, safeguarding and retention policy ownership",
+    "Configure and verify production services, signing and distribution"
+  ],
+  "boundary": "No content approved or published, no production deployment, no merge to main."
+}

@@ -291,7 +291,7 @@ export default function IntakeScreen() {
       <Pressable disabled={loading} accessibilityRole="button" style={styles.saveLater} onPress={() => void saveForLater()}><Ionicons name="bookmark-outline" size={17} color={colors.inkMuted} /><Text style={styles.meta}>{sw ? "Hifadhi, endelea baadaye" : "Save, continue later"}</Text></Pressable>
     </View>}>
       <View style={styles.header}><Pressable disabled={loading} accessibilityRole="button" accessibilityLabel={sw ? "Rudi" : "Back"} style={styles.backButton} onPress={() => step > 1 ? goStep(step - 1) : router.back()}><Ionicons name="chevron-back" size={26} color={colors.burgundy} /></Pressable><Text style={styles.step}>{locale === "sw" ? `Hatua ya ${step} kati ya ${TOTAL_STEPS}` : `Step ${step} of ${TOTAL_STEPS}`}</Text><QuickExit locale={locale} /></View>
-      <View accessibilityRole="progressbar" accessibilityValue={{ min: 1, max: TOTAL_STEPS, now: step }} style={styles.progressSegments}>{Array.from({ length: TOTAL_STEPS }, (_, index) => <View key={index} style={[styles.segment, index < step && styles.segmentDone]} />)}</View>
+      <View accessibilityRole="progressbar" accessibilityValue={{ min: 1, max: TOTAL_STEPS, now: step }} style={styles.progressSegments}>{Array.from({ length: TOTAL_STEPS }, (_, index) => <View key={index} style={[styles.segment, index < step - 1 && styles.segmentDone, index === step - 1 && styles.segmentCurrent]} />)}</View>
       <Text style={styles.phase}>{sw ? (step <= 2 ? "Tatizo lako" : step <= 5 ? "Maelezo na ushahidi" : step <= 7 ? "Usalama na mawasiliano" : "Kagua na tuma") : (step <= 2 ? "Your situation" : step <= 5 ? "Details and evidence" : step <= 7 ? "Safety and contact" : "Review and submit")}</Text>
       {step === 1 ? IssueStep() : null}
       {step > 1 && selectedIssue ? <Pressable accessibilityRole="button" accessibilityLabel={sw ? "Badilisha aina ya tatizo" : "Change issue type"} style={styles.inlineAction} onPress={() => goStep(1)}><Ionicons name={selectedIssue.icon} size={18} color={colors.teal} /><Text style={styles.meta}>{selectedIssue[locale]}</Text><Ionicons name="create-outline" size={16} color={colors.inkMuted} /></Pressable> : null}
@@ -323,7 +323,7 @@ export default function IntakeScreen() {
       <Intro title={sw ? "Unahitaji msaada kuhusu nini?" : "What do you need help with?"} body={sw ? "Chagua kinachokaribia tatizo lako. Huhitaji kujua jina la kisheria." : "Choose the closest match. You don't need to know the legal term."} />
       <View style={styles.issueList}>{issueOptions.filter((item, index) => moreIssues || index < 5 || item.id === draft.issueDetail).map(item => {
         const selected = selectedIssue?.id === item.id;
-        return <Pressable key={item.id} accessibilityRole="radio" accessibilityState={{ checked: selected }} style={[styles.issueOption, selected && styles.issueOptionSelected]} onPress={() => updateDraft({ issueCategory: item.key, issueDetail: item.id })}>
+        return <Pressable key={item.id} accessibilityRole="radio" aria-checked={selected} accessibilityState={{ checked: selected }} style={[styles.issueOption, selected && styles.issueOptionSelected]} onPress={() => updateDraft({ issueCategory: item.key, issueDetail: item.id })}>
           <Ionicons name={item.icon} size={25} color={selected ? colors.burgundy : colors.teal} /><View style={styles.issueOptionCopy}><Text style={[styles.issueOptionTitle, selected && { color: colors.burgundy }]}>{sw ? item.sw : item.en}</Text><Text style={styles.issueOptionBody}>{sw ? item.swBody : item.enBody}</Text></View><Ionicons name={selected ? "checkmark" : "chevron-forward"} size={20} color={selected ? colors.burgundy : colors.inkMuted} />
         </Pressable>;
       })}</View>
@@ -334,7 +334,7 @@ export default function IntakeScreen() {
 
   function Intro({ title, body }: { title: string; body: string }) {
     const pose = (["welcome", "voice", "location", "direction", "documents", "safety", "contact", "review"] as const)[step - 1] ?? "welcome";
-    return <View style={styles.intro}><View style={styles.introTop}><Text style={[styles.title, { flex: 1 }]}>{title}</Text><CivicIllustration pose={pose} size={104} /></View><Text style={styles.body}>{body}</Text></View>;
+    return <View style={styles.intro}><View style={styles.introTop}><Text accessibilityRole="header" style={[styles.title, { flex: 1 }]}>{title}</Text><CivicIllustration pose={pose} size={104} /></View><Text style={styles.body}>{body}</Text></View>;
   }
 
   function DescriptionStep() {
@@ -465,7 +465,7 @@ function Field({ label, value, onChangeText, autoCorrect }: { label: string; val
 }
 
 function Choice({ label, body, selected, onPress, danger = false }: { label: string; body?: string; selected: boolean; onPress: () => void; danger?: boolean }) {
-  return <Pressable accessibilityRole="radio" accessibilityState={{ checked: selected }} onPress={onPress} style={[styles.choice, selected && styles.choiceSelected, danger && selected && styles.choiceDanger]}><Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={danger && selected ? colors.danger : colors.burgundy} /><View style={{ flex: 1 }}><Text style={styles.choiceText}>{label}</Text>{body ? <Text style={styles.issueOptionBody}>{body}</Text> : null}</View></Pressable>;
+  return <Pressable accessibilityRole="radio" aria-checked={selected} accessibilityState={{ checked: selected }} onPress={onPress} style={[styles.choice, selected && styles.choiceSelected, danger && selected && styles.choiceDanger]}><Ionicons name={selected ? "radio-button-on" : "radio-button-off"} size={22} color={danger && selected ? colors.danger : colors.burgundy} /><View style={{ flex: 1 }}><Text style={styles.choiceText}>{label}</Text>{body ? <Text style={styles.issueOptionBody}>{body}</Text> : null}</View></Pressable>;
 }
 
 function ReviewRow({ label, value, icon, onEdit, locale }: { label: string; value: string; icon?: keyof typeof Ionicons.glyphMap; onEdit?: () => void; locale?: "sw" | "en" }) {
@@ -474,10 +474,11 @@ function ReviewRow({ label, value, icon, onEdit, locale }: { label: string; valu
 
 const styles = StyleSheet.create({
   backButton: { width: 48, height: 48, alignItems: "center", justifyContent: "center" },
-  progressSegments: { flexDirection: "row", gap: 5, marginTop: 16 },
+  progressSegments: { flexDirection: "row", alignItems: "center", gap: 5, marginTop: 16 },
   segment: { flex: 1, height: 4, borderRadius: 2, backgroundColor: "#ECEEEE" },
   segmentDone: { backgroundColor: colors.burgundy },
-  phase: { fontFamily: type.regular, fontSize: 12, color: colors.inkMuted, marginTop: 12 },
+  segmentCurrent: { backgroundColor: colors.surface, borderWidth: 2, borderColor: colors.burgundy, height: 8 },
+  phase: { fontFamily: type.semibold, fontSize: 14, color: colors.inkMuted, marginTop: 12 },
   intro: { gap: 14 }, introTop: { flexDirection: "row", alignItems: "center", gap: 12 },
   illustration: { width: 104, height: 104, overflow: "hidden" },
   inlineAction: { flexDirection: "row", alignItems: "center", gap: 10, minHeight: 48 },
@@ -485,7 +486,7 @@ const styles = StyleSheet.create({
   attachment: { backgroundColor: "#F3F5F4", padding: 14, borderRadius: 8, gap: 8 },
   reviewHeading: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
-  step: { fontFamily: type.medium, fontWeight: "500", color: colors.inkMuted, fontSize: 13 },
+  step: { fontFamily: type.semibold, fontWeight: "600", color: colors.burgundy, fontSize: 15 },
   progressTrack: { height: 4, borderRadius: radius.pill, backgroundColor: colors.line, marginTop: spacing.lg },
   progress: { height: 4, borderRadius: radius.pill, backgroundColor: colors.burgundy },
   section: { marginTop: spacing.xl, gap: spacing.lg },

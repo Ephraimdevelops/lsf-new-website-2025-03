@@ -5,7 +5,7 @@ import { colors, radius, spacing, type } from "../theme";
 
 type Props = ComponentProps<typeof Pressable> & {
   label: string;
-  variant?: "primary" | "secondary" | "quiet";
+  variant?: "primary" | "secondary" | "quiet" | "danger";
   loading?: boolean;
 };
 
@@ -25,7 +25,7 @@ export function Button({ label, variant = "primary", loading, disabled, style, .
       {...props}
     >
       {loading ? <BrandLoadingMark small light={variant === "primary"}/> : null}
-      <Text style={[styles.label, variant !== "primary" && styles.altLabel]}>{label}</Text>
+      <Text style={[styles.label, variant !== "primary" && styles.altLabel, variant === "danger" && styles.dangerLabel]}>{label}</Text>
     </Pressable>
   );
 }
@@ -39,11 +39,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 18,
     paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.md,
   },
   primary: { backgroundColor: colors.burgundy },
   secondary: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.burgundy },
+  danger: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.danger },
+  dangerLabel: { color: colors.danger },
   quiet: { backgroundColor: colors.softPink },
-  label: { color: colors.surface, fontFamily: type.bold, fontWeight: "700", fontSize: 16 },
+  label: { color: colors.surface, fontFamily: type.bold, fontWeight: "700", fontSize: 16, lineHeight: 23, flexShrink: 1, textAlign: "center" },
   altLabel: { color: colors.burgundy },
   pressed: { opacity: 0.84 },
   disabled: { opacity: 0.48 },

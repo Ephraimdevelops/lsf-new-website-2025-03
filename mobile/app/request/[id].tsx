@@ -73,7 +73,7 @@ export default function RequestDetailScreen() {
     <Pressable accessibilityRole="button" accessibilityState={{ expanded: showProgress }} onPress={() => setShowProgress(value => !value)} style={styles.progressToggle}><Text style={styles.sectionTitle}>{t("Hatua zilizofikiwa", "Progress so far")}</Text><Ionicons name={showProgress ? "chevron-up" : "chevron-down"} size={20} color={colors.inkMuted} /></Pressable>
     {showProgress ? <View>{progressStages.map((status, index) => <View key={status} style={styles.timelineRow}><View style={styles.timelineRail}>{index < progressStages.length - 1 ? <View style={[styles.line, styles.lineDone]} /> : null}<View style={[styles.dot, styles.dotDone]}><Ionicons name="checkmark" size={13} color={colors.surface} /></View></View><Text style={styles.timelineTitle}>{labels[status][locale]}</Text></View>)}</View> : null}
     {["information_only", "closed", "withdrawn"].includes(request.status) ? <Button label={t("Omba msaada tena", "Request more help")} variant="secondary" onPress={() => router.push("/intake")} /> : null}
-    {canWithdraw ? <Button label={withdrawing ? t("Inaondolewa...", "Withdrawing...") : t("Ondoa ombi hili", "Withdraw this request")} variant="quiet" disabled={withdrawing} onPress={confirmWithdraw} /> : null}
+    {canWithdraw ? <Button label={withdrawing ? t("Inaondolewa...", "Withdrawing...") : t("Ondoa ombi hili", "Withdraw this request")} variant="danger" disabled={withdrawing} onPress={confirmWithdraw} /> : null}
     {error ? <Text accessibilityRole="alert" style={styles.error}>{error}</Text> : null}
   </Screen>;
 }

@@ -76,3 +76,12 @@ export const type = {
   bold: "Onest-Bold",
   editorial: "Onest-SemiBold",
 } as const;
+
+// Semantic text levels shared by page introductions and task screens.
+export const typography = {
+  pageTitle: { fontFamily: type.semibold, fontSize: 28, lineHeight: 35, color: colors.ink },
+  compactTitle: { fontFamily: type.semibold, fontSize: 24, lineHeight: 31, color: colors.ink },
+  sectionTitle: { fontFamily: type.semibold, fontSize: 20, lineHeight: 27, color: colors.ink },
+  body: { fontFamily: type.regular, fontSize: 16, lineHeight: 24, color: colors.ink },
+  supporting: { fontFamily: type.regular, fontSize: 14, lineHeight: 21, color: colors.inkMuted },
+} as const;

@@ -345,6 +345,7 @@ function Field(props: {
   oneTimeCode?: boolean;
 }) {
   const [visible, setVisible] = useState(false);
+  const { locale } = useLanguage();
   return (
     <View style={styles.field}>
       <Text style={styles.label}>{props.label}</Text>
@@ -361,7 +362,7 @@ function Field(props: {
         textContentType={props.oneTimeCode ? "oneTimeCode" : undefined}
         accessibilityLabel={props.label}
         style={styles.input}
-      />{props.secureTextEntry ? <Pressable accessibilityRole="button" accessibilityLabel={visible ? "Hide password" : "Show password"} onPress={() => setVisible((value) => !value)} style={styles.eyeButton}><Ionicons name={visible ? "eye-off-outline" : "eye-outline"} size={22} color={colors.inkMuted} /></Pressable> : null}</View>
+      />{props.secureTextEntry ? <Pressable accessibilityRole="button" accessibilityLabel={locale === "sw" ? (visible ? "Ficha neno la siri" : "Onyesha neno la siri") : (visible ? "Hide password" : "Show password")} onPress={() => setVisible((value) => !value)} style={styles.eyeButton}><Ionicons name={visible ? "eye-off-outline" : "eye-outline"} size={22} color={colors.inkMuted} /></Pressable> : null}</View>
     </View>
   );
 }
